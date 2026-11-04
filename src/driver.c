@@ -148,6 +148,11 @@ static ModuleFile* find_module_file(const char* rel_path) {
  * sections are parsed. We close it once, after both parse_declaration_section
  * calls.
  *
+ * Line numbers: init_lexer receives the section's real start line (from
+ * ModuleSections) so that token.line in error messages refers to the actual
+ * file line, not to a line relative to the section start. params_line is
+ * always 1; returns_line and code_line come from split_module_sections.
+ *
  * Note: a duplicate symbol aborts the build inside add_declarative_symbol.
  * By that time, some symbols from this file and earlier files are already in
  * G_Table; that is fine, we exit immediately.
@@ -164,19 +169,17 @@ static void pass1_declarations(void) {
 
         ModuleSections sec;
         if (!split_module_sections(f, &sec)) {
-            fprintf(stderr, "error: [%s] invalid module structure "
-                    "(must be exactly three sections separated by two "
-                    "blank lines)\n", G_Files[i].rel_path);
+            /* split_module_sections already printed a detailed diagnostic. */
             fclose(f);
             exit(1);
         }
 
         Lexer L;
 
-        init_lexer(&L, f, sec.params_start, sec.params_end, 1);
+        init_lexer(&L, f, sec.params_start, sec.params_end, sec.params_line);
         parse_declaration_section(&L, G_Files[i].rel_path, SYM_PARAM);
 
-        init_lexer(&L, f, sec.returns_start, sec.returns_end, 1);
+        init_lexer(&L, f, sec.returns_start, sec.returns_end, sec.returns_line);
         parse_declaration_section(&L, G_Files[i].rel_path, SYM_RETURN);
 
         fclose(f);
@@ -199,6 +202,9 @@ static void pass1_declarations(void) {
  * emitted before parsing so that any emit_* call inside parse_statement lands
  * inside the function. The closing brace is emitted after parsing completes
  * (or after the loop, if parse_statement reaches EOF).
+ *
+ * Line numbers: init_lexer receives sec.code_line so that token.line in
+ * error messages refers to the actual file line.
  */
 
 static void pass2_module_code(const char* rel_path, const char* abs_path) {
@@ -211,13 +217,12 @@ static void pass2_module_code(const char* rel_path, const char* abs_path) {
 
     ModuleSections sec;
     if (!split_module_sections(f, &sec)) {
-        fprintf(stderr, "error: [%s] invalid module structure\n", rel_path);
         fclose(f);
         exit(1);
     }
 
     Lexer L;
-    init_lexer(&L, f, sec.code_start, sec.code_end, 1);
+    init_lexer(&L, f, sec.code_start, sec.code_end, sec.code_line);
 
     int capacity = 1024;
     int size = 0;
@@ -305,7 +310,7 @@ static void validate_entry(const char* entry) {
  *
  *   1. Scan                 — populate G_Files.
  *   2. Register files       — ensure every file is a graph node (see note).
- *   3. Register intrinsics  — G_Table now has sys/* entries; must run before
+ *   3. Register intrinsics  — G_Table now has sys/… entries; must run before
  *                             pass 1 so user redeclarations are caught.
  *   4. Pass 1               — fill G_Table with all declarations.
  *   5. Validate entry       — file exists, no parameters.
@@ -349,7 +354,8 @@ void compile_project(const char* root, const char* entry, const char* out_path) 
     /* ---- 4. Pass 1: declarations ------------------------------------ */
     pass1_declarations();
     printf("Symbol table: %u name(s), storage[%u] slot(s) used\n",
-           G_Table.count, G_Table.global_storage_pointer);
+           (unsigned)G_Table.count,
+           (unsigned)G_Table.global_storage_pointer);
 
     /* ---- 5. Validate entry ------------------------------------------ */
     validate_entry(entry);

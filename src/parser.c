@@ -161,11 +161,11 @@ static Symbol* get_or_create_receiver(CodeParser* P, const char* name,
  * branch, which is harder to read.
  */
 
-static void parse_value_into(CodeParser* P, int n, uint32_t dst_off) {
+static void parse_value_into(CodeParser* P, uint32_t n, uint32_t dst_off) {
     Token v = ts_next(P->stream);
     if (v.indent != n)
         parse_error(P, v.line,
-                    "assignment source must be at indent %d, got %d",
+                    "assignment source must be at indent %u, got %u",
                     n, v.indent);
 
     switch (v.type) {
@@ -199,11 +199,11 @@ static void parse_value_into(CodeParser* P, int n, uint32_t dst_off) {
     }
 }
 
-static void parse_value_indirect(CodeParser* P, int n, uint32_t ptr_off) {
+static void parse_value_indirect(CodeParser* P, uint32_t n, uint32_t ptr_off) {
     Token v = ts_next(P->stream);
     if (v.indent != n)
         parse_error(P, v.line,
-                    "indirect assignment source must be at indent %d, got %d",
+                    "indirect assignment source must be at indent %u, got %u",
                     n, v.indent);
 
     switch (v.type) {
@@ -241,21 +241,22 @@ static void parse_value_indirect(CodeParser* P, int n, uint32_t ptr_off) {
  * Statement parsers (forward declarations)
  * ============================================================================ */
 
-static void parse_assign(CodeParser* P, int n, uint32_t dst_off);
-static void parse_deref_assign(CodeParser* P, int n);
-static void parse_branch(CodeParser* P, int n);
-static void parse_loop(CodeParser* P, int n);
-static void parse_call(CodeParser* P, int n, Symbol* alias, uint32_t line);
+static void parse_assign(CodeParser* P, uint32_t n, uint32_t dst_off);
+static void parse_deref_assign(CodeParser* P, uint32_t n);
+static void parse_branch(CodeParser* P, uint32_t n);
+static void parse_loop(CodeParser* P, uint32_t n);
+static void parse_call(CodeParser* P, uint32_t n, Symbol* alias,
+                       uint32_t line);
 
 /* ============================================================================
  * Simple statements
  * ============================================================================ */
 
-static void parse_assign(CodeParser* P, int n, uint32_t dst_off) {
+static void parse_assign(CodeParser* P, uint32_t n, uint32_t dst_off) {
     parse_value_into(P, n, dst_off);
 }
 
-static void parse_deref_assign(CodeParser* P, int n) {
+static void parse_deref_assign(CodeParser* P, uint32_t n) {
     /* Current token: '@' at indent n (already checked by dispatcher). */
     ts_next(P->stream);
     Token dst = ts_next(P->stream);
@@ -281,7 +282,7 @@ static void parse_deref_assign(CodeParser* P, int n) {
  * unrelated error.
  */
 
-static void parse_body(CodeParser* P, int n) {
+static void parse_body(CodeParser* P, uint32_t n) {
     while (ts_peek(P->stream)->type != TOK_EOF &&
            ts_peek(P->stream)->type != TOK_ERROR &&
            ts_peek(P->stream)->indent == n) {
@@ -292,7 +293,7 @@ static void parse_body(CodeParser* P, int n) {
     if (next->type != TOK_EOF && next->type != TOK_ERROR &&
         next->indent > n) {
         parse_error(P, next->line,
-                    "unexpected indent %d (expected %d or less): "
+                    "unexpected indent %u (expected %u or less): "
                     "indent cannot jump by more than one level",
                     next->indent, n);
     }
@@ -302,7 +303,7 @@ static void parse_body(CodeParser* P, int n) {
  * Branch
  * ============================================================================ */
 
-static void parse_branch(CodeParser* P, int n) {
+static void parse_branch(CodeParser* P, uint32_t n) {
     Token cond = ts_next(P->stream);
     if (cond.type != TOK_IDENT)
         parse_error(P, cond.line, "branch condition must be an identifier");
@@ -312,7 +313,7 @@ static void parse_branch(CodeParser* P, int n) {
     if (q.type != TOK_QUESTION || q.indent != n || !q.is_bol
             || q.is_after_blank)
         parse_error(P, q.line,
-                    "expected '?' at indent %d immediately after condition",
+                    "expected '?' at indent %u immediately after condition",
                     n);
 
     emit_branch_start(cs->offset);
@@ -332,7 +333,7 @@ static void parse_branch(CodeParser* P, int n) {
  * Loop
  * ============================================================================ */
 
-static void parse_loop(CodeParser* P, int n) {
+static void parse_loop(CodeParser* P, uint32_t n) {
     Token cond = ts_next(P->stream);
     if (cond.type != TOK_IDENT)
         parse_error(P, cond.line, "loop condition must be an identifier");
@@ -342,7 +343,7 @@ static void parse_loop(CodeParser* P, int n) {
     if (lb.type != TOK_LBRACE || lb.indent != n || !lb.is_bol
             || lb.is_after_blank)
         parse_error(P, lb.line,
-                    "expected '{' at indent %d immediately after condition",
+                    "expected '{' at indent %u immediately after condition",
                     n);
 
     emit_loop_start(cs->offset);
@@ -350,7 +351,7 @@ static void parse_loop(CodeParser* P, int n) {
 
     Token rb = ts_next(P->stream);
     if (rb.type != TOK_RBRACE || rb.indent != n)
-        parse_error(P, rb.line, "expected '}' at indent %d (got indent %d)",
+        parse_error(P, rb.line, "expected '}' at indent %u (got indent %u)",
                     n, rb.indent);
 
     emit_loop_end();
@@ -418,7 +419,8 @@ static void parse_call_param(CodeParser* P, uint32_t param_off) {
     }
 }
 
-static void parse_call(CodeParser* P, int n, Symbol* alias, uint32_t call_line) {
+static void parse_call(CodeParser* P, uint32_t n, Symbol* alias,
+                       uint32_t call_line) {
     char callee[MAX_PATH_LEN];
     normalize_path(alias->path_link, callee);
 
@@ -563,7 +565,7 @@ static void parse_call(CodeParser* P, int n, Symbol* alias, uint32_t call_line) 
  * produce a precise error message if the token is at a different indent.
  */
 
-void parse_statement(CodeParser* P, int n) {
+void parse_statement(CodeParser* P, uint32_t n) {
     Token* t = ts_peek(P->stream);
 
     if (t->type == TOK_EOF)
@@ -573,7 +575,7 @@ void parse_statement(CodeParser* P, int n) {
 
     if (t->indent != n)
         parse_error(P, t->line,
-                    "expected indent %d, got %d", n, t->indent);
+                    "expected indent %u, got %u", n, t->indent);
 
     /* ----- '!' : break ------------------------------------------------ */
     if (t->type == TOK_BANG) {

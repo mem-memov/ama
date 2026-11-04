@@ -17,7 +17,7 @@
  *   2. Modules without any symbols (e.g., a `main` with only local variables)
  *      — created ahead of time by ensure_graph_node() when the driver scans
  *      the project tree.
- *   3. Intrinsics (sys/*) — created from G_Table because register_intrinsics
+ *   3. Intrinsics (sys/…) — created from G_Table because register_intrinsics
  *      declares their parameters and returns.
  *
  * A node with no edges still appears in the topological order and is emitted
@@ -40,11 +40,12 @@
  *     so the function can be called more than once (e.g., from tests).
  *
  * The graph is entirely internal to this file: GraphNode, G_Graph, G_NodeCount
- * are static. The driver uses only the three public functions declared in
- * ama.h:
+ * are static. The driver and the parser use only the four public functions
+ * declared in ama.h:
  *
  *   ensure_graph_node()                 — pre-register a file as a node
  *   build_and_validate_project_graph()  — build, validate, return order
+ *   graph_has_node()                    — membership check by path
  *   G_Graph_path()                      — read a node's path by index
  */
 
@@ -181,6 +182,18 @@ static void dfs_toposort(int u, int* order, int* idx) {
  * in the topological order and get emitted. */
 int ensure_graph_node(const char* path) {
     return get_or_create_node(path);
+}
+
+/* Return nonzero if the given path is already a node in the graph.
+ * Unlike module_exists (which inspects the symbol table), this also
+ * recognizes modules with no declared symbols, because the driver
+ * pre-registers every scanned file via ensure_graph_node. Used by the
+ * parser to validate call targets. */
+int graph_has_node(const char* path) {
+    for (int i = 0; i < G_NodeCount; i++)
+        if (strcmp(G_Graph[i].path, path) == 0)
+            return 1;
+    return 0;
 }
 
 /* Build the graph from G_Table, validate it (no cycles), and return the

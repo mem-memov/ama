@@ -174,7 +174,7 @@ Token* ts_peek (TokenStream* t);
 Token* ts_peek2(TokenStream* t);
 Token  ts_next (TokenStream* t);
 
-void parse_statement(CodeParser* P, int indent);
+void parse_statement(CodeParser* P, uint32_t indent);
 
 /* ============================================================================
  * Emitters
@@ -218,6 +218,11 @@ void emit_call_exec(const char* callee_path);
  * Dependency graph and topological sort
  * ============================================================================
  *
+ * ensure_graph_node pre-registers a module as a graph node. The driver
+ * calls it for every scanned file before pass 1, so that modules without
+ * any symbols (e.g., a `main` with only locals) still appear in the
+ * topological order and get emitted.
+ *
  * build_and_validate_project_graph constructs the graph from G_Table:
  * every module in G_Table becomes a node, every alias becomes an edge.
  * It then runs DFS post-order over all nodes, detecting cycles (recursion
@@ -226,13 +231,18 @@ void emit_call_exec(const char* callee_path);
  * The caller must provide order_out with at least MAX_MODULES ints. The
  * function returns the number of nodes written (in topological order:
  * leaves first, entry last) and calls exit(1) on recursion or overflow.
+ *
+ * graph_has_node returns nonzero if the given path is a node in the graph.
+ * Unlike module_exists (which inspects the symbol table), graph_has_node
+ * also recognizes modules with no declared symbols.
+ *
+ * G_Graph_path returns the path of the node at the given index, or NULL
+ * if the index is out of range.
  */
 
-int build_and_validate_project_graph(int* order_out);
-
-/* Returns the path of the graph node at the given index, or NULL if the
- * index is out of range. The returned pointer remains valid until the next
- * call to build_and_validate_project_graph (if ever). */
+int         ensure_graph_node(const char* path);
+int         build_and_validate_project_graph(int* order_out);
+int         graph_has_node(const char* path);
 const char* G_Graph_path(int index);
 
 /* ============================================================================

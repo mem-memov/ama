@@ -1,21 +1,6 @@
 # Makefile for the Ама compiler
 #
-# Usage:
-#   make                   — build ./ama (gcc, -O2)
-#   make C_COMPILER=clang  — build with clang
-#   make clean             — remove build artifacts
-#   make rebuild           — clean, then all
-#
-# Debug build:
-#   make clean
-#   make C_COMPILER_FLAGS="-O0 -g3 -Wall -Wextra -std=c11 -pedantic -D_POSIX_C_SOURCE=200809L"
-#
-# Sanitizer build:
-#   make clean
-#   make C_COMPILER_FLAGS="-O1 -g -fsanitize=address,undefined -Wall -Wextra -std=c11 -D_POSIX_C_SOURCE=200809L" \
-#        LINKER_FLAGS="-fsanitize=address,undefined"
-#
-# Requirements: a C11 compiler, POSIX-compliant OS (Linux/macOS).
+# Run `make help` for a summary of available targets.
 
 # ---------------------------------------------------------------------------
 # Toolchain
@@ -47,13 +32,34 @@ PROJECT_HEADERS := src/ama.h
 # Behaviour
 # ---------------------------------------------------------------------------
 
-# Delete partially built .o on compiler failure.
 .DELETE_ON_ERROR:
-
-# Default target when invoked as bare `make`.
 .DEFAULT_GOAL := all
 
-.PHONY: all clean rebuild
+.PHONY: all help clean rebuild
+
+# ---------------------------------------------------------------------------
+# Help
+# ---------------------------------------------------------------------------
+
+help:
+	@echo "Ама compiler — build targets"
+	@echo ""
+	@echo "  make                Build the compiler (./ama)."
+	@echo "  make all            Same as 'make'."
+	@echo "  make clean          Remove build/ and ./ama."
+	@echo "  make rebuild        'clean', then 'all'."
+	@echo "  make help           Show this message."
+	@echo ""
+	@echo "Toolchain overrides (pass on the command line):"
+	@echo "  C_COMPILER=<cmd>            C compiler (default: gcc)."
+	@echo "  C_COMPILER_FLAGS=\"<flags>\"  Compiler flags (default: -O2 -Wall -Wextra -std=c11 -pedantic -D_POSIX_C_SOURCE=200809L)."
+	@echo "  LINKER_FLAGS=\"<flags>\"      Linker flags (default: empty)."
+	@echo ""
+	@echo "Examples:"
+	@echo "  make"
+	@echo "  make C_COMPILER=clang"
+	@echo "  make C_COMPILER_FLAGS=\"-O0 -g3 -Wall -Wextra -std=c11 -D_POSIX_C_SOURCE=200809L\""
+	@echo "  make clean && make"
 
 # ---------------------------------------------------------------------------
 # Build
@@ -88,7 +94,6 @@ build/driver.o: src/driver.c $(PROJECT_HEADERS)
 build/main.o: src/main.c $(PROJECT_HEADERS)
 	$(C_COMPILER) $(C_COMPILER_FLAGS) -c -o build/main.o src/main.c
 
-# Order-only prerequisite: build/ must exist before any .o is produced.
 $(PROJECT_OBJECTS): | build
 
 build:
