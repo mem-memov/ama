@@ -181,24 +181,21 @@ int split_module_sections(FILE* f, ModuleSections* sections) {
         }
 
         if (is_blank) {
-            empty_count++;
-            if (empty_count == 1) {
-                sections->params_end = current_pos;
-                sections->returns_start = next_pos;
-                sections->returns_line = line_num + 1;
-            } else if (empty_count == 2) {
-                sections->returns_end = current_pos;
-                sections->code_start = next_pos;
-                sections->code_line = line_num + 1;
-            } else {
-                fprintf(stderr,
-                        "error: too many blank line separators "
-                        "(found a third one at line %u); a module must "
-                        "have exactly three sections separated by exactly "
-                        "two blank lines\n",
-                        line_num);
-                free(line);
-                return 0;
+            /* Only the first two blank lines are section separators.
+             * Once the code section has begun (empty_count == 2), any
+             * further blank line is ordinary whitespace inside the code
+             * section — legal per the grammar (§3.3) — and is ignored. */
+            if (empty_count < 2) {
+                empty_count++;
+                if (empty_count == 1) {
+                    sections->params_end = current_pos;
+                    sections->returns_start = next_pos;
+                    sections->returns_line = line_num + 1;
+                } else if (empty_count == 2) {
+                    sections->returns_end = current_pos;
+                    sections->code_start = next_pos;
+                    sections->code_line = line_num + 1;
+                }
             }
         }
 

@@ -1,0 +1,28 @@
+eq
+.sys.math.eq
+sub
+.sys.math.sub
+print
+.sys.io.print
+
+i
+10
+
+i
+{
+ sub
+  < i
+  < 1
+  > i
+ eq
+  < i
+  < 3
+  > hit
+ hit
+ ?
+  !
+}
+
+print
+ < i
+ > err

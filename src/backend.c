@@ -561,6 +561,7 @@ void backend_emit_main(FILE* out, const char* entry_path) {
     }
 
     fprintf(out, "int main(void) {\n");
+    emit_call_init(entry_path);
     fprintf(out, "  %s();\n", fn);
     fprintf(out, "  return 0;\n");
     fprintf(out, "}\n");

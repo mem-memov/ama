@@ -1,0 +1,15 @@
+print
+.sys.io.print
+
+
+x
+0
+p
+&x
+
+@p
+42
+
+print
+ < x
+ > err

@@ -35,7 +35,7 @@ PROJECT_HEADERS := src/ama.h
 .DELETE_ON_ERROR:
 .DEFAULT_GOAL := all
 
-.PHONY: all help clean rebuild
+.PHONY: all help test clean rebuild
 
 # ---------------------------------------------------------------------------
 # Help
@@ -46,6 +46,7 @@ help:
 	@echo ""
 	@echo "  make                Build the compiler (./ama)."
 	@echo "  make all            Same as 'make'."
+	@echo "  make test           Run the test suite (./tests/run.sh)."
 	@echo "  make clean          Remove build/ and ./ama."
 	@echo "  make rebuild        'clean', then 'all'."
 	@echo "  make help           Show this message."
@@ -98,6 +99,13 @@ $(PROJECT_OBJECTS): | build
 
 build:
 	mkdir -p build
+
+# ---------------------------------------------------------------------------
+# Test
+# ---------------------------------------------------------------------------
+
+test: $(PROJECT_TARGET)
+	./tests/run.sh
 
 # ---------------------------------------------------------------------------
 # Housekeeping

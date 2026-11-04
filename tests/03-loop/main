@@ -1,0 +1,27 @@
+add
+.sys.math.add
+sub
+.sys.math.sub
+print
+.sys.io.print
+
+i
+5
+sum
+0
+
+i
+{
+ add
+  < sum
+  < i
+  > sum
+ sub
+  < i
+  < 1
+  > i
+}
+
+print
+ < sum
+ > err

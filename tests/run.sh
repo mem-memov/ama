@@ -52,9 +52,17 @@ for test_dir in "$TESTS_DIR"/*/; do
 
     c_file="$BUILD_DIR/$name.c"
     bin_file="$BUILD_DIR/$name"
+    stage="$BUILD_DIR/$name.proj"
+
+    # Stage a clean project tree: module files only, no test metadata
+    # (expected.txt must not be scanned as a module).
+    rm -rf "$stage"
+    mkdir -p "$stage"
+    cp -R "$test_dir"/. "$stage"/
+    rm -f "$stage/expected.txt"
 
     # 1. Ама → C
-    if ! ./ama "$test_dir" main "$c_file" > "$BUILD_DIR/$name.ama.log" 2>&1; then
+    if ! ./ama "$stage" main "$c_file" > "$BUILD_DIR/$name.ama.log" 2>&1; then
         echo "  FAIL: ama compilation failed"
         sed 's/^/    /' "$BUILD_DIR/$name.ama.log"
         failed=$((failed + 1))
