@@ -481,4 +481,3 @@ The prototype as it exists today:
   is `size_t`), but arity is not yet verified at call sites.
 - **Multiple return values** work positionally; named results must match the
   declarations in the callee.
-```
