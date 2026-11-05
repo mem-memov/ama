@@ -1,59 +1,10 @@
 #include "ama.h"
 
-#include <errno.h>
+/* Byte-oriented lexer with line and indentation metadata. The first two
+ * blank lines delimit declarations; later blank lines are code whitespace.
+ * Only spaces are allowed for indentation. Comments begin with #. */
 
-/* ============================================================================
- * Lexer — overview
- * ============================================================================
- *
- * The lexer is byte-oriented and stateful. It serves two purposes:
- *
- *   1. split_module_sections() — runs once per file, before any tokenization.
- *      It reads the raw file, validates the three-section structure
- *      (params / returns / code), and records byte ranges for each section.
- *
- *   2. get_next_token() — tokenizes one section at a time, producing a
- *      stream of tokens with position metadata (line number, indent, whether
- *      the token is the first on its line, and whether a blank line preceded
- *      it). Comments and blank lines are filtered out of the token stream but
- *      influence the blank-line flag.
- *
- * Why split sections first?
- *   The language requires exactly three sections separated by blank lines.
- *   Doing this on the raw bytes (not tokens) avoids ambiguity: a blank line
- *   inside a comment is still a blank line. The section splitter also
- *   validates the structure up front, so the lexer never has to reason about
- *   "which section am I in".
- *
- * Line endings:
- *   - "\n" is the canonical line ending.
- *   - "\r\n" is accepted and normalized to "\n".
- *   - A lone "\r" (not followed by "\n") is a lexical error.
- *
- * Whitespace:
- *   - At the start of a line, spaces increase the indent count. Tabs are
- *     forbidden everywhere.
- *   - Mid-line spaces are ignored.
- *
- * Comments:
- *   - '#' introduces a comment that runs to end of line.
- *   - Comments are skipped by the tokenizer (never emitted).
- *   - A comment line does NOT count as a blank line for the is_after_blank
- *     flag; only truly empty lines do.
- *
- * Tokens:
- *   - Identifiers: ASCII letters, digits, '_', and any UTF-8 byte >= 0x80
- *     (which covers all non-ASCII Unicode letters). First char must not be
- *     a digit.
- *   - Literals: positive decimal integers only. No sign, no hex, no floats.
- *   - Paths: '.' followed by one or more identifier segments separated by
- *     '.'. Used for alias targets in declarations.
- *   - Punctuation: < > @ & ? : { } ! (single characters each).
- *
- * Error handling:
- *   All errors print a diagnostic and call exit(1). The compiler does not
- *   attempt to recover.
- */
+#include <errno.h>
 
 /* ============================================================================
  * Character classification
@@ -120,24 +71,6 @@ static int read_char(Lexer* L) {
     }
     return ch;
 }
-
-/* ============================================================================
- * Section splitting (params / returns / code)
- * ============================================================================
- *
- * Reads the raw file (line by line, using getline for unbounded line length)
- * and produces six byte offsets that delimit the three sections. Separators
- * are blank lines: lines whose only content before "\n" is spaces (and
- * optionally a "\r"). Exactly TWO such lines are required.
- *
- * A line containing anything other than spaces and "\r" is treated as
- * content, even if it is only a comment. Tabs anywhere in the file are
- * rejected. Long lines are handled by getline (no truncation).
- *
- * Line numbers: params_line is always 1 (the file starts at line 1 even if
- * leading blank/comment lines precede any declaration). returns_line and
- * code_line are set to the line immediately after each separator.
- */
 
 int split_module_sections(FILE* f, ModuleSections* sections) {
     char* line = NULL;
@@ -319,8 +252,6 @@ Token get_next_token(Lexer* L) {
         switch (ch) {
         case '<': tok.type = TOK_LESS;    strcpy(tok.lexeme, "<"); return tok;
         case '>': tok.type = TOK_GREATER; strcpy(tok.lexeme, ">"); return tok;
-        case '@': tok.type = TOK_AT;      strcpy(tok.lexeme, "@"); return tok;
-        case '&': tok.type = TOK_AMP;     strcpy(tok.lexeme, "&"); return tok;
         case '?': tok.type = TOK_QUESTION;strcpy(tok.lexeme, "?"); return tok;
         case ':': tok.type = TOK_COLON;   strcpy(tok.lexeme, ":"); return tok;
         case '{': tok.type = TOK_LBRACE;  strcpy(tok.lexeme, "{"); return tok;

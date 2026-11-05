@@ -1,0 +1,6 @@
+print
+.sys.io.print
+
+
+print
+ < &x

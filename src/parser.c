@@ -1,71 +1,9 @@
 #include "ama.h"
 
-#include <stdarg.h>
+/* Recursive descent over the token stream, emitting C directly.
+ * Values are decimal literals or known numeric variables. */
 
-/* ============================================================================
- * Parser — overview
- * ============================================================================
- *
- * The parser receives a flat array of tokens (the code section of one module,
- * pre-lexed by the driver) and emits C code for the module body via the
- * emit_* functions.
- *
- * Grammar (indent is semantic):
- *
- *   statement   := assignment | deref_assign | call | branch | loop
- *                | break | return
- *
- *   assignment  := IDENT NEWLINE value
- *   deref_assign:= '@' IDENT NEWLINE value
- *   value       := LITERAL | IDENT | '@' IDENT | '&' IDENT
- *
- *   branch      := IDENT NEWLINE '?' NEWLINE body [ ':' NEWLINE body ]
- *   loop        := IDENT NEWLINE '{' NEWLINE body '}' NEWLINE
- *
- *   call        := IDENT NEWLINE { param_or_result }
- *   param_or_result
- *               := '<' value                 (positional parameter)
- *                | IDENT '<' value           (named parameter)
- *                | '>' IDENT                 (positional result)
- *                | IDENT '>' IDENT           (named result)
- *
- *   break       := '!' NEWLINE
- *   return      := '>' NEWLINE
- *   body        := statement*                    (all at indent n+1)
- *
- * Binding rules:
- *   - A condition (identifier) and its '?' or '{' must be at the SAME
- *     indent, on adjacent lines. No blank line between them, comments are
- *     allowed.
- *   - Assignment receiver and value must be at the SAME indent.
- *   - Call name is at indent n; parameters and results are at indent n+1.
- *   - Parameters must come before results.
- *   - A call uses either all positional arguments or all named ones; mixing
- *     is a hard error.
- *
- * Call emission order:
- *   1. emit_call_init(callee)       — reset all callee variables to defaults
- *   2. emit_call_param_* (each arg) — write arguments into callee slots
- *   3. emit_call_exec(callee)       — call the function
- *   4. emit_call_result (each res)  — copy result slots back to the caller
- *
- * Step 3 must run between writing parameters and reading results. Otherwise
- * results are read before the function has produced them (a silent bug that
- * returns stale/zero values). The parser emits the call lazily: on the first
- * result token, or after the argument loop if there are no results.
- *
- * Errors are hard: every failure prints a diagnostic and exits. The
- * compiler does not attempt to recover.
- *
- * Known limitations (documented, not enforced):
- *   - No arity check. Missing parameters default to 0 on each call.
- *   - Duplicate named arguments (left < 5, left < 7) are silently allowed;
- *     the last write wins.
- *   - Loop body does not need to update the condition; infinite loops are
- *     the programmer's responsibility.
- *   - Bare '>' return produces `return;` in a void function, which is
- *     fine, but it means the entry point always returns 0 to the OS.
- */
+#include <stdarg.h>
 
 /* ============================================================================
  * Token stream
@@ -109,21 +47,6 @@ static void parse_error(CodeParser* P, uint32_t line, const char* fmt, ...) {
     exit(1);
 }
 
-/* ============================================================================
- * Symbol resolution
- * ============================================================================
- *
- * require_value: name must exist and must not be an alias. Used everywhere a
- * value is expected: assignment source, parameter value, condition, etc.
- * Aliases are compile-time indirections; treating one as a value would read
- * from storage[0] (nil).
- *
- * get_or_create_receiver: name may or may not exist. If it exists and is
- * an alias, that is an error. If it does not exist, it is created as a
- * local variable. Used for result receivers, which can implicitly declare
- * new locals — consistent with assignment.
- */
-
 static Symbol* require_value(CodeParser* P, const char* name, uint32_t line) {
     Symbol* s = lookup_symbol(P->module_path, name);
     if (!s)
@@ -143,25 +66,7 @@ static Symbol* get_or_create_receiver(CodeParser* P, const char* name,
     return s;
 }
 
-/* ============================================================================
- * Value parsing (shared by assignment and indirect assignment)
- * ============================================================================
- *
- * A value occupies one line at indent n. Four forms:
- *   LITERAL       — integer constant
- *   IDENT         — direct read
- *   '@' IDENT     — indirect read (pointer at IDENT's slot)
- *   '&' IDENT     — address of IDENT (its storage offset as a number)
- *
- * parse_value_into writes the value to storage[dst_off].
- * parse_value_indirect writes it to storage[storage[ptr_off]].
- *
- * The two differ only in which emit_* is called; the value grammar is the
- * same. Keeping them separate avoids passing a "mode" flag through every
- * branch, which is harder to read.
- */
-
-static void parse_value_into(CodeParser* P, uint32_t n, uint32_t dst_off) {
+static void parse_value_into(CodeParser* P, uint32_t n, uint32_t dst_id) {
     Token v = ts_next(P->stream);
     if (v.indent != n)
         parse_error(P, v.line,
@@ -170,27 +75,11 @@ static void parse_value_into(CodeParser* P, uint32_t n, uint32_t dst_off) {
 
     switch (v.type) {
     case TOK_LITERAL:
-        emit_assign_const(dst_off, atoi(v.lexeme));
+        emit_assign_const(dst_id, atoi(v.lexeme));
         return;
     case TOK_IDENT: {
         Symbol* s = require_value(P, v.lexeme, v.line);
-        emit_assign_var(dst_off, s->offset);
-        return;
-    }
-    case TOK_AT: {
-        Token inner = ts_next(P->stream);
-        if (inner.type != TOK_IDENT)
-            parse_error(P, inner.line, "expected identifier after '@'");
-        Symbol* s = require_value(P, inner.lexeme, inner.line);
-        emit_assign_load_ind(dst_off, s->offset);
-        return;
-    }
-    case TOK_AMP: {
-        Token inner = ts_next(P->stream);
-        if (inner.type != TOK_IDENT)
-            parse_error(P, inner.line, "expected identifier after '&'");
-        Symbol* s = require_value(P, inner.lexeme, inner.line);
-        emit_assign_addr(dst_off, s->offset);
+        emit_assign_var(dst_id, s->id);
         return;
     }
     default:
@@ -199,50 +88,11 @@ static void parse_value_into(CodeParser* P, uint32_t n, uint32_t dst_off) {
     }
 }
 
-static void parse_value_indirect(CodeParser* P, uint32_t n, uint32_t ptr_off) {
-    Token v = ts_next(P->stream);
-    if (v.indent != n)
-        parse_error(P, v.line,
-                    "indirect assignment source must be at indent %u, got %u",
-                    n, v.indent);
-
-    switch (v.type) {
-    case TOK_LITERAL:
-        emit_store_indirect_const(ptr_off, atoi(v.lexeme));
-        return;
-    case TOK_IDENT: {
-        Symbol* s = require_value(P, v.lexeme, v.line);
-        emit_store_indirect_var(ptr_off, s->offset);
-        return;
-    }
-    case TOK_AT: {
-        Token inner = ts_next(P->stream);
-        if (inner.type != TOK_IDENT)
-            parse_error(P, inner.line, "expected identifier after '@'");
-        Symbol* s = require_value(P, inner.lexeme, inner.line);
-        emit_store_indirect_load_ind(ptr_off, s->offset);
-        return;
-    }
-    case TOK_AMP: {
-        Token inner = ts_next(P->stream);
-        if (inner.type != TOK_IDENT)
-            parse_error(P, inner.line, "expected identifier after '&'");
-        Symbol* s = require_value(P, inner.lexeme, inner.line);
-        emit_store_indirect_addr(ptr_off, s->offset);
-        return;
-    }
-    default:
-        parse_error(P, v.line,
-                    "invalid indirect source (token type %d)", (int)v.type);
-    }
-}
-
 /* ============================================================================
  * Statement parsers (forward declarations)
  * ============================================================================ */
 
-static void parse_assign(CodeParser* P, uint32_t n, uint32_t dst_off);
-static void parse_deref_assign(CodeParser* P, uint32_t n);
+static void parse_assign(CodeParser* P, uint32_t n, uint32_t dst_id);
 static void parse_branch(CodeParser* P, uint32_t n);
 static void parse_loop(CodeParser* P, uint32_t n);
 static void parse_call(CodeParser* P, uint32_t n, Symbol* alias,
@@ -252,18 +102,8 @@ static void parse_call(CodeParser* P, uint32_t n, Symbol* alias,
  * Simple statements
  * ============================================================================ */
 
-static void parse_assign(CodeParser* P, uint32_t n, uint32_t dst_off) {
-    parse_value_into(P, n, dst_off);
-}
-
-static void parse_deref_assign(CodeParser* P, uint32_t n) {
-    /* Current token: '@' at indent n (already checked by dispatcher). */
-    ts_next(P->stream);
-    Token dst = ts_next(P->stream);
-    if (dst.type != TOK_IDENT)
-        parse_error(P, dst.line, "expected identifier after '@'");
-    Symbol* ds = require_value(P, dst.lexeme, dst.line);
-    parse_value_indirect(P, n, ds->offset);
+static void parse_assign(CodeParser* P, uint32_t n, uint32_t dst_id) {
+    parse_value_into(P, n, dst_id);
 }
 
 /* ============================================================================
@@ -316,7 +156,7 @@ static void parse_branch(CodeParser* P, uint32_t n) {
                     "expected '?' at indent %u immediately after condition",
                     n);
 
-    emit_branch_start(cs->offset);
+    emit_branch_start(cs->id);
     parse_body(P, n + 1);
 
     Token* peek = ts_peek(P->stream);
@@ -346,7 +186,7 @@ static void parse_loop(CodeParser* P, uint32_t n) {
                     "expected '{' at indent %u immediately after condition",
                     n);
 
-    emit_loop_start(cs->offset);
+    emit_loop_start(cs->id);
     parse_body(P, n + 1);
 
     Token rb = ts_next(P->stream);
@@ -384,7 +224,7 @@ static void parse_loop(CodeParser* P, uint32_t n) {
  *   - parameters must be written before the call (else the callee reads
  *     stale/default values),
  *   - the call must run before results are read (else the caller copies
- *     stale/default result slots).
+ *     stale/default result values).
  * The "exec_emitted" flag ensures emit_call_exec runs exactly once, either
  * lazily on the first result token or once at the end if there are no
  * results at all.
@@ -393,24 +233,16 @@ static void parse_loop(CodeParser* P, uint32_t n) {
 typedef enum { CALL_INIT, CALL_POSITIONAL, CALL_NAMED } CallMode;
 
 /* Parse one parameter value (shared by positional and named forms). The
- * value is written to the callee's parameter slot at param_off. */
-static void parse_call_param(CodeParser* P, uint32_t param_off) {
+ * value is written to the callee's parameter slot at param_id. */
+static void parse_call_param(CodeParser* P, uint32_t param_id) {
     Token v = ts_next(P->stream);
     switch (v.type) {
     case TOK_LITERAL:
-        emit_call_param_const(param_off, atoi(v.lexeme));
+        emit_call_param_const(param_id, atoi(v.lexeme));
         return;
     case TOK_IDENT: {
         Symbol* s = require_value(P, v.lexeme, v.line);
-        emit_call_param_val(param_off, s->offset);
-        return;
-    }
-    case TOK_AMP: {
-        Token inner = ts_next(P->stream);
-        if (inner.type != TOK_IDENT)
-            parse_error(P, inner.line, "expected identifier after '&'");
-        Symbol* s = require_value(P, inner.lexeme, inner.line);
-        emit_call_param_addr(param_off, s->offset);
+        emit_call_param_val(param_id, s->id);
         return;
     }
     default:
@@ -461,7 +293,7 @@ static void parse_call(CodeParser* P, uint32_t n, Symbol* alias,
                     parse_error(P, t.line,
                                 "too many positional parameters for '%s'",
                                 callee);
-                parse_call_param(P, cp->offset);
+                parse_call_param(P, cp->id);
             } else {
                 seen_results = 1;
 
@@ -483,7 +315,7 @@ static void parse_call(CodeParser* P, uint32_t n, Symbol* alias,
                     parse_error(P, dst.line,
                                 "expected identifier after '>'");
                 Symbol* ds = get_or_create_receiver(P, dst.lexeme, dst.line);
-                emit_call_result(ds->offset, cr->offset);
+                emit_call_result(ds->id, cr->id);
             }
             continue;
         }
@@ -507,7 +339,7 @@ static void parse_call(CodeParser* P, uint32_t n, Symbol* alias,
                     parse_error(P, t.line,
                                 "'%s' is not a parameter of '%s'",
                                 t.lexeme, callee);
-                parse_call_param(P, cp->offset);
+                parse_call_param(P, cp->id);
             } else if (arrow.type == TOK_GREATER) {
                 seen_results = 1;
 
@@ -528,7 +360,7 @@ static void parse_call(CodeParser* P, uint32_t n, Symbol* alias,
                     parse_error(P, dst.line,
                                 "expected identifier after '>'");
                 Symbol* ds = get_or_create_receiver(P, dst.lexeme, dst.line);
-                emit_call_result(ds->offset, cr->offset);
+                emit_call_result(ds->id, cr->id);
             } else {
                 parse_error(P, arrow.line,
                             "expected '<' or '>' after '%s'", t.lexeme);
@@ -544,26 +376,6 @@ static void parse_call(CodeParser* P, uint32_t n, Symbol* alias,
     if (!exec_emitted)
         emit_call_exec(callee);
 }
-
-/* ============================================================================
- * Statement dispatcher
- * ============================================================================
- *
- * This is the only public entry point. It dispatches on the current token:
- *
- *   '!'      → break
- *   '>'      → early return
- *   '@'      → indirect assignment
- *   IDENT+?  → branch (greedy binding)
- *   IDENT+{  → loop   (greedy binding)
- *   IDENT    → call or assignment, resolved via the symbol table
- *
- * Anything else is a hard error.
- *
- * The n parameter is the indent at which this statement must start. It is
- * passed by the caller (driver: 0; body of branch/loop: n+1) and used to
- * produce a precise error message if the token is at a different indent.
- */
 
 void parse_statement(CodeParser* P, uint32_t n) {
     Token* t = ts_peek(P->stream);
@@ -588,12 +400,6 @@ void parse_statement(CodeParser* P, uint32_t n) {
     if (t->type == TOK_GREATER) {
         ts_next(P->stream);
         emit_return();
-        return;
-    }
-
-    /* ----- '@' : indirect assignment ----------------------------------- */
-    if (t->type == TOK_AT) {
-        parse_deref_assign(P, n);
         return;
     }
 
@@ -641,7 +447,7 @@ void parse_statement(CodeParser* P, uint32_t n) {
         /* Assignment (possibly declaring a new local). */
         Symbol* dst = get_or_create_receiver(P, t->lexeme, t->line);
         ts_next(P->stream);
-        parse_assign(P, n, dst->offset);
+        parse_assign(P, n, dst->id);
         return;
     }
 

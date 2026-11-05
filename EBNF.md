@@ -61,8 +61,8 @@ Identifiers are case-sensitive and compared byte-for-byte.
 <literal>       ::= <digit> { <digit> }
 ```
 
-Only positive decimal integers are supported. No sign, no hex, no float, no
-string literals. A negative value is written as `0 - x` via a module call.
+Only nonnegative decimal integers are supported. No sign, no hex, no float, no
+string literals. Subtraction is unsigned arithmetic; it does not produce signed negative values.
 
 ### 2.4 Paths
 
@@ -106,8 +106,6 @@ but **do not** count as blank lines for the `is_after_blank` flag (see
 ```ebnf
 <arrow-less>    ::= "<"
 <arrow-greater> ::= ">"
-<at>            ::= "@"
-<amp>           ::= "&"
 <question>      ::= "?"
 <colon>         ::= ":"
 <lbrace>        ::= "{"
@@ -119,8 +117,7 @@ but **do not** count as blank lines for the `is_after_blank` flag (see
 
 ## 3. Physical structure of a module file
 
-A module is a file with **exactly three sections**, separated by **exactly
-two blank lines** (lines whose content is only spaces).
+A module is a file with **exactly three sections**, separated by the **first two blank lines** (lines whose content is only spaces).
 
 ### 3.1 File structure
 
@@ -137,8 +134,8 @@ two blank lines** (lines whose content is only spaces).
 ```
 
 A section may be empty. The two separating blank lines are mandatory even
-when a section is empty. A file with zero or more than two blank separators
-is rejected.
+when a section is empty. A file with fewer than two blank separators is rejected. Additional blank
+lines belong to the code section and are allowed.
 
 A blank line is a line whose only characters before `\n` are spaces (and,
 for CRLF files, `\r`).
@@ -163,7 +160,8 @@ Semantics:
 
 - The identifier becomes a symbol in the current module.
 - If the value is a `<path>`, the symbol is an **alias**: it refers to the
-  module at that path. Aliases do not consume a storage slot.
+  module at that path. Aliases do not hold numeric values. The parser currently accepts them in
+  either declaration section; use the params section by convention.
 - If the value is a `<literal>`, the symbol's default is that integer.
 - If the value is an `<identifier>` (a variable reference), the compiler
   currently rejects it: "defaults that reference other variables are not
@@ -190,7 +188,6 @@ They do not produce tokens.
 
 ```ebnf
 <statement>     ::= <assignment>
-                  | <deref-assignment>
                   | <call>
                   | <branch>
                   | <loop>
@@ -208,8 +205,6 @@ Every statement begins at the current indent level `n`.
 
 <source-value>  ::= <literal>
                   | <identifier>
-                  | <at> <identifier>
-                  | <amp> <identifier>
 ```
 
 The receiver (first line) and the source (second line) must be at the **same
@@ -221,33 +216,16 @@ Forms:
 |----------------|--------------------------------------------|
 | `42`           | literal constant                           |
 | `x`            | copy the value of `x`                      |
-| `@x`           | read from address stored in `x`            |
-| `&x`           | address (storage offset) of `x`            |
 
 The receiver is created as a local variable on first use, unless it was
 declared in params/returns. If the receiver name is already an alias, it is
 an error ("alias cannot be used as a receiver").
 
-The source must be a known non-alias name (or a literal or a leading
-`@`/`&` on a known non-alias name). Using an alias as a value is an error.
+The source must be a literal or a known non-alias name. Using an alias as a
+value is an error. Assignment copies a value; variables have no observable
+addresses.
 
-### 4.2 Indirect assignment
-
-```ebnf
-<deref-assignment> ::= <indent-n> <at> <identifier> <newline>
-                       <indent-n> <source-value> <newline>
-```
-
-Writes to the address stored in the identifier's slot. Example:
-
-```
-@ptr
-42
-```
-
-generates `storage[storage[ptr_off]] = 42;`.
-
-### 4.3 Branch
+### 4.2 Branch
 
 ```ebnf
 <branch>        ::= <indent-n> <identifier> <newline>
@@ -278,7 +256,7 @@ The condition's value is read once at the `if`. Modifying the condition
 variable inside either body does not affect the branch decision (there is
 no re-check).
 
-### 4.4 Loop
+### 4.3 Loop
 
 ```ebnf
 <loop>          ::= <indent-n> <identifier> <newline>
@@ -299,7 +277,7 @@ Rules:
   not, the loop is infinite.
 - `break` (`!`) exits the innermost loop.
 
-### 4.5 Break
+### 4.4 Break
 
 ```ebnf
 <break>         ::= <indent-n> <bang> <newline>
@@ -309,7 +287,7 @@ Exits the innermost enclosing loop. Outside a loop it is a runtime-level
 `break` in C, which does not compile — this is currently **not** checked
 statically (see "Known limitations").
 
-### 4.6 Return
+### 4.5 Return
 
 ```ebnf
 <return>        ::= <indent-n> <arrow-greater> <newline>
@@ -317,10 +295,10 @@ statically (see "Known limitations").
 
 Early return from the current procedure. In C, this becomes `return;` (all
 module functions are `void`). Return values are **not** returned in the C
-sense: they are left in the module's return slots, which the caller reads
+sense: they are left in the module's result variables, which the caller reads
 after the call.
 
-### 4.7 Call
+### 4.6 Call
 
 ```ebnf
 <call>          ::= <indent-n> <identifier> <newline>
@@ -338,7 +316,6 @@ after the call.
 
 <param-value>   ::= <literal>
                   | <identifier>
-                  | <amp> <identifier>
 ```
 
 Rules:
@@ -356,7 +333,7 @@ Rules:
 - Named parameters and results use the declared name, e.g. `left < x` or
   `sum > r`.
 - The call is emitted as:
-    1. `emit_call_init(callee)` — reset all callee slots to defaults;
+    1. `emit_call_init(callee)` — reset callee parameters/results to declared defaults and locals to zero;
     2. one `emit_call_param_*` per parameter, in source order;
     3. `emit_call_exec(callee)` — the actual C call;
     4. one `emit_call_result` per result, in source order.
@@ -375,10 +352,11 @@ add
 generates roughly:
 
 ```c
-storage[add_left]  = storage[x_off];
-storage[add_right] = 7;
+/* IDs here are illustrative internal symbol names. */
+v_1 = v_4;
+v_2 = 7;
 mod_add();
-storage[result_off] = storage[add_sum];
+v_5 = v_3;
 ```
 
 ---
@@ -417,8 +395,8 @@ by the grammar above.
 3. **Indent step is exactly one space.** Indent increases by exactly 1 per
    nested body. Jumps of two or more are errors.
 
-4. **Exactly two blank separators per file.** The structure splitter
-   requires exactly two blank lines; a third or a missing one is an error.
+4. **Two section separators.** The first two blank lines delimit the
+   declaration sections. Further blank lines are code whitespace.
 
 5. **No blank line between a condition and `?` or `{`.** The `is_after_blank`
    flag tracks this. Comments are fine; blank lines are not.
@@ -426,9 +404,8 @@ by the grammar above.
 6. **Same indent for assignment receiver and source.** Both must be at
    indent `n`.
 
-7. **Aliases cannot be values, receivers, or conditions.** Only the
-   params section may declare an alias (by a `<path>` value); elsewhere,
-   the name must resolve to a non-alias symbol.
+7. **Aliases cannot be values, receivers, or conditions.** Aliases are declared by a `<path>` value in a declaration section;
+   they cannot be used as numeric values in code.
 
 8. **Unknown names in the source position are errors.** Unlike the
    receiver (which auto-creates a local), the source must already exist.
@@ -446,8 +423,8 @@ by the grammar above.
 
 The current compiler does **not** enforce:
 
-1. **Arity.** Missing parameters default to 0 (the callee's declared
-   default for that slot). Extra parameters are caught only by the "too
+1. **Arity.** Missing parameters keep the callee's declared
+   default value. Extra parameters are caught only by the "too
    many positional parameters" check; missing ones are silent.
 
 2. **Duplicate named parameters.** `left < 5` and `left < 7` in the same
@@ -456,65 +433,65 @@ The current compiler does **not** enforce:
 3. **`break` outside a loop.** Compiles to `break;` in C; gcc rejects it
    with its own error.
 
-4. **Address bounds.** `@x` reads `storage[storage[x_off]]` without
-   checking that the value is within `[0, STORAGE_SIZE)`. Out-of-bounds
-   reads are undefined behavior at the C level.
+4. **String literals.** There is no string type. Only nonnegative integers.
 
-5. **String literals.** There is no string type. Only positive integers.
-
-6. **Negative literals.** `-5` is not a token. Use a module call.
+5. **Negative literals.** `-5` is not a token; subtraction wraps as unsigned
+   arithmetic.
 
 ---
 
 ## 8. End-to-end example
 
-`math/abs` (returns the absolute value of its argument):
+File `math/double`:
 
-```
+```text
 x
 0
+add
+.sys.math.add
 
 result
 0
 
-lt
+add
  < x
- < 0
- > is_negative
-
-is_negative
-?
-  sub
-   < 0
-   < x
-   > result
-:
-  x
-  result
+ < x
+ > result
 ```
 
-`main` (calls `math/abs` and prints the result):
+File `main`:
 
-```
-abs
-.math.abs
+```text
+double
+.math.double
 print
 .sys.io.print
 
-abs
- < 5
- result > r
 
+double
+ < 21
+ > answer
 print
- < r
- error > err
+ < answer
 ```
 
-Compile:
-
-```bash
-./ama ./examples/math main out.c
-gcc -O3 -march=native out.c -o prog
+```sh
+./ama ./examples/double main out.c
+gcc -O3 out.c -o prog
 ./prog
-# prints: 5
+# prints: 42
 ```
+
+## 9. Value semantics
+
+Every numeric variable holds a platform-sized unsigned integer (`size_t`).
+Zero is false; any nonzero value is true. Arithmetic and comparisons are
+unsigned. A call copies values: defaults, arguments, execution, then results.
+All callee locals are reset to zero at every call, including locals introduced
+inside a conditional body. The entry module receives the same initialization.
+There are no addresses, pointers, dereferencing operators, or built-in memory
+allocation/access modules. The compiler emits separate C variables; their
+internal symbol IDs are not values accessible to a program.
+
+The remaining intrinsics are `sys/math/{add,sub,mul,div,mod,lt,le,gt,ge,eq,ne,
+and,or,not}` and `sys/io/print`; see README.md for signatures.

@@ -1,0 +1,174 @@
+print
+.sys.io.print
+add
+.sys.math.add
+sub
+.sys.math.sub
+mul
+.sys.math.mul
+div
+.sys.math.div
+mod
+.sys.math.mod
+lt
+.sys.math.lt
+le
+.sys.math.le
+gt
+.sys.math.gt
+ge
+.sys.math.ge
+eq
+.sys.math.eq
+ne
+.sys.math.ne
+and
+.sys.math.and
+or
+.sys.math.or
+not
+.sys.math.not
+
+
+add
+ < 5
+ < 7
+ > out0
+
+print
+ < out0
+
+sub
+ < 9
+ < 4
+ > out0
+
+print
+ < out0
+
+mul
+ < 6
+ < 7
+ > out0
+
+print
+ < out0
+
+div
+ < 17
+ < 5
+ > out0
+ > out1
+
+print
+ < out0
+
+print
+ < out1
+
+div
+ < 17
+ < 0
+ > out0
+ > out1
+
+print
+ < out0
+
+print
+ < out1
+
+mod
+ < 17
+ < 5
+ > out0
+ > out1
+
+print
+ < out0
+
+print
+ < out1
+
+mod
+ < 17
+ < 0
+ > out0
+ > out1
+
+print
+ < out0
+
+print
+ < out1
+
+lt
+ < 2
+ < 3
+ > out0
+
+print
+ < out0
+
+le
+ < 3
+ < 3
+ > out0
+
+print
+ < out0
+
+gt
+ < 2
+ < 3
+ > out0
+
+print
+ < out0
+
+ge
+ < 3
+ < 3
+ > out0
+
+print
+ < out0
+
+eq
+ < 3
+ < 3
+ > out0
+
+print
+ < out0
+
+ne
+ < 3
+ < 3
+ > out0
+
+print
+ < out0
+
+and
+ < 2
+ < 3
+ > out0
+
+print
+ < out0
+
+or
+ < 0
+ < 3
+ > out0
+
+print
+ < out0
+
+not
+ < 0
+ > out0
+
+print
+ < out0

@@ -7,34 +7,11 @@
 #include <ctype.h>
 #include <stdint.h>
 
-/* ============================================================================
- * Compile-time limits
- * ============================================================================
- *
- * All buffers and arrays are sized at compile time. Exceeding a limit is a
- * hard error: the compiler prints a message and calls exit(1).
- *
- * MAX_MODULES              — max nodes in the dependency graph, and max edges
- *                            per node.
- * MAX_MODULE_FILES         — max source files scanned by the driver.
- * MAX_SYMBOLS              — max entries in the global symbol table.
- * MAX_INTRINSIC_PARAMS     — max parameters per intrinsic module.
- * MAX_INTRINSIC_RETURNS    — max return slots per intrinsic module.
- * HEAP_WORDS_DEFAULT       — default size of the generated heap region
- *                            (in size_t words).
- *
- * MAX_IDENT_LEN     — identifiers (parameter, return, variable names).
- * MAX_PATH_LEN      — module paths ("math/add", "core/types/int").
- * MAX_PATH_LINK_LEN — alias targets (".sys.math.add") and absolute paths.
- * MAX_LEXEME_LEN    — any token's text: identifier, literal, or path.
- */
-
 #define MAX_MODULES            512
 #define MAX_MODULE_FILES       512
 #define MAX_SYMBOLS            8192
 #define MAX_INTRINSIC_PARAMS   8
 #define MAX_INTRINSIC_RETURNS  8
-#define HEAP_WORDS_DEFAULT     (1024 * 1024)
 
 #define MAX_IDENT_LEN          256
 #define MAX_PATH_LEN           512
@@ -53,7 +30,7 @@
 
 typedef enum {
     TOK_IDENT, TOK_LITERAL, TOK_PATH,
-    TOK_LESS, TOK_GREATER, TOK_AT, TOK_AMP,
+    TOK_LESS, TOK_GREATER,
     TOK_QUESTION, TOK_COLON, TOK_LBRACE, TOK_RBRACE, TOK_BANG,
     TOK_EOF, TOK_ERROR
 } TokenType;
@@ -80,30 +57,13 @@ typedef struct {
     uint32_t code_line;
 } ModuleSections;
 
-/* ============================================================================
- * Symbol table
- * ============================================================================
- *
- * Every declared name (parameter, return slot, local variable, or alias) is
- * registered with a unique offset in the global storage array. Aliases do
- * not consume offsets; they store a path_link instead.
- *
- * default_int holds the integer literal used as the declaration's default
- * value. Defaults that reference other variables or paths are not supported
- * in the current implementation; they would require an additional "kind"
- * field in this struct.
- *
- * Every function below calls exit(1) on error (duplicate symbol, overflow,
- * unknown name). The compiler does not attempt to recover.
- */
-
 typedef enum { SYM_VAR, SYM_ALIAS, SYM_PARAM, SYM_RETURN } SymbolKind;
 
 typedef struct {
     char module_path[MAX_PATH_LEN];
     char name[MAX_IDENT_LEN];
     SymbolKind kind;
-    uint32_t offset;
+    uint32_t id; /* Private ID used to name a C variable, not an address. */
     char path_link[MAX_PATH_LINK_LEN];
     int default_int;
 } Symbol;
@@ -111,7 +71,6 @@ typedef struct {
 typedef struct {
     Symbol symbols[MAX_SYMBOLS];
     uint32_t count;
-    uint32_t global_storage_pointer;
 } SymbolTable;
 
 extern SymbolTable G_Table;
@@ -123,16 +82,6 @@ Symbol* add_local_variable(const char* module_path, const char* name);
 Symbol* get_nth_symbol(const char* module_path, int nth, SymbolKind kind);
 int     module_exists(const char* module_path);
 void    normalize_path(const char* in, char* out);
-
-/* ============================================================================
- * Lexer
- * ============================================================================
- *
- * split_module_sections reads the raw file and returns byte offsets of the
- * three sections (params, returns, code), validated for exactly two blank
- * separators. init_lexer positions a lexer at a byte range. get_next_token
- * returns one token at a time, filtering comments and blank lines.
- */
 
 typedef struct {
     FILE* f;
@@ -189,13 +138,6 @@ extern FILE* G_Out;
 
 void emit_assign_const(uint32_t dst, int val);
 void emit_assign_var(uint32_t dst, uint32_t src);
-void emit_assign_load_ind(uint32_t dst, uint32_t ptr);
-void emit_assign_addr(uint32_t dst, uint32_t addr);
-
-void emit_store_indirect_const(uint32_t ptr, int val);
-void emit_store_indirect_var(uint32_t ptr, uint32_t src);
-void emit_store_indirect_load_ind(uint32_t ptr, uint32_t src_ptr);
-void emit_store_indirect_addr(uint32_t ptr, uint32_t addr);
 
 void emit_break(void);
 void emit_return(void);
@@ -210,7 +152,6 @@ void emit_loop_end(void);
 void emit_call_init(const char* callee_path);
 void emit_call_param_val(uint32_t dst, uint32_t src);
 void emit_call_param_const(uint32_t dst, int val);
-void emit_call_param_addr(uint32_t dst, uint32_t addr);
 void emit_call_result(uint32_t dst, uint32_t src);
 void emit_call_exec(const char* callee_path);
 
@@ -245,23 +186,9 @@ int         build_and_validate_project_graph(int* order_out);
 int         graph_has_node(const char* path);
 const char* G_Graph_path(int index);
 
-/* ============================================================================
- * Backend
- * ============================================================================
- *
- * register_intrinsics populates G_Table with the parameters and returns of
- * every built-in module. It must be called before pass1_declarations.
- *
- * is_intrinsic_path returns nonzero for any module path starting with "sys/".
- *
- * backend_emit_prologue writes the storage array and g_heap_top.
- * backend_emit_intrinsics writes the bodies of all intrinsic modules.
- * backend_emit_main writes a main() that calls the entry module.
- */
-
 void register_intrinsics(void);
 int  is_intrinsic_path(const char* path);
-void backend_emit_prologue(FILE* out, uint32_t static_end, uint32_t total_size);
+void backend_emit_prologue(FILE* out);
 void backend_emit_intrinsics(FILE* out);
 void backend_emit_main(FILE* out, const char* entry_path);
 

@@ -1,5 +1,8 @@
 #include "ama.h"
 
+/* Two passes: register signatures, then emit bodies in dependency order.
+ * Bodies are buffered until every local has a symbol and can be declared. */
+
 #include <dirent.h>
 #include <sys/stat.h>
 #include <errno.h>
@@ -186,27 +189,6 @@ static void pass1_declarations(void) {
     }
 }
 
-/* ============================================================================
- * Pass 2: code bodies
- * ============================================================================
- *
- * Read all tokens of the code section into a dynamic array, close the file,
- * then parse. Closing before parsing keeps the FILE resource scoped; if the
- * parser exits on error, we are not leaving an open file.
- *
- * realloc is used with a temporary variable: on failure, the original pointer
- * is still valid and must be freed. The current code frees it and exits; that
- * is the only sane behavior when out of memory.
- *
- * Output order: signature, body, closing brace, blank line. The signature is
- * emitted before parsing so that any emit_* call inside parse_statement lands
- * inside the function. The closing brace is emitted after parsing completes
- * (or after the loop, if parse_statement reaches EOF).
- *
- * Line numbers: init_lexer receives sec.code_line so that token.line in
- * error messages refers to the actual file line.
- */
-
 static void pass2_module_code(const char* rel_path, const char* abs_path) {
     FILE* f = fopen(abs_path, "rb");
     if (!f) {
@@ -247,7 +229,12 @@ static void pass2_module_code(const char* rel_path, const char* abs_path) {
             tokens = tmp;
         }
         tokens[size++] = t;
-        if (t.type == TOK_EOF || t.type == TOK_ERROR)
+        if (t.type == TOK_ERROR) {
+            free(tokens);
+            fclose(f);
+            exit(1);
+        }
+        if (t.type == TOK_EOF)
             break;
     }
     fclose(f);
@@ -302,38 +289,6 @@ static void validate_entry(const char* entry) {
     }
 }
 
-/* ============================================================================
- * Full pipeline
- * ============================================================================
- *
- * Eleven ordered steps, each with its own failure mode. Ordering matters:
- *
- *   1. Scan                 — populate G_Files.
- *   2. Register files       — ensure every file is a graph node (see note).
- *   3. Register intrinsics  — G_Table now has sys/… entries; must run before
- *                             pass 1 so user redeclarations are caught.
- *   4. Pass 1               — fill G_Table with all declarations.
- *   5. Validate entry       — file exists, no parameters.
- *   6. Topo sort            — build graph from aliases; detect recursion.
- *   7. Open out.c           — only after all passes that can fail are done.
- *   8. Prologue             — storage[] and g_heap_top.
- *   9. Intrinsic bodies     — before any user module so calls resolve.
- *  10. User module bodies   — in topo order; callees precede callers.
- *  11. main()               — calls the entry module; closes out.c.
- *
- * Step 2 (register files) deserves attention: the graph builder creates
- * nodes only from G_Table, but a module with no params, no returns, and no
- * aliases (e.g. a `main` that only uses locals) has no symbols at pass 1
- * time and would be invisible. Registering each file as a node before the
- * graph is built ensures such modules appear in the topo order and get
- * emitted. Without this, such an entry point would compile to a program
- * without a `mod_main` function — a link error at the very end.
- *
- * Error handling: every failure exits immediately with exit(1). Partial
- * out.c is left on disk but should not be used; the user is expected to
- * re-run make after fixing the error.
- */
-
 void compile_project(const char* root, const char* entry, const char* out_path) {
     /* ---- 1. Scan the project tree ------------------------------------ */
     scan_dir(root, "");
@@ -344,7 +299,7 @@ void compile_project(const char* root, const char* entry, const char* out_path) 
     printf("Found %d module file(s) under '%s'\n", G_FileCount, root);
 
     /* ---- 2. Register every file as a graph node ---------------------- */
-    /* (See the comment above for why this is necessary.) */
+    /* Include modules with no declarations in the dependency graph. */
     for (int i = 0; i < G_FileCount; i++)
         ensure_graph_node(G_Files[i].rel_path);
 
@@ -353,9 +308,7 @@ void compile_project(const char* root, const char* entry, const char* out_path) 
 
     /* ---- 4. Pass 1: declarations ------------------------------------ */
     pass1_declarations();
-    printf("Symbol table: %u name(s), storage[%u] slot(s) used\n",
-           (unsigned)G_Table.count,
-           (unsigned)G_Table.global_storage_pointer);
+    printf("Symbol table: %u name(s)\n", (unsigned)G_Table.count);
 
     /* ---- 5. Validate entry ------------------------------------------ */
     validate_entry(entry);
@@ -365,24 +318,17 @@ void compile_project(const char* root, const char* entry, const char* out_path) 
     int n_order = build_and_validate_project_graph(order);
     printf("Topological order: %d node(s)\n", n_order);
 
-    /* ---- 7. Open the output file ------------------------------------ */
-    G_Out = fopen(out_path, "w");
+    /* ---- 7. Buffer generated functions ------------------------------ */
+    /* Buffer bodies until parsing has discovered every local variable. */
+    G_Out = tmpfile();
     if (!G_Out) {
-        fprintf(stderr, "error: cannot open '%s' for writing: %s\n",
-                out_path, strerror(errno));
+        fprintf(stderr, "error: cannot create temporary output: %s\n", strerror(errno));
         exit(1);
     }
 
-    /* ---- 8. Prologue ------------------------------------------------ */
-    uint32_t static_end = G_Table.global_storage_pointer;
-    uint32_t heap_words = HEAP_WORDS_DEFAULT;
-    uint32_t total_size = static_end + heap_words;
-    backend_emit_prologue(G_Out, static_end, total_size);
-
-    /* ---- 9. Intrinsic bodies ---------------------------------------- */
     backend_emit_intrinsics(G_Out);
 
-    /* ---- 10. User module bodies, in topological order ---------------- */
+    /* ---- 8. User module bodies, in topological order ----------------- */
     int user_emitted = 0;
     for (int i = 0; i < n_order; i++) {
         const char* rel = G_Graph_path(order[i]);
@@ -406,12 +352,33 @@ void compile_project(const char* root, const char* entry, const char* out_path) 
         pass2_module_code(mf->rel_path, mf->abs_path);
     }
 
-    /* ---- 11. main() wrapper ----------------------------------------- */
+    /* ---- 9. main() wrapper ------------------------------------------ */
     backend_emit_main(G_Out, entry);
 
-    if (fclose(G_Out) != 0) {
-        fprintf(stderr, "error: failed to close '%s': %s\n",
-                out_path, strerror(errno));
+    FILE* body = G_Out;
+    if (fflush(body) != 0 || fseek(body, 0, SEEK_SET) != 0) {
+        fprintf(stderr, "error: cannot rewind temporary output\n");
+        exit(1);
+    }
+    FILE* out = fopen(out_path, "w");
+    if (!out) {
+        fprintf(stderr, "error: cannot open '%s': %s\n", out_path, strerror(errno));
+        exit(1);
+    }
+    backend_emit_prologue(out);
+    char buffer[4096];
+    size_t n;
+    while ((n = fread(buffer, 1, sizeof(buffer), body)) > 0) {
+        if (fwrite(buffer, 1, n, out) != n) {
+            fprintf(stderr, "error: cannot write '%s'\n", out_path);
+            exit(1);
+        }
+    }
+    int read_failed = ferror(body);
+    int body_failed = fclose(body);
+    int out_failed = fclose(out);
+    if (read_failed || body_failed || out_failed) {
+        fprintf(stderr, "error: failed to finish '%s'\n", out_path);
         exit(1);
     }
     G_Out = NULL;

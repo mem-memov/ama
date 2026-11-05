@@ -1,48 +1,10 @@
 #include "ama.h"
 
-/* ============================================================================
- * Global symbol table
- * ============================================================================
- *
- * G_Table holds every declared name in the project: parameters, returns,
- * locals, and aliases. Each entry maps (module_path, name) to either a
- * storage offset (for variables) or an alias target path (for aliases).
- *
- * Offset 0 is reserved for nil; the first real slot is 1.
- *
- * Two important invariants:
- *
- *   1. (module_path, name) is unique across the table. Any redefinition is
- *      a hard error caught by add_declarative_symbol.
- *
- *   2. Only SYM_PARAM, SYM_RETURN, SYM_VAR consume a storage slot. SYM_ALIAS
- *      entries store path_link and have offset == 0. This keeps the storage
- *      layout simple: aliases are compile-time indirections, not runtime
- *      values.
- *
- * Known limitations of the current implementation:
- *
- *   - Linear lookup. Every call scans all symbols. With MAX_SYMBOLS = 8192,
- *     the worst case is ~8k strcmp per lookup. For typical projects this is
- *     negligible; a hash table would be the natural next step if the
- *     compiler needs to scale.
- *
- *   - Default values are int (32-bit). Literals larger than INT_MAX will be
- *     truncated (or invoke UB via atoi). This matches the emit signature
- *     (emit_assign_const takes int); a future version may widen both to
- *     size_t.
- *
- *   - No Unicode normalization. Identifiers are compared byte-for-byte.
- *     Two visually identical strings with different UTF-8 representations
- *     (composed vs decomposed) are considered different names.
- *
- * All functions in this file call exit(1) on error. The compiler does not
- * attempt to recover from errors; it reports and stops.
- */
+/* Names are module-scoped. Numeric symbols receive private IDs used only
+ * to name separate C variables; aliases contain module paths. */
 
 SymbolTable G_Table = {
-    .count = 0,
-    .global_storage_pointer = 1
+    .count = 0
 };
 
 /* ============================================================================
@@ -80,20 +42,6 @@ static Symbol* allocate_slot(void) {
     return s;
 }
 
-/* Allocate a storage slot. Storage is a flat size_t array; the pointer
- * grows monotonically as new variables are declared. */
-static uint32_t allocate_storage_slot(void) {
-    uint32_t off = G_Table.global_storage_pointer++;
-    /* Storage is bounded by MAX_SYMBOLS (each symbol uses at most one slot),
-     * so this can never overflow uint32_t in practice. The check is
-     * defensive against future changes. */
-    if (G_Table.global_storage_pointer == 0) {
-        fprintf(stderr, "error: storage exhausted (wrapped around)\n");
-        exit(1);
-    }
-    return off;
-}
-
 /* ============================================================================
  * lookup_symbol
  * ============================================================================
@@ -111,36 +59,6 @@ Symbol* lookup_symbol(const char* module_path, const char* name) {
     }
     return NULL;
 }
-
-/* ============================================================================
- * add_declarative_symbol
- * ============================================================================
- *
- * Add a symbol from a module's params or returns section.
- *
- * The caller passes the FINAL kind (already resolved from the token type):
- *
- *   kind = SYM_ALIAS   → val_token must be TOK_PATH; copy path_link
- *   kind = SYM_PARAM   → val_token must be TOK_LITERAL (default value)
- *                         or TOK_IDENT (var reference — not supported, error)
- *   kind = SYM_RETURN  → same as SYM_PARAM
- *   kind = SYM_VAR     → not allowed here (locals go through
- *                         add_local_variable)
- *
- * Duplicate names in the same module are a hard error: the language does
- * not allow shadowing or redefinition of declarations.
- *
- * Default values:
- *   - LITERAL "42" → default_int = 42.
- *   - IDENT        → not supported yet. Error. If you want a variable as
- *                    default, assign it in code; the declaration is just a
- *                    name + section marker.
- *
- * Note that emit_call_init writes storage[offset] = default_int for every
- * non-alias symbol on every call, so default_int = 0 means "reset to 0 on
- * each call". This is the "defaults → args → code → results" contract from
- * the spec.
- */
 
 Symbol* add_declarative_symbol(const char* module_path, const char* name,
                                SymbolKind kind, Token val_token) {
@@ -173,7 +91,7 @@ Symbol* add_declarative_symbol(const char* module_path, const char* name,
         }
         copy_string_checked(s->path_link, sizeof(s->path_link),
                             val_token.lexeme, "alias path");
-        s->offset = 0;
+        s->id = 0;
         break;
 
     case SYM_PARAM:
@@ -194,7 +112,7 @@ Symbol* add_declarative_symbol(const char* module_path, const char* name,
                     module_path, name, (int)val_token.type);
             exit(1);
         }
-        s->offset = allocate_storage_slot();
+        s->id = (uint32_t)(s - G_Table.symbols);
         break;
 
     case SYM_VAR:
@@ -238,30 +156,12 @@ Symbol* add_local_variable(const char* module_path, const char* name) {
     copy_string_checked(s->name, sizeof(s->name),
                         name, "identifier");
     s->kind = SYM_VAR;
-    s->offset = allocate_storage_slot();
+    s->id = (uint32_t)(s - G_Table.symbols);
     s->path_link[0] = '\0';
     s->default_int = 0;
 
     return s;
 }
-
-/* ============================================================================
- * get_nth_symbol
- * ============================================================================
- *
- * Return the nth symbol of the given kind in the given module, or NULL if
- * there is no such symbol. Used by the parser to resolve positional call
- * arguments:
- *
- *   fn < x < y
- *
- * maps x to the 0th SYM_PARAM, y to the 1st SYM_PARAM.
- *
- * Aliases (SYM_ALIAS) never participate in positional matching: they are
- * compile-time indirections, not runtime parameters. This means a module
- * can declare both parameters and aliases in its params section without
- * confusion — the caller's positional arguments skip the aliases.
- */
 
 Symbol* get_nth_symbol(const char* module_path, int nth, SymbolKind kind) {
     if (nth < 0)

@@ -10,7 +10,8 @@
 #   2. compiles the resulting C with gcc,
 #   3. runs the binary and compares stdout with expected.txt.
 #
-# Tests without expected.txt are skipped (useful as playgrounds).
+# expected-error.txt instead checks a rejected program and diagnostic substring.
+# Tests without either expectation file are skipped.
 #
 # All intermediate files go to build/tests/ (ignored by git).
 
@@ -42,8 +43,8 @@ for test_dir in "$TESTS_DIR"/*/; do
         continue
     fi
 
-    if [ ! -f "$test_dir/expected.txt" ]; then
-        echo "=== $name === (skipped: no expected.txt)"
+    if [ ! -f "$test_dir/expected.txt" ] && [ ! -f "$test_dir/expected-error.txt" ]; then
+        echo "=== $name === (skipped: no expected output or error)"
         skipped=$((skipped + 1))
         continue
     fi
@@ -59,14 +60,27 @@ for test_dir in "$TESTS_DIR"/*/; do
     rm -rf "$stage"
     mkdir -p "$stage"
     cp -R "$test_dir"/. "$stage"/
-    rm -f "$stage/expected.txt"
+    rm -f "$stage/expected.txt" "$stage/expected-error.txt"
 
-    # 1. Ама → C
-    if ! ./ama "$stage" main "$c_file" > "$BUILD_DIR/$name.ama.log" 2>&1; then
-        echo "  FAIL: ama compilation failed"
-        sed 's/^/    /' "$BUILD_DIR/$name.ama.log"
-        failed=$((failed + 1))
-        failed_names="$failed_names $name"
+    # 1. Ама → C; negative tests must fail with the expected diagnostic.
+    if ./ama "$stage" main "$c_file" > "$BUILD_DIR/$name.ama.log" 2>&1; then
+        if [ -f "$test_dir/expected-error.txt" ]; then
+            echo "  FAIL: expected compilation to fail"
+            failed=$((failed + 1))
+            failed_names="$failed_names $name"
+            continue
+        fi
+    else
+        if [ -f "$test_dir/expected-error.txt" ] &&
+           grep -F -q -f "$test_dir/expected-error.txt" "$BUILD_DIR/$name.ama.log"; then
+            echo "  PASS (expected error)"
+            passed=$((passed + 1))
+        else
+            echo "  FAIL: unexpected compilation error"
+            sed 's/^/    /' "$BUILD_DIR/$name.ama.log"
+            failed=$((failed + 1))
+            failed_names="$failed_names $name"
+        fi
         continue
     fi
 
@@ -80,7 +94,12 @@ for test_dir in "$TESTS_DIR"/*/; do
     fi
 
     # 3. run and compare stdout
-    actual=$("$bin_file")
+    if ! actual=$("$bin_file"); then
+        echo "  FAIL: program exited unsuccessfully"
+        failed=$((failed + 1))
+        failed_names="$failed_names $name"
+        continue
+    fi
     expected=$(cat "$test_dir/expected.txt")
 
     if [ "$actual" = "$expected" ]; then
