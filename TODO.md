@@ -36,9 +36,19 @@ with saved values and decide which children to call. Every invocation executes
 the body, even when its arguments equal those of the preceding invocation.
 
 Composition means owning a child state. Aggregation means referring to an
-independently existing object. User-visible references, if introduced, should
-identify whole typed objects and expose their public interfaces, not memory
-addresses or individual internal variables.
+independently existing object. References identify whole typed objects and expose
+their public interfaces, not memory addresses or individual internal variables.
+An owned declaration uses `.sys.obj`; a reference declaration uses `&.sys.obj`.
+Reference variable names must also start with `&`, as in `&target`; this is
+checked syntax, not an optional naming convention. The expression `&my_obj`
+obtains a reference to an owned `my_obj`, whereas `&target` reads an already
+declared reference variable. Neither operation copies state or transfers
+ownership.
+
+The runtime checks each call and marks the selected instance busy until the call
+ends. An attached `:` branch handles failure to start a call, such as a missing
+or busy object. The module body needs no manual availability check. Removing an
+object invalidates existing references; they never silently select a replacement.
 
 An explicit `@enum` selector will distinguish modules that declare named
 constants from executable modules and unfinished drafts. Replacing `@Ama` with
@@ -59,6 +69,16 @@ constants from executable modules and unfinished drafts. Replacing `@Ama` with
 - Lists should be usable as owned parts of another module's state.
 - List operations can be requested through parameters of one list module.
   Separate procedure modules for every operation are not required.
+- Typed references use `&.module.path` declarations and `&instance` acquisition.
+- Every reference variable or parameter name starts with `&` in declarations
+  and uses, including named argument labels and calls through references.
+- Reading an existing `&name` copies its reference value; it does not construct
+  a reference to a reference.
+- A reference neither transfers ownership nor extends the target lifetime.
+- The runtime controls per-instance busy state; module bodies do not maintain it.
+- Calls validate access themselves; preliminary availability checks are optional.
+- A `:` alternative attached to a call is the chosen direction for handling
+  inability to start execution.
 - `@enum` with an empty body is the chosen direction for named constants.
 - Preserve the line-oriented style: declarations and argument values are
   separate lines; arguments remain nested beneath their call.
@@ -69,14 +89,15 @@ constants from executable modules and unfinished drafts. Replacing `@Ama` with
 - Preserve the current per-call defaults for parameters and results while
   introducing persistent internal variables.
 - Give a system list an action parameter whose values come from an enum module.
-- Provide typed, opaque references rather than numerical addresses.
 - Use checked handles for independently addressable objects.
 - Forbid structural changes to a list while an element is executing.
 - Let a list select an element through a cursor-like result.
 - Keep an instance per module as the default target for existing alias calls.
 
 These are design candidates, not all accepted language rules. In particular,
-the cursor design and lifetime policy still need practical examples.
+the cursor design, exact failure-status syntax, and destruction API still need
+practical examples. Checked handles and explicit destruction are the current
+working design; their representation and full resource policy remain to be specified.
 
 ## Detailed model
 
@@ -92,8 +113,9 @@ Three entities must stay distinct:
 
 A module alias currently identifies code. An owned child declaration must also
 establish which state belongs to its parent. An external reference selects an
-independent state. These relationships must not be inferred merely from an
-import or alias declaration.
+independent state. In the proposed syntax, `.module.path` declares an owned
+instance, whereas `&.module.path` declares a reference. This changes the meaning
+of today's alias declarations and requires an explicit migration decision.
 
 The implementation can generate a structure for each module and pass its
 address explicitly to its executable function:
@@ -229,9 +251,112 @@ Prefer access to a whole typed object through its interface. Do not expose:
 - Arbitrary reinterpretation of one module's state as another module's state.
 - Saved implementation pointers obtained during a temporary call.
 
-Separate a temporary selection used for one call from a reference stored for
-later use. The former must remain valid until the call ends. The latter needs
-a defined lifetime policy.
+#### Owned declarations and typed reference declarations
+
+The agreed declaration contrast is:
+
+```text
+my_obj
+.sys.obj
+```
+
+This declares an owned instance of the module at `sys/obj`. Here `sys/obj` is
+an illustrative type path, not an existing standard library object API.
+
+A reference parameter in `consumer` is declared as:
+
+```text
+@<
+&target
+&.sys.obj
+```
+
+Obtain and pass a reference explicitly:
+
+```text
+consumer
+ &target < &my_obj
+```
+
+The consumer calls `&target` using the ordinary call shape. Copying a reference
+preserves target identity; it does not clone state, transfer ownership, or keep
+the target alive. The compiler checks the referenced module type. The runtime
+checks that the instance still exists and is available.
+
+Reference assignment must retain the prefix, for example:
+
+```text
+&reference &my_obj
+&other &reference
+```
+
+The first assignment obtains a reference to owned `my_obj`; the second copies
+an existing reference. These are future syntax sketches; declaration/inference
+and empty-reference defaults still need specification. The earlier unprefixed
+`reference &my_obj` sketch is superseded.
+
+The compiler must require agreement between the `&` name prefix and the declared
+reference type. A reference cannot be accessed by dropping its prefix. Resolve
+`&name` against declarations so that acquiring a reference to an owned object
+and reading a reference variable remain distinct. Do not introduce `&&name` or
+implicit references to references. The combination of an owned `name` and a
+reference variable `&name` in the same scope would make acquisition ambiguous;
+choose an explicit rejection or name-resolution rule before implementation.
+ References to owned children are no longer categorically
+excluded: if exposed, they must be invalidated when the child or its owner is
+destroyed. No raw pointer into an owner's allocation may escape.
+
+#### Checked calls and the alternative branch
+
+The proposed call syntax preserves separate argument lines:
+
+```text
+&target
+ < 255
+:
+ handle_unavailable
+```
+
+The `:` branch extends the existing alternative/else idea. The working rule is
+that it handles inability to start the call, including a missing or busy target.
+The exact failure-reason binding is open; missing and busy must remain
+distinguishable. A wrong statically known type is a compile-time error, not a
+normal alternative. Runtime type validation is still required at native or
+other dynamic boundaries.
+
+Without an alternative, an invalid call should terminate with a clear diagnostic;
+this default is a proposed policy. Failure to start does not assign call results.
+An error after execution starts does not enter this branch. Busy cleanup does
+not imply state rollback. Argument evaluation and failure ordering must also be
+specified before implementation.
+
+#### Runtime-managed availability
+
+Availability belongs to each instance, not the module type. Conceptually a
+slot has these states:
+
+```text
+Empty          no live instance
+Ready(state)   available for execution
+Busy(state)    executing; new access cannot start
+```
+
+The runtime validates the target and acquires it before resetting any call
+parameters/results, marks it busy, executes the body, and releases it on every
+return path. The address need not change: "taking state out of the slot" is a
+model of exclusive access, not a required memory copy.
+
+A call into another instance of the same module does not conflict with this
+busy state. Reentry into the same instance is refused. Existing compile-time
+module-cycle restrictions are not automatically lifted.
+
+An `obj.@busy` property was considered as optional observation, not adopted as
+required syntax. Users must never have to check it before every call. A busy
+flag alone does not establish existence. The checked call combines validation
+and acquisition; future concurrency would require making that operation atomic,
+not relying on a separate check followed by an unprotected call.
+
+#### Handles and deletion
 
 A candidate runtime handle contains a type ID, slot index, and generation.
 Access checks type, bounds, occupancy, and generation before resolving a pointer.
@@ -239,20 +364,59 @@ Deleting an object invalidates its handles even if its slot is reused. Generatio
 wraparound must not make an old handle valid again. An ordinary numeric value
 must not be accepted as a typed reference merely because its bits match a handle.
 
-Checked handles detect invalid access; they do not automatically reclaim leaks,
-prevent unintended shared mutation, or provide thread safety.
+The working deletion API is an explicit request to the owner, list, or pool.
+These names are illustrative, not a settled interface:
 
-Open lifetime choices are explicit destruction, region ownership, or tracing
-garbage collection. Reference counting is another possibility but requires cycle
-handling and reference updates on copies. A Rust-style ownership and borrowing
-system is not the intended user-facing model: Ama should remain familiar and
-small. The exact balance between runtime checks and automatic cleanup is open.
+```text
+objects
+ action < actions.remove
+ id < object_id
+ error > error
+```
 
-Initially, avoid exposing standalone references to owned internal children.
-Otherwise parent destruction and child references need coordinated invalidation.
-Also decide how to reject destruction of an executing state and conflicting
-reentry into the same state. Existing module-cycle restrictions are not lifted
-merely by introducing multiple instances.
+Before releasing anything, validate the target and check that it and all owned
+descendants can be destroyed. Reject deletion if any are busy. Only then release
+owned children and lists, invalidate their identities, and reclaim storage. A
+failed preflight must leave the ownership tree intact. Native cleanup failure
+policy still needs specification; successful preflight alone does not provide
+transactional cleanup of arbitrary external resources.
+
+External objects referenced by the deleted tree remain alive. Other references
+to the deleted objects need not be found and cleared: subsequent calls through
+them fail validation and take the call alternative. Reusing storage must issue
+new identities. Initially prefer rejection of busy deletion to deferred deletion.
+
+Distinguish two layers of failure: an unavailable pool takes the pool call's `:`
+branch; a live pool unable to remove its requested target returns an operation
+error such as missing or busy. The destruction authority of non-owning references
+still needs to be defined; possessing a reference must not implicitly grant it.
+
+Checked handles do not automatically reclaim leaks, prevent unintended shared
+mutation, or provide thread safety. Explicit destruction is the current working
+approach; region ownership or collection remain possible future policies. A
+Rust-style user-facing borrowing system is not the intended model.
+
+#### Alternatives considered and historical lessons
+
+Several approaches were compared to keep the tradeoffs visible:
+
+- Copying states avoids shared mutation but does not provide shared identity.
+- Synchronized copies of one logical object require publication timing and
+  conflict rules. They cost memory without removing shared-state semantics.
+  Prefer one authoritative state for one shared identity.
+- Immutable snapshots can be passed independently. Publishing a modified snapshot
+  would require a separate version/conflict protocol, outside the initial scope.
+- IDs resolved by an owner are a useful constrained form of aggregation. They
+  avoid raw addresses but still need invalid-target behavior.
+- Actor systems use opaque destinations, private state, and serial message
+  processing. Their queues defer busy requests; our synchronous checked call
+  instead refuses busy access. Queues and asynchronous answers are not required.
+- An optional value models presence but not availability: absent and busy must
+  be distinct. No monad abstraction is required to express the slot states.
+
+The goal is one authoritative mutable state per identity, visible calls, and
+runtime checks at access boundaries. This prevents unsafe memory access without
+pretending that it eliminates application-level effects of shared mutation.
 
 ### 7. Dynamic lists of states
 
@@ -409,8 +573,23 @@ there, while compiler support supplies the state/type machinery it depends on.
 Do not implement every part at once. Resolve a small set of complete programs
 before changing the grammar.
 
-- [ ] Agree on declaration syntax for persistent internal state, owned children,
-  typed lists, temporary values, and external references.
+- [ ] Specify where owned `.module.path` and reference `&.module.path`
+  declarations are permitted. Define persistent internal state, typed lists,
+  temporary values, and the migration from current aliases.
+- [ ] Implement mandatory `&` prefixes for reference declarations and all uses,
+  including reference parameters, results, named argument labels, assignments,
+  and call targets. Reject mismatches between name prefixes and declared types.
+- [ ] Define resolution of `&owned_instance` acquisition versus an existing
+  `&reference` variable, including same-scope name collisions. Reading or copying
+  a reference must not add another reference level.
+- [ ] Implement typed `&instance` acquisition and reference passing without
+  extending the target lifetime or exposing C addresses.
+- [ ] Specify and implement the call-attached `:` alternative, failure-reason
+  access, default failure behavior, and result/argument ordering.
+- [ ] Implement runtime acquisition/release, busy rejection, stable active
+  storage, and generation-checked identities.
+- [ ] Specify owner-mediated deletion, descendant preflight, cleanup authority,
+  and reference invalidation for entire owned trees.
 - [ ] Write a complete two-counter example demonstrating independent state and
   explicit calls without repeated module paths in the body.
 - [ ] Write a basket example with a list of item states, append requests,
@@ -419,8 +598,8 @@ before changing the grammar.
   ambiguities. Preserve separate argument lines and avoid square brackets.
 - [ ] Specify per-call defaults, retained results, cloning contents, and failure
   behavior. Confirm which old programs intentionally change meaning.
-- [ ] Decide instance lifetime and invalid-reference behavior; distinguish
-  temporary access from saved references.
+- [ ] Complete the explicit-destruction policy and reference default rules;
+  distinguish temporary selections, saved references, and optional snapshots.
 - [ ] Implement independent state execution before dynamic lists. Decide whether
   existing alias calls use a default instance for compatibility.
 - [ ] Implement creation, explicit cloning, and cleanup of owned state trees.
@@ -437,8 +616,13 @@ per-call defaults, repeated identical requests, clone independence of owned
 trees/lists, preserved identity of external references, and cleanup on failure.
 List tests should include empty lists, growth, invalid positions, removal,
 nested access, and forbidden structural changes during active calls. Reference
-tests should cover wrong types, deleted targets, slot reuse, and invalid active
-destruction. Native tests must demonstrate that state is not accidentally shared
+tests should cover mandatory name prefixes, prefix/type mismatches, reference
+copying without another indirection level, name-resolution collisions, prefixed
+named arguments and call targets, static type rejection, deleted targets, slot reuse, owner
+destruction invalidating child references, and invalid active destruction. Verify
+that missing/busy targets take `:`, failed calls do not assign outputs, body
+errors do not take `:`, and busy state is released on all supported exit paths.
+Deletion tests must reject busy descendants before freeing any part of a tree. Native tests must demonstrate that state is not accidentally shared
 through C globals. Enum tests should reject executable bodies and mutation.
 
 Keep the existing two test harnesses: C component tests under `tests/unit/` and
