@@ -10,6 +10,7 @@ typedef struct {
     char module_path[MAX_MODULE_PATH_LENGTH];
     char file_path[MAX_FILE_PATH_LENGTH];
     ModuleImplementation implementation;
+    bool is_standard_library;
 } ModuleFile;
 
 typedef struct {
@@ -20,6 +21,8 @@ typedef struct {
     Emitter emitter;
 } Project;
 
+const char* selected_standard_library_directory(void);
+bool load_standard_library(Project* project, const char* directory, Error* error);
 bool scan_dir(Project* project, const char* project_root, const char* relative_prefix, Error* error);
 ModuleFile* find_module_file(Project* project, const char* path);
 bool parse_project_declarations(Project* project, Error* error);

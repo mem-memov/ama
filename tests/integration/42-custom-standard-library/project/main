@@ -1,0 +1,12 @@
+@<
+add
+.sys.math.add
+display
+.display
+@Ama
+add
+ < 5
+ < 7
+ > answer
+display
+ < answer

@@ -13,7 +13,7 @@ build: generated/test
 
 generated/test: Makefile $(ROOT)/tests/leaf.mk main.c $(COMMON) $(SOURCES) $(TEST_HEADERS)
 >    @mkdir -p generated
->    $(C_COMPILER) -I$(ROOT)/src $(C_COMPILER_FLAGS) $(LTO_FLAGS) -UNDEBUG $(TEST_DEFINES) -o $@ main.c $(SOURCES)
+>    $(C_COMPILER) -I$(ROOT)/src -DAMA_STANDARD_LIBRARY_DIRECTORY='"$(ROOT)/stdlib/modules"' -DAMA_STANDARD_LIBRARY_ARCHIVE='"$(ROOT)/build/stdlib/libama_std.a"' $(C_COMPILER_FLAGS) $(LTO_FLAGS) -UNDEBUG $(TEST_DEFINES) -o $@ main.c $(SOURCES)
 
 run: build
 >    ./generated/test

@@ -53,10 +53,11 @@ static inline void assert_files_equal(const char* actual_path, const char* expec
 
 static inline int compile_generated_program(const char* const* native_sources, size_t source_count) {
     char* arguments[64] = {TEST_CC, "-std=c11", "-O2", "-Igenerated", "generated/program.c"};
-    assert(source_count + 8 < sizeof(arguments) / sizeof(arguments[0]));
+    assert(source_count + 9 < sizeof(arguments) / sizeof(arguments[0]));
     size_t position = 5;
     for (size_t index = 0; index < source_count; index++)
         arguments[position++] = (char*)native_sources[index];
+    arguments[position++] = AMA_STANDARD_LIBRARY_ARCHIVE;
     arguments[position++] = "-o";
     arguments[position++] = "generated/program";
     arguments[position] = NULL;

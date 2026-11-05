@@ -21,7 +21,8 @@ PROJECT_TARGET := ama
 PROJECT_SOURCES := $(sort $(wildcard src/*.c src/*/*.c))
 PROJECT_OBJECTS := $(patsubst src/%.c,build/%.o,$(PROJECT_SOURCES))
 PROJECT_DEPS := $(PROJECT_OBJECTS:.o=.d)
-CPPFLAGS += -Isrc
+STANDARD_LIBRARY_DIRECTORY ?= $(abspath stdlib/modules)
+CPPFLAGS += -Isrc -DAMA_STANDARD_LIBRARY_DIRECTORY='"$(STANDARD_LIBRARY_DIRECTORY)"'
 LTO_FLAGS ?= -flto
 
 # ---------------------------------------------------------------------------
@@ -31,7 +32,7 @@ LTO_FLAGS ?= -flto
 .DELETE_ON_ERROR:
 .DEFAULT_GOAL := all
 
-.PHONY: all help test test-clean clean rebuild
+.PHONY: all standard-library help test test-clean clean rebuild
 
 # ---------------------------------------------------------------------------
 # Help
@@ -40,9 +41,10 @@ LTO_FLAGS ?= -flto
 help:
 >    @echo "Ama compiler — build targets"
 >    @echo ""
->    @echo "  make                Build the compiler (./ama)."
+>    @echo "  make                Build ./ama and the standard library."
 >    @echo "  make all            Same as 'make'."
 >    @echo "  make test           Run C unit suites and integration scenarios."
+>    @echo "  make standard-library  Build build/stdlib/libama_std.a."
 >    @echo "  make clean          Remove build/ and ./ama."
 >    @echo "  make rebuild        'clean', then 'all'."
 >    @echo "  make help           Show this message."
@@ -57,13 +59,17 @@ help:
 >    @echo "  make"
 >    @echo "  make C_COMPILER=clang"
 >    @echo "  make C_COMPILER_FLAGS=\"-O0 -g3 -Wall -Wextra -std=c11 -D_POSIX_C_SOURCE=200809L\""
+>    @echo "  make standard-library  Build build/stdlib/libama_std.a."
 >    @echo "  make clean && make"
 
 # ---------------------------------------------------------------------------
 # Build
 # ---------------------------------------------------------------------------
 
-all: $(PROJECT_TARGET)
+all: $(PROJECT_TARGET) standard-library
+
+standard-library: $(PROJECT_TARGET)
+>    $(MAKE) -C stdlib C_COMPILER="$(C_COMPILER)" C_COMPILER_FLAGS="$(C_COMPILER_FLAGS)"
 
 $(PROJECT_TARGET): $(PROJECT_OBJECTS)
 >    $(C_COMPILER) $(C_COMPILER_FLAGS) $(LTO_FLAGS) $(LINKER_FLAGS) -o $@ $^
@@ -78,7 +84,7 @@ build/%.o: src/%.c Makefile
 # Test
 # ---------------------------------------------------------------------------
 
-test: $(PROJECT_TARGET)
+test: all
 >    $(MAKE) -C tests C_COMPILER="$(C_COMPILER)" C_COMPILER_FLAGS="$(C_COMPILER_FLAGS)" LTO_FLAGS="$(LTO_FLAGS)"
 
 test-clean:

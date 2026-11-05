@@ -15,12 +15,16 @@ static bool join_path(char* combined_path, size_t capacity, const char* relative
 
 static bool register_module_file(Project* project, const char* module_path,
     const char* file_path, Error* error) {
+    if (find_module_file(project, module_path))
+        return error_set(error, ERROR_INVALID, 0,
+            "duplicate module path '%s'; project and standard library must not overlap", module_path);
     if (project->file_count == MAX_MODULE_FILES)
         return error_set(error, ERROR_LIMIT, 0, "too many module files (max %d)", MAX_MODULE_FILES);
     ModuleFile* file = &project->files[project->file_count++];
     strcpy(file->module_path, module_path);
     strcpy(file->file_path, file_path);
     file->implementation = MODULE_DECLARATION_ONLY;
+    file->is_standard_library = false;
     return true;
 }
 

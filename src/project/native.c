@@ -56,7 +56,7 @@ bool validate_native_modules(Project* project, bool require_sources, Error* erro
             snprintf(error->module, sizeof(error->module), "%s", module->module_path);
             return false;
         }
-        if (require_sources) {
+        if (require_sources || module->is_standard_library) {
             char path[MAX_FILE_PATH_LENGTH];
             if (!companion_path(module, path, sizeof(path), error)) return false;
             struct stat information;
@@ -90,7 +90,7 @@ bool emit_native_headers(Project* project, const char* directory, Error* error) 
 bool create_native_stubs(Project* project, Error* error) {
     for (int index = 0; index < project->file_count; index++) {
         ModuleFile* module = &project->files[index];
-        if (module->implementation != MODULE_C_IMPLEMENTATION) continue;
+        if (module->implementation != MODULE_C_IMPLEMENTATION || module->is_standard_library) continue;
         char path[MAX_FILE_PATH_LENGTH];
         if (!companion_path(module, path, sizeof(path), error)) return false;
         FILE* source = fopen(path, "wx");

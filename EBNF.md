@@ -506,7 +506,7 @@ print
 
 ```sh
 ./ama ./examples/double main out.c
-gcc -O3 out.c -o prog
+gcc -O3 out.c build/stdlib/libama_std.a -o prog
 ./prog
 # prints: 42
 ```
@@ -522,8 +522,10 @@ There are no addresses, pointers, dereferencing operators, or built-in memory
 allocation/access modules. The compiler emits separate C variables; their
 internal symbol IDs are not values accessible to a program.
 
-The remaining intrinsics are `sys/math/{add,sub,mul,div,mod,lt,le,gt,ge,eq,ne,
-and,or,not}` and `sys/io/print`; see README.md for signatures.
+The standard library exports `sys/math/{add,sub,mul,div,mod,lt,le,gt,ge,eq,ne,
+and,or,not}` and `sys/io/print`; see README.md for signatures. These are ordinary
+modules under `stdlib/modules/`, implemented through the native C contract
+below rather than compiler-specific operations.
 
 ## 10. Native C implementation contract
 
@@ -559,3 +561,22 @@ missing companion `.c` templates for `@C` modules. It never overwrites an existi
 C implementation. Templates deliberately contain `#error` until implemented.
 This command ignores drafts and does not require an entry module. See
 `CONTRIBUTORS.md` for the complete contributor workflow.
+
+## 11. Standard library discovery and linkage
+
+The compiler imports modules from a standard library directory in addition to
+the project directory. Both trees use the same file format, declaration parser,
+dependency graph, and native C wrappers. A module path must be unique across the
+trees; a project cannot shadow an imported module. C and header files remain
+excluded from Ama discovery.
+
+`AMA_STDLIB` selects the imported directory. When absent, the build-configured
+default is used; an empty value disables import. The standard library is not
+part of the grammar and does not reserve a compiler-side list of operations.
+Its interfaces under `stdlib/modules/sys/` define the published `sys/*` APIs.
+
+The default C implementations are built separately as `build/stdlib/libama_std.a`
+and linked after generated program and project-native sources. Selecting another
+library requires linking its matching native implementations. Stub generation
+never creates sources inside an imported library. `--generate-c-headers` exports
+headers without creating any companion sources and is used for library builds.

@@ -39,7 +39,22 @@ static void it_compiles_native_and_ama_projects_with_fresh_state(void) {
     destroy_test();
 }
 
+static void it_accepts_an_explicitly_disabled_library_and_reports_missing_library_paths(void) {
+    setup_test();
+    bool empty = compile_project_with_library(PROJECT_ROOT "/tests/integration/22-code-only/project",
+        "main", "generated/without-library.c", "", &error);
+    assert(empty && error.error_code == ERROR_NONE);
+    bool needs_library = compile_project_with_library(PROJECT_ROOT "/tests/integration/01-hello/project",
+        "main", "generated/missing-system-module.c", NULL, &error);
+    assert(!needs_library && strstr(error.message, "sys/") != NULL);
+    bool missing = compile_project_with_library(PROJECT_ROOT "/tests/integration/22-code-only/project",
+        "main", "generated/invalid-library.c", "generated/no-such-library", &error);
+    assert(!missing && error.error_code == ERROR_IO);
+    destroy_test();
+}
+
 void run(void) {
+    it_accepts_an_explicitly_disabled_library_and_reports_missing_library_paths();
     it_compiles_native_and_ama_projects_with_fresh_state();
     it_compiles_two_projects_in_one_process();
     it_can_compile_after_a_failed_compilation();

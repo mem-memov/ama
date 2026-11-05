@@ -16,7 +16,7 @@ all:
 >    $(MAKE) -C 11-reject-mem-free all
 >    $(MAKE) -C 12-reject-mem-load all
 >    $(MAKE) -C 13-reject-mem-store all
->    $(MAKE) -C 14-intrinsics all
+>    $(MAKE) -C 14-standard-library all
 >    $(MAKE) -C 15-call-control all
 >    $(MAKE) -C 16-reject-mixed-call all
 >    $(MAKE) -C 17-reject-unknown-param all
@@ -47,6 +47,13 @@ all:
 
 >    $(MAKE) -C 39-native-case all
 
+>    $(MAKE) -C 40-reject-library-shadow all
+>    $(MAKE) -C 41-disable-standard-library all
+>    $(MAKE) -C 42-custom-standard-library all
+>    $(MAKE) -C 43-read-only-header-export all
+
+>    $(MAKE) -C 44-library-stub-protection all
+
 clean:
 >    $(MAKE) -C 01-hello clean
 >    $(MAKE) -C 02-branch clean
@@ -61,7 +68,7 @@ clean:
 >    $(MAKE) -C 11-reject-mem-free clean
 >    $(MAKE) -C 12-reject-mem-load clean
 >    $(MAKE) -C 13-reject-mem-store clean
->    $(MAKE) -C 14-intrinsics clean
+>    $(MAKE) -C 14-standard-library clean
 >    $(MAKE) -C 15-call-control clean
 >    $(MAKE) -C 16-reject-mixed-call clean
 >    $(MAKE) -C 17-reject-unknown-param clean
@@ -87,3 +94,8 @@ clean:
 >    $(MAKE) -C 37-reject-unknown-annotation clean
 >    $(MAKE) -C 38-native-stubs clean
 >    $(MAKE) -C 39-native-case clean
+>    $(MAKE) -C 40-reject-library-shadow clean
+>    $(MAKE) -C 41-disable-standard-library clean
+>    $(MAKE) -C 42-custom-standard-library clean
+>    $(MAKE) -C 43-read-only-header-export clean
+>    $(MAKE) -C 44-library-stub-protection clean

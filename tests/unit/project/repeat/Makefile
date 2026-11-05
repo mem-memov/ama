@@ -4,7 +4,6 @@ ROOT := $(abspath ../../../..)
 COMMON := ../../../common.c ../../common.c ../common.c
 SOURCES := \
     $(ROOT)/src/codegen/emitter.c \
-    $(ROOT)/src/codegen/intrinsics.c \
     $(ROOT)/src/codegen/program.c \
     $(ROOT)/src/codegen/native.c \
     $(ROOT)/src/common/diagnostic.c \
@@ -19,6 +18,7 @@ SOURCES := \
     $(ROOT)/src/parser/statement.c \
     $(ROOT)/src/parser/value.c \
     $(ROOT)/src/project/compile.c \
+    $(ROOT)/src/project/library.c \
     $(ROOT)/src/project/module.c \
     $(ROOT)/src/project/native.c \
     $(ROOT)/src/project/scan.c \

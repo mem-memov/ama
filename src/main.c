@@ -22,11 +22,13 @@ static void print_usage(FILE* output, const char* program_name) {
         "\n"
         "Example:\n"
         "  %s ./examples/hello main hello.c\n"
-        "  gcc -O3 -march=native hello.c -o hello\n"
+        "  gcc -O3 hello.c build/stdlib/libama_std.a -o hello\n"
         "  ./hello\n"
         "\n"
         "Options:\n"
         "  --generate-c-stubs  create missing native C stubs and generated headers\n"
+        "  --generate-c-headers  generate headers without creating C sources\n"
+        "  AMA_STDLIB  standard library directory (empty disables loading)\n"
         "  -h, --help     show this message and exit\n"
         "  -V, --version  show version and exit\n"
         "\n"
@@ -57,9 +59,13 @@ int main(int argument_count, char** arguments) {
     }
 
     Error error;
-    bool success = !strcmp(arguments[1], "--generate-c-stubs")
-        ? generate_c_stubs(arguments[2], arguments[3], &error)
-        : compile_project(arguments[1], arguments[2], arguments[3], &error);
+    bool success;
+    if (!strcmp(arguments[1], "--generate-c-stubs"))
+        success = generate_c_stubs(arguments[2], arguments[3], &error);
+    else if (!strcmp(arguments[1], "--generate-c-headers"))
+        success = generate_c_headers(arguments[2], arguments[3], &error);
+    else
+        success = compile_project(arguments[1], arguments[2], arguments[3], &error);
     if (!success) {
         error_print(stderr, &error);
         return 1;

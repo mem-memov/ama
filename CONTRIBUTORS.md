@@ -28,7 +28,7 @@ A local `index` is sufficient when one nearby collection makes its meaning clear
 Use named enum values when a number represents a state.
 
 Names should explain a role without repeating the whole algorithm. Preserve
-established C/POSIX names such as `FILE`, `EOF`, and `waitpid`. Ama intrinsic
+established C/POSIX names such as `FILE`, `EOF`, and `waitpid`. Ama standard library
 paths and their named parameters are language interfaces: changing names such
 as `sys/math/lt` or its parameters requires a separate language change, with
 matching updates to the grammar, examples, and tests.
@@ -237,7 +237,7 @@ Translate normally after implementing the companion source:
 ```sh
 mkdir -p generated
 ./ama project main generated/program.c
-gcc -std=c11 -O3 -Igenerated generated/program.c project/math/double.c -o generated/program
+gcc -std=c11 -O3 -Igenerated generated/program.c project/math/double.c build/stdlib/libama_std.a -o generated/program
 ./generated/program
 ```
 
@@ -306,3 +306,58 @@ make -C tests/integration/26-native-calls
 make -C tests/integration/38-native-stubs
 make test
 ```
+
+## Standard library contributions
+
+The standard library is a separate source tree under `stdlib/modules/`, not a
+set of compiler intrinsics. Every exported operation has a normal Ama interface
+and implementation. For example, `stdlib/modules/sys/math/add` selects `@C`,
+and `add.c` implements `ama_native_sys_math_add` using the generated prototype.
+Adding an operation does not require a compiler registration table or emitter.
+
+Preserve existing module paths, argument names, result names, defaults, and
+unsigned arithmetic behavior unless making an explicit language/library change.
+The short published names such as `sys/math/lt` and parameters `a`/`b` remain
+compatibility interfaces; new internal C identifiers should still explain roles.
+
+Build and exercise a library change with:
+
+```sh
+make
+make -C tests/integration/14-standard-library
+make test
+```
+
+`stdlib/Makefile` compiles the C sources into `build/stdlib/libama_std.a` using
+ordinary C objects. Its explicit `MODULE_DIRECTORIES` list defines the library's
+build categories; add a directory there when introducing another category.
+Generated headers live in `build/stdlib/include`. The header-generation command
+is `--generate-c-headers`; unlike stub generation it cannot create or alter
+companion C sources, and reports missing implementations.
+
+The library build sets `AMA_STDLIB=` while exporting its own interfaces, so the
+library is scanned once as the input project rather than imported a second time.
+Extensionless Ama interfaces are input data; Make explicitly disables implicit
+C-executable recipes for those paths. Never build an executable over an interface
+merely because a sibling `.c` has the same basename.
+
+The compiler's configured default path can be overridden with `AMA_STDLIB`.
+Use that to test a replacement library, and an empty value to test without it.
+Do not silently shadow a standard library module from a user project. If testing
+that API needs a different implementation, select a separate library root.
+The explicit C API `compile_project_with_library` is preferable to environment
+mutation in in-process unit tests.
+
+Project stub generation may emit library headers into the requested output
+folder, but never creates files inside the imported library tree. To create a
+new library stub intentionally, select the library tree as the project and turn
+off implicit library loading:
+
+```sh
+AMA_STDLIB= ./ama --generate-c-stubs stdlib/modules build/stdlib/include
+```
+
+Integration test compilation links the default archive after project-native
+sources. A replacement-library test supplies the replacement C implementations
+explicitly. Keep library build outputs under `build/`; they are generated
+artifacts, not source or authoritative interface definitions.

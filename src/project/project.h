@@ -9,6 +9,16 @@ bool compile_project(
     const char* output_path,
     Error* error
 );
+/* An explicit NULL or empty library directory disables the standard library. */
+bool compile_project_with_library(
+    const char* project_root,
+    const char* entry_module,
+    const char* output_path,
+    const char* library_directory,
+    Error* error
+);
+
 /* Generate native headers and create missing companion .c files exclusively. */
 bool generate_c_stubs(const char* project_root, const char* header_directory, Error* error);
+bool generate_c_headers(const char* project_root, const char* header_directory, Error* error);
 #endif

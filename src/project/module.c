@@ -2,7 +2,6 @@
 #include "lexer/sections.h"
 #include "parser/parser.h"
 #include "codegen/native.h"
-#include "codegen/intrinsics.h"
 #include <errno.h>
 #include <limits.h>
 #include <stdlib.h>
@@ -29,11 +28,6 @@ static bool read_module_declarations(SymbolTable* symbols, ModuleFile* module, E
     if (module->implementation == MODULE_DECLARATION_ONLY) {
         fclose(file);
         return true;
-    }
-    if (is_intrinsic_module_path(module->module_path)) {
-        fclose(file);
-        return error_set(error, ERROR_INVALID, 0,
-            "built-in module '%s' cannot be redefined", module->module_path);
     }
     Lexer lexer;
     bool success = init_lexer(&lexer, file, sections.parameters_start, sections.parameters_end,

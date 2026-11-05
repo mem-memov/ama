@@ -3,7 +3,7 @@
 Ama is a minimalist procedure-oriented language with unsigned integer values,
 explicit parameter/result passing, and a small punctuation-based syntax.
 The compiler is written in C11 and translates Ama modules into C. Compile the
-result with a C compiler to obtain a native executable.
+result with a C compiler and the standard library archive to obtain a native executable.
 
 The language has no classes, exceptions, garbage collector, or recursion.
 Variables hold values; programs cannot obtain addresses or access memory by
@@ -12,19 +12,22 @@ The normative syntax is described in [EBNF.md](EBNF.md).
 
 ## Build and run
 
-Requirements: a C11 compiler, Make, and a POSIX system (Linux or macOS).
+Requirements: a C11 compiler, GNU Make, an `ar` archiver, and a POSIX system
+(Linux or macOS).
 There are no external library dependencies.
 
 ```sh
 make
 ./ama <project_root> <entry_module> <output.c>
-gcc -O3 output.c -o program
+gcc -O3 output.c build/stdlib/libama_std.a -o program
 ./program
 ```
 
 The CLI also supports `--help` and `--version`.
 The Ama compiler generates C only; it does not invoke GCC itself.
-Use `make C_COMPILER=clang` to build the compiler with Clang.
+Use `make C_COMPILER=clang` to build with Clang. `make` also builds the ordinary
+C standard library at `build/stdlib/libama_std.a`; `make standard-library`
+rebuilds just that library and its compiler prerequisite.
 
 ## A complete program
 
@@ -52,9 +55,10 @@ The `@<` annotation starts the parameter/alias section, and `@Ama` starts
 the implementation. This module has no result section. Build and execute it:
 
 ```sh
-./ama hello main hello.c
-gcc -O3 hello.c -o hello-program
-./hello-program
+mkdir -p generated
+./ama hello main generated/hello.c
+gcc -O3 generated/hello.c build/stdlib/libama_std.a -o generated/hello-program
+./generated/hello-program
 # 12
 ```
 
@@ -134,7 +138,7 @@ x
 
 An unknown receiver becomes a local variable. A source must already be known.
 Names are scoped to their module; aliases cannot be used as numeric values.
-There are no pointers, address-taking, dereferencing, or memory intrinsics.
+There are no pointers, address-taking, dereferencing, or memory access modules.
 
 ## Calls
 
@@ -240,7 +244,7 @@ requires companion sources to exist and never creates or modifies them:
 ```sh
 mkdir -p generated
 ./ama project main generated/program.c
-gcc -std=c11 -O3 -Igenerated generated/program.c project/math/double.c -o generated/program
+gcc -std=c11 -O3 -Igenerated generated/program.c project/math/double.c build/stdlib/libama_std.a -o generated/program
 ./generated/program
 ```
 
@@ -251,7 +255,7 @@ A native module may also be the entry module if it has no value parameters.
 See [the native module contributor guide](CONTRIBUTORS.md#native-c-modules) for
 naming, ownership, defaults, signature changes, and tests.
 
-## Built-in modules
+## Standard library
 
 | Module | Parameters | Results |
 |---|---|---|
@@ -264,6 +268,31 @@ naming, ownership, defaults, signature changes, and tests.
 | `sys/math/and`, `or` | `a`, `b` | `result` |
 | `sys/math/not` | `a` | `result` |
 | `sys/io/print` | `value` | `error` |
+
+The implementations live under `stdlib/modules/`, with one Ama interface and
+companion C source per module. They use the same `@C` mechanism as project
+modules; there is no compiler-side table of operations or special emitter.
+Paths such as `.sys.math.add` and their existing signatures remain unchanged.
+
+The compiler loads these module files after discovering the project. Duplicate
+module paths between the project and library are errors. Generated programs
+link the separately built `build/stdlib/libama_std.a` archive. Standard library
+sources are never changed by the project's stub generator.
+
+The default module directory is configured by Make's
+`STANDARD_LIBRARY_DIRECTORY` (normally the repository's absolute
+`stdlib/modules` path). Override it at runtime with `AMA_STDLIB`:
+
+```sh
+AMA_STDLIB=/path/to/other/modules ./ama project main generated/program.c
+AMA_STDLIB= ./ama project main generated/without-library.c
+```
+
+An empty value disables library loading. A missing library directory is an
+error. Link the matching C implementations/archive when selecting another
+library. C callers can use `compile_project_with_library` to pass an explicit
+library directory, with `NULL` or `""` disabling loading without changing the
+environment. See [stdlib/README.md](stdlib/README.md) for library development.
 
 Comparisons and logical operations return 0 or 1. Division/modulo by zero sets
 `error` to 1 and the numeric result to 0; otherwise `error` is 0. Print writes
@@ -282,8 +311,8 @@ src/
   parser/            declarations, values, assignments, calls, control flow
   symbols/           symbol types and table
   graph/             dependency graph and cycle detection
-  codegen/           C output primitives, native signatures/wrappers, intrinsics
-  project/           directory scan, module loading, compilation pipeline
+  codegen/           C output primitives and native signatures/wrappers
+  project/           project/library discovery, module loading, compilation pipeline
 ```
 
 Start with `project/compile.c`: `compile_project` loads declarations, validates
@@ -325,8 +354,9 @@ make -B LTO_FLAGS= C_COMPILER_FLAGS="-O0 -g3 -Wall -Wextra -std=c11 -D_POSIX_C_S
 ```
 
 Use `make -B` when switching flags or compilers to rebuild existing objects.
-The Makefile preserves source subdirectories under `build/` and tracks header
-dependencies automatically with `-MMD -MP`.
+The Makefiles preserve source subdirectories under `build/` and track header
+dependencies automatically with `-MMD -MP`. The standard library builds its own
+headers with `--generate-c-headers`, which never creates source files.
 
 Generated C uses separate `static size_t symbol_<symbol_id>` variables and `void` module
 functions. IDs are private compiler names, with no numeric meaning in Ama.
@@ -407,7 +437,7 @@ investigate it independently.
 
 ## Current limitations
 
-The prototype has fixed limits of 512 graph nodes (including intrinsics) and
+The prototype has fixed limits of 512 graph nodes (including standard library modules) and
 8192 symbols. Literal parsing still uses `int`/`atoi`; values above `INT_MAX`
 are not reliably supported even though computed values use `size_t`.
 Duplicate named arguments are not rejected. A `!` outside a loop is rejected

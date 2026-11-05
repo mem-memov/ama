@@ -6,8 +6,9 @@
   - `ama` (compiler binary)
   - `build/` (object files, `build/tests/` intermediates)
   - any `*.o` or generated `.c` files under `build/`
-- Source of truth is the `.c`/`.h` files under `src/`, with `README.md` and `EBNF.md`
-  as the normative language specification.
+- Compiler source lives under `src/`; standard library interfaces and C sources
+  live under `stdlib/modules/`. `README.md` and `EBNF.md`
+  are the normative language specification.
 - Tests use recursive Makefiles under `tests/unit/` and `tests/integration/`.
   Each leaf has its own `main.c` with `it_*` functions and an explicit `run()`;
   guarded parent `common.c` files hold test fixtures. Assertions use `assert`.
@@ -26,7 +27,7 @@
 
 ## Workflow
 
-- Build: `make` (binary `./ama`)
+- Build: `make` (compiler `./ama` and `build/stdlib/libama_std.a`).
 - Test: `make test`; individual suites: `make -C tests/unit/lexer/tokens`.
 - Test cleanup: `make test-clean`. Successful leaves clean automatically; failures
   preserve generated files for debugging.
