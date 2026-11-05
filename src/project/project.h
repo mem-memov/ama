@@ -9,4 +9,6 @@ bool compile_project(
     const char* output_path,
     Error* error
 );
+/* Generate native headers and create missing companion .c files exclusively. */
+bool generate_c_stubs(const char* project_root, const char* header_directory, Error* error);
 #endif

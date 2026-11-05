@@ -4,10 +4,12 @@
 #include "symbols/table.h"
 #include "graph/graph.h"
 #include "codegen/emitter.h"
+#include "lexer/sections.h"
 
 typedef struct {
     char module_path[MAX_MODULE_PATH_LENGTH];
     char file_path[MAX_FILE_PATH_LENGTH];
+    ModuleImplementation implementation;
 } ModuleFile;
 
 typedef struct {
@@ -22,5 +24,10 @@ bool scan_dir(Project* project, const char* project_root, const char* relative_p
 ModuleFile* find_module_file(Project* project, const char* path);
 bool parse_project_declarations(Project* project, Error* error);
 bool emit_project_module(Project* project, const ModuleFile* module, Error* error);
+bool validate_native_modules(Project* project, bool require_sources, Error* error);
+bool emit_native_headers(Project* project, const char* directory, Error* error);
+bool create_native_stubs(Project* project, Error* error);
+bool prepare_header_directory(const char* directory, Error* error);
+bool output_directory(const char* path, char* directory, size_t capacity, Error* error);
 bool validate_entry(Project* project, const char* entry_module, Error* error);
 #endif

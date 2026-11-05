@@ -13,6 +13,8 @@
   guarded parent `common.c` files hold test fixtures. Assertions use `assert`.
 - Integration module files live under each leaf's `project/`; expectations are
   `expected.txt` or `expected-error.txt` beside it.
+- Native test interfaces and handwritten companion `.c` files live together
+  under `project/`. Generated native headers belong under `generated/`.
 - Do not analyze generated artifacts in any test's `generated/` directory.
 
 ## Style

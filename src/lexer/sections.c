@@ -33,7 +33,7 @@ static char* line_content(char* text) {
 static SectionKind annotation_kind(const char* annotation) {
     if (!strcmp(annotation, "@<")) return SECTION_PARAMETERS;
     if (!strcmp(annotation, "@>")) return SECTION_RESULTS;
-    if (!strcmp(annotation, "@Ama")) return SECTION_CODE;
+    if (!strcmp(annotation, "@Ama") || !strcmp(annotation, "@C")) return SECTION_CODE;
     return SECTION_NONE;
 }
 
@@ -93,12 +93,15 @@ static bool read_annotation(
     SectionKind kind = annotation_kind(annotation);
     if (kind == SECTION_NONE)
         return error_set(error, ERROR_INVALID, line_number,
-            "unknown section annotation '%s'; expected @<, @>, or @Ama", annotation);
+            "unknown section annotation '%s'; expected @<, @>, @Ama, or @C", annotation);
     if (kind <= *current_section)
         return error_set(error, ERROR_INVALID, line_number,
             "duplicate or out-of-order section annotation '%s'", annotation);
     end_section(sections, *current_section, line_offset);
     begin_section(sections, kind, next_line_offset, line_number + 1);
+    if (kind == SECTION_CODE)
+        sections->implementation = !strcmp(annotation, "@C")
+            ? MODULE_C_IMPLEMENTATION : MODULE_AMA_IMPLEMENTATION;
     *current_section = kind;
     return true;
 }
@@ -129,9 +132,12 @@ bool split_module_sections(FILE* source_file, ModuleSections* sections, Error* e
         if (*content == '@') {
             success = read_annotation(sections, &current_section, content, content == text,
                 line_offset, next_line_offset, line_number, error);
+        } else if (*content && sections->implementation == MODULE_C_IMPLEMENTATION) {
+            success = error_set(error, ERROR_INVALID, line_number,
+                "@C must not contain an Ama code body; use the companion .c file");
         } else if (*content && current_section == SECTION_NONE) {
             success = error_set(error, ERROR_INVALID, line_number,
-                "content before a section annotation; expected @<, @>, or @Ama");
+                "content before a section annotation; expected @<, @>, @Ama, or @C");
         }
         if (!success) break;
         line_offset = next_line_offset;
@@ -141,8 +147,6 @@ bool split_module_sections(FILE* source_file, ModuleSections* sections, Error* e
     if (!success) return false;
     if (ferror(source_file))
         return error_set(error, ERROR_IO, line_number, "cannot read source sections");
-    if (current_section != SECTION_CODE)
-        return error_set(error, ERROR_INVALID, line_number, "module must contain an @Ama section");
     end_section(sections, current_section, line_offset);
     return true;
 }

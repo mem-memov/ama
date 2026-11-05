@@ -51,16 +51,35 @@ static inline void assert_files_equal(const char* actual_path, const char* expec
     close_file(expected);
 }
 
-static inline void expect_program_output(const char* expected) {
+static inline int compile_generated_program(const char* const* native_sources, size_t source_count) {
+    char* arguments[64] = {TEST_CC, "-std=c11", "-O2", "-Igenerated", "generated/program.c"};
+    assert(source_count + 8 < sizeof(arguments) / sizeof(arguments[0]));
+    size_t position = 5;
+    for (size_t index = 0; index < source_count; index++)
+        arguments[position++] = (char*)native_sources[index];
+    arguments[position++] = "-o";
+    arguments[position++] = "generated/program";
+    arguments[position] = NULL;
+    return run_process(arguments, "generated/cc.out", "generated/cc.err");
+}
+
+static inline void expect_native_program_output(
+    const char* expected,
+    const char* const* native_sources,
+    size_t source_count
+) {
     int status = compile_ama();
     expect_status(status, 0, "generated/ama.err");
-    char* compiler_arguments[] = {TEST_CC, "-std=c11", "-O2", "generated/program.c", "-o", "generated/program", NULL};
-    status = run_process(compiler_arguments, "generated/cc.out", "generated/cc.err");
+    status = compile_generated_program(native_sources, source_count);
     expect_status(status, 0, "generated/cc.err");
     char* program_arguments[] = {"./generated/program", NULL};
     status = run_process(program_arguments, "generated/stdout", "generated/stderr");
     expect_status(status, 0, "generated/stderr");
     assert_files_equal("generated/stdout", expected);
+}
+
+static inline void expect_program_output(const char* expected) {
+    expect_native_program_output(expected, NULL, 0);
 }
 
 static inline void expect_compile_error(const char* expected) {

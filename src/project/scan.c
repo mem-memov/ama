@@ -20,7 +20,8 @@ static bool register_module_file(Project* project, const char* module_path,
     ModuleFile* file = &project->files[project->file_count++];
     strcpy(file->module_path, module_path);
     strcpy(file->file_path, file_path);
-    return graph_add_node(&project->graph, module_path, error) >= 0;
+    file->implementation = MODULE_DECLARATION_ONLY;
+    return true;
 }
 
 static bool scan_entry(Project* project, const char* project_root, const char* relative_prefix,
@@ -33,6 +34,8 @@ static bool scan_entry(Project* project, const char* project_root, const char* r
     if (stat(file_path, &file_information) != 0)
         return error_set(error, ERROR_IO, 0, "stat '%s': %s", file_path, strerror(errno));
     if (S_ISDIR(file_information.st_mode)) return scan_dir(project, project_root, module_path, error);
+    const char* extension = strrchr(name, '.');
+    if (extension && (!strcmp(extension, ".c") || !strcmp(extension, ".h"))) return true;
     if (S_ISREG(file_information.st_mode)) return register_module_file(project, module_path, file_path, error);
     return true;
 }

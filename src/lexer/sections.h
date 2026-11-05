@@ -5,7 +5,14 @@
 #include "common/diagnostic.h"
 #include <stdint.h>
 
+typedef enum {
+    MODULE_DECLARATION_ONLY,
+    MODULE_AMA_IMPLEMENTATION,
+    MODULE_C_IMPLEMENTATION
+} ModuleImplementation;
+
 typedef struct {
+    ModuleImplementation implementation;
     long parameters_start, parameters_end;
     long results_start, results_end;
     long code_start, code_end;

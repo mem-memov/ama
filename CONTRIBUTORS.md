@@ -49,8 +49,9 @@ lines in Make variable lists also use four spaces.
 Ama fixtures and Ama examples retain the language's semantic indentation:
 **one space per nesting level**, as specified in `EBNF.md`. Applying C formatting
 to them changes the program. Module files use `@<`, `@>`, and `@Ama`
-for section boundaries; empty lines are formatting, not delimiters. `@Ama` is
-required even for an empty implementation. Deliberate CRLF fixtures retain CRLF; ordinary
+for section boundaries; empty lines are formatting, not delimiters. `@C`
+selects a companion C implementation. Files without either implementation
+selector are drafts; an intentional empty Ama implementation still uses `@Ama`. Deliberate CRLF fixtures retain CRLF; ordinary
 source and documentation files use LF. `.editorconfig` records these exceptions;
 `.gitattributes` preserves the deliberate CRLF fixture and makes Git whitespace
 checks recognize its line endings.
@@ -161,3 +162,147 @@ Add tests for behavior, error handling, and component interaction when those
 change. Avoid tests that merely duplicate the implementation. Keep `README.md`
 and `EBNF.md` consistent with public behavior. Build artifacts and generated
 files are outputs, never the source of truth. Commit only when explicitly asked.
+
+## Native C modules
+
+Keep the interface and implementation together. A module at `math/double` has
+an Ama interface file named `double` and a handwritten source named `double.c`
+in the same directory. The interface contains `@<` and `@>` declarations as
+needed and ends with `@C`. Only comments and blank lines may follow `@C`.
+
+For example, `project/math/double`:
+
+```text
+@<
+value
+0
+@>
+result
+0
+@C
+```
+
+The interface is the source of truth for types, ordering, and defaults. Do not
+repeat or invent an independent signature. Create the initial source safely:
+
+```sh
+make
+./ama --generate-c-stubs project generated
+```
+
+The command creates missing companion `.c` files and generated headers. Existing
+C sources are opened with exclusive-create semantics and never overwritten.
+Header directories are created as needed. A declaration-only draft, even one
+with an incomplete parameter pair, does not receive a C stub. To request a stub,
+choose `@C` explicitly. Choosing `@Ama` requests an Ama implementation instead.
+Structural errors in annotations still require correction.
+
+Edit `project/math/double.c`, remove the generated `#error`, and implement the
+function using its generated header:
+
+```c
+#include "ama_native_math_double.h"
+
+void ama_native_math_double(size_t parameter_value, size_t* result_result) {
+    *result_result = parameter_value * 2;
+}
+```
+
+The template's `#error` prevents an untouched stub from silently behaving like
+a completed implementation. Native parameter and result names are prefixed to
+avoid collisions with C keywords. Aliases never become arguments. A function
+without parameters or results has a `(void)` signature; a native entry named `main` implements
+`ama_native_main`, not the C program's `main`.
+
+A complete caller in `project/main` is:
+
+```text
+@<
+double
+.math.double
+print
+.sys.io.print
+@Ama
+double
+ < 21
+ > answer
+print
+ < answer
+```
+
+### Build and signature checks
+
+Translate normally after implementing the companion source:
+
+```sh
+mkdir -p generated
+./ama project main generated/program.c
+gcc -std=c11 -O3 -Igenerated generated/program.c project/math/double.c -o generated/program
+./generated/program
+```
+
+Ama generates `generated/ama_native_math_double.h` from the current interface
+on every successful translation. Include that header from the implementation
+and place `generated/` on the C compiler's include path. Compile each native
+source as an ordinary, separate C translation unit. This preserves normal C
+file boundaries, including independent `static` helpers. List additional helper
+sources and libraries explicitly when linking. Ama does not invoke GCC for you.
+
+After editing an interface, regenerate before rebuilding C. A stale handwritten
+function definition conflicts with the generated declaration and is rejected
+by the C compiler when it includes the header. Existing `.c` sources are never
+rewritten to follow a changed interface. Native function names preserve case;
+header guards preserve that distinction too. Active user modules whose paths
+collapse to the same generated function name are rejected.
+
+Generated headers belong to the output directory and can be replaced. Handwritten
+C files belong to the source tree. Do not edit generated headers or commit them
+as authoritative interfaces. Keep output from different projects in separate
+directories. The scanner ignores `.c` and `.h` files; an unselected companion
+file does not turn a draft or an Ama module into a native module.
+
+### Values, defaults, and ownership
+
+Every parameter is a `size_t` value. All result arguments are `size_t*`, supplied
+after the parameters in declaration order, and the function returns `void`.
+Assigning a parameter changes the C copy, never the Ama caller's variable.
+
+The Ama caller initializes all parameter and result defaults before execution.
+Every result pointer is valid and non-null, including ignored results. Write
+through those pointers to return values. Leaving a result untouched preserves
+its declared default on that call. An `error` result is an ordinary optional
+result following the same explicit error-checking convention as Ama modules.
+
+Do not retain result pointers after the call or use them to access unrelated
+state. C local variables, allocations, and static variables obey C ownership
+and lifetime rules; they do not acquire Ama's local-reset semantics. The C
+implementation is responsible for its own resource cleanup and correctness.
+Recursion through Ama module dependencies remains forbidden.
+
+Native paths and parameter/result names currently use ASCII letters, digits,
+and underscores, with slashes separating module path components. This provides
+portable C identifiers. Ordinary Ama modules retain their existing Unicode
+identifier support.
+
+### Test a native contribution
+
+Use `tests/unit/codegen/native` for signature and wrapper rules. An integration
+leaf should contain the interface and companion under `project/`, then call
+`expect_native_program_output` with an explicit list of native source paths.
+Those sources are compiled separately with `-Igenerated`; no shell command is
+constructed. Keep fixture C indentation at four spaces, while Ama fixtures use
+one-space semantic indentation.
+
+Cover defaults, omitted results, named and positional calls, and errors relevant
+to the module. Changes to native infrastructure should also verify empty
+signatures, native entry modules, conflicting C definitions, missing companions,
+name collisions, and safe repeated stub generation. Stub-generation tests must
+create editable projects under their leaf's `generated/` directory, never alter
+checked-in fixtures, and verify that handwritten edits survive regeneration.
+
+```sh
+make -C tests/unit/codegen/native
+make -C tests/integration/26-native-calls
+make -C tests/integration/38-native-stubs
+make test
+```

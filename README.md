@@ -58,8 +58,9 @@ gcc -O3 hello.c -o hello-program
 # 12
 ```
 
-Keep generated files outside the source directory: the compiler scans every
-non-hidden regular file recursively and treats each as a module.
+Keep generated output in its own directory. The compiler scans non-hidden
+files recursively, excluding `.c` and `.h` files; the remaining files are Ama
+interfaces or implementations. Companion C sources are compiled separately.
 
 ## Modules and declarations
 
@@ -69,19 +70,21 @@ Module sections begin with visible annotations on their own lines:
 |---|---|---|
 | `@<` | Parameters and module aliases | No |
 | `@>` | Results (aliases are also accepted) | No |
-| `@Ama` | Ama implementation | Yes |
+| `@Ama` | Ama implementation | One implementation selector |
+| `@C` | Implementation in the companion `.c` file | One implementation selector |
 
-The order is `@<`, `@>`, `@Ama`, and each annotation may appear once.
+The order is `@<`, `@>`, then either `@Ama` or `@C`. Each section may appear once.
 An omitted declaration section is empty. An annotation starts at indentation
 zero; trailing spaces and a `#` comment are allowed. Blank lines and comments
 may appear before annotations and within any section. They no longer delimit
 sections. The existing condition-binding rule still forbids a blank between
 a condition and its `?` or `{`.
 
-A deliberately empty module consists of `@Ama` alone. An unfinished file
-without `@Ama` is an error in the current compiler. Unknown annotations,
-including `@C`, are rejected; native implementations and general annotations
-are not supported yet. The former blank-line section format is rejected.
+A deliberately empty Ama module consists of `@Ama` alone. A file without
+`@Ama` or `@C` is a draft: its declarations are not parsed and no code or C stub
+is generated for it. Unreferenced drafts may remain unfinished. Selecting a
+draft as the entry module or referencing it through an alias is an error. Unknown annotations and
+the former blank-line section format are rejected.
 
 Declarations are name/value pairs, one item per line at indent zero.
 Blank lines and comments may separate declarations or a name from its value. A decimal
@@ -189,6 +192,65 @@ Conditions and their `?` or `{` may have comments between them, but no blank
 line. `!` exits the nearest loop. A bare `>` returns from the current procedure.
 The condition is re-read on each loop iteration.
 
+## Native C modules
+
+A module can expose an Ama interface while implementing its behavior in C.
+For example, `project/math/double`:
+
+```text
+@<
+value
+0
+@>
+result
+0
+@C
+```
+
+Its companion `project/math/double.c` must include the generated header:
+
+```c
+#include "ama_native_math_double.h"
+
+void ama_native_math_double(size_t parameter_value, size_t* result_result) {
+    *result_result = parameter_value * 2;
+}
+```
+
+The generated signature returns `void`, takes every parameter by value, then
+every result by pointer, in declaration order. Aliases are not C arguments.
+Defaults and named/positional Ama calls work as before. Every result receives
+a valid pointer even when the caller ignores it. `@C` permits only blank lines
+and comments after the selector; the executable implementation belongs in `.c`.
+
+To create missing implementations from their interfaces:
+
+```sh
+./ama --generate-c-stubs project generated
+```
+
+This creates missing companion `.c` files without overwriting existing sources
+and regenerates owned headers under `generated/`. Generated stubs contain a
+`#error` directive; implement them and remove the directive before compiling.
+Drafts without an implementation selector are skipped.
+
+Ordinary translation also writes native headers beside its output C file, but
+requires companion sources to exist and never creates or modifies them:
+
+```sh
+mkdir -p generated
+./ama project main generated/program.c
+gcc -std=c11 -O3 -Igenerated generated/program.c project/math/double.c -o generated/program
+./generated/program
+```
+
+List the selected native sources (and any C helpers they need) in the C compiler
+command. Ama does not invoke the C compiler or automatically link C sources.
+A native module may also be the entry module if it has no value parameters.
+
+See [the native module contributor guide](CONTRIBUTORS.md#native-c-modules) for
+naming, ownership, defaults, signature changes, and tests.
+
 ## Built-in modules
 
 | Module | Parameters | Results |
@@ -220,7 +282,7 @@ src/
   parser/            declarations, values, assignments, calls, control flow
   symbols/           symbol types and table
   graph/             dependency graph and cycle detection
-  codegen/           C output primitives, intrinsics, program wrapper
+  codegen/           C output primitives, native signatures/wrappers, intrinsics
   project/           directory scan, module loading, compilation pipeline
 ```
 
@@ -316,7 +378,9 @@ shared test state and helpers. Production components are linked as ordinary C
 sources through their public headers. Makefiles name the required sources.
 
 Unit suites cover individual components and combinations: lexer/parser/emitter,
-module calls, and repeated whole-project compilation within one process. Tests
+module calls, native signatures, and repeated whole-project compilation within
+one process. Integration cases also compile native sources as separate C
+translation units and exercise the stub-generation workflow. Tests
 use standard `assert`; `-UNDEBUG` keeps assertions enabled even if build flags
 contain `-DNDEBUG`. There is no automatic registration or generated runner.
 
@@ -349,7 +413,9 @@ are not reliably supported even though computed values use `size_t`.
 Duplicate named arguments are not rejected. A `!` outside a loop is rejected
 by the downstream C compiler rather than by Ama. There is no string/file input,
 interactive debugger, or recovery within a failed compilation. Generated C function names
-replace `/` with `_`, so some distinct module paths can collide.
+replace `/` with `_`; collisions between active user modules are rejected.
+Native module paths and parameter/result names currently require ASCII
+identifiers; ordinary Ama identifiers still accept non-ASCII bytes.
 
 ## Contributing
 

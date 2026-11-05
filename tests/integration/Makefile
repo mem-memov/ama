@@ -28,7 +28,24 @@ all:
 >    $(MAKE) -C 22-code-only all
 >    $(MAKE) -C 23-optional-sections all
 >    $(MAKE) -C 24-reject-legacy-sections all
->    $(MAKE) -C 25-reject-native-annotation all
+>    $(MAKE) -C 25-reject-missing-native-source all
+
+>    $(MAKE) -C 26-native-calls all
+>    $(MAKE) -C 27-native-entry all
+>    $(MAKE) -C 28-native-results all
+>    $(MAKE) -C 29-native-parameters all
+>    $(MAKE) -C 30-reject-native-body all
+>    $(MAKE) -C 31-reject-implementation-pair all
+>    $(MAKE) -C 32-ignore-drafts all
+>    $(MAKE) -C 33-reject-draft-call all
+>    $(MAKE) -C 34-reject-draft-entry all
+>    $(MAKE) -C 35-reject-native-collision all
+>    $(MAKE) -C 36-reject-native-signature all
+>    $(MAKE) -C 37-reject-unknown-annotation all
+
+>    $(MAKE) -C 38-native-stubs all
+
+>    $(MAKE) -C 39-native-case all
 
 clean:
 >    $(MAKE) -C 01-hello clean
@@ -55,4 +72,18 @@ clean:
 >    $(MAKE) -C 22-code-only clean
 >    $(MAKE) -C 23-optional-sections clean
 >    $(MAKE) -C 24-reject-legacy-sections clean
->    $(MAKE) -C 25-reject-native-annotation clean
+>    $(MAKE) -C 25-reject-missing-native-source clean
+>    $(MAKE) -C 26-native-calls clean
+>    $(MAKE) -C 27-native-entry clean
+>    $(MAKE) -C 28-native-results clean
+>    $(MAKE) -C 29-native-parameters clean
+>    $(MAKE) -C 30-reject-native-body clean
+>    $(MAKE) -C 31-reject-implementation-pair clean
+>    $(MAKE) -C 32-ignore-drafts clean
+>    $(MAKE) -C 33-reject-draft-call clean
+>    $(MAKE) -C 34-reject-draft-entry clean
+>    $(MAKE) -C 35-reject-native-collision clean
+>    $(MAKE) -C 36-reject-native-signature clean
+>    $(MAKE) -C 37-reject-unknown-annotation clean
+>    $(MAKE) -C 38-native-stubs clean
+>    $(MAKE) -C 39-native-case clean

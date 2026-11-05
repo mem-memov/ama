@@ -13,3 +13,6 @@ indent_size = 1
 
 [tests/integration/15-call-control/project/main]
 end_of_line = crlf
+
+[*.{c,h}]
+indent_size = 4

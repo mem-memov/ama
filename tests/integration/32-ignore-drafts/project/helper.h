@@ -1,0 +1,1 @@
+/* A C header is not an Ama module. */

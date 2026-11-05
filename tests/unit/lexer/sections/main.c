@@ -87,13 +87,13 @@ static void it_rejects_out_of_order_annotations(void) {
     destroy_test();
 }
 
-static void it_rejects_native_annotations_until_language_extensions_exist(void) {
+static void it_accepts_native_annotations_without_an_ama_body(void) {
     setup_test();
     source = text_file("@C\n");
     ModuleSections sections;
     bool split = split_module_sections(source, &sections, &error);
-    assert(!split && error.error_code == ERROR_INVALID && error.line_number == 1);
-    assert(strstr(error.message, "unknown section annotation '@C'") != NULL);
+    assert(split && sections.implementation == MODULE_C_IMPLEMENTATION);
+    assert(sections.code_start == sections.code_end);
     destroy_test();
 }
 
@@ -116,12 +116,12 @@ static void it_rejects_the_legacy_blank_line_format(void) {
     destroy_test();
 }
 
-static void it_requires_an_explicit_ama_implementation(void) {
+static void it_classifies_unfinished_interfaces_without_parsing_them(void) {
     setup_test();
     source = text_file("@<\nvalue\n0\n");
     ModuleSections sections;
     bool split = split_module_sections(source, &sections, &error);
-    assert(!split && strstr(error.message, "must contain an @Ama section") != NULL);
+    assert(split && sections.implementation == MODULE_DECLARATION_ONLY);
     destroy_test();
 }
 
@@ -143,7 +143,28 @@ static void it_rejects_a_stray_carriage_return_on_an_annotation(void) {
     destroy_test();
 }
 
+static void it_rejects_ama_code_after_a_native_annotation(void) {
+    setup_test();
+    source = text_file("@C\nvalue\n42\n");
+    ModuleSections sections;
+    bool split = split_module_sections(source, &sections, &error);
+    assert(!split && error.line_number == 2);
+    assert(strstr(error.message, "must not contain an Ama code body") != NULL);
+    destroy_test();
+}
+
+static void it_rejects_two_implementation_selectors(void) {
+    setup_test();
+    source = text_file("@Ama\n@C\n");
+    ModuleSections sections;
+    bool split = split_module_sections(source, &sections, &error);
+    assert(!split && strstr(error.message, "duplicate or out-of-order") != NULL);
+    destroy_test();
+}
+
 void run(void) {
+    it_rejects_ama_code_after_a_native_annotation();
+    it_rejects_two_implementation_selectors();
     it_finds_explicit_sections_and_preserves_physical_lines();
     it_accepts_a_code_only_module();
     it_accepts_results_without_parameters();
@@ -152,10 +173,10 @@ void run(void) {
     it_allows_comments_blank_lines_and_crlf_around_annotations();
     it_rejects_duplicate_annotations();
     it_rejects_out_of_order_annotations();
-    it_rejects_native_annotations_until_language_extensions_exist();
+    it_accepts_native_annotations_without_an_ama_body();
     it_rejects_indented_annotations();
     it_rejects_the_legacy_blank_line_format();
-    it_requires_an_explicit_ama_implementation();
+    it_classifies_unfinished_interfaces_without_parsing_them();
     it_rejects_tabs_with_the_physical_line_number();
     it_rejects_a_stray_carriage_return_on_an_annotation();
 }

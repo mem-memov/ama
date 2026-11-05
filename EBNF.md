@@ -117,8 +117,8 @@ but **do not** count as blank lines for the `has_preceding_blank_line` flag (see
 
 ## 3. Physical structure of a module file
 
-A module has optional parameter and result sections and a required Ama code
-section. Every present section starts with an explicit annotation. Blank lines
+A module has optional parameter and result sections and at most one
+implementation selector, `@Ama` or `@C`. Every present section starts with an explicit annotation. Blank lines
 are whitespace, never section delimiters.
 
 ### 3.1 File structure
@@ -127,12 +127,13 @@ are whitespace, never section delimiters.
 <module-file>       ::= <section-layout>
                         [ <parameters-section> ]
                         [ <results-section> ]
-                        <implementation-section>
+                        [ <implementation-section> ]
 
 <parameters-section> ::= "@<" <annotation-tail> <declaration-body>
 <results-section>    ::= "@>" <annotation-tail> <declaration-body>
 <implementation-section>
                     ::= "@Ama" <annotation-tail> <code-section>
+                      | "@C" <annotation-tail> <section-layout>
 
 <annotation-tail>   ::= { <space> } [ <comment> ] <newline>
 <declaration-body>  ::= <section-layout>
@@ -145,15 +146,22 @@ Rules:
 
 - An annotation starts at indentation zero and occupies its own line. Only
   spaces and an optional `#` comment may follow it.
-- The order is `@<`, `@>`, `@Ama`. Repeated or out-of-order annotations are errors.
+- The order is `@<`, `@>`, then `@Ama` or `@C`. Repeated or out-of-order
+  annotations, including two implementation selectors, are errors.
 - Either declaration section may be absent; an absent section is empty.
 - Every present section may also be empty. A minimal empty module is `@Ama`.
-- `@Ama` is required. A declaration-only or completely empty file is an error;
-  draft-module handling is not implemented.
+- A file without an implementation selector is a draft. Its declarations
+  are not parsed, so incomplete declaration pairs are allowed in drafts.
+  Drafts are not emitted and do not receive native headers or stubs.
+- A draft cannot be the entry module or an alias dependency. Other unreferenced
+  drafts do not prevent compilation. Structural validation still applies:
+  unknown/repeated annotations, forbidden tabs, and stray CR are errors.
 - Content before the first annotation is an error, except blank lines and
   comments. The old implicit blank-line format is not accepted.
-- Unknown annotations are errors. `@C`, C implementations, stub generation,
-  and general-purpose annotation arguments are not implemented.
+- `@C` selects the companion source at the Ama file path plus `.c` and
+  allows only blank lines or comments afterward. C code is never embedded
+  in an Ama source file.
+- Unknown annotations and general-purpose annotation arguments are errors.
 - An indented line beginning with `@` is also rejected, including inside a body.
 - A final newline is optional, including after the final `@Ama` annotation.
 
@@ -412,8 +420,8 @@ by the grammar above.
    nested body. Jumps of two or more are errors.
 
 4. **Explicit section annotations.** Optional `@<` and `@>` precede the
-   required `@Ama`, at indentation zero, without repetition. Blank lines
-   never delimit sections.
+   implementation selector (`@Ama` or `@C`), at indentation zero, without
+   repetition. A missing selector denotes a draft. Blank lines never delimit sections.
 
 5. **No blank line between a condition and `?` or `{`.** The `has_preceding_blank_line`
    flag tracks this. Comments are fine; blank lines are not.
@@ -508,7 +516,7 @@ gcc -O3 out.c -o prog
 Every numeric variable holds a platform-sized unsigned integer (`size_t`).
 Zero is false; any nonzero value is true. Arithmetic and comparisons are
 unsigned. A call copies values: defaults, arguments, execution, then results.
-All callee locals are reset to zero at every call, including locals introduced
+All Ama callee locals are reset to zero at every call, including locals introduced
 inside a conditional body. The entry module receives the same initialization.
 There are no addresses, pointers, dereferencing operators, or built-in memory
 allocation/access modules. The compiler emits separate C variables; their
@@ -516,3 +524,38 @@ internal symbol IDs are not values accessible to a program.
 
 The remaining intrinsics are `sys/math/{add,sub,mul,div,mod,lt,le,gt,ge,eq,ne,
 and,or,not}` and `sys/io/print`; see README.md for signatures.
+
+## 10. Native C implementation contract
+
+An active module ending in `@C` has the same Ama call syntax and interface as
+an Ama module. Its signature is generated from the declaration sections:
+
+- The external function is `ama_native_<module-path>`, with `/` replaced by `_`.
+- It returns `void`. All `SYMBOL_PARAMETER` entries become `size_t` arguments
+  in declaration order, followed by all `SYMBOL_RESULT` entries as `size_t*`.
+- Parameter names receive the prefix `parameter_`; result names receive
+  `result_`. This also permits Ama names that are C keywords.
+- Aliases are compile-time dependencies and do not appear in the C signature.
+- An empty signature is `(void)`. The generated header includes `<stddef.h>`.
+- Native paths and numeric interface names require ASCII letters, digits, and
+  underscores; paths additionally permit `/`. Function-name collisions caused
+  by replacing `/` with `_` are errors among active user modules.
+- Before every call, Ama initializes parameter and result defaults. Missing
+  parameters retain those defaults. Every result is passed by a non-null pointer,
+  even when the Ama caller omits it. Unwritten results retain their defaults.
+- C parameters are copies. Result pointers must not be retained for later use.
+  C locals and static state follow C rules, not Ama's local-reset behavior.
+- The native source must include its generated header. A conflicting definition
+  is then rejected by the C compiler; Ama itself does not parse C code.
+- The native entry module has no value parameters, just like an Ama entry.
+
+The companion C file must exist for normal translation. `.c` and `.h` files
+are excluded from Ama module discovery. The compiler emits a private Ama-call
+wrapper and a generated header next to its output C file. Native sources are
+compiled and linked separately, with that output directory on the include path.
+
+`ama --generate-c-stubs <root> <header-directory>` generates headers and creates
+missing companion `.c` templates for `@C` modules. It never overwrites an existing
+C implementation. Templates deliberately contain `#error` until implemented.
+This command ignores drafts and does not require an entry module. See
+`CONTRIBUTORS.md` for the complete contributor workflow.

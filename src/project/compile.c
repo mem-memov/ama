@@ -10,7 +10,8 @@ static bool load_project(Project* project, const char* project_root, const char*
     if (!project->file_count)
         return error_set(error, ERROR_INVALID, 0, "no module files found under '%s'", project_root);
     return register_intrinsics(&project->symbols, error) &&
-            parse_project_declarations(project, error) && validate_entry(project, entry_module, error);
+            parse_project_declarations(project, error) && validate_entry(project, entry_module, error) &&
+            validate_native_modules(project, true, error);
 }
 
 /* This is the adapter between symbols and the otherwise independent graph. */
@@ -74,7 +75,9 @@ static bool generate_program(
     if (!emit_intrinsic_modules(project->emitter.output, &project->symbols, error) ||
         !emit_modules(project, dependency_order, error)) return false;
     emit_program_entry_point(&project->emitter, entry_module);
-    return write_output(project, output_path, error);
+    char directory[MAX_FILE_PATH_LENGTH];
+    return output_directory(output_path, directory, sizeof(directory), error) &&
+        emit_native_headers(project, directory, error) && write_output(project, output_path, error);
 }
 
 bool compile_project(
@@ -96,6 +99,22 @@ bool compile_project(
         if (status && success)
             success = error_set(error, ERROR_IO, 0, "cannot close generated output");
     }
+    free(project);
+    return success;
+}
+
+bool generate_c_stubs(const char* project_root, const char* header_directory, Error* error) {
+    error_clear(error);
+    Project* project = calloc(1, sizeof(*project));
+    if (!project) return error_set(error, ERROR_MEMORY, 0, "out of memory (project)");
+    symbols_init(&project->symbols);
+    graph_init(&project->graph);
+    bool success = scan_dir(project, project_root, "", error) &&
+        parse_project_declarations(project, error) &&
+        validate_native_modules(project, false, error) &&
+        prepare_header_directory(header_directory, error) &&
+        emit_native_headers(project, header_directory, error) &&
+        create_native_stubs(project, error);
     free(project);
     return success;
 }

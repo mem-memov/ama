@@ -27,7 +27,20 @@ static void it_returns_file_errors_to_its_caller(void) {
     destroy_test();
 }
 
+static void it_compiles_native_and_ama_projects_with_fresh_state(void) {
+    setup_test();
+    bool native = compile_project(PROJECT_ROOT "/tests/integration/26-native-calls/project",
+        "main", "generated/native.c", &error);
+    if (!native) error_print(stderr, &error);
+    assert(native && error.error_code == ERROR_NONE);
+    bool ama = compile_project(PROJECT_ROOT "/tests/integration/01-hello/project",
+        "main", "generated/after-native.c", &error);
+    assert(ama && error.error_code == ERROR_NONE);
+    destroy_test();
+}
+
 void run(void) {
+    it_compiles_native_and_ama_projects_with_fresh_state();
     it_compiles_two_projects_in_one_process();
     it_can_compile_after_a_failed_compilation();
     it_returns_file_errors_to_its_caller();

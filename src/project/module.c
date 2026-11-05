@@ -1,6 +1,8 @@
 #include "project/internal.h"
 #include "lexer/sections.h"
 #include "parser/parser.h"
+#include "codegen/native.h"
+#include "codegen/intrinsics.h"
 #include <errno.h>
 #include <limits.h>
 #include <stdlib.h>
@@ -19,10 +21,20 @@ static FILE* open_module(const char* path, ModuleSections* sections, Error* erro
     return file;
 }
 
-static bool read_module_declarations(SymbolTable* symbols, const ModuleFile* module, Error* error) {
+static bool read_module_declarations(SymbolTable* symbols, ModuleFile* module, Error* error) {
     ModuleSections sections;
     FILE* file = open_module(module->file_path, &sections, error);
     if (!file) return false;
+    module->implementation = sections.implementation;
+    if (module->implementation == MODULE_DECLARATION_ONLY) {
+        fclose(file);
+        return true;
+    }
+    if (is_intrinsic_module_path(module->module_path)) {
+        fclose(file);
+        return error_set(error, ERROR_INVALID, 0,
+            "built-in module '%s' cannot be redefined", module->module_path);
+    }
     Lexer lexer;
     bool success = init_lexer(&lexer, file, sections.parameters_start, sections.parameters_end,
         sections.parameters_line, error) &&
@@ -40,6 +52,9 @@ bool parse_project_declarations(Project* project, Error* error) {
             snprintf(error->module, sizeof(error->module), "%s", project->files[index].module_path);
             return false;
         }
+        ModuleFile* module = &project->files[index];
+        if (module->implementation != MODULE_DECLARATION_ONLY &&
+            graph_add_node(&project->graph, module->module_path, error) < 0) return false;
     }
     return true;
 }
@@ -91,6 +106,11 @@ static bool emit_module_body(Project* project, const char* path, TokenStream* st
 }
 
 bool emit_project_module(Project* project, const ModuleFile* module, Error* error) {
+    if (module->implementation == MODULE_DECLARATION_ONLY)
+        return error_set(error, ERROR_INVALID, 0,
+            "module '%s' has no implementation annotation", module->module_path);
+    if (module->implementation == MODULE_C_IMPLEMENTATION)
+        return emit_native_wrapper(&project->emitter, module->module_path, error);
     TokenStream stream = {0};
     bool success = read_module_tokens(module->file_path, &stream, error) &&
                     emit_module_body(project, module->module_path, &stream, error);
@@ -102,6 +122,9 @@ bool emit_project_module(Project* project, const ModuleFile* module, Error* erro
 bool validate_entry(Project* project, const char* entry_module, Error* error) {
     if (!find_module_file(project, entry_module))
         return error_set(error, ERROR_INVALID, 0, "entry '%s' has no source file", entry_module);
+    if (find_module_file(project, entry_module)->implementation == MODULE_DECLARATION_ONLY)
+        return error_set(error, ERROR_INVALID, 0,
+            "entry module '%s' has no implementation annotation", entry_module);
     Symbol* entry_parameter = find_symbol_by_position(&project->symbols, entry_module, 0, SYMBOL_PARAMETER);
     if (entry_parameter)
         return error_set(error, ERROR_INVALID, 0,

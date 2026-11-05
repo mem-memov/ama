@@ -1,0 +1,14 @@
+@<
+value
+.value
+print
+.sys.io.print
+@Ama
+value
+ > answer
+print
+ < answer
+value
+ > answer
+print
+ < answer

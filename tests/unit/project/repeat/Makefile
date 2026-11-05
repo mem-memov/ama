@@ -6,6 +6,7 @@ SOURCES := \
     $(ROOT)/src/codegen/emitter.c \
     $(ROOT)/src/codegen/intrinsics.c \
     $(ROOT)/src/codegen/program.c \
+    $(ROOT)/src/codegen/native.c \
     $(ROOT)/src/common/diagnostic.c \
     $(ROOT)/src/common/path.c \
     $(ROOT)/src/graph/graph.c \
@@ -19,6 +20,7 @@ SOURCES := \
     $(ROOT)/src/parser/value.c \
     $(ROOT)/src/project/compile.c \
     $(ROOT)/src/project/module.c \
+    $(ROOT)/src/project/native.c \
     $(ROOT)/src/project/scan.c \
     $(ROOT)/src/symbols/table.c
 TEST_DEFINES := -DPROJECT_ROOT='"$(ROOT)"'
