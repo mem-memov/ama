@@ -6,8 +6,8 @@
 #include "codegen/emitter.h"
 
 typedef struct {
-    char rel_path[MAX_PATH_LEN];
-    char abs_path[MAX_PATH_LINK_LEN];
+    char module_path[MAX_MODULE_PATH_LENGTH];
+    char file_path[MAX_FILE_PATH_LENGTH];
 } ModuleFile;
 
 typedef struct {
@@ -18,9 +18,9 @@ typedef struct {
     Emitter emitter;
 } Project;
 
-bool scan_dir(Project* project, const char* root, const char* prefix, Error* error);
+bool scan_dir(Project* project, const char* project_root, const char* relative_prefix, Error* error);
 ModuleFile* find_module_file(Project* project, const char* path);
-bool pass1_declarations(Project* project, Error* error);
-bool pass2_module_code(Project* project, const ModuleFile* module, Error* error);
-bool validate_entry(Project* project, const char* entry, Error* error);
+bool parse_project_declarations(Project* project, Error* error);
+bool emit_project_module(Project* project, const ModuleFile* module, Error* error);
+bool validate_entry(Project* project, const char* entry_module, Error* error);
 #endif

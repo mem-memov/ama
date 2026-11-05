@@ -14,9 +14,9 @@ typedef struct {
     const Graph* graph;
     Emitter* emitter;
     Error* error;
-} CodeParser;
+} StatementParser;
 
-bool parse_statement(CodeParser* P, uint32_t indent);
-bool parse_declaration_section(Lexer* L, SymbolTable* symbols, const char* module_path, SymbolKind kind);
+bool parse_statement(StatementParser* parser, uint32_t indentation);
+bool parse_declaration_section(Lexer* lexer, SymbolTable* symbols, const char* module_path, SymbolKind kind);
 
 #endif

@@ -1,7 +1,9 @@
+.RECIPEPREFIX := >
+
 .PHONY: all clean
 
 all:
-	$(MAKE) -C emitter all
+>    $(MAKE) -C emitter all
 
 clean:
-	$(MAKE) -C emitter clean
+>    $(MAKE) -C emitter clean

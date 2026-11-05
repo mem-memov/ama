@@ -7,22 +7,22 @@ void error_clear(Error* error) {
 }
 
 /* Returning false lets callers propagate an error without terminating a process. */
-bool error_set(Error* error, ErrorCode code, uint32_t line, const char* fmt, ...) {
+bool error_set(Error* error, ErrorCode error_code, uint32_t line_number, const char* format, ...) {
     error->module[0] = '\0';
-    error->code = code;
-    error->line = line;
-    va_list args;
-    va_start(args, fmt);
-    vsnprintf(error->message, sizeof(error->message), fmt, args);
-    va_end(args);
+    error->error_code = error_code;
+    error->line_number = line_number;
+    va_list arguments;
+    va_start(arguments, format);
+    vsnprintf(error->message, sizeof(error->message), format, arguments);
+    va_end(arguments);
     return false;
 }
 
-void error_print(FILE* out, const Error* error) {
-    fputs("error: ", out);
-    if (error->module[0]) fprintf(out, "[%s] ", error->module);
-    fputs(error->message, out);
-    if (error->line)
-        fprintf(out, " (line %u)", error->line);
-    fputc('\n', out);
+void error_print(FILE* output, const Error* error) {
+    fputs("error: ", output);
+    if (error->module[0]) fprintf(output, "[%s] ", error->module);
+    fputs(error->message, output);
+    if (error->line_number)
+        fprintf(output, " (line %u)", error->line_number);
+    fputc('\n', output);
 }

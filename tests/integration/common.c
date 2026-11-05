@@ -4,7 +4,7 @@
 #include "process.c"
 
 static void setup_test(void) {
-    count++;
+    test_count++;
 }
 
 static void destroy_test(void) {
@@ -14,8 +14,8 @@ static void destroy_test(void) {
 static inline void show_file(const char* path) {
     FILE* file = fopen(path, "rb");
     assert(file != NULL);
-    int ch;
-    while ((ch = fgetc(file)) != EOF) fputc(ch, stderr);
+    int character;
+    while ((character = fgetc(file)) != EOF) fputc(character, stderr);
     close_file(file);
 }
 
@@ -28,8 +28,8 @@ static inline void expect_status(int actual, int expected, const char* errors) {
 }
 
 static inline int compile_ama(void) {
-    char* args[] = {AMA_COMPILER, "project", "main", "generated/program.c", NULL};
-    return run_process(args, "generated/ama.out", "generated/ama.err");
+    char* arguments[] = {AMA_COMPILER, "project", "main", "generated/program.c", NULL};
+    return run_process(arguments, "generated/ama.out", "generated/ama.err");
 }
 
 static inline void assert_files_equal(const char* actual_path, const char* expected_path) {
@@ -38,12 +38,12 @@ static inline void assert_files_equal(const char* actual_path, const char* expec
     assert(actual != NULL && expected != NULL);
     size_t offset = 0;
     for (;;) {
-        int a = fgetc(actual), e = fgetc(expected);
-        if (a != e)
+        int actual_character = fgetc(actual), expected_character = fgetc(expected);
+        if (actual_character != expected_character)
             fprintf(stderr, "%s differs from %s at byte %zu: got %d, expected %d\n",
-                    actual_path, expected_path, offset, a, e);
-        assert(a == e);
-        if (a == EOF) break;
+                actual_path, expected_path, offset, actual_character, expected_character);
+        assert(actual_character == expected_character);
+        if (actual_character == EOF) break;
         offset++;
     }
     assert(!ferror(actual) && !ferror(expected));
@@ -54,11 +54,11 @@ static inline void assert_files_equal(const char* actual_path, const char* expec
 static inline void expect_program_output(const char* expected) {
     int status = compile_ama();
     expect_status(status, 0, "generated/ama.err");
-    char* build[] = {TEST_CC, "-std=c11", "-O2", "generated/program.c", "-o", "generated/program", NULL};
-    status = run_process(build, "generated/cc.out", "generated/cc.err");
+    char* compiler_arguments[] = {TEST_CC, "-std=c11", "-O2", "generated/program.c", "-o", "generated/program", NULL};
+    status = run_process(compiler_arguments, "generated/cc.out", "generated/cc.err");
     expect_status(status, 0, "generated/cc.err");
-    char* run[] = {"./generated/program", NULL};
-    status = run_process(run, "generated/stdout", "generated/stderr");
+    char* program_arguments[] = {"./generated/program", NULL};
+    status = run_process(program_arguments, "generated/stdout", "generated/stderr");
     expect_status(status, 0, "generated/stderr");
     assert_files_equal("generated/stdout", expected);
 }
@@ -68,10 +68,10 @@ static inline void expect_compile_error(const char* expected) {
     expect_status(status, 1, "generated/ama.err");
     FILE* file = fopen(expected, "rb");
     assert(file != NULL);
-    char needle[4096];
-    char* line = fgets(needle, sizeof(needle), file);
-    assert(line != NULL);
-    needle[strcspn(needle, "\r\n")] = '\0';
+    char expected_message[4096];
+    char* read_line = fgets(expected_message, sizeof(expected_message), file);
+    assert(read_line != NULL);
+    expected_message[strcspn(expected_message, "\r\n")] = '\0';
     close_file(file);
     file = fopen("generated/ama.err", "rb");
     assert(file != NULL);
@@ -80,7 +80,7 @@ static inline void expect_compile_error(const char* expected) {
     assert(!ferror(file));
     diagnostic[length] = '\0';
     close_file(file);
-    if (!strstr(diagnostic, needle)) fprintf(stderr, "missing '%s' in:\n%s", needle, diagnostic);
-    assert(strstr(diagnostic, needle) != NULL);
+    if (!strstr(diagnostic, expected_message)) fprintf(stderr, "missing '%s' in:\n%s", expected_message, diagnostic);
+    assert(strstr(diagnostic, expected_message) != NULL);
 }
 #endif

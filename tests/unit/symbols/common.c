@@ -4,7 +4,7 @@
 #include "symbols/table.h"
 static SymbolTable* symbols;
 static void setup_test(void) {
-    count++;
+    test_count++;
     error_clear(&error);
     symbols = calloc(1, sizeof(*symbols));
     assert(symbols != NULL);

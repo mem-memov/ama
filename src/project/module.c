@@ -21,23 +21,23 @@ static FILE* open_module(const char* path, ModuleSections* sections, Error* erro
 
 static bool read_module_declarations(SymbolTable* symbols, const ModuleFile* module, Error* error) {
     ModuleSections sections;
-    FILE* file = open_module(module->abs_path, &sections, error);
+    FILE* file = open_module(module->file_path, &sections, error);
     if (!file) return false;
     Lexer lexer;
-    bool success = init_lexer(&lexer, file, sections.params_start, sections.params_end,
-                              sections.params_line, error) &&
-                   parse_declaration_section(&lexer, symbols, module->rel_path, SYM_PARAM) &&
-                   init_lexer(&lexer, file, sections.returns_start, sections.returns_end,
-                              sections.returns_line, error) &&
-                   parse_declaration_section(&lexer, symbols, module->rel_path, SYM_RETURN);
+    bool success = init_lexer(&lexer, file, sections.parameters_start, sections.parameters_end,
+        sections.parameters_line, error) &&
+                    parse_declaration_section(&lexer, symbols, module->module_path, SYMBOL_PARAMETER) &&
+                    init_lexer(&lexer, file, sections.results_start, sections.results_end,
+                        sections.results_line, error) &&
+                    parse_declaration_section(&lexer, symbols, module->module_path, SYMBOL_RESULT);
     fclose(file);
     return success;
 }
 
-bool pass1_declarations(Project* project, Error* error) {
-    for (int i = 0; i < project->file_count; i++) {
-        if (!read_module_declarations(&project->symbols, &project->files[i], error)) {
-            snprintf(error->module, sizeof(error->module), "%s", project->files[i].rel_path);
+bool parse_project_declarations(Project* project, Error* error) {
+    for (int index = 0; index < project->file_count; index++) {
+        if (!read_module_declarations(&project->symbols, &project->files[index], error)) {
+            snprintf(error->module, sizeof(error->module), "%s", project->files[index].module_path);
             return false;
         }
     }
@@ -45,16 +45,16 @@ bool pass1_declarations(Project* project, Error* error) {
 }
 
 static bool append_token(TokenStream* stream, int* capacity, Token token, Error* error) {
-    if (stream->size == *capacity) {
+    if (stream->token_count == *capacity) {
         if (*capacity > INT_MAX / 2)
-            return error_set(error, ERROR_LIMIT, token.line, "too many tokens");
-        int next = *capacity * 2;
-        Token* data = realloc(stream->data, sizeof(Token) * (size_t)next);
-        if (!data) return error_set(error, ERROR_MEMORY, token.line, "out of memory (tokens)");
-        stream->data = data;
-        *capacity = next;
+            return error_set(error, ERROR_LIMIT, token.line_number, "too many tokens");
+        int next_capacity = *capacity * 2;
+        Token* tokens = realloc(stream->tokens, sizeof(Token) * (size_t)next_capacity);
+        if (!tokens) return error_set(error, ERROR_MEMORY, token.line_number, "out of memory (tokens)");
+        stream->tokens = tokens;
+        *capacity = next_capacity;
     }
-    stream->data[stream->size++] = token;
+    stream->tokens[stream->token_count++] = token;
     return true;
 }
 
@@ -64,15 +64,15 @@ static bool read_module_tokens(const char* path, TokenStream* stream, Error* err
     if (!file) return false;
     Lexer lexer;
     bool success = init_lexer(&lexer, file, sections.code_start, sections.code_end,
-                              sections.code_line, error);
+        sections.code_line, error);
     int capacity = 1024;
-    stream->data = malloc(sizeof(Token) * (size_t)capacity);
-    if (!stream->data) success = error_set(error, ERROR_MEMORY, 0, "out of memory (tokens)");
+    stream->tokens = malloc(sizeof(Token) * (size_t)capacity);
+    if (!stream->tokens) success = error_set(error, ERROR_MEMORY, 0, "out of memory (tokens)");
     while (success) {
         Token token = get_next_token(&lexer);
-        if (token.type == TOK_ERROR) { success = false; break; }
+        if (token.type == TOKEN_ERROR) { success = false; break; }
         success = append_token(stream, &capacity, token, error);
-        if (token.type == TOK_EOF) break;
+        if (token.type == TOKEN_END_OF_FILE) break;
     }
     fclose(file);
     return success;
@@ -80,32 +80,32 @@ static bool read_module_tokens(const char* path, TokenStream* stream, Error* err
 
 static bool emit_module_body(Project* project, const char* path, TokenStream* stream, Error* error) {
     Emitter* emitter = &project->emitter;
-    fputs("void ", emitter->out);
-    emit_module_name(emitter->out, path);
-    fputs("(void) {\n", emitter->out);
-    CodeParser parser = {stream, path, &project->symbols, &project->graph, emitter, error};
-    while (ts_peek(stream)->type != TOK_EOF)
+    fputs("void ", emitter->output);
+    emit_module_name(emitter->output, path);
+    fputs("(void) {\n", emitter->output);
+    StatementParser parser = {stream, path, &project->symbols, &project->graph, emitter, error};
+    while (token_stream_peek(stream)->type != TOKEN_END_OF_FILE)
         if (!parse_statement(&parser, 0)) return false;
-    fputs("}\n\n", emitter->out);
+    fputs("}\n\n", emitter->output);
     return true;
 }
 
-bool pass2_module_code(Project* project, const ModuleFile* module, Error* error) {
+bool emit_project_module(Project* project, const ModuleFile* module, Error* error) {
     TokenStream stream = {0};
-    bool success = read_module_tokens(module->abs_path, &stream, error) &&
-                   emit_module_body(project, module->rel_path, &stream, error);
-    free(stream.data);
-    if (!success) snprintf(error->module, sizeof(error->module), "%s", module->rel_path);
+    bool success = read_module_tokens(module->file_path, &stream, error) &&
+                    emit_module_body(project, module->module_path, &stream, error);
+    free(stream.tokens);
+    if (!success) snprintf(error->module, sizeof(error->module), "%s", module->module_path);
     return success;
 }
 
-bool validate_entry(Project* project, const char* entry, Error* error) {
-    if (!find_module_file(project, entry))
-        return error_set(error, ERROR_INVALID, 0, "entry '%s' has no source file", entry);
-    Symbol* param = get_nth_symbol(&project->symbols, entry, 0, SYM_PARAM);
-    if (param)
+bool validate_entry(Project* project, const char* entry_module, Error* error) {
+    if (!find_module_file(project, entry_module))
+        return error_set(error, ERROR_INVALID, 0, "entry '%s' has no source file", entry_module);
+    Symbol* entry_parameter = find_symbol_by_position(&project->symbols, entry_module, 0, SYMBOL_PARAMETER);
+    if (entry_parameter)
         return error_set(error, ERROR_INVALID, 0,
-                         "entry module '%s' must take no parameters (found parameter '%s')",
-                         entry, param->name);
+            "entry module '%s' must take no parameters (found parameter '%s')",
+            entry_module, entry_parameter->name);
     return true;
 }

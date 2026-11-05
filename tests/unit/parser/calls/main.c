@@ -1,12 +1,12 @@
 #include "../common.c"
 
 static void declare_add(void) {
-    Token zero = {.type = TOK_LITERAL, .lexeme = "0"};
-    Token path = {.type = TOK_PATH, .lexeme = ".math.add"};
-    Symbol* left = add_declarative_symbol(symbols, "math/add", "left", SYM_PARAM, zero, &error);
-    Symbol* right = add_declarative_symbol(symbols, "math/add", "right", SYM_PARAM, zero, &error);
-    Symbol* sum = add_declarative_symbol(symbols, "math/add", "sum", SYM_RETURN, zero, &error);
-    Symbol* alias = add_declarative_symbol(symbols, "main", "add", SYM_ALIAS, path, &error);
+    Token zero = {.type = TOKEN_LITERAL, .lexeme = "0"};
+    Token path = {.type = TOKEN_MODULE_PATH, .lexeme = ".math.add"};
+    Symbol* left = add_declarative_symbol(symbols, "math/add", "left", SYMBOL_PARAMETER, zero, &error);
+    Symbol* right = add_declarative_symbol(symbols, "math/add", "right", SYMBOL_PARAMETER, zero, &error);
+    Symbol* sum = add_declarative_symbol(symbols, "math/add", "sum", SYMBOL_RESULT, zero, &error);
+    Symbol* alias = add_declarative_symbol(symbols, "main", "add", SYMBOL_MODULE_ALIAS, path, &error);
     int node = graph_add_node(graph, "math/add", &error);
     assert(left && right && sum && alias && node >= 0);
 }
@@ -16,8 +16,8 @@ static void it_copies_parameters_before_execution_and_results_after(void) {
     declare_add();
     bool parsed = parse_text("add\n < 5\n < 7\n > result\n");
     assert(parsed);
-    assert_stream_equals(output, "  v_0 = 0;\n  v_1 = 0;\n  v_2 = 0;\n"
-                                 "  v_0 = 5;\n  v_1 = 7;\n  mod_math_add();\n  v_4 = v_2;\n");
+    assert_stream_equals(output, "    symbol_0 = 0;\n    symbol_1 = 0;\n    symbol_2 = 0;\n"
+        "    symbol_0 = 5;\n    symbol_1 = 7;\n    module_math_add();\n    symbol_4 = symbol_2;\n");
     destroy_test();
 }
 
@@ -54,6 +54,6 @@ void run(void) {
 
 int main(void) {
     run();
-    printf("unit/parser/calls: %d test(s) passed\n", count);
+    printf("unit/parser/calls: %d test(s) passed\n", test_count);
     return EXIT_SUCCESS;
 }

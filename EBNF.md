@@ -1,6 +1,6 @@
-# Ама — Grammar
+# Ama — Grammar
 
-This document specifies the syntax of the Ама language. It is the normative
+This document specifies the syntax of the Ama language. It is the normative
 reference for the parser in `src/parser/` and the lexer in `src/lexer/`.
 
 The notation is EBNF:
@@ -98,7 +98,7 @@ more levels are a syntax error ("indent cannot jump by more than one level").
 ```
 
 A comment runs from `#` to end of line. Comments are ignored by the parser
-but **do not** count as blank lines for the `is_after_blank` flag (see
+but **do not** count as blank lines for the `has_preceding_blank_line` flag (see
 §3.3). A line consisting only of `#...` is not a blank line.
 
 ### 2.7 Punctuation
@@ -167,8 +167,8 @@ Semantics:
   currently rejects it: "defaults that reference other variables are not
   supported yet".
 
-In the params section, non-alias declarations become `SYM_PARAM`. In the
-returns section, non-alias declarations become `SYM_RETURN`.
+In the params section, non-alias declarations become `SYMBOL_PARAMETER`. In the
+returns section, non-alias declarations become `SYMBOL_RESULT`.
 
 ### 3.3 Code section
 
@@ -334,7 +334,7 @@ Rules:
   `sum > r`.
 - The call is emitted as:
     1. `emit_call_init(callee)` — reset callee parameters/results to declared defaults and locals to zero;
-    2. `emit_assign_const` or `emit_copy` per parameter, in source order;
+    2. `emit_constant_assignment` or `emit_copy` per parameter, in source order;
     3. `emit_call_exec(callee)` — the actual C call;
     4. one `emit_copy` per result, in source order.
 - Step 3 is emitted lazily: on the first result token, or at the end of
@@ -353,10 +353,10 @@ generates roughly:
 
 ```c
 /* IDs here are illustrative internal symbol names. */
-v_1 = v_4;
-v_2 = 7;
-mod_add();
-v_5 = v_3;
+symbol_1 = symbol_4;
+symbol_2 = 7;
+module_add();
+symbol_5 = symbol_3;
 ```
 
 ---
@@ -398,7 +398,7 @@ by the grammar above.
 4. **Two section separators.** The first two blank lines delimit the
    declaration sections. Further blank lines are code whitespace.
 
-5. **No blank line between a condition and `?` or `{`.** The `is_after_blank`
+5. **No blank line between a condition and `?` or `{`.** The `has_preceding_blank_line`
    flag tracks this. Comments are fine; blank lines are not.
 
 6. **Same indent for assignment receiver and source.** Both must be at

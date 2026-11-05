@@ -12,6 +12,6 @@ void run(void) {
 
 int main(void) {
     run();
-    printf("17-reject-unknown-param: %d test(s) passed\n", count);
+    printf("17-reject-unknown-param: %d test(s) passed\n", test_count);
     return EXIT_SUCCESS;
 }

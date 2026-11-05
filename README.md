@@ -1,8 +1,8 @@
-# Ама (Ama)
+# Ama
 
-Ама is a minimalist procedure-oriented language with unsigned integer values,
+Ama is a minimalist procedure-oriented language with unsigned integer values,
 explicit parameter/result passing, and a small punctuation-based syntax.
-The compiler is written in C11 and translates Ама modules into C. Compile the
+The compiler is written in C11 and translates Ama modules into C. Compile the
 result with a C compiler to obtain a native executable.
 
 The language has no classes, exceptions, garbage collector, or recursion.
@@ -23,7 +23,7 @@ gcc -O3 output.c -o program
 ```
 
 The CLI also supports `--help` and `--version`.
-The Ама compiler generates C only; it does not invoke GCC itself.
+The Ama compiler generates C only; it does not invoke GCC itself.
 Use `make C_COMPILER=clang` to build the compiler with Clang.
 
 ## A complete program
@@ -208,11 +208,11 @@ and orders dependencies, emits module bodies, and writes the program.
 `project/module.c` handles the two passes over each module; `project/scan.c`
 registers source paths. `parser/statement.c` classifies statements and dispatches
 to the appropriate parser. `parser/call.c` tracks argument mode, result ordering,
-and execution in a `CallState`. Code is emitted directly, without an AST.
+and execution in a `ModuleCallState`. Code is emitted directly, without an AST.
 
 State belongs to explicit objects: `SymbolTable`, `Graph`, `Lexer`, and
 `Emitter`. The graph has no dependency on the symbol table; the project layer
-translates aliases into graph edges. `CodeParser` receives only the components
+translates aliases into graph edges. `StatementParser` receives only the components
 it uses. Internal `Project` owns a compilation's tables, files, and output and
 releases them on success or failure.
 
@@ -245,8 +245,8 @@ Use `make -B` when switching flags or compilers to rebuild existing objects.
 The Makefile preserves source subdirectories under `build/` and tracks header
 dependencies automatically with `-MMD -MP`.
 
-Generated C uses separate `static size_t v_<id>` variables and `void` module
-functions. IDs are private compiler names, with no numeric meaning in Ама.
+Generated C uses separate `static size_t symbol_<symbol_id>` variables and `void` module
+functions. IDs are private compiler names, with no numeric meaning in Ama.
 The compiler buffers function bodies until all local variables have been
 registered, then writes their declarations before the functions. Callees are
 emitted before callers. Native optimization is performed by the C compiler.
@@ -326,6 +326,11 @@ The prototype has fixed limits of 512 graph nodes (including intrinsics) and
 8192 symbols. Literal parsing still uses `int`/`atoi`; values above `INT_MAX`
 are not reliably supported even though computed values use `size_t`.
 Duplicate named arguments are not rejected. A `!` outside a loop is rejected
-by the downstream C compiler rather than by Ама. There is no string/file input,
+by the downstream C compiler rather than by Ama. There is no string/file input,
 interactive debugger, or recovery within a failed compilation. Generated C function names
 replace `/` with `_`, so some distinct module paths can collide.
+
+## Contributing
+
+See [CONTRIBUTORS.md](CONTRIBUTORS.md) for naming, formatting, component design,
+resource ownership, and test conventions.

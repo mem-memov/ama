@@ -4,15 +4,15 @@
 #include <stdint.h>
 #include "common/limits.h"
 
-typedef enum { SYM_VAR, SYM_ALIAS, SYM_PARAM, SYM_RETURN } SymbolKind;
+typedef enum { SYMBOL_LOCAL_VARIABLE, SYMBOL_MODULE_ALIAS, SYMBOL_PARAMETER, SYMBOL_RESULT } SymbolKind;
 
 typedef struct {
-    char module_path[MAX_PATH_LEN];
-    char name[MAX_IDENT_LEN];
+    char module_path[MAX_MODULE_PATH_LENGTH];
+    char name[MAX_IDENTIFIER_LENGTH];
     SymbolKind kind;
-    uint32_t id; /* Private ID used to name a C variable, not an address. */
-    char path_link[MAX_PATH_LINK_LEN];
-    int default_int;
+    uint32_t symbol_id; /* Private ID used to name a C variable, not an address. */
+    char alias_path[MAX_FILE_PATH_LENGTH];
+    int default_value;
 } Symbol;
 
 #endif

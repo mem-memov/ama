@@ -4,29 +4,29 @@
 #include "lexer/token.h"
 
 typedef struct {
-    Token* data;
-    int size;
-    int pos;
+    Token* tokens;
+    int token_count;
+    int position;
 } TokenStream;
 
 /* Streams are nonempty and terminated by EOF; peeking past EOF is bounded. */
 
-static inline Token* ts_peek(TokenStream* t) {
-    if (t->pos >= t->size)
-        return &t->data[t->size - 1];
-    return &t->data[t->pos];
+static inline Token* token_stream_peek(TokenStream* stream) {
+    if (stream->position >= stream->token_count)
+        return &stream->tokens[stream->token_count - 1];
+    return &stream->tokens[stream->position];
 }
 
-static inline Token* ts_peek2(TokenStream* t) {
-    if (t->pos + 1 >= t->size)
-        return &t->data[t->size - 1];
-    return &t->data[t->pos + 1];
+static inline Token* token_stream_peek_next(TokenStream* stream) {
+    if (stream->position + 1 >= stream->token_count)
+        return &stream->tokens[stream->token_count - 1];
+    return &stream->tokens[stream->position + 1];
 }
 
-static inline Token ts_next(TokenStream* t) {
-    if (t->pos >= t->size)
-        return t->data[t->size - 1];
-    return t->data[t->pos++];
+static inline Token token_stream_advance(TokenStream* stream) {
+    if (stream->position >= stream->token_count)
+        return stream->tokens[stream->token_count - 1];
+    return stream->tokens[stream->position++];
 }
 
 #endif

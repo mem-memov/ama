@@ -1,74 +1,74 @@
 #include "parser/internal.h"
 #include <stdlib.h>
 
-static bool parse_body(CodeParser* P, uint32_t n) {
-    while (ts_peek(P->stream)->type != TOK_EOF &&
-           ts_peek(P->stream)->type != TOK_ERROR &&
-           ts_peek(P->stream)->indent == n) {
-        if (!parse_statement(P, n)) return false;
+static bool parse_body(StatementParser* parser, uint32_t indentation) {
+    while (token_stream_peek(parser->stream)->type != TOKEN_END_OF_FILE &&
+        token_stream_peek(parser->stream)->type != TOKEN_ERROR &&
+        token_stream_peek(parser->stream)->indentation == indentation) {
+        if (!parse_statement(parser, indentation)) return false;
     }
 
-    Token* next = ts_peek(P->stream);
-    if (next->type != TOK_EOF && next->type != TOK_ERROR &&
-        next->indent > n) {
-        return parser_error(P, next->line,
-                    "unexpected indent %u (expected %u or less): "
-                    "indent cannot jump by more than one level",
-                    next->indent, n);
+    Token* next_token = token_stream_peek(parser->stream);
+    if (next_token->type != TOKEN_END_OF_FILE && next_token->type != TOKEN_ERROR &&
+        next_token->indentation > indentation) {
+        return parser_error(parser, next_token->line_number,
+            "unexpected indent %u (expected %u or less): "
+            "indent cannot jump by more than one level",
+            next_token->indentation, indentation);
     }
     return true;
 }
 
-bool parse_branch(CodeParser* P, uint32_t n) {
-    Token cond = ts_next(P->stream);
-    if (cond.type != TOK_IDENT)
-        return parser_error(P, cond.line, "branch condition must be an identifier");
-    Symbol* cs = require_value(P, cond.lexeme, cond.line);
-    if (!cs) return false;
+bool parse_branch(StatementParser* parser, uint32_t indentation) {
+    Token condition_token = token_stream_advance(parser->stream);
+    if (condition_token.type != TOKEN_IDENTIFIER)
+        return parser_error(parser, condition_token.line_number, "branch condition must be an identifier");
+    Symbol* condition_symbol = require_value(parser, condition_token.lexeme, condition_token.line_number);
+    if (!condition_symbol) return false;
 
-    Token q = ts_next(P->stream);
-    if (q.type != TOK_QUESTION || q.indent != n || !q.is_bol
-            || q.is_after_blank)
-        return parser_error(P, q.line,
-                    "expected '?' at indent %u immediately after condition",
-                    n);
+    Token question_mark = token_stream_advance(parser->stream);
+    if (question_mark.type != TOKEN_QUESTION_MARK || question_mark.indentation != indentation || !question_mark.is_at_line_start
+        || question_mark.has_preceding_blank_line)
+        return parser_error(parser, question_mark.line_number,
+            "expected '?' at indent %u immediately after condition",
+            indentation);
 
-    emit_branch_start(P->emitter, cs->id);
-    if (!parse_body(P, n + 1)) return false;
+    emit_branch_start(parser->emitter, condition_symbol->symbol_id);
+    if (!parse_body(parser, indentation + 1)) return false;
 
-    Token* peek = ts_peek(P->stream);
-    if (peek->type == TOK_COLON && peek->indent == n && peek->is_bol) {
-        ts_next(P->stream);
-        emit_branch_else(P->emitter);
-        if (!parse_body(P, n + 1)) return false;
+    Token* next_token = token_stream_peek(parser->stream);
+    if (next_token->type == TOKEN_COLON && next_token->indentation == indentation && next_token->is_at_line_start) {
+        token_stream_advance(parser->stream);
+        emit_branch_else(parser->emitter);
+        if (!parse_body(parser, indentation + 1)) return false;
     }
 
-    emit_branch_end(P->emitter);
+    emit_branch_end(parser->emitter);
     return true;
 }
 
-bool parse_loop(CodeParser* P, uint32_t n) {
-    Token cond = ts_next(P->stream);
-    if (cond.type != TOK_IDENT)
-        return parser_error(P, cond.line, "loop condition must be an identifier");
-    Symbol* cs = require_value(P, cond.lexeme, cond.line);
-    if (!cs) return false;
+bool parse_loop(StatementParser* parser, uint32_t indentation) {
+    Token condition_token = token_stream_advance(parser->stream);
+    if (condition_token.type != TOKEN_IDENTIFIER)
+        return parser_error(parser, condition_token.line_number, "loop condition must be an identifier");
+    Symbol* condition_symbol = require_value(parser, condition_token.lexeme, condition_token.line_number);
+    if (!condition_symbol) return false;
 
-    Token lb = ts_next(P->stream);
-    if (lb.type != TOK_LBRACE || lb.indent != n || !lb.is_bol
-            || lb.is_after_blank)
-        return parser_error(P, lb.line,
-                    "expected '{' at indent %u immediately after condition",
-                    n);
+    Token loop_open = token_stream_advance(parser->stream);
+    if (loop_open.type != TOKEN_LOOP_OPEN || loop_open.indentation != indentation || !loop_open.is_at_line_start
+        || loop_open.has_preceding_blank_line)
+        return parser_error(parser, loop_open.line_number,
+            "expected '{' at indent %u immediately after condition",
+            indentation);
 
-    emit_loop_start(P->emitter, cs->id);
-    if (!parse_body(P, n + 1)) return false;
+    emit_loop_start(parser->emitter, condition_symbol->symbol_id);
+    if (!parse_body(parser, indentation + 1)) return false;
 
-    Token rb = ts_next(P->stream);
-    if (rb.type != TOK_RBRACE || rb.indent != n)
-        return parser_error(P, rb.line, "expected '}' at indent %u (got indent %u)",
-                    n, rb.indent);
+    Token loop_close = token_stream_advance(parser->stream);
+    if (loop_close.type != TOKEN_LOOP_CLOSE || loop_close.indentation != indentation)
+        return parser_error(parser, loop_close.line_number, "expected '}' at indent %u (got indent %u)",
+            indentation, loop_close.indentation);
 
-    emit_loop_end(P->emitter);
+    emit_loop_end(parser->emitter);
     return true;
 }

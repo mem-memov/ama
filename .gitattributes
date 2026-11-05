@@ -1,0 +1,2 @@
+# Preserve the deliberate CRLF lexer/integration fixture.
+tests/integration/15-call-control/project/main -text whitespace=cr-at-eol

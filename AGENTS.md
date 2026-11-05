@@ -15,6 +15,13 @@
   `expected.txt` or `expected-error.txt` beside it.
 - Do not analyze generated artifacts in any test's `generated/` directory.
 
+## Style
+
+- Follow `CONTRIBUTORS.md` for naming, formatting, component boundaries, and tests.
+- Use English text and descriptive identifiers. C indentation is four spaces;
+  Ama fixtures retain semantic one-space nesting. Make recipes use `>` followed
+  by four spaces.
+
 ## Workflow
 
 - Build: `make` (binary `./ama`)

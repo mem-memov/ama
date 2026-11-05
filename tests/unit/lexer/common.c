@@ -6,7 +6,7 @@
 static FILE* source;
 static Lexer lexer;
 static void setup_test(void) {
-    count++;
+    test_count++;
     error_clear(&error);
     source = NULL;
 }

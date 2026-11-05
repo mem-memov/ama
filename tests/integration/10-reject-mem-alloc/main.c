@@ -12,6 +12,6 @@ void run(void) {
 
 int main(void) {
     run();
-    printf("10-reject-mem-alloc: %d test(s) passed\n", count);
+    printf("10-reject-mem-alloc: %d test(s) passed\n", test_count);
     return EXIT_SUCCESS;
 }

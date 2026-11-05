@@ -6,14 +6,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-static int count;
+static int test_count;
 
 static inline FILE* text_file(const char* text) {
     FILE* file = tmpfile();
     assert(file != NULL);
     size_t length = strlen(text);
-    size_t written = fwrite(text, 1, length, file);
-    assert(written == length);
+    size_t written_bytes = fwrite(text, 1, length, file);
+    assert(written_bytes == length);
     rewind(file);
     return file;
 }
@@ -31,7 +31,7 @@ static inline void assert_stream_equals(FILE* file, const char* text) {
         int expected = text[offset] ? (unsigned char)text[offset] : EOF;
         if (actual != expected)
             fprintf(stderr, "text differs at byte %zu: expected %d, got %d\n",
-                    offset, expected, actual);
+                offset, expected, actual);
         assert(actual == expected);
         if (actual == EOF) break;
         offset++;

@@ -1,10 +1,10 @@
 #include "parser/internal.h"
 
-bool parse_assign(CodeParser* P, uint32_t indent, uint32_t dst) {
-    Token value = ts_next(P->stream);
-    if (value.indent != indent)
-        return parser_error(P, value.line,
-                 "assignment source must be at indent %u, got %u",
-                 indent, value.indent);
-    return emit_parsed_value(P, value, dst, "assignment source");
+bool parse_assignment(StatementParser* parser, uint32_t indentation, uint32_t destination_symbol_id) {
+    Token value = token_stream_advance(parser->stream);
+    if (value.indentation != indentation)
+        return parser_error(parser, value.line_number,
+            "assignment source must be at indent %u, got %u",
+            indentation, value.indentation);
+    return emit_parsed_value(parser, value, destination_symbol_id, "assignment source");
 }

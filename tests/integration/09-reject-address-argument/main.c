@@ -12,6 +12,6 @@ void run(void) {
 
 int main(void) {
     run();
-    printf("09-reject-address-argument: %d test(s) passed\n", count);
+    printf("09-reject-address-argument: %d test(s) passed\n", test_count);
     return EXIT_SUCCESS;
 }

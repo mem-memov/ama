@@ -1,3 +1,5 @@
+.RECIPEPREFIX := >
+
 ROOT := $(abspath ../../..)
 COMMON := ../../common.c ../common.c ../process.c
 SOURCES :=
@@ -6,6 +8,6 @@ include ../../leaf.mk
 
 .PHONY: compiler
 compiler:
-	$(MAKE) -C $(ROOT) all
+>    $(MAKE) -C $(ROOT) all
 
 run: compiler

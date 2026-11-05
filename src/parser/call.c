@@ -2,120 +2,120 @@
 #include "common/path.h"
 #include "graph/graph.h"
 
-typedef enum { CALL_INIT, CALL_POSITIONAL, CALL_NAMED } CallMode;
+typedef enum { CALL_ARGUMENTS_UNSET, CALL_ARGUMENTS_POSITIONAL, CALL_ARGUMENTS_NAMED } CallArgumentMode;
 
 typedef struct {
-    char callee[MAX_PATH_LEN];
-    CallMode mode;
-    int seen_results;
-    int exec_emitted;
-    int param_index;
+    char callee[MAX_MODULE_PATH_LENGTH];
+    CallArgumentMode mode;
+    int has_results;
+    int has_emitted_call;
+    int parameter_index;
     int result_index;
-} CallState;
+} ModuleCallState;
 
-static bool resolve_callee(CodeParser* P, CallState* call,
-                           const Symbol* alias, uint32_t line) {
-    if (!normalize_path(alias->path_link, call->callee, P->error)) return false;
-    if (!graph_has_node(P->graph, call->callee))
-        return parser_error(P, line,
-                 "module '%s' not found (called from '%s')",
-                 call->callee, P->module_path);
+static bool resolve_callee(StatementParser* parser, ModuleCallState* call,
+    const Symbol* alias, uint32_t line_number) {
+    if (!normalize_path(alias->alias_path, call->callee, parser->error)) return false;
+    if (!graph_has_node(parser->graph, call->callee))
+        return parser_error(parser, line_number,
+            "module '%s' not found (called from '%s')",
+            call->callee, parser->module_path);
     return true;
 }
 
 /* Execution happens once, before reading any result, even for an empty call. */
-static void ensure_call_emitted(CodeParser* P, CallState* call) {
-    if (!call->exec_emitted) {
-        emit_call_exec(P->emitter, call->callee);
-        call->exec_emitted = 1;
+static void ensure_call_emitted(StatementParser* parser, ModuleCallState* call) {
+    if (!call->has_emitted_call) {
+        emit_call_exec(parser->emitter, call->callee);
+        call->has_emitted_call = 1;
     }
 }
 
-static bool set_call_mode(CodeParser* P, CallState* call,
-                          CallMode mode, uint32_t line) {
-    if (call->mode != CALL_INIT && call->mode != mode)
-        return parser_error(P, line, "cannot mix positional and named arguments");
+static bool set_call_mode(StatementParser* parser, ModuleCallState* call,
+    CallArgumentMode mode, uint32_t line_number) {
+    if (call->mode != CALL_ARGUMENTS_UNSET && call->mode != mode)
+        return parser_error(parser, line_number, "cannot mix positional and named arguments");
     call->mode = mode;
     return true;
 }
 
-static bool parse_parameter(CodeParser* P, CallState* call,
-                            const Symbol* param, uint32_t line) {
-    if (call->seen_results)
-        return parser_error(P, line, "parameter after result");
-    return parse_call_param(P, param->id);
+static bool parse_parameter(StatementParser* parser, ModuleCallState* call,
+    const Symbol* parameter, uint32_t line_number) {
+    if (call->has_results)
+        return parser_error(parser, line_number, "parameter after result");
+    return parse_call_parameter(parser, parameter->symbol_id);
 }
 
-static bool parse_result(CodeParser* P, CallState* call, const Symbol* result) {
-    call->seen_results = 1;
-    ensure_call_emitted(P, call);
-    Token dst = ts_next(P->stream);
-    if (dst.type != TOK_IDENT)
-        return parser_error(P, dst.line, "expected identifier after '>'");
-    Symbol* receiver = get_or_create_receiver(P, dst.lexeme, dst.line);
+static bool parse_result(StatementParser* parser, ModuleCallState* call, const Symbol* result) {
+    call->has_results = 1;
+    ensure_call_emitted(parser, call);
+    Token destination_token = token_stream_advance(parser->stream);
+    if (destination_token.type != TOKEN_IDENTIFIER)
+        return parser_error(parser, destination_token.line_number, "expected identifier after '>'");
+    Symbol* receiver = get_or_create_receiver(parser, destination_token.lexeme, destination_token.line_number);
     if (!receiver) return false;
-    emit_copy(P->emitter, receiver->id, result->id);
+    emit_copy(parser->emitter, receiver->symbol_id, result->symbol_id);
     return true;
 }
 
-static bool parse_positional_argument(CodeParser* P, CallState* call, Token arrow) {
-    if (!set_call_mode(P, call, CALL_POSITIONAL, arrow.line)) return false;
-    int is_param = arrow.type == TOK_LESS;
-    if (is_param && call->seen_results)
-        return parser_error(P, arrow.line, "parameter after result");
-    int index = is_param ? call->param_index++ : call->result_index++;
-    Symbol* symbol = get_nth_symbol(P->symbols, call->callee, index,
-                                   is_param ? SYM_PARAM : SYM_RETURN);
+static bool parse_positional_argument(StatementParser* parser, ModuleCallState* call, Token arrow) {
+    if (!set_call_mode(parser, call, CALL_ARGUMENTS_POSITIONAL, arrow.line_number)) return false;
+    int is_parameter = arrow.type == TOKEN_PARAMETER_ARROW;
+    if (is_parameter && call->has_results)
+        return parser_error(parser, arrow.line_number, "parameter after result");
+    int index = is_parameter ? call->parameter_index++ : call->result_index++;
+    Symbol* symbol = find_symbol_by_position(parser->symbols, call->callee, index,
+        is_parameter ? SYMBOL_PARAMETER : SYMBOL_RESULT);
     if (!symbol)
-        return parser_error(P, arrow.line, "too many positional %s for '%s'",
-                 is_param ? "parameters" : "results", call->callee);
-    if (is_param)
-        return parse_parameter(P, call, symbol, arrow.line);
+        return parser_error(parser, arrow.line_number, "too many positional %s for '%s'",
+            is_parameter ? "parameters" : "results", call->callee);
+    if (is_parameter)
+        return parse_parameter(parser, call, symbol, arrow.line_number);
     else
-        return parse_result(P, call, symbol);
+        return parse_result(parser, call, symbol);
 }
 
-static bool parse_named_argument(CodeParser* P, CallState* call, Token name) {
-    if (!set_call_mode(P, call, CALL_NAMED, name.line)) return false;
-    Token arrow = ts_next(P->stream);
-    if (arrow.type != TOK_LESS && arrow.type != TOK_GREATER)
-        return parser_error(P, arrow.line, "expected '<' or '>' after '%s'",
-                 name.lexeme);
-    int is_param = arrow.type == TOK_LESS;
-    if (is_param && call->seen_results)
-        return parser_error(P, arrow.line, "parameter after result");
-    Symbol* symbol = lookup_symbol(P->symbols, call->callee, name.lexeme);
-    if (!symbol || symbol->kind != (is_param ? SYM_PARAM : SYM_RETURN))
-        return parser_error(P, name.line, "'%s' is not a %s of '%s'",
-                 name.lexeme, is_param ? "parameter" : "result", call->callee);
-    if (is_param)
-        return parse_parameter(P, call, symbol, arrow.line);
+static bool parse_named_argument(StatementParser* parser, ModuleCallState* call, Token name) {
+    if (!set_call_mode(parser, call, CALL_ARGUMENTS_NAMED, name.line_number)) return false;
+    Token arrow = token_stream_advance(parser->stream);
+    if (arrow.type != TOKEN_PARAMETER_ARROW && arrow.type != TOKEN_RESULT_ARROW)
+        return parser_error(parser, arrow.line_number, "expected '<' or '>' after '%s'",
+            name.lexeme);
+    int is_parameter = arrow.type == TOKEN_PARAMETER_ARROW;
+    if (is_parameter && call->has_results)
+        return parser_error(parser, arrow.line_number, "parameter after result");
+    Symbol* symbol = lookup_symbol(parser->symbols, call->callee, name.lexeme);
+    if (!symbol || symbol->kind != (is_parameter ? SYMBOL_PARAMETER : SYMBOL_RESULT))
+        return parser_error(parser, name.line_number, "'%s' is not a %s of '%s'",
+            name.lexeme, is_parameter ? "parameter" : "result", call->callee);
+    if (is_parameter)
+        return parse_parameter(parser, call, symbol, arrow.line_number);
     else
-        return parse_result(P, call, symbol);
+        return parse_result(parser, call, symbol);
 }
 
-static bool parse_call_argument(CodeParser* P, CallState* call) {
-    Token token = ts_next(P->stream);
+static bool parse_call_argument(StatementParser* parser, ModuleCallState* call) {
+    Token token = token_stream_advance(parser->stream);
     switch (token.type) {
-    case TOK_LESS:
-    case TOK_GREATER:
-        return parse_positional_argument(P, call, token);
-    case TOK_IDENT:
-        return parse_named_argument(P, call, token);
+    case TOKEN_PARAMETER_ARROW:
+    case TOKEN_RESULT_ARROW:
+        return parse_positional_argument(parser, call, token);
+    case TOKEN_IDENTIFIER:
+        return parse_named_argument(parser, call, token);
     default:
-        return parser_error(P, token.line,
-                 "unexpected token type %d in call arguments", (int)token.type);
+        return parser_error(parser, token.line_number,
+            "unexpected token type %d in call arguments", (int)token.type);
     }
 }
 
-bool parse_call(CodeParser* P, uint32_t indent, Symbol* alias, uint32_t line) {
-    CallState call = {0};
-    if (!resolve_callee(P, &call, alias, line)) return false;
-    emit_call_init(P->emitter, call.callee);
-    while (ts_peek(P->stream)->type != TOK_EOF &&
-           ts_peek(P->stream)->type != TOK_ERROR &&
-           ts_peek(P->stream)->indent == indent + 1)
-        if (!parse_call_argument(P, &call)) return false;
-    ensure_call_emitted(P, &call);
+bool parse_call(StatementParser* parser, uint32_t indentation, Symbol* alias, uint32_t line_number) {
+    ModuleCallState call = {0};
+    if (!resolve_callee(parser, &call, alias, line_number)) return false;
+    emit_call_init(parser->emitter, call.callee);
+    while (token_stream_peek(parser->stream)->type != TOKEN_END_OF_FILE &&
+        token_stream_peek(parser->stream)->type != TOKEN_ERROR &&
+        token_stream_peek(parser->stream)->indentation == indentation + 1)
+        if (!parse_call_argument(parser, &call)) return false;
+    ensure_call_emitted(parser, &call);
     return true;
 }

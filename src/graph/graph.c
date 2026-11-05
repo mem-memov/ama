@@ -2,12 +2,12 @@
 #include <string.h>
 
 void graph_init(Graph* graph) {
-    graph->count = 0;
+    graph->node_count = 0;
 }
 
 static int find_node(const Graph* graph, const char* path) {
-    for (int i = 0; i < graph->count; i++)
-        if (!strcmp(graph->nodes[i].path, path)) return i;
+    for (int index = 0; index < graph->node_count; index++)
+        if (!strcmp(graph->nodes[index].path, path)) return index;
     return -1;
 }
 
@@ -18,79 +18,85 @@ bool graph_has_node(const Graph* graph, const char* path) {
 int graph_add_node(Graph* graph, const char* path, Error* error) {
     int index = find_node(graph, path);
     if (index >= 0) return index;
-    if (graph->count == MAX_MODULES || strlen(path) >= MAX_PATH_LEN) {
+    if (graph->node_count == MAX_MODULES || strlen(path) >= MAX_MODULE_PATH_LENGTH) {
         error_set(error, ERROR_LIMIT, 0, "too many modules or module path too long");
         return -1;
     }
-    index = graph->count++;
+    index = graph->node_count++;
     GraphNode* node = &graph->nodes[index];
     strcpy(node->path, path);
-    node->count = 0;
+    node->dependency_count = 0;
     return index;
 }
 
 bool graph_add_dependency(Graph* graph, const char* caller, const char* callee, Error* error) {
-    int a = graph_add_node(graph, caller, error);
-    if (a < 0) return false;
-    int b = graph_add_node(graph, callee, error);
-    if (b < 0) return false;
-    GraphNode* node = &graph->nodes[a];
-    for (int i = 0; i < node->count; i++)
-        if (node->dependencies[i] == b) return true;
-    if (node->count == MAX_MODULES)
+    int caller_index = graph_add_node(graph, caller, error);
+    if (caller_index < 0) return false;
+    int callee_index = graph_add_node(graph, callee, error);
+    if (callee_index < 0) return false;
+    GraphNode* node = &graph->nodes[caller_index];
+    for (int index = 0; index < node->dependency_count; index++)
+        if (node->dependencies[index] == callee_index) return true;
+    if (node->dependency_count == MAX_MODULES)
         return error_set(error, ERROR_LIMIT, 0, "too many dependencies from '%s'", caller);
-    node->dependencies[node->count++] = b;
+    node->dependencies[node->dependency_count++] = callee_index;
     return true;
 }
 
+typedef enum {
+    NODE_NOT_VISITED,
+    NODE_VISITING,
+    NODE_VISITED
+} NodeVisitState;
+
 typedef struct {
     const Graph* graph;
-    int colors[MAX_MODULES];
-    int path[MAX_MODULES];
-    int depth;
-    int* order;
-    int count;
+    NodeVisitState node_states[MAX_MODULES];
+    int traversal_path[MAX_MODULES];
+    int path_length;
+    int* dependency_order;
+    int ordered_node_count;
     Error* error;
-} Sort;
+} GraphTraversal;
 
-static bool report_cycle(Sort* sort, int node) {
-    error_set(sort->error, ERROR_CYCLE, 0, "recursion is forbidden. Cycle detected:\n");
+static bool report_cycle(GraphTraversal* traversal, int node_index) {
+    error_set(traversal->error, ERROR_CYCLE, 0, "recursion is forbidden. Cycle detected:\n");
     bool in_cycle = false;
-    for (int i = 0; i <= sort->depth; i++) {
-        int next = i == sort->depth ? node : sort->path[i];
-        if (next == node) in_cycle = true;
+    for (int index = 0; index <= traversal->path_length; index++) {
+        int dependency_index = index == traversal->path_length ? node_index : traversal->traversal_path[index];
+        if (dependency_index == node_index) in_cycle = true;
         if (in_cycle) {
-            size_t used = strlen(sort->error->message);
-            snprintf(sort->error->message + used, sizeof(sort->error->message) - used,
-                     "  %s%s\n", sort->graph->nodes[next].path,
-                     i == sort->depth ? " (back to start)" : " ->");
+            size_t message_length = strlen(traversal->error->message);
+            snprintf(traversal->error->message + message_length, sizeof(traversal->error->message) - message_length,
+                "  %s%s\n", traversal->graph->nodes[dependency_index].path,
+                index == traversal->path_length ? " (back to start)" : " ->");
         }
     }
     return false;
 }
 
-static bool visit(Sort* sort, int node) {
-    sort->colors[node] = 1;
-    sort->path[sort->depth++] = node;
-    const GraphNode* current = &sort->graph->nodes[node];
-    for (int i = 0; i < current->count; i++) {
-        int next = current->dependencies[i];
-        if (sort->colors[next] == 1) return report_cycle(sort, next);
-        if (!sort->colors[next] && !visit(sort, next)) return false;
+static bool visit_dependencies(GraphTraversal* traversal, int node_index) {
+    traversal->node_states[node_index] = NODE_VISITING;
+    traversal->traversal_path[traversal->path_length++] = node_index;
+    const GraphNode* current_node = &traversal->graph->nodes[node_index];
+    for (int index = 0; index < current_node->dependency_count; index++) {
+        int dependency_index = current_node->dependencies[index];
+        if (traversal->node_states[dependency_index] == NODE_VISITING) return report_cycle(traversal, dependency_index);
+        if (traversal->node_states[dependency_index] == NODE_NOT_VISITED && !visit_dependencies(traversal, dependency_index)) return false;
     }
-    sort->depth--;
-    sort->colors[node] = 2;
-    sort->order[sort->count++] = node;
+    traversal->path_length--;
+    traversal->node_states[node_index] = NODE_VISITED;
+    traversal->dependency_order[traversal->ordered_node_count++] = node_index;
     return true;
 }
 
-bool graph_sort(const Graph* graph, int* order, Error* error) {
-    Sort sort = {.graph = graph, .order = order, .error = error};
-    for (int i = 0; i < graph->count; i++)
-        if (!sort.colors[i] && !visit(&sort, i)) return false;
+bool graph_sort(const Graph* graph, int* dependency_order, Error* error) {
+    GraphTraversal traversal = {.graph = graph, .dependency_order = dependency_order, .error = error};
+    for (int index = 0; index < graph->node_count; index++)
+        if (traversal.node_states[index] == NODE_NOT_VISITED && !visit_dependencies(&traversal, index)) return false;
     return true;
 }
 
 const char* graph_path(const Graph* graph, int index) {
-    return index < 0 || index >= graph->count ? NULL : graph->nodes[index].path;
+    return index < 0 || index >= graph->node_count ? NULL : graph->nodes[index].path;
 }

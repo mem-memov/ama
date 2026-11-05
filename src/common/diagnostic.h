@@ -9,15 +9,15 @@ typedef enum {
 } ErrorCode;
 
 typedef struct {
-    ErrorCode code;
-    uint32_t line;
+    ErrorCode error_code;
+    uint32_t line_number;
     char module[512];
     char message[4096];
 } Error;
 
 /* Initialize before a sequence of operations. A failed operation sets the error;
- * clear it before starting another sequence. compile_project does this itself. */
+    * clear it before starting another sequence. compile_project does this itself. */
 void error_clear(Error* error);
-bool error_set(Error* error, ErrorCode code, uint32_t line, const char* fmt, ...);
-void error_print(FILE* out, const Error* error);
+bool error_set(Error* error, ErrorCode error_code, uint32_t line_number, const char* format, ...);
+void error_print(FILE* output, const Error* error);
 #endif

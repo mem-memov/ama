@@ -6,7 +6,7 @@ static SymbolTable* symbols;
 static Emitter emitter;
 static FILE* output;
 static void setup_test(void) {
-    count++;
+    test_count++;
     error_clear(&error);
     symbols = malloc(sizeof(*symbols));
     output = tmpfile();
@@ -14,5 +14,8 @@ static void setup_test(void) {
     symbols_init(symbols);
     emitter_init(&emitter, output, symbols);
 }
-static void destroy_test(void) { close_file(output); free(symbols); }
+static void destroy_test(void) {
+    close_file(output);
+    free(symbols);
+}
 #endif

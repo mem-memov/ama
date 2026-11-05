@@ -12,6 +12,6 @@ void run(void) {
 
 int main(void) {
     run();
-    printf("14-intrinsics: %d test(s) passed\n", count);
+    printf("14-intrinsics: %d test(s) passed\n", test_count);
     return EXIT_SUCCESS;
 }

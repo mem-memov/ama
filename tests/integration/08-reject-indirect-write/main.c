@@ -12,6 +12,6 @@ void run(void) {
 
 int main(void) {
     run();
-    printf("08-reject-indirect-write: %d test(s) passed\n", count);
+    printf("08-reject-indirect-write: %d test(s) passed\n", test_count);
     return EXIT_SUCCESS;
 }

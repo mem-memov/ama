@@ -12,6 +12,6 @@ void run(void) {
 
 int main(void) {
     run();
-    printf("18-reject-param-after-result: %d test(s) passed\n", count);
+    printf("18-reject-param-after-result: %d test(s) passed\n", test_count);
     return EXIT_SUCCESS;
 }

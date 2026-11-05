@@ -3,13 +3,16 @@
 #include "../common.c"
 #include "graph/graph.h"
 static Graph* graph;
-static int order[MAX_MODULES];
+static int dependency_order[MAX_MODULES];
 static void setup_test(void) {
-    count++;
+    test_count++;
     error_clear(&error);
     graph = malloc(sizeof(*graph));
     assert(graph != NULL);
     graph_init(graph);
 }
-static void destroy_test(void) { free(graph); graph = NULL; }
+static void destroy_test(void) {
+    free(graph);
+    graph = NULL;
+}
 #endif

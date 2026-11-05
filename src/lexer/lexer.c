@@ -3,171 +3,171 @@
 #include <stdlib.h>
 #include <string.h>
 
-static int read_byte(Lexer* L) {
-    if (ftell(L->f) >= L->end_pos) return EOF;
-    return fgetc(L->f);
+static int read_byte(Lexer* lexer) {
+    if (ftell(lexer->source_file) >= lexer->section_end_offset) return EOF;
+    return fgetc(lexer->source_file);
 }
 
-static void unread_byte(Lexer* L, int ch) {
-    (void)L;
-    if (ch != EOF) ungetc(ch, L->f);
+static void return_byte_to_input(Lexer* lexer, int character) {
+    (void)lexer;
+    if (character != EOF) ungetc(character, lexer->source_file);
 }
 
-static int read_char(Lexer* L) {
-    int ch = read_byte(L);
-    if (ch == EOF) return EOF;
-    if (ch == '\r') {
-        int next = read_byte(L);
-        if (next == '\n') return '\n';
-        unread_byte(L, next);
-        error_set(L->error, ERROR_INVALID, L->current_line,
-                  "stray \\r (not followed by \\n)");
+static int read_character(Lexer* lexer) {
+    int character = read_byte(lexer);
+    if (character == EOF) return EOF;
+    if (character == '\r') {
+        int next_character = read_byte(lexer);
+        if (next_character == '\n') return '\n';
+        return_byte_to_input(lexer, next_character);
+        error_set(lexer->error, ERROR_INVALID, lexer->line_number,
+            "stray \\r (not followed by \\n)");
         return EOF;
     }
-    return ch;
+    return character;
 }
 
-bool init_lexer(Lexer* L, FILE* f, long start_pos, long end_pos,
-                uint32_t start_line, Error* error) {
-    L->error = error;
-    L->f = f;
-    L->end_pos = end_pos;
-    L->current_line = start_line;
-    L->is_first_on_line = 1;
-    L->indent_count = 0;
-    L->blank_seen = 0;
-    if (fseek(f, start_pos, SEEK_SET) != 0)
+bool init_lexer(Lexer* lexer, FILE* source_file, long section_start_offset, long section_end_offset,
+    uint32_t start_line, Error* error) {
+    lexer->error = error;
+    lexer->source_file = source_file;
+    lexer->section_end_offset = section_end_offset;
+    lexer->line_number = start_line;
+    lexer->is_at_line_start = 1;
+    lexer->indentation = 0;
+    lexer->has_preceding_blank_line = 0;
+    if (fseek(source_file, section_start_offset, SEEK_SET) != 0)
         return error_set(error, ERROR_IO, start_line, "cannot seek source file");
     return true;
 }
 
 /* Return the first significant byte, preserving blank-line/comment semantics. */
-static int skip_whitespace_and_comments(Lexer* L) {
+static int skip_whitespace_and_comments(Lexer* lexer) {
     for (;;) {
-        int ch = read_char(L);
-        if (ch == '\n') {
-            if (L->is_first_on_line)
-                L->blank_seen = 1;
-            L->current_line++;
-            L->indent_count = 0;
-            L->is_first_on_line = 1;
-        } else if (ch == '#') {
-            while ((ch = read_char(L)) != '\n' && ch != EOF)
+        int character = read_character(lexer);
+        if (character == '\n') {
+            if (lexer->is_at_line_start)
+                lexer->has_preceding_blank_line = 1;
+            lexer->line_number++;
+            lexer->indentation = 0;
+            lexer->is_at_line_start = 1;
+        } else if (character == '#') {
+            while ((character = read_character(lexer)) != '\n' && character != EOF)
                 ;
-            if (ch == '\n')
-                L->current_line++;
-            L->indent_count = 0;
-            L->is_first_on_line = 1;
-        } else if (ch == ' ') {
-            if (L->is_first_on_line)
-                L->indent_count++;
+            if (character == '\n')
+                lexer->line_number++;
+            lexer->indentation = 0;
+            lexer->is_at_line_start = 1;
+        } else if (character == ' ') {
+            if (lexer->is_at_line_start)
+                lexer->indentation++;
         } else {
-            return ch;
+            return character;
         }
     }
 }
 
-static Token begin_token(Lexer* L) {
+static Token begin_token(Lexer* lexer) {
     Token token = {0};
-    token.line = L->current_line;
-    token.indent = L->indent_count;
-    token.is_bol = L->is_first_on_line;
-    token.is_after_blank = L->blank_seen;
-    L->is_first_on_line = 0;
-    L->blank_seen = 0;
+    token.line_number = lexer->line_number;
+    token.indentation = lexer->indentation;
+    token.is_at_line_start = lexer->is_at_line_start;
+    token.has_preceding_blank_line = lexer->has_preceding_blank_line;
+    lexer->is_at_line_start = 0;
+    lexer->has_preceding_blank_line = 0;
     return token;
 }
 
-static int read_punctuation(Token* token, int ch) {
-    switch (ch) {
-    case '<': token->type = TOK_LESS; break;
-    case '>': token->type = TOK_GREATER; break;
-    case '?': token->type = TOK_QUESTION; break;
-    case ':': token->type = TOK_COLON; break;
-    case '{': token->type = TOK_LBRACE; break;
-    case '}': token->type = TOK_RBRACE; break;
-    case '!': token->type = TOK_BANG; break;
+static int read_punctuation(Token* token, int character) {
+    switch (character) {
+    case '<': token->type = TOKEN_PARAMETER_ARROW; break;
+    case '>': token->type = TOKEN_RESULT_ARROW; break;
+    case '?': token->type = TOKEN_QUESTION_MARK; break;
+    case ':': token->type = TOKEN_COLON; break;
+    case '{': token->type = TOKEN_LOOP_OPEN; break;
+    case '}': token->type = TOKEN_LOOP_CLOSE; break;
+    case '!': token->type = TOKEN_BREAK; break;
     default: return 0;
     }
-    token->lexeme[0] = (char)ch;
+    token->lexeme[0] = (char)character;
     token->lexeme[1] = '\0';
     return 1;
 }
 
 /* The three word forms share length handling but retain their own diagnostics. */
-static int word_continues(TokenType type, int ch) {
-    if (type == TOK_LITERAL)
-        return is_digit_byte(ch);
-    return is_ident_byte(ch) || (type == TOK_PATH && ch == '.');
+static int is_token_continuation(TokenType type, int character) {
+    if (type == TOKEN_LITERAL)
+        return is_decimal_digit(character);
+    return is_identifier_character(character) || (type == TOKEN_MODULE_PATH && character == '.');
 }
 
-static void word_too_long(Lexer* L, TokenType type, uint32_t line) {
-    error_set(L->error, ERROR_LIMIT, line, "%s too long at line %u (max %d %s)",
-              type == TOK_LITERAL ? "literal" : type == TOK_PATH ? "path" : "identifier",
-              line, MAX_LEXEME_LEN - 1, type == TOK_LITERAL ? "digits" : "bytes");
+static void report_token_length_error(Lexer* lexer, TokenType type, uint32_t line_number) {
+    error_set(lexer->error, ERROR_LIMIT, line_number, "%s too long at line %u (max %d %s)",
+        type == TOKEN_LITERAL ? "literal" : type == TOKEN_MODULE_PATH ? "path" : "identifier",
+        line_number, MAX_TOKEN_TEXT_LENGTH - 1, type == TOKEN_LITERAL ? "digits" : "bytes");
 }
 
-static Token read_word(Lexer* L, Token token, int first, TokenType type) {
+static Token read_word(Lexer* lexer, Token token, int first_character, TokenType type) {
     int length = 0;
     token.type = type;
-    token.lexeme[length++] = (char)first;
+    token.lexeme[length++] = (char)first_character;
     for (;;) {
-        int ch = read_char(L);
-        if (ch == EOF)
+        int character = read_character(lexer);
+        if (character == EOF)
             break;
-        if (!word_continues(type, ch)) {
-            unread_byte(L, ch);
+        if (!is_token_continuation(type, character)) {
+            return_byte_to_input(lexer, character);
             break;
         }
-        if (length >= MAX_LEXEME_LEN - 1) {
-            word_too_long(L, type, token.line);
-            token.type = TOK_ERROR;
+        if (length >= MAX_TOKEN_TEXT_LENGTH - 1) {
+            report_token_length_error(lexer, type, token.line_number);
+            token.type = TOKEN_ERROR;
             return token;
         }
-        token.lexeme[length++] = (char)ch;
+        token.lexeme[length++] = (char)character;
     }
     token.lexeme[length] = '\0';
-    if (L->error->code != ERROR_NONE) token.type = TOK_ERROR;
+    if (lexer->error->error_code != ERROR_NONE) token.type = TOKEN_ERROR;
     return token;
 }
 
-static Token read_identifier(Lexer* L, Token token, int first) {
-    return read_word(L, token, first, TOK_IDENT);
+static Token read_identifier(Lexer* lexer, Token token, int first_character) {
+    return read_word(lexer, token, first_character, TOKEN_IDENTIFIER);
 }
 
-static Token read_literal(Lexer* L, Token token, int first) {
-    return read_word(L, token, first, TOK_LITERAL);
+static Token read_literal(Lexer* lexer, Token token, int first_character) {
+    return read_word(lexer, token, first_character, TOKEN_LITERAL);
 }
 
-static Token read_path(Lexer* L, Token token) {
-    return read_word(L, token, '.', TOK_PATH);
+static Token read_path(Lexer* lexer, Token token) {
+    return read_word(lexer, token, '.', TOKEN_MODULE_PATH);
 }
 
-Token get_next_token(Lexer* L) {
-    int ch = skip_whitespace_and_comments(L);
-    if (ferror(L->f) && L->error->code == ERROR_NONE)
-        error_set(L->error, ERROR_IO, L->current_line, "cannot read source file");
-    if (L->error->code != ERROR_NONE) {
-        Token failure = {TOK_ERROR, "ERROR", L->current_line, L->indent_count, 0, 0};
+Token get_next_token(Lexer* lexer) {
+    int character = skip_whitespace_and_comments(lexer);
+    if (ferror(lexer->source_file) && lexer->error->error_code == ERROR_NONE)
+        error_set(lexer->error, ERROR_IO, lexer->line_number, "cannot read source file");
+    if (lexer->error->error_code != ERROR_NONE) {
+        Token failure = {TOKEN_ERROR, "ERROR", lexer->line_number, lexer->indentation, 0, 0};
         return failure;
     }
-    if (ch == EOF) {
-        Token eof = {TOK_EOF, "EOF", L->current_line,
-                     L->indent_count, 1, L->blank_seen};
-        return eof;
+    if (character == EOF) {
+        Token end_of_file_token = {TOKEN_END_OF_FILE, "EOF", lexer->line_number,
+                        lexer->indentation, 1, lexer->has_preceding_blank_line};
+        return end_of_file_token;
     }
-    Token token = begin_token(L);
-    if (read_punctuation(&token, ch))
+    Token token = begin_token(lexer);
+    if (read_punctuation(&token, character))
         return token;
-    if (ch == '.')
-        return read_path(L, token);
-    if (is_digit_byte(ch))
-        return read_literal(L, token, ch);
-    if (is_ident_start_byte(ch))
-        return read_identifier(L, token, ch);
+    if (character == '.')
+        return read_path(lexer, token);
+    if (is_decimal_digit(character))
+        return read_literal(lexer, token, character);
+    if (is_identifier_start_character(character))
+        return read_identifier(lexer, token, character);
 
-    error_set(L->error, ERROR_INVALID, token.line, "unexpected byte 0x%02X ('%c') at line %u",
-            (unsigned char)ch, (ch >= 0x20 && ch < 0x7F) ? ch : '?', token.line);
-    Token error = {TOK_ERROR, "ERROR", token.line, token.indent, 0, 0};
+    error_set(lexer->error, ERROR_INVALID, token.line_number, "unexpected byte 0x%02X ('%c') at line %u",
+        (unsigned char)character, (character >= 0x20 && character < 0x7F) ? character : '?', token.line_number);
+    Token error = {TOKEN_ERROR, "ERROR", token.line_number, token.indentation, 0, 0};
     return error;
 }

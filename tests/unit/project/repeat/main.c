@@ -5,25 +5,25 @@ static void it_compiles_two_projects_in_one_process(void) {
     bool first = compile_project(PROJECT_ROOT "/tests/integration/01-hello/project", "main", "generated/first.c", &error);
     bool second = compile_project(PROJECT_ROOT "/tests/integration/06-values/project", "main", "generated/second.c", &error);
     if (!second) error_print(stderr, &error);
-    assert(first && second && error.code == ERROR_NONE);
+    assert(first && second && error.error_code == ERROR_NONE);
     destroy_test();
 }
 
 static void it_can_compile_after_a_failed_compilation(void) {
     setup_test();
     bool rejected = compile_project(PROJECT_ROOT "/tests/integration/21-reject-cycle/project", "main", "generated/rejected.c", &error);
-    assert(!rejected && error.code == ERROR_CYCLE);
+    assert(!rejected && error.error_code == ERROR_CYCLE);
     bool compiled = compile_project(PROJECT_ROOT "/tests/integration/01-hello/project", "main", "generated/recovered.c", &error);
-    assert(compiled && error.code == ERROR_NONE);
+    assert(compiled && error.error_code == ERROR_NONE);
     destroy_test();
 }
 
 static void it_returns_file_errors_to_its_caller(void) {
     setup_test();
     bool compiled = compile_project("generated/missing-input", "main", "generated/unused.c", &error);
-    assert(!compiled && error.code == ERROR_IO);
+    assert(!compiled && error.error_code == ERROR_IO);
     compiled = compile_project(PROJECT_ROOT "/tests/integration/01-hello/project", "main", "generated/missing-output/program.c", &error);
-    assert(!compiled && error.code == ERROR_IO);
+    assert(!compiled && error.error_code == ERROR_IO);
     destroy_test();
 }
 
@@ -35,6 +35,6 @@ void run(void) {
 
 int main(void) {
     run();
-    printf("unit/project/repeat: %d test(s) passed\n", count);
+    printf("unit/project/repeat: %d test(s) passed\n", test_count);
     return EXIT_SUCCESS;
 }

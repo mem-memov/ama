@@ -7,16 +7,16 @@
 
 typedef struct {
     Error* error;
-    FILE* f;
-    long end_pos;
-    uint32_t current_line;
-    int is_first_on_line;
-    uint32_t indent_count;
-    int blank_seen;
+    FILE* source_file;
+    long section_end_offset;
+    uint32_t line_number;
+    int is_at_line_start;
+    uint32_t indentation;
+    int has_preceding_blank_line;
 } Lexer;
 
-bool init_lexer(Lexer* L, FILE* f, long start_pos, long end_pos,
-                 uint32_t start_line, Error* error);
-Token get_next_token(Lexer* L);
+bool init_lexer(Lexer* lexer, FILE* source_file, long section_start_offset, long section_end_offset,
+    uint32_t start_line, Error* error);
+Token get_next_token(Lexer* lexer);
 
 #endif

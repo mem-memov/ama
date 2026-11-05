@@ -5,11 +5,11 @@ print
 
 
 choose
- > ответ
+ > answer
 print
- < ответ
+ < answer
 choose
  flag < 0
- selected > ответ
+ selected > answer
 print
- < ответ
+ < answer

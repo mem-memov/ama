@@ -1,17 +1,17 @@
 #include "common/path.h"
 #include "common/limits.h"
 
-bool normalize_path(const char* in, char* out, Error* error) {
+bool normalize_path(const char* input_path, char* normalized_path, Error* error) {
     int length = 0;
-    if (*in == '.') in++;
-    while (*in) {
-        if (length >= MAX_PATH_LEN - 1)
+    if (*input_path == '.') input_path++;
+    while (*input_path) {
+        if (length >= MAX_MODULE_PATH_LENGTH - 1)
             return error_set(error, ERROR_LIMIT, 0, "normalized path exceeds %d bytes",
-                             MAX_PATH_LEN - 1);
-        out[length++] = *in == '.' ? '/' : *in;
-        in++;
+                MAX_MODULE_PATH_LENGTH - 1);
+        normalized_path[length++] = *input_path == '.' ? '/' : *input_path;
+        input_path++;
     }
-    out[length] = '\0';
+    normalized_path[length] = '\0';
     if (!length)
         return error_set(error, ERROR_INVALID, 0, "empty path after normalization");
     return true;
