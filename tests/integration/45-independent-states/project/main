@@ -6,5 +6,7 @@ value
 0
 @Ama
 step
- < value
- > value
+ < accumulated
+ > accumulated
+value
+accumulated

@@ -1,0 +1,44 @@
+@<
+counter
+.counter
+print
+.sys.io.print
+@Ama
+counter
+ total > value
+ untouched > marker
+print
+ < value
+print
+ < marker
+counter
+ total > value
+print
+ < value
+counter
+ increment < 2
+ total > value
+print
+ < value
+counter
+ skip < 1
+ total > value
+ untouched > marker
+print
+ < value
+print
+ < marker
+counter
+ total > value
+print
+ < value
+counter
+ increment < 5
+ reset < 1
+ total > value
+print
+ < value
+counter
+ total > value
+print
+ < value

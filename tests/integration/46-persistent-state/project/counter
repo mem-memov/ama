@@ -1,0 +1,28 @@
+@<
+increment
+1
+reset
+0
+skip
+0
+add
+.sys.math.add
+@>
+total
+0
+untouched
+9
+@Ama
+reset
+?
+ accumulated
+ 0
+skip
+?
+ >
+add
+ < accumulated
+ < increment
+ > accumulated
+total
+accumulated

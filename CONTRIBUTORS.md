@@ -168,9 +168,12 @@ files are outputs, never the source of truth. Commit only when explicitly asked.
 Generated module functions receive an explicit pointer to their module's state
 structure. Own-variable reads and writes must use this pointer, not a global
 current-instance variable. Ordinary Ama calls still initialize and execute a
-callee's default instance. Preserve current reset behavior during this structural
-transition; the persistent-body-variable design is tracked separately in
-`TODO.md`.
+callee's default instance. Reset only parameters and results before each call.
+Body variables are zero-initialized with the state and persist across calls.
+Collect body write targets before parsing reads; keep unknown read-only names
+invalid, and do not treat call parameter labels as local declarations. Body
+assignments remain ordinary executable operations, including explicit resets.
+Further instance, reference, and list syntax is tracked in `TODO.md`.
 
 Keep native wrappers on the same state-access path. Their internal context
 parameter does not change the public handwritten `ama_native_*` signature.
@@ -290,7 +293,7 @@ result following the same explicit error-checking convention as Ama modules.
 
 Do not retain result pointers after the call or use them to access unrelated
 state. C local variables, allocations, and static variables obey C ownership
-and lifetime rules; they do not acquire Ama's local-reset semantics. The C
+and lifetime rules; they do not automatically become per-instance Ama state. The C
 implementation is responsible for its own resource cleanup and correctness.
 Recursion through Ama module dependencies remains forbidden.
 

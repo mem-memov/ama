@@ -94,7 +94,8 @@ void emit_loop_end(Emitter* emitter) {
 void emit_call_init(Emitter* emitter, const char* callee_path) {
     for (uint32_t index = 0; index < emitter->symbols->symbol_count; index++) {
         Symbol* symbol = &emitter->symbols->symbols[index];
-        if (strcmp(symbol->module_path, callee_path) == 0 && symbol->kind != SYMBOL_MODULE_ALIAS)
+        if (strcmp(symbol->module_path, callee_path) == 0 &&
+            (symbol->kind == SYMBOL_PARAMETER || symbol->kind == SYMBOL_RESULT))
             emit_constant_assignment(emitter, symbol->symbol_id, symbol->default_value);
     }
 }

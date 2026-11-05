@@ -16,6 +16,8 @@ typedef struct {
     Error* error;
 } StatementParser;
 
+/* Discover body write targets without consuming tokens or emitting code. */
+bool collect_body_variables(StatementParser* parser);
 bool parse_statement(StatementParser* parser, uint32_t indentation);
 bool parse_declaration_section(Lexer* lexer, SymbolTable* symbols, const char* module_path, SymbolKind kind);
 

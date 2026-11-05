@@ -31,7 +31,19 @@ static void it_rejects_a_blank_between_a_condition_and_its_marker(void) {
     destroy_test();
 }
 
+static void it_discovers_persistent_targets_before_reading_them(void) {
+    setup_test();
+    bool parsed = parse_text("snapshot\nsaved\nflag\n1\nflag\n?\n saved\n 8\n");
+    assert(parsed);
+    Symbol* saved = lookup_symbol(symbols, "main", "saved");
+    Symbol* snapshot = lookup_symbol(symbols, "main", "snapshot");
+    assert(saved && snapshot && saved->kind == SYMBOL_LOCAL_VARIABLE);
+    assert(symbols->symbol_count == 3);
+    destroy_test();
+}
+
 void run(void) {
+    it_discovers_persistent_targets_before_reading_them();
     it_combines_lexing_assignment_and_emission();
     it_reports_an_unknown_source_without_terminating_the_process();
     it_combines_nested_loops_branches_and_return();

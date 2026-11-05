@@ -91,6 +91,7 @@ static bool emit_module_body(Project* project, const char* path, TokenStream* st
     Emitter* emitter = &project->emitter;
     emit_module_start(emitter, path);
     StatementParser parser = {stream, path, &project->symbols, &project->graph, emitter, error};
+    if (!collect_body_variables(&parser)) return false;
     while (token_stream_peek(stream)->type != TOKEN_END_OF_FILE)
         if (!parse_statement(&parser, 0)) return false;
     emit_module_end(emitter);

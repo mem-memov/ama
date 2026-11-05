@@ -161,11 +161,19 @@ double
 A call uses either positional or named arguments throughout. Parameters must
 precede results. A zero-argument call is just the alias name on its own line.
 
-Each call resets the callee's parameters and results to their declared defaults
-and locals to zero, copies arguments by value, executes the procedure, and
+Each call resets the callee's parameters and results to their declared defaults,
+copies arguments by value, executes the procedure, and
 copies requested results back by value. Omitted parameters keep their declared
 defaults; omitted results are ignored. Too many positional arguments/results
 and unknown named parameters/results are errors.
+
+Body variables belong to the module instance. They start at zero once and
+retain their values between calls, including variables written only inside a
+conditional. An assignment in the body executes whenever reached; assigning
+zero explicitly resets that variable. Body assignment targets and call-result
+receivers are collected before execution code is parsed, so a variable can be
+read before its first textual write. A name that is never declared or written
+remains an error. Parameters and results remain per-call values.
 
 ## Control flow
 
@@ -361,9 +369,9 @@ headers with `--generate-c-headers`, which never creates source files.
 Generated C groups each module's numeric variables into a `State_<module>`
 structure. Its function takes an explicit pointer to that state; accesses to
 its own variables use that pointer. Ordinary Ama calls currently select a
-`static` default instance of the callee and retain the existing per-call reset
-rules. This is preparation for independent instances, not yet object syntax
-or persistent body-variable semantics.
+`static` default instance of the callee. Calls reset only parameters and results;
+body variables retain their values in that instance. Language-level object and
+reference declarations remain planned, not implemented.
 
 Field IDs are private compiler names, with no numeric meaning in Ama. The
 compiler buffers function bodies until all local variables have been registered,

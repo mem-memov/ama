@@ -19,15 +19,16 @@ static void it_emits_values_and_control_flow_to_the_given_output(void) {
     destroy_test();
 }
 
-static void it_initializes_only_the_selected_modules_variables(void) {
+static void it_resets_only_selected_parameters_and_results(void) {
     setup_test();
     Token value = {.type = TOKEN_LITERAL, .lexeme = "9"};
     Symbol* result_symbol = add_declarative_symbol(symbols, "callee", "answer", SYMBOL_RESULT, value, &error);
+    Symbol* parameter = add_declarative_symbol(symbols, "callee", "input", SYMBOL_PARAMETER, value, &error);
     Symbol* local_symbol = add_local_variable(symbols, "callee", "scratch", &error);
     Symbol* unrelated_symbol = add_local_variable(symbols, "other", "scratch", &error);
-    assert(result_symbol && local_symbol && unrelated_symbol);
+    assert(result_symbol && parameter && local_symbol && unrelated_symbol);
     emit_call_init(&emitter, "callee");
-    assert_stream_equals(output, "    instance_callee.symbol_0 = 9;\n    instance_callee.symbol_1 = 0;\n");
+    assert_stream_equals(output, "    instance_callee.symbol_0 = 9;\n    instance_callee.symbol_1 = 9;\n");
     destroy_test();
 }
 
@@ -52,7 +53,7 @@ static void it_keeps_two_emitters_independent(void) {
 
 void run(void) {
     it_emits_values_and_control_flow_to_the_given_output();
-    it_initializes_only_the_selected_modules_variables();
+    it_resets_only_selected_parameters_and_results();
     it_keeps_two_emitters_independent();
 }
 

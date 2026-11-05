@@ -1,4 +1,4 @@
-#include "parser/parser.h"
+#include "parser/internal.h"
 
 bool parse_declaration_section(Lexer* lexer, SymbolTable* symbols,
     const char* module, SymbolKind kind) {
@@ -21,4 +21,29 @@ bool parse_declaration_section(Lexer* lexer, SymbolTable* symbols,
         if (!add_declarative_symbol(symbols, module, name.lexeme, actual, value, lexer->error))
             return false;
     }
+}
+
+/* Collect only write targets. Unknown read-only names must still be errors.
+    Assignment sources are skipped so they cannot become accidental declarations.
+    Full statement validation remains the responsibility of the normal parser.
+*/
+bool collect_body_variables(StatementParser* parser) {
+    const TokenStream* stream = parser->stream;
+    for (int index = 0; index + 1 < stream->token_count; index++) {
+        const Token* token = &stream->tokens[index];
+        const Token* next = &stream->tokens[index + 1];
+        if (token->type == TOKEN_RESULT_ARROW && next->type == TOKEN_IDENTIFIER &&
+            !next->is_at_line_start) {
+            if (!get_or_create_receiver(parser, next->lexeme, next->line_number)) return false;
+            index++;
+        } else if (token->type == TOKEN_IDENTIFIER && token->is_at_line_start &&
+            next->indentation == token->indentation &&
+            (next->type == TOKEN_LITERAL || next->type == TOKEN_IDENTIFIER)) {
+            Symbol* symbol = lookup_symbol(parser->symbols, parser->module_path, token->lexeme);
+            if (symbol && symbol->kind == SYMBOL_MODULE_ALIAS) continue;
+            if (!get_or_create_receiver(parser, token->lexeme, token->line_number)) return false;
+            index++;
+        }
+    }
+    return true;
 }

@@ -26,6 +26,9 @@ static void it_accepts_named_parameters_and_results(void) {
     declare_add();
     bool parsed = parse_text("add\n right < 7\n left < 5\n sum > result\n");
     assert(parsed && lookup_symbol(symbols, "main", "result") != NULL);
+    assert(lookup_symbol(symbols, "main", "left") == NULL);
+    assert(lookup_symbol(symbols, "main", "right") == NULL);
+    assert(lookup_symbol(symbols, "main", "sum") == NULL);
     destroy_test();
 }
 
@@ -45,7 +48,19 @@ static void it_rejects_parameters_after_results(void) {
     destroy_test();
 }
 
+static void it_reads_a_local_before_its_call_result_assignment(void) {
+    setup_test();
+    declare_add();
+    bool parsed = parse_text("add\n < accumulated\n < 1\n > accumulated\n");
+    assert(parsed);
+    Symbol* accumulated = lookup_symbol(symbols, "main", "accumulated");
+    assert(accumulated && accumulated->kind == SYMBOL_LOCAL_VARIABLE);
+    assert(symbols->symbol_count == 5);
+    destroy_test();
+}
+
 void run(void) {
+    it_reads_a_local_before_its_call_result_assignment();
     it_copies_parameters_before_execution_and_results_after();
     it_accepts_named_parameters_and_results();
     it_rejects_mixed_argument_modes();

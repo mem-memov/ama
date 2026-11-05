@@ -364,7 +364,7 @@ Rules:
 - Named parameters and results use the declared name, e.g. `left < x` or
   `sum > r`.
 - The call is emitted as:
-    1. `emit_call_init(callee)` — reset callee parameters/results to declared defaults and locals to zero;
+    1. `emit_call_init(callee)` — reset callee parameters/results to declared defaults; preserve body variables;
     2. `emit_constant_assignment` or `emit_copy` per parameter, in source order;
     3. `emit_call_exec(callee)` — the actual C call;
     4. one `emit_copy` per result, in source order.
@@ -516,10 +516,15 @@ gcc -O3 out.c build/stdlib/libama_std.a -o prog
 Every numeric variable holds a platform-sized unsigned integer (`size_t`).
 Zero is false; any nonzero value is true. Arithmetic and comparisons are
 unsigned. A call copies values: defaults, arguments, execution, then results.
-All Ama callee locals are reset to zero at every call, including locals introduced
-inside a conditional body. The entry module receives the same initialization.
+Body variables start at zero when the module instance is created and persist
+between calls, including variables introduced inside conditional bodies.
+Parameters and results reset to declared defaults at every call, including entry
+initialization. A body assignment is executed whenever reached; it is not a
+one-time initializer. Assignment targets and call-result receivers are collected
+throughout the body before parsing reads, so a body variable may be read before
+its first textual write. Read-only undeclared names remain errors.
 There are no addresses, pointers, dereferencing operators, or built-in memory
-allocation/access modules. The compiler emits separate C variables; their
+allocation/access modules. The compiler emits numeric fields in per-module C state structures; their
 internal symbol IDs are not values accessible to a program.
 
 The standard library exports `sys/math/{add,sub,mul,div,mod,lt,le,gt,ge,eq,ne,
@@ -546,7 +551,8 @@ an Ama module. Its signature is generated from the declaration sections:
   parameters retain those defaults. Every result is passed by a non-null pointer,
   even when the Ama caller omits it. Unwritten results retain their defaults.
 - C parameters are copies. Result pointers must not be retained for later use.
-  C locals and static state follow C rules, not Ama's local-reset behavior.
+  C locals and static state follow C rules; they do not automatically become
+  per-instance Ama state.
 - The native source must include its generated header. A conflicting definition
   is then rejected by the C compiler; Ama itself does not parse C code.
 - The native entry module has no value parameters, just like an Ama entry.

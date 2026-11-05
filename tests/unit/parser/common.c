@@ -39,6 +39,7 @@ static bool parse_text(const char* text) {
     close_file(source);
     if (error.error_code != ERROR_NONE) return false;
     StatementParser parser = {&stream, "main", symbols, graph, &emitter, &error};
+    if (!collect_body_variables(&parser)) return false;
     while (token_stream_peek(&stream)->type != TOKEN_END_OF_FILE)
         if (!parse_statement(&parser, 0)) return false;
     return true;

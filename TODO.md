@@ -112,8 +112,6 @@ constants from executable modules and unfinished drafts. Replacing `@Ama` with
 ### Proposed rules requiring confirmation
 
 - Clone owned children recursively and preserve external object references.
-- Preserve the current per-call defaults for parameters and results while
-  introducing persistent internal variables.
 - Give a system list an action parameter whose values come from an enum module.
 - Use checked handles for independently addressable objects.
 - Forbid structural changes to a list while an element is executing.
@@ -204,13 +202,17 @@ empty lists unless an initial length is explicitly specified. Complex applicatio
 setup can be requested through an ordinary call; no hidden one-time body is
 introduced.
 
-The current language resets parameters and results to defaults and locals to
-zero on calls. Persistent object state therefore requires a real semantic
-change, not just a different allocation method. Parameters and results are
-temporary; body-declared variables are persistent. Migrating existing programs
-must account for this deliberate change. The initial state/code separation
-refactor preserves current reset behavior; persistent-body semantics follow
-as a separate language change.
+The implemented numeric model now resets only parameters and results to their
+declared defaults. Body variables start at zero with the module state and
+persist across calls. Assignment targets and call-result receivers are collected
+before reads are parsed, including targets inside conditional bodies. Reading
+a variable before its first textual write observes its stored value, initially
+zero. Names with no declaration or write target remain errors.
+
+Every assignment in the body executes whenever reached; `value` followed by
+`0` explicitly resets the value and is not a one-time initializer. The initial
+implementation retains `size_t` storage and default instances. Owned child
+declarations, references, lists, and the new fundamental types remain planned.
 
 The candidate call protocol is:
 
@@ -796,11 +798,16 @@ before changing the grammar.
   distinguish temporary selections, saved references, and optional snapshots.
 - [x] Separate generated module code from numeric state: functions take an
   explicit state pointer, including native wrappers. Existing calls use default
-  callee instances and preserve current resets. A C-driver integration test
+  callee instances. The initial refactor preserved all resets; the following
+  completed step changes body-variable lifetime. A C-driver integration test
   executes one generated module over two independent states. This is an internal
   refactor, not yet user-visible objects or persistent body variables.
-- [ ] Implement language-visible instance selection and persistent body-variable
-  behavior, replacing the compatibility defaults where appropriate.
+- [x] Preserve numeric body variables between calls, initialize them once to zero,
+  collect write targets before reads, and retain per-call defaults for parameters
+  and results. Explicit assignments still execute on every reached call.
+- [ ] Implement language-visible instance selection, owned child creation, and
+  recursive zero/empty initialization. Reject infinite fixed-size ownership
+  cycles while allowing future recursive structures through lists/references.
 - [ ] Implement creation, explicit cloning, and cleanup of owned state trees.
 - [ ] Implement `@enum`, constant access, diagnostics, and validation rules.
 - [ ] Decide separately whether to rename `@Ama`; migrate all examples and
