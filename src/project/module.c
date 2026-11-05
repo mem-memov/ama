@@ -89,13 +89,11 @@ static bool read_module_tokens(const char* path, TokenStream* stream, Error* err
 
 static bool emit_module_body(Project* project, const char* path, TokenStream* stream, Error* error) {
     Emitter* emitter = &project->emitter;
-    fputs("void ", emitter->output);
-    emit_module_name(emitter->output, path);
-    fputs("(void) {\n", emitter->output);
+    emit_module_start(emitter, path);
     StatementParser parser = {stream, path, &project->symbols, &project->graph, emitter, error};
     while (token_stream_peek(stream)->type != TOKEN_END_OF_FILE)
         if (!parse_statement(&parser, 0)) return false;
-    fputs("}\n\n", emitter->output);
+    emit_module_end(emitter);
     return true;
 }
 

@@ -16,8 +16,8 @@ static void it_copies_parameters_before_execution_and_results_after(void) {
     declare_add();
     bool parsed = parse_text("add\n < 5\n < 7\n > result\n");
     assert(parsed);
-    assert_stream_equals(output, "    symbol_0 = 0;\n    symbol_1 = 0;\n    symbol_2 = 0;\n"
-        "    symbol_0 = 5;\n    symbol_1 = 7;\n    module_math_add();\n    symbol_4 = symbol_2;\n");
+    assert_stream_equals(output, "    instance_math_add.symbol_0 = 0;\n    instance_math_add.symbol_1 = 0;\n    instance_math_add.symbol_2 = 0;\n"
+        "    instance_math_add.symbol_0 = 5;\n    instance_math_add.symbol_1 = 7;\n    module_math_add(&instance_math_add);\n    state->symbol_4 = instance_math_add.symbol_2;\n");
     destroy_test();
 }
 

@@ -4,7 +4,7 @@ static void it_combines_lexing_assignment_and_emission(void) {
     setup_test();
     bool parsed = parse_text("x\n42\ny\nx\n");
     assert(parsed && symbols->symbol_count == 2);
-    assert_stream_equals(output, "    symbol_0 = 42;\n    symbol_1 = symbol_0;\n");
+    assert_stream_equals(output, "    state->symbol_0 = 42;\n    state->symbol_1 = state->symbol_0;\n");
     destroy_test();
 }
 
@@ -20,7 +20,7 @@ static void it_combines_nested_loops_branches_and_return(void) {
     setup_test();
     bool parsed = parse_text("x\n1\nx\n{\n x\n ?\n  >\n !\n}\n");
     assert(parsed);
-    assert_stream_equals(output, "    symbol_0 = 1;\n    while (symbol_0) {\n    if (symbol_0) {\n    return;\n    }\n    break;\n    }\n");
+    assert_stream_equals(output, "    state->symbol_0 = 1;\n    while (state->symbol_0) {\n    if (state->symbol_0) {\n    return;\n    }\n    break;\n    }\n");
     destroy_test();
 }
 

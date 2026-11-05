@@ -163,6 +163,21 @@ change. Avoid tests that merely duplicate the implementation. Keep `README.md`
 and `EBNF.md` consistent with public behavior. Build artifacts and generated
 files are outputs, never the source of truth. Commit only when explicitly asked.
 
+## Generated module state
+
+Generated module functions receive an explicit pointer to their module's state
+structure. Own-variable reads and writes must use this pointer, not a global
+current-instance variable. Ordinary Ama calls still initialize and execute a
+callee's default instance. Preserve current reset behavior during this structural
+transition; the persistent-body-variable design is tracked separately in
+`TODO.md`.
+
+Keep native wrappers on the same state-access path. Their internal context
+parameter does not change the public handwritten `ama_native_*` signature.
+State structures and generated function names are internal output details, not
+a stable C embedding API. The independent-state integration test uses a C driver
+to exercise these internals before the language exposes object declarations.
+
 ## Native C modules
 
 Keep the interface and implementation together. A module at `math/double` has

@@ -2,6 +2,11 @@
 
 static void it_emits_values_and_control_flow_to_the_given_output(void) {
     setup_test();
+    Symbol* unused = add_local_variable(symbols, "main", "unused", &error);
+    Symbol* first = add_local_variable(symbols, "main", "first", &error);
+    Symbol* second = add_local_variable(symbols, "main", "second", &error);
+    assert(unused && first && second);
+    emitter.module_path = "main";
     emit_constant_assignment(&emitter, 1, 42);
     emit_copy(&emitter, 2, 1);
     emit_branch_start(&emitter, 2);
@@ -9,7 +14,7 @@ static void it_emits_values_and_control_flow_to_the_given_output(void) {
     emit_branch_else(&emitter);
     emit_break(&emitter);
     emit_branch_end(&emitter);
-    assert_stream_equals(output, "    symbol_1 = 42;\n    symbol_2 = symbol_1;\n    if (symbol_2) {\n"
+    assert_stream_equals(output, "    state->symbol_1 = 42;\n    state->symbol_2 = state->symbol_1;\n    if (state->symbol_2) {\n"
         "    return;\n    } else {\n    break;\n    }\n");
     destroy_test();
 }
@@ -22,20 +27,25 @@ static void it_initializes_only_the_selected_modules_variables(void) {
     Symbol* unrelated_symbol = add_local_variable(symbols, "other", "scratch", &error);
     assert(result_symbol && local_symbol && unrelated_symbol);
     emit_call_init(&emitter, "callee");
-    assert_stream_equals(output, "    symbol_0 = 9;\n    symbol_1 = 0;\n");
+    assert_stream_equals(output, "    instance_callee.symbol_0 = 9;\n    instance_callee.symbol_1 = 0;\n");
     destroy_test();
 }
 
 static void it_keeps_two_emitters_independent(void) {
     setup_test();
+    Symbol* unused = add_local_variable(symbols, "main", "unused", &error);
+    Symbol* value = add_local_variable(symbols, "main", "value", &error);
+    assert(unused && value);
+    emitter.module_path = "main";
     FILE* second_output = tmpfile();
     assert(second_output != NULL);
     Emitter second_emitter;
     emitter_init(&second_emitter, second_output, symbols);
+    second_emitter.module_path = "main";
     emit_constant_assignment(&emitter, 1, 5);
     emit_constant_assignment(&second_emitter, 1, 7);
-    assert_stream_equals(output, "    symbol_1 = 5;\n");
-    assert_stream_equals(second_output, "    symbol_1 = 7;\n");
+    assert_stream_equals(output, "    state->symbol_1 = 5;\n");
+    assert_stream_equals(second_output, "    state->symbol_1 = 7;\n");
     close_file(second_output);
     destroy_test();
 }

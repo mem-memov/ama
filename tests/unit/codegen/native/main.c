@@ -32,8 +32,8 @@ static void it_passes_every_result_address_through_the_wrapper(void) {
     assert(emitted);
     assert_stream_equals(output,
         "#include \"ama_native_math_scale.h\"\n\n"
-        "void module_math_scale(void) {\n"
-        "    ama_native_math_scale(symbol_0, symbol_1, &symbol_2);\n}\n\n");
+        "void module_math_scale(State_math_scale* state) {\n    (void)state;\n"
+        "    ama_native_math_scale(state->symbol_0, state->symbol_1, &state->symbol_2);\n}\n\n");
     destroy_test();
 }
 

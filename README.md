@@ -358,10 +358,18 @@ The Makefiles preserve source subdirectories under `build/` and track header
 dependencies automatically with `-MMD -MP`. The standard library builds its own
 headers with `--generate-c-headers`, which never creates source files.
 
-Generated C uses separate `static size_t symbol_<symbol_id>` variables and `void` module
-functions. IDs are private compiler names, with no numeric meaning in Ama.
-The compiler buffers function bodies until all local variables have been
-registered, then writes their declarations before the functions. Callees are
+Generated C groups each module's numeric variables into a `State_<module>`
+structure. Its function takes an explicit pointer to that state; accesses to
+its own variables use that pointer. Ordinary Ama calls currently select a
+`static` default instance of the callee and retain the existing per-call reset
+rules. This is preparation for independent instances, not yet object syntax
+or persistent body-variable semantics.
+
+Field IDs are private compiler names, with no numeric meaning in Ama. The
+compiler buffers function bodies until all local variables have been registered,
+then writes state definitions before the functions. Empty modules receive a
+placeholder field for ISO C compatibility. Generated native wrappers also take
+a state pointer; handwritten native signatures remain unchanged. Callees are
 emitted before callers. Native optimization is performed by the C compiler.
 Recursion remains forbidden, including cycles formed by unused aliases.
 

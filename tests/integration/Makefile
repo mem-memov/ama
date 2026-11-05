@@ -53,6 +53,7 @@ all:
 >    $(MAKE) -C 43-read-only-header-export all
 
 >    $(MAKE) -C 44-library-stub-protection all
+>    $(MAKE) -C 45-independent-states all
 
 clean:
 >    $(MAKE) -C 01-hello clean
@@ -99,3 +100,4 @@ clean:
 >    $(MAKE) -C 42-custom-standard-library clean
 >    $(MAKE) -C 43-read-only-header-export clean
 >    $(MAKE) -C 44-library-stub-protection clean
+>    $(MAKE) -C 45-independent-states clean

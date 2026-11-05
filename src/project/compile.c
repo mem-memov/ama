@@ -51,7 +51,7 @@ static bool write_output(Project* project, const char* output_path, Error* error
         return error_set(error, ERROR_IO, 0, "cannot rewind generated output");
     FILE* output = fopen(output_path, "wb");
     if (!output) return error_set(error, ERROR_IO, 0, "cannot open '%s': %s", output_path, strerror(errno));
-    emit_program_prologue(output, &project->symbols);
+    emit_program_prologue(output, &project->symbols, &project->graph);
     char buffer[4096];
     size_t length;
     bool success = true;

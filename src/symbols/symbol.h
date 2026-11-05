@@ -10,7 +10,7 @@ typedef struct {
     char module_path[MAX_MODULE_PATH_LENGTH];
     char name[MAX_IDENTIFIER_LENGTH];
     SymbolKind kind;
-    uint32_t symbol_id; /* Private ID used to name a C variable, not an address. */
+    uint32_t symbol_id; /* Private ID used to name a state field, not an address. */
     char alias_path[MAX_FILE_PATH_LENGTH];
     int default_value;
 } Symbol;

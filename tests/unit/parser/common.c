@@ -16,6 +16,7 @@ static void setup_test(void) {
     symbols_init(symbols);
     graph_init(graph);
     emitter_init(&emitter, output, symbols);
+    emitter.module_path = "main";
 }
 static void destroy_test(void) {
     close_file(output);

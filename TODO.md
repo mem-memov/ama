@@ -794,8 +794,13 @@ before changing the grammar.
   behavior. Confirm which old programs intentionally change meaning.
 - [ ] Complete the explicit-destruction policy and reference default rules;
   distinguish temporary selections, saved references, and optional snapshots.
-- [ ] Implement independent state execution before dynamic lists. Decide whether
-  existing alias calls use a default instance for compatibility.
+- [x] Separate generated module code from numeric state: functions take an
+  explicit state pointer, including native wrappers. Existing calls use default
+  callee instances and preserve current resets. A C-driver integration test
+  executes one generated module over two independent states. This is an internal
+  refactor, not yet user-visible objects or persistent body variables.
+- [ ] Implement language-visible instance selection and persistent body-variable
+  behavior, replacing the compatibility defaults where appropriate.
 - [ ] Implement creation, explicit cloning, and cleanup of owned state trees.
 - [ ] Implement `@enum`, constant access, diagnostics, and validation rules.
 - [ ] Decide separately whether to rename `@Ama`; migrate all examples and

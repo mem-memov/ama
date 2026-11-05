@@ -85,9 +85,9 @@ bool emit_native_stub(FILE* output, SymbolTable* symbols, const char* module_pat
 bool emit_native_wrapper(Emitter* emitter, const char* module_path, Error* error) {
     char name[MAX_FILE_PATH_LENGTH];
     if (!native_function_name(module_path, name, sizeof(name), error)) return false;
-    fprintf(emitter->output, "#include \"%s.h\"\n\nvoid ", name);
-    emit_module_name(emitter->output, module_path);
-    fprintf(emitter->output, "(void) {\n    %s(", name);
+    fprintf(emitter->output, "#include \"%s.h\"\n\n", name);
+    emit_module_start(emitter, module_path);
+    fprintf(emitter->output, "    %s(", name);
     int argument_count = 0;
     for (int group = 0; group < 2; group++) {
         SymbolKind kind = group == 0 ? SYMBOL_PARAMETER : SYMBOL_RESULT;
@@ -95,9 +95,11 @@ bool emit_native_wrapper(Emitter* emitter, const char* module_path, Error* error
             Symbol* symbol = find_symbol_by_position(emitter->symbols, module_path, position, kind);
             if (!symbol) break;
             if (argument_count++) fputs(", ", emitter->output);
-            fprintf(emitter->output, group == 0 ? "symbol_%u" : "&symbol_%u", symbol->symbol_id);
+            if (group == 1) fputc('&', emitter->output);
+            emit_symbol_access(emitter, symbol->symbol_id);
         }
     }
-    fputs(");\n}\n\n", emitter->output);
+    fputs(");\n", emitter->output);
+    emit_module_end(emitter);
     return true;
 }
