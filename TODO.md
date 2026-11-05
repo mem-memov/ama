@@ -11,6 +11,13 @@ A module describes both executable behavior and the structure of its state.
 The module is a type. An object is one instance of that state. Many objects can
 use the same module code without sharing their own variables.
 
+This extends to basic data: numbers and byte sequences are types described by
+modules, not exceptions to an otherwise object-based model. `size_t` is no
+longer the planned universal language value. Small values may still be stored
+inline and passed efficiently; a uniform model does not require heap allocation
+for each number. Native objects expose typed Ama references, while their C
+implementations may internally hold `void*` payloads.
+
 Calling an object means executing the module over the selected state. The
 state stays with its owner. The implementation brings code to the data rather
 than copying a large tree of data into a module's global variables.
@@ -38,8 +45,10 @@ the body, even when its arguments equal those of the preceding invocation.
 Composition means owning a child state. Aggregation means referring to an
 independently existing object. References identify whole typed objects and expose
 their public interfaces, not memory addresses or individual internal variables.
-An owned declaration uses `.sys.obj`; a reference declaration uses `&.sys.obj`.
-Reference variable names must also start with `&`, as in `&target`; this is
+Both owned and reference declarations put only `.sys.obj` on the second line.
+Modifiers belong to the name on the first line: `item` is owned, `&item` is a
+reference, `items[]` owns a list of states, and `&items[]` owns a list of
+references. Reference variable names start with `&`, as in `&target`; this is
 checked syntax, not an optional naming convention. The expression `&my_obj`
 obtains a reference to an owned `my_obj`, whereas `&target` reads an already
 declared reference variable. Neither operation copies state or transfers
@@ -59,6 +68,13 @@ constants from executable modules and unfinished drafts. Replacing `@Ama` with
 ### Agreed direction
 
 - A module can serve as the type of independently stored states.
+- Adopt the uniform module/type model for basic data as well: numbers and byte
+  sequences are fundamental types represented through modules.
+- Remove `size_t` from the future language semantics as a universal value; keep
+  C storage choices separate from Ama types.
+- Native data crosses Ama interfaces through typed references, not bare `void*`
+  values or types guessed from parameter names. Native payloads may use `void*`
+  internally under an explicit type and lifecycle contract.
 - Execution works over a selected state; calling does not require copying it.
 - Application code controls reactions and the order of child calls.
 - Repeated identical calls still execute the body repeatedly.
@@ -69,7 +85,15 @@ constants from executable modules and unfinished drafts. Replacing `@Ama` with
 - Lists should be usable as owned parts of another module's state.
 - List operations can be requested through parameters of one list module.
   Separate procedure modules for every operation are not required.
-- Typed references use `&.module.path` declarations and `&instance` acquisition.
+- Declaration modifiers belong only to the variable name on the first line;
+  the second line contains only the module path, without `&` or brackets.
+- `item` declares an owned state and `&item` a typed reference.
+- `items[]` declares a dynamic list of owned states; `&items[]` declares a
+  list of references, not a reference to a whole list.
+- `items[index]` selects an owned element; `&items[index]` accesses a reference
+  element when `&items[]` is declared. `&instance` obtains a reference to an
+  owned instance.
+- Empty brackets designate the whole list in declarations and collection calls.
 - Every reference variable or parameter name starts with `&` in declarations
   and uses, including named argument labels and calls through references.
 - Reading an existing `&name` copies its reference value; it does not construct
@@ -91,11 +115,10 @@ constants from executable modules and unfinished drafts. Replacing `@Ama` with
 - Give a system list an action parameter whose values come from an enum module.
 - Use checked handles for independently addressable objects.
 - Forbid structural changes to a list while an element is executing.
-- Let a list select an element through a cursor-like result.
 - Keep an instance per module as the default target for existing alias calls.
 
 These are design candidates, not all accepted language rules. In particular,
-the cursor design, exact failure-status syntax, and destruction API still need
+iteration, exact failure-status syntax, and destruction API still need
 practical examples. Checked handles and explicit destruction are the current
 working design; their representation and full resource policy remain to be specified.
 
@@ -113,8 +136,9 @@ Three entities must stay distinct:
 
 A module alias currently identifies code. An owned child declaration must also
 establish which state belongs to its parent. An external reference selects an
-independent state. In the proposed syntax, `.module.path` declares an owned
-instance, whereas `&.module.path` declares a reference. This changes the meaning
+independent state. In the proposed syntax, the name distinguishes an owned
+instance (`item`) from a reference (`&item`); both use `.module.path` as the
+second declaration line. This changes the meaning
 of today's alias declarations and requires an explicit migration decision.
 
 The implementation can generate a structure for each module and pass its
@@ -122,15 +146,17 @@ address explicitly to its executable function:
 
 ```c
 typedef struct {
-    size_t increment;
-    size_t value;
-    size_t accumulated;
+    AmaNumber increment;
+    AmaNumber value;
+    AmaNumber accumulated;
 } CounterState;
 
 void counter_execute(CounterState* state);
 ```
 
-This is an implementation sketch, not a proposed native ABI. The pointer is
+`AmaNumber` is a placeholder for the future numeric representation, not an
+existing C type or a decision about number width. This is an implementation
+sketch, not a proposed native ABI. The pointer is
 an implementation detail, not an Ama value. Public parameters and results and
 their reset behavior may eventually use a separate call frame.
 
@@ -268,7 +294,7 @@ A reference parameter in `consumer` is declared as:
 ```text
 @<
 &target
-&.sys.obj
+.sys.obj
 ```
 
 Obtain and pass a reference explicitly:
@@ -295,8 +321,9 @@ an existing reference. These are future syntax sketches; declaration/inference
 and empty-reference defaults still need specification. The earlier unprefixed
 `reference &my_obj` sketch is superseded.
 
-The compiler must require agreement between the `&` name prefix and the declared
-reference type. A reference cannot be accessed by dropping its prefix. Resolve
+The compiler derives the reference category from the `&` name prefix and the
+referenced module type from the unmodified path on the second line. The older
+`&.sys.obj` second-line notation is superseded. A reference cannot be accessed by dropping its prefix. Resolve
 `&name` against declarations so that acquiring a reference to an owned object
 and reading a reference variable remain distinct. Do not introduce `&&name` or
 implicit references to references. The combination of an owned `name` and a
@@ -420,27 +447,56 @@ pretending that it eliminates application-level effects of shared mutation.
 
 ### 7. Dynamic lists of states
 
-A list is an owned sequence of instances of one module type. Runtime length is
-independent of the compile-time knowledge of the element layout.
+A list is now a language-level declaration form rather than a required user
+wrapper around `sys/list`. A runtime or standard library component can still
+implement its storage. The compiler knows the element type from the module
+path; runtime length is independent of compile-time layout knowledge.
 
-The candidate system module is `sys/list`. Element type is fixed for a list's
-lifetime. Initial length, if supported, creates that many independently
-initialized states. Distinguish initial length from reserved storage capacity.
+The declaration forms are:
+
+```text
+item
+.shop.item
+
+&item_ref
+.shop.item
+
+items[]
+.shop.item
+
+&item_refs[]
+.shop.item
+```
+
+The first owns one state; the second stores one reference; the third owns
+element states; the fourth owns reference slots pointing to independent objects.
+Only names carry `&` and `[]`. The second line remains just a module path.
+`&items[]` means a list of references, never a reference to an entire list.
+References to whole collections and multidimensional lists are not yet designed.
+
+Lists are initially empty. Element type is fixed for their lifetime. Initial
+length, if later supported, creates independently initialized owned elements;
+reference elements need an explicit empty-reference rule. Distinguish initial
+length from reserved capacity.
+
+Cloning an owned-state list recursively clones owned element state. Cloning
+a reference list copies references to the same targets. Removing or clearing
+reference slots does not destroy their targets; owned element removal releases
+the element and its owned children.
 
 Potential inputs and results, with names still provisional:
 
 | Member | Role |
 |---|---|
-| Element type | Establishes the list's state type; binding syntax is open |
+| Element type | Fixed by the module path in the declaration |
 | Action | Selects the operation for this call |
 | Index | Selects a position for operations that need one |
 | Source state | Supplies a state to clone when requested |
 | Length result | Reports the current element count |
-| Selected state result | Temporarily selects an element for calls/result reads |
 | Error result | Reports invalid positions, allocation failure, or invalid use |
 
 Useful actions include no operation, append initialized state, append clone,
-select, remove, and clear. This is a candidate operation set, not a fixed API.
+remove, and clear; reference lists also need append-reference behavior. This is a candidate operation set, not a fixed API.
 The module body interprets the action; operations do not have to be split into
 different modules. Unused inputs and invalid combinations need documented rules.
 
@@ -469,34 +525,61 @@ An index identifies a position, not persistent object identity. Removing an
 earlier element can change what that index selects. Stable object references,
 if required, need a separate identity mechanism.
 
-#### Element selection without square brackets
+#### Indexed calls and whole-list calls
 
-Square-bracket indexing was suggested and rejected as an unnecessary syntax
-addition. A cursor-like interface was then proposed: call the list with an index
-and use its selected-state result to call the element.
-
-The following is illustrative future syntax, not a valid current program:
+The earlier cursor design (`items.item`) is superseded by explicit indexed
+selection. Brackets were reconsidered and adopted for list names and indexing.
+These examples describe future syntax, not current compiler support:
 
 ```text
-items
- index < position
-
-items.item
+items[position]
  price < price
  quantity < quantity
+:
+ handle_unavailable
 ```
 
-Each parameter stays on its own line. A result access such as
-`items.item.total` was suggested but has not been adopted.
+An owned element call executes over that element's state. A reference element
+uses the same call shape, with the mandatory prefix:
 
-A single mutable cursor creates a nested-traversal problem: an inner selection
-can replace an outer selection. Decide whether selections are captured values,
-scoped accesses, or mutable cursors, and define exactly when they expire. Do not
-present cursor syntax as settled until nested examples work clearly.
+```text
+&item_refs[position]
+ < 255
+:
+ handle_unavailable
+```
 
-Iteration syntax, bounds behavior, insertion order, removal behavior, and
-mutation during traversal also remain open. These should be designed together
-instead of inventing syntax in a large example.
+An out-of-bounds position prevents execution and takes the alternative branch.
+For a reference element, a missing or busy target also prevents execution.
+Indexed selection does not modify a shared cursor, so inner selection does not
+silently replace an outer call's target. Active-state protection still applies.
+
+Whole-list operations retain empty brackets:
+
+```text
+items[]
+ action < actions.append
+```
+
+Collection actions and their parameter names remain provisional. For a reference
+list, the collection name retains `&`, but a whole-list call acts on the owned
+collection of reference slots, not on every target. Passing a source reference
+for append needs a defined signature; it does not require an action module per
+operation.
+
+Obtaining a saved reference to an owned element was sketched as
+`&selected &items[position]`. This is acquisition when `items[]` is declared;
+with a declared `&items[]`, `&items[position]` instead reads a reference element.
+Name resolution must distinguish these cases and reject ambiguous base names.
+Failure handling for reference acquisition remains open; do not conflate it
+with the already defined alternative on calls. Saved element references must
+preserve object identity through relocation and index shifts, and become invalid
+when their element or owner is deleted.
+
+Iteration syntax, stored-result access, length access, index origin, insertion
+order, and mutation during traversal still need specification. The former
+`items.length` suggestion must be reconciled with the empty-bracket whole-list
+notation; it is not a settled exception. Keep each argument on its own line.
 
 ### 8. Generators and deferred work
 
@@ -533,7 +616,8 @@ values; no parameters, aliases, executable body, or mutation. Enum members are
 available without executing the module, and the enum itself is not callable.
 
 Initially, members can be named numeric constants rather than a new closed
-value type. An action parameter receives the selected member's numeric value,
+enum type. Their values follow the future number-type contract rather than
+implicitly being `size_t`. An action parameter receives the member's numeric value,
 not the enum module itself. Unknown action values must produce a defined error.
 Using zero for a no-operation default is convenient but remains an API choice.
 Member access syntax, duplicate-value policy, and enum type checking remain open.
@@ -545,40 +629,142 @@ The suggestion to replace `@Ama` with `@do` would emphasize execution rather
 than implementation language. Other candidates were `@body`, `@proc`, and
 `@code`. No replacement is accepted yet. `@C` remains the current native selector.
 
-### 10. Native C and the standard library boundary
+### 10. Uniform types instead of a universal `size_t`
 
-The compiler must know state layouts, element types, instance selection, and
-generated initialization, cloning, execution, and cleanup operations. Ordinary
-current numeric `@C` signatures cannot express all of these by themselves.
+The chosen direction is the radical uniform model: modules describe data types
+as well as behavior. Owned states, typed references, and lists remain the
+common composition mechanisms. Numbers and byte sequences are fundamental
+module-defined types with suitable native representations.
 
-The standard library can implement allocation, growth, list operations, and
-handle tables using compiler-provided descriptions or specialized generated
-adapters. Static type specialization versus runtime type descriptors remains
-an implementation choice. Do not assume that passing a module type is already
-supported by the language.
+Do not replace the universal `size_t` with an equally universal byte or untyped
+byte array. A byte sequence can hold text or binary data, but code should not
+need to reconstruct a multi-byte encoding to increment a list index. Nor should
+it guess whether a buffer contains a number, reference, or serialized object.
 
-Native module globals and C `static` variables are not automatically instance
-state. Supporting stateful native objects requires an explicit context contract.
-Files, sockets, and third-party resources require deliberate clone and cleanup
-policies; byte copying is insufficient. Native code must not retain temporary
-pointers into Ama states or lists. These constraints need contributor guidance
-and an updated ABI before stateful native instances are supported.
+Language-level meaning must be distinct from representation:
 
-The current standard library already lives under `stdlib/modules/` and builds
-as `libama_std.a`. Keep that separation: application-facing list behavior belongs
-there, while compiler support supplies the state/type machinery it depends on.
+| Meaning | Possible implementation; not a settled ABI |
+|---|---|
+| Numeric state/value | Inline fixed-width integer or managed numeric payload |
+| Byte sequence | Buffer and length with defined ownership |
+| Owned module state | Generated structure with owned children |
+| Reference to a module instance | Checked typed handle |
+| List | Runtime storage of typed owned states or reference slots |
+| Opaque native state | Typed object whose implementation holds a C payload |
+
+An owned basic value must have value semantics under the chosen copy/clone
+rules; sharing its representation must not introduce surprising shared mutable
+state. Optimizing small values inline is allowed. These optimizations must not
+change observable ownership, identity, or reference behavior.
+
+The width and signedness of numbers, overflow behavior, literal typing,
+conversions, and byte representation are not decided. In particular, adopting
+module-defined numbers does not silently adopt either 64-bit integers or
+arbitrary-precision arithmetic. Choose the initial numeric module and define its
+operations explicitly. List lengths and indices need a documented numeric
+contract and checked conversion to host allocation sizes.
+
+The syntax for numeric literals/defaults and enum constants must remain readable.
+Decide how literals initialize a module-defined numeric value, which types may
+appear in conditions, and how current arithmetic modules evolve. Avoid forcing
+users to allocate objects manually for every literal or arithmetic temporary.
+Names and paths of fundamental modules are still open; do not invent a large
+primitive hierarchy before testing ordinary programs.
+
+`size_t` remains useful inside C for allocation sizes and host indexing. It is
+not an Ama type definition. Cross-boundary conversions must check range rather
+than truncate silently, especially on different host word sizes.
+
+### 11. Native C data and the standard library boundary
+
+The compiler must know type identities, layouts or opaque-state contracts,
+instance selection, and generated initialization, cloning, execution, and
+cleanup operations. Current numeric `@C` signatures cannot express this model.
+The new native ABI must be designed explicitly; it is not implied by an existing
+`size_t` parameter or result.
+
+A C implementation may store a `void*` payload inside its native state. Ama sees
+a typed instance and checked references, never a bare pointer. For example,
+a future consumer of an opaque image declares:
+
+```text
+@<
+&image
+.native.image
+```
+
+`native/image` is an illustrative type path, not an implemented module. Its
+implementation knows the actual C image structure. Another native module may
+work directly with the same image without copying its buffer, but must use the
+agreed type interface to obtain temporary payload access.
+
+Parameter names describe roles; they do not establish type identity. Two native
+implementations calling different layouts `image` are not compatible. Renaming
+a parameter must not change its type. Require agreement on the module-defined
+type and a shared native accessor/header contract rather than independently
+casting a `void*` based on its name.
+
+The native type owner must specify:
+
+- How a fresh payload is initialized and who owns its allocations.
+- How temporary access is acquired and released, including busy checks.
+- Whether clone creates an independent resource, or is unsupported.
+- How owned payloads are destroyed exactly once.
+- How external or borrowed C resources are represented without assuming ownership.
+- What happens on initialization, clone, or cleanup failure.
+
+A file, socket, image buffer, or third-party context cannot be cloned by blindly
+copying its pointer. A type that cannot clone needs a defined rejection and
+failure propagation when contained in an owned tree. Do not silently share its
+payload under a clone operation advertised as independent.
+
+Opaque native types still have trusted C implementations. Typed wrappers cannot
+make arbitrary incorrect C casts or saved raw pointers memory-safe. Require
+native modules to use the declared contract and forbid retaining temporary
+state/payload pointers after access ends. Any persistent cross-module link must
+use a supported lifetime contract rather than an untracked borrowed pointer.
+
+Native globals and C `static` variables are not automatically instance state.
+They must not accidentally share per-object data. Busy state and cleanup are
+managed through the runtime/native contract, not bypassed by direct payload use.
+Whether resource finalization needs a native callback is an ABI question; it
+does not introduce an Ama constructor section.
+
+The standard library can implement allocation, fundamental native data types,
+list growth, and handle tables using compiler-provided descriptions or generated
+adapters. Static specialization versus runtime descriptors remains open. Keep
+the existing separation: library sources live under `stdlib/modules/` and build
+as `libama_std.a`; the compiler supplies type/state machinery. A module used as
+a type in a declaration does not automatically become an ordinary runtime value
+that can be passed to every function.
 
 ## Work plan and verification
 
 Do not implement every part at once. Resolve a small set of complete programs
 before changing the grammar.
 
-- [ ] Specify where owned `.module.path` and reference `&.module.path`
-  declarations are permitted. Define persistent internal state, typed lists,
-  temporary values, and the migration from current aliases.
+- [ ] Define the initial fundamental module types for numbers and byte sequences,
+  their literal/default syntax, condition behavior, numeric range, overflow,
+  conversions, and value versus reference passing. Keep unresolved representation
+  choices explicit.
+- [ ] Replace assumptions of universal `size_t` in symbols, parsing, codegen,
+  arithmetic interfaces, enum values, and list indices with the chosen type model.
+  Plan migration of existing programs and native interfaces.
+- [ ] Define inline representation rules for small values without requiring
+  user-visible heap allocation or weakening ownership and reference semantics.
+- [ ] Design typed opaque native state, temporary payload access, and lifecycle
+  callbacks. Specify unsupported clones and partial-failure cleanup.
+- [ ] Implement declaration forms `item`, `&item`, `items[]`, and `&items[]`,
+  always followed by an unmodified `.module.path`. Define permitted declaration
+  sections, persistent state, temporary values, and migration from current aliases.
+- [ ] Implement indexed call targets and empty-bracket collection calls with
+  mandatory reference-name prefixes and checked bounds.
+- [ ] Specify reference-list insertion, empty slots, clone/removal semantics,
+  and saved element identity through growth and index shifts.
 - [ ] Implement mandatory `&` prefixes for reference declarations and all uses,
   including reference parameters, results, named argument labels, assignments,
-  and call targets. Reject mismatches between name prefixes and declared types.
+  and call targets. Derive the reference category from the name; reject modifiers
+  on the module-path line and missing prefixes on reference uses.
 - [ ] Define resolution of `&owned_instance` acquisition versus an existing
   `&reference` variable, including same-scope name collisions. Reading or copying
   a reference must not add another reference level.
@@ -594,8 +780,9 @@ before changing the grammar.
   explicit calls without repeated module paths in the body.
 - [ ] Write a basket example with a list of item states, append requests,
   selection, stored result reads, and iteration.
-- [ ] Write nested-list and shared-object examples to expose cursor and lifetime
-  ambiguities. Preserve separate argument lines and avoid square brackets.
+- [ ] Write nested-list and shared-object examples using indexed calls, owned
+  lists, and reference lists. Preserve separate argument lines and test access
+  lifetime without introducing a mutable selection cursor.
 - [ ] Specify per-call defaults, retained results, cloning contents, and failure
   behavior. Confirm which old programs intentionally change meaning.
 - [ ] Complete the explicit-destruction policy and reference default rules;
@@ -607,14 +794,18 @@ before changing the grammar.
 - [ ] Decide separately whether to rename `@Ama`; migrate all examples and
   normative grammar only after that decision.
 - [ ] Define the native state ABI and compiler/library type contract.
-- [ ] Implement the list module, allocation failures, and active-access checks.
+- [ ] Implement language-level list support backed by runtime/library storage,
+  allocation failures, and active-access checks.
 - [ ] Update `README.md`, `EBNF.md`, and `CONTRIBUTORS.md` with implemented rules;
   keep unresolved proposals here rather than in the normative specification.
 
 Verification should cover independent objects, persistent internal values,
 per-call defaults, repeated identical requests, clone independence of owned
 trees/lists, preserved identity of external references, and cleanup on failure.
-List tests should include empty lists, growth, invalid positions, removal,
+List tests should include all four declaration forms, rejection of second-line
+modifiers, whole-list versus element calls, owned-list clone independence,
+reference-list shared targets, non-destruction of targets on reference removal,
+empty lists, growth, invalid positions, removal,
 nested access, and forbidden structural changes during active calls. Reference
 tests should cover mandatory name prefixes, prefix/type mismatches, reference
 copying without another indirection level, name-resolution collisions, prefixed
@@ -623,7 +814,12 @@ destruction invalidating child references, and invalid active destruction. Verif
 that missing/busy targets take `:`, failed calls do not assign outputs, body
 errors do not take `:`, and busy state is released on all supported exit paths.
 Deletion tests must reject busy descendants before freeing any part of a tree. Native tests must demonstrate that state is not accidentally shared
-through C globals. Enum tests should reject executable bodies and mutation.
+through C globals. Cover typed opaque payload exchange without copying, rejection
+of incompatible types regardless of parameter names, lifetime invalidation,
+independent resource clones or explicit clone refusal, and exactly-once cleanup.
+Numeric tests must cover literals, value copies, range/overflow policy, index
+conversion, host-size boundaries, and byte-sequence ownership. Enum tests should
+reject executable bodies and mutation and follow the new numeric contract.
 
 Keep the existing two test harnesses: C component tests under `tests/unit/` and
 whole-program scenarios under `tests/integration/`. Use the normal recursive
