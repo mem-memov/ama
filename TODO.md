@@ -80,6 +80,8 @@ constants from executable modules and unfinished drafts. Replacing `@Ama` with
 - Repeated identical calls still execute the body repeatedly.
 - Declarations establish persistent state; ordinary calls do not recreate it.
 - No separate constructor annotation or section is needed.
+- Parameters and results are temporary per-call variables; variables declared
+  in the module body persist in the instance between calls.
 - Explicit state cloning is a required capability.
 - Lists must support an element count unknown at compile time.
 - Lists should be usable as owned parts of another module's state.
@@ -204,9 +206,11 @@ introduced.
 
 The current language resets parameters and results to defaults and locals to
 zero on calls. Persistent object state therefore requires a real semantic
-change, not just a different allocation method. Decide how persistent internal
-variables are declared and how they differ from temporary values inferred in
-the body. Do not silently turn every existing temporary into persistent memory.
+change, not just a different allocation method. Parameters and results are
+temporary; body-declared variables are persistent. Migrating existing programs
+must account for this deliberate change. The initial state/code separation
+refactor preserves current reset behavior; persistent-body semantics follow
+as a separate language change.
 
 The candidate call protocol is:
 
@@ -220,8 +224,11 @@ If defaults remain per-call, omitted inputs mean their defaults, not "retain
 the previous input." An application that needs a previous input saves it in
 internal state. Partial-update behavior must be explicit in its interface.
 
-The exact initialization declarations, temporary-variable rules, and public
-result access syntax remain open.
+The storage-duration rule is settled: variables in the parameter and result
+sections are temporary for a call; variables declared in the module body are
+persistent instance state. No additional temporary-versus-persistent annotation
+is needed. Exact declaration placement and public result access syntax remain
+to be specified.
 
 ### 4. Reactivity and repeated requests
 
