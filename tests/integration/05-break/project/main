@@ -1,3 +1,4 @@
+@<
 eq
 .sys.math.eq
 sub
@@ -5,9 +6,11 @@ sub
 print
 .sys.io.print
 
+@>
 i
 10
 
+@Ama
 i
 {
  sub

@@ -1,9 +1,10 @@
+@<
 choose
 .math.choose
 print
 .sys.io.print
 
-
+@Ama
 choose
  > answer
 print

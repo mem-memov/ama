@@ -48,7 +48,9 @@ lines in Make variable lists also use four spaces.
 
 Ama fixtures and Ama examples retain the language's semantic indentation:
 **one space per nesting level**, as specified in `EBNF.md`. Applying C formatting
-to them changes the program. Deliberate CRLF fixtures retain CRLF; ordinary
+to them changes the program. Module files use `@<`, `@>`, and `@Ama`
+for section boundaries; empty lines are formatting, not delimiters. `@Ama` is
+required even for an empty implementation. Deliberate CRLF fixtures retain CRLF; ordinary
 source and documentation files use LF. `.editorconfig` records these exceptions;
 `.gitattributes` preserves the deliberate CRLF fixture and makes Git whitespace
 checks recognize its line endings.

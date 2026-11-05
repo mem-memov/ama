@@ -10,9 +10,8 @@ typedef struct {
     long results_start, results_end;
     long code_start, code_end;
 
-    /* 1-based line numbers of the first line in each section.
-        * Used by init_lexer so token.line_number refers to the real file line,
-        * not to a line relative to the section start. */
+    /* Ranges exclude annotation lines. Absent declaration sections have empty
+        ranges; line numbers refer to the original source file. */
     uint32_t parameters_line;
     uint32_t results_line;
     uint32_t code_line;

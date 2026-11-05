@@ -1,6 +1,7 @@
+@<
 print
 .sys.io.print
 
-
+@Ama
 print
  < &x

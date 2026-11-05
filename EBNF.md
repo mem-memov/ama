@@ -117,33 +117,55 @@ but **do not** count as blank lines for the `has_preceding_blank_line` flag (see
 
 ## 3. Physical structure of a module file
 
-A module is a file with **exactly three sections**, separated by the **first two blank lines** (lines whose content is only spaces).
+A module has optional parameter and result sections and a required Ama code
+section. Every present section starts with an explicit annotation. Blank lines
+are whitespace, never section delimiters.
 
 ### 3.1 File structure
 
 ```ebnf
-<module-file>   ::= <params-section>
-                    <blank-line>
-                    <returns-section>
-                    <blank-line>
-                    <code-section>
+<module-file>       ::= <section-layout>
+                        [ <parameters-section> ]
+                        [ <results-section> ]
+                        <implementation-section>
 
-<params-section>  ::= { <declaration> }
-<returns-section> ::= { <declaration> }
-<code-section>    ::= { <code-line> }
+<parameters-section> ::= "@<" <annotation-tail> <declaration-body>
+<results-section>    ::= "@>" <annotation-tail> <declaration-body>
+<implementation-section>
+                    ::= "@Ama" <annotation-tail> <code-section>
+
+<annotation-tail>   ::= { <space> } [ <comment> ] <newline>
+<declaration-body>  ::= <section-layout>
+                        { <declaration> <section-layout> }
+<section-layout>    ::= { <blank-line> | <comment-line> }
+<code-section>      ::= { <code-line> }
 ```
 
-A section may be empty. The two separating blank lines are mandatory even
-when a section is empty. A file with fewer than two blank separators is rejected. Additional blank
-lines belong to the code section and are allowed.
+Rules:
 
-A blank line is a line whose only characters before `\n` are spaces (and,
-for CRLF files, `\r`).
+- An annotation starts at indentation zero and occupies its own line. Only
+  spaces and an optional `#` comment may follow it.
+- The order is `@<`, `@>`, `@Ama`. Repeated or out-of-order annotations are errors.
+- Either declaration section may be absent; an absent section is empty.
+- Every present section may also be empty. A minimal empty module is `@Ama`.
+- `@Ama` is required. A declaration-only or completely empty file is an error;
+  draft-module handling is not implemented.
+- Content before the first annotation is an error, except blank lines and
+  comments. The old implicit blank-line format is not accepted.
+- Unknown annotations are errors. `@C`, C implementations, stub generation,
+  and general-purpose annotation arguments are not implemented.
+- An indented line beginning with `@` is also rejected, including inside a body.
+- A final newline is optional, including after the final `@Ama` annotation.
+
+Blank lines and comments are permitted throughout each section. A blank line
+contains only spaces before its newline. CRLF line endings are accepted and
+the physical line numbers are preserved for diagnostics. Annotation lines are
+excluded from the token ranges passed to the declaration and code parsers.
 
 ### 3.2 Declarations (params and returns)
 
 ```ebnf
-<declaration>   ::= <identifier-line> <value-line>
+<declaration>   ::= <identifier-line> <section-layout> <value-line>
 
 <identifier-line> ::= <identifier> <newline>
 <value-line>      ::= <value> <newline>
@@ -154,7 +176,8 @@ for CRLF files, `\r`).
 ```
 
 A declaration is a pair: an identifier on one line at indent 0, and a value
-on the next line at indent 0.
+on the next nonblank, noncomment line at indent 0. An annotation ends the
+section, so an incomplete declaration cannot consume a value from another section.
 
 Semantics:
 
@@ -175,8 +198,8 @@ returns section, non-alias declarations become `SYMBOL_RESULT`.
 ```ebnf
 <code-line>     ::= <statement> | <comment-line> | <blank-line>
 
-<comment-line>  ::= <indent> <comment> <newline>
-<blank-line>    ::= <indent> <newline>
+<comment-line>  ::= { <space> } <comment> <newline>
+<blank-line>    ::= { <space> } <newline>
 ```
 
 Comments and blank lines in the code section are ignored by the parser.
@@ -363,22 +386,15 @@ symbol_5 = symbol_3;
 
 ## 5. Whole-module grammar
 
-Putting it together:
+The section-level grammar is defined in §3.1. Code inside `@Ama` consists of
+statements at indentation zero, with optional comments and blank lines:
 
 ```ebnf
-<module>        ::= <declarations-params>
-                    <blank>
-                    <declarations-returns>
-                    <blank>
-                    <code>
-
-<declarations-params>  ::= { <declaration> }
-<declarations-returns> ::= { <declaration> }
-
-<code>          ::= { <statement-0> | <comment> | <blank> }
+<code-section> ::= { <statement-0> | <comment-line> | <blank-line> }
 ```
 
-`<statement-0>` is a statement at indent 0.
+`<statement-0>` is a statement at indentation zero. A section annotation is
+handled by the module splitter, not as an executable statement or a value.
 
 ---
 
@@ -395,8 +411,9 @@ by the grammar above.
 3. **Indent step is exactly one space.** Indent increases by exactly 1 per
    nested body. Jumps of two or more are errors.
 
-4. **Two section separators.** The first two blank lines delimit the
-   declaration sections. Further blank lines are code whitespace.
+4. **Explicit section annotations.** Optional `@<` and `@>` precede the
+   required `@Ama`, at indentation zero, without repetition. Blank lines
+   never delimit sections.
 
 5. **No blank line between a condition and `?` or `{`.** The `has_preceding_blank_line`
    flag tracks this. Comments are fine; blank lines are not.
@@ -445,14 +462,17 @@ The current compiler does **not** enforce:
 File `math/double`:
 
 ```text
+@<
 x
 0
 add
 .sys.math.add
 
+@>
 result
 0
 
+@Ama
 add
  < x
  < x
@@ -462,12 +482,13 @@ add
 File `main`:
 
 ```text
+@<
 double
 .math.double
 print
 .sys.io.print
 
-
+@Ama
 double
  < 21
  > answer

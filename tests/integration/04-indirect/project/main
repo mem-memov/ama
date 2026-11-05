@@ -1,14 +1,12 @@
+@<
 print
 .sys.io.print
 
-
+@Ama
 x
 0
 p
 &x
-
-@p
-42
 
 print
  < x

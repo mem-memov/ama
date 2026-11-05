@@ -1,48 +1,163 @@
 #include "../common.c"
 
-static void it_finds_sections_and_allows_blank_lines_in_code(void) {
+static void it_finds_explicit_sections_and_preserves_physical_lines(void) {
     setup_test();
-    source = text_file("x\n0\n\nresult\n1\n\nresult\n42\n\nresult\n7\n");
+    source = text_file("@<\nvalue\n0\n\n@>\nresult\n1\n\n@Ama\nresult\n42\n\nresult\n7\n");
     ModuleSections sections;
     bool split = split_module_sections(source, &sections, &error);
-    assert(split && sections.parameters_line == 1 && sections.results_line == 4);
-    assert(sections.code_line == 7 && sections.code_start == sections.results_end + 1);
+    assert(split && sections.parameters_line == 2 && sections.results_line == 6);
+    assert(sections.code_line == 10 && sections.parameters_end < sections.results_start);
+    bool initialized = init_lexer(&lexer, source, sections.results_start, sections.results_end,
+        sections.results_line, &error);
+    assert(initialized);
+    Token result_name = get_next_token(&lexer);
+    assert(result_name.type == TOKEN_IDENTIFIER && result_name.line_number == 6);
+    assert(strcmp(result_name.lexeme, "result") == 0);
     destroy_test();
 }
 
-static void it_accepts_three_empty_sections(void) {
+static void it_accepts_a_code_only_module(void) {
     setup_test();
-    source = text_file("\n\n");
+    source = text_file("@Ama\nvalue\n42\n");
     ModuleSections sections;
     bool split = split_module_sections(source, &sections, &error);
     assert(split && sections.parameters_start == sections.parameters_end);
+    assert(sections.results_start == sections.results_end && sections.code_line == 2);
+    destroy_test();
+}
+
+static void it_accepts_results_without_parameters(void) {
+    setup_test();
+    source = text_file("@>\nresult\n9\n@Ama\n");
+    ModuleSections sections;
+    bool split = split_module_sections(source, &sections, &error);
+    assert(split && sections.parameters_start == sections.parameters_end);
+    assert(sections.results_line == 2 && sections.code_line == 5);
+    destroy_test();
+}
+
+static void it_accepts_parameters_without_results(void) {
+    setup_test();
+    source = text_file("@<\nvalue\n0\n@Ama\n");
+    ModuleSections sections;
+    bool split = split_module_sections(source, &sections, &error);
+    assert(split && sections.parameters_line == 2);
+    assert(sections.results_start == sections.results_end && sections.code_line == 5);
+    destroy_test();
+}
+
+static void it_accepts_explicit_empty_sections_without_a_final_newline(void) {
+    setup_test();
+    source = text_file("@<\n@>\n@Ama");
+    ModuleSections sections;
+    bool split = split_module_sections(source, &sections, &error);
+    assert(split && sections.parameters_start == sections.parameters_end);
+    assert(sections.results_start == sections.results_end);
     assert(sections.code_start == sections.code_end);
     destroy_test();
 }
 
-static void it_rejects_missing_separators(void) {
+static void it_allows_comments_blank_lines_and_crlf_around_annotations(void) {
     setup_test();
-    source = text_file("x\n0\n");
+    source = text_file("# @C is only a comment\r\n\r\n@< # parameters\r\n\r\n@>   \r\n@Ama # implementation\r\n");
     ModuleSections sections;
     bool split = split_module_sections(source, &sections, &error);
-    assert(!split && error.error_code == ERROR_INVALID);
+    assert(split && sections.parameters_line == 4 && sections.results_line == 6);
+    assert(sections.code_line == 7);
+    destroy_test();
+}
+
+static void it_rejects_duplicate_annotations(void) {
+    setup_test();
+    source = text_file("@<\n@<\n@Ama\n");
+    ModuleSections sections;
+    bool split = split_module_sections(source, &sections, &error);
+    assert(!split && error.line_number == 2);
+    assert(strstr(error.message, "duplicate or out-of-order") != NULL);
+    destroy_test();
+}
+
+static void it_rejects_out_of_order_annotations(void) {
+    setup_test();
+    source = text_file("@>\n@<\n@Ama\n");
+    ModuleSections sections;
+    bool split = split_module_sections(source, &sections, &error);
+    assert(!split && error.line_number == 2);
+    assert(strstr(error.message, "duplicate or out-of-order") != NULL);
+    destroy_test();
+}
+
+static void it_rejects_native_annotations_until_language_extensions_exist(void) {
+    setup_test();
+    source = text_file("@C\n");
+    ModuleSections sections;
+    bool split = split_module_sections(source, &sections, &error);
+    assert(!split && error.error_code == ERROR_INVALID && error.line_number == 1);
+    assert(strstr(error.message, "unknown section annotation '@C'") != NULL);
+    destroy_test();
+}
+
+static void it_rejects_indented_annotations(void) {
+    setup_test();
+    source = text_file(" @Ama\n");
+    ModuleSections sections;
+    bool split = split_module_sections(source, &sections, &error);
+    assert(!split && strstr(error.message, "indentation 0") != NULL);
+    destroy_test();
+}
+
+static void it_rejects_the_legacy_blank_line_format(void) {
+    setup_test();
+    source = text_file("value\n0\n\nresult\n0\n\nresult\nvalue\n");
+    ModuleSections sections;
+    bool split = split_module_sections(source, &sections, &error);
+    assert(!split && error.line_number == 1);
+    assert(strstr(error.message, "content before a section annotation") != NULL);
+    destroy_test();
+}
+
+static void it_requires_an_explicit_ama_implementation(void) {
+    setup_test();
+    source = text_file("@<\nvalue\n0\n");
+    ModuleSections sections;
+    bool split = split_module_sections(source, &sections, &error);
+    assert(!split && strstr(error.message, "must contain an @Ama section") != NULL);
     destroy_test();
 }
 
 static void it_rejects_tabs_with_the_physical_line_number(void) {
     setup_test();
-    source = text_file("\n\nx\n\t42\n");
+    source = text_file("@Ama\nvalue\n\t42\n");
     ModuleSections sections;
     bool split = split_module_sections(source, &sections, &error);
-    assert(!split && error.error_code == ERROR_INVALID && error.line_number == 4);
+    assert(!split && error.error_code == ERROR_INVALID && error.line_number == 3);
+    destroy_test();
+}
+
+static void it_rejects_a_stray_carriage_return_on_an_annotation(void) {
+    setup_test();
+    source = text_file("@Ama\r");
+    ModuleSections sections;
+    bool split = split_module_sections(source, &sections, &error);
+    assert(!split && error.error_code == ERROR_INVALID && error.line_number == 1);
     destroy_test();
 }
 
 void run(void) {
-    it_finds_sections_and_allows_blank_lines_in_code();
-    it_accepts_three_empty_sections();
-    it_rejects_missing_separators();
+    it_finds_explicit_sections_and_preserves_physical_lines();
+    it_accepts_a_code_only_module();
+    it_accepts_results_without_parameters();
+    it_accepts_parameters_without_results();
+    it_accepts_explicit_empty_sections_without_a_final_newline();
+    it_allows_comments_blank_lines_and_crlf_around_annotations();
+    it_rejects_duplicate_annotations();
+    it_rejects_out_of_order_annotations();
+    it_rejects_native_annotations_until_language_extensions_exist();
+    it_rejects_indented_annotations();
+    it_rejects_the_legacy_blank_line_format();
+    it_requires_an_explicit_ama_implementation();
     it_rejects_tabs_with_the_physical_line_number();
+    it_rejects_a_stray_carriage_return_on_an_annotation();
 }
 
 int main(void) {

@@ -1,9 +1,12 @@
+@<
 flag
 1
 
+@>
 selected
 10
 
+@Ama
 flag
 # comment preserves greedy binding
 ?

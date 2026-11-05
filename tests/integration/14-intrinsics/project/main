@@ -1,3 +1,4 @@
+@<
 print
 .sys.io.print
 add
@@ -29,7 +30,7 @@ or
 not
 .sys.math.not
 
-
+@Ama
 add
  < 5
  < 7

@@ -1,9 +1,10 @@
+@<
 add
 .sys.math.add
 print
 .sys.io.print
 
-
+@Ama
 add
  < 5
  < 7

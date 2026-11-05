@@ -1,3 +1,4 @@
+@<
 add
 .sys.math.add
 sub
@@ -5,11 +6,13 @@ sub
 print
 .sys.io.print
 
+@>
 i
 5
 sum
 0
 
+@Ama
 i
 {
  add

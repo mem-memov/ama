@@ -31,12 +31,13 @@ Use `make C_COMPILER=clang` to build the compiler with Clang.
 Create a directory `hello` containing one file named `main`:
 
 ```text
+@<
 add
 .sys.math.add
 print
 .sys.io.print
 
-
+@Ama
 add
  < 5
  < 7
@@ -47,8 +48,8 @@ print
  > err
 ```
 
-The two blank lines after the aliases separate the parameter section, empty
-result section, and code section. Build and execute it:
+The `@<` annotation starts the parameter/alias section, and `@Ama` starts
+the implementation. This module has no result section. Build and execute it:
 
 ```sh
 ./ama hello main hello.c
@@ -62,11 +63,28 @@ non-hidden regular file recursively and treats each as a module.
 
 ## Modules and declarations
 
-A file contains three sections separated by the first two blank lines:
-parameters, results, and code. Sections may be empty. Further blank lines in
-code are allowed. Comments start with `#` and do not act as section separators.
+Module sections begin with visible annotations on their own lines:
 
-Declarations are name/value pairs, one item per line at indent zero. A decimal
+| Annotation | Contents | Required |
+|---|---|---|
+| `@<` | Parameters and module aliases | No |
+| `@>` | Results (aliases are also accepted) | No |
+| `@Ama` | Ama implementation | Yes |
+
+The order is `@<`, `@>`, `@Ama`, and each annotation may appear once.
+An omitted declaration section is empty. An annotation starts at indentation
+zero; trailing spaces and a `#` comment are allowed. Blank lines and comments
+may appear before annotations and within any section. They no longer delimit
+sections. The existing condition-binding rule still forbids a blank between
+a condition and its `?` or `{`.
+
+A deliberately empty module consists of `@Ama` alone. An unfinished file
+without `@Ama` is an error in the current compiler. Unknown annotations,
+including `@C`, are rejected; native implementations and general annotations
+are not supported yet. The former blank-line section format is rejected.
+
+Declarations are name/value pairs, one item per line at indent zero.
+Blank lines and comments may separate declarations or a name from its value. A decimal
 integer gives a parameter or result its default value. A dotted module path
 declares an alias; `.math.double` refers to file `math/double` relative to the
 project root. Declare aliases in the parameter section. The current parser
@@ -75,14 +93,17 @@ also accepts aliases in the result section; they are not returned values.
 For example, file `math/double`:
 
 ```text
+@<
 x
 0
 add
 .sys.math.add
 
+@>
 result
 0
 
+@Ama
 add
  < x
  < x
@@ -90,7 +111,7 @@ add
 ```
 
 The entry module must exist and have no value parameters. Aliases do not count
-as value parameters. Empty modules are allowed.
+as value parameters. An empty implementation still requires `@Ama`.
 
 ## Values and assignment
 
@@ -299,7 +320,7 @@ module calls, and repeated whole-project compilation within one process. Tests
 use standard `assert`; `-UNDEBUG` keeps assertions enabled even if build flags
 contain `-DNDEBUG`. There is no automatic registration or generated runner.
 
-Integration scenarios preserve the original language examples. `project/`
+Integration scenarios cover language behavior and the explicit section format. `project/`
 contains only input modules. `expected.txt` compares stdout byte for byte,
 including final newlines; `expected-error.txt` contains a diagnostic substring
 and requires compiler exit status 1. Crashes and missing executables are failures.

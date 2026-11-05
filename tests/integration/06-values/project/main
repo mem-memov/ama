@@ -1,3 +1,4 @@
+@<
 print
 .sys.io.print
 worker
@@ -5,7 +6,7 @@ worker
 empty
 .empty
 
-
+@Ama
 x
 42
 y

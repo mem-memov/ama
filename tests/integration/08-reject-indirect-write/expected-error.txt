@@ -1,1 +1,1 @@
-unexpected byte 0x40 ('@')
+unknown section annotation '@x'

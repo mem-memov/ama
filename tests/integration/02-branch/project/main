@@ -1,9 +1,10 @@
+@<
 eq
 .sys.math.eq
 print
 .sys.io.print
 
-
+@Ama
 eq
  < 5
  < 5

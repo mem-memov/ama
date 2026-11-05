@@ -25,6 +25,11 @@ all:
 >    $(MAKE) -C 20-reject-blank-condition all
 >    $(MAKE) -C 21-reject-cycle all
 
+>    $(MAKE) -C 22-code-only all
+>    $(MAKE) -C 23-optional-sections all
+>    $(MAKE) -C 24-reject-legacy-sections all
+>    $(MAKE) -C 25-reject-native-annotation all
+
 clean:
 >    $(MAKE) -C 01-hello clean
 >    $(MAKE) -C 02-branch clean
@@ -47,3 +52,7 @@ clean:
 >    $(MAKE) -C 19-reject-extra-result clean
 >    $(MAKE) -C 20-reject-blank-condition clean
 >    $(MAKE) -C 21-reject-cycle clean
+>    $(MAKE) -C 22-code-only clean
+>    $(MAKE) -C 23-optional-sections clean
+>    $(MAKE) -C 24-reject-legacy-sections clean
+>    $(MAKE) -C 25-reject-native-annotation clean

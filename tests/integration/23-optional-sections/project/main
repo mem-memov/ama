@@ -1,0 +1,12 @@
+@<
+worker
+.worker
+
+print
+.sys.io.print
+
+@Ama
+worker
+ > answer
+print
+ < answer
