@@ -6,7 +6,7 @@
   - `ama` (compiler binary)
   - `build/` (object files, `build/tests/` intermediates)
   - any `*.o` or generated `.c` files under `build/`
-- Source of truth is `src/*.c`/`src/ama.h`, with `README.md` and `EBNF.md`
+- Source of truth is the `.c`/`.h` files under `src/`, with `README.md` and `EBNF.md`
   as the normative language specification.
 - Test sources live in `tests/NN-name/` (module files named `main`,
   expected output in `expected.txt`).

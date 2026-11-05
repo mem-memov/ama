@@ -1,4 +1,9 @@
-#include "ama.h"
+#include "graph/graph.h"
+#include "symbols/table.h"
+#include "common/path.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 /* ============================================================================
  * Dependency graph and topological sort
@@ -26,7 +31,7 @@
  *
  * Implementation choices:
  *
- *   - Fixed-size arrays (MAX_MODULES from ama.h). No dynamic allocation.
+ *   - Fixed-size arrays (MAX_MODULES from common/limits.h). No dynamic allocation.
  *     Exceeding MAX_MODULES is a hard error at the point of overflow.
  *
  *   - Three-color DFS (white / gray / black) for cycle detection. A back
@@ -41,7 +46,7 @@
  *
  * The graph is entirely internal to this file: GraphNode, G_Graph, G_NodeCount
  * are static. The driver and the parser use only the four public functions
- * declared in ama.h:
+ * declared in graph/graph.h:
  *
  *   ensure_graph_node()                 — pre-register a file as a node
  *   build_and_validate_project_graph()  — build, validate, return order
@@ -78,7 +83,7 @@ static int get_or_create_node(const char* path) {
     if (G_NodeCount >= MAX_MODULES) {
         fprintf(stderr,
                 "error: too many modules in dependency graph "
-                "(max %d); increase MAX_MODULES in ama.h\n",
+                "(max %d); increase MAX_MODULES in common/limits.h\n",
                 MAX_MODULES);
         exit(1);
     }
@@ -134,6 +139,29 @@ static void add_dependency(const char* from, const char* to) {
  * modules in this order, so no forward declarations are needed in out.c.
  */
 
+static void report_cycle(int u, int v) {
+    int cycle_start = -1;
+    for (int j = 0; j < g_path_top; j++) {
+        if (g_path_stack[j] == v) {
+            cycle_start = j;
+            break;
+        }
+    }
+    fprintf(stderr,
+            "error: recursion is forbidden. Cycle detected:\n");
+    if (cycle_start >= 0) {
+        for (int j = cycle_start; j < g_path_top; j++)
+            fprintf(stderr, "  %s ->\n",
+                    G_Graph[g_path_stack[j]].path);
+        fprintf(stderr, "  %s (back to start)\n",
+                G_Graph[v].path);
+    } else {
+        fprintf(stderr, "  %s -> %s\n",
+                G_Graph[u].path, G_Graph[v].path);
+    }
+    exit(1);
+}
+
 static void dfs_toposort(int u, int* order, int* idx) {
     G_Graph[u].visited = 1;                        /* gray */
     g_path_stack[g_path_top++] = u;
@@ -141,28 +169,8 @@ static void dfs_toposort(int u, int* order, int* idx) {
     for (int i = 0; i < G_Graph[u].adj_count; i++) {
         int v = G_Graph[u].adj[i];
 
-        if (G_Graph[v].visited == 1) {
-            int cycle_start = -1;
-            for (int j = 0; j < g_path_top; j++) {
-                if (g_path_stack[j] == v) {
-                    cycle_start = j;
-                    break;
-                }
-            }
-            fprintf(stderr,
-                    "error: recursion is forbidden. Cycle detected:\n");
-            if (cycle_start >= 0) {
-                for (int j = cycle_start; j < g_path_top; j++)
-                    fprintf(stderr, "  %s ->\n",
-                            G_Graph[g_path_stack[j]].path);
-                fprintf(stderr, "  %s (back to start)\n",
-                        G_Graph[v].path);
-            } else {
-                fprintf(stderr, "  %s -> %s\n",
-                        G_Graph[u].path, G_Graph[v].path);
-            }
-            exit(1);
-        }
+        if (G_Graph[v].visited == 1)
+            report_cycle(u, v);
 
         if (G_Graph[v].visited == 0)
             dfs_toposort(v, order, idx);
@@ -185,7 +193,7 @@ int ensure_graph_node(const char* path) {
 }
 
 /* Return nonzero if the given path is already a node in the graph.
- * Unlike module_exists (which inspects the symbol table), this also
+ * This also
  * recognizes modules with no declared symbols, because the driver
  * pre-registers every scanned file via ensure_graph_node. Used by the
  * parser to validate call targets. */

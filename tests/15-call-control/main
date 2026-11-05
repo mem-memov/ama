@@ -1,0 +1,15 @@
+choose
+.math.choose
+print
+.sys.io.print
+
+
+choose
+ > ответ
+print
+ < ответ
+choose
+ flag < 0
+ selected > ответ
+print
+ < ответ

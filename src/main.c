@@ -1,4 +1,6 @@
-#include "ama.h"
+#include "project/project.h"
+#include <stdio.h>
+#include <string.h>
 
 /* ============================================================================
  * Compiler entry point

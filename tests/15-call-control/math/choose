@@ -1,0 +1,18 @@
+flag
+1
+
+selected
+10
+
+flag
+# comment preserves greedy binding
+?
+ flag
+ {
+  selected
+  99
+  >
+ }
+:
+ selected
+ 10

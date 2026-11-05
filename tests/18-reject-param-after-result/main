@@ -1,0 +1,7 @@
+add
+.sys.math.add
+
+
+add
+ sum > result
+ left < 1

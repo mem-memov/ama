@@ -16,17 +16,11 @@ LINKER_FLAGS     ?=
 
 PROJECT_TARGET := ama
 
-PROJECT_OBJECTS := \
-	build/lexer.o \
-	build/symbol.o \
-	build/emit.o \
-	build/parser.o \
-	build/graph.o \
-	build/backend.o \
-	build/driver.o \
-	build/main.o
-
-PROJECT_HEADERS := src/ama.h
+PROJECT_SOURCES := $(sort $(wildcard src/*.c src/*/*.c))
+PROJECT_OBJECTS := $(patsubst src/%.c,build/%.o,$(PROJECT_SOURCES))
+PROJECT_DEPS := $(PROJECT_OBJECTS:.o=.d)
+CPPFLAGS += -Isrc
+LTO_FLAGS ?= -flto
 
 # ---------------------------------------------------------------------------
 # Behaviour
@@ -54,6 +48,7 @@ help:
 	@echo "Toolchain overrides (pass on the command line):"
 	@echo "  C_COMPILER=<cmd>            C compiler (default: gcc)."
 	@echo "  C_COMPILER_FLAGS=\"<flags>\"  Compiler flags (default: -O2 -Wall -Wextra -std=c11 -pedantic -D_POSIX_C_SOURCE=200809L)."
+	@echo "  LTO_FLAGS=\"<flags>\"  Link-time optimization (default: -flto; empty disables)."
 	@echo "  LINKER_FLAGS=\"<flags>\"      Linker flags (default: empty)."
 	@echo ""
 	@echo "Examples:"
@@ -69,36 +64,13 @@ help:
 all: $(PROJECT_TARGET)
 
 $(PROJECT_TARGET): $(PROJECT_OBJECTS)
-	$(C_COMPILER) $(C_COMPILER_FLAGS) $(LINKER_FLAGS) -o $(PROJECT_TARGET) $(PROJECT_OBJECTS)
+	$(C_COMPILER) $(C_COMPILER_FLAGS) $(LTO_FLAGS) $(LINKER_FLAGS) -o $@ $^
 
-build/lexer.o: src/lexer.c $(PROJECT_HEADERS)
-	$(C_COMPILER) $(C_COMPILER_FLAGS) -c -o build/lexer.o src/lexer.c
+build/%.o: src/%.c Makefile
+	@mkdir -p $(dir $@)
+	$(C_COMPILER) $(CPPFLAGS) $(C_COMPILER_FLAGS) $(LTO_FLAGS) -MMD -MP -c -o $@ $<
 
-build/symbol.o: src/symbol.c $(PROJECT_HEADERS)
-	$(C_COMPILER) $(C_COMPILER_FLAGS) -c -o build/symbol.o src/symbol.c
-
-build/emit.o: src/emit.c $(PROJECT_HEADERS)
-	$(C_COMPILER) $(C_COMPILER_FLAGS) -c -o build/emit.o src/emit.c
-
-build/parser.o: src/parser.c $(PROJECT_HEADERS)
-	$(C_COMPILER) $(C_COMPILER_FLAGS) -c -o build/parser.o src/parser.c
-
-build/graph.o: src/graph.c $(PROJECT_HEADERS)
-	$(C_COMPILER) $(C_COMPILER_FLAGS) -c -o build/graph.o src/graph.c
-
-build/backend.o: src/backend.c $(PROJECT_HEADERS)
-	$(C_COMPILER) $(C_COMPILER_FLAGS) -c -o build/backend.o src/backend.c
-
-build/driver.o: src/driver.c $(PROJECT_HEADERS)
-	$(C_COMPILER) $(C_COMPILER_FLAGS) -c -o build/driver.o src/driver.c
-
-build/main.o: src/main.c $(PROJECT_HEADERS)
-	$(C_COMPILER) $(C_COMPILER_FLAGS) -c -o build/main.o src/main.c
-
-$(PROJECT_OBJECTS): | build
-
-build:
-	mkdir -p build
+-include $(PROJECT_DEPS)
 
 # ---------------------------------------------------------------------------
 # Test

@@ -189,15 +189,47 @@ returns `error = 0`. Error checking is explicit and optional.
 
 ## Compiler architecture
 
-The implementation is split across `src/`:
+The implementation is organized by compilation stage:
 
-1. `driver.c` scans modules and coordinates compilation; `main.c` handles CLI.
-2. `lexer.c` splits sections and produces tokens with line/indent metadata.
-3. `symbol.c` registers declarations and assigns internal symbol IDs.
-4. `graph.c` builds alias dependencies, rejects cycles, and orders modules.
-5. `parser.c` parses code and calls the emitters directly, without an AST.
-6. `emit.c` generates assignments, control flow, and calls; `backend.c` provides
-   arithmetic/I/O intrinsics and the C program wrapper.
+```text
+src/
+  main.c             CLI
+  common/            limits, paths, diagnostics
+  lexer/             tokens, character classification, section splitting, lexer
+  parser/            declarations, values, assignments, calls, control flow
+  symbols/           symbol types and table
+  graph/             dependency graph and cycle detection
+  codegen/           C output primitives, intrinsics, program wrapper
+  project/           directory scan, module loading, compilation pipeline
+```
+
+Start with `project/compile.c`: `compile_project` loads declarations, validates
+and orders dependencies, emits module bodies, and writes the program.
+`project/module.c` handles the two passes over each module; `project/scan.c`
+registers source paths. `parser/statement.c` classifies statements and dispatches
+to the appropriate parser. `parser/call.c` tracks argument mode, result ordering,
+and execution in a `CallState`. Code is emitted directly, without an AST.
+
+Headers expose each subsystem's own types and interface. `parser/internal.h`
+and `project/internal.h` declare helpers shared only within their subsystem.
+`common/limits.h` contains implementation limits; there is no umbrella header.
+
+Small token-stream, character-classification, and C output helpers are
+`static inline` in headers. The default build uses `-O2 -flto` during compilation
+and linking, allowing the compiler to inline across `.c` files as well.
+Inlining is an optimization decision; recursive functions and library calls
+are not forced inline. This setting optimizes the compiler itself; optimization
+of the generated program is controlled by the separate C compiler invocation.
+
+To build without LTO, use `make -B LTO_FLAGS=`. For a debug build:
+
+```sh
+make -B LTO_FLAGS= C_COMPILER_FLAGS="-O0 -g3 -Wall -Wextra -std=c11 -D_POSIX_C_SOURCE=200809L"
+```
+
+Use `make -B` when switching flags or compilers to rebuild existing objects.
+The Makefile preserves source subdirectories under `build/` and tracks header
+dependencies automatically with `-MMD -MP`.
 
 Generated C uses separate `static size_t v_<id>` variables and `void` module
 functions. IDs are private compiler names, with no numeric meaning in Ама.

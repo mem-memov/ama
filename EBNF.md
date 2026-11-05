@@ -1,7 +1,7 @@
 # Ама — Grammar
 
 This document specifies the syntax of the Ама language. It is the normative
-reference for the parser in `src/parser.c` and the lexer in `src/lexer.c`.
+reference for the parser in `src/parser/` and the lexer in `src/lexer/`.
 
 The notation is EBNF:
 
@@ -334,9 +334,9 @@ Rules:
   `sum > r`.
 - The call is emitted as:
     1. `emit_call_init(callee)` — reset callee parameters/results to declared defaults and locals to zero;
-    2. one `emit_call_param_*` per parameter, in source order;
+    2. `emit_assign_const` or `emit_copy` per parameter, in source order;
     3. `emit_call_exec(callee)` — the actual C call;
-    4. one `emit_call_result` per result, in source order.
+    4. one `emit_copy` per result, in source order.
 - Step 3 is emitted lazily: on the first result token, or at the end of
   the argument list if there are no results.
 
