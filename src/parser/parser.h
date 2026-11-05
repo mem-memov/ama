@@ -3,14 +3,20 @@
 
 #include "parser/stream.h"
 #include "lexer/lexer.h"
-#include "symbols/symbol.h"
+#include "symbols/table.h"
+#include "graph/graph.h"
+#include "codegen/emitter.h"
 
 typedef struct {
     TokenStream* stream;
     const char* module_path;
+    SymbolTable* symbols;
+    const Graph* graph;
+    Emitter* emitter;
+    Error* error;
 } CodeParser;
 
-void parse_statement(CodeParser* P, uint32_t indent);
-void parse_declaration_section(Lexer* L, const char* module_path, SymbolKind kind);
+bool parse_statement(CodeParser* P, uint32_t indent);
+bool parse_declaration_section(Lexer* L, SymbolTable* symbols, const char* module_path, SymbolKind kind);
 
 #endif

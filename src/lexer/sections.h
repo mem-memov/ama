@@ -2,6 +2,7 @@
 #define AMA_LEXER_SECTIONS_H
 
 #include <stdio.h>
+#include "common/diagnostic.h"
 #include <stdint.h>
 
 typedef struct {
@@ -17,6 +18,6 @@ typedef struct {
     uint32_t code_line;
 } ModuleSections;
 
-int split_module_sections(FILE* f, ModuleSections* sections);
+bool split_module_sections(FILE* f, ModuleSections* sections, Error* error);
 
 #endif

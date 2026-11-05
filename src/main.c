@@ -24,9 +24,9 @@
  *     The CLI is three positional arguments. If more flexibility is ever
  *     needed, it can be added later without breaking existing invocations.
  *
- *   - Exit codes: 0 for success, 1 for any failure. compile_project() calls
- *     exit(1) on error, so main() only reaches its return statement on
- *     success. A future version may introduce distinct codes (e.g., 2 for
+ *   - Exit codes: 0 for success, 1 for any failure. The compiler returns
+ *     diagnostics to main; only the CLI prints them and exits.
+ *     A future version may introduce distinct codes (e.g., 2 for
  *     compilation errors vs 1 for usage errors), but uniform 1 is the
  *     simplest contract that works with shell scripts and CI.
  *
@@ -94,8 +94,10 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    /* compile_project() returns on success and calls exit(1) on any error.
-     * There is no error path that reaches the return below. */
-    compile_project(argv[1], argv[2], argv[3]);
+    Error error;
+    if (!compile_project(argv[1], argv[2], argv[3], &error)) {
+        error_print(stderr, &error);
+        return 1;
+    }
     return 0;
 }

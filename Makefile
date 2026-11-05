@@ -29,7 +29,7 @@ LTO_FLAGS ?= -flto
 .DELETE_ON_ERROR:
 .DEFAULT_GOAL := all
 
-.PHONY: all help test clean rebuild
+.PHONY: all help test test-clean clean rebuild
 
 # ---------------------------------------------------------------------------
 # Help
@@ -40,7 +40,7 @@ help:
 	@echo ""
 	@echo "  make                Build the compiler (./ama)."
 	@echo "  make all            Same as 'make'."
-	@echo "  make test           Run the test suite (./tests/run.sh)."
+	@echo "  make test           Run C unit suites and integration scenarios."
 	@echo "  make clean          Remove build/ and ./ama."
 	@echo "  make rebuild        'clean', then 'all'."
 	@echo "  make help           Show this message."
@@ -77,7 +77,10 @@ build/%.o: src/%.c Makefile
 # ---------------------------------------------------------------------------
 
 test: $(PROJECT_TARGET)
-	./tests/run.sh
+	$(MAKE) -C tests C_COMPILER="$(C_COMPILER)" C_COMPILER_FLAGS="$(C_COMPILER_FLAGS)" LTO_FLAGS="$(LTO_FLAGS)"
+
+test-clean:
+	$(MAKE) -C tests clean
 
 # ---------------------------------------------------------------------------
 # Housekeeping

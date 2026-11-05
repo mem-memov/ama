@@ -20,23 +20,25 @@ static int read_char(Lexer* L) {
         int next = read_byte(L);
         if (next == '\n') return '\n';
         unread_byte(L, next);
-        fprintf(stderr,
-                "error: stray \\r (not followed by \\n) at line %u\n",
-                L->current_line);
-        exit(1);
+        error_set(L->error, ERROR_INVALID, L->current_line,
+                  "stray \\r (not followed by \\n)");
+        return EOF;
     }
     return ch;
 }
 
-void init_lexer(Lexer* L, FILE* f, long start_pos, long end_pos,
-                uint32_t start_line) {
+bool init_lexer(Lexer* L, FILE* f, long start_pos, long end_pos,
+                uint32_t start_line, Error* error) {
+    L->error = error;
     L->f = f;
     L->end_pos = end_pos;
     L->current_line = start_line;
     L->is_first_on_line = 1;
     L->indent_count = 0;
     L->blank_seen = 0;
-    fseek(f, start_pos, SEEK_SET);
+    if (fseek(f, start_pos, SEEK_SET) != 0)
+        return error_set(error, ERROR_IO, start_line, "cannot seek source file");
+    return true;
 }
 
 /* Return the first significant byte, preserving blank-line/comment semantics. */
@@ -99,14 +101,10 @@ static int word_continues(TokenType type, int ch) {
     return is_ident_byte(ch) || (type == TOK_PATH && ch == '.');
 }
 
-static void word_too_long(TokenType type, uint32_t line) {
-    if (type == TOK_LITERAL)
-        fprintf(stderr, "error: literal too long at line %u (max %d digits)\n",
-                line, MAX_LEXEME_LEN - 1);
-    else
-        fprintf(stderr, "error: %s too long at line %u (max %d bytes)\n",
-                type == TOK_PATH ? "path" : "identifier", line, MAX_LEXEME_LEN - 1);
-    exit(1);
+static void word_too_long(Lexer* L, TokenType type, uint32_t line) {
+    error_set(L->error, ERROR_LIMIT, line, "%s too long at line %u (max %d %s)",
+              type == TOK_LITERAL ? "literal" : type == TOK_PATH ? "path" : "identifier",
+              line, MAX_LEXEME_LEN - 1, type == TOK_LITERAL ? "digits" : "bytes");
 }
 
 static Token read_word(Lexer* L, Token token, int first, TokenType type) {
@@ -121,11 +119,15 @@ static Token read_word(Lexer* L, Token token, int first, TokenType type) {
             unread_byte(L, ch);
             break;
         }
-        if (length >= MAX_LEXEME_LEN - 1)
-            word_too_long(type, token.line);
+        if (length >= MAX_LEXEME_LEN - 1) {
+            word_too_long(L, type, token.line);
+            token.type = TOK_ERROR;
+            return token;
+        }
         token.lexeme[length++] = (char)ch;
     }
     token.lexeme[length] = '\0';
+    if (L->error->code != ERROR_NONE) token.type = TOK_ERROR;
     return token;
 }
 
@@ -143,6 +145,12 @@ static Token read_path(Lexer* L, Token token) {
 
 Token get_next_token(Lexer* L) {
     int ch = skip_whitespace_and_comments(L);
+    if (ferror(L->f) && L->error->code == ERROR_NONE)
+        error_set(L->error, ERROR_IO, L->current_line, "cannot read source file");
+    if (L->error->code != ERROR_NONE) {
+        Token failure = {TOK_ERROR, "ERROR", L->current_line, L->indent_count, 0, 0};
+        return failure;
+    }
     if (ch == EOF) {
         Token eof = {TOK_EOF, "EOF", L->current_line,
                      L->indent_count, 1, L->blank_seen};
@@ -158,7 +166,7 @@ Token get_next_token(Lexer* L) {
     if (is_ident_start_byte(ch))
         return read_identifier(L, token, ch);
 
-    fprintf(stderr, "error: unexpected byte 0x%02X ('%c') at line %u\n",
+    error_set(L->error, ERROR_INVALID, token.line, "unexpected byte 0x%02X ('%c') at line %u",
             (unsigned char)ch, (ch >= 0x20 && ch < 0x7F) ? ch : '?', token.line);
     Token error = {TOK_ERROR, "ERROR", token.line, token.indent, 0, 0};
     return error;

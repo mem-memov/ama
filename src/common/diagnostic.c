@@ -1,14 +1,28 @@
 #include "common/diagnostic.h"
 #include <stdarg.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
 
-_Noreturn void fatal_at(const char* module, uint32_t line, const char* fmt, ...) {
-    va_list ap;
-    va_start(ap, fmt);
-    fprintf(stderr, "error: [%s] (line %u) ", module, line);
-    vfprintf(stderr, fmt, ap);
-    fprintf(stderr, "\n");
-    va_end(ap);
-    exit(1);
+void error_clear(Error* error) {
+    memset(error, 0, sizeof(*error));
+}
+
+/* Returning false lets callers propagate an error without terminating a process. */
+bool error_set(Error* error, ErrorCode code, uint32_t line, const char* fmt, ...) {
+    error->module[0] = '\0';
+    error->code = code;
+    error->line = line;
+    va_list args;
+    va_start(args, fmt);
+    vsnprintf(error->message, sizeof(error->message), fmt, args);
+    va_end(args);
+    return false;
+}
+
+void error_print(FILE* out, const Error* error) {
+    fputs("error: ", out);
+    if (error->module[0]) fprintf(out, "[%s] ", error->module);
+    fputs(error->message, out);
+    if (error->line)
+        fprintf(out, " (line %u)", error->line);
+    fputc('\n', out);
 }

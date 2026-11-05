@@ -45,40 +45,41 @@ int is_intrinsic_path(const char* path) {
     return 0;
 }
 
-static void register_names(const Intrinsic* in, const char* const* names,
-                            int count, SymbolKind kind) {
-    Token zero = {0};
-    zero.type = TOK_LITERAL;
-    strcpy(zero.lexeme, "0");
+static bool register_names(SymbolTable* symbols, const Intrinsic* in,
+                            const char* const* names, int count, SymbolKind kind,
+                            Error* error) {
+    Token zero = {.type = TOK_LITERAL, .lexeme = "0"};
     for (int i = 0; i < count; i++) {
-        if (!names[i]) {
-            fprintf(stderr, "internal error: intrinsic '%s' has an incomplete signature\n",
-                    in->name);
-            exit(1);
-        }
-        add_declarative_symbol(in->name, names[i], kind, zero);
+        if (!names[i])
+            return error_set(error, ERROR_INVALID, 0,
+                             "intrinsic '%s' has an incomplete signature", in->name);
+        if (!add_declarative_symbol(symbols, in->name, names[i], kind, zero, error))
+            return false;
     }
+    return true;
 }
 
-void register_intrinsics(void) {
+bool register_intrinsics(SymbolTable* symbols, Error* error) {
     for (int i = 0; i < G_IntrinsicCount; i++) {
         const Intrinsic* in = &G_Intrinsics[i];
-        register_names(in, in->params, in->n_params, SYM_PARAM);
-        register_names(in, in->returns, in->n_returns, SYM_RETURN);
+        if (!register_names(symbols, in, in->params, in->n_params, SYM_PARAM, error) ||
+            !register_names(symbols, in, in->returns, in->n_returns, SYM_RETURN, error))
+            return false;
     }
+    return true;
 }
 
-static void resolve_ids(const Intrinsic* in, const char* const* names,
-                         int count, uint32_t* ids) {
+static bool resolve_ids(SymbolTable* symbols, const Intrinsic* in,
+                         const char* const* names, int count, uint32_t* ids,
+                         Error* error) {
     for (int i = 0; i < count; i++) {
-        Symbol* symbol = lookup_symbol(in->name, names[i]);
-        if (!symbol) {
-            fprintf(stderr, "internal error: intrinsic '%s' name '%s' not registered\n",
-                    in->name, names[i]);
-            exit(1);
-        }
+        Symbol* symbol = lookup_symbol(symbols, in->name, names[i]);
+        if (!symbol)
+            return error_set(error, ERROR_INVALID, 0,
+                             "intrinsic '%s' name '%s' not registered", in->name, names[i]);
         ids[i] = symbol->id;
     }
+    return true;
 }
 
 /* Division and modulo share the explicit error-result convention. */
@@ -113,17 +114,19 @@ static void emit_intrinsic_body(FILE* out, const Intrinsic* in,
     }
 }
 
-void backend_emit_intrinsics(FILE* out) {
+bool backend_emit_intrinsics(FILE* out, SymbolTable* symbols, Error* error) {
     for (int i = 0; i < G_IntrinsicCount; i++) {
         const Intrinsic* in = &G_Intrinsics[i];
         uint32_t p[MAX_INTRINSIC_PARAMS];
         uint32_t r[MAX_INTRINSIC_RETURNS];
-        resolve_ids(in, in->params, in->n_params, p);
-        resolve_ids(in, in->returns, in->n_returns, r);
+        if (!resolve_ids(symbols, in, in->params, in->n_params, p, error) ||
+            !resolve_ids(symbols, in, in->returns, in->n_returns, r, error))
+            return false;
         fputs("void ", out);
         emit_module_name(out, in->name);
         fputs("(void) {\n", out);
         emit_intrinsic_body(out, in, p, r);
         fputs("}\n\n", out);
     }
+    return true;
 }

@@ -1,81 +1,54 @@
 #include "lexer/sections.h"
 #include <stdlib.h>
 
-int split_module_sections(FILE* f, ModuleSections* sections) {
+static bool is_blank(const char* line) {
+    for (; *line && *line != '\n' && *line != '\r'; line++)
+        if (*line != ' ') return false;
+    return true;
+}
+
+bool split_module_sections(FILE* file, ModuleSections* sections, Error* error) {
+    *sections = (ModuleSections){.params_line = 1};
     char* line = NULL;
-    size_t cap = 0;
-    ssize_t len;
-
-    uint32_t line_num = 1;
-    int empty_count = 0;
-    long current_pos = 0;
-
-    sections->params_start = 0;
-    sections->params_end = -1;
-    sections->returns_start = -1;
-    sections->returns_end = -1;
-    sections->code_start = -1;
-    sections->code_end = -1;
-    sections->params_line = 1;
-    sections->returns_line = 0;
-    sections->code_line = 0;
-
-    while ((len = getline(&line, &cap, f)) != -1) {
-        long next_pos = ftell(f);
-
-        /* Check for tab characters; they are forbidden in the whole file. */
-        for (ssize_t i = 0; i < len; i++) {
+    size_t capacity = 0;
+    ssize_t length;
+    long position = 0;
+    uint32_t number = 1;
+    int separators = 0;
+    while ((length = getline(&line, &capacity, file)) != -1) {
+        long next = ftell(file);
+        if (next < 0) {
+            free(line);
+            return error_set(error, ERROR_IO, number, "cannot locate source section");
+        }
+        for (ssize_t i = 0; i < length; i++) {
             if (line[i] == '\t') {
-                fprintf(stderr,
-                        "error: tab character at line %u is not allowed; "
-                        "use spaces for indentation\n",
-                        line_num);
                 free(line);
-                return 0;
+                return error_set(error, ERROR_INVALID, number,
+                                 "tab character is not allowed; use spaces for indentation");
             }
         }
-
-        /* Determine if the line is blank (only spaces, no content). */
-        int is_blank = 1;
-        for (ssize_t i = 0; i < len; i++) {
-            if (line[i] == '\n' || line[i] == '\r') break;
-            if (line[i] != ' ') { is_blank = 0; break; }
-        }
-
-        if (is_blank) {
-            /* Only the first two blank lines are section separators.
-             * Once the code section has begun (empty_count == 2), any
-             * further blank line is ordinary whitespace inside the code
-             * section — legal per the grammar (§3.3) — and is ignored. */
-            if (empty_count < 2) {
-                empty_count++;
-                if (empty_count == 1) {
-                    sections->params_end = current_pos;
-                    sections->returns_start = next_pos;
-                    sections->returns_line = line_num + 1;
-                } else if (empty_count == 2) {
-                    sections->returns_end = current_pos;
-                    sections->code_start = next_pos;
-                    sections->code_line = line_num + 1;
-                }
+        if (separators < 2 && is_blank(line)) {
+            if (separators++ == 0) {
+                sections->params_end = position;
+                sections->returns_start = next;
+                sections->returns_line = number + 1;
+            } else {
+                sections->returns_end = position;
+                sections->code_start = next;
+                sections->code_line = number + 1;
             }
         }
-
-        current_pos = next_pos;
-        line_num++;
+        position = next;
+        number++;
     }
-
     free(line);
-
-    if (empty_count < 2) {
-        fprintf(stderr,
-                "error: module must contain exactly two blank line "
-                "separators (found %d); the file must have three sections: "
-                "params, returns, code\n",
-                empty_count);
-        return 0;
-    }
-
-    sections->code_end = current_pos;
-    return 1;
+    if (ferror(file))
+        return error_set(error, ERROR_IO, number, "cannot read source sections");
+    if (separators < 2)
+        return error_set(error, ERROR_INVALID, 0,
+                         "module must contain exactly two blank line separators (found %d)",
+                         separators);
+    sections->code_end = position;
+    return true;
 }

@@ -1,117 +1,111 @@
 #include "project/internal.h"
 #include "lexer/sections.h"
 #include "parser/parser.h"
-#include "symbols/table.h"
-#include "codegen/emitter.h"
 #include <errno.h>
+#include <limits.h>
 #include <stdlib.h>
 #include <string.h>
 
-/* Both passes use the same section boundaries and physical source line numbers. */
-static FILE* open_module(const char* path, ModuleSections* sections) {
+static FILE* open_module(const char* path, ModuleSections* sections, Error* error) {
     FILE* file = fopen(path, "rb");
     if (!file) {
-        fprintf(stderr, "error: cannot open '%s': %s\n", path, strerror(errno));
-        exit(1);
+        error_set(error, ERROR_IO, 0, "cannot open '%s': %s", path, strerror(errno));
+        return NULL;
     }
-    if (!split_module_sections(file, sections)) {
+    if (!split_module_sections(file, sections, error)) {
         fclose(file);
-        exit(1);
+        return NULL;
     }
     return file;
 }
 
-static void read_module_declarations(const ModuleFile* module) {
+static bool read_module_declarations(SymbolTable* symbols, const ModuleFile* module, Error* error) {
     ModuleSections sections;
-    FILE* file = open_module(module->abs_path, &sections);
+    FILE* file = open_module(module->abs_path, &sections, error);
+    if (!file) return false;
     Lexer lexer;
-    init_lexer(&lexer, file, sections.params_start, sections.params_end,
-               sections.params_line);
-    parse_declaration_section(&lexer, module->rel_path, SYM_PARAM);
-    init_lexer(&lexer, file, sections.returns_start, sections.returns_end,
-               sections.returns_line);
-    parse_declaration_section(&lexer, module->rel_path, SYM_RETURN);
+    bool success = init_lexer(&lexer, file, sections.params_start, sections.params_end,
+                              sections.params_line, error) &&
+                   parse_declaration_section(&lexer, symbols, module->rel_path, SYM_PARAM) &&
+                   init_lexer(&lexer, file, sections.returns_start, sections.returns_end,
+                              sections.returns_line, error) &&
+                   parse_declaration_section(&lexer, symbols, module->rel_path, SYM_RETURN);
     fclose(file);
+    return success;
 }
 
-void pass1_declarations(void) {
-    for (int i = 0; i < G_FileCount; i++)
-        read_module_declarations(&G_Files[i]);
-}
-
-static void grow_token_buffer(TokenStream* stream, int* capacity) {
-    *capacity *= 2;
-    Token* tokens = realloc(stream->data, sizeof(Token) * (size_t)*capacity);
-    if (!tokens) {
-        free(stream->data);
-        fprintf(stderr, "error: out of memory (token buffer grow)\n");
-        exit(1);
+bool pass1_declarations(Project* project, Error* error) {
+    for (int i = 0; i < project->file_count; i++) {
+        if (!read_module_declarations(&project->symbols, &project->files[i], error)) {
+            snprintf(error->module, sizeof(error->module), "%s", project->files[i].rel_path);
+            return false;
+        }
     }
-    stream->data = tokens;
+    return true;
 }
 
-/* Owns its input file; the caller owns the returned, EOF-terminated token array. */
-static TokenStream read_module_tokens(const char* path) {
+static bool append_token(TokenStream* stream, int* capacity, Token token, Error* error) {
+    if (stream->size == *capacity) {
+        if (*capacity > INT_MAX / 2)
+            return error_set(error, ERROR_LIMIT, token.line, "too many tokens");
+        int next = *capacity * 2;
+        Token* data = realloc(stream->data, sizeof(Token) * (size_t)next);
+        if (!data) return error_set(error, ERROR_MEMORY, token.line, "out of memory (tokens)");
+        stream->data = data;
+        *capacity = next;
+    }
+    stream->data[stream->size++] = token;
+    return true;
+}
+
+static bool read_module_tokens(const char* path, TokenStream* stream, Error* error) {
     ModuleSections sections;
-    FILE* file = open_module(path, &sections);
+    FILE* file = open_module(path, &sections, error);
+    if (!file) return false;
     Lexer lexer;
-    init_lexer(&lexer, file, sections.code_start, sections.code_end, sections.code_line);
+    bool success = init_lexer(&lexer, file, sections.code_start, sections.code_end,
+                              sections.code_line, error);
     int capacity = 1024;
-    TokenStream stream = {malloc(sizeof(Token) * (size_t)capacity), 0, 0};
-    if (!stream.data) {
-        fclose(file);
-        fprintf(stderr, "error: out of memory (token buffer)\n");
-        exit(1);
-    }
-    for (;;) {
+    stream->data = malloc(sizeof(Token) * (size_t)capacity);
+    if (!stream->data) success = error_set(error, ERROR_MEMORY, 0, "out of memory (tokens)");
+    while (success) {
         Token token = get_next_token(&lexer);
-        if (token.type == TOK_ERROR) {
-            free(stream.data);
-            fclose(file);
-            exit(1);
-        }
-        if (stream.size == capacity)
-            grow_token_buffer(&stream, &capacity);
-        stream.data[stream.size++] = token;
-        if (token.type == TOK_EOF)
-            break;
+        if (token.type == TOK_ERROR) { success = false; break; }
+        success = append_token(stream, &capacity, token, error);
+        if (token.type == TOK_EOF) break;
     }
     fclose(file);
-    return stream;
+    return success;
 }
 
-static void emit_module_body(const char* path, TokenStream* stream) {
-    fprintf(G_Out, "void ");
-    emit_module_name(G_Out, path);
-    fprintf(G_Out, "(void) {\n");
-    CodeParser parser = {stream, path};
+static bool emit_module_body(Project* project, const char* path, TokenStream* stream, Error* error) {
+    Emitter* emitter = &project->emitter;
+    fputs("void ", emitter->out);
+    emit_module_name(emitter->out, path);
+    fputs("(void) {\n", emitter->out);
+    CodeParser parser = {stream, path, &project->symbols, &project->graph, emitter, error};
     while (ts_peek(stream)->type != TOK_EOF)
-        parse_statement(&parser, 0);
-    fprintf(G_Out, "}\n\n");
+        if (!parse_statement(&parser, 0)) return false;
+    fputs("}\n\n", emitter->out);
+    return true;
 }
 
-void pass2_module_code(const char* rel_path, const char* abs_path) {
-    TokenStream stream = read_module_tokens(abs_path);
-    emit_module_body(rel_path, &stream);
+bool pass2_module_code(Project* project, const ModuleFile* module, Error* error) {
+    TokenStream stream = {0};
+    bool success = read_module_tokens(module->abs_path, &stream, error) &&
+                   emit_module_body(project, module->rel_path, &stream, error);
     free(stream.data);
+    if (!success) snprintf(error->module, sizeof(error->module), "%s", module->rel_path);
+    return success;
 }
 
-void validate_entry(const char* entry) {
-    if (!find_module_file(entry)) {
-        fprintf(stderr,
-                "error: entry '%s' has no source file under the project "
-                "root\n", entry);
-        exit(1);
-    }
-
-    for (uint32_t i = 0; i < G_Table.count; i++) {
-        Symbol* s = &G_Table.symbols[i];
-        if (strcmp(s->module_path, entry) == 0 && s->kind == SYM_PARAM) {
-            fprintf(stderr,
-                    "error: entry module '%s' must take no parameters "
-                    "(found parameter '%s')\n",
-                    entry, s->name);
-            exit(1);
-        }
-    }
+bool validate_entry(Project* project, const char* entry, Error* error) {
+    if (!find_module_file(project, entry))
+        return error_set(error, ERROR_INVALID, 0, "entry '%s' has no source file", entry);
+    Symbol* param = get_nth_symbol(&project->symbols, entry, 0, SYM_PARAM);
+    if (param)
+        return error_set(error, ERROR_INVALID, 0,
+                         "entry module '%s' must take no parameters (found parameter '%s')",
+                         entry, param->name);
+    return true;
 }

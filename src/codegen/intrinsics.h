@@ -2,9 +2,10 @@
 #define AMA_CODEGEN_INTRINSICS_H
 
 #include <stdio.h>
+#include "symbols/table.h"
 
-void register_intrinsics(void);
+bool register_intrinsics(SymbolTable* symbols, Error* error);
 int is_intrinsic_path(const char* path);
-void backend_emit_intrinsics(FILE* out);
+bool backend_emit_intrinsics(FILE* out, SymbolTable* symbols, Error* error);
 
 #endif

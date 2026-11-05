@@ -1,139 +1,82 @@
 #include "symbols/table.h"
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-SymbolTable G_Table = {0};
-
-static void copy_string_checked(char* dst, size_t dst_size,
-                                 const char* src, const char* what) {
-    size_t len = strlen(src);
-    if (len >= dst_size) {
-        fprintf(stderr,
-                "error: %s too long (%zu bytes, max %zu): '%.40s%s'\n",
-                what, len, dst_size - 1, src,
-                (len > 40) ? "..." : "");
-        exit(1);
-    }
-    memcpy(dst, src, len + 1);
+void symbols_init(SymbolTable* table) {
+    /* Entries are initialized when added; resetting the count discards previous names. */
+    table->count = 0;
 }
 
-static Symbol* allocate_slot(void) {
-    if (G_Table.count >= MAX_SYMBOLS) {
-        fprintf(stderr,
-                "error: symbol table is full (max %d entries); "
-                "increase MAX_SYMBOLS in common/limits.h\n",
-                MAX_SYMBOLS);
-        exit(1);
-    }
-    Symbol* s = &G_Table.symbols[G_Table.count++];
-    memset(s, 0, sizeof(*s));
-    return s;
-}
-
-Symbol* lookup_symbol(const char* module_path, const char* name) {
-    for (uint32_t i = 0; i < G_Table.count; i++) {
-        Symbol* s = &G_Table.symbols[i];
-        if (strcmp(s->module_path, module_path) == 0 &&
-            strcmp(s->name, name) == 0)
-            return s;
+Symbol* lookup_symbol(SymbolTable* table, const char* module, const char* name) {
+    for (uint32_t i = 0; i < table->count; i++) {
+        Symbol* symbol = &table->symbols[i];
+        if (!strcmp(symbol->module_path, module) && !strcmp(symbol->name, name))
+            return symbol;
     }
     return NULL;
 }
 
-/* Common initialization keeps local and declared numeric names consistent. */
-static Symbol* create_symbol(const char* module, const char* name, SymbolKind kind) {
-    Symbol* symbol = allocate_slot();
-    copy_string_checked(symbol->module_path, sizeof(symbol->module_path),
-                        module, "module path");
-    copy_string_checked(symbol->name, sizeof(symbol->name), name, "identifier");
+static Symbol* create_symbol(SymbolTable* table, const char* module, const char* name,
+                              SymbolKind kind, Error* error) {
+    if (strlen(module) >= MAX_PATH_LEN || strlen(name) >= MAX_IDENT_LEN) {
+        error_set(error, ERROR_LIMIT, 0, "module path or identifier too long");
+        return NULL;
+    }
+    if (table->count == MAX_SYMBOLS) {
+        error_set(error, ERROR_LIMIT, 0, "symbol table is full (max %d entries)", MAX_SYMBOLS);
+        return NULL;
+    }
+    Symbol* symbol = &table->symbols[table->count];
+    memset(symbol, 0, sizeof(*symbol));
+    strcpy(symbol->module_path, module);
+    strcpy(symbol->name, name);
     symbol->kind = kind;
-    symbol->id = (uint32_t)(symbol - G_Table.symbols);
+    symbol->id = table->count++;
     return symbol;
 }
 
-Symbol* add_declarative_symbol(const char* module_path, const char* name,
-                               SymbolKind kind, Token val_token) {
-    if (lookup_symbol(module_path, name) != NULL) {
-        fprintf(stderr,
-                "error: [%s] '%s' is already declared "
-                "(redefinition at line %u)\n",
-                module_path, name, (unsigned)val_token.line);
-        exit(1);
-    }
-
-    Symbol* s = create_symbol(module_path, name, kind);
-
-    switch (kind) {
-    case SYM_ALIAS:
-        if (val_token.type != TOK_PATH) {
-            fprintf(stderr,
-                    "internal error: alias '%s' in '%s' must have a path "
-                    "value (got token type %d)\n",
-                    name, module_path, (int)val_token.type);
-            exit(1);
-        }
-        copy_string_checked(s->path_link, sizeof(s->path_link),
-                            val_token.lexeme, "alias path");
-        s->id = 0;
-        break;
-
-    case SYM_PARAM:
-    case SYM_RETURN:
-        if (val_token.type == TOK_LITERAL) {
-            s->default_int = atoi(val_token.lexeme);
-        } else if (val_token.type == TOK_IDENT) {
-            fprintf(stderr,
-                    "error: [%s] '%s' has a variable default ('%s'); "
-                    "defaults that reference other variables are not "
-                    "supported yet. Use a literal or assign in code.\n",
-                    module_path, name, val_token.lexeme);
-            exit(1);
-        } else {
-            fprintf(stderr,
-                    "internal error: [%s] '%s' has unexpected default "
-                    "token type %d\n",
-                    module_path, name, (int)val_token.type);
-            exit(1);
-        }
-        s->id = (uint32_t)(s - G_Table.symbols);
-        break;
-
-    case SYM_VAR:
-    default:
-        fprintf(stderr,
-                "internal error: add_declarative_symbol called with kind %d "
-                "(use add_local_variable for locals)\n",
-                (int)kind);
-        exit(1);
-    }
-
-    return s;
+static bool validate_declaration(SymbolKind kind, Token value, Error* error) {
+    if (kind == SYM_ALIAS && value.type == TOK_PATH)
+        return true;
+    if ((kind == SYM_PARAM || kind == SYM_RETURN) && value.type == TOK_LITERAL)
+        return true;
+    if (value.type == TOK_IDENT)
+        return error_set(error, ERROR_INVALID, value.line,
+                         "defaults that reference other variables are not supported yet");
+    return error_set(error, ERROR_INVALID, value.line,
+                     "invalid declaration default; use a literal or an alias path");
 }
 
-Symbol* add_local_variable(const char* module_path, const char* name) {
-    Symbol* existing = lookup_symbol(module_path, name);
-    if (existing)
-        return existing;
-
-    return create_symbol(module_path, name, SYM_VAR);
-}
-
-Symbol* get_nth_symbol(const char* module_path, int nth, SymbolKind kind) {
-    if (nth < 0)
+Symbol* add_declarative_symbol(SymbolTable* table, const char* module, const char* name,
+                               SymbolKind kind, Token value, Error* error) {
+    if (lookup_symbol(table, module, name)) {
+        error_set(error, ERROR_INVALID, value.line,
+                  "[%s] '%s' is already declared", module, name);
         return NULL;
+    }
+    if (!validate_declaration(kind, value, error))
+        return NULL;
+    Symbol* symbol = create_symbol(table, module, name, kind, error);
+    if (!symbol) return NULL;
+    if (kind == SYM_ALIAS)
+        strcpy(symbol->path_link, value.lexeme);
+    else
+        symbol->default_int = atoi(value.lexeme);
+    return symbol;
+}
 
-    int seen = 0;
-    for (uint32_t i = 0; i < G_Table.count; i++) {
-        Symbol* s = &G_Table.symbols[i];
-        if (strcmp(s->module_path, module_path) != 0)
-            continue;
-        if (s->kind != kind)
-            continue;
-        if (seen == nth)
-            return s;
-        seen++;
+Symbol* add_local_variable(SymbolTable* table, const char* module, const char* name,
+                           Error* error) {
+    Symbol* existing = lookup_symbol(table, module, name);
+    return existing ? existing : create_symbol(table, module, name, SYM_VAR, error);
+}
+
+Symbol* get_nth_symbol(SymbolTable* table, const char* module, int nth, SymbolKind kind) {
+    if (nth < 0) return NULL;
+    for (uint32_t i = 0; i < table->count; i++) {
+        Symbol* symbol = &table->symbols[i];
+        if (!strcmp(symbol->module_path, module) && symbol->kind == kind && nth-- == 0)
+            return symbol;
     }
     return NULL;
 }
-

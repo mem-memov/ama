@@ -210,6 +210,20 @@ registers source paths. `parser/statement.c` classifies statements and dispatche
 to the appropriate parser. `parser/call.c` tracks argument mode, result ordering,
 and execution in a `CallState`. Code is emitted directly, without an AST.
 
+State belongs to explicit objects: `SymbolTable`, `Graph`, `Lexer`, and
+`Emitter`. The graph has no dependency on the symbol table; the project layer
+translates aliases into graph edges. `CodeParser` receives only the components
+it uses. Internal `Project` owns a compilation's tables, files, and output and
+releases them on success or failure.
+
+Components return `bool`, a nullable result, or an error token together with an
+`Error` diagnostic. They neither print errors nor terminate the process.
+`main.c` prints the final diagnostic and chooses the exit code. The public
+`compile_project` function can be called repeatedly, including after a failed
+compilation. Call `error_clear` before a new sequence of lower-level operations;
+`compile_project` initializes its diagnostic itself. A failure can leave a
+component partially updated; initialize it again before reusing it when needed.
+
 Headers expose each subsystem's own types and interface. `parser/internal.h`
 and `project/internal.h` declare helpers shared only within their subsystem.
 `common/limits.h` contains implementation limits; there is no umbrella header.
@@ -238,21 +252,80 @@ registered, then writes their declarations before the functions. Callees are
 emitted before callers. Native optimization is performed by the C compiler.
 Recursion remains forbidden, including cycles formed by unused aliases.
 
-## Tests and current limitations
+## Tests
 
-```sh
-make test
+The test tree uses C and recursive Makefiles, with two kinds of harness:
+
+```text
+tests/
+  Makefile                 explicitly runs unit/, then integration/
+  common.c                 assertions and small file helpers
+  leaf.mk                  shared build/run/clean recipe; no shared main
+  unit/
+    Makefile
+    common.c               error fixture
+    lexer/
+      Makefile
+      common.c             source-file and lexer lifecycle
+      tokens/
+        Makefile
+        main.c             it_* functions, run(), local main()
+      sections/ ...
+    symbols/ ...
+    graph/ ...
+    parser/ ...
+    codegen/ ...
+    project/ ...
+  integration/
+    Makefile
+    common.c               compile/run/compare helpers
+    process.c              POSIX fork/exec/wait, without a shell
+    01-hello/
+      Makefile
+      main.c
+      project/main         input modules, separate from test metadata
+      expected.txt
 ```
 
-Each `tests/NN-name/` directory is a project. `expected.txt` checks stdout;
-`expected-error.txt` checks rejection and a diagnostic substring. The runner
-copies module files into a clean staging directory, generates C, compiles it,
-and executes successful programs. Intermediate files go to `build/tests/`.
+Each leaf builds its own executable. Parent Makefiles explicitly invoke child
+Makefiles in reading order. A leaf's `main.c` lists `it_*` functions before
+`run`, calls them in order, and supplies its own `main`. Each test explicitly
+calls `setup_test` and `destroy_test`. Parent `common.c` files define guarded,
+shared test state and helpers. Production components are linked as ordinary C
+sources through their public headers. Makefiles name the required sources.
+
+Unit suites cover individual components and combinations: lexer/parser/emitter,
+module calls, and repeated whole-project compilation within one process. Tests
+use standard `assert`; `-UNDEBUG` keeps assertions enabled even if build flags
+contain `-DNDEBUG`. There is no automatic registration or generated runner.
+
+Integration scenarios preserve the original language examples. `project/`
+contains only input modules. `expected.txt` compares stdout byte for byte,
+including final newlines; `expected-error.txt` contains a diagnostic substring
+and requires compiler exit status 1. Crashes and missing executables are failures.
+
+```sh
+make test                                    # all suites
+make -C tests/unit                           # unit and component assembly suites
+make -C tests/unit/lexer/tokens               # one leaf
+make -C tests/integration/01-hello            # one integration scenario
+make -C tests/unit/parser/calls run           # keep artifacts after success
+make test-clean                              # remove test artifacts
+```
+
+Every leaf owns `generated/`. `all` builds, runs, then removes generated files
+on success. On failure it stops and preserves the executable and diagnostics
+for debugging. `run` preserves artifacts even on success; `clean` removes them.
+Integration leaves ensure the compiler is built, so they can run independently.
+Each parent stops at its first failing child; run another leaf directly to
+investigate it independently.
+
+## Current limitations
 
 The prototype has fixed limits of 512 graph nodes (including intrinsics) and
 8192 symbols. Literal parsing still uses `int`/`atoi`; values above `INT_MAX`
 are not reliably supported even though computed values use `size_t`.
 Duplicate named arguments are not rejected. A `!` outside a loop is rejected
 by the downstream C compiler rather than by Ама. There is no string/file input,
-interactive debugger, or compiler error recovery. Generated C function names
+interactive debugger, or recovery within a failed compilation. Generated C function names
 replace `/` with `_`, so some distinct module paths can collide.

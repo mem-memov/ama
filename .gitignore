@@ -1,2 +1,3 @@
 build/
 /ama
+/tests/**/generated/

@@ -1,6 +1,5 @@
 #ifndef AMA_COMMON_PATH_H
 #define AMA_COMMON_PATH_H
-
-void normalize_path(const char* in, char* out);
-
+#include "common/diagnostic.h"
+bool normalize_path(const char* in, char* out, Error* error);
 #endif
