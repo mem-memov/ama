@@ -73,6 +73,7 @@ static bool generate_program(
     int dependency_order[MAX_MODULES];
     if (!build_dependencies(project, error) || !graph_sort(&project->graph, dependency_order, error))
         return false;
+    project->emitter.source_mapping_enabled = true;
     project->emitter.output = tmpfile();
     if (!project->emitter.output)
         return error_set(error, ERROR_IO, 0, "cannot create temporary output");

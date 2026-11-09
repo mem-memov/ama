@@ -9,6 +9,7 @@
 typedef struct {
     char module_path[MAX_MODULE_PATH_LENGTH];
     char file_path[MAX_FILE_PATH_LENGTH];
+    char source_path[MAX_FILE_PATH_LENGTH];
     ModuleImplementation implementation;
     bool is_standard_library;
 } ModuleFile;

@@ -54,7 +54,29 @@ static void it_rejects_an_oversized_identifier(void) {
     destroy_test();
 }
 
+static void it_tracks_byte_columns_across_unicode_comments_and_crlf(void) {
+    setup_test();
+    const char* path = "source/\u5546\u54c1";
+    const char* text = "  \u03bb 42\r\n# comment\r\n next > result\n# end";
+    source = text_file(text);
+    bool ready = init_lexer(&lexer, source, path, 0, (long)strlen(text), 7, &error);
+    assert(ready);
+    Token name = get_next_token(&lexer);
+    Token number = get_next_token(&lexer);
+    Token next = get_next_token(&lexer);
+    Token arrow = get_next_token(&lexer);
+    Token result = get_next_token(&lexer);
+    Token end = get_next_token(&lexer);
+    assert(name.source_path == path && name.line_number == 7 && name.column_number == 3);
+    assert(number.column_number == 6 && number.line_number == 7);
+    assert(next.column_number == 2 && next.line_number == 9);
+    assert(arrow.column_number == 7 && result.column_number == 9);
+    assert(end.type == TOKEN_END_OF_FILE && end.line_number == 10 && end.column_number == 6);
+    destroy_test();
+}
+
 void run(void) {
+    it_tracks_byte_columns_across_unicode_comments_and_crlf();
     it_reads_names_literals_and_module_paths();
     it_tracks_comments_blank_lines_and_crlf();
     it_reports_removed_addressing_without_exiting();

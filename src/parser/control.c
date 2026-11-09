@@ -38,11 +38,13 @@ bool parse_branch(StatementParser* parser, uint32_t indentation) {
 
     Token* next_token = token_stream_peek(parser->stream);
     if (next_token->type == TOKEN_COLON && next_token->indentation == indentation && next_token->is_at_line_start) {
-        token_stream_advance(parser->stream);
+        Token alternative = token_stream_advance(parser->stream);
+        emit_source_location(parser->emitter, token_location(alternative));
         emit_branch_else(parser->emitter);
         if (!parse_body(parser, indentation + 1)) return false;
     }
 
+    emit_generated_location(parser->emitter);
     emit_branch_end(parser->emitter);
     return true;
 }
@@ -69,6 +71,7 @@ bool parse_loop(StatementParser* parser, uint32_t indentation) {
         return parser_error(parser, loop_close.line_number, "expected '}' at indent %u (got indent %u)",
             indentation, loop_close.indentation);
 
+    emit_source_location(parser->emitter, token_location(loop_close));
     emit_loop_end(parser->emitter);
     return true;
 }

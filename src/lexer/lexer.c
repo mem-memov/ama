@@ -9,8 +9,10 @@ static int read_byte(Lexer* lexer) {
 }
 
 static void return_byte_to_input(Lexer* lexer, int character) {
-    (void)lexer;
-    if (character != EOF) ungetc(character, lexer->source_file);
+    if (character != EOF) {
+        ungetc(character, lexer->source_file);
+        lexer->column_number--;
+    }
 }
 
 static int read_character(Lexer* lexer) {
@@ -18,19 +20,25 @@ static int read_character(Lexer* lexer) {
     if (character == EOF) return EOF;
     if (character == '\r') {
         int next_character = read_byte(lexer);
-        if (next_character == '\n') return '\n';
-        return_byte_to_input(lexer, next_character);
+        if (next_character == '\n') {
+            lexer->column_number++;
+            return '\n';
+        }
+        if (next_character != EOF) ungetc(next_character, lexer->source_file);
         error_set(lexer->error, ERROR_INVALID, lexer->line_number,
             "stray \\r (not followed by \\n)");
         return EOF;
     }
+    lexer->column_number++;
     return character;
 }
 
-bool init_lexer(Lexer* lexer, FILE* source_file, long section_start_offset, long section_end_offset,
-    uint32_t start_line, Error* error) {
+bool init_lexer(Lexer* lexer, FILE* source_file, const char* source_path,
+    long section_start_offset, long section_end_offset, uint32_t start_line, Error* error) {
     lexer->error = error;
     lexer->source_file = source_file;
+    lexer->source_path = source_path;
+    lexer->column_number = 1;
     lexer->section_end_offset = section_end_offset;
     lexer->line_number = start_line;
     lexer->is_at_line_start = 1;
@@ -50,12 +58,15 @@ static int skip_whitespace_and_comments(Lexer* lexer) {
                 lexer->has_preceding_blank_line = 1;
             lexer->line_number++;
             lexer->indentation = 0;
+            lexer->column_number = 1;
             lexer->is_at_line_start = 1;
         } else if (character == '#') {
             while ((character = read_character(lexer)) != '\n' && character != EOF)
                 ;
-            if (character == '\n')
+            if (character == '\n') {
                 lexer->line_number++;
+                lexer->column_number = 1;
+            }
             lexer->indentation = 0;
             lexer->is_at_line_start = 1;
         } else if (character == ' ') {
@@ -70,6 +81,8 @@ static int skip_whitespace_and_comments(Lexer* lexer) {
 static Token begin_token(Lexer* lexer) {
     Token token = {0};
     token.line_number = lexer->line_number;
+    token.source_path = lexer->source_path;
+    token.column_number = lexer->column_number - 1;
     token.indentation = lexer->indentation;
     token.is_at_line_start = lexer->is_at_line_start;
     token.has_preceding_blank_line = lexer->has_preceding_blank_line;
@@ -148,12 +161,16 @@ Token get_next_token(Lexer* lexer) {
     if (ferror(lexer->source_file) && lexer->error->error_code == ERROR_NONE)
         error_set(lexer->error, ERROR_IO, lexer->line_number, "cannot read source file");
     if (lexer->error->error_code != ERROR_NONE) {
-        Token failure = {TOKEN_ERROR, "ERROR", lexer->line_number, lexer->indentation, 0, 0};
+        Token failure = {.type = TOKEN_ERROR, .lexeme = "ERROR",
+            .line_number = lexer->line_number, .indentation = lexer->indentation,
+            .source_path = lexer->source_path, .column_number = lexer->column_number};
         return failure;
     }
     if (character == EOF) {
-        Token end_of_file_token = {TOKEN_END_OF_FILE, "EOF", lexer->line_number,
-                        lexer->indentation, 1, lexer->has_preceding_blank_line};
+        Token end_of_file_token = {.type = TOKEN_END_OF_FILE, .lexeme = "EOF",
+            .line_number = lexer->line_number, .indentation = lexer->indentation,
+            .is_at_line_start = 1, .has_preceding_blank_line = lexer->has_preceding_blank_line,
+            .source_path = lexer->source_path, .column_number = lexer->column_number};
         return end_of_file_token;
     }
     Token token = begin_token(lexer);
@@ -168,6 +185,7 @@ Token get_next_token(Lexer* lexer) {
 
     error_set(lexer->error, ERROR_INVALID, token.line_number, "unexpected byte 0x%02X ('%c') at line %u",
         (unsigned char)character, (character >= 0x20 && character < 0x7F) ? character : '?', token.line_number);
-    Token error = {TOKEN_ERROR, "ERROR", token.line_number, token.indentation, 0, 0};
+    Token error = token;
+    error.type = TOKEN_ERROR;
     return error;
 }

@@ -238,8 +238,8 @@ Hash-based naming is now implemented for current states, calls, fields, native
 functions/arguments, headers, and guards. The naming service uses framed UTF-8
 identities with 64-bit FNV-1a and collision rejection; see `CONTRIBUTORS.md` for
 the exact protocol. Maintained native implementations and fixtures are migrated.
-Old native names are not ABI-compatible. Source mappings, reference types, and
-future lifecycle adapters remain later work and must use the same service.
+Old native names are not ABI-compatible. Reference types and future lifecycle adapters remain later work and must use
+the same service. File/line source mappings are now implemented separately.
 
 ### 3. Creation, calls, and cloning
 
@@ -981,7 +981,8 @@ unit/integration tests at each stage; never claim planned behavior is implemente
 Start with a shared identity-to-C-name component before changing the value ABI.
 It is needed by generated state types, native bindings, typed values, references,
 and international source names, and can be verified independently of new syntax.
-This stage is implemented; source mapping is next. Future generated entities
+This stage and file/line source mapping are implemented. The next architecture
+step is the intermediate representation. Future generated entities
 must use the same component.
 
 - [x] Define canonical identity tuples, deterministic hash algorithm/width,
@@ -1000,8 +1001,16 @@ must use the same component.
 After naming, implement source mapping as stage 2, then introduce the intermediate
 representation in stage 3 before changing declaration syntax or value layout.
 
-- [ ] Retain source paths, lines, and columns for parsed program elements.
-- [ ] Emit escaped Unicode `#line` mappings and restore generated helper locations.
+- [x] Retain source paths, lines, and columns on lexer tokens and declarations/
+  body write targets. Paths are borrowed from project-owned absolute resolved
+  source paths; columns count UTF-8 bytes from 1. Future IR must preserve them.
+- [x] Emit escaped Unicode `#line` mappings for executable operations, including
+  delayed calls, parameter/result copies, branches, loops, returns, and breaks.
+  Restore virtual `<ama-generated>` line 1 for synthetic scaffolding. Verify
+  downstream C error locations, Unicode, filename escaping, CRLF, and byte columns.
+- [ ] Verify interactive debugger stepping separately where debugger execution
+  is available; document optimization limits and source-path relocation. Line
+  mappings do not restore original variable names or source columns.
 - [ ] Introduce explicit program nodes and separate parsing, validation, and C
   emission while preserving current behavior and the native ABI.
 - [ ] Replace immediate code emission from parser routines with generation from

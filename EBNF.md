@@ -6,6 +6,9 @@ literals, references, lists, `@!`, and `@=` require implementation work. See
 `README.md` for the currently executable language and `TODO.md` for the migration
 plan. Examples below describe the target language, not runnable current fixtures.
 
+Hash-based internal naming and file/line source mappings have been implemented
+independently; that does not imply support for the target syntax below.
+
 This document supersedes the previous syntax specification for future work;
 it does not claim that the existing parser already accepts the new grammar.
 

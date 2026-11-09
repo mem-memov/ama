@@ -3,6 +3,7 @@
 
 /* Entry existence and signature are validated by the project layer. */
 void emit_program_entry_point(Emitter* emitter, const char* entry) {
+    emit_generated_location(emitter);
     fputs("int main(void) {\n", emitter->output);
     emit_call_init(emitter, entry);
     emit_call_exec(emitter, entry);

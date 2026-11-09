@@ -12,7 +12,7 @@ static void setup_test(void) {
 }
 static inline void set_source(const char* text) {
     source = text_file(text);
-    bool initialized = init_lexer(&lexer, source, 0, (long)strlen(text), 1, &error);
+    bool initialized = init_lexer(&lexer, source, NULL, 0, (long)strlen(text), 1, &error);
     assert(initialized);
 }
 static void destroy_test(void) {

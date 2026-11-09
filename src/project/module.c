@@ -30,10 +30,10 @@ static bool read_module_declarations(SymbolTable* symbols, ModuleFile* module, E
         return true;
     }
     Lexer lexer;
-    bool success = init_lexer(&lexer, file, sections.parameters_start, sections.parameters_end,
+    bool success = init_lexer(&lexer, file, module->source_path, sections.parameters_start, sections.parameters_end,
         sections.parameters_line, error) &&
                     parse_declaration_section(&lexer, symbols, module->module_path, SYMBOL_PARAMETER) &&
-                    init_lexer(&lexer, file, sections.results_start, sections.results_end,
+                    init_lexer(&lexer, file, module->source_path, sections.results_start, sections.results_end,
                         sections.results_line, error) &&
                     parse_declaration_section(&lexer, symbols, module->module_path, SYMBOL_RESULT);
     fclose(file);
@@ -67,12 +67,12 @@ static bool append_token(TokenStream* stream, int* capacity, Token token, Error*
     return true;
 }
 
-static bool read_module_tokens(const char* path, TokenStream* stream, Error* error) {
+static bool read_module_tokens(const ModuleFile* module, TokenStream* stream, Error* error) {
     ModuleSections sections;
-    FILE* file = open_module(path, &sections, error);
+    FILE* file = open_module(module->file_path, &sections, error);
     if (!file) return false;
     Lexer lexer;
-    bool success = init_lexer(&lexer, file, sections.code_start, sections.code_end,
+    bool success = init_lexer(&lexer, file, module->source_path, sections.code_start, sections.code_end,
         sections.code_line, error);
     int capacity = 1024;
     stream->tokens = malloc(sizeof(Token) * (size_t)capacity);
@@ -105,7 +105,7 @@ bool emit_project_module(Project* project, const ModuleFile* module, Error* erro
     if (module->implementation == MODULE_C_IMPLEMENTATION)
         return emit_native_wrapper(&project->emitter, module->module_path, error);
     TokenStream stream = {0};
-    bool success = read_module_tokens(module->file_path, &stream, error) &&
+    bool success = read_module_tokens(module, &stream, error) &&
                     emit_module_body(project, module->module_path, &stream, error);
     free(stream.tokens);
     if (!success) snprintf(error->module, sizeof(error->module), "%s", module->module_path);

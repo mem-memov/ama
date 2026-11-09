@@ -59,7 +59,31 @@ static void it_reads_a_local_before_its_call_result_assignment(void) {
     destroy_test();
 }
 
+static void it_maps_delayed_execution_to_the_call_instead_of_its_last_argument(void) {
+    setup_test();
+    declare_add();
+    emitter.source_mapping_enabled = true;
+    bool parsed = parse_text_at("add\n < 5\n < 7\n > answer\n", "caller.ama");
+    assert(parsed);
+    rewind(output);
+    char text[8192];
+    size_t length = fread(text, 1, sizeof(text) - 1, output);
+    assert(!ferror(output));
+    text[length] = '\0';
+    assert(strstr(text, "#line 2 \"caller.ama\"\n") != NULL);
+    assert(strstr(text, "#line 3 \"caller.ama\"\n") != NULL);
+    const char* argument = strstr(text, "#line 3");
+    const char* execution = strstr(argument, "#line 1 \"caller.ama\"\n");
+    const char* result = strstr(text, "#line 4 \"caller.ama\"\n");
+    assert(execution && result && argument < execution && execution < result);
+    Symbol* answer = lookup_symbol(symbols, "main", "answer");
+    assert(answer && answer->declaration.line == 4 && answer->declaration.column == 4);
+    assert(strcmp(answer->declaration.path, "caller.ama") == 0);
+    destroy_test();
+}
+
 void run(void) {
+    it_maps_delayed_execution_to_the_call_instead_of_its_last_argument();
     it_reads_a_local_before_its_call_result_assignment();
     it_copies_parameters_before_execution_and_results_after();
     it_accepts_named_parameters_and_results();

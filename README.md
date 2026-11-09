@@ -382,6 +382,21 @@ a state pointer; handwritten native signatures remain unchanged. Callees are
 emitted before callers. Native optimization is performed by the C compiler.
 Recursion remains forbidden, including cycles formed by unused aliases.
 
+Generated executable statements use `#line` directives naming the absolute,
+resolved Ama source path and its physical line. Unicode filenames are preserved;
+quotes, backslashes, and control bytes are escaped for C. Calls are attributed
+to their call line even when emitted after argument setup; argument/result copies
+use their own source lines. Synthetic function scaffolding uses the virtual
+filename `<ama-generated>` rather than inheriting the last Ama statement.
+
+For source-level debugging, compile the generated program with `-g -O0`. Keep
+the source files at their recorded paths or configure the debugger's source-path
+substitution after moving them. These mappings do not rename hashed C variables
+or guarantee exact stepping under optimization. Token/declaration locations also
+retain one-based UTF-8 byte columns for future diagnostics and program nodes;
+standard `#line` does not map columns, so downstream C diagnostic columns refer
+to generated C. Native companion sources retain their normal C locations.
+
 ## Tests
 
 The test tree uses C and recursive Makefiles, with two kinds of harness:
@@ -462,7 +477,7 @@ by the downstream C compiler rather than by Ama. There is no string/file input,
 interactive debugger, or recovery within a failed compilation. Generated types, functions, fields, native arguments, and headers use
 deterministic hash names. Unicode paths and interface names are supported.
 Actual hash collisions are rejected rather than merging different entities;
-`#line` source mappings remain planned.
+`#line` source mappings preserve original file/line attribution.
 
 ## Contributing
 

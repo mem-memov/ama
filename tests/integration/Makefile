@@ -56,6 +56,7 @@ all:
 >    $(MAKE) -C 45-independent-states all
 >    $(MAKE) -C 46-persistent-state all
 >    $(MAKE) -C 47-native-unicode all
+>    $(MAKE) -C 48-source-diagnostics all
 
 clean:
 >    $(MAKE) -C 01-hello clean
@@ -105,3 +106,4 @@ clean:
 >    $(MAKE) -C 45-independent-states clean
 >    $(MAKE) -C 46-persistent-state clean
 >    $(MAKE) -C 47-native-unicode clean
+>    $(MAKE) -C 48-source-diagnostics clean

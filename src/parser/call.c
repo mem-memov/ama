@@ -6,6 +6,7 @@ typedef enum { CALL_ARGUMENTS_UNSET, CALL_ARGUMENTS_POSITIONAL, CALL_ARGUMENTS_N
 
 typedef struct {
     char callee[MAX_MODULE_PATH_LENGTH];
+    SourceLocation location;
     CallArgumentMode mode;
     int has_results;
     int has_emitted_call;
@@ -26,6 +27,7 @@ static bool resolve_callee(StatementParser* parser, ModuleCallState* call,
 /* Execution happens once, before reading any result, even for an empty call. */
 static void ensure_call_emitted(StatementParser* parser, ModuleCallState* call) {
     if (!call->has_emitted_call) {
+        emit_source_location(parser->emitter, call->location);
         emit_call_exec(parser->emitter, call->callee);
         call->has_emitted_call = 1;
     }
@@ -54,6 +56,7 @@ static bool parse_result(StatementParser* parser, ModuleCallState* call, const S
         return parser_error(parser, destination_token.line_number, "expected identifier after '>'");
     Symbol* receiver = get_or_create_receiver(parser, destination_token.lexeme, destination_token.line_number);
     if (!receiver) return false;
+    emit_source_location(parser->emitter, token_location(destination_token));
     emit_copy(parser->emitter, receiver->symbol_id, result->symbol_id);
     return true;
 }
@@ -108,9 +111,9 @@ static bool parse_call_argument(StatementParser* parser, ModuleCallState* call) 
     }
 }
 
-bool parse_call(StatementParser* parser, uint32_t indentation, Symbol* alias, uint32_t line_number) {
-    ModuleCallState call = {0};
-    if (!resolve_callee(parser, &call, alias, line_number)) return false;
+bool parse_call(StatementParser* parser, uint32_t indentation, Symbol* alias, SourceLocation location) {
+    ModuleCallState call = {.location = location};
+    if (!resolve_callee(parser, &call, alias, location.line)) return false;
     emit_call_init(parser->emitter, call.callee);
     while (token_stream_peek(parser->stream)->type != TOKEN_END_OF_FILE &&
         token_stream_peek(parser->stream)->type != TOKEN_ERROR &&

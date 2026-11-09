@@ -1,8 +1,13 @@
+#ifndef _XOPEN_SOURCE
+#define _XOPEN_SOURCE 700
+#endif
+
 #include "project/internal.h"
 #include <dirent.h>
 #include <sys/stat.h>
 #include <errno.h>
 #include <string.h>
+#include <stdlib.h>
 
 static bool join_path(char* combined_path, size_t capacity, const char* relative_prefix,
     const char* name, Error* error) {
@@ -20,7 +25,16 @@ static bool register_module_file(Project* project, const char* module_path,
             "duplicate module path '%s'; project and standard library must not overlap", module_path);
     if (project->file_count == MAX_MODULE_FILES)
         return error_set(error, ERROR_LIMIT, 0, "too many module files (max %d)", MAX_MODULE_FILES);
+    char* source_path = realpath(file_path, NULL);
+    if (!source_path)
+        return error_set(error, ERROR_IO, 0, "cannot resolve source path '%s': %s", file_path, strerror(errno));
+    if (strlen(source_path) >= MAX_FILE_PATH_LENGTH) {
+        free(source_path);
+        return error_set(error, ERROR_LIMIT, 0, "absolute source path is too long: '%s'", file_path);
+    }
     ModuleFile* file = &project->files[project->file_count++];
+    strcpy(file->source_path, source_path);
+    free(source_path);
     strcpy(file->module_path, module_path);
     strcpy(file->file_path, file_path);
     file->implementation = MODULE_DECLARATION_ONLY;

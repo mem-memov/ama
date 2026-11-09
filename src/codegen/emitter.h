@@ -6,13 +6,17 @@
 #include "symbols/table.h"
 #include "graph/graph.h"
 #include "common/names.h"
+#include "common/source.h"
 
 typedef struct {
     FILE* output;
     SymbolTable* symbols;
+    bool source_mapping_enabled;
     const char* module_path; /* Module whose body is being emitted; NULL outside a body. */
 } Emitter;
 
+void emit_source_location(Emitter* emitter, SourceLocation location);
+void emit_generated_location(Emitter* emitter);
 void emitter_init(Emitter* emitter, FILE* output, SymbolTable* symbols);
 /* Variable access selects the current state or a callee's default instance. */
 void emit_symbol_access(Emitter* emitter, uint32_t symbol_id);

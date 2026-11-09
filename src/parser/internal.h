@@ -17,7 +17,7 @@ bool emit_parsed_value(
 );
 bool parse_assignment(StatementParser* parser, uint32_t indentation, uint32_t destination_symbol_id);
 bool parse_call_parameter(StatementParser* parser, uint32_t destination_symbol_id);
-bool parse_call(StatementParser* parser, uint32_t indentation, Symbol* alias, uint32_t line_number);
+bool parse_call(StatementParser* parser, uint32_t indentation, Symbol* alias, SourceLocation location);
 bool parse_branch(StatementParser* parser, uint32_t indentation);
 bool parse_loop(StatementParser* parser, uint32_t indentation);
 

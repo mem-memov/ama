@@ -42,7 +42,29 @@ static void it_discovers_persistent_targets_before_reading_them(void) {
     destroy_test();
 }
 
+static void it_maps_control_flow_and_restores_generated_scaffolding(void) {
+    setup_test();
+    emitter.source_mapping_enabled = true;
+    bool parsed = parse_text_at("x\n1\nx\n{\n x\n ?\n  >\n :\n  !\n}\n", "flow.ama");
+    assert(parsed);
+    emit_module_end(&emitter);
+    rewind(output);
+    char text[8192];
+    size_t length = fread(text, 1, sizeof(text) - 1, output);
+    assert(!ferror(output));
+    text[length] = '\0';
+    assert(strstr(text, "#line 7 \"flow.ama\"\n    return;") != NULL);
+    assert(strstr(text, "#line 8 \"flow.ama\"\n    } else {") != NULL);
+    assert(strstr(text, "#line 9 \"flow.ama\"\n    break;") != NULL);
+    assert(strstr(text, "#line 10 \"flow.ama\"\n    }") != NULL);
+    assert(strstr(text, "#line 1 \"<ama-generated>\"\n}\n") != NULL);
+    Symbol* value = lookup_symbol(symbols, "main", "x");
+    assert(value && value->declaration.line == 1 && value->declaration.column == 1);
+    destroy_test();
+}
+
 void run(void) {
+    it_maps_control_flow_and_restores_generated_scaffolding();
     it_discovers_persistent_targets_before_reading_them();
     it_combines_lexing_assignment_and_emission();
     it_reports_an_unknown_source_without_terminating_the_process();

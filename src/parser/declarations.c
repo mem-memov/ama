@@ -18,8 +18,9 @@ bool parse_declaration_section(Lexer* lexer, SymbolTable* symbols,
             return error_set(lexer->error, ERROR_INVALID, value.line_number,
                 "value for '%s' must be at indent 0", name.lexeme);
         SymbolKind actual = value.type == TOKEN_MODULE_PATH ? SYMBOL_MODULE_ALIAS : kind;
-        if (!add_declarative_symbol(symbols, module, name.lexeme, actual, value, lexer->error))
-            return false;
+        Symbol* symbol = add_declarative_symbol(symbols, module, name.lexeme, actual, value, lexer->error);
+        if (!symbol) return false;
+        symbol->declaration = token_location(name);
     }
 }
 
@@ -34,14 +35,18 @@ bool collect_body_variables(StatementParser* parser) {
         const Token* next = &stream->tokens[index + 1];
         if (token->type == TOKEN_RESULT_ARROW && next->type == TOKEN_IDENTIFIER &&
             !next->is_at_line_start) {
-            if (!get_or_create_receiver(parser, next->lexeme, next->line_number)) return false;
+            Symbol* receiver = get_or_create_receiver(parser, next->lexeme, next->line_number);
+            if (!receiver) return false;
+            if (!receiver->declaration.line) receiver->declaration = token_location(*next);
             index++;
         } else if (token->type == TOKEN_IDENTIFIER && token->is_at_line_start &&
             next->indentation == token->indentation &&
             (next->type == TOKEN_LITERAL || next->type == TOKEN_IDENTIFIER)) {
             Symbol* symbol = lookup_symbol(parser->symbols, parser->module_path, token->lexeme);
             if (symbol && symbol->kind == SYMBOL_MODULE_ALIAS) continue;
-            if (!get_or_create_receiver(parser, token->lexeme, token->line_number)) return false;
+            Symbol* receiver = get_or_create_receiver(parser, token->lexeme, token->line_number);
+            if (!receiver) return false;
+            if (!receiver->declaration.line) receiver->declaration = token_location(*token);
             index++;
         }
     }

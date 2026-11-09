@@ -51,5 +51,7 @@ bool emit_parsed_value(
 }
 
 bool parse_call_parameter(StatementParser* parser, uint32_t destination_symbol_id) {
-    return emit_parsed_value(parser, token_stream_advance(parser->stream), destination_symbol_id, "parameter value");
+    Token value = token_stream_advance(parser->stream);
+    emit_source_location(parser->emitter, token_location(value));
+    return emit_parsed_value(parser, value, destination_symbol_id, "parameter value");
 }

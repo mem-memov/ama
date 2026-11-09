@@ -189,7 +189,8 @@ comment terminators and control characters before writing those labels. Handwrit
 C names should remain descriptive; only generated source-derived names need
 hashes. A rename or move changes native function/header names, so regenerate and
 update the implementation explicitly. Stub generation must still never overwrite
-an existing handwritten source. `#line` and debugger symbol mapping are later work.
+an existing handwritten source. `#line` mapping is implemented; readable debugger variable-name mapping remains
+later work.
 
 ## Generated module state
 
@@ -208,6 +209,35 @@ parameter does not change the public handwritten `ama_native_*` signature.
 State structures and generated function names are internal output details, not
 a stable C embedding API. The independent-state integration test uses a C driver
 to exercise these internals before the language exposes object declarations.
+
+## Source locations and generated line mappings
+
+`SourceLocation` records a borrowed path, physical line, and one-based UTF-8 byte
+column. Source owners must outlive tokens, symbols, and future program nodes
+that retain those paths. Project modules hold resolved absolute source paths;
+the lexer receives them explicitly. Module identity remains the relative namespace
+path used for hashing, independently of the physical source path.
+
+The lexer counts columns across UTF-8 bytes and normalizes CRLF as one line
+ending, preserving comment/blank-line behavior and section start lines. The parser
+retains declaration/write-target locations. Do not discard them in future IR
+passes or infer locations from the generated C stream.
+
+Use the shared line-directive writer to escape filenames. Map assignments,
+conditions, breaks, returns, argument copies, result copies, and closing loop
+markers to their source locations. A delayed call must restore its original
+call-site location before emission rather than inherit its last argument's line.
+Map `else` to its Ama `:` marker. Restore `<ama-generated>` for generated closures,
+function scaffolding, wrappers, and the C entry point; that virtual file uses
+line 1 as a marker, not the physical line number of the output C file. Unmapped
+preamble/header declarations retain their ordinary generated-file locations.
+
+Enable mappings for whole-project compilation. Low-level emitter tests may leave
+them disabled to focus on output operations; dedicated tests must exercise them.
+Check downstream C diagnostics with nested Unicode source paths and paths containing
+quotes/backslashes. Compile debug builds with `-g -O0`; line directives preserve
+file/line attribution but neither source column positions nor original variable
+names in a debugger. Optimized stepping and native helper frames remain C concerns.
 
 ## Native C modules
 

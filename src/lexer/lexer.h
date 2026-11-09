@@ -8,6 +8,8 @@
 typedef struct {
     Error* error;
     FILE* source_file;
+    const char* source_path;
+    uint32_t column_number;
     long section_end_offset;
     uint32_t line_number;
     int is_at_line_start;
@@ -15,8 +17,8 @@ typedef struct {
     int has_preceding_blank_line;
 } Lexer;
 
-bool init_lexer(Lexer* lexer, FILE* source_file, long section_start_offset, long section_end_offset,
-    uint32_t start_line, Error* error);
+bool init_lexer(Lexer* lexer, FILE* source_file, const char* source_path,
+    long section_start_offset, long section_end_offset, uint32_t start_line, Error* error);
 Token get_next_token(Lexer* lexer);
 
 #endif

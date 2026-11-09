@@ -7,12 +7,13 @@ static void it_finds_explicit_sections_and_preserves_physical_lines(void) {
     bool split = split_module_sections(source, &sections, &error);
     assert(split && sections.parameters_line == 2 && sections.results_line == 6);
     assert(sections.code_line == 10 && sections.parameters_end < sections.results_start);
-    bool initialized = init_lexer(&lexer, source, sections.results_start, sections.results_end,
+    bool initialized = init_lexer(&lexer, source, "sections.ama", sections.results_start, sections.results_end,
         sections.results_line, &error);
     assert(initialized);
     Token result_name = get_next_token(&lexer);
     assert(result_name.type == TOKEN_IDENTIFIER && result_name.line_number == 6);
     assert(strcmp(result_name.lexeme, "result") == 0);
+    assert(result_name.column_number == 1 && strcmp(result_name.source_path, "sections.ama") == 0);
     destroy_test();
 }
 

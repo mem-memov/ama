@@ -46,6 +46,7 @@ static StatementKind classify_statement(StatementParser* parser, uint32_t indent
 }
 
 bool parse_statement(StatementParser* parser, uint32_t indentation) {
+    emit_source_location(parser->emitter, token_location(*token_stream_peek(parser->stream)));
     switch (classify_statement(parser, indentation)) {
     case STATEMENT_ERROR:
         return false;
@@ -66,7 +67,7 @@ bool parse_statement(StatementParser* parser, uint32_t indentation) {
     case STATEMENT_CALL: {
         Token name = token_stream_advance(parser->stream);
         Symbol* alias = lookup_symbol(parser->symbols, parser->module_path, name.lexeme);
-        return parse_call(parser, indentation, alias, name.line_number);
+        return parse_call(parser, indentation, alias, token_location(name));
     }
     case STATEMENT_ASSIGNMENT: {
         Token name = token_stream_advance(parser->stream);

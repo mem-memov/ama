@@ -14,6 +14,7 @@ SOURCES := \
     $(ROOT)/src/graph/graph.c \
     $(ROOT)/src/common/path.c \
     $(ROOT)/src/common/diagnostic.c \
+    $(ROOT)/src/common/source.c \
     $(ROOT)/src/common/names.c \
     $(ROOT)/src/codegen/emitter.c
 include ../../../leaf.mk

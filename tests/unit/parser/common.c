@@ -23,10 +23,10 @@ static void destroy_test(void) {
     free(graph);
     free(symbols);
 }
-static bool parse_text(const char* text) {
+static bool parse_text_at(const char* text, const char* source_path) {
     FILE* source = text_file(text);
     Lexer lexer;
-    bool ready = init_lexer(&lexer, source, 0, (long)strlen(text), 1, &error);
+    bool ready = init_lexer(&lexer, source, source_path, 0, (long)strlen(text), 1, &error);
     assert(ready);
     Token tokens[256];
     TokenStream stream = {tokens, 0, 0};
@@ -43,5 +43,8 @@ static bool parse_text(const char* text) {
     while (token_stream_peek(&stream)->type != TOKEN_END_OF_FILE)
         if (!parse_statement(&parser, 0)) return false;
     return true;
+}
+static bool parse_text(const char* text) {
+    return parse_text_at(text, NULL);
 }
 #endif

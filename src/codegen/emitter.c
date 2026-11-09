@@ -6,6 +6,16 @@ void emitter_init(Emitter* emitter, FILE* output, SymbolTable* symbols) {
     *emitter = (Emitter){.output = output, .symbols = symbols};
 }
 
+void emit_source_location(Emitter* emitter, SourceLocation location) {
+    if (emitter->source_mapping_enabled && location.path && location.line)
+        emit_line_directive(emitter->output, location.path, location.line);
+}
+
+void emit_generated_location(Emitter* emitter) {
+    if (emitter->source_mapping_enabled)
+        emit_line_directive(emitter->output, GENERATED_SOURCE_PATH, 1);
+}
+
 void emit_state_type(FILE* output, const char* path) {
     emit_generated_name(output, NAME_STATE, path, NULL);
 }
@@ -40,6 +50,7 @@ void emit_copy(Emitter* emitter, uint32_t destination_symbol_id, uint32_t source
 }
 
 void emit_module_start(Emitter* emitter, const char* path) {
+    emit_generated_location(emitter);
     emitter->module_path = path;
     fputs("void ", emitter->output);
     emit_module_name(emitter->output, path);
@@ -49,6 +60,7 @@ void emit_module_start(Emitter* emitter, const char* path) {
 }
 
 void emit_module_end(Emitter* emitter) {
+    emit_generated_location(emitter);
     fputs("}\n\n", emitter->output);
     emitter->module_path = NULL;
 }
