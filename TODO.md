@@ -18,6 +18,16 @@ inline and passed efficiently; a uniform model does not require heap allocation
 for each number. Native objects expose typed Ama references, while their C
 implementations may internally hold `void*` payloads.
 
+Declarations use a name (with `&` and/or `[]`), an unmodified module path on
+the next line, and optional literal initialization one space deeper. List
+initialization may contain several such lines. Integer literals are not a
+special expression category: literal data occurs only in declarations and is
+interpreted by the declared type. No hidden integer variables are generated.
+
+Internal C names use deterministic hashes of complete source identities. Unicode
+source names remain unchanged in diagnostics and source mappings. Generated C
+uses `#line` directives to associate executable code with its Ama source.
+
 Calling an object means executing the module over the selected state. The
 state stays with its owner. The implementation brings code to the data rather
 than copying a large tree of data into a module's global variables.
@@ -72,6 +82,14 @@ constants from executable modules and unfinished drafts. Replacing `@Ama` with
   sequences are fundamental types represented through modules.
 - Remove `size_t` from the future language semantics as a universal value; keep
   C storage choices separate from Ama types.
+- Declaration literals are interpreted by the declared module type. Remove
+  integer literals as a special expression category and reject literal arguments
+  or assignments outside declarations; do not synthesize hidden variables.
+- Index types and conversion operations belong to the standard library; the
+  compiler has an explicit mapping to the required operations.
+- Generate internal C identifiers from complete source identities using hashes,
+  with collision checks, preserving Unicode source identities.
+- Emit `#line` mappings for source diagnostics and debugging.
 - Native data crosses Ama interfaces through typed references, not bare `void*`
   values or types guessed from parameter names. Native payloads may use `void*`
   internally under an explicit type and lifecycle contract.
@@ -170,20 +188,119 @@ A normalized path relative to the compilation namespace identifies a module.
 The standard library already shares that namespace with project modules;
 duplicate paths are rejected.
 
-A compiler-assigned integer can identify the type inside one compiled program.
-The full path remains available for readable diagnostics. If identifiers are
-assigned during scanning, they need not remain stable across builds.
+Internal generated C names must use deterministic hashes rather than replacing
+slashes with underscores or requiring ASCII source identifiers. Hash the full
+normalized module path as UTF-8 bytes. For a member, hash its module identity
+and member name with unambiguous component boundaries. Use category prefixes
+such as `ama_state_<hash>`, `ama_call_<hash>`, and `ama_field_<hash>`; reference
+types, native entry points, generated parameters, header filenames, and guards
+must follow the same naming service. These spellings illustrate the scheme,
+not a finalized ABI.
 
-A path hash is an alternative lookup mechanism, not proof of uniqueness:
-collisions must be checked against full names. Sorting paths before assigning
-integers is another option if reproducible numbering becomes useful.
+Different source identities must never silently acquire the same C name. Keep
+an identity registry, detect collisions, and issue a deterministic diagnostic
+(or use an explicitly specified disambiguation scheme). Choose the hash algorithm,
+width, identity encoding, and output spelling before treating names as stable.
+Do not use process-randomized hashes or scan-order suffixes. Test collision
+handling with a controlled fixture rather than expecting real collisions.
 
-Neither a path nor a numeric ID establishes serialization compatibility. A
-future saved-state format would also need a layout/schema version. Persistent
-type IDs, persistence, and separate compilation are not prerequisites for the
-first implementation.
+Preserve current case-sensitive UTF-8 byte identity. Do not silently introduce
+Unicode normalization, case folding, or transliteration. ASCII-safe generated
+identifiers must support international source names rather than restricting
+them. Any stricter UTF-8 validation is a separate explicit language decision.
+
+Compact integers may still index runtime type tables within one program. Those
+indices are distinct from deterministic C names and are not persistent type IDs.
+Neither hashes nor paths establish state-layout or native ABI compatibility;
+persistence would also require schema/version information.
+
+#### Source names and debugging
+
+Emit line directives before relevant executable source regions, for example:
+
+```c
+#line 12 "магазин/товар"
+```
+
+Paths and line numbers must come from actual source locations. Decide how paths
+are resolved relative to the compiler invocation so a debugger can find files.
+Keep Unicode filename bytes and correctly escape quotes, backslashes, and any
+control bytes in C strings. Restore a generated-file location for scaffolding
+that has no source equivalent rather than attributing every helper error to the
+last Ama line. Mapping must handle branches, loops, returns, and module changes.
+
+`#line` supplies file/line attribution; it does not restore source variable names
+or make optimized code perfectly debuggable. Provide a generated symbol map or
+other tooling for hashed variable/type names. Readable source labels in generated
+comments must also be escaped so source names cannot terminate a C comment.
+
+This is a planned change. Current generated names and handwritten native
+implementations require coordinated migration; do not claim that old native
+symbol names remain compatible. Header declarations, safe stub generation,
+standard library sources, fixtures, and ABI checks must change together.
 
 ### 3. Creation, calls, and cloning
+
+#### Typed declarations and literal initialization
+
+The future declaration shape is:
+
+```text
+count
+.std.integer
+ 255
+
+title
+.std.text
+ Hello, world!
+
+values[]
+.std.integer
+ 10
+ 20
+ 30
+
+&selected
+.shop.item
+```
+
+Module paths are illustrative until library type names are chosen. The optional
+initializer is one indentation level deeper than the name and type lines. For
+lists, each initial line supplies a literal for an element. A reference must not
+be constructible from arbitrary literal bytes: reference initialization, if
+supported, needs an explicit validated contract.
+
+Literals are data given to the declared type, not implicit integer expressions.
+Outside declarations use named values. Do not desugar a literal argument into a
+hidden integer variable. The parser must distinguish declarations from calls
+with indented arguments and reject duplicate declarations. Existing executable
+assignment syntax must be migrated: its source will be a named value, not a
+bare numeric literal. Defaults in parameter/result sections use the same typed
+initialization scheme.
+
+Literal decoding and type initialization are distinct stages. A proposed native
+literal interface takes immutable bytes with an explicit length, interprets them,
+and reports invalid input or range errors against the initializer's location.
+Text `255` is parsed into numeric state; casting a byte pointer does not perform
+this conversion. UTF-8 is the recommended format rather than host-dependent
+`wchar_t`; finalize this choice and its exact decoding rules before implementation.
+Specify empty strings, significant whitespace, comment characters, escapes,
+multiline content, and binary encodings. Preserve the distinction between list
+entries and a multiline literal for one entry.
+
+The input may be a view of compiler-emitted immutable storage or a copied buffer,
+but its lifetime must be explicit. Literal initialization runs once per created
+owned instance; parameter/result defaults are reinstated according to the call
+contract. A type-level initialization hook is not an Ama constructor section.
+Decide whether literal errors are checked during translation, execution, or both;
+C implementation availability alone does not provide compile-time evaluation.
+
+Without an initializer, use the declared type's defined initial-state contract.
+Numbers can start at zero, text empty, and lists empty. Types such as external
+resources may need an empty state or require explicit initialization. Zeroing
+arbitrary native bytes is not a general initialization algorithm.
+
+#### Lifecycle
 
 | Operation | Intended effect |
 |---|---|
@@ -196,9 +313,9 @@ first implementation.
 Creation and cloning are different. A new counter starts from declared initial
 values; a clone of a counter at 57 starts at 57.
 
-There is no constructor section. Numeric declarations establish initial values,
-owned child declarations establish child states, and list declarations establish
-empty lists unless an initial length is explicitly specified. Complex application
+There is no constructor section. Typed declarations establish initial values,
+owned child declarations establish child states, and lists start empty unless
+initial elements or an explicit initial length are supplied. Complex application
 setup can be requested through an ordinary call; no hidden one-time body is
 introduced.
 
@@ -209,8 +326,10 @@ before reads are parsed, including targets inside conditional bodies. Reading
 a variable before its first textual write observes its stored value, initially
 zero. Names with no declaration or write target remain errors.
 
-Every assignment in the body executes whenever reached; `value` followed by
-`0` explicitly resets the value and is not a one-time initializer. The initial
+Under the currently implemented numeric syntax, every assignment executes
+whenever reached; `value` followed by `0` explicitly resets it. In the future
+typed syntax, an indented declaration literal initializes only once and an
+assignment uses a named source. This is an intentional syntax migration. The initial
 implementation retains `size_t` storage and default instances. Owned child
 declarations, references, lists, and the new fundamental types remain planned.
 
@@ -604,24 +723,31 @@ agreement.
 
 ### 9. Enum modules and implementation selectors
 
-Use `@enum` with an empty body to explicitly mark a constant module. A proposed
-example preserves the existing name/value declaration pairs:
+Use `@enum` with an empty body to explicitly mark a constant module. The
+updated declaration design also applies here; the earlier untyped name/number
+pairs are superseded. A proposed example is:
 
 ```text
 @>
 none
-0
+.std.integer
+ 0
 append
-1
+.std.integer
+ 1
 remove
-2
+.std.integer
+ 2
 clear
-3
+.std.integer
+ 3
 @enum
 ```
 
-Proposed validation rules: only result declarations with explicit numeric
-values; no parameters, aliases, executable body, or mutation. Enum members are
+Proposed validation rules: only result declarations with explicit typed constant
+initializers; no parameters, callable aliases, executable body, or mutation.
+Initially use the library integer type for actions; requirements for other
+constant-capable types and compile-time validation still need definition. Enum members are
 available without executing the module, and the enum itself is not callable.
 
 Initially, members can be named numeric constants rather than a new closed
@@ -666,19 +792,24 @@ rules; sharing its representation must not introduce surprising shared mutable
 state. Optimizing small values inline is allowed. These optimizations must not
 change observable ownership, identity, or reference behavior.
 
-The width and signedness of numbers, overflow behavior, literal typing,
-conversions, and byte representation are not decided. In particular, adopting
-module-defined numbers does not silently adopt either 64-bit integers or
-arbitrary-precision arithmetic. Choose the initial numeric module and define its
-operations explicitly. List lengths and indices need a documented numeric
-contract and checked conversion to host allocation sizes.
+Number width, signedness, range, overflow, and conversions belong to the selected
+standard library numeric type, not a privileged integer token in the language.
+The library defines the index type and checked index-conversion operations. The
+compiler keeps an explicit mapping to those operations for indexed access and
+other structural needs. Validate the mapped signatures and fail clearly if the
+required library contract is missing. Do not infer it from parameter names.
+The runtime still uses host indices internally only after range validation.
 
-The syntax for numeric literals/defaults and enum constants must remain readable.
-Decide how literals initialize a module-defined numeric value, which types may
-appear in conditions, and how current arithmetic modules evolve. Avoid forcing
-users to allocate objects manually for every literal or arithmetic temporary.
-Names and paths of fundamental modules are still open; do not invent a large
-primitive hierarchy before testing ordinary programs.
+Conditions similarly need a documented library operation or protocol to obtain
+a truth value; removing built-in integers does not eliminate this structural
+requirement. Paths and versioning of these contracts remain open. The compiler
+must not quietly reinstate universal `size_t` through special-case arithmetic.
+
+Literals exist only as declaration initializers and are interpreted by their
+explicit module type. No integer expression literals or automatically generated
+integer temporaries are planned. Fundamental modules and generated code can
+still optimize numbers inline; users need not allocate one heap object per
+arithmetic operation. Define value copy semantics independently of storage.
 
 `size_t` remains useful inside C for allocation sizes and host indexing. It is
 not an Ama type definition. Cross-boundary conversions must check range rather
@@ -691,6 +822,33 @@ instance selection, and generated initialization, cloning, execution, and
 cleanup operations. Current numeric `@C` signatures cannot express this model.
 The new native ABI must be designed explicitly; it is not implied by an existing
 `size_t` parameter or result.
+
+#### Module-to-module data transfer
+
+An ordinary parameter receives an independent value of its declared module type.
+A reference parameter receives a checked reference to the original instance.
+Type compatibility is established by full module identity, not by argument name
+or by the fact that both payloads happen to fit in a `void*`.
+
+For an ordinary composite value, copying clones owned children and lists and
+preserves external reference targets. Reject unsupported copies rather than
+silently aliasing an owning payload. Implementations may elide physical copies
+or share immutable backing storage only if observable value semantics remain
+unchanged. A C pointer to a value parameter denotes temporary access to its
+prepared parameter storage, not a retained Ama reference.
+
+Results by value replace destination values under the type's copy/cleanup
+contract. Define preparation and commit ordering so a failed operation does not
+leave a partially replaced destination. Reference results copy handles without
+transferring ownership. Mutable versus read-only access to copied C parameters
+and the technical function return status are ABI details still to finalize.
+
+The compiler generates state types, reference declarations, function prototypes,
+and lifecycle adapters from complete module interfaces. Native fundamental types
+supply their C layout or opaque payload contract; the compiler composes those
+into user module states. Handwritten native code includes generated headers
+rather than reproducing structures. Use the hash-based naming scheme for every
+such generated type and symbol, including Unicode source names.
 
 A C implementation may store a `void*` payload inside its native state. Ama sees
 a typed instance and checked references, never a bare pointer. For example,
@@ -752,8 +910,43 @@ that can be passed to every function.
 Do not implement every part at once. Resolve a small set of complete programs
 before changing the grammar.
 
+### Selected next task: deterministic internal naming
+
+Start with a shared identity-to-C-name component before changing the value ABI.
+It is needed by generated state types, native bindings, typed values, references,
+and international source names, and can be verified independently of new syntax.
+
+- [ ] Define canonical identity tuples, deterministic hash algorithm/width,
+  ASCII spelling, category prefixes, and collision behavior.
+- [ ] Implement the shared naming component and a collision registry. Test Unicode,
+  case differences, component boundaries, `shop/item` versus `shop_item`, scan-order
+  independence, and controlled collisions.
+- [ ] Migrate state types, calls, fields, native signatures, generated parameter
+  names, header files, and guards together; update handwritten library/native
+  bindings and affected tests without overwriting contributor implementations.
+- [ ] Remove ASCII-only native-name restrictions that hashing makes unnecessary.
+  Preserve existing source identity rules and readable diagnostics.
+- [ ] Complete the existing full test tree and add native Unicode integration
+  coverage before considering the naming migration finished.
+
+The next independent task is source mapping: retain actual source paths and
+locations, emit escaped `#line` directives with Unicode names, restore generated
+locations for helpers, and test diagnostics/debugger attribution. Do not combine
+this automatically with the entire type-system rewrite.
+
+### Following type and syntax tasks
+
+- [ ] Specify typed declarations with optional indented literal lines, list
+  entries, and parameter/result defaults. Reject literals outside declarations
+  and remove implicit numeric local creation under the new syntax.
+- [ ] Define the byte-and-length literal interface, text encoding and escaping,
+  initializer error locations, buffer lifetime, and execution timing.
+- [ ] Define explicit compiler mappings to library index and condition operations,
+  including signature validation and range/error handling.
+- [ ] Specify value versus reference parameter/result ownership, generated native
+  layouts/prototypes, clone refusal, and destination replacement on failure.
 - [ ] Define the initial fundamental module types for numbers and byte sequences,
-  their literal/default syntax, condition behavior, numeric range, overflow,
+  their declaration initialization, condition behavior, numeric range, overflow,
   conversions, and value versus reference passing. Keep unresolved representation
   choices explicit.
 - [ ] Replace assumptions of universal `size_t` in symbols, parsing, codegen,
@@ -836,7 +1029,8 @@ Deletion tests must reject busy descendants before freeing any part of a tree. N
 through C globals. Cover typed opaque payload exchange without copying, rejection
 of incompatible types regardless of parameter names, lifetime invalidation,
 independent resource clones or explicit clone refusal, and exactly-once cleanup.
-Numeric tests must cover literals, value copies, range/overflow policy, index
+Numeric tests must cover declaration literals and rejection of literals in calls
+and assignments (without hidden variables), value copies, range/overflow policy, index
 conversion, host-size boundaries, and byte-sequence ownership. Enum tests should
 reject executable bodies and mutation and follow the new numeric contract.
 
