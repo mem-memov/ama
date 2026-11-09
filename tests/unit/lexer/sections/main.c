@@ -163,9 +163,30 @@ static void it_rejects_two_implementation_selectors(void) {
     destroy_test();
 }
 
+static void it_treats_literal_payload_as_data_instead_of_annotations_or_code_whitespace(void) {
+    setup_test();
+    source = text_file("@<\ntext\n.std.text\n |@C # data\t\n@Ama\n");
+    ModuleSections sections;
+    bool split = split_module_sections(source, &sections, &error);
+    assert(split && sections.implementation == MODULE_AMA_IMPLEMENTATION && sections.code_line == 6);
+    bool ready = init_lexer(&lexer, source, "literal.ama", sections.parameters_start,
+        sections.parameters_end, sections.parameters_line, &error);
+    assert(ready);
+    Token name = get_next_token(&lexer);
+    Token type = get_next_token(&lexer);
+    Token literal = get_next_token(&lexer);
+    assert(name.type == TOKEN_IDENTIFIER && type.type == TOKEN_MODULE_PATH);
+    assert(literal.type == TOKEN_LINE_LITERAL && literal.line_number == 4);
+    assert(literal.literal_length == strlen("@C # data\t"));
+    assert(memcmp(literal.literal_bytes, "@C # data\t", literal.literal_length) == 0);
+    destroy_token(&literal);
+    destroy_test();
+}
+
 void run(void) {
     it_rejects_ama_code_after_a_native_annotation();
     it_rejects_two_implementation_selectors();
+    it_treats_literal_payload_as_data_instead_of_annotations_or_code_whitespace();
     it_finds_explicit_sections_and_preserves_physical_lines();
     it_accepts_a_code_only_module();
     it_accepts_results_without_parameters();

@@ -10,8 +10,11 @@ typedef enum {
 } SectionKind;
 
 static bool validate_line(const char* text, size_t length, uint32_t line_number, Error* error) {
+    size_t content = 0;
+    while (content < length && text[content] == ' ') content++;
+    bool literal = content < length && text[content] == '|';
     for (size_t index = 0; index < length; index++) {
-        if (text[index] == '\t')
+        if (text[index] == '\t' && !(literal && index > content))
             return error_set(error, ERROR_INVALID, line_number,
                 "tab character is not allowed; use spaces for indentation");
         if (text[index] == '\r' && (index + 1 == length || text[index + 1] != '\n'))

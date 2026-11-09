@@ -30,6 +30,12 @@ bool parse_statement(StatementParser* parser, uint32_t indentation, AstBlock* bl
     if (name.type != TOKEN_IDENTIFIER)
         return parser_error(parser, name.line_number, "unexpected token type %d at statement start", (int)name.type);
     Token* next = token_stream_peek(parser->stream);
+    if (parser->typed_declarations && (next->type == TOKEN_AMPERSAND || next->type == TOKEN_LIST_OPEN ||
+        (next->type == TOKEN_MODULE_PATH && next->is_at_line_start && next->indentation == indentation))) {
+        statement->kind = AST_DECLARATION;
+        return parse_typed_declaration(parser, name, indentation, AST_BODY_DECLARATION,
+            &statement->as.declaration);
+    }
     if (next->indentation == indentation && next->is_at_line_start &&
         (next->type == TOKEN_QUESTION_MARK || next->type == TOKEN_LOOP_OPEN)) {
         if (next->has_preceding_blank_line)

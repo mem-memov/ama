@@ -114,7 +114,39 @@ static void it_preserves_errors_from_arrow_lookahead(void) {
     destroy_test();
 }
 
+static void it_preserves_literal_payload_and_resumes_at_the_next_physical_line(void) {
+    setup_test();
+    set_source(" | #@Ama\"\\\t  \r\nnext");
+    Token literal = get_next_token(&lexer);
+    Token next = get_next_token(&lexer);
+    const char* expected = " #@Ama\"\\\t  ";
+    assert(literal.type == TOKEN_LINE_LITERAL && literal.column_number == 2);
+    assert(literal.literal_length == strlen(expected));
+    assert(memcmp(literal.literal_bytes, expected, strlen(expected)) == 0);
+    assert(next.type == TOKEN_IDENTIFIER && next.line_number == 2 && next.column_number == 1);
+    destroy_token(&literal);
+    assert(literal.literal_bytes == NULL && literal.literal_length == 0);
+    destroy_test();
+}
+
+static void it_rejects_inline_literals_and_releases_failed_payloads(void) {
+    setup_test();
+    set_source("name |data");
+    Token name = get_next_token(&lexer);
+    Token invalid = get_next_token(&lexer);
+    assert(name.type == TOKEN_IDENTIFIER && invalid.type == TOKEN_ERROR);
+    close_file(source);
+    source = NULL;
+    error_clear(&error);
+    set_source(" |payload\rbroken");
+    Token failed = get_next_token(&lexer);
+    assert(failed.type == TOKEN_ERROR && failed.literal_bytes == NULL && error.error_code == ERROR_INVALID);
+    destroy_test();
+}
+
 void run(void) {
+    it_preserves_literal_payload_and_resumes_at_the_next_physical_line();
+    it_rejects_inline_literals_and_releases_failed_payloads();
     it_recognizes_a_contiguous_double_arrow_without_merging_separated_arrows();
     it_preserves_errors_from_arrow_lookahead();
     it_distinguishes_call_markers_from_loop_exits_and_tracks_adjacency();

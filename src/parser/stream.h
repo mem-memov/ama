@@ -1,13 +1,19 @@
 #ifndef AMA_PARSER_STREAM_H
 #define AMA_PARSER_STREAM_H
 
-#include "lexer/token.h"
+#include "lexer/lexer.h"
 
 typedef struct {
     Token* tokens;
     int token_count;
     int position;
 } TokenStream;
+
+/* The reader owns its token array and literal buffers, including on failure.
+    Pass an empty stream, and destroy it after parsing on every path.
+*/
+bool read_token_stream(Lexer* lexer, TokenStream* stream);
+void destroy_token_stream(TokenStream* stream);
 
 /* Streams are nonempty and terminated by EOF; peeking past EOF is bounded. */
 

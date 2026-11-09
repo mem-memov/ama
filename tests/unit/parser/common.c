@@ -33,21 +33,14 @@ static bool parse_syntax_at(const char* text, const char* source_path) {
     Lexer lexer;
     bool ready = init_lexer(&lexer, source, source_path, 0, (long)strlen(text), 1, &error);
     assert(ready);
-    Token tokens[1024];
-    TokenStream stream = {tokens, 0, 0};
-    for (;;) {
-        assert((size_t)stream.token_count < sizeof(tokens) / sizeof(tokens[0]));
-        Token token = get_next_token(&lexer);
-        tokens[stream.token_count++] = token;
-        if (token.type == TOKEN_ERROR || token.type == TOKEN_END_OF_FILE) break;
-    }
+    TokenStream stream = {0};
+    bool success = read_token_stream(&lexer, &stream);
     close_file(source);
-    if (error.error_code != ERROR_NONE) return false;
     StatementParser parser = {.stream = &stream, .module_path = "main",
         .module = &syntax, .error = &error};
-    if (!parse_module_body(&parser)) return false;
-    memset(tokens, 0, sizeof(tokens)); /* AST spellings must not borrow token storage. */
-    return true;
+    if (success) success = parse_module_body(&parser);
+    destroy_token_stream(&stream); /* No AST spelling may borrow token storage. */
+    return success;
 }
 static bool parse_text_at(const char* text, const char* source_path) {
     return parse_syntax_at(text, source_path) &&

@@ -111,6 +111,9 @@ static int read_punctuation(Lexer* lexer, Token* token, int character) {
     case '}': token->type = TOKEN_LOOP_CLOSE; break;
     case '!': token->type = TOKEN_CALL_MARKER; break;
     case '^': token->type = TOKEN_BREAK; break;
+    case '&': token->type = TOKEN_AMPERSAND; break;
+    case '[': token->type = TOKEN_LIST_OPEN; break;
+    case ']': token->type = TOKEN_LIST_CLOSE; break;
     default: return 0;
     }
     token->lexeme[0] = (char)character;
@@ -167,6 +170,53 @@ static Token read_path(Lexer* lexer, Token token) {
     return read_word(lexer, token, '.', TOKEN_MODULE_PATH);
 }
 
+void destroy_token(Token* token) {
+    free(token->literal_bytes);
+    token->literal_bytes = NULL;
+    token->literal_length = 0;
+}
+
+static Token read_line_literal(Lexer* lexer, Token token) {
+    token.type = TOKEN_LINE_LITERAL;
+    strcpy(token.lexeme, "|");
+    size_t capacity = 64;
+    token.literal_bytes = malloc(capacity);
+    if (!token.literal_bytes) {
+        error_set(lexer->error, ERROR_MEMORY, token.line_number, "out of memory (line literal)");
+        token.type = TOKEN_ERROR;
+        return token;
+    }
+    for (;;) {
+        int character = read_character(lexer);
+        if (character == EOF) break;
+        if (character == '\n') {
+            return_byte_to_input(lexer, character);
+            break;
+        }
+        if (token.literal_length == capacity - 1) {
+            if (capacity > SIZE_MAX / 2) {
+                error_set(lexer->error, ERROR_LIMIT, token.line_number, "line literal is too long");
+                break;
+            }
+            capacity *= 2;
+            char* bytes = realloc(token.literal_bytes, capacity);
+            if (!bytes) {
+                error_set(lexer->error, ERROR_MEMORY, token.line_number, "out of memory (line literal)");
+                break;
+            }
+            token.literal_bytes = bytes;
+        }
+        token.literal_bytes[token.literal_length++] = (char)character;
+    }
+    if (lexer->error->error_code != ERROR_NONE) {
+        destroy_token(&token);
+        token.type = TOKEN_ERROR;
+    } else {
+        token.literal_bytes[token.literal_length] = '\0';
+    }
+    return token;
+}
+
 Token get_next_token(Lexer* lexer) {
     int character = skip_whitespace_and_comments(lexer);
     if (ferror(lexer->source_file) && lexer->error->error_code == ERROR_NONE)
@@ -185,6 +235,8 @@ Token get_next_token(Lexer* lexer) {
         return end_of_file_token;
     }
     Token token = begin_token(lexer);
+    if (character == '|' && token.is_at_line_start)
+        return read_line_literal(lexer, token);
     if (read_punctuation(lexer, &token, character)) {
         if (lexer->error->error_code != ERROR_NONE) token.type = TOKEN_ERROR;
         return token;

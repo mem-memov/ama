@@ -4,6 +4,7 @@ ROOT := $(abspath ../../../..)
 COMMON := ../../../common.c ../../common.c ../common.c
 SOURCES := \
     $(ROOT)/src/ast/ast.c \
+    $(ROOT)/src/semantic/initializers.c \
     $(ROOT)/src/semantic/declarations.c \
     $(ROOT)/src/semantic/values.c \
     $(ROOT)/src/semantic/calls.c \
@@ -13,6 +14,8 @@ SOURCES := \
     $(ROOT)/src/parser/call.c \
     $(ROOT)/src/parser/control.c \
     $(ROOT)/src/parser/declarations.c \
+    $(ROOT)/src/parser/stream.c \
+    $(ROOT)/src/parser/typed.c \
     $(ROOT)/src/parser/statement.c \
     $(ROOT)/src/parser/value.c \
     $(ROOT)/src/lexer/lexer.c \

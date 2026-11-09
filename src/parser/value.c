@@ -19,6 +19,10 @@ AstName ast_name_from_token(Token token) {
 }
 
 bool parse_value(StatementParser* parser, Token token, AstValue* value, const char* role) {
+    if (!parser->typed_declarations && token.type == TOKEN_AMPERSAND)
+        return parser_error(parser, token.line_number, "reference values require the module-value ABI");
+    if (parser->typed_declarations && (token.type == TOKEN_LITERAL || token.type == TOKEN_LINE_LITERAL))
+        return parser_error(parser, token.line_number, "literals are only allowed in declaration initializers");
     if (token.type != TOKEN_IDENTIFIER && token.type != TOKEN_LITERAL)
         return parser_error(parser, token.line_number, "invalid %s (token type %d)", role, (int)token.type);
     *value = (AstValue){.kind = token.type == TOKEN_LITERAL ? AST_LITERAL_VALUE : AST_NAME_VALUE,

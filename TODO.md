@@ -1063,6 +1063,28 @@ representation in stage 3 before changing declaration syntax or value layout.
 - [x] Test repeated reads, positional/named rules, initial and retained values,
   native side effects, mixed arrows, and ordinary calls following reads.
 
+### Typed declaration frontend (implemented separately from the CLI)
+
+- [x] Parse all four declaration storage forms with an unmodified module path,
+  optional scalar initialization, and multiple list element initializers.
+- [x] Preserve raw line-literal bytes and lengths in independently owned AST
+  storage; support empty and long payloads without the token spelling limit.
+- [x] Check nominal module identities through a resolver callback, earlier source
+  order, scalar/list element compatibility, and prefix reference acquisition.
+  Reject reference-to-reference acquisition and duplicate base names across
+  storage forms in this initial checker.
+- [x] Parse explicit body declarations and indented named assignments in target
+  mode; reject numeric and line literals outside declaration initialization.
+- [x] Keep declaration validation separate from executable AST validation.
+  Reject typed declarations in the numeric binder/backend rather than emitting
+  them with an incorrect `size_t` layout.
+
+The next step is the module-value ABI: generated state layouts and explicit
+initialization, copy, cleanup, and native literal interpretation contracts.
+The frontend does not execute literals or check arbitrary typed assignments and
+calls. CLI migration, implicit-local removal, library type modules, and full
+reference/list semantics remain pending. Old numeric fixtures still run.
+
 ### Following type and syntax tasks
 
 - [ ] Specify typed declarations with optional indented literal lines, list

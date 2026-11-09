@@ -1,8 +1,10 @@
 # Ama — Grammar
 
 This document specifies the agreed target syntax of Ama. **The compiler does
-not yet implement this revision.** In particular, typed declarations, `|`
-literals, references, lists, `@!`, and `@=` require implementation work.
+not yet execute this revision.** Typed declarations, storage suffixes, and `|`
+literals have a separate parser and initializer checker; the command-line
+compiler still uses the numeric language. Typed values, references, lists,
+`@!`, and `@=` require runtime or integration work.
 Retained-result reads through `>>` are implemented for current numeric modules.
 The mandatory call suffix `!` and loop exit `^` are implemented. See
 `README.md` for the currently executable language and `TODO.md` for the migration

@@ -56,20 +56,6 @@ bool parse_project_declarations(Project* project, Error* error) {
     return true;
 }
 
-static bool append_token(TokenStream* stream, int* capacity, Token token, Error* error) {
-    if (stream->token_count == *capacity) {
-        if (*capacity > INT_MAX / 2)
-            return error_set(error, ERROR_LIMIT, token.line_number, "too many tokens");
-        int next_capacity = *capacity * 2;
-        Token* tokens = realloc(stream->tokens, sizeof(Token) * (size_t)next_capacity);
-        if (!tokens) return error_set(error, ERROR_MEMORY, token.line_number, "out of memory (tokens)");
-        stream->tokens = tokens;
-        *capacity = next_capacity;
-    }
-    stream->tokens[stream->token_count++] = token;
-    return true;
-}
-
 static bool read_module_tokens(const ModuleFile* module, TokenStream* stream, Error* error) {
     ModuleSections sections;
     FILE* file = open_module(module->file_path, &sections, error);
@@ -77,15 +63,7 @@ static bool read_module_tokens(const ModuleFile* module, TokenStream* stream, Er
     Lexer lexer;
     bool success = init_lexer(&lexer, file, module->source_path, sections.code_start, sections.code_end,
         sections.code_line, error);
-    int capacity = 1024;
-    stream->tokens = malloc(sizeof(Token) * (size_t)capacity);
-    if (!stream->tokens) success = error_set(error, ERROR_MEMORY, 0, "out of memory (tokens)");
-    while (success) {
-        Token token = get_next_token(&lexer);
-        if (token.type == TOKEN_ERROR) { success = false; break; }
-        success = append_token(stream, &capacity, token, error);
-        if (token.type == TOKEN_END_OF_FILE) break;
-    }
+    if (success) success = read_token_stream(&lexer, stream);
     fclose(file);
     return success;
 }
@@ -106,7 +84,7 @@ bool parse_project_bodies(Project* project, const int* dependency_order, Error* 
                 .module = &module->syntax, .error = error};
             success = parse_module_body(&parser);
         }
-        free(stream.tokens);
+        destroy_token_stream(&stream);
         if (!success) {
             snprintf(error->module, sizeof(error->module), "%s", path);
             return false;

@@ -20,5 +20,6 @@ typedef struct {
 bool init_lexer(Lexer* lexer, FILE* source_file, const char* source_path,
     long section_start_offset, long section_end_offset, uint32_t start_line, Error* error);
 Token get_next_token(Lexer* lexer);
+void destroy_token(Token* token);
 
 #endif

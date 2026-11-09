@@ -3,6 +3,8 @@
 static bool collect_receivers(SemanticContext* context, AstBlock* block) {
     for (AstStatement* statement = block->first; statement; statement = statement->next) {
         switch (statement->kind) {
+        case AST_DECLARATION:
+            return semantic_error(context, statement->location, "typed declarations require the module-value ABI");
         case AST_ASSIGNMENT: {
             AstName* name = &statement->as.assignment.receiver;
             Symbol* symbol = resolve_receiver(context, name->text, name->location);
@@ -34,6 +36,8 @@ static bool collect_receivers(SemanticContext* context, AstBlock* block) {
 static bool validate_block(SemanticContext* context, AstBlock* block, unsigned int loop_depth) {
     for (AstStatement* statement = block->first; statement; statement = statement->next) {
         switch (statement->kind) {
+        case AST_DECLARATION:
+            return semantic_error(context, statement->location, "typed declarations require the module-value ABI");
         case AST_ASSIGNMENT:
             if (!resolve_value(context, &statement->as.assignment.source)) return false;
             break;

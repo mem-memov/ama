@@ -109,8 +109,20 @@ The current AST uses tagged C unions and ordinary stage-specific walks. Avoid a
 universal visitor framework, parent pointers, multiple lowered IRs, or speculative
 optimization machinery until a concrete feature needs them. Bound syntactic
 nesting before recursive passes run. Keep allocation failure paths explicit.
-Small literals/names retain current compiler length limits; new literal syntax
-can revise storage deliberately rather than accidentally borrowing lexer buffers.
+Names and legacy literals retain current compiler length limits. A line-literal
+token owns a dynamically allocated byte buffer with an explicit length. Release
+it with `destroy_token`, or release an owning stream with `destroy_token_stream`.
+Copy the payload into module-owned AST storage before destroying tokens; do not
+interpret it as a NUL-terminated string.
+
+The target frontend is explicitly selected with `typed_declarations`; interfaces
+use `parse_typed_declaration_section`. `validate_typed_declarations` resolves
+module paths through a caller-supplied callback and checks nominal types, storage
+forms, and earlier initializer sources. It currently rejects duplicate base
+names across storage forms. Literal interpretation belongs to the future module
+ABI, not this callback. `declarations_validated` covers these checks only; it
+does not authorize C emission. The numeric binder and backend reject typed
+declarations until runtime value layouts and lifecycle operations are defined.
 
 The design follows the source-structure emphasis in the
 [Clang AST introduction](https://clang.llvm.org/docs/IntroductionToTheClangAST.html)

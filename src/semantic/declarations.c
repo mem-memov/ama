@@ -6,6 +6,9 @@ bool declare_module_symbols(AstModule* module, SymbolTable* symbols,
     const char* module_path, Error* error) {
     module->validated = false;
     for (AstDeclaration* declaration = module->declarations; declaration; declaration = declaration->next) {
+        if (declaration->is_typed)
+            return error_set(error, ERROR_INVALID, declaration->name.location.line,
+                "typed declarations require the module-value ABI; use the target front-end validation API");
         SymbolKind kind = declaration->value.kind == AST_PATH_VALUE ? SYMBOL_MODULE_ALIAS :
             declaration->kind == AST_PARAMETER_DECLARATION ? SYMBOL_PARAMETER : SYMBOL_RESULT;
         Token value = {.type = declaration->value.kind == AST_PATH_VALUE ? TOKEN_MODULE_PATH :

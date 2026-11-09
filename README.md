@@ -422,6 +422,14 @@ retained-result calls copy stored outputs without resets or execution. Body
 variables retain their values in that instance. Language-level object and
 reference declarations remain planned, not implemented.
 
+A separate frontend API parses target declarations (`item`, `item&`, `items[]`,
+`items&[]`), explicit module types, and indented `|` line literals or named
+initializers. Its initializer checker verifies module identities, earlier
+sources, and ownership forms. Raw literal bytes have explicit lengths and
+preserve spaces, comments, and tabs after `|`. This API is covered by unit tests;
+the CLI still accepts the numeric language described above. Typed execution,
+literal interpretation, and reference/list operations await the module-value ABI.
+
 State fields use identity hashes; symbol IDs are private table indices, not
 Ama values. Original names are retained in safe generated comments. The
 compiler resolves all body variables before starting C emission, then writes

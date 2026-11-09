@@ -1,1 +1,1 @@
-unexpected byte 0x26 ('&')
+reference values require the module-value ABI

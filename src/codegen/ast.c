@@ -38,10 +38,12 @@ static void emit_call(Emitter* emitter, const AstStatement* statement) {
     }
 }
 
-static void emit_block(Emitter* emitter, const AstBlock* block) {
+static bool emit_block(Emitter* emitter, const AstBlock* block, Error* error) {
     for (const AstStatement* statement = block->first; statement; statement = statement->next) {
         emit_source_location(emitter, statement->location);
         switch (statement->kind) {
+        case AST_DECLARATION:
+            return error_set(error, ERROR_INVALID, statement->location.line, "typed declarations require the module-value ABI");
         case AST_ASSIGNMENT:
             emit_value(emitter, statement->as.assignment.receiver.symbol_id, &statement->as.assignment.source);
             break;
@@ -50,18 +52,18 @@ static void emit_block(Emitter* emitter, const AstBlock* block) {
             break;
         case AST_BRANCH:
             emit_branch_start(emitter, statement->as.control.condition.symbol_id);
-            emit_block(emitter, &statement->as.control.body);
+            if (!emit_block(emitter, &statement->as.control.body, error)) return false;
             if (statement->as.control.has_alternative) {
                 emit_source_location(emitter, statement->as.control.alternative_location);
                 emit_branch_else(emitter);
-                emit_block(emitter, &statement->as.control.alternative);
+                if (!emit_block(emitter, &statement->as.control.alternative, error)) return false;
             }
             emit_generated_location(emitter);
             emit_branch_end(emitter);
             break;
         case AST_LOOP:
             emit_loop_start(emitter, statement->as.control.condition.symbol_id);
-            emit_block(emitter, &statement->as.control.body);
+            if (!emit_block(emitter, &statement->as.control.body, error)) return false;
             emit_source_location(emitter, statement->as.control.end_location);
             emit_loop_end(emitter);
             break;
@@ -73,11 +75,11 @@ static void emit_block(Emitter* emitter, const AstBlock* block) {
             break;
         }
     }
+    return true;
 }
 
 bool emit_ast_body(Emitter* emitter, const AstModule* module, Error* error) {
     if (!module->validated)
         return error_set(error, ERROR_INVALID, 0, "cannot emit an unvalidated AST");
-    emit_block(emitter, &module->body);
-    return true;
+    return emit_block(emitter, &module->body, error);
 }

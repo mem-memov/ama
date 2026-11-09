@@ -20,6 +20,7 @@ void* ast_allocate(AstModule* module, size_t size, Error* error) {
     allocation->next = module->allocations;
     module->allocations = allocation;
     module->validated = false;
+    module->declarations_validated = false;
     return allocation + 1;
 }
 
