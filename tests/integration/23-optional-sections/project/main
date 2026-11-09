@@ -6,7 +6,7 @@ print
 .sys.io.print
 
 @Ama
-worker
+worker!
  > answer
-print
+print!
  < answer

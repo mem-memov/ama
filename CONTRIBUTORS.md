@@ -83,10 +83,11 @@ Keep `parser/` independent of symbols, graph traversal, and C emission. It build
 including separate call/argument and control-marker positions. Do not parse a
 literal into its runtime representation while constructing syntax.
 
-The old call syntax is context-dependent: a declared alias can be a bare call.
-The parser may inspect syntax declarations to recognize that case; it must not
-resolve the target module or validate its arguments. The target grammar now requires a trailing `!` on every call. That migration
-will remove this lookup; the current AST refactor still preserves bare calls.
+Every call requires `!` immediately after its target. The parser recognizes
+calls without inspecting declarations, symbols, or graph nodes. Semantic
+validation resolves the target later. A standalone `^` exits the nearest loop;
+reject it outside a loop in the current module, including in called modules
+whose callers happen to be inside loops. A standalone `!` is no longer valid.
 
 `semantic/` binds interface declarations, collects body receivers, and validates
 reads/calls. Resolved symbol IDs and callee paths annotate the same tree. Preserve
@@ -349,10 +350,10 @@ double
 print
 .sys.io.print
 @Ama
-double
+double!
  < 21
  > answer
-print
+print!
  < answer
 ```
 

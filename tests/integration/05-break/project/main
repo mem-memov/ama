@@ -13,19 +13,19 @@ i
 @Ama
 i
 {
- sub
+ sub!
   < i
   < 1
   > i
- eq
+ eq!
   < i
   < 3
   > hit
  hit
  ?
-  !
+  ^
 }
 
-print
+print!
  < i
  > err

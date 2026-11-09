@@ -2,8 +2,8 @@
 
 This document specifies the agreed target syntax of Ama. **The compiler does
 not yet implement this revision.** In particular, typed declarations, `|`
-literals, references, lists, mandatory call suffix `!`, `@!`, and `@=` require
-implementation work. See
+literals, references, lists, `@!`, and `@=` require implementation work.
+The mandatory call suffix `!` and loop exit `^` are implemented. See
 `README.md` for the currently executable language and `TODO.md` for the migration
 plan. Examples below describe the target language, not runnable current fixtures.
 

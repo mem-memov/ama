@@ -91,6 +91,5 @@ void* ast_allocate(AstModule* module, size_t size, Error* error);
 void ast_destroy(AstModule* module);
 void ast_append_statement(AstBlock* block, AstStatement* statement);
 void ast_append_declaration(AstModule* module, AstDeclaration* declaration);
-bool ast_has_alias(const AstModule* module, const char* name);
 
 #endif

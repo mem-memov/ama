@@ -13,21 +13,21 @@ y
 x
 x
 7
-print
+print!
  < y
-worker
+worker!
  change < 1
  answer > a
  scratch > b
-print
+print!
  < a
-print
+print!
  < b
-worker
+worker!
  > a
  > b
-print
+print!
  < a
-print
+print!
  < b
-empty
+empty!

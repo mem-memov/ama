@@ -57,6 +57,10 @@ all:
 >    $(MAKE) -C 46-persistent-state all
 >    $(MAKE) -C 47-native-unicode all
 >    $(MAKE) -C 48-source-diagnostics all
+>    $(MAKE) -C 49-call-markers all
+>    $(MAKE) -C 50-reject-bare-call all
+>    $(MAKE) -C 51-reject-cross-module-exit all
+>    $(MAKE) -C 52-reject-standalone-bang all
 
 clean:
 >    $(MAKE) -C 01-hello clean
@@ -107,3 +111,7 @@ clean:
 >    $(MAKE) -C 46-persistent-state clean
 >    $(MAKE) -C 47-native-unicode clean
 >    $(MAKE) -C 48-source-diagnostics clean
+>    $(MAKE) -C 49-call-markers clean
+>    $(MAKE) -C 50-reject-bare-call clean
+>    $(MAKE) -C 51-reject-cross-module-exit clean
+>    $(MAKE) -C 52-reject-standalone-bang clean

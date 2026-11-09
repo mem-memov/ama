@@ -31,145 +31,145 @@ not
 .sys.math.not
 
 @Ama
-add
+add!
  < 5
  < 7
  > out0
 
-print
+print!
  < out0
 
-sub
+sub!
  < 9
  < 4
  > out0
 
-print
+print!
  < out0
 
-mul
+mul!
  < 6
  < 7
  > out0
 
-print
+print!
  < out0
 
-div
+div!
  < 17
  < 5
  > out0
  > out1
 
-print
+print!
  < out0
 
-print
+print!
  < out1
 
-div
+div!
  < 17
  < 0
  > out0
  > out1
 
-print
+print!
  < out0
 
-print
+print!
  < out1
 
-mod
+mod!
  < 17
  < 5
  > out0
  > out1
 
-print
+print!
  < out0
 
-print
+print!
  < out1
 
-mod
+mod!
  < 17
  < 0
  > out0
  > out1
 
-print
+print!
  < out0
 
-print
+print!
  < out1
 
-lt
+lt!
  < 2
  < 3
  > out0
 
-print
+print!
  < out0
 
-le
+le!
  < 3
  < 3
  > out0
 
-print
+print!
  < out0
 
-gt
+gt!
  < 2
  < 3
  > out0
 
-print
+print!
  < out0
 
-ge
+ge!
  < 3
  < 3
  > out0
 
-print
+print!
  < out0
 
-eq
+eq!
  < 3
  < 3
  > out0
 
-print
+print!
  < out0
 
-ne
+ne!
  < 3
  < 3
  > out0
 
-print
+print!
  < out0
 
-and
+and!
  < 2
  < 3
  > out0
 
-print
+print!
  < out0
 
-or
+or!
  < 0
  < 3
  > out0
 
-print
+print!
  < out0
 
-not
+not!
  < 0
  > out0
 
-print
+print!
  < out0

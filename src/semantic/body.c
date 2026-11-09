@@ -31,7 +31,7 @@ static bool collect_receivers(SemanticContext* context, AstBlock* block) {
     return true;
 }
 
-static bool validate_block(SemanticContext* context, AstBlock* block) {
+static bool validate_block(SemanticContext* context, AstBlock* block, unsigned int loop_depth) {
     for (AstStatement* statement = block->first; statement; statement = statement->next) {
         switch (statement->kind) {
         case AST_ASSIGNMENT:
@@ -43,12 +43,15 @@ static bool validate_block(SemanticContext* context, AstBlock* block) {
         case AST_BRANCH:
         case AST_LOOP:
             if (!resolve_value(context, &statement->as.control.condition) ||
-                !validate_block(context, &statement->as.control.body) ||
-                !validate_block(context, &statement->as.control.alternative)) return false;
+                !validate_block(context, &statement->as.control.body,
+                    loop_depth + (statement->kind == AST_LOOP ? 1 : 0)) ||
+                !validate_block(context, &statement->as.control.alternative, loop_depth)) return false;
             break;
         case AST_BREAK:
+            if (!loop_depth)
+                return semantic_error(context, statement->location, "loop exit '^' is only allowed inside a loop");
+            break;
         case AST_RETURN:
-            /* Preserve current downstream-C handling of break outside loops. */
             break;
         }
     }
@@ -59,7 +62,7 @@ bool validate_module_body(AstModule* module, SymbolTable* symbols,
     const Graph* graph, const char* module_path, Error* error) {
     module->validated = false;
     SemanticContext context = {symbols, graph, module_path, error};
-    if (!collect_receivers(&context, &module->body) || !validate_block(&context, &module->body)) return false;
+    if (!collect_receivers(&context, &module->body) || !validate_block(&context, &module->body, 0)) return false;
     module->validated = true;
     return true;
 }

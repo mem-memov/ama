@@ -75,7 +75,21 @@ static void it_tracks_byte_columns_across_unicode_comments_and_crlf(void) {
     destroy_test();
 }
 
+static void it_distinguishes_call_markers_from_loop_exits_and_tracks_adjacency(void) {
+    setup_test();
+    set_source("\u5546\u54c1!\r\n ^\n");
+    Token target = get_next_token(&lexer);
+    Token marker = get_next_token(&lexer);
+    Token exit = get_next_token(&lexer);
+    assert(target.type == TOKEN_IDENTIFIER && marker.type == TOKEN_CALL_MARKER);
+    assert(marker.line_number == target.line_number);
+    assert(marker.column_number == target.column_number + strlen(target.lexeme));
+    assert(!marker.is_at_line_start && exit.type == TOKEN_BREAK && exit.column_number == 2);
+    destroy_test();
+}
+
 void run(void) {
+    it_distinguishes_call_markers_from_loop_exits_and_tracks_adjacency();
     it_tracks_byte_columns_across_unicode_comments_and_crlf();
     it_reads_names_literals_and_module_paths();
     it_tracks_comments_blank_lines_and_crlf();

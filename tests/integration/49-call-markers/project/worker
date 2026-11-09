@@ -1,0 +1,12 @@
+@<
+add
+.sys.math.add
+print
+.sys.io.print
+@Ama
+add!
+ < accumulated
+ < 1
+ > accumulated
+print!
+ < accumulated

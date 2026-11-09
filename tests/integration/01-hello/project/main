@@ -5,11 +5,11 @@ print
 .sys.io.print
 
 @Ama
-add
+add!
  < 5
  < 7
  > result
 
-print
+print!
  < result
  > err

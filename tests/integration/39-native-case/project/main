@@ -6,11 +6,11 @@ upper
 print
 .sys.io.print
 @Ama
-lower
+lower!
  > answer
-print
+print!
  < answer
-upper
+upper!
  > answer
-print
+print!
  < answer

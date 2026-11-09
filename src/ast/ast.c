@@ -1,7 +1,6 @@
 #include "ast/ast.h"
 #include <stddef.h>
 #include <stdlib.h>
-#include <string.h>
 
 struct AstAllocation {
     struct AstAllocation* next;
@@ -44,11 +43,4 @@ void ast_append_declaration(AstModule* module, AstDeclaration* declaration) {
     if (module->last_declaration) module->last_declaration->next = declaration;
     else module->declarations = declaration;
     module->last_declaration = declaration;
-}
-
-bool ast_has_alias(const AstModule* module, const char* name) {
-    for (const AstDeclaration* declaration = module->declarations; declaration; declaration = declaration->next)
-        if (declaration->value.kind == AST_PATH_VALUE && strcmp(declaration->name.text, name) == 0)
-            return true;
-    return false;
 }

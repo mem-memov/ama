@@ -4,9 +4,9 @@ add
 display
 .display
 @Ama
-add
+add!
  < 5
  < 7
  > answer
-display
+display!
  < answer

@@ -1,8 +1,18 @@
 #include "parser/internal.h"
+#include <string.h>
+
+static bool require_line_end(StatementParser* parser, Token token, const char* role) {
+    const Token* next = token_stream_peek(parser->stream);
+    return next->type == TOKEN_END_OF_FILE || next->line_number != token.line_number ||
+        parser_error(parser, next->line_number, "%s must end its line", role);
+}
 
 bool parse_statement(StatementParser* parser, uint32_t indentation, AstBlock* block) {
     Token name = token_stream_advance(parser->stream);
     if (name.type == TOKEN_ERROR) return false;
+    if (name.type == TOKEN_CALL_MARKER)
+        return parser_error(parser, name.line_number,
+            "standalone '!' is not a statement; use '^' to exit a loop");
     if (name.indentation != indentation)
         return parser_error(parser, name.line_number, "expected indent %u, got %u", indentation, name.indentation);
     AstStatement* statement = ast_allocate(parser->module, sizeof(*statement), parser->error);
@@ -11,11 +21,11 @@ bool parse_statement(StatementParser* parser, uint32_t indentation, AstBlock* bl
     ast_append_statement(block, statement);
     if (name.type == TOKEN_BREAK) {
         statement->kind = AST_BREAK;
-        return true;
+        return require_line_end(parser, name, "loop exit '^'");
     }
     if (name.type == TOKEN_RESULT_ARROW) {
         statement->kind = AST_RETURN;
-        return true;
+        return require_line_end(parser, name, "return '>'");
     }
     if (name.type != TOKEN_IDENTIFIER)
         return parser_error(parser, name.line_number, "unexpected token type %d at statement start", (int)name.type);
@@ -31,10 +41,13 @@ bool parse_statement(StatementParser* parser, uint32_t indentation, AstBlock* bl
         return statement->kind == AST_BRANCH ? parse_branch(parser, indentation, statement) :
             parse_loop(parser, indentation, statement);
     }
-    /* The current language needs declared alias names to distinguish a zero-arg
-        call from assignment. This is syntax context, not symbol resolution.
-    */
-    if (ast_has_alias(parser->module, name.lexeme)) {
+    if (next->type == TOKEN_CALL_MARKER) {
+        if (next->line_number != name.line_number ||
+            next->column_number != name.column_number + strlen(name.lexeme))
+            return parser_error(parser, next->line_number,
+                "call marker '!' must immediately follow its target on the same line");
+        Token marker = token_stream_advance(parser->stream);
+        if (!require_line_end(parser, marker, "call target and '!'")) return false;
         statement->kind = AST_CALL;
         statement->as.call.target = ast_name_from_token(name);
         return parse_call(parser, indentation, statement);

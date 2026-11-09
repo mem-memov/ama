@@ -1026,15 +1026,18 @@ representation in stage 3 before changing declaration syntax or value layout.
   and bound active block nesting at 128 levels (including the module body).
 - [x] Decide explicit call syntax: mandatory trailing `!` for all calls, with
   arguments or without; record it in `EBNF.md`.
-- [ ] Implement the call suffix in the lexer/parser, remove declaration-based
-  call classification, and migrate fixtures/examples. Reject bare calls, preserve
-  argument/result ordering, and replace standalone `!` breaks with `^`. The compiler
-  still uses the previous syntax until this migration lands.
-- [ ] Test zero-argument, argument-bearing, reference, indexed, and whole-list
-  call forms as their features land. Test lexical adjacency and distinction from
-  assignment, `^` break, `@!`, and literal payload containing `!` or `^`.
-- [ ] Reject `^` outside loops during semantic validation and reject standalone
-  `!` statements. Preserve early return `>` as a separate operation.
+- [x] Implement the call suffix in the lexer/parser, remove declaration-based
+  classification, migrate fixtures/examples, preserve argument/result ordering,
+  and replace standalone `!` breaks with `^`. The numeric ABI and assignment
+  syntax remain unchanged; typed/reference/list syntax is still future work.
+- [x] Test current zero-argument and argument-bearing calls, Unicode/CRLF
+  adjacency, separate argument lines, bare/standalone marker rejection, nested
+  loop exits, and source line mappings.
+- [ ] Extend call-marker tests to reference, indexed, and whole-list forms, `@!`,
+  and `|` literal payload containing `!` or `^` when those features land.
+- [x] Reject `^` outside loops during semantic validation and reject standalone
+  `!` statements. A callee cannot inherit its caller's loop context. Preserve
+  early return `>` as a separate operation.
 
 ### Following type and syntax tasks
 

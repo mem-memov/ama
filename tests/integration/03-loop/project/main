@@ -15,16 +15,16 @@ sum
 @Ama
 i
 {
- add
+ add!
   < sum
   < i
   > sum
- sub
+ sub!
   < i
   < 1
   > i
 }
 
-print
+print!
  < sum
  > err

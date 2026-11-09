@@ -5,12 +5,12 @@ print
 .sys.io.print
 
 @Ama
-choose
+choose!
  > answer
-print
+print!
  < answer
-choose
+choose!
  flag < 0
  selected > answer
-print
+print!
  < answer

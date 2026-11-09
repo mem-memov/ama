@@ -18,7 +18,7 @@ static void it_reports_an_unknown_source_without_terminating_the_process(void) {
 
 static void it_combines_nested_loops_branches_and_return(void) {
     setup_test();
-    bool parsed = parse_text("x\n1\nx\n{\n x\n ?\n  >\n !\n}\n");
+    bool parsed = parse_text("x\n1\nx\n{\n x\n ?\n  >\n ^\n}\n");
     assert(parsed);
     assert_stream_equals(output, "    state->ama_field_134c0b29bc609d67 = 1;\n    while (state->ama_field_134c0b29bc609d67) {\n    if (state->ama_field_134c0b29bc609d67) {\n    return;\n    }\n    break;\n    }\n");
     destroy_test();
@@ -45,7 +45,7 @@ static void it_discovers_persistent_targets_before_reading_them(void) {
 static void it_maps_control_flow_and_restores_generated_scaffolding(void) {
     setup_test();
     emitter.source_mapping_enabled = true;
-    bool parsed = parse_text_at("x\n1\nx\n{\n x\n ?\n  >\n :\n  !\n}\n", "flow.ama");
+    bool parsed = parse_text_at("x\n1\nx\n{\n x\n ?\n  >\n :\n  ^\n}\n", "flow.ama");
     assert(parsed);
     emit_module_end(&emitter);
     rewind(output);
@@ -63,7 +63,27 @@ static void it_maps_control_flow_and_restores_generated_scaffolding(void) {
     destroy_test();
 }
 
+static void it_rejects_a_loop_exit_outside_a_loop_during_semantic_validation(void) {
+    setup_test();
+    bool parsed = parse_syntax_at("flag\n1\nflag\n?\n ^\n", "exit.ama");
+    assert(parsed);
+    bool validated = validate_module_body(&syntax, symbols, graph, "main", &error);
+    assert(!validated && error.line_number == 5 && strstr(error.message, "only allowed inside a loop") != NULL);
+    destroy_test();
+}
+
+static void it_preserves_loop_context_through_nested_branches_and_alternatives(void) {
+    setup_test();
+    bool parsed = parse_text("flag\n1\nflag\n{\n flag\n ?\n  ^\n :\n  ^\n}\n");
+    assert(parsed && syntax.validated);
+    const AstStatement* loop = syntax.body.first->next;
+    assert(loop->kind == AST_LOOP && loop->as.control.body.first->kind == AST_BRANCH);
+    destroy_test();
+}
+
 void run(void) {
+    it_rejects_a_loop_exit_outside_a_loop_during_semantic_validation();
+    it_preserves_loop_context_through_nested_branches_and_alternatives();
     it_maps_control_flow_and_restores_generated_scaffolding();
     it_discovers_persistent_targets_before_reading_them();
     it_combines_lexing_assignment_and_emission();

@@ -8,6 +8,6 @@ x
 p
 &x
 
-print
+print!
  < x
  > err

@@ -4,11 +4,11 @@ value
 print
 .sys.io.print
 @Ama
-value
+value!
  > answer
-print
+print!
  < answer
-value
+value!
  > answer
-print
+print!
  < answer

@@ -4,8 +4,8 @@
 print
 .sys.io.print
 @Ama
-商品
+商品!
  数量 < 21
  合計 > 答案
-print
+print!
  < 答案

@@ -3,6 +3,6 @@ add
 .sys.math.add
 
 @Ama
-add
+add!
  sum > result
  left < 1

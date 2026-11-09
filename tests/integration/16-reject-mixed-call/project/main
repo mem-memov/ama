@@ -3,6 +3,6 @@ add
 .sys.math.add
 
 @Ama
-add
+add!
  < 1
  right < 2

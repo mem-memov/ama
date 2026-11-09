@@ -2,7 +2,7 @@
 
 static void it_parses_unresolved_structure_without_symbols_or_c_output(void) {
     setup_test();
-    bool parsed = parse_syntax_at("x\n42\nx\n?\n >\n:\n x\n {\n  !\n }\n", "tree.ama");
+    bool parsed = parse_syntax_at("x\n42\nx\n?\n >\n:\n x\n {\n  ^\n }\n", "tree.ama");
     assert(parsed && symbols->symbol_count == 0 && !syntax.validated);
     long output_position = ftell(output);
     assert(output_position == 0);
@@ -30,7 +30,7 @@ static void it_preserves_declarations_and_call_arguments_before_resolution(void)
     close_file(declarations);
     assert(parsed && syntax.declarations->name.symbol_id == AST_UNRESOLVED_SYMBOL);
     assert(syntax.declarations->value.kind == AST_PATH_VALUE);
-    parsed = parse_syntax_at("add\n left < unknown\n right < 7\n sum > answer\n", "caller.ama");
+    parsed = parse_syntax_at("add!\n left < unknown\n right < 7\n sum > answer\n", "caller.ama");
     assert(parsed && symbols->symbol_count == 0 && !syntax.validated);
     const AstStatement* call = syntax.body.first;
     assert(call->kind == AST_CALL && call->as.call.target.symbol_id == AST_UNRESOLVED_SYMBOL);

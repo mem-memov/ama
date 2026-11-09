@@ -5,15 +5,15 @@ print
 .sys.io.print
 
 @Ama
-eq
+eq!
  < 5
  < 5
  > same
 
 same
 ?
- print
+ print!
   < 1
 :
- print
+ print!
   < 2

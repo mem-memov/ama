@@ -99,7 +99,8 @@ static int read_punctuation(Token* token, int character) {
     case ':': token->type = TOKEN_COLON; break;
     case '{': token->type = TOKEN_LOOP_OPEN; break;
     case '}': token->type = TOKEN_LOOP_CLOSE; break;
-    case '!': token->type = TOKEN_BREAK; break;
+    case '!': token->type = TOKEN_CALL_MARKER; break;
+    case '^': token->type = TOKEN_BREAK; break;
     default: return 0;
     }
     token->lexeme[0] = (char)character;

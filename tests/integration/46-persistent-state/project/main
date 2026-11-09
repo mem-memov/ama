@@ -4,41 +4,41 @@ counter
 print
 .sys.io.print
 @Ama
-counter
+counter!
  total > value
  untouched > marker
-print
+print!
  < value
-print
+print!
  < marker
-counter
+counter!
  total > value
-print
+print!
  < value
-counter
+counter!
  increment < 2
  total > value
-print
+print!
  < value
-counter
+counter!
  skip < 1
  total > value
  untouched > marker
-print
+print!
  < value
-print
+print!
  < marker
-counter
+counter!
  total > value
-print
+print!
  < value
-counter
+counter!
  increment < 5
  reset < 1
  total > value
-print
+print!
  < value
-counter
+counter!
  total > value
-print
+print!
  < value

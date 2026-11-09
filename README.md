@@ -41,12 +41,12 @@ print
 .sys.io.print
 
 @Ama
-add
+add!
  < 5
  < 7
  > result
 
-print
+print!
  < result
  > err
 ```
@@ -111,7 +111,7 @@ result
 0
 
 @Ama
-add
+add!
  < x
  < x
  > result
@@ -142,10 +142,11 @@ There are no pointers, address-taking, dereferencing, or memory access modules.
 
 ## Calls
 
-Call a module using its alias, followed by arguments indented by one space:
+Call a module using its alias immediately followed by `!`, then arguments
+indented by one space. Whitespace before `!` and inline arguments are errors:
 
 ```text
-double
+double!
  < 21
  > answer
 ```
@@ -153,13 +154,14 @@ double
 Named arguments and results are also supported:
 
 ```text
-double
+double!
  x < 21
  result > answer
 ```
 
 A call uses either positional or named arguments throughout. Parameters must
-precede results. A zero-argument call is just the alias name on its own line.
+precede results. A zero-argument call is `worker!` on its own line. Every call
+requires the suffix, including native calls. Bare aliases are not calls.
 
 Each call resets the callee's parameters and results to their declared defaults,
 copies arguments by value, executes the procedure, and
@@ -195,13 +197,15 @@ The false branch is optional. A condition followed by `{` starts a while loop:
 condition
 {
  # body; update condition to stop the loop
- !
+ ^
 }
 ```
 
 Bodies use exactly one additional space of indentation. Tabs are forbidden.
 Conditions and their `?` or `{` may have comments between them, but no blank
-line. `!` exits the nearest loop. A bare `>` returns from the current procedure.
+line. `^` exits the nearest loop, including from a nested condition. A loop exit
+outside a loop in the same module is a semantic error; it cannot exit a caller's
+loop. A standalone `!` is invalid. A bare `>` returns from the current procedure.
 The condition is re-read on each loop iteration.
 
 ## Native C modules
@@ -333,10 +337,9 @@ nodes and bound before dependency construction and native header generation.
 
 `parser/` does not emit C, resolve symbols, or consult the dependency graph.
 It records source spelling, source locations, declarations, assignments, calls,
-arguments, branches, loops, breaks, and returns. The current syntax needs one
-piece of declaration context: declared aliases distinguish a zero-argument call
-from assignment. That syntactic lookup uses the module's declaration nodes, not
-the semantic symbol table. A future explicit call marker is not implemented.
+arguments, branches, loops, breaks, and returns. A mandatory trailing `!`
+distinguishes calls from assignments without looking up aliases. Parsing an unknown call succeeds syntactically; semantic validation
+then checks its target.
 
 `semantic/` first collects body write targets, then resolves reads, call targets,
 named/positional arguments, and result receivers. It annotates the same tree with
@@ -491,8 +494,8 @@ investigate it independently.
 The prototype has fixed limits of 512 graph nodes (including standard library modules) and
 8192 symbols, and 128 active AST block levels (including the module body). Literal parsing still uses `int`/`atoi`; values above `INT_MAX`
 are not reliably supported even though computed values use `size_t`.
-Duplicate named arguments are not rejected. A `!` outside a loop is rejected
-by the downstream C compiler rather than by Ama. There is no string/file input,
+Duplicate named arguments are not rejected. Loop exits `^` are checked by Ama
+before C generation. There is no string/file input,
 interactive debugger, or recovery within a failed compilation. Generated types, functions, fields, native arguments, and headers use
 deterministic hash names. Unicode paths and interface names are supported.
 Actual hash collisions are rejected rather than merging different entities;

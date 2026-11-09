@@ -7,40 +7,40 @@ print
 @Ama
 left
 5
-stats
+stats!
  < left
  < 7
  > sum
  > product
  > error
-print
+print!
  < sum
-print
+print!
  < product
-print
+print!
  < error
-print
+print!
  < left
-stats
+stats!
  left < left
  right < 0
  sum > sum
  product > product
  error > error
-print
+print!
  < sum
-print
+print!
  < product
-print
+print!
  < error
-stats
+stats!
  < left
  > sum
  > product
-print
+print!
  < sum
-print
+print!
  < product
-stats
+stats!
  < left
  < 7
