@@ -910,6 +910,70 @@ that can be passed to every function.
 Do not implement every part at once. Resolve a small set of complete programs
 before changing the grammar.
 
+### Implementation order
+
+Follow these stages in order. The target syntax is now recorded in `EBNF.md`;
+it deliberately precedes implementation. Earlier exploratory syntax elsewhere
+in this design log must not override that revision. In particular, use suffix
+reference names (`target&`, `targets&[]`), prefix acquisition (`&item`), `|`
+line literals, `@!`, and `@=`; do not reintroduce `*` or `()`.
+
+1. **Shared identities and deterministic internal C names.** Establish full
+   module/member identities, a single hash-based naming service, collision
+   checks, and original Unicode labels for diagnostics. Migrate generated types,
+   fields, functions, native interfaces, and headers together. Finish when all
+   existing tests pass, Unicode native names work, `shop/item` and `shop_item`
+   are distinct, and controlled collisions are rejected. This is the selected
+   first coding task; it does not require new syntax or a new value ABI.
+2. **Source locations and mappings.** Preserve source path, line, and column
+   information at the parsing boundaries so later syntax changes keep useful
+   diagnostics. Emit escaped `#line` directives for executable regions, retain
+   Unicode filenames, and restore generated locations for scaffolding. Verify
+   compiler diagnostic locations and source-level debugger attribution; document
+   optimization limits and the separate need to map hashed variable names.
+3. **An intermediate program representation.** Separate parsing, semantic
+   validation, and C emission. Represent declarations, assignments, calls,
+   branches, loops, breaks, and returns explicitly with source locations and
+   entity identities. First preserve implemented behavior and the existing
+   native ABI; migrate generator-dependent tests alongside the new passes.
+   Finish when parsing can build a program without emitting C and code generation
+   consumes a validated representation rather than the token stream. Avoid a
+   generic optimization framework: retain only structures needed for the language.
+4. **Target declarations and literal syntax.** Parse explicit module-typed
+   declarations, suffix reference/list forms, indented named-value assignments,
+   and `|` initialization lines. Introduce `@!` and `@=`. Remove special integer
+   expression literals and implicit numeric variable creation; do not synthesize
+   hidden integer variables. Verify whitespace, payload preservation, declaration
+   versus call disambiguation, constant-module restrictions, and migration errors.
+   Use the intermediate representation to keep grammar changes separate from
+   runtime representation work; syntax support alone is not executable support.
+5. **Module-defined values and the native contract.** Define layout, creation,
+   initialization from literal bytes, copy, and cleanup operations. Implement the
+   standard library number type and compiler mappings to library index/condition
+   contracts. Remove universal `size_t` assumptions without exposing untyped
+   pointers to Ama. Verify ownership, native signatures, range checks, unsupported
+   copies, and cleanup on failure before migrating arithmetic programs fully.
+6. **Owned instances and checked references.** Build recursive owned states,
+   prohibit infinite fixed-size ownership, and implement prefix acquisition and
+   suffix-reference uses. Add generation-checked identity, per-instance busy
+   acquisition/release, owner-mediated destruction, and call alternatives `:`.
+   Verify independent state, no references to references, invalidation, and refusal
+   before execution rather than partial result writes. Preserve existing numeric
+   state separation and persistence already implemented below.
+7. **Dynamic lists.** Build owned-state and reference lists on the established
+   type/lifecycle mechanisms. Implement indexed calls, collection operations,
+   growth, clone/remove distinctions, and active-element protection. Verify bounds,
+   nested access, stable identity, failure cleanup, and that deleting a reference
+   slot does not destroy its target. Finalize traversal and length interfaces
+   through complete readable examples rather than incidental parser shortcuts.
+
+The highest-value architectural change after naming and source locations is
+stage 3: the intermediate representation removes today's coupling between token
+parsing and immediate C output. It lets subsequent syntax and data-model changes
+be developed and tested separately. Do not combine all stages into one rewrite.
+Update contributor guidance, implemented-language documentation, and relevant
+unit/integration tests at each stage; never claim planned behavior is implemented.
+
 ### Selected next task: deterministic internal naming
 
 Start with a shared identity-to-C-name component before changing the value ABI.
@@ -929,17 +993,23 @@ and international source names, and can be verified independently of new syntax.
 - [ ] Complete the existing full test tree and add native Unicode integration
   coverage before considering the naming migration finished.
 
-The next independent task is source mapping: retain actual source paths and
-locations, emit escaped `#line` directives with Unicode names, restore generated
-locations for helpers, and test diagnostics/debugger attribution. Do not combine
-this automatically with the entire type-system rewrite.
+After naming, implement source mapping as stage 2, then introduce the intermediate
+representation in stage 3 before changing declaration syntax or value layout.
+
+- [ ] Retain source paths, lines, and columns for parsed program elements.
+- [ ] Emit escaped Unicode `#line` mappings and restore generated helper locations.
+- [ ] Introduce explicit program nodes and separate parsing, validation, and C
+  emission while preserving current behavior and the native ABI.
+- [ ] Replace immediate code emission from parser routines with generation from
+  validated program nodes; preserve source identity and location information.
 
 ### Following type and syntax tasks
 
 - [ ] Specify typed declarations with optional indented literal lines, list
   entries, and parameter/result defaults. Reject literals outside declarations
   and remove implicit numeric local creation under the new syntax.
-- [ ] Define the byte-and-length literal interface, text encoding and escaping,
+- [ ] Define the byte-and-length literal interface and text encoding (no literal
+  quoting, escaping, or multiline values),
   initializer error locations, buffer lifetime, and execution timing.
 - [ ] Define explicit compiler mappings to library index and condition operations,
   including signature validation and range/error handling.
@@ -956,20 +1026,18 @@ this automatically with the entire type-system rewrite.
   user-visible heap allocation or weakening ownership and reference semantics.
 - [ ] Design typed opaque native state, temporary payload access, and lifecycle
   callbacks. Specify unsupported clones and partial-failure cleanup.
-- [ ] Implement declaration forms `item`, `&item`, `items[]`, and `&items[]`,
+- [ ] Implement declaration forms `item`, `item&`, `items[]`, and `items&[]`,
   always followed by an unmodified `.module.path`. Define permitted declaration
   sections, persistent state, temporary values, and migration from current aliases.
 - [ ] Implement indexed call targets and empty-bracket collection calls with
-  mandatory reference-name prefixes and checked bounds.
+  mandatory reference-name suffixes and checked bounds.
 - [ ] Specify reference-list insertion, empty slots, clone/removal semantics,
   and saved element identity through growth and index shifts.
-- [ ] Implement mandatory `&` prefixes for reference declarations and all uses,
-  including reference parameters, results, named argument labels, assignments,
-  and call targets. Derive the reference category from the name; reject modifiers
-  on the module-path line and missing prefixes on reference uses.
-- [ ] Define resolution of `&owned_instance` acquisition versus an existing
-  `&reference` variable, including same-scope name collisions. Reading or copying
-  a reference must not add another reference level.
+- [ ] Implement mandatory `&` suffixes for reference declarations and uses,
+  including parameters, results, named argument labels, assignments, and call
+  targets. Derive storage form from the name; reject modifiers on the type line.
+- [ ] Distinguish prefix `&owned_instance` acquisition from suffix `reference&`
+  access. Reject references to references; define uniqueness across storage forms.
 - [ ] Implement typed `&instance` acquisition and reference passing without
   extending the target lifetime or exposing C addresses.
 - [ ] Specify and implement the call-attached `:` alternative, failure-reason
@@ -1002,9 +1070,9 @@ this automatically with the entire type-system rewrite.
   recursive zero/empty initialization. Reject infinite fixed-size ownership
   cycles while allowing future recursive structures through lists/references.
 - [ ] Implement creation, explicit cloning, and cleanup of owned state trees.
-- [ ] Implement `@enum`, constant access, diagnostics, and validation rules.
-- [ ] Decide separately whether to rename `@Ama`; migrate all examples and
-  normative grammar only after that decision.
+- [ ] Implement `@=` constant modules and `@!` executable bodies; migrate
+  examples, tests, section splitting, diagnostics, and contributor instructions.
+  The old `@enum` proposal and implemented `@Ama` spelling are superseded.
 - [ ] Define the native state ABI and compiler/library type contract.
 - [ ] Implement language-level list support backed by runtime/library storage,
   allocation failures, and active-access checks.
