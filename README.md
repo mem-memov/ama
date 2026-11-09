@@ -432,7 +432,11 @@ the CLI still accepts the numeric language described above. Typed execution,
 literal interpretation, and reference/list operations await frontend/backend
 integration with the module-value ABI. Its first C lifecycle layer is now
 implemented: descriptors, owned record adapters, literal callbacks, and
-replacement that preserves the old value on failure. See [the ABI contract](VALUE_ABI.md).
+replacement that preserves the old value on failure. A separate generator now
+produces owned state and interface-frame structures, canonical descriptors, and
+initializers from validated typed ASTs. Generated C is compiled and executed by
+unit tests; project compilation has not yet switched to it. See
+[the ABI contract](VALUE_ABI.md).
 
 State fields use identity hashes; symbol IDs are private table indices, not
 Ama values. Original names are retained in safe generated comments. The

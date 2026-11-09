@@ -1100,13 +1100,28 @@ reference/list semantics remain pending. Old numeric fixtures still run.
 - [x] Publish runtime headers and operations through the standard library build;
   test inline scalars, nested native resources, clone refusal, and address repair.
 
-Next: connect validated module types to canonical generated descriptors and C
-state layouts, checking recursive owned layouts before generation. Add adapters
-for declaration-specific defaults and source-located status reporting, then
-migrate native signatures and executable typed calls. References, lists, and
-whole-call failure transactions still need their own contracts; the existing
-numeric CLI ABI remains active. The first runtime layer does not implement
-object lifetime handles or busy-state tracking.
+### Typed C layouts and descriptors (implemented through a C API)
+
+- [x] Generate permanent body-state structures and separate parameter/result
+  frame structures from validated typed declarations. Use hash-based identifiers
+  and preserve Unicode source locations with `#line` directives.
+- [x] Order state layouts by owned dependencies; reject recursive inline
+  ownership before writing output. Allow self-typed parameters/results because
+  frames do not form part of permanent state layouts.
+- [x] Require explicit native layout providers and emit canonical external
+  descriptors, C layout expressions, and owned record metadata.
+- [x] Apply literal and earlier same-structure named initializers in declaration
+  order, with reverse-order cleanup after failure. Reject cross-frame/state
+  initialization, references, and lists until their contracts are defined.
+- [x] Compile and run generated C across multiple translation units. Verify nested
+  resources, clone/reset failure, Unicode, identical leaf names in different
+  directories, empty states, and descriptor identity.
+
+Next: connect the type registry and layout generator to project compilation,
+add source-located runtime status reporting, then migrate native signatures and
+executable typed calls. References, lists, retained frames, and whole-call failure
+transactions still need their own contracts; the existing numeric CLI ABI remains
+active. Object lifetime handles and busy-state tracking are not implemented.
 
 ### Following type and syntax tasks
 
@@ -1127,8 +1142,8 @@ object lifetime handles or busy-state tracking.
 - [ ] Replace assumptions of universal `size_t` in symbols, parsing, codegen,
   arithmetic interfaces, enum values, and list indices with the chosen type model.
   Plan migration of existing programs and native interfaces.
-- [ ] Generate inline state layouts using the implemented storage contract,
-  without weakening ownership and reference semantics.
+- [x] Generate inline owned state layouts using the lifecycle storage contract.
+  Integrating them with executable CLI programs remains pending.
 - [ ] Connect native state wrappers to checked temporary payload access and
   object lifetime/busy tracking. Lifecycle callbacks, unsupported clone status,
   and partial-failure cleanup are implemented in the C runtime.

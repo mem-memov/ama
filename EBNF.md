@@ -506,8 +506,9 @@ Type names such as `.std.integer` and `.std.text` in examples are illustrative,
 not already implemented library paths.
 
 Native modules use the same Ama interfaces and call syntax, selecting `@C`.
-The future ABI supplies generated typed state/reference declarations and explicit
-lifecycle operations. Native implementations may hold `void*` internally but
+The typed layout API supplies owned state/frame structures and lifecycle
+descriptors; reference layouts and project integration remain pending. Native
+implementations may hold `void*` internally but
 must not infer layout from parameter names or accept arbitrary casts as type
 checking. Handwritten native code includes generated headers. Its layouts,
 copy/cleanup hooks, status protocol, and literal parser integration are being

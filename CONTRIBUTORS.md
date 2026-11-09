@@ -96,6 +96,20 @@ moving a state repairs internal addresses. Test noncopyable native resources
 without silently sharing their owning pointers. These lifecycle tests are C
 runtime tests, independent of whether the CLI supports typed programs yet.
 
+`emit_type_layouts` accepts validated typed ASTs and explicit native layout
+providers. Keep its planning pass free of output: gather fields, validate
+providers/storage, and reject inline ownership cycles before emitting either
+stream. Permanent body state and temporary interface frames are separate types.
+Use actual C layout expressions and canonical external descriptors; emit their
+definitions once, rather than creating a descriptor per translation unit.
+Generated field initialization must unwind only fields that became live.
+
+Test layout generation by compiling and executing the resulting C, including a
+second translation unit that uses the same descriptor. Preserve Unicode `#line`
+paths while keeping all C identifiers hash-based. Do not infer native layouts
+from argument names or silently substitute pointers for unsupported list/reference
+layouts. The CLI remains on its numeric ABI until project integration is explicit.
+
 ## Parse, validate, then generate
 
 Keep `parser/` independent of symbols, graph traversal, and C emission. It builds
