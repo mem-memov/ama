@@ -1,0 +1,34 @@
+@<
+effect
+.effect
+print
+.sys.io.print
+@Ama
+effect!
+ value >> value
+ marker >> saved
+print!
+ < value
+print!
+ < saved
+effect!
+ step < 7
+ value > value
+print!
+ < value
+effect!
+ marker >> saved
+print!
+ < saved
+effect!
+ value >> value
+print!
+ < value
+effect!
+effect!
+ >> value
+ >> saved
+print!
+ < value
+print!
+ < saved

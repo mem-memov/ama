@@ -1,0 +1,24 @@
+@<
+increment
+1
+skip
+0
+add
+.sys.math.add
+@>
+total
+40
+marker
+9
+@Ama
+skip
+?
+ >
+add!
+ < accumulated
+ < increment
+ > accumulated
+total
+accumulated
+marker
+increment

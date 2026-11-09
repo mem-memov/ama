@@ -12,7 +12,7 @@ static bool collect_receivers(SemanticContext* context, AstBlock* block) {
         }
         case AST_CALL:
             for (AstArgument* argument = statement->as.call.arguments; argument; argument = argument->next) {
-                if (argument->is_parameter) continue;
+                if (argument->kind == AST_PARAMETER_ARGUMENT) continue;
                 Symbol* symbol = resolve_receiver(context, argument->value.text, argument->value.location);
                 if (!symbol) return false;
                 argument->value.symbol_id = symbol->symbol_id;

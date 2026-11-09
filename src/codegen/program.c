@@ -33,7 +33,19 @@ static void emit_module_state(FILE* output, const SymbolTable* symbols, const ch
     emit_state_type(output, path);
     fputc(' ', output);
     emit_default_instance(output, path);
-    fputs(";\n\n", output);
+    if (!field_count) {
+        fputs(" = {0};\n\n", output);
+        return;
+    }
+    fputs(" = {\n", output);
+    for (uint32_t index = 0; index < symbols->symbol_count; index++) {
+        const Symbol* symbol = &symbols->symbols[index];
+        if (symbol->kind == SYMBOL_MODULE_ALIAS || strcmp(symbol->module_path, path) != 0) continue;
+        fputs("    .", output);
+        emit_generated_name(output, NAME_FIELD, path, symbol->name);
+        fprintf(output, " = %d,\n", symbol->default_value);
+    }
+    fputs("};\n\n", output);
 }
 
 void emit_program_prologue(FILE* output, const SymbolTable* symbols, const Graph* graph) {

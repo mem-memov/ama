@@ -212,6 +212,34 @@ change. Avoid tests that merely duplicate the implementation. Keep `README.md`
 and `EBNF.md` consistent with public behavior. Build artifacts and generated
 files are outputs, never the source of truth. Commit only when explicitly asked.
 
+## Execution and retained-result calls
+
+Preserve arrow kinds in AST arguments: input `<`, execution result `>`, and
+retained result `>>`. Semantic validation determines the call mode from the
+complete list. Any `>>` selects retained-result mode, which rejects all `<`
+and `>` arguments before C emission. Resolve both forms of result arrows against
+results only, and preserve named/positional consistency and declaration order.
+
+Retained-result code generation emits only result copies with the original
+result-line locations. It must not emit defaults or a call, even for native
+modules. The absence of arguments means execution mode, not an empty read.
+Default numeric instances have explicit C initializers for interface defaults
+and zero body state, so reads before any execution observe declared defaults.
+Host-created state structures are internal implementation details; the C-driver
+fixture is not an instance-creation API. Future owned/native creation must honor
+the same initialization contract.
+
+Ordinary executions still reset interface defaults before the body, and keep
+parameter/result contents afterward, including early return. Reads expose only
+stored results, not parameters or private variables. No separate cached snapshot
+is needed in the current representation. If call frames are separated later,
+preserve the retained-interface contract rather than discarding completed values.
+
+Test reads before execution, repeated and partial reads, early-return defaults,
+ordinary calls after reads, native side effects, and invalid mixtures in both
+orders. Preserve `#line` and double-arrow byte columns. Future busy/reference
+access checks remain part of the instance runtime work, not this numeric ABI step.
+
 ## Generated names and source identity
 
 `common/names.c` is the single naming service for compiler output. It uses
@@ -246,7 +274,8 @@ later work.
 Generated module functions receive an explicit pointer to their module's state
 structure. Own-variable reads and writes must use this pointer, not a global
 current-instance variable. Ordinary Ama calls still initialize and execute a
-callee's default instance. Reset only parameters and results before each call.
+callee's default instance. Reset only parameters and results before each ordinary
+execution call; retained-result calls do not reset or execute.
 Body variables are zero-initialized with the state and persist across calls.
 Collect body write targets before parsing reads; keep unknown read-only names
 invalid, and do not treat call parameter labels as local declarations. Body
@@ -395,6 +424,8 @@ after the parameters in declaration order, and the function returns `void`.
 Assigning a parameter changes the C copy, never the Ama caller's variable.
 
 The Ama caller initializes all parameter and result defaults before execution.
+A `>>` call only reads stored result slots; it never invokes native code, even
+before the first execution, when declared defaults are already available.
 Every result pointer is valid and non-null, including ignored results. Write
 through those pointers to return values. Leaving a result untouched preserves
 its declared default on that call. An `error` result is an ordinary optional

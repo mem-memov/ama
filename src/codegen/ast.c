@@ -9,10 +9,17 @@ static void emit_value(Emitter* emitter, uint32_t receiver, const AstValue* valu
 
 static void emit_call(Emitter* emitter, const AstStatement* statement) {
     const char* callee = statement->as.call.module_path;
+    if (statement->as.call.mode == AST_READ_RESULTS_CALL) {
+        for (const AstArgument* argument = statement->as.call.arguments; argument; argument = argument->next) {
+            emit_source_location(emitter, argument->value.location);
+            emit_copy(emitter, argument->value.symbol_id, argument->callee_symbol_id);
+        }
+        return;
+    }
     emit_call_init(emitter, callee);
     bool executed = false;
     for (const AstArgument* argument = statement->as.call.arguments; argument; argument = argument->next) {
-        if (argument->is_parameter) {
+        if (argument->kind == AST_PARAMETER_ARGUMENT) {
             emit_source_location(emitter, argument->value.location);
             emit_value(emitter, argument->callee_symbol_id, &argument->value);
         } else {

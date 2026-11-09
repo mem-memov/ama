@@ -88,7 +88,35 @@ static void it_distinguishes_call_markers_from_loop_exits_and_tracks_adjacency(v
     destroy_test();
 }
 
+static void it_recognizes_a_contiguous_double_arrow_without_merging_separated_arrows(void) {
+    setup_test();
+    set_source(">> > >\r\n>\n>>");
+    Token retained = get_next_token(&lexer);
+    Token first = get_next_token(&lexer);
+    Token second = get_next_token(&lexer);
+    Token returned = get_next_token(&lexer);
+    Token last = get_next_token(&lexer);
+    Token end = get_next_token(&lexer);
+    assert(retained.type == TOKEN_RETAINED_RESULT_ARROW && strcmp(retained.lexeme, ">>") == 0);
+    assert(first.type == TOKEN_RESULT_ARROW && first.column_number == 4);
+    assert(second.type == TOKEN_RESULT_ARROW && second.column_number == 6);
+    assert(returned.type == TOKEN_RESULT_ARROW && returned.line_number == 2);
+    assert(last.type == TOKEN_RETAINED_RESULT_ARROW && last.line_number == 3 && last.column_number == 1);
+    assert(end.type == TOKEN_END_OF_FILE && end.column_number == 3);
+    destroy_test();
+}
+
+static void it_preserves_errors_from_arrow_lookahead(void) {
+    setup_test();
+    set_source(">\rbroken");
+    Token arrow = get_next_token(&lexer);
+    assert(arrow.type == TOKEN_ERROR && error.error_code == ERROR_INVALID);
+    destroy_test();
+}
+
 void run(void) {
+    it_recognizes_a_contiguous_double_arrow_without_merging_separated_arrows();
+    it_preserves_errors_from_arrow_lookahead();
     it_distinguishes_call_markers_from_loop_exits_and_tracks_adjacency();
     it_tracks_byte_columns_across_unicode_comments_and_crlf();
     it_reads_names_literals_and_module_paths();

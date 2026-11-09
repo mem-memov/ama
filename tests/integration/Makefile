@@ -61,6 +61,10 @@ all:
 >    $(MAKE) -C 50-reject-bare-call all
 >    $(MAKE) -C 51-reject-cross-module-exit all
 >    $(MAKE) -C 52-reject-standalone-bang all
+>    $(MAKE) -C 53-retained-results all
+>    $(MAKE) -C 54-native-retained-results all
+>    $(MAKE) -C 55-reject-read-parameters all
+>    $(MAKE) -C 56-reject-mixed-result-arrows all
 
 clean:
 >    $(MAKE) -C 01-hello clean
@@ -115,3 +119,7 @@ clean:
 >    $(MAKE) -C 50-reject-bare-call clean
 >    $(MAKE) -C 51-reject-cross-module-exit clean
 >    $(MAKE) -C 52-reject-standalone-bang clean
+>    $(MAKE) -C 53-retained-results clean
+>    $(MAKE) -C 54-native-retained-results clean
+>    $(MAKE) -C 55-reject-read-parameters clean
+>    $(MAKE) -C 56-reject-mixed-result-arrows clean

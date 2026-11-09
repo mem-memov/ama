@@ -2,8 +2,8 @@
 
 This document specifies the agreed target syntax of Ama. **The compiler does
 not yet implement this revision.** In particular, typed declarations, `|`
-literals, references, lists, retained-result reads through `>>`, `@!`, and `@=`
-require implementation work.
+literals, references, lists, `@!`, and `@=` require implementation work.
+Retained-result reads through `>>` are implemented for current numeric modules.
 The mandatory call suffix `!` and loop exit `^` are implemented. See
 `README.md` for the currently executable language and `TODO.md` for the migration
 plan. Examples below describe the target language, not runnable current fixtures.

@@ -91,10 +91,20 @@ static Token begin_token(Lexer* lexer) {
     return token;
 }
 
-static int read_punctuation(Token* token, int character) {
+static int read_punctuation(Lexer* lexer, Token* token, int character) {
     switch (character) {
     case '<': token->type = TOKEN_PARAMETER_ARROW; break;
-    case '>': token->type = TOKEN_RESULT_ARROW; break;
+    case '>': {
+        int next = read_character(lexer);
+        if (next == '>') {
+            token->type = TOKEN_RETAINED_RESULT_ARROW;
+            strcpy(token->lexeme, ">>");
+            return 1;
+        }
+        return_byte_to_input(lexer, next);
+        token->type = TOKEN_RESULT_ARROW;
+        break;
+    }
     case '?': token->type = TOKEN_QUESTION_MARK; break;
     case ':': token->type = TOKEN_COLON; break;
     case '{': token->type = TOKEN_LOOP_OPEN; break;
@@ -175,8 +185,10 @@ Token get_next_token(Lexer* lexer) {
         return end_of_file_token;
     }
     Token token = begin_token(lexer);
-    if (read_punctuation(&token, character))
+    if (read_punctuation(lexer, &token, character)) {
+        if (lexer->error->error_code != ERROR_NONE) token.type = TOKEN_ERROR;
         return token;
+    }
     if (character == '.')
         return read_path(lexer, token);
     if (is_decimal_digit(character))

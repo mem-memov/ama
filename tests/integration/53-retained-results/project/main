@@ -1,0 +1,46 @@
+@<
+counter
+.counter
+print
+.sys.io.print
+@Ama
+counter!
+ total >> value
+ marker >> saved
+print!
+ < value
+print!
+ < saved
+counter!
+ increment < 5
+counter!
+ total >> value
+ marker >> saved
+print!
+ < value
+print!
+ < saved
+counter!
+ >> value
+ >> saved
+print!
+ < value
+print!
+ < saved
+counter!
+ skip < 1
+counter!
+ total >> value
+ marker >> saved
+print!
+ < value
+print!
+ < saved
+counter!
+counter!
+ total >> value
+ marker >> saved
+print!
+ < value
+print!
+ < saved

@@ -32,9 +32,14 @@ typedef struct AstDeclaration {
     AstValue value;
 } AstDeclaration;
 
+typedef enum {
+    AST_PARAMETER_ARGUMENT, AST_RESULT_ARGUMENT, AST_RETAINED_RESULT_ARGUMENT
+} AstArgumentKind;
+typedef enum { AST_EXECUTE_CALL, AST_READ_RESULTS_CALL } AstCallMode;
+
 typedef struct AstArgument {
     struct AstArgument* next;
-    bool is_parameter;
+    AstArgumentKind kind;
     bool is_named;
     AstName label;
     AstValue value;
@@ -59,6 +64,7 @@ struct AstStatement {
         struct { AstName receiver; AstValue source; } assignment;
         struct {
             AstName target;
+            AstCallMode mode; /* Determined from all arguments during validation. */
             AstArgument* arguments;
             AstArgument* last_argument;
             char module_path[MAX_MODULE_PATH_LENGTH]; /* Resolved target. */

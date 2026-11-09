@@ -115,7 +115,78 @@ static void it_executes_two_explicit_zero_argument_calls_in_order(void) {
     destroy_test();
 }
 
+static void it_reads_results_without_initialization_or_execution(void) {
+    setup_test();
+    declare_add();
+    bool parsed = parse_text("add!\n sum >> result\n");
+    assert(parsed && syntax.body.first->as.call.mode == AST_READ_RESULTS_CALL);
+    assert(syntax.body.first->as.call.arguments->kind == AST_RETAINED_RESULT_ARGUMENT);
+    assert_stream_equals(output,
+        "    state->ama_field_461586e9099c6ddb = ama_instance_a97b938813d0c822.ama_field_37f96d0237c09c53;\n");
+    destroy_test();
+}
+
+static void it_rejects_mixed_read_modes_before_emitting_any_code(void) {
+    setup_test();
+    declare_add();
+    const char* invalid[] = {
+        "add!\n < 1\n >> result\n", "add!\n >> result\n < 1\n",
+        "add!\n > first\n >> second\n", "add!\n >> first\n > second\n"
+    };
+    for (size_t index = 0; index < sizeof(invalid) / sizeof(invalid[0]); index++) {
+        ast_destroy(&syntax);
+        error_clear(&error);
+        bool parsed = parse_text(invalid[index]);
+        assert(!parsed && !syntax.validated && error.error_code == ERROR_INVALID);
+        assert(strstr(error.message, "retained-result") || strstr(error.message, "cannot mix '>' and '>>'"));
+        long position = ftell(output);
+        assert(position == 0);
+    }
+    destroy_test();
+}
+
+static void it_reads_only_results_and_preserves_argument_style_checks(void) {
+    setup_test();
+    declare_add();
+    Symbol* private_value = add_local_variable(symbols, "math/add", "scratch", &error);
+    assert(private_value != NULL);
+    const char* invalid[] = {
+        "add!\n left >> result\n", "add!\n scratch >> result\n",
+        "add!\n >> first\n >> second\n",
+        "add!\n >> first\n sum >> second\n", "add!\n > > result\n"
+    };
+    for (size_t index = 0; index < sizeof(invalid) / sizeof(invalid[0]); index++) {
+        ast_destroy(&syntax);
+        error_clear(&error);
+        bool parsed = parse_text(invalid[index]);
+        assert(!parsed && error.error_code == ERROR_INVALID);
+    }
+    destroy_test();
+}
+
+static void it_maps_retained_reads_to_the_result_line(void) {
+    setup_test();
+    declare_add();
+    emitter.source_mapping_enabled = true;
+    bool parsed = parse_text_at("add!\n sum >> answer\n", "reader.ama");
+    assert(parsed);
+    rewind(output);
+    char text[4096];
+    size_t length = fread(text, 1, sizeof(text) - 1, output);
+    assert(!ferror(output));
+    text[length] = '\0';
+    assert(strstr(text, "#line 2 \"reader.ama\"\n") != NULL);
+    assert(strstr(text, "ama_call_") == NULL);
+    Symbol* receiver = lookup_symbol(symbols, "main", "answer");
+    assert(receiver && receiver->declaration.line == 2 && receiver->declaration.column == 9);
+    destroy_test();
+}
+
 void run(void) {
+    it_reads_results_without_initialization_or_execution();
+    it_rejects_mixed_read_modes_before_emitting_any_code();
+    it_reads_only_results_and_preserves_argument_style_checks();
+    it_maps_retained_reads_to_the_result_line();
     it_parses_calls_without_any_alias_declaration();
     it_requires_an_adjacent_marker_and_separate_argument_lines();
     it_executes_two_explicit_zero_argument_calls_in_order();

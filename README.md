@@ -163,7 +163,8 @@ A call uses either positional or named arguments throughout. Parameters must
 precede results. A zero-argument call is `worker!` on its own line. Every call
 requires the suffix, including native calls. Bare aliases are not calls.
 
-Each call resets the callee's parameters and results to their declared defaults,
+Each ordinary execution call resets the callee's parameters and results to their
+declared defaults,
 copies arguments by value, executes the procedure, and
 copies requested results back by value. Omitted parameters keep their declared
 defaults; omitted results are ignored. Too many positional arguments/results
@@ -175,7 +176,31 @@ conditional. An assignment in the body executes whenever reached; assigning
 zero explicitly resets that variable. Body assignment targets and call-result
 receivers are collected before execution code is parsed, so a variable can be
 read before its first textual write. A name that is never declared or written
-remains an error. Parameters and results remain per-call values.
+remains an error. Parameter/result defaults are reinstated before each ordinary
+execution; completed values remain stored afterward.
+
+### Reading saved results
+
+Use `>>` instead of `>` to read results without running the body or resetting any
+state. Named and positional reads are supported, using one style throughout:
+
+```text
+double!
+ result >> answer
+```
+
+Every result in this call must use `>>`; parameters `<` and execution results `>`
+are forbidden, regardless of their order. You may request a subset of named
+results. `>>` is one contiguous token; `> >` is invalid. A zero-argument `double!`
+still executes normally.
+
+Before the first execution, reads return declared result defaults. After an
+execution, they return the saved results, including values left by an early
+return. Parameters and private body variables cannot be read through `>>`.
+This is retrieval of stored values, not a computed getter. Native modules follow
+the same rule: retained reads never invoke their companion C function. The full
+call is checked before code generation, so a late `>>` cannot trigger a partial
+execution or reset.
 
 ## Control flow
 
@@ -391,8 +416,10 @@ headers with `--generate-c-headers`, which never creates source files.
 Generated C groups each module's numeric variables into a `ama_state_<hash>`
 structure. Its function takes an explicit pointer to that state; accesses to
 its own variables use that pointer. Ordinary Ama calls currently select a
-`static` default instance of the callee. Calls reset only parameters and results;
-body variables retain their values in that instance. Language-level object and
+`static` default instance of the callee, initialized once with declared interface
+defaults and zero body variables. Ordinary calls reset only parameters and results;
+retained-result calls copy stored outputs without resets or execution. Body
+variables retain their values in that instance. Language-level object and
 reference declarations remain planned, not implemented.
 
 State fields use identity hashes; symbol IDs are private table indices, not

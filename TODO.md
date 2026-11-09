@@ -103,8 +103,12 @@ constants from executable modules and unfinished drafts. Replacing `@Ama` with
   exits the nearest loop (also from nested branches); `@!` remains the executable-body annotation.
 - Declarations establish persistent state; ordinary calls do not recreate it.
 - No separate constructor annotation or section is needed.
-- Parameters and results are temporary per-call variables; variables declared
-  in the module body persist in the instance between calls.
+- Parameters and results reset to defaults before ordinary body execution, then
+  retain their values until the next execution. Body variables persist.
+- `>>` selects a read of saved results with no resets or body execution. Such
+  calls forbid `<` and `>`, expose only results, and retain the `!` suffix.
+  Before first execution, saved results have their declared defaults. The `?`
+  condition marker has no query meaning.
 - Explicit state cloning is a required capability.
 - Lists must support an element count unknown at compile time.
 - Lists should be usable as owned parts of another module's state.
@@ -181,7 +185,8 @@ void counter_execute(CounterState* state);
 existing C type or a decision about number width. This is an implementation
 sketch, not a proposed native ABI. The pointer is
 an implementation detail, not an Ama value. Public parameters and results and
-their reset behavior may eventually use a separate call frame.
+their reset behavior may eventually use a separate call frame, but completed
+interface values must remain available for `>>` reads.
 
 Avoid a mutable global "current instance" and avoid loading selected state into
 the existing global variables before a call. Explicit contexts make nested
@@ -340,13 +345,19 @@ assignment uses a named source. This is an intentional syntax migration. The ini
 implementation retains `size_t` storage and default instances. Owned child
 declarations, references, lists, and the new fundamental types remain planned.
 
-The candidate call protocol is:
+The ordinary execution-call protocol is:
 
 1. Select and validate the target instance.
-2. Establish per-call parameter/result defaults.
+2. Establish per-execution parameter/result defaults.
 3. Copy supplied parameter values.
 4. Execute the body using the selected internal state.
-5. Copy requested results back and retain the resulting object state.
+5. Copy requested results back and retain the resulting object/interface state.
+
+A retained-result call is selected by `>>` anywhere in its fully validated
+argument list. It copies requested results without steps 2-4, never accepts
+parameters or mixed `>` arrows, and uses existing defaults before first execution.
+The current numeric compiler initializes default instances statically for this
+contract; future type-directed instance creation must do the same semantically.
 
 If defaults remain per-call, omitted inputs mean their defaults, not "retain
 the previous input." An application that needs a previous input saves it in
@@ -1038,6 +1049,19 @@ representation in stage 3 before changing declaration syntax or value layout.
 - [x] Reject `^` outside loops during semantic validation and reject standalone
   `!` statements. A callee cannot inherit its caller's loop context. Preserve
   early return `>` as a separate operation.
+
+### Retained-result reads (implemented for the numeric model)
+
+- [x] Tokenize contiguous `>>` distinctly from `>` and `> >`; preserve source
+  positions, CRLF handling, and errors encountered during arrow lookahead.
+- [x] Preserve all three arrow kinds in AST, determine the entire call mode during
+  validation, and reject `<` or `>` in read calls regardless of order.
+- [x] Emit only result copies for reads, including native modules and partial
+  named reads. Preserve ordinary execution/reset semantics and `#line` mappings.
+- [x] Initialize current default instances with declared interface values before
+  first execution; retain those slots after return, including early return.
+- [x] Test repeated reads, positional/named rules, initial and retained values,
+  native side effects, mixed arrows, and ordinary calls following reads.
 
 ### Following type and syntax tasks
 

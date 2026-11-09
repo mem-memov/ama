@@ -35,10 +35,10 @@ static void it_preserves_declarations_and_call_arguments_before_resolution(void)
     const AstStatement* call = syntax.body.first;
     assert(call->kind == AST_CALL && call->as.call.target.symbol_id == AST_UNRESOLVED_SYMBOL);
     const AstArgument* first = call->as.call.arguments;
-    assert(first->is_named && first->is_parameter && strcmp(first->value.text, "unknown") == 0);
+    assert(first->is_named && first->kind == AST_PARAMETER_ARGUMENT && strcmp(first->value.text, "unknown") == 0);
     assert(first->callee_symbol_id == AST_UNRESOLVED_SYMBOL && first->location.line == 2);
     assert(strcmp(first->next->label.text, "right") == 0);
-    assert(!first->next->next->is_parameter && strcmp(first->next->next->value.text, "answer") == 0);
+    assert(first->next->next->kind == AST_RESULT_ARGUMENT && strcmp(first->next->next->value.text, "answer") == 0);
     destroy_test();
 }
 
