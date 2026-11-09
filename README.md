@@ -316,25 +316,44 @@ src/
   main.c             CLI
   common/            limits, paths, diagnostics
   lexer/             tokens, character classification, section splitting, lexer
-  parser/            declarations, values, assignments, calls, control flow
+  ast/               owned syntax trees and source identities/locations
+  parser/            syntax construction: declarations, values, calls, control flow
+  semantic/          declaration binding, receiver collection, name/call validation
   symbols/           symbol types and table
   graph/             dependency graph and cycle detection
-  codegen/           C output primitives and native signatures/wrappers
+  codegen/           validated AST emission, C primitives, native signatures/wrappers
   project/           project/library discovery, module loading, compilation pipeline
 ```
 
-Start with `project/compile.c`: `compile_project` loads declarations, validates
-and orders dependencies, emits module bodies, and writes the program.
-`project/module.c` handles the two passes over each module; `project/scan.c`
-registers source paths. `parser/statement.c` classifies statements and dispatches
-to the appropriate parser. `parser/call.c` tracks argument mode, result ordering,
-and execution in a `ModuleCallState`. Code is emitted directly, without an AST.
+Start with `project/compile.c`: `compile_project` loads interfaces and orders
+dependencies, parses all Ama bodies into ASTs, validates them, and only then emits
+C. `project/module.c` loads modules and owns their syntax lifetimes;
+`project/scan.c` records source paths. Interface declarations are parsed into
+nodes and bound before dependency construction and native header generation.
 
-State belongs to explicit objects: `SymbolTable`, `Graph`, `Lexer`, and
-`Emitter`. The graph has no dependency on the symbol table; the project layer
-translates aliases into graph edges. `StatementParser` receives only the components
-it uses. Internal `Project` owns a compilation's tables, files, and output and
-releases them on success or failure.
+`parser/` does not emit C, resolve symbols, or consult the dependency graph.
+It records source spelling, source locations, declarations, assignments, calls,
+arguments, branches, loops, breaks, and returns. The current syntax needs one
+piece of declaration context: declared aliases distinguish a zero-argument call
+from assignment. That syntactic lookup uses the module's declaration nodes, not
+the semantic symbol table. A future explicit call marker is not implemented.
+
+`semantic/` first collects body write targets, then resolves reads, call targets,
+named/positional arguments, and result receivers. It annotates the same tree with
+symbol IDs and normalized callee paths. `codegen/ast.c` consumes only validated
+trees and preserves execution order and source mappings. No additional lowered
+IR or optimization framework is introduced.
+
+Each module owns a chain of stable, aligned allocations. AST names and literal
+spellings are copied, so token buffers are released before semantic validation;
+source paths remain borrowed from the project. Cleanup is iterative even when
+parsing fails partway through a deeply nested body. Parsing is limited to 128
+active block levels, including the module body, to bound recursive compiler passes.
+
+State belongs to explicit objects: `AstModule`, `SymbolTable`, `Graph`, `Lexer`,
+and `Emitter`. The project layer connects the stages and releases all compilation
+resources on success or failure. Native signatures, current numeric semantics,
+and current executable syntax remain unchanged by this architectural refactor.
 
 Components return `bool`, a nullable result, or an error token together with an
 `Error` diagnostic. They neither print errors nor terminate the process.
@@ -375,8 +394,8 @@ reference declarations remain planned, not implemented.
 
 State fields use identity hashes; symbol IDs are private table indices, not
 Ama values. Original names are retained in safe generated comments. The
-compiler buffers function bodies until all local variables have been registered,
-then writes state definitions before the functions. Empty modules receive a
+compiler resolves all body variables before starting C emission, then writes
+state definitions before the buffered functions. Empty modules receive a
 placeholder field for ISO C compatibility. Generated native wrappers also take
 a state pointer; handwritten native signatures remain unchanged. Callees are
 emitted before callers. Native optimization is performed by the C compiler.
@@ -470,7 +489,7 @@ investigate it independently.
 ## Current limitations
 
 The prototype has fixed limits of 512 graph nodes (including standard library modules) and
-8192 symbols. Literal parsing still uses `int`/`atoi`; values above `INT_MAX`
+8192 symbols, and 128 active AST block levels (including the module body). Literal parsing still uses `int`/`atoi`; values above `INT_MAX`
 are not reliably supported even though computed values use `size_t`.
 Duplicate named arguments are not rejected. A `!` outside a loop is rejected
 by the downstream C compiler rather than by Ama. There is no string/file input,

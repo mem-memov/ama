@@ -2,6 +2,8 @@
 #include "lexer/sections.h"
 #include "parser/parser.h"
 #include "codegen/native.h"
+#include "codegen/ast.h"
+#include "semantic/semantic.h"
 #include <errno.h>
 #include <limits.h>
 #include <stdlib.h>
@@ -32,10 +34,11 @@ static bool read_module_declarations(SymbolTable* symbols, ModuleFile* module, E
     Lexer lexer;
     bool success = init_lexer(&lexer, file, module->source_path, sections.parameters_start, sections.parameters_end,
         sections.parameters_line, error) &&
-                    parse_declaration_section(&lexer, symbols, module->module_path, SYMBOL_PARAMETER) &&
+                    parse_declaration_section(&lexer, &module->syntax, AST_PARAMETER_DECLARATION) &&
                     init_lexer(&lexer, file, module->source_path, sections.results_start, sections.results_end,
                         sections.results_line, error) &&
-                    parse_declaration_section(&lexer, symbols, module->module_path, SYMBOL_RESULT);
+                    parse_declaration_section(&lexer, &module->syntax, AST_RESULT_DECLARATION) &&
+                    declare_module_symbols(&module->syntax, symbols, module->module_path, error);
     fclose(file);
     return success;
 }
@@ -87,28 +90,54 @@ static bool read_module_tokens(const ModuleFile* module, TokenStream* stream, Er
     return success;
 }
 
-static bool emit_module_body(Project* project, const char* path, TokenStream* stream, Error* error) {
-    Emitter* emitter = &project->emitter;
-    emit_module_start(emitter, path);
-    StatementParser parser = {stream, path, &project->symbols, &project->graph, emitter, error};
-    if (!collect_body_variables(&parser)) return false;
-    while (token_stream_peek(stream)->type != TOKEN_END_OF_FILE)
-        if (!parse_statement(&parser, 0)) return false;
-    emit_module_end(emitter);
+bool parse_project_bodies(Project* project, const int* dependency_order, Error* error) {
+    for (int index = 0; index < project->graph.node_count; index++) {
+        const char* path = graph_path(&project->graph, dependency_order[index]);
+        ModuleFile* module = find_module_file(project, path);
+        if (!module)
+            return error_set(error, ERROR_INVALID, 0, "module '%s' has no source file", path);
+        if (module->implementation == MODULE_DECLARATION_ONLY)
+            return error_set(error, ERROR_INVALID, 0, "module '%s' has no implementation annotation", path);
+        if (module->implementation == MODULE_C_IMPLEMENTATION) continue;
+        TokenStream stream = {0};
+        bool success = read_module_tokens(module, &stream, error);
+        if (success) {
+            StatementParser parser = {.stream = &stream, .module_path = path,
+                .module = &module->syntax, .error = error};
+            success = parse_module_body(&parser);
+        }
+        free(stream.tokens);
+        if (!success) {
+            snprintf(error->module, sizeof(error->module), "%s", path);
+            return false;
+        }
+    }
     return true;
 }
 
+bool validate_project_bodies(Project* project, const int* dependency_order, Error* error) {
+    /* Every body is parsed before validation; no token buffer survives this point. */
+    for (int index = 0; index < project->graph.node_count; index++) {
+        const char* path = graph_path(&project->graph, dependency_order[index]);
+        ModuleFile* module = find_module_file(project, path);
+        if (module->implementation == MODULE_C_IMPLEMENTATION) continue;
+        if (!validate_module_body(&module->syntax, &project->symbols, &project->graph, path, error)) return false;
+    }
+    return true;
+}
+
+void destroy_project_syntax(Project* project) {
+    for (int index = 0; index < project->file_count; index++) ast_destroy(&project->files[index].syntax);
+}
+
 bool emit_project_module(Project* project, const ModuleFile* module, Error* error) {
-    if (module->implementation == MODULE_DECLARATION_ONLY)
-        return error_set(error, ERROR_INVALID, 0,
-            "module '%s' has no implementation annotation", module->module_path);
     if (module->implementation == MODULE_C_IMPLEMENTATION)
         return emit_native_wrapper(&project->emitter, module->module_path, error);
-    TokenStream stream = {0};
-    bool success = read_module_tokens(module, &stream, error) &&
-                    emit_module_body(project, module->module_path, &stream, error);
-    free(stream.tokens);
-    if (!success) snprintf(error->module, sizeof(error->module), "%s", module->module_path);
+    if (!module->syntax.validated)
+        return error_set(error, ERROR_INVALID, 0, "module '%s' has no validated body", module->module_path);
+    emit_module_start(&project->emitter, module->module_path);
+    bool success = emit_ast_body(&project->emitter, &module->syntax, error);
+    emit_module_end(&project->emitter);
     return success;
 }
 

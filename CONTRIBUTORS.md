@@ -76,6 +76,54 @@ Use `static inline` for small header helpers whose implementations need to be
 visible at call sites. Ordinary helpers remain ordinary functions; the default
 LTO build can inline across source files. Inlining is the optimizer's decision.
 
+## Parse, validate, then generate
+
+Keep `parser/` independent of symbols, graph traversal, and C emission. It builds
+`AstModule` declarations and body nodes. Preserve source spelling and locations,
+including separate call/argument and control-marker positions. Do not parse a
+literal into its runtime representation while constructing syntax.
+
+The old call syntax is context-dependent: a declared alias can be a bare call.
+The parser may inspect syntax declarations to recognize that case; it must not
+resolve the target module or validate its arguments. The target grammar now requires a trailing `!` on every call. That migration
+will remove this lookup; the current AST refactor still preserves bare calls.
+
+`semantic/` binds interface declarations, collects body receivers, and validates
+reads/calls. Resolved symbol IDs and callee paths annotate the same tree. Preserve
+argument order, per-call defaults, persistent body variables, and current error
+behavior. Reordering execution during validation is not allowed. `codegen/ast.c`
+refuses unvalidated trees and emits only resolved operations. Project compilation
+parses and validates all bodies before opening the function-output stream.
+
+`AstModule` owns every node through an allocation chain. Addresses remain stable
+when other nodes are allocated, and cleanup walks allocations rather than
+recursively walking the syntax tree. Token spellings are copied into nodes;
+source paths are borrowed from a longer-lived project owner. Do not retain token
+pointers or use AST nodes after module destruction. A failed parse/validation
+leaves partial state for cleanup, not for emission. Destroy/reset before parsing
+a replacement module. Tree mutation requires revalidation; the validation flag
+is an internal phase contract, not a verifier for arbitrary manually built trees.
+
+The current AST uses tagged C unions and ordinary stage-specific walks. Avoid a
+universal visitor framework, parent pointers, multiple lowered IRs, or speculative
+optimization machinery until a concrete feature needs them. Bound syntactic
+nesting before recursive passes run. Keep allocation failure paths explicit.
+Small literals/names retain current compiler length limits; new literal syntax
+can revise storage deliberately rather than accidentally borrowing lexer buffers.
+
+The design follows the source-structure emphasis in the
+[Clang AST introduction](https://clang.llvm.org/docs/IntroductionToTheClangAST.html)
+and the explicit phase boundaries described in Rust's
+[AST-to-HIR lowering guide](https://rustc-dev-guide.rust-lang.org/hir/lowering.html).
+Ama currently needs one syntax tree with resolution annotations, not Rust's full
+sequence of intermediate representations. These are design choices for this
+project, not claims that another compiler's architecture is mistaken.
+
+Test raw tree structure without generating code, semantic rejection before
+emission, declaration/call ordering, token-buffer independence, partial-tree
+cleanup, excessive nesting, and repeated compilation after failure. Retain the
+integration tree for observable behavior, native ABI, Unicode, and line mappings.
+
 ## Failures and resource ownership are visible
 
 Components return a status, nullable result, or error token and populate an

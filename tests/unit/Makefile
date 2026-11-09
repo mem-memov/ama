@@ -3,6 +3,7 @@
 .PHONY: all clean
 
 all:
+>    $(MAKE) -C ast all
 >    $(MAKE) -C common all
 >    $(MAKE) -C symbols all
 >    $(MAKE) -C graph all
@@ -12,6 +13,7 @@ all:
 >    $(MAKE) -C project all
 
 clean:
+>    $(MAKE) -C ast clean
 >    $(MAKE) -C common clean
 >    $(MAKE) -C symbols clean
 >    $(MAKE) -C graph clean

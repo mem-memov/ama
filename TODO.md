@@ -96,6 +96,11 @@ constants from executable modules and unfinished drafts. Replacing `@Ama` with
 - Execution works over a selected state; calling does not require copying it.
 - Application code controls reactions and the order of child calls.
 - Repeated identical calls still execute the body repeatedly.
+- Every call uses a mandatory trailing `!` immediately after the complete target,
+  whether or not it has arguments: `worker!`, `target&!`, `items[position]!`,
+  `targets&[position]!`, `items[]!`, and `targets&[]!`. Arguments keep their
+  separate indented lines. Bare names do not execute modules. A standalone `^`
+  exits the nearest loop (also from nested branches); `@!` remains the executable-body annotation.
 - Declarations establish persistent state; ordinary calls do not recreate it.
 - No separate constructor annotation or section is needed.
 - Parameters and results are temporary per-call variables; variables declared
@@ -918,7 +923,8 @@ Follow these stages in order. The target syntax is now recorded in `EBNF.md`;
 it deliberately precedes implementation. Earlier exploratory syntax elsewhere
 in this design log must not override that revision. In particular, use suffix
 reference names (`target&`, `targets&[]`), prefix acquisition (`&item`), `|`
-line literals, `@!`, and `@=`; do not reintroduce `*` or `()`.
+line literals, `@!`, `@=`, and mandatory trailing `!` for all calls; do not
+reintroduce `*` or `()`.
 
 1. **Shared identities and deterministic internal C names.** Establish full
    module/member identities, a single hash-based naming service, collision
@@ -943,7 +949,8 @@ line literals, `@!`, and `@=`; do not reintroduce `*` or `()`.
    generic optimization framework: retain only structures needed for the language.
 4. **Target declarations and literal syntax.** Parse explicit module-typed
    declarations, suffix reference/list forms, indented named-value assignments,
-   and `|` initialization lines. Introduce `@!` and `@=`. Remove special integer
+   and `|` initialization lines. Introduce `@!`, `@=`, and mandatory `!` on
+   every call target so parsing no longer consults alias declarations. Remove special integer
    expression literals and implicit numeric variable creation; do not synthesize
    hidden integer variables. Verify whitespace, payload preservation, declaration
    versus call disambiguation, constant-module restrictions, and migration errors.
@@ -981,8 +988,7 @@ unit/integration tests at each stage; never claim planned behavior is implemente
 Start with a shared identity-to-C-name component before changing the value ABI.
 It is needed by generated state types, native bindings, typed values, references,
 and international source names, and can be verified independently of new syntax.
-This stage and file/line source mapping are implemented. The next architecture
-step is the intermediate representation. Future generated entities
+This stage and file/line source mapping are implemented. The AST architecture stage is now implemented for the current language. Future generated entities
 must use the same component.
 
 - [x] Define canonical identity tuples, deterministic hash algorithm/width,
@@ -1011,10 +1017,24 @@ representation in stage 3 before changing declaration syntax or value layout.
 - [ ] Verify interactive debugger stepping separately where debugger execution
   is available; document optimization limits and source-path relocation. Line
   mappings do not restore original variable names or source columns.
-- [ ] Introduce explicit program nodes and separate parsing, validation, and C
-  emission while preserving current behavior and the native ABI.
-- [ ] Replace immediate code emission from parser routines with generation from
-  validated program nodes; preserve source identity and location information.
+- [x] Introduce explicit declaration/statement/call/control nodes and separate
+  parsing, semantic validation, and C emission while preserving current behavior
+  and the native ABI. One AST carries raw spellings/locations and resolved IDs.
+- [x] Replace immediate parser emission with generation from validated AST nodes.
+  Copy token spellings, borrow project-owned source paths, preserve argument order
+  and `#line` locations, use stable module-owned allocations and iterative cleanup,
+  and bound active block nesting at 128 levels (including the module body).
+- [x] Decide explicit call syntax: mandatory trailing `!` for all calls, with
+  arguments or without; record it in `EBNF.md`.
+- [ ] Implement the call suffix in the lexer/parser, remove declaration-based
+  call classification, and migrate fixtures/examples. Reject bare calls, preserve
+  argument/result ordering, and replace standalone `!` breaks with `^`. The compiler
+  still uses the previous syntax until this migration lands.
+- [ ] Test zero-argument, argument-bearing, reference, indexed, and whole-list
+  call forms as their features land. Test lexical adjacency and distinction from
+  assignment, `^` break, `@!`, and literal payload containing `!` or `^`.
+- [ ] Reject `^` outside loops during semantic validation and reject standalone
+  `!` statements. Preserve early return `>` as a separate operation.
 
 ### Following type and syntax tasks
 

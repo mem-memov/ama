@@ -5,6 +5,7 @@
 #include "graph/graph.h"
 #include "codegen/emitter.h"
 #include "lexer/sections.h"
+#include "ast/ast.h"
 
 typedef struct {
     char module_path[MAX_MODULE_PATH_LENGTH];
@@ -12,6 +13,7 @@ typedef struct {
     char source_path[MAX_FILE_PATH_LENGTH];
     ModuleImplementation implementation;
     bool is_standard_library;
+    AstModule syntax;
 } ModuleFile;
 
 typedef struct {
@@ -27,6 +29,9 @@ bool load_standard_library(Project* project, const char* directory, Error* error
 bool scan_dir(Project* project, const char* project_root, const char* relative_prefix, Error* error);
 ModuleFile* find_module_file(Project* project, const char* path);
 bool parse_project_declarations(Project* project, Error* error);
+bool parse_project_bodies(Project* project, const int* dependency_order, Error* error);
+bool validate_project_bodies(Project* project, const int* dependency_order, Error* error);
+void destroy_project_syntax(Project* project);
 bool emit_project_module(Project* project, const ModuleFile* module, Error* error);
 bool validate_generated_names(Project* project, Error* error);
 bool validate_native_modules(Project* project, bool require_sources, Error* error);

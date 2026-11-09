@@ -9,6 +9,13 @@ static void declare_add(void) {
     Symbol* alias = add_declarative_symbol(symbols, "main", "add", SYMBOL_MODULE_ALIAS, path, &error);
     int node = graph_add_node(graph, "math/add", &error);
     assert(left && right && sum && alias && node >= 0);
+    AstDeclaration* declaration = ast_allocate(&syntax, sizeof(*declaration), &error);
+    assert(declaration != NULL);
+    declaration->kind = AST_PARAMETER_DECLARATION;
+    strcpy(declaration->name.text, "add");
+    declaration->value.kind = AST_PATH_VALUE;
+    strcpy(declaration->value.text, ".math.add");
+    ast_append_declaration(&syntax, declaration);
 }
 
 static void it_copies_parameters_before_execution_and_results_after(void) {

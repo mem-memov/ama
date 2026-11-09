@@ -3,22 +3,17 @@
 
 #include "parser/stream.h"
 #include "lexer/lexer.h"
-#include "symbols/table.h"
-#include "graph/graph.h"
-#include "codegen/emitter.h"
+#include "ast/ast.h"
 
 typedef struct {
     TokenStream* stream;
     const char* module_path;
-    SymbolTable* symbols;
-    const Graph* graph;
-    Emitter* emitter;
+    AstModule* module;
     Error* error;
+    unsigned int nesting;
 } StatementParser;
 
-/* Discover body write targets without consuming tokens or emitting code. */
-bool collect_body_variables(StatementParser* parser);
-bool parse_statement(StatementParser* parser, uint32_t indentation);
-bool parse_declaration_section(Lexer* lexer, SymbolTable* symbols, const char* module_path, SymbolKind kind);
+bool parse_module_body(StatementParser* parser);
+bool parse_declaration_section(Lexer* lexer, AstModule* module, AstDeclarationKind kind);
 
 #endif

@@ -3,6 +3,12 @@
 ROOT := $(abspath ../../../..)
 COMMON := ../../../common.c ../../common.c ../common.c
 SOURCES := \
+    $(ROOT)/src/ast/ast.c \
+    $(ROOT)/src/semantic/declarations.c \
+    $(ROOT)/src/semantic/values.c \
+    $(ROOT)/src/semantic/calls.c \
+    $(ROOT)/src/semantic/body.c \
+    $(ROOT)/src/codegen/ast.c \
     $(ROOT)/src/parser/assignment.c \
     $(ROOT)/src/parser/call.c \
     $(ROOT)/src/parser/control.c \

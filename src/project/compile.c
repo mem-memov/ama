@@ -73,12 +73,14 @@ static bool generate_program(
     int dependency_order[MAX_MODULES];
     if (!build_dependencies(project, error) || !graph_sort(&project->graph, dependency_order, error))
         return false;
+    if (!parse_project_bodies(project, dependency_order, error) ||
+        !validate_project_bodies(project, dependency_order, error) ||
+        !validate_generated_names(project, error)) return false;
     project->emitter.source_mapping_enabled = true;
     project->emitter.output = tmpfile();
     if (!project->emitter.output)
         return error_set(error, ERROR_IO, 0, "cannot create temporary output");
-    if (!emit_modules(project, dependency_order, error) ||
-        !validate_generated_names(project, error)) return false;
+    if (!emit_modules(project, dependency_order, error)) return false;
     emit_program_entry_point(&project->emitter, entry_module);
     char directory[MAX_FILE_PATH_LENGTH];
     return output_directory(output_path, directory, sizeof(directory), error) &&
@@ -105,6 +107,7 @@ bool compile_project_with_library(
         if (status && success)
             success = error_set(error, ERROR_IO, 0, "cannot close generated output");
     }
+    destroy_project_syntax(project);
     free(project);
     return success;
 }
@@ -137,6 +140,7 @@ static bool export_c_interfaces(
         prepare_header_directory(header_directory, error) &&
         emit_native_headers(project, header_directory, error);
     if (success && create_sources) success = create_native_stubs(project, error);
+    destroy_project_syntax(project);
     free(project);
     return success;
 }

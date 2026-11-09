@@ -2,12 +2,15 @@
 
 This document specifies the agreed target syntax of Ama. **The compiler does
 not yet implement this revision.** In particular, typed declarations, `|`
-literals, references, lists, `@!`, and `@=` require implementation work. See
+literals, references, lists, mandatory call suffix `!`, `@!`, and `@=` require
+implementation work. See
 `README.md` for the currently executable language and `TODO.md` for the migration
 plan. Examples below describe the target language, not runnable current fixtures.
 
 Hash-based internal naming and file/line source mappings have been implemented
-independently; that does not imply support for the target syntax below.
+independently, and the current compiler now uses parsing, AST validation, and
+C emission as separate stages. That does not imply support for the target syntax
+below.
 
 This document supersedes the previous syntax specification for future work;
 it does not claim that the existing parser already accepts the new grammar.
@@ -308,8 +311,9 @@ append
 ```
 
 After a name line, a module path at the same indent identifies a declaration.
-An indented source identifies assignment. Arrow-bearing argument lines identify
-a call; a bare callable target is a zero-argument call. `?` and `{` at the same
+An indented source identifies assignment. A target immediately followed by `!`
+identifies a call, with or without arguments; recognizing it does not depend on
+looking up declared aliases. A bare target is not a call. `?` and `{` at the same
 indent select control flow. No mandatory `*` or call suffix `()` is introduced.
 
 ### 4.1 Assignment
@@ -344,7 +348,7 @@ failure cleanup must follow the type's lifecycle contract.
 ### 4.2 Calls and their alternative
 
 ```ebnf
-<call(n)>       ::= <indent(n)> <call-target> <line-end>
+<call(n)>       ::= <indent(n)> <call-target> "!" <line-end>
                     <layout> { <argument(n+1)> <layout> }
                     [ <indent(n)> ":" <line-end> <body(n+1)> ]
 <argument(n)>   ::= <indent(n)> <parameter> <line-end>
@@ -361,18 +365,23 @@ positional arguments or named arguments throughout; positional order follows
 interface declaration order. Named labels include the storage suffixes from
 the interface, such as `target&`.
 
+The suffix `!` is mandatory for every call, including calls without arguments.
+It immediately follows the complete target, with no intervening whitespace.
+Arguments remain on separate lines one level deeper; `()` is not used. Name
+resolution and target type checks occur after syntax recognition.
+
 ```text
-worker
+worker!
  value < count
  result > answer
 
-consumer
+consumer!
  target& < &item
 
-target&
+target&!
  value < count
 :
- handle_unavailable
+ handle_unavailable!
 ```
 
 The runtime validates and acquires the selected instance before executing it.
@@ -391,8 +400,10 @@ body starts. Failed acquisition does not assign results. The reason-binding
 syntax and exact unhandled-failure policy remain to be finalized; the proposed
 default is a diagnostic and termination. Static type errors remain compile errors.
 
-Whole-list calls use `items[]` or `targets&[]`; element calls use
-`items[position]` or `targets&[position]`. Collection operation signatures,
+Zero-argument calls are complete statements such as `worker!` or `target&!`.
+Whole-list calls use `items[]!` or `targets&[]!`; element calls use
+`items[position]!` or `targets&[position]!`. Brackets without the final `!`
+select storage; they do not execute its module. Collection operation signatures,
 length access, traversal, and mutation restrictions are still library/runtime
 contract work. Literal call arguments and hidden integer temporaries are forbidden.
 
@@ -405,15 +416,18 @@ contract work. Literal call arguments and hidden integer temporaries are forbidd
 <loop(n)>       ::= <indent(n)> <owned-access> <line-end>
                     <indent(n)> "{" <line-end> <body(n+1)>
                     <indent(n)> "}" <line-end>
-<break(n)>      ::= <indent(n)> "!" <line-end>
+<break(n)>      ::= <indent(n)> "^" <line-end>
 <return(n)>     ::= <indent(n)> ">" <line-end>
 ```
 
 A condition and its marker have the same indent. Comments can separate them,
 but a blank line cannot. True/false branch bodies use one deeper indent. A
-loop re-evaluates its condition each iteration; `!` exits the innermost loop.
+loop re-evaluates its condition each iteration; a standalone `^` exits the
+innermost loop, including when nested inside branches. `worker!` invokes
+`worker`; `@!` is the module-body annotation. A standalone `!` is not a valid
+statement in the target syntax.
 A standalone `>` returns from the current call, leaving its result storage for
-the caller. Reject `!` outside a loop.
+the caller. Reject `^` outside a loop during semantic validation.
 
 Truth conversion is supplied by a library contract mapped by the compiler;
 there is no universal `size_t` truth rule in the target language. Existing
@@ -453,6 +467,11 @@ codegen, runtime, native library, documentation, and test changes. In particular
   indented `|` literals or named-value initializers.
 - Remove integer literal arguments, literal assignments, implicit numeric locals,
   and the old same-indent assignment source.
+- Introduce mandatory `!` on all call targets; remove bare calls and the
+  parser's dependence on declared aliases for call recognition. Preserve
+  argument indentation and parameter/result order.
+- Replace standalone `!` breaks with `^`; reject `^` outside loops and reject
+  standalone `!` statements.
 - Introduce suffix-reference names, prefix acquisition, indexed and collection
   access, checked calls, and type-directed value copying.
 - Preserve persistent body state while introducing typed initialization.

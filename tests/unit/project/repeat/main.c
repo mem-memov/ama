@@ -53,7 +53,28 @@ static void it_accepts_an_explicitly_disabled_library_and_reports_missing_librar
     destroy_test();
 }
 
+static void it_preserves_output_and_can_recover_after_body_validation_fails(void) {
+    setup_test();
+    FILE* preserved = fopen("generated/untouched.c", "wb");
+    assert(preserved != NULL);
+    int written = fputs("keep existing output\n", preserved);
+    assert(written >= 0);
+    close_file(preserved);
+    bool rejected = compile_project(PROJECT_ROOT "/tests/integration/17-reject-unknown-param/project",
+        "main", "generated/untouched.c", &error);
+    assert(!rejected && error.error_code == ERROR_INVALID);
+    preserved = fopen("generated/untouched.c", "rb");
+    assert(preserved != NULL);
+    assert_stream_equals(preserved, "keep existing output\n");
+    close_file(preserved);
+    bool compiled = compile_project(PROJECT_ROOT "/tests/integration/01-hello/project",
+        "main", "generated/after-body-error.c", &error);
+    assert(compiled && error.error_code == ERROR_NONE);
+    destroy_test();
+}
+
 void run(void) {
+    it_preserves_output_and_can_recover_after_body_validation_fails();
     it_accepts_an_explicitly_disabled_library_and_reports_missing_library_paths();
     it_compiles_native_and_ama_projects_with_fresh_state();
     it_compiles_two_projects_in_one_process();
