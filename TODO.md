@@ -1079,35 +1079,59 @@ representation in stage 3 before changing declaration syntax or value layout.
   Reject typed declarations in the numeric binder/backend rather than emitting
   them with an incorrect `size_t` layout.
 
-The next step is the module-value ABI: generated state layouts and explicit
-initialization, copy, cleanup, and native literal interpretation contracts.
+The frontend is ready for connection to the lifecycle ABI described below.
+Generated state layouts and native literal interpretation in CLI programs remain
+pending.
 The frontend does not execute literals or check arbitrary typed assignments and
 calls. CLI migration, implicit-local removal, library type modules, and full
 reference/list semantics remain pending. Old numeric fixtures still run.
 
+### Value lifecycle ABI (first C runtime layer implemented)
+
+- [x] Introduce versioned canonical type descriptors with size/alignment and
+  explicit initialization, byte-and-length literal, independent copy, move,
+  and destruction callbacks. See `VALUE_ABI.md` for ownership and failure rules.
+- [x] Support caller-owned inline state storage; do not require a heap object for
+  each scalar. Reject unsupported alignments and descriptor mismatches explicitly.
+- [x] Implement replacement/reset through prepare-and-commit so allocation,
+  literal, or clone failure preserves the live destination.
+- [x] Compose owned record fields with checked offsets and reverse-order unwind
+  after partial initialization/copy failure. Require nonfailing move/cleanup.
+- [x] Publish runtime headers and operations through the standard library build;
+  test inline scalars, nested native resources, clone refusal, and address repair.
+
+Next: connect validated module types to canonical generated descriptors and C
+state layouts, checking recursive owned layouts before generation. Add adapters
+for declaration-specific defaults and source-located status reporting, then
+migrate native signatures and executable typed calls. References, lists, and
+whole-call failure transactions still need their own contracts; the existing
+numeric CLI ABI remains active. The first runtime layer does not implement
+object lifetime handles or busy-state tracking.
+
 ### Following type and syntax tasks
 
-- [ ] Specify typed declarations with optional indented literal lines, list
-  entries, and parameter/result defaults. Reject literals outside declarations
-  and remove implicit numeric local creation under the new syntax.
-- [ ] Define the byte-and-length literal interface and text encoding (no literal
-  quoting, escaping, or multiline values),
-  initializer error locations, buffer lifetime, and execution timing.
+- [ ] Integrate typed declaration initialization and parameter/result defaults
+  with generated execution. Remove implicit numeric local creation when the
+  CLI migrates to the new syntax. Frontend checks are implemented above.
+- [ ] Connect the implemented byte-and-length literal callbacks to generated
+  initialization, source-located errors, and execution timing. Finalize library
+  text encoding rules without quoting, escaping, or multiline values.
 - [ ] Define explicit compiler mappings to library index and condition operations,
   including signature validation and range/error handling.
 - [ ] Specify value versus reference parameter/result ownership, generated native
   layouts/prototypes, clone refusal, and destination replacement on failure.
 - [ ] Define the initial fundamental module types for numbers and byte sequences,
-  their declaration initialization, condition behavior, numeric range, overflow,
-  conversions, and value versus reference passing. Keep unresolved representation
+  their language-level declaration initialization, condition behavior, numeric
+  range, overflow, conversions, and value versus reference passing. Keep unresolved representation
   choices explicit.
 - [ ] Replace assumptions of universal `size_t` in symbols, parsing, codegen,
   arithmetic interfaces, enum values, and list indices with the chosen type model.
   Plan migration of existing programs and native interfaces.
-- [ ] Define inline representation rules for small values without requiring
-  user-visible heap allocation or weakening ownership and reference semantics.
-- [ ] Design typed opaque native state, temporary payload access, and lifecycle
-  callbacks. Specify unsupported clones and partial-failure cleanup.
+- [ ] Generate inline state layouts using the implemented storage contract,
+  without weakening ownership and reference semantics.
+- [ ] Connect native state wrappers to checked temporary payload access and
+  object lifetime/busy tracking. Lifecycle callbacks, unsupported clone status,
+  and partial-failure cleanup are implemented in the C runtime.
 - [ ] Implement declaration forms `item`, `item&`, `items[]`, and `items&[]`,
   always followed by an unmodified `.module.path`. Define permitted declaration
   sections, persistent state, temporary values, and migration from current aliases.

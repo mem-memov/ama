@@ -348,6 +348,7 @@ src/
   ast/               owned syntax trees and source identities/locations
   parser/            syntax construction: declarations, values, calls, control flow
   semantic/          declaration binding, receiver collection, name/call validation
+  runtime/           typed C value lifecycle and owned record adapters
   symbols/           symbol types and table
   graph/             dependency graph and cycle detection
   codegen/           validated AST emission, C primitives, native signatures/wrappers
@@ -428,7 +429,10 @@ initializers. Its initializer checker verifies module identities, earlier
 sources, and ownership forms. Raw literal bytes have explicit lengths and
 preserve spaces, comments, and tabs after `|`. This API is covered by unit tests;
 the CLI still accepts the numeric language described above. Typed execution,
-literal interpretation, and reference/list operations await the module-value ABI.
+literal interpretation, and reference/list operations await frontend/backend
+integration with the module-value ABI. Its first C lifecycle layer is now
+implemented: descriptors, owned record adapters, literal callbacks, and
+replacement that preserves the old value on failure. See [the ABI contract](VALUE_ABI.md).
 
 State fields use identity hashes; symbol IDs are private table indices, not
 Ama values. Original names are retained in safe generated comments. The

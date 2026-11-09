@@ -83,3 +83,13 @@ imported library; intentional library stub creation is a separate operation:
 ```sh
 AMA_STDLIB= ./ama --generate-c-stubs stdlib/modules build/stdlib/include
 ```
+
+## Typed lifecycle runtime
+
+The archive also contains compiler-provided lifecycle support from
+`src/runtime/`. Headers are published under `build/stdlib/include/runtime/`.
+Use `-Ibuild/stdlib/include` and include `runtime/value.h` or `runtime/record.h`
+when working directly with this C API. It supports module type descriptors,
+owned record states, and failure-preserving replacement. The current numeric
+Ama modules above keep their existing native signatures; typed code generation
+has not been connected yet. See [VALUE_ABI.md](../VALUE_ABI.md) for the contract.

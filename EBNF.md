@@ -510,7 +510,9 @@ The future ABI supplies generated typed state/reference declarations and explici
 lifecycle operations. Native implementations may hold `void*` internally but
 must not infer layout from parameter names or accept arbitrary casts as type
 checking. Handwritten native code includes generated headers. Its layouts,
-copy/cleanup hooks, status protocol, and literal parser ABI remain to be finalized.
+copy/cleanup hooks, status protocol, and literal parser integration are being
+implemented. The first C lifecycle contract is documented in `VALUE_ABI.md`;
+it does not yet change the CLI or generated native signatures.
 The currently implemented `size_t` native ABI is not a specification of this
 future typed interface.
 

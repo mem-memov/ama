@@ -76,6 +76,26 @@ Use `static inline` for small header helpers whose implementations need to be
 visible at call sites. Ordinary helpers remain ordinary functions; the default
 LTO build can inline across source files. Inlining is the optimizer's decision.
 
+## Typed runtime values
+
+Follow [VALUE_ABI.md](VALUE_ABI.md) when implementing native types or generated
+state adapters. Runtime headers under `src/runtime/` must be independent of
+compiler AST, symbol tables, and diagnostics. The standard library archive
+publishes these headers and contains the runtime implementation.
+
+Keep storage ownership explicit. Construction callbacks receive fresh storage
+and clean up their own partial resources on failure. Copy must produce an
+independent owned value or report unsupported. Move and destruction cannot fail;
+move repairs internal addresses and ends the source lifetime. Do not retain
+borrowed literal buffers, temporary value views, or prepared replacement storage.
+Use the record adapters for owned field composition and reverse-order cleanup.
+
+Test failed initialization and failed clone after at least one child succeeds.
+Verify that replacement leaves a live destination unchanged on failure and that
+moving a state repairs internal addresses. Test noncopyable native resources
+without silently sharing their owning pointers. These lifecycle tests are C
+runtime tests, independent of whether the CLI supports typed programs yet.
+
 ## Parse, validate, then generate
 
 Keep `parser/` independent of symbols, graph traversal, and C emission. It builds
