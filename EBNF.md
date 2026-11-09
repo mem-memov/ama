@@ -2,7 +2,8 @@
 
 This document specifies the agreed target syntax of Ama. **The compiler does
 not yet implement this revision.** In particular, typed declarations, `|`
-literals, references, lists, `@!`, and `@=` require implementation work.
+literals, references, lists, retained-result reads through `>>`, `@!`, and `@=`
+require implementation work.
 The mandatory call suffix `!` and loop exit `^` are implemented. See
 `README.md` for the currently executable language and `TODO.md` for the migration
 plan. Examples below describe the target language, not runnable current fixtures.
@@ -271,7 +272,14 @@ failures require cleanup without partially initialized owned state.
 
 ### 3.2 Storage duration
 
-Declarations in parameter and result sections define per-call storage/defaults.
+Declarations in parameter and result sections define interface storage with
+per-execution defaults. An ordinary execution resets that storage before running
+the body. At the end of the call, parameters and results retain their resulting
+values in the instance until the next execution resets them. Reading retained
+results through `>>` neither resets the interface nor executes the body; it does
+not expose saved parameters. Before the first execution, retained results have
+their declared initial values.
+
 Declarations in an Ama body define persistent instance state. Their initialization
 happens once at instance creation, not each time execution reaches the source
 location. Declarations inside control-flow bodies still describe owned state;
@@ -349,20 +357,27 @@ failure cleanup must follow the type's lifecycle contract.
 
 ```ebnf
 <call(n)>       ::= <indent(n)> <call-target> "!" <line-end>
-                    <layout> { <argument(n+1)> <layout> }
+                    <layout>
+                    ( <execution-arguments(n+1)> | <read-arguments(n+1)> )
                     [ <indent(n)> ":" <line-end> <body(n+1)> ]
-<argument(n)>   ::= <indent(n)> <parameter> <line-end>
-                  | <indent(n)> <result> <line-end>
+<execution-arguments(n)>
+                ::= { <indent(n)> <parameter> <line-end> <layout> }
+                    { <indent(n)> <result> <line-end> <layout> }
+<read-arguments(n)>
+                ::= <indent(n)> <saved-result> <line-end> <layout>
+                    { <indent(n)> <saved-result> <line-end> <layout> }
 <parameter>     ::= "<" <copy-source>
                   | <declaration-name> "<" <copy-source>
 <result>        ::= ">" <receiver>
                   | <declaration-name> ">" <receiver>
+<saved-result>  ::= ">>" <receiver>
+                  | <declaration-name> ">>" <receiver>
 ```
 
 Required spaces between adjacent argument components are omitted from the
-productions for readability. Parameters precede results. A call uses either
-positional arguments or named arguments throughout; positional order follows
-interface declaration order. Named labels include the storage suffixes from
+productions for readability. In execution mode, parameters precede results.
+Either mode uses positional arguments or named arguments throughout; positional
+order follows interface declaration order. Named labels include the storage suffixes from
 the interface, such as `target&`.
 
 The suffix `!` is mandatory for every call, including calls without arguments.
@@ -384,15 +399,60 @@ target&!
  handle_unavailable!
 ```
 
-The runtime validates and acquires the selected instance before executing it.
-A call resets parameter/result storage to its declared defaults, copies inputs,
-executes the body over the selected persistent state, and transfers requested
-results. Omitted parameters keep defaults; omitted results are ignored. Ordinary
-parameters have value semantics. References copy checked handles, not states.
+#### Execution mode: `<` and `>`
 
-The runtime marks the instance busy while executing, protects it from deletion
-or relocation, and releases access on all supported exit paths. A second instance
-of the same module is a separate target. No manual `busy` result is required.
+A call without `>>` performs ordinary execution. It resets parameter/result
+storage to declared defaults, copies supplied inputs, executes the body over
+persistent state, and transfers requested results through `>`. Omitted parameters
+keep defaults; omitted results remain stored but are not copied to the caller.
+A call with no arguments also executes the body.
+
+Ordinary parameters have value semantics. References copy checked handles, not
+states. Parameter/result values are retained after completion; they are not
+cleared on return. The next ordinary execution resets them before running again.
+
+#### Retained-result mode: `>>`
+
+One or more `>>` result requests select retained-result mode for the entire call.
+This mode does not reset parameters, results, or body state and does not execute
+the target body. It copies the requested stored results to the receivers using
+their types' value/reference-copy rules.
+
+```text
+sensor!
+ measurement >> value
+ error >> last_error
+
+sensor!
+ >> value
+ >> last_error
+```
+
+Rules:
+
+- No parameter transmission through `<` is allowed in this mode.
+- Every requested result must use `>>`; mixing `>` and `>>` is an error,
+  regardless of their order. It is not necessary to request every declared result.
+- Only declared results are readable, not parameters or private body variables.
+- At least one `>>` is required; an empty argument list means execution mode.
+- `>>` is a single contiguous token. `> >` is not equivalent.
+- Determine and validate the mode from the complete argument list before resetting
+  storage or beginning any target execution. A late `>>` cannot retroactively
+  change a partially executed call.
+- This is a read of retained interface values, not a computed getter. References
+  in results still identify shared objects; reading does not freeze those targets.
+
+A standalone `>` remains early return, and `?` remains the condition marker.
+Neither acquires an additional query meaning.
+
+#### Access checks shared by both modes
+
+The runtime validates and acquires the selected instance for either execution
+or retained-result reading. It rejects missing or busy instances and protects
+acquired state from deletion or relocation. Hold access throughout the operation,
+including all requested result copies, then release it on all supported exit
+paths. A second instance of the same module is a separate target. No manual
+`busy` result is required.
 
 An attached `:` handles inability to start the call, including a missing target,
 busy target, or invalid indexed selection. It does not handle errors after the
@@ -400,7 +460,8 @@ body starts. Failed acquisition does not assign results. The reason-binding
 syntax and exact unhandled-failure policy remain to be finalized; the proposed
 default is a diagnostic and termination. Static type errors remain compile errors.
 
-Zero-argument calls are complete statements such as `worker!` or `target&!`.
+Zero-argument calls are complete execution-mode statements such as `worker!`
+or `target&!`. Retained-result reading uses the same `!` target suffix.
 Whole-list calls use `items[]!` or `targets&[]!`; element calls use
 `items[position]!` or `targets&[position]!`. Brackets without the final `!`
 select storage; they do not execute its module. Collection operation signatures,
@@ -474,6 +535,9 @@ codegen, runtime, native library, documentation, and test changes. In particular
   standalone `!` statements.
 - Introduce suffix-reference names, prefix acquisition, indexed and collection
   access, checked calls, and type-directed value copying.
+- Introduce the single `>>` token and a validated retained-result call mode;
+  reject `<` or `>` in that mode before any target reset or execution. Preserve
+  interface storage after calls and copy only declared results on reads.
 - Preserve persistent body state while introducing typed initialization.
 
 Do not silently treat target examples as current regression fixtures. Tests for
