@@ -6,11 +6,11 @@
 #undef main
 
 int main(void) {
-    State_main first = {0};
-    State_main second = {0};
-    module_main(&first);
-    module_main(&first);
-    module_main(&second);
-    module_main(&first);
+    ama_state_43d7649607aeb385 first = {0};
+    ama_state_43d7649607aeb385 second = {0};
+    ama_call_43d7649607aeb385(&first);
+    ama_call_43d7649607aeb385(&first);
+    ama_call_43d7649607aeb385(&second);
+    ama_call_43d7649607aeb385(&first);
     return 0;
 }

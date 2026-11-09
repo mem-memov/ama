@@ -76,7 +76,8 @@ static bool generate_program(
     project->emitter.output = tmpfile();
     if (!project->emitter.output)
         return error_set(error, ERROR_IO, 0, "cannot create temporary output");
-    if (!emit_modules(project, dependency_order, error)) return false;
+    if (!emit_modules(project, dependency_order, error) ||
+        !validate_generated_names(project, error)) return false;
     emit_program_entry_point(&project->emitter, entry_module);
     char directory[MAX_FILE_PATH_LENGTH];
     return output_directory(output_path, directory, sizeof(directory), error) &&

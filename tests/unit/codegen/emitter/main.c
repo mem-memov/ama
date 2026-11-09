@@ -14,7 +14,7 @@ static void it_emits_values_and_control_flow_to_the_given_output(void) {
     emit_branch_else(&emitter);
     emit_break(&emitter);
     emit_branch_end(&emitter);
-    assert_stream_equals(output, "    state->symbol_1 = 42;\n    state->symbol_2 = state->symbol_1;\n    if (state->symbol_2) {\n"
+    assert_stream_equals(output, "    state->ama_field_ae49d58ab59487b5 = 42;\n    state->ama_field_693dcd651ff9eeae = state->ama_field_ae49d58ab59487b5;\n    if (state->ama_field_693dcd651ff9eeae) {\n"
         "    return;\n    } else {\n    break;\n    }\n");
     destroy_test();
 }
@@ -28,7 +28,7 @@ static void it_resets_only_selected_parameters_and_results(void) {
     Symbol* unrelated_symbol = add_local_variable(symbols, "other", "scratch", &error);
     assert(result_symbol && parameter && local_symbol && unrelated_symbol);
     emit_call_init(&emitter, "callee");
-    assert_stream_equals(output, "    instance_callee.symbol_0 = 9;\n    instance_callee.symbol_1 = 9;\n");
+    assert_stream_equals(output, "    ama_instance_36c58ce0fefdd77c.ama_field_45b40e1794e8a225 = 9;\n    ama_instance_36c58ce0fefdd77c.ama_field_c0d4d9c798e3bd04 = 9;\n");
     destroy_test();
 }
 
@@ -45,8 +45,8 @@ static void it_keeps_two_emitters_independent(void) {
     second_emitter.module_path = "main";
     emit_constant_assignment(&emitter, 1, 5);
     emit_constant_assignment(&second_emitter, 1, 7);
-    assert_stream_equals(output, "    state->symbol_1 = 5;\n");
-    assert_stream_equals(second_output, "    state->symbol_1 = 7;\n");
+    assert_stream_equals(output, "    state->ama_field_4996c6d87bc7c0ae = 5;\n");
+    assert_stream_equals(second_output, "    state->ama_field_4996c6d87bc7c0ae = 7;\n");
     close_file(second_output);
     destroy_test();
 }

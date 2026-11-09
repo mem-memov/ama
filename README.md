@@ -222,14 +222,14 @@ result
 Its companion `project/math/double.c` must include the generated header:
 
 ```c
-#include "ama_native_math_double.h"
+#include "ama_native_a892f1603fea71df.h"
 
-void ama_native_math_double(size_t parameter_value, size_t* result_result) {
+void ama_native_a892f1603fea71df(size_t parameter_value, size_t* result_result) {
     *result_result = parameter_value * 2;
 }
 ```
 
-The generated signature returns `void`, takes every parameter by value, then
+The generated signature uses identity-hashed parameter names and returns `void`, takes every parameter by value, then
 every result by pointer, in declaration order. Aliases are not C arguments.
 Defaults and named/positional Ama calls work as before. Every result receives
 a valid pointer even when the caller ignores it. `@C` permits only blank lines
@@ -366,14 +366,15 @@ The Makefiles preserve source subdirectories under `build/` and track header
 dependencies automatically with `-MMD -MP`. The standard library builds its own
 headers with `--generate-c-headers`, which never creates source files.
 
-Generated C groups each module's numeric variables into a `State_<module>`
+Generated C groups each module's numeric variables into a `ama_state_<hash>`
 structure. Its function takes an explicit pointer to that state; accesses to
 its own variables use that pointer. Ordinary Ama calls currently select a
 `static` default instance of the callee. Calls reset only parameters and results;
 body variables retain their values in that instance. Language-level object and
 reference declarations remain planned, not implemented.
 
-Field IDs are private compiler names, with no numeric meaning in Ama. The
+State fields use identity hashes; symbol IDs are private table indices, not
+Ama values. Original names are retained in safe generated comments. The
 compiler buffers function bodies until all local variables have been registered,
 then writes state definitions before the functions. Empty modules receive a
 placeholder field for ISO C compatibility. Generated native wrappers also take
@@ -458,10 +459,10 @@ The prototype has fixed limits of 512 graph nodes (including standard library mo
 are not reliably supported even though computed values use `size_t`.
 Duplicate named arguments are not rejected. A `!` outside a loop is rejected
 by the downstream C compiler rather than by Ama. There is no string/file input,
-interactive debugger, or recovery within a failed compilation. Generated C function names
-replace `/` with `_`; collisions between active user modules are rejected.
-Native module paths and parameter/result names currently require ASCII
-identifiers; ordinary Ama identifiers still accept non-ASCII bytes.
+interactive debugger, or recovery within a failed compilation. Generated types, functions, fields, native arguments, and headers use
+deterministic hash names. Unicode paths and interface names are supported.
+Actual hash collisions are rejected rather than merging different entities;
+`#line` source mappings remain planned.
 
 ## Contributing
 

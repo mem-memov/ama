@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include "symbols/table.h"
 #include "graph/graph.h"
+#include "common/names.h"
 
 typedef struct {
     FILE* output;

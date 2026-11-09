@@ -6,18 +6,12 @@ void emitter_init(Emitter* emitter, FILE* output, SymbolTable* symbols) {
     *emitter = (Emitter){.output = output, .symbols = symbols};
 }
 
-static void emit_path_name(FILE* output, const char* prefix, const char* path) {
-    fputs(prefix, output);
-    for (const char* character = path; *character; character++)
-        fputc(*character == '/' ? '_' : *character, output);
-}
-
 void emit_state_type(FILE* output, const char* path) {
-    emit_path_name(output, "State_", path);
+    emit_generated_name(output, NAME_STATE, path, NULL);
 }
 
 void emit_default_instance(FILE* output, const char* path) {
-    emit_path_name(output, "instance_", path);
+    emit_generated_name(output, NAME_INSTANCE, path, NULL);
 }
 
 void emit_symbol_access(Emitter* emitter, uint32_t symbol_id) {
@@ -28,7 +22,7 @@ void emit_symbol_access(Emitter* emitter, uint32_t symbol_id) {
         emit_default_instance(emitter->output, symbol->module_path);
         fputc('.', emitter->output);
     }
-    fprintf(emitter->output, "symbol_%u", symbol_id);
+    emit_generated_name(emitter->output, NAME_FIELD, symbol->module_path, symbol->name);
 }
 
 void emit_constant_assignment(Emitter* emitter, uint32_t destination_symbol_id, int value) {
@@ -101,7 +95,7 @@ void emit_call_init(Emitter* emitter, const char* callee_path) {
 }
 
 void emit_module_name(FILE* output, const char* path) {
-    emit_path_name(output, "module_", path);
+    emit_generated_name(output, NAME_CALL, path, NULL);
 }
 
 void emit_call_exec(Emitter* emitter, const char* callee_path) {

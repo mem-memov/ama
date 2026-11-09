@@ -32,7 +32,7 @@ static void it_generates_only_selected_stubs_and_never_overwrites_c_sources(void
     snprintf(draft_path, sizeof(draft_path), "%s/draft", project);
     snprintf(ama_path, sizeof(ama_path), "%s/empty", project);
     snprintf(header_directory, sizeof(header_directory), "%s/headers/nested", project);
-    snprintf(header_path, sizeof(header_path), "%s/ama_native_main.h", header_directory);
+    snprintf(header_path, sizeof(header_path), "%s/ama_native_43d7649607aeb385.h", header_directory);
     write_source(interface_path, "@>\nanswer\n9\n@C\n");
     write_source(draft_path, "@<\nincomplete_parameter\n");
     write_source(ama_path, "@Ama\n");
@@ -46,7 +46,7 @@ static void it_generates_only_selected_stubs_and_never_overwrites_c_sources(void
     status = run_process(generate, "generated/stubs.out", "generated/stubs.err");
     expect_status(status, 0, "generated/stubs.err");
     assert_file_contains(source_path, "#error \"Implement this native module");
-    assert_file_contains(header_path, "void ama_native_main(size_t* result_answer);");
+    assert_file_contains(header_path, "void ama_native_43d7649607aeb385(size_t* ama_result_c5e64db5a8ca7e14);");
     char unselected_source[1024];
     snprintf(unselected_source, sizeof(unselected_source), "%s/draft.c", project);
     assert(access(unselected_source, F_OK) != 0);
@@ -54,10 +54,10 @@ static void it_generates_only_selected_stubs_and_never_overwrites_c_sources(void
     assert(access(unselected_source, F_OK) != 0);
 
     const char* implementation =
-        "#include \"ama_native_main.h\"\n#include <assert.h>\n#include <stdio.h>\n\n"
-        "void ama_native_main(size_t* result_answer) {\n"
-        "    assert(result_answer && *result_answer == 9);\n"
-        "    *result_answer = 42;\n    puts(\"stub complete\");\n}\n";
+        "#include \"ama_native_43d7649607aeb385.h\"\n#include <assert.h>\n#include <stdio.h>\n\n"
+        "void ama_native_43d7649607aeb385(size_t* ama_result_c5e64db5a8ca7e14) {\n"
+        "    assert(ama_result_c5e64db5a8ca7e14 && *ama_result_c5e64db5a8ca7e14 == 9);\n"
+        "    *ama_result_c5e64db5a8ca7e14 = 42;\n    puts(\"stub complete\");\n}\n";
     write_source(source_path, implementation);
     status = run_process(generate, "generated/stubs.out", "generated/stubs.err");
     expect_status(status, 0, "generated/stubs.err");

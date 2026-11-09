@@ -1,6 +1,6 @@
-#include "ama_native_sys_math_mod.h"
+#include "ama_native_d557581f729d6913.h"
 
-void ama_native_sys_math_mod(
+void ama_native_d557581f729d6913(
     size_t parameter_left,
     size_t parameter_right,
     size_t* result_rem,

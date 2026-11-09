@@ -234,10 +234,12 @@ or make optimized code perfectly debuggable. Provide a generated symbol map or
 other tooling for hashed variable/type names. Readable source labels in generated
 comments must also be escaped so source names cannot terminate a C comment.
 
-This is a planned change. Current generated names and handwritten native
-implementations require coordinated migration; do not claim that old native
-symbol names remain compatible. Header declarations, safe stub generation,
-standard library sources, fixtures, and ABI checks must change together.
+Hash-based naming is now implemented for current states, calls, fields, native
+functions/arguments, headers, and guards. The naming service uses framed UTF-8
+identities with 64-bit FNV-1a and collision rejection; see `CONTRIBUTORS.md` for
+the exact protocol. Maintained native implementations and fixtures are migrated.
+Old native names are not ABI-compatible. Source mappings, reference types, and
+future lifecycle adapters remain later work and must use the same service.
 
 ### 3. Creation, calls, and cloning
 
@@ -974,23 +976,25 @@ be developed and tested separately. Do not combine all stages into one rewrite.
 Update contributor guidance, implemented-language documentation, and relevant
 unit/integration tests at each stage; never claim planned behavior is implemented.
 
-### Selected next task: deterministic internal naming
+### First task: deterministic internal naming (implemented)
 
 Start with a shared identity-to-C-name component before changing the value ABI.
 It is needed by generated state types, native bindings, typed values, references,
 and international source names, and can be verified independently of new syntax.
+This stage is implemented; source mapping is next. Future generated entities
+must use the same component.
 
-- [ ] Define canonical identity tuples, deterministic hash algorithm/width,
+- [x] Define canonical identity tuples, deterministic hash algorithm/width,
   ASCII spelling, category prefixes, and collision behavior.
-- [ ] Implement the shared naming component and a collision registry. Test Unicode,
+- [x] Implement the shared naming component and a collision registry. Test Unicode,
   case differences, component boundaries, `shop/item` versus `shop_item`, scan-order
   independence, and controlled collisions.
-- [ ] Migrate state types, calls, fields, native signatures, generated parameter
+- [x] Migrate state types, calls, fields, native signatures, generated parameter
   names, header files, and guards together; update handwritten library/native
   bindings and affected tests without overwriting contributor implementations.
-- [ ] Remove ASCII-only native-name restrictions that hashing makes unnecessary.
+- [x] Remove ASCII-only native-name restrictions that hashing makes unnecessary.
   Preserve existing source identity rules and readable diagnostics.
-- [ ] Complete the existing full test tree and add native Unicode integration
+- [x] Complete the existing full test tree and add native Unicode integration
   coverage before considering the naming migration finished.
 
 After naming, implement source mapping as stage 2, then introduce the intermediate

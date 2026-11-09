@@ -1,5 +1,5 @@
-#include "ama_native_main.h"
+#include "ama_native_43d7649607aeb385.h"
 
-int ama_native_main(void) {
+int ama_native_43d7649607aeb385(void) {
     return 0;
 }

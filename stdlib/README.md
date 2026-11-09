@@ -21,7 +21,9 @@ stdlib/
 ```
 
 Each extensionless file declares parameters and results and selects `@C`.
-Its sibling `.c` implements the generated `ama_native_*` function. Values are
+Its sibling `.c` implements the generated `ama_native_<hash>` function. The
+header maps original interface names to hash-based C names. Handwritten C
+parameters can keep descriptive local names. Values are
 `size_t`; results are written through the generated `size_t*` arguments. See
 [the contributor guide](../CONTRIBUTORS.md#standard-library-contributions).
 

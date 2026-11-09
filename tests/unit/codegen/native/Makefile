@@ -2,5 +2,10 @@
 
 ROOT := $(abspath ../../../..)
 COMMON := ../../../common.c ../../common.c ../common.c
-SOURCES :=     $(ROOT)/src/codegen/emitter.c     $(ROOT)/src/codegen/native.c     $(ROOT)/src/symbols/table.c     $(ROOT)/src/common/diagnostic.c
+SOURCES := \
+    $(ROOT)/src/common/names.c \
+    $(ROOT)/src/codegen/emitter.c \
+    $(ROOT)/src/codegen/native.c \
+    $(ROOT)/src/symbols/table.c \
+    $(ROOT)/src/common/diagnostic.c
 include ../../../leaf.mk

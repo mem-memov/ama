@@ -16,8 +16,8 @@ static void it_copies_parameters_before_execution_and_results_after(void) {
     declare_add();
     bool parsed = parse_text("add\n < 5\n < 7\n > result\n");
     assert(parsed);
-    assert_stream_equals(output, "    instance_math_add.symbol_0 = 0;\n    instance_math_add.symbol_1 = 0;\n    instance_math_add.symbol_2 = 0;\n"
-        "    instance_math_add.symbol_0 = 5;\n    instance_math_add.symbol_1 = 7;\n    module_math_add(&instance_math_add);\n    state->symbol_4 = instance_math_add.symbol_2;\n");
+    assert_stream_equals(output, "    ama_instance_a97b938813d0c822.ama_field_bacbc74569737656 = 0;\n    ama_instance_a97b938813d0c822.ama_field_96658b48fa2d5d94 = 0;\n    ama_instance_a97b938813d0c822.ama_field_37f96d0237c09c53 = 0;\n"
+        "    ama_instance_a97b938813d0c822.ama_field_bacbc74569737656 = 5;\n    ama_instance_a97b938813d0c822.ama_field_96658b48fa2d5d94 = 7;\n    ama_call_a97b938813d0c822(&ama_instance_a97b938813d0c822);\n    state->ama_field_461586e9099c6ddb = ama_instance_a97b938813d0c822.ama_field_37f96d0237c09c53;\n");
     destroy_test();
 }
 

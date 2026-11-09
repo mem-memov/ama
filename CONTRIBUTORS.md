@@ -163,6 +163,34 @@ change. Avoid tests that merely duplicate the implementation. Keep `README.md`
 and `EBNF.md` consistent with public behavior. Build artifacts and generated
 files are outputs, never the source of truth. Commit only when explicitly asked.
 
+## Generated names and source identity
+
+`common/names.c` is the single naming service for compiler output. It uses
+64-bit FNV-1a with offset 14695981039346656037 and prime 1099511628211, wrapping
+modulo 2^64. The input starts with a domain byte (1 for a module, 2 for a member),
+then the module's UTF-8 byte length as eight little-endian bytes and its bytes.
+Member identities append the member byte length in the same format and its
+bytes. No implicit Unicode normalization or case folding is performed.
+
+Each category has a prefix: `ama_state_`, `ama_call_`, `ama_instance_`,
+`ama_field_`, `ama_native_`, `ama_parameter_`, `ama_result_`, or `AMA_HEADER_`.
+The suffix is exactly 16 lowercase hexadecimal digits. Native header filenames
+are the native function name followed by `.h`. Source enumeration order and
+host word size do not participate in naming. A runtime symbol-table index is
+not a source identity.
+
+Register complete identities and reject actual hash collisions before emitting
+usable output. Collision tests supply a controlled hash to the registry; do not
+weaken the production hash or wait for a naturally occurring collision. This is
+not a cryptographic identity or a serialization/version compatibility guarantee.
+
+Generated headers and structures retain source labels in comments. Escape
+comment terminators and control characters before writing those labels. Handwritten
+C names should remain descriptive; only generated source-derived names need
+hashes. A rename or move changes native function/header names, so regenerate and
+update the implementation explicitly. Stub generation must still never overwrite
+an existing handwritten source. `#line` and debugger symbol mapping are later work.
+
 ## Generated module state
 
 Generated module functions receive an explicit pointer to their module's state
@@ -219,18 +247,20 @@ Edit `project/math/double.c`, remove the generated `#error`, and implement the
 function using its generated header:
 
 ```c
-#include "ama_native_math_double.h"
+#include "ama_native_a892f1603fea71df.h"
 
-void ama_native_math_double(size_t parameter_value, size_t* result_result) {
+void ama_native_a892f1603fea71df(size_t parameter_value, size_t* result_result) {
     *result_result = parameter_value * 2;
 }
 ```
 
 The template's `#error` prevents an untouched stub from silently behaving like
-a completed implementation. Native parameter and result names are prefixed to
-avoid collisions with C keywords. Aliases never become arguments. A function
+a completed implementation. Generated parameter and result names use identity hashes, so Unicode names and
+C keywords do not leak into C identifiers. Handwritten definitions may use
+readable local parameter names: C prototypes constrain types/order, not those
+local identifiers. Aliases never become arguments. A function
 without parameters or results has a `(void)` signature; a native entry named `main` implements
-`ama_native_main`, not the C program's `main`.
+the identity-hashed native entry point, not the C program's `main`.
 
 A complete caller in `project/main` is:
 
@@ -259,7 +289,7 @@ gcc -std=c11 -O3 -Igenerated generated/program.c project/math/double.c build/std
 ./generated/program
 ```
 
-Ama generates `generated/ama_native_math_double.h` from the current interface
+Ama generates `generated/ama_native_a892f1603fea71df.h` from the current interface
 on every successful translation. Include that header from the implementation
 and place `generated/` on the C compiler's include path. Compile each native
 source as an ordinary, separate C translation unit. This preserves normal C
@@ -269,9 +299,9 @@ sources and libraries explicitly when linking. Ama does not invoke GCC for you.
 After editing an interface, regenerate before rebuilding C. A stale handwritten
 function definition conflicts with the generated declaration and is rejected
 by the C compiler when it includes the header. Existing `.c` sources are never
-rewritten to follow a changed interface. Native function names preserve case;
-header guards preserve that distinction too. Active user modules whose paths
-collapse to the same generated function name are rejected.
+rewritten to follow a changed interface. Generated names preserve source identity through deterministic hashes of the
+full module path and member name. Case-sensitive Unicode identities remain
+distinct; `/` is not replaced by `_`. A real hash collision is an error.
 
 Generated headers belong to the output directory and can be replaced. Handwritten
 C files belong to the source tree. Do not edit generated headers or commit them
@@ -297,10 +327,10 @@ and lifetime rules; they do not automatically become per-instance Ama state. The
 implementation is responsible for its own resource cleanup and correctness.
 Recursion through Ama module dependencies remains forbidden.
 
-Native paths and parameter/result names currently use ASCII letters, digits,
-and underscores, with slashes separating module path components. This provides
-portable C identifiers. Ordinary Ama modules retain their existing Unicode
-identifier support.
+Native paths and parameter/result names use the same Unicode-capable source
+identity rules as ordinary Ama modules. Only the generated C names are ASCII.
+Generate a stub to obtain exact names; do not manually reproduce the hash or
+assume that moving or renaming a module preserves its native ABI.
 
 ### Test a native contribution
 
@@ -330,7 +360,7 @@ make test
 The standard library is a separate source tree under `stdlib/modules/`, not a
 set of compiler intrinsics. Every exported operation has a normal Ama interface
 and implementation. For example, `stdlib/modules/sys/math/add` selects `@C`,
-and `add.c` implements `ama_native_sys_math_add` using the generated prototype.
+and `add.c` implements `ama_native_b1cdc21f5e3c0844` using the generated prototype.
 Adding an operation does not require a compiler registration table or emitter.
 
 Preserve existing module paths, argument names, result names, defaults, and

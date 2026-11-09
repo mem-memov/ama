@@ -39,7 +39,7 @@ all:
 >    $(MAKE) -C 32-ignore-drafts all
 >    $(MAKE) -C 33-reject-draft-call all
 >    $(MAKE) -C 34-reject-draft-entry all
->    $(MAKE) -C 35-reject-native-collision all
+>    $(MAKE) -C 35-distinct-module-paths all
 >    $(MAKE) -C 36-reject-native-signature all
 >    $(MAKE) -C 37-reject-unknown-annotation all
 
@@ -55,6 +55,7 @@ all:
 >    $(MAKE) -C 44-library-stub-protection all
 >    $(MAKE) -C 45-independent-states all
 >    $(MAKE) -C 46-persistent-state all
+>    $(MAKE) -C 47-native-unicode all
 
 clean:
 >    $(MAKE) -C 01-hello clean
@@ -91,7 +92,7 @@ clean:
 >    $(MAKE) -C 32-ignore-drafts clean
 >    $(MAKE) -C 33-reject-draft-call clean
 >    $(MAKE) -C 34-reject-draft-entry clean
->    $(MAKE) -C 35-reject-native-collision clean
+>    $(MAKE) -C 35-distinct-module-paths clean
 >    $(MAKE) -C 36-reject-native-signature clean
 >    $(MAKE) -C 37-reject-unknown-annotation clean
 >    $(MAKE) -C 38-native-stubs clean
@@ -103,3 +104,4 @@ clean:
 >    $(MAKE) -C 44-library-stub-protection clean
 >    $(MAKE) -C 45-independent-states clean
 >    $(MAKE) -C 46-persistent-state clean
+>    $(MAKE) -C 47-native-unicode clean

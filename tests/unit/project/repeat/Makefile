@@ -3,6 +3,7 @@
 ROOT := $(abspath ../../../..)
 COMMON := ../../../common.c ../../common.c ../common.c
 SOURCES := \
+    $(ROOT)/src/common/names.c \
     $(ROOT)/src/codegen/emitter.c \
     $(ROOT)/src/codegen/program.c \
     $(ROOT)/src/codegen/native.c \

@@ -10,12 +10,17 @@ void emit_program_entry_point(Emitter* emitter, const char* entry) {
 }
 
 static void emit_module_state(FILE* output, const SymbolTable* symbols, const char* path) {
+    emit_source_label(output, path);
     fputs("typedef struct {\n", output);
     int field_count = 0;
     for (uint32_t index = 0; index < symbols->symbol_count; index++) {
         const Symbol* symbol = &symbols->symbols[index];
         if (symbol->kind != SYMBOL_MODULE_ALIAS && strcmp(symbol->module_path, path) == 0) {
-            fprintf(output, "    size_t symbol_%u;\n", symbol->symbol_id);
+            fputs("    ", output);
+            emit_source_label(output, symbol->name);
+            fputs("    size_t ", output);
+            emit_generated_name(output, NAME_FIELD, path, symbol->name);
+            fputs(";\n", output);
             field_count++;
         }
     }

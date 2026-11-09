@@ -1,7 +1,7 @@
-#include "ama_native_math_stats.h"
+#include "ama_native_6a0b51bffc7225f8.h"
 #include <assert.h>
 
-void ama_native_math_stats(
+void ama_native_6a0b51bffc7225f8(
     size_t parameter_left,
     size_t parameter_right,
     size_t* result_sum,

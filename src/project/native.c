@@ -23,39 +23,30 @@ static bool companion_path(const ModuleFile* module, char* path, size_t capacity
         error_set(error, ERROR_LIMIT, 0, "native companion path is too long");
 }
 
-static bool validate_function_names(Project* project, Error* error) {
-    /* Generated Ama wrappers already map slashes to underscores. Reject ambiguity. */
-    for (int first = 0; first < project->file_count; first++) {
-        const ModuleFile* left = &project->files[first];
-        if (left->implementation == MODULE_DECLARATION_ONLY) continue;
-        for (int second = first + 1; second < project->file_count; second++) {
-            const ModuleFile* right = &project->files[second];
-            if (right->implementation == MODULE_DECLARATION_ONLY) continue;
-            const char* left_character = left->module_path;
-            const char* right_character = right->module_path;
-            while (*left_character && *right_character &&
-                (*left_character == '/' ? '_' : *left_character) ==
-                (*right_character == '/' ? '_' : *right_character)) {
-                left_character++;
-                right_character++;
-            }
-            if (!*left_character && !*right_character)
-                return error_set(error, ERROR_INVALID, 0,
-                    "module function name collision: '%s' and '%s'", left->module_path, right->module_path);
-        }
+bool validate_generated_names(Project* project, Error* error) {
+    NameRegistry registry = {0};
+    bool success = true;
+    for (int index = 0; success && index < project->file_count; index++) {
+        const ModuleFile* module = &project->files[index];
+        if (module->implementation == MODULE_DECLARATION_ONLY) continue;
+        success = name_registry_register(&registry,
+            source_identity_hash(module->module_path, NULL), module->module_path, NULL, error);
     }
-    return true;
+    for (uint32_t index = 0; success && index < project->symbols.symbol_count; index++) {
+        const Symbol* symbol = &project->symbols.symbols[index];
+        success = name_registry_register(&registry,
+            source_identity_hash(symbol->module_path, symbol->name),
+            symbol->module_path, symbol->name, error);
+    }
+    name_registry_destroy(&registry);
+    return success;
 }
 
 bool validate_native_modules(Project* project, bool require_sources, Error* error) {
-    if (!validate_function_names(project, error)) return false;
+    if (!validate_generated_names(project, error)) return false;
     for (int index = 0; index < project->file_count; index++) {
         ModuleFile* module = &project->files[index];
         if (module->implementation != MODULE_C_IMPLEMENTATION) continue;
-        if (!validate_native_signature(&project->symbols, module->module_path, error)) {
-            snprintf(error->module, sizeof(error->module), "%s", module->module_path);
-            return false;
-        }
         if (require_sources || module->is_standard_library) {
             char path[MAX_FILE_PATH_LENGTH];
             if (!companion_path(module, path, sizeof(path), error)) return false;

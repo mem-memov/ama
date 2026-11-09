@@ -27,6 +27,7 @@ bool scan_dir(Project* project, const char* project_root, const char* relative_p
 ModuleFile* find_module_file(Project* project, const char* path);
 bool parse_project_declarations(Project* project, Error* error);
 bool emit_project_module(Project* project, const ModuleFile* module, Error* error);
+bool validate_generated_names(Project* project, Error* error);
 bool validate_native_modules(Project* project, bool require_sources, Error* error);
 bool emit_native_headers(Project* project, const char* directory, Error* error);
 bool create_native_stubs(Project* project, Error* error);
