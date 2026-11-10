@@ -2,9 +2,9 @@
 
 This is the implemented C lifecycle contract for module-defined values. It is
 the lifecycle and layout part of the typed ABI. The target declaration parser,
-layout generator, and runtime are connected through C APIs and covered by tests
-that compile and run generated C. The CLI still generates the existing numeric
-program and native signatures. Typed calls, checked references, lists, and
+layout generator, and runtime are connected through project export APIs and
+`--generate-type-layouts`, with tests that compile and run generated C. Executable
+compilation still generates the existing numeric program and native signatures. Typed calls, checked references, lists, and
 library-defined index/condition protocols are subsequent work.
 
 ## State belongs to its owner
@@ -178,6 +178,43 @@ include the implementation as a header or generate overlapping batches into
 multiple translation units. Native providers must likewise expose a single
 canonical descriptor. Planning and validation occur before output; an I/O failure
 can leave partial output streams, which the caller must discard.
+
+## Exporting layouts from a project
+
+`./ama --generate-type-layouts <root> <output-directory>` connects scanning,
+section splitting, typed parsing, module-type resolution, and layout generation.
+It creates `ama_types.h` and `ama_types.c`; it does not execute or semantically
+validate executable bodies beyond the declaration and initialization checks
+needed for layouts. Body syntax is parsed, but unresolved executable calls and
+assignments are outside this export operation.
+
+The current project section selectors are still `@Ama` and `@C`; target `@!`
+and `@=` selectors remain separate migration tasks. Declared variables use the
+target type-line and indented literal/named initializer syntax. Draft modules
+are skipped without parsing their declarations, and references to draft types
+are rejected. All implemented module types are exported, in deterministic
+module-path order subject to owned layout dependencies.
+
+A native provider lives in the handwritten sibling `<module>.h`, alongside
+`<module>.c` and the extensionless `@C` interface. Both companion files must
+exist. The header supplies the canonical state typedef and descriptor described
+above. Absolute include paths keep providers resolvable when the generated
+header is in another directory; source/provider files must remain available
+when compiling the export. This command never creates or replaces native code.
+
+`generate_type_layouts` is the project-only C API. Its companion
+`generate_type_layouts_with_library` accepts an explicit typed module directory.
+The CLI export is project-only and does not use `AMA_STDLIB`, because the
+currently installed numeric library is not a typed library. Duplicate paths
+across a project and an explicit library remain errors.
+
+All compiler-owned syntax, type views, and temporary outputs are released after
+each export, including failure. Parsing, declaration validation, provider checks,
+and layout generation happen before publishing output. Existing files survive
+these errors. Output publication rejects aliases of module sources, companions,
+and the other output file. Publication is not a two-file transaction against
+I/O failures; discard both outputs if a write fails. Use a generated directory
+outside the project source tree.
 
 ## Building and testing
 

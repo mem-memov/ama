@@ -14,6 +14,7 @@ static void print_usage(FILE* output, const char* program_name) {
         "\n"
         "Usage: %s <root> <entry> <out.c>\n"
         "       %s --generate-c-stubs <root> <header-directory>\n"
+        "       %s --generate-type-layouts <root> <output-directory>\n"
         "\n"
         "Arguments:\n"
         "  <root>    project root directory (contains module files)\n"
@@ -28,14 +29,15 @@ static void print_usage(FILE* output, const char* program_name) {
         "Options:\n"
         "  --generate-c-stubs  create missing native C stubs and generated headers\n"
         "  --generate-c-headers  generate headers without creating C sources\n"
-        "  AMA_STDLIB  standard library directory (empty disables loading)\n"
+        "  --generate-type-layouts  export typed state/frame layouts, without executable bodies\n"
+        "  AMA_STDLIB  numeric standard library directory (layout export is project-only)\n"
         "  -h, --help     show this message and exit\n"
         "  -V, --version  show version and exit\n"
         "\n"
         "Exit status:\n"
         "  0  success\n"
         "  1  usage error or compilation error\n",
-        program_name, program_name, program_name);
+        program_name, program_name, program_name, program_name);
 }
 
 int main(int argument_count, char** arguments) {
@@ -64,6 +66,8 @@ int main(int argument_count, char** arguments) {
         success = generate_c_stubs(arguments[2], arguments[3], &error);
     else if (!strcmp(arguments[1], "--generate-c-headers"))
         success = generate_c_headers(arguments[2], arguments[3], &error);
+    else if (!strcmp(arguments[1], "--generate-type-layouts"))
+        success = generate_type_layouts(arguments[2], arguments[3], &error);
     else
         success = compile_project(arguments[1], arguments[2], arguments[3], &error);
     if (!success) {

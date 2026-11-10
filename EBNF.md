@@ -2,9 +2,9 @@
 
 This document specifies the agreed target syntax of Ama. **The compiler does
 not yet execute this revision.** Typed declarations, storage suffixes, and `|`
-literals have a separate parser and initializer checker; the command-line
-compiler still uses the numeric language. Typed values, references, lists,
-`@!`, and `@=` require runtime or integration work.
+literals are supported by `--generate-type-layouts` and its parser/initializer
+checker. Executable compilation still uses the numeric language. Typed module
+execution, references, lists, `@!`, and `@=` require integration work.
 Retained-result reads through `>>` are implemented for current numeric modules.
 The mandatory call suffix `!` and loop exit `^` are implemented. See
 `README.md` for the currently executable language and `TODO.md` for the migration
@@ -507,13 +507,14 @@ not already implemented library paths.
 
 Native modules use the same Ama interfaces and call syntax, selecting `@C`.
 The typed layout API supplies owned state/frame structures and lifecycle
-descriptors; reference layouts and project integration remain pending. Native
+descriptors, including project export through `--generate-type-layouts`.
+Reference layouts and executable typed project compilation remain pending. Native
 implementations may hold `void*` internally but
 must not infer layout from parameter names or accept arbitrary casts as type
 checking. Handwritten native code includes generated headers. Its layouts,
 copy/cleanup hooks, status protocol, and literal parser integration are being
 implemented. The first C lifecycle contract is documented in `VALUE_ABI.md`;
-it does not yet change the CLI or generated native signatures.
+it does not yet change executable compilation or generated native call signatures.
 The currently implemented `size_t` native ABI is not a specification of this
 future typed interface.
 

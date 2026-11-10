@@ -428,15 +428,43 @@ A separate frontend API parses target declarations (`item`, `item&`, `items[]`,
 initializers. Its initializer checker verifies module identities, earlier
 sources, and ownership forms. Raw literal bytes have explicit lengths and
 preserve spaces, comments, and tabs after `|`. This API is covered by unit tests;
-the CLI still accepts the numeric language described above. Typed execution,
-literal interpretation, and reference/list operations await frontend/backend
+executable compilation still accepts the numeric language described above.
+Typed module execution and reference/list operations await frontend/backend
 integration with the module-value ABI. Its first C lifecycle layer is now
 implemented: descriptors, owned record adapters, literal callbacks, and
 replacement that preserves the old value on failure. A separate generator now
 produces owned state and interface-frame structures, canonical descriptors, and
 initializers from validated typed ASTs. Generated C is compiled and executed by
-unit tests; project compilation has not yet switched to it. See
-[the ABI contract](VALUE_ABI.md).
+unit tests. Real typed projects can export these layouts with
+`--generate-type-layouts`; executable compilation still uses the numeric ABI.
+See [the ABI contract](VALUE_ABI.md).
+
+To export typed layouts from a project:
+
+```sh
+./ama --generate-type-layouts path/to/typed-project generated/types
+```
+
+This creates `ama_types.h` and `ama_types.c` after parsing and validating the
+project. This migration command uses the current `@<`, `@>`, `@Ama`, and `@C`
+section markers, with target typed declarations and `|` initializers. It exports
+all implemented modules and ignores unfinished declaration-only drafts. An
+implemented module cannot use a draft as a type. Keep generated output outside
+the module source tree.
+
+A native type needs its companion `.c` and a handwritten sibling `.h` providing
+its hash-named state typedef and canonical descriptor. The generated header
+includes the provider through its absolute path. Compile the generated source
+with `-Ibuild/stdlib/include`, the native companion sources, and
+`build/stdlib/libama_std.a`. The command does not generate an entry point,
+execute module bodies, create native stubs, or migrate native call signatures.
+
+Layout export is project-only: it does not load the default numeric standard
+library or consult `AMA_STDLIB`. C callers can explicitly provide a compatible
+typed library through `generate_type_layouts_with_library`. Parsing, type
+validation, and layout checks finish before existing output files are opened.
+Source-file aliases and aliased header/implementation outputs are rejected.
+An I/O error during publication can still leave partial generated files.
 
 State fields use identity hashes; symbol IDs are private table indices, not
 Ama values. Original names are retained in safe generated comments. The

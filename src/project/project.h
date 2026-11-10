@@ -21,4 +21,12 @@ bool compile_project_with_library(
 /* Generate native headers and create missing companion .c files exclusively. */
 bool generate_c_stubs(const char* project_root, const char* header_directory, Error* error);
 bool generate_c_headers(const char* project_root, const char* header_directory, Error* error);
+
+/* Export target typed state/frame layouts, not executable module bodies.
+    No implicit numeric standard library is loaded. An explicit typed library
+    directory can supply additional modules; NULL or empty disables it.
+*/
+bool generate_type_layouts(const char* project_root, const char* output_directory, Error* error);
+bool generate_type_layouts_with_library(const char* project_root, const char* output_directory,
+    const char* library_directory, Error* error);
 #endif

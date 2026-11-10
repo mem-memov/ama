@@ -40,4 +40,6 @@ bool create_native_stubs(Project* project, Error* error);
 bool prepare_header_directory(const char* directory, Error* error);
 bool output_directory(const char* path, char* directory, size_t capacity, Error* error);
 bool validate_entry(Project* project, const char* entry_module, Error* error);
+bool parse_typed_project(Project* project, Error* error);
+bool validate_typed_project(Project* project, Error* error);
 #endif

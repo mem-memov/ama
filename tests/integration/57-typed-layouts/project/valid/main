@@ -1,0 +1,17 @@
+@<
+input
+.native.buffer
+ |input
+@>
+output
+.native.buffer
+ input
+@Ama
+saved
+.native.buffer
+ |hello # literal
+copy
+.native.buffer
+ saved
+item
+.shop.item

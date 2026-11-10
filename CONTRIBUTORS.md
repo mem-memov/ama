@@ -108,7 +108,21 @@ Test layout generation by compiling and executing the resulting C, including a
 second translation unit that uses the same descriptor. Preserve Unicode `#line`
 paths while keeping all C identifiers hash-based. Do not infer native layouts
 from argument names or silently substitute pointers for unsupported list/reference
-layouts. The CLI remains on its numeric ABI until project integration is explicit.
+layouts. `--generate-type-layouts` connects this pipeline to project files;
+executable compilation remains on its numeric ABI.
+
+Project layout export uses `project/type_modules.c` for typed parsing and
+resolution, and `project/types.c` for provider collection and publication. Reuse
+source paths and draft rules from the scanner. Keep the default numeric library
+out of typed export; a typed library is an explicit C API argument. Generate into
+temporary streams and finish declaration/layout checks before opening output.
+
+Native type layout headers are handwritten sibling `.h` files, alongside the
+extensionless interface and companion `.c`. They are inputs, unlike generated
+native call headers. Never replace them during export. Test output aliases and
+repeated failure/success cycles, and compile a real exported project against the
+published runtime headers and archive. Layout export does not establish typed
+call semantics or validate executable operations beyond parsing their syntax.
 
 ## Parse, validate, then generate
 

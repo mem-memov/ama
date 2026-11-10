@@ -1080,8 +1080,8 @@ representation in stage 3 before changing declaration syntax or value layout.
   them with an incorrect `size_t` layout.
 
 The frontend is ready for connection to the lifecycle ABI described below.
-Generated state layouts and native literal interpretation in CLI programs remain
-pending.
+Typed layouts and native literal initialization are available through the
+project layout export command; typed executable programs remain pending.
 The frontend does not execute literals or check arbitrary typed assignments and
 calls. CLI migration, implicit-local removal, library type modules, and full
 reference/list semantics remain pending. Old numeric fixtures still run.
@@ -1117,11 +1117,25 @@ reference/list semantics remain pending. Old numeric fixtures still run.
   resources, clone/reset failure, Unicode, identical leaf names in different
   directories, empty states, and descriptor identity.
 
-Next: connect the type registry and layout generator to project compilation,
-add source-located runtime status reporting, then migrate native signatures and
-executable typed calls. References, lists, retained frames, and whole-call failure
-transactions still need their own contracts; the existing numeric CLI ABI remains
-active. Object lifetime handles and busy-state tracking are not implemented.
+### Project typed layout export (implemented)
+
+- [x] Add `--generate-type-layouts <root> <output-directory>` and repeatable C APIs
+  connecting project scanning, typed parsing, type resolution, and layout export.
+  Publish `ama_types.h` and `ama_types.c` after successful validation.
+- [x] Reuse the current section selectors and draft rules. Reject missing/draft
+  types and require native `.c` plus explicit `.h` layout providers.
+- [x] Support an explicit typed library in the C API without implicitly parsing
+  the existing numeric library as typed declarations. Keep CLI export project-only.
+- [x] Preserve existing output on parse/type/layout failure; reject aliases of
+  source files and of the other output. Test recovery and repeated exports in
+  one process, plus compilation/execution of a real exported project.
+
+Next: define typed native execution signatures and generated call adapters,
+including parameter/result preparation, retained frames, and source-located
+runtime status reporting. Then connect typed body validation and execution to
+project compilation. References, lists, and whole-call failure transactions
+still need their own contracts; executable compilation retains the numeric ABI.
+Object lifetime handles and busy-state tracking are not implemented.
 
 ### Following type and syntax tasks
 

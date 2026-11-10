@@ -10,6 +10,8 @@ SOURCES := \
     $(ROOT)/src/semantic/calls.c \
     $(ROOT)/src/semantic/body.c \
     $(ROOT)/src/codegen/ast.c \
+    $(ROOT)/src/codegen/types.c \
+    $(ROOT)/src/codegen/type_plan.c \
     $(ROOT)/src/common/source.c \
     $(ROOT)/src/common/names.c \
     $(ROOT)/src/codegen/emitter.c \
@@ -29,6 +31,8 @@ SOURCES := \
     $(ROOT)/src/parser/statement.c \
     $(ROOT)/src/parser/value.c \
     $(ROOT)/src/project/compile.c \
+    $(ROOT)/src/project/types.c \
+    $(ROOT)/src/project/type_modules.c \
     $(ROOT)/src/project/library.c \
     $(ROOT)/src/project/module.c \
     $(ROOT)/src/project/native.c \

@@ -65,6 +65,7 @@ all:
 >    $(MAKE) -C 54-native-retained-results all
 >    $(MAKE) -C 55-reject-read-parameters all
 >    $(MAKE) -C 56-reject-mixed-result-arrows all
+>    $(MAKE) -C 57-typed-layouts all
 
 clean:
 >    $(MAKE) -C 01-hello clean
@@ -123,3 +124,4 @@ clean:
 >    $(MAKE) -C 54-native-retained-results clean
 >    $(MAKE) -C 55-reject-read-parameters clean
 >    $(MAKE) -C 56-reject-mixed-result-arrows clean
+>    $(MAKE) -C 57-typed-layouts clean
