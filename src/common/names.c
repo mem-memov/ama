@@ -30,7 +30,8 @@ void generated_name(char output[GENERATED_NAME_CAPACITY], GeneratedNameKind kind
         "ama_state_", "ama_call_", "ama_instance_", "ama_field_", "ama_native_",
         "ama_parameter_", "ama_result_", "AMA_HEADER_", "ama_frame_", "ama_type_",
         "ama_frame_type_", "ama_fields_", "ama_frame_fields_", "ama_record_",
-        "ama_frame_record_", "ama_initialize_", "ama_frame_initialize_"
+        "ama_frame_record_", "ama_initialize_", "ama_frame_initialize_", "ama_typed_native_",
+        "ama_native_bridge_", "ama_call_schema_", "ama_invoke_"
     };
     snprintf(output, GENERATED_NAME_CAPACITY, "%s%016" PRIx64,
         prefixes[kind], source_identity_hash(module, member));

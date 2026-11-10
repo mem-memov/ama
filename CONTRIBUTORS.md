@@ -121,8 +121,23 @@ Native type layout headers are handwritten sibling `.h` files, alongside the
 extensionless interface and companion `.c`. They are inputs, unlike generated
 native call headers. Never replace them during export. Test output aliases and
 repeated failure/success cycles, and compile a real exported project against the
-published runtime headers and archive. Layout export does not establish typed
-call semantics or validate executable operations beyond parsing their syntax.
+published runtime headers and archive. Layout export supplies typed native C adapters, but does not validate or
+generate executable Ama body operations beyond parsing their syntax.
+
+Typed native implementations include `ama_types.h` and implement the generated
+`ama_typed_native_<hash>` prototype. Parameters are temporary independently
+copied values exposed through const wrapper pointers; results are live defaulted
+slots. Leave all slots live on every returned status. Use lifecycle replacement
+for owned results, and never retain addresses in a prepared frame.
+
+Keep call preparation and retention in `runtime/call.c`. Errors before execution
+must not execute native code; any failed execution discards its prepared frame
+while preserving the old retained frame. Persistent state changes and I/O are
+not rolled back. Retained reads must neither execute nor reset. Test initial
+reads, omitted defaults, input-copy failure, execution failure, and zero-argument
+native functions. Compile an intentionally mismatching native definition to
+verify that generated signatures enforce types. Named/positional Ama call
+validation and grouped result delivery remain future executable-body work.
 
 ## Parse, validate, then generate
 
@@ -167,10 +182,10 @@ The target frontend is explicitly selected with `typed_declarations`; interfaces
 use `parse_typed_declaration_section`. `validate_typed_declarations` resolves
 module paths through a caller-supplied callback and checks nominal types, storage
 forms, and earlier initializer sources. It currently rejects duplicate base
-names across storage forms. Literal interpretation belongs to the future module
-ABI, not this callback. `declarations_validated` covers these checks only; it
+names across storage forms. Literal interpretation belongs to the declared type
+runtime callback, not the identity resolver. `declarations_validated` covers these checks only; it
 does not authorize C emission. The numeric binder and backend reject typed
-declarations until runtime value layouts and lifecycle operations are defined.
+declarations until typed executable-body generation is integrated.
 
 The design follows the source-structure emphasis in the
 [Clang AST introduction](https://clang.llvm.org/docs/IntroductionToTheClangAST.html)

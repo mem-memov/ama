@@ -116,7 +116,7 @@ bool build_type_plan(TypePlan* plan, const TypeModule* modules, size_t count, Er
         if (source->native_header) {
             if (!valid_type_header_name(source->native_header))
                 return error_set(error, ERROR_INVALID, 0, "invalid native type header name");
-            continue;
+            if (!source->module) continue;
         }
         if (!name_registry_register(&plan->names, source_identity_hash(source->module_path, "$frame"),
             source->module_path, "$frame", error)) return false;
@@ -124,7 +124,7 @@ bool build_type_plan(TypePlan* plan, const TypeModule* modules, size_t count, Er
             return error_set(error, ERROR_INVALID, 0, "type layouts require validated declarations");
         for (const AstDeclaration* declaration = source->module->declarations; declaration; declaration = declaration->next)
             if (!append_field(&type->frame, declaration, error)) return false;
-        if (!collect_body_fields(&type->state, &source->module->body, error)) return false;
+        if (!source->native_header && !collect_body_fields(&type->state, &source->module->body, error)) return false;
     }
     for (size_t index = 0; index < count; index++) {
         PlannedType* type = &plan->types[index];

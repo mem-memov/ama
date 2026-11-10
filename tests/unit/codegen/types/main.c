@@ -45,6 +45,11 @@ static void write_bindings(void) {
     write_alias(output, "unicode_data", NAME_FIELD, "\u5546\u5e97/\u5546\u54c1", "data");
     write_alias(output, "frame_input", NAME_FIELD, "root", "input");
     write_alias(output, "frame_output", NAME_FIELD, "root", "output");
+    write_alias(output, "NativeFrame", NAME_FRAME, "native/buffer", NULL);
+    write_alias(output, "native_frame_type", NAME_FRAME_TYPE, "native/buffer", NULL);
+    write_alias(output, "native_entry", NAME_TYPED_NATIVE, "native/buffer", NULL);
+    write_alias(output, "invoke_native", NAME_INVOKE, "native/buffer", NULL);
+    write_alias(output, "native_schema", NAME_CALL_SCHEMA, "native/buffer", NULL);
     close_file(output);
 }
 
@@ -61,7 +66,9 @@ static void it_compiles_separate_state_and_frame_layouts_and_runs_their_lifecycl
     types[1] = (TypeModule){"shop/item", &syntax[1], NULL};
     types[2] = (TypeModule){"other/item", &syntax[2], NULL};
     types[3] = (TypeModule){"\u5546\u5e97/\u5546\u54c1", &syntax[3], NULL};
-    types[4] = (TypeModule){"native/buffer", NULL, "native.h"};
+    types[4] = (TypeModule){"native/buffer", &syntax[4], "native.h"};
+    parse_interface(4, AST_PARAMETER_DECLARATION, "input\n.native.buffer\n |argument\n");
+    parse_interface(4, AST_RESULT_DECLARATION, "output\n.native.buffer\n |result\n");
     parse_interface(0, AST_PARAMETER_DECLARATION, "input\n.native.buffer\n |input\n");
     parse_interface(0, AST_RESULT_DECLARATION,
         "output\n.native.buffer\n input\nsnapshot\n.root\n");
@@ -85,7 +92,7 @@ static void it_compiles_separate_state_and_frame_layouts_and_runs_their_lifecycl
 #endif
         "-Igenerated", "-I" TEST_ROOT "/src", "generated/types.c", "project/native.c",
         "project/driver.c", "project/second.c", TEST_ROOT "/src/runtime/value.c",
-        TEST_ROOT "/src/runtime/record.c", "-o", "generated/program", NULL};
+        TEST_ROOT "/src/runtime/record.c", TEST_ROOT "/src/runtime/call.c", "-o", "generated/program", NULL};
     expect_process_success(compiler);
     char* program[] = {"./generated/program", NULL};
     expect_process_success(program);

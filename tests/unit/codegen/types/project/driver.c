@@ -31,6 +31,20 @@ int main(void) {
     ama_value_destroy(copied);
     ama_value_destroy(value);
     assert(live_resources == 0);
+    TestBuffer native_state, native_result;
+    NativeFrame native_frame;
+    AmaValue retained = {&native_frame_type, &native_frame};
+    assert(ama_value_initialize((AmaValue){&native_descriptor, &native_state}) == AMA_STATUS_OK);
+    assert(ama_value_initialize((AmaValue){&native_descriptor, &native_result}) == AMA_STATUS_OK);
+    assert(ama_value_initialize(retained) == AMA_STATUS_OK);
+    assert(invoke_native(&native_state, &native_frame, NULL, 0) == AMA_STATUS_OK);
+    assert(ama_call_read(native_schema(), retained, 0,
+        (AmaValue){&native_descriptor, &native_result}) == AMA_STATUS_OK);
+    assert(native_result.length == 8 && memcmp(native_result.bytes, "argument", 8) == 0);
+    ama_value_destroy(retained);
+    ama_value_destroy((AmaValue){&native_descriptor, &native_result});
+    ama_value_destroy((AmaValue){&native_descriptor, &native_state});
+    assert(live_resources == 0);
 
     RootFrame frame;
     AmaValue frame_value = {&frame_descriptor, &frame};

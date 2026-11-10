@@ -1,0 +1,9 @@
+@<
+input
+.native.buffer
+ |default
+@>
+output
+.native.buffer
+ |before
+@C

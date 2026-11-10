@@ -1,4 +1,5 @@
 #include "buffer.h"
+#include "ama_types.h"
 #include <assert.h>
 #include <stdlib.h>
 #include <string.h>
@@ -64,3 +65,8 @@ const AmaType native_descriptor = {
     .move = move,
     .destroy = destroy
 };
+
+AmaStatus ama_typed_native_eb0bcc138445b561(TestBuffer* state) {
+    (void)state;
+    return AMA_STATUS_OK;
+}

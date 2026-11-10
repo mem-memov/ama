@@ -457,7 +457,11 @@ its hash-named state typedef and canonical descriptor. The generated header
 includes the provider through its absolute path. Compile the generated source
 with `-Ibuild/stdlib/include`, the native companion sources, and
 `build/stdlib/libama_std.a`. The command does not generate an entry point,
-execute module bodies, create native stubs, or migrate native call signatures.
+execute Ama bodies or create native stubs. It now also emits typed native
+prototypes and inline call adapters; C implementations include `ama_types.h`.
+These adapters prepare independent parameter values, retain successful results,
+and support reading saved results without execution. Existing numeric native
+functions keep their signatures; executable Ama calls have not migrated yet.
 
 Layout export is project-only: it does not load the default numeric standard
 library or consult `AMA_STDLIB`. C callers can explicitly provide a compatible

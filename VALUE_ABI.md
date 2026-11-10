@@ -4,8 +4,9 @@ This is the implemented C lifecycle contract for module-defined values. It is
 the lifecycle and layout part of the typed ABI. The target declaration parser,
 layout generator, and runtime are connected through project export APIs and
 `--generate-type-layouts`, with tests that compile and run generated C. Executable
-compilation still generates the existing numeric program and native signatures. Typed calls, checked references, lists, and
-library-defined index/condition protocols are subsequent work.
+compilation still generates the existing numeric program and native signatures. Typed native call adapters are available to C callers. Executable Ama body
+validation/calls, checked references, lists, and library-defined index/condition
+protocols are subsequent work.
 
 ## State belongs to its owner
 
@@ -118,8 +119,8 @@ On failure they destroy only successfully constructed children, in reverse
 order. Normal destruction also runs in reverse order. Move delegates to each
 child's move callback. Padding has no value semantics and is not copied.
 
-Record layouts must be acyclic; future compiler type validation must reject
-recursive inline ownership. Descriptors are trusted compiler/native metadata,
+Record layouts must be acyclic; the compiler layout planner rejects recursive
+inline ownership. Descriptors are trusted compiler/native metadata,
 not arbitrary untrusted input. The adapters do not detect recursive metadata
 or validate whether a supplied C address really has the advertised capacity.
 
@@ -144,8 +145,8 @@ For each generated module it emits:
   declarations nested in control blocks. Their initialization belongs to instance
   creation and does not depend on entering those executable blocks.
 - `ama_frame_<hash>` containing parameter/result declarations in interface order.
-  The frame is separate storage; generating it does not define execution, reset,
-  or retained-result caching behavior for future typed calls.
+  The frame is separate storage. Native C invocation uses the protocol below;
+  executable Ama body calls and their result delivery still require integration.
 - External `ama_type_<hash>` and `ama_frame_type_<hash>` descriptors with C
   `sizeof`, `_Alignof`, and `offsetof` expressions, plus internal field metadata.
 - Initialization adapters that construct each field from its default, raw literal
@@ -179,11 +180,79 @@ multiple translation units. Native providers must likewise expose a single
 canonical descriptor. Planning and validation occur before output; an I/O failure
 can leave partial output streams, which the caller must discard.
 
+## Typed native calls
+
+Native entries with a validated interface AST now also receive frame layouts,
+frame descriptors, a native prototype, a call schema, and an inline invocation
+adapter. Layout-only native providers passed to the C API without an AST still
+provide only a state type. Project export supplies interfaces for all implemented
+native modules, including those without parameters or results.
+
+The generated signature has this shape (hash placeholders are illustrative):
+
+```text
+AmaStatus ama_typed_native_<module>(
+    ama_state_<module>* state,
+    const ama_state_<input-type>* input,
+    ama_state_<output-type>* output);
+```
+
+Parameters follow interface order, then results. A zero-argument function still
+receives its persistent state pointer. The technical `AmaStatus` is an ABI error
+channel, not an Ama result value. Native code includes `ama_types.h` so the C
+compiler checks its definition against the generated declaration. This namespace
+is separate from the existing numeric `ama_native_<hash>` functions.
+
+Inputs denote independently copied, live parameter values in prepared frame
+storage. The `const` pointer forbids replacing or destroying the parameter
+wrapper through that view; it is not deep immutability of a native payload.
+Results denote live slots initialized with declared defaults. Replace a result
+through its type's lifecycle operations; never overwrite an owning pointer with
+a borrowed one. Every slot must remain live on both success and failure, because
+the adapter owns frame cleanup. Native code must not destroy its supplied state,
+retain frame addresses, or free resources owned by other values.
+
+[call.h](src/runtime/call.h) describes the runtime protocol:
+
+1. `ama_call_execute` verifies descriptor identities, nonoverlapping state/frame
+   storage, input positions, and duplicate bindings before preparation.
+2. Initialize a fresh frame, including parameter and result defaults. Named
+   result defaults derived from parameters therefore see declared parameter
+   defaults at this stage, before explicit inputs replace them.
+3. Copy explicitly supplied `AmaCallInput` values into their parameter slots.
+   Inputs may be borrowed from the old retained frame; copies finish before it
+   is replaced. Missing bindings keep their defaults.
+4. Invoke native code with the persistent state and prepared slots.
+5. On failure destroy the prepared frame. On success destroy the previous
+   retained frame and move the prepared frame into its place without further
+   fallible operations.
+
+The caller initializes state and the retained frame before the first call and
+owns their final destruction. The generated `ama_invoke_<hash>` wrapper selects
+canonical descriptors and the `ama_call_schema_<hash>()` metadata. These inline
+schemas may have separate addresses in different translation units; state and
+frame type descriptors remain canonical external objects.
+
+`ama_call_read` copies one saved result into a live destination without resetting
+or executing. Before the first call it reads the initialized result default.
+A failed read preserves its destination. It rejects a destination inside the
+retained frame, so reading cannot accidentally mutate saved slots. Multiple
+result receivers are not yet one transaction: a future Ama call adapter must
+stage them together if the language requires all-or-nothing delivery.
+
+A failed call preserves its old retained frame, but mutations of persistent
+state and native I/O are not rolled back. This is synchronous C invocation, not
+a checked object-reference, busy-state, or concurrency protocol. Trusted native
+code must obey the lifetime contract. Runtime statuses do not yet include a
+source-located failure report; `#line` mappings on prototypes and initialization
+help C diagnostics but do not substitute for runtime error propagation.
+
 ## Exporting layouts from a project
 
 `./ama --generate-type-layouts <root> <output-directory>` connects scanning,
 section splitting, typed parsing, module-type resolution, and layout generation.
-It creates `ama_types.h` and `ama_types.c`; it does not execute or semantically
+It creates `ama_types.h` and `ama_types.c`, including typed native prototypes
+and inline call adapters. The export itself does not execute or semantically
 validate executable bodies beyond the declaration and initialization checks
 needed for layouts. Body syntax is parsed, but unresolved executable calls and
 assignments are outside this export operation.

@@ -1,4 +1,6 @@
 #include "native.h"
+#include "types.h"
+#include "bindings.h"
 #include <assert.h>
 #include <stdlib.h>
 #include <string.h>
@@ -64,3 +66,9 @@ const AmaType native_descriptor = {
     .move = move,
     .destroy = destroy
 };
+
+AmaStatus native_entry(TestBuffer* state, const TestBuffer* input, TestBuffer* output) {
+    (void)state;
+    return ama_value_replace((AmaValue){&native_descriptor, output},
+        (AmaValue){&native_descriptor, (void*)input});
+}

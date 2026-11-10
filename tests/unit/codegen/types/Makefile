@@ -5,6 +5,7 @@ COMMON := ../../../common.c ../../common.c ../type_common.c ../../../integration
 SOURCES := \
     $(ROOT)/src/ast/ast.c \
     $(ROOT)/src/codegen/types.c \
+    $(ROOT)/src/codegen/typed_native.c \
     $(ROOT)/src/codegen/type_plan.c \
     $(ROOT)/src/common/names.c \
     $(ROOT)/src/common/source.c \

@@ -1130,12 +1130,28 @@ reference/list semantics remain pending. Old numeric fixtures still run.
   source files and of the other output. Test recovery and repeated exports in
   one process, plus compilation/execution of a real exported project.
 
-Next: define typed native execution signatures and generated call adapters,
-including parameter/result preparation, retained frames, and source-located
-runtime status reporting. Then connect typed body validation and execution to
-project compilation. References, lists, and whole-call failure transactions
-still need their own contracts; executable compilation retains the numeric ABI.
-Object lifetime handles and busy-state tracking are not implemented.
+### Typed native invocation (implemented for C callers)
+
+- [x] Emit native interface frames, canonical frame descriptors, typed native
+  prototypes, inline bridges, call schemas, and invocation adapters in type export.
+  Keep typed native symbols separate from the numeric ABI.
+- [x] Prepare fresh defaulted frames, independently copy explicit input bindings,
+  and expose parameter/result slots with typed pointers. Reject invalid positions,
+  duplicates, type mismatches, and overlapping state/frame storage.
+- [x] Commit the prepared frame only on native success. Discard failed frames
+  without replacing previous retained results; document that persistent native
+  state and I/O are not rolled back.
+- [x] Read individual retained results without execution/reset, including defaults
+  before the first call. Preserve a read destination if its copy fails.
+- [x] Test preparation/execution failure, omitted inputs, saved reads, zero-argument
+  native functions, and C compiler rejection of mismatching native definitions.
+
+Next: bind and validate typed Ama body operations, then generate execution and
+calls using these adapters. Specify grouped result delivery and source-located
+runtime failure propagation before connecting ordinary typed project execution.
+References, lists, and whole-call failure transactions still need their own
+contracts; executable compilation retains the numeric ABI. Object lifetime
+handles and busy-state tracking are not implemented.
 
 ### Following type and syntax tasks
 
@@ -1147,8 +1163,8 @@ Object lifetime handles and busy-state tracking are not implemented.
   text encoding rules without quoting, escaping, or multiline values.
 - [ ] Define explicit compiler mappings to library index and condition operations,
   including signature validation and range/error handling.
-- [ ] Specify value versus reference parameter/result ownership, generated native
-  layouts/prototypes, clone refusal, and destination replacement on failure.
+- [ ] Extend the implemented owned-value native protocol to checked references
+  and grouped result receivers, including ownership and replacement on failure.
 - [ ] Define the initial fundamental module types for numbers and byte sequences,
   their language-level declaration initialization, condition behavior, numeric
   range, overflow, conversions, and value versus reference passing. Keep unresolved representation
