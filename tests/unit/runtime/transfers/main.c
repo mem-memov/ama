@@ -77,7 +77,48 @@ static void it_preserves_the_previous_list_on_every_preparation_allocation_failu
     }
 }
 
+static void it_copies_continuations_through_one_owned_list_forest(void) {
+    for (size_t continuation = 0; continuation < 2; continuation++) {
+        setup_objects();
+        AmaHandle source, destination;
+        make_source(&source, &destination);
+        RootValue *original = object_payload(source);
+        AmaHandle branch = original->branches.items[0];
+        RootValue *child = object_payload(branch);
+        AmaPoolCell *nested = NULL;
+        AmaStatus status = ama_pool_lookup(&root_type.pool, branch, false, &nested);
+        assert(status.code == AMA_OK);
+        nested->metadata.service.activity = AMA_INSTANCE_YIELDED;
+        nested->metadata.service.resume = (AmaResumePosition){true, 51};
+        status = ama_pool_lookup(&leaf_type.pool, child->left, false, &nested);
+        assert(status.code == AMA_OK);
+        nested->metadata.service.activity = AMA_INSTANCE_YIELDED;
+        nested->metadata.service.resume = (AmaResumePosition){true, 52};
+        AmaProgram program = {.world = &world};
+        AmaProgramAccess access = {.field = 2};
+        AmaProgramValue value = {0};
+        status = ama_program_select(&program, source, &access, false, &value);
+        assert(status.code == AMA_OK);
+        value.continuation = continuation != 0;
+        status = ama_program_transfer(&program, destination, &access, &value);
+        assert(status.code == AMA_OK);
+        RootValue *owner = object_payload(destination);
+        RootValue *first = object_payload(owner->branches.items[0]);
+        assert(first->self.slot_id == owner->branches.items[1].slot_id);
+        status = ama_pool_lookup(&root_type.pool, owner->branches.items[0], false, &nested);
+        assert(status.code == AMA_OK && nested->metadata.service.resume.selector == (continuation ? 51 : 0));
+        status = ama_pool_lookup(&leaf_type.pool, first->left, false, &nested);
+        assert(status.code == AMA_OK && nested->metadata.service.resume.selector == (continuation ? 52 : 0));
+        status = ama_object_destroy(&world, destination);
+        assert(status.code == AMA_OK);
+        status = ama_object_destroy(&world, source);
+        assert(status.code == AMA_OK);
+        destroy_objects();
+    }
+}
+
 void run(void) {
+    it_copies_continuations_through_one_owned_list_forest();
     it_clones_one_forest_and_remaps_references_between_sibling_elements();
     it_preserves_the_previous_list_on_every_preparation_allocation_failure();
 }

@@ -64,6 +64,8 @@ static void it_copies_saved_positions_only_in_explicit_continuation_mode(void) {
         AmaStatus status = ama_object_create(&world, 2, NULL, &source);
         assert(status.code == AMA_OK);
         RootValue *root = object_payload(source);
+        cell(source)->metadata.service.last_refusal = ama_status_make(AMA_BUSY, NULL, 0);
+        cell(source)->metadata.service.current_operation = 123;
         cell(source)->metadata.service.activity = AMA_INSTANCE_YIELDED;
         cell(source)->metadata.service.resume = (AmaResumePosition){true, 11};
         cell(root->left)->metadata.service.activity = AMA_INSTANCE_YIELDED;
@@ -75,6 +77,9 @@ static void it_copies_saved_positions_only_in_explicit_continuation_mode(void) {
         assert(cell(result->left)->metadata.service.resume.selector == (continuation ? 22 : 0));
         assert(cell(result->right)->metadata.service.resume.selector == 0);
         assert(!cell(copy)->metadata.service.return_link.attached);
+        assert(cell(copy)->metadata.service.last_refusal.code == AMA_OK);
+        assert(cell(copy)->metadata.service.current_operation == 0);
+        assert(cell(copy)->metadata.service.outgoing.generation == 0);
         assert(cell(source)->metadata.service.resume.selector == 11);
         status = ama_object_destroy(&world, copy);
         assert(status.code == AMA_OK);
@@ -103,30 +108,35 @@ static void it_refuses_busy_descendants_and_missing_clone_capabilities_before_na
 }
 
 static void it_preserves_the_source_and_releases_each_failed_clone_prefix(void) {
-    size_t count = 0;
-    for (size_t failure = 0; failure <= count; failure++) {
-        setup_objects();
-        AmaHandle source, copy = {0};
-        AmaStatus status = ama_object_create(&world, 2, NULL, &source);
-        assert(status.code == AMA_OK);
-        RootValue *original = object_payload(source);
-        void *resource = original->native.resource;
-        size_t start = allocation_count;
-        failure_at = failure == 0 ? 0 : start + failure;
-        status = ama_object_clone(&world, source, false, &copy);
-        if (failure == 0) {
+    for (size_t continuation = 0; continuation < 2; continuation++) {
+        size_t count = 0;
+        for (size_t failure = 0; failure <= count; failure++) {
+            setup_objects();
+            AmaHandle source, copy = {0};
+            AmaStatus status = ama_object_create(&world, 2, NULL, &source);
             assert(status.code == AMA_OK);
-            count = allocation_count - start;
-            status = ama_object_destroy(&world, copy);
+            RootValue *original = object_payload(source);
+            void *resource = original->native.resource;
+            cell(source)->metadata.service.activity = AMA_INSTANCE_YIELDED;
+            cell(source)->metadata.service.resume = (AmaResumePosition){true, 57};
+            size_t start = allocation_count;
+            failure_at = failure == 0 ? 0 : start + failure;
+            status = ama_object_clone(&world, source, continuation != 0, &copy);
+            if (failure == 0) {
+                assert(status.code == AMA_OK);
+                count = allocation_count - start;
+                status = ama_object_destroy(&world, copy);
+                assert(status.code == AMA_OK);
+            } else {
+                assert(status.code == AMA_OUT_OF_MEMORY && copy.generation == 0);
+                assert(root_type.pool.live_count == 1 && leaf_type.pool.live_count == 2);
+                assert(original->native.resource == resource && cell(source)->metadata.service.activity == AMA_INSTANCE_YIELDED);
+            }
+            assert(cell(source)->metadata.service.resume.selector == 57);
+            status = ama_object_destroy(&world, source);
             assert(status.code == AMA_OK);
-        } else {
-            assert(status.code == AMA_OUT_OF_MEMORY && copy.generation == 0);
-            assert(root_type.pool.live_count == 1 && leaf_type.pool.live_count == 2);
-            assert(original->native.resource == resource && cell(source)->metadata.service.activity == AMA_INSTANCE_READY);
+            destroy_objects();
         }
-        status = ama_object_destroy(&world, source);
-        assert(status.code == AMA_OK);
-        destroy_objects();
     }
 }
 
@@ -157,7 +167,41 @@ static void it_uses_independent_clone_contexts_for_repeated_source_initializers(
     destroy_objects();
 }
 
+static void it_preserves_mixed_positions_in_owned_lists_without_resuming_the_root(void) {
+    for (size_t continuation = 0; continuation < 2; continuation++) {
+        setup_objects();
+        AmaHandle source, copy;
+        AmaFieldRecipe fields[6] = {0};
+        fields[2].count = 2;
+        AmaRecipe recipe = {.fields = fields, .field_count = 6};
+        AmaStatus status = ama_object_create(&world, 2, &recipe, &source);
+        assert(status.code == AMA_OK);
+        RootValue *original = object_payload(source);
+        AmaHandle branch = original->branches.items[0];
+        RootValue *nested = object_payload(branch);
+        cell(branch)->metadata.service.activity = AMA_INSTANCE_YIELDED;
+        cell(branch)->metadata.service.resume = (AmaResumePosition){true, 31};
+        cell(nested->left)->metadata.service.activity = AMA_INSTANCE_YIELDED;
+        cell(nested->left)->metadata.service.resume = (AmaResumePosition){true, 32};
+        status = ama_object_clone(&world, source, continuation != 0, &copy);
+        assert(status.code == AMA_OK);
+        RootValue *result = object_payload(copy);
+        RootValue *child = object_payload(result->branches.items[0]);
+        assert(cell(result->branches.items[0])->metadata.service.resume.selector == (continuation ? 31 : 0));
+        assert(cell(child->left)->metadata.service.resume.selector == (continuation ? 32 : 0));
+        assert(cell(result->branches.items[1])->metadata.service.activity == AMA_INSTANCE_READY);
+        status = ama_service_access(&cell(copy)->metadata.service, AMA_ACCESS_RESUME);
+        assert(status.code == AMA_NO_RESUME);
+        status = ama_object_destroy(&world, copy);
+        assert(status.code == AMA_OK);
+        status = ama_object_destroy(&world, source);
+        assert(status.code == AMA_OK);
+        destroy_objects();
+    }
+}
+
 void run(void) {
+    it_preserves_mixed_positions_in_owned_lists_without_resuming_the_root();
     it_remaps_root_ancestor_forward_and_cyclic_references_but_preserves_external_targets();
     it_copies_saved_positions_only_in_explicit_continuation_mode();
     it_refuses_busy_descendants_and_missing_clone_capabilities_before_native_hooks();

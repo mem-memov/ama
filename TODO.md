@@ -301,7 +301,7 @@ execution and list action dispatch remain the explicit next sections.
   state from a busy instance waiting for a nested call.
 - [x] Implement output-only resumption, entry restart and completed/yielded/failed
   host outcomes. Failed execution is not resumable; root resume is host-explicit.
-- [ ] Clear positions throughout ordinary copies and preserve them throughout `%`
+- [x] Clear positions throughout ordinary copies and preserve them throughout `%`
   copies, without copying callers, busy state or refusal history.
 - [ ] Test repeated yields, nested owned states, busy descendants, clone failures,
   host disposal and rejection of unhandled root yield by the standard launcher.

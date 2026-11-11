@@ -39,3 +39,21 @@ All pointers local to the execution function are transient. Between host calls,
 only the host context, stable instance pools and instance service metadata remain.
 Every successful nested yield returns through the current invocation's own link;
 a later resume installs a new caller link, so error traces follow the new caller.
+
+## Ownership-wide copy law
+
+`runtime/metadata/clone.c`, `runtime/objects/clone/prepare.c` and
+`runtime/program/transfers/lists.c` implement the same projection for every
+vertex of the cloned ownership forest: new identity and resources; remapped
+internal references; saved position either zero (ordinary copy) or unchanged
+(explicit continuation copy). All remaining service fields start fresh. Thus
+mixed completed/yielded children do not change their parent's resumability.
+
+Availability preflight protects the entire owned forest before native cloning.
+External reference targets are not traversed. Failed preparation restores source
+service records and destroys only successfully constructed destination prefixes.
+The existing reference map also spans sibling list elements; position copying
+changes no ownership edges and therefore cannot introduce an active return chain.
+The clone and transfer suites test both projections, nested list descendants,
+reference remapping and allocation-failure cleanup. Exact failure injection visits
+every allocation in successful scalar-tree cloning for both copy modes.
