@@ -215,7 +215,7 @@ Ama execution remain in the following sections, not implied by frontend completi
   working directory, include search paths, required defines and language/toolchain
   flags, for example in a compilation database. It must support C language-service
   analysis and syntax checks before the execution backend is available.
-- [ ] Make output ownership explicit. Preserve existing handwritten companions;
+- [x] Make output ownership explicit. Preserve existing handwritten companions;
   show conflicts and require an explicit generation/overwrite request.
 - [ ] Test that checking and compilation agree on frontend validity and diagnostics,
   and that generated native declarations compile against the ABI harness.

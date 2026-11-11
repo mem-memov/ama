@@ -69,6 +69,9 @@ typedef struct {
     bool attempted;
     bool ready;
     bool published;
+    bool publish_attempted;
+    struct ScaffoldOwned *owned;
+    const char *manifest_path;
 } NativeScaffold;
 
 /* Borrow a validated frontend and options through build/publication. Own model,

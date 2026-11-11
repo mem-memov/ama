@@ -25,6 +25,8 @@ bool scaffold_emit_test(NativeScaffold *, FILE *, const ScaffoldType *);
 bool scaffold_emit_tooling(NativeScaffold *, FILE *, const ScaffoldType *);
 bool scaffold_emit_signature(FILE *output, const ScaffoldType *type, AbiOperation operation, SourceSpan function);
 bool scaffold_include(FILE *output, const char *path);
+bool scaffold_manifest(NativeScaffold *scaffold);
+bool scaffold_owned_output(NativeScaffold *scaffold, const ScaffoldArtifact *artifact);
 bool scaffold_json(FILE *output, const char *text);
 
 #endif

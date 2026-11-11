@@ -99,3 +99,25 @@ No forced include or implicit current-directory include is required. The SDK
 header enforces the verified GCC target. User flags are explicit configuration,
 not inferred from local files. A test uses Python's standard JSON reader and runs
 every exported command; the test framework and fixtures remain C/Make.
+
+## Output ownership
+
+The versioned `.ama-native-outputs` manifest records each generated basename and
+its SHA-256 digest. The manifest itself is not recursively hashed. Records are
+unique flat names with exact lowercase hex digests; malformed, duplicate or unsafe
+records are errors, including with overwrite requested. This is an explicit local
+ownership ledger, not authentication against hostile filesystem changes.
+
+Normal refresh replaces an existing generated file only when its current digest
+equals its recorded digest. Unknown files and edited owned outputs cause a conflict
+before any destination contents change. Only explicit overwrite permits replacing
+them. Handwritten companions never enter the ownership ledger: `--create` fills
+missing files and preserves existing ones; `--create --overwrite` permits replacement.
+Prior records outside the current generated set are retained without deleting files.
+
+An exclusive `.ama-native.lock` serializes publication. A retained lock is an
+explicit conflict; its age never licenses removal. The user can inspect/remove a
+crash-retained lock before retrying. A scaffold publishes at most once, including
+failed attempts. Allocation-failure tests cover manifest loading, ownership checks,
+staging and rollback-path setup; additional cases cover refresh, handwritten files,
+edited outputs, symlinks, malformed manifests and retained locks.

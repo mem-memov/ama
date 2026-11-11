@@ -47,7 +47,7 @@ static bool preflight(NativeScaffold *scaffold) {
             return scaffold_error(scaffold, DIAGNOSTIC_UNSUPPORTED_PATH,
                 "Native output cannot replace a symlink or nonregular file", artifact->path);
         }
-        if (!scaffold->options.overwrite) {
+        if (!scaffold->options.overwrite && !scaffold_owned_output(scaffold, artifact)) {
             return scaffold_error(scaffold, DIAGNOSTIC_INVALID_PATH,
                 "Native output conflicts with an existing file; explicit overwrite is required", artifact->path);
         }
@@ -133,22 +133,47 @@ static void cleanup(NativeScaffold *scaffold, bool rollback) {
     }
 }
 
-bool native_scaffold_publish(NativeScaffold *scaffold) {
-    if (!scaffold->ready || scaffold->published) {
-        return scaffold_error(scaffold, DIAGNOSTIC_INVALID_PATH, "A complete unpublished scaffold is required", NULL);
-    }
-    if (!directories(scaffold) || !preflight(scaffold)) {
+static bool transaction(NativeScaffold *scaffold) {
+    if (!scaffold_manifest(scaffold) || !preflight(scaffold)) {
         return false;
     }
-    bool staged = true;
-    for (ScaffoldArtifact *artifact = scaffold->first; staged && artifact != NULL; artifact = artifact->next) {
-        staged = stage(scaffold, artifact);
+    bool complete = true;
+    for (ScaffoldArtifact *artifact = scaffold->first; complete && artifact != NULL; artifact = artifact->next) {
+        complete = stage(scaffold, artifact);
     }
-    bool complete = staged;
     for (ScaffoldArtifact *artifact = scaffold->first; complete && artifact != NULL; artifact = artifact->next) {
         complete = publish_one(scaffold, artifact);
     }
     cleanup(scaffold, !complete);
     scaffold->published = complete;
+    return complete;
+}
+
+bool native_scaffold_publish(NativeScaffold *scaffold) {
+    if (!scaffold->ready || scaffold->publish_attempted) {
+        return scaffold_error(scaffold, DIAGNOSTIC_INVALID_PATH, "A complete unpublished scaffold is required", NULL);
+    }
+    scaffold->publish_attempted = true;
+    if (!directories(scaffold)) {
+        return false;
+    }
+    const char *lock = scaffold_join(scaffold, scaffold->directory, "/", ".ama-native.lock");
+    if (lock == NULL) {
+        return false;
+    }
+    int descriptor = open(lock, O_WRONLY | O_CREAT | O_EXCL, 0600);
+    if (descriptor < 0) {
+        return scaffold_error(scaffold, DIAGNOSTIC_IO_FAILURE,
+            "Cannot acquire output lock; another generation or a retained lock requires attention", lock);
+    }
+    bool complete = false;
+    if (close(descriptor) != 0) {
+        scaffold_error(scaffold, DIAGNOSTIC_IO_FAILURE, "Cannot close output lock", lock);
+    } else {
+        complete = transaction(scaffold);
+    }
+    if (unlink(lock) != 0) {
+        return scaffold_error(scaffold, DIAGNOSTIC_IO_FAILURE, "Cannot release output lock", lock);
+    }
     return complete;
 }
