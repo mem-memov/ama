@@ -12,8 +12,10 @@ not introduce a second parser, resolver or type system.
 
 ## 1. Establish component contracts and the test/build foundation
 
-- [ ] Map existing source components to the specification and identify what can
-  be reused, replaced or removed. Record evidence rather than assuming conformance.
+- [x] Map existing source components to the specification and identify what can
+  be reused, replaced or removed. Evidence and replacement decisions are recorded
+  in the [component map](docs/implementation/components.md); existing compiler
+  bodies and old tests were not analyzed.
 - [ ] Arrange responsibilities as nested directories with short orchestration
   functions, narrow interfaces and explicit contexts. Split components as they
   are implemented; avoid a separate repository-wide mechanical refactoring phase.
