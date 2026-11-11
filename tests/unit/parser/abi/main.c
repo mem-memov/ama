@@ -49,11 +49,22 @@ static void it_rejects_malformed_unknown_indented_and_duplicate_records(void) {
     for (size_t index = 0; index < sizeof(invalid) / sizeof(invalid[0]); index++) {
         setup_test();
         ParseStatus parsed = parse_abi(invalid[index]);
-        assert(parsed == PARSE_INVALID && !table.valid && diagnostic_valid(&table.diagnostic));
+        assert(parsed == PARSE_INVALID && !table.valid && diagnostic_valid(&table.error.diagnostic));
         if (index == 14 || index == 15) {
-            assert(table.diagnostic.related_count == 1);
-            assert(table.diagnostic.related[0].location.span.start == 0);
+            assert(table.error.diagnostic.related_count == 1);
+            assert(table.error.diagnostic.related[0].location.span.start == 0);
         }
+        destroy_abi();
+    }
+}
+
+static void it_rejects_invalid_ucn_and_native_identifier_boundary_cases(void) {
+    const char *invalid[] = {"+ \\uD800", "+ \\U00110000", "+ \\u0061", "+ \\u0300name",
+        "+ \\u123", "+ \\U0000FFFF", "+ \\u00A0name", "+ # missing function"};
+    for (size_t index = 0; index < sizeof(invalid) / sizeof(invalid[0]); index++) {
+        setup_test();
+        ParseStatus parsed = parse_abi(invalid[index]);
+        assert(parsed == PARSE_INVALID && table.error.expected == EXPECT_C_IDENTIFIER);
         destroy_abi();
     }
 }
@@ -64,9 +75,9 @@ static void it_points_missing_mandatory_bindings_at_eof(void) {
         setup_test();
         ParseStatus parsed = parse_abi(inputs[index]);
         assert(parsed == PARSE_INVALID);
-        assert(table.diagnostic.primary.span.start == strlen(inputs[index]));
-        assert(table.diagnostic.primary.span.end == strlen(inputs[index]));
-        assert(table.diagnostic.expected != NULL);
+        assert(table.error.diagnostic.primary.span.start == strlen(inputs[index]));
+        assert(table.error.diagnostic.primary.span.end == strlen(inputs[index]));
+        assert(table.error.diagnostic.expected != NULL);
         destroy_abi();
     }
 }
@@ -91,6 +102,7 @@ void run(void) {
     it_reads_all_six_symbols_in_any_order_with_physical_spans();
     it_accepts_international_native_names_and_c_universal_character_spellings();
     it_rejects_malformed_unknown_indented_and_duplicate_records();
+    it_rejects_invalid_ucn_and_native_identifier_boundary_cases();
     it_points_missing_mandatory_bindings_at_eof();
     it_cleans_every_failed_abi_line_allocation();
 }

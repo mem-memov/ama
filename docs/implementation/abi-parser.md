@@ -15,6 +15,7 @@ A finite slot invariant establishes at-most-once binding. Duplicate errors retai
 the earlier marker as a related source location. Missing records have a zero-width
 EOF span. Other failures retain the offending physical byte/line range. No failed
 table is published as usable and reporting needs no further allocation.
+ParseError retains a stable grammar-expectation key alongside its Diagnostic.
 
 Native names are not Ama identifiers. Their lexical scanner implements C11 Annex
 D.1/D.2 and ASCII letters/underscore/digits with GCC's dollar extension, accepts

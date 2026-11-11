@@ -23,13 +23,8 @@ static bool active_file(const SourceLayout *layout) {
     return false;
 }
 
-static bool fail(Diagnostic *error, SourceSpan span, const char *message, const char *expected) {
-    *error = (Diagnostic){0};
-    error->code = DIAGNOSTIC_SYNTAX;
-    error->primary.span = span;
-    error->message = message;
-    error->expected = expected;
-    return false;
+static bool fail(ParseError *error, SourceSpan span, const char *message, ParserExpectation expected) {
+    return parser_error_set(error, span, message, expected);
 }
 
 static ParsedSection *select_section(ModuleSections *sections, int marker) {
@@ -37,7 +32,7 @@ static ParsedSection *select_section(ModuleSections *sections, int marker) {
         : marker == 2 ? &sections->results : &sections->implementation;
 }
 
-static bool read_sections(SourceLayout *layout, ModuleSections *sections, Diagnostic *error) {
+static bool read_sections(SourceLayout *layout, ModuleSections *sections, ParseError *error) {
     int previous = -1;
     ParsedSection *current = NULL;
     for (const LayoutLine *line = layout->first; line != NULL; line = line->next) {
@@ -49,7 +44,7 @@ static bool read_sections(SourceLayout *layout, ModuleSections *sections, Diagno
         if (!annotation_line) {
             if (current == NULL || sections->kind == MODULE_NATIVE) {
                 return fail(error, line->code, "Unexpected content outside an Ama section",
-                    current == NULL ? "a section annotation" : "layout after @C");
+                    current == NULL ? EXPECT_SECTION : EXPECT_NATIVE_LAYOUT);
             }
             continue;
         }
@@ -57,7 +52,7 @@ static bool read_sections(SourceLayout *layout, ModuleSections *sections, Diagno
         int rank = marker == 4 ? 3 : marker;
         if (marker < 0 || line->indentation != 0 || rank <= previous) {
             return fail(error, line->code, "Unknown, repeated, indented or out-of-order annotation",
-                "optional @=, @<, @>, followed by @! or @C; or constants-only @=");
+                EXPECT_SECTION_ORDER);
         }
         if (current != NULL) {
             current->end = line;
@@ -70,19 +65,19 @@ static bool read_sections(SourceLayout *layout, ModuleSections *sections, Diagno
     if (previous == 1 || previous == 2) {
         size_t end = source_length(layout->source);
         return fail(error, (SourceSpan){layout->source, end, end},
-            "Interface sections require an implementation selector", "@! or @C");
+            "Interface sections require an implementation selector", EXPECT_IMPLEMENTATION);
     }
     return true;
 }
 
-bool parser_sections(SourceLayout *layout, ModuleSections *output, Diagnostic *error) {
+bool parser_sections(SourceLayout *layout, ModuleSections *output, ParseError *error) {
     ModuleSections sections = {0};
     if (!active_file(layout)) {
         *output = sections;
         return true;
     }
     if (layout_validate(layout, false) != LAYOUT_OK) {
-        *error = layout->diagnostic;
+        parser_error_from_layout(error, &layout->diagnostic);
         return false;
     }
     if (!read_sections(layout, &sections, error)) {

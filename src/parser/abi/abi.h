@@ -3,6 +3,7 @@
 
 #include "lexer/layout/layout.h"
 #include "parser/status.h"
+#include "parser/error/error.h"
 
 typedef enum {
     ABI_DEFAULT, ABI_DESTROY, ABI_LITERAL, ABI_CLONE, ABI_CONDITION, ABI_INDEX, ABI_BINDING_COUNT
@@ -15,7 +16,7 @@ typedef struct {
 typedef struct {
     SourceLayout layout;
     AbiBinding bindings[ABI_BINDING_COUNT];
-    Diagnostic diagnostic;
+    ParseError error;
     DiagnosticRelated related;
     bool valid;
 } AbiTable;

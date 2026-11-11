@@ -14,8 +14,9 @@ static bool assignment(Parser *parser, AstNode *node, AstAccess *receiver, const
 static bool control(Parser *parser, ParseFrame **frame, AstNode *node,
     AstAccess *condition, const LayoutLine *marker, bool blank) {
     if (blank || !parser_owned_access(condition)) {
-        return parser_fail(parser, node->span, "A condition needs an adjacent owned-value marker",
-            "an owned access followed by ? or { without a blank line");
+        return parser_fail(parser, node->span, blank ? "A blank line separates the condition from its marker"
+                : "A condition requires owned-value syntax",
+            EXPECT_CONDITION_ADJACENCY);
     }
     bool loop = layout_text_is(marker->code, "{");
     node->kind = loop ? AST_LOOP : AST_BRANCH;
@@ -39,7 +40,8 @@ static bool bare_target(Parser *parser, ParseFrame **frame, AstNode *node) {
         && (layout_text_is(next->code, "?") || layout_text_is(next->code, "{"))) {
         return control(parser, frame, node, access, next, blank);
     }
-    if (present && next->indentation == line->indentation && parser_path(next->code)) {
+    if (present && next->indentation == line->indentation
+        && next->code.start < next->code.end && source_bytes(next->code.source)[next->code.start] == '.') {
         return parser_declaration(parser, line->indentation, node);
     }
     if (present && next->indentation == line->indentation + 1) {
@@ -52,7 +54,7 @@ static bool bare_target(Parser *parser, ParseFrame **frame, AstNode *node) {
             : assignment(parser, node, access, next);
     }
     return parser_fail(parser, line->code, "A bare target is not an executable statement",
-        "a type line, an indented copy source, an adjacent condition marker, !, %, or >> requests");
+        EXPECT_STATEMENT_TAIL);
 }
 
 bool parser_statement(Parser *parser, ParseFrame **frame) {

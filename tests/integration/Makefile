@@ -1,2 +1,2 @@
-SUBDIRECTORIES := launcher rebuild harness native source
+SUBDIRECTORIES := launcher rebuild harness native source parser
 include ../parent.mk

@@ -1,13 +1,9 @@
 #include <string.h>
 #include "internal.h"
 
-bool parser_fail(Parser *parser, SourceSpan span, const char *message, const char *expected) {
+bool parser_fail(Parser *parser, SourceSpan span, const char *message, ParserExpectation expected) {
     if (!parser->failed) {
-        parser->module->diagnostic = (Diagnostic){0};
-        parser->module->diagnostic.code = DIAGNOSTIC_SYNTAX;
-        parser->module->diagnostic.primary.span = span;
-        parser->module->diagnostic.message = message;
-        parser->module->diagnostic.expected = expected;
+        parser_error_set(&parser->module->error, span, message, expected);
     }
     parser->failed = true;
     return false;
@@ -16,8 +12,8 @@ bool parser_fail(Parser *parser, SourceSpan span, const char *message, const cha
 void *parser_allocate(Parser *parser, size_t size, SourceSpan site) {
     void *allocation = source_arena_allocate(&parser->module->arena, size);
     if (allocation == NULL) {
-        parser_fail(parser, site, "Cannot allocate syntax tree storage", NULL);
-        parser->module->diagnostic.code = DIAGNOSTIC_OUT_OF_MEMORY;
+        parser_fail(parser, site, "Cannot allocate syntax tree storage", EXPECT_NONE);
+        parser->module->error.diagnostic.code = DIAGNOSTIC_OUT_OF_MEMORY;
     } else {
         memset(allocation, 0, size);
     }

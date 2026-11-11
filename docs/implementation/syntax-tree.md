@@ -13,6 +13,8 @@ resolved type or mutable global symbol environment enters syntax recognition.
 Text spans borrow the source manager, which must outlive the module. Parse once
 from initialized storage. Only valid=true permits consuming a complete AST;
 partial allocations remain owned for cleanup and error context on failure.
+A structured ParseError carries a stable grammar-expectation key and Diagnostic;
+see the [error contract](parser-errors.md).
 
 Section intervals feed independent declaration parsing and an explicit-frame body
 parser. A same-indent type path follows a declaration name; an indented copy

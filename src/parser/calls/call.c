@@ -6,7 +6,7 @@ bool parser_start_call(Parser *parser, ParseFrame **frame, AstNode *node,
     node->as.call.mode = mode;
     if (mode == AST_CONSTANT_READ) {
         if (!parser_path(target)) {
-            return parser_fail(parser, target, "Invalid shared-constant namespace", "a module path without ! or %");
+            return parser_fail(parser, target, "Invalid shared-constant namespace", EXPECT_NAMESPACE_PATH);
         }
         node->as.call.namespace_path = target;
     } else {
@@ -14,7 +14,7 @@ bool parser_start_call(Parser *parser, ParseFrame **frame, AstNode *node,
             return false;
         }
         if (mode == AST_RESUME_CALL && node->as.call.target->whole_list) {
-            return parser_fail(parser, target, "A whole list cannot be resumed", "an explicit instance target before %");
+            return parser_fail(parser, target, "A whole list cannot be resumed", EXPECT_INSTANCE_ACCESS);
         }
     }
     size_t indentation = parser->line->indentation;
@@ -26,7 +26,7 @@ bool parser_start_call(Parser *parser, ParseFrame **frame, AstNode *node,
     if (line != NULL && line != parser->end && line->indentation == indentation
         && layout_text_is(line->code, ":")) {
         if (mode == AST_CONSTANT_READ) {
-            return parser_fail(parser, line->code, "Static constant reads have no acquisition alternative", "a subsequent statement");
+            return parser_fail(parser, line->code, "Static constant reads have no acquisition alternative", EXPECT_NEXT_STATEMENT);
         }
         node->span.end = line->code.end;
         parser->line = line->next;

@@ -1,8 +1,8 @@
 #include "../internal.h"
 
-static bool fail_access(Parser *parser, SourceSpan text) {
-    return parser_fail(parser, text, "Invalid variable access",
-        "a Unicode name, optional reference suffix, and optional [] or [named index]");
+static bool fail_access(Parser *parser, SourceSpan text, size_t cursor, ParserExpectation expected) {
+    SourceSpan site = {text.source, cursor, cursor < text.end ? cursor + 1 : cursor};
+    return parser_fail(parser, site, "Invalid or incomplete variable access", expected);
 }
 
 bool parser_access(Parser *parser, SourceSpan text, AstAccess **output) {
@@ -19,13 +19,13 @@ bool parser_access(Parser *parser, SourceSpan text, AstAccess **output) {
         *destination = access;
         access->span = (SourceSpan){text.source, cursor, text.end - depth};
         if (!parser_name(text, &cursor, &access->name)) {
-            return fail_access(parser, text);
+            return fail_access(parser, text, cursor, EXPECT_ACCESS);
         }
         if (cursor < text.end && bytes[cursor] == '&') {
             access->reference = true;
             cursor++;
             if (depth != 0) {
-                return fail_access(parser, text);
+                return fail_access(parser, text, cursor, EXPECT_ACCESS);
             }
         }
         if (cursor == text.end || bytes[cursor] != '[') {
@@ -36,7 +36,7 @@ bool parser_access(Parser *parser, SourceSpan text, AstAccess **output) {
             access->whole_list = true;
             cursor++;
             if (depth != 0) {
-                return fail_access(parser, text);
+                return fail_access(parser, text, cursor, EXPECT_ACCESS);
             }
             break;
         }
@@ -48,7 +48,7 @@ bool parser_access(Parser *parser, SourceSpan text, AstAccess **output) {
         cursor++;
     }
     if (depth != 0 || cursor != text.end) {
-        return fail_access(parser, text);
+        return fail_access(parser, text, cursor, depth != 0 ? EXPECT_RIGHT_BRACKET : EXPECT_ACCESS_END);
     }
     *output = root;
     return true;

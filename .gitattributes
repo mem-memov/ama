@@ -1,2 +1,4 @@
-# Preserve the deliberate CRLF lexer/integration fixture.
-tests/integration/15-call-control/project/main -text whitespace=cr-at-eol
+# Fixtures and expectations are byte-exact data, including literal whitespace
+# and deliberate CRLF/no-final-newline cases. Do not normalize their endings.
+tests/**/project/** -text whitespace=-blank-at-eol
+tests/**/expected*.txt -text whitespace=-blank-at-eol

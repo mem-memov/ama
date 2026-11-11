@@ -12,8 +12,10 @@ The design described here is its acceptance contract, not a claim of availabilit
 The implemented source layer now provides immutable text/spans, pinned Unicode
 identifiers, exact module discovery, collision-checked internal names and
 [structured diagnostics/source mappings](docs/implementation/diagnostic-rendering.md).
-These components have independent and composed tests; language parsing and CLI
-compilation/checking are still upcoming.
+The [syntax frontend](docs/implementation/parser-errors.md) now parses sections,
+declarations, calls/control flow and native binding tables into source-mapped
+structures. These components have independent and composed tests; semantic
+resolution and CLI compilation/checking are still upcoming.
 
 ## Reading the project
 

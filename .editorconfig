@@ -10,12 +10,22 @@ trim_trailing_whitespace = true
 
 [tests/integration/**/project/**]
 indent_size = 1
+end_of_line = unset
+insert_final_newline = false
+trim_trailing_whitespace = false
 
-[tests/integration/15-call-control/project/main]
-end_of_line = crlf
+[tests/integration/**/expected*.txt]
+end_of_line = unset
+insert_final_newline = false
+trim_trailing_whitespace = false
+
 
 [stdlib/modules/**]
 indent_size = 1
+trim_trailing_whitespace = false
 
 [*.{c,h}]
 indent_size = 4
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true

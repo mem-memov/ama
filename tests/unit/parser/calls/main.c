@@ -41,7 +41,7 @@ static void it_rejects_empty_reads_named_placeholders_literal_arguments_and_mixe
     for (size_t index = 0; index < sizeof(invalid) / sizeof(invalid[0]); index++) {
         setup_tree();
         ParseStatus parsed = parse_text(invalid[index]);
-        assert(parsed == PARSE_INVALID && diagnostic_valid(&module.diagnostic));
+        assert(parsed == PARSE_INVALID && diagnostic_valid(&module.error.diagnostic));
         destroy_tree();
     }
 }

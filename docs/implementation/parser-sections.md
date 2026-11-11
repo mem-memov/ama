@@ -20,7 +20,8 @@ The rank invariant proves allowed order and uniqueness by induction over markers
 The current section owns each non-marker line until the next marker, so intervals
 partition section content without interpreting names. Both finite passes advance
 one line each iteration: O(lines + active whitespace bytes) time, constant storage.
-Errors include an exact primary span and deterministic expected structure.
+Errors include an exact primary span and a stable ParseError grammar expectation;
+see the [error contract](parser-errors.md).
 
 Evidence: `make -C tests/unit/parser/module` passed C11/pedantic/Werror. Cases cover
 unfinished drafts, false activation inside payload/comments, empty constants and

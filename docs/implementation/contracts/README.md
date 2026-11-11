@@ -58,6 +58,7 @@ must still supply their own arguments and executable evidence when implemented.
 
 | Component boundary | Contract and argument | Executable evidence |
 | --- | --- | --- |
+| Grammar expectations and frontend composition | [Error/composition contract](../parser-errors.md); deterministic grammar keys and real source/AST/native handoffs | [Error tests](../../../tests/unit/parser/errors/main.c), [access model](../../../tests/unit/parser/access/main.c), [frontend integration](../../../tests/integration/parser/grammar/main.c) |
 | Fixed native ABI record parsing | [ABI parser contract](../abi-parser.md); six-slot uniqueness and explicit lexical recognition | [ABI parser tests](../../../tests/unit/parser/abi/main.c) |
 | Call bindings and positional holes | [Call contract](../call-bindings.md); finite-state list invariants and independent counters | [Call tests](../../../tests/unit/parser/calls/main.c) |
 | Source AST and structural statement parsing | [AST contract](../syntax-tree.md); grammar simulation with explicit frames/access chains | [Tree tests](../../../tests/unit/parser/tree/main.c) |
@@ -77,6 +78,6 @@ must still supply their own arguments and executable evidence when implemented.
 | Entry disappearance and Ama-shaped label transfers | [Toolchain contract](../native-toolchain.md); exact symbol-family validation plus required compiler enforcement | [Symbol tests](../../../tests/unit/native/toolchain/symbols/main.c), [GCC probes](../../../tests/integration/native/toolchain/main.c) |
 | Native representations, status and typed hook composition | [ABI](../native-abi.md), [status](../native-status.md), [hook harness](../native-hooks.md) | [ABI suites](../../../tests/unit/native/abi/Makefile) |
 
-Language parsing, typed IR and full pool/execution contracts will
+Typed IR and full pool/execution contracts will
 be added only as those components are implemented. The registry does not certify
 those future components or the language as a whole.

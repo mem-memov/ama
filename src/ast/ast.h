@@ -3,6 +3,7 @@
 
 #include "parser/module/sections.h"
 #include "parser/status.h"
+#include "parser/error/error.h"
 
 typedef struct AstAccess {
     SourceSpan span;
@@ -90,7 +91,7 @@ typedef struct {
     AstBlock parameters;
     AstBlock results;
     AstBlock body;
-    Diagnostic diagnostic;
+    ParseError error;
     bool valid;
 } AstModule;
 

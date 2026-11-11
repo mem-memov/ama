@@ -28,7 +28,7 @@ static bool finish_frame(Parser *parser, ParseFrame **frame) {
     }
     if (current->kind == FRAME_LOOP) {
         if (!at_owner || !layout_text_is(line->code, "}")) {
-            return parser_fail(parser, parser_site(parser), "A loop requires its closing marker", "} at the condition's indentation");
+            return parser_fail(parser, parser_site(parser), "A loop requires its closing marker", EXPECT_LOOP_CLOSE);
         }
         current->owner->span.end = line->code.end;
         parser->line = line->next;
@@ -53,7 +53,7 @@ bool parser_body(Parser *parser, ParsedSection section, AstBlock *output) {
             }
         } else if (parser->line->indentation != frame->indentation) {
             return parser_fail(parser, parser_site(parser), "Unexpected indentation",
-                "exactly one additional space for a nested body");
+                EXPECT_NESTING);
         } else if (!parser_statement(parser, &frame)) {
             return false;
         }

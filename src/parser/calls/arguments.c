@@ -17,7 +17,7 @@ bool parser_call_arguments(Parser *parser, AstNode *node, size_t indentation) {
     }
     if ((node->as.call.mode == AST_RETAINED_READ || node->as.call.mode == AST_CONSTANT_READ)
         && node->as.call.output_count == 0) {
-        return parser_fail(parser, node->span, "A retained read needs at least one receiver", ">> receiver");
+        return parser_fail(parser, node->span, "A retained read needs at least one receiver", EXPECT_READ_RECEIVER);
     }
     return true;
 }

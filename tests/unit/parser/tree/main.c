@@ -22,6 +22,20 @@ static void it_builds_typed_declarations_and_preserves_each_initializer_source_f
     destroy_tree();
 }
 
+static void it_preserves_embedded_nul_in_literal_payload_without_string_interpretation(void) {
+    setup_tree();
+    const unsigned char bytes[] = {'@', '!', '\n', 'a', '\n', '.', 't', '\n', ' ', '|', 'x', 0, 'y', '\n'};
+    const SourceText *source;
+    SourceStatus added = source_manager_add(&sources, "literal", bytes, sizeof(bytes), &source);
+    assert(added == SOURCE_OK);
+    ParseStatus parsed = parser_module_parse(&module, source);
+    assert(parsed == PARSE_OK);
+    SourceSpan payload = module.body.first->as.declaration.first->source->payload;
+    assert(payload.end - payload.start == 3);
+    assert(memcmp(source_bytes(payload.source) + payload.start, bytes + 10, 3) == 0);
+    destroy_tree();
+}
+
 static void it_represents_assignments_nested_indices_calls_reads_and_resume(void) {
     setup_tree();
     ParseStatus parsed = parse_text("@!\ndestination\n source\nreference&\n &items[positions[index]]\n"
@@ -72,7 +86,7 @@ static void it_rejects_invalid_accesses_layout_and_incomplete_active_declaration
         if (parsed == PARSE_OK) {
             fprintf(stderr, "Unexpected acceptance: %s\n", invalid[index]);
         }
-        assert(parsed == PARSE_INVALID && !module.valid && diagnostic_valid(&module.diagnostic));
+        assert(parsed == PARSE_INVALID && !module.valid && diagnostic_valid(&module.error.diagnostic));
         destroy_tree();
     }
 }
@@ -159,6 +173,7 @@ static void it_cleans_every_failed_allocation_in_composed_tree_construction(void
 
 void run(void) {
     it_builds_typed_declarations_and_preserves_each_initializer_source_form();
+    it_preserves_embedded_nul_in_literal_payload_without_string_interpretation();
     it_represents_assignments_nested_indices_calls_reads_and_resume();
     it_builds_branches_loops_and_control_without_a_symbol_table();
     it_rejects_invalid_accesses_layout_and_incomplete_active_declarations();

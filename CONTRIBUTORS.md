@@ -38,7 +38,9 @@ Ama nesting uses exactly one space. Target sections are optional `@=` shared
 constants, optional `@<`/`@>` interfaces, then `@!` or `@C`. Constants-only files
 are complete; files with none of `@=`, `@!`, `@C` are drafts. Blank lines never
 delimit sections. A literal's payload after `|` is data and must not be trimmed
-or reformatted. Preserve deliberate CRLF fixtures; ordinary source/docs use LF.
+or reformatted. Preserve deliberate CRLF fixtures and missing final newlines;
+ordinary source/docs use LF. Editor/Git rules treat fixture inputs and expectations
+as byte-exact data; never trim their literal payload or normalize their endings.
 
 ## Components form a tree of small operations
 

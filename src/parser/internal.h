@@ -19,7 +19,7 @@ typedef struct ParseFrame {
     ParseFrameKind kind;
 } ParseFrame;
 
-bool parser_fail(Parser *parser, SourceSpan span, const char *message, const char *expected);
+bool parser_fail(Parser *parser, SourceSpan span, const char *message, ParserExpectation expected);
 void *parser_allocate(Parser *parser, size_t size, SourceSpan site);
 SourceSpan parser_site(const Parser *parser);
 const LayoutLine *parser_significant(const LayoutLine *line, const LayoutLine *end, bool *blank);

@@ -1,0 +1,36 @@
+@=
+版本
+.types.text
+ |@C # data	  
+@<
+目标&
+.shop.item
+@>
+结果[]
+.shop.item
+@!
+items&[]
+.shop.item
+ &owned
+copy
+.shop.item
+ %original
+worker!
+ < first
+ <
+ >
+ > selected
+sensor
+ >> selected
+ready
+?
+ worker%
+  >
+:
+ %
+active
+{
+ ^
+}
+.catalog
+ value >> selected

@@ -3,11 +3,11 @@
 bool parser_append_argument(Parser *parser, AstNode *node, AstArgument *argument) {
     bool named = argument->label != NULL;
     if (node->as.call.first != NULL && named != node->as.call.named) {
-        return parser_fail(parser, argument->span, "Named and positional bindings cannot mix", "one binding style throughout a call");
+        return parser_fail(parser, argument->span, "Named and positional bindings cannot mix", EXPECT_BINDING_STYLE);
     }
     if (named && node->as.call.target != NULL && node->as.call.target->whole_list) {
         return parser_fail(parser, argument->span, "Whole-list bindings use the fixed positional interface",
-            "positional <, > or >> bindings");
+            EXPECT_POSITIONAL_BINDING);
     }
     AstCallMode mode = node->as.call.mode;
     if ((mode == AST_ENTRY_CALL && argument->kind == AST_SAVED_OUTPUT)
@@ -15,7 +15,7 @@ bool parser_append_argument(Parser *parser, AstNode *node, AstArgument *argument
         || ((mode == AST_RETAINED_READ || mode == AST_CONSTANT_READ) && argument->kind != AST_SAVED_OUTPUT)
         || (argument->kind == AST_INPUT && node->as.call.output_count != 0)) {
         return parser_fail(parser, argument->marker, "Binding marker is not allowed in this call mode/order",
-            mode == AST_ENTRY_CALL ? "inputs < before outputs >" : mode == AST_RESUME_CALL ? "outputs > only" : "retained outputs >> only");
+            mode == AST_ENTRY_CALL ? EXPECT_ENTRY_BINDINGS : mode == AST_RESUME_CALL ? EXPECT_RESUME_BINDINGS : EXPECT_READ_BINDINGS);
     }
     node->as.call.named = named;
     argument->position = argument->kind == AST_INPUT

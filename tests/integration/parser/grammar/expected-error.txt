@@ -1,0 +1,5 @@
+project/broken:3:4: error[syntax]: Literal data is allowed only in declaration initialization
+    3 |  < |12
+    span: bytes [14, 17)
+    expected: a named value/reference, qualified constant, or explicit copy source
+    help: Initialize a typed declaration with | first, then use its name here

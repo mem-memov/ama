@@ -1,0 +1,1 @@
+/* A companion does not activate a draft. */

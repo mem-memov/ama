@@ -16,7 +16,7 @@ ParseStatus parser_abi_parse(AbiTable *table, const SourceText *source) {
         read = layout_validate(&table->layout, true);
     }
     if (read != LAYOUT_OK) {
-        table->diagnostic = table->layout.diagnostic;
+        parser_error_from_layout(&table->error, &table->layout.diagnostic);
         return read == LAYOUT_OUT_OF_MEMORY ? PARSE_OUT_OF_MEMORY : PARSE_INVALID;
     }
     for (const LayoutLine *line = table->layout.first; line != NULL; line = line->next) {
@@ -27,7 +27,7 @@ ParseStatus parser_abi_parse(AbiTable *table, const SourceText *source) {
     if (!table->bindings[ABI_DEFAULT].present || !table->bindings[ABI_DESTROY].present) {
         size_t end = source_length(source);
         abi_fail(table, (SourceSpan){source, end, end}, "Mandatory ABI lifecycle bindings are missing",
-            !table->bindings[ABI_DEFAULT].present ? "+ default-construction binding" : "- destruction binding");
+            !table->bindings[ABI_DEFAULT].present ? EXPECT_ABI_CONSTRUCTOR : EXPECT_ABI_DESTRUCTOR);
         return PARSE_INVALID;
     }
     table->valid = true;

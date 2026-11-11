@@ -114,11 +114,23 @@ remain their subsequent tasks; this section does not claim a working compiler.
   distinguish them from named bindings and retained `>>` requests.
 - [x] Parse the fixed `.abi` records and report malformed, duplicate, unknown or
   missing mandatory bindings at their exact locations.
-- [ ] Add syntax-error explanations and deterministic expected-token information.
+- [x] Add syntax-error explanations and deterministic expected-token information.
   Do not use declared-name lookup to decide which construct a line represents.
 
 Ready when: complete valid and invalid grammar cases have independently runnable
 parser tests; parsing does not depend on executable code generation.
+
+Section 4 is complete. [Frontend contracts and evidence](docs/implementation/parser-errors.md)
+cover byte-preserving layout, exact draft activation/sections, a source-mapped AST,
+iterative nested access/control parsing, call placeholders/modes and fixed ABI
+records. Grammar expectations have stable keys and precise source diagnostics;
+recognition never looks up aliases or creates hidden numeric values. Eight new
+leaves contain 35 explicit scenarios, including finite access/call models, deep
+nesting, truncation and allocation failures. The composed suite loads actual files,
+renders handwritten diagnostic expectations and compiles/runs typed native-binding
+probes. Full release/Werror tests and focused ASan/UBSan passed (LeakSanitizer
+remains disabled). Semantic checks and CLI integration stay in subsequent sections;
+no code generator or runnable Ama program is claimed by parser completion.
 
 ## 5. Resolve dependencies, types, capabilities and storage plans
 

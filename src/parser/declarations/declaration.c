@@ -25,14 +25,14 @@ bool parser_declaration(Parser *parser, size_t indentation, AstNode *node) {
         return false;
     }
     if (!parser_declaration_name(node->as.declaration.name)) {
-        return parser_fail(parser, node->span, "An indexed access is not a declaration name", "name, name&, name[] or name&[]");
+        return parser_fail(parser, node->span, "An indexed access is not a declaration name", EXPECT_DECLARATION_NAME);
     }
     parser->line = parser->line->next;
     parser_skip_layout(parser);
     if (parser->line == NULL || parser->line == parser->end
         || parser->line->indentation != indentation || !parser_path(parser->line->code)) {
         return parser_fail(parser, parser_site(parser), "A declaration needs its module type on the next code line",
-            "a module path at the declaration's indentation");
+            EXPECT_TYPE_LINE);
     }
     node->as.declaration.type = parser->line->code;
     node->span.end = parser->line->code.end;
@@ -55,7 +55,7 @@ bool parser_declarations(Parser *parser, ParsedSection section, AstBlock *output
         AstNode *node = parser_node(parser, AST_DECLARATION, parser->line->code);
         if (node == NULL || parser->line->indentation != 0) {
             return node == NULL ? false : parser_fail(parser, parser_site(parser),
-                "Section declarations start at indentation zero", "a declaration at column one");
+                "Section declarations start at indentation zero", EXPECT_TOP_DECLARATION);
         }
         if (!parser_declaration(parser, 0, node)) {
             return false;

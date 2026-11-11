@@ -8,14 +8,14 @@ static bool constant_source(Parser *parser, SourceSpan text, AstSource *source) 
         path.end -= 2;
     }
     if (!parser_path(path)) {
-        return parser_fail(parser, text, "Invalid qualified constant source", ".module.member or .module.member[]");
+        return parser_fail(parser, text, "Invalid qualified constant source", EXPECT_CONSTANT_SOURCE);
     }
     size_t last_dot = path.end;
     while (last_dot > path.start && bytes[last_dot - 1] != '.') {
         last_dot--;
     }
     if (last_dot <= path.start + 1) {
-        return parser_fail(parser, text, "A constant source needs a module and member", ".module.member");
+        return parser_fail(parser, text, "A constant source needs a module and member", EXPECT_QUALIFIED_CONSTANT);
     }
     source->kind = AST_CONSTANT_SOURCE;
     source->module_path = (SourceSpan){text.source, path.start, last_dot - 1};
@@ -25,6 +25,9 @@ static bool constant_source(Parser *parser, SourceSpan text, AstSource *source) 
 
 bool parser_source(Parser *parser, const LayoutLine *line, SourceSpan text,
     bool literal_allowed, AstSource **output) {
+    if (!literal_allowed && text.start < text.end && source_bytes(text.source)[text.start] == '|') {
+        return parser_fail(parser, text, "Literal data is allowed only in declaration initialization", EXPECT_COPY_SOURCE);
+    }
     AstSource *source = parser_allocate(parser, sizeof(*source), text);
     if (source == NULL) {
         return false;
@@ -50,7 +53,7 @@ bool parser_source(Parser *parser, const LayoutLine *line, SourceSpan text,
         if ((prefix == '&' && !parser_owned_access(source->access))
             || (prefix == '%' && source->access->whole_list)) {
             return parser_fail(parser, text, "Invalid acquisition or continuation-copy operand",
-                prefix == '&' ? "an owned instance access after &" : "an instance access after %");
+                prefix == '&' ? EXPECT_OWNED_ACCESS : EXPECT_INSTANCE_ACCESS);
         }
     }
     *output = source;

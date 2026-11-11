@@ -2,6 +2,7 @@
 #define AMA_PARSER_SECTIONS_H
 
 #include "lexer/layout/layout.h"
+#include "parser/error/error.h"
 
 typedef enum { MODULE_DRAFT, MODULE_CONSTANTS, MODULE_AMA, MODULE_NATIVE } ParsedModuleKind;
 typedef struct {
@@ -20,6 +21,6 @@ typedef struct {
 /* Recognize genuine activation markers before validating active whitespace.
  * Output is published only on success; section views borrow layout. This stage
  * checks section structure only; declarations/body are parsed by their stages. */
-bool parser_sections(SourceLayout *layout, ModuleSections *output, Diagnostic *error);
+bool parser_sections(SourceLayout *layout, ModuleSections *output, ParseError *error);
 
 #endif

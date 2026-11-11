@@ -7,7 +7,7 @@ static void it_keeps_unfinished_files_drafts_without_literal_or_comment_activati
         LayoutStatus read = read_layout(drafts[index]);
         assert(read == LAYOUT_OK);
         ModuleSections sections;
-        Diagnostic error;
+        ParseError error;
         bool parsed = parser_sections(&layout, &sections, &error);
         assert(parsed && sections.kind == MODULE_DRAFT);
         destroy_layout();
@@ -22,7 +22,7 @@ static void it_accepts_empty_constants_and_both_implementation_kinds(void) {
         LayoutStatus read = read_layout(sources[index]);
         assert(read == LAYOUT_OK);
         ModuleSections sections;
-        Diagnostic error;
+        ParseError error;
         bool parsed = parser_sections(&layout, &sections, &error);
         assert(parsed && sections.kind == kinds[index]);
         destroy_layout();
@@ -37,9 +37,9 @@ static void it_rejects_active_section_order_duplicates_and_native_content(void) 
         LayoutStatus read = read_layout(invalid[index]);
         assert(read == LAYOUT_OK);
         ModuleSections sections = {0};
-        Diagnostic error;
+        ParseError error;
         bool parsed = parser_sections(&layout, &sections, &error);
-        assert(!parsed && diagnostic_valid(&error) && sections.kind == MODULE_DRAFT);
+        assert(!parsed && diagnostic_valid(&error.diagnostic) && sections.kind == MODULE_DRAFT);
         destroy_layout();
     }
 }

@@ -8,11 +8,11 @@ bool parser_binding(Parser *parser, AstArgument *argument) {
         marker++;
     }
     if (marker == text.end) {
-        return parser_fail(parser, text, "Expected a call binding", "< source, > receiver, or >> receiver");
+        return parser_fail(parser, text, "Expected a call binding", EXPECT_CALL_BINDING);
     }
     if (marker != text.start) {
         if (bytes[marker - 1] != ' ') {
-            return parser_fail(parser, text, "Named binding components need spaces", "name < source, name > receiver, or name >> receiver");
+            return parser_fail(parser, text, "Named binding components need spaces", EXPECT_NAMED_BINDING);
         }
         SourceSpan label = {text.source, text.start, marker};
         while (label.end > label.start && bytes[label.end - 1] == ' ') {
@@ -20,7 +20,7 @@ bool parser_binding(Parser *parser, AstArgument *argument) {
         }
         if (!parser_access(parser, label, &argument->label)
             || !parser_declaration_name(argument->label)) {
-            return parser_fail(parser, label, "A binding label must be a declaration name", "name, name&, name[] or name&[]");
+            return parser_fail(parser, label, "A binding label must be a declaration name", EXPECT_DECLARATION_NAME);
         }
     }
     size_t end = marker + 1;
@@ -35,7 +35,7 @@ bool parser_binding(Parser *parser, AstArgument *argument) {
         return true;
     }
     if (end == text.end || bytes[end] != ' ') {
-        return parser_fail(parser, text, "A binding requires a separated operand", "a space and source/receiver after the marker");
+        return parser_fail(parser, text, "A binding requires a separated operand", EXPECT_BOUND_OPERAND);
     }
     while (end < text.end && bytes[end] == ' ') {
         end++;

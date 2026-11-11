@@ -3,10 +3,10 @@
 ParseStatus parser_module_parse(AstModule *module, const SourceText *source) {
     LayoutStatus read = layout_read(&module->layout, source);
     if (read != LAYOUT_OK) {
-        module->diagnostic = module->layout.diagnostic;
+        parser_error_from_layout(&module->error, &module->layout.diagnostic);
         return read == LAYOUT_OUT_OF_MEMORY ? PARSE_OUT_OF_MEMORY : PARSE_INVALID;
     }
-    if (!parser_sections(&module->layout, &module->sections, &module->diagnostic)) {
+    if (!parser_sections(&module->layout, &module->sections, &module->error)) {
         return PARSE_INVALID;
     }
     if (module->sections.kind == MODULE_DRAFT) {
@@ -21,7 +21,7 @@ ParseStatus parser_module_parse(AstModule *module, const SourceText *source) {
         parsed = parser_body(&parser, module->sections.implementation, &module->body);
     }
     if (!parsed) {
-        return module->diagnostic.code == DIAGNOSTIC_OUT_OF_MEMORY ? PARSE_OUT_OF_MEMORY : PARSE_INVALID;
+        return module->error.diagnostic.code == DIAGNOSTIC_OUT_OF_MEMORY ? PARSE_OUT_OF_MEMORY : PARSE_INVALID;
     }
     module->valid = true;
     return PARSE_OK;
