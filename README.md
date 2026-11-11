@@ -66,6 +66,25 @@ Keep generated output in its own directory. The compiler scans non-hidden
 files recursively, excluding `.c` and `.h` files; the remaining files are Ama
 interfaces or implementations. Companion C sources are compiled separately.
 
+## Target execution model
+
+Ama is stackless: ordinary modules must compile to labeled blocks and `goto`
+transfers inside one C execution function. Explicit continuation selectors return
+control to the appropriate call site. State and parameter/result data live in
+explicit storage, without a C call stack or a replacement activation stack.
+Recursion and reentry into an active instance are excluded by this model.
+
+`@C` function code must be inlined, including relevant helper and lifecycle paths.
+Ordinary `inline` declarations or LTO alone do not guarantee compliance. A supported
+toolchain must enforce the requirement and reject unsupported cases; external
+library calls have no implied exemption. The compiler itself may use C functions.
+
+The implemented numeric backend and typed C-call adapters currently use C calls
+and do not yet satisfy this target. The priority migration plan is in `TODO.md`,
+and the normative execution requirement is in `EBNF.md`. Parameter/result data
+structures called "frames" in the prototype are data containers, not a decision
+to use stack activation records.
+
 ## Modules and declarations
 
 Module sections begin with visible annotations on their own lines:

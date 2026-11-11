@@ -8,6 +8,26 @@ compilation still generates the existing numeric program and native signatures. 
 validation/calls, checked references, lists, and library-defined index/condition
 protocols are subsequent work.
 
+## Execution constraint and prototype status
+
+The normative target in `EBNF.md` is stackless. Ordinary Ama modules execute as
+labeled blocks with direct jumps and explicit continuation selection inside one
+C execution function. `@C` implementations must be inlined, not invoked through
+an ordinary C call stack. No substitute activation stack is allowed.
+
+The function-pointer lifecycle callbacks and C-call adapters documented below
+are implemented prototypes and do not satisfy that target. Their successful tests
+establish layout, ownership, copying, and failure behavior, not stackless execution.
+Reuse these data contracts while replacing ordinary module calls with labels and
+specializing lifecycle/native operations so required calls cannot remain.
+
+A "frame" here is explicit parameter/result data. Prepared and retained data may
+remain useful in a stackless backend; they are not C stack activation records.
+Mandatory native inlining and treatment of transitive library calls still need
+implementation and supported-toolchain verification. Plain `inline`/LTO is not a
+guarantee. The compiler's own implementation is outside this execution constraint.
+The priority replacement work is recorded in `TODO.md`.
+
 ## State belongs to its owner
 
 An Ama type describes the state of one module instance. Its C representation can

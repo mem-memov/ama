@@ -96,7 +96,7 @@ constants from executable modules and unfinished drafts. Replacing `@Ama` with
 - Execution works over a selected state; calling does not require copying it.
 - Application code controls reactions and the order of child calls.
 - Repeated identical calls still execute the body repeatedly.
-- Every call uses a mandatory trailing `!` immediately after the complete target,
+- Every execution call uses a mandatory trailing `!` immediately after the complete target,
   whether or not it has arguments: `worker!`, `target&!`, `items[position]!`,
   `targets&[position]!`, `items[]!`, and `targets&[]!`. Arguments keep their
   separate indented lines. Bare names do not execute modules. A standalone `^`
@@ -106,7 +106,9 @@ constants from executable modules and unfinished drafts. Replacing `@Ama` with
 - Parameters and results reset to defaults before ordinary body execution, then
   retain their values until the next execution. Body variables persist.
 - `>>` selects a read of saved results with no resets or body execution. Such
-  calls forbid `<` and `>`, expose only results, and retain the `!` suffix.
+  reads forbid `<`, `>`, and the target suffix `!`, and expose only results.
+  For example, `sensor` followed by ` measurement >> value` reads without
+  executing; `sensor!` executes and cannot contain `>>`.
   Before first execution, saved results have their declared defaults. The `?`
   condition marker has no query meaning.
 - Explicit state cloning is a required capability.
@@ -353,8 +355,8 @@ The ordinary execution-call protocol is:
 4. Execute the body using the selected internal state.
 5. Copy requested results back and retain the resulting object/interface state.
 
-A retained-result call is selected by `>>` anywhere in its fully validated
-argument list. It copies requested results without steps 2-4, never accepts
+A retained-result read uses a target without `!` and one or more `>>` requests
+in its fully validated argument list. `target!` with `>>` is an error. It copies requested results without steps 2-4, never accepts
 parameters or mixed `>` arrows, and uses existing defaults before first execution.
 The current numeric compiler initializes default instances statically for this
 contract; future type-directed instance creation must do the same semantically.
@@ -928,13 +930,70 @@ that can be passed to every function.
 Do not implement every part at once. Resolve a small set of complete programs
 before changing the grammar.
 
-### Implementation order
+### Stackless execution: binding requirement and immediate priority
 
-Follow these stages in order. The target syntax is now recorded in `EBNF.md`;
+The accepted execution model is now normative in `EBNF.md`:
+
+- Ordinary Ama modules become labeled blocks in one generated C execution
+  function. Calls and returns are direct label transfers, not C function calls.
+- Multiple call sites use explicit continuation selectors and return dispatch.
+  Keep control storage per active instance, separate from persistent values and
+  parameter/result data. Do not introduce an activation stack, including a
+  disguised heap stack or dynamic chain of continuations.
+- `@C` function code must be mandatorily inlined. Apply the same constraint to
+  native helpers and generated lifecycle operations; plain `inline` or LTO is
+  not evidence that a required call disappeared.
+- Reject recursive calls, active-instance reentry, and unsupported native code
+  that would leave a required C call. Allocation/I/O and external libraries have
+  no implicit exception and require an explicit compatible implementation plan.
+- This constraint applies to generated program execution, not to the compiler
+  implementation. Hardware stack spills and compiler-generated helper calls need
+  target-specific verification beyond source-level C control-flow checks.
+
+Current numeric module functions and typed callback-based invocation are
+nonconforming transitional implementations. Completed checkboxes below record
+what exists; they do not certify compliance with stackless execution. Preserve
+validated declarations, identities, source locations, layouts, explicit data
+storage, and ownership/failure rules. Replace the call-based execution strategy
+before extending typed executable-body generation on top of it.
+
+Immediate work, in order:
+
+1. [ ] Audit generated numeric execution, typed call adapters, lifecycle callback
+   dispatch, and native/helper/library calls. Classify reusable data contracts
+   separately from execution mechanisms that must be replaced.
+2. [ ] Define a small execution representation for module entry labels, call-site
+   continuation labels/selectors, exit dispatch, early returns, and failure paths.
+   Specify static validation for recursion and active-instance reentry, without
+   storing a dynamic activation chain.
+3. [ ] Generate ordinary Ama modules as labeled blocks in one C execution
+   function. Preserve per-call defaults, persistent state, and retained-result
+   reads through explicit data movement and label transfers.
+4. [ ] Choose and implement mandatory `@C` inlining for the supported toolchain.
+   Specify native code eligibility and diagnostics for unsupported cases. Resolve
+   allocation, I/O, and transitive external calls without silently granting them
+   an exception. Reject code when the required inlining cannot be guaranteed.
+5. [ ] Specialize initialization, copy, move, and destruction for known types so
+   generated execution does not call descriptor function pointers. Retain type
+   descriptors as metadata where useful, without runtime indirect dispatch.
+6. [ ] Test shared module bodies with multiple callers, nested acyclic calls,
+   continuation selection, early exits, native errors, and retained reads. Reject
+   recursion and reentry. Compile under supported optimization settings and verify
+   that required native/helper calls do not survive; keep machine-code stack
+   verification distinct from checking generated C module control flow.
+7. [ ] Resume typed body binding and executable project integration using this
+   execution model, then migrate and retire transitional call-based backends.
+
+### Original migration sequence (progress reference)
+
+The immediate stackless work above takes precedence over this original sequence.
+The following stages retain the broader migration context and completed progress;
+they must not be used to extend the transitional call-based backend.
+The target syntax is now recorded in `EBNF.md`;
 it deliberately precedes implementation. Earlier exploratory syntax elsewhere
 in this design log must not override that revision. In particular, use suffix
 reference names (`target&`, `targets&[]`), prefix acquisition (`&item`), `|`
-line literals, `@!`, `@=`, and mandatory trailing `!` for all calls; do not
+line literals, `@!`, `@=`, and trailing `!` for execution calls only; do not
 reintroduce `*` or `()`.
 
 1. **Shared identities and deterministic internal C names.** Establish full
@@ -942,8 +1001,8 @@ reintroduce `*` or `()`.
    checks, and original Unicode labels for diagnostics. Migrate generated types,
    fields, functions, native interfaces, and headers together. Finish when all
    existing tests pass, Unicode native names work, `shop/item` and `shop_item`
-   are distinct, and controlled collisions are rejected. This is the selected
-   first coding task; it does not require new syntax or a new value ABI.
+   are distinct, and controlled collisions are rejected. This foundational
+   task did not require new syntax or a new value ABI.
 2. **Source locations and mappings.** Preserve source path, line, and column
    information at the parsing boundaries so later syntax changes keep useful
    diagnostics. Emit escaped `#line` directives for executable regions, retain
@@ -961,7 +1020,8 @@ reintroduce `*` or `()`.
 4. **Target declarations and literal syntax.** Parse explicit module-typed
    declarations, suffix reference/list forms, indented named-value assignments,
    and `|` initialization lines. Introduce `@!`, `@=`, and mandatory `!` on
-   every call target so parsing no longer consults alias declarations. Remove special integer
+   execution targets only; recognize retained reads from an unmarked target and
+   indented `>>` requests, without consulting alias declarations. Remove special integer
    expression literals and implicit numeric variable creation; do not synthesize
    hidden integer variables. Verify whitespace, payload preservation, declaration
    versus call disambiguation, constant-module restrictions, and migration errors.
@@ -1035,8 +1095,9 @@ representation in stage 3 before changing declaration syntax or value layout.
   Copy token spellings, borrow project-owned source paths, preserve argument order
   and `#line` locations, use stable module-owned allocations and iterative cleanup,
   and bound active block nesting at 128 levels (including the module body).
-- [x] Decide explicit call syntax: mandatory trailing `!` for all calls, with
-  arguments or without; record it in `EBNF.md`.
+- [x] Implement the earlier syntax with `!` on all calls, with arguments or
+  without. This historical behavior is superseded for retained reads by the
+  target rule below; the current parser still needs migration.
 - [x] Implement the call suffix in the lexer/parser, remove declaration-based
   classification, migrate fixtures/examples, preserve argument/result ordering,
   and replace standalone `!` breaks with `^`. The numeric ABI and assignment
@@ -1062,6 +1123,31 @@ representation in stage 3 before changing declaration syntax or value layout.
   first execution; retain those slots after return, including early return.
 - [x] Test repeated reads, positional/named rules, initial and retained values,
   native side effects, mixed arrows, and ordinary calls following reads.
+
+### Call markers: execution `!`, retained reads without `!` (target rule)
+
+- [x] Update `EBNF.md`: `target!` executes; `target` with one or more indented
+  `>>` requests reads saved results. `!` draws attention to execution and possible
+  target-state changes. Reading still writes caller-side receiver values.
+- [ ] Split syntax recognition into marked execution and unmarked retained read.
+  Disambiguate the latter from declarations and assignments by its indented
+  `>>` requests, without resolving module aliases during parsing.
+- [ ] Reject `target!` with any `>>`, unmarked targets without read requests,
+  and unmarked reads containing `<` or `>`. Validate the whole argument list
+  before any reset or execution; do not silently change execution into reading.
+- [ ] Preserve named/positional consistency, saved defaults before first execution,
+  result-only visibility, checked target access, and the optional `:` alternative.
+  Reading must not jump into the target body or reset target storage.
+- [ ] Migrate relevant lexer/parser/semantic fixtures and implemented-language
+  documentation when the code changes. Cover owned/reference, indexed/list,
+  Unicode and CRLF targets, no-argument execution, mixed arrows in both orders,
+  `!`-marked read rejection, and bare target rejection.
+- [ ] Carry this distinction into the stackless execution representation: only
+  execution calls prepare an invocation and transfer control to an entry label;
+  retained reads copy stored results without a target-body transfer.
+
+The new syntax is specified, not implemented. Existing numeric read fixtures
+still use `!`; keep their passing status distinct from target syntax compliance.
 
 ### Typed declaration frontend (implemented separately from the CLI)
 
@@ -1146,12 +1232,13 @@ reference/list semantics remain pending. Old numeric fixtures still run.
 - [x] Test preparation/execution failure, omitted inputs, saved reads, zero-argument
   native functions, and C compiler rejection of mismatching native definitions.
 
-Next: bind and validate typed Ama body operations, then generate execution and
-calls using these adapters. Specify grouped result delivery and source-located
-runtime failure propagation before connecting ordinary typed project execution.
-References, lists, and whole-call failure transactions still need their own
-contracts; executable compilation retains the numeric ABI. Object lifetime
-handles and busy-state tracking are not implemented.
+Next: follow the immediate stackless-execution work above before extending
+executable body generation. These C-call adapters are a tested ownership/retention
+prototype, not the target Ama execution backend. Reuse their data and failure
+contracts while replacing invocation and lifecycle callback dispatch. Grouped
+result delivery and source-located failure propagation remain pending, as do
+references, lists, object lifetime handles, and busy-state tracking. Current
+numeric executable compilation also requires migration to labels and jumps.
 
 ### Following type and syntax tasks
 

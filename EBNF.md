@@ -6,7 +6,9 @@ literals are supported by `--generate-type-layouts` and its parser/initializer
 checker. Executable compilation still uses the numeric language. Typed module
 execution, references, lists, `@!`, and `@=` require integration work.
 Retained-result reads through `>>` are implemented for current numeric modules.
-The mandatory call suffix `!` and loop exit `^` are implemented. See
+The current parser still requires `!` for retained reads; the target grammar
+below removes it from `>>` reads. Execution-call suffix `!` and loop exit `^`
+are implemented. See
 `README.md` for the currently executable language and `TODO.md` for the migration
 plan. Examples below describe the target language, not runnable current fixtures.
 
@@ -321,10 +323,11 @@ append
 ```
 
 After a name line, a module path at the same indent identifies a declaration.
-An indented source identifies assignment. A target immediately followed by `!`
-identifies a call, with or without arguments; recognizing it does not depend on
-looking up declared aliases. A bare target is not a call. `?` and `{` at the same
-indent select control flow. No mandatory `*` or call suffix `()` is introduced.
+An indented copy source identifies assignment. A target immediately followed by
+`!` identifies execution, with or without arguments. A target without `!` followed
+by one or more indented `>>` requests identifies a retained-result read. Neither
+form requires looking up declared aliases to recognize syntax. A bare target
+without `>>` requests is not a call. `?` and `{` at the same indent select control flow. No mandatory `*` or call suffix `()` is introduced.
 
 ### 4.1 Assignment
 
@@ -358,10 +361,13 @@ failure cleanup must follow the type's lifecycle contract.
 ### 4.2 Calls and their alternative
 
 ```ebnf
-<call(n)>       ::= <indent(n)> <call-target> "!" <line-end>
-                    <layout>
-                    ( <execution-arguments(n+1)> | <read-arguments(n+1)> )
+<call(n)>       ::= ( <execution-call(n)> | <read-call(n)> )
                     [ <indent(n)> ":" <line-end> <body(n+1)> ]
+<execution-call(n)>
+                ::= <indent(n)> <call-target> "!" <line-end>
+                    <layout> <execution-arguments(n+1)>
+<read-call(n)>  ::= <indent(n)> <call-target> <line-end>
+                    <layout> <read-arguments(n+1)>
 <execution-arguments(n)>
                 ::= { <indent(n)> <parameter> <line-end> <layout> }
                     { <indent(n)> <result> <line-end> <layout> }
@@ -382,10 +388,12 @@ Either mode uses positional arguments or named arguments throughout; positional
 order follows interface declaration order. Named labels include the storage suffixes from
 the interface, such as `target&`.
 
-The suffix `!` is mandatory for every call, including calls without arguments.
-It immediately follows the complete target, with no intervening whitespace.
-Arguments remain on separate lines one level deeper; `()` is not used. Name
-resolution and target type checks occur after syntax recognition.
+The suffix `!` is mandatory for execution calls, including zero-argument calls,
+and forbidden on retained-result reads. It marks execution that may change the
+target's state, not merely access to stored outputs. On execution calls it follows
+the complete target immediately, with no intervening whitespace. Arguments remain
+on separate lines one level deeper; `()` is not used. Name resolution and target
+type checks occur after syntax recognition.
 
 ```text
 worker!
@@ -403,7 +411,7 @@ target&!
 
 #### Execution mode: `<` and `>`
 
-A call without `>>` performs ordinary execution. It resets parameter/result
+A target with `!` performs ordinary execution and cannot contain `>>`. It resets parameter/result
 storage to declared defaults, copies supplied inputs, executes the body over
 persistent state, and transfers requested results through `>`. Omitted parameters
 keep defaults; omitted results remain stored but are not copied to the caller.
@@ -415,17 +423,19 @@ cleared on return. The next ordinary execution resets them before running again.
 
 #### Retained-result mode: `>>`
 
-One or more `>>` result requests select retained-result mode for the entire call.
+A target without `!` and one or more `>>` result requests form a retained-result
+read. Writing `!` on this target is an error; do not silently reinterpret an
+execution-marked call as a read.
 This mode does not reset parameters, results, or body state and does not execute
 the target body. It copies the requested stored results to the receivers using
 their types' value/reference-copy rules.
 
 ```text
-sensor!
+sensor
  measurement >> value
  error >> last_error
 
-sensor!
+sensor
  >> value
  >> last_error
 ```
@@ -436,11 +446,14 @@ Rules:
 - Every requested result must use `>>`; mixing `>` and `>>` is an error,
   regardless of their order. It is not necessary to request every declared result.
 - Only declared results are readable, not parameters or private body variables.
-- At least one `>>` is required; an empty argument list means execution mode.
+- At least one `>>` is required. A target without `!` and without result
+  requests is invalid; zero-argument execution must use `!`.
 - `>>` is a single contiguous token. `> >` is not equivalent.
-- Determine and validate the mode from the complete argument list before resetting
-  storage or beginning any target execution. A late `>>` cannot retroactively
-  change a partially executed call.
+- Validate the target marker and complete argument list before resetting storage
+  or beginning any execution. Reject `target!` combined with `>>`, and reject
+  `<` or `>` under an unmarked read target, regardless of argument order.
+- Omitting `!` means the target body is not executed. Result copies still write
+  the caller's receiver variables; it is not a promise of universal immutability.
 - This is a read of retained interface values, not a computed getter. References
   in results still identify shared objects; reading does not freeze those targets.
 
@@ -463,9 +476,11 @@ syntax and exact unhandled-failure policy remain to be finalized; the proposed
 default is a diagnostic and termination. Static type errors remain compile errors.
 
 Zero-argument calls are complete execution-mode statements such as `worker!`
-or `target&!`. Retained-result reading uses the same `!` target suffix.
+or `target&!`. Retained-result reading omits `!` and requires indented `>>`
+requests.
 Whole-list calls use `items[]!` or `targets&[]!`; element calls use
-`items[position]!` or `targets&[position]!`. Brackets without the final `!`
+`items[position]!` or `targets&[position]!`. Their retained-read forms omit `!`,
+for example `items[position]` followed by an indented `>>` request. Brackets alone
 select storage; they do not execute its module. Collection operation signatures,
 length access, traversal, and mutation restrictions are still library/runtime
 contract work. Literal call arguments and hidden integer temporaries are forbidden.
@@ -498,6 +513,44 @@ compile-time restrictions on recursive calls are not removed by this grammar.
 List traversal syntax is not inferred from these condition-controlled loops.
 
 ## 5. Type and implementation boundaries
+
+### Stackless execution requirement
+
+Ama execution must not use the C function-call stack to invoke modules. Ordinary
+Ama modules compile to labeled blocks inside one generated C execution function.
+Invocation transfers control with `goto` to the module entry; completion transfers
+control to the caller's continuation label. Do not replace this with C functions
+for individual Ama modules or expand every ordinary module body at every call site.
+
+When a module has several callers, store an explicit continuation selector in
+control storage for the active instance and dispatch to the appropriate label,
+for example through a standard C `switch` with direct `goto` branches. This is
+compiler bookkeeping, not a language-level integer type. Persistent state and
+parameter/result data occupy explicit storage; they do not form C stack frames.
+No activation stack or dynamic continuation chain may be introduced elsewhere
+as a substitute. Recursive calls and reentry into an already active instance
+must be rejected under this execution model.
+
+`@C` implementations must be inlined into generated execution. Plain `inline`,
+`static inline`, and LTO optimization opportunities do not satisfy this requirement
+by themselves. The supported backend/toolchain must enforce inlining and reject
+unsupported implementations if a required call would remain. This applies also
+to generated initialization, copy, move, and cleanup paths and native helpers;
+indirect lifecycle/call dispatch must not bypass the requirement. No exemption
+for allocation, I/O, or external library calls is implied; their implementation
+boundary must be resolved explicitly under this constraint.
+
+The requirement concerns the compiled Ama program, not the compiler's own C
+implementation. Eliminating C calls does not alone prove that a machine-code
+backend never uses the hardware stack for spills or compiler-generated helpers;
+that stronger property needs separate target/toolchain verification.
+
+Current numeric execution and typed callback-based C adapters do not yet conform
+to this requirement. They are transitional implementations, not alternative target
+semantics. Their useful layouts and ownership rules can be retained while their
+function-call execution mechanism is replaced.
+
+### Type boundaries
 
 Every declaration has a module-defined type. Integer representation, arithmetic,
 range, and overflow belong to library types. Compiler mappings to index and
@@ -535,8 +588,9 @@ codegen, runtime, native library, documentation, and test changes. In particular
   indented `|` literals or named-value initializers.
 - Remove integer literal arguments, literal assignments, implicit numeric locals,
   and the old same-indent assignment source.
-- Introduce mandatory `!` on all call targets; remove bare calls and the
-  parser's dependence on declared aliases for call recognition. Preserve
+- Require `!` on execution-call targets and forbid it on retained-read targets.
+  Recognize unmarked reads from their indented `>>` requests without consulting
+  declared aliases; reject unmarked targets without read requests. Preserve
   argument indentation and parameter/result order.
 - Replace standalone `!` breaks with `^`; reject `^` outside loops and reject
   standalone `!` statements.

@@ -76,6 +76,28 @@ Use `static inline` for small header helpers whose implementations need to be
 visible at call sites. Ordinary helpers remain ordinary functions; the default
 LTO build can inline across source files. Inlining is the optimizer's decision.
 
+## Generated execution must be stackless
+
+The compiler's own C helpers may follow the ordinary inlining guidance above.
+Generated Ama execution has a stricter contract: ordinary modules become labels
+and direct jumps within one C execution function, with explicit continuation
+selection and data storage. Do not generate a C call per Ama invocation or move
+an activation stack into heap storage. Reject recursion and active-instance
+reentry for this model.
+
+`@C` code must be mandatorily inlined. Lifecycle operations and native helpers
+must not reintroduce indirect or ordinary C calls. Plain `static inline` and LTO
+are insufficient proof. Resolve external library boundaries explicitly; no
+exception is inferred for allocation or I/O. Verify the supported toolchain's
+result and reject unsupported cases instead of accepting surviving required calls.
+
+The existing numeric backend and callback-based typed runtime are transitional
+and nonconforming. Preserve useful layout/ownership tests while replacing their
+execution mechanism according to `TODO.md`. "Frame" in their APIs describes
+parameter/result storage, not permission to rely on a function-call stack.
+Separate source-level control-flow checks from stronger machine-code guarantees
+about hardware stack usage or compiler-generated calls.
+
 ## Typed runtime values
 
 Follow [VALUE_ABI.md](VALUE_ABI.md) when implementing native types or generated
