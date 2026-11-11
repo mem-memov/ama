@@ -8,6 +8,7 @@
 typedef enum { SEMANTIC_OK, SEMANTIC_INVALID, SEMANTIC_OUT_OF_MEMORY } SemanticStatus;
 typedef enum { SYMBOL_CONSTANT, SYMBOL_PARAMETER, SYMBOL_RESULT, SYMBOL_STATE } SymbolRole;
 typedef struct SemanticType SemanticType;
+typedef struct SemanticConstantPlan SemanticConstantPlan;
 typedef struct SemanticSource SemanticSource;
 typedef struct SemanticAccess SemanticAccess;
 typedef struct SemanticBinding SemanticBinding;
@@ -33,6 +34,7 @@ typedef struct SemanticSymbol {
     bool list;
     SemanticInitializer *initializers;
     SemanticInitializer *last_initializer;
+    SemanticConstantPlan *shared;
 } SemanticSymbol;
 struct SemanticType {
     SemanticType *next;
@@ -46,6 +48,13 @@ struct SemanticType {
     bool cloneable;
     SemanticStatement *statements;
     SemanticStatement *last_statement;
+};
+struct SemanticConstantPlan {
+    SemanticConstantPlan *next;
+    SemanticConstantPlan *previous;
+    SemanticSymbol *symbol;
+    SemanticInitializer *initializers;
+    size_t ordinal;
 };
 struct SemanticAccess {
     const AstAccess *syntax;
@@ -111,6 +120,11 @@ typedef struct {
     bool relations_attempted;
     bool relations_valid;
     SemanticLibraries libraries;
+    SemanticConstantPlan *constant_first;
+    SemanticConstantPlan *constant_last;
+    size_t constant_count;
+    bool constants_attempted;
+    bool constants_valid;
 } SemanticProgram;
 
 /* The loaded valid project outlives this owner. Initialize, run each semantic
@@ -123,6 +137,7 @@ SemanticStatus semantic_names(SemanticProgram *program);
 SemanticStatus semantic_native(SemanticProgram *program);
 SemanticStatus semantic_resolve(SemanticProgram *program, SemanticLibraries libraries);
 SemanticStatus semantic_relations(SemanticProgram *program);
+SemanticStatus semantic_constants(SemanticProgram *program);
 SemanticType *semantic_find_type(const SemanticProgram *program, const char *logical_path);
 SemanticType *semantic_type(const SemanticProgram *program, SourceSpan path);
 SemanticSymbol *semantic_symbol(const SemanticType *type, SourceSpan name);

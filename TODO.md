@@ -174,7 +174,7 @@ no code generator or runnable Ama program is claimed by parser completion.
 - [x] Validate mandatory `.h`/`.c`/`.abi` companions only after a required module
   is known to select `@C`; unused drafts remain inactive. Treat ABI function names
   as module-local identifiers under NAME-05.
-- [ ] Plan shared constants separately from instance storage, including qualified
+- [x] Plan shared constants separately from instance storage, including qualified
   reads, typed library enumerations, startup ordering and reverse cleanup.
 - [ ] Build explicit typed lifecycle/control-flow IR and storage plans. Preserve
   spans and type identities through every handoff; never use C text as semantic IR.

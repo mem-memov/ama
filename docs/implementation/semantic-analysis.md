@@ -191,3 +191,27 @@ all 512 owning-list graphs with one noncopyable native seed against reachability
 The latter uses real files, the loader, ABI parser and type checker. Release/Werror
 and allocation-injection tests pass; runtime busy behavior is not implemented by
 this compile-time service.
+
+## Shared storage/startup plans
+
+`semantic_constants` consumes the successful declaration-level order once and
+creates one [shared plan](../../src/semantic/constants/plan.c) per constant.
+Each entry links its nominal symbol, typed initializer recipes, startup ordinal
+and forward/reverse neighbors. A symbol's `shared` link makes direct and qualified
+reads refer to that same storage, including typed library enumeration values.
+A constants-only namespace contributes shared plans without an executable pool.
+Constants are not interface/body instance fields and do not participate in copying
+an instance. No native constructor runs during planning.
+
+Induction over the already validated order proves the startup list is a bijection
+with constant declarations and respects all construction dependencies. Setting
+`next.previous` at insertion proves that reverse traversal is exactly reverse
+startup order. Runtime initialization will track the successful prefix and clean
+that prefix on failure; successful shared storage is disposed after instances,
+once in reverse order. Planning does not itself initialize or destroy values.
+This stage costs `O(K)` time/storage for `K` constants and never depends on C layout
+sizes. Failure retains a partial owned list without setting `constants_valid`.
+[Constant tests](../../tests/unit/semantic/constants/main.c) check cross-module
+prerequisites, bytewise ready ordering, static reads, enum literal payloads,
+constants-only namespaces, exclusion of unused files, exact reverse traversal and
+every plan allocation failure. Release/Werror tests pass.
