@@ -1,0 +1,44 @@
+#include <string.h>
+#include "semantic/internal.h"
+
+SemanticType *semantic_find_type(const SemanticProgram *program, const char *logical_path) {
+    if (logical_path != NULL) {
+        for (SemanticType *type = program->first; type != NULL; type = type->next) {
+            if (strcmp(type->module->source->logical_path, logical_path) == 0) {
+                return type;
+            }
+        }
+    }
+    return NULL;
+}
+
+bool semantic_link_types(SemanticProgram *program) {
+    for (SemanticType *owner = program->first; owner != NULL; owner = owner->next) {
+        for (SemanticSymbol *symbol = owner->first; symbol != NULL; symbol = symbol->next) {
+            SourceSpan path = symbol->declaration->as.declaration.type;
+            symbol->type = semantic_type(program, path);
+            if (symbol->type == NULL || !symbol->type->executable) {
+                return semantic_fail(program, path, "A value type must name an executable module", symbol);
+            }
+            if (symbol->role == SYMBOL_CONSTANT && symbol->reference) {
+                return semantic_fail(program, symbol->declaration->as.declaration.name->span,
+                    "Shared constants cannot use reference storage", symbol);
+            }
+        }
+    }
+    return true;
+}
+
+bool semantic_visible(SemanticProgram *program, const SemanticSymbol *symbol,
+    const SemanticSymbol *initializing, SourceSpan site) {
+    if (initializing == NULL) {
+        return true;
+    }
+    if (initializing->role == SYMBOL_CONSTANT && symbol->role != SYMBOL_CONSTANT) {
+        return semantic_fail(program, site, "A constant initializer can read only constants", symbol);
+    }
+    if (symbol->owner == initializing->owner && symbol->ordinal >= initializing->ordinal) {
+        return semantic_fail(program, site, "The initializer source is not initialized yet", symbol);
+    }
+    return true;
+}

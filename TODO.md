@@ -159,7 +159,7 @@ no code generator or runnable Ama program is claimed by parser completion.
 - [x] Enforce one base-name namespace across constants, interfaces and body fields.
   [Namespace contract and tests](docs/implementation/semantic-analysis.md) cover
   nested lexical order, cross-section collisions and all storage-form pairs.
-- [ ] Resolve declarations, sources and interfaces into typed symbols; check
+- [x] Resolve declarations, sources and interfaces into typed symbols; check
   defaults, literal/clone capabilities, binding arity and storage compatibility.
   For CALL-07, derive literal type from the selected owned scalar parameter and
   reject reference/list destinations or missing `|` support; retain binding and

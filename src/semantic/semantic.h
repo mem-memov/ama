@@ -7,6 +7,19 @@
 typedef enum { SEMANTIC_OK, SEMANTIC_INVALID, SEMANTIC_OUT_OF_MEMORY } SemanticStatus;
 typedef enum { SYMBOL_CONSTANT, SYMBOL_PARAMETER, SYMBOL_RESULT, SYMBOL_STATE } SymbolRole;
 typedef struct SemanticType SemanticType;
+typedef struct SemanticSource SemanticSource;
+typedef struct SemanticAccess SemanticAccess;
+typedef struct SemanticBinding SemanticBinding;
+typedef struct SemanticStatement SemanticStatement;
+typedef enum {
+    TRANSFER_DEFAULT, TRANSFER_LITERAL, TRANSFER_CLONE, TRANSFER_HANDLE,
+    TRANSFER_CONTINUATION, TRANSFER_NOOP
+} SemanticTransfer;
+typedef struct SemanticInitializer {
+    struct SemanticInitializer *next;
+    SemanticSource *source;
+    SemanticTransfer transfer;
+} SemanticInitializer;
 typedef struct SemanticSymbol {
     struct SemanticSymbol *next;
     const AstNode *declaration;
@@ -17,6 +30,8 @@ typedef struct SemanticSymbol {
     size_t role_ordinal;
     bool reference;
     bool list;
+    SemanticInitializer *initializers;
+    SemanticInitializer *last_initializer;
 } SemanticSymbol;
 struct SemanticType {
     SemanticType *next;
@@ -28,7 +43,54 @@ struct SemanticType {
     AbiTable abi;
     bool executable;
     bool cloneable;
+    SemanticStatement *statements;
+    SemanticStatement *last_statement;
 };
+struct SemanticAccess {
+    const AstAccess *syntax;
+    SemanticSymbol *symbol;
+    SemanticAccess *index;
+    bool reference;
+    bool list;
+};
+struct SemanticSource {
+    const AstSource *syntax;
+    SourceSpan site;
+    AstSourceKind kind;
+    SemanticAccess *access;
+    SemanticSymbol *constant;
+    SemanticType *type;
+    bool reference;
+    bool list;
+};
+struct SemanticBinding {
+    SemanticBinding *next;
+    const AstArgument *syntax;
+    SemanticSymbol *field;
+    SemanticType *type;
+    size_t position;
+    bool reference;
+    bool list;
+    SemanticSource *source;
+    SemanticAccess *receiver;
+    SemanticTransfer transfer;
+};
+struct SemanticStatement {
+    SemanticStatement *next;
+    const AstNode *syntax;
+    SemanticAccess *access;
+    SemanticSource *source;
+    SemanticType *namespace_type;
+    SemanticBinding *bindings;
+    SemanticBinding *last_binding;
+    SemanticTransfer transfer;
+};
+typedef struct {
+    const char *action;
+    const char *index;
+    const char *condition;
+    const char *outcome;
+} SemanticLibraries;
 typedef struct {
     SourceArena arena;
     const Project *project;
@@ -41,6 +103,9 @@ typedef struct {
     bool names_valid;
     bool native_attempted;
     bool native_valid;
+    bool resolve_attempted;
+    bool resolved;
+    SemanticLibraries libraries;
 } SemanticProgram;
 
 /* The loaded valid project outlives this owner. Initialize, run each semantic
@@ -51,6 +116,8 @@ void semantic_program_init(SemanticProgram *program, const Project *project,
 void semantic_program_destroy(SemanticProgram *program);
 SemanticStatus semantic_names(SemanticProgram *program);
 SemanticStatus semantic_native(SemanticProgram *program);
+SemanticStatus semantic_resolve(SemanticProgram *program, SemanticLibraries libraries);
+SemanticType *semantic_find_type(const SemanticProgram *program, const char *logical_path);
 SemanticType *semantic_type(const SemanticProgram *program, SourceSpan path);
 SemanticSymbol *semantic_symbol(const SemanticType *type, SourceSpan name);
 

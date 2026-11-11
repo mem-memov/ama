@@ -12,4 +12,21 @@ bool semantic_fail(SemanticProgram *program, SourceSpan span, const char *messag
 bool semantic_memory_failure(SemanticProgram *program);
 void *semantic_allocate(SemanticProgram *program, size_t size);
 
+bool semantic_link_types(SemanticProgram *program);
+void semantic_clone_capabilities(SemanticProgram *program);
+bool semantic_initializers(SemanticProgram *program, SemanticType *type);
+bool semantic_statements(SemanticProgram *program, SemanticType *type);
+SemanticAccess *semantic_access(SemanticProgram *program, SemanticType *type,
+    const AstAccess *syntax, bool writable, const SemanticSymbol *initializing);
+SemanticSource *semantic_source(SemanticProgram *program, SemanticType *type,
+    const AstSource *syntax, const SemanticSymbol *initializing);
+bool semantic_transfer(SemanticProgram *program, SemanticType *type, bool reference,
+    bool list, SemanticSource *source, const SemanticAccess *receiver,
+    const SemanticSymbol *declaration, SemanticTransfer *transfer);
+bool semantic_call(SemanticProgram *program, SemanticType *type, SemanticStatement *statement);
+bool semantic_condition(SemanticProgram *program, SemanticAccess *access,
+    AbiOperation capability, SourceSpan site);
+bool semantic_visible(SemanticProgram *program, const SemanticSymbol *symbol,
+    const SemanticSymbol *initializing, SourceSpan site);
+
 #endif
