@@ -110,7 +110,7 @@ remain their subsequent tasks; this section does not claim a working compiler.
 - [x] Parse sections, constants-only modules and the specified draft boundary.
 - [x] Build an AST with spans for declarations, initialization, assignment,
   references, lists, qualified constants, entry/read/resume calls and control flow.
-- [ ] Parse empty positional `<`/`>` placeholders with independent arity counts;
+- [x] Parse empty positional `<`/`>` placeholders with independent arity counts;
   distinguish them from named bindings and retained `>>` requests.
 - [ ] Parse the fixed `.abi` records and report malformed, duplicate, unknown or
   missing mandatory bindings at their exact locations.

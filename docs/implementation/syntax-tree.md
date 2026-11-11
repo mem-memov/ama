@@ -49,5 +49,5 @@ Evidence: `make -C tests/unit/parser/tree` passed C11/pedantic/Werror. It checks
 all storage/source forms, literal byte spans, nested indices, assignments, named
 calls, reads, resumes, alternatives, shared reads, branches/loops/return/break/
 yield, negative syntax partitions, 512-deep control and index chains, and every
-allocation refusal in a composed parse. Nonempty call binding ASTs are integrated;
-the next task completes skipped positional slots and call-list invariants.
+allocation refusal in a composed parse. Call binding ASTs and positional-hole invariants are described in the
+[call contract](call-bindings.md).

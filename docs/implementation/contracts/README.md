@@ -58,6 +58,7 @@ must still supply their own arguments and executable evidence when implemented.
 
 | Component boundary | Contract and argument | Executable evidence |
 | --- | --- | --- |
+| Call bindings and positional holes | [Call contract](../call-bindings.md); finite-state list invariants and independent counters | [Call tests](../../../tests/unit/parser/calls/main.c) |
 | Source AST and structural statement parsing | [AST contract](../syntax-tree.md); grammar simulation with explicit frames/access chains | [Tree tests](../../../tests/unit/parser/tree/main.c) |
 | Draft activation and section order | [Section contract](../parser-sections.md); exact activation and increasing ranks | [Section tests](../../../tests/unit/parser/module/main.c) |
 | Physical layout and literal boundaries | [Layout contract](../layout.md); prefix partition and exact payload ranges | [Layout tests](../../../tests/unit/lexer/layout/main.c) |

@@ -1,2 +1,2 @@
-SUBDIRECTORIES := module tree
+SUBDIRECTORIES := module tree calls
 include ../../parent.mk

@@ -39,6 +39,7 @@ typedef struct AstArgument {
     AstSource *source;
     AstAccess *receiver;
     size_t position;
+    bool omitted;
 } AstArgument;
 
 typedef enum { AST_ENTRY_CALL, AST_RESUME_CALL, AST_RETAINED_READ, AST_CONSTANT_READ } AstCallMode;
