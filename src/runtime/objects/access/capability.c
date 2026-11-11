@@ -2,7 +2,7 @@
 #include <string.h>
 #include "runtime/objects/internal.h"
 
-static size_t index_of(const AmaWorld *world, uint64_t id) {
+static size_t ama_world_type_index(const AmaWorld *world, uint64_t id) {
     for (size_t index = 0; index < world->type_count; index++) {
         if (world->types[index]->pool.type_id == id) { return index; }
     }
@@ -11,7 +11,7 @@ static size_t index_of(const AmaWorld *world, uint64_t id) {
 
 AmaStatus ama_object_copy_capability(AmaObjectOperation *operation, uint64_t root) {
     AmaWorld *world = operation->world;
-    size_t index = index_of(world, root);
+    size_t index = ama_world_type_index(world, root);
     if (index == world->type_count) { return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0); }
     if (world->type_count > SIZE_MAX / sizeof(bool)) { return ama_status_make(AMA_LIMIT_EXCEEDED, NULL, 0); }
     size_t bytes = world->type_count * sizeof(bool);
@@ -30,7 +30,7 @@ AmaStatus ama_object_copy_capability(AmaObjectOperation *operation, uint64_t roo
             }
             for (size_t field = 0; field < type->field_count; field++) {
                 if (!ama_field_owns(type->fields[field].kind)) { continue; }
-                size_t child = index_of(world, type->fields[field].type_id);
+                size_t child = ama_world_type_index(world, type->fields[field].type_id);
                 if (child == world->type_count) { return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0); }
                 if (!reachable[child]) { reachable[child] = true; changed = true; }
             }

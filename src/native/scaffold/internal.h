@@ -15,6 +15,7 @@ bool scaffold_hook_first(const ScaffoldType *type, AbiOperation operation);
 bool scaffold_model(NativeScaffold *scaffold);
 bool scaffold_artifact(NativeScaffold *scaffold, const char *path, bool authored,
     ScaffoldEmitter emitter, const ScaffoldType *type);
+bool scaffold_emit_declarations(NativeScaffold *);
 bool scaffold_emit_all(NativeScaffold *scaffold);
 bool scaffold_emit_types(NativeScaffold *, FILE *, const ScaffoldType *);
 bool scaffold_emit_interface(NativeScaffold *, FILE *, const ScaffoldType *);

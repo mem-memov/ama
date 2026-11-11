@@ -1,6 +1,6 @@
 #include "runtime/objects/internal.h"
 
-static AmaStatus reserve(AmaObjectOperation *operation, AmaHandle source,
+static AmaStatus ama_clone_reserve(AmaObjectOperation *operation, AmaHandle source,
     AmaObjectWork *parent, void *root_payload, AmaObjectWork **output) {
     AmaObjectType *type = ama_world_type(operation->world, source.type_id);
     AmaObjectWork *work = source_arena_allocate(&operation->arena, sizeof(*work));
@@ -38,7 +38,7 @@ AmaStatus ama_object_clone_payload(AmaObjectOperation *operation, AmaObjectWork 
     return status.code == AMA_OK ? ama_status_make(AMA_INVALID_STATE, NULL, 0) : status;
 }
 
-static AmaHandle mapped(const AmaObjectOperation *operation, const AmaObjectWork *boundary,
+static AmaHandle ama_clone_mapped(const AmaObjectOperation *operation, const AmaObjectWork *boundary,
     AmaHandle source, AmaHandle final_root) {
     for (const AmaObjectWork *work = operation->first; work != NULL; work = work->next) {
         if (work->clone_root == boundary && ama_same_handle(work->source, source)) {
@@ -57,7 +57,7 @@ void ama_object_fix_references(AmaObjectOperation *operation, AmaObjectWork *bou
             size_t count;
             AmaHandle *handles = ama_object_handles(work->type, storage, field, &count);
             for (size_t index = 0; index < count; index++) {
-                handles[index] = mapped(operation, boundary, handles[index], final_root);
+                handles[index] = ama_clone_mapped(operation, boundary, handles[index], final_root);
             }
         }
     }
@@ -66,7 +66,7 @@ void ama_object_fix_references(AmaObjectOperation *operation, AmaObjectWork *bou
 AmaStatus ama_object_clone_prepare(AmaObjectOperation *operation, AmaHandle source, AmaHandle final_root,
     bool continuation, void *root_payload, AmaHandle *output) {
     AmaObjectWork *work = NULL;
-    AmaStatus status = reserve(operation, source, NULL, root_payload, &work);
+    AmaStatus status = ama_clone_reserve(operation, source, NULL, root_payload, &work);
     while (status.code == AMA_OK) {
         if (work->next_child < work->cell->metadata.lifetime.child_capacity) {
             uint64_t type_id;
@@ -77,7 +77,7 @@ AmaStatus ama_object_clone_prepare(AmaObjectOperation *operation, AmaHandle sour
             AmaObjectWork source_work = {.type = work->type, .cell = original};
             AmaHandle child = *ama_object_child(&source_work, work->next_child, &type_id, &recipe);
             AmaObjectWork *child_work = NULL;
-            status = reserve(operation, child, work, NULL, &child_work);
+            status = ama_clone_reserve(operation, child, work, NULL, &child_work);
             if (child_work != NULL) {
                 *destination = child_work->handle;
                 work = child_work;

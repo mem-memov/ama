@@ -87,7 +87,7 @@ bool scaffold_model(NativeScaffold *scaffold) {
             scaffold->selected = type;
         }
     }
-    return scaffold->selected != NULL && scaffold->selected->plan->type->module->syntax.sections.kind == MODULE_NATIVE;
+    return scaffold->selected != NULL;
 }
 
 const ScaffoldType *native_scaffold_type(const NativeScaffold *scaffold, const SemanticType *semantic) {

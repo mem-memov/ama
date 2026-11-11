@@ -48,8 +48,22 @@ static void it_reports_drafts_distinctly_without_accepting_them_as_required_modu
     destroy_test();
 }
 
+static void it_emits_from_the_same_frontend_without_invoking_the_native_c_compiler(void) {
+    setup_test();
+    char *arguments[] = {AMA_EXECUTABLE, "--emit", "project", ".main", "--out", "generated/assembly", "--sdk", TEST_SDK, NULL};
+    int result = run_compiler_arguments(arguments);
+    char text[4096];
+    read_stream(output, text, sizeof(text));
+    assert(result == EXIT_SUCCESS && strcmp(text, "emitted project assembly .main\n") == 0);
+    struct stat metadata;
+    int found = stat("generated/assembly/launcher.c", &metadata);
+    assert(found == 0 && S_ISREG(metadata.st_mode));
+    destroy_test();
+}
+
 void run(void) {
     it_checks_a_real_project_without_c_compilation_or_output_artifacts();
+    it_emits_from_the_same_frontend_without_invoking_the_native_c_compiler();
     it_reports_exact_missing_modules_and_malformed_options();
     it_reports_drafts_distinctly_without_accepting_them_as_required_modules();
 }

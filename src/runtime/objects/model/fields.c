@@ -13,13 +13,13 @@ AmaHandle *ama_object_handles(const AmaObjectType *type, void *payload, size_t f
     return address;
 }
 
-static const AmaFieldRecipe *recipes(const AmaObjectWork *work) {
+static const AmaFieldRecipe *ama_object_recipes(const AmaObjectWork *work) {
     return work->recipe != NULL && work->recipe->fields != NULL ? work->recipe->fields : work->type->defaults;
 }
 
 AmaStatus ama_object_fields(AmaWorld *world, AmaObjectWork *work) {
     AmaObjectType *type = work->type;
-    const AmaFieldRecipe *initial = recipes(work);
+    const AmaFieldRecipe *initial = ama_object_recipes(work);
     if (work->recipe != NULL && work->recipe->fields != NULL && work->recipe->field_count != type->field_count) {
         return ama_status_make(AMA_INVALID_STATE, NULL, 0);
     }
@@ -64,7 +64,7 @@ AmaStatus ama_object_fields(AmaWorld *world, AmaObjectWork *work) {
 }
 
 AmaHandle *ama_object_child(AmaObjectWork *work, size_t index, uint64_t *type_id, const AmaRecipe **recipe) {
-    const AmaFieldRecipe *initial = recipes(work);
+    const AmaFieldRecipe *initial = ama_object_recipes(work);
     void *payload = ama_pool_payload(&work->type->pool, work->cell);
     for (size_t field = 0; field < work->type->field_count; field++) {
         if (!ama_field_owns(work->type->fields[field].kind)) { continue; }

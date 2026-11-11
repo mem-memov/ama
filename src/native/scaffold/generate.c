@@ -6,7 +6,7 @@ static bool generated(NativeScaffold *scaffold, const char *name, ScaffoldEmitte
     return scaffold_artifact(scaffold, path, false, emitter, type);
 }
 
-bool scaffold_emit_all(NativeScaffold *scaffold) {
+bool scaffold_emit_declarations(NativeScaffold *scaffold) {
     if (!generated(scaffold, "ama-native-types.h", scaffold_emit_types, NULL)) {
         return false;
     }
@@ -18,6 +18,11 @@ bool scaffold_emit_all(NativeScaffold *scaffold) {
             return false;
         }
     }
+    return true;
+}
+
+bool scaffold_emit_all(NativeScaffold *scaffold) {
+    if (!scaffold_emit_declarations(scaffold)) { return false; }
     const ScaffoldType *type = scaffold->selected;
     if (!generated(scaffold, type->template_name, scaffold_emit_body, type)
         || !generated(scaffold, type->test_name, scaffold_emit_test, type)) {
@@ -47,7 +52,9 @@ bool native_scaffold_build(NativeScaffold *scaffold, ScaffoldOptions options) {
     assert(!scaffold->attempted);
     scaffold->attempted = true;
     scaffold->options = options;
-    if (!scaffold_paths(scaffold) || !scaffold_model(scaffold) || !scaffold_emit_all(scaffold)) {
+    if (!scaffold_paths(scaffold) || !scaffold_model(scaffold)
+        || scaffold->selected->plan->type->module->syntax.sections.kind != MODULE_NATIVE
+        || !scaffold_emit_all(scaffold)) {
         return scaffold_error(scaffold, DIAGNOSTIC_TYPE_MISMATCH,
             "Native scaffolding requires a validated @C entry and complete output model", NULL);
     }

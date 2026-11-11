@@ -1,6 +1,6 @@
 #include "runtime/objects/internal.h"
 
-static void buffers(AmaWorld *world, AmaObjectType *type, AmaPoolCell *cell) {
+static void ama_cleanup_buffers(AmaWorld *world, AmaObjectType *type, AmaPoolCell *cell) {
     unsigned char *payload = ama_pool_payload(&type->pool, cell);
     for (size_t field = 0; field < type->field_count; field++) {
         if (ama_field_list(type->fields[field].kind)) {
@@ -42,7 +42,7 @@ AmaStatus ama_object_cleanup_keep(AmaWorld *world, AmaHandle root, AmaStatus pri
             continue;
         }
         AmaHandle parent = cell->owner;
-        buffers(world, type, cell);
+        ama_cleanup_buffers(world, type, cell);
         if (lifetime->cleanup_active) { (void)ama_lifetime_end_cleanup(lifetime); }
         if (!keep_root || !ama_same_handle(current, root)) {
             (void)ama_pool_release(&type->pool, current);

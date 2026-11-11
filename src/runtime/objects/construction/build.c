@@ -1,6 +1,6 @@
 #include "runtime/objects/internal.h"
 
-static AmaStatus reserve(AmaObjectOperation *operation, uint64_t id, const AmaRecipe *recipe,
+static AmaStatus ama_construction_reserve(AmaObjectOperation *operation, uint64_t id, const AmaRecipe *recipe,
     AmaHandle source, AmaObjectWork *parent, AmaObjectWork **output) {
     AmaObjectType *type = ama_world_type(operation->world, id);
     if (type == NULL) { return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0); }
@@ -29,7 +29,7 @@ static AmaStatus reserve(AmaObjectOperation *operation, uint64_t id, const AmaRe
         : ama_object_clone_fields(operation->world, work);
 }
 
-static AmaStatus native(AmaObjectOperation *operation, AmaObjectWork *work) {
+static AmaStatus ama_construction_payload(AmaObjectOperation *operation, AmaObjectWork *work) {
     if (work->source.generation != 0) { return ama_object_clone_payload(operation, work, work->clone_root->recipe != NULL
         && work->clone_root->recipe->continuation); }
     AmaObjectType *type = work->type;
@@ -47,7 +47,7 @@ static AmaStatus native(AmaObjectOperation *operation, AmaObjectWork *work) {
 
 AmaStatus ama_object_build(AmaObjectOperation *operation, uint64_t id, const AmaRecipe *recipe, AmaHandle *output) {
     AmaObjectWork *work = NULL;
-    AmaStatus status = reserve(operation, id, recipe, (AmaHandle){0}, NULL, &work);
+    AmaStatus status = ama_construction_reserve(operation, id, recipe, (AmaHandle){0}, NULL, &work);
     while (status.code == AMA_OK) {
         if (work->next_child < work->cell->metadata.lifetime.child_capacity) {
             uint64_t child_type;
@@ -62,13 +62,13 @@ AmaStatus ama_object_build(AmaObjectOperation *operation, uint64_t id, const Ama
                 child_recipe = NULL;
             }
             AmaObjectWork *child_work = NULL;
-            status = reserve(operation, child_type, child_recipe, child_source, work, &child_work);
+            status = ama_construction_reserve(operation, child_type, child_recipe, child_source, work, &child_work);
             if (child_work != NULL) {
                 *location = child_work->handle;
                 work = child_work;
             }
         } else {
-            status = native(operation, work);
+            status = ama_construction_payload(operation, work);
             if (status.code != AMA_OK || work->parent == NULL) { break; }
             work = work->parent;
             work->next_child++;

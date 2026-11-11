@@ -2,7 +2,7 @@
 #include <string.h>
 #include "internal.h"
 
-static AmaStatus directory(AmaPool *pool) {
+static AmaStatus ama_pool_grow_directory(AmaPool *pool) {
     if (pool->block_count < pool->directory_capacity) {
         return ama_status_success();
     }
@@ -28,7 +28,7 @@ AmaStatus ama_pool_grow(AmaPool *pool) {
     if (pool->block_count >= SIZE_MAX / pool->slots_per_block) {
         return ama_status_make(AMA_LIMIT_EXCEEDED, NULL, 0);
     }
-    AmaStatus status = directory(pool);
+    AmaStatus status = ama_pool_grow_directory(pool);
     if (!ama_status_is_success(status)) {
         return status;
     }

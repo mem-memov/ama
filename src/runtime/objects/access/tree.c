@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include "runtime/objects/internal.h"
 
-static AmaStatus protect(AmaObjectOperation *operation, AmaHandle handle, AmaHandle parent, bool copy) {
+static AmaStatus ama_tree_protect(AmaObjectOperation *operation, AmaHandle handle, AmaHandle parent, bool copy) {
     AmaObjectType *type = NULL;
     AmaPoolCell *cell = NULL;
     AmaStatus status = ama_object_lookup(operation->world, handle, false, &type, &cell);
@@ -52,7 +52,7 @@ AmaStatus ama_object_preflight(AmaObjectOperation *operation, AmaHandle root, bo
     if (operation->protection_epoch == SIZE_MAX) { return ama_status_make(AMA_LIMIT_EXCEEDED, NULL, 0); }
     operation->protection_epoch++;
     AmaObjectProtection *previous = operation->protected_last;
-    AmaStatus status = protect(operation, root, (AmaHandle){0}, copy);
+    AmaStatus status = ama_tree_protect(operation, root, (AmaHandle){0}, copy);
     if (status.code != AMA_OK) { return status; }
     AmaObjectProtection *record = previous == NULL ? operation->protected_first : previous->next;
     for (; record != NULL; record = record->next) {
@@ -63,7 +63,7 @@ AmaStatus ama_object_preflight(AmaObjectOperation *operation, AmaHandle root, bo
             const AmaRecipe *recipe;
             AmaHandle child = *ama_object_child(&work, index, &type_id, &recipe);
             if (child.type_id != type_id) { return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0); }
-            status = protect(operation, child, record->handle, copy);
+            status = ama_tree_protect(operation, child, record->handle, copy);
             if (status.code != AMA_OK) { return status; }
         }
     }

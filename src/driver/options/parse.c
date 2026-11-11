@@ -31,15 +31,15 @@ static bool value_option(DriverOptions *options, const char *name, const char *v
         options->libraries.condition = value;
     } else if (strcmp(name, "--list-outcome") == 0) {
         options->libraries.outcome = value;
-    } else if (options->request == DRIVER_REQUEST_NATIVE && strcmp(name, "--out") == 0) {
+    } else if ((options->request == DRIVER_REQUEST_NATIVE || options->request == DRIVER_REQUEST_EMIT) && strcmp(name, "--out") == 0) {
         options->output = value;
-    } else if (options->request == DRIVER_REQUEST_NATIVE && strcmp(name, "--sdk") == 0) {
+    } else if ((options->request == DRIVER_REQUEST_NATIVE || options->request == DRIVER_REQUEST_EMIT) && strcmp(name, "--sdk") == 0) {
         options->sdk = value;
-    } else if (options->request == DRIVER_REQUEST_NATIVE && strcmp(name, "--cc") == 0) {
+    } else if ((options->request == DRIVER_REQUEST_NATIVE || options->request == DRIVER_REQUEST_EMIT) && strcmp(name, "--cc") == 0) {
         options->compiler = value;
     } else if (options->request == DRIVER_REQUEST_NATIVE && strcmp(name, "--protocols") == 0) {
         options->protocols = value;
-    } else if (options->request == DRIVER_REQUEST_NATIVE && strcmp(name, "--c-flag") == 0) {
+    } else if ((options->request == DRIVER_REQUEST_NATIVE || options->request == DRIVER_REQUEST_EMIT) && strcmp(name, "--c-flag") == 0) {
         options->c_flags[options->c_flag_count++] = value;
     } else {
         return invalid(options, "Unknown command option");
@@ -69,7 +69,8 @@ bool driver_options_parse(DriverOptions *options, int count, char *const argumen
     size_t excluded = 0;
     for (int index = 4; index < count;) {
         const char *name = arguments[index++];
-        if (options->request == DRIVER_REQUEST_NATIVE && (strcmp(name, "--create") == 0 || strcmp(name, "--overwrite") == 0)) {
+        if ((options->request == DRIVER_REQUEST_EMIT && strcmp(name, "--overwrite") == 0)
+            || (options->request == DRIVER_REQUEST_NATIVE && (strcmp(name, "--create") == 0 || strcmp(name, "--overwrite") == 0))) {
             if (strcmp(name, "--create") == 0) {
                 options->create = true;
             } else {
@@ -84,6 +85,9 @@ bool driver_options_parse(DriverOptions *options, int count, char *const argumen
     if (options->request == DRIVER_REQUEST_NATIVE && (options->output == NULL || options->sdk == NULL
             || (options->overwrite && !options->create) || (options->protocols != NULL && !options->create))) {
         return invalid(options, "Native generation needs --out/--sdk; --overwrite/--protocols require --create");
+    }
+    if (options->request == DRIVER_REQUEST_EMIT && (options->output == NULL || options->sdk == NULL)) {
+        return invalid(options, "Project emission needs --out and --sdk");
     }
     if (options->compiler == NULL) {
         options->compiler = "gcc";

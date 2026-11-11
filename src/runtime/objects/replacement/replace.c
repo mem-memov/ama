@@ -1,7 +1,7 @@
 #include <string.h>
 #include "runtime/objects/internal.h"
 
-static void publish(AmaObjectOperation *operation, AmaObjectType *type, AmaPoolCell *cell, AmaHandle destination) {
+static void ama_replacement_publish(AmaObjectOperation *operation, AmaObjectType *type, AmaPoolCell *cell, AmaHandle destination) {
     AmaObjectWork *root = operation->first;
     cell->alternate_payload = !cell->alternate_payload;
     cell->metadata.lifetime = root->cell->metadata.lifetime;
@@ -19,7 +19,7 @@ static void publish(AmaObjectOperation *operation, AmaObjectType *type, AmaPoolC
     (void)ama_pool_release(&type->pool, root->handle);
 }
 
-static AmaStatus replace(AmaObjectOperation *operation, AmaHandle destination, AmaHandle source, bool continuation) {
+static AmaStatus ama_replacement_commit(AmaObjectOperation *operation, AmaHandle destination, AmaHandle source, bool continuation) {
     AmaObjectType *type = NULL;
     AmaPoolCell *cell = NULL;
     AmaStatus status = ama_object_lookup(operation->world, destination, false, &type, &cell);
@@ -37,7 +37,7 @@ static AmaStatus replace(AmaObjectOperation *operation, AmaHandle destination, A
         if (ama_same_handle(record->handle, destination)) { record->restore = false; }
     }
     status = ama_object_cleanup_keep(operation->world, destination, ama_status_success(), true);
-    if (status.code == AMA_OK) { publish(operation, type, cell, destination); }
+    if (status.code == AMA_OK) { ama_replacement_publish(operation, type, cell, destination); }
     else {
         operation->world->failed = true;
         status = ama_object_cleanup(operation->world, prepared, status);
@@ -52,7 +52,7 @@ AmaStatus ama_object_replace(AmaWorld *world, AmaHandle destination, AmaHandle s
     source_arena_init(&operation.arena, world->allocator);
     bool no_op = false;
     AmaStatus status = ama_object_copy_checks(world, destination, source, continuation, &no_op);
-    if (status.code == AMA_OK && !no_op) { status = replace(&operation, destination, source, continuation); }
+    if (status.code == AMA_OK && !no_op) { status = ama_replacement_commit(&operation, destination, source, continuation); }
     ama_object_unprotect(&operation);
     source_arena_destroy(&operation.arena);
     world->operation_active = false;

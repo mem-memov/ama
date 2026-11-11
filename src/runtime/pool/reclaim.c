@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include "internal.h"
 
-static void rebuild(AmaPool *pool, size_t retained) {
+static void ama_pool_rebuild_free(AmaPool *pool, size_t retained) {
     pool->free_head = SIZE_MAX;
     for (size_t block = retained; block != 0;) {
         block--;
@@ -26,7 +26,7 @@ AmaStatus ama_pool_reclaim(AmaPool *pool, size_t *released) {
     }
     /* Remove links to every released slot before freeing its storage. Historical
      * directory entries remain null forever; future growth appends fresh IDs. */
-    rebuild(pool, retained);
+    ama_pool_rebuild_free(pool, retained);
     *released = 0;
     for (size_t block = retained; block < pool->block_count; block++) {
         if (pool->blocks[block].memory != NULL) {

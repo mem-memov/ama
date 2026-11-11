@@ -254,7 +254,7 @@ handle, lifetime, clone and replacement invariants independently of module execu
 
 ## 8. Connect the smallest complete stackless program
 
-- [ ] Emit one project assembly containing required includes, generated types,
+- [x] Emit one project assembly containing required includes, generated types,
   constants, native bodies and Ama labels, included by a launcher translation unit.
   Connect section 7 runtime descriptors/recipes to the typed plan; verify concrete
   payload alignment, field offsets and type identities against generated C layouts.

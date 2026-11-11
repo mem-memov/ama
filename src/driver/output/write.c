@@ -9,6 +9,7 @@ int driver_write_response(DriverRequest request, FILE *output) {
             "       ama --check ROOT .module [--root DIR] [--exclude PATH]\n"
             "       ama --status ROOT .module [--root DIR] [--exclude PATH]\n"
             "       ama --native ROOT .module --out DIR --sdk DIR [--create]\n"
+            "       ama --emit ROOT .module --out DIR --sdk DIR\n"
             "Checking validates source and typed plans without running C.\n"
             "Compilation is not implemented yet.\n"
         : "ama: compilation is not implemented yet.\n"

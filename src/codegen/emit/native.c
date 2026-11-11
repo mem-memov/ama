@@ -1,0 +1,28 @@
+#include "codegen/internal.h"
+
+static bool hook(FILE *output, const ScaffoldType *type, AbiOperation operation) {
+    const AbiBinding *binding = &type->plan->type->abi.bindings[operation];
+    if (!binding->present) { return true; }
+    const char *name = type->names[SCAFFOLD_WRITE]->internal_name;
+    const char *const roles[] = {"Default", "Destroy", "Literal", "Clone", "Condition", "Index"};
+    const char *extra = operation == ABI_LITERAL ? ", AmaByteView literal" : operation == ABI_CLONE
+        ? ", const void *source" : operation == ABI_CONDITION ? ", bool *result" : operation == ABI_INDEX ? ", size_t *result" : "";
+    bool read = operation == ABI_CONDITION || operation == ABI_INDEX;
+    if (fprintf(output, "static AmaStatus %s_%s(%svoid *payload%s) {\n    return ",
+            name, roles[operation], read ? "const " : "", extra) < 0
+        || !native_namespace_symbol(output, type->native_prefix, binding->function)
+        || fprintf(output, "((%s%s_State *)payload", read ? "const " : "", type->native_prefix->internal_name) < 0) { return false; }
+    if (operation == ABI_LITERAL && fputs(", literal", output) == EOF) { return false; }
+    if (operation == ABI_CLONE && fprintf(output, ", (const %s_State *)source", type->native_prefix->internal_name) < 0) { return false; }
+    if (read && fputs(", result", output) == EOF) { return false; }
+    return fputs(");\n}\n", output) != EOF;
+}
+
+bool codegen_emit_native(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type) {
+    (void)scaffold;
+    if (!scaffold_include(output, type->interface_name) || !scaffold_include(output, type->body_path)) { return false; }
+    for (AbiOperation operation = ABI_DEFAULT; operation < ABI_BINDING_COUNT; operation++) {
+        if (!hook(output, type, operation)) { return false; }
+    }
+    return true;
+}

@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include "runtime/objects/internal.h"
 
-static AmaStatus population(const AmaWorld *world, size_t *count) {
+static AmaStatus ama_world_population(const AmaWorld *world, size_t *count) {
     *count = 0;
     for (size_t type = 0; type < world->type_count; type++) {
         const AmaPool *pool = &world->types[type]->pool;
@@ -15,7 +15,7 @@ static AmaStatus population(const AmaWorld *world, size_t *count) {
     return ama_status_success();
 }
 
-static AmaStatus ancestor(AmaWorld *world, AmaHandle possible, AmaHandle node, size_t bound, bool *found) {
+static AmaStatus ama_owner_ancestor(AmaWorld *world, AmaHandle possible, AmaHandle node, size_t bound, bool *found) {
     for (size_t step = 0; step < bound; step++) {
         AmaObjectType *type;
         AmaPoolCell *cell;
@@ -25,7 +25,7 @@ static AmaStatus ancestor(AmaWorld *world, AmaHandle possible, AmaHandle node, s
         if (node.generation == 0) { return ama_status_success(); }
         if (ama_same_handle(node, possible)) { *found = true; return ama_status_success(); }
     }
-    /* A simple owner path has at most the world's occupied-slot population.
+    /* A simple owner path has at most the world's occupied-slot ama_world_population.
      * Exceeding that exact bound proves an invalid owner cycle, not a timeout. */
     return ama_status_make(AMA_INVALID_STATE, NULL, 0);
 }
@@ -47,10 +47,10 @@ AmaStatus ama_object_copy_checks(AmaWorld *world, AmaHandle destination, AmaHand
         return continuation ? ama_status_make(AMA_INVALID_STATE, NULL, 0) : ama_status_success();
     }
     size_t bound;
-    status = population(world, &bound);
+    status = ama_world_population(world, &bound);
     if (status.code != AMA_OK) { return status; }
     bool overlap = false;
-    status = ancestor(world, source, destination, bound, &overlap);
-    if (status.code == AMA_OK && !overlap) { status = ancestor(world, destination, source, bound, &overlap); }
+    status = ama_owner_ancestor(world, source, destination, bound, &overlap);
+    if (status.code == AMA_OK && !overlap) { status = ama_owner_ancestor(world, destination, source, bound, &overlap); }
     return status.code == AMA_OK && overlap ? ama_status_make(AMA_INVALID_STATE, NULL, 0) : status;
 }
