@@ -1,2 +1,2 @@
-SUBDIRECTORIES := text
+SUBDIRECTORIES := text unicode
 include ../../parent.mk

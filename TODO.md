@@ -73,7 +73,7 @@ supervision prevents it from running; leak-check certification is not claimed.
 
 - [x] Build a source manager with stable spans, original UTF-8 bytes, line tables
   and precise file/line/column reporting, including allocation-failure paths.
-- [ ] Implement strict UTF-8 and pinned Unicode XID tables, case-sensitive byte
+- [x] Implement strict UTF-8 and pinned Unicode XID tables, case-sensitive byte
   identity and deterministic filesystem lookup without normalization guesses.
 - [ ] Resolve extensionless module paths, physical `name+/` submodules and native
   companions. Keep logical identities distinct from physical diagnostic paths.
