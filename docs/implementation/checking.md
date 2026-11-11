@@ -56,3 +56,13 @@ runnable. Source/catalog/parser correctness and termination compose directly;
 inspection adds constant work and no output files. [Status tests](../../tests/unit/compiler/status/main.c)
 cover all four kinds without dependency loading and every allocation failure;
 real CLI tests distinguish inspection success from required-draft errors.
+
+## Shared plans and native authoring
+
+The scaffold consumes the exact `ProgramPlan` returned by strict checking, rather
+than reparsing or rebuilding its own type relation. `--create` is a separate
+authoring mode with a selected explicit ABI proposal; it does not weaken ordinary
+checks or certify the proposed C implementation. [Scaffold acceptance](../../tests/unit/native/scaffold/declarations/main.c)
+checks this identity and fault-injects the complete authoring frontend. No executable
+backend exists yet; check-versus-compilation agreement is currently enforced by
+this shared service and will receive a final assembly check when that consumer exists.

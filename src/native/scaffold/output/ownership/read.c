@@ -18,6 +18,11 @@ bool scaffold_digest(NativeScaffold *scaffold, const SourceText *content, unsign
     return true;
 }
 
+void scaffold_scope(const NativeScaffold *scaffold, unsigned char digest[32]) {
+    const char *path = scaffold->selected->ama_path;
+    identity_sha256((const unsigned char *)path, strlen(path), digest);
+}
+
 static int hexadecimal(unsigned char byte) {
     return byte >= '0' && byte <= '9' ? byte - '0' : byte >= 'a' && byte <= 'f' ? byte - 'a' + 10 : -1;
 }
@@ -64,6 +69,24 @@ static bool record(NativeScaffold *scaffold, const unsigned char *bytes, size_t 
     return true;
 }
 
+static bool scope_matches(NativeScaffold *scaffold, const unsigned char *bytes, size_t length) {
+    if (length < 71 || memcmp(bytes, "scope ", 6) != 0 || bytes[70] != '\n') {
+        return false;
+    }
+    unsigned char expected[32];
+    scaffold_scope(scaffold, expected);
+    bool equal = true;
+    for (size_t index = 0; index < 32; index++) {
+        int high = hexadecimal(bytes[6 + index * 2]);
+        int low = hexadecimal(bytes[7 + index * 2]);
+        if (high < 0 || low < 0) {
+            return false;
+        }
+        equal = equal && expected[index] == (unsigned char)(high * 16 + low);
+    }
+    return equal || scaffold->options.overwrite;
+}
+
 bool scaffold_manifest_read(NativeScaffold *scaffold) {
     struct stat metadata;
     if (lstat(scaffold->manifest_path, &metadata) != 0) {
@@ -84,6 +107,11 @@ bool scaffold_manifest_read(NativeScaffold *scaffold) {
     if (length < offset || memcmp(bytes, header, offset) != 0) {
         return false;
     }
+    if (!scope_matches(scaffold, bytes + offset, length - offset)) {
+        return scaffold_error(scaffold, DIAGNOSTIC_INVALID_PATH,
+            "Output scope differs or is malformed; choose a separate directory or explicitly overwrite a valid scope", scaffold->manifest_path);
+    }
+    offset += 71;
     while (offset < length) {
         size_t end = offset;
         while (end < length && bytes[end] != '\n') {

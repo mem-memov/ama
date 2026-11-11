@@ -9,7 +9,7 @@ backend. Unsupported executable compilation must never report successful output.
 [Recognition](../../../src/driver/request/request.h) accepts a nonnegative count
 and that many nonnull NUL-terminated strings; a zero count permits a null vector.
 It borrows them without mutation. Standalone `--help` selects Help; otherwise an
-exact `--check` or `--status` selects its command before operand validation. Other requests
+exact `--check`, `--status` or `--native` selects its command before operand validation. Other requests
 are unavailable. Count checks precede every argument access. The exact string
 predicates and fallback partition the domain; prefixes/extra help arguments do
 not accidentally select Help.
@@ -31,6 +31,11 @@ the error stream. This sequential law prevents partial frontend/output failure
 from appearing as success. No command retains borrowed arguments after return.
 Check-only has read-only filesystem effects and invokes no C toolchain; detailed
 source/semantic/planning ownership laws are in the checking contract.
+
+Native authoring uses the same frontend, with explicit proposed companions only
+under `--create`, then the [scaffold publisher](../native-scaffolding.md). Success
+requires complete generation/publication and a written/flushed report. Source
+changes are never authorized by merely choosing an output directory.
 
 A write/flush may fail after partial output; no stream rollback is promised.
 Recognition is bounded fixed-string work. Option parsing uses linear argument

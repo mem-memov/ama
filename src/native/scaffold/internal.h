@@ -10,6 +10,8 @@ bool scaffold_error(NativeScaffold *scaffold, DiagnosticCode code, const char *m
 const char *scaffold_join(NativeScaffold *scaffold, const char *left, const char *separator, const char *right);
 const char *scaffold_absolute(NativeScaffold *scaffold, const char *path);
 bool scaffold_paths(NativeScaffold *scaffold);
+bool scaffold_hooks(NativeScaffold *scaffold, const ScaffoldType *type);
+bool scaffold_hook_first(const ScaffoldType *type, AbiOperation operation);
 bool scaffold_model(NativeScaffold *scaffold);
 bool scaffold_artifact(NativeScaffold *scaffold, const char *path, bool authored,
     ScaffoldEmitter emitter, const ScaffoldType *type);

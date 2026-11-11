@@ -30,7 +30,7 @@ bool scaffold_emit_body(NativeScaffold *scaffold, FILE *output, const ScaffoldTy
     }
     for (AbiOperation operation = ABI_DEFAULT; operation < ABI_BINDING_COUNT; operation++) {
         const AbiBinding *binding = &type->plan->type->abi.bindings[operation];
-        if (binding->present && !hook(output, type, operation, binding)) {
+        if (binding->present && scaffold_hook_first(type, operation) && !hook(output, type, operation, binding)) {
             return false;
         }
     }
@@ -52,7 +52,7 @@ bool scaffold_emit_abi(NativeScaffold *scaffold, FILE *output, const ScaffoldTyp
     const char *const symbols[] = {"+", "-", "|", "=", "?", "[]"};
     for (AbiOperation operation = ABI_DEFAULT; operation < ABI_BINDING_COUNT; operation++) {
         const AbiBinding *binding = &type->plan->type->abi.bindings[operation];
-        if (binding->present && (fprintf(output, "%s ", symbols[operation]) < 0
+        if (binding->present && scaffold_hook_first(type, operation) && (fprintf(output, "%s ", symbols[operation]) < 0
                 || fwrite(source_bytes(binding->function.source) + binding->function.start,
                     1, binding->function.end - binding->function.start, output) != binding->function.end - binding->function.start
                 || fputc('\n', output) == EOF)) {

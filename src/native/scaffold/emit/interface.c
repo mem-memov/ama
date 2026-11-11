@@ -15,7 +15,7 @@ bool scaffold_emit_interface(NativeScaffold *scaffold, FILE *output, const Scaff
     }
     for (AbiOperation operation = ABI_DEFAULT; operation < ABI_BINDING_COUNT; operation++) {
         const AbiBinding *binding = &type->plan->type->abi.bindings[operation];
-        if (binding->present && (!scaffold_emit_signature(output, type, operation, binding->function)
+        if (binding->present && scaffold_hook_first(type, operation) && (!scaffold_emit_signature(output, type, operation, binding->function)
                 || fputs(";\n", output) == EOF)) {
             return false;
         }

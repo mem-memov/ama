@@ -79,9 +79,9 @@ stable destination filesystem. No unrequested files are deleted.
 
 ## Evidence and limits
 
-[Component tests](../../tests/unit/native/scaffold/main.c) compose the actual
+[Component tests](../../tests/unit/native/scaffold/declarations/main.c) compose the actual
 frontend, typed plan, identity registry, emitters and filesystem publisher. GCC
-checks a generated header as the first project include, repeat inclusion, macro
+checks every required native interface header as the first project include, repeat inclusion, macro
 cleanup, transitive native types, reference cycles and all storage forms, then
 checks the untouched native scaffold. Every model allocation is fault-injected.
 These checks precede the execution backend; final assembly composition remains a
@@ -121,3 +121,52 @@ crash-retained lock before retrying. A scaffold publishes at most once, includin
 failed attempts. Allocation-failure tests cover manifest loading, ownership checks,
 staging and rollback-path setup; additional cases cover refresh, handwritten files,
 edited outputs, symlinks, malformed manifests and retained locks.
+
+## Exact hook roles and composition acceptance
+
+The emitted native role names `State`, `EntrySignature` and `entry` belong to the
+C adapter convention. A conflicting ABI helper is diagnosed before publication.
+Two operations may reuse one helper when their C signatures are identical: the
+mandatory constructor and destructor both take `State *` and return `AmaStatus`.
+Such a helper is declared/defined once; each protocol still retains its binding.
+Reusing one name for incompatible signatures is diagnosed without parsing C.
+
+Acceptance also composes two emitted native bodies with identical local helper
+names into one C unit, uses typed parameter/result payload views to transfer a
+value, calls both inline entries directly, and runs the harness. It checks isolated
+headers, Unicode paths/names, paths with spaces, quoted compiler arguments, exported
+commands and the real authoring/check/refresh CLI. [Ownership tests](../../tests/unit/native/scaffold/ownership/main.c)
+are a separate leaf. The final Ama assembly is not implemented and is not certified
+by this native-only composition test.
+
+## Bounds and failure invariants
+
+Let T be the number of nominal types, F declared fields, N manifest/output records
+and B processed bytes. Every traversal is over a finite input list or byte range;
+hook comparisons are bounded by the six ABI slots. Forward declarations precede
+every typed pointer use, so cycles in reference graphs require no recursive
+layout expansion. Qualified-identity registration compares full encodings after
+hashing and rejects collisions rather than relying on probabilistic uniqueness.
+
+Model construction uses insertion ordering and linear identity/type lookup; its
+comparison count is bounded quadratically in T+F, multiplied by compared key
+lengths. Ownership uses quadratic record/name lookup plus linear byte loading and
+hashing. Retained memory is linear in emitted/loaded bytes and model/key records.
+There is no arbitrary graph-depth, timeout or retry heuristic.
+
+Before publication all outputs are complete immutable byte strings. Before any
+destination replacement, every conflict is checked and every stage/backup exists.
+Each successful publication step advances one artifact's flag. Ordinary failure
+restores the flagged prefix and removes staging; failure to restore reports that
+condition and retains recovery evidence. Hash checks protect author edits under
+the stated stable-filesystem assumption; they do not defend against a hostile
+process changing destinations outside the lock protocol.
+
+Keep generated output outside indexed module roots, or pass an exact `--exclude`
+for its location. Output discovery never guesses exclusions from directory names.
+
+The manifest also records a scope digest of the exact absolute selected Ama source
+path. Different entries/projects use separate output directories; switching a
+valid existing scope requires explicit overwrite. This prevents generating one
+module's smaller closure over another module's common type header by accident.
+Malformed scope syntax remains an error with overwrite.

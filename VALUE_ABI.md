@@ -197,3 +197,10 @@ aggregates. Each C skeleton directly includes its self-contained interface heade
 See [the engineering contract](docs/implementation/native-scaffolding.md) for the
 exact scoped member macros and declaration/publication boundaries. These views do
 not define instance-pool storage or introduce separate native translation units.
+
+Native adapter role names are `State` (a tagged payload type), `EntrySignature`
+(the entry function type) and `entry` (the inline body). Generated positional
+member macros exist only within the selected module's explicit body context.
+The compilation database supplies SDK/output includes and C toolchain arguments;
+header inclusion supplies all types without a forced include. Native helper-name
+compatibility and ownership/conflict rules are detailed in the linked contract.

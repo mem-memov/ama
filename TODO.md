@@ -217,7 +217,7 @@ Ama execution remain in the following sections, not implied by frontend completi
   analysis and syntax checks before the execution backend is available.
 - [x] Make output ownership explicit. Preserve existing handwritten companions;
   show conflicts and require an explicit generation/overwrite request.
-- [ ] Test that checking and compilation agree on frontend validity and diagnostics,
+- [x] Test that checking and compilation agree on frontend validity and diagnostics,
   and that generated native declarations compile against the ABI harness.
   Independently syntax-check each generated interface header as the first project
   include and each untouched C skeleton using the generated tooling configuration.
@@ -225,6 +225,8 @@ Ama execution remain in the following sections, not implied by frontend completi
   cover transitive types, same-basename helpers across modules, legal reference
   cycles, repeat inclusion and naming-context cleanup. Independent checks do not
   introduce separate native translation units or weaken mandatory entry inlining.
+  Shared-frontend and native-only composition coverage is complete; the final
+  assembly comparison is tracked with its backend consumer in section 8.
 
 Ready when: contributors can validate interfaces and obtain correct scaffolding
 with editor-resolvable types and reproducible C syntax checks before the execution
@@ -254,6 +256,8 @@ handle, lifetime, clone and replacement invariants independently of module execu
 
 - [ ] Emit one project assembly containing required includes, generated types,
   constants, native bodies and Ama labels, included by a launcher translation unit.
+  Reuse section 6 declaration/identity emission and add the deferred final-assembly
+  comparison with isolated native headers/scaffolds and check-only diagnostics.
 - [ ] Execute directly over heap instances without working-state mirrors or
   implicit default objects. Initialize constants before creating the explicit root.
 - [ ] Implement CALL-07 literal construction in entry preparation: select `|` once

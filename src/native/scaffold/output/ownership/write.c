@@ -24,6 +24,19 @@ static bool emit(NativeScaffold *scaffold, FILE *output, const ScaffoldType *unu
     if (fputs("AMA-NATIVE-OUTPUTS 1\n", output) == EOF) {
         return false;
     }
+    unsigned char scope[32];
+    scaffold_scope(scaffold, scope);
+    if (fputs("scope ", output) == EOF) {
+        return false;
+    }
+    for (size_t index = 0; index < 32; index++) {
+        if (fprintf(output, "%02x", (unsigned)scope[index]) < 0) {
+            return false;
+        }
+    }
+    if (fputc('\n', output) == EOF) {
+        return false;
+    }
     for (const ScaffoldOwned *owned = scaffold->owned; owned != NULL; owned = owned->next) {
         if (generated(scaffold, owned->name) == NULL && !row(output, owned->name, owned->digest)) {
             return false;

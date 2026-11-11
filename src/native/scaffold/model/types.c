@@ -73,7 +73,7 @@ bool scaffold_model(NativeScaffold *scaffold) {
             return false;
         }
         type->plan = plan;
-        if (!names(scaffold, type) || !paths(scaffold, type)) {
+        if (!scaffold_hooks(scaffold, type) || !names(scaffold, type) || !paths(scaffold, type)) {
             return false;
         }
         ScaffoldType **position = &scaffold->types;
