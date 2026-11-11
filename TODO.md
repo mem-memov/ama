@@ -50,7 +50,7 @@ itself remains an implementation foundation; the next implementation tasks are i
   including byte views, representation includes and alignment requirements.
 - [x] Implement common `AmaStatus` code/message/length, allocate distinct service
   codes and distinguish invalid-index refusal from technical conversion failure.
-- [ ] Build a small C harness for all six ABI bindings: mandatory `+`/`-`, optional
+- [x] Build a small C harness for all six ABI bindings: mandatory `+`/`-`, optional
   `|`/`=`/`?`/`[]`, plus a void-return native entry with service status output.
 - [ ] Verify mandatory native-entry inlining while permitting internal native C
   calls and stack use. Verify labels and explicit return dispatch for Ama control.

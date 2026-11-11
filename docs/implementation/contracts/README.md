@@ -62,6 +62,8 @@ must still supply their own arguments and executable evidence when implemented.
 | Source discovery, command manifests and incremental dependencies | [Incremental build](../incremental-build.md); finite traversal and exact command equality under stated Make/toolchain assumptions | [Rebuild tests](../../../tests/integration/rebuild/tracking/main.c) |
 | Recursive parent/leaf scheduling and assertion configuration | [Test harness](../test-harness.md); dependency ordering and induction over the test tree | [Lifecycle tests](../../../tests/integration/harness/lifecycle/main.c) |
 
-Source-manager, native ABI, language parsing, typed IR and runtime contracts will
+| Native representations, status and typed hook composition | [ABI](../native-abi.md), [status](../native-status.md), [hook harness](../native-hooks.md) | [ABI suites](../../../tests/unit/native/abi/Makefile) |
+
+Source-manager, language parsing, typed IR and runtime contracts will
 be added only as those components are implemented. The registry does not certify
 those future components or the language as a whole.

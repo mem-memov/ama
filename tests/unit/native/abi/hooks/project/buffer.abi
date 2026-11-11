@@ -1,0 +1,6 @@
++ fixture_initialize
+- fixture_destroy
+| fixture_from_literal
+= fixture_clone
+? fixture_to_condition
+[] fixture_to_index

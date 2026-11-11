@@ -1,2 +1,2 @@
-SUBDIRECTORIES := layout status
+SUBDIRECTORIES := layout status hooks
 include ../../../parent.mk
