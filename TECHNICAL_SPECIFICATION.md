@@ -6,6 +6,8 @@ Version: design baseline, 2026-11-11.
 
 - [1. Purpose and status](#1-purpose-and-status)
   - [1.1 Minimal, stable language core](#11-minimal-stable-language-core)
+    - [Native foundations and composition](#native-foundations-and-composition)
+    - [Reading an Ama program](#reading-an-ama-program)
   - [1.2 Decision boundaries and completion discipline](#12-decision-boundaries-and-completion-discipline)
   - [1.3 Terminology](#13-terminology)
     - [Modules, declarations, and values](#modules-declarations-and-values)
@@ -71,8 +73,9 @@ its source model, compiler, standard library boundary, generated C representatio
 runtime, tests, and acceptance criteria. It defines the implementation to build
 from Ama source files.
 
-The goal is a small, international, explicitly stateful language whose programs
-read as a sequence of understandable operations. Modules define both behavior
+The goal is a small, international, explicitly stateful language for composing
+typed native operations in explicit namespaces. Programs should read as a sequence
+of understandable operations. Modules define both behavior
 and the types of state on which that behavior operates. Instances own data;
 references identify instances without owning them. Execution uses explicit
 control transfers rather than C function calls between Ama modules.
@@ -96,6 +99,10 @@ alternative language rules or obsolete APIs.
 engineering choice whose replacement requires a documented reason. Examples using
 library paths such as `.std.integer`, `.std.text`, or `.jobs.task` illustrate types
 and syntax; they do not reserve those paths or specify existing library interfaces.
+Numbered requirements and their explanatory paragraphs are normative unless
+explicitly marked as examples or implementation choices. A grammar production
+describes syntax; passing it does not bypass static or runtime requirements.
+Requirement identifiers are stable cross-references, not a required numeric order.
 
 The requirements below specify one synchronous execution thread. Parallel
 execution, distributed instances, garbage collection, and an implicit scheduler
@@ -120,6 +127,56 @@ Do not justify an arbitrary restriction by assuming a later syntax expansion.
 A core change requires an independently demonstrated need that the existing
 library mechanisms cannot adequately express, with grammar, semantics, diagnostics,
 and tests reviewed together. This does not prohibit correcting specification bugs.
+
+#### Native foundations and composition
+
+**CORE-04.** Native modules provide the trusted foundations of Ama. Treat each
+native operation as a contract: typed inputs and outputs, preconditions,
+postconditions, permitted state/resource effects, and failure behavior. Ama adds
+qualified identities, typed composition, explicit ownership and control flow
+around those operations. Library growth adds operations and types within this
+contract; it does not add grammar productions or alter existing operators.
+
+The analogy with mathematical proofs is compositional: if each primitive meets
+its contract and each composition rule preserves the required invariants, the
+composition satisfies those invariants. A native declaration is an assumption
+about C, not a proof of its implementation. The Ama compiler checks declarations,
+types, capabilities and generated uses; it does not prove arbitrary C free of
+undefined behavior, resource leaks or nontermination. Native implementation and
+toolchain obligations must remain explicit in every correctness argument.
+
+**CORE-05.** Ama's core fixes naming, storage forms, lifecycle, typed transfer,
+invocation, control flow and the six native protocols. A library may interpret
+literal bytes and implement domain behavior, but cannot change indentation,
+parsing, assignment, reference validity, acquisition, or error propagation.
+There is no open-ended operator or parser registry, implicit conversion, general expression
+language, or execution selected by searching for a conveniently named C function.
+
+#### Reading an Ama program
+
+Read a declaration as **name and storage form → module type → initial contents**.
+Read an assignment as **destination → source**. Read a call as **target and mode
+→ input bindings → output bindings → optional refusal alternative**. A dotted
+path is a type/constant namespace; a declared name selects state. The distinction
+must remain visible without consulting native implementation details.
+
+| Visible form | Meaning |
+|---|---|
+| `item` / `target&` / `items[]` / `targets&[]` | Owned value / reference / owning list / reference list |
+| `&item` in source position | Form a non-owning checked reference |
+| `destination` followed by indented `source` | Typed transfer; no declaration or implicit cast |
+| `worker!` | Execute from entry, preparing a fresh interface |
+| `worker%` | Resume saved execution without resetting the interface |
+| `worker` followed by `>>` | Read retained results without executing the target |
+| `.module` followed by `>>` | Copy shared constants, without an executable target |
+| `%` as a statement / `%source` as a source | Yield / explicitly copy saved positions with owned data |
+| Named condition followed by `?` or `{` | Branch or condition-controlled loop |
+| `:` / `^` / standalone `>` | Local alternative / loop exit / invocation completion |
+
+`!` and suffix `%` announce execution that may change target state. A read has
+no execution suffix, although transferring its results changes its receivers.
+Symbols have the meanings assigned to their grammatical positions; their payload
+occurrences after `|` are data. The complete syntax is in [EBNF.md](EBNF.md).
 
 ### 1.2 Decision boundaries and completion discipline
 
@@ -159,7 +216,7 @@ does not add language features or substitute for the detailed contracts.
 | Persistent state | Body-declared instance fields initialized once at creation, including declarations nested in branches/loops. They survive ordinary calls and resumption. |
 | Shared constant | An immutable declaration in the first optional `@=` section, shared by all instances and excluded from instance ownership, reset, and copying. |
 | Enumeration | A library-defined type with a finite set of accepted values, exposed through named `@=` constants. Different enumeration module types are incompatible; no special enum declaration operator is required. |
-| Literal | Raw UTF-8 payload after the first `\|` on an initializer line, interpreted by the declared type. It has no quoting, escaping, or multiline continuation. |
+| Literal | Raw UTF-8 payload after `\|` in a declaration initializer or entry-call input, interpreted by the destination's declared type. It has no quoting, escaping, or multiline continuation. |
 | Qualified constant source | A logical module path followed by the constant name, such as `.std.list.append`, used directly as a typed value source without a local alias or executable module call. |
 | Initializer | A declaration's optional source or literal specifying initial contents. It is distinct from executable assignment. |
 | Draft | A UTF-8 source file with none of `@=`, `@!`, or `@C`. It is excluded from compilation and may contain unfinished declarations; it cannot be used as a type or entry. |
@@ -199,7 +256,7 @@ See sections 6 and 9 for copy/identity rules and the list interface.
 | Pool slot | Storage/identity location for one possible instance. Slot identity, liveness, and generation are distinct from the payload's contents. |
 | Free list | Runtime chain of unused pool slots, linked through metadata in free slots for reuse before allocating more blocks. It is not a user-level list. |
 | Refusal context | Empty initial status; own refusal saved before `:`; successful/reader calls do not clear it; nested-instance refusal does not overwrite caller; next own refusal replaces it; copied status remains unchanged; owned clones start with empty service context |
-| Acquisition | Protected access to a selected instance/collection for an operation, preventing conflicting access or destruction until release. |
+| Acquisition | Protected runtime access to a selected instance/collection for an operation, preventing conflicting access or destruction until release. Forming a reference with prefix `&` does not hold such protection. |
 | Busy | An instance is running or waiting for an outstanding nested invocation; conflicting entry/resume/read is refused. |
 | Waiting instance | A still-busy caller whose callee has not returned. Its data stays in its heap slot and its pending return chain remains active. |
 | Yielded instance | An available instance with a saved position after `%` and no outstanding caller connection from the yielded invocation. It may be explicitly resumed. |
@@ -281,9 +338,11 @@ obsolete source semantics or introduce a nonconforming execution mechanism.
 relative to the project/library namespace determines identity under the physical
 mapping in SRC-05.
 For example, `shop/item` is named `.shop.item`. A companion C implementation is
-`shop/item.c`; companion native layout headers may be provided separately under
-the documented native ABI contract. Optional native protocol bindings live in
-`shop/item.abi`, beside the module and its `.c`/`.h` companions. `.abi` files are
+`shop/item.c`. An active `@C` module requires companions `shop/item.h` for its
+native declarations/layout, `shop/item.c` for implementation, and `shop/item.abi`
+for protocol bindings. The optional capabilities are optional records, not
+permission to omit mandatory lifecycle metadata. Ama implementations and
+constants-only namespaces do not require native companions. `.abi` files are
 compiler inputs describing native contracts, not executable Ama modules.
 
 **SRC-05.** A module's submodules live in a sibling directory named after its
@@ -353,10 +412,11 @@ with `_` or `XID_Continue` characters, using the identifier properties defined b
 [Unicode UAX #31](https://unicode.org/reports/tr31/). These rules support international
 alphabets, including Chinese, without requiring C-compatible names.
 
-Use a pinned Unicode property-table edition recorded with the compiler source;
-identifier acceptance must not depend on the host locale or a silently updated
-system Unicode library. Generating/vendoring the tables and recording their edition
-are compiler implementation tasks under this fixed identifier contract.
+Use Unicode 17.0.0 identifier properties and record that edition with the compiler
+source. Identifier acceptance must not depend on the host locale or a silently
+updated system Unicode library. Generating/vendoring those tables is an
+implementation task; changing the accepted property edition is a reviewed source
+contract change, not an implicit library upgrade.
 
 Each component of a module path uses the same identifier rule. Filesystem lookup
 must preserve a one-to-one mapping between source spelling and the module file.
@@ -368,10 +428,12 @@ as an unsupported path, not reinterpreted under the host locale.
 
 ### 3.2 Internal names and debugging
 
-**NAME-01.** Generated C names MUST use deterministic hashes of complete qualified
-identities, with separate categories for types, shared constants, state members,
-interface members, labels, and runtime metadata. A basename alone is insufficient. Hash inputs
+**NAME-01.** Compiler-owned generated C names MUST use deterministic hashes of
+complete qualified identities, with separate categories for types, shared constants,
+state members, interface members, labels, and runtime metadata. A basename alone is insufficient. Hash inputs
 must have unambiguous component boundaries and a versioned encoding.
+Handwritten native symbols use the module-prefix facility in NAME-05; they are
+not discovered or rewritten by hashing a C source file.
 
 **NAME-02.** The compiler MUST retain the original identity alongside each hash
 and reject collisions between distinct identities. A collision must never merge
@@ -402,11 +464,52 @@ of an uninitialized source or cyclic initialization. Duplicate-name diagnostics
 identify both declarations and their storage forms. No suffix may silently select
 a different declaration when a use is missing or mistyping its storage marker.
 
+**NAME-05.** The generated assembly MUST also provide a module-qualified naming
+facility for handwritten native C. In a companion's generated inclusion context,
+`AMA_NATIVE(local_name)` denotes a C identifier formed from a collision-checked
+module prefix and that local C identifier. The module prefix is derived from the
+full logical identity in a separate native-symbol category. Prefix encoding and
+concatenation must be injective over the accepted module/local-name pairs.
+Identical local names in different module companions therefore remain distinct.
+
+Native authors use this facility for module-owned file-scope functions, types,
+tags, enumeration constants and objects that require isolation. The `.abi`
+identifier names a function in this module context, for example:
+
+```c
+/* Included in the declaring module's generated naming context. */
+static AmaStatus AMA_NATIVE(initialize)(AMA_NATIVE(State) *state);
+```
+
+```text
++ initialize
+```
+
+This record binds that module's `AMA_NATIVE(initialize)`, not a global function
+selected by basename. The generator establishes the same prefix for its `.h`
+and `.c` and generated typed uses, and removes the temporary naming context
+after each inclusion. The prefix is independent of file discovery/include order.
+Shared ABI declarations such as `AmaStatus` have one documented runtime namespace.
+
+This mechanism qualifies authored identifiers; it does not parse or rewrite
+arbitrary C. The preprocessor's macro namespace is still shared: companion macros
+and include guards must be uniquely named or contained/undefined by their author;
+`AMA_NATIVE(...)` is not a macro-name rewriting mechanism for `#define`/`#ifdef`.
+External C dependencies retain their public names and ordinary C linkage rules.
+Unqualified conflicting C definitions, leaked macros or incompatible declarations
+are build errors, never permission to bind one module's hook to another's.
+
 ## 4. Layout and module structure
 
 **SYN-01.** Ama uses one space per nesting level. Tabs cannot serve as indentation
 or ordinary code whitespace. LF and CRLF are supported; a lone CR is invalid.
 Blank lines are formatting and MUST NOT delimit sections.
+The last physical line need not have a line ending. For grammar recognition only,
+treat a nonempty unterminated final line as terminated by one virtual LF; it is
+not a source byte or part of a literal. Empty files remain empty. Preserve actual
+bytes and positions for literals and diagnostics. Comment text may contain
+tabs after `#`; blank lines contain spaces only. `.abi` files use their stricter
+tab rule in PROTO-11.
 
 **SYN-02.** `#` introduces a comment outside literal payload. A comment inside a
 literal is data. The parser must preserve literal trailing spaces and distinguish
@@ -486,6 +589,9 @@ targets&[]
 initializers, one per element. Whole-list initialization is not implicit splicing
 or nested-list construction. Sources must already be initialized and have
 compatible types. Initialization follows declaration order.
+For persistent body fields, that order is lexical source order, traversing nested
+branch/loop bodies at their written location; both branch alternatives contribute
+fields unconditionally. Blocks never make construction conditional on execution.
 
 **TYPE-03.** There is no privileged language-level `size_t`, machine integer,
 raw address, or universal truth value. Integers, bytes, text, and other data
@@ -498,6 +604,42 @@ initialized. Infinite eager ownership cycles are invalid; a reference or empty
 dynamic list does not itself require recursively allocating its target type.
 Unsupported default construction must be diagnosed or fail through the defined
 lifecycle protocol.
+
+For eager construction, form a type edge for every owned scalar field and for
+every owning-list field with one or more element initializers. Reference fields,
+reference-list fields and initially empty owning lists add no eager edge. Reject
+a cycle in this eager-construction graph: every such edge requires at least one
+child construction before its owner can finish. Check initializer value
+dependencies separately; absence of an eager cycle does not authorize reading
+an uninitialized source. Module loading and clone-capability graphs have different
+edges and must not be substituted for this graph.
+
+**TYPE-05.** Type compatibility is nominal: the same complete module identity is
+required, together with the storage-form rules below. Matching layouts, similar
+names or a C cast do not make different Ama types compatible. There is no implicit
+reference formation, dereference, scalar/list conversion, list splicing or subtype
+conversion.
+
+| Destination storage | Accepted ordinary source of the same module type | Effect |
+|---|---|---|
+| Owned scalar | Owned scalar access or scalar constant | Independent owned copy |
+| Reference scalar | Reference access or prefix `&` of an owned scalar access | Copy/form a non-owning handle |
+| Owning list | Whole owning list or owning constant list | Independent whole-list copy |
+| Reference list | Whole reference list | Copy handle entries, without cloning targets |
+
+An indexed owned element is scalar storage; an indexed reference-list entry is
+reference storage. An ordinary reference source such as `target&` cannot implicitly
+clone its referent into owned storage. Explicit `%target&` instead requests the
+continuation clone in CONT-04. `%` of an owned or reference scalar may construct
+or replace distinct owned scalar storage only; it does not produce a reference
+or whole list. Clone capability and overlap rules still apply.
+
+Each list initializer creates one element: apply the scalar rule for that list's
+ownership form. A whole-list source is not one element. Declaration literals and
+CALL-07 input literals construct owned scalars using the destination's `|`
+capability; they cannot initialize reference storage. These rules also govern
+parameter binding and result transfer. An indexed access in target position
+selects an instance to execute/read; that is distinct from transferring a handle.
 
 ### 5.2 Literals
 
@@ -548,9 +690,11 @@ creation, not whenever execution reaches the declaration's source location.
 Assignments are executable operations and may update that state on every call.
 
 **STATE-02.** Parameters and results are interface storage. An entry-start call
-reinitializes them for the invocation before running the body. Omitted inputs and
-results use their declared defaults; literal-supplied inputs select construction
-under CALL-07 instead of default construction followed by replacement. Their final
+reinitializes them for the invocation before running the body. Install parameters
+in declaration order, choosing each supplied source/literal or its declared
+default, then initialize results in declaration order under CALL-08. A later
+default observes the already installed earlier fields, including supplied inputs.
+Do not default-construct a supplied parameter and then overwrite it. Their final
 values are retained after completion or suspension. Before the first call,
 results have their declared initial values. A retained-result read exposes only
 results, not parameters or private body fields.
@@ -591,7 +735,7 @@ copying a constant's value is a different, permitted operation.
 
 **CONST-02.** Initialize constants once before root initialization, following
 declaration order and initialized dependencies. The compiler checks visible
-initializer/type dependencies and rejects cycles or use-before-initialization.
+construction/initializer dependencies and rejects cycles or use-before-initialization.
 Declaration initializers may use literals, previously initialized local constant
 sources, or qualified constant sources under CONST-05. Include cross-module
 constant dependencies in initialization planning; preserve declaration order
@@ -605,6 +749,16 @@ documented validation mechanism. A runtime initialization failure identifies the
 module/declaration and prevents root startup; clean completed constants and partial
 construction through the lifecycle protocol. Dispose successful shared storage
 once after executable instances, in reverse initialization order.
+
+Plan initialization over individual constant declarations, not over a graph that
+merely says one module mentions another's type. Add an ordering edge from each
+constant to the preceding constant in its own module, and a dependency edge to
+each constant value its construction reads, including declared owned-field
+initializers. Reject cycles in this graph. Choose the next dependency-ready
+declaration deterministically by the bytewise full module path, then declaration
+ordinal. A module declaring constants of its own executable value type is not
+thereby cyclic: shared `@=` storage is not an owned field of that type. Eager
+owned-state construction cycles are checked independently under TYPE-04.
 
 **CONST-03.** Read constants of another module with a module-path target and
 ordinary saved-read bindings:
@@ -749,6 +903,11 @@ other&
  target&
 ```
 
+Compatibility and transfer effects are exactly TYPE-05's table. Resolve the
+receiver location first, then the source, once each. An invalid standalone
+selection is a technical failure; assignment has no attached `:`. Transferring
+into reference storage changes the stored handle, not its target's state.
+
 **COPY-01.** Ordinary owned-value copying produces independent owned children
 and lists. References stored inside the copy that point into the copied ownership
 tree follow their corresponding new instances. References to objects outside that
@@ -867,6 +1026,25 @@ allocation, and free-list reconstruction cannot reset this history. Protection
 covers Ama references within one runtime lifetime; handles are not a persistence
 format or permission to reuse references across destroyed runtime instances.
 
+**REF-07.** Reference formation and runtime acquisition are different operations.
+Prefix `&` forms a typed identity for existing owned scalar storage; it neither
+locks that object beyond the current operation nor extends its lifetime.
+Copying reference storage copies its identity, including an empty or stale handle,
+without acquiring, cloning or reviving its target. Selecting an indexed reference
+entry still checks the containing list and position. Target liveness, generation
+and availability are checked when an operation resolves that handle for access.
+
+**REF-08.** Before any normal destruction, removal, reset or replacement can
+destroy owned state, preflight the entire affected ownership subtree, not only
+its root. No included running, waiting or incompatibly acquired descendant may
+be destroyed. Protect the validated tree through the operation. The operation's
+own authorized acquisition is not a conflicting acquisition. Non-owning reference
+edges do not extend the destruction boundary. Clear preflights all its owned
+element subtrees before any destruction. Invocation target refusal follows
+CALL-04; post-entry list refusal follows LIST-10; other dynamic access violations
+are technical failures. Cleanup after execution has already failed first releases
+active links/acquisitions under LIFE-05, then destroys owned state.
+
 ## 7. Invocation, reading, and control flow
 
 ### 7.1 Three distinct operations
@@ -893,7 +1071,7 @@ worker!
 ```
 
 **CALL-02.** Input values use ordinary type-defined value semantics; reference
-inputs copy checked handles. Omitted inputs retain their declared defaults for
+inputs copy checked handles. Omitted inputs use their declared defaults for
 entry-start execution. Requested results are transferred on completion or yield;
 unrequested results remain stored. Repeated identical inputs still execute the
 body repeatedly. Reactivity and deduplication are application decisions.
@@ -1011,6 +1189,50 @@ An empty `>` at call-argument indentation skips a result; standalone `>` at body
 statement indentation remains early return. Validate the whole argument list
 before acquiring/resetting/mutating the target.
 
+**CALL-08.** Invocation has a fixed evaluation order, independent of module loading
+and of whether bindings are named or positional:
+
+1. Statically resolve and validate the entire operation: target mode, binding
+   labels, input/output order, arity, storage forms, types and capabilities.
+   A named parameter or result label may occur at most once in its respective
+   sequence. Different bindings may name the same caller-side receiver.
+2. For an instance/list operation, evaluate the target selection once and acquire
+   it. A static constant read instead resolves its namespace without acquisition.
+   Only refusal to acquire this selected target (including invalid indexed target
+   or absent resume position) may select the attached `:`. A technical index-conversion failure
+   remains fatal. Do not reset data or assign requested results on refusal.
+3. For entry-start, resolve supplied ordinary input sources and their indexed
+   selections in binding text order in the caller context, before resetting
+   target storage. Protect any state needed for copying until it is consumed;
+   merely copying a reference handle does not acquire its referent. Invalid
+   source selection or conflicting replacement is a technical failure, not `:`.
+4. For entry-start only, install parameters in declaration order. For each, choose
+   exactly one construction path: copy the supplied source, construct the supplied literal,
+   or use its declared initializer/default when omitted. Construct over fresh
+   replacement storage under LIFE-01 through LIFE-04. Do not construct the default
+   and then overwrite a supplied value. Later defaults see already installed
+   earlier parameters. Then reinitialize results in declaration order, so result
+   defaults also see the installed parameters. No target body runs before success.
+5. For entry-start/resume only, record the return connection and execute. Resume
+   skips steps 3 and 4 and jumps to its saved position. Retained and constant
+   reads skip steps 3 through 5 and proceed to output transfer without an
+   outstanding invocation, body execution or reset.
+6. On completion/yield, or during a nonexecuting read, transfer requested outputs
+   in binding text order. Resolve each receiver, including its current index,
+   when that binding transfers. A previous transfer may therefore update an
+   index used by the next binding or a receiver written again later. Each
+   transfer uses TYPE-05 and the replacement protocol; it is not simultaneous
+   assignment. An omitted `>` consumes a position without resolving a receiver.
+7. Release protected access after transfers/cleanup and continue the caller.
+
+This order does not permit a source to be invalidated by reset: reject conflicting
+ownership/acquisition before destructive commit rather than silently snapshotting
+it. Interface preparation and output transfers are individually failure-safe
+replacements, not a transaction over the whole call. Earlier committed transfers,
+target execution and external effects are not rolled back after a later failure.
+An acquisition refusal leaves receivers unchanged; a later technical failure
+need not. Standalone assignment uses the order in REF-03.
+
 ### 7.2 Acquisition failure
 
 **CALL-04.** Entry, resume, and retained-read operations acquire their target
@@ -1082,6 +1304,11 @@ invocation early; reaching the body end also completes it.
 **FLOW-03.** Truth and index conversions use explicit standard library contracts
 mapped by the compiler. Their signatures and host-size conversions must be
 checked. No universal nonzero-integer truth rule is built into the language.
+The condition/index operand is a named owned scalar access, possibly an indexed
+owned element. Its own native type must bind `?`/`[]` respectively. These
+capabilities are not implicitly inherited from an owned field. An Ama composition
+can call library operations and use their typed results as operands; it does not
+gain another truth/index protocol or a general expression evaluator.
 
 ## 8. Suspension and explicit continuation copying
 
@@ -1195,7 +1422,8 @@ not their previous list positions.
 **LIST-06.** Removing an element from an owning list destroys its instance and
 invalidates existing references through the generation protocol. Removing an
 entry from a reference list removes only that handle and does not destroy its
-target. A busy or acquired owned instance cannot be removed/destroyed; refuse
+target. An owned instance with any busy or incompatibly acquired instance in its
+destruction subtree cannot be removed/destroyed under REF-08; refuse
 the operation before changing the list or destroying state. Expected refusals
 are reported through the positional result contract below. Buffer reallocation and shifts
 invalidate borrowed addresses into the identifier array; those addresses are not
@@ -1245,7 +1473,8 @@ positions and three output positions, irrespective of the selected action.
 | Clear | None | Remove all entries |
 | Swap | Primary and secondary positions | Exchange two entries without cloning or moving states |
 
-Unused positions keep their defaults and are not interpreted by that action.
+Unused positions are still bound normally (or use defaults when omitted), but
+their values are not interpreted by that action.
 All supplied arguments must still satisfy the interface's static type/arity rules.
 List entry execution performs one requested action, not implicit iteration over
 the element bodies. A call with no inputs executes Inspect. A standalone whole-list
@@ -1259,21 +1488,30 @@ clearing saved positions and remapping internal references under the copy rules.
 Source ownership is not transferred. Noncopyable elements can be default-created;
 copy-producing requests remain subject to static clone-capability checks.
 
+To make this check static, supplying input position three in an owning-list call
+requires clone capability for the element type, regardless of the runtime action
+or whether the supplied handle happens to be empty. Omit that input or use its
+empty positional placeholder to default-create a noncopyable element. Do not
+infer a capability from runtime emptiness or execute action constructors during
+compilation. Reference-list calls do not require target clone capability.
+
 Append/Insert into a reference list stores the supplied handle, including an
 empty handle, without creating, cloning or acquiring ownership of its target.
 Removing/Clearing such entries does not destroy or require availability of targets.
 Whole-list value copying remains governed by the separate ordinary copy contract.
 
 **LIST-10.** Position bounds are LIST-02's zero-based bounds. Invalid positions,
-a busy/acquired owned target to be removed, or an unavailable nonempty owned-copy
-source are expected operation refusals. They produce false in result two, the
-specific outcome in result three, and the unchanged length in result one.
+a busy/acquired instance in an owned deletion subtree, or an unavailable nonempty
+owned-copy source are expected operation refusals. They produce false in result
+two, the specific outcome in result three, and the unchanged length in result one.
 Successful actions produce true and the success outcome. Reordering identities
 does not itself clone or destroy instances. Swap of an entry with itself succeeds
 without structural change; Clear on an empty list and Inspect succeed as well.
 
 Preflight every owned element affected by Clear before destroying any of them;
 preflight position/source/access requirements for other actions before mutation.
+Subtree availability follows REF-08, including busy descendants of an available
+element root; an owned-copy source is checked over COPY-07's whole copy boundary.
 An expected refusal leaves order, ownership and element state unchanged, although
 the list's interface results are updated. All resource preparation for insertion
 must finish before publishing the new entry. Allocation/constructor/clone failures
@@ -1286,7 +1524,11 @@ these outcomes after entry. It does not replace checking result two/three.
 
 **LIST-11.** Every successful structural operation updates stored length. Expected
 refusals and Inspect also report actual current length; a newly initialized list
-already has its correct stored length. Retained reads through `>>` copy these
+already has its correct stored length, true completion and the success outcome,
+as for an Inspect of its initialized contents. Ordinary whole-list copying copies
+the last completion/outcome values with the contents and establishes the copied
+length; it inherits no active acquisition or refusal-service history. Retained
+reads through `>>` copy these
 stored results without executing list code. Results two/three describe the last
 whole-list operation, not an automatic status of later element-body invocations.
 Indexed updates do not change length or rerun the list action.
@@ -1366,6 +1608,8 @@ are empty handles. Initialization failure must clean up constructed resources
 without starting the root body. Returning from the root reaches the runtime root
 sentinel. Root completion, yield, and failure return control to the host under
 RT-14 through RT-16; startup does not introduce an implicit scheduler.
+The initial root entry uses the interface just constructed; it does not reset
+or construct that interface a second time before executing its first statement.
 
 **RT-02.** A slot stores its permanent data, retained interface values, identity
 metadata, acquisition state, saved resume position, and service control fields.
@@ -1506,7 +1750,8 @@ recoverable Ama exception or permission to continue a failed computation.
 C functions for ordinary Ama modules or compile independent module C translation
 units whose boundaries defeat mandatory inlining.
 
-The required logical order is dependencies, all type definitions, shared-constant
+The required logical order is external declarations and required forward types,
+native representation/generated type definitions, shared-constant
 declarations/storage, native inline bodies, pool/runtime declarations, and then
 the Ama control-flow/runtime body. A possible
 include-based organization is:
@@ -1581,7 +1826,7 @@ signatures/declarations are checked through generated uses by the C compiler.
 | List | Ordered handle array, length/capacity, and its specified service/interface data |
 | Literal initializer | Immutable UTF-8 bytes/length passed to the type's native constructor |
 | Qualified constant source | Statically resolved typed value copy into existing destination storage |
-| `instance!` | Validate/acquire, reset interface, bind inputs, set return metadata, jump to module entry |
+| `instance!` | Validate/acquire, protect input sources, construct the interface from supplied/default values under CALL-08, set return metadata, jump to module entry |
 | `instance%` | Validate/acquire and jump to stored position without input reset/binding |
 | Instance `>>` | Copy stored results without body execution |
 | Path `>>` | Copy statically resolved shared constant values |
@@ -1602,7 +1847,7 @@ A schematic generated execution fragment illustrates the control structure:
 ```c
 /* Conceptual labels/fields only: not a public runtime API or runnable fixture. */
 ama_root_entry:
-    /* Resolve/acquire child; reset/bind its interface; record root and return site. */
+    /* Acquire child; prepare inputs/interface under CALL-08; record return site. */
     /* Mark root waiting, select child; neither payload is moved. */
     goto ama_child_entry;
 
@@ -1707,21 +1952,22 @@ implementation; no separate support flag or runtime registration is needed.
 For example, `stdlib/modules/integer.abi` may contain:
 
 ```text
-+ integer_initialize
-- integer_destroy
-| integer_from_literal
-= integer_clone
-? integer_to_condition
-[] integer_to_index
++ initialize
+- destroy
+| from_literal
+= clone
+? to_condition
+[] to_index
 ```
 
 Function names are chosen by the library author and must be valid identifiers
 under the supported C toolchain. The fixed protocol symbols are language-neutral;
 English words such as `condition` or `index` are not reserved Ama names. The
-`.abi` extension is the selected technical file suffix. Descriptions are scoped
-to the module's full identity; equal helper basenames in unrelated companions
-must not silently cross-bind, and the single-translation-unit backend must detect
-C-name conflicts or supply correctly scoped generated adapters.
+`.abi` extension is the selected technical file suffix. Each function
+identifier is local to its declaring native module and names
+`AMA_NATIVE(identifier)` under NAME-05. Equal helper basenames in unrelated
+companions cannot cross-bind. Native definitions use that naming facility;
+wrapping conflicting unqualified definitions in adapters is not isolation.
 
 **PROTO-02.** The compiler reads these declarations directly, without parsing C
 or discovering registrations through macros or name conventions. It validates
@@ -1740,12 +1986,12 @@ An `.abi` file contains no C bodies and must not duplicate the native state layo
 **PROTO-03.** Conceptual C signatures are:
 
 ```c
-AmaStatus integer_to_condition(const IntegerState *state, bool *result);
-AmaStatus integer_to_index(const IntegerState *state, size_t *result);
+AmaStatus AMA_NATIVE(to_condition)(const AMA_NATIVE(State) *state, bool *result);
+AmaStatus AMA_NATIVE(to_index)(const AMA_NATIVE(State) *state, size_t *result);
 ```
 
-`IntegerState` is a readable example alias for the module's actual native state
-representation; generated names follow the qualified hash naming contract.
+`State` is an illustrative native-author local name for the payload representation;
+`AMA_NATIVE` qualifies it and the hook names with the module prefix under NAME-05.
 `AmaStatus` is the common code/message/length status defined in ERROR-03 through
 ERROR-05. These are conversion helper signatures, not the void-return entry
 interface of a native Ama module. On success the helper initializes its
@@ -1774,7 +2020,7 @@ truth semantics; a library must explicitly bind `?` if it wants that behavior.
 **PROTO-06.** The `=` binding explicitly supplies independent native data cloning:
 
 ```text
-= resource_clone
+= clone
 ```
 
 Without this binding, a native type does not support owned copying. There is no
@@ -1782,7 +2028,7 @@ separate prohibition flag, implicit `memcpy` fallback, or inferred clone support
 from a similarly named C function. An absent `.abi` file also supplies no clone
 capability, and also fails the mandatory lifecycle-binding checks. For example,
 a file-resource type may omit `=` while an integer type
-binds `= integer_clone`. The binding is metadata, not a new assignment operator
+binds `= clone`. The binding is metadata, not a new assignment operator
 in Ama source and not an equality-comparison protocol.
 
 The helper constructs independent destination native payload from a read-only
@@ -1800,6 +2046,19 @@ a different static capability. Known unsupported owned copying is a compile-time
 error, including an unsupported nested native field. Pure reference copying stays
 valid even when the target resource cannot be cloned. The no-op self-assignment
 rule in COPY-06 does not invoke native cloning.
+
+Derive capability over the finite resolved type graph. Add an edge `T → U` for
+each owned scalar or owning-list field of `T` whose element type is `U`, including
+parameters, results and persistent fields, but excluding shared constants and
+all non-owning edges. Initially mark every executable type as potentially
+copyable. Remove each native type lacking `=`, then repeatedly remove any type
+with an owned edge to a removed type, until no change occurs. The remaining set
+is the greatest fixed point of “native payload is copyable and every owned
+dependency is copyable”. This terminates after at most one removal per type.
+A cycle through owning lists is not itself a reason to reject cloning: finite
+instance trees of a recursive type remain copyable when no owned dependency
+reaches a noncopyable native type. Eager allocation cycles remain a separate
+TYPE-04 check. There is no inference from current list length.
 
 A supported clone may still fail at runtime, for example on allocation. Clean up
 partially created native/owned data and clone-context metadata, preserve the
@@ -1866,7 +2125,8 @@ resources exactly once on this failure path.
 
 **PROTO-11.** The `.abi` file is a UTF-8, line-oriented binding table. Each
 record starts at column one and contains exactly one supported symbol, one or
-more ASCII spaces, and one C-function identifier. The supported symbols are
+more ASCII spaces, and one module-local C-function identifier under NAME-05.
+The supported symbols are
 `+`, `-`, `|`, `=`, `?`, and the contiguous token `[]`. Function identifiers must
 be valid under the supported C toolchain; the compiler does not infer capabilities
 from their spelling. Function signatures and expressions are not written here.
@@ -1888,13 +2148,13 @@ Example:
 
 ```text
 # Native integer operations; record order has no meaning.
-+ integer_initialize
-- integer_destroy
++ initialize
+- destroy
 
-| integer_from_literal
-= integer_clone
-? integer_to_condition  # Optional condition support.
-[] integer_to_index
+| from_literal
+= clone
+? to_condition  # Optional condition support.
+[] to_index
 ```
 
 ### 11.2.2 Complete lifecycle and cleanup protocol
@@ -1906,6 +2166,10 @@ zero-filled bytes alone do not imply a live value. Construct owned Ama fields
 in declaration order (parameters, results, then persistent body declarations)
 without executing module bodies. Construct the native payload after the fields
 on which it may depend are initialized. Native hooks do not own these fields.
+Construct each field by its selected initializer or source-clone path. In a
+clone, construct children from source data rather than running their declaration
+defaults first. Declaration-order construction does not mean default construction
+followed by overwriting resources.
 
 **LIFE-02.** Select exactly one payload constructor: `+` for a default, `|` for a
 literal, or `=` for a clone. Do not invoke `+` and then overwrite its resources
@@ -2133,6 +2397,10 @@ or declaration. Include both source names for duplicate identities/collisions.
 Malformed input must fail without partial output masquerading as a usable build.
 Generated files must have designated ownership and must not overwrite handwritten
 native companions unless a separately requested stub-generation command does so.
+Source lines and columns are one-based; columns count UTF-8 bytes from the
+physical line start, not display cells or Unicode scalars. Spans use half-open
+byte ranges in the original source. EOF is a valid diagnostic position; virtual
+line boundaries do not add bytes or a fabricated source line.
 
 **COMP-05.** Repeated compilation of unchanged input must produce deterministic
 identities and generated output. Resource limits, allocation arithmetic, output
@@ -2508,13 +2776,18 @@ ownership effects, and source diagnostics are covered. At minimum:
 | Submodule directories | `name` and sibling `name+/` coexist; nested markers map to logical path components without `+`; missing parent/conflicting logical sources diagnosed; native companions use physical filename; debug paths retain `+`; no implicit inheritance/execution |
 | Entry literal inputs | Positional/named `< |payload`, empty literal versus omitted input, exact bytes including #/tabs/trailing spaces, parameter-selected type, repeated construction, one literal constructor without default-then-overwrite, scalar ownership/capability/arity errors, failure cleanup and noncatchability by : |
 | Variable namespace | Duplicate base names rejected across constants/parameters/results/body and all four storage forms; no branch/loop shadowing; different modules may reuse names; diagnostics show both declarations |
+| Native namespaces | Identical local hook/type/helper names in different modules resolve through distinct generated prefixes; `.abi` selects only the declaring module; no arbitrary C rewriting; unqualified C/macro conflicts diagnosed by the build |
+| Storage compatibility | Nominal module identity and all four storage forms checked; no implicit dereference/acquisition, scalar-list conversion or splicing; explicit continuation copy into owned storage; empty/stale handle copies do not acquire targets |
+| Evaluation order | Input selections before reset; one selected constructor per parameter in declaration order; later defaults see installed inputs; results follow parameters; output receivers/indices resolved in binding text order; duplicate labels rejected; no whole-call rollback |
+| Recursive type graphs | Module loading, eager construction, constant-value dependencies and clone capability analyzed separately; benign self-typed constants and copyable recursive lists accepted; eager cycles and owned paths to noncopyable payloads rejected |
+| Destruction access | Available ancestors/elements with busy owned descendants cannot be destroyed, reset or replaced; Clear preflights every affected subtree before mutation; failure disposal releases active links first |
 | Draft boundary | Unused unfinished drafts skipped without code/layout/stub generation; draft type/entry use rejected with locations; adding selector triggers full validation; selector-looking literal/comment text cannot activate a draft |
 | Constant values/startup | Copyable immutable numbers/text/enum values; no mutable references/open external resources; declaration-order dependency initialization before root; visible cycles rejected; native constructors do not execute bodies or perform external I/O; initialization failure prevents root startup |
 | Qualified constant sources | Direct entry inputs, assignment and declaration initialization; exact final-member/prefix-module split; source versus type-path context; no implicit variable/instance; unknown member/type/storage mismatch rejected; cross-module initialization ordering/cycles checked; receivers/reference acquisition/continuation copy forbidden |
 | Exact algorithms and justification | No heuristic decisions; complete component contracts and reviewable mathematical/algebraic arguments; invariant, boundary, failure and composition tests under ARCH-05/ARCH-06 and TEST-08 |
 | Constant reads/enumerations | Path-plus-`>>` resolves `@=` members only; instance-plus-`>>` resolves `@>` only; named/positional ordering and receiver type checks; values copied without exposing shared storage; incompatible enum types rejected; unknown enum literal rejected; one-time reverse shared cleanup |
 | Shared constant section | `@=` precedes interface/implementation; coexists with `@!` or `@C`; constants-only and empty `@=` files complete without a pool; incomplete declarations or missing implementation after an interface rejected; constants excluded from instance copying/reset/busy state |
-| Layout | LF/CRLF; invalid tabs/CR/indentation; comments; empty/missing/repeated sections; drafts |
+| Layout | LF/CRLF and unterminated final line; virtual boundary never enters payload/spans; invalid code tabs/CR/indentation; comment tabs versus strict ABI tabs; explicit binding separators; comment-only condition adjacency; empty/missing/repeated sections; drafts |
 | Declarations | All four storage forms; scalar initializer cardinality; list entries; no marker on type line; ordering errors |
 | Literals | Empty payload; quotes, `#`, `|`, backslashes, tabs and trailing spaces preserved; invalid numeric expressions rejected |
 | Initialization | One root created by host startup; executable-type pools create no default objects; constants-only modules allocate no pool; body state and children initialize once without execution; empty lists/references; rollback; eager ownership cycle refused |
@@ -2548,7 +2821,7 @@ ownership effects, and source diagnostics are covered. At minimum:
 | Destruction errors | Cleanup continues across failures; primary cause retained; later errors added; no automatic retry/double destruction; terminal replacement-cleanup failure never exposes a partly destroyed destination |
 | Native clone capability | Missing `=` rejects owned copying statically, including owned native-typed fields and list elements; references to noncopyable targets remain copyable; no implicit byte-copy fallback; same data-clone helper for ordinary/`%` copies |
 | Protocol semantics | Current-state read without body/reset/mutation; repeated loop conversion; invalid negative/oversized index and separate bounds check; failed outputs never consumed; `>>` unchanged |
-| List operation interface | Four inputs/three outputs, default Inspect, skipped positional arguments/results, all six actions; owning empty-source construction/nonempty-source clone; reference-list empty handle preserved |
+| List operation interface | Four inputs/three outputs, default Inspect, skipped positional arguments/results, all six actions; supplied owning source requires static clone support even if empty/unused; omitted source permits noncopyable default construction; reference-list empty handle preserved; initial retained results defined |
 | List operation outcomes | Invalid bounds/busy-owned-target/source refusal preserves structure and reports false/reason; technical failures stay fatal; Clear preflights all owned entries; Swap self/Clear empty succeed; retained length current after initialization/success/refusal |
 | Zero-based positions | First element at zero, last at `n - 1`; access/removal/replacement reject `n`; insertion at `n` appends; empty list permits insertion only at zero; no implicit offset |
 | Stacklessness | Ama uses labels and return selectors; native entries inline; native helpers, recursion, allocation and I/O may use C calls; no yield across active C calls |
@@ -2663,7 +2936,7 @@ Deliverable: a reproducible build with a conformance report, not merely a workin
 
 ### 17.1 Status of the agreed design packages
 
-The previously tracked semantic decision packages are closed:
+The baseline contracts for the previously tracked semantic decision packages are:
 
 | Package | Agreed contract |
 |---|---|
@@ -2672,9 +2945,9 @@ The previously tracked semantic decision packages are closed:
 | Constants and enumerations | Shared immutable `@=` values initialized before root; static `>>` reads and direct qualified value sources; dependency/cycle checks; library-defined typed enumerations |
 | Acquisition-refusal reasons | One common `AmaStatus`, caller-owned refusal snapshot and ordinary library reader; `:` remains acquisition-only |
 
-No previously listed language question remains pending. This is a specification
-baseline, not a claim of implementation completeness or proof that no defect can
-be found. New evidence of a contradiction must be assessed explicitly against
+These rules are the current design baseline, not a claim of implementation
+completeness or a proof that no defect can be found. New evidence of a
+contradiction must be assessed explicitly against
 these contracts rather than converted into automatic language expansion.
 
 ### 17.2 Engineering tasks, not open language questions
@@ -2731,9 +3004,8 @@ An authorized change affecting grammar must also update EBNF and dependent guide
 
 ## Appendix A. EBNF
 
-See [Ama grammar (EBNF.md)](EBNF.md) for the complete maintained grammar,
-The grammar is referenced rather than
-copied so syntax corrections have a single source of truth. The grammar includes the agreed source-level rules and a concise account of
-state ownership, copy boundaries, pool/list identity, lifecycle/error semantics,
-host outcomes, and the `.abi` companion format. Detailed implementation contracts
-remain in this specification rather than being copied into the grammar.
+See [Ama grammar (EBNF.md)](EBNF.md) for the complete maintained grammar.
+It defines physical lines, lexical forms, productions and the static distinctions
+needed to read source. The grammar is linked rather than copied, and refers to
+the requirement identifiers here for semantics. Runtime, lifecycle and backend
+requirements have one authoritative definition in this specification.
