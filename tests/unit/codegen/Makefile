@@ -1,2 +1,2 @@
-SUBDIRECTORIES := assembly execution
+SUBDIRECTORIES := assembly execution continuations
 include ../../parent.mk

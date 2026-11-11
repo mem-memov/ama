@@ -200,7 +200,31 @@ static void it_preserves_mixed_positions_in_owned_lists_without_resuming_the_roo
     }
 }
 
+static void it_refuses_every_busy_descendant_before_continuation_clone_hooks(void) {
+    const AmaInstanceActivity busy[] = {AMA_INSTANCE_RUNNING, AMA_INSTANCE_WAITING, AMA_INSTANCE_ACQUIRED};
+    for (size_t index = 0; index < sizeof(busy) / sizeof(busy[0]); index++) {
+        setup_objects();
+        AmaHandle source, copy = {0};
+        AmaStatus status = ama_object_create(&world, 2, NULL, &source);
+        assert(status.code == AMA_OK);
+        RootValue *original = object_payload(source);
+        cell(source)->metadata.service.activity = AMA_INSTANCE_YIELDED;
+        cell(source)->metadata.service.resume = (AmaResumePosition){true, 73};
+        cell(original->right)->metadata.service.activity = busy[index];
+        status = ama_object_clone(&world, source, true, &copy);
+        assert(status.code == AMA_BUSY && cloned == 0 && copy.generation == 0);
+        assert(cell(source)->metadata.service.activity == AMA_INSTANCE_YIELDED);
+        assert(cell(source)->metadata.service.resume.selector == 73);
+        assert(cell(original->right)->metadata.service.activity == busy[index]);
+        cell(original->right)->metadata.service.activity = AMA_INSTANCE_READY;
+        status = ama_object_destroy(&world, source);
+        assert(status.code == AMA_OK);
+        destroy_objects();
+    }
+}
+
 void run(void) {
+    it_refuses_every_busy_descendant_before_continuation_clone_hooks();
     it_preserves_mixed_positions_in_owned_lists_without_resuming_the_root();
     it_remaps_root_ancestor_forward_and_cyclic_references_but_preserves_external_targets();
     it_copies_saved_positions_only_in_explicit_continuation_mode();

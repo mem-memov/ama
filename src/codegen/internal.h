@@ -16,6 +16,8 @@ bool codegen_emit_program(NativeScaffold *, FILE *);
 bool codegen_emit_sources(NativeScaffold *, FILE *);
 bool codegen_emit_descriptors(NativeScaffold *, FILE *);
 bool codegen_emit_header(NativeScaffold *, FILE *, const ScaffoldType *);
+bool codegen_emit_host_context(FILE *);
+bool codegen_emit_host_initialize(NativeScaffold *, FILE *);
 bool codegen_emit_host_begin(NativeScaffold *, FILE *);
 bool codegen_emit_host_finish(FILE *);
 bool codegen_emit_body(NativeScaffold *, FILE *, const ScaffoldType *);

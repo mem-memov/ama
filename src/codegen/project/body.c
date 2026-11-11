@@ -24,7 +24,7 @@ bool codegen_emit_body(NativeScaffold *scaffold, FILE *output, const ScaffoldTyp
     if (fputs("default: break;\n}\nama_project_invalid_resume: __attribute__((unused));\n"
             "ama_status=ama_status_make(AMA_INVALID_STATE,NULL,0); goto ama_project_finish;\n"
             "ama_project_yielded: __attribute__((unused));\n"
-            "ama_outcome=AMA_PROJECT_YIELDED; goto ama_project_finish;\n", output) == EOF) { return false; }
+            "ama_outcome=AMA_HOST_YIELDED; goto ama_project_finish;\n", output) == EOF) { return false; }
     if (fputs("ama_project_return: __attribute__((unused));\nswitch(ama_return) {\n", output) == EOF) { return false; }
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
         for (const ControlNode *node = type->plan->controls; node != NULL; node = node->allocated_next) {

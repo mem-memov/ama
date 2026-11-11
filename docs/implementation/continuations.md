@@ -22,8 +22,8 @@ an unhandled root yield rather than introducing an implicit scheduling loop.
 
 Include `project.h` and `project.c` at C file scope instead of the standard
 launcher. Zero-initialize an `AmaProjectHost`, then call
-`ama_project_execute(&host, AMA_ACCESS_ENTRY)`. Its `AmaProjectResult` distinguishes
-`AMA_PROJECT_COMPLETED`, `AMA_PROJECT_YIELDED` and `AMA_PROJECT_FAILED`. Explicit
+`ama_project_execute(&host, AMA_ACCESS_ENTRY)`. Its `AmaHostResult` distinguishes
+`AMA_HOST_COMPLETED`, `AMA_HOST_YIELDED` and `AMA_HOST_FAILED`. Explicit
 `AMA_ACCESS_RESUME` consumes the root's saved position; entry restarts and resets
 only the interface. Neither operation schedules another host call.
 
@@ -57,3 +57,25 @@ changes no ownership edges and therefore cannot introduce an active return chain
 The clone and transfer suites test both projections, nested list descendants,
 reference remapping and allocation-failure cleanup. Exact failure injection visits
 every allocation in successful scalar-tree cloning for both copy modes.
+
+## Host and failure evidence
+
+The independently runnable [continuation execution suite](../../tests/unit/codegen/continuations/main.c)
+compiles real projects with the verified native toolchain. It exercises both arms
+of a branch with a shared saved successor, repeated loop yields, output-only
+resume, interface reset on entry, independent continuation copies, and the new
+caller in a resumed failure trace. Custom launchers inspect the actual
+`AmaHostResult`, preserve root identity across host returns, reject reentry and
+second live contexts, dispose yielded ownership trees and reject failed resumes.
+Rejected host invocations do not mutate an already running execution. Failed
+execution itself reports and disposes before returning an empty-root failure.
+
+The host owns a stable context and is used synchronously. Its live-context lease
+covers execution and cleanup; native destruction cannot synchronously reenter
+that boundary. Disposal traverses ownership, never saved control edges. Therefore
+no pending code runs as a side effect of destroying a yielded instance.
+
+Validation includes the complete project suite with release assertions enforced
+by the harness and `-Werror`, plus ASan/UBSan on runtime and compiled continuation
+projects. LeakSanitizer is disabled because this traced environment cannot run
+it; resource fixtures independently check balanced construction and destruction.

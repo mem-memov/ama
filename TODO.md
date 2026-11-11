@@ -303,11 +303,13 @@ execution and list action dispatch remain the explicit next sections.
   host outcomes. Failed execution is not resumable; root resume is host-explicit.
 - [x] Clear positions throughout ordinary copies and preserve them throughout `%`
   copies, without copying callers, busy state or refusal history.
-- [ ] Test repeated yields, nested owned states, busy descendants, clone failures,
+- [x] Test repeated yields, nested owned states, busy descendants, clone failures,
   host disposal and rejection of unhandled root yield by the standard launcher.
 
-Ready when: continuation semantics compose with ownership and failures without
-capturing a native C activation or adding an implicit scheduler.
+Completed: continuation semantics compose with ownership and failures without
+capturing a native C activation or adding an implicit scheduler. The independent
+`tests/unit/codegen/continuations` suite runs verified generated projects, including
+custom hosts. See `docs/implementation/continuations.md` for invariants and evidence.
 
 ## 10. Complete lists and a coherent standard library
 

@@ -78,7 +78,7 @@ bool codegen_emit_control(NativeScaffold *scaffold, FILE *output, const Scaffold
             if (fputs("ama_cell->metadata.service.resume=(AmaResumePosition){0};\n", output) == EOF) { return false; }
             break;
         case CONTROL_ACQUIRE_LIST: case CONTROL_LIST_ACTION: case CONTROL_LIST_INSTALL_INPUT:
-            return fputs("ama_status=ama_status_make(AMA_INVALID_STATE,\"Suspension or list actions are not implemented\",45);\n"
+            return fputs("ama_status=ama_status_make(AMA_INVALID_STATE,\"List actions are not implemented\",32);\n"
                 "goto ama_project_finish;\n", output) != EOF;
         case CONTROL_EVALUATE_INPUT: case CONTROL_INSTALL_PARAMETER: case CONTROL_INITIALIZE_RESULT:
         case CONTROL_SELECT_SOURCE: case CONTROL_PREFLIGHT_REPLACEMENT: case CONTROL_PREPARE_REPLACEMENT:

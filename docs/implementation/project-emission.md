@@ -8,8 +8,9 @@ manifest, content hashes, lock, staged replacement and rollback protocol. Native
 companions remain handwritten inputs; an unowned/edited output needs explicit
 `--overwrite`.
 
-The launcher includes `project.h` at file scope and `project.c` inside one execution
-function. The header includes native declaration files, concrete heap layouts,
+The launcher includes `project.h` and `project.c` at file scope. `project.c`
+defines one execution function containing all Ama labels and an explicit host
+boundary for entry, resume and disposal. The header includes native declaration files, concrete heap layouts,
 shared-value storage, native companion bodies, typed lifecycle adapters, runtime
 and source/operation tables. Native declarations are exactly those supplied to
 isolated authoring headers. Each native entry is redeclared through its exact

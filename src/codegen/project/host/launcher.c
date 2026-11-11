@@ -5,8 +5,8 @@ bool codegen_emit_launcher(NativeScaffold *scaffold, FILE *output, const Scaffol
     (void)unused;
     return fputs("#include \"project.h\"\n#include \"project.c\"\n\nint main(void) {\n"
         "    AmaProjectHost host={0};\n"
-        "    AmaProjectResult result=ama_project_execute(&host,AMA_ACCESS_ENTRY);\n"
-        "    if(result.outcome==AMA_PROJECT_YIELDED) {\n"
+        "    AmaHostResult result=ama_project_execute(&host,AMA_ACCESS_ENTRY);\n"
+        "    if(result.outcome==AMA_HOST_YIELDED) {\n"
         "        host.status=ama_status_make(AMA_INVALID_STATE,\"Unhandled root yield\",20);\n"
         "        ama_program_report(&host.program,host.status);\n"
         "    }\n"

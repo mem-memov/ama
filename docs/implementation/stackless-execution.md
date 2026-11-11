@@ -41,8 +41,9 @@ For every non-host active return link, the caller is waiting and its outgoing
 identity equals the callee. An acquired target cannot be entered twice. Induction
 on connect/complete/release proves that the current handle identifies the active
 instance and that return routing restores its actual caller. Return selectors
-are allocated uniquely by the typed plan; the only dispatcher selects among
-these explicit continuation labels. A completed host root has no pending caller.
+are allocated uniquely by the typed plan; the return dispatcher selects among
+these explicit continuation labels. A separate resume dispatcher validates saved
+positions against the current module before selecting their labels. A completed host root has no pending caller.
 Zero is reserved for absent control/source positions; selector exhaustion fails
 without wrapping or publishing a partial map. Source maps and return metadata are finite borrowed tables/records; tracing walks
 the finite active chain without traversing non-owning object references.
@@ -56,6 +57,7 @@ A forced allocator that refuses every runtime allocation still produces a mapped
 pre-root error. Multi-level native failures report the complete active Ama chain.
 The build verifies native entry disappearance in the unstripped project object.
 
-Suspension/resume execution and list action dispatch remain sections 9 and 10.
-Their acquisition checks already precede reset; unsupported execution paths fail
-explicitly. This contract does not claim those subsequent features are complete.
+Suspension releases the active caller link and preserves only an explicit saved
+position. The [continuation contract](continuations.md) covers recursive copying
+and explicit host outcomes. List action dispatch remains section 10; unsupported
+list execution paths fail explicitly.

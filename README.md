@@ -11,8 +11,9 @@ The implementation is being rebuilt from this specification. `./ama --check ROOT
 compiling C. `./ama --status ROOT .module` reports source activation without
 validating a project. `./ama --emit ROOT .module --out DIR --sdk /path/to/ama/src --compile`
 produces a verified stackless executable at `DIR/program`. Entry calls, retained
-reads, assignments, branches and loops execute; suspension and list actions remain
-under implementation. `./ama --help` describes commands. [Checking](docs/implementation/checking.md),
+reads, assignments, branches, loops, suspension and continuation copying execute;
+list actions remain under implementation. Custom C hosts can explicitly resume
+or dispose of yielded roots; the standard launcher rejects unhandled root yield. `./ama --help` describes commands. [Checking](docs/implementation/checking.md),
 [semantic analysis](docs/implementation/semantic-analysis.md) and
 [typed plans](docs/implementation/typed-plans.md) have independent and composed
 C/assert tests. Check-only success does not validate handwritten C bodies.
