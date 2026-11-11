@@ -43,6 +43,7 @@ void ama_object_fix_references(AmaObjectOperation *, AmaObjectWork *, AmaHandle)
 AmaStatus ama_object_clone_fields(AmaWorld *, AmaObjectWork *);
 AmaStatus ama_object_fields(AmaWorld *, AmaObjectWork *);
 AmaHandle *ama_object_child(AmaObjectWork *, size_t index, uint64_t *type_id, const AmaRecipe **);
+AmaStatus ama_object_cleanup_keep(AmaWorld *, AmaHandle root, AmaStatus primary, bool keep_root);
 AmaStatus ama_object_cleanup(AmaWorld *, AmaHandle root, AmaStatus primary);
 AmaStatus ama_object_preflight(AmaObjectOperation *, AmaHandle, bool copy, bool continuation);
 void ama_object_unprotect(AmaObjectOperation *);

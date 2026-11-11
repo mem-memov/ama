@@ -109,3 +109,33 @@ work records, linear identity lookup and reference-map lookup, with O(V+E) tempo
 storage. [Clone tests](../../tests/unit/runtime/objects/clone/main.c) cover all forms,
 internal/external boundaries, independent native allocations, saved positions,
 busy/unsupported sources and every preparation allocation failure.
+
+## Replacement without relocating native objects
+
+Each stable pool slot reserves two max_align_t-aligned data banks. One is active;
+replacement prepares the new root directly in the destination's inactive bank.
+Its private staging slot supplies only identity/lifetime bookkeeping and points
+to that bank during preparation. New children occupy independent pool slots.
+The clone map uses the final destination identity for the source root from the
+start. Old destination data and its saved position remain untouched on any
+preparation failure.
+
+After complete preparation, finalize old contents without releasing the root
+identity, switch the active bank, transfer the prepared ledger/control state,
+reparent direct children and publish. Only bookkeeping and declared handles are
+transferred; live native payload bytes are never memcpy-moved. This supports a
+native payload containing a private pointer into its own stable representation,
+without adding a move hook or per-instance heap allocation. Borrowed views must
+end before a conflicting replacement; growth never changes either bank's address.
+The policy costs twice the declared data bytes per slot, plus alignment padding.
+
+Commit destruction failure is terminal: finish old cleanup and prepared cleanup,
+leave the old identity inaccessible, and keep a finalized bookkeeping tombstone
+until disposal. Neither partly destroyed old data nor prepared data is published.
+No rollback of destruction is attempted. Disposal of the tombstone performs no
+additional native destruction. Complete source/destination protections span the
+transaction. [Replacement tests](../../tests/unit/runtime/objects/replacement/main.c)
+exercise repeated bank switches, self-address-sensitive payloads, stable root
+identity/internal references, every preparation allocation failure, every old
+cleanup failure and failed prepared native construction. Complexity and temporary
+space are the clone bounds plus two bounded cleanup traversals.

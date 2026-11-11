@@ -3,7 +3,7 @@
 #include "../../source/common.c"
 #include "runtime/objects/objects.h"
 
-typedef struct { void *resource; size_t number; } NativeValue;
+typedef struct { void *resource; size_t number; void *address; } NativeValue;
 typedef struct { AmaHandle peer; AmaHandle root; NativeValue native; } LeafValue;
 typedef struct {
     AmaHandle left;
@@ -22,6 +22,7 @@ static size_t destruction_order[100];
 
 static AmaStatus initialize_payload(void *address) {
     NativeValue *value = address;
+    value->address = value;
     value->number = ++constructed;
     value->resource = test_allocate(NULL, 1);
     if (value->resource == NULL) { return ama_status_make(AMA_OUT_OF_MEMORY, NULL, 0); }
@@ -48,7 +49,7 @@ static AmaStatus clone_payload(void *address, const void *source) {
 
 static AmaStatus destroy_payload(void *address) {
     NativeValue *value = address;
-    assert(value->resource != NULL && destroyed < 100);
+    assert(value->resource != NULL && value->address == value && destroyed < 100);
     destruction_order[destroyed++] = value->number;
     test_release(NULL, value->resource);
     value->resource = NULL;

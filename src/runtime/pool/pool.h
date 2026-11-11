@@ -10,6 +10,8 @@ typedef struct {
     AmaHandle owner;
     size_t next_free;
     bool occupied;
+    bool alternate_payload;
+    void *preparation_payload;
 } AmaPoolCell;
 
 typedef struct {
@@ -24,6 +26,7 @@ typedef struct {
     size_t slots_per_block;
     size_t payload_size;
     size_t payload_offset;
+    size_t payload_stride;
     size_t stride;
     AmaPoolBlock *blocks;
     size_t block_count;
@@ -42,6 +45,7 @@ void ama_pool_dispose(AmaPool *);
 AmaStatus ama_pool_reserve(AmaPool *, AmaHandle *, AmaPoolCell **);
 AmaStatus ama_pool_lookup(const AmaPool *, AmaHandle, bool reserved, AmaPoolCell **);
 void *ama_pool_payload(const AmaPool *, AmaPoolCell *);
+void *ama_pool_spare_payload(const AmaPool *, AmaPoolCell *);
 AmaStatus ama_pool_publish(AmaPool *, AmaHandle);
 AmaStatus ama_pool_invalidate(AmaPool *, AmaHandle);
 AmaStatus ama_pool_release(AmaPool *, AmaHandle);

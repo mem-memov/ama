@@ -242,7 +242,7 @@ backend is available. These tools do not extend the grammar.
   partial failure cleanup, at-most-once destruction and terminal cleanup errors.
 - [x] Implement independent ownership-tree cloning with an injective clone map,
   internal-reference remapping and unchanged external targets.
-- [ ] Prepare replacements before destructive commit; preserve destinations on
+- [x] Prepare replacements before destructive commit; preserve destinations on
   preparation failure and finalize resources correctly after commit failure.
 - [ ] Check source-tree availability, ownership overlap and copy capability;
   preserve ordinary self-assignment and reject continuation self-copy.

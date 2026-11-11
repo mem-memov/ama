@@ -1,7 +1,7 @@
 #include "runtime/objects/internal.h"
 
 static AmaStatus reserve(AmaObjectOperation *operation, AmaHandle source,
-    AmaObjectWork *parent, AmaObjectWork **output) {
+    AmaObjectWork *parent, void *root_payload, AmaObjectWork **output) {
     AmaObjectType *type = ama_world_type(operation->world, source.type_id);
     AmaObjectWork *work = source_arena_allocate(&operation->arena, sizeof(*work));
     if (work == NULL) { return ama_status_make(AMA_OUT_OF_MEMORY, NULL, 0); }
@@ -10,6 +10,7 @@ static AmaStatus reserve(AmaObjectOperation *operation, AmaHandle source,
     AmaStatus status = ama_pool_reserve(&type->pool, &work->handle, &work->cell);
     if (status.code != AMA_OK) { return status; }
     if (parent != NULL) { work->cell->owner = parent->handle; }
+    if (root_payload != NULL) { work->cell->preparation_payload = root_payload; }
     if (operation->last == NULL) { operation->first = work; }
     else { operation->last->next = work; }
     operation->last = work;
@@ -64,9 +65,8 @@ void ama_object_fix_references(AmaObjectOperation *operation, AmaObjectWork *bou
 
 AmaStatus ama_object_clone_prepare(AmaObjectOperation *operation, AmaHandle source, AmaHandle final_root,
     bool continuation, void *root_payload, AmaHandle *output) {
-    if (root_payload != NULL) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
     AmaObjectWork *work = NULL;
-    AmaStatus status = reserve(operation, source, NULL, &work);
+    AmaStatus status = reserve(operation, source, NULL, root_payload, &work);
     while (status.code == AMA_OK) {
         if (work->next_child < work->cell->metadata.lifetime.child_capacity) {
             uint64_t type_id;
@@ -76,7 +76,7 @@ AmaStatus ama_object_clone_prepare(AmaObjectOperation *operation, AmaHandle sour
             (void)ama_pool_lookup(&work->type->pool, work->source, false, &original);
             AmaObjectWork source_work = {.type = work->type, .cell = original};
             AmaHandle child = *ama_object_child(&source_work, work->next_child, &type_id, &recipe);
-            status = reserve(operation, child, work, &work);
+            status = reserve(operation, child, work, NULL, &work);
             if (work != NULL) { *destination = work->handle; }
         } else {
             status = ama_object_clone_payload(operation, work, continuation);
