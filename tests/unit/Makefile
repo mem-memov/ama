@@ -1,2 +1,2 @@
-SUBDIRECTORIES := driver native source diagnostics
+SUBDIRECTORIES := driver native source diagnostics lexer
 include ../parent.mk

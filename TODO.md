@@ -105,7 +105,7 @@ remain their subsequent tasks; this section does not claim a working compiler.
 
 ## 4. Parse the complete grammar without semantic guesses
 
-- [ ] Read indentation, comments and literal boundaries without altering payload
+- [x] Read indentation, comments and literal boundaries without altering payload
   bytes, trailing spaces or deliberate line endings.
 - [ ] Parse sections, constants-only modules and the specified draft boundary.
 - [ ] Build an AST with spans for declarations, initialization, assignment,
