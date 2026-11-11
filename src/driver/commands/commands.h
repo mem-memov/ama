@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include "driver/options/options.h"
 
+int driver_status(const DriverOptions *options, FILE *output, FILE *errors);
 int driver_check(const DriverOptions *options, FILE *output, FILE *errors);
 
 #endif

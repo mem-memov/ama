@@ -32,9 +32,26 @@ static void it_reports_exact_missing_modules_and_malformed_options(void) {
     destroy_test();
 }
 
+static void it_reports_drafts_distinctly_without_accepting_them_as_required_modules(void) {
+    setup_test();
+    char *arguments[] = {AMA_EXECUTABLE, "--status", "project", ".draft", NULL};
+    int result = run_compiler_arguments(arguments);
+    char text[4096];
+    read_stream(output, text, sizeof(text));
+    assert(result == EXIT_SUCCESS && strcmp(text, "draft .draft\n") == 0);
+    destroy_test();
+    setup_test();
+    arguments[1] = "--check";
+    result = run_compiler_arguments(arguments);
+    read_stream(errors, text, sizeof(text));
+    assert(result != EXIT_SUCCESS && strstr(text, "inactive draft") != NULL);
+    destroy_test();
+}
+
 void run(void) {
     it_checks_a_real_project_without_c_compilation_or_output_artifacts();
     it_reports_exact_missing_modules_and_malformed_options();
+    it_reports_drafts_distinctly_without_accepting_them_as_required_modules();
 }
 
 int main(void) {

@@ -198,7 +198,7 @@ Ama execution remain in the following sections, not implied by frontend completi
 
 - [x] Provide an explicit check-only command using the same source manager, parser,
   resolver and checker as compilation, without generating or compiling C.
-- [ ] Report draft status distinctly; a required draft remains a build error.
+- [x] Report draft status distinctly; a required draft remains a build error.
 - [ ] Generate native headers/signatures and optional C/ABI/test skeletons from
   validated interfaces and ABI contracts instead of duplicating declarations.
   Follow CABI-06: every C skeleton directly includes a self-contained generated

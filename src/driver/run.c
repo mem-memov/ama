@@ -11,13 +11,14 @@
 int driver_run(int argument_count, char *const arguments[],
     FILE *output, FILE *errors) {
     DriverRequest request = driver_parse_request(argument_count, arguments);
-    if (request == DRIVER_REQUEST_CHECK) {
+    if (request == DRIVER_REQUEST_CHECK || request == DRIVER_REQUEST_STATUS) {
         DriverOptions options;
         driver_options_init(&options, source_system_allocator());
         bool parsed = driver_options_parse(&options, argument_count, arguments);
         int status = EXIT_FAILURE;
         if (parsed) {
-            status = driver_check(&options, output, errors);
+            status = request == DRIVER_REQUEST_CHECK ? driver_check(&options, output, errors)
+                : driver_status(&options, output, errors);
         } else {
             (void)diagnostic_render(errors, &options.error);
         }

@@ -1,2 +1,2 @@
-SUBDIRECTORIES := check
+SUBDIRECTORIES := check status
 include ../../parent.mk

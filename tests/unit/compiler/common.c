@@ -33,7 +33,7 @@ static void file(const char *path, const char *content) {
     assert(written == count && closed == 0);
 }
 
-static bool check_project(void) {
+static inline bool check_project(void) {
     ModuleRoot root = {"generated/project", NULL, 0};
     return compiler_frontend_check(&frontend, &root, 1, ".main", (SemanticLibraries){0});
 }

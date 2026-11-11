@@ -8,7 +8,8 @@ libraries rather than an expanding collection of language primitives.
 [TECHNICAL_SPECIFICATION.md](TECHNICAL_SPECIFICATION.md) is the source of truth.
 The implementation is being rebuilt from this specification. `./ama --check ROOT
 .module` validates dependencies, syntax, types and typed plans without emitting or
-compiling C. `./ama --help` describes commands; executable compilation is not yet
+compiling C. `./ama --status ROOT .module` reports source activation without
+validating a project. `./ama --help` describes commands; executable compilation is not yet
 implemented. [Checking](docs/implementation/checking.md),
 [semantic analysis](docs/implementation/semantic-analysis.md) and
 [typed plans](docs/implementation/typed-plans.md) have independent and composed

@@ -38,3 +38,21 @@ on native inputs containing `#error`, checking status/streams and absence of
 source-root output directories. Recursive leaves retain the existing C/assert
 harness. Release/Werror focused checks pass. Compilation/execution are not yet
 implemented; CLI success is deliberately limited to the frontend boundary.
+
+## Inspecting activation without project validation
+
+`ama --status ROOT .module` indexes the same exact roots, then parses only the
+selected source and prints `draft`, `constants`, `ama` or `native`, followed by
+its full logical identity. It does not resolve declarations/dependencies or
+certify an executable module. In particular a draft succeeds as an inspection
+but fails when selected by `--check` as the entry or a required dependency.
+A valid `@C` selector can be inspected before companions exist. Syntax/UTF-8/path
+errors still fail explicitly.
+
+[ModuleInspection](../../src/compiler/inspect/module.h) owns the catalog and one
+AST and destroys them in borrow-safe order. Its success partition is exactly the
+parser's four activation kinds. No heuristic decides that unfinished text is
+runnable. Source/catalog/parser correctness and termination compose directly;
+inspection adds constant work and no output files. [Status tests](../../tests/unit/compiler/status/main.c)
+cover all four kinds without dependency loading and every allocation failure;
+real CLI tests distinguish inspection success from required-draft errors.
