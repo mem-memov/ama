@@ -1,95 +1,61 @@
 # Ama standard library
 
-This directory contains normal Ama modules and their C implementations.
-The compiler has no table of their names, signatures, or arithmetic operators.
-The existing `sys/*` module paths remain the public interface.
+[TECHNICAL_SPECIFICATION.md](../TECHNICAL_SPECIFICATION.md) is the source of truth.
+The [grammar](../EBNF.md) defines the language and the
+[native value ABI](../VALUE_ABI.md) defines native capabilities and lifetimes.
+Implementation work is tracked in [TODO.md](../TODO.md).
 
-```text
-stdlib/
-    Makefile
-    modules/
-        sys/
-            math/
-                add
-                add.c
-                sub
-                sub.c
-                ...
-            io/
-                print
-                print.c
-```
+## Library boundary
 
-Each extensionless file declares parameters and results and selects `@C`.
-Its sibling `.c` implements the generated `ama_native_<hash>` function. The
-header maps original interface names to hash-based C names. Handwritten C
-parameters can keep descriptive local names. Values are
-`size_t`; results are written through the generated `size_t*` arguments. See
-[the contributor guide](../CONTRIBUTORS.md#standard-library-contributions).
+Scalar types, literal interpretation, enumerations, conditions and indices are
+library capabilities. The compiler uses the fixed declared contracts instead of
+assuming a universal integer payload or recognizing special English field names.
+Public paths and action/outcome constants must be published by the library.
+Example `.std.*` paths in language documentation illustrate these roles; they do
+not reserve a canonical package layout.
 
-## Build and link
+Shared `@=` constants are immutable, copyable values initialized once before the
+root. Library enumeration types interpret their literals and expose qualified
+constant names. Distinct module types remain incompatible even if their native
+tags have equal values. Domain functionality extends through modules, preserving
+the core syntax and semantics.
 
-From the repository root:
+## Modules and companions
 
-```sh
-make
-mkdir -p generated
-./ama project main generated/program.c
-gcc -std=c11 -O3 generated/program.c build/stdlib/libama_std.a -o generated/program
-```
+Interfaces and handwritten C sources live under `stdlib/modules/`. An executable
+module has an extensionless Ama interface and may select `@C` with companion `.h`,
+`.c` and `.abi` files. The fixed ABI requires default construction and destruction;
+literal construction, cloning, condition and index conversion are explicit optional
+capabilities. Never infer a protocol from helper names or guess a representation.
 
-Add `-Igenerated` and the corresponding companion sources when the project
-also declares its own C modules. Link the archive after those sources/objects.
-`make standard-library` rebuilds the library; `make -C stdlib` also builds it
-and bootstraps the compiler if it is missing.
+Submodules of `name` reside in `name+/`, while their logical identities omit `+`.
+Dependency resolution loads transitive Ama modules once, checks their contracts
+and includes required native dependencies in the generated project assembly.
+Native entry bodies inline; internal native helpers may use C calls and the stack.
 
-The archive and objects live under `build/stdlib/`. Generated headers are under
-`build/stdlib/include/`. The build invokes `--generate-c-headers` with implicit
-library loading disabled. It never creates or edits an implementation source.
-A missing C implementation is a build error. `C_ARCHIVER` selects the archiver
-(default `ar`); library objects do not require compiler LTO support.
+## Ownership and failures
 
-## Published behavior
+Opaque native payloads own native resources only. Persistent Ama relationships
+must be declared as Ama fields so generated copying and cleanup can see them.
+Borrowed views cannot escape their operation. Follow the common status contract,
+partial-construction cleanup, independent cloning and at-most-once destruction.
 
-- `sys/math/add`, `sub`, and `mul` use unsigned arithmetic with wraparound.
-- `sys/math/div` and `mod` set the numeric result to 0 and `error` to 1 for a
-  zero divisor; otherwise `error` is 0.
-- `sys/math/lt`, `le`, `gt`, `ge`, `eq`, and `ne` perform unsigned comparisons.
-- `sys/math/and`, `or`, and `not` return exactly 0 or 1.
-- `sys/io/print` writes an unsigned decimal value followed by a newline and
-  currently returns `error = 0`.
+Lists use the fixed four-input/three-output interface and six actions specified
+in the technical specification. Action and outcome names are typed library
+constants, not language keywords. Conditions and indices use registered conversion
+capabilities; list positions begin at zero. Acquisition refusal, ordinary list
+refusal and technical failure retain their distinct contracts.
 
-The interface files define argument order, names, and defaults. Adding a module
-uses the same native mechanism available to project code. Add new build
-categories to `MODULE_DIRECTORIES` in this directory's Makefile.
+## Contributing and verification
 
-## Library selection
+Follow [CONTRIBUTORS.md](../CONTRIBUTORS.md). Define narrow interfaces, decompose
+implementation into a readable tree of small operations, and test both individual
+components and their real composition. Use exact algorithms with explicit domains,
+invariants and mathematical/algebraic justification; avoid heuristic special cases.
 
-The default module directory is embedded when building the compiler with
-`STANDARD_LIBRARY_DIRECTORY` (the repository's `stdlib/modules` by default).
-Keep this source tree available, or set `AMA_STDLIB` after moving the compiler:
-
-```sh
-AMA_STDLIB=/path/to/modules ./ama project main generated/program.c
-AMA_STDLIB= ./ama project main generated/without-library.c
-```
-
-An empty value disables library loading; a nonexistent directory is an error.
-Use a separate output directory and link the implementations matching the
-selected interfaces when using another library. Duplicate module paths across
-project and library are rejected. The compiler never creates C stubs inside an
-imported library; intentional library stub creation is a separate operation:
-
-```sh
-AMA_STDLIB= ./ama --generate-c-stubs stdlib/modules build/stdlib/include
-```
-
-## Typed lifecycle runtime
-
-The archive also contains compiler-provided lifecycle support from
-`src/runtime/`. Headers are published under `build/stdlib/include/runtime/`.
-Use `-Ibuild/stdlib/include` and include `runtime/value.h` or `runtime/record.h`
-when working directly with this C API. It supports module type descriptors,
-owned record states, and failure-preserving replacement. The current numeric
-Ama modules above keep their existing native signatures; typed code generation
-has not been connected yet. See [VALUE_ABI.md](../VALUE_ABI.md) for the contract.
+Test literal boundaries, invalid conversion, ownership/copy laws, resource failure,
+cleanup ordering and generated native signatures. Verify the module through the
+same generated C assembly used by projects. Build with `make`, run tests with
+`make test`, and clean test outputs with `make test-clean` from the repository root.
+Acceptance evidence establishes implemented support; documenting a contract alone
+does not establish it.

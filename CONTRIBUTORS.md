@@ -1,618 +1,245 @@
 # Writing code and tests for Ama
 
-The project should read like a clear book. A reader should be able to understand
-an operation, its inputs, its result, and its failure path without reconstructing
-hidden state or decoding abbreviations.
+The project should read like a clear book: an operation, its inputs, state changes,
+result and failure path should be understandable without decoding abbreviations
+or reconstructing hidden dependencies.
+
+[TECHNICAL_SPECIFICATION.md](TECHNICAL_SPECIFICATION.md) is the source of truth.
+[EBNF.md](EBNF.md) maintains its grammar; [VALUE_ABI.md](VALUE_ABI.md) explains
+the native contract. [TODO.md](TODO.md) tracks implementation work. Change the
+specification only when the user explicitly requests it.
 
 ## Names explain roles
 
-Use English for identifiers, comments, diagnostics, documentation, and build
-messages. Non-English characters belong only in deliberate encoding test data;
-write those characters as Unicode escapes in C so their purpose is explicit.
+Use English for compiler/native identifiers, comments, documentation, diagnostics
+and build messages. Ama itself supports international identifiers and paths;
+this repository's prose convention is not a restriction on Ama programs.
+Deliberate Unicode fixtures must retain meaningful encoding data; use Unicode
+escapes in C when that makes the bytes' purpose clearer.
 
-Use `snake_case` for functions and variables, `PascalCase` for types, and
-`UPPER_SNAKE_CASE` for constants and enum members. Prefer complete domain words:
+Use `snake_case` for C functions/variables, `PascalCase` for types and
+`UPPER_SNAKE_CASE` for constants/enum members. Prefer `parser`, `parameter_count`,
+`source_symbol_id` and `destination_symbol_id` to unexplained initials or ambiguous
+counts. Name pointers after objects and IDs after identities. Preserve established
+C/POSIX names such as `FILE`, `EOF` and `waitpid`.
 
-- `parser`, `lexer`, and `stream`, rather than `P`, `L`, or `ts`.
-- `source_symbol_id` and `destination_symbol_id`, rather than `src` and `dst`.
-- `condition_token` and `condition_symbol`, rather than `cond` and `cs`.
-- `parameter_count`, `symbol_count`, and `node_count`, rather than an ambiguous
-  shared `count`.
-- `GraphTraversal` and `NodeVisitState`, rather than a generic `Sort` structure
-  or unexplained numeric traversal states.
-
-Name pointers after the object they reference and integer IDs after what they
-identify. A `destination_symbol` is a symbol pointer; a `destination_symbol_id`
-is an integer. Use `caller_index` and `callee_index` when their roles differ.
-A local `index` is sufficient when one nearby collection makes its meaning clear.
-Use named enum values when a number represents a state.
-
-Names should explain a role without repeating the whole algorithm. Preserve
-established C/POSIX names such as `FILE`, `EOF`, and `waitpid`. Ama standard library
-paths and their named parameters are language interfaces: changing names such
-as `sys/math/lt` or its parameters requires a separate language change, with
-matching updates to the grammar, examples, and tests.
+Library paths and exported interface names are public library contracts,
+not language keywords. Review interface changes with their declarations, native
+implementation, documentation and tests. Keep internal names descriptive.
 
 ## Formatting follows the file's syntax
 
-C sources and headers use four spaces per indentation level, including
-continuations. Use spaces, never tabs. Keep opening braces on the declaration
-or control-flow line. Expand functions that perform several actions onto
-separate lines. Keep statements in execution order and avoid packing unrelated
-actions onto one line. Split long declarations and argument lists at meaningful
-boundaries; continuation lines add one four-space level.
+C uses four-space indentation, spaces instead of tabs, opening braces on the
+control/declaration line, and separate statements for separate operations. Split
+long calls/declarations at meaningful boundaries. Makefiles use
+`.RECIPEPREFIX := >`, with `>` followed by four spaces in recipes.
 
-Makefiles use GNU Make's `.RECIPEPREFIX := >`. Each recipe line starts with
-`>` followed by four spaces. The prefix is syntax, not indentation. Continuation
-lines in Make variable lists also use four spaces.
+Ama nesting uses exactly one space. Target sections are optional `@=` shared
+constants, optional `@<`/`@>` interfaces, then `@!` or `@C`. Constants-only files
+are complete; files with none of `@=`, `@!`, `@C` are drafts. Blank lines never
+delimit sections. A literal's payload after `|` is data and must not be trimmed
+or reformatted. Preserve deliberate CRLF fixtures; ordinary source/docs use LF.
 
-Ama fixtures and Ama examples retain the language's semantic indentation:
-**one space per nesting level**, as specified in `EBNF.md`. Applying C formatting
-to them changes the program. Module files use `@<`, `@>`, and `@Ama`
-for section boundaries; empty lines are formatting, not delimiters. `@C`
-selects a companion C implementation. Files without either implementation
-selector are drafts; an intentional empty Ama implementation still uses `@Ama`. Deliberate CRLF fixtures retain CRLF; ordinary
-source and documentation files use LF. `.editorconfig` records these exceptions;
-`.gitattributes` preserves the deliberate CRLF fixture and makes Git whitespace
-checks recognize its line endings.
+## Components form a tree of small operations
 
-## Small operations have explicit dependencies
+Follow ARCH-01 through ARCH-04 in the technical specification. Every major stage
+must decompose into cohesive nested directories: project/dependency loading,
+source/path/UTF-8 handling, lexical layout/literals, parsing, semantic checking,
+lowering, storage planning, C emission and runtime support.
 
-Organize production code by responsibility under `src/`. A file should tell one
-coherent part of the story. Extract a function when it represents a meaningful
-operation with understandable inputs and outputs. A short helper does not need
-its own file or public interface merely because it is short.
+Parent-level orchestration should read as short named operations. Functions have
+one responsibility at one level of abstraction and should normally fit one editor
+screen. Decompose long multi-phase or deeply nested logic; justify exceptions in
+review. Do not create an unrestricted utility directory or artificial public APIs
+merely to split trivial private helpers into files. Update build source lists and
+header dependency tracking when introducing deeper directories; the current
+shallow wildcards do not automatically discover an arbitrary new source tree.
 
-Keep implementation helpers `static`. Public headers should describe the
-component's own types and operations and compile independently. Subsystem
-`internal.h` files expose only helpers shared within that subsystem.
+Keep private helpers `static`. Public headers compile independently; internal
+headers expose only sibling contracts. Pass narrow contexts explicitly. Compiler
+objects own their allocations and dependencies; do not introduce mutable global
+compiler state or pass the whole project where a symbol table/source view suffices.
 
-Pass mutable state explicitly. `SymbolTable`, `Graph`, `Lexer`, and `Emitter`
-are independent objects. The project layer connects them and owns compilation
-resources. Do not introduce mutable global production state or pass an entire
-project object to an operation that only needs one component.
+Compiler C helpers may use ordinary functions and the stack. Small visible helpers
+may be `static inline`; LTO is an optimization. Those choices are distinct from
+the target generated native-entry inlining requirement.
 
-Use `static inline` for small header helpers whose implementations need to be
-visible at call sites. Ordinary helpers remain ordinary functions; the default
-LTO build can inline across source files. Inlining is the optimizer's decision.
+## Resolve dependencies, then generate
+
+Ama dependencies come from declared module types, constant namespaces/sources and
+transitive references under configured roots. Resolve logical identity once in a
+project registry, including physical `name+/` mapping. Detect duplicates, missing
+or required-draft modules and report requesting locations. A parent directory
+relationship does not import declarations, instantiate objects or imply ownership.
+
+Preserve source spans through parsing, resolution, typed IR, storage planning and
+C emission. Parsing must not guess syntax from alias lookup or emit C strings.
+Resolve before emission and do not publish valid-looking output after failure.
+A syntax tree owns its storage; borrowed source paths/views must not outlive their
+owners. Bound recursion/size arithmetic and clean partial work explicitly.
+
+Model loading, eager ownership layout, constant initialization and execution as
+different dependency problems. A loading/module-type cycle is not automatically
+an invalid program; reject eager ownership and initialization cycles, while busy
+instance access is checked dynamically.
+
+Emit one project C assembly with dependency-correct declarations/includes. Ama
+source files are parsed into the common IR, not textually included by C. Emit a
+shared Ama body/type/constant table once, while each owned declaration retains
+its distinct state. Track contributing source/native/ABI inputs for invalidation.
+Native companions are included where required; external C libraries may link
+normally. Do not turn Ama module invocation into a C call or separate C module link.
 
 ## Generated execution must be stackless
 
-The compiler's own C helpers may follow the ordinary inlining guidance above.
-Generated Ama execution has a stricter contract: ordinary modules become labels
-and direct jumps within one C execution function, with explicit continuation
-selection and data storage. Do not generate a C call per Ama invocation or move
-an activation stack into heap storage. Reject recursion and active-instance
-reentry for this model.
+Ordinary Ama modules become labels/direct jumps in one C execution function.
+Instances execute in stable heap slots; do not copy caller state into working
+globals or save/load payloads around calls. Caller identity and return selectors
+form the allowed explicit return chain. Refuse the same busy instance; distinct
+available instances of one type may execute with proper current-instance selection.
 
-`@C` code must be mandatorily inlined. Lifecycle operations and native helpers
-must not reintroduce indirect or ordinary C calls. Plain `static inline` and LTO
-are insufficient proof. Resolve external library boundaries explicitly; no
-exception is inferred for allocation or I/O. Verify the supported toolchain's
-result and reject unsupported cases instead of accepting surviving required calls.
+`!` starts at entry and resets interface defaults. `%` resumes with output-only
+bindings; standalone `%` yields. `>>` reads stored results without execution;
+module-path `>>` reads shared constants. Empty positional `<`/`>` lines consume
+positions without supplying an input or receiving a result. Keep indentation's
+argument/early-return distinction explicit. Literal call arguments and implicit
+numeric variables remain forbidden.
 
-The existing numeric backend and callback-based typed runtime are transitional
-and nonconforming. Preserve useful layout/ownership tests while replacing their
-execution mechanism according to `TODO.md`. "Frame" in their APIs describes
-parameter/result storage, not permission to rely on a function-call stack.
-Separate source-level control-flow checks from stronger machine-code guarantees
-about hardware stack usage or compiler-generated calls.
+`@C` entry bodies must inline under a verified toolchain. Plain `inline`/LTO is
+not proof. Native helpers, recursion, lifecycle callbacks, allocation, I/O and
+external C libraries may use the stack. Never dispatch Ama modules through a C
+call stack or preserve an unfinished native activation across Ama yield.
 
-## Typed runtime values
+The host receives completed/yielded/failed outcomes. The standard launcher treats
+unhandled root yield as a diagnosed unsuccessful exit. There is no implicit
+scheduler, automatic resume loop or callable default instance per module.
 
-Follow [VALUE_ABI.md](VALUE_ABI.md) when implementing native types or generated
-state adapters. Runtime headers under `src/runtime/` must be independent of
-compiler AST, symbol tables, and diagnostics. The standard library archive
-publishes these headers and contains the runtime implementation.
+## Target native contracts and state ownership
 
-Keep storage ownership explicit. Construction callbacks receive fresh storage
-and clean up their own partial resources on failure. Copy must produce an
-independent owned value or report unsupported. Move and destruction cannot fail;
-move repairs internal addresses and ends the source lifetime. Do not retain
-borrowed literal buffers, temporary value views, or prepared replacement storage.
-Use the record adapters for owned field composition and reverse-order cleanup.
+A native module has its source interface and companion `.h`, `.c`, `.abi` files.
+The `.abi` file is a fixed UTF-8 binding table: `+`/`-` are mandatory; `|`, `=`,
+`?`, `[]` are optional literal/copy/condition/index capabilities. The compiler
+reads metadata and emits typed uses; the C compiler checks handwritten signatures.
+Do not discover capabilities by helper names or add new parser protocols.
 
-Test failed initialization and failed clone after at least one child succeeds.
-Verify that replacement leaves a live destination unchanged on failure and that
-moving a state repairs internal addresses. Test noncopyable native resources
-without silently sharing their owning pointers. These lifecycle tests are C
-runtime tests, independent of whether the CLI supports typed programs yet.
+All persistent Ama ownership/references belong in declared Ama fields. Opaque
+native payloads own native resources only. Borrowed instance/field/list views
+cannot escape into payloads, globals, retained callbacks or asynchronous work.
+Native code cannot edit generation/busy/return metadata; library context readers
+use generated read-only access.
 
-`emit_type_layouts` accepts validated typed ASTs and explicit native layout
-providers. Keep its planning pass free of output: gather fields, validate
-providers/storage, and reject inline ownership cycles before emitting either
-stream. Permanent body state and temporary interface frames are separate types.
-Use actual C layout expressions and canonical external descriptors; emit their
-definitions once, rather than creating a descriptor per translation unit.
-Generated field initialization must unwind only fields that became live.
+Follow LIFE-01 through LIFE-05. Construct fields in order and select one fresh
+payload constructor, not default-construct then overwrite resources. A failed
+native constructor releases its partial resources; the runtime unwinds live
+children. Destroy the native payload once before children in reverse order.
+Native hooks must not independently own/destroy generated Ama fields.
 
-Test layout generation by compiling and executing the resulting C, including a
-second translation unit that uses the same descriptor. Preserve Unicode `#line`
-paths while keeping all C identifiers hash-based. Do not infer native layouts
-from argument names or silently substitute pointers for unsupported list/reference
-layouts. `--generate-type-layouts` connects this pipeline to project files;
-executable compilation remains on its numeric ABI.
+Prepare a replacement before destructive commit. Preparation failure preserves
+the old destination; destruction failure after commit is terminal without rollback.
+Continue cleanup, retain the primary cause and report secondary errors without
+blindly retrying destruction. Move helpers used internally are not permission
+to relocate live instances on ordinary invocation or pool growth.
 
-Project layout export uses `project/type_modules.c` for typed parsing and
-resolution, and `project/types.c` for provider collection and publication. Reuse
-source paths and draft rules from the scanner. Keep the default numeric library
-out of typed export; a typed library is an explicit C API argument. Generate into
-temporary streams and finish declaration/layout checks before opening output.
+Native copying requires `=`. Derive composed clone capability from owned fields;
+references to noncopyable targets remain copyable. Clone generated ownership graphs
+with internal-reference remapping; native clone hooks handle their payload only.
+Ordinary copying clears positions recursively, while `%` copying preserves them.
+Reject busy source descendants and ancestor/descendant overlap before mutation;
+ordinary self-assignment is a no-op and `%` self-copy is invalid.
 
-Native type layout headers are handwritten sibling `.h` files, alongside the
-extensionless interface and companion `.c`. They are inputs, unlike generated
-native call headers. Never replace them during export. Test output aliases and
-repeated failure/success cycles, and compile a real exported project against the
-published runtime headers and archive. Layout export supplies typed native C adapters, but does not validate or
-generate executable Ama body operations beyond parsing their syntax.
+Use target `AmaStatus` code/message/length, with immutable program-lifetime text.
+Capture the active trace
+before cleanup; no exceptions or universal rollback are promised. Acquisition-only
+`:` uses a caller-owned last-refusal snapshot. An ordinary library reader returns
+that status as data and must not treat its nonzero code as failure of the reader.
+List operation refusals remain ordinary results, distinct from technical errors.
 
-Typed native implementations include `ama_types.h` and implement the generated
-`ama_typed_native_<hash>` prototype. Parameters are temporary independently
-copied values exposed through const wrapper pointers; results are live defaulted
-slots. Leave all slots live on every returned status. Use lifecycle replacement
-for owned results, and never retain addresses in a prepared frame.
+Shared `@=` constants initialize once before the root, outside executable pools.
+They are immutable, copyable values without mutable-object references/open external
+resource identities. Qualified `.module.member` sources and path-plus-`>>` reads
+resolve statically. Preserve initialization ordering and reject cycles; do not
+run arbitrary native constructors at compiler time.
 
-Keep call preparation and retention in `runtime/call.c`. Errors before execution
-must not execute native code; any failed execution discards its prepared frame
-while preserving the old retained frame. Persistent state changes and I/O are
-not rolled back. Retained reads must neither execute nor reset. Test initial
-reads, omitted defaults, input-copy failure, execution failure, and zero-argument
-native functions. Compile an intentionally mismatching native definition to
-verify that generated signatures enforce types. Named/positional Ama call
-validation and grouped result delivery remain future executable-body work.
+## Generated names and source mappings
 
-## Parse, validate, then generate
+Hash complete logical module/member/category identities with collision checks;
+do not substitute slashes with underscores or use basename-only names. `name+/`
+markers affect physical source paths, not logical identities. Unicode/XID tables
+are pinned, identity is case-sensitive and bytewise, and filesystem aliases must
+not merge distinct names.
 
-Keep `parser/` independent of symbols, graph traversal, and C emission. It builds
-`AstModule` declarations and body nodes. Preserve source spelling and locations,
-including separate call/argument and control-marker positions. Do not parse a
-literal into its runtime representation while constructing syntax.
+Preserve physical file/line spans, original Unicode names and correctly escaped
+`#line` directives. Compiler source columns are UTF-8 byte columns where recorded;
+`#line` itself does not restore source columns or rename hashed C variables.
+Maintain operation/call-site maps for active runtime traces as well as C debug
+mappings. Keep source ownership valid until all dependent nodes/maps are released.
 
-Every call requires `!` immediately after its target. The parser recognizes
-calls without inspecting declarations, symbols, or graph nodes. Semantic
-validation resolves the target later. A standalone `^` exits the nearest loop;
-reject it outside a loop in the current module, including in called modules
-whose callers happen to be inside loops. A standalone `!` is no longer valid.
+## Two test harnesses, at both component scales
 
-`semantic/` binds interface declarations, collects body receivers, and validates
-reads/calls. Resolved symbol IDs and callee paths annotate the same tree. Preserve
-argument order, per-call defaults, persistent body variables, and current error
-behavior. Reordering execution during validation is not allowed. `codegen/ast.c`
-refuses unvalidated trees and emits only resolved operations. Project compilation
-parses and validates all bodies before opening the function-output stream.
+Use C/assert and recursive Makefiles. `tests/unit/` covers meaningful leaf
+components and assembled parents with the same harness; `tests/integration/`
+compiles/runs projects and checks observable output/diagnostics/statuses.
+Mirror the responsibility tree so a leaf, subtree or whole suite runs independently.
+No shared monolithic executable, auto-registration, shell test framework or hidden
+runner is required.
 
-`AstModule` owns every node through an allocation chain. Addresses remain stable
-when other nodes are allocated, and cleanup walks allocations rather than
-recursively walking the syntax tree. Token spellings are copied into nodes;
-source paths are borrowed from a longer-lived project owner. Do not retain token
-pointers or use AST nodes after module destruction. A failed parse/validation
-leaves partial state for cleanup, not for emission. Destroy/reset before parsing
-a replacement module. Tree mutation requires revalidation; the validation flag
-is an internal phase contract, not a verifier for arbitrary manually built trees.
+Each executable leaf has fixture includes, descriptive `it_*` functions, explicit
+`void run(void)` listing them in order, and its own `main`. Guarded parent
+`common.c` files provide shared setup/destroy support. Tests explicitly initialize
+and clean their fixture; meaningful scenario relationships are visible in the test.
+Use `assert` with `-UNDEBUG`. Perform side effects before assertions so release
+flags do not remove the operation being tested. Link production units through
+headers; fixture `.c` inclusion must not bypass production component boundaries.
 
-The current AST uses tagged C unions and ordinary stage-specific walks. Avoid a
-universal visitor framework, parent pointers, multiple lowered IRs, or speculative
-optimization machinery until a concrete feature needs them. Bound syntactic
-nesting before recursive passes run. Keep allocation failure paths explicit.
-Names and legacy literals retain current compiler length limits. A line-literal
-token owns a dynamically allocated byte buffer with an explicit length. Release
-it with `destroy_token`, or release an owning stream with `destroy_token_stream`.
-Copy the payload into module-owned AST storage before destroying tokens; do not
-interpret it as a NUL-terminated string.
+Test real composed components together, including source span/type/storage
+handoffs, initialization/error cleanup, lowered control flow and generated C.
+Mocks cannot replace those handoff checks, and end-to-end tests cannot replace
+independently runnable component checks. Test behavior rather than extracted
+function-call counts. Cover boundary/negative/resource-failure paths and regressions.
 
-The target frontend is explicitly selected with `typed_declarations`; interfaces
-use `parse_typed_declaration_section`. `validate_typed_declarations` resolves
-module paths through a caller-supplied callback and checks nominal types, storage
-forms, and earlier initializer sources. It currently rejects duplicate base
-names across storage forms. Literal interpretation belongs to the declared type
-runtime callback, not the identity resolver. `declarations_validated` covers these checks only; it
-does not authorize C emission. The numeric binder and backend reject typed
-declarations until typed executable-body generation is integrated.
-
-The design follows the source-structure emphasis in the
-[Clang AST introduction](https://clang.llvm.org/docs/IntroductionToTheClangAST.html)
-and the explicit phase boundaries described in Rust's
-[AST-to-HIR lowering guide](https://rustc-dev-guide.rust-lang.org/hir/lowering.html).
-Ama currently needs one syntax tree with resolution annotations, not Rust's full
-sequence of intermediate representations. These are design choices for this
-project, not claims that another compiler's architecture is mistaken.
-
-Test raw tree structure without generating code, semantic rejection before
-emission, declaration/call ordering, token-buffer independence, partial-tree
-cleanup, excessive nesting, and repeated compilation after failure. Retain the
-integration tree for observable behavior, native ABI, Unicode, and line mappings.
-
-## Failures and resource ownership are visible
-
-Components return a status, nullable result, or error token and populate an
-`Error` diagnostic. They do not print diagnostics or terminate the process.
-The CLI prints the final error and chooses the exit code.
-
-Initialize an error before a sequence of operations. Check every fallible
-operation before using its result. `compile_project` clears its own diagnostic
-and releases compilation resources on both success and failure, so another
-compilation can run in the same process.
-
-Make ownership visible: the code that acquires a file or allocation must either
-release it on every path or explicitly transfer ownership. Preserve the useful
-failure diagnostic while cleaning up. Prefer straightforward cleanup over
-hidden control transfers or generic lifecycle machinery.
-
-## Two test harnesses are enough
-
-`tests/unit/` tests C components and combinations of components. The same
-harness covers a single symbol-table operation and the lexer/parser/emitter
-working together. `tests/integration/` runs the compiler and generated programs
-as separate processes and compares their observable behavior.
-
-Each parent Makefile explicitly invokes child Makefiles in reading order.
-Every leaf builds and runs its own executable. There is no shared executable
-entry point, automatic test registration, or generated test runner. Shared
-build rules live in `tests/leaf.mk`; a leaf names its production sources and
-fixture dependencies explicitly.
-
-Each leaf's `main.c` contains:
-
-1. Its fixture includes and any small, clearly named test helpers.
-2. Test functions named `it_<behavior>`, each describing one observable rule.
-3. `void run(void)`, listing those tests in a deliberate reading order.
-4. Its own `main`, calling `run` and reporting `test_count`.
-
-Guarded parent `common.c` files define shared test variables and helpers. Exactly
-one fixture implementation supplies `setup_test` and `destroy_test` for a leaf.
-Each test calls both explicitly. Setup provides technical initialization;
-objects and relationships important to the scenario are constructed in the test.
-Tests must not depend on state left by a preceding test.
-
-Use standard `assert`. Perform mutations and resource operations before the
-assertion, then assert their results. Assertions must never be required for the
-operation itself to happen. Test builds use `-UNDEBUG` so assertions remain
-active even when inherited build flags contain `-DNDEBUG`.
-
-Link production sources normally through their headers. Test files may include
-parent fixture `.c` files, but should not include production `.c` files to bypass
-component boundaries. Test meaningful operations through their interfaces;
-keep private mechanical helpers private.
-
-## Inputs, expectations, and generated files stay separate
-
-An integration leaf stores input modules under `project/`. Keep expected files
-beside the test, outside that source tree. A leaf may contain additional fixture
-subdirectories when a scenario needs them; their names should explain their role.
-
-`expected.txt` compares stdout byte for byte, including final newlines.
-`expected-error.txt` names a diagnostic substring and requires compiler exit
-status 1. A crash, missing executable, or failed C compilation must fail the test.
-Processes are launched with argument arrays through POSIX process functions,
-without constructing shell commands.
-
-Every leaf owns its `generated/` directory. `all` builds, runs, and cleans after
-success. Failure preserves the executable and diagnostic files for debugging.
-`run` preserves output even after success; `clean` removes only generated files.
-Normal test execution never rewrites expected files.
+Parents use `$(MAKE) -C ...`; dependencies enforce build/run/cleanup ordering even
+under parallel Make. Keep handwritten inputs under each integration leaf's
+`project/`, expected outputs beside it, and generated files under `generated/`.
+Successful leaves clean; failed leaves preserve artifacts. Never overwrite native
+source/header inputs or mutate committed fixtures in stub tests.
 
 ## Check a change at the right level
 
-Use the smallest relevant leaf during development, then run the complete tree
-for changes affecting shared interfaces, language behavior, or test infrastructure:
-
 ```sh
 make
-make -C tests/unit/codegen/emitter
-make -C tests/integration/01-hello
+make -C tests/unit/lexer/tokens
+make -C tests/unit/runtime
+make -C tests/unit/codegen/types
 make test
-git diff --check
+make test-clean
 ```
 
-Add tests for behavior, error handling, and component interaction when those
-change. Avoid tests that merely duplicate the implementation. Keep `README.md`
-and `EBNF.md` consistent with public behavior. Build artifacts and generated
-files are outputs, never the source of truth. Commit only when explicitly asked.
+Run focused suites for affected behavior and required whole-project checks for
+semantic/backend changes. Run sanitizer/failure-injection and toolchain inlining
+checks when relevant; document what was actually verified. Generated C behavior
+must be tested by compiling/running it where appropriate, not only by comparing
+an emitted substring. Documentation-only changes need link/structure/consistency
+checks rather than claiming unrelated compiler tests ran.
 
-## Execution and retained-result calls
+## Exact solutions and evidence
 
-Preserve arrow kinds in AST arguments: input `<`, execution result `>`, and
-retained result `>>`. Semantic validation determines the call mode from the
-complete list. Any `>>` selects retained-result mode, which rejects all `<`
-and `>` arguments before C emission. Resolve both forms of result arrows against
-results only, and preserve named/positional consistency and declaration order.
-
-Retained-result code generation emits only result copies with the original
-result-line locations. It must not emit defaults or a call, even for native
-modules. The absence of arguments means execution mode, not an empty read.
-Default numeric instances have explicit C initializers for interface defaults
-and zero body state, so reads before any execution observe declared defaults.
-Host-created state structures are internal implementation details; the C-driver
-fixture is not an instance-creation API. Future owned/native creation must honor
-the same initialization contract.
-
-Ordinary executions still reset interface defaults before the body, and keep
-parameter/result contents afterward, including early return. Reads expose only
-stored results, not parameters or private variables. No separate cached snapshot
-is needed in the current representation. If call frames are separated later,
-preserve the retained-interface contract rather than discarding completed values.
-
-Test reads before execution, repeated and partial reads, early-return defaults,
-ordinary calls after reads, native side effects, and invalid mixtures in both
-orders. Preserve `#line` and double-arrow byte columns. Future busy/reference
-access checks remain part of the instance runtime work, not this numeric ABI step.
-
-## Generated names and source identity
-
-`common/names.c` is the single naming service for compiler output. It uses
-64-bit FNV-1a with offset 14695981039346656037 and prime 1099511628211, wrapping
-modulo 2^64. The input starts with a domain byte (1 for a module, 2 for a member),
-then the module's UTF-8 byte length as eight little-endian bytes and its bytes.
-Member identities append the member byte length in the same format and its
-bytes. No implicit Unicode normalization or case folding is performed.
-
-Each category has a prefix: `ama_state_`, `ama_call_`, `ama_instance_`,
-`ama_field_`, `ama_native_`, `ama_parameter_`, `ama_result_`, or `AMA_HEADER_`.
-The suffix is exactly 16 lowercase hexadecimal digits. Native header filenames
-are the native function name followed by `.h`. Source enumeration order and
-host word size do not participate in naming. A runtime symbol-table index is
-not a source identity.
-
-Register complete identities and reject actual hash collisions before emitting
-usable output. Collision tests supply a controlled hash to the registry; do not
-weaken the production hash or wait for a naturally occurring collision. This is
-not a cryptographic identity or a serialization/version compatibility guarantee.
-
-Generated headers and structures retain source labels in comments. Escape
-comment terminators and control characters before writing those labels. Handwritten
-C names should remain descriptive; only generated source-derived names need
-hashes. A rename or move changes native function/header names, so regenerate and
-update the implementation explicitly. Stub generation must still never overwrite
-an existing handwritten source. `#line` mapping is implemented; readable debugger variable-name mapping remains
-later work.
-
-## Generated module state
-
-Generated module functions receive an explicit pointer to their module's state
-structure. Own-variable reads and writes must use this pointer, not a global
-current-instance variable. Ordinary Ama calls still initialize and execute a
-callee's default instance. Reset only parameters and results before each ordinary
-execution call; retained-result calls do not reset or execute.
-Body variables are zero-initialized with the state and persist across calls.
-Collect body write targets before parsing reads; keep unknown read-only names
-invalid, and do not treat call parameter labels as local declarations. Body
-assignments remain ordinary executable operations, including explicit resets.
-Further instance, reference, and list syntax is tracked in `TODO.md`.
-
-Keep native wrappers on the same state-access path. Their internal context
-parameter does not change the public handwritten `ama_native_*` signature.
-State structures and generated function names are internal output details, not
-a stable C embedding API. The independent-state integration test uses a C driver
-to exercise these internals before the language exposes object declarations.
-
-## Source locations and generated line mappings
-
-`SourceLocation` records a borrowed path, physical line, and one-based UTF-8 byte
-column. Source owners must outlive tokens, symbols, and future program nodes
-that retain those paths. Project modules hold resolved absolute source paths;
-the lexer receives them explicitly. Module identity remains the relative namespace
-path used for hashing, independently of the physical source path.
-
-The lexer counts columns across UTF-8 bytes and normalizes CRLF as one line
-ending, preserving comment/blank-line behavior and section start lines. The parser
-retains declaration/write-target locations. Do not discard them in future IR
-passes or infer locations from the generated C stream.
-
-Use the shared line-directive writer to escape filenames. Map assignments,
-conditions, breaks, returns, argument copies, result copies, and closing loop
-markers to their source locations. A delayed call must restore its original
-call-site location before emission rather than inherit its last argument's line.
-Map `else` to its Ama `:` marker. Restore `<ama-generated>` for generated closures,
-function scaffolding, wrappers, and the C entry point; that virtual file uses
-line 1 as a marker, not the physical line number of the output C file. Unmapped
-preamble/header declarations retain their ordinary generated-file locations.
-
-Enable mappings for whole-project compilation. Low-level emitter tests may leave
-them disabled to focus on output operations; dedicated tests must exercise them.
-Check downstream C diagnostics with nested Unicode source paths and paths containing
-quotes/backslashes. Compile debug builds with `-g -O0`; line directives preserve
-file/line attribution but neither source column positions nor original variable
-names in a debugger. Optimized stepping and native helper frames remain C concerns.
+Follow ARCH-05/ARCH-06 and TEST-08. Do not use heuristics, guessed interpretations,
+or example-specific exceptions. Define component domains, invariants, failure
+conditions and complexity, and give a general mathematical/algebraic argument for
+the algorithm. Derive tests from those laws and exercise real component handoffs.
+Tests supplement the argument; passing examples alone do not establish correctness.
 
 ## Native C modules
 
-Keep the interface and implementation together. A module at `math/double` has
-an Ama interface file named `double` and a handwritten source named `double.c`
-in the same directory. The interface contains `@<` and `@>` declarations as
-needed and ends with `@C`. Only comments and blank lines may follow `@C`.
-
-For example, `project/math/double`:
-
-```text
-@<
-value
-0
-@>
-result
-0
-@C
-```
-
-The interface is the source of truth for types, ordering, and defaults. Do not
-repeat or invent an independent signature. Create the initial source safely:
-
-```sh
-make
-./ama --generate-c-stubs project generated
-```
-
-The command creates missing companion `.c` files and generated headers. Existing
-C sources are opened with exclusive-create semantics and never overwritten.
-Header directories are created as needed. A declaration-only draft, even one
-with an incomplete parameter pair, does not receive a C stub. To request a stub,
-choose `@C` explicitly. Choosing `@Ama` requests an Ama implementation instead.
-Structural errors in annotations still require correction.
-
-Edit `project/math/double.c`, remove the generated `#error`, and implement the
-function using its generated header:
-
-```c
-#include "ama_native_a892f1603fea71df.h"
-
-void ama_native_a892f1603fea71df(size_t parameter_value, size_t* result_result) {
-    *result_result = parameter_value * 2;
-}
-```
-
-The template's `#error` prevents an untouched stub from silently behaving like
-a completed implementation. Generated parameter and result names use identity hashes, so Unicode names and
-C keywords do not leak into C identifiers. Handwritten definitions may use
-readable local parameter names: C prototypes constrain types/order, not those
-local identifiers. Aliases never become arguments. A function
-without parameters or results has a `(void)` signature; a native entry named `main` implements
-the identity-hashed native entry point, not the C program's `main`.
-
-A complete caller in `project/main` is:
-
-```text
-@<
-double
-.math.double
-print
-.sys.io.print
-@Ama
-double!
- < 21
- > answer
-print!
- < answer
-```
-
-### Build and signature checks
-
-Translate normally after implementing the companion source:
-
-```sh
-mkdir -p generated
-./ama project main generated/program.c
-gcc -std=c11 -O3 -Igenerated generated/program.c project/math/double.c build/stdlib/libama_std.a -o generated/program
-./generated/program
-```
-
-Ama generates `generated/ama_native_a892f1603fea71df.h` from the current interface
-on every successful translation. Include that header from the implementation
-and place `generated/` on the C compiler's include path. Compile each native
-source as an ordinary, separate C translation unit. This preserves normal C
-file boundaries, including independent `static` helpers. List additional helper
-sources and libraries explicitly when linking. Ama does not invoke GCC for you.
-
-After editing an interface, regenerate before rebuilding C. A stale handwritten
-function definition conflicts with the generated declaration and is rejected
-by the C compiler when it includes the header. Existing `.c` sources are never
-rewritten to follow a changed interface. Generated names preserve source identity through deterministic hashes of the
-full module path and member name. Case-sensitive Unicode identities remain
-distinct; `/` is not replaced by `_`. A real hash collision is an error.
-
-Generated headers belong to the output directory and can be replaced. Handwritten
-C files belong to the source tree. Do not edit generated headers or commit them
-as authoritative interfaces. Keep output from different projects in separate
-directories. The scanner ignores `.c` and `.h` files; an unselected companion
-file does not turn a draft or an Ama module into a native module.
-
-### Values, defaults, and ownership
-
-Every parameter is a `size_t` value. All result arguments are `size_t*`, supplied
-after the parameters in declaration order, and the function returns `void`.
-Assigning a parameter changes the C copy, never the Ama caller's variable.
-
-The Ama caller initializes all parameter and result defaults before execution.
-A `>>` call only reads stored result slots; it never invokes native code, even
-before the first execution, when declared defaults are already available.
-Every result pointer is valid and non-null, including ignored results. Write
-through those pointers to return values. Leaving a result untouched preserves
-its declared default on that call. An `error` result is an ordinary optional
-result following the same explicit error-checking convention as Ama modules.
-
-Do not retain result pointers after the call or use them to access unrelated
-state. C local variables, allocations, and static variables obey C ownership
-and lifetime rules; they do not automatically become per-instance Ama state. The C
-implementation is responsible for its own resource cleanup and correctness.
-Recursion through Ama module dependencies remains forbidden.
-
-Native paths and parameter/result names use the same Unicode-capable source
-identity rules as ordinary Ama modules. Only the generated C names are ASCII.
-Generate a stub to obtain exact names; do not manually reproduce the hash or
-assume that moving or renaming a module preserves its native ABI.
-
-### Test a native contribution
-
-Use `tests/unit/codegen/native` for signature and wrapper rules. An integration
-leaf should contain the interface and companion under `project/`, then call
-`expect_native_program_output` with an explicit list of native source paths.
-Those sources are compiled separately with `-Igenerated`; no shell command is
-constructed. Keep fixture C indentation at four spaces, while Ama fixtures use
-one-space semantic indentation.
-
-Cover defaults, omitted results, named and positional calls, and errors relevant
-to the module. Changes to native infrastructure should also verify empty
-signatures, native entry modules, conflicting C definitions, missing companions,
-name collisions, and safe repeated stub generation. Stub-generation tests must
-create editable projects under their leaf's `generated/` directory, never alter
-checked-in fixtures, and verify that handwritten edits survive regeneration.
-
-```sh
-make -C tests/unit/codegen/native
-make -C tests/integration/26-native-calls
-make -C tests/integration/38-native-stubs
-make test
-```
+Keep the Ama interface and companion `.h`, `.c`, `.abi` together. Follow the
+[native value ABI](VALUE_ABI.md), including common status, lifetime and cleanup
+rules. Generated declarations determine C signatures. Native entry bodies inline
+into the project assembly; internal C helpers may use ordinary calls and the stack.
+Do not retain borrowed Ama views or dispatch Ama modules from C.
 
 ## Standard library contributions
 
-The standard library is a separate source tree under `stdlib/modules/`, not a
-set of compiler intrinsics. Every exported operation has a normal Ama interface
-and implementation. For example, `stdlib/modules/sys/math/add` selects `@C`,
-and `add.c` implements `ama_native_b1cdc21f5e3c0844` using the generated prototype.
-Adding an operation does not require a compiler registration table or emitter.
-
-Preserve existing module paths, argument names, result names, defaults, and
-unsigned arithmetic behavior unless making an explicit language/library change.
-The short published names such as `sys/math/lt` and parameters `a`/`b` remain
-compatibility interfaces; new internal C identifiers should still explain roles.
-
-Build and exercise a library change with:
-
-```sh
-make
-make -C tests/integration/14-standard-library
-make test
-```
-
-`stdlib/Makefile` compiles the C sources into `build/stdlib/libama_std.a` using
-ordinary C objects. Its explicit `MODULE_DIRECTORIES` list defines the library's
-build categories; add a directory there when introducing another category.
-Generated headers live in `build/stdlib/include`. The header-generation command
-is `--generate-c-headers`; unlike stub generation it cannot create or alter
-companion C sources, and reports missing implementations.
-
-The library build sets `AMA_STDLIB=` while exporting its own interfaces, so the
-library is scanned once as the input project rather than imported a second time.
-Extensionless Ama interfaces are input data; Make explicitly disables implicit
-C-executable recipes for those paths. Never build an executable over an interface
-merely because a sibling `.c` has the same basename.
-
-The compiler's configured default path can be overridden with `AMA_STDLIB`.
-Use that to test a replacement library, and an empty value to test without it.
-Do not silently shadow a standard library module from a user project. If testing
-that API needs a different implementation, select a separate library root.
-The explicit C API `compile_project_with_library` is preferable to environment
-mutation in in-process unit tests.
-
-Project stub generation may emit library headers into the requested output
-folder, but never creates files inside the imported library tree. To create a
-new library stub intentionally, select the library tree as the project and turn
-off implicit library loading:
-
-```sh
-AMA_STDLIB= ./ama --generate-c-stubs stdlib/modules build/stdlib/include
-```
-
-Integration test compilation links the default archive after project-native
-sources. A replacement-library test supplies the replacement C implementations
-explicitly. Keep library build outputs under `build/`; they are generated
-artifacts, not source or authoritative interface definitions.
+Follow the [library guide](stdlib/README.md). Define capabilities through typed
+module interfaces and the fixed ABI; publish paths and shared constants together
+with their tests. Extend domain functionality through libraries while preserving
+the language's minimal core. Do not add parser exceptions for individual libraries.
