@@ -1,0 +1,20 @@
+@=
+inspect
+.std.list.action
+ |0
+append
+.std.list.action
+ |1
+insert
+.std.list.action
+ |2
+remove
+.std.list.action
+ |3
+clear
+.std.list.action
+ |4
+swap
+.std.list.action
+ |5
+@C

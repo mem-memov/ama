@@ -44,7 +44,10 @@ static void executable_native(const ScaffoldType *type) {
         "assert(state->address==state); (void)parameters; (void)results; (void)services;\n", noninline_entry ? "__attribute__((noinline))" : "AMA_NATIVE_ENTRY", wrong_entry_result ? "AmaStatus" : "void", type->names[SCAFFOLD_PARAMETERS]->internal_name,
         type->names[SCAFFOLD_RESULTS]->internal_name);
     assert(written >= 0);
-    if (strcmp(type->plan->type->module->source->logical_path,".recursive")==0) {
+    if (strcmp(type->plan->type->module->source->logical_path,".showindex")==0) {
+        written = fputs("printf(\"value=%zu\\n\",parameters->AMA_INPUT(0)->payload->value);\n",body);
+        assert(written != EOF);
+    } else if (strcmp(type->plan->type->module->source->logical_path,".recursive")==0) {
         written = fputs("size_t total=AMA_NATIVE(sum)(parameters->AMA_INPUT(0)->payload->number); results->AMA_OUTPUT(0)->payload->number=total; printf(\"sum=%zu\\n\",total);\n",body);
         assert(written != EOF);
     } else if (strcmp(type->plan->type->module->source->logical_path,".decrement")==0) {
@@ -116,8 +119,8 @@ static void prepare_project(const char *main_source) {
     }
     for (const ScaffoldType *type = assembly.types; type != NULL; type = type->next) {
         if (type->plan->type->module->syntax.sections.kind == MODULE_NATIVE
-            && type->plan->type != semantic_find_type(&frontend.semantic, ".std.status")
-            && type->plan->type != semantic_find_type(&frontend.semantic, ".std.refusal")) { executable_native(type); }
+            && strncmp(source_path(type->plan->type->module->source->text),
+                "generated/project/", sizeof("generated/project/") - 1) == 0) { executable_native(type); }
     }
 }
 

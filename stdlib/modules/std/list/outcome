@@ -1,0 +1,17 @@
+@=
+success
+.std.list.outcome
+ |0
+empty
+.std.list.outcome
+ |7
+stale
+.std.list.outcome
+ |8
+busy
+.std.list.outcome
+ |9
+bounds
+.std.list.outcome
+ |12
+@C

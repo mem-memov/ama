@@ -323,12 +323,25 @@ custom hosts. See `docs/implementation/continuations.md` for invariants and evid
   completion/outcome data without acquisition/refusal history (LIST-09/LIST-11).
 - [ ] Preflight destructive mutations and distinguish ordinary refusal from
   technical failure; maintain retained length/results and order-preserving removal.
-- [ ] Publish scalar, condition/index, action/outcome and refusal-reader modules
+- [x] Publish scalar, condition/index, action/outcome and refusal-reader modules
   with documented paths and typed shared constants.
 - [ ] Establish consistent parameter/result ordering across related library
   interfaces and test it. Keep domain operation names out of parser rules.
 - [ ] Cover traversal, empty references, busy deletion, Clear preflight, pool
   reclamation and stale-reference rejection through real compiled projects.
+
+Checkpoint: storage, standalone mutation/preflight and scalar library modules are
+implemented. `tests/unit/runtime/lists` covers mutation failure paths;
+`tests/unit/codegen/library` compiles and executes scalar library compositions.
+Whole-list call integration and its compiled-project acceptance tests remain open.
+
+Blocking specification decision: define the compiler/library conversion mapping
+for action tags and typed length/completion/outcome values. `LIB-01` forbids payload
+assumptions, while existing `[]` and `?` are readers. A proposed library profile
+uses action `[]` tags 0–5 and literal `|` constructors for decimal length, `0`/`1`
+completion and documented outcome codes; explicit C adapter registration is the
+alternative. Do not assume either profile or change the specification before the
+user decides.
 
 Ready when: library interfaces compose predictably without new core operators.
 

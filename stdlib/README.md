@@ -70,3 +70,31 @@ same generated C assembly used by projects. Build with `make`, run tests with
 `make test`, and clean test outputs with `make test-clean` from the repository root.
 Acceptance evidence establishes implemented support; documenting a contract alone
 does not establish it.
+
+## Published scalar modules
+
+| Path | Representation and capabilities |
+|---|---|
+| `.std.index` | Checked nonnegative `size_t` value; decimal `|`, independent `=`, `[]` and `?` |
+| `.std.condition` | Exactly `0` or `1`; `|`, `=`, `?` and `[]` |
+| `.std.list.action` | Finite tags Inspect=0, Append=1, Insert=2, Remove=3, Clear=4, Swap=5 |
+| `.std.list.outcome` | Success=0, empty=7, stale=8, busy=9, bounds=12 |
+| `.std.status` | Common status value |
+| `.std.refusal` | Read the immediate caller's retained acquisition-refusal status |
+
+The action and outcome modules publish typed named constants in their own `@=`
+sections. Unknown enum tags are rejected by their literal constructors; equal
+numeric tags of different module types are incompatible. These tags are library
+contracts, never Ama numeric-literal syntax. All native scalar payloads are accessed
+through their declared ABI hooks; programs may wrap these public modules with
+local Unicode names.
+
+`.std.index.next` takes one index and returns its checked successor.
+`.std.index.add` takes left then right and returns their checked sum.
+`.std.index.before` takes left then right and returns their strict-order condition.
+All three place their sole result first. Overflow is a technical status, not
+wrapping arithmetic. Their physical source files live in `std/index+/`, retaining
+the logical `.std.index.*` identities. No domain operation names are parser rules.
+
+The compiler-to-library encoding of list action inputs and retained results needs
+an explicit mapping contract before the whole-list execution boundary is complete.

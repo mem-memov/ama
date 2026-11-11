@@ -1,0 +1,6 @@
++ initialize
+- destroy
+= clone
+| literal
+? condition
+[] index
