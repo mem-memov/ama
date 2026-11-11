@@ -135,6 +135,43 @@ static void it_skips_interface_preparation_for_reads_and_resume_acquisitions(voi
     finish_call();
 }
 
+static void it_saves_unhandled_refusals_and_preserves_the_immediate_caller_context(void) {
+    setup_call();
+    RootValue *value = object_payload(caller);
+    value->self = caller;
+    bool refused = false;
+    AmaStatus status = ama_program_acquire(&program, caller, &invocation, &refused);
+    assert(status.code == AMA_BUSY && refused);
+    AmaPoolCell *context = NULL;
+    status = ama_program_cell(&program, caller, &context);
+    assert(status.code == AMA_OK && context->metadata.service.last_refusal.code == AMA_BUSY);
+    AmaNativeServices previous = ama_native_services_snapshot(&context->metadata.service);
+    value->self = target;
+    status = ama_program_acquire(&program, caller, &invocation, &refused);
+    assert(status.code == AMA_OK && context->metadata.service.last_refusal.code == AMA_BUSY);
+    AmaHandle current = caller;
+    status = ama_program_connect(&program, &current, 17, 18);
+    assert(status.code == AMA_OK && current.slot_id == target.slot_id);
+    ((RootValue *)object_payload(target))->self = (AmaHandle){0};
+    status = ama_program_acquire(&program, target, &invocation, &refused);
+    assert(status.code == AMA_EMPTY_REFERENCE && refused);
+    AmaPoolCell *nested = NULL;
+    status = ama_program_cell(&program, target, &nested);
+    assert(status.code == AMA_OK && nested->metadata.service.last_refusal.code == AMA_EMPTY_REFERENCE);
+    assert(context->metadata.service.last_refusal.code == AMA_BUSY);
+    uint64_t continuation = 0;
+    status = ama_program_complete(&program, &current, &continuation);
+    assert(status.code == AMA_OK && continuation == 17 && current.slot_id == caller.slot_id);
+    status = ama_program_release(&program, caller);
+    assert(status.code == AMA_OK && context->metadata.service.last_refusal.code == AMA_BUSY);
+    value->self = (AmaHandle){0};
+    status = ama_program_acquire(&program, caller, &invocation, &refused);
+    assert(status.code == AMA_EMPTY_REFERENCE && refused);
+    assert(previous.caller_refusal.code == AMA_BUSY);
+    assert(context->metadata.service.last_refusal.code == AMA_EMPTY_REFERENCE);
+    finish_call();
+}
+
 void run(void) {
     it_constructs_literals_once_per_call_and_initializes_results_after_parameters();
     it_protects_supplied_values_while_defaults_observe_new_parameters();
@@ -143,5 +180,6 @@ void run(void) {
     it_releases_all_leases_after_each_preparation_allocation_failure();
     it_keeps_earlier_committed_parameters_when_a_later_constructor_fails();
     it_skips_interface_preparation_for_reads_and_resume_acquisitions();
+    it_saves_unhandled_refusals_and_preserves_the_immediate_caller_context();
 }
 int main(void) { run(); return EXIT_SUCCESS; }

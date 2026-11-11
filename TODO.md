@@ -279,7 +279,7 @@ handle, lifetime, clone and replacement invariants independently of module execu
   Ama modules and persistent borrowed views in opaque native state.
 - [x] Exercise two module types with multiple instances, nested same-type calls,
   busy refusal, pool growth during calls and persistent body state.
-- [ ] Implement acquisition refusal snapshots and their read-only library reader;
+- [x] Implement acquisition refusal snapshots and their read-only library reader;
   preserve caller-context ownership across successful and nested calls.
 - [ ] Emit source maps and execution-path diagnostics before cleanup, including
   failure before root entry and reporting without a newly allocated trace buffer.
