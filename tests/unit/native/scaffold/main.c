@@ -69,6 +69,23 @@ static void it_generates_complete_cycle_safe_headers_and_standalone_native_scaff
     end_scaffold();
 }
 
+static void it_exports_a_database_that_an_independent_json_consumer_can_execute(void) {
+    pid_t process = fork();
+    assert(process >= 0);
+    if (process == 0) {
+        execlp("python3", "python3", "-c",
+            "import json,subprocess; "
+            "db=json.load(open('generated/native/compile_commands.json')); "
+            "assert len(db)==4; "
+            "[subprocess.run(row['arguments'],cwd=row['directory'],check=True) for row in db]",
+            (char *)NULL);
+        _exit(127);
+    }
+    int status;
+    pid_t waited = waitpid(process, &status, 0);
+    assert(waited == process && WIFEXITED(status) && WEXITSTATUS(status) == 0);
+}
+
 static void it_unwinds_each_scaffold_model_allocation_failure(void) {
     begin_scaffold();
     size_t start = allocation_count;
@@ -87,6 +104,7 @@ static void it_unwinds_each_scaffold_model_allocation_failure(void) {
 
 void run(void) {
     it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds();
+    it_exports_a_database_that_an_independent_json_consumer_can_execute();
     it_unwinds_each_scaffold_model_allocation_failure();
 }
 

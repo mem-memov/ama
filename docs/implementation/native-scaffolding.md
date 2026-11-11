@@ -86,3 +86,16 @@ cleanup, transitive native types, reference cycles and all storage forms, then
 checks the untouched native scaffold. Every model allocation is fault-injected.
 These checks precede the execution backend; final assembly composition remains a
 backend acceptance obligation.
+
+## Editor and syntax-check configuration
+
+`compile_commands.json` uses the standard `directory`, `file`, `arguments` schema.
+Arguments are JSON strings, never a shell command; quotes, backslashes, control
+bytes and UTF-8 are preserved without shell evaluation. Entries cover required
+native companions and selected C/test templates. SDK/output include paths are
+absolute; C11, diagnostic flags, assertions and syntax-only mode are explicit.
+`--cc PROGRAM` selects the compiler; repeated `--c-flag ARG` appends exact arguments.
+No forced include or implicit current-directory include is required. The SDK
+header enforces the verified GCC target. User flags are explicit configuration,
+not inferred from local files. A test uses Python's standard JSON reader and runs
+every exported command; the test framework and fixtures remain C/Make.

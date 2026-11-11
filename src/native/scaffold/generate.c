@@ -40,7 +40,7 @@ bool scaffold_emit_all(NativeScaffold *scaffold) {
             return false;
         }
     }
-    return true;
+    return generated(scaffold, "compile_commands.json", scaffold_emit_tooling, type);
 }
 
 bool native_scaffold_build(NativeScaffold *scaffold, ScaffoldOptions options) {

@@ -211,7 +211,7 @@ Ama execution remain in the following sections, not implied by frontend completi
   bodies and project runtime/storage definitions; ordinary external-header inline
   utilities remain permitted. No prior/forced include or final project assembly
   may be needed to edit the scaffold.
-- [ ] Generate machine-readable C-tooling configuration for native scaffolds:
+- [x] Generate machine-readable C-tooling configuration for native scaffolds:
   working directory, include search paths, required defines and language/toolchain
   flags, for example in a compilation database. It must support C language-service
   analysis and syntax checks before the execution backend is available.
