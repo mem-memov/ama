@@ -299,7 +299,7 @@ execution and list action dispatch remain the explicit next sections.
 
 - [x] Save explicit branch/loop positions at `%`, separating available yielded
   state from a busy instance waiting for a nested call.
-- [ ] Implement output-only resumption, entry restart and completed/yielded/failed
+- [x] Implement output-only resumption, entry restart and completed/yielded/failed
   host outcomes. Failed execution is not resumable; root resume is host-explicit.
 - [ ] Clear positions throughout ordinary copies and preserve them throughout `%`
   copies, without copying callers, busy state or refusal history.

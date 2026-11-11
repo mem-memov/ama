@@ -172,7 +172,41 @@ static void it_saves_unhandled_refusals_and_preserves_the_immediate_caller_conte
     finish_call();
 }
 
+static void it_returns_yielded_targets_without_copying_the_active_caller_chain(void) {
+    setup_call();
+    AmaPoolCell *context = NULL, *nested = NULL;
+    AmaStatus status = ama_program_cell(&program, caller, &context);
+    assert(status.code == AMA_OK);
+    status = ama_program_cell(&program, target, &nested);
+    assert(status.code == AMA_OK);
+    for (size_t position = 1; position <= 3; position++) {
+        bool refused = false;
+        invocation.mode = position == 1 ? AMA_ACCESS_ENTRY : AMA_ACCESS_RESUME;
+        status = ama_program_acquire(&program, caller, &invocation, &refused);
+        assert(status.code == AMA_OK && !refused);
+        AmaHandle current = caller;
+        status = ama_program_connect(&program, &current, 17, 18);
+        assert(status.code == AMA_OK);
+        assert(context->metadata.service.activity == AMA_INSTANCE_WAITING);
+        status = ama_service_access(&context->metadata.service, AMA_ACCESS_ENTRY);
+        assert(status.code == AMA_BUSY);
+        nested->metadata.service.resume = (AmaResumePosition){true, position};
+        uint64_t continuation = 0;
+        status = ama_program_yield(&program, &current, &continuation);
+        assert(status.code == AMA_OK && continuation == 17);
+        assert(ama_handle_equal(current, caller));
+        assert(!nested->metadata.service.return_link.attached);
+        assert(nested->metadata.service.resume.selector == position);
+        status = ama_program_release(&program, caller);
+        assert(status.code == AMA_OK && nested->metadata.service.activity == AMA_INSTANCE_YIELDED);
+        status = ama_service_access(&nested->metadata.service, AMA_ACCESS_RESUME);
+        assert(status.code == AMA_OK);
+    }
+    finish_call();
+}
+
 void run(void) {
+    it_returns_yielded_targets_without_copying_the_active_caller_chain();
     it_constructs_literals_once_per_call_and_initializes_results_after_parameters();
     it_protects_supplied_values_while_defaults_observe_new_parameters();
     it_releases_acquisition_after_constructor_failure_and_preserves_previous_value();

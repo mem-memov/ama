@@ -11,6 +11,7 @@ static NativeScaffold assembly;
 static bool noninline_entry;
 static bool wrong_entry_result;
 static const char *forced_header;
+static const char *host_launcher;
 
 static void native_fixture(const char *name, const char *interface) {
     char path[160];
@@ -105,6 +106,14 @@ static void prepare_project(const char *main_source) {
     options.flag_count = flag_count;
     bool built = project_codegen_build(&assembly, options);
     assert(built);
+    if (host_launcher != NULL) {
+        for (ScaffoldArtifact *artifact = assembly.first; artifact != NULL; artifact = artifact->next) {
+            if (strstr(artifact->path, "/launcher.c") == NULL) { continue; }
+            SourceStatus status = source_manager_add(&assembly.texts, artifact->path,
+                (const unsigned char *)host_launcher, strlen(host_launcher), &artifact->content);
+            assert(status == SOURCE_OK);
+        }
+    }
     for (const ScaffoldType *type = assembly.types; type != NULL; type = type->next) {
         if (type->plan->type->module->syntax.sections.kind == MODULE_NATIVE
             && type->plan->type != semantic_find_type(&frontend.semantic, ".std.status")

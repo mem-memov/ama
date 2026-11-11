@@ -20,17 +20,27 @@ static AmaStatus ama_program_return(AmaProgram *program, AmaHandle *current, uin
     AmaPoolCell *cell = NULL, *caller = NULL;
     AmaStatus status = ama_program_cell(program, *current, &cell);
     if (status.code != AMA_OK) { return status; }
+    if (cell->metadata.service.activity != AMA_INSTANCE_RUNNING ||
+        !ama_handle_is_empty(cell->metadata.service.outgoing)) {
+        return ama_status_make(AMA_INVALID_STATE, NULL, 0);
+    }
     AmaReturnLink link = cell->metadata.service.return_link;
     if (!ama_return_link_is_valid(link) || !link.attached) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
     if (yielded && (!cell->metadata.service.resume.valid || cell->metadata.service.resume.selector == 0)) {
         return ama_status_make(AMA_INVALID_STATE, NULL, 0);
     }
+    if (!link.host) {
+        status = ama_program_cell(program, link.caller, &caller);
+        if (status.code != AMA_OK) { return status; }
+        if (caller->metadata.service.activity != AMA_INSTANCE_WAITING ||
+            !ama_handle_equal(caller->metadata.service.outgoing, *current)) {
+            return ama_status_make(AMA_INVALID_STATE, NULL, 0);
+        }
+    }
     AmaInstanceActivity available = yielded ? AMA_INSTANCE_YIELDED : AMA_INSTANCE_READY;
     cell->metadata.service.return_link = (AmaReturnLink){0};
     if (!yielded) { cell->metadata.service.resume = (AmaResumePosition){0}; }
     if (link.host) { cell->metadata.service.activity = available; *continuation = 0; return ama_status_success(); }
-    status = ama_program_cell(program, link.caller, &caller);
-    if (status.code != AMA_OK) { return status; }
     cell->metadata.service.activity = AMA_INSTANCE_ACQUIRED;
     caller->metadata.service.activity = AMA_INSTANCE_RUNNING;
     caller->metadata.service.outgoing_previous = available;

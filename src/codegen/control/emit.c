@@ -30,7 +30,7 @@ bool codegen_emit_control(NativeScaffold *scaffold, FILE *output, const Scaffold
     if (node->site.source != NULL && source_write_line_directive(output, node->site.source, node->site.start) != SOURCE_OK) { return false; }
     if (fputs("{ AmaStatus located=ama_program_cell(&ama_program,ama_current,&ama_cell);\n"
             "if(located.code!=AMA_OK) { ama_status=located; goto ama_project_finish; } }\n", output) == EOF) { return false; }
-    if (node->operation != CONTROL_REFUSAL_SNAPSHOT && fprintf(output, "ama_cell->metadata.service.current_operation=UINT64_C(%zu);\n", node->selector) < 0) { return false; }
+    if (node->operation != CONTROL_REFUSAL_SNAPSHOT && node->operation != CONTROL_YIELD && fprintf(output, "ama_cell->metadata.service.current_operation=UINT64_C(%zu);\n", node->selector) < 0) { return false; }
     switch (node->operation) {
         case CONTROL_COMPLETE:
             return fputs("ama_status=ama_program_complete(&ama_program,&ama_current,&ama_return);\n"

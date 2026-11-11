@@ -14,5 +14,11 @@ bool codegen_emit_header(NativeScaffold *scaffold, FILE *output, const ScaffoldT
         if (type->plan->type->module->syntax.sections.kind == MODULE_NATIVE
             && !codegen_emit_native(scaffold, output, type)) { return false; }
     }
-    return codegen_emit_descriptors(scaffold, output) && codegen_emit_type_setup(scaffold, output) && codegen_emit_program(scaffold, output) && codegen_emit_views(scaffold, output) && codegen_emit_controls(scaffold, output) && codegen_emit_locations(scaffold, output) && fputs("#endif\n", output) != EOF;
+    return codegen_emit_descriptors(scaffold, output) && codegen_emit_type_setup(scaffold, output) && codegen_emit_program(scaffold, output) && codegen_emit_views(scaffold, output) && codegen_emit_controls(scaffold, output) && codegen_emit_locations(scaffold, output) && fputs(
+        "typedef enum { AMA_PROJECT_COMPLETED, AMA_PROJECT_YIELDED, AMA_PROJECT_FAILED } AmaProjectOutcome;\n"
+        "typedef struct { AmaProjectOutcome outcome; AmaStatus status; } AmaProjectResult;\n"
+        "typedef struct { AmaWorld world; AmaProgram program; AmaHandle root; AmaStatus status;\n"
+        "    bool initialized, executing, disposed; } AmaProjectHost;\n"
+        "AmaProjectResult ama_project_execute(AmaProjectHost *, AmaAccessMode);\n"
+        "AmaStatus ama_project_dispose(AmaProjectHost *);\n#endif\n", output) != EOF;
 }

@@ -20,6 +20,11 @@ typedef struct {
     bool retired;
 } AmaSlotIdentity;
 
+static inline bool ama_handle_equal(AmaHandle left, AmaHandle right) {
+    return left.type_id == right.type_id && left.slot_id == right.slot_id &&
+        left.generation == right.generation;
+}
+
 bool ama_handle_is_empty(AmaHandle handle);
 AmaStatus ama_validate_handle(AmaHandle handle, uint64_t expected_type,
     const AmaSlotIdentity *slot);

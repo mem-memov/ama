@@ -167,7 +167,35 @@ static void it_rejects_unhandled_root_yield_after_cleanup(void) {
     expect_diagnostic("Unhandled root yield");
 }
 
+static void it_exposes_explicit_host_resume_restart_disposal_and_terminal_failure(void) {
+    host_launcher = "#include \"project.h\"\n#include \"project.c\"\n#include <assert.h>\n"
+        "int main(void) { AmaProjectHost host={0}, other={0};\n"
+        "AmaProjectResult result=ama_project_execute(&host,AMA_ACCESS_ENTRY);\n"
+        "assert(result.outcome==AMA_PROJECT_YIELDED); AmaHandle root=host.root;\n"
+        "result=ama_project_execute(&other,AMA_ACCESS_ENTRY); assert(result.status.code==AMA_BUSY);\n"
+        "result=ama_project_execute(&host,AMA_ACCESS_RESUME); assert(result.outcome==AMA_PROJECT_YIELDED);\n"
+        "assert(ama_handle_equal(root,host.root));\n"
+        "result=ama_project_execute(&host,AMA_ACCESS_ENTRY); assert(result.outcome==AMA_PROJECT_YIELDED);\n"
+        "result=ama_project_execute(&host,AMA_ACCESS_RESUME); assert(result.outcome==AMA_PROJECT_YIELDED);\n"
+        "result=ama_project_execute(&host,AMA_ACCESS_RESUME); assert(result.outcome==AMA_PROJECT_COMPLETED);\n"
+        "result=ama_project_execute(&host,AMA_ACCESS_RESUME); assert(result.outcome==AMA_PROJECT_FAILED && result.status.code==AMA_NO_RESUME);\n"
+        "assert(host.disposed); result=ama_project_execute(&host,AMA_ACCESS_RESUME); assert(result.outcome==AMA_PROJECT_FAILED);\n"
+        "result=ama_project_execute(&other,AMA_ACCESS_ENTRY); assert(result.outcome==AMA_PROJECT_YIELDED);\n"
+        "AmaStatus status=ama_project_dispose(&other); assert(status.code==AMA_OK);\n"
+        "status=ama_project_dispose(&other); assert(status.code==AMA_OK); return 0; }\n";
+    execute_project("@<\ninput\n.value\n |7\n@>\nresult\n.value\n input\n@!\nworker\n.worker\nworker!\n < result\n > result\n%\nworker!\n < result\n > result\n%\n", "7:1:0\n8:2:0\n7:3:0\n10:4:0\n7:1:0\n", true);
+    host_launcher = NULL;
+}
+
+static void it_executes_independent_continuation_copies_and_clears_ordinary_positions(void) {
+    directory("generated/project");
+    file("generated/project/task", "@!\nprobe\n.worker\nprobe!\n < |10\n%\nprobe!\n < |20\n%\nprobe!\n < |30\n");
+    execute_project("@!\noriginal\n.task\ncopy\n.task\nplain\n.task\nprobe\n.worker\noriginal!\ncopy\n %original\nplain\n original\ncopy%\noriginal%\ncopy%\nplain%\n:\n probe!\n  < |90\n", "10:1:0\n20:2:0\n20:2:0\n30:3:0\n90:1:10\n", true);
+}
+
 void run(void) {
+    it_executes_independent_continuation_copies_and_clears_ordinary_positions();
+    it_exposes_explicit_host_resume_restart_disposal_and_terminal_failure();
     it_resumes_repeated_yields_and_restarts_at_entry();
     it_resumes_inside_a_loop_without_preserving_c_activations();
     it_rejects_unhandled_root_yield_after_cleanup();
