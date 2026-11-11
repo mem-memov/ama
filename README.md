@@ -6,8 +6,9 @@ references identify instances without owning them. Domain capabilities belong in
 libraries rather than an expanding collection of language primitives.
 
 [TECHNICAL_SPECIFICATION.md](TECHNICAL_SPECIFICATION.md) is the source of truth.
-The implementation is in progress; the design described here is its acceptance
-contract, not a declaration that every feature is available.
+The implementation is being rebuilt from this specification. Currently `./ama`
+provides `--help`; compilation and checking explicitly fail as unimplemented.
+The design described here is its acceptance contract, not a claim of availability.
 
 ## Reading the project
 
@@ -88,12 +89,12 @@ make test
 make test-clean
 ```
 
-Compiler sources are under `src/`; library interfaces and C sources are under
-`stdlib/modules/`. Tests form recursive Makefile trees under `tests/unit/` and
+Compiler sources are under `src/`; library interfaces and C sources will be
+introduced under `stdlib/modules/` as their contracts are implemented. Tests form recursive Makefile trees under `tests/unit/` and
 `tests/integration/`. Each leaf builds its own C test executable using `assert`.
 Successful leaves clean their generated files; failures preserve debugging output.
 
-Run an individual suite with, for example, `make -C tests/unit/lexer/tokens`.
+Run an individual suite with, for example, `make -C tests/unit/driver/request`.
 See the contributor guide for component and composition tests and the backlog for
 implementation stages. Documentation-only changes require consistency checks;
 implementation claims require the corresponding executable acceptance evidence.

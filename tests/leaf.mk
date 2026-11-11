@@ -1,9 +1,16 @@
 .RECIPEPREFIX := >
+.DEFAULT_GOAL := all
+.DELETE_ON_ERROR:
 
 C_COMPILER ?= gcc
 C_COMPILER_FLAGS ?= -O0 -g -Wall -Wextra -std=c11 -pedantic -D_POSIX_C_SOURCE=200809L
 LTO_FLAGS ?=
-TEST_HEADERS := $(wildcard $(ROOT)/src/*/*.h)
+LINKER_FLAGS ?=
+
+LOCAL_SOURCES ?= main.c
+TEST_OBJECTS := $(patsubst %.c,generated/objects/local/%.o,$(LOCAL_SOURCES)) \
+    $(patsubst %.c,generated/objects/production/%.o,$(SOURCES))
+TEST_DEPS := $(TEST_OBJECTS:.o=.d)
 
 .PHONY: all build run clean
 all: run
@@ -11,9 +18,18 @@ all: run
 
 build: generated/test
 
-generated/test: Makefile $(ROOT)/tests/leaf.mk main.c $(COMMON) $(SOURCES) $(TEST_HEADERS)
->    @mkdir -p generated
->    $(C_COMPILER) -I$(ROOT)/src -DAMA_STANDARD_LIBRARY_DIRECTORY='"$(ROOT)/stdlib/modules"' -DAMA_STANDARD_LIBRARY_ARCHIVE='"$(ROOT)/build/stdlib/libama_std.a"' $(C_COMPILER_FLAGS) $(LTO_FLAGS) -UNDEBUG $(TEST_DEFINES) -o $@ main.c $(SOURCES)
+generated/test: $(TEST_OBJECTS)
+>    $(C_COMPILER) $(C_COMPILER_FLAGS) $(LTO_FLAGS) $(LINKER_FLAGS) -o $@ $^
+
+generated/objects/local/%.o: %.c Makefile $(ROOT)/tests/leaf.mk
+>    @mkdir -p $(dir $@)
+>    $(C_COMPILER) $(CPPFLAGS) -I$(ROOT)/src $(C_COMPILER_FLAGS) $(LTO_FLAGS) -UNDEBUG $(TEST_DEFINES) -MMD -MP -c $< -o $@
+
+generated/objects/production/%.o: $(ROOT)/src/%.c Makefile $(ROOT)/tests/leaf.mk
+>    @mkdir -p $(dir $@)
+>    $(C_COMPILER) $(CPPFLAGS) -I$(ROOT)/src $(C_COMPILER_FLAGS) $(LTO_FLAGS) -UNDEBUG $(TEST_DEFINES) -MMD -MP -c $< -o $@
+
+-include $(TEST_DEPS)
 
 run: build
 >    ./generated/test

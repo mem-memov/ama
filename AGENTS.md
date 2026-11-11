@@ -50,8 +50,8 @@
 
 ## Workflow
 
-- Build: `make` (compiler `./ama` and `build/stdlib/libama_std.a`).
-- Test: `make test`; individual suites: `make -C tests/unit/lexer/tokens`.
+- Build: `make` (implementation foundation `./ama`; compilation is not implemented).
+- Test: `make test`; individual suites: `make -C tests/unit/driver/request`.
 - Test cleanup: `make test-clean`. Successful leaves clean automatically; failures
   preserve generated files for debugging.
 - Do not commit unless the user explicitly asks.

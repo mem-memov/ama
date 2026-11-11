@@ -1,8 +1,0 @@
-@<
-add
-.sys.math.add
-
-@Ama
-add!
- sum > result
- left < 1

@@ -1,1 +1,0 @@
-loop exit '^' is only allowed inside a loop

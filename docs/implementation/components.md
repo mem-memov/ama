@@ -19,8 +19,8 @@ the testing approach: recursive parent Makefiles, independent C leaf executables
 `common.c` fixtures. Preserve handwritten/generated output separation and cleanup
 on success with artifacts retained on failure.
 
-Do not create a second production pipeline or a compatibility backend. The next
-task establishes the new source/test foundation and removes the superseded files.
+Do not create a second production pipeline or a compatibility backend. The [foundation reset](foundation.md) has established the new source/test tree
+and removed the superseded files. The table below records their former locations.
 A command whose implementation is not yet available must fail explicitly rather
 than report successful compilation. A foundation build is not a working compiler.
 
@@ -54,9 +54,9 @@ production-code reuse in this inventory. The shared test/build mechanism is the
 only selected reusable implementation approach; its files may be simplified or
 rewritten without changing that approach.
 
-## Build foundation changes required next
+## Build foundation findings
 
-Observed build configuration:
+Build configuration observed before the reset:
 
 - The root Makefile discovers `src/*.c` and `src/*/*.c` only. It cannot discover
   a file such as `src/source/utf8/decode.c`.
@@ -112,7 +112,7 @@ Completed here: structural inventory, replacement decisions, responsibility map,
 and identified build/test foundation changes. No compiler algorithm was analyzed
 or reused, no old test was analyzed, and no implementation test was claimed.
 
-Next task: establish the nested source/test foundation, removing old production
-implementations and test cases rather than maintaining a parallel pipeline.
-Then implement recursive discovery and dependency rebuilding and demonstrate the
-preserved test approach on new small components in the following tasks.
+The subsequent foundation task removed those implementations and test cases and
+introduced new driver components and tests; see [foundation.md](foundation.md).
+Next, complete the independent acceptance checks for recursive discovery, build
+invalidation and test-output preservation specified in TODO.

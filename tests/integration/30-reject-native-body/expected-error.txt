@@ -1,1 +1,0 @@
-@C must not contain an Ama code body

@@ -16,9 +16,12 @@ not introduce a second parser, resolver or type system.
   be reused, replaced or removed. Evidence and replacement decisions are recorded
   in the [component map](docs/implementation/components.md); existing compiler
   bodies and old tests were not analyzed.
-- [ ] Arrange responsibilities as nested directories with short orchestration
+- [x] Arrange responsibilities as nested directories with short orchestration
   functions, narrow interfaces and explicit contexts. Split components as they
   are implemented; avoid a separate repository-wide mechanical refactoring phase.
+  The new driver separates request recognition, output and orchestration; old
+  implementations and test cases have been removed. Build and test rules have
+  been reset to support this foundation; their acceptance checks remain below.
 - [ ] Make source discovery and test dependency tracking support the full nested
   source tree and rebuild affected consumers after header changes.
 - [ ] Retain two simple recursive C/Make harnesses: component tests and integration

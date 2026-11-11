@@ -22,7 +22,9 @@ the core syntax and semantics.
 
 ## Modules and companions
 
-Interfaces and handwritten C sources live under `stdlib/modules/`. An executable
+Interfaces and handwritten C sources will be implemented under `stdlib/modules/`.
+The former numeric modules have been removed; no library implementation is
+currently provided. An executable
 module has an extensionless Ama interface and may select `@C` with companion `.h`,
 `.c` and `.abi` files. The fixed ABI requires default construction and destruction;
 literal construction, cloning, condition and index conversion are explicit optional

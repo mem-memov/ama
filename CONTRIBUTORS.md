@@ -51,9 +51,9 @@ Parent-level orchestration should read as short named operations. Functions have
 one responsibility at one level of abstraction and should normally fit one editor
 screen. Decompose long multi-phase or deeply nested logic; justify exceptions in
 review. Do not create an unrestricted utility directory or artificial public APIs
-merely to split trivial private helpers into files. Update build source lists and
-header dependency tracking when introducing deeper directories; the current
-shallow wildcards do not automatically discover an arbitrary new source tree.
+merely to split trivial private helpers into files. The build recursively discovers C sources under `src/`; compiler dependency
+files track included headers and fixture files. Keep deeper source directories
+and new independently runnable test leaves connected to these build rules.
 
 Keep private helpers `static`. Public headers compile independently; internal
 headers expose only sibling contracts. Pass narrow contexts explicitly. Compiler
@@ -207,9 +207,8 @@ source/header inputs or mutate committed fixtures in stub tests.
 
 ```sh
 make
-make -C tests/unit/lexer/tokens
-make -C tests/unit/runtime
-make -C tests/unit/codegen/types
+make -C tests/unit/driver/request
+make -C tests/unit/driver/run
 make test
 make test-clean
 ```

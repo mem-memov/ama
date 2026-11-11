@@ -1,1 +1,0 @@
-/* A native type requires a layout header as well. */

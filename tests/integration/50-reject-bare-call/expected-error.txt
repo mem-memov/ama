@@ -1,1 +1,0 @@
-expected assignment source or '!' after 'worker'
