@@ -20,7 +20,8 @@ ParseError retains a stable grammar-expectation key alongside its Diagnostic.
 Native names are not Ama identifiers. Their lexical scanner implements C11 Annex
 D.1/D.2 and ASCII letters/underscore/digits with GCC's dollar extension, accepts
 UTF-8 or C universal character names, and rejects C11 keywords. It preserves the
-spelling rather than converting it to a generated Ama name. This follows
+module-local spelling rather than treating it as a global C symbol. The native
+namespace emitter qualifies it under NAME-05; Unicode/UCN spelling remains intact. This follows
 [C11 N1570, 6.4.2/6.4.3 and Annex D](https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1570.pdf)
 and [GCC identifier documentation](https://gcc.gnu.org/onlinedocs/gcc/Identifiers-implementation.html).
 Toolchain-specific reserved names/macros, symbol existence, actual function
@@ -39,4 +40,5 @@ all six slots in mixed order, comments/CRLF/optional final newline, internationa
 and UCN names, malformed/extra/unknown records, duplicates with related spans,
 required bindings, invalid UTF-8, tab/lone-CR rejection and every line-allocation
 failure. Signature conformance remains separately covered by native ABI tests;
-frontend-to-native build integration is not claimed by this task.
+[Frontend composition](parser-errors.md) compiles two module-qualified
+companions and all six typed uses in one C translation unit.

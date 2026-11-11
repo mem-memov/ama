@@ -1,10 +1,5 @@
 # Source AST and structural parser
 
-Implementation status: the CALL-07 entry-literal amendment is specified but not
-implemented yet. The priority follow-up in [TODO.md](../../TODO.md) covers lexer,
-AST, call parsing and replacement of literal-prohibition tests. The evidence below
-covers the current implementation; it does not certify CALL-07 support.
-
 Boundary: `src/ast/` and `src/parser/{access,declarations,body,calls,module}/`.
 Implements COMP-01/02, TYPE-01/02, source/access syntax, SYN-01 through SYN-05
 and call/control syntax. Full type, declaration-order, capability and ownership
@@ -27,7 +22,9 @@ source follows an assignment receiver; !/% selects entry/resume; indented bindin
 markers select retained reading. An owned access with same-indent ?/{ selects
 control flow, allowing comments but no blank line before the marker. No declared
 name decides which production applies. Static paths select constant namespaces,
-never implicit instances. Literal payload is accepted only in initializers.
+never implicit instances. Literal payload is accepted in declaration initializers and entry input
+bindings, never in assignment/output/condition/index operands. It remains an
+uninterpreted borrowed byte range, including embedded zero and physical EOF.
 
 Names decode pinned XID properties; access parsing iteratively builds a single
 nested-index chain, then consumes its required closing brackets. Index operands

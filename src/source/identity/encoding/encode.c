@@ -19,7 +19,8 @@ static void append_part(unsigned char **cursor, const char *bytes, size_t length
 }
 
 static IdentityStatus measure(QualifiedIdentity identity, size_t *total, size_t *module_count) {
-    if (identity.category < IDENTITY_TYPE || identity.category > IDENTITY_RUNTIME
+    if (identity.category < IDENTITY_TYPE || identity.category > IDENTITY_NATIVE_NAMESPACE
+        || (identity.category == IDENTITY_NATIVE_NAMESPACE && identity.member_count != 0)
         || !module_path_valid(identity.module_path)
         || (identity.member_count != 0 && identity.members == NULL)) {
         return IDENTITY_INVALID;

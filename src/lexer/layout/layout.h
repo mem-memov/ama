@@ -4,7 +4,9 @@
 #include "source/memory/arena.h"
 #include "diagnostics/record/diagnostic.h"
 
-typedef enum { LINE_BLANK, LINE_COMMENT, LINE_CODE, LINE_LITERAL } LayoutKind;
+typedef enum {
+    LINE_BLANK, LINE_COMMENT, LINE_CODE, LINE_LITERAL, LINE_INPUT_LITERAL
+} LayoutKind;
 typedef enum { ENDING_NONE, ENDING_LF, ENDING_CRLF } LayoutEnding;
 typedef struct LayoutLine {
     struct LayoutLine *next;
@@ -31,6 +33,8 @@ typedef struct {
 void layout_init(SourceLayout *layout, SourceAllocator allocator);
 void layout_destroy(SourceLayout *layout);
 LayoutStatus layout_read(SourceLayout *layout, const SourceText *source);
+/* ABI | is a binding symbol, never a literal-data boundary. */
+LayoutStatus layout_read_abi(SourceLayout *layout, const SourceText *source);
 LayoutStatus layout_validate(SourceLayout *layout, bool native_abi);
 bool layout_text_is(SourceSpan span, const char *text);
 

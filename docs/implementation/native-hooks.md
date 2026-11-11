@@ -4,8 +4,10 @@ This closes the six-binding/void-entry harness task in [TODO.md](../../TODO.md).
 The production boundary is the [native ABI](native-abi.md), status headers and
 read-only `AmaNativeServices` snapshot. The executable companion is the handwritten
 buffer module under `tests/unit/native/abi/hooks/project/`, with all six bindings
-listed in its `.abi` file. That file is a fixture, not a claim that a frontend
-binding parser already exists.
+listed in its `.abi` file. Companion types/functions use `AMA_NATIVE(name)` in
+the fixed `.fixtures.buffer` naming context, and the C implementation is included
+in the harness translation unit. The separate [frontend composition](parser-errors.md)
+parses actual ABI records and verifies generated module contexts.
 
 The companion owns only a native allocation and native scalar fields. Literal
 construction accepts an immutable bounded byte view and allocates independent

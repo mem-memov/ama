@@ -4,20 +4,20 @@
 #include <stdlib.h>
 #include <string.h>
 
-AmaStatus fixture_initialize(FixtureBuffer *destination) {
-    *destination = (FixtureBuffer) {0};
+AmaStatus AMA_NATIVE(initialize)(AMA_NATIVE(FixtureBuffer) *destination) {
+    *destination = (AMA_NATIVE(FixtureBuffer)) {0};
     return ama_status_success();
 }
 
-AmaStatus fixture_destroy(FixtureBuffer *state) {
+AmaStatus AMA_NATIVE(destroy)(AMA_NATIVE(FixtureBuffer) *state) {
     uint32_t error = state->destroy_error;
     free(state->data);
-    *state = (FixtureBuffer) {0};
+    *state = (AMA_NATIVE(FixtureBuffer)) {0};
     return ama_status_make(error, NULL, 0);
 }
 
-AmaStatus fixture_from_literal(FixtureBuffer *destination, AmaByteView literal) {
-    *destination = (FixtureBuffer) {0};
+AmaStatus AMA_NATIVE(from_literal)(AMA_NATIVE(FixtureBuffer) *destination, AmaByteView literal) {
+    *destination = (AMA_NATIVE(FixtureBuffer)) {0};
     if (literal.length > PTRDIFF_MAX) {
         return ama_status_make(AMA_LIMIT_EXCEEDED, NULL, 0);
     }
@@ -32,12 +32,12 @@ AmaStatus fixture_from_literal(FixtureBuffer *destination, AmaByteView literal) 
     return ama_status_success();
 }
 
-AmaStatus fixture_clone(FixtureBuffer *destination, const FixtureBuffer *source) {
+AmaStatus AMA_NATIVE(clone)(AMA_NATIVE(FixtureBuffer) *destination, const AMA_NATIVE(FixtureBuffer) *source) {
     if (source->clone_error != AMA_OK) {
         return ama_status_make(source->clone_error, NULL, 0);
     }
     AmaByteView literal = {source->data, source->length};
-    AmaStatus status = fixture_from_literal(destination, literal);
+    AmaStatus status = AMA_NATIVE(from_literal)(destination, literal);
     if (ama_status_is_success(status)) {
         destination->entry_count = source->entry_count;
         destination->conversion_error = source->conversion_error;
@@ -46,7 +46,7 @@ AmaStatus fixture_clone(FixtureBuffer *destination, const FixtureBuffer *source)
     return status;
 }
 
-AmaStatus fixture_to_condition(const FixtureBuffer *state, bool *result) {
+AmaStatus AMA_NATIVE(to_condition)(const AMA_NATIVE(FixtureBuffer) *state, bool *result) {
     if (state->conversion_error != AMA_OK) {
         return ama_status_make(state->conversion_error, NULL, 0);
     }
@@ -54,7 +54,7 @@ AmaStatus fixture_to_condition(const FixtureBuffer *state, bool *result) {
     return ama_status_success();
 }
 
-AmaStatus fixture_to_index(const FixtureBuffer *state, size_t *result) {
+AmaStatus AMA_NATIVE(to_index)(const AMA_NATIVE(FixtureBuffer) *state, size_t *result) {
     if (state->conversion_error != AMA_OK) {
         return ama_status_make(state->conversion_error, NULL, 0);
     }

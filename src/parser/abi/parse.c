@@ -11,7 +11,7 @@ void abi_table_destroy(AbiTable *table) {
 }
 
 ParseStatus parser_abi_parse(AbiTable *table, const SourceText *source) {
-    LayoutStatus read = layout_read(&table->layout, source);
+    LayoutStatus read = layout_read_abi(&table->layout, source);
     if (read == LAYOUT_OK) {
         read = layout_validate(&table->layout, true);
     }

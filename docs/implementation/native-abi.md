@@ -46,12 +46,12 @@ allocation mandate. The layout test checks 64-byte aligned native storage.
 For each module payload type `T`, generated typed uses require these signatures:
 
 ```c
-AmaStatus initialize(T *destination);
-AmaStatus destroy(T *state);
-AmaStatus from_literal(T *destination, AmaByteView literal);
-AmaStatus clone(T *destination, const T *source);
-AmaStatus to_condition(const T *state, bool *result);
-AmaStatus to_index(const T *state, size_t *result);
+AmaStatus AMA_NATIVE(initialize)(T *destination);
+AmaStatus AMA_NATIVE(destroy)(T *state);
+AmaStatus AMA_NATIVE(from_literal)(T *destination, AmaByteView literal);
+AmaStatus AMA_NATIVE(clone)(T *destination, const T *source);
+AmaStatus AMA_NATIVE(to_condition)(const T *state, bool *result);
+AmaStatus AMA_NATIVE(to_index)(const T *state, size_t *result);
 ```
 
 Only `+`/`-` are mandatory. Constructors receive fresh aligned destination storage;
@@ -62,15 +62,17 @@ Native hooks own native resources, not generated owned Ama fields.
 
 These readable names illustrate signatures, not reserved library identifiers.
 The `.abi` binding selects the actual helper; generated type/adapter identities
-follow full qualified module hashes. The frontend `.abi` parser and C generator
-are later tasks. C harnesses here check typed uses, not inferred capabilities.
+follow full qualified module hashes. The `.abi` parser preserves module-local
+identifiers; the [namespace emitter](native-namespaces.md) qualifies typed uses.
+The full project C generator remains later work. C harnesses check typed uses,
+not inferred capabilities or arbitrary native correctness.
 
 ## Exact native entry shape
 
 For generated module-specific input/output aggregate types `P` and `R`:
 
 ```c
-AMA_NATIVE_ENTRY void entry(
+AMA_NATIVE_ENTRY void AMA_NATIVE(entry)(
     T *state, const P *parameters, R *results,
     const AmaNativeServices *services, AmaStatus *status);
 ```
@@ -83,9 +85,12 @@ original owned source. Each owned output has a `U *` view of initialized target
 result storage. Native code updates live outputs using their resource contracts;
 it does not construct over live resources or own the enclosing Ama field.
 
-Reference input views carry a checked identity and a module-typed acquired payload
-view (NULL for an empty reference). Reference outputs designate module-typed
-handle storage, with runtime validation before publication. List views designate
+Reference inputs carry checked identities, including empty/stale values without
+implicit dereferencing. An operation that requests payload access must resolve
+and acquire the target through a generated module-typed view; handle copying
+alone does not acquire a target. Reference outputs designate module-typed
+handle storage through generated assignment helpers; a copied stale identity
+does not revive its target. List views designate
 typed collection access, not an opaque native buffer containing hidden handles.
 Generated declarations provide those module-specific view types; no universal
 `void *` or unchecked word casts replace them. Actual reference/list adapters

@@ -4,7 +4,7 @@
 static void format_name(char output[71], IdentityCategory category,
     const unsigned char digest[32]) {
     static const char digits[] = "0123456789abcdef";
-    static const char category_codes[] = {'t', 'c', 's', 'i', 'l', 'r'};
+    static const char category_codes[] = {'t', 'c', 's', 'i', 'l', 'r', 'n'};
     memcpy(output, "ama_", 4);
     output[4] = category_codes[category - 1];
     output[5] = '_';
@@ -35,6 +35,7 @@ IdentityStatus identity_insert(IdentityRegistry *registry, IdentityEncoding enco
         return IDENTITY_OUT_OF_MEMORY;
     }
     *name = (IdentityName){0};
+    name->category = encoding.category;
     memcpy(name->digest, digest, 32);
     name->encoding = encoding.bytes;
     name->encoding_length = encoding.length;

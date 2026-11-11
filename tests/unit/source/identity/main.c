@@ -71,7 +71,7 @@ static void it_separates_categories_components_case_and_unicode_spelling(void) {
             assert(strcmp(names[previous]->internal_name, names[index]->internal_name) != 0);
         }
     }
-    for (int category = IDENTITY_CONSTANT; category <= IDENTITY_RUNTIME; category++) {
+    for (int category = IDENTITY_CONSTANT; category <= IDENTITY_NATIVE_NAMESPACE; category++) {
         QualifiedIdentity identity = identities[0];
         identity.category = (IdentityCategory)category;
         const IdentityName *name;

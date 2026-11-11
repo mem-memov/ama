@@ -5,5 +5,5 @@
 #include "native/status/status.h"
 #include "native/toolchain/gcc.h"
 
-typedef struct { size_t length; } NativeValue;
+typedef struct { size_t length; } AMA_NATIVE(NativeValue);
 #endif

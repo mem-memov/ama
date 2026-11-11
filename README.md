@@ -63,7 +63,8 @@ literals and implicit numeric variables have no special position in the language
 Entry-call inputs may also use `message < |Hello` or positional `< |Hello`.
 The declared parameter type interprets the UTF-8 payload; only single owned values
 with literal capability accept this form. `#` and trailing spaces after `|` are
-data. This specification amendment is the next frontend task in the backlog.
+data. The frontend preserves these bytes and source spans; parameter type and
+capability checks remain in the upcoming semantic stage.
 
 An instance call ends in `!`; inputs and outputs occupy separate indented lines
 using `<` and `>`. An unmarked target followed by `>>` reads retained results
@@ -88,7 +89,9 @@ There is no C call stack for Ama module calls. Native entry bodies inline; nativ
 implementation helpers may use ordinary C calls and the stack.
 
 Native companions use the fixed `.abi` table to declare lifecycle and conversion
-capabilities. Persistent Ama links remain visible in declared Ama fields; opaque
+capabilities. Module-owned native C identifiers use `AMA_NATIVE(name)` within
+their generated module context; [namespace probes](docs/implementation/native-namespaces.md)
+verify distinct qualified names in one translation unit. Persistent Ama links remain visible in declared Ama fields; opaque
 native payloads own native resources. Exact algorithms, explicit invariants and
 mathematical/algebraic justification are implementation requirements.
 

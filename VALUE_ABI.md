@@ -13,6 +13,13 @@ collision-checked hashes of complete qualified identities, including their
 category. The compiler retains source identities and emits `#line` mappings.
 Matching C layouts do not establish Ama type compatibility.
 
+Handwritten native companions qualify their module-owned C names through
+`AMA_NATIVE(local_name)` under NAME-05. ABI records name local identifiers, not
+global C functions. The generated context uses the same collision-checked module
+prefix for `.h`, `.c` and typed uses. Include guards and external C names retain
+ordinary C rules. The [namespace contract and probes](docs/implementation/native-namespaces.md)
+cover this boundary independently of the unfinished project backend.
+
 The generated assembly declares the types needed by the project and its transitive
 dependencies. Generated typed declarations determine native entry signatures:
 inputs are passed by value or by the specified borrowed representation, results
@@ -39,7 +46,7 @@ A module's `.abi` companion binds exactly these symbols:
 | --- | --- | --- |
 | `+` | Default construction of fresh native storage | Yes |
 | `-` | Destruction of native storage | Yes |
-| `|` | Construction from literal UTF-8 bytes and explicit length | When used |
+| `\|` | Construction from literal UTF-8 bytes and explicit length | When used |
 | `=` | Independent cloning of native storage | When used |
 | `?` | Conversion to a C `bool` condition | When used |
 | `[]` | Conversion to a C `size_t` index | When used |

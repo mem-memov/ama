@@ -25,18 +25,24 @@ static bool constant_source(Parser *parser, SourceSpan text, AstSource *source) 
 
 bool parser_source(Parser *parser, const LayoutLine *line, SourceSpan text,
     bool literal_allowed, AstSource **output) {
+    if ((line->kind == LINE_LITERAL || line->kind == LINE_INPUT_LITERAL)
+        && text.start + 1 == line->payload.start) {
+        text.end = line->physical.end;
+    }
     if (!literal_allowed && text.start < text.end && source_bytes(text.source)[text.start] == '|') {
-        return parser_fail(parser, text, "Literal data is allowed only in declaration initialization", EXPECT_COPY_SOURCE);
+        return parser_fail(parser, text,
+            "Literal data requires a declaration initializer or an entry input", EXPECT_COPY_SOURCE);
     }
     AstSource *source = parser_allocate(parser, sizeof(*source), text);
     if (source == NULL) {
         return false;
     }
     source->span = text;
-    if (literal_allowed && line->kind == LINE_LITERAL) {
+    if (literal_allowed && (line->kind == LINE_LITERAL || line->kind == LINE_INPUT_LITERAL)
+        && text.start + 1 == line->payload.start) {
         source->kind = AST_LITERAL_SOURCE;
         source->payload = line->payload;
-        source->span = (SourceSpan){text.source, line->code.start, line->physical.end};
+        source->span.end = line->physical.end;
     } else if (text.start < text.end && source_bytes(text.source)[text.start] == '.') {
         if (!constant_source(parser, text, source)) {
             return false;

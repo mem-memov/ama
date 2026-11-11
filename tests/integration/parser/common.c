@@ -12,20 +12,24 @@
 #include "ast/ast.h"
 #include "parser/abi/abi.h"
 #include "diagnostics/render/render.h"
+#include "native/namespace/namespace.h"
 
 static ModuleCatalog catalog;
 static AstModule module;
 static AbiTable table;
+static IdentityRegistry identities;
 
 static void setup_test(void) {
     SourceAllocator allocator = source_system_allocator();
     module_catalog_init(&catalog, allocator);
     ast_module_init(&module, allocator);
     abi_table_init(&table, allocator);
+    identity_registry_init(&identities, allocator);
 }
 
 static void destroy_test(void) {
     abi_table_destroy(&table);
+    identity_registry_destroy(&identities);
     ast_module_destroy(&module);
     module_catalog_destroy(&catalog);
 }

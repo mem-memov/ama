@@ -8,7 +8,7 @@ Encoding version 1, in order:
 
 1. Eight bytes: `41 4d 41 2d 49 44 00 01` (`AMA-ID`, zero, version).
 2. One category byte: type=1, constant=2, state member=3, interface member=4,
-   label=5, runtime metadata=6.
+   label=5, runtime metadata=6, native namespace=7.
 3. Unsigned big-endian 64-bit module component count, then each component's
    unsigned big-endian 64-bit byte length followed by its original UTF-8 bytes.
 4. Unsigned big-endian 64-bit member/discriminator count and the same encoding
@@ -34,7 +34,7 @@ length; expansion/compression follow unsigned 32-bit modular arithmetic. The cod
 preserves the eight-word round state and folds complete blocks followed by one or
 two padding blocks. This is not a cryptographic certification claim.
 
-C names are `ama_` + category code (`t/c/s/i/l/r`) + `_` + 64 lowercase hex digits.
+C names are `ama_` + category code (`t/c/s/i/l/r/n`) + `_` + 64 lowercase hex digits.
 The verified GCC backend supports their full length. Names are deterministic across
 physical roots, traversal order and host byte order. Runtime numeric type-ID
 allocation and generated declarations remain later compiler tasks; this registry
@@ -60,3 +60,8 @@ allocation failure. The internal insertion boundary is tested with deliberately
 equal digests and distinct real encodings, proving the rejection branch executes
 without searching for a SHA-256 collision. The public algorithm is fixed, with no
 user-selectable hash or test-only collision bypass.
+
+Native namespace identities have no member components. The registry rejects
+member-bearing namespace keys, retains the category on successful records, and
+provides the collision-checked prefix used by [native C naming](native-namespaces.md).
+Existing categories retain their encoding and stable vectors.

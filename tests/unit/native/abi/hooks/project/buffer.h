@@ -13,30 +13,30 @@ typedef struct {
     uint32_t conversion_error;
     uint32_t destroy_error;
     uint32_t clone_error;
-} FixtureBuffer;
+} AMA_NATIVE(FixtureBuffer);
 
 typedef struct {
     size_t value;
-} FixtureCount;
+} AMA_NATIVE(FixtureCount);
 
 typedef struct {
-    const FixtureBuffer *value;
-} FixtureInputs;
+    const AMA_NATIVE(FixtureBuffer) *value;
+} AMA_NATIVE(FixtureInputs);
 
 typedef struct {
-    FixtureCount *length;
+    AMA_NATIVE(FixtureCount) *length;
     AmaStatus *refusal;
-} FixtureOutputs;
+} AMA_NATIVE(FixtureOutputs);
 
-AmaStatus fixture_initialize(FixtureBuffer *destination);
-AmaStatus fixture_destroy(FixtureBuffer *state);
-AmaStatus fixture_from_literal(FixtureBuffer *destination, AmaByteView literal);
-AmaStatus fixture_clone(FixtureBuffer *destination, const FixtureBuffer *source);
-AmaStatus fixture_to_condition(const FixtureBuffer *state, bool *result);
-AmaStatus fixture_to_index(const FixtureBuffer *state, size_t *result);
+AmaStatus AMA_NATIVE(initialize)(AMA_NATIVE(FixtureBuffer) *destination);
+AmaStatus AMA_NATIVE(destroy)(AMA_NATIVE(FixtureBuffer) *state);
+AmaStatus AMA_NATIVE(from_literal)(AMA_NATIVE(FixtureBuffer) *destination, AmaByteView literal);
+AmaStatus AMA_NATIVE(clone)(AMA_NATIVE(FixtureBuffer) *destination, const AMA_NATIVE(FixtureBuffer) *source);
+AmaStatus AMA_NATIVE(to_condition)(const AMA_NATIVE(FixtureBuffer) *state, bool *result);
+AmaStatus AMA_NATIVE(to_index)(const AMA_NATIVE(FixtureBuffer) *state, size_t *result);
 
-AMA_NATIVE_ENTRY void fixture_entry(FixtureBuffer *state, const FixtureInputs *parameters,
-    FixtureOutputs *results, const AmaNativeServices *services, AmaStatus *status) {
+AMA_NATIVE_ENTRY void AMA_NATIVE(entry)(AMA_NATIVE(FixtureBuffer) *state, const AMA_NATIVE(FixtureInputs) *parameters,
+    AMA_NATIVE(FixtureOutputs) *results, const AmaNativeServices *services, AmaStatus *status) {
     if (state->entry_count == SIZE_MAX) {
         *status = ama_status_make(AMA_LIMIT_EXCEEDED, NULL, 0);
         return;

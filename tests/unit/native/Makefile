@@ -1,2 +1,2 @@
-SUBDIRECTORIES := abi toolchain lifecycle metadata
+SUBDIRECTORIES := abi toolchain lifecycle metadata namespace
 include ../../parent.mk

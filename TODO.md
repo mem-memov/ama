@@ -58,6 +58,11 @@ itself remains an implementation foundation; the next implementation tasks are i
   responsibilities, reverse cleanup, destroy errors and no double destruction.
 - [x] Specify service metadata for handles, acquisition, return links, saved
   positions, source locations and host outcomes without hidden Ama links in C.
+- [x] Apply NAME-05 to native authoring and ABI probes: register category-separated
+  module prefixes, emit scoped `AMA_NATIVE(name)` contexts and qualified uses,
+  and compile two companions with identical local names in one translation unit.
+  The [namespace contract](docs/implementation/native-namespaces.md) records the
+  exact naming argument, failure behavior and executable evidence.
 
 Completed: [ABI](docs/implementation/native-abi.md),
 [status](docs/implementation/native-status.md),
@@ -105,13 +110,15 @@ remain their subsequent tasks; this section does not claim a working compiler.
 
 ## 4. Parse the complete grammar without semantic guesses
 
-- [ ] Implement CALL-07 entry literal inputs before starting section 5: recognize
+- [x] Implement CALL-07 entry literal inputs before starting section 5: recognize
   `|` only at the input operand boundary (positional/named), preserve all payload
   bytes through physical EOL, build AST_LITERAL_SOURCE with exact spans, count
   its input position, and replace literal-prohibition tests with positive/negative
   grammar tests. Distinguish empty `< |` from omitted `<`; keep literal outputs,
   assignments, conditions, indices and resume/read inputs forbidden. Extend
   source-to-AST/diagnostic composition and allocation-failure tests.
+  Ama literal classification and ABI record classification now use explicit
+  entry points: ABI `|` remains a protocol symbol, not a data boundary.
 
 - [x] Read indentation, comments and literal boundaries without altering payload
   bytes, trailing spaces or deliberate line endings.
@@ -128,14 +135,13 @@ remain their subsequent tasks; this section does not claim a working compiler.
 Ready when: complete valid and invalid grammar cases have independently runnable
 parser tests; parsing does not depend on executable code generation.
 
-The section-4 foundation is implemented; the CALL-07 amendment above remains
-pending and takes priority over section 5. The current parser still rejects
-literal call inputs until that task is implemented. [Frontend contracts and evidence](docs/implementation/parser-errors.md)
+Section 4, including CALL-07 source/AST support, is implemented.
+[Frontend contracts and evidence](docs/implementation/parser-errors.md)
 cover byte-preserving layout, exact draft activation/sections, a source-mapped AST,
 iterative nested access/control parsing, call placeholders/modes and fixed ABI
 records. Grammar expectations have stable keys and precise source diagnostics;
 recognition never looks up aliases or creates hidden numeric values. Eight new
-leaves contain 35 explicit scenarios, including finite access/call models, deep
+leaves contain explicit scenarios, including finite access/call models, deep
 nesting, truncation and allocation failures. The composed suite loads actual files,
 renders handwritten diagnostic expectations and compiles/runs typed native-binding
 probes. Full release/Werror tests and focused ASan/UBSan passed (LeakSanitizer
@@ -152,8 +158,16 @@ no code generator or runnable Ama program is claimed by parser completion.
   For CALL-07, derive literal type from the selected owned scalar parameter and
   reject reference/list destinations or missing `|` support; retain binding and
   parameter/type declaration spans in diagnostics.
+  Apply TYPE-05's nominal storage matrix without implicit dereference or list
+  conversion. Reject duplicate named callee labels while preserving binding order.
 - [ ] Distinguish dependency, eager ownership-layout and constant-initialization
   cycles from dynamic busy-instance reentry. Derive legal orders from each relation.
+  Follow TYPE-04's eager edges, CONST-02's declaration-level dependency graph and
+  PROTO-07's greatest fixed point for clone capability; recursive empty-list
+  structures and benign self-typed constants are not automatically cycles.
+- [ ] Validate mandatory `.h`/`.c`/`.abi` companions only after a required module
+  is known to select `@C`; unused drafts remain inactive. Treat ABI function names
+  as module-local identifiers under NAME-05.
 - [ ] Plan shared constants separately from instance storage, including qualified
   reads, typed library enumerations, startup ordering and reverse cleanup.
 - [ ] Build explicit typed lifecycle/control-flow IR and storage plans. Preserve
@@ -191,6 +205,8 @@ before the execution backend is complete. These tools do not extend the grammar.
   preparation failure and finalize resources correctly after commit failure.
 - [ ] Check source-tree availability, ownership overlap and copy capability;
   preserve ordinary self-assignment and reject continuation self-copy.
+  Preflight the complete affected old ownership subtree before deletion/reset/
+  replacement, including busy descendants of an available root (REF-08).
 
 Ready when: small exhaustive state models and failure-injection tests establish
 handle, lifetime, clone and replacement invariants independently of module execution.
@@ -206,6 +222,12 @@ handle, lifetime, clone and replacement invariants independently of module execu
   normal construction/commit cleanup, construct on every call, and report failures
   with call/binding/type context outside `:`. Test skipped/default inputs, literal
   failures, acquisition release and prevention of body entry after failure.
+- [ ] Implement CALL-08 evaluation order for every call/read mode: acquire the
+  selected target, resolve/protect input sources before reset, construct parameters
+  from supplied/default values in declaration order, then construct results.
+  Resolve output receivers/indices in binding text order; reject conflicting
+  ownership without implicit snapshots. Resume/read skip entry preparation and
+  no whole-call rollback is promised. Initial root startup constructs once.
 - [ ] Lower entry calls, interface reset/defaults, retained results, result routing,
   branches, loops and return links to explicit transfers and service metadata.
 - [ ] Integrate native execution/status and lifecycle code; prohibit C dispatch of
@@ -240,6 +262,10 @@ capturing a native C activation or adding an implicit scheduler.
   checked geometric capacity growth and zero-based index conversion.
 - [ ] Implement the specified four-input/three-output interface and six actions,
   default Inspect, positional skips, owning construction/clone and reference lists.
+  Supplying an owning source input requires static element clone capability
+  even for an empty/unused handle; omission permits default noncopyable creation.
+  Initial retained results represent successful inspection; copies retain last
+  completion/outcome data without acquisition/refusal history (LIST-09/LIST-11).
 - [ ] Preflight destructive mutations and distinguish ordinary refusal from
   technical failure; maintain retained length/results and order-preserving removal.
 - [ ] Publish scalar, condition/index, action/outcome and refusal-reader modules

@@ -30,6 +30,12 @@ module has an extensionless Ama interface and may select `@C` with companion `.h
 literal construction, cloning, condition and index conversion are explicit optional
 capabilities. Never infer a protocol from helper names or guess a representation.
 
+Qualify module-owned C types, functions, tags and objects with
+`AMA_NATIVE(local_name)`. ABI records contain the local identifier; the generated
+module context supplies its full-identity prefix. Use unique include guards and
+contain other C macros. The [native namespace contract](../docs/implementation/native-namespaces.md)
+documents the implemented naming facility and composed probes.
+
 Submodules of `name` reside in `name+/`, while their logical identities omit `+`.
 Dependency resolution loads transitive Ama modules once, checks their contracts
 and includes required native dependencies in the generated project assembly.

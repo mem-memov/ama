@@ -16,7 +16,7 @@ copy
 .shop.item
  %original
 worker!
- < first
+ < |原文 # |@!	  
  <
  >
  > selected

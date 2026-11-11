@@ -9,6 +9,9 @@ bool parser_call_arguments(Parser *parser, AstNode *node, size_t indentation) {
             return false;
         }
         argument->span = parser->line->code;
+        if (parser->line->kind == LINE_INPUT_LITERAL) {
+            argument->span.end = parser->line->physical.end;
+        }
         if (!parser_binding(parser, argument) || !parser_append_argument(parser, node, argument)) {
             return false;
         }

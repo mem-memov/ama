@@ -119,3 +119,23 @@ Recursive discovery and build invalidation checks are recorded in
 output preservation, is recorded in [test-harness.md](test-harness.md).
 The source/identity/diagnostic boundaries now have their own contracts and
 acceptance evidence in the [registry](contracts/README.md).
+
+## Alignment with the clarified specification
+
+The revision is applied to completed foundations without claiming their future
+consumers are implemented:
+
+| Requirements | Current boundary and evidence | Remaining consumer |
+| --- | --- | --- |
+| CORE-04/05 | Native contract assumptions and compiler/library authority are explicit in the ABI/contributor guides | Every later correctness argument must retain those assumptions |
+| NAME-05, PROTO-01/11 | Category-separated native prefixes, module-local ABI identifiers and scoped C emission; two identical-name companions compile/run together | Full native project emission and required-companion checks |
+| SYN-01/02, LIT-01/02, CALL-07 | Exact Ama/ABI lexical modes, EOF/payload spans and literal input ASTs; byte, finite-language, truncation and allocation-failure tests | Parameter-selected type/capability checks and constructor execution |
+| TYPE-02/05, CALL-08 | AST retains declaration/binding source order and explicit storage forms | Nominal compatibility, duplicate labels, ordered interface construction and output transfer |
+| SRC-03, COMP-04 | Existing Unicode 17.0.0, bytewise identities and original half-open byte spans already meet the clarified rules | Later stages must preserve spans and editions |
+| TYPE-04, CONST-02, PROTO-07 | Separate exact graph rules are recorded in section 5 of the backlog | Eager construction, constant ordering and greatest-fixed-point clone analysis |
+| REF-07/08, LIST-09/11 | Runtime service/ABI foundations do not imply completed ownership/list behavior | Handle transfer, full-subtree preflight, list capabilities and initial retained results |
+| LIFE-01/02, RT-11 | Fresh construction and ledger ordering remain tested | Integrated source-driven constructor selection and single root initialization |
+
+See [TODO.md](../../TODO.md) for the ordered remaining work. This revision does
+not add semantic checks to the parser or treat standalone C probes as a runnable
+Ama compiler.

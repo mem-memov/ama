@@ -10,7 +10,8 @@ typedef enum {
     IDENTITY_STATE_MEMBER,
     IDENTITY_INTERFACE_MEMBER,
     IDENTITY_LABEL,
-    IDENTITY_RUNTIME
+    IDENTITY_RUNTIME,
+    IDENTITY_NATIVE_NAMESPACE
 } IdentityCategory;
 
 typedef struct {
@@ -23,6 +24,7 @@ typedef struct {
 
 typedef struct IdentityName {
     struct IdentityName *next;
+    IdentityCategory category;
     unsigned char digest[32];
     const unsigned char *encoding;
     size_t encoding_length;

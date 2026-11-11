@@ -126,6 +126,13 @@ The `.abi` file is a fixed UTF-8 binding table: `+`/`-` are mandatory; `|`, `=`,
 reads metadata and emits typed uses; the C compiler checks handwritten signatures.
 Do not discover capabilities by helper names or add new parser protocols.
 
+Native companion identifiers use `AMA_NATIVE(local_name)` for module-owned
+file-scope functions, types, tags and objects. `.abi` records contain the local
+C identifier; generated context supplies the qualified module prefix. Keep
+include guards and other macros unique or contained; this facility does not
+rewrite arbitrary C or external library symbols. See the implemented
+[native namespace contract](docs/implementation/native-namespaces.md).
+
 All persistent Ama ownership/references belong in declared Ama fields. Opaque
 native payloads own native resources only. Borrowed instance/field/list views
 cannot escape into payloads, globals, retained callbacks or asynchronous work.

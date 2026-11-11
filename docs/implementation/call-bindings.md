@@ -1,9 +1,4 @@
-# Call binding syntax and positional holes
-
-Implementation status: the CALL-07 entry-literal amendment is specified but not
-implemented yet. The priority follow-up in [TODO.md](../../TODO.md) covers lexer,
-AST, call parsing and replacement of literal-prohibition tests. The evidence below
-covers the current implementation; it does not certify CALL-07 support.
+# Call bindings, typed literals and positional holes
 
 Boundary: `src/parser/calls/`, especially `bindings/`, implementing section 7
 call-mode/placeholder requirements and the fixed positional collection interface.
@@ -16,10 +11,14 @@ receiver. Their counters still advance. No hidden variable/default value is
 invented. Actual type compatibility and callee arity are checked after resolution.
 
 Recognition finds the first ASCII angle marker: such bytes cannot occur in a
-valid name/access/copy source. Optional labels must have declaration-name syntax;
+valid name/access/copy source. Literal payload is excluded from that code view. Optional labels must have declaration-name syntax;
 spaces separate label, marker and nonempty operand. >> must be contiguous. Empty
 named bindings and empty >> are invalid. Comment-only text after < or > supplies
-no operand. Input sources and output receivers use distinct grammar boundaries.
+no operand. Input sources and output receivers use distinct grammar boundaries. A recognized
+input `|` produces AST_LITERAL_SOURCE with a payload view and a source span from
+`|` to physical EOL. The argument span also includes the complete payload. Empty
+literal and omitted input are distinct nodes. Literal type/storage/capability
+checks belong to resolution; no inferred numeric value or hidden source is built.
 
 The call-list state consists of mode, one selected naming style, input/output
 counts and whether an output was seen. Entry accepts inputs before outputs, never
@@ -40,9 +39,15 @@ the parent module invalid and all partial storage owned until destruction.
 
 Evidence: `make -C tests/unit/parser/calls` passed C11/pedantic/Werror. Tests check
 three-input/three-output holes and their exact positions, resume holes, whole-list
-calls/reads, comments, malformed spacing, literal rejection, all mixed modes and
-named placeholders. An independent finite-language oracle checks all 3280 call
-forms: four modes times every sequence of length zero through three over nine
-binding forms. The argument family includes empty/nonempty positional forms and
+calls/reads, comments, malformed spacing, exact literal bytes including embedded zero/EOF,
+empty literals versus holes, forbidden literal positions/modes, all mixed modes and
+named placeholders. An independent finite-language oracle checks all 5856 call
+forms: four modes times every sequence of length zero through three over eleven
+binding forms, including positional/named literals. The argument family includes empty/nonempty positional forms and
 named input/output/read forms. Runtime reset and actual interface arity are not
 claimed by syntax tests.
+
+CALL-08 evaluation order is retained in the AST's binding order and distinct
+interface blocks. Duplicate callee labels, interface arity, types, constructor
+selection, source protection and ordered output transfer are semantic/lowering
+contracts; this parser does not execute or certify those later operations.

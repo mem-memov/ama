@@ -2,54 +2,56 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "project/buffer.h"
+// Fixed NAME-05 context for the fixture identity .fixtures.buffer.
+#define AMA_NATIVE(local_name) ama_n_c23a275a3121dcd1014e44f7f737be7b58ac2de820bed9675cdc3134fe244280_##local_name
+#include "project/buffer.c"
 #include "native/status/index.h"
 
 static void it_checks_all_six_bound_function_signatures(void) {
-    AmaStatus (*initialize)(FixtureBuffer *) = fixture_initialize;
-    AmaStatus (*destroy)(FixtureBuffer *) = fixture_destroy;
-    AmaStatus (*literal)(FixtureBuffer *, AmaByteView) = fixture_from_literal;
-    AmaStatus (*clone)(FixtureBuffer *, const FixtureBuffer *) = fixture_clone;
-    AmaStatus (*condition)(const FixtureBuffer *, bool *) = fixture_to_condition;
-    AmaStatus (*index)(const FixtureBuffer *, size_t *) = fixture_to_index;
+    AmaStatus (*initialize)(AMA_NATIVE(FixtureBuffer) *) = AMA_NATIVE(initialize);
+    AmaStatus (*destroy)(AMA_NATIVE(FixtureBuffer) *) = AMA_NATIVE(destroy);
+    AmaStatus (*literal)(AMA_NATIVE(FixtureBuffer) *, AmaByteView) = AMA_NATIVE(from_literal);
+    AmaStatus (*clone)(AMA_NATIVE(FixtureBuffer) *, const AMA_NATIVE(FixtureBuffer) *) = AMA_NATIVE(clone);
+    AmaStatus (*condition)(const AMA_NATIVE(FixtureBuffer) *, bool *) = AMA_NATIVE(to_condition);
+    AmaStatus (*index)(const AMA_NATIVE(FixtureBuffer) *, size_t *) = AMA_NATIVE(to_index);
     assert(initialize && destroy && literal && clone && condition && index);
 }
 
 static void it_constructs_once_and_clones_independent_native_resources(void) {
-    FixtureBuffer empty, source, copy;
-    AmaStatus status = fixture_initialize(&empty);
+    AMA_NATIVE(FixtureBuffer) empty, source, copy;
+    AmaStatus status = AMA_NATIVE(initialize)(&empty);
     assert(ama_status_is_success(status) && empty.data == NULL);
     const unsigned char bytes[] = {'a', 0, 'b'};
-    status = fixture_from_literal(&source, (AmaByteView) {bytes, sizeof(bytes)});
+    status = AMA_NATIVE(from_literal)(&source, (AmaByteView) {bytes, sizeof(bytes)});
     assert(ama_status_is_success(status));
-    status = fixture_clone(&copy, &source);
+    status = AMA_NATIVE(clone)(&copy, &source);
     assert(ama_status_is_success(status));
     assert(copy.data != source.data && copy.length == 3);
     copy.data[0] = 'z';
     assert(source.data[0] == 'a' && copy.data[2] == 'b');
-    status = fixture_destroy(&empty);
+    status = AMA_NATIVE(destroy)(&empty);
     assert(ama_status_is_success(status));
-    status = fixture_destroy(&source);
+    status = AMA_NATIVE(destroy)(&source);
     assert(ama_status_is_success(status));
-    status = fixture_destroy(&copy);
+    status = AMA_NATIVE(destroy)(&copy);
     assert(ama_status_is_success(status));
 }
 
 static void it_distinguishes_invalid_indices_from_technical_failure_without_outputs(void) {
-    FixtureBuffer value;
+    AMA_NATIVE(FixtureBuffer) value;
     const unsigned char negative[] = "-1";
-    AmaStatus status = fixture_from_literal(&value, (AmaByteView) {negative, 2});
+    AmaStatus status = AMA_NATIVE(from_literal)(&value, (AmaByteView) {negative, 2});
     assert(ama_status_is_success(status));
     size_t result = 99;
-    status = fixture_to_index(&value, &result);
+    status = AMA_NATIVE(to_index)(&value, &result);
     assert(ama_index_outcome(status) == AMA_INDEX_REFUSED && result == 99);
     value.conversion_error = AMA_OUT_OF_MEMORY;
-    status = fixture_to_index(&value, &result);
+    status = AMA_NATIVE(to_index)(&value, &result);
     assert(ama_index_outcome(status) == AMA_INDEX_FAILED && result == 99);
     bool condition = false;
-    status = fixture_to_condition(&value, &condition);
+    status = AMA_NATIVE(to_condition)(&value, &condition);
     assert(status.code == AMA_OUT_OF_MEMORY && !condition);
-    status = fixture_destroy(&value);
+    status = AMA_NATIVE(destroy)(&value);
     assert(ama_status_is_success(status));
 }
 
@@ -57,52 +59,52 @@ static void it_accepts_size_max_and_refuses_arithmetic_overflow(void) {
     char text[sizeof(size_t) * CHAR_BIT + 2];
     int length = snprintf(text, sizeof(text), "%zu", SIZE_MAX);
     assert(length > 0 && (size_t) length < sizeof(text));
-    FixtureBuffer value;
-    AmaStatus status = fixture_from_literal(&value,
+    AMA_NATIVE(FixtureBuffer) value;
+    AmaStatus status = AMA_NATIVE(from_literal)(&value,
         (AmaByteView) {(const unsigned char *) text, (size_t) length});
     assert(ama_status_is_success(status));
     size_t result = 0;
-    status = fixture_to_index(&value, &result);
+    status = AMA_NATIVE(to_index)(&value, &result);
     assert(ama_status_is_success(status) && result == SIZE_MAX);
-    status = fixture_destroy(&value);
+    status = AMA_NATIVE(destroy)(&value);
     assert(ama_status_is_success(status));
     memset(text, '9', sizeof(text));
-    status = fixture_from_literal(&value,
+    status = AMA_NATIVE(from_literal)(&value,
         (AmaByteView) {(const unsigned char *) text, sizeof(text)});
     assert(ama_status_is_success(status));
     result = 77;
-    status = fixture_to_index(&value, &result);
+    status = AMA_NATIVE(to_index)(&value, &result);
     assert(status.code == AMA_INVALID_INDEX && result == 77);
-    status = fixture_destroy(&value);
+    status = AMA_NATIVE(destroy)(&value);
     assert(ama_status_is_success(status));
 }
 
 static void it_returns_declared_results_and_refusal_data_separately_from_technical_status(void) {
-    FixtureBuffer state, caller, bound;
-    AmaStatus status = fixture_initialize(&state);
+    AMA_NATIVE(FixtureBuffer) state, caller, bound;
+    AmaStatus status = AMA_NATIVE(initialize)(&state);
     assert(ama_status_is_success(status));
     const unsigned char bytes[] = "12";
-    status = fixture_from_literal(&caller, (AmaByteView) {bytes, 2});
+    status = AMA_NATIVE(from_literal)(&caller, (AmaByteView) {bytes, 2});
     assert(ama_status_is_success(status));
-    status = fixture_clone(&bound, &caller);
+    status = AMA_NATIVE(clone)(&bound, &caller);
     assert(ama_status_is_success(status) && bound.data != caller.data);
-    FixtureInputs parameters = {&bound};
-    FixtureCount length = {0};
+    AMA_NATIVE(FixtureInputs) parameters = {&bound};
+    AMA_NATIVE(FixtureCount) length = {0};
     AmaStatus refusal = {0};
-    FixtureOutputs results = {&length, &refusal};
+    AMA_NATIVE(FixtureOutputs) results = {&length, &refusal};
     AmaNativeServices services = {ama_status_make(AMA_BUSY, NULL, 0)};
-    fixture_entry(&state, &parameters, &results, &services, &status);
+    AMA_NATIVE(entry)(&state, &parameters, &results, &services, &status);
     assert(ama_status_is_success(status) && length.value == 2);
     assert(refusal.code == AMA_BUSY && services.caller_refusal.code == AMA_BUSY);
     assert(state.entry_count == 1 && caller.entry_count == 0);
     bool condition = false;
-    status = fixture_to_condition(&bound, &condition);
+    status = AMA_NATIVE(to_condition)(&bound, &condition);
     assert(ama_status_is_success(status) && condition && bound.entry_count == 0);
-    status = fixture_destroy(&bound);
+    status = AMA_NATIVE(destroy)(&bound);
     assert(ama_status_is_success(status));
-    status = fixture_destroy(&caller);
+    status = AMA_NATIVE(destroy)(&caller);
     assert(ama_status_is_success(status));
-    status = fixture_destroy(&state);
+    status = AMA_NATIVE(destroy)(&state);
     assert(ama_status_is_success(status));
 }
 
@@ -118,3 +120,5 @@ int main(void) {
     run();
     return EXIT_SUCCESS;
 }
+
+#undef AMA_NATIVE

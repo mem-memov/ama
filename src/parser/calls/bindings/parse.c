@@ -42,7 +42,7 @@ bool parser_binding(Parser *parser, AstArgument *argument) {
     }
     SourceSpan operand = {text.source, end, text.end};
     return argument->kind == AST_INPUT
-        ? parser_source(parser, parser->line, operand, false, &argument->source)
+        ? parser_source(parser, parser->line, operand, true, &argument->source)
         : parser_access(parser, operand, &argument->receiver);
 }
 

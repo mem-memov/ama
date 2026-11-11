@@ -25,6 +25,8 @@ static void it_preserves_source_ranges_through_real_file_discovery_and_ast_const
     assert(written != EOF);
     AstNode *call = module.body.first->next->next;
     assert(call->kind == AST_CALL);
+    AstSource *input = call->as.call.first->source;
+    assert(input->kind == AST_LITERAL_SOURCE && layout_text_is(input->payload, "原文 # |@!\t  "));
     written = fprintf(output, "inputs=%zu outputs=%zu\n", call->as.call.input_count, call->as.call.output_count);
     assert(written >= 0);
     int closed = fclose(output);
@@ -64,37 +66,39 @@ static void it_renders_duplicate_abi_bindings_with_both_source_locations(void) {
 
 static void write_typed_bindings(FILE *output) {
     const char *declarations[] = {
-        "AmaStatus (*construct)(NativeValue *) = ", "AmaStatus (*destroy)(NativeValue *) = ",
-        "AmaStatus (*literal)(NativeValue *, AmaByteView) = ",
-        "AmaStatus (*clone)(NativeValue *, const NativeValue *) = ",
-        "AmaStatus (*condition)(const NativeValue *, bool *) = ",
-        "AmaStatus (*index_value_function)(const NativeValue *, size_t *) = "
+        "AmaStatus (*construct)(AMA_NATIVE(NativeValue) *) = ",
+        "AmaStatus (*destroy)(AMA_NATIVE(NativeValue) *) = ",
+        "AmaStatus (*literal)(AMA_NATIVE(NativeValue) *, AmaByteView) = ",
+        "AmaStatus (*clone)(AMA_NATIVE(NativeValue) *, const AMA_NATIVE(NativeValue) *) = ",
+        "AmaStatus (*condition)(const AMA_NATIVE(NativeValue) *, bool *) = ",
+        "AmaStatus (*index_value_function)(const AMA_NATIVE(NativeValue) *, size_t *) = "
     };
     for (size_t operation = 0; operation < ABI_BINDING_COUNT; operation++) {
         int written = fputs(declarations[operation], output);
         assert(written != EOF);
+        written = fputs("AMA_NATIVE(", output);
+        assert(written != EOF);
         SourceSpan function = table.bindings[operation].function;
         size_t copied = fwrite(source_bytes(function.source) + function.start, 1, function.end - function.start, output);
         assert(copied == function.end - function.start);
-        written = fputs(";\n", output);
+        written = fputs(");\n", output);
         assert(written != EOF);
     }
 }
 
-static void it_compiles_and_runs_typed_uses_of_preserved_native_identifier_spellings(void) {
-    setup_test();
-    const ModuleSource *source = find_fixture(".native");
-    ParseStatus parsed = parser_module_parse(&module, source->text);
-    assert(parsed == PARSE_OK && module.sections.kind == MODULE_NATIVE);
-    parsed = parser_abi_parse(&table, source->native_abi);
+static void write_module_probe(FILE *output, const ModuleSource *source, const IdentityName *name) {
+    abi_table_destroy(&table);
+    abi_table_init(&table, source_system_allocator());
+    ParseStatus parsed = parser_abi_parse(&table, source->native_abi);
     assert(parsed == PARSE_OK);
-    FILE *output = fopen("generated/bindings.c", "wb");
-    assert(output != NULL);
-    int written = fputs("#include \"../project/native.c\"\n", output);
-    assert(written != EOF);
+    bool emitted = native_namespace_begin(output, name);
+    assert(emitted);
+    int written = fprintf(output, "#include \"../%s\"\nstatic int AMA_NATIVE(probe)(void) {\n", source->native_c);
+    assert(written >= 0);
     write_typed_bindings(output);
-    written = fputs("int main(void) { NativeValue value, copy; bool truth; size_t position;\n"
-        "if (!ama_status_is_success(construct(&value))) return 1;\n"
+    written = fputs("AMA_NATIVE(NativeValue) initial, value, copy; bool truth; size_t position;\n"
+        "if (!ama_status_is_success(construct(&initial))) return 1;\n"
+        "if (!ama_status_is_success(destroy(&initial))) return 7;\n"
         "if (!ama_status_is_success(literal(&value, (AmaByteView){(const unsigned char *)\"abc\", 3}))) return 2;\n"
         "if (!ama_status_is_success(clone(&copy, &value))) return 3;\n"
         "if (!ama_status_is_success(condition(&copy, &truth)) || !truth) return 4;\n"
@@ -102,6 +106,39 @@ static void it_compiles_and_runs_typed_uses_of_preserved_native_identifier_spell
         "if (!ama_status_is_success(destroy(&copy))) return 6;\n"
         "return !ama_status_is_success(destroy(&value)); }\n", output);
     assert(written != EOF);
+    emitted = native_namespace_end(output);
+    assert(emitted);
+}
+
+static void it_isolates_identical_native_names_and_compiles_typed_abi_uses(void) {
+    setup_test();
+    const ModuleSource *source = find_fixture(".native");
+    ParseStatus parsed = parser_module_parse(&module, source->text);
+    assert(parsed == PARSE_OK && module.sections.kind == MODULE_NATIVE);
+    const ModuleSource *other;
+    ModuleStatus found = module_catalog_find(&catalog, ".other", &other);
+    assert(found == MODULE_OK);
+    const ModuleSource *modules[] = {source, other};
+    const IdentityName *names[2];
+    FILE *output = fopen("generated/bindings.c", "wb");
+    assert(output != NULL);
+    for (size_t index = 0; index < 2; index++) {
+        QualifiedIdentity identity = {IDENTITY_NATIVE_NAMESPACE, modules[index]->logical_path, NULL, 0, {0}};
+        IdentityStatus registered = identity_register(&identities, identity, &names[index]);
+        assert(registered == IDENTITY_OK);
+        write_module_probe(output, modules[index], names[index]);
+    }
+    const SourceText *probe;
+    SourceStatus added = source_manager_add(&catalog.sources, "probe", (const unsigned char *)"probe", 5, &probe);
+    assert(added == SOURCE_OK);
+    int written = fputs("#ifdef AMA_NATIVE\n#error Leaked module context\n#endif\nint main(void) { return ", output);
+    assert(written != EOF);
+    for (size_t index = 0; index < 2; index++) {
+        bool emitted = native_namespace_symbol(output, names[index], (SourceSpan){probe, 0, 5});
+        assert(emitted);
+        written = fputs(index == 0 ? "() || " : "(); }\n", output);
+        assert(written != EOF);
+    }
     int closed = fclose(output);
     assert(closed == 0);
     char *compiler[] = {TEST_REAL_COMPILER, "-std=c11", "-pedantic", "-Wall", "-Wextra", "-Werror",
@@ -118,7 +155,7 @@ void run(void) {
     it_reports_a_real_parser_error_with_original_source_and_actionable_help();
     it_keeps_a_native_companion_from_activating_an_unfinished_draft();
     it_renders_duplicate_abi_bindings_with_both_source_locations();
-    it_compiles_and_runs_typed_uses_of_preserved_native_identifier_spellings();
+    it_isolates_identical_native_names_and_compiles_typed_abi_uses();
 }
 
 int main(void) {

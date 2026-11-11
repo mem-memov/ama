@@ -23,7 +23,8 @@ LayoutStatus layout_failure(SourceLayout *layout, LayoutStatus status,
     return status;
 }
 
-static LayoutStatus append_line(SourceLayout *layout, size_t start, size_t end, bool newline) {
+static LayoutStatus append_line(SourceLayout *layout, size_t start, size_t end,
+    bool newline, bool literal_payloads) {
     const unsigned char *bytes = source_bytes(layout->source);
     bool crlf = newline && end > start && bytes[end - 1] == '\r';
     LayoutLine *line = source_arena_allocate(&layout->arena, sizeof(*line));
@@ -34,7 +35,7 @@ static LayoutStatus append_line(SourceLayout *layout, size_t start, size_t end, 
     *line = (LayoutLine){0};
     line->physical = (SourceSpan){layout->source, start, end - crlf};
     line->ending = crlf ? ENDING_CRLF : newline ? ENDING_LF : ENDING_NONE;
-    layout_classify(line);
+    layout_classify(line, literal_payloads);
     if (layout->last == NULL) {
         layout->first = line;
     } else {
@@ -44,7 +45,8 @@ static LayoutStatus append_line(SourceLayout *layout, size_t start, size_t end, 
     return LAYOUT_OK;
 }
 
-LayoutStatus layout_read(SourceLayout *layout, const SourceText *source) {
+static LayoutStatus read_source(SourceLayout *layout, const SourceText *source,
+    bool literal_payloads) {
     layout->source = source;
     size_t length = source_length(source);
     const unsigned char *bytes = source_bytes(source);
@@ -61,11 +63,19 @@ LayoutStatus layout_read(SourceLayout *layout, const SourceText *source) {
         while (end < length && bytes[end] != '\n') {
             end++;
         }
-        LayoutStatus status = append_line(layout, start, end, end < length);
+        LayoutStatus status = append_line(layout, start, end, end < length, literal_payloads);
         if (status != LAYOUT_OK) {
             return status;
         }
         start = end < length ? end + 1 : length;
     }
     return LAYOUT_OK;
+}
+
+LayoutStatus layout_read(SourceLayout *layout, const SourceText *source) {
+    return read_source(layout, source, true);
+}
+
+LayoutStatus layout_read_abi(SourceLayout *layout, const SourceText *source) {
+    return read_source(layout, source, false);
 }
