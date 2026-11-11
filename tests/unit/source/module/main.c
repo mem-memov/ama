@@ -175,6 +175,7 @@ static void it_rejects_aliased_directory_roots_even_when_empty(void) {
 }
 
 static void it_unwinds_every_catalog_allocation_failure(void) {
+    prepare_project();
     setup_catalog();
     ModuleRoot root = project_root();
     ModuleStatus status = module_catalog_build(&catalog, &root, 1);

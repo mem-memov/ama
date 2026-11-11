@@ -1,0 +1,6 @@
+generated/bad/坏:2:1: error[invalid-utf8]: Source input is not valid UTF-8
+    2 | \xFF
+    span: bytes [3, 4)
+    cause: A byte sequence is malformed, truncated, overlong or not a Unicode scalar
+    expected: well-formed UTF-8
+    help: Save this source or ABI companion as valid UTF-8

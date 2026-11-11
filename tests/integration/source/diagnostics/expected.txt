@@ -1,0 +1,4 @@
+project/商店/商品:1:1: error[syntax]: Example source context
+    subject: .商店.商品
+    1 | @!
+    span: bytes [0, 2)

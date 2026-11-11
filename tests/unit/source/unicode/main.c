@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -133,6 +134,8 @@ static void it_matches_exact_filesystem_bytes_and_refuses_symlinks(void) {
     assert(found == PATH_FOUND && S_ISREG(metadata.st_mode));
     found = path_exact_child("generated", "missing", "generated/missing", &metadata);
     assert(found == PATH_MISSING);
+    int removed = unlink("generated/alias");
+    assert(removed == 0 || errno == ENOENT);
     int linked = symlink("中国", "generated/alias");
     assert(linked == 0);
     found = path_exact_child("generated", "alias", "generated/alias", &metadata);

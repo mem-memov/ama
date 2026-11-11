@@ -1,2 +1,2 @@
-SUBDIRECTORIES := record
+SUBDIRECTORIES := record render
 include ../../parent.mk

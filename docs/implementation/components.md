@@ -33,7 +33,7 @@ subdirectories when their meaningful operations are implemented, not empty shell
 | Responsibility | Existing locations to replace | Destination | Contract/output |
 | --- | --- | --- | --- |
 | Command-line orchestration | `src/main.c` | `src/main.c`, `src/driver/` | Explicit commands, exit status and output ownership; delegate compilation/checking to shared services |
-| Source storage and identities | `src/common/source.*`, `path.*`, `names.*`, `limits.h` | `src/source/`, with `text/`, `paths/`, `utf8/`, `identity/` children | Owned immutable bytes, stable spans, strict decoding, logical/physical mapping and collision-checked identity |
+| Source storage and identities | `src/common/source.*`, `path.*`, `names.*`, `limits.h` | `src/source/`, with `text/`, `path/`, `unicode/`, `module/`, `identity/`, `mapping/` children | Owned immutable bytes, stable spans, strict decoding, logical/physical mapping and collision-checked identity |
 | Structured diagnostics | `src/common/diagnostic.*` | `src/diagnostics/`, with `render/` children | Structured causes/spans and deterministic rendering without losing source names |
 | Layout and lexical reading | `src/lexer/` | `src/lexer/`, with `layout/`, `literals/` children | Structural lines/tokens and untouched literal payloads; no name-dependent interpretation |
 | Syntax and AST | `src/parser/`, `src/ast/` | `src/parser/`, with `module/`, `body/calls/` children; `src/ast/` | Complete source constructs with spans and explicit ownership; no semantic resolution during parsing |
@@ -116,4 +116,6 @@ The subsequent foundation task removed those implementations and test cases and
 introduced new driver components and tests; see [foundation.md](foundation.md).
 Recursive discovery and build invalidation checks are recorded in
 [incremental-build.md](incremental-build.md). Test-harness acceptance, including
-output preservation, is the next task in TODO.
+output preservation, is recorded in [test-harness.md](test-harness.md).
+The source/identity/diagnostic boundaries now have their own contracts and
+acceptance evidence in the [registry](contracts/README.md).

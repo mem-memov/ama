@@ -1,0 +1,4 @@
+project/other/商品: error[ambiguous-module]: More than one source defines the same module
+    cause: Configured roots contain conflicting logical identities
+    help: Keep one source for this logical module identity
+project/商店/商品: note: conflicting source

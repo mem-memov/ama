@@ -58,6 +58,7 @@ must still supply their own arguments and executable evidence when implemented.
 
 | Component boundary | Contract and argument | Executable evidence |
 | --- | --- | --- |
+| Diagnostic rendering and C line mappings | [Rendering contract](../diagnostic-rendering.md); exact line coverage, byte escaping and C round trip | [Render tests](../../../tests/unit/diagnostics/render/main.c), [source composition](../../../tests/integration/source/diagnostics/main.c) |
 | Borrowed structured diagnostics and source/identity adaptation | [Diagnostic contract](../diagnostics.md); location validity and explicit error partition | [Record tests](../../../tests/unit/diagnostics/record/main.c) |
 | Qualified identity encoding and C names | [Identity contract](../identities.md); uniquely decodable encoding and full-key collision rejection | [Identity tests](../../../tests/unit/source/identity/main.c) |
 | Module catalog, structural directories and companions | [Path contract](../module-paths.md); FIFO prefix induction and identity/inode injectivity | [Composed catalog tests](../../../tests/unit/source/module/main.c) |

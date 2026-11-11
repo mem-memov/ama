@@ -9,6 +9,11 @@ libraries rather than an expanding collection of language primitives.
 The implementation is being rebuilt from this specification. Currently `./ama`
 provides `--help`; compilation and checking explicitly fail as unimplemented.
 The design described here is its acceptance contract, not a claim of availability.
+The implemented source layer now provides immutable text/spans, pinned Unicode
+identifiers, exact module discovery, collision-checked internal names and
+[structured diagnostics/source mappings](docs/implementation/diagnostic-rendering.md).
+These components have independent and composed tests; language parsing and CLI
+compilation/checking are still upcoming.
 
 ## Reading the project
 

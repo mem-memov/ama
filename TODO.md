@@ -81,11 +81,27 @@ supervision prevents it from running; leak-check certification is not claimed.
   identities; retain source names and stable Unicode test vectors.
 - [x] Represent diagnostics structurally: primary span, cause, expected construct,
   related declaration/type spans and an actionable explanation when exact.
-- [ ] Render source excerpts and original module names, never internal hashes as
+- [x] Render source excerpts and original module names, never internal hashes as
   the only explanation. Reuse this representation in later command-line/editor tools.
 
 Ready when: source and identity errors are precise, deterministic and usable
 without parsing generated C diagnostics.
+
+Section 3 is complete. Contracts and executable evidence cover
+[source storage](docs/implementation/source-storage.md),
+[Unicode](docs/implementation/unicode.md),
+[module paths](docs/implementation/module-paths.md),
+[identities](docs/implementation/identities.md),
+[diagnostic records](docs/implementation/diagnostics.md) and
+[rendering/source maps](docs/implementation/diagnostic-rendering.md).
+Unicode 17.0.0 tables and their C generator are vendored; internal C names use
+versioned, length-delimited SHA-256 identities with exact collision rejection.
+The POSIX catalog rejects symlinks and inode aliases, and takes explicit output
+exclusions. Source/ABI UTF-8 errors and ambiguous paths are tested through real
+filesystem-to-message composition. Source mapping is checked by compiling/running
+C. ASan/UBSan passed with LeakSanitizer disabled; the full release/Werror test tree
+passed. Parsing, required-draft semantics, dependency closure and CLI integration
+remain their subsequent tasks; this section does not claim a working compiler.
 
 ## 4. Parse the complete grammar without semantic guesses
 
