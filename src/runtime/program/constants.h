@@ -12,5 +12,7 @@ struct AmaConstantValue {
     void *allocation;
     void *payload;
     bool native_live;
+    struct AmaConstantValue *parent;
+    size_t remaining_fields;
 };
 #endif

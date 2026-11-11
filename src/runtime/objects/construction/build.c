@@ -15,8 +15,11 @@ static AmaStatus ama_construction_reserve(AmaObjectOperation *operation, uint64_
             AmaStatus protected = ama_object_preflight(operation, work->source, true, false);
             if (protected.code != AMA_OK) { return protected; }
         }
-    } else if (recipe != NULL && recipe->constructor == AMA_CONSTRUCT_CLONE) {
+    } else if (recipe != NULL && recipe->constructor == AMA_CONSTRUCT_CLONE && recipe->native_source == NULL) {
         return ama_status_make(AMA_EMPTY_REFERENCE, NULL, 0);
+    } else if (recipe != NULL && recipe->constructor == AMA_CONSTRUCT_CLONE) {
+        AmaStatus capability = ama_object_copy_capability(operation, id);
+        if (capability.code != AMA_OK) { return capability; }
     }
     AmaStatus status = ama_pool_reserve(&type->pool, &work->handle, &work->cell);
     if (status.code != AMA_OK) { return status; }
@@ -40,7 +43,11 @@ static AmaStatus ama_construction_payload(AmaObjectOperation *operation, AmaObje
         if (type->hooks.initialize != NULL) { status = type->hooks.initialize(payload); }
     } else if (kind == AMA_CONSTRUCT_LITERAL && type->hooks.literal != NULL) {
         status = type->hooks.literal(payload, work->recipe->literal);
+    } else if (kind == AMA_CONSTRUCT_CLONE && work->recipe->native_source != NULL) {
+        if (type->hooks.initialize != NULL && type->hooks.clone == NULL) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
+        if (type->hooks.clone != NULL) { status = type->hooks.clone(payload, work->recipe->native_source); }
     } else { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
+    if (status.code == AMA_OK) { work->cell->metadata.service.activity = AMA_INSTANCE_READY; }
     return status.code == AMA_OK ? ama_lifetime_finish(&work->cell->metadata.lifetime,
         type->hooks.initialize != NULL) : status;
 }
@@ -49,14 +56,38 @@ AmaStatus ama_object_build(AmaObjectOperation *operation, uint64_t id, const Ama
     AmaObjectWork *work = NULL;
     AmaStatus status = ama_construction_reserve(operation, id, recipe, (AmaHandle){0}, NULL, &work);
     while (status.code == AMA_OK) {
-        if (work->next_child < work->cell->metadata.lifetime.child_capacity) {
+        bool clone_source = work->source.generation != 0;
+        if (!clone_source && work->next_field < work->type->field_count && !work->field_ready) {
+            status = ama_object_prepare_field(operation, work);
+            if (status.code != AMA_OK) { break; }
+        }
+        if (!clone_source && work->next_field < work->type->field_count) {
+            const AmaObjectField *field = &work->type->fields[work->next_field];
+            size_t count;
+            (void)ama_object_handles(work->type, ama_pool_payload(&work->type->pool, work->cell), work->next_field, &count);
+            if (!ama_field_owns(field->kind) || work->next_element == count) {
+                work->next_field++;
+                work->field_ready = false;
+                continue;
+            }
+        }
+        if ((clone_source && work->next_child < work->cell->metadata.lifetime.child_capacity)
+            || (!clone_source && work->next_field < work->type->field_count)) {
             uint64_t child_type;
             const AmaRecipe *child_recipe;
-            AmaHandle *location = ama_object_child(work, work->next_child, &child_type, &child_recipe);
+            AmaHandle *location;
+            if (clone_source) { location = ama_object_child(work, work->next_child, &child_type, &child_recipe); }
+            else {
+                size_t count;
+                AmaHandle *handles = ama_object_handles(work->type, ama_pool_payload(&work->type->pool, work->cell), work->next_field, &count);
+                location = &handles[work->next_element];
+                child_type = work->type->fields[work->next_field].type_id;
+                child_recipe = work->field_recipe.children == NULL ? NULL : &work->field_recipe.children[work->next_element];
+            }
             AmaHandle child_source = {0};
             if (work->source.generation != 0) {
                 AmaPoolCell *original = NULL;
-                (void)ama_pool_lookup(&work->type->pool, work->source, false, &original);
+                (void)ama_pool_lookup(&work->type->pool, work->source, true, &original);
                 AmaObjectWork source_work = {.type = work->type, .cell = original};
                 child_source = *ama_object_child(&source_work, work->next_child, &child_type, &child_recipe);
                 child_recipe = NULL;
@@ -72,6 +103,7 @@ AmaStatus ama_object_build(AmaObjectOperation *operation, uint64_t id, const Ama
             if (status.code != AMA_OK || work->parent == NULL) { break; }
             work = work->parent;
             work->next_child++;
+            work->next_element++;
             status = ama_lifetime_child_ready(&work->cell->metadata.lifetime);
         }
     }

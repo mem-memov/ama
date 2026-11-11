@@ -4,7 +4,7 @@
 static AmaStatus ama_tree_protect(AmaObjectOperation *operation, AmaHandle handle, AmaHandle parent, bool copy) {
     AmaObjectType *type = NULL;
     AmaPoolCell *cell = NULL;
-    AmaStatus status = ama_object_lookup(operation->world, handle, false, &type, &cell);
+    AmaStatus status = ama_object_source_lookup(operation, handle, &type, &cell);
     if (status.code != AMA_OK) { return status; }
     if (parent.generation != 0 && !ama_same_handle(cell->owner, parent)) {
         return ama_status_make(AMA_INVALID_STATE, NULL, 0);
@@ -18,7 +18,8 @@ static AmaStatus ama_tree_protect(AmaObjectOperation *operation, AmaHandle handl
             return ama_status_success();
         }
     }
-    status = ama_instance_access(&cell->metadata, AMA_ACCESS_READ);
+    status = cell->metadata.identity.live ? ama_instance_access(&cell->metadata, AMA_ACCESS_READ)
+        : ama_service_access(&cell->metadata.service, AMA_ACCESS_READ);
     if (status.code != AMA_OK) { return status; }
     if (copy && type->hooks.initialize != NULL && type->hooks.clone == NULL) {
         return ama_status_make(AMA_INVALID_STATE, NULL, 0);
@@ -38,7 +39,7 @@ AmaStatus ama_object_preflight(AmaObjectOperation *operation, AmaHandle root, bo
     (void)continuation;
     AmaObjectType *type;
     AmaPoolCell *cell;
-    AmaStatus identity = ama_object_lookup(operation->world, root, false, &type, &cell);
+    AmaStatus identity = ama_object_source_lookup(operation, root, &type, &cell);
     if (identity.code != AMA_OK) { return identity; }
     for (AmaObjectProtection *record = operation->protected_first; record != NULL; record = record->next) {
         if (record->copy && copy && ama_same_handle(record->handle, root)) {

@@ -13,6 +13,10 @@ typedef struct AmaObjectWork {
     AmaHandle source;
     const AmaRecipe *recipe;
     size_t next_child;
+    size_t next_field;
+    size_t next_element;
+    bool field_ready;
+    AmaFieldRecipe field_recipe;
 } AmaObjectWork;
 typedef struct AmaObjectProtection {
     struct AmaObjectProtection *next;
@@ -43,6 +47,8 @@ bool ama_field_list(AmaFieldKind);
 AmaStatus ama_object_clone_payload(AmaObjectOperation *, AmaObjectWork *, bool);
 void ama_object_fix_references(AmaObjectOperation *, AmaObjectWork *, AmaHandle);
 AmaStatus ama_object_clone_fields(AmaWorld *, AmaObjectWork *);
+AmaStatus ama_object_prepare_field(AmaObjectOperation *, AmaObjectWork *);
+AmaStatus ama_object_source_lookup(AmaObjectOperation *, AmaHandle, AmaObjectType **, AmaPoolCell **);
 AmaStatus ama_object_fields(AmaWorld *, AmaObjectWork *);
 AmaHandle *ama_object_child(AmaObjectWork *, size_t index, uint64_t *type_id, const AmaRecipe **);
 AmaStatus ama_object_copy_checks(AmaWorld *, AmaHandle, AmaHandle, bool, bool *);

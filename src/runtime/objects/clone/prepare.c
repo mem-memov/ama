@@ -20,7 +20,7 @@ static AmaStatus ama_clone_reserve(AmaObjectOperation *operation, AmaHandle sour
 
 AmaStatus ama_object_clone_payload(AmaObjectOperation *operation, AmaObjectWork *work, bool continuation) {
     AmaPoolCell *source = NULL;
-    AmaStatus status = ama_pool_lookup(&work->type->pool, work->source, false, &source);
+    AmaStatus status = ama_pool_lookup(&work->type->pool, work->source, true, &source);
     if (status.code != AMA_OK) { return status; }
     if (work->type->hooks.clone != NULL) {
         void *destination = ama_pool_payload(&work->type->pool, work->cell);
@@ -73,7 +73,7 @@ AmaStatus ama_object_clone_prepare(AmaObjectOperation *operation, AmaHandle sour
             const AmaRecipe *recipe;
             AmaHandle *destination = ama_object_child(work, work->next_child, &type_id, &recipe);
             AmaPoolCell *original = NULL;
-            (void)ama_pool_lookup(&work->type->pool, work->source, false, &original);
+            (void)ama_pool_lookup(&work->type->pool, work->source, true, &original);
             AmaObjectWork source_work = {.type = work->type, .cell = original};
             AmaHandle child = *ama_object_child(&source_work, work->next_child, &type_id, &recipe);
             AmaObjectWork *child_work = NULL;

@@ -1,2 +1,2 @@
-SUBDIRECTORIES := pool objects alignment
+SUBDIRECTORIES := pool objects alignment program
 include ../../parent.mk

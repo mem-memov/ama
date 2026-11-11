@@ -260,7 +260,7 @@ handle, lifetime, clone and replacement invariants independently of module execu
   payload alignment, field offsets and type identities against generated C layouts.
   Reuse section 6 declaration/identity emission and add the deferred final-assembly
   comparison with isolated native headers/scaffolds and check-only diagnostics.
-- [ ] Execute directly over heap instances without working-state mirrors or
+- [x] Execute directly over heap instances without working-state mirrors or
   implicit default objects. Initialize constants before creating the explicit root.
 - [ ] Implement CALL-07 literal construction in entry preparation: select `|` once
   for supplied owned scalar parameters without default-then-overwrite, preserve

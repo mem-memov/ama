@@ -25,8 +25,10 @@ Private SDK helpers have component-qualified names so inclusion cannot collide
 across SDK source files. These helpers perform value/lifecycle operations, not
 C dispatch of Ama bodies. The project control fragment owns labels for the typed
 control graph. Return dispatch and executable semantics are connected by the
-subsequent section 8 tasks; the interim fragment fails explicitly instead of
-claiming to run a program. No source construct is silently executed as a no-op.
+subsequent section 8 tasks. Startup now initializes shared values before one
+explicit heap root and completes declarations-only bodies; unsupported execution
+fails explicitly. See [startup](program-startup.md). No source construct is silently
+executed as a no-op.
 
 The compilation database contains only the launcher project translation unit,
 with SDK/output includes and explicit C target flags; user flags remain separate

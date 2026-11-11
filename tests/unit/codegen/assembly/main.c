@@ -74,6 +74,74 @@ static void it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_u
     end_assembly();
 }
 
+static void emit_executable_native(const ScaffoldType *type) {
+    FILE *body = fopen(type->body_path, "wb");
+    assert(body != NULL);
+    bool emitted = scaffold_include(body, type->interface_name) && scaffold_include(body, type->begin_name);
+    assert(emitted);
+    int written = fputs("#include <assert.h>\n", body);
+    assert(written != EOF);
+    for (AbiOperation operation = ABI_DEFAULT; operation < ABI_BINDING_COUNT; operation++) {
+        const AbiBinding *binding = &type->plan->type->abi.bindings[operation];
+        emitted = scaffold_emit_signature(body, type, operation, binding->function);
+        assert(emitted);
+        const char *implementation = operation == ABI_DEFAULT ? " { destination->number=1; return ama_status_success(); }\n"
+            : operation == ABI_DESTROY ? " { assert(state->number != 0); printf(\"%zu \", state->number); return ama_status_success(); }\n"
+            : operation == ABI_LITERAL ? " { destination->number=literal.length; return ama_status_success(); }\n"
+            : operation == ABI_CLONE ? " { destination->number=source->number; return ama_status_success(); }\n"
+            : operation == ABI_CONDITION ? " { *result=state->number != 0; return ama_status_success(); }\n"
+            : " { *result=state->number; return ama_status_success(); }\n";
+        written = fputs(implementation, body);
+        assert(written != EOF);
+    }
+    emitted = scaffold_include(body, type->end_name);
+    int closed = fclose(body);
+    assert(emitted && closed == 0);
+}
+
+static void it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout(void) {
+    begin_assembly();
+    bool built = build_assembly();
+    assert(built);
+    for (const ScaffoldType *type = assembly.types; type != NULL; type = type->next) {
+        if (type->plan->type->module->syntax.sections.kind == MODULE_NATIVE) { emit_executable_native(type); }
+    }
+    bool published = native_scaffold_publish(&assembly);
+    assert(published);
+    pid_t process = fork();
+    assert(process >= 0);
+    if (process == 0) {
+        execlp("gcc", "gcc", "-std=c11", "-O2", "-pedantic", "-Wall", "-Wextra", "-Werror",
+            "-I" TEST_SDK, "-Igenerated/output", "generated/output/launcher.c", "-o", "generated/program", (char *)NULL);
+        _exit(127);
+    }
+    int status;
+    pid_t waited = waitpid(process, &status, 0);
+    assert(waited == process && WIFEXITED(status) && WEXITSTATUS(status) == 0);
+    int channel[2];
+    int opened = pipe(channel);
+    assert(opened == 0);
+    process = fork();
+    assert(process >= 0);
+    if (process == 0) {
+        close(channel[0]);
+        if (dup2(channel[1], STDOUT_FILENO) < 0) { _exit(126); }
+        close(channel[1]);
+        execl("generated/program", "generated/program", (char *)NULL);
+        _exit(127);
+    }
+    close(channel[1]);
+    char bytes[100] = {0};
+    size_t count = 0;
+    ssize_t received;
+    while ((received = read(channel[0], bytes + count, sizeof(bytes) - count - 1)) > 0) { count += (size_t)received; }
+    close(channel[0]);
+    waited = waitpid(process, &status, 0);
+    assert(waited == process && WIFEXITED(status) && WEXITSTATUS(status) == 0);
+    assert(strcmp(bytes, "1 1 12 ") == 0);
+    end_assembly();
+}
+
 static void it_unwinds_every_assembly_emission_allocation_failure(void) {
     begin_assembly();
     size_t start = allocation_count;
@@ -92,6 +160,7 @@ static void it_unwinds_every_assembly_emission_allocation_failure(void) {
 
 void run(void) {
     it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit();
+    it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout();
     it_unwinds_every_assembly_emission_allocation_failure();
 }
 

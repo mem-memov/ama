@@ -13,58 +13,61 @@ AmaHandle *ama_object_handles(const AmaObjectType *type, void *payload, size_t f
     return address;
 }
 
-static const AmaFieldRecipe *ama_object_recipes(const AmaObjectWork *work) {
-    return work->recipe != NULL && work->recipe->fields != NULL ? work->recipe->fields : work->type->defaults;
-}
-
 AmaStatus ama_object_fields(AmaWorld *world, AmaObjectWork *work) {
-    AmaObjectType *type = work->type;
-    const AmaFieldRecipe *initial = ama_object_recipes(work);
-    if (work->recipe != NULL && work->recipe->fields != NULL && work->recipe->field_count != type->field_count) {
+    (void)world;
+    if (work->recipe != NULL && work->recipe->fields != NULL && work->recipe->field_count != work->type->field_count) {
         return ama_status_make(AMA_INVALID_STATE, NULL, 0);
     }
-    void *payload = ama_pool_payload(&type->pool, work->cell);
-    size_t children = 0;
-    for (size_t field = 0; field < type->field_count; field++) {
-        size_t count = ama_field_list(type->fields[field].kind) ? (initial == NULL ? 0 : initial[field].count) : 1;
-        if (ama_field_owns(type->fields[field].kind)) {
-            if (children > SIZE_MAX - count) { return ama_status_make(AMA_LIMIT_EXCEEDED, NULL, 0); }
-            children += count;
-        }
-    }
     AmaConstructorKind kind = work->recipe == NULL ? AMA_CONSTRUCT_DEFAULT : work->recipe->constructor;
-    AmaStatus status = ama_lifetime_begin(&work->cell->metadata.lifetime, children, kind);
-    if (status.code != AMA_OK) { return status; }
-    for (size_t field = 0; field < type->field_count; field++) {
-        const AmaObjectField *descriptor = &type->fields[field];
-        if (ama_field_list(descriptor->kind)) {
-            AmaHandleList *list = (void *)((unsigned char *)payload + descriptor->offset);
-            size_t count = initial == NULL ? 0 : initial[field].count;
-            if (count > SIZE_MAX / sizeof(AmaHandle)) { return ama_status_make(AMA_LIMIT_EXCEEDED, NULL, 0); }
-            if (count != 0) {
-                list->items = world->allocator.allocate(world->allocator.context, count * sizeof(AmaHandle));
-                if (list->items == NULL) { return ama_status_make(AMA_OUT_OF_MEMORY, NULL, 0); }
-                memset(list->items, 0, count * sizeof(AmaHandle));
-            }
-            list->count = count;
+    return ama_lifetime_begin(&work->cell->metadata.lifetime, 0, kind);
+}
+
+AmaStatus ama_object_prepare_field(AmaObjectOperation *operation, AmaObjectWork *work) {
+    AmaObjectType *type = work->type;
+    size_t field = work->next_field;
+    AmaFieldRecipe recipe = {0};
+    bool explicit_fields = work->recipe != NULL && work->recipe->fields != NULL;
+    if (explicit_fields) { recipe = work->recipe->fields[field]; }
+    else if (type->defaults != NULL) { recipe = type->defaults[field]; }
+    if (type->resolve_field != NULL && (!explicit_fields || !recipe.supplied)) {
+        AmaStatus status = type->resolve_field(operation->world, &operation->arena,
+            work->handle, field, &recipe, type->field_context);
+        if (status.code != AMA_OK) { return status; }
+    }
+    const AmaObjectField *descriptor = &type->fields[field];
+    size_t count = ama_field_list(descriptor->kind) ? recipe.count : 1;
+    if (count > SIZE_MAX / sizeof(AmaHandle)
+        || (ama_field_owns(descriptor->kind) && work->cell->metadata.lifetime.child_capacity > SIZE_MAX - count)) {
+        return ama_status_make(AMA_LIMIT_EXCEEDED, NULL, 0);
+    }
+    void *payload = ama_pool_payload(&type->pool, work->cell);
+    if (ama_field_list(descriptor->kind)) {
+        AmaHandleList *list = (void *)((unsigned char *)payload + descriptor->offset);
+        if (count != 0) {
+            list->items = operation->world->allocator.allocate(operation->world->allocator.context, count * sizeof(AmaHandle));
+            if (list->items == NULL) { return ama_status_make(AMA_OUT_OF_MEMORY, NULL, 0); }
+            memset(list->items, 0, count * sizeof(AmaHandle));
         }
-        size_t count;
-        AmaHandle *handles = ama_object_handles(type, payload, field, &count);
-        if (!ama_field_owns(descriptor->kind) && initial != NULL && initial[field].references != NULL) {
-            for (size_t index = 0; index < count; index++) {
-                AmaHandle source = initial[field].references[index];
-                if (source.generation != 0 && source.type_id != descriptor->type_id) {
-                    return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0);
-                }
-                handles[index] = source;
+        list->count = count;
+    }
+    if (ama_field_owns(descriptor->kind)) { work->cell->metadata.lifetime.child_capacity += count; }
+    else if (recipe.references != NULL) {
+        size_t actual;
+        AmaHandle *handles = ama_object_handles(type, payload, field, &actual);
+        for (size_t index = 0; index < count; index++) {
+            if (recipe.references[index].generation != 0 && recipe.references[index].type_id != descriptor->type_id) {
+                return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0);
             }
+            handles[index] = recipe.references[index];
         }
     }
+    work->field_recipe = recipe;
+    work->field_ready = true;
+    work->next_element = 0;
     return ama_status_success();
 }
 
 AmaHandle *ama_object_child(AmaObjectWork *work, size_t index, uint64_t *type_id, const AmaRecipe **recipe) {
-    const AmaFieldRecipe *initial = ama_object_recipes(work);
     void *payload = ama_pool_payload(&work->type->pool, work->cell);
     for (size_t field = 0; field < work->type->field_count; field++) {
         if (!ama_field_owns(work->type->fields[field].kind)) { continue; }
@@ -72,7 +75,7 @@ AmaHandle *ama_object_child(AmaObjectWork *work, size_t index, uint64_t *type_id
         AmaHandle *handles = ama_object_handles(work->type, payload, field, &count);
         if (index < count) {
             *type_id = work->type->fields[field].type_id;
-            *recipe = initial == NULL || initial[field].children == NULL ? NULL : &initial[field].children[index];
+            *recipe = NULL;
             return &handles[index];
         }
         index -= count;

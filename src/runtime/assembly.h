@@ -12,6 +12,7 @@
 #include "runtime/metadata/refusal.c"
 #include "runtime/objects/access/capability.c"
 #include "runtime/objects/access/overlap.c"
+#include "runtime/objects/access/source.c"
 #include "runtime/objects/access/tree.c"
 #include "runtime/objects/cleanup/destroy.c"
 #include "runtime/objects/cleanup/terminate.c"
@@ -27,5 +28,14 @@
 #include "runtime/pool/reclaim.c"
 #include "runtime/pool/slots.c"
 #include "runtime/pool/storage.c"
+#include "runtime/program/constants/begin.c"
+#include "runtime/program/constants/build.c"
+#include "runtime/program/constants/fields.c"
+#include "runtime/program/constants/payload.c"
+#include "runtime/program/constants/cleanup.c"
+#include "runtime/program/constants/recipe.c"
+#include "runtime/program/construction/recipes.c"
+#include "runtime/program/construction/start.c"
+#include "runtime/program/values/source.c"
 
 #endif

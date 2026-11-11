@@ -4,7 +4,7 @@
 
 AmaStatus ama_object_clone_fields(AmaWorld *world, AmaObjectWork *work) {
     AmaPoolCell *source = NULL;
-    AmaStatus status = ama_pool_lookup(&work->type->pool, work->source, false, &source);
+    AmaStatus status = ama_pool_lookup(&work->type->pool, work->source, true, &source);
     if (status.code != AMA_OK) { return status; }
     status = ama_lifetime_begin(&work->cell->metadata.lifetime,
         source->metadata.lifetime.live_children, AMA_CONSTRUCT_CLONE);

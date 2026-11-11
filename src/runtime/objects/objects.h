@@ -11,12 +11,14 @@ typedef struct {
     size_t count;
     const AmaRecipe *children;
     const AmaHandle *references;
+    bool supplied;
 } AmaFieldRecipe;
 struct AmaRecipe {
     AmaConstructorKind constructor;
     AmaByteView literal;
     AmaHandle source;
     bool continuation;
+    const void *native_source;
     const AmaFieldRecipe *fields;
     size_t field_count;
 };
@@ -28,6 +30,7 @@ typedef struct {
     AmaStatus (*clone)(void *, const void *);
     AmaStatus (*destroy)(void *);
 } AmaPayloadHooks;
+typedef struct AmaWorld AmaWorld;
 typedef struct {
     AmaPool pool;
     const AmaObjectField *fields;
@@ -35,8 +38,10 @@ typedef struct {
     const AmaFieldRecipe *defaults;
     size_t native_offset;
     AmaPayloadHooks hooks;
+    AmaStatus (*resolve_field)(AmaWorld *, SourceArena *, AmaHandle, size_t, AmaFieldRecipe *, void *);
+    void *field_context;
 } AmaObjectType;
-typedef struct {
+struct AmaWorld {
     AmaObjectType *const *types;
     size_t type_count;
     SourceAllocator allocator;
@@ -44,7 +49,7 @@ typedef struct {
     void (*report)(void *, AmaStatus);
     bool operation_active;
     bool failed;
-} AmaWorld;
+};
 
 /* Generated descriptors/recipes and the registry are borrowed. Persistent Ama
  * edges occupy declared handle fields only. Native hooks operate on payloads,

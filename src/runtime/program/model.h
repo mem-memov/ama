@@ -13,6 +13,7 @@ typedef struct {
     AmaProgramSourceKind kind;
     const AmaProgramAccess *access;
     size_t shared;
+    uint64_t type_id;
     AmaByteView literal;
     bool acquire;
     bool continuation;
