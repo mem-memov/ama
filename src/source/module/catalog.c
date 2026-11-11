@@ -1,6 +1,5 @@
 #include <string.h>
 #include "internal.h"
-#include "source/unicode/unicode.h"
 
 void module_catalog_init(ModuleCatalog *catalog, SourceAllocator allocator) {
     *catalog = (ModuleCatalog){0};
@@ -23,24 +22,6 @@ ModuleStatus module_fail(ModuleCatalog *catalog, ModuleStatus status, const char
     return status;
 }
 
-bool module_path_valid(const char *path) {
-    if (path == NULL || path[0] != '.' || path[1] == 0) {
-        return false;
-    }
-    const char *start = path + 1;
-    do {
-        const char *end = strchr(start, '.');
-        size_t length = end == NULL ? strlen(start) : (size_t)(end - start);
-        size_t error;
-        if (!unicode_identifier((const unsigned char *)start, length, &error)) {
-            return false;
-        }
-        if (end == NULL) {
-            return true;
-        }
-        start = end + 1;
-    } while (true);
-}
 
 ModuleStatus module_catalog_build(ModuleCatalog *catalog,
     const ModuleRoot *roots, size_t root_count) {

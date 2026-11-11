@@ -77,7 +77,7 @@ supervision prevents it from running; leak-check certification is not claimed.
   identity and deterministic filesystem lookup without normalization guesses.
 - [x] Resolve extensionless module paths, physical `name+/` submodules and native
   companions. Keep logical identities distinct from physical diagnostic paths.
-- [ ] Generate collision-checked hashes from complete, unambiguously encoded
+- [x] Generate collision-checked hashes from complete, unambiguously encoded
   identities; retain source names and stable Unicode test vectors.
 - [ ] Represent diagnostics structurally: primary span, cause, expected construct,
   related declaration/type spans and an actionable explanation when exact.
