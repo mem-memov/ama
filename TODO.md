@@ -267,7 +267,7 @@ handle, lifetime, clone and replacement invariants independently of module execu
   normal construction/commit cleanup, construct on every call, and report failures
   with call/binding/type context outside `:`. Test skipped/default inputs, literal
   failures, acquisition release and prevention of body entry after failure.
-- [ ] Implement CALL-08 evaluation order for every call/read mode: acquire the
+- [x] Implement CALL-08 evaluation order for every call/read mode: acquire the
   selected target, resolve/protect input sources before reset, construct parameters
   from supplied/default values in declaration order, then construct results.
   Resolve output receivers/indices in binding text order; reject conflicting

@@ -105,6 +105,36 @@ static void it_keeps_earlier_committed_parameters_when_a_later_constructor_fails
     finish_call();
 }
 
+static void it_skips_interface_preparation_for_reads_and_resume_acquisitions(void) {
+    setup_call();
+    RootValue *value = object_payload(target);
+    NativeValue *previous = &((LeafValue *)object_payload(value->left))->native;
+    void *resource = previous->resource;
+    size_t before = constructed;
+    invocation.mode = AMA_ACCESS_READ;
+    bool refused = false;
+    AmaStatus status = ama_program_acquire(&program, caller, &invocation, &refused);
+    assert(status.code == AMA_OK);
+    status = ama_program_prepare(&program, caller, &invocation);
+    assert(status.code == AMA_OK && constructed == before && previous->resource == resource);
+    status = ama_program_release(&program, caller);
+    assert(status.code == AMA_OK);
+    AmaPoolCell *cell = NULL;
+    status = ama_program_cell(&program, target, &cell);
+    assert(status.code == AMA_OK);
+    cell->metadata.service.activity = AMA_INSTANCE_YIELDED;
+    cell->metadata.service.resume = (AmaResumePosition){.valid = true, .selector = 42};
+    invocation.mode = AMA_ACCESS_RESUME;
+    status = ama_program_acquire(&program, caller, &invocation, &refused);
+    assert(status.code == AMA_OK && !refused);
+    status = ama_program_prepare(&program, caller, &invocation);
+    assert(status.code == AMA_OK && constructed == before && previous->resource == resource);
+    status = ama_program_release(&program, caller);
+    assert(status.code == AMA_OK && cell->metadata.service.resume.selector == 42);
+    assert(cell->metadata.service.activity == AMA_INSTANCE_YIELDED);
+    finish_call();
+}
+
 void run(void) {
     it_constructs_literals_once_per_call_and_initializes_results_after_parameters();
     it_protects_supplied_values_while_defaults_observe_new_parameters();
@@ -112,5 +142,6 @@ void run(void) {
     it_refuses_a_busy_input_before_any_constructor();
     it_releases_all_leases_after_each_preparation_allocation_failure();
     it_keeps_earlier_committed_parameters_when_a_later_constructor_fails();
+    it_skips_interface_preparation_for_reads_and_resume_acquisitions();
 }
 int main(void) { run(); return EXIT_SUCCESS; }

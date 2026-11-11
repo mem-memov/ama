@@ -106,6 +106,7 @@ AmaStatus ama_program_prepare(AmaProgram *program, AmaHandle caller, const AmaPr
     AmaHandle target = context->metadata.service.outgoing;
     const AmaProgramType *type = ama_program_type(program, target.type_id);
     if (type == NULL) { return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0); }
+    if (invocation->mode != AMA_ACCESS_ENTRY) { return ama_status_success(); }
     program->world->operation_active = true;
     AmaObjectOperation protection = {.world = program->world};
     source_arena_init(&protection.arena, program->world->allocator);
