@@ -1,5 +1,5 @@
 ROOT := $(abspath ../../../..)
-include $(ROOT)/tests/unit/planning/sources.mk
+include $(ROOT)/tests/unit/native/scaffold/sources.mk
 SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/driver)) \
-    compiler/frontend.c compiler/inspect/module.c diagnostics/render/render.c diagnostics/render/location.c diagnostics/render/text.c
+    diagnostics/render/render.c diagnostics/render/location.c diagnostics/render/text.c
 include $(ROOT)/tests/leaf.mk

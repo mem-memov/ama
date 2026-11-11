@@ -1,0 +1,105 @@
+#include "native/scaffold/internal.h"
+#include "source/mapping/directive.h"
+
+static bool forward(FILE *output, const ScaffoldType *type) {
+    for (size_t role = 0; role < SCAFFOLD_ROLE_COUNT; role++) {
+        const char *name = type->names[role]->internal_name;
+        if (fprintf(output, "typedef struct %s %s;\n", name, name) < 0) {
+            return false;
+        }
+    }
+    return type->plan->type->module->syntax.sections.kind != MODULE_NATIVE
+        || fprintf(output, "typedef struct %s_State %s_State;\n",
+            type->native_prefix->internal_name, type->native_prefix->internal_name) >= 0;
+}
+
+static ScaffoldTypeRole field_role(StorageForm form, bool write) {
+    return form == STORAGE_REFERENCE ? (write ? SCAFFOLD_REFERENCE_WRITE : SCAFFOLD_REFERENCE_READ)
+        : form == STORAGE_OWNING_LIST ? (write ? SCAFFOLD_LIST_WRITE : SCAFFOLD_LIST_READ)
+        : form == STORAGE_REFERENCE_LIST ? (write ? SCAFFOLD_REFERENCE_LIST_WRITE : SCAFFOLD_REFERENCE_LIST_READ)
+        : write ? SCAFFOLD_WRITE : SCAFFOLD_READ;
+}
+
+static bool fields(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type,
+    bool write, bool interface, SymbolRole role) {
+    size_t count = 0;
+    for (const ScaffoldMember *member = type->members; member != NULL; member = member->next) {
+        if (interface && member->field->symbol->role != role) {
+            continue;
+        }
+        const ScaffoldType *child = native_scaffold_type(scaffold, member->field->symbol->type);
+        const char *name = child->names[field_role(member->field->form, write)]->internal_name;
+        SourceSpan source_name = member->field->symbol->declaration->as.declaration.name->span;
+        if (source_write_line_directive(output, source_name.source, source_name.start) != SOURCE_OK
+            || fprintf(output, "    /* %zu: ", interface ? member->field->symbol->role_ordinal : member->field->symbol->ordinal) < 0
+            || fwrite(source_bytes(source_name.source) + source_name.start, 1, source_name.end - source_name.start, output)
+                != source_name.end - source_name.start
+            || fprintf(output, " */\n    %s%s *%s;\n", write ? "" : "const ", name, member->identity->internal_name) < 0) {
+            return false;
+        }
+        count++;
+    }
+    return count != 0 || fprintf(output, "    unsigned char reserved;\n") >= 0;
+}
+
+static bool views(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type) {
+    const ScaffoldTypeRole reads[] = {SCAFFOLD_REFERENCE_READ, SCAFFOLD_LIST_READ, SCAFFOLD_REFERENCE_LIST_READ};
+    for (size_t index = 0; index < 3; index++) {
+        size_t read = reads[index];
+        const char *storage = type->names[read - 1]->internal_name;
+        if (fprintf(output, "struct %s { const %s *storage; };\nstruct %s { %s *storage; };\n",
+                type->names[read]->internal_name, storage, type->names[read + 1]->internal_name, storage) < 0) {
+            return false;
+        }
+    }
+    for (size_t role = SCAFFOLD_READ; role <= SCAFFOLD_WRITE; role++) {
+        bool write = role == SCAFFOLD_WRITE;
+        if (fprintf(output, "struct %s {\n", type->names[role]->internal_name) < 0) {
+            return false;
+        }
+        if (type->plan->type->module->syntax.sections.kind == MODULE_NATIVE
+            && fprintf(output, "    %s%s_State *payload;\n", write ? "" : "const ", type->native_prefix->internal_name) < 0) {
+            return false;
+        }
+        if (!fields(scaffold, output, type, write, false, SYMBOL_STATE) || fputs("};\n", output) == EOF) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool scaffold_emit_types(NativeScaffold *scaffold, FILE *output, const ScaffoldType *unused) {
+    (void)unused;
+    if (fputs("#ifndef AMA_GENERATED_NATIVE_TYPES_H\n#define AMA_GENERATED_NATIVE_TYPES_H\n"
+        "#include <stdbool.h>\n#include <stddef.h>\n#include <stdint.h>\n"
+        "#include \"native/abi/bytes.h\"\n#include \"native/abi/services.h\"\n"
+        "#include \"native/toolchain/gcc.h\"\n", output) == EOF) {
+        return false;
+    }
+    for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
+        if (!forward(output, type)) {
+            return false;
+        }
+    }
+    for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
+        if (type->plan->type->module->syntax.sections.kind == MODULE_NATIVE
+            && (!native_namespace_begin(output, type->native_prefix) || !scaffold_include(output, type->header_path)
+                || !native_namespace_end(output))) {
+            return false;
+        }
+    }
+    for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
+        if (!views(scaffold, output, type)) {
+            return false;
+        }
+        for (SymbolRole role = SYMBOL_PARAMETER; role <= SYMBOL_RESULT; role++) {
+            if (fprintf(output, "struct %s {\n", type->names[role == SYMBOL_PARAMETER
+                    ? SCAFFOLD_PARAMETERS : SCAFFOLD_RESULTS]->internal_name) < 0
+                || !fields(scaffold, output, type, role == SYMBOL_RESULT, true, role)
+                || fputs("};\n", output) == EOF) {
+                return false;
+            }
+        }
+    }
+    return fputs("#endif\n", output) != EOF;
+}

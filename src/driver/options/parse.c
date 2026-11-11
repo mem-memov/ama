@@ -3,7 +3,7 @@
 #include "options.h"
 
 void driver_options_init(DriverOptions *options, SourceAllocator allocator) {
-    *options = (DriverOptions){.compiler = "gcc"};
+    *options = (DriverOptions){0};
     source_arena_init(&options->arena, allocator);
 }
 
@@ -31,6 +31,16 @@ static bool value_option(DriverOptions *options, const char *name, const char *v
         options->libraries.condition = value;
     } else if (strcmp(name, "--list-outcome") == 0) {
         options->libraries.outcome = value;
+    } else if (options->request == DRIVER_REQUEST_NATIVE && strcmp(name, "--out") == 0) {
+        options->output = value;
+    } else if (options->request == DRIVER_REQUEST_NATIVE && strcmp(name, "--sdk") == 0) {
+        options->sdk = value;
+    } else if (options->request == DRIVER_REQUEST_NATIVE && strcmp(name, "--cc") == 0) {
+        options->compiler = value;
+    } else if (options->request == DRIVER_REQUEST_NATIVE && strcmp(name, "--protocols") == 0) {
+        options->protocols = value;
+    } else if (options->request == DRIVER_REQUEST_NATIVE && strcmp(name, "--c-flag") == 0) {
+        options->c_flags[options->c_flag_count++] = value;
     } else {
         return invalid(options, "Unknown command option");
     }
@@ -46,8 +56,9 @@ bool driver_options_parse(DriverOptions *options, int count, char *const argumen
         return invalid(options, "Command argument storage is unrepresentable");
     }
     options->roots = source_arena_allocate(&options->arena, (size_t)count * sizeof(*options->roots));
+    options->c_flags = source_arena_allocate(&options->arena, (size_t)count * sizeof(*options->c_flags));
     const char **exclusions = source_arena_allocate(&options->arena, (size_t)count * sizeof(*exclusions));
-    if (options->roots == NULL || exclusions == NULL) {
+    if (options->roots == NULL || exclusions == NULL || options->c_flags == NULL) {
         options->error = (Diagnostic){.code = DIAGNOSTIC_OUT_OF_MEMORY,
             .message = "Command options could not allocate storage"};
         return false;
@@ -56,10 +67,26 @@ bool driver_options_parse(DriverOptions *options, int count, char *const argumen
     options->entry = arguments[3];
     options->roots[options->root_count++].path = arguments[2];
     size_t excluded = 0;
-    for (int index = 4; index < count; index += 2) {
-        if (index + 1 >= count || !value_option(options, arguments[index], arguments[index + 1], &exclusions, &excluded)) {
+    for (int index = 4; index < count;) {
+        const char *name = arguments[index++];
+        if (options->request == DRIVER_REQUEST_NATIVE && (strcmp(name, "--create") == 0 || strcmp(name, "--overwrite") == 0)) {
+            if (strcmp(name, "--create") == 0) {
+                options->create = true;
+            } else {
+                options->overwrite = true;
+            }
+            continue;
+        }
+        if (index >= count || !value_option(options, name, arguments[index++], &exclusions, &excluded)) {
             return options->error.message != NULL ? false : invalid(options, "Command option needs a value");
         }
+    }
+    if (options->request == DRIVER_REQUEST_NATIVE && (options->output == NULL || options->sdk == NULL
+            || (options->overwrite && !options->create) || (options->protocols != NULL && !options->create))) {
+        return invalid(options, "Native generation needs --out/--sdk; --overwrite/--protocols require --create");
+    }
+    if (options->compiler == NULL) {
+        options->compiler = "gcc";
     }
     for (size_t index = 0; index < options->root_count; index++) {
         options->roots[index].excluded = exclusions;

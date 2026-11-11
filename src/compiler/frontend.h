@@ -9,6 +9,8 @@ typedef struct {
     ProgramPlan plan;
     Diagnostic error;
     SourceAllocator allocator;
+    SourceManager proposed_sources;
+    bool authoring;
     bool semantic_initialized;
     bool plan_initialized;
     bool attempted;
@@ -22,5 +24,8 @@ void compiler_frontend_init(CompilerFrontend *frontend, SourceAllocator allocato
 void compiler_frontend_destroy(CompilerFrontend *frontend);
 bool compiler_frontend_check(CompilerFrontend *frontend, const ModuleRoot *roots,
     size_t count, const char *entry, SemanticLibraries libraries);
+
+bool compiler_frontend_authoring(CompilerFrontend *frontend, const ModuleRoot *roots,
+    size_t count, const char *entry, SemanticLibraries libraries, const char *proposed_abi);
 
 #endif

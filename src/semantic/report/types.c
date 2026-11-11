@@ -37,7 +37,7 @@ bool semantic_capability_error(SemanticProgram *program, SemanticType *type,
     semantic_fail(program, site, message, declaration);
     program->error.subject = type->module->source->logical_path;
     SemanticType *contract = operation == ABI_CLONE && type->clone_seed != NULL ? type->clone_seed : type;
-    const SourceText *abi = contract->module->source->native_abi;
+    const SourceText *abi = contract->abi.layout.source;
     SourceSpan contract_site = abi == NULL ? (SourceSpan){contract->module->source->text, 0, 0}
         : (SourceSpan){abi, source_length(abi), source_length(abi)};
     size_t index = program->error.related_count;

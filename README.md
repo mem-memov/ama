@@ -112,3 +112,7 @@ Run an individual suite with, for example, `make -C tests/unit/driver/request`.
 See the contributor guide for component and composition tests and the backlog for
 implementation stages. Documentation-only changes require consistency checks;
 implementation claims require the corresponding executable acceptance evidence.
+
+Native interface authoring is available through `--native ROOT .module --out DIR
+--sdk /path/to/ama/src`; add `--create` to propose missing companions. See the
+[native scaffolding guide](docs/implementation/native-scaffolding.md).

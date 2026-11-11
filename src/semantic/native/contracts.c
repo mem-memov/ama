@@ -15,17 +15,19 @@ static bool companions(SemanticProgram *program, SemanticType *type) {
     return false;
 }
 
-SemanticStatus semantic_native(SemanticProgram *program) {
+SemanticStatus semantic_native_authoring(SemanticProgram *program, const SemanticNativeAuthoring *authoring) {
     assert(program->names_valid && !program->native_attempted);
     program->native_attempted = true;
     for (SemanticType *type = program->first; type != NULL; type = type->next) {
         if (type->module->syntax.sections.kind != MODULE_NATIVE) {
             continue;
         }
-        if (!companions(program, type)) {
+        bool proposed = authoring != NULL && authoring->module == type->module;
+        if (!proposed && !companions(program, type)) {
             return program->status;
         }
-        ParseStatus status = parser_abi_parse(&type->abi, type->module->source->native_abi);
+        const SourceText *abi = proposed ? authoring->abi : type->module->source->native_abi;
+        ParseStatus status = parser_abi_parse(&type->abi, abi);
         if (status == PARSE_OUT_OF_MEMORY) {
             semantic_memory_failure(program);
         } else if (status != PARSE_OK) {
@@ -38,4 +40,8 @@ SemanticStatus semantic_native(SemanticProgram *program) {
     }
     program->native_valid = true;
     return SEMANTIC_OK;
+}
+
+SemanticStatus semantic_native(SemanticProgram *program) {
+    return semantic_native_authoring(program, NULL);
 }

@@ -188,3 +188,12 @@ ARCH-05/ARCH-06. Test native contracts and their composition with generated stat
 including partial construction, clone remapping, replacement failures, cleanup
 errors and retained results. Compile and run generated C; checking emitted text
 alone does not establish ABI or mandatory inlining correctness.
+
+## Generated native authoring declarations
+
+The implemented authoring generator uses tagged `struct AMA_NATIVE(State)` for
+native payloads, module-qualified read/write views, and generated parameter/result
+aggregates. Each C skeleton directly includes its self-contained interface header.
+See [the engineering contract](docs/implementation/native-scaffolding.md) for the
+exact scoped member macros and declaration/publication boundaries. These views do
+not define instance-pool storage or introduce separate native translation units.

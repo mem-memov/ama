@@ -105,6 +105,10 @@ typedef struct {
     const char *outcome;
 } SemanticLibraries;
 typedef struct {
+    const ProjectModule *module;
+    const SourceText *abi;
+} SemanticNativeAuthoring;
+typedef struct {
     SourceArena arena;
     DependencyGraph eager;
     DependencyGraph constants;
@@ -138,8 +142,11 @@ void semantic_program_init(SemanticProgram *program, const Project *project,
     SourceAllocator allocator);
 void semantic_program_destroy(SemanticProgram *program);
 SemanticStatus semantic_analyze(SemanticProgram *program, SemanticLibraries libraries);
+SemanticStatus semantic_analyze_authoring(SemanticProgram *program, SemanticLibraries libraries,
+    const SemanticNativeAuthoring *authoring);
 SemanticStatus semantic_names(SemanticProgram *program);
 SemanticStatus semantic_native(SemanticProgram *program);
+SemanticStatus semantic_native_authoring(SemanticProgram *program, const SemanticNativeAuthoring *authoring);
 SemanticStatus semantic_resolve(SemanticProgram *program, SemanticLibraries libraries);
 SemanticStatus semantic_relations(SemanticProgram *program);
 SemanticStatus semantic_constants(SemanticProgram *program);

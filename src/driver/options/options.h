@@ -13,6 +13,9 @@ typedef struct {
     SemanticLibraries libraries;
     const char *output;
     const char *compiler;
+    const char *sdk;
+    const char **c_flags;
+    size_t c_flag_count;
     bool create;
     bool overwrite;
     const char *protocols;

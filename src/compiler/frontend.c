@@ -1,9 +1,10 @@
 #include <assert.h>
-#include "frontend.h"
+#include "internal.h"
 
 void compiler_frontend_init(CompilerFrontend *frontend, SourceAllocator allocator) {
     *frontend = (CompilerFrontend){.allocator = allocator};
     project_init(&frontend->project, allocator);
+    source_manager_init(&frontend->proposed_sources, allocator);
 }
 
 void compiler_frontend_destroy(CompilerFrontend *frontend) {
@@ -13,29 +14,16 @@ void compiler_frontend_destroy(CompilerFrontend *frontend) {
     if (frontend->semantic_initialized) {
         semantic_program_destroy(&frontend->semantic);
     }
+    source_manager_destroy(&frontend->proposed_sources);
     project_destroy(&frontend->project);
     *frontend = (CompilerFrontend){0};
 }
 
-bool compiler_frontend_check(CompilerFrontend *frontend, const ModuleRoot *roots,
-    size_t count, const char *entry, SemanticLibraries libraries) {
-    assert(!frontend->attempted);
-    frontend->attempted = true;
-    const char *roles[] = {libraries.action, libraries.index, libraries.condition, libraries.outcome};
-    const char *required[4];
-    size_t required_count = 0;
-    for (size_t index = 0; index < 4; index++) {
-        if (roles[index] != NULL) {
-            required[required_count++] = roles[index];
-        }
-    }
-    if (project_load_required(&frontend->project, roots, count, entry, required, required_count) != PROJECT_OK) {
-        frontend->error = frontend->project.error;
-        return false;
-    }
+bool compiler_frontend_finish(CompilerFrontend *frontend, SemanticLibraries libraries,
+    const SemanticNativeAuthoring *authoring) {
     semantic_program_init(&frontend->semantic, &frontend->project, frontend->allocator);
     frontend->semantic_initialized = true;
-    if (semantic_analyze(&frontend->semantic, libraries) != SEMANTIC_OK) {
+    if (semantic_analyze_authoring(&frontend->semantic, libraries, authoring) != SEMANTIC_OK) {
         frontend->error = frontend->semantic.error;
         return false;
     }
@@ -47,4 +35,10 @@ bool compiler_frontend_check(CompilerFrontend *frontend, const ModuleRoot *roots
     }
     frontend->valid = true;
     return true;
+}
+
+bool compiler_frontend_check(CompilerFrontend *frontend, const ModuleRoot *roots,
+    size_t count, const char *entry, SemanticLibraries libraries) {
+    return compiler_frontend_load(frontend, roots, count, entry, libraries)
+        && compiler_frontend_finish(frontend, libraries, NULL);
 }
