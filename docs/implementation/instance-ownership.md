@@ -41,3 +41,42 @@ history remains O(B) in lifetime block count. Reclamation is O(B*S), allocates
 nothing, and cannot move a live payload or reclaim a partly occupied block.
 Tests repeat reclaim/regrow with reduced generation limits and verify all old
 handles as well as the address of a retained instance.
+
+## Owned construction and cleanup
+
+Generated object descriptors borrow declaration-ordered scalar/list ownership and
+reference field offsets and native hook adapters. Descriptors have disjoint,
+aligned handle fields before the native payload and a unique nonzero type ID in
+the world's borrowed registry. Recipes are finite construction trees; a missing
+field recipe selects the descriptor's defaults. Lists default empty, references
+empty. Recipe counts/buffers and actual source pointers are trusted generated C
+inputs, not user-provided arbitrary memory. The backend must enforce descriptor
+alignment and descriptor/recipe lifetimes. Source-level initializer evaluation
+will supply these recipes; this layer never evaluates Ama expressions or bodies.
+
+Construction reserves private slots, constructs owned fields in declaration order,
+then selects one native constructor. An explicit work chain replaces recursive C
+traversal. Each completed child extends the lifetime ledger's prefix by one;
+failed child/payload construction never enters that prefix. No handle is published
+until the whole root succeeds. Failed payload hooks must release their own partial
+native resources. Cleanup walks parent links and decreasing prefix indices without
+allocating memory: invalidate, consume native-live exactly once, destroy that payload,
+then reverse children and list buffers. Original status wins; every secondary
+cleanup error is reported, and a cleanup failure makes the world terminal for
+new operations. Storage disposal follows resource finalization.
+
+Native callbacks here are lifecycle adapters, not Ama module dispatch or entry
+execution. Reentry into object operations is refused. These descriptors are an
+engineering runtime boundary, not a replacement for the typed plan or final
+emitter. Whole-source cloning, replacement and complete-subtree acquisition are
+layered on this ledger. Clone construction uses source recipes rather than running
+declaration defaults first.
+
+For a finite tree with V instances and E owned/reference elements, traversal is
+bounded by V and field/element scans; linear descriptor lookup and repeated
+flattened-child scans give a conservative O((V+E)^2 + V*T) bound. Construction
+workspace is O(V), list storage O(E); cleanup workspace is constant and follows
+runtime parent links. No recursive C walk or unbounded emergency allocation is
+required. [Lifecycle tests](../../tests/unit/runtime/objects/lifecycle/main.c)
+exercise declaration order, selected literal construction, every failed prefix,
+secondary errors, list buffers and all allocation failures over nested trees.
