@@ -53,6 +53,9 @@ typedef struct {
 AmaStatus ama_object_type_init(AmaObjectType *, SourceAllocator, uint64_t,
     size_t size, size_t slots, uint64_t generation_limit, const AmaObjectField *,
     size_t field_count, size_t native_offset, AmaPayloadHooks);
+AmaStatus ama_object_type_init_aligned(AmaObjectType *, SourceAllocator, uint64_t,
+    size_t size, size_t alignment, size_t slots, uint64_t generation_limit,
+    const AmaObjectField *, size_t field_count, size_t native_offset, AmaPayloadHooks);
 AmaObjectType *ama_world_type(const AmaWorld *, uint64_t);
 AmaStatus ama_object_create(AmaWorld *, uint64_t, const AmaRecipe *, AmaHandle *);
 AmaStatus ama_object_destroy(AmaWorld *, AmaHandle);

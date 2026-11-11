@@ -14,10 +14,11 @@ Slot zero is a real slot. Type IDs must be assigned through the collision-checke
 full-identity registry, not addresses, basenames or unchecked casts. Exact source
 identity encoding belongs to the source/registry stage.
 
-`AmaSlotIdentity` adds live/retired flags. Validation checks canonical emptiness,
+`AmaSlotIdentity` adds live/retired flags. Validation checks generation-zero emptiness,
 expected nonzero type, type equality, a resolved existing record, live/nonretired
-state, slot equality and generation equality before payload access. A zero
-generation in a nonempty encoding is stale. The caller resolves/bounds-checks a
+state, slot equality and generation equality before payload access. Generation
+zero always selects the empty-reference case; the all-zero encoding is canonical.
+The caller resolves/bounds-checks a
 slot ID before passing its record; NULL represents absent/reclaimed identity.
 These functions do not dereference a payload or perform acquisition themselves.
 
@@ -26,12 +27,10 @@ to one. UINT64_MAX never wraps: a further advance permanently retires the identi
 and reports LimitExceeded. Live slots return Busy without change; retired slots
 remain stale. Reclamation must retain identity/generation history outside freed
 payload blocks or retire the corresponding identities. No metadata helper resets
-that history. Actual block allocation/reclamation is a later pool task.
-
-`AmaPoolBookkeeping` separates slots per block, allocated block count, live count
-and free-list head. `has_free` distinguishes no head from valid slot zero; each
-free slot carries its next link. Generated module-typed block directories own
-payload storage separately. This is not a generic void-pointer payload container.
+that history. Allocation/reclamation and the reduced-width generation limit use
+the [stable pool and ownership layer](instance-ownership.md). The pool reuses the
+same generation-advance primitive, including permanent retirement at its limit.
+`AmaPool` separates block history, allocated payload blocks, live count and free head.
 
 ## Per-instance control
 

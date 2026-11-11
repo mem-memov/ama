@@ -9,11 +9,11 @@ bool ama_field_list(AmaFieldKind kind) {
     return kind == AMA_FIELD_OWNING_LIST || kind == AMA_FIELD_REFERENCE_LIST;
 }
 
-AmaStatus ama_object_type_init(AmaObjectType *type, SourceAllocator allocator, uint64_t id,
-    size_t size, size_t slots, uint64_t limit, const AmaObjectField *fields, size_t count,
+AmaStatus ama_object_type_init_aligned(AmaObjectType *type, SourceAllocator allocator, uint64_t id,
+    size_t size, size_t alignment, size_t slots, uint64_t limit, const AmaObjectField *fields, size_t count,
     size_t native_offset, AmaPayloadHooks hooks) {
     *type = (AmaObjectType){0};
-    if (native_offset > size || (hooks.initialize == NULL) != (hooks.destroy == NULL)
+    if (native_offset > size || (hooks.initialize != NULL && native_offset == size) || (hooks.initialize == NULL) != (hooks.destroy == NULL)
         || (hooks.initialize == NULL && (hooks.literal != NULL || hooks.clone != NULL))) {
         return ama_status_make(AMA_INVALID_STATE, NULL, 0);
     }
@@ -21,7 +21,7 @@ AmaStatus ama_object_type_init(AmaObjectType *type, SourceAllocator allocator, u
         const AmaObjectField *field = &fields[index];
         size_t width = ama_field_list(field->kind) ? sizeof(AmaHandleList) : sizeof(AmaHandle);
         size_t alignment = ama_field_list(field->kind) ? _Alignof(AmaHandleList) : _Alignof(AmaHandle);
-        if (field->kind > AMA_FIELD_REFERENCE_LIST || field->type_id == 0
+        if (field->kind < AMA_FIELD_OWNED || field->kind > AMA_FIELD_REFERENCE_LIST || field->type_id == 0
             || field->offset % alignment != 0 || field->offset > size || width > size - field->offset
             || (hooks.initialize != NULL && field->offset + width > native_offset)) {
             return ama_status_make(AMA_INVALID_STATE, NULL, 0);
@@ -33,7 +33,7 @@ AmaStatus ama_object_type_init(AmaObjectType *type, SourceAllocator allocator, u
             }
         }
     }
-    AmaStatus status = ama_pool_init(&type->pool, allocator, id, size, slots, limit);
+    AmaStatus status = ama_pool_init_aligned(&type->pool, allocator, id, size, alignment, slots, limit);
     if (status.code == AMA_OK) {
         type->fields = fields;
         type->field_count = count;
@@ -41,6 +41,13 @@ AmaStatus ama_object_type_init(AmaObjectType *type, SourceAllocator allocator, u
         type->hooks = hooks;
     }
     return status;
+}
+
+AmaStatus ama_object_type_init(AmaObjectType *type, SourceAllocator allocator, uint64_t id,
+    size_t size, size_t slots, uint64_t limit, const AmaObjectField *fields, size_t count,
+    size_t native_offset, AmaPayloadHooks hooks) {
+    return ama_object_type_init_aligned(type, allocator, id, size, _Alignof(max_align_t),
+        slots, limit, fields, count, native_offset, hooks);
 }
 
 AmaObjectType *ama_world_type(const AmaWorld *world, uint64_t id) {

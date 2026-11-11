@@ -20,6 +20,7 @@ typedef struct AmaObjectProtection {
     AmaPoolCell *cell;
     AmaHandle handle;
     AmaServiceState previous;
+    size_t epoch;
     bool copy;
     bool restore;
 } AmaObjectProtection;
@@ -30,6 +31,7 @@ typedef struct {
     AmaObjectWork *last;
     AmaObjectProtection *protected_first;
     AmaObjectProtection *protected_last;
+    size_t protection_epoch;
 } AmaObjectOperation;
 
 AmaStatus ama_object_lookup(AmaWorld *, AmaHandle, bool private_slot, AmaObjectType **, AmaPoolCell **);
@@ -43,8 +45,11 @@ void ama_object_fix_references(AmaObjectOperation *, AmaObjectWork *, AmaHandle)
 AmaStatus ama_object_clone_fields(AmaWorld *, AmaObjectWork *);
 AmaStatus ama_object_fields(AmaWorld *, AmaObjectWork *);
 AmaHandle *ama_object_child(AmaObjectWork *, size_t index, uint64_t *type_id, const AmaRecipe **);
+AmaStatus ama_object_copy_checks(AmaWorld *, AmaHandle, AmaHandle, bool, bool *);
+AmaStatus ama_object_end_active_links(AmaWorld *, AmaHandle);
 AmaStatus ama_object_cleanup_keep(AmaWorld *, AmaHandle root, AmaStatus primary, bool keep_root);
 AmaStatus ama_object_cleanup(AmaWorld *, AmaHandle root, AmaStatus primary);
+AmaStatus ama_object_copy_capability(AmaObjectOperation *, uint64_t);
 AmaStatus ama_object_preflight(AmaObjectOperation *, AmaHandle, bool copy, bool continuation);
 void ama_object_unprotect(AmaObjectOperation *);
 AmaStatus ama_object_build(AmaObjectOperation *, uint64_t, const AmaRecipe *, AmaHandle *);

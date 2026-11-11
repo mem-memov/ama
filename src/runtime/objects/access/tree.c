@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include "runtime/objects/internal.h"
 
 static AmaStatus protect(AmaObjectOperation *operation, AmaHandle handle, AmaHandle parent, bool copy) {
@@ -8,6 +9,15 @@ static AmaStatus protect(AmaObjectOperation *operation, AmaHandle handle, AmaHan
     if (parent.generation != 0 && !ama_same_handle(cell->owner, parent)) {
         return ama_status_make(AMA_INVALID_STATE, NULL, 0);
     }
+    for (AmaObjectProtection *record = operation->protected_first; record != NULL; record = record->next) {
+        if (copy && record->copy && ama_same_handle(record->handle, handle)) {
+            if (record->epoch == operation->protection_epoch) {
+                return ama_status_make(AMA_INVALID_STATE, NULL, 0);
+            }
+            record->epoch = operation->protection_epoch;
+            return ama_status_success();
+        }
+    }
     status = ama_instance_access(&cell->metadata, AMA_ACCESS_READ);
     if (status.code != AMA_OK) { return status; }
     if (copy && type->hooks.initialize != NULL && type->hooks.clone == NULL) {
@@ -16,7 +26,7 @@ static AmaStatus protect(AmaObjectOperation *operation, AmaHandle handle, AmaHan
     AmaObjectProtection *record = source_arena_allocate(&operation->arena, sizeof(*record));
     if (record == NULL) { return ama_status_make(AMA_OUT_OF_MEMORY, NULL, 0); }
     *record = (AmaObjectProtection){.type = type, .cell = cell, .handle = handle,
-        .previous = cell->metadata.service, .copy = copy, .restore = true};
+        .previous = cell->metadata.service, .epoch = operation->protection_epoch, .copy = copy, .restore = true};
     if (operation->protected_last == NULL) { operation->protected_first = record; }
     else { operation->protected_last->next = record; }
     operation->protected_last = record;
@@ -26,11 +36,21 @@ static AmaStatus protect(AmaObjectOperation *operation, AmaHandle handle, AmaHan
 
 AmaStatus ama_object_preflight(AmaObjectOperation *operation, AmaHandle root, bool copy, bool continuation) {
     (void)continuation;
+    AmaObjectType *type;
+    AmaPoolCell *cell;
+    AmaStatus identity = ama_object_lookup(operation->world, root, false, &type, &cell);
+    if (identity.code != AMA_OK) { return identity; }
     for (AmaObjectProtection *record = operation->protected_first; record != NULL; record = record->next) {
         if (record->copy && copy && ama_same_handle(record->handle, root)) {
             return ama_status_success();
         }
     }
+    if (copy) {
+        AmaStatus capability = ama_object_copy_capability(operation, root.type_id);
+        if (capability.code != AMA_OK) { return capability; }
+    }
+    if (operation->protection_epoch == SIZE_MAX) { return ama_status_make(AMA_LIMIT_EXCEEDED, NULL, 0); }
+    operation->protection_epoch++;
     AmaObjectProtection *previous = operation->protected_last;
     AmaStatus status = protect(operation, root, (AmaHandle){0}, copy);
     if (status.code != AMA_OK) { return status; }

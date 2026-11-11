@@ -61,8 +61,12 @@ AmaStatus ama_object_build(AmaObjectOperation *operation, uint64_t id, const Ama
                 child_source = *ama_object_child(&source_work, work->next_child, &child_type, &child_recipe);
                 child_recipe = NULL;
             }
-            status = reserve(operation, child_type, child_recipe, child_source, work, &work);
-            if (work != NULL) { *location = work->handle; }
+            AmaObjectWork *child_work = NULL;
+            status = reserve(operation, child_type, child_recipe, child_source, work, &child_work);
+            if (child_work != NULL) {
+                *location = child_work->handle;
+                work = child_work;
+            }
         } else {
             status = native(operation, work);
             if (status.code != AMA_OK || work->parent == NULL) { break; }

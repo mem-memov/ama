@@ -60,12 +60,13 @@ AmaStatus ama_pool_release(AmaPool *pool, AmaHandle handle) {
     }
     cell->occupied = false;
     pool->blocks[handle.slot_id / pool->slots_per_block].occupied--;
-    if (cell->metadata.identity.generation == pool->generation_limit) {
-        cell->metadata.identity.retired = true;
-    } else {
-        cell->metadata.identity.generation++;
+    status = ama_slot_advance_generation_limited(&cell->metadata.identity, pool->generation_limit);
+    if (status.code == AMA_LIMIT_EXCEEDED && cell->metadata.identity.retired) {
+        return ama_status_success();
+    }
+    if (status.code == AMA_OK) {
         cell->next_free = pool->free_head;
         pool->free_head = handle.slot_id;
     }
-    return ama_status_success();
+    return status;
 }

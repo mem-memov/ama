@@ -165,4 +165,7 @@ void run(void) {
     it_uses_independent_clone_contexts_for_repeated_source_initializers();
 }
 
-int main(void) { run(); return EXIT_SUCCESS; }
+int main(void) {
+    run();
+    return EXIT_SUCCESS;
+}

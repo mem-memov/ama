@@ -115,4 +115,7 @@ void run(void) {
     it_preserves_destination_when_the_prepared_native_constructor_fails();
 }
 
-int main(void) { run(); return EXIT_SUCCESS; }
+int main(void) {
+    run();
+    return EXIT_SUCCESS;
+}

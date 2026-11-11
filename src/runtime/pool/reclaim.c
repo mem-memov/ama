@@ -30,8 +30,9 @@ AmaStatus ama_pool_reclaim(AmaPool *pool, size_t *released) {
     *released = 0;
     for (size_t block = retained; block < pool->block_count; block++) {
         if (pool->blocks[block].memory != NULL) {
-            pool->allocator.release(pool->allocator.context, pool->blocks[block].memory);
+            pool->allocator.release(pool->allocator.context, pool->blocks[block].allocation);
             pool->blocks[block].memory = NULL;
+            pool->blocks[block].allocation = NULL;
             pool->allocated_blocks--;
             (*released)++;
         }

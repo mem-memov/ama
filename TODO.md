@@ -244,7 +244,7 @@ backend is available. These tools do not extend the grammar.
   internal-reference remapping and unchanged external targets.
 - [x] Prepare replacements before destructive commit; preserve destinations on
   preparation failure and finalize resources correctly after commit failure.
-- [ ] Check source-tree availability, ownership overlap and copy capability;
+- [x] Check source-tree availability, ownership overlap and copy capability;
   preserve ordinary self-assignment and reject continuation self-copy.
   Preflight the complete affected old ownership subtree before deletion/reset/
   replacement, including busy descendants of an available root (REF-08).
@@ -256,6 +256,8 @@ handle, lifetime, clone and replacement invariants independently of module execu
 
 - [ ] Emit one project assembly containing required includes, generated types,
   constants, native bodies and Ama labels, included by a launcher translation unit.
+  Connect section 7 runtime descriptors/recipes to the typed plan; verify concrete
+  payload alignment, field offsets and type identities against generated C layouts.
   Reuse section 6 declaration/identity emission and add the deferred final-assembly
   comparison with isolated native headers/scaffolds and check-only diagnostics.
 - [ ] Execute directly over heap instances without working-state mirrors or

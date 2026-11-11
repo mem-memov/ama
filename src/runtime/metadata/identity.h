@@ -23,6 +23,7 @@ typedef struct {
 bool ama_handle_is_empty(AmaHandle handle);
 AmaStatus ama_validate_handle(AmaHandle handle, uint64_t expected_type,
     const AmaSlotIdentity *slot);
+AmaStatus ama_slot_advance_generation_limited(AmaSlotIdentity *slot, uint64_t limit);
 AmaStatus ama_slot_advance_generation(AmaSlotIdentity *slot);
 
 #endif

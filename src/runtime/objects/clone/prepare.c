@@ -76,8 +76,12 @@ AmaStatus ama_object_clone_prepare(AmaObjectOperation *operation, AmaHandle sour
             (void)ama_pool_lookup(&work->type->pool, work->source, false, &original);
             AmaObjectWork source_work = {.type = work->type, .cell = original};
             AmaHandle child = *ama_object_child(&source_work, work->next_child, &type_id, &recipe);
-            status = reserve(operation, child, work, NULL, &work);
-            if (work != NULL) { *destination = work->handle; }
+            AmaObjectWork *child_work = NULL;
+            status = reserve(operation, child, work, NULL, &child_work);
+            if (child_work != NULL) {
+                *destination = child_work->handle;
+                work = child_work;
+            }
         } else {
             status = ama_object_clone_payload(operation, work, continuation);
             if (status.code != AMA_OK || work->parent == NULL) { break; }

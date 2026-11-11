@@ -1,7 +1,7 @@
 #include "identity.h"
 
 bool ama_handle_is_empty(AmaHandle handle) {
-    return handle.type_id == 0 && handle.slot_id == 0 && handle.generation == 0;
+    return handle.generation == 0;
 }
 
 AmaStatus ama_validate_handle(AmaHandle handle, uint64_t expected_type,
@@ -23,20 +23,24 @@ AmaStatus ama_validate_handle(AmaHandle handle, uint64_t expected_type,
     return ama_status_success();
 }
 
-AmaStatus ama_slot_advance_generation(AmaSlotIdentity *slot) {
+AmaStatus ama_slot_advance_generation_limited(AmaSlotIdentity *slot, uint64_t limit) {
     if (slot->live) {
         return ama_status_make(AMA_BUSY, NULL, 0);
     }
     if (slot->retired) {
         return ama_status_make(AMA_STALE_REFERENCE, NULL, 0);
     }
-    if (slot->type_id == 0) {
+    if (slot->type_id == 0 || limit == 0 || slot->generation > limit) {
         return ama_status_make(AMA_INVALID_STATE, NULL, 0);
     }
-    if (slot->generation == UINT64_MAX) {
+    if (slot->generation == limit) {
         slot->retired = true;
         return ama_status_make(AMA_LIMIT_EXCEEDED, NULL, 0);
     }
     slot->generation++;
     return ama_status_success();
+}
+
+AmaStatus ama_slot_advance_generation(AmaSlotIdentity *slot) {
+    return ama_slot_advance_generation_limited(slot, UINT64_MAX);
 }

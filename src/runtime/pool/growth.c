@@ -32,13 +32,16 @@ AmaStatus ama_pool_grow(AmaPool *pool) {
     if (!ama_status_is_success(status)) {
         return status;
     }
-    unsigned char *memory = pool->allocator.allocate(pool->allocator.context, pool->slots_per_block * pool->stride);
-    if (memory == NULL) {
+    unsigned char *allocation = pool->allocator.allocate(pool->allocator.context,
+        pool->slots_per_block * pool->stride + pool->alignment - 1);
+    if (allocation == NULL) {
         return ama_status_make(AMA_OUT_OF_MEMORY, NULL, 0);
     }
+    size_t padding = (pool->alignment - (uintptr_t)allocation % pool->alignment) % pool->alignment;
+    unsigned char *memory = allocation + padding;
     memset(memory, 0, pool->slots_per_block * pool->stride);
     size_t block = pool->block_count++;
-    pool->blocks[block] = (AmaPoolBlock){memory, 0};
+    pool->blocks[block] = (AmaPoolBlock){.memory = memory, .allocation = allocation};
     pool->allocated_blocks++;
     for (size_t index = pool->slots_per_block; index != 0;) {
         size_t slot = block * pool->slots_per_block + --index;

@@ -9,6 +9,7 @@ typedef struct {
     AmaInstanceMetadata metadata;
     AmaHandle owner;
     size_t next_free;
+    size_t traversal_child;
     bool occupied;
     bool alternate_payload;
     void *preparation_payload;
@@ -16,6 +17,7 @@ typedef struct {
 
 typedef struct {
     unsigned char *memory;
+    void *allocation;
     size_t occupied;
 } AmaPoolBlock;
 
@@ -25,6 +27,7 @@ typedef struct {
     uint64_t generation_limit;
     size_t slots_per_block;
     size_t payload_size;
+    size_t alignment;
     size_t payload_offset;
     size_t payload_stride;
     size_t stride;
@@ -36,11 +39,13 @@ typedef struct {
     size_t free_head;
 } AmaPool;
 
-/* One pool per executable type. Payload alignment is max_align_t. Reserved slots
+/* One pool per executable type. Alignment is explicit; init defaults to max_align_t. Reserved slots
  * are private construction storage; only publish makes their handles accessible.
  * Lookup borrows stable storage until release/disposal, never beyond its lifetime. */
 AmaStatus ama_pool_init(AmaPool *, SourceAllocator, uint64_t type_id,
     size_t payload_size, size_t slots_per_block, uint64_t generation_limit);
+AmaStatus ama_pool_init_aligned(AmaPool *, SourceAllocator, uint64_t type_id,
+    size_t payload_size, size_t alignment, size_t slots_per_block, uint64_t generation_limit);
 void ama_pool_dispose(AmaPool *);
 AmaStatus ama_pool_reserve(AmaPool *, AmaHandle *, AmaPoolCell **);
 AmaStatus ama_pool_lookup(const AmaPool *, AmaHandle, bool reserved, AmaPoolCell **);

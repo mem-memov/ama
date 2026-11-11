@@ -12,6 +12,8 @@ static void it_checks_type_liveness_slot_and_generation_before_access(void) {
     assert(status.code == AMA_STALE_REFERENCE);
     status = ama_validate_handle((AmaHandle) {0}, 7, NULL);
     assert(status.code == AMA_EMPTY_REFERENCE);
+    status = ama_validate_handle((AmaHandle) {7, 99, 0}, 7, NULL);
+    assert(status.code == AMA_EMPTY_REFERENCE && ama_handle_is_empty((AmaHandle){7, 99, 0}));
     status = ama_validate_handle((AmaHandle) {7, 1, 1}, 7, &caller.identity);
     assert(status.code == AMA_STALE_REFERENCE);
     caller.identity.live = false;
@@ -152,6 +154,8 @@ static void it_distinguishes_all_host_outcomes_and_initialization_failure(void) 
     assert(!ama_host_result_is_valid(result));
     result.outcome = AMA_HOST_FAILED;
     result.root = (AmaHandle) {0, 1, 0};
+    assert(ama_host_result_is_valid(result));
+    result.root = (AmaHandle) {0, 1, 1};
     assert(!ama_host_result_is_valid(result));
 }
 

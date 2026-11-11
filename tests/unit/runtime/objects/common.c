@@ -19,6 +19,8 @@ static AmaObjectType *types[] = {&leaf_type, &root_type};
 static AmaWorld world;
 static size_t constructed, cloned, destroyed, failed_constructor, failed_destructor, reports;
 static size_t destruction_order[100];
+static AmaHandle protected_source;
+static size_t reentry_attempts;
 
 static AmaStatus initialize_payload(void *address) {
     NativeValue *value = address;
@@ -41,6 +43,25 @@ static AmaStatus literal_payload(void *address, AmaByteView literal) {
 }
 
 static AmaStatus clone_payload(void *address, const void *source) {
+    if (protected_source.generation != 0) {
+        AmaStatus refused = ama_object_destroy(&world, protected_source);
+        assert(refused.code == AMA_BUSY);
+        AmaPoolCell *root_cell = NULL;
+        refused = ama_pool_lookup(&root_type.pool, protected_source, false, &root_cell);
+        assert(refused.code == AMA_OK);
+        refused = ama_instance_access(&root_cell->metadata, AMA_ACCESS_READ);
+        assert(refused.code == AMA_BUSY);
+        RootValue *root = ama_pool_payload(&root_type.pool, root_cell);
+        AmaHandle children[] = {root->left, root->right};
+        for (size_t index = 0; index < 2; index++) {
+            AmaPoolCell *child = NULL;
+            refused = ama_pool_lookup(&leaf_type.pool, children[index], false, &child);
+            assert(refused.code == AMA_OK);
+            refused = ama_instance_access(&child->metadata, AMA_ACCESS_READ);
+            assert(refused.code == AMA_BUSY);
+        }
+        reentry_attempts++;
+    }
     cloned++;
     AmaStatus status = initialize_payload(address);
     if (status.code == AMA_OK) { ((NativeValue *)address)->number = ((const NativeValue *)source)->number; }
@@ -65,6 +86,8 @@ static void report_status(void *context, AmaStatus status) {
 static void setup_objects(void) {
     setup_test();
     constructed = cloned = destroyed = failed_constructor = failed_destructor = reports = 0;
+    protected_source = (AmaHandle){0};
+    reentry_attempts = 0;
     static const AmaObjectField leaf_fields[] = {
         {AMA_FIELD_REFERENCE, 1, offsetof(LeafValue, peer)},
         {AMA_FIELD_REFERENCE, 2, offsetof(LeafValue, root)}

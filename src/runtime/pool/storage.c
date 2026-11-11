@@ -2,10 +2,16 @@
 #include <string.h>
 #include "internal.h"
 
-AmaStatus ama_pool_init(AmaPool *pool, SourceAllocator allocator, uint64_t type_id,
-    size_t size, size_t slots, uint64_t limit) {
+AmaStatus ama_pool_init_aligned(AmaPool *pool, SourceAllocator allocator, uint64_t type_id,
+    size_t size, size_t alignment, size_t slots, uint64_t limit) {
     *pool = (AmaPool){.free_head = SIZE_MAX};
-    size_t alignment = _Alignof(max_align_t);
+    if (alignment == 0 || (alignment & (alignment - 1)) != 0) {
+        return ama_status_make(AMA_INVALID_STATE, NULL, 0);
+    }
+    if (alignment < _Alignof(max_align_t)) { alignment = _Alignof(max_align_t); }
+    if (sizeof(AmaPoolCell) > SIZE_MAX - (alignment - 1)) {
+        return ama_status_make(AMA_LIMIT_EXCEEDED, NULL, 0);
+    }
     size_t offset = sizeof(AmaPoolCell) + (alignment - sizeof(AmaPoolCell) % alignment) % alignment;
     if (type_id == 0 || slots == 0 || limit == 0 || size > SIZE_MAX - (alignment - 1)) {
         return ama_status_make(AMA_LIMIT_EXCEEDED, NULL, 0);
@@ -15,18 +21,23 @@ AmaStatus ama_pool_init(AmaPool *pool, SourceAllocator allocator, uint64_t type_
         return ama_status_make(AMA_LIMIT_EXCEEDED, NULL, 0);
     }
     size_t stride = offset + bank * 2;
-    if (stride > SIZE_MAX / slots) {
+    if (stride > SIZE_MAX / slots || stride * slots > SIZE_MAX - (alignment - 1)) {
         return ama_status_make(AMA_LIMIT_EXCEEDED, NULL, 0);
     }
     *pool = (AmaPool){.allocator = allocator, .type_id = type_id, .generation_limit = limit,
-        .payload_size = size, .payload_offset = offset, .payload_stride = bank, .stride = stride,
+        .alignment = alignment, .payload_size = size, .payload_offset = offset, .payload_stride = bank, .stride = stride,
         .slots_per_block = slots, .free_head = SIZE_MAX};
     return ama_status_success();
 }
 
+AmaStatus ama_pool_init(AmaPool *pool, SourceAllocator allocator, uint64_t type_id,
+    size_t size, size_t slots, uint64_t limit) {
+    return ama_pool_init_aligned(pool, allocator, type_id, size, _Alignof(max_align_t), slots, limit);
+}
+
 void ama_pool_dispose(AmaPool *pool) {
     for (size_t index = 0; index < pool->block_count; index++) {
-        pool->allocator.release(pool->allocator.context, pool->blocks[index].memory);
+        pool->allocator.release(pool->allocator.context, pool->blocks[index].allocation);
     }
     pool->allocator.release(pool->allocator.context, pool->blocks);
     *pool = (AmaPool){.free_head = SIZE_MAX};
@@ -50,7 +61,7 @@ void *ama_pool_spare_payload(const AmaPool *pool, AmaPoolCell *cell) {
 }
 
 AmaStatus ama_pool_lookup(const AmaPool *pool, AmaHandle handle, bool reserved, AmaPoolCell **output) {
-    if (handle.generation == 0) {
+    if (ama_handle_is_empty(handle)) {
         return ama_status_make(AMA_EMPTY_REFERENCE, NULL, 0);
     }
     if (handle.type_id != pool->type_id) {
@@ -61,6 +72,8 @@ AmaStatus ama_pool_lookup(const AmaPool *pool, AmaHandle handle, bool reserved, 
         || (!reserved && !cell->metadata.identity.live)) {
         return ama_status_make(AMA_STALE_REFERENCE, NULL, 0);
     }
-    *output = cell;
-    return ama_status_success();
+    AmaStatus status = reserved ? ama_status_success()
+        : ama_validate_handle(handle, pool->type_id, &cell->metadata.identity);
+    if (status.code == AMA_OK) { *output = cell; }
+    return status;
 }

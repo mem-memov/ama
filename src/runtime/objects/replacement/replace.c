@@ -24,9 +24,6 @@ static AmaStatus replace(AmaObjectOperation *operation, AmaHandle destination, A
     AmaPoolCell *cell = NULL;
     AmaStatus status = ama_object_lookup(operation->world, destination, false, &type, &cell);
     if (status.code != AMA_OK) { return status; }
-    if (destination.type_id != source.type_id || ama_same_handle(source, destination)) {
-        return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0);
-    }
     status = ama_object_preflight(operation, source, true, continuation);
     if (status.code != AMA_OK) { return status; }
     status = ama_object_preflight(operation, destination, false, false);
@@ -53,7 +50,9 @@ AmaStatus ama_object_replace(AmaWorld *world, AmaHandle destination, AmaHandle s
     world->operation_active = true;
     AmaObjectOperation operation = {.world = world};
     source_arena_init(&operation.arena, world->allocator);
-    AmaStatus status = replace(&operation, destination, source, continuation);
+    bool no_op = false;
+    AmaStatus status = ama_object_copy_checks(world, destination, source, continuation, &no_op);
+    if (status.code == AMA_OK && !no_op) { status = replace(&operation, destination, source, continuation); }
     ama_object_unprotect(&operation);
     source_arena_destroy(&operation.arena);
     world->operation_active = false;

@@ -6,7 +6,6 @@
 #include "runtime/metadata/instance.h"
 #include "runtime/metadata/host.h"
 #include "runtime/metadata/source.h"
-#include "runtime/metadata/pool.h"
 #include "runtime/metadata/runtime.h"
 
 static AmaInstanceMetadata caller;

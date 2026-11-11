@@ -7,13 +7,14 @@ zero is empty. Reservation is private construction storage; publication requires
 a live lifetime ledger. Identity validation and activity checks are separate.
 No pool or spare capacity creates an implicit instance.
 
-Blocks contain fixed-stride, max_align_t-aligned metadata/payload slots. Directory
+Blocks contain fixed-stride, explicitly aligned metadata/payload slots. Directory
 growth copies block pointers, never payloads. Each free nonretired slot occurs once
 in the intrusive free chain. Release requires invalidated, fresh/finalized storage,
 advances generation without wrapping, and retires an exhausted slot. A configurable
-nonzero generation limit permits exhaustive reduced-width tests. The supported
-payload layout requires alignment no greater than max_align_t; generated layout
-consumers must check their concrete layout against this contract.
+nonzero generation limit permits exhaustive reduced-width tests. The basic initializer defaults to max_align_t; the aligned initializer accepts
+the concrete generated C alignment, including extended native alignment. Blocks
+retain their allocation base and align the usable address inside checked padded
+storage. Generated consumers must pass `_Alignof` of their actual layout.
 
 Allocation failure publishes no reservation or new block. A successfully enlarged
 directory may remain as spare capacity after payload allocation failure. Pool
@@ -112,7 +113,7 @@ busy/unsupported sources and every preparation allocation failure.
 
 ## Replacement without relocating native objects
 
-Each stable pool slot reserves two max_align_t-aligned data banks. One is active;
+Each stable pool slot reserves two data banks with the declared C alignment. One is active;
 replacement prepares the new root directly in the destination's inactive bank.
 Its private staging slot supplies only identity/lifetime bookkeeping and points
 to that bank during preparation. New children occupy independent pool slots.
@@ -139,3 +140,66 @@ exercise repeated bank switches, self-address-sensitive payloads, stable root
 identity/internal references, every preparation allocation failure, every old
 cleanup failure and failed prepared native construction. Complexity and temporary
 space are the clone bounds plus two bounded cleanup traversals.
+
+## Availability, overlap and terminal disposal
+
+Normal destruction and replacement protect the complete affected old ownership
+subtree before the first destructor runs. Source and old destination protections
+remain active through callbacks and commit. Running, waiting or incompatibly
+acquired descendants cause refusal even under an available root. Protection
+records save/restore prior controls on every non-destructive failure. Repeated
+initializer copies may reuse this operation's own compatible source protection;
+an exact per-pass epoch distinguishes that reuse from duplicate visits. Epoch
+exhaustion is an explicit failure, never wrapping. No reference edge extends a
+protection or destruction boundary.
+
+Before a distinct replacement, follow owner links in both directions to reject
+ancestor/descendant overlap, including ownership through list elements. Each walk
+is bounded by the exact occupied-slot population: exceeding it proves a cycle
+by the pigeonhole principle. This is not a guessed maximum depth. Siblings are
+disjoint even if their common owner is running; non-owning links between them do
+not create overlap. Ordinary runtime-identity self-assignment returns without
+allocation, cloning, destruction or resume reset after checking root access. It
+does not preflight descendants or require clone capability. Continuation self-copy
+is rejected. Copyability also checks the complete descriptor ownership relation,
+including empty owned lists. Exact reachability of a native type without a clone
+hook rejects the copy; reference types do not propagate that requirement. The
+finite monotone traversal handles recursive list types without recursion.
+
+After a terminal failure, host disposal is a distinct recovery use of destroy:
+first an allocation-free parent-link traversal clears all affected acquisition,
+return-link and resume controls, then cleanup finalizes the ownership tree. It
+accepts the finalized private tombstones left by failed nested replacements and
+never destroys their payload again. The host must stop Ama execution and report
+its diagnostic path before this disposal; it is not asynchronous cancellation or
+a way to delete a busy instance during normal execution. New operations remain
+forbidden. The world registry/roots are host-owned; dropping an owned subtree
+requires its owning location to be detached by the caller. Never dispose a child
+separately while leaving it in an owner's live-child prefix.
+
+Owner checks cost O(V*T) plus finite pool-population enumeration; descriptor
+capability closure has conservative O(T^2*F) cost using linear type lookup, with
+O(T) workspace. Protection and ledger traversal retain the prior tree bounds.
+[Access tests](../../tests/unit/runtime/objects/access/main.c) enumerate each node
+of nested source/destination trees in running/waiting/acquired states, test sibling
+versus ancestor relations, no-op/copy modes, empty-list capabilities, authorized
+protection reuse, native reentry, every delete-preflight allocation failure and
+failed nested replacement disposal with the next allocation forced to fail.
+
+## Completion boundary
+
+Section 7 provides independently tested pool and ownership runtime components.
+It does not execute Ama statements or generate concrete runtime layouts. Section 8
+must connect the typed plan and initializer evaluations to descriptors/recipes,
+assert concrete C alignment/offset/representation assumptions, initialize shared
+constants and explicit host roots, and preserve these ownership protocols in the
+final stackless assembly. Native authoring ABI views are operation-scoped typed
+adapters, not aliases of this internal generic schema. List mutation/growth and
+whole standalone collection operations remain with the list implementation stage.
+
+Extended alignment is tested with a 128-byte-aligned native representation,
+self-address checks, repeated replacement and reclamation in the
+[alignment suite](../../tests/unit/runtime/alignment/main.c). Aligned allocation
+uses one checked over-allocation per block, not one allocation per instance.
+Non-power-of-two target alignments and size arithmetic outside the size_t domain
+are explicit errors for the verified C toolchain.
