@@ -58,6 +58,7 @@ must still supply their own arguments and executable evidence when implemented.
 
 | Component boundary | Contract and argument | Executable evidence |
 | --- | --- | --- |
+| Fixed native ABI record parsing | [ABI parser contract](../abi-parser.md); six-slot uniqueness and explicit lexical recognition | [ABI parser tests](../../../tests/unit/parser/abi/main.c) |
 | Call bindings and positional holes | [Call contract](../call-bindings.md); finite-state list invariants and independent counters | [Call tests](../../../tests/unit/parser/calls/main.c) |
 | Source AST and structural statement parsing | [AST contract](../syntax-tree.md); grammar simulation with explicit frames/access chains | [Tree tests](../../../tests/unit/parser/tree/main.c) |
 | Draft activation and section order | [Section contract](../parser-sections.md); exact activation and increasing ranks | [Section tests](../../../tests/unit/parser/module/main.c) |

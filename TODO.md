@@ -112,7 +112,7 @@ remain their subsequent tasks; this section does not claim a working compiler.
   references, lists, qualified constants, entry/read/resume calls and control flow.
 - [x] Parse empty positional `<`/`>` placeholders with independent arity counts;
   distinguish them from named bindings and retained `>>` requests.
-- [ ] Parse the fixed `.abi` records and report malformed, duplicate, unknown or
+- [x] Parse the fixed `.abi` records and report malformed, duplicate, unknown or
   missing mandatory bindings at their exact locations.
 - [ ] Add syntax-error explanations and deterministic expected-token information.
   Do not use declared-name lookup to decide which construct a line represents.

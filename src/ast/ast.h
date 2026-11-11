@@ -2,6 +2,7 @@
 #define AMA_SYNTAX_AST_H
 
 #include "parser/module/sections.h"
+#include "parser/status.h"
 
 typedef struct AstAccess {
     SourceSpan span;
@@ -92,8 +93,6 @@ typedef struct {
     Diagnostic diagnostic;
     bool valid;
 } AstModule;
-
-typedef enum { PARSE_OK, PARSE_INVALID, PARSE_OUT_OF_MEMORY } ParseStatus;
 
 /* Initialize, parse once, destroy. AST nodes belong to the module; all textual
  * ranges borrow source. No node embeds generated C or resolved symbols/types.

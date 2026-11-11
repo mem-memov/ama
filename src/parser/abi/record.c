@@ -1,0 +1,81 @@
+#include "internal.h"
+
+bool abi_fail(AbiTable *table, SourceSpan span, const char *message, const char *expected) {
+    table->diagnostic = (Diagnostic){0};
+    table->diagnostic.code = DIAGNOSTIC_SYNTAX;
+    table->diagnostic.primary.span = span;
+    table->diagnostic.message = message;
+    table->diagnostic.expected = expected;
+    return false;
+}
+
+static int operation(const unsigned char *bytes, size_t length, size_t *width) {
+    static const unsigned char markers[] = {'+', '-', '|', '=', '?'};
+    for (int index = 0; index < 5; index++) {
+        if (length != 0 && bytes[0] == markers[index]) {
+            *width = 1;
+            return index;
+        }
+    }
+    if (length >= 2 && bytes[0] == '[' && bytes[1] == ']') {
+        *width = 2;
+        return ABI_INDEX;
+    }
+    return -1;
+}
+
+static bool binding_function(AbiTable *table, SourceSpan text, size_t cursor, SourceSpan *function) {
+    const unsigned char *bytes = source_bytes(text.source);
+    if (cursor == text.end || bytes[cursor] != ' ') {
+        return abi_fail(table, (SourceSpan){text.source, cursor, cursor},
+            "An ABI symbol needs a space before its function", "one or more ASCII spaces");
+    }
+    while (cursor < text.end && bytes[cursor] == ' ') {
+        cursor++;
+    }
+    size_t start = cursor;
+    while (cursor < text.end && bytes[cursor] != ' ') {
+        cursor++;
+    }
+    *function = (SourceSpan){text.source, start, cursor};
+    size_t error;
+    if (!abi_identifier(*function, &error)) {
+        return abi_fail(table, (SourceSpan){text.source, error, error < function->end ? error + 1 : error},
+            "Invalid native C function identifier", "one C function identifier");
+    }
+    if (cursor != text.end) {
+        while (cursor < text.end && bytes[cursor] == ' ') {
+            cursor++;
+        }
+        return abi_fail(table, (SourceSpan){text.source, cursor, text.end},
+            "Extra tokens after an ABI function identifier", "end of line or a comment");
+    }
+    return true;
+}
+
+bool abi_record(AbiTable *table, const LayoutLine *line) {
+    SourceSpan text = line->code;
+    if (line->indentation != 0) {
+        return abi_fail(table, text, "ABI records start at column one", "an unindented ABI symbol");
+    }
+    size_t width;
+    int selected = operation(source_bytes(text.source) + text.start, text.end - text.start, &width);
+    if (selected < 0) {
+        return abi_fail(table, text, "Unknown ABI symbol", "+, -, |, =, ?, or []");
+    }
+    SourceSpan marker = {text.source, text.start, text.start + width};
+    AbiBinding *binding = &table->bindings[selected];
+    if (binding->present) {
+        abi_fail(table, marker, "An ABI symbol can be bound only once", "a previously unbound ABI symbol");
+        table->related = (DiagnosticRelated){{binding->marker, NULL}, "previous binding", NULL};
+        table->diagnostic.related = &table->related;
+        table->diagnostic.related_count = 1;
+        return false;
+    }
+    SourceSpan function;
+    if (!binding_function(table, text, text.start + width, &function)) {
+        return false;
+    }
+    *binding = (AbiBinding){true, marker, function};
+    return true;
+}
