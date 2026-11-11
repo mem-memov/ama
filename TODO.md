@@ -171,7 +171,7 @@ no code generator or runnable Ama program is claimed by parser completion.
   Follow TYPE-04's eager edges, CONST-02's declaration-level dependency graph and
   PROTO-07's greatest fixed point for clone capability; recursive empty-list
   structures and benign self-typed constants are not automatically cycles.
-- [ ] Validate mandatory `.h`/`.c`/`.abi` companions only after a required module
+- [x] Validate mandatory `.h`/`.c`/`.abi` companions only after a required module
   is known to select `@C`; unused drafts remain inactive. Treat ABI function names
   as module-local identifiers under NAME-05.
 - [ ] Plan shared constants separately from instance storage, including qualified

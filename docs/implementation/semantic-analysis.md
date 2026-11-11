@@ -42,3 +42,24 @@ and nested alternatives, allow reuse across modules, and inject every semantic
 allocation failure with live-allocation cleanup counters. The suite is independently
 runnable through `make -C tests/unit/semantic/names`; release flags and `-Werror`
 retain assertions through the shared leaf harness.
+
+## Native contracts for the required closure
+
+`semantic_native` requires a successful namespace stage and runs once. It visits
+only records in the required closure whose parsed selector is `@C`. Missing
+`.h`, `.c` or `.abi` companions fail at the selector, naming the module and missing
+suffix. ABI tables use the existing fixed-record parser, preserving duplicate
+locations and malformed-record errors. Each table belongs to its semantic type:
+identical function spellings in different native modules remain different typed
+bindings, never global-name lookup. C bodies and signatures are not parsed or
+executed; later generated C uses check handwritten signatures.
+
+The complete selection predicate is `required && selector == MODULE_NATIVE`.
+Exhaustion of that finite set establishes all required companion/table checks;
+unused draft ABI grammar cannot enter the selection. Existing source catalog
+UTF-8/filesystem checks still apply globally. The phase costs the sum of required
+ABI parsing costs plus `O(V)` type visits and owns those tables until program
+destruction. All exits preserve the table/arena ownership established before
+parsing. [Native tests](../../tests/unit/semantic/native/main.c) enumerate all eight
+presence masks, exercise equal module-local helper names, unused drafts, duplicate
+ABI bindings and every native-parse allocation failure. Release/Werror tests pass.

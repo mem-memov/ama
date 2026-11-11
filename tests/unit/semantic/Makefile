@@ -1,2 +1,2 @@
-SUBDIRECTORIES := names
+SUBDIRECTORIES := names native
 include ../../parent.mk

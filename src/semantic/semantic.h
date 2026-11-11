@@ -39,6 +39,8 @@ typedef struct {
     DiagnosticRelated related[2];
     bool names_attempted;
     bool names_valid;
+    bool native_attempted;
+    bool native_valid;
 } SemanticProgram;
 
 /* The loaded valid project outlives this owner. Initialize, run each semantic
@@ -48,6 +50,7 @@ void semantic_program_init(SemanticProgram *program, const Project *project,
     SourceAllocator allocator);
 void semantic_program_destroy(SemanticProgram *program);
 SemanticStatus semantic_names(SemanticProgram *program);
+SemanticStatus semantic_native(SemanticProgram *program);
 SemanticType *semantic_type(const SemanticProgram *program, SourceSpan path);
 SemanticSymbol *semantic_symbol(const SemanticType *type, SourceSpan name);
 
