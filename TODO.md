@@ -54,7 +54,7 @@ itself remains an implementation foundation; the next implementation tasks are i
   `|`/`=`/`?`/`[]`, plus a void-return native entry with service status output.
 - [x] Verify mandatory native-entry inlining while permitting internal native C
   calls and stack use. Verify labels and explicit return dispatch for Ama control.
-- [ ] Validate fresh/constructing/live/finalized bookkeeping, failed-constructor
+- [x] Validate fresh/constructing/live/finalized bookkeeping, failed-constructor
   responsibilities, reverse cleanup, destroy errors and no double destruction.
 - [ ] Specify service metadata for handles, acquisition, return links, saved
   positions, source locations and host outcomes without hidden Ama links in C.
