@@ -112,4 +112,5 @@ Thirteen explicit `it_*` cases cover:
 
 The tests do not inspect pre-existing build artifacts or mutate committed inputs.
 They validate this build contract, not Ama language acceptance or future runtime
-semantics. Test output cleanup/failure preservation is the next foundation task.
+semantics. Test output cleanup/failure preservation is covered separately by
+[test-harness acceptance](test-harness.md).

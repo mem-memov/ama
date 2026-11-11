@@ -67,9 +67,9 @@ acceptance checks and a [contract](incremental-build.md).
 ## Remaining work
 
 Build invalidation, no-change behavior and nested dependency checks are completed
-in the incremental-build task. Next, finish the test-harness acceptance checks for
-output preservation on failure and cleanup ordering, including assertions under
-release flags. These are foundation tasks, not language changes.
+in the incremental-build task. [Test-harness acceptance](test-harness.md) also verifies output preservation,
+cleanup ordering and assertions under release flags. The remaining foundation task
+is to establish the reusable component-contract and proof-review procedure.
 
 ## Verification of this task
 

@@ -27,9 +27,11 @@ not introduce a second parser, resolver or type system.
   manifests additionally track compiler settings and link-input membership;
   [incremental-build tests and invariants](docs/implementation/incremental-build.md)
   cover the project and independent test leaves.
-- [ ] Retain two simple recursive C/Make harnesses: component tests and integration
-  tests. Give each leaf `main.c`, descriptive `it_*` functions and explicit `run()`;
-  put guarded fixtures in parent `common.c` files and use `assert`.
+- [x] Retain two simple recursive C/Make harnesses: component tests and integration
+  tests. Each leaf has `main.c`, descriptive `it_*` functions and explicit `run()`;
+  guarded parent `common.c` fixtures use `assert`.
+  [Harness acceptance](docs/implementation/test-harness.md) verifies parallel
+  ordering, failure artifacts, explicit cleanup and assertions under release flags.
 - [ ] For every subsequent component, define domains, invariants, pre/postconditions,
   failure effects and complexity. Give a general mathematical/algebraic argument
   and derive boundary, failure and composition tests. No heuristic algorithms or

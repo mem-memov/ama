@@ -1,5 +1,5 @@
-#ifndef AMA_TEST_BUILD_FILES_C
-#define AMA_TEST_BUILD_FILES_C
+#ifndef AMA_TEST_INTEGRATION_FILES_C
+#define AMA_TEST_INTEGRATION_FILES_C
 
 #include <dirent.h>
 #include <sys/stat.h>

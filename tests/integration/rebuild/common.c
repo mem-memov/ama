@@ -12,7 +12,7 @@
 static char working_directory[2048];
 static char trace_path[4096];
 
-#include "support/files.c"
+#include "../support/files.c"
 #include "support/process.c"
 #include "support/trace.c"
 
