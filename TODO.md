@@ -277,7 +277,7 @@ handle, lifetime, clone and replacement invariants independently of module execu
   branches, loops and return links to explicit transfers and service metadata.
 - [x] Integrate native execution/status and lifecycle code; prohibit C dispatch of
   Ama modules and persistent borrowed views in opaque native state.
-- [ ] Exercise two module types with multiple instances, nested same-type calls,
+- [x] Exercise two module types with multiple instances, nested same-type calls,
   busy refusal, pool growth during calls and persistent body state.
 - [ ] Implement acquisition refusal snapshots and their read-only library reader;
   preserve caller-context ownership across successful and nested calls.

@@ -132,6 +132,12 @@ static void it_reports_native_body_errors_with_the_active_ama_chain_before_clean
     expect_diagnostic("generated/project/main:6:1");
 }
 
+static void it_grows_the_current_module_type_pool_while_its_caller_waits(void) {
+    directory("generated/project");
+    file("generated/project/node","@<\ninput[]\n.node\n@!\ncopies[]\n.node\nprobe\n.worker\ncopies[]\n input[]\nprobe!\n");
+    execute_project("@!\nseed\n.node\nworker\n.node\nitems[]\n.node\n seed\n seed\n seed\n seed\n seed\n seed\n seed\n seed\n seed\nworker!\n < items[]\nworker!\n < items[]\n", "7:1:0\n7:2:0\n",true);
+}
+
 void run(void) {
     it_executes_literal_default_retained_and_independent_native_states();
     it_does_not_enter_the_body_or_alternative_after_literal_failure();
@@ -153,5 +159,6 @@ void run(void) {
     it_checks_the_exact_native_entry_signature_including_its_return_type();
     it_allows_ordinary_native_helper_calls_inside_an_inlined_entry();
     it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup();
+    it_grows_the_current_module_type_pool_while_its_caller_waits();
 }
 int main(void) { run(); return EXIT_SUCCESS; }
