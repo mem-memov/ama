@@ -1,2 +1,2 @@
-SUBDIRECTORIES := driver native source diagnostics lexer parser
+SUBDIRECTORIES := driver native source diagnostics lexer parser project
 include ../parent.mk

@@ -150,8 +150,12 @@ no code generator or runnable Ama program is claimed by parser completion.
 
 ## 5. Resolve dependencies, types, capabilities and storage plans
 
-- [ ] Load the transitive project/library closure once per logical module identity;
+- [x] Load the transitive project/library closure once per logical module identity;
   report missing, ambiguous and required draft modules explicitly.
+  [Closure contract and evidence](docs/implementation/project-dependencies.md):
+  one AST per identity, occurrence spans and requester traces, iterative cycle-safe
+  discovery; exhaustive three-module graphs, real UTF-8 diagnostic composition and
+  allocation-failure cleanup. Native companion/type validation remains below.
 - [ ] Enforce one base-name namespace across constants, interfaces and body fields.
 - [ ] Resolve declarations, sources and interfaces into typed symbols; check
   defaults, literal/clone capabilities, binding arity and storage compatibility.

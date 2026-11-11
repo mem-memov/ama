@@ -1,0 +1,12 @@
+project/中间:3:1: error[missing-module]: Required module source was not found
+    subject: .不存在
+    3 | .不存在
+    span: bytes [9, 19)
+project/中间:3:1: note: required by module
+    subject: .中间
+    3 | .不存在
+    span: bytes [9, 19)
+project/main:3:1: note: required by module
+    subject: .main
+    3 | .中间
+    span: bytes [9, 16)
