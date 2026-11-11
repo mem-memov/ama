@@ -48,7 +48,7 @@ itself remains an implementation foundation; the next implementation tasks are i
 
 - [x] Select and document the supported C toolchain and exact native signatures,
   including byte views, representation includes and alignment requirements.
-- [ ] Implement common `AmaStatus` code/message/length, allocate distinct service
+- [x] Implement common `AmaStatus` code/message/length, allocate distinct service
   codes and distinguish invalid-index refusal from technical conversion failure.
 - [ ] Build a small C harness for all six ABI bindings: mandatory `+`/`-`, optional
   `|`/`=`/`?`/`[]`, plus a void-return native entry with service status output.

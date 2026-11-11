@@ -1,2 +1,2 @@
-SUBDIRECTORIES := layout
+SUBDIRECTORIES := layout status
 include ../../../parent.mk
