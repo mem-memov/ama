@@ -325,7 +325,7 @@ custom hosts. See `docs/implementation/continuations.md` for invariants and evid
   technical failure; maintain retained length/results and order-preserving removal.
 - [x] Publish scalar, condition/index, action/outcome and refusal-reader modules
   with documented paths and typed shared constants.
-- [ ] Establish consistent parameter/result ordering across related library
+- [x] Establish consistent parameter/result ordering across related library
   interfaces and test it. Keep domain operation names out of parser rules.
 - [ ] Cover traversal, empty references, busy deletion, Clear preflight, pool
   reclamation and stale-reference rejection through real compiled projects.

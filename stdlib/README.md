@@ -98,3 +98,9 @@ the logical `.std.index.*` identities. No domain operation names are parser rule
 
 The compiler-to-library encoding of list action inputs and retained results needs
 an explicit mapping contract before the whole-list execution boundary is complete.
+
+The compiled library suite verifies that named bindings select the declared field
+independently of their textual order; every related scalar helper returns its
+value in result position one. Empty positional inputs preserve the module's
+default, for example an omitted `.std.index.next` input yields one. Parameter and
+result bindings in a call must consistently use either named or positional mode.

@@ -13,7 +13,14 @@ static void it_rejects_unknown_enum_values_and_checked_scalar_overflow(void) {
     execute_project("@!\ncondition\n.std.condition\n |2\n", "", false);
 }
 
+static void it_keeps_result_first_and_named_inputs_independent_of_textual_order(void) {
+    directory("generated/project");
+    native_fixture("showindex", "@<\nvalue\n.std.index\n@C\n");
+    execute_project("@!\nleft\n.std.index\n |2\nright\n.std.index\n |3\nresult\n.std.index\ncondition\n.std.condition\nnext\n.std.index.next\nbefore\n.std.index.before\nshow\n.showindex\nnext!\n <\n > result\nshow!\n < result\nbefore!\n right < left\n left < right\n result > condition\ncondition\n?\n show!\n  < left\n:\n show!\n  < right\n", "value=1\nvalue=3\n", true);
+}
+
 void run(void) {
+    it_keeps_result_first_and_named_inputs_independent_of_textual_order();
     it_composes_scalar_operations_with_consistent_positional_interfaces();
     it_rejects_unknown_enum_values_and_checked_scalar_overflow();
 }
