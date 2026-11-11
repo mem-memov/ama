@@ -1,5 +1,10 @@
 # Source AST and structural parser
 
+Implementation status: the CALL-07 entry-literal amendment is specified but not
+implemented yet. The priority follow-up in [TODO.md](../../TODO.md) covers lexer,
+AST, call parsing and replacement of literal-prohibition tests. The evidence below
+covers the current implementation; it does not certify CALL-07 support.
+
 Boundary: `src/ast/` and `src/parser/{access,declarations,body,calls,module}/`.
 Implements COMP-01/02, TYPE-01/02, source/access syntax, SYN-01 through SYN-05
 and call/control syntax. Full type, declaration-order, capability and ownership

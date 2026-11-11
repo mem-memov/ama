@@ -1,5 +1,10 @@
 # Physical layout and literal boundaries
 
+Implementation status: the CALL-07 entry-literal amendment is specified but not
+implemented yet. The priority follow-up in [TODO.md](../../TODO.md) covers lexer,
+AST, call parsing and replacement of literal-prohibition tests. The evidence below
+covers the current implementation; it does not certify CALL-07 support.
+
 Boundary: `src/lexer/layout/`, implementing SYN-01/02/04 and LIT-01/02.
 `SourceLayout` owns line nodes in an arena; source ranges borrow their manager.
 Read once after init and destroy after dependent parsers. Failed reads retain

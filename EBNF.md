@@ -226,14 +226,15 @@ message
 - There are no quotes, escape sequences, multiline literals, or continuations.
 - Several lines are represented as a list of individual string values.
 - There is no integer-literal expression category. `255` without `|` is not a
-  valid numeric source, and `|255` is valid only in declaration initialization.
+  valid numeric source. `|255` is permitted in declaration initialization or
+  an entry-call input `< |255`, interpreted by the receiving parameter type.
 - The declared type interprets the payload. The language does not assume that
   `255` is a machine integer or that `-5` is unsigned subtraction.
 
 The native literal interface is immutable UTF-8 bytes plus explicit length,
 not host-dependent `wchar_t` or a required NUL-terminated string. A native type
 must bind `|` in its `.abi` file to support literal construction. Construction
-reports status when attempted; invalid literal initialization reports declaration
+reports status when attempted; failure reports declaration or call/binding
 context and follows the technical-failure protocol. Arbitrary native constructors
 are not executed by the compiler merely to validate source. Equivalent earlier
 validation requires an explicitly documented validation mechanism.
@@ -344,7 +345,8 @@ failures require cleanup without partially initialized owned state.
 
 Declarations in parameter and result sections define interface storage with
 per-execution defaults. Starting with `!` resets that storage before running
-the body from its entry. Resuming with `%` preserves the suspended computation
+the body from its entry, with literal-supplied inputs constructed under section 4.2
+instead of default-then-overwrite. Resuming with `%` preserves the suspended computation
 and does not imply this reset. At the end of the call, parameters and results retain their resulting
 values in the instance until the next execution resets them. Reading retained
 results through `>>` neither resets the interface nor executes the body; it does
@@ -458,8 +460,8 @@ wrong storage forms are static errors with source locations.
 assignment sources and entry-call arguments. It copies a compatible value into
 existing destination storage without hidden Ama variables/instances or module
 execution. It cannot be a receiver, `!`/`%` target, mutable reference acquisition,
-or `%`-copy operand. Literal argument prohibition and output-only resume remain
-unchanged. It does not add general expressions, direct condition/index forms,
+or `%`-copy operand. Typed entry literals follow section 4.2; output-only resume
+remains unchanged. It does not add general expressions, direct condition/index forms,
 or whole-list splicing. In `@=` it adds an explicit initialization dependency.
 Explicit path-plus-`>>` reads and named local constants retain their meanings.
 
@@ -600,13 +602,18 @@ instance, acquire a reference, or transfer ownership from the source.
 <read-call(n)>  ::= <indent(n)> <call-target> <line-end>
                     <layout> <read-arguments(n+1)>
 <execution-arguments(n)>
-                ::= { <indent(n)> <parameter> <line-end> <layout> }
+                ::= { <parameter-line(n)> <layout> }
                     { <indent(n)> <result> <line-end> <layout> }
 <resume-arguments(n)>
                 ::= { <indent(n)> <result> <line-end> <layout> }
 <read-arguments(n)>
                 ::= <indent(n)> <saved-result> <line-end> <layout>
                     { <indent(n)> <saved-result> <line-end> <layout> }
+<parameter-line(n)> ::= <indent(n)> <parameter> <line-end>
+                      | <indent(n)> "<" <space> { <space> }
+                        "|" <literal-payload> <newline>
+                      | <indent(n)> <declaration-name> <space> { <space> }
+                        "<" <space> { <space> } "|" <literal-payload> <newline>
 <parameter>     ::= "<" [ <copy-source> ]
                   | <declaration-name> "<" <copy-source>
 <result>        ::= ">" [ <receiver> ]
@@ -614,6 +621,20 @@ instance, acquire a reference, or transfer ownership from the source.
 <saved-result>  ::= ">>" <receiver>
                   | <declaration-name> ">>" <receiver>
 ```
+
+A literal parameter line consumes its physical ending directly: `#` after its
+`|` belongs to payload, never to `<line-end>` comment syntax. Both positional
+`< |text` and named `message < |text` forms require the indicated spaces.
+
+The parameter declaration supplies the type. Only single owned parameters with
+literal capability `|` accept this form; references and whole-list parameters
+require ordinary sources. `< |` is an empty literal, distinct from omitted `<`.
+Each literal consumes one input position. During entry preparation use the typed
+literal constructor over fresh payload storage, not default construction followed
+by overwriting. Preserve ordinary field construction and replacement cleanup;
+do not enter the body before all inputs succeed. Constructor failures are technical
+errors with call/binding/type context, never handled by `:`. Construct anew on
+every call. No hidden Ama temporary or inferred integer type is introduced.
 
 Required spaces between adjacent argument components are omitted from the
 productions for readability. In execution mode, parameters precede results.
@@ -677,7 +698,8 @@ target&!
 #### Execution mode: `<` and `>`
 
 A target with `!` performs ordinary execution and cannot contain `>>`. It resets parameter/result
-storage to declared defaults, copies supplied inputs, executes the body over
+storage for the invocation, using defaults for omitted inputs/results and typed
+literal construction for literal-supplied inputs. It copies other supplied inputs, executes the body over
 persistent state, and transfers requested results through `>`. Omitted parameters
 keep defaults; omitted results remain stored but are not copied to the caller.
 A call with no arguments also executes the body from its entry. Starting an
@@ -759,8 +781,8 @@ Whole-list calls use `items[]!` or `targets&[]!`; element calls use
 `items[position]!` or `targets&[position]!`. Their retained-read forms omit `!`,
 for example `items[position]` followed by an indented `>>` request. Brackets alone
 select storage; they do not execute its module. Whole-list calls use the fixed
-positional contract below. Literal call arguments and hidden integer temporaries
-are forbidden.
+positional contract below. Entry-call literals follow the typed input rule above; hidden integer
+temporaries remain forbidden. Resume and retained reads still accept no inputs.
 
 #### Whole-list operation contract
 

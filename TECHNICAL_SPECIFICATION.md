@@ -154,7 +154,7 @@ does not add language features or substitute for the detailed contracts.
 | Declaration | A name/storage-form line, a module-type path line, and optional initializers. A declaration introduces storage explicitly; assignment does not implicitly declare a variable. |
 | Base name | An identifier before storage suffixes. `item`, `item&`, `item[]`, and `item&[]` share one base name and cannot coexist as declarations in one module. |
 | Storage form | Whether a declaration is an owned value, reference, owned list, or reference list, as marked by the absence/presence of `&` and `[]` on its name. |
-| Parameter | Interface storage declared in `@<`, reset to its default at entry-start and then populated by supplied inputs. |
+| Parameter | Interface storage declared in `@<`, reinitialized at entry-start from its default or supplied typed input; explicit literal inputs use CALL-07. |
 | Result | Interface storage declared in `@>`, retained after execution and obtainable through `>` on execution or `>>` on a nonexecuting read. |
 | Persistent state | Body-declared instance fields initialized once at creation, including declarations nested in branches/loops. They survive ordinary calls and resumption. |
 | Shared constant | An immutable declaration in the first optional `@=` section, shared by all instances and excluded from instance ownership, reset, and copying. |
@@ -203,7 +203,7 @@ See sections 6 and 9 for copy/identity rules and the list interface.
 | Busy | An instance is running or waiting for an outstanding nested invocation; conflicting entry/resume/read is refused. |
 | Waiting instance | A still-busy caller whose callee has not returned. Its data stays in its heap slot and its pending return chain remains active. |
 | Yielded instance | An available instance with a saved position after `%` and no outstanding caller connection from the yielded invocation. It may be explicitly resumed. |
-| Entry-start | An `instance!` operation that resets interface defaults and runs from body entry while preserving permanent state. |
+| Entry-start | An `instance!` operation that reinitializes the interface under STATE-02/CALL-07 and runs from body entry while preserving permanent state. |
 | Resumption | An `instance%` operation that executes from the saved position without input bindings or an interface reset. |
 | Retained-result read | An unmarked instance target followed by `>>` requests. It copies stored results without executing/resetting the target. |
 | Return link | Service metadata identifying the outstanding invocation's caller instance and return continuation. It is not an owning reference or a saved C activation. |
@@ -501,7 +501,8 @@ lifecycle protocol.
 
 ### 5.2 Literals
 
-**LIT-01.** A literal initializer begins with `|` after its required indentation.
+**LIT-01.** A literal begins with `|` in a declaration initializer or immediately
+after the spaces separating an entry-call input marker `<` from its operand.
 Everything after that character to the physical line ending is literal payload.
 `|` alone is empty; `||text` starts with a literal vertical bar. There are no
 quotes, escapes, multiline literals, or interpolation rules.
@@ -524,16 +525,18 @@ and physical newline. It must preserve embedded payload spaces and must not
 require NUL termination or host-dependent `wchar_t`.
 
 **LIT-03.** Numeric literals are not a separate expression category. Literal
-payload is permitted in declarations only. Assignments, calls, conditions, and
-indices use declared names; the compiler MUST NOT introduce hidden numeric
-variables to make bare literal arguments work.
+payload is permitted in declaration initialization and explicit entry-call inputs
+under CALL-07. Assignments, conditions and indices still use named sources. Bare
+`255` is not an argument expression: `< |255` supplies uninterpreted bytes to the
+parameter type. The compiler MUST NOT introduce hidden numeric variables or infer
+a numeric type from the payload.
 
 **LIT-04.** Each native-backed literal type must define accepted bytes, binary
 representation, initialization errors, ownership, and cleanup. Literal bytes
 cannot forge a checked instance reference. The `|` constructor receives an
 immutable byte view and reports status when construction is attempted. Invalid
-literal initialization is a technical failure with declaration context; a compiler
-may diagnose it earlier only through a documented, equivalent validation mechanism,
+literal construction is a technical failure with declaration or call/binding
+context; a compiler may diagnose it earlier only through a documented, equivalent validation mechanism,
 not by executing arbitrary native constructors during compilation. C byte-view
 typedef spelling is an implementation task, not a different literal semantics.
 
@@ -545,7 +548,9 @@ creation, not whenever execution reaches the declaration's source location.
 Assignments are executable operations and may update that state on every call.
 
 **STATE-02.** Parameters and results are interface storage. An entry-start call
-resets them to declared defaults before binding supplied arguments. Their final
+reinitializes them for the invocation before running the body. Omitted inputs and
+results use their declared defaults; literal-supplied inputs select construction
+under CALL-07 instead of default construction followed by replacement. Their final
 values are retained after completion or suspension. Before the first call,
 results have their declared initial values. A retained-result read exposes only
 results, not parameters or private body fields.
@@ -687,8 +692,8 @@ storage forms are source-located compile-time errors.
 
 Qualified constants are read-only sources, not receivers, invocation/resumption
 targets, mutable-reference acquisition operands, or `%` continuation-copy sources.
-This source extension does not admit literal call arguments or change named/indexed
-condition syntax. Existing explicit path-plus-`>>` constant reads remain available,
+Literal entry inputs follow CALL-07 independently of qualified constant copying.
+Named/indexed condition syntax is unchanged. Existing explicit path-plus-`>>` constant reads remain available,
 including when a program deliberately wants a local value to reuse or modify.
 Argument ordering, named/positional consistency, `%` input prohibition and empty
 positional placeholders remain unchanged.
@@ -893,6 +898,54 @@ entry-start execution. Requested results are transferred on completion or yield;
 unrequested results remain stored. Repeated identical inputs still execute the
 body repeatedly. Reactivity and deduplication are application decisions.
 
+**CALL-07.** An entry-start input accepts a line literal in positional or named
+form. The receiving declaration determines its type; the caller does not specify
+another type or create a hidden Ama variable/instance.
+
+```text
+writer!
+ < |Hello # this is data
+
+writer!
+ message < |Hello
+```
+
+There must be at least one ASCII space between `<` and `|`, and between a named
+label and `<`. Everything after `|` through the physical line ending is payload,
+including leading/trailing spaces, tabs, `#`, quotes and further bars. No trailing
+comment is recognized on such a line. LF/CRLF and optional final newline have the
+same meaning as for declaration literals. `< |` supplies an empty literal;
+`<` alone remains an omitted positional input selecting its default. Each literal
+binding consumes exactly one input position. Existing input-before-output and
+named/positional consistency rules apply.
+
+Resolve the bound parameter first. It must be a single owned value, not reference
+storage or a whole-list parameter, and its type must support native literal
+construction through `|`. This operation does not initialize a list element,
+splice a list, create a referenced temporary, or forge a handle. Pass reference
+and collection variables normally. Named literals for unknown parameters, excess
+positional literals, incompatible storage and missing literal capability are
+source-located compile-time errors.
+
+Validate the complete call before acquiring/resetting its target. After successful
+acquisition, prepare the supplied literal value using the receiving parameter's
+type and its ordinary owned-field construction rules. Select the literal payload
+constructor over fresh native storage exactly once, without first constructing
+that parameter's default payload. Replace the previous parameter value under the
+normal preparation/commit/cleanup protocol. Unbound parameters and results retain
+their specified reset/default behavior. Compiler storage used for preparation is
+implementation bookkeeping, not an implicit source-level object or numeric value.
+Do not execute the target body until all inputs are successfully installed.
+
+Construct on every entry call, even for identical payload bytes. Literal failure
+is a technical failure with the call site, binding and parameter declaration/type
+context; `:` does not handle it. Release acquisitions and partial resources under
+the existing lifecycle rules. There is no new rollback guarantee for an entire
+interface reset; each replacement obeys the existing preparation/commit contract.
+Native constructors are not executed by the compiler to guess validity. `%`
+resumption and `>>` reads accept no input bindings, including literals. Literal
+sources remain forbidden in assignment, conditions, indices and output bindings.
+
 **CALL-03.** Retained reads omit `!` and `%`, require at least one `>>`, accept no
 inputs, and use `>>` for every requested output. They do not execute a computed
 getter or freeze objects identified by reference results.
@@ -1046,7 +1099,7 @@ finish!
 
 The first entry-start call reaches the first yield; successive resume calls
 continue with `process!` and then `finish!`. A fresh `!` always starts at entry,
-preserves permanent data, resets interface defaults, and discards the old position.
+preserves permanent data, reinitializes the interface under STATE-02/CALL-07, and discards the old position.
 
 **CONT-02.** A saved position includes all control information required to resume
 inside branches and loops. It cannot depend on a live C activation, automatic
@@ -2453,6 +2506,7 @@ ownership effects, and source diagnostics are covered. At minimum:
 | Component/composite tests | Independently runnable C leaves cover meaningful parts and assembled parents; real cross-component handoffs and generated-C integration tested; dependency changes invalidate generated artifacts |
 | Source identity | Same basenames in different paths remain distinct; strict UTF-8 and pinned XID properties; no normalization/case folding; filesystem aliases/unrepresentable paths diagnosed; hash collisions rejected |
 | Submodule directories | `name` and sibling `name+/` coexist; nested markers map to logical path components without `+`; missing parent/conflicting logical sources diagnosed; native companions use physical filename; debug paths retain `+`; no implicit inheritance/execution |
+| Entry literal inputs | Positional/named `< |payload`, empty literal versus omitted input, exact bytes including #/tabs/trailing spaces, parameter-selected type, repeated construction, one literal constructor without default-then-overwrite, scalar ownership/capability/arity errors, failure cleanup and noncatchability by : |
 | Variable namespace | Duplicate base names rejected across constants/parameters/results/body and all four storage forms; no branch/loop shadowing; different modules may reuse names; diagnostics show both declarations |
 | Draft boundary | Unused unfinished drafts skipped without code/layout/stub generation; draft type/entry use rejected with locations; adding selector triggers full validation; selector-looking literal/comment text cannot activate a draft |
 | Constant values/startup | Copyable immutable numbers/text/enum values; no mutable references/open external resources; declaration-order dependency initialization before root; visible cycles rejected; native constructors do not execute bodies or perform external I/O; initialization failure prevents root startup |

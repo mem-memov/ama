@@ -1,5 +1,10 @@
 # Grammar expectations and frontend composition
 
+Implementation status: the CALL-07 entry-literal amendment is specified but not
+implemented yet. The priority follow-up in [TODO.md](../../TODO.md) covers lexer,
+AST, call parsing and replacement of literal-prohibition tests. The evidence below
+covers the current implementation; it does not certify CALL-07 support.
+
 Boundary: `src/parser/error/`, integrated through sections, AST parsing and ABI
 records. Implements COMP-01/04/05 and section-4 syntax diagnostics without binding
 or generated C. `ParseError` combines a stable ParserExpectation key and the

@@ -60,6 +60,11 @@ A suffix `&` marks reference storage; `[]` marks a list. Type lines contain only
 module paths. Assignment puts a receiver above its indented source. Integer
 literals and implicit numeric variables have no special position in the language.
 
+Entry-call inputs may also use `message < |Hello` or positional `< |Hello`.
+The declared parameter type interprets the UTF-8 payload; only single owned values
+with literal capability accept this form. `#` and trailing spaces after `|` are
+data. This specification amendment is the next frontend task in the backlog.
+
 An instance call ends in `!`; inputs and outputs occupy separate indented lines
 using `<` and `>`. An unmarked target followed by `>>` reads retained results
 without executing or resetting the instance. Acquisition refusal may have a `:`

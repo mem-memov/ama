@@ -1,5 +1,10 @@
 # Call binding syntax and positional holes
 
+Implementation status: the CALL-07 entry-literal amendment is specified but not
+implemented yet. The priority follow-up in [TODO.md](../../TODO.md) covers lexer,
+AST, call parsing and replacement of literal-prohibition tests. The evidence below
+covers the current implementation; it does not certify CALL-07 support.
+
 Boundary: `src/parser/calls/`, especially `bindings/`, implementing section 7
 call-mode/placeholder requirements and the fixed positional collection interface.
 No callee interface or declared-name lookup is used during parsing.

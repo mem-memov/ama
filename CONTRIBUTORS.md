@@ -100,12 +100,14 @@ globals or save/load payloads around calls. Caller identity and return selectors
 form the allowed explicit return chain. Refuse the same busy instance; distinct
 available instances of one type may execute with proper current-instance selection.
 
-`!` starts at entry and resets interface defaults. `%` resumes with output-only
+`!` starts at entry and reinitializes the interface; explicit literal inputs
+select their typed construction instead of default-then-overwrite. `%` resumes with output-only
 bindings; standalone `%` yields. `>>` reads stored results without execution;
 module-path `>>` reads shared constants. Empty positional `<`/`>` lines consume
 positions without supplying an input or receiving a result. Keep indentation's
-argument/early-return distinction explicit. Literal call arguments and implicit
-numeric variables remain forbidden.
+argument/early-return distinction explicit. Entry calls may supply `< |payload` to a typed owned scalar parameter under
+CALL-07. Preserve that payload through physical EOL; `#` is data. Implicit numeric
+variables remain forbidden.
 
 `@C` entry bodies must inline under a verified toolchain. Plain `inline`/LTO is
 not proof. Native helpers, recursion, lifecycle callbacks, allocation, I/O and

@@ -105,6 +105,14 @@ remain their subsequent tasks; this section does not claim a working compiler.
 
 ## 4. Parse the complete grammar without semantic guesses
 
+- [ ] Implement CALL-07 entry literal inputs before starting section 5: recognize
+  `|` only at the input operand boundary (positional/named), preserve all payload
+  bytes through physical EOL, build AST_LITERAL_SOURCE with exact spans, count
+  its input position, and replace literal-prohibition tests with positive/negative
+  grammar tests. Distinguish empty `< |` from omitted `<`; keep literal outputs,
+  assignments, conditions, indices and resume/read inputs forbidden. Extend
+  source-to-AST/diagnostic composition and allocation-failure tests.
+
 - [x] Read indentation, comments and literal boundaries without altering payload
   bytes, trailing spaces or deliberate line endings.
 - [x] Parse sections, constants-only modules and the specified draft boundary.
@@ -120,7 +128,9 @@ remain their subsequent tasks; this section does not claim a working compiler.
 Ready when: complete valid and invalid grammar cases have independently runnable
 parser tests; parsing does not depend on executable code generation.
 
-Section 4 is complete. [Frontend contracts and evidence](docs/implementation/parser-errors.md)
+The section-4 foundation is implemented; the CALL-07 amendment above remains
+pending and takes priority over section 5. The current parser still rejects
+literal call inputs until that task is implemented. [Frontend contracts and evidence](docs/implementation/parser-errors.md)
 cover byte-preserving layout, exact draft activation/sections, a source-mapped AST,
 iterative nested access/control parsing, call placeholders/modes and fixed ABI
 records. Grammar expectations have stable keys and precise source diagnostics;
@@ -139,6 +149,9 @@ no code generator or runnable Ama program is claimed by parser completion.
 - [ ] Enforce one base-name namespace across constants, interfaces and body fields.
 - [ ] Resolve declarations, sources and interfaces into typed symbols; check
   defaults, literal/clone capabilities, binding arity and storage compatibility.
+  For CALL-07, derive literal type from the selected owned scalar parameter and
+  reject reference/list destinations or missing `|` support; retain binding and
+  parameter/type declaration spans in diagnostics.
 - [ ] Distinguish dependency, eager ownership-layout and constant-initialization
   cycles from dynamic busy-instance reentry. Derive legal orders from each relation.
 - [ ] Plan shared constants separately from instance storage, including qualified
@@ -188,6 +201,11 @@ handle, lifetime, clone and replacement invariants independently of module execu
   constants, native bodies and Ama labels, included by a launcher translation unit.
 - [ ] Execute directly over heap instances without working-state mirrors or
   implicit default objects. Initialize constants before creating the explicit root.
+- [ ] Implement CALL-07 literal construction in entry preparation: select `|` once
+  for supplied owned scalar parameters without default-then-overwrite, preserve
+  normal construction/commit cleanup, construct on every call, and report failures
+  with call/binding/type context outside `:`. Test skipped/default inputs, literal
+  failures, acquisition release and prevention of body entry after failure.
 - [ ] Lower entry calls, interface reset/defaults, retained results, result routing,
   branches, loops and return links to explicit transfers and service metadata.
 - [ ] Integrate native execution/status and lifecycle code; prohibit C dispatch of
