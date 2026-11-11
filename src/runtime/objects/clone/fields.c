@@ -25,7 +25,7 @@ AmaStatus ama_object_clone_fields(AmaWorld *world, AmaObjectWork *work) {
             list->refused = ((AmaHandleList *)((unsigned char *)original + work->type->fields[field].offset))->refused;
             list->outcome = ((AmaHandleList *)((unsigned char *)original + work->type->fields[field].offset))->outcome;
             list->count = count;
-        list->capacity = count;
+            list->capacity = count;
         }
         if (!ama_field_owns(work->type->fields[field].kind) && count != 0) {
             size_t destination_count;
