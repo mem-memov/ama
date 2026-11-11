@@ -38,7 +38,10 @@ static void executable_native(const ScaffoldType *type) {
         "assert(state->address==state); (void)parameters; (void)results; (void)services;\n", noninline_entry ? "__attribute__((noinline))" : "AMA_NATIVE_ENTRY", type->names[SCAFFOLD_PARAMETERS]->internal_name,
         type->names[SCAFFOLD_RESULTS]->internal_name);
     assert(written >= 0);
-    if (type->plan->type->counts[SYMBOL_PARAMETER] == 2) {
+    if (strcmp(type->plan->type->module->source->logical_path,".decrement")==0) {
+        written = fputs("size_t number=parameters->AMA_INPUT(0)->payload->number; results->AMA_OUTPUT(0)->payload->number=number==0 ? 0 : number-1; printf(\"count=%zu\\n\",number);\n",body);
+        assert(written != EOF);
+    } else if (type->plan->type->counts[SYMBOL_PARAMETER] == 2) {
         written = fputs("printf(\"ordered=%zu,%zu,%zu\\n\",parameters->AMA_INPUT(0)->payload->number,parameters->AMA_INPUT(1)->payload->number,results->AMA_OUTPUT(0)->payload->number);\n",body);
         assert(written != EOF);
     } else if (type->plan->type->counts[SYMBOL_PARAMETER] != 0 && type->plan->type->counts[SYMBOL_RESULT] == 0) {

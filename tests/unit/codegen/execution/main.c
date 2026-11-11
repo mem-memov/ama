@@ -92,6 +92,19 @@ static void it_reports_failure_with_no_available_runtime_heap_or_root_frame(void
     expect_diagnostic("generated/project/main:1:1");
 }
 
+static void it_repeats_a_loop_and_returns_from_a_callee_to_the_right_caller(void) {
+    directory("generated/project");
+    native_fixture("decrement","@<\ninput\n.value\n@>\noutput\n.value\n@C\n");
+    file("generated/project/returner","@!\nflag\n.value\n |1\nworker\n.worker\nflag\n?\n >\nworker!\n");
+    execute_project("@!\ncounter\n.value\n |3\nstep\n.decrement\nearly\n.returner\nearly!\ncounter\n{\n step!\n  < counter\n  > counter\n}\n", "count=3\ncount=2\ncount=1\n",true);
+}
+
+static void it_reads_shared_namespaces_and_qualified_values_without_default_instances(void) {
+    directory("generated/project");
+    file("generated/project/numbers","@=\nfirst\n.value\n |5\nsecond\n.value\n |8\n");
+    execute_project("@=\nshared\n.value\n |42\n@!\nworker\n.worker\nresult\n.value\nworker!\n < .numbers.first\n.numbers\n >> result\n >> result\nworker!\n < result\nworker!\n < .main.shared\n", "5:1:0\n8:2:0\n42:3:0\n",true);
+}
+
 void run(void) {
     it_executes_literal_default_retained_and_independent_native_states();
     it_does_not_enter_the_body_or_alternative_after_literal_failure();
@@ -108,5 +121,7 @@ void run(void) {
     it_writes_repeated_receivers_in_binding_text_order();
     it_refuses_resume_without_preparing_the_interface();
     it_reports_failure_with_no_available_runtime_heap_or_root_frame();
+    it_repeats_a_loop_and_returns_from_a_callee_to_the_right_caller();
+    it_reads_shared_namespaces_and_qualified_values_without_default_instances();
 }
 int main(void) { run(); return EXIT_SUCCESS; }

@@ -273,7 +273,7 @@ handle, lifetime, clone and replacement invariants independently of module execu
   Resolve output receivers/indices in binding text order; reject conflicting
   ownership without implicit snapshots. Resume/read skip entry preparation and
   no whole-call rollback is promised. Initial root startup constructs once.
-- [ ] Lower entry calls, interface reset/defaults, retained results, result routing,
+- [x] Lower entry calls, interface reset/defaults, retained results, result routing,
   branches, loops and return links to explicit transfers and service metadata.
 - [ ] Integrate native execution/status and lifecycle code; prohibit C dispatch of
   Ama modules and persistent borrowed views in opaque native state.
