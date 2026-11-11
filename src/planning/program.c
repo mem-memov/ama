@@ -4,7 +4,7 @@
 
 void program_plan_init(ProgramPlan *plan, const SemanticProgram *semantic, SourceAllocator allocator) {
     assert(semantic->constants_valid);
-    *plan = (ProgramPlan){.semantic = semantic};
+    *plan = (ProgramPlan){.semantic = semantic, .next_selector = 1};
     source_arena_init(&plan->arena, allocator);
 }
 

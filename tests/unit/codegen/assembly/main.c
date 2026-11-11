@@ -1,4 +1,5 @@
 #include "../../compiler/common.c"
+#include <stdint.h>
 #include <sys/wait.h>
 #include <unistd.h>
 #include "codegen/codegen.h"
@@ -161,10 +162,19 @@ static void it_unwinds_every_assembly_emission_allocation_failure(void) {
     }
 }
 
+static void it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero(void) {
+    begin_assembly();
+    frontend.plan.next_selector = SIZE_MAX;
+    bool built = build_assembly();
+    assert(!built && !assembly.ready && assembly.error.code == DIAGNOSTIC_OUT_OF_MEMORY);
+    end_assembly();
+}
+
 void run(void) {
     it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit();
     it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout();
     it_unwinds_every_assembly_emission_allocation_failure();
+    it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero();
 }
 
 int main(void) {

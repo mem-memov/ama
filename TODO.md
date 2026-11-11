@@ -281,11 +281,19 @@ handle, lifetime, clone and replacement invariants independently of module execu
   busy refusal, pool growth during calls and persistent body state.
 - [x] Implement acquisition refusal snapshots and their read-only library reader;
   preserve caller-context ownership across successful and nested calls.
-- [ ] Emit source maps and execution-path diagnostics before cleanup, including
+- [x] Emit source maps and execution-path diagnostics before cleanup, including
   failure before root entry and reporting without a newly allocated trace buffer.
 
 Ready when: a real project compiles to C and runs with verified native inlining,
 label transfers, stable instance addresses and correct cleanup.
+
+Acceptance: `--emit ... --compile` publishes a verified executable. Runtime,
+planning, assembly and real generated-program tests pass with Werror; runtime
+and generated-C suites also pass ASan/UBSan. See
+[entry preparation](docs/implementation/entry-preparation.md),
+[stackless execution](docs/implementation/stackless-execution.md) and
+[project emission](docs/implementation/project-emission.md). Suspension/resume
+execution and list action dispatch remain the explicit next sections.
 
 ## 9. Add suspension and continuation copying
 

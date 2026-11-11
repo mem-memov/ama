@@ -1,9 +1,14 @@
+#include <stdint.h>
 #include "codegen/internal.h"
 
-size_t codegen_declaration_selector(const NativeScaffold *scaffold, const SemanticSymbol *symbol) {
+size_t codegen_declaration_selector(NativeScaffold *scaffold, const SemanticSymbol *symbol) {
     size_t selector = scaffold->frontend->plan.next_selector;
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
         for (const SemanticSymbol *field = type->plan->type->first; field != NULL; field = field->next) {
+            if (selector == SIZE_MAX) {
+                scaffold_error(scaffold, DIAGNOSTIC_OUT_OF_MEMORY, "The source-map selector space is exhausted", NULL);
+                return 0;
+            }
             selector++;
             if (field == symbol) { return selector; }
         }
@@ -12,6 +17,7 @@ size_t codegen_declaration_selector(const NativeScaffold *scaffold, const Semant
 }
 
 static bool codegen_location(FILE *output, size_t selector, SourceSpan span, const char *role, const SemanticType *type) {
+    if (selector == 0) { return false; }
     if (span.source == NULL) { return true; }
     SourcePosition position;
     if (!source_position(span.source, span.start, &position)

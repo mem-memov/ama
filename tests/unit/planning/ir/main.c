@@ -244,8 +244,19 @@ static void it_links_same_type_reentry_through_instance_selection_and_return_met
     destroy_plan();
 }
 
+static void it_reserves_zero_for_absent_control_and_source_positions(void) {
+    prepare_types();
+    PlanStatus status = plan_text("@!\nvalue\n.value\n");
+    assert(status == PLAN_OK);
+    for (PlannedType *type = plan.first; type != NULL; type = type->next) {
+        for (ControlNode *node = type->controls; node != NULL; node = node->allocated_next) { assert(node->selector != 0); }
+    }
+    destroy_plan();
+}
+
 void run(void) {
     it_links_same_type_reentry_through_instance_selection_and_return_metadata();
+    it_reserves_zero_for_absent_control_and_source_positions();
     it_separates_shared_interface_persistent_and_service_storage();
     it_constructs_fields_before_payload_and_destroys_payload_before_reverse_fields();
     it_installs_inputs_in_declaration_order_after_source_order_evaluation();

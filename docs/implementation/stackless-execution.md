@@ -43,7 +43,8 @@ on connect/complete/release proves that the current handle identifies the active
 instance and that return routing restores its actual caller. Return selectors
 are allocated uniquely by the typed plan; the only dispatcher selects among
 these explicit continuation labels. A completed host root has no pending caller.
-Source maps and return metadata are finite borrowed tables/records; tracing walks
+Zero is reserved for absent control/source positions; selector exhaustion fails
+without wrapping or publishing a partial map. Source maps and return metadata are finite borrowed tables/records; tracing walks
 the finite active chain without traversing non-owning object references.
 
 [Execution tests](../../tests/unit/codegen/execution/main.c) cover independent and
@@ -51,6 +52,8 @@ nested same-type instances, busy/empty/bounds refusal, per-caller history, retai
 reads, persistent native state and pool growth during active calls. Native
 payloads assert their own addresses. Unicode paths, constructor failures before
 root creation and binding/type diagnostics exercise the real mapping handoff.
+A forced allocator that refuses every runtime allocation still produces a mapped
+pre-root error. Multi-level native failures report the complete active Ama chain.
 The build verifies native entry disappearance in the unstripped project object.
 
 Suspension/resume execution and list action dispatch remain sections 9 and 10.

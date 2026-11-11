@@ -26,6 +26,6 @@ const char *codegen_control_name(NativeScaffold *, const ScaffoldType *, const C
 bool codegen_emit_controls(NativeScaffold *, FILE *);
 bool codegen_emit_control(NativeScaffold *, FILE *, const ScaffoldType *, const ControlNode *);
 bool codegen_emit_native_entry(NativeScaffold *, FILE *, const ScaffoldType *);
-size_t codegen_declaration_selector(const NativeScaffold *, const SemanticSymbol *);
+size_t codegen_declaration_selector(NativeScaffold *, const SemanticSymbol *);
 bool codegen_emit_locations(NativeScaffold *, FILE *);
 #endif

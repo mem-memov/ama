@@ -138,6 +138,17 @@ static void it_grows_the_current_module_type_pool_while_its_caller_waits(void) {
     execute_project("@!\nseed\n.node\nworker\n.node\nitems[]\n.node\n seed\n seed\n seed\n seed\n seed\n seed\n seed\n seed\n seed\nworker!\n < items[]\nworker!\n < items[]\n", "7:1:0\n7:2:0\n",true);
 }
 
+static void it_reports_the_complete_active_chain_before_terminal_disposal(void) {
+    directory("generated/project");
+    file("generated/project/outer","@!\nchild\n.inner\nchild!\n");
+    file("generated/project/inner","@!\nworker\n.worker\nworker!\n < |500\n");
+    execute_project("@!\nouter\n.outer\nouter!\n", "native-entered\n",false);
+    expect_diagnostic("generated/project/worker:1:1");
+    expect_diagnostic("generated/project/inner:4:1");
+    expect_diagnostic("generated/project/outer:4:1");
+    expect_diagnostic("generated/project/main:4:1");
+}
+
 void run(void) {
     it_executes_literal_default_retained_and_independent_native_states();
     it_does_not_enter_the_body_or_alternative_after_literal_failure();
@@ -160,5 +171,6 @@ void run(void) {
     it_allows_ordinary_native_helper_calls_inside_an_inlined_entry();
     it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup();
     it_grows_the_current_module_type_pool_while_its_caller_waits();
+    it_reports_the_complete_active_chain_before_terminal_disposal();
 }
 int main(void) { run(); return EXIT_SUCCESS; }
