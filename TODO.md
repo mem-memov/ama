@@ -75,7 +75,7 @@ supervision prevents it from running; leak-check certification is not claimed.
   and precise file/line/column reporting, including allocation-failure paths.
 - [x] Implement strict UTF-8 and pinned Unicode XID tables, case-sensitive byte
   identity and deterministic filesystem lookup without normalization guesses.
-- [ ] Resolve extensionless module paths, physical `name+/` submodules and native
+- [x] Resolve extensionless module paths, physical `name+/` submodules and native
   companions. Keep logical identities distinct from physical diagnostic paths.
 - [ ] Generate collision-checked hashes from complete, unambiguously encoded
   identities; retain source names and stable Unicode test vectors.

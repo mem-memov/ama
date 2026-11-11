@@ -1,2 +1,2 @@
-SUBDIRECTORIES := text unicode
+SUBDIRECTORIES := text unicode module
 include ../../parent.mk

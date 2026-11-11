@@ -58,6 +58,7 @@ must still supply their own arguments and executable evidence when implemented.
 
 | Component boundary | Contract and argument | Executable evidence |
 | --- | --- | --- |
+| Module catalog, structural directories and companions | [Path contract](../module-paths.md); FIFO prefix induction and identity/inode injectivity | [Composed catalog tests](../../../tests/unit/source/module/main.c) |
 | UTF-8, pinned XID and exact directory spelling | [Unicode contract](../unicode.md); scalar partition and interval membership | [Unicode tests](../../../tests/unit/source/unicode/main.c) |
 | Immutable sources and byte spans | [Source storage](../source-storage.md); atomic publication and line-table predecessor invariant | [Source tests](../../../tests/unit/source/text/main.c) |
 | Request recognition, response writing and driver composition | [Driver](driver.md); exact predicate, I/O effects and success law | [Request tests](../../../tests/unit/driver/request/main.c), [composite tests](../../../tests/unit/driver/run/main.c), [launcher tests](../../../tests/integration/launcher/main.c) |
