@@ -228,6 +228,13 @@ conditions and complexity, and give a general mathematical/algebraic argument fo
 the algorithm. Derive tests from those laws and exercise real component handoffs.
 Tests supplement the argument; passing examples alone do not establish correctness.
 
+Use the [contract procedure and registry](docs/implementation/contracts/README.md)
+and [component template](docs/implementation/contracts/component-template.md).
+Before completing each task, link its actual source boundary, proof argument,
+tests run and remaining assumptions. Small private helpers may share a meaningful
+parent contract. The [driver contract](docs/implementation/contracts/driver.md) is
+a completed example; future components still require their own evidence.
+
 ## Native C modules
 
 Keep the Ama interface and companion `.h`, `.c`, `.abi` together. Follow the

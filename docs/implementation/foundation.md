@@ -12,11 +12,11 @@ The technical specification is unchanged.
 recognition to `driver/request/` and response writing to `driver/output/`. These
 are ordinary compiler C functions, outside generated Ama stackless constraints.
 
-The argument domain is a process-style vector: count at least one, with that many
-valid nonnull NUL-terminated argument strings. The two stream parameters are valid C streams; inability to write to the selected
-stream is an output failure. Arguments are borrowed and never modified; the driver neither
-closes nor retains the supplied streams. No driver operation allocates or owns a
-compiler object or introduces mutable global state.
+The argument count is nonnegative. A nonempty vector contains that many valid
+nonnull NUL-terminated strings; a zero count permits a null vector. The two stream
+parameters are valid C streams; inability to write is an output failure. Arguments
+and streams are borrowed and never retained. The driver owns no compiler object
+or mutable global state. See the [complete contract](contracts/driver.md).
 
 Request recognition has exactly two outcomes. For count two and an exact `--help`
 argument, it selects Help; every other vector selects Unavailable. These sets are
@@ -68,13 +68,14 @@ acceptance checks and a [contract](incremental-build.md).
 
 Build invalidation, no-change behavior and nested dependency checks are completed
 in the incremental-build task. [Test-harness acceptance](test-harness.md) also verifies output preservation,
-cleanup ordering and assertions under release flags. The remaining foundation task
-is to establish the reusable component-contract and proof-review procedure.
+cleanup ordering and assertions under release flags. The [component-contract procedure](contracts/README.md) and registry complete
+the foundation and apply to every subsequent implementation task.
 
 ## Verification of this task
 
 The foundation passed `make test` and `make -j4 test`. After `make clean`, the
 integration leaf rebuilt and tested the launcher independently. The full parallel
 suite also passed with `-DNDEBUG -Werror`; test compilation explicitly restores
-assertions with `-UNDEBUG`. The three leaves contain eight explicit test cases.
+assertions with `-UNDEBUG`. Those initial three leaves contained eight explicit test cases; current coverage
+is recorded in the [contract registry](contracts/README.md).
 These checks do not establish compiler or runtime conformance beyond the driver.

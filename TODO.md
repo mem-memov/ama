@@ -32,13 +32,17 @@ not introduce a second parser, resolver or type system.
   guarded parent `common.c` fixtures use `assert`.
   [Harness acceptance](docs/implementation/test-harness.md) verifies parallel
   ordering, failure artifacts, explicit cleanup and assertions under release flags.
-- [ ] For every subsequent component, define domains, invariants, pre/postconditions,
-  failure effects and complexity. Give a general mathematical/algebraic argument
-  and derive boundary, failure and composition tests. No heuristic algorithms or
-  example-specific exceptions are permitted (ARCH-05/ARCH-06, TEST-08).
+- [x] Establish and apply the component-contract procedure: domains, invariants,
+  pre/postconditions, failure effects, complexity and a general mathematical/
+  algebraic argument with boundary, failure and composition tests. The
+  [procedure, template and registry](docs/implementation/contracts/README.md)
+  cover existing components and require evidence for every subsequent one.
+  No heuristics or example-specific exceptions (ARCH-05/ARCH-06, TEST-08).
 
-Ready when: a nested component and its assembled parent can be built and tested
-independently, with correct dependency rebuilding and readable contracts.
+Completed: nested components and their assembled parents build/test independently;
+rebuild and harness acceptance tests verify dependencies and cleanup, and the
+contract registry records the justification and executable evidence. The compiler
+itself remains an implementation foundation; the next implementation tasks are in section 2.
 
 ## 2. Validate the native ABI and generated-C execution constraints
 
