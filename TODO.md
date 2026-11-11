@@ -166,7 +166,7 @@ no code generator or runnable Ama program is claimed by parser completion.
   parameter/type declaration spans in diagnostics.
   Apply TYPE-05's nominal storage matrix without implicit dereference or list
   conversion. Reject duplicate named callee labels while preserving binding order.
-- [ ] Distinguish dependency, eager ownership-layout and constant-initialization
+- [x] Distinguish dependency, eager ownership-layout and constant-initialization
   cycles from dynamic busy-instance reentry. Derive legal orders from each relation.
   Follow TYPE-04's eager edges, CONST-02's declaration-level dependency graph and
   PROTO-07's greatest fixed point for clone capability; recursive empty-list

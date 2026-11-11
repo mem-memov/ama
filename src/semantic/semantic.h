@@ -3,6 +3,7 @@
 
 #include "project/dependencies/project.h"
 #include "parser/abi/abi.h"
+#include "semantic/relations/graph/graph.h"
 
 typedef enum { SEMANTIC_OK, SEMANTIC_INVALID, SEMANTIC_OUT_OF_MEMORY } SemanticStatus;
 typedef enum { SYMBOL_CONSTANT, SYMBOL_PARAMETER, SYMBOL_RESULT, SYMBOL_STATE } SymbolRole;
@@ -93,6 +94,8 @@ typedef struct {
 } SemanticLibraries;
 typedef struct {
     SourceArena arena;
+    DependencyGraph eager;
+    DependencyGraph constants;
     const Project *project;
     SemanticType *first;
     SemanticType *last;
@@ -105,6 +108,8 @@ typedef struct {
     bool native_valid;
     bool resolve_attempted;
     bool resolved;
+    bool relations_attempted;
+    bool relations_valid;
     SemanticLibraries libraries;
 } SemanticProgram;
 
@@ -117,6 +122,7 @@ void semantic_program_destroy(SemanticProgram *program);
 SemanticStatus semantic_names(SemanticProgram *program);
 SemanticStatus semantic_native(SemanticProgram *program);
 SemanticStatus semantic_resolve(SemanticProgram *program, SemanticLibraries libraries);
+SemanticStatus semantic_relations(SemanticProgram *program);
 SemanticType *semantic_find_type(const SemanticProgram *program, const char *logical_path);
 SemanticType *semantic_type(const SemanticProgram *program, SourceSpan path);
 SemanticSymbol *semantic_symbol(const SemanticType *type, SourceSpan name);

@@ -7,12 +7,16 @@ void semantic_program_init(SemanticProgram *program, const Project *project,
     assert(project->valid);
     *program = (SemanticProgram){.project = project};
     source_arena_init(&program->arena, allocator);
+    dependency_graph_init(&program->eager, allocator);
+    dependency_graph_init(&program->constants, allocator);
 }
 
 void semantic_program_destroy(SemanticProgram *program) {
     for (SemanticType *type = program->first; type != NULL; type = type->next) {
         abi_table_destroy(&type->abi);
     }
+    dependency_graph_destroy(&program->constants);
+    dependency_graph_destroy(&program->eager);
     source_arena_destroy(&program->arena);
     *program = (SemanticProgram){0};
 }

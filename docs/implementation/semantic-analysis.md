@@ -137,3 +137,57 @@ forward initialization, binding arity/labels/duplicates, retained/static reads,
 explicit index/condition capabilities, list mappings/clone restrictions, preserved
 payload bytes/order and every resolved-allocation failure. Release/Werror checks
 and focused ASan/UBSan supplement the derivation; LeakSanitizer remains disabled.
+
+## Separate relation graphs and exact ordering
+
+`semantic_relations` requires resolved values and constructs two independent
+[dependency graphs](../../src/semantic/relations/graph/graph.h). Vertex keys are
+unique full module paths plus declaration ordinals; values/spans remain borrowed
+until graph destruction. An edge means its target must be initialized earlier.
+The [eager graph](../../src/semantic/relations/eager.c) includes owned scalars and
+nonempty initialized owning lists from interfaces/body fields, excluding constants
+and references. TYPE-04 cycles therefore reject infinite required construction,
+without mistaking empty recursive lists for eager recursion. Loading cycles and
+runtime busy reentry are not edges of this graph.
+
+The [constant graph](../../src/semantic/constants/graph.c) has one vertex per
+constant declaration, not per module type. It adds each declaration's preceding
+local constant and every actual constant value read. Explicit work lists follow
+fresh owned-field construction and its initializers, including index-source
+constants. Default/literal construction descends into declared owned fields;
+cloning an already constructed constant reads that source without rerunning its
+field defaults. Empty lists create no elements, while initialized elements select
+their actual construction path. Repeated visits to a type have the same default
+constant-read set and may be merged. An explicit mutable-reference acquisition
+inside fresh shared-value construction is rejected; empty non-owning fields do
+not fabricate mutable links. Native purity and resource obligations remain the
+native author's contract.
+
+Ordering repeatedly selects the least bytewise module path/declaration ordinal
+whose prerequisites have all been emitted. The emitted prefix is dependency-closed
+by induction. If no ready vertex exists while vertices remain, repeatedly following
+an unprocessed prerequisite must revisit a vertex in the finite residual graph.
+The repeated suffix is an actual directed cycle, recorded as source-located notes.
+Conversely every finite acyclic residual graph has a dependency-free vertex, so
+stalling is equivalent to a cycle. Selection implements CONST-02's deterministic
+ready ordering independent of discovery order. Empty graphs succeed. No recursion
+or heuristic depth threshold is used. With `V` vertices and `E` edges, naive exact
+selection costs `O(V (V + E))` comparisons plus path-comparison bytes; graph memory
+is `O(V + E)`, with at most `O(V)` additional failure notes. Failure-note allocation
+can fail explicitly as out-of-memory. Every partial graph remains owned.
+
+PROTO-07 clone inference is a separate greatest fixed point on *all* owned
+interface/body scalar/list edges, including empty lists. Starting at the greatest
+candidate set and monotonically removing unsupported vertices converges after at
+most `V` removals. A surviving cycle is valid when it cannot reach a noncopyable
+native payload; this differs from eager allocation and constant ordering.
+
+[Relation tests](../../tests/unit/semantic/relations/main.c) cover the distinct
+relations, native payload propagation, self-typed constants, owned-field constant
+reads, mutable reference construction and allocation failures in both successful
+ordering and cycle diagnostics. They exhaust all 512 directed graphs on three
+vertices against transitive closure, checking actual diagnostic cycle edges, and
+all 512 owning-list graphs with one noncopyable native seed against reachability.
+The latter uses real files, the loader, ABI parser and type checker. Release/Werror
+and allocation-injection tests pass; runtime busy behavior is not implemented by
+this compile-time service.

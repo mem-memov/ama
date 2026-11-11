@@ -29,4 +29,9 @@ bool semantic_condition(SemanticProgram *program, SemanticAccess *access,
 bool semantic_visible(SemanticProgram *program, const SemanticSymbol *symbol,
     const SemanticSymbol *initializing, SourceSpan site);
 
+bool semantic_eager_graph(SemanticProgram *program);
+bool semantic_constant_graph(SemanticProgram *program);
+GraphVertex *semantic_type_vertex(DependencyGraph *graph, SemanticType *type);
+GraphVertex *semantic_constant_vertex(DependencyGraph *graph, SemanticSymbol *symbol);
+
 #endif

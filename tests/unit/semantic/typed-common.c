@@ -36,7 +36,7 @@ static SemanticStatus resolve_text(const char *text, SemanticLibraries libraries
     return status;
 }
 
-static void expect_resolved(const char *text, bool valid) {
+static inline void expect_resolved(const char *text, bool valid) {
     SemanticStatus status = resolve_text(text, (SemanticLibraries){0});
     if ((status == SEMANTIC_OK) != valid) {
         fprintf(stderr, "Unexpected type check: %s\n%s\n", semantic.error.message, text);
