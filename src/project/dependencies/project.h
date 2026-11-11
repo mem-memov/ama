@@ -48,6 +48,8 @@ void project_init(Project *project, SourceAllocator allocator);
 void project_destroy(Project *project);
 ProjectStatus project_load(Project *project, const ModuleRoot *roots,
     size_t root_count, const char *entry);
+ProjectStatus project_load_required(Project *project, const ModuleRoot *roots,
+    size_t root_count, const char *entry, const char *const *required, size_t required_count);
 const ProjectModule *project_find(const Project *project, const char *logical_path);
 
 #endif

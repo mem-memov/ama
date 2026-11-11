@@ -196,7 +196,7 @@ Ama execution remain in the following sections, not implied by frontend completi
 
 ## 6. Expose fast checking and generate native scaffolding
 
-- [ ] Provide an explicit check-only command using the same source manager, parser,
+- [x] Provide an explicit check-only command using the same source manager, parser,
   resolver and checker as compilation, without generating or compiling C.
 - [ ] Report draft status distinctly; a required draft remains a build error.
 - [ ] Generate native headers/signatures and optional C/ABI/test skeletons from

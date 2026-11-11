@@ -16,8 +16,8 @@ void project_destroy(Project *project) {
     *project = (Project){0};
 }
 
-ProjectStatus project_load(Project *project, const ModuleRoot *roots,
-    size_t root_count, const char *entry) {
+ProjectStatus project_load_required(Project *project, const ModuleRoot *roots,
+    size_t root_count, const char *entry, const char *const *required, size_t required_count) {
     assert(!project->attempted && module_path_valid(entry));
     project->attempted = true;
     ModuleStatus status = module_catalog_build(&project->catalog, roots, root_count);
@@ -33,6 +33,12 @@ ProjectStatus project_load(Project *project, const ModuleRoot *roots,
     if (!project_require(project, NULL, entry, (SourceSpan){0}, &project->entry)) {
         return project->status;
     }
+    for (size_t index = 0; index < required_count; index++) {
+        ProjectModule *module = NULL;
+        if (!project_require(project, NULL, required[index], (SourceSpan){0}, &module)) {
+            return project->status;
+        }
+    }
     for (ProjectModule *module = project->first; module != NULL; module = module->next) {
         if (!project_parse_required(project, module)) {
             return project->status;
@@ -40,4 +46,9 @@ ProjectStatus project_load(Project *project, const ModuleRoot *roots,
     }
     project->valid = true;
     return PROJECT_OK;
+}
+
+ProjectStatus project_load(Project *project, const ModuleRoot *roots,
+    size_t root_count, const char *entry) {
+    return project_load_required(project, roots, root_count, entry, NULL, 0);
 }

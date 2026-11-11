@@ -58,6 +58,7 @@ must still supply their own arguments and executable evidence when implemented.
 
 | Component boundary | Contract and argument | Executable evidence |
 | --- | --- | --- |
+| Reusable check-only frontend and CLI | [Checking contract](../checking.md); composed stage postconditions and read-only inputs | [Frontend tests](../../../tests/unit/compiler/check/main.c), [CLI tests](../../../tests/integration/check/main.c) |
 | Typed lifecycle/control-flow and storage plans | [Plan contract](../typed-plans.md); separate storage domains and continuation-composition induction | [Planning tests](../../../tests/unit/planning/ir/main.c) |
 | Semantic namespaces, values, relations and shared plans | [Semantic contract](../semantic-analysis.md); namespace invariants, nominal storage matrix, fixed points and declaration-level ordering | [Semantic suites](../../../tests/unit/semantic/Makefile), [Unicode type diagnostics](../../../tests/integration/semantic/types/main.c) |
 | Required project dependency closure | [Closure contract](../project-dependencies.md); least fixed point, injective registry and finite requester traces | [Closure/model tests](../../../tests/unit/project/closure/main.c), [Unicode diagnostics](../../../tests/integration/project/closure/main.c) |

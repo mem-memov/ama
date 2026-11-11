@@ -3,11 +3,13 @@
 
 typedef enum {
     DRIVER_REQUEST_HELP,
+    DRIVER_REQUEST_CHECK,
     DRIVER_REQUEST_UNAVAILABLE
 } DriverRequest;
 
 /* Borrow arguments; count is nonnegative, and a zero count permits NULL.
- * Recognize only the exact standalone --help request; otherwise unavailable.
+ * Recognize standalone --help or --check before operand validation.
+ * Full option validation belongs to driver/options.
  * See docs/implementation/contracts/driver.md for the complete contract.
  */
 DriverRequest driver_parse_request(int argument_count, char *const arguments[]);

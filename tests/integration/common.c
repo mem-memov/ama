@@ -26,7 +26,7 @@ static void destroy_test(void) {
     assert(errors_result == 0);
 }
 
-static int run_compiler(const char *argument) {
+static int run_compiler_arguments(char *const arguments[]) {
     pid_t process = fork();
     assert(process >= 0);
     if (process == 0) {
@@ -34,7 +34,7 @@ static int run_compiler(const char *argument) {
             dup2(fileno(errors), STDERR_FILENO) < 0) {
             _exit(127);
         }
-        execl(AMA_EXECUTABLE, AMA_EXECUTABLE, argument, (char *) NULL);
+        execv(AMA_EXECUTABLE, arguments);
         _exit(127);
     }
     int status = 0;
@@ -45,6 +45,11 @@ static int run_compiler(const char *argument) {
     assert(waited == process);
     assert(WIFEXITED(status));
     return WEXITSTATUS(status);
+}
+
+static inline int run_compiler(const char *argument) {
+    char *arguments[] = {AMA_EXECUTABLE, (char *)argument, NULL};
+    return run_compiler_arguments(arguments);
 }
 
 static void read_stream(FILE *stream, char *buffer, size_t capacity) {

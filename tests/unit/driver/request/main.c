@@ -31,7 +31,7 @@ static void it_refuses_all_unimplemented_operations(void) {
     }
     arguments[1] = "--check";
     DriverRequest request = driver_parse_request(2, arguments);
-    assert(request == DRIVER_REQUEST_UNAVAILABLE);
+    assert(request == DRIVER_REQUEST_CHECK);
 }
 
 void run(void) {

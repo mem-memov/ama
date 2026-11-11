@@ -6,16 +6,13 @@ references identify instances without owning them. Domain capabilities belong in
 libraries rather than an expanding collection of language primitives.
 
 [TECHNICAL_SPECIFICATION.md](TECHNICAL_SPECIFICATION.md) is the source of truth.
-The implementation is being rebuilt from this specification. Currently `./ama`
-provides `--help`; compilation and checking explicitly fail as unimplemented.
-The design described here is its acceptance contract, not a claim of availability.
-The implemented source layer now provides immutable text/spans, pinned Unicode
-identifiers, exact module discovery, collision-checked internal names and
-[structured diagnostics/source mappings](docs/implementation/diagnostic-rendering.md).
-The [syntax frontend](docs/implementation/parser-errors.md) now parses sections,
-declarations, calls/control flow and native binding tables into source-mapped
-structures. These components have independent and composed tests; semantic
-resolution and CLI compilation/checking are still upcoming.
+The implementation is being rebuilt from this specification. `./ama --check ROOT
+.module` validates dependencies, syntax, types and typed plans without emitting or
+compiling C. `./ama --help` describes commands; executable compilation is not yet
+implemented. [Checking](docs/implementation/checking.md),
+[semantic analysis](docs/implementation/semantic-analysis.md) and
+[typed plans](docs/implementation/typed-plans.md) have independent and composed
+C/assert tests. Check-only success does not validate handwritten C bodies.
 
 ## Reading the project
 
@@ -64,7 +61,7 @@ Entry-call inputs may also use `message < |Hello` or positional `< |Hello`.
 The declared parameter type interprets the UTF-8 payload; only single owned values
 with literal capability accept this form. `#` and trailing spaces after `|` are
 data. The frontend preserves these bytes and source spans; parameter type and
-capability checks remain in the upcoming semantic stage.
+capability checks are performed by the semantic stage.
 
 An instance call ends in `!`; inputs and outputs occupy separate indented lines
 using `<` and `>`. An unmarked target followed by `>>` reads retained results
@@ -100,6 +97,7 @@ mathematical/algebraic justification are implementation requirements.
 ```sh
 make
 ./ama --help
+./ama --check path/to/project .main
 make test
 make test-clean
 ```
