@@ -15,6 +15,7 @@ static bool constant(SemanticProgram *program, SemanticSource *source,
         return false;
     }
     source->constant = symbol;
+    source->declaration = symbol;
     source->type = symbol->type;
     source->list = symbol->list;
     return true;
@@ -41,6 +42,7 @@ SemanticSource *semantic_source(SemanticProgram *program, SemanticType *type,
     }
     SemanticSymbol *symbol = source->access->symbol;
     source->type = symbol->type;
+    source->declaration = symbol;
     source->constant = symbol->role == SYMBOL_CONSTANT ? symbol : NULL;
     source->reference = source->access->reference;
     source->list = source->access->list;

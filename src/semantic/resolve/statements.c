@@ -18,6 +18,9 @@ static bool statement(SemanticProgram *program, SemanticType *type, const AstNod
     type->last_statement = resolved;
     if (node->kind == AST_ASSIGNMENT) {
         resolved->access = semantic_access(program, type, node->as.assignment.receiver, true, NULL);
+        if (resolved->access == NULL) {
+            return false;
+        }
         resolved->source = semantic_source(program, type, node->as.assignment.source, NULL);
         return resolved->access != NULL && resolved->source != NULL
             && semantic_transfer(program, resolved->access->symbol->type, resolved->access->reference,

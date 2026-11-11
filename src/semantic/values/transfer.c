@@ -10,11 +10,15 @@ bool semantic_transfer(SemanticProgram *program, SemanticType *type, bool refere
     bool list, SemanticSource *source, const SemanticAccess *receiver,
     const SemanticSymbol *declaration, SemanticTransfer *transfer) {
     if (source->kind == AST_LITERAL_SOURCE) {
-        if (reference || list || !type->abi.bindings[ABI_LITERAL].present) {
+        source->type = type;
+        if (reference || list) {
             return semantic_fail(program, source->site,
                 "A literal requires owned scalar storage with the | capability", declaration);
         }
-        source->type = type;
+        if (!type->abi.bindings[ABI_LITERAL].present) {
+            return semantic_capability_error(program, type, ABI_LITERAL, source->site, declaration,
+                "The selected type does not support literal construction through |");
+        }
         *transfer = TRANSFER_LITERAL;
         return true;
     }
@@ -22,7 +26,7 @@ bool semantic_transfer(SemanticProgram *program, SemanticType *type, bool refere
     if (source->type != type || source->list != list
         || (!continuation && source->reference != reference)
         || (continuation && (reference || list))) {
-        return semantic_fail(program, source->site, "Source and destination types or storage forms differ", declaration);
+        return semantic_incompatible(program, type, reference, list, source, declaration);
     }
     if (identical(receiver, source)) {
         if (continuation) {
@@ -32,7 +36,8 @@ bool semantic_transfer(SemanticProgram *program, SemanticType *type, bool refere
         return true;
     }
     if (!reference && !type->cloneable) {
-        return semantic_fail(program, source->site, "The owned source type does not support independent copying", declaration);
+        return semantic_capability_error(program, type, ABI_CLONE, source->site, declaration,
+            "The owned source type does not support independent copying");
     }
     *transfer = reference ? TRANSFER_HANDLE : continuation ? TRANSFER_CONTINUATION : TRANSFER_CLONE;
     return true;

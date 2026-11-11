@@ -155,7 +155,7 @@ no code generator or runnable Ama program is claimed by parser completion.
   [Closure contract and evidence](docs/implementation/project-dependencies.md):
   one AST per identity, occurrence spans and requester traces, iterative cycle-safe
   discovery; exhaustive three-module graphs, real UTF-8 diagnostic composition and
-  allocation-failure cleanup. Native companion/type validation remains below.
+  allocation-failure cleanup. Native companion/type validation is covered below.
 - [x] Enforce one base-name namespace across constants, interfaces and body fields.
   [Namespace contract and tests](docs/implementation/semantic-analysis.md) cover
   nested lexical order, cross-section collisions and all storage-form pairs.
@@ -178,10 +178,21 @@ no code generator or runnable Ama program is claimed by parser completion.
   reads, typed library enumerations, startup ordering and reverse cleanup.
 - [x] Build explicit typed lifecycle/control-flow IR and storage plans. Preserve
   spans and type identities through every handoff; never use C text as semantic IR.
-- [ ] Add type-error messages showing both module types and related declarations.
+- [x] Add type-error messages showing both module types and related declarations.
 
 Ready when: validated projects have inspectable layouts and IR, with no unresolved
 interpretations deferred to the C emitter.
+
+Section 5 is implemented through the reusable semantic-analysis and typed-plan
+APIs. [Semantic contracts](docs/implementation/semantic-analysis.md) and
+[storage/lifecycle/control plans](docs/implementation/typed-plans.md) document
+ownership, exact algorithms and evidence. Independent leaves cover namespaces,
+native contracts, nominal/storage rules, three-vertex graph models, shared startup,
+typed transitions, Unicode diagnostics, deep nesting and allocation failures.
+Full release/Werror tests and focused ASan/UBSan pass (LeakSanitizer disabled).
+Layouts describe typed logical storage; native C sizes/alignment remain C-toolchain
+facts. Check-only CLI/scaffolding, concrete runtime services, C emission and actual
+Ama execution remain in the following sections, not implied by frontend completion.
 
 ## 6. Expose fast checking and generate native scaffolding
 

@@ -1,0 +1,1 @@
+/* Authored native body fixture. */

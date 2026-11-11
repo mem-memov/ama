@@ -1,0 +1,16 @@
+project/main:7:2: error[type-mismatch]: Source and destination types or storage forms differ
+    subject: .元
+    7 |  source
+    span: bytes [45, 51)
+    cause: The full module identities differ
+    expected: .米
+project/main:2:1: note: source storage (owned scalar)
+    subject: .元
+    2 | source
+    3 | .元
+    span: bytes [3, 14)
+project/main:4:1: note: destination declaration (owned scalar)
+    subject: .米
+    4 | destination
+    5 | .米
+    span: bytes [15, 31)

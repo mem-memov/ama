@@ -46,6 +46,8 @@ struct SemanticType {
     AbiTable abi;
     bool executable;
     bool cloneable;
+    SemanticType *clone_seed;
+    SemanticSymbol *clone_cause;
     SemanticStatement *statements;
     SemanticStatement *last_statement;
 };
@@ -69,6 +71,7 @@ struct SemanticSource {
     AstSourceKind kind;
     SemanticAccess *access;
     SemanticSymbol *constant;
+    SemanticSymbol *declaration;
     SemanticType *type;
     bool reference;
     bool list;
@@ -134,6 +137,7 @@ typedef struct {
 void semantic_program_init(SemanticProgram *program, const Project *project,
     SourceAllocator allocator);
 void semantic_program_destroy(SemanticProgram *program);
+SemanticStatus semantic_analyze(SemanticProgram *program, SemanticLibraries libraries);
 SemanticStatus semantic_names(SemanticProgram *program);
 SemanticStatus semantic_native(SemanticProgram *program);
 SemanticStatus semantic_resolve(SemanticProgram *program, SemanticLibraries libraries);

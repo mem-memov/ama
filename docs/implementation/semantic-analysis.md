@@ -215,3 +215,34 @@ sizes. Failure retains a partial owned list without setting `constants_valid`.
 prerequisites, bytewise ready ordering, static reads, enum literal payloads,
 constants-only namespaces, exclusion of unused files, exact reverse traversal and
 every plan allocation failure. Release/Werror tests pass.
+
+## Type diagnostics and composed frontend boundary
+
+[Type reports](../../src/semantic/report/types.c) preserve the primary operation
+span, actual/expected full module paths, and both source/destination declaration
+spans with effective storage forms. Callee outputs retain their original field
+identity instead of becoming anonymous values. Literal capability errors retain
+the bound parameter declaration and type contract; clone capability errors also
+name the native noncopyable seed reached through the owned graph. Each removed
+type inherits an already removed dependency's seed/cause, so the witness follows
+the monotone greatest-fixed-point elimination rather than guessing from names.
+Structured reports borrow stable owned declarations/ABI texts and use fixed note
+storage; reporting a type mismatch itself allocates nothing.
+
+`semantic_analyze` composes namespace, required native, value/interface, relation
+and shared-plan checks, stopping at the first failed stage. The iterative walker
+carries explicit structural loop depth; `^` outside a loop is rejected even in
+unreachable code, without source-offset guessing. The same frontend service can
+serve the later check-only CLI and project compiler. Its success does not claim
+handwritten C bodies/signatures have passed the C toolchain; those checks require
+the later declaration/scaffolding/backend integration.
+
+[Diagnostic unit tests](../../tests/unit/semantic/diagnostics/main.c) check both
+nominal paths/declarations, parameter-selected literal failures and a noncopyable
+native seed inside recursive composition. [Integration tests](../../tests/integration/semantic/types/main.c)
+load real UTF-8 module identities and compare the complete rendered diagnostic,
+including declaration excerpts and byte offsets, with a handwritten expectation.
+Full `make test` with release flags, `-DNDEBUG`/`-Werror`, focused ASan/UBSan semantic,
+planning and integration suites, and independent public-header checks pass.
+LeakSanitizer is disabled; exhaustive allocation-injection/live-count checks
+cover partial namespace, ABI, resolution, graph, constant and typed-plan owners.

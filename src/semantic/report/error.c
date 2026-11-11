@@ -14,7 +14,7 @@ bool semantic_fail(SemanticProgram *program, SourceSpan span, const char *messag
         .message = message, .primary = {.span = span}};
     if (related != NULL) {
         program->related[0] = (DiagnosticRelated){
-            {.span = related->declaration->as.declaration.name->span},
+            {.span = related->declaration->span},
             "related declaration", related->owner->module->source->logical_path};
         program->error.related = program->related;
         program->error.related_count = 1;

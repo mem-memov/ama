@@ -1,2 +1,2 @@
-SUBDIRECTORIES := names native types relations constants
+SUBDIRECTORIES := names native types relations constants diagnostics
 include ../../parent.mk

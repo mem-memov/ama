@@ -34,4 +34,9 @@ bool semantic_constant_graph(SemanticProgram *program);
 GraphVertex *semantic_type_vertex(DependencyGraph *graph, SemanticType *type);
 GraphVertex *semantic_constant_vertex(DependencyGraph *graph, SemanticSymbol *symbol);
 
+bool semantic_incompatible(SemanticProgram *program, SemanticType *type, bool reference,
+    bool list, const SemanticSource *source, const SemanticSymbol *destination);
+bool semantic_capability_error(SemanticProgram *program, SemanticType *type,
+    AbiOperation operation, SourceSpan site, const SemanticSymbol *declaration, const char *message);
+
 #endif
