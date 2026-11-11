@@ -5,7 +5,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#if defined(__clang__) || !defined(__GNUC__) || __GNUC__ != 15 || __GNUC_MINOR__ != 2 || __GNUC_PATCHLEVEL__ != 0
+#if defined(__clang__) || !defined(__GNUC__) || __GNUC__ != 15 || \
+    __GNUC_MINOR__ != 2 || __GNUC_PATCHLEVEL__ != 0
 #error "Ama native backend requires verified GCC 15.2.0"
 #endif
 #if !defined(__linux__) || !defined(__x86_64__) || !defined(__STDC_VERSION__) || __STDC_VERSION__ < 201112L

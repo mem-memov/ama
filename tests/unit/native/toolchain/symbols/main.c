@@ -23,7 +23,7 @@ static void it_rejects_entry_definitions_references_and_compiler_specializations
 }
 
 static void it_rejects_malformed_or_truncated_records_instead_of_certifying_them(void) {
-    const char *invalid[] = {"entry", "entry TT 0", "entry T xyz ", "entry T 0 1 2", "\n"};
+    const char *invalid[] = {"entry", "entry TT 0", "entry T xyz ", "entry T 0 1 2", "\n", "native_entry T 0 1\nentry T xyz"};
     for (size_t index = 0; index < sizeof(invalid) / sizeof(invalid[0]); index++) {
         assert(check(invalid[index]) == AMA_SYMBOLS_MALFORMED);
     }

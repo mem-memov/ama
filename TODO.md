@@ -56,11 +56,18 @@ itself remains an implementation foundation; the next implementation tasks are i
   calls and stack use. Verify labels and explicit return dispatch for Ama control.
 - [x] Validate fresh/constructing/live/finalized bookkeeping, failed-constructor
   responsibilities, reverse cleanup, destroy errors and no double destruction.
-- [ ] Specify service metadata for handles, acquisition, return links, saved
+- [x] Specify service metadata for handles, acquisition, return links, saved
   positions, source locations and host outcomes without hidden Ama links in C.
 
-Ready when: executable ABI/toolchain tests establish the backend constraints
-before the frontend is connected to them.
+Completed: [ABI](docs/implementation/native-abi.md),
+[status](docs/implementation/native-status.md),
+[hook harness](docs/implementation/native-hooks.md),
+[toolchain](docs/implementation/native-toolchain.md),
+[lifecycle](docs/implementation/native-lifecycle.md) and
+[metadata](docs/implementation/runtime-metadata.md) contracts have executable evidence.
+Frontend integration, real pool allocation and the complete execution dispatcher
+remain later tasks. ASan/UBSan passed with LeakSanitizer disabled because ptrace
+supervision prevents it from running; leak-check certification is not claimed.
 
 ## 3. Implement source storage, identities and structured diagnostics
 

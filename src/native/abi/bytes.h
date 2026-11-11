@@ -6,7 +6,7 @@
 
 _Static_assert(CHAR_BIT == 8, "Ama native ABI requires eight-bit bytes");
 
-/* Borrow immutable UTF-8 bytes for one constructor call. NULL requires length 0.
+/* Borrow immutable bytes; literal constructors receive UTF-8. NULL requires length 0.
  * Embedded zero bytes and an absent terminator do not shorten this view.
  */
 typedef struct {

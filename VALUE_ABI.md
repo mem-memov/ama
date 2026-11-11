@@ -18,7 +18,12 @@ dependencies. Generated typed declarations determine native entry signatures:
 inputs are passed by value or by the specified borrowed representation, results
 through output parameters, and the entry returns `void`. Technical status uses a
 separate service output. Concrete representations and helper signatures must be
-fixed and checked against the specification before claiming ABI support.
+checked against the specification before claiming integrated backend support.
+The concrete [C signatures and toolchain](docs/implementation/native-abi.md),
+[status codes](docs/implementation/native-status.md),
+[lifecycle ledger](docs/implementation/native-lifecycle.md) and
+[runtime metadata](docs/implementation/runtime-metadata.md) are specified and
+validated by section-2 harnesses. They are not yet connected to the frontend.
 
 Instances execute directly in stable pool storage. Native code may borrow typed
 views for the current operation; these views must not escape through globals,
