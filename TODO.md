@@ -52,7 +52,7 @@ itself remains an implementation foundation; the next implementation tasks are i
   codes and distinguish invalid-index refusal from technical conversion failure.
 - [x] Build a small C harness for all six ABI bindings: mandatory `+`/`-`, optional
   `|`/`=`/`?`/`[]`, plus a void-return native entry with service status output.
-- [ ] Verify mandatory native-entry inlining while permitting internal native C
+- [x] Verify mandatory native-entry inlining while permitting internal native C
   calls and stack use. Verify labels and explicit return dispatch for Ama control.
 - [ ] Validate fresh/constructing/live/finalized bookkeeping, failed-constructor
   responsibilities, reverse cleanup, destroy errors and no double destruction.

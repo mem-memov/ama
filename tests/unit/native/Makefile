@@ -1,2 +1,2 @@
-SUBDIRECTORIES := abi
+SUBDIRECTORIES := abi toolchain
 include ../../parent.mk
