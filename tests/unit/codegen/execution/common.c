@@ -9,6 +9,7 @@
 
 static NativeScaffold assembly;
 static bool noninline_entry;
+static bool wrong_entry_result;
 static const char *forced_header;
 
 static void native_fixture(const char *name, const char *interface) {
@@ -34,11 +35,18 @@ static void executable_native(const ScaffoldType *type) {
     assert(emitted);
     int written = fputs("#include <assert.h>\n#include <stdio.h>\n", body);
     assert(written != EOF);
-    written = fprintf(body, "%s void AMA_NATIVE(entry)(AMA_NATIVE(State) *state, const %s *parameters, %s *results, const AmaNativeServices *services, AmaStatus *status) {\n"
-        "assert(state->address==state); (void)parameters; (void)results; (void)services;\n", noninline_entry ? "__attribute__((noinline))" : "AMA_NATIVE_ENTRY", type->names[SCAFFOLD_PARAMETERS]->internal_name,
+    if (strcmp(type->plan->type->module->source->logical_path,".recursive")==0) {
+        written = fputs("static __attribute__((noinline)) size_t AMA_NATIVE(sum)(size_t number) { return number==0 ? 0 : number+AMA_NATIVE(sum)(number-1); }\n",body);
+        assert(written != EOF);
+    }
+    written = fprintf(body, "%s %s AMA_NATIVE(entry)(AMA_NATIVE(State) *state, const %s *parameters, %s *results, const AmaNativeServices *services, AmaStatus *status) {\n"
+        "assert(state->address==state); (void)parameters; (void)results; (void)services;\n", noninline_entry ? "__attribute__((noinline))" : "AMA_NATIVE_ENTRY", wrong_entry_result ? "AmaStatus" : "void", type->names[SCAFFOLD_PARAMETERS]->internal_name,
         type->names[SCAFFOLD_RESULTS]->internal_name);
     assert(written >= 0);
-    if (strcmp(type->plan->type->module->source->logical_path,".decrement")==0) {
+    if (strcmp(type->plan->type->module->source->logical_path,".recursive")==0) {
+        written = fputs("size_t total=AMA_NATIVE(sum)(parameters->AMA_INPUT(0)->payload->number); results->AMA_OUTPUT(0)->payload->number=total; printf(\"sum=%zu\\n\",total);\n",body);
+        assert(written != EOF);
+    } else if (strcmp(type->plan->type->module->source->logical_path,".decrement")==0) {
         written = fputs("size_t number=parameters->AMA_INPUT(0)->payload->number; results->AMA_OUTPUT(0)->payload->number=number==0 ? 0 : number-1; printf(\"count=%zu\\n\",number);\n",body);
         assert(written != EOF);
     } else if (type->plan->type->counts[SYMBOL_PARAMETER] == 2) {
@@ -48,7 +56,7 @@ static void executable_native(const ScaffoldType *type) {
         written = fputs("printf(\"status=%u\\n\",(unsigned)parameters->AMA_INPUT(0)->payload->value.code);\n", body);
         assert(written != EOF);
     } else if (type->plan->type->counts[SYMBOL_PARAMETER] != 0) {
-        written = fputs("state->calls++; results->AMA_OUTPUT(0)->payload->number=parameters->AMA_INPUT(0)->payload->number+state->calls;\n"
+        written = fputs("if(parameters->AMA_INPUT(0)->payload->number==500) { puts(\"native-entered\"); *status=ama_status_make(AMA_NATIVE_FAILURE,\"Body failed\",11); return; }\nstate->calls++; results->AMA_OUTPUT(0)->payload->number=parameters->AMA_INPUT(0)->payload->number+state->calls;\n"
             "printf(\"%zu:%zu:%u\\n\",parameters->AMA_INPUT(0)->payload->number,state->calls,(unsigned)services->caller_refusal.code);\n", body);
         assert(written != EOF);
     }

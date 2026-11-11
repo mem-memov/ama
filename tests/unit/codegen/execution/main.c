@@ -105,6 +105,33 @@ static void it_reads_shared_namespaces_and_qualified_values_without_default_inst
     execute_project("@=\nshared\n.value\n |42\n@!\nworker\n.worker\nresult\n.value\nworker!\n < .numbers.first\n.numbers\n >> result\n >> result\nworker!\n < result\nworker!\n < .main.shared\n", "5:1:0\n8:2:0\n42:3:0\n",true);
 }
 
+static void it_checks_the_exact_native_entry_signature_including_its_return_type(void) {
+    wrong_entry_result = true;
+    prepare_project("@!\nfirst\n.worker\nfirst!\n");
+    wrong_entry_result = false;
+    FILE *errors = tmpfile();
+    assert(errors != NULL);
+    bool compiled = project_codegen_compile(&assembly, errors);
+    int closed = fclose(errors);
+    assert(!compiled && closed == 0 && !assembly.ready && !assembly.published);
+    assert(strstr(assembly.error.message,"native toolchain failed")!=NULL);
+    native_scaffold_destroy(&assembly);
+    destroy_frontend();
+}
+
+static void it_allows_ordinary_native_helper_calls_inside_an_inlined_entry(void) {
+    directory("generated/project");
+    native_fixture("recursive","@<\ninput\n.value\n@>\noutput\n.value\n@C\n");
+    execute_project("@!\nworker\n.recursive\nworker!\n < |4\n", "sum=10\n",true);
+}
+
+static void it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup(void) {
+    execute_project("@!\nfirst\n.worker\nsecond\n.worker\nfirst!\n < |500\n:\n second!\n", "native-entered\n", false);
+    expect_diagnostic("Body failed");
+    expect_diagnostic("native entry, type .worker");
+    expect_diagnostic("generated/project/main:6:1");
+}
+
 void run(void) {
     it_executes_literal_default_retained_and_independent_native_states();
     it_does_not_enter_the_body_or_alternative_after_literal_failure();
@@ -123,5 +150,8 @@ void run(void) {
     it_reports_failure_with_no_available_runtime_heap_or_root_frame();
     it_repeats_a_loop_and_returns_from_a_callee_to_the_right_caller();
     it_reads_shared_namespaces_and_qualified_values_without_default_instances();
+    it_checks_the_exact_native_entry_signature_including_its_return_type();
+    it_allows_ordinary_native_helper_calls_inside_an_inlined_entry();
+    it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup();
 }
 int main(void) { run(); return EXIT_SUCCESS; }

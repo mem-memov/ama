@@ -275,7 +275,7 @@ handle, lifetime, clone and replacement invariants independently of module execu
   no whole-call rollback is promised. Initial root startup constructs once.
 - [x] Lower entry calls, interface reset/defaults, retained results, result routing,
   branches, loops and return links to explicit transfers and service metadata.
-- [ ] Integrate native execution/status and lifecycle code; prohibit C dispatch of
+- [x] Integrate native execution/status and lifecycle code; prohibit C dispatch of
   Ama modules and persistent borrowed views in opaque native state.
 - [ ] Exercise two module types with multiple instances, nested same-type calls,
   busy refusal, pool growth during calls and persistent body state.
