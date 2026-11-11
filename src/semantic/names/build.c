@@ -1,7 +1,8 @@
 #include <assert.h>
 #include "semantic/internal.h"
 
-static bool declare(SemanticProgram *program, SemanticType *type, const AstNode *node, void *context) {
+static bool declare(SemanticProgram *program, SemanticType *type, const AstNode *node, size_t loop_depth, void *context) {
+    (void)loop_depth;
     if (node->kind != AST_DECLARATION) {
         return true;
     }

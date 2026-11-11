@@ -10,11 +10,8 @@ bool semantic_list_field(SemanticProgram *program, SemanticStatement *statement,
     if (position >= (input ? 4u : 3u)) {
         return semantic_fail(program, argument->marker, "The whole-list binding exceeds its fixed interface", NULL);
     }
-    const char *name = input ? (position == 0 ? program->libraries.action : program->libraries.index)
-        : position == 0 ? program->libraries.index : position == 1
-        ? program->libraries.condition : program->libraries.outcome;
-    binding->type = input && position == 2 ? statement->access->symbol->type
-        : semantic_find_type(program, name);
+    size_t role = input ? (position == 0 ? 0 : 1) : position == 0 ? 1 : position == 1 ? 2 : 3;
+    binding->type = input && position == 2 ? statement->access->symbol->type : program->library_types[role];
     binding->position = position;
     binding->reference = input && position == 2;
     if (binding->type == NULL || !binding->type->executable) {

@@ -30,6 +30,7 @@ static void it_checks_initialization_literals_reference_formation_and_continuati
         expect_resolved(valid[index], true);
     }
     const char *invalid[] = {
+        "@!\n^\n",
         "@!\nfirst\n.value\n second\nsecond\n.value\n",
         "@!\nreference&\n.value\n |literal\n",
         "@!\nvalue\n.resource\n |literal\n",

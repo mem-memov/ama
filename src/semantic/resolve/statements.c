@@ -1,7 +1,10 @@
 #include "semantic/internal.h"
 
-static bool statement(SemanticProgram *program, SemanticType *type, const AstNode *node, void *context) {
+static bool statement(SemanticProgram *program, SemanticType *type, const AstNode *node, size_t loop_depth, void *context) {
     (void)context;
+    if (node->kind == AST_BREAK && loop_depth == 0) {
+        return semantic_fail(program, node->span, "Loop exit ^ requires an enclosing loop", NULL);
+    }
     SemanticStatement *resolved = semantic_allocate(program, sizeof(*resolved));
     if (resolved == NULL) {
         return false;

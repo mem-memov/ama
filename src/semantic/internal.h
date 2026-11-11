@@ -3,7 +3,7 @@
 
 #include "semantic.h"
 
-typedef bool (*SemanticVisitor)(SemanticProgram *, SemanticType *, const AstNode *, void *);
+typedef bool (*SemanticVisitor)(SemanticProgram *, SemanticType *, const AstNode *, size_t, void *);
 bool semantic_walk(SemanticProgram *program, SemanticType *type, AstBlock block,
     SemanticVisitor visit, void *context);
 bool semantic_same_text(SourceSpan left, SourceSpan right);

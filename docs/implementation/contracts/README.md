@@ -58,6 +58,7 @@ must still supply their own arguments and executable evidence when implemented.
 
 | Component boundary | Contract and argument | Executable evidence |
 | --- | --- | --- |
+| Typed lifecycle/control-flow and storage plans | [Plan contract](../typed-plans.md); separate storage domains and continuation-composition induction | [Planning tests](../../../tests/unit/planning/ir/main.c) |
 | Semantic module namespaces | [Semantic contract](../semantic-analysis.md); unique base-name prefix invariant and iterative lexical traversal | [Namespace tests](../../../tests/unit/semantic/names/main.c) |
 | Required project dependency closure | [Closure contract](../project-dependencies.md); least fixed point, injective registry and finite requester traces | [Closure/model tests](../../../tests/unit/project/closure/main.c), [Unicode diagnostics](../../../tests/integration/project/closure/main.c) |
 | Module-qualified native C naming | [Namespace contract](../native-namespaces.md); collision-checked module prefix and unambiguous local-token qualification | [Namespace tests](../../../tests/unit/native/namespace/main.c), [typed two-module composition](../../../tests/integration/parser/grammar/main.c) |
@@ -81,6 +82,5 @@ must still supply their own arguments and executable evidence when implemented.
 | Entry disappearance and Ama-shaped label transfers | [Toolchain contract](../native-toolchain.md); exact symbol-family validation plus required compiler enforcement | [Symbol tests](../../../tests/unit/native/toolchain/symbols/main.c), [GCC probes](../../../tests/integration/native/toolchain/main.c) |
 | Native representations, status and typed hook composition | [ABI](../native-abi.md), [status](../native-status.md), [hook harness](../native-hooks.md) | [ABI suites](../../../tests/unit/native/abi/Makefile) |
 
-Typed IR and full pool/execution contracts will
-be added only as those components are implemented. The registry does not certify
+Full pool/execution contracts will be added only as those components are implemented. The registry does not certify
 those future components or the language as a whole.

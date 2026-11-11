@@ -20,10 +20,8 @@ static bool target(SemanticProgram *program, SemanticType *caller, SemanticState
 }
 
 static bool list_contract(SemanticProgram *program, SemanticStatement *statement) {
-    const char *names[] = {program->libraries.action, program->libraries.index,
-        program->libraries.condition, program->libraries.outcome};
     for (size_t index = 0; index < 4; index++) {
-        SemanticType *type = semantic_find_type(program, names[index]);
+        SemanticType *type = program->library_types[index];
         if (type == NULL || !type->cloneable || (index == 1 && !type->abi.bindings[ABI_INDEX].present)
             || (index == 2 && !type->abi.bindings[ABI_CONDITION].present)) {
             return semantic_fail(program, statement->syntax->span,

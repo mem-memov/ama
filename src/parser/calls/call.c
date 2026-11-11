@@ -28,6 +28,7 @@ bool parser_start_call(Parser *parser, ParseFrame **frame, AstNode *node,
         if (mode == AST_CONSTANT_READ) {
             return parser_fail(parser, line->code, "Static constant reads have no acquisition alternative", EXPECT_NEXT_STATEMENT);
         }
+        node->as.call.has_alternative = true;
         node->span.end = line->code.end;
         parser->line = line->next;
         return parser_push_frame(parser, frame, &node->as.call.alternative, node,

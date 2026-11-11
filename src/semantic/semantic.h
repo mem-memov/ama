@@ -120,6 +120,7 @@ typedef struct {
     bool relations_attempted;
     bool relations_valid;
     SemanticLibraries libraries;
+    SemanticType *library_types[4];
     SemanticConstantPlan *constant_first;
     SemanticConstantPlan *constant_last;
     size_t constant_count;

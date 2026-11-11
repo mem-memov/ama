@@ -3,9 +3,10 @@
 typedef struct WalkFrame {
     struct WalkFrame *next;
     const AstNode *node;
+    size_t loop_depth;
 } WalkFrame;
 
-static bool push(SemanticProgram *program, WalkFrame **pending, AstBlock block) {
+static bool push(SemanticProgram *program, WalkFrame **pending, AstBlock block, size_t loop_depth) {
     if (block.first == NULL) {
         return true;
     }
@@ -13,18 +14,18 @@ static bool push(SemanticProgram *program, WalkFrame **pending, AstBlock block) 
     if (frame == NULL) {
         return false;
     }
-    *frame = (WalkFrame){*pending, block.first};
+    *frame = (WalkFrame){*pending, block.first, loop_depth};
     *pending = frame;
     return true;
 }
 
-static bool children(SemanticProgram *program, WalkFrame **pending, const AstNode *node) {
+static bool children(SemanticProgram *program, WalkFrame **pending, const AstNode *node, size_t loop_depth) {
     if (node->kind == AST_CALL) {
-        return push(program, pending, node->as.call.alternative);
+        return push(program, pending, node->as.call.alternative, loop_depth);
     }
     if (node->kind == AST_BRANCH || node->kind == AST_LOOP) {
-        return push(program, pending, node->as.control.alternative)
-            && push(program, pending, node->as.control.body);
+        return push(program, pending, node->as.control.alternative, loop_depth)
+            && push(program, pending, node->as.control.body, loop_depth + (node->kind == AST_LOOP));
     }
     return true;
 }
@@ -32,7 +33,7 @@ static bool children(SemanticProgram *program, WalkFrame **pending, const AstNod
 bool semantic_walk(SemanticProgram *program, SemanticType *type, AstBlock block,
     SemanticVisitor visit, void *context) {
     WalkFrame *pending = NULL;
-    if (!push(program, &pending, block)) {
+    if (!push(program, &pending, block, 0)) {
         return false;
     }
     while (pending != NULL) {
@@ -42,7 +43,9 @@ bool semantic_walk(SemanticProgram *program, SemanticType *type, AstBlock block,
             continue;
         }
         pending->node = node->next;
-        if (!visit(program, type, node, context) || !children(program, &pending, node)) {
+        size_t loop_depth = pending->loop_depth;
+        if (!visit(program, type, node, loop_depth, context)
+            || !children(program, &pending, node, loop_depth)) {
             return false;
         }
     }

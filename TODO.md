@@ -176,7 +176,7 @@ no code generator or runnable Ama program is claimed by parser completion.
   as module-local identifiers under NAME-05.
 - [x] Plan shared constants separately from instance storage, including qualified
   reads, typed library enumerations, startup ordering and reverse cleanup.
-- [ ] Build explicit typed lifecycle/control-flow IR and storage plans. Preserve
+- [x] Build explicit typed lifecycle/control-flow IR and storage plans. Preserve
   spans and type identities through every handoff; never use C text as semantic IR.
 - [ ] Add type-error messages showing both module types and related declarations.
 

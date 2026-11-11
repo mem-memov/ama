@@ -77,6 +77,7 @@ struct AstNode {
             size_t input_count;
             size_t output_count;
             bool named;
+            bool has_alternative;
             AstBlock alternative;
         } call;
         struct { AstAccess *condition; AstBlock body; AstBlock alternative; } control;

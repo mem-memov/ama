@@ -5,6 +5,7 @@ static bool configure(SemanticProgram *program, SemanticLibraries libraries) {
     const char *paths[] = {libraries.action, libraries.index, libraries.condition, libraries.outcome};
     const char *owned[4] = {0};
     for (size_t index = 0; index < 4; index++) {
+        program->library_types[index] = semantic_find_type(program, paths[index]);
         if (paths[index] != NULL) {
             owned[index] = source_arena_copy(&program->arena, paths[index]);
             if (owned[index] == NULL) {
