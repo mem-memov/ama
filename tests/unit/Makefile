@@ -1,2 +1,2 @@
-SUBDIRECTORIES := driver native
+SUBDIRECTORIES := driver native source
 include ../parent.mk

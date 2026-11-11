@@ -71,7 +71,7 @@ supervision prevents it from running; leak-check certification is not claimed.
 
 ## 3. Implement source storage, identities and structured diagnostics
 
-- [ ] Build a source manager with stable spans, original UTF-8 bytes, line tables
+- [x] Build a source manager with stable spans, original UTF-8 bytes, line tables
   and precise file/line/column reporting, including allocation-failure paths.
 - [ ] Implement strict UTF-8 and pinned Unicode XID tables, case-sensitive byte
   identity and deterministic filesystem lookup without normalization guesses.
