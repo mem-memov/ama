@@ -49,6 +49,7 @@ AmaStatus ama_object_prepare_field(AmaObjectOperation *operation, AmaObjectWork 
             memset(list->items, 0, count * sizeof(AmaHandle));
         }
         list->count = count;
+        list->capacity = count;
     }
     if (ama_field_owns(descriptor->kind)) { work->cell->metadata.lifetime.child_capacity += count; }
     else if (recipe.references != NULL) {

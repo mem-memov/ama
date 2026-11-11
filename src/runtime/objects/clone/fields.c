@@ -22,7 +22,10 @@ AmaStatus ama_object_clone_fields(AmaWorld *world, AmaObjectWork *work) {
                 if (list->items == NULL) { return ama_status_make(AMA_OUT_OF_MEMORY, NULL, 0); }
                 memset(list->items, 0, count * sizeof(AmaHandle));
             }
+            list->refused = ((AmaHandleList *)((unsigned char *)original + work->type->fields[field].offset))->refused;
+            list->outcome = ((AmaHandleList *)((unsigned char *)original + work->type->fields[field].offset))->outcome;
             list->count = count;
+        list->capacity = count;
         }
         if (!ama_field_owns(work->type->fields[field].kind) && count != 0) {
             size_t destination_count;

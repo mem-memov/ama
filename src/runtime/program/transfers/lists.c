@@ -23,6 +23,10 @@ static AmaStatus ama_transfer_list_prepare(AmaProgram *program, AmaProgramValue 
         if (prepared->items == NULL) { return ama_status_make(AMA_OUT_OF_MEMORY, NULL, 0); }
         memset(prepared->items, 0, count * sizeof(AmaHandle));
     }
+    prepared->capacity = count;
+    if (source != NULL && source->list != NULL) {
+        prepared->refused = source->list->refused; prepared->outcome = source->list->outcome;
+    }
     for (size_t index = 0; index < count; index++) {
         AmaHandle handle = {0};
         if (destination->form == AMA_FIELD_REFERENCE_LIST) {

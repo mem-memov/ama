@@ -23,7 +23,15 @@ struct AmaRecipe {
     const AmaFieldRecipe *fields;
     size_t field_count;
 };
-typedef struct { AmaHandle *items; size_t count; } AmaHandleList;
+typedef struct {
+    AmaHandle *items;
+    size_t count;
+    size_t capacity;
+    bool acquired;
+    bool refused;
+    uint32_t outcome;
+} AmaHandleList;
+AmaStatus ama_handle_list_reserve(SourceAllocator, AmaHandleList *, size_t);
 typedef struct { AmaFieldKind kind; uint64_t type_id; size_t offset; } AmaObjectField;
 typedef struct {
     AmaStatus (*initialize)(void *);

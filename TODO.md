@@ -313,7 +313,7 @@ custom hosts. See `docs/implementation/continuations.md` for invariants and evid
 
 ## 10. Complete lists and a coherent standard library
 
-- [ ] Implement ordered contiguous handle arrays over stable element pools,
+- [x] Implement ordered contiguous handle arrays over stable element pools,
   checked geometric capacity growth and zero-based index conversion.
 - [ ] Implement the specified four-input/three-output interface and six actions,
   default Inspect, positional skips, owning construction/clone and reference lists.
