@@ -64,11 +64,23 @@ bool codegen_emit_control(NativeScaffold *scaffold, FILE *output, const Scaffold
                 name, node->next->selector, node->alternative->selector) >= 0;
         case CONTROL_CAPTURE_ERROR: case CONTROL_CLEANUP_FAILURE: case CONTROL_FAILURE:
             return fputs("goto ama_project_finish;\n", output) != EOF;
-        case CONTROL_RESUME_INSTANCE: case CONTROL_SAVE_POSITION: case CONTROL_YIELD:
+        case CONTROL_SAVE_POSITION:
+            if (fprintf(output, "ama_cell->metadata.service.resume=(AmaResumePosition){true,UINT64_C(%zu)};\n", node->resume->selector) < 0) { return false; }
+            break;
+        case CONTROL_YIELD:
+            return fputs("ama_status=ama_program_yield(&ama_program,&ama_current,&ama_return);\n"
+                "ama_program.current=ama_current;\nif(ama_status.code!=AMA_OK) goto ama_project_finish;\n"
+                "if(ama_return==0) goto ama_project_yielded;\ngoto ama_project_return;\n", output) != EOF;
+        case CONTROL_RESUME_INSTANCE:
+            return fputs("ama_return=ama_cell->metadata.service.resume.selector;\n"
+                "ama_cell->metadata.service.resume=(AmaResumePosition){0};\ngoto ama_project_resume;\n", output) != EOF;
+        case CONTROL_ENTER_INSTANCE:
+            if (fputs("ama_cell->metadata.service.resume=(AmaResumePosition){0};\n", output) == EOF) { return false; }
+            break;
         case CONTROL_ACQUIRE_LIST: case CONTROL_LIST_ACTION: case CONTROL_LIST_INSTALL_INPUT:
             return fputs("ama_status=ama_status_make(AMA_INVALID_STATE,\"Suspension or list actions are not implemented\",45);\n"
                 "goto ama_project_finish;\n", output) != EOF;
-        case CONTROL_ENTER_INSTANCE: case CONTROL_EVALUATE_INPUT: case CONTROL_INSTALL_PARAMETER: case CONTROL_INITIALIZE_RESULT:
+        case CONTROL_EVALUATE_INPUT: case CONTROL_INSTALL_PARAMETER: case CONTROL_INITIALIZE_RESULT:
         case CONTROL_SELECT_SOURCE: case CONTROL_PREFLIGHT_REPLACEMENT: case CONTROL_PREPARE_REPLACEMENT:
         case CONTROL_COMMIT_REPLACEMENT: case CONTROL_RELEASE_VALUES:
             break;

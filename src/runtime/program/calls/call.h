@@ -18,6 +18,7 @@ AmaStatus ama_program_acquire(AmaProgram *, AmaHandle, const AmaProgramInvocatio
 AmaStatus ama_program_prepare(AmaProgram *, AmaHandle, const AmaProgramInvocation *);
 AmaStatus ama_program_release(AmaProgram *, AmaHandle);
 AmaStatus ama_program_connect(AmaProgram *, AmaHandle *, uint64_t, uint64_t);
+AmaStatus ama_program_yield(AmaProgram *, AmaHandle *, uint64_t *);
 AmaStatus ama_program_complete(AmaProgram *, AmaHandle *, uint64_t *);
 AmaStatus ama_program_cell(AmaProgram *, AmaHandle, AmaPoolCell **);
 AmaStatus ama_program_assign(AmaProgram *, AmaHandle, const AmaProgramAccess *, const AmaProgramSource *);

@@ -297,7 +297,7 @@ execution and list action dispatch remain the explicit next sections.
 
 ## 9. Add suspension and continuation copying
 
-- [ ] Save explicit branch/loop positions at `%`, separating available yielded
+- [x] Save explicit branch/loop positions at `%`, separating available yielded
   state from a busy instance waiting for a nested call.
 - [ ] Implement output-only resumption, entry restart and completed/yielded/failed
   host outcomes. Failed execution is not resumable; root resume is host-explicit.

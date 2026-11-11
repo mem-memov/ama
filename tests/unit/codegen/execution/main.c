@@ -149,7 +149,28 @@ static void it_reports_the_complete_active_chain_before_terminal_disposal(void) 
     expect_diagnostic("generated/project/main:4:1");
 }
 
+static void it_resumes_repeated_yields_and_restarts_at_entry(void) {
+    directory("generated/project");
+    file("generated/project/task", "@!\nprobe\n.worker\nprobe!\n < |10\n%\nprobe!\n < |20\n%\nprobe!\n < |30\n");
+    execute_project("@!\ntask\n.task\ntask!\ntask%\ntask%\ntask%\n:\n task!\ntask!\n", "10:1:0\n20:2:0\n30:3:0\n10:4:0\n10:5:0\n", true);
+}
+
+static void it_resumes_inside_a_loop_without_preserving_c_activations(void) {
+    directory("generated/project");
+    native_fixture("decrement", "@<\ninput\n.value\n@>\noutput\n.value\n@C\n");
+    file("generated/project/task", "@!\ncount\n.value\n |3\nstep\n.decrement\ncount\n{\n step!\n  < count\n  > count\n %\n}\n");
+    execute_project("@!\ntask\n.task\ntask!\ntask%\ntask%\ntask%\n", "count=3\ncount=2\ncount=1\n", true);
+}
+
+static void it_rejects_unhandled_root_yield_after_cleanup(void) {
+    execute_project("@!\n%\n", "", false);
+    expect_diagnostic("Unhandled root yield");
+}
+
 void run(void) {
+    it_resumes_repeated_yields_and_restarts_at_entry();
+    it_resumes_inside_a_loop_without_preserving_c_activations();
+    it_rejects_unhandled_root_yield_after_cleanup();
     it_executes_literal_default_retained_and_independent_native_states();
     it_does_not_enter_the_body_or_alternative_after_literal_failure();
     it_routes_outputs_in_text_order_using_the_new_index();
