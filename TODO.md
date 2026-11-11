@@ -79,7 +79,7 @@ supervision prevents it from running; leak-check certification is not claimed.
   companions. Keep logical identities distinct from physical diagnostic paths.
 - [x] Generate collision-checked hashes from complete, unambiguously encoded
   identities; retain source names and stable Unicode test vectors.
-- [ ] Represent diagnostics structurally: primary span, cause, expected construct,
+- [x] Represent diagnostics structurally: primary span, cause, expected construct,
   related declaration/type spans and an actionable explanation when exact.
 - [ ] Render source excerpts and original module names, never internal hashes as
   the only explanation. Reuse this representation in later command-line/editor tools.

@@ -1,2 +1,2 @@
-SUBDIRECTORIES := driver native source
+SUBDIRECTORIES := driver native source diagnostics
 include ../parent.mk
