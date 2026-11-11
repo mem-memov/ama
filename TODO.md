@@ -237,7 +237,7 @@ backend is available. These tools do not extend the grammar.
 
 - [x] Build stable block pools per executable module type, typed slot/generation
   handles, empty references, free-slot reuse and generation-exhaustion retirement.
-- [ ] Reclaim free trailing blocks without reviving stale handles after regrowth.
+- [x] Reclaim free trailing blocks without reviving stale handles after regrowth.
 - [ ] Construct owned fields and native payloads in the specified order; implement
   partial failure cleanup, at-most-once destruction and terminal cleanup errors.
 - [ ] Implement independent ownership-tree cloning with an injective clone map,

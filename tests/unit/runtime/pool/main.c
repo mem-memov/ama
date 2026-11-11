@@ -81,7 +81,56 @@ static void it_preserves_pool_validity_when_each_growth_allocation_fails(void) {
     }
 }
 
+static void it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities(void) {
+    setup_test();
+    AmaPool pool;
+    AmaStatus status = ama_pool_init(&pool, sources.allocator, 9, sizeof(size_t), 2, 2);
+    assert(status.code == AMA_OK);
+    AmaHandle handles[4];
+    AmaPoolCell *first = NULL;
+    for (size_t index = 0; index < 4; index++) {
+        AmaPoolCell *cell = NULL;
+        status = ama_pool_reserve(&pool, &handles[index], &cell);
+        assert(status.code == AMA_OK);
+        if (index == 0) { first = cell; }
+    }
+    status = ama_pool_release(&pool, handles[1]);
+    assert(status.code == AMA_OK);
+    size_t released;
+    status = ama_pool_reclaim(&pool, &released);
+    assert(status.code == AMA_OK && released == 0);
+    for (size_t index = 2; index < 4; index++) {
+        status = ama_pool_release(&pool, handles[index]);
+        assert(status.code == AMA_OK);
+    }
+    status = ama_pool_reclaim(&pool, &released);
+    assert(status.code == AMA_OK && released == 1 && pool.allocated_blocks == 1);
+    for (size_t index = 0; index < 20; index++) {
+        AmaHandle next;
+        AmaPoolCell *cell = NULL;
+        status = ama_pool_reserve(&pool, &next, &cell);
+        assert(status.code == AMA_OK);
+        status = ama_pool_lookup(&pool, handles[0], true, &cell);
+        assert(status.code == AMA_OK && cell == first);
+        for (size_t old = 1; old < 4; old++) {
+            status = ama_pool_lookup(&pool, handles[old], true, &cell);
+            assert(status.code == AMA_STALE_REFERENCE);
+        }
+        status = ama_pool_release(&pool, next);
+        assert(status.code == AMA_OK);
+        status = ama_pool_reclaim(&pool, &released);
+        assert(status.code == AMA_OK);
+    }
+    status = ama_pool_release(&pool, handles[0]);
+    assert(status.code == AMA_OK);
+    status = ama_pool_reclaim(&pool, &released);
+    assert(status.code == AMA_OK && pool.allocated_blocks == 0);
+    ama_pool_dispose(&pool);
+    destroy_test();
+}
+
 void run(void) {
+    it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities();
     it_keeps_payload_addresses_stable_through_directory_growth();
     it_never_reissues_an_exhausted_slot_or_accepts_stale_empty_and_wrong_type_handles();
     it_preserves_pool_validity_when_each_growth_allocation_fails();

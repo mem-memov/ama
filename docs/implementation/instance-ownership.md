@@ -28,3 +28,16 @@ before allocation, and SIZE_MAX is reserved as the free-chain sentinel.
 [Pool tests](../../tests/unit/runtime/pool/main.c) cover stable addresses over many
 growth steps, every issued historical handle with a three-generation limit, empty
 and mismatched handles, and both growth allocation failures.
+
+## Reclamation
+
+Reclamation finds the last occupied block, rebuilds the free chain using only
+retained blocks, then releases free blocks after that boundary. Empty historical
+directory entries remain null permanently. Growth appends new slot identities;
+it never fills historical directory holes. This permanently retires the released
+identities, including unissued slots, and therefore preserves stale-reference
+rejection without allocating a per-slot tombstone table. The small directory
+history remains O(B) in lifetime block count. Reclamation is O(B*S), allocates
+nothing, and cannot move a live payload or reclaim a partly occupied block.
+Tests repeat reclaim/regrow with reduced generation limits and verify all old
+handles as well as the address of a retained instance.
