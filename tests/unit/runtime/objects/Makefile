@@ -1,2 +1,2 @@
-SUBDIRECTORIES := lifecycle
+SUBDIRECTORIES := lifecycle clone
 include ../../../parent.mk

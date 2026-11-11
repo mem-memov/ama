@@ -80,3 +80,32 @@ runtime parent links. No recursive C walk or unbounded emergency allocation is
 required. [Lifecycle tests](../../tests/unit/runtime/objects/lifecycle/main.c)
 exercise declaration order, selected literal construction, every failed prefix,
 secondary errors, list buffers and all allocation failures over nested trees.
+
+## Clone boundaries and reference algebra
+
+Before cloning, protect the complete source ownership tree and verify each native
+payload has its independent clone capability. Availability follows ownership only;
+an external referenced target may be running, stale or empty without affecting
+copying its handle. Source protections survive every native callback and unwind
+on all errors. Native hooks cannot bypass this by reentering object operations.
+
+Each clone boundary records exact source identities and fresh destination slots.
+Reservation uniqueness and exclusive ownership make that map injective. Fixup is
+`f(h) = map(h)` for identities in the boundary and `f(h) = h` otherwise. The root
+participates, as do all owned list elements; references are not traversed for
+cloning. Fixup runs after the entire map exists and before publication, covering
+forward/ancestor/cyclic references and reference-list entries. Child construction
+uses the source shape and clone hooks, never declaration defaults. A recipe may
+select source cloning directly; repeated source initializers get separate clone
+boundaries, so each copy's self-references select its own instance.
+
+Ordinary clones clear saved positions throughout the tree. Continuation recipes
+and explicit continuation cloning preserve each instance's own saved position but
+never copy return links, acquisitions or activity flags. The metadata clone
+operation builds fresh controls from the protected source's prior available state.
+Failure finalizes only prepared resources and restores source protections; output
+handles remain untouched. A conservative O((V+E)^2 + V*T) bound follows from finite
+work records, linear identity lookup and reference-map lookup, with O(V+E) temporary
+storage. [Clone tests](../../tests/unit/runtime/objects/clone/main.c) cover all forms,
+internal/external boundaries, independent native allocations, saved positions,
+busy/unsupported sources and every preparation allocation failure.

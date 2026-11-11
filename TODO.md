@@ -240,7 +240,7 @@ backend is available. These tools do not extend the grammar.
 - [x] Reclaim free trailing blocks without reviving stale handles after regrowth.
 - [x] Construct owned fields and native payloads in the specified order; implement
   partial failure cleanup, at-most-once destruction and terminal cleanup errors.
-- [ ] Implement independent ownership-tree cloning with an injective clone map,
+- [x] Implement independent ownership-tree cloning with an injective clone map,
   internal-reference remapping and unchanged external targets.
 - [ ] Prepare replacements before destructive commit; preserve destinations on
   preparation failure and finalize resources correctly after commit failure.

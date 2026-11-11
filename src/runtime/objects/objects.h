@@ -16,6 +16,7 @@ struct AmaRecipe {
     AmaConstructorKind constructor;
     AmaByteView literal;
     AmaHandle source;
+    bool continuation;
     const AmaFieldRecipe *fields;
     size_t field_count;
 };
