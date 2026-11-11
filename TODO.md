@@ -107,7 +107,7 @@ remain their subsequent tasks; this section does not claim a working compiler.
 
 - [x] Read indentation, comments and literal boundaries without altering payload
   bytes, trailing spaces or deliberate line endings.
-- [ ] Parse sections, constants-only modules and the specified draft boundary.
+- [x] Parse sections, constants-only modules and the specified draft boundary.
 - [ ] Build an AST with spans for declarations, initialization, assignment,
   references, lists, qualified constants, entry/read/resume calls and control flow.
 - [ ] Parse empty positional `<`/`>` placeholders with independent arity counts;
