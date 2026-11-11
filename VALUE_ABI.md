@@ -38,6 +38,50 @@ payloads, callbacks or asynchronous work. Persistent Ama ownership and reference
 belong in declared Ama fields. Opaque native payloads contain native resources
 only, never hidden Ama handles or encoded instance addresses.
 
+## Generated headers and native authoring
+
+Under CABI-06, explicit scaffolding generation provides a native interface header
+and, when requested, a companion `.c` skeleton that directly includes that header.
+The header is self-contained: it includes the standard, native representation
+and generated dependency headers needed for parameter/result/state types, the
+entry signature and ABI services. Types are complete wherever value passing or
+permitted field access requires a definition; a permitted opaque/view contract
+may use forward declarations. Resource internals are exposed only as permitted
+by the native module's declared C representation/view contract.
+Legal reference cycles are handled through declaration ordering and guarded
+headers, without requiring the author to repair include order or copy typedefs.
+
+The header can be the first project include in an otherwise empty C translation
+unit. It does not depend on the final project assembly or a forced include, and
+does not include Ama companion `.c` files, native entry/hook bodies or project
+runtime/storage definitions. Inline utilities in required standard/external C
+headers remain permitted dependencies.
+
+The header establishes and cleans up its own `AMA_NATIVE` context under NAME-05;
+the skeleton explicitly establishes the context for its body rather than relying
+on leaked header macros. Both contexts use the same module identity during
+independent checking and final assembly, and clean up temporary macros before
+another module's context begins. Repeated inclusion and inclusion into the final
+assembly must preserve identical qualified names without duplicate definitions.
+
+Generation supplies machine-readable C-tooling settings, including the working
+directory, include paths, defines and language/toolchain flags; a compilation
+database is one supported choice. These let a C language service resolve types
+while editing the scaffold before the execution backend is available. Editor
+features depend on the editor's C-analysis support.
+
+Acceptance independently syntax-checks the header and untouched C skeleton using
+those settings, then checks their composition with the generated project. Include
+transitive type dependencies, equal helper basenames in distinct modules, legal
+reference cycles, repeated inclusion and naming-context cleanup. Independent
+syntax checks do not change the single project translation-unit or mandatory
+native-entry inlining contracts.
+
+Generated headers/configuration have designated ownership; handwritten companion
+files are preserved unless their creation/replacement is explicitly requested.
+These requirements describe the target generator; its implementation remains
+tracked in section 6 of [TODO.md](TODO.md).
+
 ## Fixed capabilities
 
 A module's `.abi` companion binds exactly these symbols:

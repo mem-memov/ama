@@ -188,13 +188,35 @@ interpretations deferred to the C emitter.
 - [ ] Report draft status distinctly; a required draft remains a build error.
 - [ ] Generate native headers/signatures and optional C/ABI/test skeletons from
   validated interfaces and ABI contracts instead of duplicating declarations.
+  Follow CABI-06: every C skeleton directly includes a self-contained generated
+  interface header supplying required parameter/result/state/service types and
+  transitive standard/native/generated includes. Arrange complete definitions and
+  permitted forward declarations for legal reference cycles, with consistent
+  NAME-05 contexts and repeat-inclusion guards. Establish and clean up the header
+  and skeleton-body contexts explicitly, without leaking header macros to the body.
+  Keep declaration headers free of Ama companion `.c` files, native entry/hook
+  bodies and project runtime/storage definitions; ordinary external-header inline
+  utilities remain permitted. No prior/forced include or final project assembly
+  may be needed to edit the scaffold.
+- [ ] Generate machine-readable C-tooling configuration for native scaffolds:
+  working directory, include search paths, required defines and language/toolchain
+  flags, for example in a compilation database. It must support C language-service
+  analysis and syntax checks before the execution backend is available.
 - [ ] Make output ownership explicit. Preserve existing handwritten companions;
   show conflicts and require an explicit generation/overwrite request.
 - [ ] Test that checking and compilation agree on frontend validity and diagnostics,
   and that generated native declarations compile against the ABI harness.
+  Independently syntax-check each generated interface header as the first project
+  include and each untouched C skeleton using the generated tooling configuration.
+  Check their agreement with the final assembly on types and NAME-05 identities;
+  cover transitive types, same-basename helpers across modules, legal reference
+  cycles, repeat inclusion and naming-context cleanup. Independent checks do not
+  introduce separate native translation units or weaken mandatory entry inlining.
 
 Ready when: contributors can validate interfaces and obtain correct scaffolding
-before the execution backend is complete. These tools do not extend the grammar.
+with editor-resolvable types and reproducible C syntax checks before the execution
+backend is complete. Final assembly composition checks are completed when the
+backend is available. These tools do not extend the grammar.
 
 ## 7. Implement stable instances and ownership operations
 

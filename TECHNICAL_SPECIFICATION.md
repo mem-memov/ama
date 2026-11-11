@@ -1769,6 +1769,11 @@ Here `project.c` is a generated include fragment, not another translation unit.
 File names and launcher customization are engineering choices; the ordering and
 single translation-unit execution contract are requirements.
 
+Generated native interface headers and authoring scaffolds under CABI-06 are
+additional declaration/authoring artifacts. Checking them independently does not
+make native modules separate program translation units; the executable still
+uses the single project assembly required here.
+
 **GEN-02.** Ordinary Ama modules become labeled blocks inside one C execution
 function. Entry uses direct jumps; return dispatch uses a validated continuation
 selector and standard C `switch`/`goto` branches. Emit each ordinary module body
@@ -1932,6 +1937,57 @@ fixup responsibility. There is no additional tracing protocol for hidden referen
 This boundary applies equally to default values, parameters/results, list elements,
 ordinary clones, and `%` copies. C remains capable of arbitrary operations, but
 violating this native contract is unsupported native code, not defined Ama behavior.
+
+**CABI-06.** Provide an explicit native-scaffolding command that derives a native
+interface header and an optional companion `.c` skeleton from the validated Ama
+interface and native ABI contracts. The `.c` skeleton MUST directly include its
+generated interface header. That header MUST be self-contained: including it as
+the first project header in a C translation unit supplies all declarations and
+definitions needed for the native entry signature and permitted typed access to
+parameters, results, state and ABI services. It explicitly includes required
+standard, native representation and generated dependency headers. Complete type
+definitions must be available wherever C value passing or permitted field access
+requires them; forward declarations suffice only where the declared opaque/view
+contract permits them. This does not expose resource internals beyond the native
+module's declared C representation/view contract.
+
+The author MUST NOT have to copy generated declarations, discover missing type
+headers, include the final project assembly, or rely on a previous include or
+forced include to obtain those types. Arrange forward declarations, type
+definitions and guarded dependency headers so legal module-reference cycles do
+not create incomplete-type uses or recursive inclusion failures. Declaration
+headers must not pull in Ama companion `.c` files, native entry/hook bodies or
+project runtime/storage definitions; their reuse in the project assembly must
+not duplicate types, objects or bodies. Inline utilities supplied by required
+standard/external C headers remain ordinary dependencies.
+
+Generated authoring contexts MUST establish the required NAME-05 prefix for the
+header and the skeleton body under both independent C checking and final assembly,
+with identical module-qualified identities. A header cleans up its temporary
+naming context after inclusion; the skeleton establishes the context for its body
+explicitly instead of relying on macros leaked by that header. Each contribution
+performs NAME-05's prescribed cleanup before another module's context begins.
+Native representation headers remain authored C inputs checked by the C compiler;
+this requirement does not require the Ama compiler to parse C or infer missing
+declarations.
+
+Generation MUST also provide machine-readable C-tooling configuration for the
+scaffold, including its working directory, include search paths, required defines
+and language/toolchain flags; a compilation database is an acceptable format.
+With those settings, a C language service can analyze the scaffold without the
+execution backend or a prebuilt final project assembly. No guarantee is made for
+editors without the relevant C-analysis support. Normal generation refreshes
+owned headers/configuration; creating or replacing handwritten companions follows
+COMP-04's explicit-request and output-ownership rules.
+
+Acceptance requires an isolated C syntax check with the generated interface header
+as the first project include, a syntax check of the untouched generated `.c`
+skeleton using the supplied tooling settings, and a composed project check proving
+agreement of types, names and include ordering. Exercise transitive types, equal
+native helper basenames in different modules, supported reference cycles, repeat
+inclusion and temporary naming-context cleanup. These are declaration/scaffold
+checks, not permission to link native modules separately or relax native-entry
+inlining.
 
 ### 11.2.1 Symbolic protocol registration in `.abi`
 
@@ -2769,6 +2825,7 @@ ownership effects, and source diagnostics are covered. At minimum:
 | Area | Required acceptance evidence |
 |---|---|
 | Translation pipeline | Source/AST/resolved IR/storage plans remain distinct; one assembled project C translation unit; labels/explicit return links for Ama, verified inline native entries, original source maps |
+| Native authoring scaffolds | Self-contained generated interface header directly included by the C skeleton; complete required types and transitive includes; standalone header/skeleton C checks using supplied tooling settings; reference cycles, repeat inclusion and module-qualified naming agree with final single-unit assembly; handwritten companions preserved |
 | Ama dependencies | Transitive type/constant/native closure loaded once per logical identity; shared code/constants but separate owned instances; missing/draft/duplicate dependencies diagnosed with requesting paths; no textual Ama includes or function linking |
 | Compiler decomposition | Every major component has cohesive nested subcomponents, short single-operation functions, narrow declared interfaces and explicit allocation/dependency ownership |
 | Component/composite tests | Independently runnable C leaves cover meaningful parts and assembled parents; real cross-component handoffs and generated-C integration tested; dependency changes invalidate generated artifacts |
