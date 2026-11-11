@@ -22,8 +22,11 @@ not introduce a second parser, resolver or type system.
   The new driver separates request recognition, output and orchestration; old
   implementations and test cases have been removed. Build and test rules have
   been reset to support this foundation; their acceptance checks remain below.
-- [ ] Make source discovery and test dependency tracking support the full nested
-  source tree and rebuild affected consumers after header changes.
+- [x] Make source discovery and test dependency tracking support the full nested
+  source tree and rebuild affected consumers after header changes. Exact command
+  manifests additionally track compiler settings and link-input membership;
+  [incremental-build tests and invariants](docs/implementation/incremental-build.md)
+  cover the project and independent test leaves.
 - [ ] Retain two simple recursive C/Make harnesses: component tests and integration
   tests. Give each leaf `main.c`, descriptive `it_*` functions and explicit `run()`;
   put guarded fixtures in parent `common.c` files and use `assert`.

@@ -11,16 +11,22 @@ include make/sources.mk
 PROJECT_SOURCES := $(call source_files,src)
 PROJECT_OBJECTS := $(patsubst src/%.c,build/%.o,$(PROJECT_SOURCES))
 PROJECT_DEPS := $(PROJECT_OBJECTS:.o=.d)
+CONFIGURATION_DIRECTORY := build
+BINARY := ama
+OBJECTS := $(PROJECT_OBJECTS)
+COMPILE_COMMAND = $(C_COMPILER) $(CPPFLAGS) -Isrc $(C_COMPILER_FLAGS) $(LTO_FLAGS) -MMD -MP
+LINK_COMMAND = $(C_COMPILER) $(C_COMPILER_FLAGS) $(LTO_FLAGS) $(LINKER_FLAGS)
+include make/configuration.mk
 
 .PHONY: all test test-clean clean rebuild help
 all: ama
 
-ama: $(PROJECT_OBJECTS)
->    $(C_COMPILER) $(C_COMPILER_FLAGS) $(LTO_FLAGS) $(LINKER_FLAGS) -o $@ $^
+ama: $(PROJECT_OBJECTS) build/link.configuration
+>    $(LINK_COMMAND) -o $@ $(PROJECT_OBJECTS)
 
-build/%.o: src/%.c Makefile make/sources.mk
+build/%.o: src/%.c build/compile.configuration Makefile make/sources.mk make/configuration.mk
 >    @mkdir -p $(dir $@)
->    $(C_COMPILER) $(CPPFLAGS) -Isrc $(C_COMPILER_FLAGS) $(LTO_FLAGS) -MMD -MP -c $< -o $@
+>    $(COMPILE_COMMAND) -c $< -o $@
 
 -include $(PROJECT_DEPS)
 
@@ -42,4 +48,4 @@ help:
 >    @echo "make test: run independent C/assert unit and integration leaves"
 >    @echo "make test-clean: remove test outputs; make clean: remove all build outputs"
 
-export C_COMPILER C_COMPILER_FLAGS LTO_FLAGS
+export C_COMPILER C_COMPILER_FLAGS CPPFLAGS LTO_FLAGS LINKER_FLAGS

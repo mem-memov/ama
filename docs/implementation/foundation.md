@@ -61,15 +61,15 @@ Source discovery recursively visits the ordinary finite directory tree under
 the tree's finiteness; induction on depth shows each source is included. Cyclic
 symlink directory graphs are outside this build-input contract. Compiler dependency
 files determine header consumers rather than an approximate wildcard depth.
-Recursive discovery and incremental rebuilding require their separate acceptance
-checks in TODO; this foundation does not claim those checks have been completed.
+Recursive discovery and incremental rebuilding now have separate executable
+acceptance checks and a [contract](incremental-build.md).
 
 ## Remaining work
 
-Implement and verify build invalidation when source membership changes, compiler
-flags change, and included headers/fixtures change. Verify a no-change build does
-not recompile, test output preservation on failure, and assertions under release
-flags. These are the next build/test foundation tasks, not language changes.
+Build invalidation, no-change behavior and nested dependency checks are completed
+in the incremental-build task. Next, finish the test-harness acceptance checks for
+output preservation on failure and cleanup ordering, including assertions under
+release flags. These are foundation tasks, not language changes.
 
 ## Verification of this task
 

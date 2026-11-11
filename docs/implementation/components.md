@@ -114,5 +114,6 @@ or reused, no old test was analyzed, and no implementation test was claimed.
 
 The subsequent foundation task removed those implementations and test cases and
 introduced new driver components and tests; see [foundation.md](foundation.md).
-Next, complete the independent acceptance checks for recursive discovery, build
-invalidation and test-output preservation specified in TODO.
+Recursive discovery and build invalidation checks are recorded in
+[incremental-build.md](incremental-build.md). Test-harness acceptance, including
+output preservation, is the next task in TODO.

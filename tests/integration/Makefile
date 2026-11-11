@@ -1,2 +1,2 @@
-SUBDIRECTORIES := launcher
+SUBDIRECTORIES := launcher rebuild
 include ../parent.mk

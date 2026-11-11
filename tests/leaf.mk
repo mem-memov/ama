@@ -11,6 +11,12 @@ LOCAL_SOURCES ?= main.c
 TEST_OBJECTS := $(patsubst %.c,generated/objects/local/%.o,$(LOCAL_SOURCES)) \
     $(patsubst %.c,generated/objects/production/%.o,$(SOURCES))
 TEST_DEPS := $(TEST_OBJECTS:.o=.d)
+CONFIGURATION_DIRECTORY := generated
+BINARY := generated/test
+OBJECTS := $(TEST_OBJECTS)
+COMPILE_COMMAND = $(C_COMPILER) $(CPPFLAGS) -I$(ROOT)/src $(C_COMPILER_FLAGS) $(LTO_FLAGS) -UNDEBUG $(TEST_DEFINES) -MMD -MP
+LINK_COMMAND = $(C_COMPILER) $(C_COMPILER_FLAGS) $(LTO_FLAGS) $(LINKER_FLAGS)
+include $(ROOT)/make/configuration.mk
 
 .PHONY: all build run clean
 all: run
@@ -18,16 +24,16 @@ all: run
 
 build: generated/test
 
-generated/test: $(TEST_OBJECTS)
->    $(C_COMPILER) $(C_COMPILER_FLAGS) $(LTO_FLAGS) $(LINKER_FLAGS) -o $@ $^
+generated/test: $(TEST_OBJECTS) generated/link.configuration
+>    $(LINK_COMMAND) -o $@ $(TEST_OBJECTS)
 
-generated/objects/local/%.o: %.c Makefile $(ROOT)/tests/leaf.mk
+generated/objects/local/%.o: %.c generated/compile.configuration Makefile $(ROOT)/tests/leaf.mk $(ROOT)/make/configuration.mk
 >    @mkdir -p $(dir $@)
->    $(C_COMPILER) $(CPPFLAGS) -I$(ROOT)/src $(C_COMPILER_FLAGS) $(LTO_FLAGS) -UNDEBUG $(TEST_DEFINES) -MMD -MP -c $< -o $@
+>    $(COMPILE_COMMAND) -c $< -o $@
 
-generated/objects/production/%.o: $(ROOT)/src/%.c Makefile $(ROOT)/tests/leaf.mk
+generated/objects/production/%.o: $(ROOT)/src/%.c generated/compile.configuration Makefile $(ROOT)/tests/leaf.mk $(ROOT)/make/configuration.mk
 >    @mkdir -p $(dir $@)
->    $(C_COMPILER) $(CPPFLAGS) -I$(ROOT)/src $(C_COMPILER_FLAGS) $(LTO_FLAGS) -UNDEBUG $(TEST_DEFINES) -MMD -MP -c $< -o $@
+>    $(COMPILE_COMMAND) -c $< -o $@
 
 -include $(TEST_DEPS)
 
