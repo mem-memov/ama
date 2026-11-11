@@ -1,2 +1,2 @@
-SUBDIRECTORIES := driver native source diagnostics lexer parser project semantic planning compiler
+SUBDIRECTORIES := driver native source diagnostics lexer parser project semantic planning compiler runtime
 include ../parent.mk

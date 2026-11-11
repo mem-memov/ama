@@ -235,7 +235,7 @@ backend is available. These tools do not extend the grammar.
 
 ## 7. Implement stable instances and ownership operations
 
-- [ ] Build stable block pools per executable module type, typed slot/generation
+- [x] Build stable block pools per executable module type, typed slot/generation
   handles, empty references, free-slot reuse and generation-exhaustion retirement.
 - [ ] Reclaim free trailing blocks without reviving stale handles after regrowth.
 - [ ] Construct owned fields and native payloads in the specified order; implement
