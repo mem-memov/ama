@@ -30,6 +30,14 @@ static AmaStatus ama_owner_ancestor(AmaWorld *world, AmaHandle possible, AmaHand
     return ama_status_make(AMA_INVALID_STATE, NULL, 0);
 }
 
+AmaStatus ama_object_contains(AmaWorld *world, AmaHandle root, AmaHandle node, bool *found) {
+    *found = ama_same_handle(root, node);
+    if (*found) { return ama_status_success(); }
+    size_t bound = 0;
+    AmaStatus status = ama_world_population(world, &bound);
+    return status.code == AMA_OK ? ama_owner_ancestor(world, root, node, bound, found) : status;
+}
+
 AmaStatus ama_object_copy_checks(AmaWorld *world, AmaHandle destination, AmaHandle source,
     bool continuation, bool *no_op) {
     *no_op = false;

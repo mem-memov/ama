@@ -4,6 +4,7 @@
 
 AmaStatus ama_constant_payload(AmaProgram *program, AmaConstantBuildWork *work) {
     AmaObjectType *type = work->value->type->object;
+    program->world->construction_operation = work->operation;
     size_t size = type->pool.payload_size - type->native_offset;
     size_t alignment = type->pool.alignment;
     if (size == 0) { size = 1; }

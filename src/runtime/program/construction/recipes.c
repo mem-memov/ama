@@ -54,6 +54,12 @@ AmaStatus ama_program_field_recipe(AmaWorld *world, SourceArena *arena, AmaHandl
     const AmaProgramType *type = ama_program_type(program, parent.type_id);
     if (type == NULL || field >= type->field_count) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
     const AmaProgramField *declaration = &type->fields[field];
-    return ama_program_resolve_recipes(program, arena, parent, NULL,
+    if (program->current.generation == 0) {
+        program->initialization_operation = declaration->operation;
+        program->world->construction_operation = declaration->operation;
+    }
+    AmaStatus status = ama_program_resolve_recipes(program, arena, parent, NULL,
         declaration->initializers, declaration->initializer_count, type->object->fields[field].kind, output);
+    if (status.code == AMA_OK) { output->operation = declaration->operation; }
+    return status;
 }

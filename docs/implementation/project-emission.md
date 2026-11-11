@@ -1,55 +1,73 @@
 # One project C assembly
 
 `ama --emit ROOT .module --out DIR --sdk /path/to/ama/src` uses the same strict
-frontend and typed plan as `--check`. It does not execute constructors or invoke
-the C compiler. Generation borrows that validated frontend and owns qualified
-identities, complete output bytes and structured diagnostics until destruction.
-The existing manifest/lock/staging publisher provides explicit output ownership.
+frontend and typed plan as `--check`. It generates C without executing constructors
+or invoking the C compiler. Add `--compile` to compile, verify and publish
+`DIR/program`. Generated files and the executable share the existing scoped
+manifest, content hashes, lock, staged replacement and rollback protocol. Native
+companions remain handwritten inputs; an unowned/edited output needs explicit
+`--overwrite`.
 
 The launcher includes `project.h` at file scope and `project.c` inside one execution
-function. The header includes the same native declaration files as isolated
-scaffolding, concrete instance layouts, shared-value declarations, native companion
-bodies, lifecycle hook adapters and descriptor/pool declarations. Native C bodies
-include their interface and explicitly establish/clean their body naming context,
-as the generated skeleton already does. No Ama module has a C function.
+function. The header includes native declaration files, concrete heap layouts,
+shared-value storage, native companion bodies, typed lifecycle adapters, runtime
+and source/operation tables. Native declarations are exactly those supplied to
+isolated authoring headers. Each native entry is redeclared through its exact
+function typedef before its definition, including its void return type.
+The author establishes and cleans the body's generated naming context. No Ama
+module becomes a C function.
 
-Concrete field offsets, payload size and alignment come from C `offsetof`, `sizeof`
-and `_Alignof`, checked by both C assertions and the runtime descriptor initializer.
-Internal compiler-generated storage/helper identifiers derive from registered view
-identities, disjoint from authored native prefixes. Shared storage uses registered
-constant identities and has no slot/generation/control record. All required native
-entry/hook declarations and typed uses share the scaffolding's exact nominal types.
+`offsetof`, `sizeof` and `_Alignof` provide physical layouts and runtime descriptor
+checks. Hash-qualified helper/type/member identities derive from complete logical
+paths; compiler helpers and authored native prefixes occupy disjoint categories.
+Shared values have no pool slot or service state. The SDK `runtime/assembly.h`
+includes runtime definitions once; qualified private helper names avoid collisions.
+See [startup](program-startup.md), [entry preparation](entry-preparation.md) and
+[execution](stackless-execution.md) for construction and transfer invariants.
 
-The SDK `runtime/assembly.h` includes runtime definitions once in this same unit.
-Private SDK helpers have component-qualified names so inclusion cannot collide
-across SDK source files. These helpers perform value/lifecycle operations, not
-C dispatch of Ama bodies. The project control fragment owns labels for the typed
-control graph. Return dispatch and executable semantics are connected by the
-subsequent section 8 tasks. Startup now initializes shared values before one
-explicit heap root and completes declarations-only bodies; unsupported execution
-fails explicitly. See [startup](program-startup.md). No source construct is silently
-executed as a no-op.
+## Native compilation and verification
 
-The compilation database contains only the launcher project translation unit,
-with SDK/output includes and explicit C target flags; user flags remain separate
-JSON arguments. Native modules are not linked as independent translation units.
-Edited/unowned output conflicts still require explicit `--overwrite`.
+The compiler materializes the in-memory assembly in a private temporary directory,
+then invokes tools with argument arrays, never shell text. The supported GCC target
+is enforced by the SDK. User `--c-flag` arguments precede mandatory C11/O2 and
+non-LTO/non-whole-program compilation settings. Required native libraries link
+after the project object. `nm --format=posix` examines the unstripped object before
+linking. Verification requires `main` and rejects any surviving registered native
+entry or its compiler-generated suffix family. Always-inline entry bodies must
+therefore disappear; ordinary C helpers/lifecycle callbacks may remain.
+
+Only after successful compilation, entry verification and linking does the
+executable join the artifact set. Publication sets its execute permission. Failure
+leaves existing published outputs intact and prevents publishing a failed build.
+Temporary tool outputs are cleaned separately from owned public outputs. Compiler
+and linker diagnostics retain their native details. Build flags that request
+additional compiler side files remain the toolchain user's responsibility.
+
+The compilation database describes the final launcher translation unit with the
+same include roots and mandatory language/optimization settings. Every argument
+is separately JSON encoded. Native modules are never independently compiled or
+linked as Ama modules.
 
 ## Correctness and evidence
 
-There is one descriptor field for every planned storage field, in declaration
-order, and no shared field in any instance layout. The C compiler supplies physical
-layout; the plan's logical slots are never guessed byte offsets. Each native helper
-is qualified by its complete module identity and checked through a typed adapter.
-All control selectors are unique by the typed plan's monotone selector allocation.
-Emission is finite traversal of the plan and artifacts, with linear output size
-and conservative quadratic identity/type lookup. Allocation failure retains the
-first diagnostic, publishes no artifacts and frees every temporary owner.
+Every planned field has one descriptor at its declaration slot; shared declarations
+never enter instance layouts. Concrete C types provide the sizes/alignments and
+check native hook/entry signatures. Qualified identities and unique control
+selectors prevent accidental cross-module wiring. Emission is finite traversal
+with linear output size and explicit registry lookups; allocation failure retains
+the first diagnostic and publishes no incomplete artifact. Tool success and symbol
+verification are necessary before executable publication; failures cannot silently
+fall back to ordinary C calls for Ama/native entry dispatch.
 
-[Assembly tests](../../tests/unit/codegen/assembly/main.c) compose the real frontend,
-declaration registry, emitter, SDK and native sources. They compile the generated
-launcher under Werror, include two modules with identical local native names, use
-shared declarations and legal reference cycles, and inject every emission
-allocation failure. [CLI tests](../../tests/integration/check/main.c) also prove
-that emission/checking do not invoke C on native inputs containing `#error`.
-Execution and final native-inlining acceptance are added with their consumers.
+[Assembly tests](../../tests/unit/codegen/assembly/main.c) compile shared isolated
+and project declarations, include equal native local names, and inject every
+emission allocation failure. [Execution tests](../../tests/unit/codegen/execution/main.c)
+run real compiled projects through the production verifier, including a negative
+non-inlined entry. [CLI tests](../../tests/integration/execution/main.c) execute the
+published binary and protect previous/unowned files on failure. [Check-only tests](../../tests/integration/check/main.c)
+prove that `--check` and emission without `--compile` never invoke native C.
+
+Suspension/resume execution and list action dispatch remain sections 9 and 10;
+this stage supports their existing acquisition checks and rejects unsupported
+execution explicitly. Whole-list value copying and indexed result routing already
+use the typed lifecycle runtime.

@@ -59,8 +59,8 @@ field prefix and whether the native payload became live. It destroys a live
 payload once before completed fields in reverse order, never invokes the failed
 constructor's destructor, and preserves the primary failure while accumulating
 cleanup errors. Clone failure also releases its partial map. Native constructor
-partial cleanup remains native-owned. These recipes require the later runtime
-ledger/walkers; they do not claim that runtime resource handling is implemented.
+partial cleanup remains native-owned. These recipes are consumed by the [runtime ledger and walkers](instance-ownership.md)
+and [typed entry preparation](entry-preparation.md).
 
 ## Explicit control graph
 

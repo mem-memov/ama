@@ -16,6 +16,7 @@ typedef struct {
     const char *sdk;
     const char **c_flags;
     size_t c_flag_count;
+    bool compile;
     bool create;
     bool overwrite;
     const char *protocols;

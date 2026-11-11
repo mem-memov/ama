@@ -5,4 +5,5 @@
 /* Strict shared frontend and all borrowed source/option strings outlive emission.
  * Artifacts use the scaffold identity registry and conflict-safe publisher. */
 bool project_codegen_build(NativeScaffold *, ScaffoldOptions);
+bool project_codegen_compile(NativeScaffold *, FILE *errors);
 #endif

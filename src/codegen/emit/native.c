@@ -20,7 +20,9 @@ static bool hook(FILE *output, const ScaffoldType *type, AbiOperation operation)
 
 bool codegen_emit_native(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type) {
     (void)scaffold;
-    if (!scaffold_include(output, type->interface_name) || !scaffold_include(output, type->body_path)) { return false; }
+    if (!scaffold_include(output, type->interface_name)
+        || fprintf(output,"static %s_EntrySignature %s_entry;\n",type->native_prefix->internal_name,type->native_prefix->internal_name)<0
+        || !scaffold_include(output, type->body_path)) { return false; }
     for (AbiOperation operation = ABI_DEFAULT; operation < ABI_BINDING_COUNT; operation++) {
         if (!hook(output, type, operation)) { return false; }
     }

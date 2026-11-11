@@ -36,6 +36,8 @@ typedef struct {
     AmaResumePosition resume;
     uint64_t current_operation;
     AmaStatus last_refusal;
+    AmaHandle outgoing;
+    AmaInstanceActivity outgoing_previous;
 } AmaServiceState;
 
 static inline bool ama_return_link_is_valid(AmaReturnLink link) {

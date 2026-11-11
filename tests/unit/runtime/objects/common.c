@@ -110,7 +110,7 @@ static void setup_objects(void) {
     world = (AmaWorld){.types = types, .type_count = 2, .allocator = sources.allocator, .report = report_status};
 }
 
-static void destroy_objects(void) {
+static inline void destroy_objects(void) {
     assert(leaf_type.pool.live_count == 0 && root_type.pool.live_count == 0);
     ama_pool_dispose(&leaf_type.pool);
     ama_pool_dispose(&root_type.pool);

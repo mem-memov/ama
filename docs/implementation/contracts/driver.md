@@ -53,4 +53,7 @@ run the actual process. [Check tests](../../../tests/integration/check/main.c)
 exercise real roots, Unicode-capable source loading, source diagnostics and no C
 compilation/output artifacts. [Frontend tests](../../../tests/unit/compiler/check/main.c)
 inject every allocation failure across composed owners. Passing these checks does
-not certify native handwritten C or an unimplemented execution backend.
+not certify arbitrary handwritten C. [Compiled execution tests](../../../tests/integration/execution/main.c)
+exercise the explicit `--emit --compile` pipeline, executable ownership and failure
+before publication; [typed execution tests](../../../tests/unit/codegen/execution/main.c)
+exercise native bodies and runtime semantics.

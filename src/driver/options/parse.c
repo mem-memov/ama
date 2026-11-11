@@ -69,6 +69,7 @@ bool driver_options_parse(DriverOptions *options, int count, char *const argumen
     size_t excluded = 0;
     for (int index = 4; index < count;) {
         const char *name = arguments[index++];
+        if (options->request == DRIVER_REQUEST_EMIT && strcmp(name,"--compile")==0) { options->compile=true; continue; }
         if ((options->request == DRIVER_REQUEST_EMIT && strcmp(name, "--overwrite") == 0)
             || (options->request == DRIVER_REQUEST_NATIVE && (strcmp(name, "--create") == 0 || strcmp(name, "--overwrite") == 0))) {
             if (strcmp(name, "--create") == 0) {

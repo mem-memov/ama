@@ -3,8 +3,8 @@
 This completes section 2's metadata task under REF-05/REF-06, RT-01 through RT-16,
 CABI-05, ERROR-06 and DEBUG-01 through DEBUG-03. Declarations and small checked
 operations are in `src/runtime/metadata/`. They fix the engineering representation;
-they do not implement dynamic pools, the complete scheduler, source-map generation,
-clone staging or automatic frontend integration.
+their consumers are the [instance pools](instance-ownership.md) and
+[stackless execution](stackless-execution.md). No implicit scheduler is provided.
 
 ## Identity, pools and visibility
 
@@ -49,7 +49,7 @@ validate selectors against its actual emitted label/source-map tables.
 A resume position has its own valid tag and nonzero selector. It is absent in Ready
 and present in Yielded. Available instances have no attached return connection.
 Successful return/yield must release that connection after protected result
-transfer; yield keeps the separate resume position. The future dispatcher performs
+transfer; yield keeps the separate resume position. The generated return dispatcher performs
 those transitions, not the metadata declarations alone.
 
 `ama_instance_access` checks external entry/resume/read eligibility and requires published live identity and Live lifecycle state,
@@ -104,7 +104,7 @@ All supplied pointers/views are valid borrowed metadata owned by the synchronous
 runtime; native payloads cannot alias it. Each identity/access check is a finite
 conjunction/case split and changes no input. A nonzero generation advances strictly
 until the maximum and then retires, proving no wrap through zero or stale-reference
-resurrection. The future pool must preserve the same record/history invariant.
+resurrection. The implemented pool preserves the same record/history invariant.
 
 Service cloning writes one completed local value only after successful checks,
 proving failure preservation and exclusion of caller/history fields. Recording

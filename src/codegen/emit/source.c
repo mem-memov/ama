@@ -10,7 +10,7 @@ const char *codegen_indexed_name(NativeScaffold *scaffold, const char *base, con
     return scaffold_join(scaffold, base, "", suffix);
 }
 
-static bool codegen_access_definition(NativeScaffold *scaffold, FILE *output, const char *base, const SemanticAccess *access) {
+bool codegen_access_definition(NativeScaffold *scaffold, FILE *output, const char *base, const SemanticAccess *access) {
     size_t depth = 0;
     for (const SemanticAccess *node = access; node != NULL; node = node->index) { depth++; }
     while (depth != 0) {

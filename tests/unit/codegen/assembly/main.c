@@ -79,7 +79,10 @@ static void emit_executable_native(const ScaffoldType *type) {
     assert(body != NULL);
     bool emitted = scaffold_include(body, type->interface_name) && scaffold_include(body, type->begin_name);
     assert(emitted);
-    int written = fputs("#include <assert.h>\n", body);
+    int written = fprintf(body, "AMA_NATIVE_ENTRY void AMA_NATIVE(entry)(AMA_NATIVE(State) *state, const %s *parameters, %s *results, const AmaNativeServices *services, AmaStatus *status) { (void)state; (void)parameters; (void)results; (void)services; *status=ama_status_success(); }\n",
+        type->names[SCAFFOLD_PARAMETERS]->internal_name, type->names[SCAFFOLD_RESULTS]->internal_name);
+    assert(written >= 0);
+    written = fputs("#include <assert.h>\n", body);
     assert(written != EOF);
     for (AbiOperation operation = ABI_DEFAULT; operation < ABI_BINDING_COUNT; operation++) {
         const AbiBinding *binding = &type->plan->type->abi.bindings[operation];

@@ -47,6 +47,8 @@ AmaStatus ama_program_constant_build(AmaProgram *program, AmaConstantValue *root
 AmaStatus ama_program_constants_initialize(AmaProgram *program) {
     for (size_t index = 0; index < program->constant_count; index++) {
         const AmaProgramConstant *declaration = &program->constants[index];
+        program->initialization_operation = declaration->operation;
+        program->world->construction_operation = declaration->operation;
         size_t count = declaration->list ? declaration->initializer_count : 1;
         if (count > SIZE_MAX / sizeof(AmaConstantValue)) { return ama_status_make(AMA_LIMIT_EXCEEDED, NULL, 0); }
         if (count != 0) {

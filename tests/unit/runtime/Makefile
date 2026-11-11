@@ -1,2 +1,2 @@
-SUBDIRECTORIES := pool objects alignment program
+SUBDIRECTORIES := pool objects alignment program calls transfers
 include ../../parent.mk

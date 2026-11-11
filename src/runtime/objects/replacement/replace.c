@@ -1,7 +1,7 @@
 #include <string.h>
 #include "runtime/objects/internal.h"
 
-static void ama_replacement_publish(AmaObjectOperation *operation, AmaObjectType *type, AmaPoolCell *cell, AmaHandle destination) {
+void ama_object_replacement_publish(AmaObjectOperation *operation, AmaObjectType *type, AmaPoolCell *cell, AmaHandle destination) {
     AmaObjectWork *root = operation->first;
     cell->alternate_payload = !cell->alternate_payload;
     cell->metadata.lifetime = root->cell->metadata.lifetime;
@@ -37,7 +37,7 @@ static AmaStatus ama_replacement_commit(AmaObjectOperation *operation, AmaHandle
         if (ama_same_handle(record->handle, destination)) { record->restore = false; }
     }
     status = ama_object_cleanup_keep(operation->world, destination, ama_status_success(), true);
-    if (status.code == AMA_OK) { ama_replacement_publish(operation, type, cell, destination); }
+    if (status.code == AMA_OK) { ama_object_replacement_publish(operation, type, cell, destination); }
     else {
         operation->world->failed = true;
         status = ama_object_cleanup(operation->world, prepared, status);
@@ -45,14 +45,18 @@ static AmaStatus ama_replacement_commit(AmaObjectOperation *operation, AmaHandle
     return status;
 }
 
+AmaStatus ama_object_replace_in(AmaObjectOperation *operation, AmaHandle destination, AmaHandle source, bool continuation) {
+    bool no_op = false;
+    AmaStatus status = ama_object_copy_checks(operation->world, destination, source, continuation, &no_op);
+    return status.code == AMA_OK && !no_op ? ama_replacement_commit(operation, destination, source, continuation) : status;
+}
+
 AmaStatus ama_object_replace(AmaWorld *world, AmaHandle destination, AmaHandle source, bool continuation) {
     if (world->operation_active || world->failed) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
     world->operation_active = true;
     AmaObjectOperation operation = {.world = world};
     source_arena_init(&operation.arena, world->allocator);
-    bool no_op = false;
-    AmaStatus status = ama_object_copy_checks(world, destination, source, continuation, &no_op);
-    if (status.code == AMA_OK && !no_op) { status = ama_replacement_commit(&operation, destination, source, continuation); }
+    AmaStatus status = ama_object_replace_in(&operation, destination, source, continuation);
     ama_object_unprotect(&operation);
     source_arena_destroy(&operation.arena);
     world->operation_active = false;

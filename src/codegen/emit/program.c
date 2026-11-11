@@ -13,7 +13,7 @@ bool codegen_emit_sources(NativeScaffold *scaffold, FILE *output) {
         if (fprintf(output, "static const AmaProgramField %s_ProgramFields[] = {\n", name) < 0) { return false; }
         for (const ScaffoldMember *member = type->members; member != NULL; member = member->next) {
             const SemanticSymbol *symbol = member->field->symbol;
-            if (fprintf(output, "{.role=%s, .position=%zu, .initializer_count=%zu", roles[symbol->role], symbol->role_ordinal,
+            if (fprintf(output, "{.role=%s, .position=%zu, .operation=UINT64_C(%zu), .initializer_count=%zu", roles[symbol->role], symbol->role_ordinal, codegen_declaration_selector(scaffold, symbol),
                     symbol->declaration->as.declaration.initializer_count) < 0) { return false; }
             if (symbol->initializers != NULL && fprintf(output, ", .initializers=%s_Field_%zu_Sources", name, member->field->slot) < 0) { return false; }
             if (fputs("},\n", output) == EOF) { return false; }
@@ -35,7 +35,7 @@ bool codegen_emit_program(NativeScaffold *scaffold, FILE *output) {
             if (fputs("{0},\n", output) == EOF) { return false; }
             continue;
         }
-        if (fprintf(output, "{.object=&%s_Type, .field_count=%zu", name, type->plan->field_count) < 0) { return false; }
+        if (fprintf(output, "{.object=&%s_Type, .operation=UINT64_C(%zu), .field_count=%zu", name, type->plan->complete->selector, type->plan->field_count) < 0) { return false; }
         if (type->members != NULL && fprintf(output, ", .fields=%s_ProgramFields", name) < 0) { return false; }
         if (type->plan->type->abi.bindings[ABI_CONDITION].present && fprintf(output, ", .condition=%s_Condition", name) < 0) { return false; }
         if (type->plan->type->abi.bindings[ABI_INDEX].present && fprintf(output, ", .index=%s_Index", name) < 0) { return false; }
@@ -47,8 +47,8 @@ bool codegen_emit_program(NativeScaffold *scaffold, FILE *output) {
         const char *name = codegen_constant_name(scaffold, shared->constant);
         const SemanticSymbol *symbol = shared->constant->symbol;
         const ScaffoldType *type = native_scaffold_type(scaffold, symbol->type);
-        if (name == NULL || fprintf(output, "{.storage=&%s, .type_id=UINT64_C(%zu), .list=%s, .initializer_count=%zu", name,
-                codegen_type_id(scaffold, type), symbol->list ? "true" : "false", symbol->declaration->as.declaration.initializer_count) < 0) { return false; }
+        if (name == NULL || fprintf(output, "{.storage=&%s, .type_id=UINT64_C(%zu), .list=%s, .operation=UINT64_C(%zu), .initializer_count=%zu", name,
+                codegen_type_id(scaffold, type), symbol->list ? "true" : "false", codegen_declaration_selector(scaffold, symbol), symbol->declaration->as.declaration.initializer_count) < 0) { return false; }
         if (symbol->initializers != NULL && fprintf(output, ", .initializers=%s_Sources", name) < 0) { return false; }
         if (fputs("},\n", output) == EOF) { return false; }
     }

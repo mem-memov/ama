@@ -5,6 +5,9 @@
 AmaStatus ama_constant_begin(AmaProgram *program, SourceArena *arena, AmaConstantValue *value,
     uint64_t type_id, const AmaProgramSource *initializer, const AmaConstantValue *source,
     AmaConstantBuildWork *parent, AmaConstantBuildWork **output) {
+    uint64_t operation = parent == NULL ? program->initialization_operation : parent->source != NULL ? parent->operation
+        : parent->value->type->fields[parent->field].operation;
+    program->world->construction_operation = operation;
     AmaConstantBuildWork *work = source_arena_allocate(arena, sizeof(*work));
     if (work == NULL) { return ama_status_make(AMA_OUT_OF_MEMORY, NULL, 0); }
     if (initializer != NULL && initializer->kind != AMA_SOURCE_LITERAL) {
@@ -17,7 +20,8 @@ AmaStatus ama_constant_begin(AmaProgram *program, SourceArena *arena, AmaConstan
     const AmaProgramType *type = ama_program_type(program, type_id);
     if (type == NULL) { return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0); }
     if (source != NULL && source->type != type) { return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0); }
-    *work = (AmaConstantBuildWork){.parent = parent, .value = value, .source = source, .initializer = initializer};
+    *work = (AmaConstantBuildWork){.parent = parent, .value = value, .source = source, .initializer = initializer,
+        .operation = operation};
     *value = (AmaConstantValue){.type = type, .parent = parent == NULL ? NULL : parent->value, .remaining_fields = type->field_count};
     if (type->field_count > SIZE_MAX / sizeof(AmaConstantField)) { return ama_status_make(AMA_LIMIT_EXCEEDED, NULL, 0); }
     if (type->field_count != 0) {

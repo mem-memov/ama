@@ -7,6 +7,7 @@ typedef struct AmaConstantBuildWork {
     AmaConstantValue *value;
     const AmaConstantValue *source;
     const AmaProgramSource *initializer;
+    uint64_t operation;
     size_t field;
     size_t element;
 } AmaConstantBuildWork;

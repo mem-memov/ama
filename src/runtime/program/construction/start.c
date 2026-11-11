@@ -8,6 +8,7 @@ AmaStatus ama_program_start(AmaProgram *program, uint64_t root_type, AmaHandle *
         if (object == NULL) { continue; }
         object->resolve_field = ama_program_field_recipe;
         object->field_context = program;
+        object->source_operation = program->types[index].operation;
     }
     AmaStatus status = ama_program_constants_initialize(program);
     if (status.code != AMA_OK) { return status; }

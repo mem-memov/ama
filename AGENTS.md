@@ -50,7 +50,7 @@
 
 ## Workflow
 
-- Build: `make` (implementation foundation `./ama`; compilation is not implemented).
+- Build: `make` (compiler `./ama`); use `--emit ... --compile` for a verified project executable.
 - Test: `make test`; individual suites: `make -C tests/unit/driver/request`.
 - Test cleanup: `make test-clean`. Successful leaves clean automatically; failures
   preserve generated files for debugging.

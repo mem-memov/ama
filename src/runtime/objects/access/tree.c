@@ -18,16 +18,25 @@ static AmaStatus ama_tree_protect(AmaObjectOperation *operation, AmaHandle handl
             return ama_status_success();
         }
     }
-    status = cell->metadata.identity.live ? ama_instance_access(&cell->metadata, AMA_ACCESS_READ)
-        : ama_service_access(&cell->metadata.service, AMA_ACCESS_READ);
-    if (status.code != AMA_OK) { return status; }
+    const AmaObjectProtection *authority = NULL;
+    if (copy) {
+        for (const AmaObjectProtection *record = operation->source_authority; record != NULL; record = record->next) {
+            if (record->copy && ama_same_handle(record->handle, handle)) { authority = record; break; }
+        }
+    }
+    if (authority == NULL) {
+        status = cell->metadata.identity.live ? ama_instance_access(&cell->metadata, AMA_ACCESS_READ)
+            : ama_service_access(&cell->metadata.service, AMA_ACCESS_READ);
+        if (status.code != AMA_OK) { return status; }
+    }
     if (copy && type->hooks.initialize != NULL && type->hooks.clone == NULL) {
         return ama_status_make(AMA_INVALID_STATE, NULL, 0);
     }
     AmaObjectProtection *record = source_arena_allocate(&operation->arena, sizeof(*record));
     if (record == NULL) { return ama_status_make(AMA_OUT_OF_MEMORY, NULL, 0); }
     *record = (AmaObjectProtection){.type = type, .cell = cell, .handle = handle,
-        .previous = cell->metadata.service, .epoch = operation->protection_epoch, .copy = copy, .restore = true};
+        .previous = authority == NULL ? cell->metadata.service : authority->previous,
+        .epoch = operation->protection_epoch, .copy = copy, .restore = authority == NULL};
     if (operation->protected_last == NULL) { operation->protected_first = record; }
     else { operation->protected_last->next = record; }
     operation->protected_last = record;

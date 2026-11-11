@@ -262,7 +262,7 @@ handle, lifetime, clone and replacement invariants independently of module execu
   comparison with isolated native headers/scaffolds and check-only diagnostics.
 - [x] Execute directly over heap instances without working-state mirrors or
   implicit default objects. Initialize constants before creating the explicit root.
-- [ ] Implement CALL-07 literal construction in entry preparation: select `|` once
+- [x] Implement CALL-07 literal construction in entry preparation: select `|` once
   for supplied owned scalar parameters without default-then-overwrite, preserve
   normal construction/commit cleanup, construct on every call, and report failures
   with call/binding/type context outside `:`. Test skipped/default inputs, literal

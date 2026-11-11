@@ -1,0 +1,153 @@
+#ifndef AMA_CODEGEN_EXECUTION_COMMON
+#define AMA_CODEGEN_EXECUTION_COMMON
+#include "../../compiler/common.c"
+#include <sys/wait.h>
+#include <unistd.h>
+#include "codegen/codegen.h"
+#include "native/scaffold/internal.h"
+#include "native/toolchain/symbols.h"
+
+static NativeScaffold assembly;
+static bool noninline_entry;
+static const char *forced_header;
+
+static void native_fixture(const char *name, const char *interface) {
+    char path[160];
+    int length = snprintf(path, sizeof(path), "generated/project/%s", name);
+    assert(length > 0 && (size_t)length < sizeof(path));
+    file(path, interface);
+    length = snprintf(path, sizeof(path), "generated/project/%s.h", name);
+    assert(length > 0);
+    file(path, "struct AMA_NATIVE(State) { size_t number; size_t calls; const void *address; };\n");
+    length = snprintf(path, sizeof(path), "generated/project/%s.c", name);
+    assert(length > 0);
+    file(path, "/* Test writes the typed implementation after declaration generation. */\n");
+    length = snprintf(path, sizeof(path), "generated/project/%s.abi", name);
+    assert(length > 0);
+    file(path, "+ initialize\n- destroy\n| literal\n= clone\n? condition\n[] index\n");
+}
+
+static void executable_native(const ScaffoldType *type) {
+    FILE *body = fopen(type->body_path, "wb");
+    assert(body != NULL);
+    bool emitted = scaffold_include(body, type->interface_name) && scaffold_include(body, type->begin_name);
+    assert(emitted);
+    int written = fputs("#include <assert.h>\n#include <stdio.h>\n", body);
+    assert(written != EOF);
+    written = fprintf(body, "%s void AMA_NATIVE(entry)(AMA_NATIVE(State) *state, const %s *parameters, %s *results, const AmaNativeServices *services, AmaStatus *status) {\n"
+        "assert(state->address==state); (void)parameters; (void)results; (void)services;\n", noninline_entry ? "__attribute__((noinline))" : "AMA_NATIVE_ENTRY", type->names[SCAFFOLD_PARAMETERS]->internal_name,
+        type->names[SCAFFOLD_RESULTS]->internal_name);
+    assert(written >= 0);
+    if (type->plan->type->counts[SYMBOL_PARAMETER] == 2) {
+        written = fputs("printf(\"ordered=%zu,%zu,%zu\\n\",parameters->AMA_INPUT(0)->payload->number,parameters->AMA_INPUT(1)->payload->number,results->AMA_OUTPUT(0)->payload->number);\n",body);
+        assert(written != EOF);
+    } else if (type->plan->type->counts[SYMBOL_PARAMETER] != 0 && type->plan->type->counts[SYMBOL_RESULT] == 0) {
+        written = fputs("printf(\"status=%u\\n\",(unsigned)parameters->AMA_INPUT(0)->payload->value.code);\n", body);
+        assert(written != EOF);
+    } else if (type->plan->type->counts[SYMBOL_PARAMETER] != 0) {
+        written = fputs("state->calls++; results->AMA_OUTPUT(0)->payload->number=parameters->AMA_INPUT(0)->payload->number+state->calls;\n"
+            "printf(\"%zu:%zu:%u\\n\",parameters->AMA_INPUT(0)->payload->number,state->calls,(unsigned)services->caller_refusal.code);\n", body);
+        assert(written != EOF);
+    }
+    written = fputs("*status=ama_status_success(); }\n", body);
+    assert(written != EOF);
+    for (AbiOperation operation = ABI_DEFAULT; operation < ABI_BINDING_COUNT; operation++) {
+        const AbiBinding *binding = &type->plan->type->abi.bindings[operation];
+        emitted = scaffold_emit_signature(body, type, operation, binding->function);
+        assert(emitted);
+        const char *implementation = operation == ABI_DEFAULT ? " { *destination=(AMA_NATIVE(State)){.address=destination}; return ama_status_success(); }\n"
+            : operation == ABI_DESTROY ? " { assert(state->address==state); return ama_status_success(); }\n"
+            : operation == ABI_LITERAL ? " { *destination=(AMA_NATIVE(State)){.address=destination}; for(size_t index=0;index<literal.length;index++) { if(literal.data[index]<'0'||literal.data[index]>'9') return ama_status_make(AMA_INVALID_LITERAL,\"Not a decimal value\",19); destination->number=destination->number*10+literal.data[index]-'0'; } return ama_status_success(); }\n"
+            : operation == ABI_CLONE ? " { *destination=*source; destination->address=destination; return ama_status_success(); }\n"
+            : operation == ABI_CONDITION ? " { *result=state->number!=0; return ama_status_success(); }\n"
+            : " { if(state->number==9999) return ama_status_make(AMA_NATIVE_FAILURE,\"Index decoder failed\",20); if(state->number>=1000 && state->number<9999) { printf(\"index=%zu\\n\",state->number); *result=state->number-1000; } else { *result=state->number; } return ama_status_success(); }\n";
+        written = fputs(implementation, body);
+        assert(written != EOF);
+    }
+    emitted = scaffold_include(body, type->end_name);
+    int closed = fclose(body);
+    assert(emitted && closed == 0);
+}
+
+static void prepare_project(const char *main_source) {
+    directory("generated/project");
+    file("generated/project/main", main_source);
+    native_fixture("value", "@C\n");
+    native_fixture("worker", "@<\ninput\n.value\n |7\n@>\noutput\n.value\n input\nother\n.value\n |99\n@C\n");
+    setup_frontend();
+    ModuleRoot roots[] = {{"generated/project", NULL, 0}, {TEST_STDLIB, NULL, 0}};
+    bool checked = compiler_frontend_check(&frontend, roots, 2, ".main", (SemanticLibraries){0});
+    if (!checked) { fprintf(stderr, "Frontend failed: %s\n", frontend.error.message); }
+    assert(checked);
+    native_scaffold_init(&assembly, &frontend, sources.allocator);
+    ScaffoldOptions options = {.directory = "generated/output", .sdk = TEST_SDK};
+    static const char *flags[8];
+    size_t flag_count = 0;
+#ifdef TEST_SANITIZERS
+    flags[flag_count++] = "-fsanitize=address,undefined";
+    flags[flag_count++] = "-fno-omit-frame-pointer";
+    flags[flag_count++] = "-fno-pie";
+    flags[flag_count++] = "-no-pie";
+#endif
+    if (forced_header != NULL) { flags[flag_count++] = "-include"; flags[flag_count++] = forced_header; }
+    options.flags = flags;
+    options.flag_count = flag_count;
+    bool built = project_codegen_build(&assembly, options);
+    assert(built);
+    for (const ScaffoldType *type = assembly.types; type != NULL; type = type->next) {
+        if (type->plan->type->module->syntax.sections.kind == MODULE_NATIVE
+            && type->plan->type != semantic_find_type(&frontend.semantic, ".std.status")
+            && type->plan->type != semantic_find_type(&frontend.semantic, ".std.refusal")) { executable_native(type); }
+    }
+}
+
+static void execute_project(const char *main_source, const char *expected, bool success) {
+    prepare_project(main_source);
+    bool compiled = project_codegen_compile(&assembly, stderr);
+    assert(compiled);
+    bool published = native_scaffold_publish(&assembly);
+    assert(published);
+    pid_t process;
+    int status;
+    pid_t waited;
+    int channel[2];
+    int opened = pipe(channel);
+    assert(opened == 0);
+    process = fork();
+    assert(process >= 0);
+    if (process == 0) {
+        close(channel[0]);
+        if (dup2(channel[1], STDOUT_FILENO) < 0) { _exit(126); }
+        close(channel[1]);
+        if (freopen("generated/errors.txt", "wb", stderr) == NULL) { _exit(126); }
+        execl("generated/output/program", "generated/output/program", (char *)NULL);
+        _exit(127);
+    }
+    close(channel[1]);
+    char bytes[4096] = {0};
+    size_t count = 0;
+    ssize_t received;
+    while ((received = read(channel[0], bytes + count, sizeof(bytes) - count - 1)) > 0) { count += (size_t)received; }
+    close(channel[0]);
+    waited = waitpid(process, &status, 0);
+    assert(waited == process && WIFEXITED(status));
+    assert((WEXITSTATUS(status) == 0) == success);
+    if (strcmp(bytes, expected) != 0) { fprintf(stderr, "Unexpected output: %s\n", bytes); }
+    assert(strcmp(bytes, expected) == 0);
+    native_scaffold_destroy(&assembly);
+    destroy_frontend();
+}
+
+static void expect_diagnostic(const char *part) {
+    FILE *errors = fopen("generated/errors.txt", "rb");
+    assert(errors != NULL);
+    char bytes[8192] = {0};
+    size_t count = fread(bytes, 1, sizeof(bytes)-1, errors);
+    assert(!ferror(errors) && count < sizeof(bytes)-1);
+    int closed = fclose(errors);
+    assert(closed == 0);
+    if (strstr(bytes, part) == NULL) { fprintf(stderr,"Missing diagnostic %s in %s\n",part,bytes); }
+    assert(strstr(bytes, part) != NULL);
+}
+
+#endif

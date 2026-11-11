@@ -24,9 +24,11 @@ typedef struct {
     size_t position;
     const AmaProgramSource *initializers;
     size_t initializer_count;
+    uint64_t operation;
 } AmaProgramField;
 typedef struct {
     AmaObjectType *object;
+    uint64_t operation;
     const AmaProgramField *fields;
     size_t field_count;
     AmaStatus (*condition)(const void *, bool *);

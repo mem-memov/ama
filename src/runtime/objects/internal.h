@@ -12,6 +12,7 @@ typedef struct AmaObjectWork {
     AmaHandle handle;
     AmaHandle source;
     const AmaRecipe *recipe;
+    uint64_t operation;
     size_t next_child;
     size_t next_field;
     size_t next_element;
@@ -36,6 +37,8 @@ typedef struct {
     AmaObjectProtection *protected_first;
     AmaObjectProtection *protected_last;
     size_t protection_epoch;
+    const AmaObjectProtection *source_authority;
+    void *root_payload;
 } AmaObjectOperation;
 
 AmaStatus ama_object_lookup(AmaWorld *, AmaHandle, bool private_slot, AmaObjectType **, AmaPoolCell **);
@@ -61,4 +64,8 @@ void ama_object_unprotect(AmaObjectOperation *);
 AmaStatus ama_object_build(AmaObjectOperation *, uint64_t, const AmaRecipe *, AmaHandle *);
 AmaStatus ama_object_clone_prepare(AmaObjectOperation *, AmaHandle, AmaHandle final_root,
     bool continuation, void *root_payload, AmaHandle *);
+void ama_object_replacement_publish(AmaObjectOperation *, AmaObjectType *, AmaPoolCell *, AmaHandle);
+AmaStatus ama_object_replace_in(AmaObjectOperation *, AmaHandle, AmaHandle, bool);
+AmaStatus ama_object_reconstruct_in(AmaObjectOperation *, AmaHandle, const AmaRecipe *);
+AmaStatus ama_object_contains(AmaWorld *, AmaHandle, AmaHandle, bool *);
 #endif

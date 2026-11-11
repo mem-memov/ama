@@ -4,9 +4,13 @@ static AmaStatus ama_construction_reserve(AmaObjectOperation *operation, uint64_
     AmaHandle source, AmaObjectWork *parent, AmaObjectWork **output) {
     AmaObjectType *type = ama_world_type(operation->world, id);
     if (type == NULL) { return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0); }
+    operation->world->construction_operation = parent == NULL ? type->source_operation
+        : parent->source.generation != 0 ? parent->operation : parent->field_recipe.operation;
     AmaObjectWork *work = source_arena_allocate(&operation->arena, sizeof(*work));
     if (work == NULL) { return ama_status_make(AMA_OUT_OF_MEMORY, NULL, 0); }
-    *work = (AmaObjectWork){.parent = parent, .type = type, .recipe = recipe, .source = source};
+    *work = (AmaObjectWork){.parent = parent, .type = type, .recipe = recipe, .source = source,
+        .operation = parent == NULL ? type->source_operation : parent->source.generation != 0
+            ? parent->operation : parent->field_recipe.operation};
     if (recipe != NULL && recipe->constructor == AMA_CONSTRUCT_CLONE) { work->source = recipe->source; }
     if (work->source.generation != 0) {
         if (work->source.type_id != id) { return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0); }
@@ -24,6 +28,7 @@ static AmaStatus ama_construction_reserve(AmaObjectOperation *operation, uint64_
     AmaStatus status = ama_pool_reserve(&type->pool, &work->handle, &work->cell);
     if (status.code != AMA_OK) { return status; }
     if (parent != NULL) { work->cell->owner = parent->handle; }
+    else if (operation->root_payload != NULL) { work->cell->preparation_payload = operation->root_payload; }
     if (operation->last == NULL) { operation->first = work; }
     else { operation->last->next = work; }
     operation->last = work;
@@ -33,6 +38,7 @@ static AmaStatus ama_construction_reserve(AmaObjectOperation *operation, uint64_
 }
 
 static AmaStatus ama_construction_payload(AmaObjectOperation *operation, AmaObjectWork *work) {
+    operation->world->construction_operation = work->operation;
     if (work->source.generation != 0) { return ama_object_clone_payload(operation, work, work->clone_root->recipe != NULL
         && work->clone_root->recipe->continuation); }
     AmaObjectType *type = work->type;
@@ -55,6 +61,7 @@ static AmaStatus ama_construction_payload(AmaObjectOperation *operation, AmaObje
 AmaStatus ama_object_build(AmaObjectOperation *operation, uint64_t id, const AmaRecipe *recipe, AmaHandle *output) {
     AmaObjectWork *work = NULL;
     AmaStatus status = ama_construction_reserve(operation, id, recipe, (AmaHandle){0}, NULL, &work);
+    AmaObjectWork *root = work;
     while (status.code == AMA_OK) {
         bool clone_source = work->source.generation != 0;
         if (!clone_source && work->next_field < work->type->field_count && !work->field_ready) {
@@ -118,7 +125,7 @@ AmaStatus ama_object_build(AmaObjectOperation *operation, uint64_t id, const Ama
     for (AmaObjectWork *record = operation->first; record != NULL; record = record->next) {
         if (record->clone_root == record) { ama_object_fix_references(operation, record, (AmaHandle){0}); }
     }
-    *output = operation->first->handle;
+    *output = root->handle;
     return ama_status_success();
 }
 

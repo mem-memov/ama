@@ -67,7 +67,7 @@ assembly must preserve identical qualified names without duplicate definitions.
 Generation supplies machine-readable C-tooling settings, including the working
 directory, include paths, defines and language/toolchain flags; a compilation
 database is one supported choice. These let a C language service resolve types
-while editing the scaffold before the execution backend is available. Editor
+while editing native modules and the generated project assembly. Editor
 features depend on the editor's C-analysis support.
 
 Acceptance independently syntax-checks the header and untouched C skeleton using

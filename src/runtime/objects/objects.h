@@ -12,6 +12,7 @@ typedef struct {
     const AmaRecipe *children;
     const AmaHandle *references;
     bool supplied;
+    uint64_t operation;
 } AmaFieldRecipe;
 struct AmaRecipe {
     AmaConstructorKind constructor;
@@ -38,6 +39,7 @@ typedef struct {
     const AmaFieldRecipe *defaults;
     size_t native_offset;
     AmaPayloadHooks hooks;
+    uint64_t source_operation;
     AmaStatus (*resolve_field)(AmaWorld *, SourceArena *, AmaHandle, size_t, AmaFieldRecipe *, void *);
     void *field_context;
 } AmaObjectType;
@@ -47,6 +49,7 @@ struct AmaWorld {
     SourceAllocator allocator;
     void *report_context;
     void (*report)(void *, AmaStatus);
+    uint64_t construction_operation;
     bool operation_active;
     bool failed;
 };

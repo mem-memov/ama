@@ -81,7 +81,8 @@ static AmaStatus ama_program_index(AmaProgramValue *value, size_t index) {
 }
 
 static AmaStatus ama_program_access(AmaProgram *program, AmaHandle current, const AmaConstantValue *shared,
-    const AmaProgramAccess *access, bool private_access, AmaProgramValue *output) {
+    const AmaProgramAccess *access, bool private_access, AmaProgramValue *output, bool *selection_refusal) {
+    if (selection_refusal != NULL) { *selection_refusal = false; }
     size_t depth = 0;
     for (const AmaProgramAccess *node = access; node != NULL; node = node->index) { depth++; }
     size_t selected = 0;
@@ -92,7 +93,10 @@ static AmaStatus ama_program_access(AmaProgram *program, AmaHandle current, cons
         AmaProgramValue value = {0};
         AmaStatus status = node->shared || shared != NULL ? ama_program_shared_base(program, node, shared, &value)
             : ama_program_instance_base(program, current, node, private_access, &value);
-        if (status.code == AMA_OK && node->index != NULL) { status = ama_program_index(&value, selected); }
+        if (status.code == AMA_OK && node->index != NULL) {
+            status = ama_program_index(&value, selected);
+            if (status.code == AMA_INDEX_BOUNDS && selection_refusal != NULL) { *selection_refusal = true; }
+        }
         if (status.code != AMA_OK) { return status; }
         if (depth == 0) { *output = value; return ama_status_success(); }
         const AmaProgramType *type = ama_program_type(program, value.type_id);
@@ -108,12 +112,12 @@ static AmaStatus ama_program_access(AmaProgram *program, AmaHandle current, cons
 
 AmaStatus ama_program_select(AmaProgram *program, AmaHandle current, const AmaProgramAccess *access,
     bool private_access, AmaProgramValue *output) {
-    return ama_program_access(program, current, NULL, access, private_access, output);
+    return ama_program_access(program, current, NULL, access, private_access, output, NULL);
 }
 
 AmaStatus ama_program_select_shared(AmaProgram *program, const AmaConstantValue *current,
     const AmaProgramAccess *access, AmaProgramValue *output) {
-    return ama_program_access(program, (AmaHandle){0}, current, access, false, output);
+    return ama_program_access(program, (AmaHandle){0}, current, access, false, output, NULL);
 }
 
 AmaStatus ama_program_evaluate(AmaProgram *program, AmaHandle current, const AmaConstantValue *shared,
@@ -121,8 +125,14 @@ AmaStatus ama_program_evaluate(AmaProgram *program, AmaHandle current, const Ama
     if (source->kind == AMA_SOURCE_LITERAL) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
     AmaProgramAccess global = {.field = source->shared, .shared = true};
     const AmaProgramAccess *access = source->kind == AMA_SOURCE_SHARED ? &global : source->access;
-    AmaStatus status = ama_program_access(program, current, shared, access, private_access, output);
+    AmaStatus status = ama_program_access(program, current, shared, access, private_access, output, NULL);
     if (status.code == AMA_OK && source->acquire && output->constant != NULL) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
     if (status.code == AMA_OK && source->acquire) { output->form = AMA_FIELD_REFERENCE; }
+    if (status.code == AMA_OK) { output->continuation = source->continuation; }
     return status;
+}
+
+AmaStatus ama_program_select_target(AmaProgram *program, AmaHandle current, const AmaProgramAccess *access,
+    AmaProgramValue *output, bool *selection_refusal) {
+    return ama_program_access(program, current, NULL, access, false, output, selection_refusal);
 }

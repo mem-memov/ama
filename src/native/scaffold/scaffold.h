@@ -38,6 +38,7 @@ typedef struct ScaffoldArtifact {
     const char *path;
     const SourceText *content;
     bool authored;
+    bool executable;
     bool existed;
     bool published;
     const char *stage;

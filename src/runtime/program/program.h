@@ -9,6 +9,7 @@ typedef struct {
     bool list;
     const AmaProgramSource *initializers;
     size_t initializer_count;
+    uint64_t operation;
 } AmaProgramConstant;
 typedef struct {
     AmaWorld *world;
@@ -16,6 +17,11 @@ typedef struct {
     size_t type_count;
     const AmaProgramConstant *constants;
     size_t constant_count;
+    AmaHandle current;
+    uint64_t initialization_operation;
+    const struct AmaProgramLocation *locations;
+    size_t location_count;
+    bool failure_reported;
 } AmaProgram;
 typedef struct {
     uint64_t type_id;
@@ -27,6 +33,7 @@ typedef struct {
     const AmaConstantStorage *shared_list;
     AmaHandle container;
     bool private_access;
+    bool continuation;
 } AmaProgramValue;
 
 const AmaProgramType *ama_program_type(const AmaProgram *, uint64_t);
@@ -40,4 +47,5 @@ AmaStatus ama_program_constants_destroy(AmaProgram *, AmaStatus);
 AmaStatus ama_program_constant_recipe(AmaProgram *, SourceArena *, const AmaConstantValue *, AmaRecipe *);
 AmaStatus ama_program_start(AmaProgram *, uint64_t, AmaHandle *);
 AmaStatus ama_program_stop(AmaProgram *, AmaHandle, AmaStatus);
+AmaStatus ama_program_select_target(AmaProgram *, AmaHandle, const AmaProgramAccess *, AmaProgramValue *, bool *);
 #endif

@@ -1,2 +1,2 @@
-SUBDIRECTORIES := assembly
+SUBDIRECTORIES := assembly execution
 include ../../parent.mk

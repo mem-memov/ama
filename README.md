@@ -9,8 +9,10 @@ libraries rather than an expanding collection of language primitives.
 The implementation is being rebuilt from this specification. `./ama --check ROOT
 .module` validates dependencies, syntax, types and typed plans without emitting or
 compiling C. `./ama --status ROOT .module` reports source activation without
-validating a project. `./ama --help` describes commands; executable compilation is not yet
-implemented. [Checking](docs/implementation/checking.md),
+validating a project. `./ama --emit ROOT .module --out DIR --sdk /path/to/ama/src --compile`
+produces a verified stackless executable at `DIR/program`. Entry calls, retained
+reads, assignments, branches and loops execute; suspension and list actions remain
+under implementation. `./ama --help` describes commands. [Checking](docs/implementation/checking.md),
 [semantic analysis](docs/implementation/semantic-analysis.md) and
 [typed plans](docs/implementation/typed-plans.md) have independent and composed
 C/assert tests. Check-only success does not validate handwritten C bodies.
@@ -99,12 +101,14 @@ mathematical/algebraic justification are implementation requirements.
 make
 ./ama --help
 ./ama --check path/to/project .main
+./ama --emit path/to/project .main --out generated --sdk "$PWD/src" --compile
+./generated/program
 make test
 make test-clean
 ```
 
-Compiler sources are under `src/`; library interfaces and C sources will be
-introduced under `stdlib/modules/` as their contracts are implemented. Tests form recursive Makefile trees under `tests/unit/` and
+Compiler sources are under `src/`; library interfaces and C sources live under
+`stdlib/modules/`. The current library provides status values and a refusal reader. Tests form recursive Makefile trees under `tests/unit/` and
 `tests/integration/`. Each leaf builds its own C test executable using `assert`.
 Successful leaves clean their generated files; failures preserve debugging output.
 

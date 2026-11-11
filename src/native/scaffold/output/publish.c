@@ -80,6 +80,10 @@ static bool stage(NativeScaffold *scaffold, ScaffoldArtifact *artifact) {
         close(descriptor);
         return scaffold_error(scaffold, DIAGNOSTIC_IO_FAILURE, "Cannot open a staging stream", artifact->path);
     }
+    if (artifact->executable && fchmod(descriptor,0700)!=0) {
+        fclose(output);
+        return scaffold_error(scaffold, DIAGNOSTIC_IO_FAILURE, "Cannot set executable permissions", artifact->path);
+    }
     size_t length = source_length(artifact->content);
     bool written = fwrite(source_bytes(artifact->content), 1, length, output) == length;
     int closed = fclose(output);

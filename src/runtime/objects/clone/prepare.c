@@ -40,6 +40,7 @@ AmaStatus ama_object_clone_payload(AmaObjectOperation *operation, AmaObjectWork 
 
 static AmaHandle ama_clone_mapped(const AmaObjectOperation *operation, const AmaObjectWork *boundary,
     AmaHandle source, AmaHandle final_root) {
+    if (source.generation == 0) { return source; }
     for (const AmaObjectWork *work = operation->first; work != NULL; work = work->next) {
         if (work->clone_root == boundary && ama_same_handle(work->source, source)) {
             return work == boundary && final_root.generation != 0 ? final_root : work->handle;
@@ -67,6 +68,7 @@ AmaStatus ama_object_clone_prepare(AmaObjectOperation *operation, AmaHandle sour
     bool continuation, void *root_payload, AmaHandle *output) {
     AmaObjectWork *work = NULL;
     AmaStatus status = ama_clone_reserve(operation, source, NULL, root_payload, &work);
+    AmaObjectWork *root = work;
     while (status.code == AMA_OK) {
         if (work->next_child < work->cell->metadata.lifetime.child_capacity) {
             uint64_t type_id;
@@ -98,7 +100,7 @@ AmaStatus ama_object_clone_prepare(AmaObjectOperation *operation, AmaHandle sour
         }
         return status;
     }
-    ama_object_fix_references(operation, operation->first, final_root);
-    *output = operation->first->handle;
+    ama_object_fix_references(operation, root, final_root);
+    *output = root->handle;
     return ama_status_success();
 }
