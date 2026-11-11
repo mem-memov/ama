@@ -1,153 +1,222 @@
-# Ama implementation backlog
+# Ama implementation tasks
 
-[TECHNICAL_SPECIFICATION.md](TECHNICAL_SPECIFICATION.md) is the source of truth;
-[EBNF.md](EBNF.md) maintains its grammar. The agreed semantic decision packages
-are closed. This file tracks implementation and acceptance, not alternative
-proposals or claims of completed features. There is no compatibility obligation:
-replace nonconforming mechanisms and remove obsolete documentation.
+[TECHNICAL_SPECIFICATION.md](TECHNICAL_SPECIFICATION.md) is the source of truth.
+This is an execution order, not a new language design or a claim that any task
+is complete. Follow [EBNF.md](EBNF.md), [VALUE_ABI.md](VALUE_ABI.md) and
+[CONTRIBUTORS.md](CONTRIBUTORS.md). Do not change the specification without an
+explicit user request.
 
-## Stage 0: Backend/native contract artifacts
+Work in the order below. Finish each independently testable contract before
+building its consumers. User-facing tooling reuses compiler components; it must
+not introduce a second parser, resolver or type system.
 
-- [ ] Implement the common code/message/length `AmaStatus` contract.
-- [ ] Specify exact component algorithms, domains, invariants and failure effects;
-  provide mathematical/algebraic justification under ARCH-05/ARCH-06 and derive
-  acceptance tests from those laws under TEST-08.
-- [ ] Generate checked native lifecycle/entry signatures for the six fixed `.abi`
-  bindings: mandatory `+`/`-`, optional `|`/`=`/`?`/`[]`.
-- [ ] Enforce native-entry inlining under the supported C toolchain while allowing
-  ordinary internal C helpers, recursion, allocation, I/O and library calls.
-- [ ] Implement the visible-Ama/opaque-native boundary: native resources in native
-  payloads, persistent Ama ownership/references only in declared Ama fields.
-- [ ] Build a narrow ABI harness covering successful construction, partial failure,
-  destruction errors, continued cleanup and no retry/double destruction.
+## 1. Establish component contracts and the test/build foundation
 
-## Stage 1: Source, identity and syntax
+- [ ] Map existing source components to the specification and identify what can
+  be reused, replaced or removed. Record evidence rather than assuming conformance.
+- [ ] Arrange responsibilities as nested directories with short orchestration
+  functions, narrow interfaces and explicit contexts. Split components as they
+  are implemented; avoid a separate repository-wide mechanical refactoring phase.
+- [ ] Make source discovery and test dependency tracking support the full nested
+  source tree and rebuild affected consumers after header changes.
+- [ ] Retain two simple recursive C/Make harnesses: component tests and integration
+  tests. Give each leaf `main.c`, descriptive `it_*` functions and explicit `run()`;
+  put guarded fixtures in parent `common.c` files and use `assert`.
+- [ ] For every subsequent component, define domains, invariants, pre/postconditions,
+  failure effects and complexity. Give a general mathematical/algebraic argument
+  and derive boundary, failure and composition tests. No heuristic algorithms or
+  example-specific exceptions are permitted (ARCH-05/ARCH-06, TEST-08).
 
-- [ ] Enforce strict UTF-8 and pinned Unicode XID identifier tables, case-sensitive
-  byte identity and unambiguous filesystem mapping.
-- [ ] Resolve extensionless modules and sibling `name+/` directories using logical
-  identities; derive companions/debug paths from actual physical filenames.
-- [ ] Apply the one base-name namespace across constants, parameters, results and
-  all persistent declarations, without branch/loop shadowing.
-- [ ] Implement section parsing to first optional `@=`, then `@<`/`@>`, then `@!` or
-  `@C`; recognize complete constants-only files and inactive unfinished drafts.
-- [ ] Parse/check all owned/reference/list forms, `|` payloads, assignments,
-  `!` entry, output-only `%` resume, `%` yield and `%source` cloning.
-- [ ] Support empty positional `<`/`>` placeholders with independent arity counters;
-  reject named mixing, empty `>>`, and all inputs on resumption.
-- [ ] Implement qualified constant sources and static path-plus-`>>` reads, retaining
-  instance-result read semantics and the prohibition on path execution/resumption.
-- [ ] Add precise source-located negative and boundary tests for the accepted grammar.
+Ready when: a nested component and its assembled parent can be built and tested
+independently, with correct dependency rebuilding and readable contracts.
 
-## Stage 2: Dependency closure, semantic IR and decomposition
+## 2. Validate the native ABI and generated-C execution constraints
 
-- [ ] Build one module registry/loader for transitive project/library dependencies,
-  parse required modules once and reject missing/draft/duplicate identities.
-- [ ] Distinguish load cycles, eager ownership layout cycles, constant initialization
-  dependencies and dynamic busy-instance reentry.
-- [ ] Resolve types and native capabilities into explicit control-flow/lifecycle IR
-  and storage plans; never use emitted C strings as the semantic representation.
-- [ ] Initialize immutable copyable constants before the root, with visible dependency
-  checks, no hidden native initialization dependencies and reverse shared cleanup.
-- [ ] Implement typed library enumerations and direct qualified action/outcome values.
-- [ ] Organize every major compiler component into the nested responsibility tree
-  in ARCH-01 through ARCH-04; keep orchestration/functions short and contexts narrow.
-- [ ] Update compiler source discovery and test dependency tracking for deeper source
-  directories; current shallow Make wildcards are not the target tree implementation.
-- [ ] Add independently runnable tests for meaningful subcomponents and assembled
-  parents, preserving ownership/span/type handoffs and failure behavior.
+- [ ] Select and document the supported C toolchain and exact native signatures,
+  including byte views, representation includes and alignment requirements.
+- [ ] Implement common `AmaStatus` code/message/length, allocate distinct service
+  codes and distinguish invalid-index refusal from technical conversion failure.
+- [ ] Build a small C harness for all six ABI bindings: mandatory `+`/`-`, optional
+  `|`/`=`/`?`/`[]`, plus a void-return native entry with service status output.
+- [ ] Verify mandatory native-entry inlining while permitting internal native C
+  calls and stack use. Verify labels and explicit return dispatch for Ama control.
+- [ ] Validate fresh/constructing/live/finalized bookkeeping, failed-constructor
+  responsibilities, reverse cleanup, destroy errors and no double destruction.
+- [ ] Specify service metadata for handles, acquisition, return links, saved
+  positions, source locations and host outcomes without hidden Ama links in C.
 
-## Stage 3: In-place stackless execution
+Ready when: executable ABI/toolchain tests establish the backend constraints
+before the frontend is connected to them.
 
-- [ ] Allocate stable block pools for executable module types, one explicit root,
-  and no implicit callable object per module. Constants-only namespaces need no pool.
-- [ ] Implement typed slot/generation handles, all-zero empty references, retirement
-  on generation exhaustion, free-slot reuse and safe trailing-block reclamation.
-- [ ] Execute directly over selected instance fields; no global working mirrors or
-  caller/callee payload transfer around invocation.
-- [ ] Emit ordinary module bodies once as labels in one execution function, with
-  instance-owned caller/return metadata and direct/switch label dispatch.
-- [ ] Preserve interface defaults/retention, permanent state, early return, protected
-  result transfer, same-type nesting on different instances and busy-instance refusal.
-- [ ] Build active operation/call-site maps and diagnostics before cleanup, including
-  failure without allocating a complete trace buffer.
-- [ ] Save acquisition refusal in caller context and expose a normal library reader;
-  successful/nested calls must not overwrite the wrong context.
-- [ ] Implement completed/yielded/failed host outcomes; root yield needs explicit host
-  handling, not an implicit resume loop. Failed execution is not resumable.
+## 3. Implement source storage, identities and structured diagnostics
 
-## Stage 4: Native and lifecycle integration
+- [ ] Build a source manager with stable spans, original UTF-8 bytes, line tables
+  and precise file/line/column reporting, including allocation-failure paths.
+- [ ] Implement strict UTF-8 and pinned Unicode XID tables, case-sensitive byte
+  identity and deterministic filesystem lookup without normalization guesses.
+- [ ] Resolve extensionless module paths, physical `name+/` submodules and native
+  companions. Keep logical identities distinct from physical diagnostic paths.
+- [ ] Generate collision-checked hashes from complete, unambiguously encoded
+  identities; retain source names and stable Unicode test vectors.
+- [ ] Represent diagnostics structurally: primary span, cause, expected construct,
+  related declaration/type spans and an actionable explanation when exact.
+- [ ] Render source excerpts and original module names, never internal hashes as
+  the only explanation. Reuse this representation in later command-line/editor tools.
 
-- [ ] Include dependencies/types/constants/native bodies in one generated project C
-  assembly; compile the launcher translation unit rather than separately calling
-  Ama module C translation units.
-- [ ] Integrate the fixed fresh/constructing/live/finalized protocol: failed constructors
-  clean themselves, live children unwind in reverse, native destroy precedes children.
-- [ ] Prepare copies before replacement commit. Preserve destinations on preparation
-  failure; treat destructive-commit error as terminal with continued cleanup.
-- [ ] Derive copy capability, reject unsupported owned cloning and allow reference
-  copying regardless of target clone support.
-- [ ] Clone ownership trees with internal reference remapping; preserve external
-  targets, destination identity and whole-owning-list clone boundaries.
-- [ ] Enforce self-assignment/no-op, `%` self-copy prohibition, ancestry overlap refusal
-  and whole-source-tree availability checks before mutation.
-- [ ] Verify generated C signatures, lifetimes, native helpers and C-entry inlining
-  with positive/negative tests and source mapping checks.
+Ready when: source and identity errors are precise, deterministic and usable
+without parsing generated C diagnostics.
 
-## Stage 5: Suspension and continuation copies
+## 4. Parse the complete grammar without semantic guesses
 
-- [ ] Save explicit branch/loop control positions at `%`; distinguish available yield
-  from a busy caller waiting for a nested invocation.
-- [ ] Resume without input bindings/reset; `!` always starts at entry and discards
-  the target's old position while preserving permanent data.
-- [ ] Clear positions throughout ordinary clones; preserve positions throughout `%`
-  clones without caller chains, busy state or refusal-history metadata.
-- [ ] Refuse either copy form if an included owned descendant is running/waiting;
-  external reference targets do not expand the copy boundary.
-- [ ] Test multiple yields, mixed yielded/completed children, explicit root resumes,
-  clone failures and no preserved native C activation.
+- [ ] Read indentation, comments and literal boundaries without altering payload
+  bytes, trailing spaces or deliberate line endings.
+- [ ] Parse sections, constants-only modules and the specified draft boundary.
+- [ ] Build an AST with spans for declarations, initialization, assignment,
+  references, lists, qualified constants, entry/read/resume calls and control flow.
+- [ ] Parse empty positional `<`/`>` placeholders with independent arity counts;
+  distinguish them from named bindings and retained `>>` requests.
+- [ ] Parse the fixed `.abi` records and report malformed, duplicate, unknown or
+  missing mandatory bindings at their exact locations.
+- [ ] Add syntax-error explanations and deterministic expected-token information.
+  Do not use declared-name lookup to decide which construct a line represents.
 
-## Stage 6: Lists and library integration
+Ready when: complete valid and invalid grammar cases have independently runnable
+parser tests; parsing does not depend on executable code generation.
 
-- [ ] Implement contiguous ordered handle arrays with length/capacity over stable
-  element pools, geometric growth, zero-based bounds and order-preserving removal.
-- [ ] Implement the fixed four-input/three-output list interface and six actions,
-  with skipped positional inputs/results and default Inspect.
-- [ ] Support owning default construction/ordinary clone and reference-list handle
-  storage, including empty references, without ownership transfer.
-- [ ] Preflight Clear and other mutations; ordinary refusals preserve structure,
-  while technical/destruction failures follow the common fatal cleanup contract.
-- [ ] Keep retained length accurate; provide traversal through existing loop/index
-  contracts and optional queue specialization in libraries.
-- [ ] Publish scalar/action/outcome/error reader interfaces and library paths without
-  inventing new core operators, universal integers or special English argument names.
+## 5. Resolve dependencies, types, capabilities and storage plans
 
-## Stage 7: Acceptance and implementation completion
+- [ ] Load the transitive project/library closure once per logical module identity;
+  report missing, ambiguous and required draft modules explicitly.
+- [ ] Enforce one base-name namespace across constants, interfaces and body fields.
+- [ ] Resolve declarations, sources and interfaces into typed symbols; check
+  defaults, literal/clone capabilities, binding arity and storage compatibility.
+- [ ] Distinguish dependency, eager ownership-layout and constant-initialization
+  cycles from dynamic busy-instance reentry. Derive legal orders from each relation.
+- [ ] Plan shared constants separately from instance storage, including qualified
+  reads, typed library enumerations, startup ordering and reverse cleanup.
+- [ ] Build explicit typed lifecycle/control-flow IR and storage plans. Preserve
+  spans and type identities through every handoff; never use C text as semantic IR.
+- [ ] Add type-error messages showing both module types and related declarations.
 
-- [ ] Complete the technical specification's acceptance matrix at component,
-  composition and generated-C integration levels.
-- [ ] Cover transitive Ama/native dependencies, invalidation, repeated logical imports,
-  Unicode paths, collisions, pool growth/reclamation, and constructor/clone failures.
-- [ ] Run required build/tests, relevant ASan/UBSan and supported-toolchain checks;
-  record actual acceptance evidence.
-- [ ] Replace nonconforming backends and fixtures with implementations and tests
-  of the accepted contracts; do not preserve obsolete behavior for compatibility.
-- [ ] Update documentation and conformance evidence together;
-  do not advertise unfinished target contracts as implemented features.
+Ready when: validated projects have inspectable layouts and IR, with no unresolved
+interpretations deferred to the C emitter.
 
-## Build and verification commands
+## 6. Expose fast checking and generate native scaffolding
 
-```sh
-make
-make -C tests/unit/lexer/tokens
-make -C tests/unit/runtime
-make -C tests/unit/codegen/types
-make test
-make test-clean
-```
+- [ ] Provide an explicit check-only command using the same source manager, parser,
+  resolver and checker as compilation, without generating or compiling C.
+- [ ] Report draft status distinctly; a required draft remains a build error.
+- [ ] Generate native headers/signatures and optional C/ABI/test skeletons from
+  validated interfaces and ABI contracts instead of duplicating declarations.
+- [ ] Make output ownership explicit. Preserve existing handwritten companions;
+  show conflicts and require an explicit generation/overwrite request.
+- [ ] Test that checking and compilation agree on frontend validity and diagnostics,
+  and that generated native declarations compile against the ABI harness.
 
-Use the smallest relevant suites while implementing, then required broader checks.
-Every successful test leaf cleans generated outputs; failure preserves artifacts.
-Documentation-only maintenance needs consistency/link checks, not a fabricated
-report of compiler/runtime tests. See [CONTRIBUTORS.md](CONTRIBUTORS.md) for the
-harness and contribution rules.
+Ready when: contributors can validate interfaces and obtain correct scaffolding
+before the execution backend is complete. These tools do not extend the grammar.
+
+## 7. Implement stable instances and ownership operations
+
+- [ ] Build stable block pools per executable module type, typed slot/generation
+  handles, empty references, free-slot reuse and generation-exhaustion retirement.
+- [ ] Reclaim free trailing blocks without reviving stale handles after regrowth.
+- [ ] Construct owned fields and native payloads in the specified order; implement
+  partial failure cleanup, at-most-once destruction and terminal cleanup errors.
+- [ ] Implement independent ownership-tree cloning with an injective clone map,
+  internal-reference remapping and unchanged external targets.
+- [ ] Prepare replacements before destructive commit; preserve destinations on
+  preparation failure and finalize resources correctly after commit failure.
+- [ ] Check source-tree availability, ownership overlap and copy capability;
+  preserve ordinary self-assignment and reject continuation self-copy.
+
+Ready when: small exhaustive state models and failure-injection tests establish
+handle, lifetime, clone and replacement invariants independently of module execution.
+
+## 8. Connect the smallest complete stackless program
+
+- [ ] Emit one project assembly containing required includes, generated types,
+  constants, native bodies and Ama labels, included by a launcher translation unit.
+- [ ] Execute directly over heap instances without working-state mirrors or
+  implicit default objects. Initialize constants before creating the explicit root.
+- [ ] Lower entry calls, interface reset/defaults, retained results, result routing,
+  branches, loops and return links to explicit transfers and service metadata.
+- [ ] Integrate native execution/status and lifecycle code; prohibit C dispatch of
+  Ama modules and persistent borrowed views in opaque native state.
+- [ ] Exercise two module types with multiple instances, nested same-type calls,
+  busy refusal, pool growth during calls and persistent body state.
+- [ ] Implement acquisition refusal snapshots and their read-only library reader;
+  preserve caller-context ownership across successful and nested calls.
+- [ ] Emit source maps and execution-path diagnostics before cleanup, including
+  failure before root entry and reporting without a newly allocated trace buffer.
+
+Ready when: a real project compiles to C and runs with verified native inlining,
+label transfers, stable instance addresses and correct cleanup.
+
+## 9. Add suspension and continuation copying
+
+- [ ] Save explicit branch/loop positions at `%`, separating available yielded
+  state from a busy instance waiting for a nested call.
+- [ ] Implement output-only resumption, entry restart and completed/yielded/failed
+  host outcomes. Failed execution is not resumable; root resume is host-explicit.
+- [ ] Clear positions throughout ordinary copies and preserve them throughout `%`
+  copies, without copying callers, busy state or refusal history.
+- [ ] Test repeated yields, nested owned states, busy descendants, clone failures,
+  host disposal and rejection of unhandled root yield by the standard launcher.
+
+Ready when: continuation semantics compose with ownership and failures without
+capturing a native C activation or adding an implicit scheduler.
+
+## 10. Complete lists and a coherent standard library
+
+- [ ] Implement ordered contiguous handle arrays over stable element pools,
+  checked geometric capacity growth and zero-based index conversion.
+- [ ] Implement the specified four-input/three-output interface and six actions,
+  default Inspect, positional skips, owning construction/clone and reference lists.
+- [ ] Preflight destructive mutations and distinguish ordinary refusal from
+  technical failure; maintain retained length/results and order-preserving removal.
+- [ ] Publish scalar, condition/index, action/outcome and refusal-reader modules
+  with documented paths and typed shared constants.
+- [ ] Establish consistent parameter/result ordering across related library
+  interfaces and test it. Keep domain operation names out of parser rules.
+- [ ] Cover traversal, empty references, busy deletion, Clear preflight, pool
+  reclamation and stale-reference rejection through real compiled projects.
+
+Ready when: library interfaces compose predictably without new core operators.
+
+## 11. Make the language easy to explore and debug
+
+- [ ] Create small complete examples for persistent state, native I/O, object lists,
+  and stepwise simulation with independent scenario copies.
+- [ ] Use the examples to review diagnostics, repeated paths and auxiliary-variable
+  burden. Record concrete friction before proposing any language change.
+- [ ] Add editor highlighting, module-path completion, definition navigation and
+  signature/type display using the existing frontend and source spans.
+- [ ] Add rename support using resolved references, including qualified constants;
+  verify affected files rather than performing unchecked textual substitution.
+- [ ] Provide explicit debugger inspection of instance type, persistent fields,
+  retained interface values, acquisition state, saved position and refusal reason.
+  Reuse runtime metadata and respect native borrowing and opaque-payload boundaries.
+
+Ready when: a contributor can understand, navigate and diagnose a complete example
+without decoding internal C names or consulting unrelated implementation files.
+
+## 12. Finish acceptance and reproducibility
+
+- [ ] Complete the specification's acceptance matrix at component, composition
+  and generated-C integration levels, with recorded formal arguments and test evidence.
+- [ ] Verify deterministic output, transitive dependency invalidation, Unicode paths,
+  collisions, allocation arithmetic, output failures and resource exhaustion.
+- [ ] Run the full build/tests, relevant ASan/UBSan and supported-toolchain checks;
+  confirm both mandatory entry inlining and permitted internal native calls.
+- [ ] Remove nonconforming mechanisms and obsolete descriptions; publish actual
+  conformance limitations, supported toolchain versions and reproducible commands.
+
+## Verification throughout the work
+
+Run focused tests after each component and composition tests at its next handoff.
+Compile and run generated C for execution/ABI claims. Successful leaves clean their
+outputs; failures preserve debugging artifacts. Use `make`, `make test` and
+`make test-clean`, plus relevant individual suites described in the contributor guide.
+Documentation-only work requires link, structure and consistency checks rather
+than unrelated compiler test claims. Do not mark a task complete without evidence.
