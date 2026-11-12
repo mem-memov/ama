@@ -1,2 +1,2 @@
-SUBDIRECTORIES := construction lifecycle clone replacement access
+SUBDIRECTORIES := construction lifecycle clone-preparation clone replacement access
 include ../../../parent.mk

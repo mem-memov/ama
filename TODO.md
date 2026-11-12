@@ -292,11 +292,21 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   Strict standalone tests, full root `make -j4 test` (64 leaves), and the phase
   leaf under ASan/UBSan passed (`detect_leaks=0`; no LSan claim). Doxygen checked
   483 file pages and canonical links; 79 ready inputs and 562 explicit debts remain.
-- [ ] **T142 — Separate clone preparation phases.** Needs: T132. Refine
+- [x] **T142 — Separate clone preparation phases.** Needs: T132. Refine
   `src/runtime/objects/clone/prepare.c` around capability/access checks, native
   preparation, child work and map bookkeeping. Keep the single operation-scoped
   injective mapping and rollback ownership explicit. Add linked Doxygen arguments
   and independently test failure transitions plus full clone/replacement composition.
+
+  Evidence: [clone preparation argument](docs/implementation/clone-preparation.md).
+  Separated private reservation, child work, native/service copying and complete
+  boundary-scoped reference fixups. Existing exact source/capability admission
+  remains before native hooks. Four standalone cases cover every measured reserve
+  allocation failure, late field failure, uncredited child ownership, two copies
+  of one source, replacement root redirection and each native failure in a
+  three-node tree. Strict phase tests, ASan/UBSan (`detect_leaks=0`) and full root
+  `make -j4 test` passed (65 leaves), including clone/replacement/forest/generated
+  consumers. Doxygen checked 489 file pages; 89 ready inputs and 559 debts remain.
 - [ ] **T143 — Separate invocation input preparation phases.** Needs: T132.
   Decompose `src/runtime/program/calls/prepare.c` into source selection, source
   protection, affected-field preflight and declaration-order installation.

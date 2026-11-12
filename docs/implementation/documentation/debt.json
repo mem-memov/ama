@@ -866,8 +866,8 @@
   "src/runtime/assembly.h": {
     "audited_test_consumers": "",
     "owner": "T149",
-    "reason": "T141 reviewed construction extraction and composition; remaining file-wide documentation/coverage closure stays with its owning task.",
-    "sha256": "c946180b537caa64f81eace8c643b93b968e1ed0dca3280d9a35b37c03ea7edc"
+    "reason": "T142 reviewed clone-phase assembly and registered phase tests; remaining file-wide documentation/coverage closure stays with its owning task.",
+    "sha256": "8fb8bee121211e4c7f2a1ee7565fe74370ee2f1a65fe6ce7fecac13c9a412606"
   },
   "src/runtime/lifecycle/cleanup.c": {
     "audited_test_consumers": "tests/unit/native/lifecycle/model; tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
@@ -1018,24 +1018,6 @@
     "owner": "T149",
     "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
     "sha256": "843908201904d1b6788628b0649f4a235deba1028a38f68fee44390f912fed7a"
-  },
-  "src/runtime/objects/clone/clone.c": {
-    "audited_test_consumers": "tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
-    "owner": "T149",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "6427979fcc9147fa69c1f497a1c989cae4d1341bdd99594065622af2ee978f92"
-  },
-  "src/runtime/objects/clone/fields.c": {
-    "audited_test_consumers": "tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
-    "owner": "T149",
-    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T149.",
-    "sha256": "11622dd41b23ecb791236f23c6ed4278b04f7cf3e904661d79ea0b446f749735"
-  },
-  "src/runtime/objects/clone/prepare.c": {
-    "audited_test_consumers": "tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
-    "owner": "T149",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "866f69c0a8bdafe96b41b2bd98651b758bedcb0ed75550c1335da77368d5886b"
   },
   "src/runtime/objects/internal.h": {
     "audited_test_consumers": "tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
@@ -3104,8 +3086,8 @@
   "tests/unit/runtime/objects/Makefile": {
     "audited_test_consumers": "",
     "owner": "T151",
-    "reason": "T141 reviewed construction extraction and composition; remaining file-wide documentation/coverage closure stays with its owning task.",
-    "sha256": "523fd4d8424ad4d9aa72f2bbcb0c6f50ecb7e25833033a656946bed310f837f1"
+    "reason": "T142 reviewed clone-phase assembly and registered phase tests; remaining file-wide documentation/coverage closure stays with its owning task.",
+    "sha256": "25b1ebce38c1df12e58b0b9e2ffb29f724e73a4c8752adaf6c6157833d046c99"
   },
   "tests/unit/runtime/objects/access/Makefile": {
     "audited_test_consumers": "",

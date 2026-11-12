@@ -1474,6 +1474,669 @@
       }
     ]
   },
+  "src/runtime/objects/clone/children.c": {
+    "contract": "docs/implementation/clone-preparation.md",
+    "purpose": "Prepare protected private copies with exact boundary-scoped identity maps and prefix rollback.",
+    "tests": [
+      {
+        "case": "it_exposes_registered_work_on_late_field_failure_and_releases_each_prefix",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_installs_the_child_identity_before_crediting_success",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_scopes_reference_fixups_and_final_root_redirection_to_one_copy_boundary",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_rolls_back_each_native_failure_without_destroying_the_source_or_failed_payload",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_remaps_root_ancestor_forward_and_cyclic_references_but_preserves_external_targets",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_copies_saved_positions_only_in_explicit_continuation_mode",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_busy_descendants_and_missing_clone_capabilities_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_the_source_and_releases_each_failed_clone_prefix",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_uses_independent_clone_contexts_for_repeated_source_initializers",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_mixed_positions_in_owned_lists_without_resuming_the_root",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_every_busy_descendant_before_continuation_clone_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_old_destination_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/clone/clone.c": {
+    "contract": "docs/implementation/clone-preparation.md",
+    "purpose": "Prepare protected private copies with exact boundary-scoped identity maps and prefix rollback.",
+    "tests": [
+      {
+        "case": "it_exposes_registered_work_on_late_field_failure_and_releases_each_prefix",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_installs_the_child_identity_before_crediting_success",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_scopes_reference_fixups_and_final_root_redirection_to_one_copy_boundary",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_rolls_back_each_native_failure_without_destroying_the_source_or_failed_payload",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_remaps_root_ancestor_forward_and_cyclic_references_but_preserves_external_targets",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_copies_saved_positions_only_in_explicit_continuation_mode",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_busy_descendants_and_missing_clone_capabilities_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_the_source_and_releases_each_failed_clone_prefix",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_uses_independent_clone_contexts_for_repeated_source_initializers",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_mixed_positions_in_owned_lists_without_resuming_the_root",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_every_busy_descendant_before_continuation_clone_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_old_destination_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/clone/fields.c": {
+    "contract": "docs/implementation/clone-preparation.md",
+    "purpose": "Prepare protected private copies with exact boundary-scoped identity maps and prefix rollback.",
+    "tests": [
+      {
+        "case": "it_exposes_registered_work_on_late_field_failure_and_releases_each_prefix",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_installs_the_child_identity_before_crediting_success",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_scopes_reference_fixups_and_final_root_redirection_to_one_copy_boundary",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_rolls_back_each_native_failure_without_destroying_the_source_or_failed_payload",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_remaps_root_ancestor_forward_and_cyclic_references_but_preserves_external_targets",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_copies_saved_positions_only_in_explicit_continuation_mode",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_busy_descendants_and_missing_clone_capabilities_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_the_source_and_releases_each_failed_clone_prefix",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_uses_independent_clone_contexts_for_repeated_source_initializers",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_mixed_positions_in_owned_lists_without_resuming_the_root",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_every_busy_descendant_before_continuation_clone_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_old_destination_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/clone/internal.h": {
+    "contract": "docs/implementation/clone-preparation.md",
+    "purpose": "Prepare protected private copies with exact boundary-scoped identity maps and prefix rollback.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_exposes_registered_work_on_late_field_failure_and_releases_each_prefix",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_installs_the_child_identity_before_crediting_success",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_scopes_reference_fixups_and_final_root_redirection_to_one_copy_boundary",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_rolls_back_each_native_failure_without_destroying_the_source_or_failed_payload",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_remaps_root_ancestor_forward_and_cyclic_references_but_preserves_external_targets",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_copies_saved_positions_only_in_explicit_continuation_mode",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_busy_descendants_and_missing_clone_capabilities_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_the_source_and_releases_each_failed_clone_prefix",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_uses_independent_clone_contexts_for_repeated_source_initializers",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_mixed_positions_in_owned_lists_without_resuming_the_root",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_every_busy_descendant_before_continuation_clone_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_old_destination_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/clone/mapping.c": {
+    "contract": "docs/implementation/clone-preparation.md",
+    "purpose": "Prepare protected private copies with exact boundary-scoped identity maps and prefix rollback.",
+    "tests": [
+      {
+        "case": "it_exposes_registered_work_on_late_field_failure_and_releases_each_prefix",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_installs_the_child_identity_before_crediting_success",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_scopes_reference_fixups_and_final_root_redirection_to_one_copy_boundary",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_rolls_back_each_native_failure_without_destroying_the_source_or_failed_payload",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_remaps_root_ancestor_forward_and_cyclic_references_but_preserves_external_targets",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_copies_saved_positions_only_in_explicit_continuation_mode",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_busy_descendants_and_missing_clone_capabilities_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_the_source_and_releases_each_failed_clone_prefix",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_uses_independent_clone_contexts_for_repeated_source_initializers",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_mixed_positions_in_owned_lists_without_resuming_the_root",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_every_busy_descendant_before_continuation_clone_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_old_destination_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/clone/payload.c": {
+    "contract": "docs/implementation/clone-preparation.md",
+    "purpose": "Prepare protected private copies with exact boundary-scoped identity maps and prefix rollback.",
+    "tests": [
+      {
+        "case": "it_exposes_registered_work_on_late_field_failure_and_releases_each_prefix",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_installs_the_child_identity_before_crediting_success",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_scopes_reference_fixups_and_final_root_redirection_to_one_copy_boundary",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_rolls_back_each_native_failure_without_destroying_the_source_or_failed_payload",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_remaps_root_ancestor_forward_and_cyclic_references_but_preserves_external_targets",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_copies_saved_positions_only_in_explicit_continuation_mode",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_busy_descendants_and_missing_clone_capabilities_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_the_source_and_releases_each_failed_clone_prefix",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_uses_independent_clone_contexts_for_repeated_source_initializers",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_mixed_positions_in_owned_lists_without_resuming_the_root",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_every_busy_descendant_before_continuation_clone_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_old_destination_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/clone/prepare.c": {
+    "contract": "docs/implementation/clone-preparation.md",
+    "purpose": "Prepare protected private copies with exact boundary-scoped identity maps and prefix rollback.",
+    "tests": [
+      {
+        "case": "it_exposes_registered_work_on_late_field_failure_and_releases_each_prefix",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_installs_the_child_identity_before_crediting_success",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_scopes_reference_fixups_and_final_root_redirection_to_one_copy_boundary",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_rolls_back_each_native_failure_without_destroying_the_source_or_failed_payload",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_remaps_root_ancestor_forward_and_cyclic_references_but_preserves_external_targets",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_copies_saved_positions_only_in_explicit_continuation_mode",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_busy_descendants_and_missing_clone_capabilities_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_the_source_and_releases_each_failed_clone_prefix",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_uses_independent_clone_contexts_for_repeated_source_initializers",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_mixed_positions_in_owned_lists_without_resuming_the_root",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_every_busy_descendant_before_continuation_clone_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_old_destination_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/clone/reserve.c": {
+    "contract": "docs/implementation/clone-preparation.md",
+    "purpose": "Prepare protected private copies with exact boundary-scoped identity maps and prefix rollback.",
+    "tests": [
+      {
+        "case": "it_exposes_registered_work_on_late_field_failure_and_releases_each_prefix",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_installs_the_child_identity_before_crediting_success",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_scopes_reference_fixups_and_final_root_redirection_to_one_copy_boundary",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_rolls_back_each_native_failure_without_destroying_the_source_or_failed_payload",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_remaps_root_ancestor_forward_and_cyclic_references_but_preserves_external_targets",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_copies_saved_positions_only_in_explicit_continuation_mode",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_busy_descendants_and_missing_clone_capabilities_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_the_source_and_releases_each_failed_clone_prefix",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_uses_independent_clone_contexts_for_repeated_source_initializers",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_mixed_positions_in_owned_lists_without_resuming_the_root",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_every_busy_descendant_before_continuation_clone_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_old_destination_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      }
+    ]
+  },
   "src/runtime/objects/construction/build.c": {
     "contract": "docs/implementation/object-construction.md",
     "purpose": "Construct private ownership trees with exact initialized-prefix cleanup and stable publication.",
@@ -2528,6 +3191,168 @@
         "case": "it_rejects_reentrant_storage_work_without_mutating_or_allocating",
         "command": "make -C tests/unit/runtime/lists",
         "source": "tests/unit/runtime/lists/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/objects/clone-preparation/Makefile": {
+    "contract": "docs/implementation/clone-preparation.md",
+    "purpose": "Prepare protected private copies with exact boundary-scoped identity maps and prefix rollback.",
+    "tests": [
+      {
+        "case": "it_exposes_registered_work_on_late_field_failure_and_releases_each_prefix",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_installs_the_child_identity_before_crediting_success",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_scopes_reference_fixups_and_final_root_redirection_to_one_copy_boundary",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_rolls_back_each_native_failure_without_destroying_the_source_or_failed_payload",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_remaps_root_ancestor_forward_and_cyclic_references_but_preserves_external_targets",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_copies_saved_positions_only_in_explicit_continuation_mode",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_busy_descendants_and_missing_clone_capabilities_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_the_source_and_releases_each_failed_clone_prefix",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_uses_independent_clone_contexts_for_repeated_source_initializers",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_mixed_positions_in_owned_lists_without_resuming_the_root",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_every_busy_descendant_before_continuation_clone_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_old_destination_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/objects/clone-preparation/main.c": {
+    "contract": "docs/implementation/clone-preparation.md",
+    "purpose": "Prepare protected private copies with exact boundary-scoped identity maps and prefix rollback.",
+    "tests": [
+      {
+        "case": "it_exposes_registered_work_on_late_field_failure_and_releases_each_prefix",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_installs_the_child_identity_before_crediting_success",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_scopes_reference_fixups_and_final_root_redirection_to_one_copy_boundary",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_rolls_back_each_native_failure_without_destroying_the_source_or_failed_payload",
+        "command": "make -C tests/unit/runtime/objects/clone-preparation",
+        "source": "tests/unit/runtime/objects/clone-preparation/main.c"
+      },
+      {
+        "case": "it_remaps_root_ancestor_forward_and_cyclic_references_but_preserves_external_targets",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_copies_saved_positions_only_in_explicit_continuation_mode",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_busy_descendants_and_missing_clone_capabilities_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_the_source_and_releases_each_failed_clone_prefix",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_uses_independent_clone_contexts_for_repeated_source_initializers",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_mixed_positions_in_owned_lists_without_resuming_the_root",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_every_busy_descendant_before_continuation_clone_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_old_destination_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
       }
     ]
   },

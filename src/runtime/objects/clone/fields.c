@@ -1,7 +1,20 @@
+/**
+ * @file
+ * @brief Initialize clone field buffers and copy reference handles before identity fixups.
+ *
+ * [COPY-05](../../../../spec/language/values-and-references.md#copy-05)
+ * requires fresh owning child slots and complete reference fixups before publication.
+ */
+#include "internal.h"
+
 #include <stdint.h>
 #include <string.h>
-#include "runtime/objects/internal.h"
 
+/** Allocate zeroed destination field storage from a protected source's shape.
+ * Reference handles are copied pending complete-map fixups; owned handles remain
+ * empty until child reservation. Buffers belong to the registered private work,
+ * including after overflow, allocation or field-preparation failure.
+ */
 AmaStatus ama_object_clone_fields(AmaWorld *world, AmaObjectWork *work) {
     AmaPoolCell *source = NULL;
     AmaStatus status = ama_pool_lookup(&work->type->pool, work->source, true, &source);

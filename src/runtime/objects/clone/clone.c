@@ -1,5 +1,18 @@
-#include "runtime/objects/internal.h"
+/**
+ * @file
+ * @brief Guard source admission, private preparation and publication for public cloning.
+ *
+ * [COPY-07](../../../../spec/language/values-and-references.md#copy-07)
+ * requires source/capability checks before cloning; all protections are released on exit.
+ */
+#include "internal.h"
 
+
+/** Own a guarded synchronous copy: admit/protect the complete source before
+ * native hooks, prepare privately, then publish without moving storage. Recipes,
+ * descriptors and source data stay borrowed; output changes only on success.
+ * All paths restore source service state and release scratch/protections.
+ */
 AmaStatus ama_object_clone(AmaWorld *world, AmaHandle source, bool continuation, AmaHandle *output) {
     if (world->operation_active || world->failed) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
     world->operation_active = true;
