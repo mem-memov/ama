@@ -277,12 +277,21 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   real execution/continuation leaves, negative native inlining and complete root
   `make -j4 test` passed (63 leaves). Header checks and 474 Doxygen file pages passed;
   68 ready inputs and 563 remaining documentation/coverage debts are explicit.
-- [ ] **T141 — Separate object construction phases.** Needs: T132. Refine
+- [x] **T141 — Separate object construction phases.** Needs: T132. Refine
   `src/runtime/objects/construction/build.c` into narrow reservation, constructor,
   field-construction, publication and unwind operations. Document initialized-prefix
   and reserved-identity invariants, ownership and failures with canonical links.
   Verify lifecycle ordering, every allocation/constructor failure boundary and
   real parent creation; refactoring does not substitute for T050's new semantics.
+
+  Evidence: [private construction argument](docs/implementation/object-construction.md).
+  Split reservation, field/child preparation, payload construction, publication
+  and unwind from the iterative driver. Five independent phase cases and the
+  existing seven lifecycle cases cover pre/post-reservation failures, allocation
+  prefixes, constructor failures, reverse cleanup and explicit continuation fixups.
+  Strict standalone tests, full root `make -j4 test` (64 leaves), and the phase
+  leaf under ASan/UBSan passed (`detect_leaks=0`; no LSan claim). Doxygen checked
+  483 file pages and canonical links; 79 ready inputs and 562 explicit debts remain.
 - [ ] **T142 — Separate clone preparation phases.** Needs: T132. Refine
   `src/runtime/objects/clone/prepare.c` around capability/access checks, native
   preparation, child work and map bookkeeping. Keep the single operation-scoped

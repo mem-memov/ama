@@ -866,8 +866,8 @@
   "src/runtime/assembly.h": {
     "audited_test_consumers": "",
     "owner": "T149",
-    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T149.",
-    "sha256": "1d7dc35559c3d1a7d7b249ba007ffe7ea97ae8d569bf386219fcd8eec2f5c899"
+    "reason": "T141 reviewed construction extraction and composition; remaining file-wide documentation/coverage closure stays with its owning task.",
+    "sha256": "c946180b537caa64f81eace8c643b93b968e1ed0dca3280d9a35b37c03ea7edc"
   },
   "src/runtime/lifecycle/cleanup.c": {
     "audited_test_consumers": "tests/unit/native/lifecycle/model; tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
@@ -1037,23 +1037,17 @@
     "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
     "sha256": "866f69c0a8bdafe96b41b2bd98651b758bedcb0ed75550c1335da77368d5886b"
   },
-  "src/runtime/objects/construction/build.c": {
-    "audited_test_consumers": "tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
-    "owner": "T149",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "b26c0a79c2379c4bd8c91cc016c6cb417d3ac76a24a246160d1feca23d3ccff9"
-  },
   "src/runtime/objects/internal.h": {
     "audited_test_consumers": "tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
     "owner": "T149",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "dac9228935587f6bcede3943d4e4a8dca2d6162da3ee8b83da2d2f5f05b05b73"
+    "reason": "T141 reviewed construction extraction and composition; remaining file-wide documentation/coverage closure stays with its owning task.",
+    "sha256": "5b458e425102f0e9de04050e085457a3f7914b0972ccc6812ec0c08f506f7fff"
   },
   "src/runtime/objects/model/fields.c": {
     "audited_test_consumers": "tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
     "owner": "T149",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "f15dd4b9b3c823894ea545d2c9f7f39419b0a093ef12dc3294c11b14ea844169"
+    "reason": "T141 reviewed construction extraction and composition; remaining file-wide documentation/coverage closure stays with its owning task.",
+    "sha256": "a6e535829e3f8ddb887063394360ff8f8cc1efec13beac59d1319a3730d2f719"
   },
   "src/runtime/objects/model/types.c": {
     "audited_test_consumers": "tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
@@ -3110,8 +3104,8 @@
   "tests/unit/runtime/objects/Makefile": {
     "audited_test_consumers": "",
     "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "bdc690e0267a6875209624aa8dc326e3bafda71473c910638f966064310a9784"
+    "reason": "T141 reviewed construction extraction and composition; remaining file-wide documentation/coverage closure stays with its owning task.",
+    "sha256": "523fd4d8424ad4d9aa72f2bbcb0c6f50ecb7e25833033a656946bed310f837f1"
   },
   "tests/unit/runtime/objects/access/Makefile": {
     "audited_test_consumers": "",

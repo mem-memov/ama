@@ -1474,6 +1474,615 @@
       }
     ]
   },
+  "src/runtime/objects/construction/build.c": {
+    "contract": "docs/implementation/object-construction.md",
+    "purpose": "Construct private ownership trees with exact initialized-prefix cleanup and stable publication.",
+    "tests": [
+      {
+        "case": "it_distinguishes_unreserved_failure_from_registered_partial_work",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_keeps_child_ownership_and_prefix_cleanup_explicit",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_publishes_completed_state_without_moving_payloads",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_rejects_unrepresentable_lists_and_wrong_reference_types_before_payload",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_preserves_explicit_continuations_and_fixups_through_publication",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/construction/children.c": {
+    "contract": "docs/implementation/object-construction.md",
+    "purpose": "Construct private ownership trees with exact initialized-prefix cleanup and stable publication.",
+    "tests": [
+      {
+        "case": "it_distinguishes_unreserved_failure_from_registered_partial_work",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_keeps_child_ownership_and_prefix_cleanup_explicit",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_publishes_completed_state_without_moving_payloads",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_rejects_unrepresentable_lists_and_wrong_reference_types_before_payload",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_preserves_explicit_continuations_and_fixups_through_publication",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/construction/create.c": {
+    "contract": "docs/implementation/object-construction.md",
+    "purpose": "Construct private ownership trees with exact initialized-prefix cleanup and stable publication.",
+    "tests": [
+      {
+        "case": "it_distinguishes_unreserved_failure_from_registered_partial_work",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_keeps_child_ownership_and_prefix_cleanup_explicit",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_publishes_completed_state_without_moving_payloads",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_rejects_unrepresentable_lists_and_wrong_reference_types_before_payload",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_preserves_explicit_continuations_and_fixups_through_publication",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/construction/fields.c": {
+    "contract": "docs/implementation/object-construction.md",
+    "purpose": "Construct private ownership trees with exact initialized-prefix cleanup and stable publication.",
+    "tests": [
+      {
+        "case": "it_distinguishes_unreserved_failure_from_registered_partial_work",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_keeps_child_ownership_and_prefix_cleanup_explicit",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_publishes_completed_state_without_moving_payloads",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_rejects_unrepresentable_lists_and_wrong_reference_types_before_payload",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_preserves_explicit_continuations_and_fixups_through_publication",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/construction/internal.h": {
+    "contract": "docs/implementation/object-construction.md",
+    "purpose": "Construct private ownership trees with exact initialized-prefix cleanup and stable publication.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_distinguishes_unreserved_failure_from_registered_partial_work",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_keeps_child_ownership_and_prefix_cleanup_explicit",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_publishes_completed_state_without_moving_payloads",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_rejects_unrepresentable_lists_and_wrong_reference_types_before_payload",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_preserves_explicit_continuations_and_fixups_through_publication",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/construction/payload.c": {
+    "contract": "docs/implementation/object-construction.md",
+    "purpose": "Construct private ownership trees with exact initialized-prefix cleanup and stable publication.",
+    "tests": [
+      {
+        "case": "it_distinguishes_unreserved_failure_from_registered_partial_work",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_keeps_child_ownership_and_prefix_cleanup_explicit",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_publishes_completed_state_without_moving_payloads",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_rejects_unrepresentable_lists_and_wrong_reference_types_before_payload",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_preserves_explicit_continuations_and_fixups_through_publication",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/construction/publication.c": {
+    "contract": "docs/implementation/object-construction.md",
+    "purpose": "Construct private ownership trees with exact initialized-prefix cleanup and stable publication.",
+    "tests": [
+      {
+        "case": "it_distinguishes_unreserved_failure_from_registered_partial_work",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_keeps_child_ownership_and_prefix_cleanup_explicit",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_publishes_completed_state_without_moving_payloads",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_rejects_unrepresentable_lists_and_wrong_reference_types_before_payload",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_preserves_explicit_continuations_and_fixups_through_publication",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/construction/reserve.c": {
+    "contract": "docs/implementation/object-construction.md",
+    "purpose": "Construct private ownership trees with exact initialized-prefix cleanup and stable publication.",
+    "tests": [
+      {
+        "case": "it_distinguishes_unreserved_failure_from_registered_partial_work",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_keeps_child_ownership_and_prefix_cleanup_explicit",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_publishes_completed_state_without_moving_payloads",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_rejects_unrepresentable_lists_and_wrong_reference_types_before_payload",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_preserves_explicit_continuations_and_fixups_through_publication",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/construction/unwind.c": {
+    "contract": "docs/implementation/object-construction.md",
+    "purpose": "Construct private ownership trees with exact initialized-prefix cleanup and stable publication.",
+    "tests": [
+      {
+        "case": "it_distinguishes_unreserved_failure_from_registered_partial_work",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_keeps_child_ownership_and_prefix_cleanup_explicit",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_publishes_completed_state_without_moving_payloads",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_rejects_unrepresentable_lists_and_wrong_reference_types_before_payload",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_preserves_explicit_continuations_and_fixups_through_publication",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      }
+    ]
+  },
   "tests/integration/rebuild/concurrent/Makefile": {
     "contract": "docs/implementation/incremental-build.md",
     "purpose": "Isolate simultaneous Make command-manifest checks and propagate errors.",
@@ -1919,6 +2528,138 @@
         "case": "it_rejects_reentrant_storage_work_without_mutating_or_allocating",
         "command": "make -C tests/unit/runtime/lists",
         "source": "tests/unit/runtime/lists/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/objects/construction/Makefile": {
+    "contract": "docs/implementation/object-construction.md",
+    "purpose": "Construct private ownership trees with exact initialized-prefix cleanup and stable publication.",
+    "tests": [
+      {
+        "case": "it_distinguishes_unreserved_failure_from_registered_partial_work",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_keeps_child_ownership_and_prefix_cleanup_explicit",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_publishes_completed_state_without_moving_payloads",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_rejects_unrepresentable_lists_and_wrong_reference_types_before_payload",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_preserves_explicit_continuations_and_fixups_through_publication",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/objects/construction/main.c": {
+    "contract": "docs/implementation/object-construction.md",
+    "purpose": "Construct private ownership trees with exact initialized-prefix cleanup and stable publication.",
+    "tests": [
+      {
+        "case": "it_distinguishes_unreserved_failure_from_registered_partial_work",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_keeps_child_ownership_and_prefix_cleanup_explicit",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_publishes_completed_state_without_moving_payloads",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_rejects_unrepresentable_lists_and_wrong_reference_types_before_payload",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_preserves_explicit_continuations_and_fixups_through_publication",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
       }
     ]
   },
