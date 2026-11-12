@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Build allocation-free semantic failures with original primary/related declarations.
+ *
+ * [COMP-04](../../../spec/implementation/compiler.md#comp-04)
+ * Diagnostic views borrow semantic/project storage; reporting does not guess repairs or allocate a fallback message.
+ */
 #include "semantic/internal.h"
 
 bool semantic_memory_failure(SemanticProgram *program) {

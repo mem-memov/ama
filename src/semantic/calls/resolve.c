@@ -8,6 +8,8 @@
  */
 #include "internal.h"
 
+/** Resolve the exact explicit constant namespace or scalar instance form; a constant symbol cannot become an executable instance target.
+ */
 static bool target(SemanticProgram *program, SemanticType *caller, SemanticStatement *statement) {
     const AstNode *node = statement->syntax;
     if (node->as.call.mode == AST_CONSTANT_READ) {

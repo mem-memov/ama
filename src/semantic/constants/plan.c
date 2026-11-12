@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Publish shared startup order and reverse cleanup links from a valid relation.
+ *
+ * [CONST-02](../../../spec/language/declarations.md#const-02)
+ * Shared storage is initialized once and cleaned in the exact reverse successful order, independently of instance pools.
+ */
 #include <assert.h>
 #include "semantic/internal.h"
 

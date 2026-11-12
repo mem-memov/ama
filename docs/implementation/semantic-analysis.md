@@ -95,8 +95,11 @@ element is scalar storage. A declaration list initializer is checked as one
 scalar element, not list splicing. Literal construction selects its destination
 owned scalar's `|`; no type or numeric value is inferred from bytes. `%` can clone
 an owned/reference scalar into owned scalar storage, subject to clone capability.
-Ordinary identical-storage self-assignment is an explicit no-op; `%` self-copy is
-rejected. Runtime identity/ownership overlap checks remain runtime obligations.
+Every syntactic owned transfer checks copy capability, including apparent
+self-assignment. T147 removes the static no-op enum and spelling comparison:
+ordinary self identity is decided at runtime only after normal selections and
+access checks. Direct nonindexed `%` self-copy is rejected by exact resolved
+symbol identity; indexed/reference aliases retain runtime identity/overlap checks.
 
 [Call resolution](../../src/semantic/calls/resolve.c) binds targets, named labels
 or independent positional sequences before consumption. Every placeholder counts
@@ -246,3 +249,31 @@ Full `make test` with release flags, `-DNDEBUG`/`-Werror`, focused ASan/UBSan se
 planning and integration suites, and independent public-header checks pass.
 LeakSanitizer is disabled; exhaustive allocation-injection/live-count checks
 cover partial namespace, ABI, resolution, graph, constant and typed-plan owners.
+
+
+T147 documents every dependency/semantic/plan/lowering file, public type and
+nontrivial operation with explicit owner/borrow/failure contracts. Loading closure
+uses a first-discovery requester forest; cycles reuse registered loading records.
+Eager ownership is a separate finite prerequisite DAG. Shared initialization adds
+actual value reads and fresh-construction reads, then stable full-key ordering.
+Clone capability is a greatest fixed point over all declared owned types, including
+empty-list element types. Each pass only removes capability, so at most V types
+can change from true to false. The exact scans may cost O(V*(V+E)); they are not
+claimed linear. Graph ordering scans ready candidates and their prerequisites;
+its current repeated-scan algorithm likewise has explicit graph/key lookup costs.
+
+A discovered COPY-06 violation had exempted noncopyable resources when receiver
+and source had identical text. The semantic regression rejected that behavior,
+including scalar, whole-list and indexed forms and a transitive noncopyable field.
+Reference transfers still require no target clone capability. Lowering now always
+retains all replacement phases and no `TRANSFER_NOOP` case exists. Runtime retains
+its checked-identity ordinary no-op, which neither clones nor clears positions.
+The semantic/planning regressions failed before the correction; actual generated
+scalar/list/indexed self copies and invalid index conversion exercise its consumer.
+
+This does not close T030–T040 or T041–T045. Source-order inferred fields, lexical
+foreach bindings, current result trees/list services and complete control contexts
+still require their own work. In particular the retained empty-loop control graph
+still needs FLOW-02's one-check behavior in T044/T068; a body containing only a
+declaration is syntactically nonempty under that rule. No runtime emptiness or
+emission-size heuristic may choose the future repeat edge.

@@ -1,6 +1,15 @@
+/**
+ * @file
+ * @brief Build the retained explicit declaration inventory in deterministic source order.
+ *
+ * [NAME-04](../../../spec/language/declarations.md#name-04)
+ * Reject duplicate base names across storage forms; first-receiver inference and lexical foreach bindings remain T030/T031.
+ */
 #include <assert.h>
 #include "semantic/internal.h"
 
+/** Register each explicit declaration once across storage suffix forms, retaining source/role ordinals. Duplicate failure points at the prior declaration.
+ */
 static bool declare(SemanticProgram *program, SemanticType *type, const AstNode *node, size_t loop_depth, void *context) {
     (void)loop_depth;
     if (node->kind != AST_DECLARATION) {
@@ -29,6 +38,8 @@ static bool declare(SemanticProgram *program, SemanticType *type, const AstNode 
     return true;
 }
 
+/** Walk constant/parameter/result/body blocks with distinct declaration roles; this inventory does not classify first-receiver inferred declarations.
+ */
 static bool module_names(SemanticProgram *program, SemanticType *type) {
     const AstModule *syntax = &type->module->syntax;
     AstBlock blocks[] = {syntax->constants, syntax->parameters, syntax->results, syntax->body};

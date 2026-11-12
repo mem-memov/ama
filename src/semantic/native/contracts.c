@@ -1,6 +1,15 @@
+/**
+ * @file
+ * @brief Validate required native companions and explicit parsed protocol tables.
+ *
+ * [PROTO-02](../../../spec/implementation/native-interface.md#proto-02)
+ * Authoring proposals are explicitly supplied; no native helper is inferred from C function naming.
+ */
 #include <assert.h>
 #include "semantic/internal.h"
 
+/** Require header, C body and ABI metadata for a real native module, preserving the missing physical companion kind in diagnostics.
+ */
 static bool companions(SemanticProgram *program, SemanticType *type) {
     const ModuleSource *source = type->module->source;
     const char *missing = source->native_header == NULL ? ".h"

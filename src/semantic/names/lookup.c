@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Resolve exact supported type paths and declaration names without normalization.
+ *
+ * [NAME-04](../../../spec/language/declarations.md#name-04)
+ * These lookups consume the explicit inventory, not a spelling heuristic for syntax or inferred variables.
+ */
 #include <string.h>
 #include "semantic/internal.h"
 

@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Plan one complete ownership copy map with explicit saved-position mode.
+ *
+ * [COPY-05](../../../spec/language/values-and-references.md#copy-05)
+ * Clone owned fields, copy reference handles, fix all internal targets, then preserve or clear positions explicitly.
+ */
 #include "internal.h"
 
 bool plan_clone(ProgramPlan *plan, PlannedType *type, LifeProcedure *procedure, bool preserve) {

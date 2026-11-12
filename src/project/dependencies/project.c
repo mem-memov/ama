@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Compose catalog construction and iterative required-module loading.
+ *
+ * [DEP-03](../../../spec/implementation/compiler.md#dep-03)
+ * Only a complete valid closure is consumable; partial AST/catalog ownership survives failure until destroy.
+ */
 #include <assert.h>
 #include "internal.h"
 

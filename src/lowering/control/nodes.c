@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Assign nonzero checked selectors and attach exact resolved operand metadata.
+ *
+ * [GEN-04](../../../spec/implementation/compiler.md#gen-04)
+ * Control nodes retain original statement/binding sites; selector exhaustion fails instead of wrapping identity.
+ */
 #include <stdint.h>
 #include "internal.h"
 

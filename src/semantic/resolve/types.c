@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Link exact nominal value types and check initializer visibility.
+ *
+ * [TYPE-01](../../../spec/language/declarations.md#type-01)
+ * A constants-only namespace is not an instance type; source-order initializer visibility remains separate from loading cycles.
+ */
 #include <string.h>
 #include "semantic/internal.h"
 

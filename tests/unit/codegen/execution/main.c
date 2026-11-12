@@ -1,5 +1,14 @@
 #include "common.c"
 
+/** Ordinary self identity is handled after real selection; bad index conversion still fails. */
+static void it_keeps_scalar_list_and_indexed_self_copies_checked_in_generated_execution(void) {
+    execute_project("@!\nprobe\n.worker\nvalue\n.value\n |8\nitems[]\n.value\n |3\n |5\nindex\n.value\n |0\n"
+        "value\n value\nitems[]\n items[]\nitems[index]\n items[index]\nprobe!\n < value\nprobe!\n < items[index]\n",
+        "8:1:0\n3:2:0\n", true);
+    execute_project("@!\nindex\n.value\n |9999\nitems[]\n.value\n |1\nitems[index]\n items[index]\n", "", false);
+    expect_diagnostic("Index decoder failed");
+}
+
 static void it_executes_literal_default_retained_and_independent_native_states(void) {
     execute_project("@!\nfirst\n.worker\nsecond\n.worker\nresult\n.value\nfirst!\n < |12\n > result\nfirst\n >> result\nfirst!\n <\n > result\nsecond!\n < |20\n > result\n", "12:1:0\n7:2:0\n20:1:0\n", true);
 }
@@ -150,6 +159,7 @@ static void it_reports_the_complete_active_chain_before_terminal_disposal(void) 
 }
 
 void run(void) {
+    it_keeps_scalar_list_and_indexed_self_copies_checked_in_generated_execution();
     it_executes_literal_default_retained_and_independent_native_states();
     it_does_not_enter_the_body_or_alternative_after_literal_failure();
     it_routes_outputs_in_text_order_using_the_new_index();

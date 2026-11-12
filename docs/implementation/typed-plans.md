@@ -79,9 +79,10 @@ a saved selector and reaches yield. Declarations emit no executable instruction:
 initialization belongs to storage construction, including declarations in branches.
 
 Assignments select the receiver, then source, preflight replacement, prepare,
-commit, and release. The transfer enum selects ordinary/continuation clone,
-reference copying or no-op. A self-assignment still checks selectors, but omits
-clone/destruction. Preparation failure preserves old storage; destruction failure
+commit, and release. The transfer enum selects ordinary/continuation clone or reference copying.
+Every assignment retains the full replacement sequence. Ordinary exact-identity
+no-op is a checked runtime outcome, not a source-spelling optimization or a
+static exemption from copy capability. Preparation failure preserves old storage; destruction failure
 after commit is terminal. Acquisition/overlap/source-tree checks must occur before
 mutation, following the resolved storage form and copy mode.
 
@@ -149,3 +150,18 @@ loop/break/yield edges, same-type calls, typed list defaults, 128 nested branche
 and every plan allocation failure. Recursive Make leaves remain independently
 runnable. Release/Werror and focused sanitizer checks validate this boundary;
 no generated C execution or working runtime is claimed.
+
+
+T147 documents each storage/lifecycle/control allocation and its exact source
+identity. All procedure/node/view storage is plan-owned and borrows the complete
+semantic/project lifetime. Call entry targets are patched only after all entries
+exist, so benign call cycles do not recurse during compilation. Graph/AST work
+uses finite explicit records; source nesting does not consume recursive C frames.
+
+Current plan tests prove the retained node families and order. They do not certify
+complete current context/result/foreach/loop semantics: T041–T045 and their runtime
+consumers remain open. In particular an actually empty loop must ultimately have
+both successful condition edges target its continuation after one conversion,
+while parsed declarations/nested controls keep a body nonempty even if lowering
+emits no work. The retained lowerer still needs that FLOW-02 adaptation; this
+receipt does not present its old repeat edge as the language rule.

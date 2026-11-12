@@ -1,10 +1,20 @@
+/**
+ * @file
+ * @brief Collect dependency paths from retained AST forms using explicit block work.
+ *
+ * [DEP-03](../../../../spec/implementation/compiler.md#dep-03)
+ * Traverse every represented lexical block without C recursion; new result/self/foreach AST consumers remain future work.
+ */
 #include "project/dependencies/internal.h"
 
+/** Project-arena-owned cursor for a borrowed AST block; explicit work replaces recursive C traversal. */
 typedef struct PendingBlock {
     struct PendingBlock *next;
     const AstNode *node;
 } PendingBlock;
 
+/** Push a nonempty borrowed block onto project-owned work; empty blocks need no frame.
+ */
 static bool push_block(Project *project, PendingBlock **pending, AstBlock block) {
     if (block.first == NULL) {
         return true;
@@ -18,11 +28,15 @@ static bool push_block(Project *project, PendingBlock **pending, AstBlock block)
     return true;
 }
 
+/** Add only qualified constant module dependencies represented by this source; local values/literals add none.
+ */
 static bool source_dependency(Project *project, ProjectModule *module, const AstSource *source) {
     return source == NULL || source->kind != AST_CONSTANT_SOURCE
         || project_add_dependency(project, module, source->module_path);
 }
 
+/** Collect declaration type, initializer, constant namespace and bound-source paths for one represented AST node.
+ */
 static bool node_dependencies(Project *project, ProjectModule *module, const AstNode *node) {
     if (node->kind == AST_DECLARATION) {
         if (!project_add_dependency(project, module, node->as.declaration.type)) {
@@ -49,6 +63,8 @@ static bool node_dependencies(Project *project, ProjectModule *module, const Ast
     return true;
 }
 
+/** Push retained call alternatives or branch/loop bodies in lexical traversal order; new AST forms require explicit future cases.
+ */
 static bool child_blocks(Project *project, PendingBlock **pending, const AstNode *node) {
     if (node->kind == AST_CALL) {
         return push_block(project, pending, node->as.call.alternative);

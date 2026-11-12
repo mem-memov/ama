@@ -1510,6 +1510,630 @@
       }
     ]
   },
+  "src/lowering/calls/bindings.c": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Build input/output transfer sequences in exact original binding order.",
+    "tests": [
+      {
+        "case": "it_keeps_runtime_replacement_checks_for_identically_spelled_assignments",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_separates_shared_interface_persistent_and_service_storage",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_constructs_fields_before_payload_and_destroys_payload_before_reverse_fields",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_installs_inputs_in_declaration_order_after_source_order_evaluation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reads_without_reset_and_resumes_without_input_installation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_keeps_refusal_alternatives_distinct_from_technical_failure_even_when_empty",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_loop_break_branch_yield_and_early_return_to_explicit_edges",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_retains_receiver_source_preflight_prepare_commit_order_for_assignment",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_cleans_partial_lifecycle_storage_and_control_plans_on_every_allocation_failure",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_deep_branch_nesting_without_recursive_c_activations",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_links_same_type_reentry_through_instance_selection_and_return_metadata",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reserves_zero_for_absent_control_and_source_positions",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      }
+    ]
+  },
+  "src/lowering/calls/install.c": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Plan parameters/results in callee declaration order with exactly selected input bindings.",
+    "tests": [
+      {
+        "case": "it_keeps_runtime_replacement_checks_for_identically_spelled_assignments",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_separates_shared_interface_persistent_and_service_storage",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_constructs_fields_before_payload_and_destroys_payload_before_reverse_fields",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_installs_inputs_in_declaration_order_after_source_order_evaluation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reads_without_reset_and_resumes_without_input_installation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_keeps_refusal_alternatives_distinct_from_technical_failure_even_when_empty",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_loop_break_branch_yield_and_early_return_to_explicit_edges",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_retains_receiver_source_preflight_prepare_commit_order_for_assignment",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_cleans_partial_lifecycle_storage_and_control_plans_on_every_allocation_failure",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_deep_branch_nesting_without_recursive_c_activations",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_links_same_type_reentry_through_instance_selection_and_return_metadata",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reserves_zero_for_absent_control_and_source_positions",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      }
+    ]
+  },
+  "src/lowering/calls/internal.h": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Declare reverse-binding and declaration-order call preparation helpers.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_keeps_runtime_replacement_checks_for_identically_spelled_assignments",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_separates_shared_interface_persistent_and_service_storage",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_constructs_fields_before_payload_and_destroys_payload_before_reverse_fields",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_installs_inputs_in_declaration_order_after_source_order_evaluation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reads_without_reset_and_resumes_without_input_installation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_keeps_refusal_alternatives_distinct_from_technical_failure_even_when_empty",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_loop_break_branch_yield_and_early_return_to_explicit_edges",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_retains_receiver_source_preflight_prepare_commit_order_for_assignment",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_cleans_partial_lifecycle_storage_and_control_plans_on_every_allocation_failure",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_deep_branch_nesting_without_recursive_c_activations",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_links_same_type_reentry_through_instance_selection_and_return_metadata",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reserves_zero_for_absent_control_and_source_positions",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      }
+    ]
+  },
+  "src/lowering/calls/operation.c": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Compose acquisition, input preparation, return connection and ordered output phases.",
+    "tests": [
+      {
+        "case": "it_keeps_runtime_replacement_checks_for_identically_spelled_assignments",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_separates_shared_interface_persistent_and_service_storage",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_constructs_fields_before_payload_and_destroys_payload_before_reverse_fields",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_installs_inputs_in_declaration_order_after_source_order_evaluation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reads_without_reset_and_resumes_without_input_installation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_keeps_refusal_alternatives_distinct_from_technical_failure_even_when_empty",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_loop_break_branch_yield_and_early_return_to_explicit_edges",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_retains_receiver_source_preflight_prepare_commit_order_for_assignment",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_cleans_partial_lifecycle_storage_and_control_plans_on_every_allocation_failure",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_deep_branch_nesting_without_recursive_c_activations",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_links_same_type_reentry_through_instance_selection_and_return_metadata",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reserves_zero_for_absent_control_and_source_positions",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      }
+    ]
+  },
+  "src/lowering/control/assign.c": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Retain receiver/source selection and every replacement phase for all assignments.",
+    "tests": [
+      {
+        "case": "it_keeps_runtime_replacement_checks_for_identically_spelled_assignments",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_separates_shared_interface_persistent_and_service_storage",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_constructs_fields_before_payload_and_destroys_payload_before_reverse_fields",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_installs_inputs_in_declaration_order_after_source_order_evaluation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reads_without_reset_and_resumes_without_input_installation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_keeps_refusal_alternatives_distinct_from_technical_failure_even_when_empty",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_loop_break_branch_yield_and_early_return_to_explicit_edges",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_retains_receiver_source_preflight_prepare_commit_order_for_assignment",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_cleans_partial_lifecycle_storage_and_control_plans_on_every_allocation_failure",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_deep_branch_nesting_without_recursive_c_activations",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_links_same_type_reentry_through_instance_selection_and_return_metadata",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reserves_zero_for_absent_control_and_source_positions",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      }
+    ]
+  },
+  "src/lowering/control/blocks.c": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Lower source-order blocks through reverse work records and explicit terminal edges.",
+    "tests": [
+      {
+        "case": "it_keeps_runtime_replacement_checks_for_identically_spelled_assignments",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_separates_shared_interface_persistent_and_service_storage",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_constructs_fields_before_payload_and_destroys_payload_before_reverse_fields",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_installs_inputs_in_declaration_order_after_source_order_evaluation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reads_without_reset_and_resumes_without_input_installation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_keeps_refusal_alternatives_distinct_from_technical_failure_even_when_empty",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_loop_break_branch_yield_and_early_return_to_explicit_edges",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_retains_receiver_source_preflight_prepare_commit_order_for_assignment",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_cleans_partial_lifecycle_storage_and_control_plans_on_every_allocation_failure",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_deep_branch_nesting_without_recursive_c_activations",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_links_same_type_reentry_through_instance_selection_and_return_metadata",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reserves_zero_for_absent_control_and_source_positions",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      }
+    ]
+  },
+  "src/lowering/control/internal.h": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Declare explicit reverse-block lowering tasks and typed continuation slots.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_keeps_runtime_replacement_checks_for_identically_spelled_assignments",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_separates_shared_interface_persistent_and_service_storage",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_constructs_fields_before_payload_and_destroys_payload_before_reverse_fields",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_installs_inputs_in_declaration_order_after_source_order_evaluation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reads_without_reset_and_resumes_without_input_installation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_keeps_refusal_alternatives_distinct_from_technical_failure_even_when_empty",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_loop_break_branch_yield_and_early_return_to_explicit_edges",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_retains_receiver_source_preflight_prepare_commit_order_for_assignment",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_cleans_partial_lifecycle_storage_and_control_plans_on_every_allocation_failure",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_deep_branch_nesting_without_recursive_c_activations",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_links_same_type_reentry_through_instance_selection_and_return_metadata",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reserves_zero_for_absent_control_and_source_positions",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      }
+    ]
+  },
+  "src/lowering/control/nodes.c": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Assign nonzero checked selectors and attach exact resolved operand metadata.",
+    "tests": [
+      {
+        "case": "it_keeps_runtime_replacement_checks_for_identically_spelled_assignments",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_separates_shared_interface_persistent_and_service_storage",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_constructs_fields_before_payload_and_destroys_payload_before_reverse_fields",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_installs_inputs_in_declaration_order_after_source_order_evaluation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reads_without_reset_and_resumes_without_input_installation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_keeps_refusal_alternatives_distinct_from_technical_failure_even_when_empty",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_loop_break_branch_yield_and_early_return_to_explicit_edges",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_retains_receiver_source_preflight_prepare_commit_order_for_assignment",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_cleans_partial_lifecycle_storage_and_control_plans_on_every_allocation_failure",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_deep_branch_nesting_without_recursive_c_activations",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_links_same_type_reentry_through_instance_selection_and_return_metadata",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reserves_zero_for_absent_control_and_source_positions",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      }
+    ]
+  },
+  "src/lowering/control/statements.c": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Lower retained statement/control shapes to explicit successor, break and resume edges.",
+    "tests": [
+      {
+        "case": "it_keeps_runtime_replacement_checks_for_identically_spelled_assignments",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_separates_shared_interface_persistent_and_service_storage",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_constructs_fields_before_payload_and_destroys_payload_before_reverse_fields",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_installs_inputs_in_declaration_order_after_source_order_evaluation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reads_without_reset_and_resumes_without_input_installation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_keeps_refusal_alternatives_distinct_from_technical_failure_even_when_empty",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_loop_break_branch_yield_and_early_return_to_explicit_edges",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_retains_receiver_source_preflight_prepare_commit_order_for_assignment",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_cleans_partial_lifecycle_storage_and_control_plans_on_every_allocation_failure",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_deep_branch_nesting_without_recursive_c_activations",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_links_same_type_reentry_through_instance_selection_and_return_metadata",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reserves_zero_for_absent_control_and_source_positions",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      }
+    ]
+  },
   "src/native/scaffold/output/artifact.h": {
     "contract": "docs/implementation/native-publication.md",
     "purpose": "Check explicit publication ownership through narrow filesystem phases and real composition.",
@@ -3339,6 +3963,1001 @@
         "case": "it_produces_valid_diagnostics_for_every_truncated_byte_prefix",
         "command": "make -C tests/unit/parser/errors",
         "source": "tests/unit/parser/errors/main.c"
+      }
+    ]
+  },
+  "src/planning/internal.h": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Declare typed plan allocation, storage and lifecycle/control phase contracts.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_keeps_runtime_replacement_checks_for_identically_spelled_assignments",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_separates_shared_interface_persistent_and_service_storage",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_constructs_fields_before_payload_and_destroys_payload_before_reverse_fields",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_installs_inputs_in_declaration_order_after_source_order_evaluation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reads_without_reset_and_resumes_without_input_installation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_keeps_refusal_alternatives_distinct_from_technical_failure_even_when_empty",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_loop_break_branch_yield_and_early_return_to_explicit_edges",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_retains_receiver_source_preflight_prepare_commit_order_for_assignment",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_cleans_partial_lifecycle_storage_and_control_plans_on_every_allocation_failure",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_deep_branch_nesting_without_recursive_c_activations",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_links_same_type_reentry_through_instance_selection_and_return_metadata",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reserves_zero_for_absent_control_and_source_positions",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      }
+    ]
+  },
+  "src/planning/lifecycle/clone.c": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Plan one complete ownership copy map with explicit saved-position mode.",
+    "tests": [
+      {
+        "case": "it_keeps_runtime_replacement_checks_for_identically_spelled_assignments",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_separates_shared_interface_persistent_and_service_storage",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_constructs_fields_before_payload_and_destroys_payload_before_reverse_fields",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_installs_inputs_in_declaration_order_after_source_order_evaluation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reads_without_reset_and_resumes_without_input_installation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_keeps_refusal_alternatives_distinct_from_technical_failure_even_when_empty",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_loop_break_branch_yield_and_early_return_to_explicit_edges",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_retains_receiver_source_preflight_prepare_commit_order_for_assignment",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_cleans_partial_lifecycle_storage_and_control_plans_on_every_allocation_failure",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_deep_branch_nesting_without_recursive_c_activations",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_links_same_type_reentry_through_instance_selection_and_return_metadata",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reserves_zero_for_absent_control_and_source_positions",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      }
+    ]
+  },
+  "src/planning/lifecycle/create.c": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Plan declared fields before one native constructor and reverse resource destruction.",
+    "tests": [
+      {
+        "case": "it_keeps_runtime_replacement_checks_for_identically_spelled_assignments",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_separates_shared_interface_persistent_and_service_storage",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_constructs_fields_before_payload_and_destroys_payload_before_reverse_fields",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_installs_inputs_in_declaration_order_after_source_order_evaluation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reads_without_reset_and_resumes_without_input_installation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_keeps_refusal_alternatives_distinct_from_technical_failure_even_when_empty",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_loop_break_branch_yield_and_early_return_to_explicit_edges",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_retains_receiver_source_preflight_prepare_commit_order_for_assignment",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_cleans_partial_lifecycle_storage_and_control_plans_on_every_allocation_failure",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_deep_branch_nesting_without_recursive_c_activations",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_links_same_type_reentry_through_instance_selection_and_return_metadata",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reserves_zero_for_absent_control_and_source_positions",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      }
+    ]
+  },
+  "src/planning/lifecycle/internal.h": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Declare typed lifecycle-node and procedure construction helpers.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_keeps_runtime_replacement_checks_for_identically_spelled_assignments",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_separates_shared_interface_persistent_and_service_storage",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_constructs_fields_before_payload_and_destroys_payload_before_reverse_fields",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_installs_inputs_in_declaration_order_after_source_order_evaluation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reads_without_reset_and_resumes_without_input_installation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_keeps_refusal_alternatives_distinct_from_technical_failure_even_when_empty",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_loop_break_branch_yield_and_early_return_to_explicit_edges",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_retains_receiver_source_preflight_prepare_commit_order_for_assignment",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_cleans_partial_lifecycle_storage_and_control_plans_on_every_allocation_failure",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_deep_branch_nesting_without_recursive_c_activations",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_links_same_type_reentry_through_instance_selection_and_return_metadata",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reserves_zero_for_absent_control_and_source_positions",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      }
+    ]
+  },
+  "src/planning/lifecycle/nodes.c": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Construct lifecycle nodes with exact field/hook/source and failure edges.",
+    "tests": [
+      {
+        "case": "it_keeps_runtime_replacement_checks_for_identically_spelled_assignments",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_separates_shared_interface_persistent_and_service_storage",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_constructs_fields_before_payload_and_destroys_payload_before_reverse_fields",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_installs_inputs_in_declaration_order_after_source_order_evaluation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reads_without_reset_and_resumes_without_input_installation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_keeps_refusal_alternatives_distinct_from_technical_failure_even_when_empty",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_loop_break_branch_yield_and_early_return_to_explicit_edges",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_retains_receiver_source_preflight_prepare_commit_order_for_assignment",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_cleans_partial_lifecycle_storage_and_control_plans_on_every_allocation_failure",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_deep_branch_nesting_without_recursive_c_activations",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_links_same_type_reentry_through_instance_selection_and_return_metadata",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reserves_zero_for_absent_control_and_source_positions",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      }
+    ]
+  },
+  "src/planning/plan.h": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Own typed logical storage, lifecycle recipes and explicit control graph nodes.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_keeps_runtime_replacement_checks_for_identically_spelled_assignments",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_separates_shared_interface_persistent_and_service_storage",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_constructs_fields_before_payload_and_destroys_payload_before_reverse_fields",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_installs_inputs_in_declaration_order_after_source_order_evaluation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reads_without_reset_and_resumes_without_input_installation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_keeps_refusal_alternatives_distinct_from_technical_failure_even_when_empty",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_loop_break_branch_yield_and_early_return_to_explicit_edges",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_retains_receiver_source_preflight_prepare_commit_order_for_assignment",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_cleans_partial_lifecycle_storage_and_control_plans_on_every_allocation_failure",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_deep_branch_nesting_without_recursive_c_activations",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_links_same_type_reentry_through_instance_selection_and_return_metadata",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reserves_zero_for_absent_control_and_source_positions",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      }
+    ]
+  },
+  "src/planning/program.c": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Compose typed storage and per-type lifecycle/control plans then patch forward call edges.",
+    "tests": [
+      {
+        "case": "it_keeps_runtime_replacement_checks_for_identically_spelled_assignments",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_separates_shared_interface_persistent_and_service_storage",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_constructs_fields_before_payload_and_destroys_payload_before_reverse_fields",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_installs_inputs_in_declaration_order_after_source_order_evaluation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reads_without_reset_and_resumes_without_input_installation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_keeps_refusal_alternatives_distinct_from_technical_failure_even_when_empty",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_loop_break_branch_yield_and_early_return_to_explicit_edges",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_retains_receiver_source_preflight_prepare_commit_order_for_assignment",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_cleans_partial_lifecycle_storage_and_control_plans_on_every_allocation_failure",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_deep_branch_nesting_without_recursive_c_activations",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_links_same_type_reentry_through_instance_selection_and_return_metadata",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reserves_zero_for_absent_control_and_source_positions",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      }
+    ]
+  },
+  "src/planning/storage/layout.c": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Separate shared immutable storage from persistent instance/interface/service fields.",
+    "tests": [
+      {
+        "case": "it_keeps_runtime_replacement_checks_for_identically_spelled_assignments",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_separates_shared_interface_persistent_and_service_storage",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_constructs_fields_before_payload_and_destroys_payload_before_reverse_fields",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_installs_inputs_in_declaration_order_after_source_order_evaluation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reads_without_reset_and_resumes_without_input_installation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_keeps_refusal_alternatives_distinct_from_technical_failure_even_when_empty",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_loop_break_branch_yield_and_early_return_to_explicit_edges",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_retains_receiver_source_preflight_prepare_commit_order_for_assignment",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_cleans_partial_lifecycle_storage_and_control_plans_on_every_allocation_failure",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_deep_branch_nesting_without_recursive_c_activations",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_links_same_type_reentry_through_instance_selection_and_return_metadata",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reserves_zero_for_absent_control_and_source_positions",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      }
+    ]
+  },
+  "src/project/dependencies/discover/ast.c": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Collect dependency paths from retained AST forms using explicit block work.",
+    "tests": [
+      {
+        "case": "it_shares_diamond_dependencies_and_ignores_unused_syntax",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_finishes_self_and_mutual_loading_cycles",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_all_source_forms_and_nested_blocks_in_lexical_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_request_chains_for_missing_draft_and_invalid_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_owns_entry_errors_and_locates_a_draft_entry",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_rejects_constants_only_entries_but_accepts_them_as_dependencies",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_resolves_multiple_roots_and_submodules_without_loading_the_parent",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_failure_in_success_and_error_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_matches_reachability_for_every_directed_graph_on_three_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_walks_deep_blocks_and_dependency_chains_without_c_recursion",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      }
+    ]
+  },
+  "src/project/dependencies/internal.h": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Declare required-module registry, discovery and requester-diagnostic phases.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_shares_diamond_dependencies_and_ignores_unused_syntax",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_finishes_self_and_mutual_loading_cycles",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_all_source_forms_and_nested_blocks_in_lexical_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_request_chains_for_missing_draft_and_invalid_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_owns_entry_errors_and_locates_a_draft_entry",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_rejects_constants_only_entries_but_accepts_them_as_dependencies",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_resolves_multiple_roots_and_submodules_without_loading_the_parent",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_failure_in_success_and_error_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_matches_reachability_for_every_directed_graph_on_three_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_walks_deep_blocks_and_dependency_chains_without_c_recursion",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      }
+    ]
+  },
+  "src/project/dependencies/project.c": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Compose catalog construction and iterative required-module loading.",
+    "tests": [
+      {
+        "case": "it_shares_diamond_dependencies_and_ignores_unused_syntax",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_finishes_self_and_mutual_loading_cycles",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_all_source_forms_and_nested_blocks_in_lexical_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_request_chains_for_missing_draft_and_invalid_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_owns_entry_errors_and_locates_a_draft_entry",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_rejects_constants_only_entries_but_accepts_them_as_dependencies",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_resolves_multiple_roots_and_submodules_without_loading_the_parent",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_failure_in_success_and_error_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_matches_reachability_for_every_directed_graph_on_three_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_walks_deep_blocks_and_dependency_chains_without_c_recursion",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      }
+    ]
+  },
+  "src/project/dependencies/project.h": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Own one required-source closure and the lifetimes of its catalog, ASTs and errors.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_shares_diamond_dependencies_and_ignores_unused_syntax",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_finishes_self_and_mutual_loading_cycles",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_all_source_forms_and_nested_blocks_in_lexical_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_request_chains_for_missing_draft_and_invalid_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_owns_entry_errors_and_locates_a_draft_entry",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_rejects_constants_only_entries_but_accepts_them_as_dependencies",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_resolves_multiple_roots_and_submodules_without_loading_the_parent",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_failure_in_success_and_error_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_matches_reachability_for_every_directed_graph_on_three_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_walks_deep_blocks_and_dependency_chains_without_c_recursion",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      }
+    ]
+  },
+  "src/project/dependencies/registry/parse.c": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Validate one required module and discover its structural dependencies.",
+    "tests": [
+      {
+        "case": "it_shares_diamond_dependencies_and_ignores_unused_syntax",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_finishes_self_and_mutual_loading_cycles",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_all_source_forms_and_nested_blocks_in_lexical_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_request_chains_for_missing_draft_and_invalid_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_owns_entry_errors_and_locates_a_draft_entry",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_rejects_constants_only_entries_but_accepts_them_as_dependencies",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_resolves_multiple_roots_and_submodules_without_loading_the_parent",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_failure_in_success_and_error_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_matches_reachability_for_every_directed_graph_on_three_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_walks_deep_blocks_and_dependency_chains_without_c_recursion",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      }
+    ]
+  },
+  "src/project/dependencies/registry/records.c": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Register exact required modules and dependency sites without duplicate loading.",
+    "tests": [
+      {
+        "case": "it_shares_diamond_dependencies_and_ignores_unused_syntax",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_finishes_self_and_mutual_loading_cycles",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_all_source_forms_and_nested_blocks_in_lexical_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_request_chains_for_missing_draft_and_invalid_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_owns_entry_errors_and_locates_a_draft_entry",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_rejects_constants_only_entries_but_accepts_them_as_dependencies",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_resolves_multiple_roots_and_submodules_without_loading_the_parent",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_failure_in_success_and_error_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_matches_reachability_for_every_directed_graph_on_three_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_walks_deep_blocks_and_dependency_chains_without_c_recursion",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      }
+    ]
+  },
+  "src/project/dependencies/report/error.c": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Own requester-chain diagnostics and preserve original dependency failure context.",
+    "tests": [
+      {
+        "case": "it_shares_diamond_dependencies_and_ignores_unused_syntax",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_finishes_self_and_mutual_loading_cycles",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_all_source_forms_and_nested_blocks_in_lexical_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_request_chains_for_missing_draft_and_invalid_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_owns_entry_errors_and_locates_a_draft_entry",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_rejects_constants_only_entries_but_accepts_them_as_dependencies",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_resolves_multiple_roots_and_submodules_without_loading_the_parent",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_failure_in_success_and_error_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_matches_reachability_for_every_directed_graph_on_three_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_walks_deep_blocks_and_dependency_chains_without_c_recursion",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ]
   },
@@ -5636,6 +7255,1820 @@
       }
     ]
   },
+  "src/semantic/analyze.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Compose semantic stages in their explicit prerequisite order.",
+    "tests": [
+      {
+        "case": "it_requires_owned_copy_capability_even_for_statically_identical_storage",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_applies_the_complete_nominal_storage_matrix_without_conversions",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_checks_initialization_literals_reference_formation_and_continuation_copy",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_resolves_calls_bindings_defaults_and_saved_constant_reads",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_requires_native_condition_and_index_capabilities_without_inheritance",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_resolved_bindings_and_literal_bytes_in_source_order",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_whole_list_execution_and_retained_results",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_resolved_value_binding_and_access",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
+  "src/semantic/calls/fields.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Resolve named/positional interface fields and reject duplicate bindings.",
+    "tests": [
+      {
+        "case": "it_requires_owned_copy_capability_even_for_statically_identical_storage",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_applies_the_complete_nominal_storage_matrix_without_conversions",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_checks_initialization_literals_reference_formation_and_continuation_copy",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_resolves_calls_bindings_defaults_and_saved_constant_reads",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_requires_native_condition_and_index_capabilities_without_inheritance",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_resolved_bindings_and_literal_bytes_in_source_order",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_whole_list_execution_and_retained_results",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_resolved_value_binding_and_access",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
+  "src/semantic/calls/internal.h": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Separate interface-field resolution from caller-side bound value checking.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_requires_owned_copy_capability_even_for_statically_identical_storage",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_applies_the_complete_nominal_storage_matrix_without_conversions",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_checks_initialization_literals_reference_formation_and_continuation_copy",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_resolves_calls_bindings_defaults_and_saved_constant_reads",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_requires_native_condition_and_index_capabilities_without_inheritance",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_resolved_bindings_and_literal_bytes_in_source_order",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_whole_list_execution_and_retained_results",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_resolved_value_binding_and_access",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
+  "src/semantic/calls/resolve.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Resolve scalar call bindings and reject unsupported whole-list services.",
+    "tests": [
+      {
+        "case": "it_requires_owned_copy_capability_even_for_statically_identical_storage",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_applies_the_complete_nominal_storage_matrix_without_conversions",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_checks_initialization_literals_reference_formation_and_continuation_copy",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_resolves_calls_bindings_defaults_and_saved_constant_reads",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_requires_native_condition_and_index_capabilities_without_inheritance",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_resolved_bindings_and_literal_bytes_in_source_order",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_whole_list_execution_and_retained_results",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_resolved_value_binding_and_access",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
+  "src/semantic/calls/values.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Type input sources and output receivers in the initiating caller context.",
+    "tests": [
+      {
+        "case": "it_requires_owned_copy_capability_even_for_statically_identical_storage",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_applies_the_complete_nominal_storage_matrix_without_conversions",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_checks_initialization_literals_reference_formation_and_continuation_copy",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_resolves_calls_bindings_defaults_and_saved_constant_reads",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_requires_native_condition_and_index_capabilities_without_inheritance",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_resolved_bindings_and_literal_bytes_in_source_order",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_whole_list_execution_and_retained_results",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_resolved_value_binding_and_access",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
+  "src/semantic/constants/construction.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Close fresh-construction dependency reads over reachable owned types.",
+    "tests": [
+      {
+        "case": "it_plans_shared_initialization_once_and_cleanup_in_exact_reverse_order",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_uses_path_order_for_ready_constants_and_excludes_unused_namespaces",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_releases_a_partially_built_shared_storage_plan",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_distinguishes_loading_eager_construction_and_clone_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_accepts_recursive_empty_lists_and_propagates_noncopyable_owned_edges",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_constants_by_declarations_and_actual_value_reads",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_follows_owned_field_construction_reads_without_treating_shared_types_as_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_every_three_vertex_graph_or_reports_a_real_cycle",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_matches_clone_capability_to_reachability_of_a_noncopyable_native_type",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      }
+    ]
+  },
+  "src/semantic/constants/graph.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Build shared declaration-order and actual initializer-read prerequisites.",
+    "tests": [
+      {
+        "case": "it_plans_shared_initialization_once_and_cleanup_in_exact_reverse_order",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_uses_path_order_for_ready_constants_and_excludes_unused_namespaces",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_releases_a_partially_built_shared_storage_plan",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_distinguishes_loading_eager_construction_and_clone_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_accepts_recursive_empty_lists_and_propagates_noncopyable_owned_edges",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_constants_by_declarations_and_actual_value_reads",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_follows_owned_field_construction_reads_without_treating_shared_types_as_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_every_three_vertex_graph_or_reports_a_real_cycle",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_matches_clone_capability_to_reachability_of_a_noncopyable_native_type",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      }
+    ]
+  },
+  "src/semantic/constants/internal.h": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Declare actual shared-value read and fresh-construction dependency checks.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_plans_shared_initialization_once_and_cleanup_in_exact_reverse_order",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_uses_path_order_for_ready_constants_and_excludes_unused_namespaces",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_releases_a_partially_built_shared_storage_plan",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_distinguishes_loading_eager_construction_and_clone_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_accepts_recursive_empty_lists_and_propagates_noncopyable_owned_edges",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_constants_by_declarations_and_actual_value_reads",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_follows_owned_field_construction_reads_without_treating_shared_types_as_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_every_three_vertex_graph_or_reports_a_real_cycle",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_matches_clone_capability_to_reachability_of_a_noncopyable_native_type",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      }
+    ]
+  },
+  "src/semantic/constants/plan.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Publish shared startup order and reverse cleanup links from a valid relation.",
+    "tests": [
+      {
+        "case": "it_plans_shared_initialization_once_and_cleanup_in_exact_reverse_order",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_uses_path_order_for_ready_constants_and_excludes_unused_namespaces",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_releases_a_partially_built_shared_storage_plan",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_distinguishes_loading_eager_construction_and_clone_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_accepts_recursive_empty_lists_and_propagates_noncopyable_owned_edges",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_constants_by_declarations_and_actual_value_reads",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_follows_owned_field_construction_reads_without_treating_shared_types_as_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_every_three_vertex_graph_or_reports_a_real_cycle",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_matches_clone_capability_to_reachability_of_a_noncopyable_native_type",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      }
+    ]
+  },
+  "src/semantic/constants/reads.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Add concrete shared read edges and reject mutable reference construction.",
+    "tests": [
+      {
+        "case": "it_plans_shared_initialization_once_and_cleanup_in_exact_reverse_order",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_uses_path_order_for_ready_constants_and_excludes_unused_namespaces",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_releases_a_partially_built_shared_storage_plan",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_distinguishes_loading_eager_construction_and_clone_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_accepts_recursive_empty_lists_and_propagates_noncopyable_owned_edges",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_constants_by_declarations_and_actual_value_reads",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_follows_owned_field_construction_reads_without_treating_shared_types_as_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_every_three_vertex_graph_or_reports_a_real_cycle",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_matches_clone_capability_to_reachability_of_a_noncopyable_native_type",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      }
+    ]
+  },
+  "src/semantic/internal.h": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Declare semantic sibling operations over explicit resolved views and owners.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_requires_owned_copy_capability_even_for_statically_identical_storage",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_applies_the_complete_nominal_storage_matrix_without_conversions",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_checks_initialization_literals_reference_formation_and_continuation_copy",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_resolves_calls_bindings_defaults_and_saved_constant_reads",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_requires_native_condition_and_index_capabilities_without_inheritance",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_resolved_bindings_and_literal_bytes_in_source_order",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_whole_list_execution_and_retained_results",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_resolved_value_binding_and_access",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
+  "src/semantic/names/build.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Build the retained explicit declaration inventory in deterministic source order.",
+    "tests": [
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
+  "src/semantic/names/lookup.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Resolve exact supported type paths and declaration names without normalization.",
+    "tests": [
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
+  "src/semantic/native/contracts.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Validate required native companions and explicit parsed protocol tables.",
+    "tests": [
+      {
+        "case": "it_checks_every_combination_of_missing_required_companions",
+        "command": "make -C tests/unit/semantic/native",
+        "source": "tests/unit/semantic/native/main.c"
+      },
+      {
+        "case": "it_parses_required_abi_and_keeps_helper_names_module_local",
+        "command": "make -C tests/unit/semantic/native",
+        "source": "tests/unit/semantic/native/main.c"
+      },
+      {
+        "case": "it_cleans_every_native_contract_allocation_failure",
+        "command": "make -C tests/unit/semantic/native",
+        "source": "tests/unit/semantic/native/main.c"
+      },
+      {
+        "case": "it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_exports_a_database_that_an_independent_json_consumer_can_execute",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_each_scaffold_model_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_composes_typed_views_and_identically_named_native_helpers_in_one_c_unit",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_uses_the_same_strict_frontend_for_checking_and_generation",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      }
+    ]
+  },
+  "src/semantic/program.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Own semantic scratch/ABI/graph lifetime and zeroed resolved records.",
+    "tests": [
+      {
+        "case": "it_requires_owned_copy_capability_even_for_statically_identical_storage",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_applies_the_complete_nominal_storage_matrix_without_conversions",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_checks_initialization_literals_reference_formation_and_continuation_copy",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_resolves_calls_bindings_defaults_and_saved_constant_reads",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_requires_native_condition_and_index_capabilities_without_inheritance",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_resolved_bindings_and_literal_bytes_in_source_order",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_whole_list_execution_and_retained_results",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_resolved_value_binding_and_access",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
+  "src/semantic/relations/check.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Validate eager ownership and constant dependency orders as separate graphs.",
+    "tests": [
+      {
+        "case": "it_distinguishes_loading_eager_construction_and_clone_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_accepts_recursive_empty_lists_and_propagates_noncopyable_owned_edges",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_constants_by_declarations_and_actual_value_reads",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_follows_owned_field_construction_reads_without_treating_shared_types_as_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_every_three_vertex_graph_or_reports_a_real_cycle",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_matches_clone_capability_to_reachability_of_a_noncopyable_native_type",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      }
+    ]
+  },
+  "src/semantic/relations/clone.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Compute greatest-fixed-point copy capability across all declared owned edges.",
+    "tests": [
+      {
+        "case": "it_distinguishes_loading_eager_construction_and_clone_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_accepts_recursive_empty_lists_and_propagates_noncopyable_owned_edges",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_constants_by_declarations_and_actual_value_reads",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_follows_owned_field_construction_reads_without_treating_shared_types_as_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_every_three_vertex_graph_or_reports_a_real_cycle",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_matches_clone_capability_to_reachability_of_a_noncopyable_native_type",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      }
+    ]
+  },
+  "src/semantic/relations/eager.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Build required eager-owned type edges independently of execution dependencies.",
+    "tests": [
+      {
+        "case": "it_distinguishes_loading_eager_construction_and_clone_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_accepts_recursive_empty_lists_and_propagates_noncopyable_owned_edges",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_constants_by_declarations_and_actual_value_reads",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_follows_owned_field_construction_reads_without_treating_shared_types_as_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_every_three_vertex_graph_or_reports_a_real_cycle",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_matches_clone_capability_to_reachability_of_a_noncopyable_native_type",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      }
+    ]
+  },
+  "src/semantic/relations/graph/cycle.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Extract an actual closed blocked-edge cycle after prerequisite ordering stalls.",
+    "tests": [
+      {
+        "case": "it_distinguishes_loading_eager_construction_and_clone_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_accepts_recursive_empty_lists_and_propagates_noncopyable_owned_edges",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_constants_by_declarations_and_actual_value_reads",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_follows_owned_field_construction_reads_without_treating_shared_types_as_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_every_three_vertex_graph_or_reports_a_real_cycle",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_matches_clone_capability_to_reachability_of_a_noncopyable_native_type",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      }
+    ]
+  },
+  "src/semantic/relations/graph/graph.h": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Own a finite prerequisite graph with deterministic order and concrete cycle evidence.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_distinguishes_loading_eager_construction_and_clone_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_accepts_recursive_empty_lists_and_propagates_noncopyable_owned_edges",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_constants_by_declarations_and_actual_value_reads",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_follows_owned_field_construction_reads_without_treating_shared_types_as_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_every_three_vertex_graph_or_reports_a_real_cycle",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_matches_clone_capability_to_reachability_of_a_noncopyable_native_type",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      }
+    ]
+  },
+  "src/semantic/relations/graph/internal.h": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Declare exact blocked-edge, cycle and allocation-failure graph helpers.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_distinguishes_loading_eager_construction_and_clone_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_accepts_recursive_empty_lists_and_propagates_noncopyable_owned_edges",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_constants_by_declarations_and_actual_value_reads",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_follows_owned_field_construction_reads_without_treating_shared_types_as_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_every_three_vertex_graph_or_reports_a_real_cycle",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_matches_clone_capability_to_reachability_of_a_noncopyable_native_type",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      }
+    ]
+  },
+  "src/semantic/relations/graph/order.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Order ready vertices by exact stable keys or report a real dependency cycle.",
+    "tests": [
+      {
+        "case": "it_distinguishes_loading_eager_construction_and_clone_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_accepts_recursive_empty_lists_and_propagates_noncopyable_owned_edges",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_constants_by_declarations_and_actual_value_reads",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_follows_owned_field_construction_reads_without_treating_shared_types_as_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_every_three_vertex_graph_or_reports_a_real_cycle",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_matches_clone_capability_to_reachability_of_a_noncopyable_native_type",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      }
+    ]
+  },
+  "src/semantic/relations/graph/storage.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Own graph vertices/edges with borrowed semantic identities and source sites.",
+    "tests": [
+      {
+        "case": "it_distinguishes_loading_eager_construction_and_clone_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_accepts_recursive_empty_lists_and_propagates_noncopyable_owned_edges",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_constants_by_declarations_and_actual_value_reads",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_follows_owned_field_construction_reads_without_treating_shared_types_as_cycles",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_every_three_vertex_graph_or_reports_a_real_cycle",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_matches_clone_capability_to_reachability_of_a_noncopyable_native_type",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      }
+    ]
+  },
+  "src/semantic/report/error.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Build allocation-free semantic failures with original primary/related declarations.",
+    "tests": [
+      {
+        "case": "it_reports_both_nominal_types_and_original_declarations",
+        "command": "make -C tests/unit/semantic/diagnostics",
+        "source": "tests/unit/semantic/diagnostics/main.c"
+      },
+      {
+        "case": "it_preserves_callee_parameter_context_for_literal_capability_errors",
+        "command": "make -C tests/unit/semantic/diagnostics",
+        "source": "tests/unit/semantic/diagnostics/main.c"
+      },
+      {
+        "case": "it_identifies_a_noncopyable_native_seed_inside_a_composed_type",
+        "command": "make -C tests/unit/semantic/diagnostics",
+        "source": "tests/unit/semantic/diagnostics/main.c"
+      }
+    ]
+  },
+  "src/semantic/report/types.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Preserve both storage/type declarations and native copy-capability causes.",
+    "tests": [
+      {
+        "case": "it_reports_both_nominal_types_and_original_declarations",
+        "command": "make -C tests/unit/semantic/diagnostics",
+        "source": "tests/unit/semantic/diagnostics/main.c"
+      },
+      {
+        "case": "it_preserves_callee_parameter_context_for_literal_capability_errors",
+        "command": "make -C tests/unit/semantic/diagnostics",
+        "source": "tests/unit/semantic/diagnostics/main.c"
+      },
+      {
+        "case": "it_identifies_a_noncopyable_native_seed_inside_a_composed_type",
+        "command": "make -C tests/unit/semantic/diagnostics",
+        "source": "tests/unit/semantic/diagnostics/main.c"
+      }
+    ]
+  },
+  "src/semantic/resolve/initializers.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Resolve declaration initializers and select one compatible construction path.",
+    "tests": [
+      {
+        "case": "it_requires_owned_copy_capability_even_for_statically_identical_storage",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_applies_the_complete_nominal_storage_matrix_without_conversions",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_checks_initialization_literals_reference_formation_and_continuation_copy",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_resolves_calls_bindings_defaults_and_saved_constant_reads",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_requires_native_condition_and_index_capabilities_without_inheritance",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_resolved_bindings_and_literal_bytes_in_source_order",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_whole_list_execution_and_retained_results",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_resolved_value_binding_and_access",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
+  "src/semantic/resolve/program.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Compose nominal linking, clone capability and typed initializer/statement resolution.",
+    "tests": [
+      {
+        "case": "it_requires_owned_copy_capability_even_for_statically_identical_storage",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_applies_the_complete_nominal_storage_matrix_without_conversions",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_checks_initialization_literals_reference_formation_and_continuation_copy",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_resolves_calls_bindings_defaults_and_saved_constant_reads",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_requires_native_condition_and_index_capabilities_without_inheritance",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_resolved_bindings_and_literal_bytes_in_source_order",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_whole_list_execution_and_retained_results",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_resolved_value_binding_and_access",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
+  "src/semantic/resolve/statements.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Resolve retained assignments, calls and condition/control operands.",
+    "tests": [
+      {
+        "case": "it_requires_owned_copy_capability_even_for_statically_identical_storage",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_applies_the_complete_nominal_storage_matrix_without_conversions",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_checks_initialization_literals_reference_formation_and_continuation_copy",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_resolves_calls_bindings_defaults_and_saved_constant_reads",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_requires_native_condition_and_index_capabilities_without_inheritance",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_resolved_bindings_and_literal_bytes_in_source_order",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_whole_list_execution_and_retained_results",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_resolved_value_binding_and_access",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
+  "src/semantic/resolve/types.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Link exact nominal value types and check initializer visibility.",
+    "tests": [
+      {
+        "case": "it_requires_owned_copy_capability_even_for_statically_identical_storage",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_applies_the_complete_nominal_storage_matrix_without_conversions",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_checks_initialization_literals_reference_formation_and_continuation_copy",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_resolves_calls_bindings_defaults_and_saved_constant_reads",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_requires_native_condition_and_index_capabilities_without_inheritance",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_resolved_bindings_and_literal_bytes_in_source_order",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_whole_list_execution_and_retained_results",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_resolved_value_binding_and_access",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
+  "src/semantic/semantic.h": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Own resolved nominal types, sources, bindings and separate dependency relations.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_requires_owned_copy_capability_even_for_statically_identical_storage",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_applies_the_complete_nominal_storage_matrix_without_conversions",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_checks_initialization_literals_reference_formation_and_continuation_copy",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_resolves_calls_bindings_defaults_and_saved_constant_reads",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_requires_native_condition_and_index_capabilities_without_inheritance",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_resolved_bindings_and_literal_bytes_in_source_order",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_whole_list_execution_and_retained_results",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_resolved_value_binding_and_access",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
+  "src/semantic/values/access.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Resolve declared storage forms, writability and explicit truth/index capabilities.",
+    "tests": [
+      {
+        "case": "it_requires_owned_copy_capability_even_for_statically_identical_storage",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_applies_the_complete_nominal_storage_matrix_without_conversions",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_checks_initialization_literals_reference_formation_and_continuation_copy",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_resolves_calls_bindings_defaults_and_saved_constant_reads",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_requires_native_condition_and_index_capabilities_without_inheritance",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_resolved_bindings_and_literal_bytes_in_source_order",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_whole_list_execution_and_retained_results",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_resolved_value_binding_and_access",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
+  "src/semantic/values/source.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Resolve literal, local and qualified-constant sources into nominal value views.",
+    "tests": [
+      {
+        "case": "it_requires_owned_copy_capability_even_for_statically_identical_storage",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_applies_the_complete_nominal_storage_matrix_without_conversions",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_checks_initialization_literals_reference_formation_and_continuation_copy",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_resolves_calls_bindings_defaults_and_saved_constant_reads",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_requires_native_condition_and_index_capabilities_without_inheritance",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_resolved_bindings_and_literal_bytes_in_source_order",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_whole_list_execution_and_retained_results",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_resolved_value_binding_and_access",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
+  "src/semantic/values/transfer.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Validate exact transfer form and mandatory copy capability before runtime alias handling.",
+    "tests": [
+      {
+        "case": "it_requires_owned_copy_capability_even_for_statically_identical_storage",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_applies_the_complete_nominal_storage_matrix_without_conversions",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_checks_initialization_literals_reference_formation_and_continuation_copy",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_resolves_calls_bindings_defaults_and_saved_constant_reads",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_requires_native_condition_and_index_capabilities_without_inheritance",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_resolved_bindings_and_literal_bytes_in_source_order",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_whole_list_execution_and_retained_results",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_resolved_value_binding_and_access",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
+  "src/semantic/walk/blocks.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Visit retained lexical statement blocks with explicit loop-depth frames.",
+    "tests": [
+      {
+        "case": "it_requires_owned_copy_capability_even_for_statically_identical_storage",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_applies_the_complete_nominal_storage_matrix_without_conversions",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_checks_initialization_literals_reference_formation_and_continuation_copy",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_resolves_calls_bindings_defaults_and_saved_constant_reads",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_requires_native_condition_and_index_capabilities_without_inheritance",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_resolved_bindings_and_literal_bytes_in_source_order",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_whole_list_execution_and_retained_results",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_resolved_value_binding_and_access",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
   "src/source/identity/encoding/encode.c": {
     "contract": "docs/implementation/identities.md",
     "purpose": "Encode nominal categories and complete component bytes with explicit lengths.",
@@ -7403,6 +10836,72 @@
       }
     ]
   },
+  "tests/unit/planning/ir/main.c": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Test typed storage/lifecycle/control correspondence and failed-plan cleanup.",
+    "tests": [
+      {
+        "case": "it_keeps_runtime_replacement_checks_for_identically_spelled_assignments",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_separates_shared_interface_persistent_and_service_storage",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_constructs_fields_before_payload_and_destroys_payload_before_reverse_fields",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_installs_inputs_in_declaration_order_after_source_order_evaluation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reads_without_reset_and_resumes_without_input_installation",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_keeps_refusal_alternatives_distinct_from_technical_failure_even_when_empty",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_loop_break_branch_yield_and_early_return_to_explicit_edges",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_retains_receiver_source_preflight_prepare_commit_order_for_assignment",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_cleans_partial_lifecycle_storage_and_control_plans_on_every_allocation_failure",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_deep_branch_nesting_without_recursive_c_activations",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_links_same_type_reentry_through_instance_selection_and_return_metadata",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reserves_zero_for_absent_control_and_source_positions",
+        "command": "make -C tests/unit/planning/ir",
+        "source": "tests/unit/planning/ir/main.c"
+      }
+    ]
+  },
   "tests/unit/runtime/call-preparation/Makefile": {
     "contract": "docs/implementation/entry-preparation.md",
     "purpose": "Select all supplied sources before protection, conflict checks and declaration-order installation.",
@@ -8083,6 +11582,67 @@
         "case": "it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes",
         "command": "make -C tests/unit/runtime/value-selection",
         "source": "tests/unit/runtime/value-selection/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/types/main.c": {
+    "contract": "docs/implementation/semantic-analysis.md",
+    "purpose": "Test retained exact transfer/capability rules, call typing and allocation failures.",
+    "tests": [
+      {
+        "case": "it_requires_owned_copy_capability_even_for_statically_identical_storage",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_applies_the_complete_nominal_storage_matrix_without_conversions",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_checks_initialization_literals_reference_formation_and_continuation_copy",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_resolves_calls_bindings_defaults_and_saved_constant_reads",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_requires_native_condition_and_index_capabilities_without_inheritance",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_resolved_bindings_and_literal_bytes_in_source_order",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_whole_list_execution_and_retained_results",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_resolved_value_binding_and_access",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
       }
     ]
   },

@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Own requester-chain diagnostics and preserve original dependency failure context.
+ *
+ * [COMP-04](../../../../spec/implementation/compiler.md#comp-04)
+ * First-discovery parent links form a finite forest; errors copy borrowed entry spellings into project ownership.
+ */
 #include <stdint.h>
 #include "project/dependencies/internal.h"
 
@@ -8,6 +15,8 @@ bool project_memory_failure(Project *project) {
     return false;
 }
 
+/** Construct a borrowed missing/draft/entry diagnostic with its exact request site and original path; no allocation or guessed repair.
+ */
 static Diagnostic dependency_error(ProjectStatus status, SourceSpan requirement, const char *path) {
     const char *message = "Required module source was not found";
     DiagnosticCode code = DIAGNOSTIC_MISSING_MODULE;

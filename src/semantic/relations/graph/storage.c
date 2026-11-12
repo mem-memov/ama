@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Own graph vertices/edges with borrowed semantic identities and source sites.
+ *
+ * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03)
+ * Allocate/link complete records only; arena destruction never dereferences borrowed semantic values.
+ */
 #include <assert.h>
 #include "internal.h"
 

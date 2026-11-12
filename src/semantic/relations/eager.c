@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Build required eager-owned type edges independently of execution dependencies.
+ *
+ * [TYPE-04](../../../spec/language/declarations.md#type-04)
+ * Nonowning references and empty recursive lists do not create eager construction cycles.
+ */
 #include "semantic/internal.h"
 
 bool semantic_eager_graph(SemanticProgram *program) {

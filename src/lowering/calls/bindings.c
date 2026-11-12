@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Build input/output transfer sequences in exact original binding order.
+ *
+ * [CALL-08](../../../spec/language/calls-and-results.md#call-08)
+ * Reverse work construction preserves forward execution order; literals and omissions have separate installation paths.
+ */
 #include "internal.h"
 
 ReverseBinding *lower_reverse_bindings(Lowering *lowering, const SemanticStatement *statement) {

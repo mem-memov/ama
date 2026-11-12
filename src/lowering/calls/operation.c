@@ -1,5 +1,14 @@
+/**
+ * @file
+ * @brief Compose acquisition, input preparation, return connection and ordered output phases.
+ *
+ * [CALL-08](../../../spec/language/calls-and-results.md#call-08)
+ * Only acquisition refusal selects the attached alternative; fatal failure and output continuation remain separate edges.
+ */
 #include "internal.h"
 
+/** For active modes, create entry/resume and explicit return/output continuation; retained/shared reads return their output graph directly.
+ */
 static ControlNode *execute(Lowering *lowering, const SemanticStatement *statement,
     ControlNode *outputs) {
     AstCallMode mode = statement->syntax->as.call.mode;
@@ -20,6 +29,8 @@ static ControlNode *execute(Lowering *lowering, const SemanticStatement *stateme
     return connection;
 }
 
+/** Create exact target acquisition plus fatal/default or lexical refusal graph, retaining handler break context separately.
+ */
 static ControlNode *acquire(Lowering *lowering, const SemanticStatement *statement,
     ControlNode *next, ControlNode *after, ControlNode *break_target) {
     ControlNode *node = lower_prepend(lowering, CONTROL_ACQUIRE_INSTANCE, statement, NULL, next);

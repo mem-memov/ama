@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Resolve declaration initializers and select one compatible construction path.
+ *
+ * [TYPE-02](../../../spec/language/declarations.md#type-02)
+ * Each list initializer is a scalar element; native literal/copy capability is checked before planning.
+ */
 #include "semantic/internal.h"
 
 bool semantic_initializers(SemanticProgram *program, SemanticType *type) {

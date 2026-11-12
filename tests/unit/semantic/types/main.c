@@ -1,5 +1,33 @@
+/**
+ * @file
+ * @brief Test retained exact transfer/capability rules, call typing and allocation failures.
+ */
 #include "../typed-common.c"
 
+/** Same spelling cannot exempt syntactic owned copies from COPY-06 capability checks. */
+static void it_requires_owned_copy_capability_even_for_statically_identical_storage(void) {
+    prepare_types();
+    const char *invalid[] = {
+        "@!\nvalue\n.resource\nvalue\n value\n",
+        "@!\nitems[]\n.resource\nitems[]\n items[]\n",
+        "@!\nitems[]\n.resource\nindex\n.value\n |0\nitems[index]\n items[index]\n"
+    };
+    for (size_t index = 0; index < sizeof(invalid) / sizeof(invalid[0]); index++) {
+        SemanticStatus status = resolve_text(invalid[index]);
+        assert(status == SEMANTIC_INVALID && strstr(semantic.error.message, "independent copying") != NULL);
+        assert(diagnostic_valid(&semantic.error));
+        destroy_semantic();
+    }
+    file("generated/program/worker", "@!\nresource\n.resource\n");
+    expect_resolved("@!\nvalue\n.worker\nvalue\n value\n", false);
+    const char *valid[] = {
+        "@!\nvalue&\n.resource\nvalue&\n value&\n",
+        "@!\nitems&[]\n.resource\nitems&[]\n items&[]\n"
+    };
+    for (size_t index = 0; index < sizeof(valid) / sizeof(valid[0]); index++) { expect_resolved(valid[index], true); }
+}
+
+/** Enumerate all four source/destination forms and equal/unequal nominal identities, with no implicit conversion. */
 static void it_applies_the_complete_nominal_storage_matrix_without_conversions(void) {
     prepare_types();
     const char *forms[] = {"", "&", "[]", "&[]"};
@@ -18,12 +46,12 @@ static void it_applies_the_complete_nominal_storage_matrix_without_conversions(v
     }
 }
 
+/** Partition retained literal/reference/continuation initialization and visibility failures without bypassing type capabilities. */
 static void it_checks_initialization_literals_reference_formation_and_continuation_copy(void) {
     prepare_types();
     const char *valid[] = {
         "@!\nvalue\n.value\n |12 # bytes  \nlist[]\n.value\n |first\n |second\n",
         "@!\nvalue\n.value\nreference&\n.value\n &value\ncopy\n.value\n %reference&\n",
-        "@!\nvalue\n.resource\nvalue\n value\n",
         "@!\nvalue&\n.resource\ncopy&\n.resource\n value&\n"
     };
     for (size_t index = 0; index < sizeof(valid) / sizeof(valid[0]); index++) {
@@ -47,6 +75,7 @@ static void it_checks_initialization_literals_reference_formation_and_continuati
     }
 }
 
+/** Check exact callee fields, omissions, duplicate/unknown labels and mode-specific source/receiver compatibility. */
 static void it_resolves_calls_bindings_defaults_and_saved_constant_reads(void) {
     prepare_types();
     file("generated/program/worker", "@<\ninput\n.value\nreference&\n.value\nitems[]\n.value\n"
@@ -78,6 +107,7 @@ static void it_resolves_calls_bindings_defaults_and_saved_constant_reads(void) {
     expect_resolved("@!\nvalue\n.value\n.worker\n first >> value\n first >> value\n", false);
 }
 
+/** Reject borrowed/list/noncapable conditions and indices even if an owned child has the required protocol. */
 static void it_requires_native_condition_and_index_capabilities_without_inheritance(void) {
     prepare_types();
     expect_resolved("@!\nindex\n.value\nitems[]\n.value\nitems[index]\n?\n >\n", true);
@@ -87,6 +117,7 @@ static void it_requires_native_condition_and_index_capabilities_without_inherita
     expect_resolved("@!\ncondition\n.worker\ncondition\n?\n >\n", false);
 }
 
+/** Verify text-order typed bindings retain their independent interface ordinals and untouched literal payload. */
 static void it_keeps_resolved_bindings_and_literal_bytes_in_source_order(void) {
     prepare_types();
     file("generated/program/worker", "@<\nfirst\n.value\nsecond\n.value\n@>\noutput\n.value\n@!\n");
@@ -116,6 +147,7 @@ static void it_rejects_whole_list_execution_and_retained_results(void) {
     }
 }
 
+/** Inject each measured semantic allocation failure into a real loaded/ABI-checked project and retain valid failure context. */
 static void it_releases_every_partial_resolved_value_binding_and_access(void) {
     prepare_types();
     file("generated/program/worker", "@<\ninput\n.value\n@>\noutput\n.value\n@!\n");
@@ -144,6 +176,7 @@ static void it_releases_every_partial_resolved_value_binding_and_access(void) {
 }
 
 void run(void) {
+    it_requires_owned_copy_capability_even_for_statically_identical_storage();
     it_releases_every_partial_resolved_value_binding_and_access();
     it_applies_the_complete_nominal_storage_matrix_without_conversions();
     it_checks_initialization_literals_reference_formation_and_continuation_copy();

@@ -1,5 +1,14 @@
+/**
+ * @file
+ * @brief Resolve declared storage forms, writability and explicit truth/index capabilities.
+ *
+ * [TYPE-05](../../../spec/language/declarations.md#type-05)
+ * References do not implicitly dereference or inherit conversion capability from an owned field.
+ */
 #include "semantic/internal.h"
 
+/** Check declared reference/list suffix and outer writability, then initializer visibility; do not reinterpret a missing suffix as implicit dereference.
+ */
 static bool access_form(SemanticProgram *program, const AstAccess *syntax,
     const SemanticSymbol *symbol, bool writable, const SemanticSymbol *initializing) {
     bool selected_list = syntax->whole_list || syntax->index != NULL;

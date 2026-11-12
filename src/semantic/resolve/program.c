@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Compose nominal linking, clone capability and typed initializer/statement resolution.
+ *
+ * [COMP-02](../../../spec/implementation/compiler.md#comp-02)
+ * Resolve against complete explicit names before graph validation; no partially resolved program is published.
+ */
 #include <assert.h>
 #include "semantic/internal.h"
 

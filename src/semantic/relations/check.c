@@ -1,6 +1,15 @@
+/**
+ * @file
+ * @brief Validate eager ownership and constant dependency orders as separate graphs.
+ *
+ * [COMP-03](../../../spec/implementation/compiler.md#comp-03)
+ * Loading, construction, initialization and clone relations cannot substitute for one another.
+ */
 #include <assert.h>
 #include "semantic/internal.h"
 
+/** Adapt exact graph ordering/cycle/allocation status into semantic context, preserving graph source evidence and a relation-specific cycle message.
+ */
 static bool ordered(SemanticProgram *program, DependencyGraph *graph, const char *message) {
     GraphStatus status = dependency_order(graph);
     if (status == GRAPH_OK) {

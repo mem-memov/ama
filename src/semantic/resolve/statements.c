@@ -1,5 +1,14 @@
+/**
+ * @file
+ * @brief Resolve retained assignments, calls and condition/control operands.
+ *
+ * [COMP-02](../../../spec/implementation/compiler.md#comp-02)
+ * Keep original syntax identities and loop context; new result/foreach/negative-control forms remain their feature tasks.
+ */
 #include "semantic/internal.h"
 
+/** Resolve one retained statement and its exact AST identity; reject break outside loops before planning and preserve caller-side operand context.
+ */
 static bool statement(SemanticProgram *program, SemanticType *type, const AstNode *node, size_t loop_depth, void *context) {
     (void)context;
     if (node->kind == AST_BREAK && loop_depth == 0) {

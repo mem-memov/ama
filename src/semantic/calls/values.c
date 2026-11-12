@@ -1,5 +1,14 @@
+/**
+ * @file
+ * @brief Type input sources and output receivers in the initiating caller context.
+ *
+ * [CALL-08](../../../spec/language/calls-and-results.md#call-08)
+ * Omitted bindings retain explicit default/skip metadata; no hidden temporary or default constructor is introduced.
+ */
 #include "internal.h"
 
+/** Construct typed metadata for a selected declared result/shared field without inventing a caller value or reading runtime state.
+ */
 static SemanticSource *output_source(SemanticProgram *program, SemanticBinding *binding) {
     SemanticSource *source = semantic_allocate(program, sizeof(*source));
     if (source == NULL) {

@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Construct lifecycle nodes with exact field/hook/source and failure edges.
+ *
+ * [LIFE-03](../../../spec/implementation/native-interface.md#life-03)
+ * Failure paths unwind initialized prefixes and release copy maps before reporting procedure failure.
+ */
 #include "internal.h"
 
 LifeNode *plan_life_node(ProgramPlan *plan, PlannedType *type, LifeOperation operation,

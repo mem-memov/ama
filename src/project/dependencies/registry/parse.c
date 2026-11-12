@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Validate one required module and discover its structural dependencies.
+ *
+ * [DEP-03](../../../../spec/implementation/compiler.md#dep-03)
+ * Required drafts/invalid entries fail with requester context rather than being silently skipped.
+ */
 #include "project/dependencies/internal.h"
 
 bool project_parse_required(Project *project, ProjectModule *module) {

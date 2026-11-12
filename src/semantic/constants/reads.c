@@ -1,5 +1,14 @@
+/**
+ * @file
+ * @brief Add concrete shared read edges and reject mutable reference construction.
+ *
+ * [CONST-01](../../../spec/language/declarations.md#const-01)
+ * Immutable shared values cannot acquire mutable instance references; access index reads also contribute prerequisites.
+ */
 #include "internal.h"
 
+/** Add the exact owner-to-required-value edge with original read site; allocation failure remains graph/semantic-owned.
+ */
 static bool require_constant(SemanticProgram *program, SemanticSymbol *owner,
     SemanticSymbol *target, SourceSpan site) {
     return dependency_edge(&program->constants, semantic_constant_vertex(&program->constants, owner),

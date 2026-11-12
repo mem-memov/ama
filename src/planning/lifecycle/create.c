@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Plan declared fields before one native constructor and reverse resource destruction.
+ *
+ * [LIFE-02](../../../spec/implementation/native-interface.md#life-02)
+ * Default/literal paths select exactly one payload constructor; destruction continues after errors.
+ */
 #include "internal.h"
 
 bool plan_create(ProgramPlan *plan, PlannedType *type, LifeProcedure *procedure, bool literal) {

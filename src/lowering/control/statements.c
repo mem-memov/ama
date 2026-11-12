@@ -1,5 +1,14 @@
+/**
+ * @file
+ * @brief Lower retained statement/control shapes to explicit successor, break and resume edges.
+ *
+ * [GEN-02](../../../spec/implementation/compiler.md#gen-02)
+ * Current empty-body/repeat-root and expanded control adaptations remain T038/T044/T068, not implied conformance.
+ */
 #include "internal.h"
 
+/** Build retained branch/loop condition and body tasks with explicit break/continuation links. Full empty-loop/single-repeat-root semantics remain T038/T044/T068, not established by this legacy subset.
+ */
 static ControlNode *control(Lowering *lowering, const SemanticStatement *statement,
     ControlNode *after, ControlNode *break_target) {
     const AstNode *node = statement->syntax;

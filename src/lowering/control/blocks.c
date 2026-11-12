@@ -1,5 +1,13 @@
+/**
+ * @file
+ * @brief Lower source-order blocks through reverse work records and explicit terminal edges.
+ *
+ * [GEN-02](../../../spec/implementation/compiler.md#gen-02)
+ * Stable arena slots allow child entry patching after parent construction without recursive C frames.
+ */
 #include "internal.h"
 
+/** Plan-owned reverse syntax link used to prepend instructions without reversing source execution order. */
 typedef struct ReverseNode {
     struct ReverseNode *next;
     const AstNode *syntax;
@@ -16,6 +24,8 @@ bool lower_block(Lowering *lowering, AstBlock block, ControlNode *after,
     return true;
 }
 
+/** Reverse finite AST node links, prepend lowered statements then publish this queued block entry. All reversal scratch remains plan-owned.
+ */
 static bool process(Lowering *lowering, const LowerTask *task) {
     ReverseNode *reverse = NULL;
     for (const AstNode *node = task->block.first; node != NULL; node = node->next) {
@@ -38,6 +48,8 @@ static bool process(Lowering *lowering, const LowerTask *task) {
     return true;
 }
 
+/** Allocate completion/yield and capture-before-cleanup fatal terminal graph, requiring all endpoints before normal body lowering.
+ */
 static bool endpoints(ProgramPlan *plan, PlannedType *type) {
     type->complete = plan_control_node(plan, type, CONTROL_COMPLETE, NULL);
     type->yield = plan_control_node(plan, type, CONTROL_YIELD, NULL);

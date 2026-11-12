@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Separate shared immutable storage from persistent instance/interface/service fields.
+ *
+ * [STATE-03](../../../spec/language/declarations.md#state-03)
+ * Create all nominal type records before field links; constants own no executable pool or service identity.
+ */
 #include "planning/internal.h"
 
 PlannedType *program_plan_type(const ProgramPlan *plan, const SemanticType *type) {
@@ -9,6 +16,8 @@ PlannedType *program_plan_type(const ProgramPlan *plan, const SemanticType *type
     return NULL;
 }
 
+/** Link all nonconstant declarations to already allocated nominal types, preserving field/role order and four storage forms.
+ */
 static bool fields(ProgramPlan *plan, PlannedType *type) {
     for (SemanticSymbol *symbol = type->type->first; symbol != NULL; symbol = symbol->next) {
         if (symbol->role == SYMBOL_CONSTANT) {
@@ -32,6 +41,8 @@ static bool fields(ProgramPlan *plan, PlannedType *type) {
     return true;
 }
 
+/** Build immutable constant-storage records in resolved startup order, with reverse links and no instance service state.
+ */
 static bool shared_storage(ProgramPlan *plan) {
     for (const SemanticConstantPlan *constant = plan->semantic->constant_first;
         constant != NULL; constant = constant->next) {

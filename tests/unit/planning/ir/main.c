@@ -1,5 +1,30 @@
+/**
+ * @file
+ * @brief Test typed storage/lifecycle/control correspondence and failed-plan cleanup.
+ */
 #include "../common.c"
 
+/** Self-looking copies retain all selection/check/prepare/commit edges; runtime decides identity. */
+static void it_keeps_runtime_replacement_checks_for_identically_spelled_assignments(void) {
+    prepare_types();
+    PlanStatus status = plan_text("@!\nvalue\n.value\nitems[]\n.value\n |3\nindex\n.value\n |0\n"
+        "value\n value\nitems[index]\n items[index]\n");
+    assert(status == PLAN_OK);
+    const ControlOperation expected[] = {CONTROL_SELECT_RECEIVER, CONTROL_SELECT_SOURCE,
+        CONTROL_PREFLIGHT_REPLACEMENT, CONTROL_PREPARE_REPLACEMENT, CONTROL_COMMIT_REPLACEMENT, CONTROL_RELEASE_VALUES};
+    ControlNode *node = plan.entry->entry;
+    for (size_t assignment = 0; assignment < 2; assignment++) {
+        for (size_t index = 0; index < sizeof(expected) / sizeof(expected[0]); index++) {
+            assert(node != NULL && node->operation == expected[index]);
+            assert(node->statement->transfer == TRANSFER_CLONE);
+            node = node->next;
+        }
+    }
+    assert(node == plan.entry->complete);
+    destroy_plan();
+}
+
+/** Keep immutable constants outside instance slots/service masks while parameter/result/state roles remain explicit. */
 static void it_separates_shared_interface_persistent_and_service_storage(void) {
     prepare_types();
     PlanStatus status = plan_text("@=\nconstant\n.value\n |shared\n@<\nparameter\n.value\n"
@@ -22,6 +47,7 @@ static void it_separates_shared_interface_persistent_and_service_storage(void) {
     destroy_plan();
 }
 
+/** Check selected native constructors, field ordering, cleanup edges and explicit continuation-position mode. */
 static void it_constructs_fields_before_payload_and_destroys_payload_before_reverse_fields(void) {
     prepare_types();
     native_fixture("worker", "+ initialize\n- destroy\n| literal\n= clone\n");
@@ -56,6 +82,7 @@ static void it_constructs_fields_before_payload_and_destroys_payload_before_reve
     destroy_plan();
 }
 
+/** Verify resolved text-order input selection precedes exact callee declaration-order installation and return linking. */
 static void it_installs_inputs_in_declaration_order_after_source_order_evaluation(void) {
     prepare_types();
     file("generated/program/worker", "@<\nfirst\n.value\nsecond\n.value\n@>\nresult\n.value\n@!\n");
@@ -83,6 +110,7 @@ static void it_installs_inputs_in_declaration_order_after_source_order_evaluatio
     destroy_plan();
 }
 
+/** Retained reads omit execution/reset and resumes omit input construction while retaining explicit output continuation. */
 static void it_reads_without_reset_and_resumes_without_input_installation(void) {
     prepare_types();
     file("generated/program/worker", "@>\nresult\n.value\n@!\n");
@@ -100,6 +128,7 @@ static void it_reads_without_reset_and_resumes_without_input_installation(void) 
     destroy_plan();
 }
 
+/** Check refusal snapshot/handler edges separately from capture-before-cleanup fatal paths, including empty alternatives. */
 static void it_keeps_refusal_alternatives_distinct_from_technical_failure_even_when_empty(void) {
     prepare_types();
     PlanStatus status = plan_text("@!\nworker\n.worker\nworker!\n:\n");
@@ -116,6 +145,7 @@ static void it_keeps_refusal_alternatives_distinct_from_technical_failure_even_w
     destroy_plan();
 }
 
+/** Verify retained control successors, loop exits and saved resume labels without recursive C control frames. */
 static void it_lowers_loop_break_branch_yield_and_early_return_to_explicit_edges(void) {
     prepare_types();
     PlanStatus status = plan_text("@!\ncondition\n.value\ncondition\n{\n condition\n ?\n  %\n :\n  ^\n}\n>\n");
@@ -129,6 +159,7 @@ static void it_lowers_loop_break_branch_yield_and_early_return_to_explicit_edges
     destroy_plan();
 }
 
+/** Check every assignment phase in order and preserve source spans/type metadata for emission. */
 static void it_retains_receiver_source_preflight_prepare_commit_order_for_assignment(void) {
     prepare_types();
     PlanStatus status = plan_text("@!\nfirst\n.value\nsecond\n.value\nfirst\n second\n");
@@ -145,6 +176,7 @@ static void it_retains_receiver_source_preflight_prepare_commit_order_for_assign
     destroy_plan();
 }
 
+/** Enumerate each measured plan allocation failure and require safely destructible partial storage/lifecycle/control records. */
 static void it_cleans_partial_lifecycle_storage_and_control_plans_on_every_allocation_failure(void) {
     prepare_types();
     const char *text = "@!\nworker\n.worker\nvalue\n.value\nworker!\n:\n value\n  value\n%\n";
@@ -174,6 +206,7 @@ static void it_cleans_partial_lifecycle_storage_and_control_plans_on_every_alloc
     }
 }
 
+/** Build a deep retained control model with explicit lowering work instead of recursive compiler activations. */
 static void it_lowers_deep_branch_nesting_without_recursive_c_activations(void) {
     prepare_types();
     const size_t depth = 128;
@@ -203,6 +236,7 @@ static void it_lowers_deep_branch_nesting_without_recursive_c_activations(void) 
     free(text);
 }
 
+/** Patch cyclic type-level calls only after entries exist, retaining instance selection and explicit return sites. */
 static void it_links_same_type_reentry_through_instance_selection_and_return_metadata(void) {
     prepare_types();
     PlanStatus status = plan_text("@!\nother&\n.main\nother&!\n");
@@ -218,6 +252,7 @@ static void it_links_same_type_reentry_through_instance_selection_and_return_met
     destroy_plan();
 }
 
+/** Reject selector exhaustion without wrap and preserve zero as an absent position. */
 static void it_reserves_zero_for_absent_control_and_source_positions(void) {
     prepare_types();
     PlanStatus status = plan_text("@!\nvalue\n.value\n");
@@ -229,6 +264,7 @@ static void it_reserves_zero_for_absent_control_and_source_positions(void) {
 }
 
 void run(void) {
+    it_keeps_runtime_replacement_checks_for_identically_spelled_assignments();
     it_links_same_type_reentry_through_instance_selection_and_return_metadata();
     it_reserves_zero_for_absent_control_and_source_positions();
     it_separates_shared_interface_persistent_and_service_storage();

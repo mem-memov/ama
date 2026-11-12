@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Register exact required modules and dependency sites without duplicate loading.
+ *
+ * [DEP-02](../../../../spec/implementation/compiler.md#dep-02)
+ * Reuse existing loading/ready records by complete supported identity, never root search precedence.
+ */
 #include <string.h>
 #include "project/dependencies/internal.h"
 

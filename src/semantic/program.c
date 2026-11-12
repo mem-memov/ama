@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Own semantic scratch/ABI/graph lifetime and zeroed resolved records.
+ *
+ * [ARCH-03](../../spec/implementation/compiler.md#arch-03)
+ * The valid loaded project outlives semantic views; failed allocations remain destructible and explicitly diagnosed.
+ */
 #include <assert.h>
 #include <string.h>
 #include "internal.h"

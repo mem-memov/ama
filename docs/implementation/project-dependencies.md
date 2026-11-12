@@ -154,3 +154,12 @@ compiler build and independently compiled public header. LeakSanitizer is disabl
 in this environment; allocation-injection live-allocation counters independently
 check cleanup. These checks certify this source-loading boundary, not subsequent
 semantic or execution stages.
+
+
+T147 adds canonical-rule Doxygen purpose/function/type contracts for every closure
+phase. Registry admission precedes dependency parsing; only new records receive a
+first requester, so requester links strictly follow earlier discovery and cannot
+cycle even when loading edges do. Original-source spans and catalog bytes outlive
+all project/semantic consumers. Required-draft/current activation refinements and
+new AST dependency sources remain T029 and their syntax consumers; existing
+closure evidence does not assert those missing forms are already implemented.

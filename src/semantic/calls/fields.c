@@ -1,5 +1,14 @@
+/**
+ * @file
+ * @brief Resolve named/positional interface fields and reject duplicate bindings.
+ *
+ * [CALL-08](../../../spec/language/calls-and-results.md#call-08)
+ * Direction role and exact storage form must match the callee declaration; placeholders still consume positions.
+ */
 #include "internal.h"
 
+/** Find the exact role ordinal in the retained interface, independent of interleaved other roles; absent positions return null.
+ */
 static SemanticSymbol *positional(SemanticType *type, SymbolRole role, size_t position) {
     for (SemanticSymbol *symbol = type->first; symbol != NULL; symbol = symbol->next) {
         if (symbol->role == role && symbol->role_ordinal == position) {

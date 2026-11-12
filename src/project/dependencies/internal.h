@@ -1,16 +1,39 @@
+/**
+ * @file
+ * @brief Declare required-module registry, discovery and requester-diagnostic phases.
+ *
+ * [DEP-02](../../../spec/implementation/compiler.md#dep-02)
+ * Insert a loading record once before parsing its dependencies, so cycles reuse exact module identity.
+ */
 #ifndef AMA_PROJECT_DEPENDENCIES_INTERNAL_H
 #define AMA_PROJECT_DEPENDENCIES_INTERNAL_H
 
 #include "project.h"
 
+/** Find an exact existing loading/ready record for internal closure construction; partial-project lookup is intentional here only.
+ */
 ProjectModule *project_lookup(Project *project, const char *path);
+/** Reuse an existing identity or insert one loading record before parsing dependencies.
+ * @param[out] output Changes only on success and borrows project lifetime. requester/requirement record first-discovery context.
+ */
 bool project_require(Project *project, ProjectModule *requester,
     const char *path, SourceSpan requirement, ProjectModule **output);
+/** Parse a registered module once, reject required drafts/invalid entry, discover its dependencies, then mark ready. Failure preserves owned AST/context.
+ */
 bool project_parse_required(Project *project, ProjectModule *module);
+/** Collect all represented AST path dependencies using finite explicit blocks; no C recursive module/body traversal.
+ */
 bool project_discover(Project *project, ProjectModule *module);
+/** Copy the complete path, require its exact module and append one source-mapped edge. Partial allocations remain project-owned on failure.
+ */
 bool project_add_dependency(Project *project, ProjectModule *module, SourceSpan path);
+/** Copy entry spellings and merge original cause notes with the finite first-requester chain.
+ * @return false, with all diagnostic text/related storage valid through project destruction; allocation failure replaces it with an allocation-free error.
+ */
 bool project_report(Project *project, ProjectStatus status, ProjectModule *requester,
     SourceSpan requirement, const char *path, const Diagnostic *cause);
+/** Set an explicit out-of-memory status and immutable diagnostic message without further allocation.
+ */
 bool project_memory_failure(Project *project);
 
 #endif

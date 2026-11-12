@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Compose semantic stages in their explicit prerequisite order.
+ *
+ * [COMP-02](../../spec/implementation/compiler.md#comp-02)
+ * Names, native contracts, value resolution, relations and shared plans must each succeed before consumption.
+ */
 #include "semantic.h"
 
 SemanticStatus semantic_analyze_authoring(SemanticProgram *program,

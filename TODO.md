@@ -85,7 +85,7 @@ inputs to T001, not a blanket claim of current conformance.
 | 4. Parsing | Byte-preserving layout/AST, entry literal boundaries, draft/section handling, positional placeholders, fixed ABI records, iterative nesting, precise expected-token diagnostics and allocation-failure tests. [Frontend evidence](docs/implementation/parser-errors.md). | Current strict spaces/comments, inferred-receiver syntax, self-reference, result trees, loop condition chains and foreach forms. |
 | 5. Semantic analysis and plans | Transitive closure; one base-name namespace; nominal storage/capability checks; separate dependency relations; greatest-fixed-point copy capability; native companions; constants; typed lifecycle/control/storage plans and source-related errors. [Closure](docs/implementation/project-dependencies.md), [semantics](docs/implementation/semantic-analysis.md), [plans](docs/implementation/typed-plans.md). | Exact source-order inference/no-shadow foreach integration, current method interfaces, context-local constants and updated control metadata. |
 | 6. Check-only and native authoring | Shared frontend, draft diagnostics, self-contained generated headers/skeletons, native naming contexts, machine-readable C tooling configuration, handwritten-file preservation and isolated header/skeleton checks. | Current grammar/semantics and agreement with the final project assembly. |
-| 7. Runtime ownership | Stable typed block pools; empty/stale/generation handles; reclamation; lifecycle failure cleanup; injective clone maps; staged replacement; copy overlap/availability and busy-descendant preflight. | Context boundaries, reserved self-identity during construction, current self-copy capability checks and membership-aware list copying. |
+| 7. Runtime ownership | Stable typed block pools; empty/stale/generation handles; reclamation; lifecycle failure cleanup; injective clone maps; staged replacement; copy overlap/availability and busy-descendant preflight. | Context boundaries, reserved self-identity during construction, copy checks across current inferred/result forms and membership-aware list copying. |
 | 8. Stackless execution | Verified `--emit ... --compile` output; direct stable-slot execution; startup constants/root; literal and ordered entry preparation; retained results, control transfers, refusal snapshots and pre-cleanup source diagnostics. [Entry](docs/implementation/entry-preparation.md), [execution](docs/implementation/stackless-execution.md), [emission](docs/implementation/project-emission.md). | Current source semantics, direct result actions, intrinsic list frames and explicit context parameterization. |
 | 9. Continuations | Explicit saved positions, output-only resume, entry restart, host outcomes, recursive ordinary clearing/explicit preservation and generated-program/custom-host tests. [Continuation evidence](docs/implementation/continuations.md). | Foreach cursor/origin state, live mutation correction, copy mappings and asynchronous resource/enrollment boundaries. |
 | 10. Lists and library, partial | Contiguous handle storage, checked growth/index conversion, standalone mutation/preflight, scalar and refusal-reader modules, interface-order checks and runtime/generated-library suites were reported. Whole-list execution integration remained incomplete. | LIST-03/LIST-13 membership records, six typed methods, service busy protection, live-boundary traversal and current scalar contracts require explicit verification. |
@@ -397,11 +397,26 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   passed (69 leaves), including actual grammar/native and generated consumers.
   Corrected task references for pending path/root encoding to T016/T017.
   Doxygen checked 512 file pages; 202 ready inputs and 473 explicit debts remain.
-- [ ] **T147 — Document dependency, semantic and planning components.** Needs:
+- [x] **T147 — Document dependency, semantic and planning components.** Needs:
   T133. Cover `src/project/`, `src/semantic/`, `src/planning/` and `src/lowering/`.
   Explain namespace/graph distinctions, fixed points, typed plans, source ordering,
   storage/control ownership and failure invariants. Link exact rules, map meaningful
   component/composition tests and validate generated reference destinations.
+
+  Evidence: linked Doxygen contracts cover all 58 project/semantic/plan/lowering
+  inputs and 13 independently compiled headers. Loading closure, eager ownership,
+  shared initialization and greatest-fixed-point copy capability remain distinct;
+  current inferred/result/control gaps stay assigned to their feature tasks.
+  Fixed COPY-06's discovered same-spelling exemption: every owned copy checks
+  capability, no static TRANSFER_NOOP removes IR replacement phases, and runtime
+  identity decides ordinary self no-op. Direct continuation self-copy uses exact
+  resolved nonindexed declaration identity rather than spelling. Semantic/IR
+  regressions failed before the fix; scalar/list/indexed/transitive resource and
+  reference cases, generated self copies and decoder failures now pass. Fifty-five
+  other production inputs retain identical C after compiler comment removal.
+  Strict project/semantic/planning leaves, generated execution and full root
+  `make -j4 test` passed (69 leaves). Doxygen checked 512 file pages and canonical
+  links; 262 ready records and 413 explicit documentation/coverage debts remain.
 - [ ] **T148 — Document native contracts, scaffolds and toolchain checks.** Needs:
   T133. Cover `src/native/` and its headers. Explain typed hooks, scoped names,
   borrowed views, artifact ownership, transactional publication and verification

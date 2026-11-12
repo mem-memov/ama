@@ -1,11 +1,21 @@
+/**
+ * @file
+ * @brief Own typed logical storage, lifecycle recipes and explicit control graph nodes.
+ *
+ * [COMP-02](../../spec/implementation/compiler.md#comp-02)
+ * Borrow validated semantic identities; logical slots are not guessed C offsets, and emission must not redo resolution.
+ */
 #ifndef AMA_TYPED_PROJECT_PLAN_H
 #define AMA_TYPED_PROJECT_PLAN_H
 
 #include "semantic/semantic.h"
 
+/** Typed planning status; invalid/partial arena records remain owned but unusable. */
 typedef enum { PLAN_OK, PLAN_INVALID, PLAN_OUT_OF_MEMORY } PlanStatus;
+/** Logical ownership/cardinality form, independent of target C representation. */
 typedef enum { STORAGE_OWNED, STORAGE_REFERENCE, STORAGE_OWNING_LIST, STORAGE_REFERENCE_LIST } StorageForm;
 typedef struct PlannedType PlannedType;
+/** Plan-owned ordered nonconstant field with exact semantic declaration/type and logical slot. */
 typedef struct StorageField {
     struct StorageField *next;
     struct StorageField *previous;
@@ -14,6 +24,7 @@ typedef struct StorageField {
     StorageForm form;
     size_t slot;
 } StorageField;
+/** Immutable shared constant record with startup/reverse links and explicitly absent instance service state. */
 typedef struct SharedStorage {
     struct SharedStorage *next;
     struct SharedStorage *previous;
@@ -23,6 +34,7 @@ typedef struct SharedStorage {
     bool immutable;
     unsigned service_storage;
 } SharedStorage;
+/** Typed lifecycle actions; native hooks and field ownership remain explicit operands. */
 typedef enum {
     LIFE_CONSTRUCT_FIELD, LIFE_CONSTRUCT_NATIVE, LIFE_MARK_LIVE,
     LIFE_DESTROY_NATIVE, LIFE_DESTROY_FIELD, LIFE_MARK_FINALIZED,
@@ -31,6 +43,7 @@ typedef enum {
     LIFE_CLEAR_POSITIONS, LIFE_PRESERVE_POSITIONS, LIFE_RELEASE_CLONE_MAP,
     LIFE_UNWIND_PARTIAL, LIFE_SUCCESS, LIFE_FAILURE
 } LifeOperation;
+/** Plan-owned lifecycle step with exact source/type/field/hook and explicit failure edge. */
 typedef struct LifeNode {
     struct LifeNode *next;
     struct LifeNode *failure;
@@ -40,12 +53,14 @@ typedef struct LifeNode {
     const AbiBinding *binding;
     SourceSpan site;
 } LifeNode;
+/** Owned lifecycle procedure endpoints and cleanup policy, consumed only through a valid plan. */
 typedef struct {
     LifeNode *first;
     LifeNode *last;
     LifeNode *failure;
     bool accumulates_errors;
 } LifeProcedure;
+/** Resolved control actions with separate selection, mutation, refusal, failure and continuation phases. */
 typedef enum {
     CONTROL_COMPLETE, CONTROL_YIELD, CONTROL_CAPTURE_ERROR, CONTROL_CLEANUP_FAILURE,
     CONTROL_FAILURE, CONTROL_CONDITION, CONTROL_SELECT_RECEIVER, CONTROL_SELECT_SOURCE,
@@ -57,6 +72,7 @@ typedef enum {
     CONTROL_NATIVE_ENTRY,
     CONTROL_TRANSFER_OUTPUT, CONTROL_RELEASE_TARGET
 } ControlOperation;
+/** Plan-owned uniquely selected control node; allocation links are separate from typed execution/alternative/failure/resume edges. */
 typedef struct ControlNode {
     struct ControlNode *allocated_next;
     struct ControlNode *next;
@@ -75,10 +91,12 @@ typedef struct ControlNode {
     SemanticSymbol *field;
     SourceSpan site;
 } ControlNode;
+/** Explicit logical instance-service requirements; shared immutable storage has none of these bits. */
 enum {
     STORAGE_GENERATION = 1u, STORAGE_BUSY = 2u, STORAGE_POSITION = 4u,
     STORAGE_RETURN_LINK = 8u, STORAGE_REFUSAL = 16u, STORAGE_ACQUISITION = 32u
 };
+/** One planned nominal type with logical fields/service requirements, lifecycle procedures and retained body graph. */
 struct PlannedType {
     PlannedType *next;
     SemanticType *type;
@@ -99,6 +117,7 @@ struct PlannedType {
     ControlNode *yield;
     ControlNode *failure;
 };
+/** Plan arena owner borrowing a complete semantic program and retaining unique selector allocation and valid/failure state. */
 typedef struct {
     SourceArena arena;
     const SemanticProgram *semantic;
@@ -120,9 +139,18 @@ typedef struct {
  * plan. Initialize, build once, inspect only success, destroy. Logical slots are
  * not guessed C byte offsets: the native C compiler supplies sizeof/alignment.
  * No AST reparsing, C execution or generated C strings occur during planning. */
+/** Require complete valid semantic constant plans and borrow that owner through plan destruction; selectors start at nonzero one.
+ */
 void program_plan_init(ProgramPlan *plan, const SemanticProgram *semantic, SourceAllocator allocator);
+/** Release all storage/lifecycle/control arena records; borrowed semantic/project owners remain untouched.
+ */
 void program_plan_destroy(ProgramPlan *plan);
+/** Build once: all nominal records, storage, per-type procedures/control and forward call links.
+ * @return Explicit failure without valid output, or success with one complete typed plan; never parse source or emit C text.
+ */
 PlanStatus program_plan_build(ProgramPlan *plan);
+/** Find the exact semantic type pointer in already created planned types, or return null; no spelling-based type recreation.
+ */
 PlannedType *program_plan_type(const ProgramPlan *plan, const SemanticType *type);
 
 #endif

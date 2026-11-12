@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Build shared declaration-order and actual initializer-read prerequisites.
+ *
+ * [CONST-02](../../../spec/language/declarations.md#const-02)
+ * Keep each module declaration prefix and cross-module value reads in one exact initialization relation.
+ */
 #include "internal.h"
 
 bool semantic_constant_graph(SemanticProgram *program) {

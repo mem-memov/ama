@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Compute greatest-fixed-point copy capability across all declared owned edges.
+ *
+ * [PROTO-07](../../../spec/implementation/native-interface.md#proto-07)
+ * Start with native copy seeds and remove types reaching a noncopyable owned descendant, including empty-list declarations.
+ */
 #include "semantic/internal.h"
 
 void semantic_clone_capabilities(SemanticProgram *program) {

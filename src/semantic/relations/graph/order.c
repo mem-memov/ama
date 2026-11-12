@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Order ready vertices by exact stable keys or report a real dependency cycle.
+ *
+ * [COMP-05](../../../../spec/implementation/compiler.md#comp-05)
+ * Repeatedly choose the least full-key ready vertex; no hash order or catalog traversal order selects output.
+ */
 #include <assert.h>
 #include <string.h>
 #include "internal.h"
@@ -11,6 +18,8 @@ GraphEdge *dependency_blocked(const GraphVertex *vertex) {
     return NULL;
 }
 
+/** Compare complete borrowed module path bytes, then declaration ordinal; unique keys make the ready choice deterministic.
+ */
 static bool precedes(const GraphVertex *left, const GraphVertex *right) {
     int compared = strcmp(left->module_path, right->module_path);
     return compared < 0 || (compared == 0 && left->ordinal < right->ordinal);

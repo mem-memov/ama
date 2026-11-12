@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Extract an actual closed blocked-edge cycle after prerequisite ordering stalls.
+ *
+ * [COMP-04](../../../../spec/implementation/compiler.md#comp-04)
+ * Following one blocked edge per unfinished vertex repeats within the exact finite vertex population.
+ */
 #include <stdint.h>
 #include "internal.h"
 

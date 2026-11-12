@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Compose typed storage and per-type lifecycle/control plans then patch forward call edges.
+ *
+ * [GEN-04](../../spec/implementation/compiler.md#gen-04)
+ * Publish valid only after every required entry exists; no recursive planning of cyclic call targets occurs.
+ */
 #include <assert.h>
 #include <string.h>
 #include "internal.h"

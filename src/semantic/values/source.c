@@ -1,5 +1,14 @@
+/**
+ * @file
+ * @brief Resolve literal, local and qualified-constant sources into nominal value views.
+ *
+ * [TYPE-05](../../../spec/language/declarations.md#type-05)
+ * Sources preserve original spans and declared storage form; standalone self sources remain T032 work.
+ */
 #include "semantic/internal.h"
 
+/** Resolve an exact qualified shared member, its scalar/list form and initializer visibility; no namespace fallback or instance is created.
+ */
 static bool constant(SemanticProgram *program, SemanticSource *source,
     const SemanticSymbol *initializing) {
     const AstSource *syntax = source->syntax;
