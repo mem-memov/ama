@@ -1,6 +1,18 @@
+/**
+ * @file
+ * @brief Validate native authoring against explicit proposed or existing ABI bytes.
+ *
+ * [CABI-06](../../../spec/implementation/native-interface.md#cabi-06)
+ * Own proposed ABI source until semantic destruction; authoring does not silently weaken normal executable checking.
+ */
 #include <string.h>
 #include "compiler/internal.h"
 
+/**
+ * Load an active native root and own a proposed ABI source if supplied or required for initial
+ * authoring. Keep that source alive through semantic/plan destruction; executable checking uses
+ * the separate strict path.
+ */
 bool compiler_frontend_authoring(CompilerFrontend *frontend, const ModuleRoot *roots,
     size_t count, const char *entry, const char *proposed_abi) {
     frontend->authoring = true;

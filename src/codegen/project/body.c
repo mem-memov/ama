@@ -1,5 +1,17 @@
+/**
+ * @file
+ * @brief Emit one host execution function with all Ama bodies as IR labels.
+ *
+ * [STACK-04](../../../spec/implementation/compiler.md#stack-04)
+ * Resume dispatch validates saved selector and nominal type; return dispatch uses explicit caller selectors rather than recursive Ama C functions.
+ */
 #include "codegen/internal.h"
 
+/**
+ * Write one host execution function and all resolved control labels. Emit saved-position/type
+ * and return-selector switches with invalid-selector failure paths; no recursive Ama C function
+ * calls.
+ */
 bool codegen_emit_body(NativeScaffold *scaffold, FILE *output, const ScaffoldType *unused) {
     (void)unused;
     if (!codegen_emit_host_begin(scaffold, output)) { return false; }

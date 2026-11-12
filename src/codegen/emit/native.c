@@ -1,5 +1,16 @@
+/**
+ * @file
+ * @brief Include typed native bodies and emit lifecycle/conversion adapters.
+ *
+ * [CABI-03](../../../spec/implementation/native-interface.md#cabi-03)
+ * An exact entry signature declaration precedes the body. Read-only protocols receive const payloads and remain distinct from body dispatch.
+ */
 #include "codegen/internal.h"
 
+/**
+ * Emit one present native protocol adapter with exact constness and extra argument type. Absent
+ * protocol emits nothing; native entry dispatch is separate.
+ */
 static bool hook(FILE *output, const ScaffoldType *type, AbiOperation operation) {
     const AbiBinding *binding = &type->plan->type->abi.bindings[operation];
     if (!binding->present) { return true; }
@@ -18,6 +29,10 @@ static bool hook(FILE *output, const ScaffoldType *type, AbiOperation operation)
     return fputs(");\n}\n", output) != EOF;
 }
 
+/**
+ * Include the independent interface, require exact entry signature compatibility before the
+ * authored body, then emit present lifecycle/conversion adapters.
+ */
 bool codegen_emit_native(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type) {
     (void)scaffold;
     if (!scaffold_include(output, type->interface_name)

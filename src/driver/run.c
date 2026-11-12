@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Dispatch one explicit command after exact option validation.
+ *
+ * [COMP-01](../../spec/implementation/compiler.md#comp-01)
+ * Options own their arrays; frontend/scaffold command owners are destroyed before returning. Help and unavailable requests bypass operand parsing.
+ */
 #include "driver.h"
 
 #include <stdlib.h>
@@ -8,6 +15,10 @@
 #include "diagnostics/render/render.h"
 
 
+/**
+ * Recognize one exact request, validate owned option arrays, invoke one command and destroy
+ * options on every return. Borrow argv/streams without modification or closing.
+ */
 int driver_run(int argument_count, char *const arguments[],
     FILE *output, FILE *errors) {
     DriverRequest request = driver_parse_request(argument_count, arguments);

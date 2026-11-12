@@ -1,5 +1,16 @@
+/**
+ * @file
+ * @brief Map exact resolved type/member objects and register qualified shared output names.
+ *
+ * [NAME-01](../../../spec/implementation/compiler.md#name-01)
+ * Runtime type ordinals are assembly-local registry keys, not cross-build external identities. Source names use complete registered keys.
+ */
 #include "codegen/internal.h"
 
+/**
+ * Return the exact descriptor pointer ordinal starting at one, or zero if absent. This is an
+ * assembly-local registry key, not a stable external type identity.
+ */
 size_t codegen_type_id(const NativeScaffold *scaffold, const ScaffoldType *type) {
     size_t index = 1;
     for (const ScaffoldType *candidate = scaffold->types; candidate != NULL; candidate = candidate->next, index++) {
@@ -8,6 +19,10 @@ size_t codegen_type_id(const NativeScaffold *scaffold, const ScaffoldType *type)
     return 0;
 }
 
+/**
+ * Find the exact resolved symbol pointer in a known type, or null. Caller supplies a registered
+ * owner; no name matching or allocation.
+ */
 const ScaffoldMember *codegen_member(const ScaffoldType *type, const SemanticSymbol *symbol) {
     for (const ScaffoldMember *member = type->members; member != NULL; member = member->next) {
         if (member->field->symbol == symbol) { return member; }
@@ -15,6 +30,11 @@ const ScaffoldMember *codegen_member(const ScaffoldType *type, const SemanticSym
     return NULL;
 }
 
+/**
+ * Register a full module/category/member identity using exact source bytes and return
+ * scaffold-owned generated C spelling. Preserve collision/allocation failure; no
+ * transliteration.
+ */
 const char *codegen_constant_name(NativeScaffold *scaffold, const SemanticConstantPlan *constant) {
     SourceSpan name = constant->symbol->declaration->as.declaration.name->name;
     size_t length = name.end - name.start;

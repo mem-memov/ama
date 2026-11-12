@@ -1,9 +1,21 @@
+/**
+ * @file
+ * @brief Compose explicit protocol selection, native authoring and guarded artifact publication.
+ *
+ * [CABI-06](../../../spec/implementation/native-interface.md#cabi-06)
+ * Existing ABI replacement needs explicit create/overwrite policy; diagnostics are rendered before owner destruction.
+ */
 #include <stdlib.h>
 #include <string.h>
 #include "commands.h"
 #include "native/scaffold/scaffold.h"
 #include "diagnostics/render/render.h"
 
+/**
+ * Decode unique optional protocol symbols into a bounded caller buffer with mandatory
+ * initialize/destroy records. Invalid/duplicate marker or insufficient capacity returns null;
+ * null protocols select existing/default authoring behavior.
+ */
 static const char *proposed_contract(const DriverOptions *options, char *buffer, size_t capacity) {
     if (options->protocols == NULL) {
         return NULL;
@@ -38,6 +50,11 @@ static const char *proposed_contract(const DriverOptions *options, char *buffer,
     return buffer;
 }
 
+/**
+ * Compose explicit authoring/checking and create/overwrite policy, then stage/publish native
+ * artifacts. Always destroy scaffold before its borrowed frontend and render errors before
+ * source destruction.
+ */
 int driver_native(const DriverOptions *options, FILE *output, FILE *errors) {
     CompilerFrontend frontend;
     compiler_frontend_init(&frontend, source_system_allocator());

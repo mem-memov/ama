@@ -1,5 +1,16 @@
+/**
+ * @file
+ * @brief Emit ordered source descriptors and program type/shared declaration tables.
+ *
+ * [CALL-08](../../../spec/language/calls-and-results.md#call-08)
+ * Semantic roles and ordinals drive preparation order; shared storage remains separate from instance pools.
+ */
 #include "codegen/internal.h"
 
+/**
+ * Emit field initializer data and role/position/operation descriptors in declaration order,
+ * followed by shared initializer sources; stream failure stays in staged output.
+ */
 bool codegen_emit_sources(NativeScaffold *scaffold, FILE *output) {
     const char *const roles[] = {"", "AMA_PROGRAM_PARAMETER", "AMA_PROGRAM_RESULT", "AMA_PROGRAM_STATE"};
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
@@ -27,6 +38,10 @@ bool codegen_emit_sources(NativeScaffold *scaffold, FILE *output) {
     return true;
 }
 
+/**
+ * Emit nominal program types and constants referring to previously emitted source/storage
+ * descriptors. Nonpool types preserve ordinal slots without implicit instances.
+ */
 bool codegen_emit_program(NativeScaffold *scaffold, FILE *output) {
     if (!codegen_emit_sources(scaffold, output) || fputs("static const AmaProgramType ama_project_program_types[] = {\n", output) == EOF) { return false; }
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {

@@ -1,5 +1,16 @@
+/**
+ * @file
+ * @brief Emit exact nominal field offsets and the retained pool registry.
+ *
+ * [RT-02](../../../spec/implementation/runtime.md#rt-02)
+ * C offsetof and real storage types provide layout truth; references retain declared handle locations rather than hidden native edges.
+ */
 #include "codegen/internal.h"
 
+/**
+ * Write field kind/type/offsetof descriptors and the exact executable type registry from
+ * validated model members. A false stream result leaves only unpublished partial bytes.
+ */
 bool codegen_emit_descriptors(NativeScaffold *scaffold, FILE *output) {
     const char *const kinds[] = {"AMA_FIELD_OWNED", "AMA_FIELD_REFERENCE", "AMA_FIELD_OWNING_LIST", "AMA_FIELD_REFERENCE_LIST"};
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {

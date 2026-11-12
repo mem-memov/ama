@@ -452,12 +452,22 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   assembly/execution/continuation/library consumers passed through the codegen
   parent. Doxygen checked 512 maintained file pages and canonical links;
   353 ready inputs and 322 explicit documentation debts remain.
-- [ ] **T150 — Document driver, compiler and generated-code components.** Needs:
+- [x] **T150 — Document driver, compiler and generated-code components.** Needs:
   T133. Cover `src/main.c`, `src/driver/`, `src/compiler/` and `src/codegen/`.
   Explain explicit stage contracts, option/output ownership, IR correspondence,
   native boundaries and emitted failure paths. Cite canonical rules and record
   actual CLI/generated-project tests, including the executable-only entry file;
   validate all file/interface pages and rendered references.
+  Evidence: [frontend/emission contract](docs/implementation/compiler-and-emission.md)
+  and ready records cover all 68 inputs, including main through 12 actual-process
+  cases. Added purpose/type/operation contracts to the 43 remaining production
+  inputs; compiler-lexed C is unchanged. Documented stage borrow/destruction order,
+  exact local/qualified identities, IR label correspondence, stream failures,
+  object verification and the retained single-owner host limitation. Strict root
+  `make -j4 test` passed all 69 leaves after the negative scalar library cases
+  gained exact failing-field diagnostic checks (the previously unused shared
+  checker had broken `-Werror`). Doxygen checked 512 maintained file pages and
+  canonical destinations; 396 ready inputs and 279 explicit T151 debts remain.
 - [ ] **T151 — Document library, tests and build support.** Needs: T133. Cover
   remaining native library sources/headers, test executables/shared fixtures,
   ABI/module inputs and Make infrastructure. Explain public contracts, fixture

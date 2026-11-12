@@ -1,5 +1,16 @@
+/**
+ * @file
+ * @brief Emit constants/root startup and explicit entry restart preparation.
+ *
+ * [RT-11](../../../../spec/implementation/runtime.md#rt-11)
+ * Initialize once, preserve partial startup for terminal cleanup and never treat resume as entry reinitialization.
+ */
 #include "codegen/internal.h"
 
+/**
+ * Write first startup and explicit root entry restart. Mark initialized before fallible setup so
+ * terminal disposal can unwind; resume bypasses interface preparation.
+ */
 bool codegen_emit_host_initialize(NativeScaffold *scaffold, FILE *output) {
     return fprintf(output,
             "if(!host->initialized) {\n"

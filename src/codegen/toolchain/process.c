@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Execute native tools with explicit argv and checked child status.
+ *
+ * [STACK-04](../../../spec/implementation/compiler.md#stack-04)
+ * No shell evaluates flags or paths. Compile a non-LTO object, inspect it, then link with explicit ordered arguments.
+ */
 #include <errno.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -6,6 +13,10 @@
 #include <unistd.h>
 #include "internal.h"
 
+/**
+ * Fork/exec exact argv, optionally capture stdout and redirect diagnostics, then wait through
+ * EINTR. Spawn/nonzero/signal failures record an IO diagnostic; no shell is invoked.
+ */
 bool codegen_run_tool(NativeScaffold *scaffold, char *const arguments[], const char *capture, FILE *errors) {
     pid_t process = fork();
     if (process < 0) { return scaffold_error(scaffold, DIAGNOSTIC_IO_FAILURE, "Cannot start the native toolchain", NULL); }
@@ -22,6 +33,11 @@ bool codegen_run_tool(NativeScaffold *scaffold, char *const arguments[], const c
         || scaffold_error(scaffold, DIAGNOSTIC_IO_FAILURE, "The native toolchain failed; no executable was published", arguments[0]);
 }
 
+/**
+ * Allocate checked argv storage for caller-specified fixed tail capacity, copy borrowed
+ * compiler/flags and rely on zeroed allocation for spare entries. Extra is a small internal
+ * constant.
+ */
 static char **codegen_arguments(NativeScaffold *scaffold, size_t extra) {
     if (scaffold->options.flag_count > SIZE_MAX / sizeof(char *) - extra) {
         scaffold_error(scaffold, DIAGNOSTIC_OUT_OF_MEMORY, "Native command arguments exceed addressable storage", NULL);
@@ -34,6 +50,10 @@ static char **codegen_arguments(NativeScaffold *scaffold, size_t extra) {
     return arguments;
 }
 
+/**
+ * Execute the configured compiler with explicit supported C11/non-LTO arguments and private
+ * source/include/object paths; borrow error stream through child completion.
+ */
 bool codegen_compile_object(NativeScaffold *scaffold, const char *stage, FILE *errors) {
     char **arguments = codegen_arguments(scaffold, 18);
     const char *source = scaffold_join(scaffold, stage, "/", "launcher.c");
@@ -45,6 +65,10 @@ bool codegen_compile_object(NativeScaffold *scaffold, const char *stage, FILE *e
     return codegen_run_tool(scaffold, arguments, NULL, errors);
 }
 
+/**
+ * Link only the verified private object, placing user link flags after the object. Result
+ * remains private until retained and explicitly published.
+ */
 bool codegen_link_object(NativeScaffold *scaffold, const char *stage, FILE *errors) {
     char **arguments = codegen_arguments(scaffold, 8);
     const char *object = scaffold_join(scaffold, stage, "/", "program.o");

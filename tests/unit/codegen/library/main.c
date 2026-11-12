@@ -8,7 +8,9 @@ static void it_composes_scalar_operations_with_consistent_positional_interfaces(
 
 static void it_rejects_checked_scalar_overflow_and_invalid_conditions(void) {
     execute_project("@!\nindex\n.std.index\n |99999999999999999999999999999999999999\n", "", false);
+    expect_diagnostic("field construction, type .std.index");
     execute_project("@!\ncondition\n.std.condition\n |2\n", "", false);
+    expect_diagnostic("field construction, type .std.condition");
 }
 
 static void it_keeps_result_first_and_named_inputs_independent_of_textual_order(void) {

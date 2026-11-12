@@ -1,5 +1,16 @@
+/**
+ * @file
+ * @brief Emit explicit host outcomes and terminal error reporting/disposal.
+ *
+ * [RT-14](../../../../spec/implementation/runtime.md#rt-14)
+ * Report the active chain before disposal removes it. Root yield remains a resumable host outcome rather than implicit scheduling.
+ */
 #include "codegen/internal.h"
 
+/**
+ * Write common completion/yield/error outcomes. Report the active chain before terminal
+ * disposal, clear execution admission and expose an empty root on failure.
+ */
 bool codegen_emit_host_finish(FILE *output) {
     return fputs("ama_project_finish:;\n"
         "host->executing=false; host->status=ama_status;\n"

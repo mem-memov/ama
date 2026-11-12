@@ -1,7 +1,19 @@
+/**
+ * @file
+ * @brief Reject malformed or stripped symbol evidence and surviving native entry families.
+ *
+ * [STACK-04](../../../spec/implementation/compiler.md#stack-04)
+ * Require supported POSIX nm records with main and verify every exact module-qualified entry before linking.
+ */
 #include <string.h>
 #include "internal.h"
 #include "native/toolchain/listing/internal.h"
 
+/**
+ * Run supported nm output inspection, require complete valid records and main evidence, then
+ * reject every surviving exact entry/compiler-family symbol. Verification is specific to the
+ * supported unstripped non-LTO workflow.
+ */
 bool codegen_verify_object(NativeScaffold *scaffold, const char *stage, FILE *errors) {
     const char *object = scaffold_join(scaffold, stage, "/", "program.o");
     const char *capture = scaffold_join(scaffold, stage, "/", "symbols.txt");

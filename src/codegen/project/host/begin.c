@@ -1,5 +1,16 @@
+/**
+ * @file
+ * @brief Emit root entry/resume eligibility and the host return sentinel.
+ *
+ * [CONT-03](../../../../spec/language/continuations.md#cont-03)
+ * Resume reads the saved selector without preparing inputs; execution clears the saved position before dispatching labels.
+ */
 #include "codegen/internal.h"
 
+/**
+ * Compose owner/startup checks, validate root resume eligibility, consume saved position and
+ * attach the host return sentinel before label dispatch.
+ */
 bool codegen_emit_host_begin(NativeScaffold *scaffold, FILE *output) {
     if (!codegen_emit_host_context(output) || !codegen_emit_host_initialize(scaffold, output)) { return false; }
     return fputs(

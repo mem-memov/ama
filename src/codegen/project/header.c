@@ -1,5 +1,17 @@
+/**
+ * @file
+ * @brief Emit the retained assembly header and generated host declarations.
+ *
+ * [STACK-04](../../../spec/implementation/compiler.md#stack-04)
+ * Runtime implementations are included once in the final project translation unit. This internal host API is not the future checked component ABI.
+ */
 #include "codegen/internal.h"
 
+/**
+ * Write runtime/typed storage/native adapters, descriptors, controls and locations into the
+ * retained single-TU header. Host declarations are internal and still use global type/shared
+ * descriptors.
+ */
 bool codegen_emit_header(NativeScaffold *scaffold, FILE *output, const ScaffoldType *unused) {
     (void)unused;
     if (fputs("#ifndef AMA_PROJECT_ASSEMBLY_H\n#define AMA_PROJECT_ASSEMBLY_H\n"

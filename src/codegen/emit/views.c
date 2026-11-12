@@ -1,10 +1,25 @@
+/**
+ * @file
+ * @brief Emit typed operation-scoped native views bound to stable runtime storage.
+ *
+ * [CABI-03](../../../spec/implementation/native-interface.md#cabi-03)
+ * Owned layouts follow the checked eager dependency order; references expose declared storage without acquiring their targets.
+ */
 #include "codegen/internal.h"
 
+/**
+ * Map validated nonowned storage form to its reference/list view family; the owned case is
+ * handled separately by callers.
+ */
 static ScaffoldTypeRole codegen_view_role(StorageForm form) {
     return form == STORAGE_REFERENCE ? SCAFFOLD_REFERENCE_STORAGE : form == STORAGE_OWNING_LIST
         ? SCAFFOLD_LIST_STORAGE : SCAFFOLD_REFERENCE_LIST_STORAGE;
 }
 
+/**
+ * Emit operation-local read/write scope plus owned child scopes or reference/list storage views.
+ * Checked ownership layout ordering ensures complete child C types.
+ */
 static bool codegen_view_type(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type) {
     const char *name = type->names[SCAFFOLD_WRITE]->internal_name;
     if (fprintf(output, "typedef struct %s_Scope { %s read; %s write;\n", name,
@@ -23,6 +38,11 @@ static bool codegen_view_type(NativeScaffold *scaffold, FILE *output, const Scaf
     return fprintf(output, "} %s_Scope;\n", name) >= 0;
 }
 
+/**
+ * Emit a binder that validates the local handle and borrows active stable storage. General binds
+ * require read eligibility; interface binds skip state fields and use existing invocation
+ * authority.
+ */
 static bool codegen_view_bind(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type, bool interface) {
     const char *name = type->names[SCAFFOLD_WRITE]->internal_name;
     if (fprintf(output, "static inline AmaStatus %s_%s(AmaProgram *program, AmaHandle handle, %s_Scope *scope) {\n"
@@ -50,6 +70,10 @@ static bool codegen_view_bind(NativeScaffold *scaffold, FILE *output, const Scaf
     return fputs("return status;\n}\n", output) != EOF;
 }
 
+/**
+ * Emit opaque declared reference/list locations, then scopes/binders in exact eager-layout
+ * ordinal order. Reference cycles do not recursively expand storage.
+ */
 bool codegen_emit_views(NativeScaffold *scaffold, FILE *output) {
     if (fputs("#include \"runtime/program/calls/call.h\"\n", output) == EOF) { return false; }
     size_t count = 0;

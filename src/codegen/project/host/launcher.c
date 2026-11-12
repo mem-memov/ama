@@ -1,5 +1,16 @@
+/**
+ * @file
+ * @brief Emit standalone entry policy and diagnose an unhandled root yield.
+ *
+ * [RT-16](../../../../spec/implementation/runtime.md#rt-16)
+ * The launcher always disposes initialized resources and derives exit status from complete execution/cleanup status.
+ */
 #include "codegen/internal.h"
 
+/**
+ * Write standalone main that enters once, diagnoses an unhandled root yield, always disposes and
+ * returns execution/cleanup status.
+ */
 bool codegen_emit_launcher(NativeScaffold *scaffold, FILE *output, const ScaffoldType *unused) {
     (void)scaffold;
     (void)unused;

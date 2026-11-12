@@ -1,18 +1,34 @@
+/**
+ * @file
+ * @brief Compose exact catalog lookup and structural parsing for status inspection.
+ *
+ * [SYN-04](../../../spec/language/source-and-names.md#syn-04)
+ * Inspect once; retain source-backed diagnostic and related storage until explicit destruction.
+ */
 #include <assert.h>
 #include "module.h"
 
+/**
+ * Initialize independent catalog and syntax owners using the explicit allocator; inspect at most
+ * once.
+ */
 void compiler_inspection_init(ModuleInspection *inspection, SourceAllocator allocator) {
     *inspection = (ModuleInspection){0};
     module_catalog_init(&inspection->catalog, allocator);
     ast_module_init(&inspection->syntax, allocator);
 }
 
+/** Destroy syntax before catalog source storage, then reset diagnostics and attempt state. */
 void compiler_inspection_destroy(ModuleInspection *inspection) {
     ast_module_destroy(&inspection->syntax);
     module_catalog_destroy(&inspection->catalog);
     *inspection = (ModuleInspection){0};
 }
 
+/**
+ * Build the exact catalog, find one logical path and structurally parse it. Draft may succeed;
+ * no dependency closure or executable semantic acceptance is implied.
+ */
 bool compiler_inspect_module(ModuleInspection *inspection, const ModuleRoot *roots,
     size_t count, const char *logical_path) {
     assert(!inspection->attempted);

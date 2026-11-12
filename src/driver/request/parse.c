@@ -1,7 +1,18 @@
+/**
+ * @file
+ * @brief Recognize exact command spellings without guessing operands or abbreviations.
+ *
+ * [COMP-01](../../../spec/implementation/compiler.md#comp-01)
+ * Standalone help requires exactly two arguments; remaining command options receive their own complete validation.
+ */
 #include "request.h"
 
 #include <string.h>
 
+/**
+ * Require nonnegative argc and valid argv entries when present. Match exact command strings;
+ * only standalone --help succeeds without later operand validation.
+ */
 DriverRequest driver_parse_request(int argument_count, char *const arguments[]) {
     if (argument_count == 2 && strcmp(arguments[1], "--help") == 0) {
         return DRIVER_REQUEST_HELP;

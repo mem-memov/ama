@@ -1,5 +1,16 @@
+/**
+ * @file
+ * @brief Emit checked aligned pool setup and explicitly present lifecycle hooks.
+ *
+ * [LIFE-01](../../../spec/implementation/native-interface.md#life-01)
+ * Derive native offset and alignment from real generated C storage. Initialization stops on the first invalid type setup.
+ */
 #include "codegen/internal.h"
 
+/**
+ * Emit only declared initialize/destroy/literal/clone function pointers, or an empty hook set
+ * for Ama types. Condition/index remain separate protocols.
+ */
 static bool hooks(FILE *output, const ScaffoldType *type) {
     if (type->plan->type->module->syntax.sections.kind != MODULE_NATIVE) { return fputs("(AmaPayloadHooks){0}", output) != EOF; }
     const char *name = type->names[SCAFFOLD_WRITE]->internal_name;
@@ -13,6 +24,10 @@ static bool hooks(FILE *output, const ScaffoldType *type) {
     return fputc('}', output) != EOF;
 }
 
+/**
+ * Emit checked pool initialization with real sizeof, _Alignof and offsetof, explicit
+ * slot/generation defaults and typed hooks. Generated startup stops on the first failure.
+ */
 bool codegen_emit_type_setup(NativeScaffold *scaffold, FILE *output) {
     if (fputs("static AmaStatus ama_project_prepare_types(AmaWorld *world) {\n"
             "    AmaStatus status = ama_status_success();\n    (void)world;\n", output) == EOF) { return false; }

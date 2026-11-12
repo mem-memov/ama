@@ -1,8 +1,19 @@
+/**
+ * @file
+ * @brief Report source activation kind using syntax-only inspection.
+ *
+ * [SYN-04](../../../spec/language/source-and-names.md#syn-04)
+ * Draft status is informative inspection, never executable semantic acceptance.
+ */
 #include <stdlib.h>
 #include "commands.h"
 #include "compiler/inspect/module.h"
 #include "diagnostics/render/render.h"
 
+/**
+ * Own syntax-only inspection, report its activation kind and flush output. Destroy inspection
+ * after rendering source-backed diagnostics.
+ */
 int driver_status(const DriverOptions *options, FILE *output, FILE *errors) {
     ModuleInspection inspection;
     compiler_inspection_init(&inspection, source_system_allocator());

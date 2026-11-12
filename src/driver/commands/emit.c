@@ -1,8 +1,20 @@
+/**
+ * @file
+ * @brief Compose checked frontend, project generation, optional verification and publication.
+ *
+ * [COMP-04](../../../spec/implementation/compiler.md#comp-04)
+ * Do not publish an executable before native object verification; output acknowledgement also checks flushing.
+ */
 #include <stdlib.h>
 #include "commands.h"
 #include "codegen/codegen.h"
 #include "diagnostics/render/render.h"
 
+/**
+ * Complete strict frontend, stage project artifacts and optionally compile/verify before
+ * publication. Destroy scaffold/frontend on all paths; acknowledged success requires stream
+ * flush.
+ */
 int driver_emit(const DriverOptions *options, FILE *output, FILE *errors) {
     CompilerFrontend frontend;
     compiler_frontend_init(&frontend, source_system_allocator());

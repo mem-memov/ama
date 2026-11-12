@@ -1,7 +1,18 @@
+/**
+ * @file
+ * @brief Write explicit CLI help or unavailable-command guidance and verify final flush.
+ *
+ * [COMP-01](../../../spec/implementation/compiler.md#comp-01)
+ * Static text describes retained implementation; writing success does not imply success of an unavailable request.
+ */
 #include "output.h"
 
 #include <stdlib.h>
 
+/**
+ * Write selected static response and flush the borrowed stream. Partial output is possible on
+ * failure; never close the stream.
+ */
 int driver_write_response(DriverRequest request, FILE *output) {
     const char *message = request == DRIVER_REQUEST_HELP
         ? "Ama implementation foundation\n"

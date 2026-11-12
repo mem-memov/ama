@@ -174,6 +174,82 @@
       }
     ]
   },
+  "src/codegen/codegen.h": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Declare project artifact construction and verified native compilation.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_executes_literal_default_retained_and_independent_native_states",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_routes_outputs_in_text_order_using_the_new_index",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_a_surviving_native_entry_before_publishing_any_executable",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_selects_named_inputs_in_text_order_but_installs_in_declaration_order",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_the_exact_native_entry_signature_including_its_return_type",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
   "src/codegen/control/data.c": {
     "contract": "docs/implementation/control-emission.md",
     "purpose": "Emit explicit control/data from resolved IR with exact site identity and narrow byte writers.",
@@ -693,6 +769,1751 @@
       }
     ]
   },
+  "src/codegen/emit/descriptors.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Emit exact nominal field offsets and the retained pool registry.",
+    "tests": [
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_executes_literal_default_retained_and_independent_native_states",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_routes_outputs_in_text_order_using_the_new_index",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_a_surviving_native_entry_before_publishing_any_executable",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_selects_named_inputs_in_text_order_but_installs_in_declaration_order",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_the_exact_native_entry_signature_including_its_return_type",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/codegen/emit/locations.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Emit exact operation/declaration source-map selectors for runtime diagnostics.",
+    "tests": [
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_executes_literal_default_retained_and_independent_native_states",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_routes_outputs_in_text_order_using_the_new_index",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_a_surviving_native_entry_before_publishing_any_executable",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_selects_named_inputs_in_text_order_but_installs_in_declaration_order",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_the_exact_native_entry_signature_including_its_return_type",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/codegen/emit/native.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Include typed native bodies and emit lifecycle/conversion adapters.",
+    "tests": [
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_executes_literal_default_retained_and_independent_native_states",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_routes_outputs_in_text_order_using_the_new_index",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_a_surviving_native_entry_before_publishing_any_executable",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_selects_named_inputs_in_text_order_but_installs_in_declaration_order",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_the_exact_native_entry_signature_including_its_return_type",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/codegen/emit/program.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Emit ordered source descriptors and program type/shared declaration tables.",
+    "tests": [
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_executes_literal_default_retained_and_independent_native_states",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_routes_outputs_in_text_order_using_the_new_index",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_a_surviving_native_entry_before_publishing_any_executable",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_selects_named_inputs_in_text_order_but_installs_in_declaration_order",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_the_exact_native_entry_signature_including_its_return_type",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/codegen/emit/setup.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Emit checked aligned pool setup and explicitly present lifecycle hooks.",
+    "tests": [
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_executes_literal_default_retained_and_independent_native_states",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_routes_outputs_in_text_order_using_the_new_index",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_a_surviving_native_entry_before_publishing_any_executable",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_selects_named_inputs_in_text_order_but_installs_in_declaration_order",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_the_exact_native_entry_signature_including_its_return_type",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/codegen/emit/source.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Emit resolved access chains, byte-exact literals and ordered initializer values.",
+    "tests": [
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_executes_literal_default_retained_and_independent_native_states",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_routes_outputs_in_text_order_using_the_new_index",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_a_surviving_native_entry_before_publishing_any_executable",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_selects_named_inputs_in_text_order_but_installs_in_declaration_order",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_the_exact_native_entry_signature_including_its_return_type",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/codegen/emit/storage.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Emit declared handle/list fields followed by actual native payload storage.",
+    "tests": [
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_executes_literal_default_retained_and_independent_native_states",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_routes_outputs_in_text_order_using_the_new_index",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_a_surviving_native_entry_before_publishing_any_executable",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_selects_named_inputs_in_text_order_but_installs_in_declaration_order",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_the_exact_native_entry_signature_including_its_return_type",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/codegen/emit/views.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Emit typed operation-scoped native views bound to stable runtime storage.",
+    "tests": [
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_executes_literal_default_retained_and_independent_native_states",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_routes_outputs_in_text_order_using_the_new_index",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_a_surviving_native_entry_before_publishing_any_executable",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_selects_named_inputs_in_text_order_but_installs_in_declaration_order",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_the_exact_native_entry_signature_including_its_return_type",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/codegen/internal.h": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Declare generated representation and label-emission phase boundaries.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_executes_literal_default_retained_and_independent_native_states",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_routes_outputs_in_text_order_using_the_new_index",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_a_surviving_native_entry_before_publishing_any_executable",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_selects_named_inputs_in_text_order_but_installs_in_declaration_order",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_the_exact_native_entry_signature_including_its_return_type",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/codegen/model/identity.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Map exact resolved type/member objects and register qualified shared output names.",
+    "tests": [
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_executes_literal_default_retained_and_independent_native_states",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_routes_outputs_in_text_order_using_the_new_index",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_a_surviving_native_entry_before_publishing_any_executable",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_selects_named_inputs_in_text_order_but_installs_in_declaration_order",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_the_exact_native_entry_signature_including_its_return_type",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/codegen/project/body.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Emit one host execution function with all Ama bodies as IR labels.",
+    "tests": [
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_executes_literal_default_retained_and_independent_native_states",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_routes_outputs_in_text_order_using_the_new_index",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_a_surviving_native_entry_before_publishing_any_executable",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_selects_named_inputs_in_text_order_but_installs_in_declaration_order",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_the_exact_native_entry_signature_including_its_return_type",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/codegen/project/generate.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Build complete project artifacts in memory after strict frontend validation.",
+    "tests": [
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_executes_literal_default_retained_and_independent_native_states",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_routes_outputs_in_text_order_using_the_new_index",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_a_surviving_native_entry_before_publishing_any_executable",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_selects_named_inputs_in_text_order_but_installs_in_declaration_order",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_the_exact_native_entry_signature_including_its_return_type",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/codegen/project/header.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Emit the retained assembly header and generated host declarations.",
+    "tests": [
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_executes_literal_default_retained_and_independent_native_states",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_routes_outputs_in_text_order_using_the_new_index",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_a_surviving_native_entry_before_publishing_any_executable",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_selects_named_inputs_in_text_order_but_installs_in_declaration_order",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_the_exact_native_entry_signature_including_its_return_type",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/codegen/project/host/begin.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Emit root entry/resume eligibility and the host return sentinel.",
+    "tests": [
+      {
+        "case": "it_resumes_repeated_yields_and_restarts_at_entry",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_resumes_inside_a_loop_without_preserving_c_activations",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_rejects_unhandled_root_yield_after_cleanup",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_exposes_explicit_host_resume_restart_disposal_and_terminal_failure",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_executes_independent_continuation_copies_and_clears_ordinary_positions",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_resumes_both_branch_successors_and_transfers_retained_outputs",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_disposes_yielded_owned_states_and_never_resumes_a_failed_execution",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_reports_the_new_caller_after_a_yield_releases_the_original_link",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      }
+    ]
+  },
+  "src/codegen/project/host/context.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Emit retained synchronous host admission and disposal ownership checks.",
+    "tests": [
+      {
+        "case": "it_resumes_repeated_yields_and_restarts_at_entry",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_resumes_inside_a_loop_without_preserving_c_activations",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_rejects_unhandled_root_yield_after_cleanup",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_exposes_explicit_host_resume_restart_disposal_and_terminal_failure",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_executes_independent_continuation_copies_and_clears_ordinary_positions",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_resumes_both_branch_successors_and_transfers_retained_outputs",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_disposes_yielded_owned_states_and_never_resumes_a_failed_execution",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_reports_the_new_caller_after_a_yield_releases_the_original_link",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      }
+    ]
+  },
+  "src/codegen/project/host/finish.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Emit explicit host outcomes and terminal error reporting/disposal.",
+    "tests": [
+      {
+        "case": "it_resumes_repeated_yields_and_restarts_at_entry",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_resumes_inside_a_loop_without_preserving_c_activations",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_rejects_unhandled_root_yield_after_cleanup",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_exposes_explicit_host_resume_restart_disposal_and_terminal_failure",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_executes_independent_continuation_copies_and_clears_ordinary_positions",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_resumes_both_branch_successors_and_transfers_retained_outputs",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_disposes_yielded_owned_states_and_never_resumes_a_failed_execution",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_reports_the_new_caller_after_a_yield_releases_the_original_link",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      }
+    ]
+  },
+  "src/codegen/project/host/initialize.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Emit constants/root startup and explicit entry restart preparation.",
+    "tests": [
+      {
+        "case": "it_resumes_repeated_yields_and_restarts_at_entry",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_resumes_inside_a_loop_without_preserving_c_activations",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_rejects_unhandled_root_yield_after_cleanup",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_exposes_explicit_host_resume_restart_disposal_and_terminal_failure",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_executes_independent_continuation_copies_and_clears_ordinary_positions",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_resumes_both_branch_successors_and_transfers_retained_outputs",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_disposes_yielded_owned_states_and_never_resumes_a_failed_execution",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_reports_the_new_caller_after_a_yield_releases_the_original_link",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      }
+    ]
+  },
+  "src/codegen/project/host/launcher.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Emit standalone entry policy and diagnose an unhandled root yield.",
+    "tests": [
+      {
+        "case": "it_resumes_repeated_yields_and_restarts_at_entry",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_resumes_inside_a_loop_without_preserving_c_activations",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_rejects_unhandled_root_yield_after_cleanup",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_exposes_explicit_host_resume_restart_disposal_and_terminal_failure",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_executes_independent_continuation_copies_and_clears_ordinary_positions",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_resumes_both_branch_successors_and_transfers_retained_outputs",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_disposes_yielded_owned_states_and_never_resumes_a_failed_execution",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_reports_the_new_caller_after_a_yield_releases_the_original_link",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      }
+    ]
+  },
+  "src/codegen/project/tooling.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Emit a machine-readable argv record for the project launcher.",
+    "tests": [
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_executes_literal_default_retained_and_independent_native_states",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_routes_outputs_in_text_order_using_the_new_index",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_a_surviving_native_entry_before_publishing_any_executable",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_selects_named_inputs_in_text_order_but_installs_in_declaration_order",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_the_exact_native_entry_signature_including_its_return_type",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/codegen/toolchain/build.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Stage complete project sources and retain only a verified linked executable.",
+    "tests": [
+      {
+        "case": "it_builds_and_runs_a_verified_executable_through_the_real_command",
+        "command": "make -C tests/integration/execution",
+        "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_preserves_the_previous_program_when_native_compilation_fails",
+        "command": "make -C tests/integration/execution",
+        "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_refuses_to_overwrite_an_unowned_program",
+        "command": "make -C tests/integration/execution",
+        "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_executes_literal_default_retained_and_independent_native_states",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_routes_outputs_in_text_order_using_the_new_index",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_a_surviving_native_entry_before_publishing_any_executable",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_selects_named_inputs_in_text_order_but_installs_in_declaration_order",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_the_exact_native_entry_signature_including_its_return_type",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/codegen/toolchain/internal.h": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Declare process, object compilation, symbol verification and linking phases.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_builds_and_runs_a_verified_executable_through_the_real_command",
+        "command": "make -C tests/integration/execution",
+        "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_preserves_the_previous_program_when_native_compilation_fails",
+        "command": "make -C tests/integration/execution",
+        "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_refuses_to_overwrite_an_unowned_program",
+        "command": "make -C tests/integration/execution",
+        "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_executes_literal_default_retained_and_independent_native_states",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_routes_outputs_in_text_order_using_the_new_index",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_a_surviving_native_entry_before_publishing_any_executable",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_selects_named_inputs_in_text_order_but_installs_in_declaration_order",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_the_exact_native_entry_signature_including_its_return_type",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/codegen/toolchain/process.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Execute native tools with explicit argv and checked child status.",
+    "tests": [
+      {
+        "case": "it_builds_and_runs_a_verified_executable_through_the_real_command",
+        "command": "make -C tests/integration/execution",
+        "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_preserves_the_previous_program_when_native_compilation_fails",
+        "command": "make -C tests/integration/execution",
+        "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_refuses_to_overwrite_an_unowned_program",
+        "command": "make -C tests/integration/execution",
+        "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_executes_literal_default_retained_and_independent_native_states",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_routes_outputs_in_text_order_using_the_new_index",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_a_surviving_native_entry_before_publishing_any_executable",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_selects_named_inputs_in_text_order_but_installs_in_declaration_order",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_the_exact_native_entry_signature_including_its_return_type",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/codegen/toolchain/verify.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Reject malformed or stripped symbol evidence and surviving native entry families.",
+    "tests": [
+      {
+        "case": "it_builds_and_runs_a_verified_executable_through_the_real_command",
+        "command": "make -C tests/integration/execution",
+        "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_preserves_the_previous_program_when_native_compilation_fails",
+        "command": "make -C tests/integration/execution",
+        "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_refuses_to_overwrite_an_unowned_program",
+        "command": "make -C tests/integration/execution",
+        "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_executes_literal_default_retained_and_independent_native_states",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_routes_outputs_in_text_order_using_the_new_index",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_a_surviving_native_entry_before_publishing_any_executable",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_selects_named_inputs_in_text_order_but_installs_in_declaration_order",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_the_exact_native_entry_signature_including_its_return_type",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/compiler/authoring/check.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Validate native authoring against explicit proposed or existing ABI bytes.",
+    "tests": [
+      {
+        "case": "it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_exports_a_database_that_an_independent_json_consumer_can_execute",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_each_scaffold_model_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_composes_typed_views_and_identically_named_native_helpers_in_one_c_unit",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_uses_the_same_strict_frontend_for_checking_and_generation",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_creates_unicode_native_companions_and_refreshes_only_owned_outputs",
+        "command": "make -C tests/integration/scaffold",
+        "source": "tests/integration/scaffold/main.c"
+      },
+      {
+        "case": "it_checks_exported_commands_without_shell_splitting_unicode_paths_or_arguments",
+        "command": "make -C tests/integration/scaffold",
+        "source": "tests/integration/scaffold/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_protocols_and_accidental_overwrite_requests",
+        "command": "make -C tests/integration/scaffold",
+        "source": "tests/integration/scaffold/main.c"
+      }
+    ]
+  },
+  "src/compiler/frontend.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Compose semantic analysis and planning with explicit partial-owner lifetime.",
+    "tests": [
+      {
+        "case": "it_returns_the_same_typed_graph_that_compilation_will_consume_without_running_c",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_preserves_source_semantic_and_relation_diagnostics",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_unwinds_every_frontend_allocation_failure",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_reports_all_four_activation_states_without_loading_dependencies",
+        "command": "make -C tests/unit/compiler/status",
+        "source": "tests/unit/compiler/status/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_inspection_allocation",
+        "command": "make -C tests/unit/compiler/status",
+        "source": "tests/unit/compiler/status/main.c"
+      }
+    ]
+  },
+  "src/compiler/frontend.h": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Own the complete source, semantic and resolved-plan frontend graph.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_returns_the_same_typed_graph_that_compilation_will_consume_without_running_c",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_preserves_source_semantic_and_relation_diagnostics",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_unwinds_every_frontend_allocation_failure",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_reports_all_four_activation_states_without_loading_dependencies",
+        "command": "make -C tests/unit/compiler/status",
+        "source": "tests/unit/compiler/status/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_inspection_allocation",
+        "command": "make -C tests/unit/compiler/status",
+        "source": "tests/unit/compiler/status/main.c"
+      }
+    ]
+  },
+  "src/compiler/inspect/module.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Compose exact catalog lookup and structural parsing for status inspection.",
+    "tests": [
+      {
+        "case": "it_reports_all_four_activation_states_without_loading_dependencies",
+        "command": "make -C tests/unit/compiler/status",
+        "source": "tests/unit/compiler/status/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_inspection_allocation",
+        "command": "make -C tests/unit/compiler/status",
+        "source": "tests/unit/compiler/status/main.c"
+      },
+      {
+        "case": "it_checks_a_real_project_without_c_compilation_or_output_artifacts",
+        "command": "make -C tests/integration/check",
+        "source": "tests/integration/check/main.c"
+      },
+      {
+        "case": "it_reports_exact_missing_modules_and_malformed_options",
+        "command": "make -C tests/integration/check",
+        "source": "tests/integration/check/main.c"
+      },
+      {
+        "case": "it_reports_drafts_distinctly_without_accepting_them_as_required_modules",
+        "command": "make -C tests/integration/check",
+        "source": "tests/integration/check/main.c"
+      },
+      {
+        "case": "it_emits_from_the_same_frontend_without_invoking_the_native_c_compiler",
+        "command": "make -C tests/integration/check",
+        "source": "tests/integration/check/main.c"
+      }
+    ]
+  },
+  "src/compiler/inspect/module.h": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Own syntax-only inspection of one exact module source.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_reports_all_four_activation_states_without_loading_dependencies",
+        "command": "make -C tests/unit/compiler/status",
+        "source": "tests/unit/compiler/status/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_inspection_allocation",
+        "command": "make -C tests/unit/compiler/status",
+        "source": "tests/unit/compiler/status/main.c"
+      },
+      {
+        "case": "it_checks_a_real_project_without_c_compilation_or_output_artifacts",
+        "command": "make -C tests/integration/check",
+        "source": "tests/integration/check/main.c"
+      },
+      {
+        "case": "it_reports_exact_missing_modules_and_malformed_options",
+        "command": "make -C tests/integration/check",
+        "source": "tests/integration/check/main.c"
+      },
+      {
+        "case": "it_reports_drafts_distinctly_without_accepting_them_as_required_modules",
+        "command": "make -C tests/integration/check",
+        "source": "tests/integration/check/main.c"
+      },
+      {
+        "case": "it_emits_from_the_same_frontend_without_invoking_the_native_c_compiler",
+        "command": "make -C tests/integration/check",
+        "source": "tests/integration/check/main.c"
+      }
+    ]
+  },
+  "src/compiler/internal.h": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Separate source closure loading from semantic and resolved-plan completion.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_returns_the_same_typed_graph_that_compilation_will_consume_without_running_c",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_preserves_source_semantic_and_relation_diagnostics",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_unwinds_every_frontend_allocation_failure",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_reports_all_four_activation_states_without_loading_dependencies",
+        "command": "make -C tests/unit/compiler/status",
+        "source": "tests/unit/compiler/status/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_inspection_allocation",
+        "command": "make -C tests/unit/compiler/status",
+        "source": "tests/unit/compiler/status/main.c"
+      }
+    ]
+  },
+  "src/compiler/load.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Load one exact project closure into a single-attempt frontend owner.",
+    "tests": [
+      {
+        "case": "it_returns_the_same_typed_graph_that_compilation_will_consume_without_running_c",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_preserves_source_semantic_and_relation_diagnostics",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_unwinds_every_frontend_allocation_failure",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_reports_all_four_activation_states_without_loading_dependencies",
+        "command": "make -C tests/unit/compiler/status",
+        "source": "tests/unit/compiler/status/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_inspection_allocation",
+        "command": "make -C tests/unit/compiler/status",
+        "source": "tests/unit/compiler/status/main.c"
+      }
+    ]
+  },
   "src/diagnostics/adapters/adapters.h": {
     "contract": "docs/implementation/diagnostics.md",
     "purpose": "Declare allocation-free source and identity diagnostic adapters.",
@@ -1013,6 +2834,287 @@
       }
     ]
   },
+  "src/driver/commands/check.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Check the full frontend without native execution or artifact publication.",
+    "tests": [
+      {
+        "case": "it_documents_verified_project_compilation",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_rejects_missing_explicit_commands_on_the_error_stream",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_reports_failure_when_help_cannot_be_written",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_rejects_every_retired_list_configuration_option",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_checks_a_real_project_without_c_compilation_or_output_artifacts",
+        "command": "make -C tests/integration/check",
+        "source": "tests/integration/check/main.c"
+      },
+      {
+        "case": "it_reports_exact_missing_modules_and_malformed_options",
+        "command": "make -C tests/integration/check",
+        "source": "tests/integration/check/main.c"
+      },
+      {
+        "case": "it_reports_drafts_distinctly_without_accepting_them_as_required_modules",
+        "command": "make -C tests/integration/check",
+        "source": "tests/integration/check/main.c"
+      },
+      {
+        "case": "it_emits_from_the_same_frontend_without_invoking_the_native_c_compiler",
+        "command": "make -C tests/integration/check",
+        "source": "tests/integration/check/main.c"
+      }
+    ]
+  },
+  "src/driver/commands/commands.h": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Declare independent check, status, native-authoring and project-emission operations.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_documents_verified_project_compilation",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_rejects_missing_explicit_commands_on_the_error_stream",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_reports_failure_when_help_cannot_be_written",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_rejects_every_retired_list_configuration_option",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_builds_and_runs_a_verified_executable_through_the_real_command",
+        "command": "make -C tests/integration/execution",
+        "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_preserves_the_previous_program_when_native_compilation_fails",
+        "command": "make -C tests/integration/execution",
+        "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_refuses_to_overwrite_an_unowned_program",
+        "command": "make -C tests/integration/execution",
+        "source": "tests/integration/execution/main.c"
+      }
+    ]
+  },
+  "src/driver/commands/emit.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Compose checked frontend, project generation, optional verification and publication.",
+    "tests": [
+      {
+        "case": "it_documents_verified_project_compilation",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_rejects_missing_explicit_commands_on_the_error_stream",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_reports_failure_when_help_cannot_be_written",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_rejects_every_retired_list_configuration_option",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_builds_and_runs_a_verified_executable_through_the_real_command",
+        "command": "make -C tests/integration/execution",
+        "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_preserves_the_previous_program_when_native_compilation_fails",
+        "command": "make -C tests/integration/execution",
+        "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_refuses_to_overwrite_an_unowned_program",
+        "command": "make -C tests/integration/execution",
+        "source": "tests/integration/execution/main.c"
+      }
+    ]
+  },
+  "src/driver/commands/native.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Compose explicit protocol selection, native authoring and guarded artifact publication.",
+    "tests": [
+      {
+        "case": "it_documents_verified_project_compilation",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_rejects_missing_explicit_commands_on_the_error_stream",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_reports_failure_when_help_cannot_be_written",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_rejects_every_retired_list_configuration_option",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_creates_unicode_native_companions_and_refreshes_only_owned_outputs",
+        "command": "make -C tests/integration/scaffold",
+        "source": "tests/integration/scaffold/main.c"
+      },
+      {
+        "case": "it_checks_exported_commands_without_shell_splitting_unicode_paths_or_arguments",
+        "command": "make -C tests/integration/scaffold",
+        "source": "tests/integration/scaffold/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_protocols_and_accidental_overwrite_requests",
+        "command": "make -C tests/integration/scaffold",
+        "source": "tests/integration/scaffold/main.c"
+      }
+    ]
+  },
+  "src/driver/commands/status.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Report source activation kind using syntax-only inspection.",
+    "tests": [
+      {
+        "case": "it_documents_verified_project_compilation",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_rejects_missing_explicit_commands_on_the_error_stream",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_reports_failure_when_help_cannot_be_written",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_rejects_every_retired_list_configuration_option",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_checks_a_real_project_without_c_compilation_or_output_artifacts",
+        "command": "make -C tests/integration/check",
+        "source": "tests/integration/check/main.c"
+      },
+      {
+        "case": "it_reports_exact_missing_modules_and_malformed_options",
+        "command": "make -C tests/integration/check",
+        "source": "tests/integration/check/main.c"
+      },
+      {
+        "case": "it_reports_drafts_distinctly_without_accepting_them_as_required_modules",
+        "command": "make -C tests/integration/check",
+        "source": "tests/integration/check/main.c"
+      },
+      {
+        "case": "it_emits_from_the_same_frontend_without_invoking_the_native_c_compiler",
+        "command": "make -C tests/integration/check",
+        "source": "tests/integration/check/main.c"
+      }
+    ]
+  },
+  "src/driver/driver.h": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Declare explicit CLI command dispatch over borrowed arguments and streams.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_documents_verified_project_compilation",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_rejects_missing_explicit_commands_on_the_error_stream",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_reports_failure_when_help_cannot_be_written",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_rejects_every_retired_list_configuration_option",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_exposes_implementation_status_through_the_real_launcher",
+        "command": "make -C tests/integration/launcher",
+        "source": "tests/integration/launcher/main.c"
+      },
+      {
+        "case": "it_rejects_ambiguous_project_commands",
+        "command": "make -C tests/integration/launcher",
+        "source": "tests/integration/launcher/main.c"
+      }
+    ]
+  },
   "src/driver/options/assembly/consume.c": {
     "contract": "docs/implementation/driver-options.md",
     "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
@@ -1291,6 +3393,236 @@
         "case": "it_assembles_native_creation_and_check_defaults",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
+      }
+    ]
+  },
+  "src/driver/output/output.h": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Declare complete response writing and flushing on borrowed streams.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_documents_verified_project_compilation",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_rejects_missing_explicit_commands_on_the_error_stream",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_reports_failure_when_help_cannot_be_written",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_rejects_every_retired_list_configuration_option",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_exposes_implementation_status_through_the_real_launcher",
+        "command": "make -C tests/integration/launcher",
+        "source": "tests/integration/launcher/main.c"
+      },
+      {
+        "case": "it_rejects_ambiguous_project_commands",
+        "command": "make -C tests/integration/launcher",
+        "source": "tests/integration/launcher/main.c"
+      }
+    ]
+  },
+  "src/driver/output/write.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Write explicit CLI help or unavailable-command guidance and verify final flush.",
+    "tests": [
+      {
+        "case": "it_documents_verified_project_compilation",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_rejects_missing_explicit_commands_on_the_error_stream",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_reports_failure_when_help_cannot_be_written",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_rejects_every_retired_list_configuration_option",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_exposes_implementation_status_through_the_real_launcher",
+        "command": "make -C tests/integration/launcher",
+        "source": "tests/integration/launcher/main.c"
+      },
+      {
+        "case": "it_rejects_ambiguous_project_commands",
+        "command": "make -C tests/integration/launcher",
+        "source": "tests/integration/launcher/main.c"
+      }
+    ]
+  },
+  "src/driver/request/parse.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Recognize exact command spellings without guessing operands or abbreviations.",
+    "tests": [
+      {
+        "case": "it_handles_an_empty_vector_without_reading_arguments",
+        "command": "make -C tests/unit/driver/request",
+        "source": "tests/unit/driver/request/main.c"
+      },
+      {
+        "case": "it_accepts_only_a_standalone_help_request",
+        "command": "make -C tests/unit/driver/request",
+        "source": "tests/unit/driver/request/main.c"
+      },
+      {
+        "case": "it_does_not_guess_help_from_a_prefix_or_extra_arguments",
+        "command": "make -C tests/unit/driver/request",
+        "source": "tests/unit/driver/request/main.c"
+      },
+      {
+        "case": "it_refuses_all_unimplemented_operations",
+        "command": "make -C tests/unit/driver/request",
+        "source": "tests/unit/driver/request/main.c"
+      },
+      {
+        "case": "it_documents_verified_project_compilation",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_rejects_missing_explicit_commands_on_the_error_stream",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_reports_failure_when_help_cannot_be_written",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_rejects_every_retired_list_configuration_option",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      }
+    ]
+  },
+  "src/driver/request/request.h": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Declare exact command recognition independently of option validation.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_handles_an_empty_vector_without_reading_arguments",
+        "command": "make -C tests/unit/driver/request",
+        "source": "tests/unit/driver/request/main.c"
+      },
+      {
+        "case": "it_accepts_only_a_standalone_help_request",
+        "command": "make -C tests/unit/driver/request",
+        "source": "tests/unit/driver/request/main.c"
+      },
+      {
+        "case": "it_does_not_guess_help_from_a_prefix_or_extra_arguments",
+        "command": "make -C tests/unit/driver/request",
+        "source": "tests/unit/driver/request/main.c"
+      },
+      {
+        "case": "it_refuses_all_unimplemented_operations",
+        "command": "make -C tests/unit/driver/request",
+        "source": "tests/unit/driver/request/main.c"
+      },
+      {
+        "case": "it_documents_verified_project_compilation",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_rejects_missing_explicit_commands_on_the_error_stream",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_reports_failure_when_help_cannot_be_written",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_rejects_every_retired_list_configuration_option",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      }
+    ]
+  },
+  "src/driver/run.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Dispatch one explicit command after exact option validation.",
+    "tests": [
+      {
+        "case": "it_documents_verified_project_compilation",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_rejects_missing_explicit_commands_on_the_error_stream",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_reports_failure_when_help_cannot_be_written",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_rejects_every_retired_list_configuration_option",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_exposes_implementation_status_through_the_real_launcher",
+        "command": "make -C tests/integration/launcher",
+        "source": "tests/integration/launcher/main.c"
+      },
+      {
+        "case": "it_rejects_ambiguous_project_commands",
+        "command": "make -C tests/integration/launcher",
+        "source": "tests/integration/launcher/main.c"
       }
     ]
   },
@@ -2131,6 +4463,72 @@
         "case": "it_reserves_zero_for_absent_control_and_source_positions",
         "command": "make -C tests/unit/planning/ir",
         "source": "tests/unit/planning/ir/main.c"
+      }
+    ]
+  },
+  "src/main.c": {
+    "contract": "docs/implementation/compiler-and-emission.md",
+    "purpose": "Adapt the process argument vector and standard streams to the explicit CLI driver.",
+    "tests": [
+      {
+        "case": "it_exposes_implementation_status_through_the_real_launcher",
+        "command": "make -C tests/integration/launcher",
+        "source": "tests/integration/launcher/main.c"
+      },
+      {
+        "case": "it_rejects_ambiguous_project_commands",
+        "command": "make -C tests/integration/launcher",
+        "source": "tests/integration/launcher/main.c"
+      },
+      {
+        "case": "it_checks_a_real_project_without_c_compilation_or_output_artifacts",
+        "command": "make -C tests/integration/check",
+        "source": "tests/integration/check/main.c"
+      },
+      {
+        "case": "it_reports_exact_missing_modules_and_malformed_options",
+        "command": "make -C tests/integration/check",
+        "source": "tests/integration/check/main.c"
+      },
+      {
+        "case": "it_reports_drafts_distinctly_without_accepting_them_as_required_modules",
+        "command": "make -C tests/integration/check",
+        "source": "tests/integration/check/main.c"
+      },
+      {
+        "case": "it_emits_from_the_same_frontend_without_invoking_the_native_c_compiler",
+        "command": "make -C tests/integration/check",
+        "source": "tests/integration/check/main.c"
+      },
+      {
+        "case": "it_builds_and_runs_a_verified_executable_through_the_real_command",
+        "command": "make -C tests/integration/execution",
+        "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_preserves_the_previous_program_when_native_compilation_fails",
+        "command": "make -C tests/integration/execution",
+        "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_refuses_to_overwrite_an_unowned_program",
+        "command": "make -C tests/integration/execution",
+        "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_creates_unicode_native_companions_and_refreshes_only_owned_outputs",
+        "command": "make -C tests/integration/scaffold",
+        "source": "tests/integration/scaffold/main.c"
+      },
+      {
+        "case": "it_checks_exported_commands_without_shell_splitting_unicode_paths_or_arguments",
+        "command": "make -C tests/integration/scaffold",
+        "source": "tests/integration/scaffold/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_protocols_and_accidental_overwrite_requests",
+        "command": "make -C tests/integration/scaffold",
+        "source": "tests/integration/scaffold/main.c"
       }
     ]
   },
