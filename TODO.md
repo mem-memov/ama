@@ -556,19 +556,30 @@ Contracts: [library](spec/language/library.md),
   length range for `..integer`. Test malformed data and nominal typing without
   automatic numeric assumptions.
 - [ ] **T086 — Validate refusal and resource library interfaces.** Needs: T085.
+  Provide ERROR-01's one copyable failure-module result: it supports `?` and owns
+  a publicly readable description, with false/empty success and true/current
+  failure states. Use this value instead of separate success/failure Booleans
+  and sibling reason results. Test positive checks, retained description reads,
+  independent copies, failed-then-successful reset and description allocation
+  failure without changing native technical status or last-refusal semantics.
   Keep refusal reading ordinary/read-only and native resources governed by explicit
   lifecycle/clone contracts. Compile realistic same-name modules and test expected
-  operation errors separately from context-ending technical failures. For native
+  application failures separately from context-ending technical failures. For native
   text/byte types using immutable shared backing, verify independent Ama values,
   both destruction orders, replacement isolation, share overflow and rollback.
 - [ ] **T087 — Standardize and test library compositions.** Needs: T084, T086.
   Make parameter/result ordering predictable and remove obsolete list action APIs.
+  Apply the single condition-capable failure-value convention to operations
+  reporting expected failures; keep intrinsic list refusals and ordinary false
+  predicates distinct. Test no stale result processing after a refused call.
   Integrate list-valued constant startup/cleanup with T052's context-local scalar
   foundation. Compile real ownership/list/native combinations and document actual
   capability limitations without parser-level domain operation names.
 - [ ] **T088 — Publish complete synchronous and continuation examples.** Needs:
   T087. Supply reproducible modules for persistent state, self-reference,
   constructor-owned methods, mutable list traversal and independent simulations.
+  Include file-operation failure handling with a returned failure module, a
+  positive `?` and a retained read of its description, with no separate flag.
   Execute expected outputs/state changes and explain the governing contracts.
 - [ ] **T089 — Review usability through the examples.** Needs: T088. Improve
   diagnostics, source navigation metadata and Doxygen explanations using concrete
@@ -582,7 +593,9 @@ Contracts: [ASYNC-01–ASYNC-12](spec/language/async-and-parallelism.md).
 - [ ] **T090 — Define and implement the ordinary task-phase interface.** Needs:
   T074, T087. Use typed Ready/Awaiting/Completed results through existing calls,
   not new syntax or universal task casts. Test phase/yield consistency, first
-  entry versus later resume and explicit propagation of nested waiting.
+  entry versus later resume and explicit propagation of nested waiting. Keep
+  phase separate from ERROR-01's failure value; test valid terminal description
+  data and ensure false failure does not turn an awaiting task into completion.
 - [ ] **T091 — Implement visible scheduler ownership and enrollment.** Needs:
   T090. Store task references/owners, run epochs and registration generations in
   declared Ama state. Test restart/removal invalidation, nonwrapping exhaustion

@@ -116,9 +116,20 @@ ordinary typed result describing exactly one of these phases:
 
 The task protocol also specifies the ordinary typed result of completion. That
 result can represent success, a cancelled operation, or an expected operational
-error. The concrete module names, result names, and representation of the three
+failure. Expected failure uses [ERROR-01](../implementation/diagnostics.md#error-01)'s
+single condition-capable failure value with its contained description, not a
+separate success flag and reason. Cancellation remains an explicit terminal
+application outcome; its documented code/context may belong to that failure
+value when the operation classifies cancellation as a failure. The concrete
+module names, result names, and representation of the three
 phases belong to the declared library interface. The table does not establish
 new reserved words or an implicit enumeration type.
+
+The phase and failure value have separate roles. A false failure value does not
+mean the task has completed: `Ready` or `Awaiting` still describes an unfinished
+step. The interface states when completion data are valid; only a published
+completion may be consumed as the terminal outcome. A technical `failed` host
+outcome is not a true application failure value and remains nonresumable.
 
 The phase must be assigned on every return from a step and must agree with the
 body's actual completion or yield. A task must publish an awaiting registration

@@ -11,7 +11,7 @@ from translated diagnostic text.
 
 | Outcome | How the caller observes it | Can the current Ama execution continue? |
 |---|---|---|
-| Expected application outcome | Ordinary declared results | Yes, according to the program |
+| Expected application failure | One ordinary condition-capable failure value, including its description | Yes, according to the program |
 | Refusal to begin, including documented list-method preflight refusal | The operation's own `:` and last-refusal status | Yes, when handled |
 | Fatal technical failure | Diagnostic and failed host outcome | No; this context is cleaned up |
 | Cooperative task cancellation | The task protocol's ordinary terminal result | Yes, for other tasks |
@@ -30,11 +30,108 @@ own failure boundaries under [parallel execution](../language/async-and-parallel
 
 **ERROR-01.** Ama has no language-level exceptions, throw/catch constructs, or
 exception propagation through the return chain. Expected application failures
-are ordinary declared results that callers inspect explicitly. Native operations
+are ordinary declared results that callers inspect explicitly. An operation
+whose public library contract reports an expected failure returns one owned
+failure-module value for that outcome. The value itself supports the read-only
+condition protocol `?` and contains its description in declared Ama storage;
+do not split its presence and description into separate operation results or
+return an additional success flag for the same outcome.
+
+The failure value has these coherent states:
+
+| State | Condition conversion | Description |
+|---|---|---|
+| No application failure | False | Empty |
+| Application failure occurred | True | Description of this failure |
+
+Default construction creates the no-failure state. Before publishing an outcome,
+the operation must establish the complete corresponding value, so a successful
+invocation cannot retain a previous failure or its description. A structured
+failure code or other typed context may also belong to this module. Its truth
+conversion uses the type's declared state, not translated message text, and
+must not mutate the value, execute its body, or reset its interface under
+PROTO-04. A normal false predicate result, end-of-stream result, or other domain
+value is not automatically an application failure; the operation documents
+which outcomes are failures.
+
+Expose the description through the failure module's declared result interface
+so callers can read it with ordinary retained-result access. A private body
+field is not made public by this convention. In Russian-language interfaces and
+examples, `провал` names the enclosing operation's result and `описание` names
+the failure module's text result; these are ordinary declared names, not reserved
+words, compiler-recognized markers, or an implicit result added to every module.
+Interfaces in another human language may declare the corresponding names in
+that language. The failure type's complete module identity and concrete text
+type belong to the documented library interface; the compiler must not infer
+capabilities from a result's spelling.
+
+The ordinary type, acquisition, and copy rules apply to the complete failure
+value. Copying it preserves both its condition state and description, including
+owned text lifetime; it is not a borrow of temporary diagnostic bytes. A native
+payload may store its own scalar discriminator, but the description is a declared
+owned Ama field/result, not an Ama handle hidden in opaque native memory under
+CABI-05. Native `=` copies native data, while generated cloning copies the
+description and any other declared fields. The default/literal/clone lifecycle
+and preparation/commit guarantees remain unchanged.
+
+**Why use one module.** The condition and its explanation describe one outcome.
+Keeping them in one value prevents callers from accidentally copying the flag
+without its explanation or pairing a new flag with an old message. It also uses
+the ordinary module model: the same object can be tested as a condition, read
+through its public interface, copied, stored, or passed to a reporting module.
+No exception object, separate Boolean result, or new control-flow syntax is
+needed.
+
+**Example.** This is a fragment in a module where `чтение файла` and
+`показать ошибку` are already declared. The reader accepts a text input `путь`
+and returns the owned failure value `провал`; its public text result is
+`описание`. The reporting module accepts that text as its first input. These
+interfaces are illustrative, not additional fixed standard-library paths:
+
+```text
+чтение файла !
+ путь < |данные.txt
+ провал > провал чтения
+
+провал чтения
+?
+ провал чтения
+  описание >> текст ошибки
+ показать ошибку !
+  < текст ошибки
+```
+
+If the file is absent and the reader documents that as an expected failure,
+the call completes normally with a true failure value. The `?` body reads its
+stored description without executing the failure module. If reading succeeds,
+the value is false and this body is skipped. The receiver and description copy
+use the existing TYPE-06 inference rules. This `?` is an ordinary positive
+condition, not a handler attached to the file call. A reporting module may
+instead accept the whole failure value and inspect its public interface itself.
+
+An acquisition refusal still selects only the operation's attached `:` under
+CALL-04/CALL-05. It publishes no new result, so an old or default failure value
+must not be mistaken for the outcome of that refused call. A handler that
+continues execution must explicitly separate that refused path from processing
+the current invocation's results. Intrinsic list preflight refusals remain
+LIST-10 refusals; this convention adds no results to those fixed interfaces.
+
+Native operations
 report technical failures through an explicit runtime status, separate from the
-module's declared application results. PROTO-09 and ERROR-03 through ERROR-05
+module's declared application results. Returning a true application failure value
+is a technically successful execution: native entry reports technical success
+after constructing the declared result. Inability to construct or copy that
+value, including allocation failure while creating its description, follows the
+technical-failure path instead of becoming another application failure value.
+PROTO-09 and ERROR-03 through ERROR-05
 define the common representation and message lifetime. Destruction errors follow
 PROTO-10 and do not stop cleanup of other resources.
+
+Application descriptions are ordinary owned text and may be dynamically
+constructed. ERROR-04's program-lifetime immutable-message restriction applies
+to the separate native `AmaStatus` transport, not to these owned descriptions.
+Neither the failure value nor its description introduces a catch mechanism for
+technical errors or changes the caller's last-refusal snapshot under ERROR-06.
 
 ### End this context on technical failure
 

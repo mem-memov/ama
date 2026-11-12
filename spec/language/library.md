@@ -32,6 +32,11 @@ Missing capabilities are implementation gaps, not alternative language rules:
 - Text/byte-sequence types with explicit byte lengths and ownership; their native
   contracts may use COPY-01/PROTO-06's shared immutable backing while preserving
   independent values and lifetimes.
+- A copyable failure-module value for expected application failures under
+  [ERROR-01](../implementation/diagnostics.md#error-01): the value itself has
+  condition semantics and owns a publicly readable description. Fallible
+  operation interfaces use this single result rather than a separate success
+  or failure Boolean plus a sibling reason result.
 - Dynamic owned/reference list operations matching the chosen collection contract.
 - Resource lifecycle declarations usable by native modules.
 - Allocation and I/O implementations consistent with the selected stackless boundary.
@@ -68,6 +73,14 @@ what inputs it accepts, what state it reads or changes, what it returns, and
 what happens when it cannot finish. For a resource, also state who owns it,
 whether it can be cloned, and how cleanup works. For I/O, distinguish a normal
 application outcome such as end-of-stream from a fatal technical failure.
+
+For an expected failure, document ERROR-01's single failure-value interface:
+false and empty description on success, true and the current failure description
+on a failed outcome. Show checking the returned module with `?` and reading its
+description through its declared results. Document any structured codes/context
+and the result's validity on partial or asynchronous returns. Description text
+must not be parsed to choose control flow, and an operation's refusal handler
+must not inspect a prior invocation's result as though a new result had arrived.
 
 An asynchronous operation additionally describes its registration, possible
 late completion, cancellation, and buffer lifetime. A parallel worker describes
