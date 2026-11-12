@@ -1,5 +1,16 @@
+/**
+ * @file
+ * @brief Check eager-layout, shared-read and copy-capability graph relations independently.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "../typed-common.c"
 
+/**
+ * Resolve the supplied declarations and compare actual eager/copy relation results, including
+ * complete error diagnostics on rejected graphs.
+ */
 static void expect_relations(const char *text, bool valid) {
     SemanticStatus status = resolve_text(text);
     assert(status == SEMANTIC_OK);
@@ -14,6 +25,11 @@ static void expect_relations(const char *text, bool valid) {
     destroy_semantic();
 }
 
+/**
+ * Assert that the component distinguishes loading eager construction and clone cycles. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_distinguishes_loading_eager_construction_and_clone_cycles(void) {
     prepare_types();
     expect_relations("@!\nchildren[]\n.main\nparent&\n.main\n", true);
@@ -22,6 +38,11 @@ static void it_distinguishes_loading_eager_construction_and_clone_cycles(void) {
     expect_relations("@<\nchildren[]\n.main\n |element\n@C\n", false);
 }
 
+/**
+ * Assert that the component accepts recursive empty lists and propagates noncopyable owned
+ * edges. The explicit fixture setup and observations define this regression; assertion failure
+ * keeps its generated evidence.
+ */
 static void it_accepts_recursive_empty_lists_and_propagates_noncopyable_owned_edges(void) {
     prepare_types();
     file("generated/program/worker", "@!\nchildren[]\n.worker\n");
@@ -38,6 +59,11 @@ static void it_accepts_recursive_empty_lists_and_propagates_noncopyable_owned_ed
     expect_relations("@!\nworker\n.worker\ncopy\n.worker\n worker\n", true);
 }
 
+/**
+ * Assert that the component orders constants by declarations and actual value reads. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_orders_constants_by_declarations_and_actual_value_reads(void) {
     prepare_types();
     file("generated/program/worker", "@=\nvalue\n.value\n |ready\n");
@@ -56,6 +82,11 @@ static void it_orders_constants_by_declarations_and_actual_value_reads(void) {
     expect_relations("@=\nvalue\n.value\n .worker.value\n@!\n", false);
 }
 
+/**
+ * Assert that the component follows owned field construction reads without treating shared types
+ * as cycles. The explicit fixture setup and observations define this regression; assertion
+ * failure keeps its generated evidence.
+ */
 static void it_follows_owned_field_construction_reads_without_treating_shared_types_as_cycles(void) {
     prepare_types();
     expect_relations("@=\nself\n.main\n@!\n", true);
@@ -65,6 +96,11 @@ static void it_follows_owned_field_construction_reads_without_treating_shared_ty
     expect_relations("@=\nconstant\n.worker\n@!\n", false);
 }
 
+/**
+ * Assert that the component orders every three vertex graph or reports a real cycle. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_orders_every_three_vertex_graph_or_reports_a_real_cycle(void) {
     int identities[3] = {0};
     for (unsigned bits = 0; bits < 512; bits++) {
@@ -127,6 +163,10 @@ static void it_orders_every_three_vertex_graph_or_reports_a_real_cycle(void) {
     }
 }
 
+/**
+ * Write the explicitly enumerated ownership/reference graph as Ama declarations for exact
+ * relation checks; no graph is inferred from runtime values.
+ */
 static void graph_interface(char *text, size_t capacity, unsigned edges, size_t vertex) {
     const char *names[] = {"main", "left", "right"};
     int written = snprintf(text, capacity, "@<\nleft&\n.left\nright&\n.right\n");
@@ -143,6 +183,11 @@ static void graph_interface(char *text, size_t capacity, unsigned edges, size_t 
     assert(written > 0 && (size_t)written < capacity - used);
 }
 
+/**
+ * Assert that the component matches clone capability to reachability of a noncopyable native
+ * type. The explicit fixture setup and observations define this regression; assertion failure
+ * keeps its generated evidence.
+ */
 static void it_matches_clone_capability_to_reachability_of_a_noncopyable_native_type(void) {
     prepare_types();
     const char *cloneable = "+ initialize\n- destroy\n= clone\n";
@@ -181,6 +226,11 @@ static void it_matches_clone_capability_to_reachability_of_a_noncopyable_native_
     }
 }
 
+/**
+ * Assert that the component cleans successful and cyclic relation plans after every allocation
+ * failure. The explicit fixture setup and observations define this regression; assertion failure
+ * keeps its generated evidence.
+ */
 static void it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure(void) {
     prepare_types();
     const char *texts[] = {"@=\nfirst\n.value\n |one\nsecond\n.value\n first\n@!\n", "@!\nchild\n.main\n"};
@@ -204,6 +254,10 @@ static void it_cleans_successful_and_cyclic_relation_plans_after_every_allocatio
     }
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_distinguishes_loading_eager_construction_and_clone_cycles();
     it_accepts_recursive_empty_lists_and_propagates_noncopyable_owned_edges();
@@ -214,6 +268,10 @@ void run(void) {
     it_matches_clone_capability_to_reachability_of_a_noncopyable_native_type();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

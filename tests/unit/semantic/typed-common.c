@@ -1,8 +1,19 @@
+/**
+ * @file
+ * @brief Create explicit native capability fixtures and check resolved source forms.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../docs/implementation/library-tests-and-build.md)
+ */
 #ifndef AMA_TYPED_TEST_COMMON
 #define AMA_TYPED_TEST_COMMON
 
 #include "common.c"
 
+/**
+ * Create the explicit native interface/body/ABI companion set used by this leaf. The caller
+ * supplies its known contract; no native capability is inferred from a C name.
+ */
 static void native_fixture(const char *name, const char *bindings) {
     char path[160];
     const char *suffixes[] = {"", ".h", ".c", ".abi"};
@@ -13,6 +24,10 @@ static void native_fixture(const char *name, const char *bindings) {
     }
 }
 
+/**
+ * Create explicit copyable/noncopyable native fixtures and Ama worker declarations to
+ * distinguish nominal type and capability checks.
+ */
 static void prepare_types(void) {
     directory("generated/program");
     const char *all = "+ initialize\n- destroy\n| literal\n= clone\n? condition\n[] position\n";
@@ -22,6 +37,10 @@ static void prepare_types(void) {
     file("generated/program/worker", "@!\n");
 }
 
+/**
+ * Write/load one exact Ama fixture, then run native and typed resolution only after the
+ * preceding stage succeeds.
+ */
 static SemanticStatus resolve_text(const char *text) {
     file("generated/program/main", text);
     setup_semantic();
@@ -36,6 +55,10 @@ static SemanticStatus resolve_text(const char *text) {
     return status;
 }
 
+/**
+ * Require the exact expected semantic success partition and valid diagnostics on rejection;
+ * always destroy semantic/source owners afterward.
+ */
 static inline void expect_resolved(const char *text, bool valid) {
     SemanticStatus status = resolve_text(text);
     if ((status == SEMANTIC_OK) != valid) {

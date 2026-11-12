@@ -1,6 +1,18 @@
+/**
+ * @file
+ * @brief Check structural layout and literal byte boundaries with source lifetime and allocation failures.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include <stdio.h>
 #include "../common.c"
 
+/**
+ * Assert that the component preserves literal bytes trailing spaces comments and line endings.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_preserves_literal_bytes_trailing_spaces_comments_and_line_endings(void) {
     setup_test();
     LayoutStatus status = read_layout("@! # body\r\n |@C # data\t  \r\n # comment\n  ");
@@ -19,6 +31,10 @@ static void it_preserves_literal_bytes_trailing_spaces_comments_and_line_endings
     destroy_layout();
 }
 
+/**
+ * Assert that the component preserves only exact input literal boundaries. The explicit fixture
+ * setup and observations define this regression; assertion failure keeps its generated evidence.
+ */
 static void it_preserves_only_exact_input_literal_boundaries(void) {
     const char *bindings[] = {" < |", " 消息 < |", " target& < |", " values[] < |", " values&[] < |"};
     for (size_t index = 0; index < sizeof(bindings) / sizeof(bindings[0]); index++) {
@@ -46,6 +62,11 @@ static void it_preserves_only_exact_input_literal_boundaries(void) {
     }
 }
 
+/**
+ * Assert that the component separates lenient draft reading from active whitespace validation.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_separates_lenient_draft_reading_from_active_whitespace_validation(void) {
     const char *invalid[] = {"unfinished\tname", "x\ry", "\t|data"};
     for (size_t index = 0; index < 3; index++) {
@@ -58,6 +79,11 @@ static void it_separates_lenient_draft_reading_from_active_whitespace_validation
     }
 }
 
+/**
+ * Assert that the component rejects malformed utf8 even without active sections. The explicit
+ * fixture setup and observations define this regression; assertion failure keeps its generated
+ * evidence.
+ */
 static void it_rejects_malformed_utf8_even_without_active_sections(void) {
     setup_test();
     LayoutStatus status = read_layout("draft\xff");
@@ -66,6 +92,11 @@ static void it_rejects_malformed_utf8_even_without_active_sections(void) {
     destroy_layout();
 }
 
+/**
+ * Assert that the component cleans partial line storage after each allocation failure. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_cleans_partial_line_storage_after_each_allocation_failure(void) {
     for (size_t failure = 1; failure <= 3; failure++) {
         setup_test();
@@ -81,6 +112,10 @@ static void it_cleans_partial_line_storage_after_each_allocation_failure(void) {
     }
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_preserves_literal_bytes_trailing_spaces_comments_and_line_endings();
     it_preserves_only_exact_input_literal_boundaries();
@@ -89,6 +124,10 @@ void run(void) {
     it_cleans_partial_line_storage_after_each_allocation_failure();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

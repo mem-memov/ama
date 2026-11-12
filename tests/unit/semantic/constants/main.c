@@ -1,5 +1,16 @@
+/**
+ * @file
+ * @brief Check immutable shared construction plans and dependency ordering.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "../typed-common.c"
 
+/**
+ * Write the explicit immutable-value dependency fixture used to inspect construction order and
+ * shared reads.
+ */
 static SemanticStatus prepare_constant_plan(void) {
     prepare_types();
     file("generated/program/worker", "@=\nfirst\n.value\n |+\nsecond\n.value\n |-\n");
@@ -11,6 +22,11 @@ static SemanticStatus prepare_constant_plan(void) {
     return semantic_constants(&semantic);
 }
 
+/**
+ * Assert that the component plans shared initialization once and cleanup in exact reverse order.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_plans_shared_initialization_once_and_cleanup_in_exact_reverse_order(void) {
     SemanticStatus status = prepare_constant_plan();
     assert(status == SEMANTIC_OK && semantic.constants_valid && semantic.constant_count == 4);
@@ -43,6 +59,11 @@ static void it_plans_shared_initialization_once_and_cleanup_in_exact_reverse_ord
     destroy_semantic();
 }
 
+/**
+ * Assert that the component uses path order for ready constants and excludes unused namespaces.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_uses_path_order_for_ready_constants_and_excludes_unused_namespaces(void) {
     prepare_types();
     file("generated/program/worker", "@=\nfirst\n.value\n |worker\n");
@@ -58,6 +79,10 @@ static void it_uses_path_order_for_ready_constants_and_excludes_unused_namespace
     destroy_semantic();
 }
 
+/**
+ * Assert that the component releases a partially built shared storage plan. The explicit fixture
+ * setup and observations define this regression; assertion failure keeps its generated evidence.
+ */
 static void it_releases_a_partially_built_shared_storage_plan(void) {
     SemanticStatus status = prepare_constant_plan();
     assert(status == SEMANTIC_OK);
@@ -77,12 +102,20 @@ static void it_releases_a_partially_built_shared_storage_plan(void) {
     }
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_plans_shared_initialization_once_and_cleanup_in_exact_reverse_order();
     it_uses_path_order_for_ready_constants_and_excludes_unused_namespaces();
     it_releases_a_partially_built_shared_storage_plan();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

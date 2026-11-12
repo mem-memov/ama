@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Own source/catalog/identity fixtures and compare exact diagnostics and tool output.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../docs/implementation/library-tests-and-build.md)
+ */
 #ifndef AMA_SOURCE_INTEGRATION_COMMON
 #define AMA_SOURCE_INTEGRATION_COMMON
 
@@ -18,16 +25,29 @@
 static ModuleCatalog catalog;
 static IdentityRegistry identities;
 
+/**
+ * Initialize this leaf fixture before its assertions; the enclosing file contract identifies
+ * owned streams, source storage or model state. Setup failure is an assertion, never an accepted
+ * product failure.
+ */
 static void setup_test(void) {
     module_catalog_init(&catalog, source_system_allocator());
     identity_registry_init(&identities, source_system_allocator());
 }
 
+/**
+ * Release or reset this leaf fixture after observations, in reverse borrow order. Counted owners
+ * assert zero remaining live allocations; assertions remain enabled by the leaf harness.
+ */
 static void destroy_test(void) {
     identity_registry_destroy(&identities);
     module_catalog_destroy(&catalog);
 }
 
+/**
+ * Compare both finite files byte for byte including EOF, checking read/close completion
+ * independently of rendered text interpretation.
+ */
 static void compare_files(const char *actual_path, const char *expected_path) {
     FILE *actual = fopen(actual_path, "rb");
     FILE *expected = fopen(expected_path, "rb");
@@ -45,6 +65,10 @@ static void compare_files(const char *actual_path, const char *expected_path) {
     assert(closed_actual == 0 && closed_expected == 0);
 }
 
+/**
+ * Observe the real structured or captured runtime diagnostic using this fixture contract.
+ * Require the expected bytes/text and complete IO rather than relying on exit failure alone.
+ */
 static void expect_diagnostic(const Diagnostic *diagnostic, const char *expected) {
     FILE *output = fopen("generated/diagnostic.txt", "wb");
     assert(output != NULL);
@@ -55,6 +79,10 @@ static void expect_diagnostic(const Diagnostic *diagnostic, const char *expected
     compare_files("generated/diagnostic.txt", expected);
 }
 
+/**
+ * Exec exact tool argv in a child and wait through EINTR, requiring normal zero exit. No shell
+ * interpretation or guessed success is permitted.
+ */
 static void run_process(char *const arguments[]) {
     pid_t child = fork();
     assert(child >= 0);

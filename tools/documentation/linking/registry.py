@@ -11,6 +11,14 @@ from urllib.parse import unquote, urlsplit
 from .markdown import links
 
 
+# Explicit nonauthoritative narrative inputs shared with the staging builder.
+# Their complete path identities are distinct from canonical requirement IDs.
+DOCUMENTATION_PAGES = (
+    'docs/documentation.md',
+    'docs/implementation/library-tests-and-build.md',
+)
+
+
 class Registry:
     """Own an immutable canonical-rule map for one repository root."""
     def __init__(self, root, digest=None):
@@ -72,6 +80,12 @@ class Registry:
         if not path.is_relative_to(self.root / 'spec'):
             if strict and is_rule_label:
                 raise ValueError('rule reference outside spec: ' + href)
+            if path.is_relative_to(self.root):
+                relative = path.relative_to(self.root).as_posix()
+                if relative in DOCUMENTATION_PAGES and not parsed.fragment:
+                    if parsed.query or not path.is_file():
+                        raise ValueError('missing/invalid documentation page: ' + href)
+                    return self.identity('page', relative)
             return None
         target = self.resolve(source, href)
         rule = self.destinations.get(target)

@@ -1,6 +1,18 @@
+/**
+ * @file
+ * @brief Check stable slots, checked growth, exact generations and permanent reclamation history.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "../../source/common.c"
 #include "runtime/pool/pool.h"
 
+/**
+ * Assert that the component keeps payload addresses stable through directory growth. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_keeps_payload_addresses_stable_through_directory_growth(void) {
     setup_test();
     AmaPool pool;
@@ -27,6 +39,11 @@ static void it_keeps_payload_addresses_stable_through_directory_growth(void) {
     destroy_test();
 }
 
+/**
+ * Assert that the component never reissues an exhausted slot or accepts stale empty and wrong
+ * type handles. The explicit fixture setup and observations define this regression; assertion
+ * failure keeps its generated evidence.
+ */
 static void it_never_reissues_an_exhausted_slot_or_accepts_stale_empty_and_wrong_type_handles(void) {
     setup_test();
     AmaPool pool;
@@ -62,6 +79,11 @@ static void it_never_reissues_an_exhausted_slot_or_accepts_stale_empty_and_wrong
     destroy_test();
 }
 
+/**
+ * Assert that the component preserves pool validity when each growth allocation fails. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_preserves_pool_validity_when_each_growth_allocation_fails(void) {
     for (size_t failure = 1; failure <= 2; failure++) {
         setup_test();
@@ -81,6 +103,11 @@ static void it_preserves_pool_validity_when_each_growth_allocation_fails(void) {
     }
 }
 
+/**
+ * Assert that the component reclaims only free trailing blocks and never revives their
+ * identities. The explicit fixture setup and observations define this regression; assertion
+ * failure keeps its generated evidence.
+ */
 static void it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities(void) {
     setup_test();
     AmaPool pool;
@@ -129,6 +156,10 @@ static void it_reclaims_only_free_trailing_blocks_and_never_revives_their_identi
     destroy_test();
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities();
     it_keeps_payload_addresses_stable_through_directory_growth();
@@ -136,6 +167,10 @@ void run(void) {
     it_preserves_pool_validity_when_each_growth_allocation_fails();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

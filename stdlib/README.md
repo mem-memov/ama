@@ -76,3 +76,7 @@ Run `make -C tests/unit/codegen/library` for compiled scalar compositions and
 per-file tests and failure/lifecycle checks. Use `make docs` for generated file
 reference pages. Current acceptance limits remain explicit in the audit and TODO;
 no library representation is inferred from a translated diagnostic message.
+
+The [retained library/test/build contract](../docs/implementation/library-tests-and-build.md)
+records file-level ownership, independent payload-fragment checks and byte-exact
+fixture exceptions. Doxygen generates the actual C interface/file reference.

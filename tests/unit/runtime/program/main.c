@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Check shared-value startup before roots, declaration order and failed-program cleanup.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "../objects/common.c"
 #include "runtime/program/program.h"
 
@@ -17,6 +24,10 @@ static const AmaProgramSource first_reference = {
     .kind = AMA_SOURCE_LOCAL, .access = &first_field, .type_id = 1, .acquire = true
 };
 
+/**
+ * Bind explicit shared/program type descriptors to the object world fixture before startup and
+ * shutdown assertions.
+ */
 static void setup_program(void) {
     setup_objects();
     memset(leaf_declarations, 0, sizeof(leaf_declarations));
@@ -35,6 +46,11 @@ static void setup_program(void) {
     root_declarations[3] = (AmaProgramField){.initializers = &first_reference, .initializer_count = 1};
 }
 
+/**
+ * Assert that the component initializes shared values outside pools before root creation. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_initializes_shared_values_outside_pools_before_root_creation(void) {
     setup_program();
     AmaStatus status = ama_program_constants_initialize(&program);
@@ -49,6 +65,11 @@ static void it_initializes_shared_values_outside_pools_before_root_creation(void
     destroy_objects();
 }
 
+/**
+ * Assert that the component constructs once in field order and clones completed private fields.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_constructs_once_in_field_order_and_clones_completed_private_fields(void) {
     setup_program();
     AmaHandle root = {0};
@@ -66,6 +87,11 @@ static void it_constructs_once_in_field_order_and_clones_completed_private_field
     destroy_test();
 }
 
+/**
+ * Assert that the component clones shared values into owned fields without pool defaults. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_clones_shared_values_into_owned_fields_without_pool_defaults(void) {
     setup_program();
     root_declarations[0].initializers = &shared_source;
@@ -81,6 +107,10 @@ static void it_clones_shared_values_into_owned_fields_without_pool_defaults(void
     destroy_test();
 }
 
+/**
+ * Assert that the component never creates the root after constant failure. The explicit fixture
+ * setup and observations define this regression; assertion failure keeps its generated evidence.
+ */
 static void it_never_creates_the_root_after_constant_failure(void) {
     setup_program();
     failed_constructor = 2;
@@ -93,6 +123,11 @@ static void it_never_creates_the_root_after_constant_failure(void) {
     destroy_test();
 }
 
+/**
+ * Assert that the component constructs compound constants using earlier fields and reverse
+ * cleanup. The explicit fixture setup and observations define this regression; assertion failure
+ * keeps its generated evidence.
+ */
 static void it_constructs_compound_constants_using_earlier_fields_and_reverse_cleanup(void) {
     setup_program();
     root_declarations[3] = (AmaProgramField){0};
@@ -115,6 +150,11 @@ static void it_constructs_compound_constants_using_earlier_fields_and_reverse_cl
     destroy_objects();
 }
 
+/**
+ * Assert that the component unwinds every allocation failure without leaking or publishing
+ * partial roots. The explicit fixture setup and observations define this regression; assertion
+ * failure keeps its generated evidence.
+ */
 static void it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots(void) {
     setup_program();
     size_t start = allocation_count;
@@ -137,6 +177,10 @@ static void it_unwinds_every_allocation_failure_without_leaking_or_publishing_pa
     }
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_initializes_shared_values_outside_pools_before_root_creation();
     it_constructs_once_in_field_order_and_clones_completed_private_fields();
@@ -146,4 +190,8 @@ void run(void) {
     it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) { run(); return EXIT_SUCCESS; }

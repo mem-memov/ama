@@ -1,3 +1,6 @@
+# @file
+# @brief Build and run this leaf against its explicit production and fixture sources.
+# Contract: ../../../../docs/implementation/library-tests-and-build.md; generated output is never a maintained input.
 ROOT := $(abspath ../../../..)
 include $(ROOT)/make/sources.mk
 SOURCES := $(foreach component,source/identity native/namespace,\

@@ -1,6 +1,17 @@
+/**
+ * @file
+ * @brief Construct only the selected native/child prefix in the lifecycle reference fixture.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../../docs/implementation/library-tests-and-build.md)
+ */
 #ifndef AMA_TEST_LIFECYCLE_CONSTRUCTION_C
 #define AMA_TEST_LIFECYCLE_CONSTRUCTION_C
 
+/**
+ * Invoke exactly the scenario-selected default/literal/clone constructor; a clone source has its
+ * own explicit cleanup and cannot replace the primary failure.
+ */
 static AmaStatus construct_native(Payload *destination, AmaConstructorKind kind) {
     if (kind == AMA_CONSTRUCT_DEFAULT) {
         return payload_initialize(destination);
@@ -19,6 +30,10 @@ static AmaStatus construct_native(Payload *destination, AmaConstructorKind kind)
     return ama_cleanup_primary(status, cleanup);
 }
 
+/**
+ * Construct children in order and credit only successful ones; the selected failure ordinal
+ * stops before later child effects.
+ */
 static AmaStatus construct_children(Model *model, Scenario scenario) {
     for (size_t index = 0; index < scenario.children; index++) {
         AmaStatus status = index == scenario.failure_ordinal
@@ -34,6 +49,10 @@ static AmaStatus construct_children(Model *model, Scenario scenario) {
     return ama_status_success();
 }
 
+/**
+ * Construct the selected root resource or deliberately release its partial resource before
+ * returning the injected construction failure.
+ */
 static AmaStatus construct_root(Model *model, Scenario scenario) {
     AmaStatus status = construct_native(&model->native, scenario.constructor);
     if (ama_status_is_success(status) && scenario.failure_ordinal == scenario.children) {
@@ -44,6 +63,10 @@ static AmaStatus construct_root(Model *model, Scenario scenario) {
     return status;
 }
 
+/**
+ * Initialize a bounded lifecycle model, construct the selected child/root prefix and unwind it
+ * through the same ledger on any failure.
+ */
 static AmaStatus model_construct(Model *model, Scenario scenario) {
     assert(scenario.children <= 3);
     memset(model, 0, sizeof(*model));

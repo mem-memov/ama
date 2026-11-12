@@ -1,8 +1,19 @@
+/**
+ * @file
+ * @brief Check byte-accurate Unicode locations, source directives and failure-safe diagnostic output.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include <stdio.h>
 #include "../common.c"
 #include "diagnostics/render/render.h"
 #include "source/mapping/directive.h"
 
+/**
+ * Read the captured diagnostic stream into the fixture's bounded observation buffer after
+ * successful rewind/IO checks.
+ */
 static void read_output(FILE *stream, char *bytes, size_t capacity) {
     int positioned = fseek(stream, 0, SEEK_SET);
     assert(positioned == 0);
@@ -11,6 +22,11 @@ static void read_output(FILE *stream, char *bytes, size_t capacity) {
     bytes[count] = 0;
 }
 
+/**
+ * Assert that the component renders original names byte coordinates and related declarations.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_renders_original_names_byte_coordinates_and_related_declarations(void) {
     setup_test();
     DiagnosticRelated related = {{{source, 10, 20}, NULL}, "required type", ".shop.item"};
@@ -33,6 +49,11 @@ static void it_renders_original_names_byte_coordinates_and_related_declarations(
     destroy_test();
 }
 
+/**
+ * Assert that the component handles multiline empty eof and malformed source excerpts. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_handles_multiline_empty_eof_and_malformed_source_excerpts(void) {
     setup_test();
     const unsigned char bytes[] = {'a', '\r', '\n', 0xff, '\t', '\n'};
@@ -59,6 +80,11 @@ static void it_handles_multiline_empty_eof_and_malformed_source_excerpts(void) {
     destroy_test();
 }
 
+/**
+ * Assert that the component rejects invalid records before output and reports output failures.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_rejects_invalid_records_before_output_and_reports_output_failures(void) {
     setup_test();
     FILE *stream = tmpfile();
@@ -80,6 +106,11 @@ static void it_rejects_invalid_records_before_output_and_reports_output_failures
     destroy_test();
 }
 
+/**
+ * Assert that the component escapes source mapping paths without rewriting unicode. The explicit
+ * fixture setup and observations define this regression; assertion failure keeps its generated
+ * evidence.
+ */
 static void it_escapes_source_mapping_paths_without_rewriting_unicode(void) {
     setup_test();
     const SourceText *mapped;
@@ -101,6 +132,10 @@ static void it_escapes_source_mapping_paths_without_rewriting_unicode(void) {
     destroy_test();
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_renders_original_names_byte_coordinates_and_related_declarations();
     it_handles_multiline_empty_eof_and_malformed_source_excerpts();
@@ -108,6 +143,10 @@ void run(void) {
     it_escapes_source_mapping_paths_without_rewriting_unicode();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

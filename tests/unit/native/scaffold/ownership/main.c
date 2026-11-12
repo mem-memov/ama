@@ -1,5 +1,17 @@
+/**
+ * @file
+ * @brief Verify native artifact ownership, explicit replacement policy and preservation on failures.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "../common.c"
 
+/**
+ * Assert that the component refreshes owned outputs and preserves handwritten companions. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_refreshes_owned_outputs_and_preserves_handwritten_companions(void) {
     file("generated/project/main.c", "/* handwritten, deliberately retained */\n");
     begin_scaffold();
@@ -14,6 +26,11 @@ static void it_refreshes_owned_outputs_and_preserves_handwritten_companions(void
     end_scaffold();
 }
 
+/**
+ * Assert that the component rejects edited owned outputs before publishing other files. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_rejects_edited_owned_outputs_before_publishing_other_files(void) {
     file("generated/native/ama-native-types.h", "/* author edit */\n");
     begin_scaffold();
@@ -33,6 +50,11 @@ static void it_rejects_edited_owned_outputs_before_publishing_other_files(void) 
     end_scaffold();
 }
 
+/**
+ * Assert that the component cleans staging and locks after every publication allocation failure.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_cleans_staging_and_locks_after_every_publication_allocation_failure(void) {
     begin_scaffold();
     bool built = build_scaffold(false);
@@ -59,6 +81,11 @@ static void it_cleans_staging_and_locks_after_every_publication_allocation_failu
     end_scaffold();
 }
 
+/**
+ * Assert that the component rejects a retained lock without guessing its age. The explicit
+ * fixture setup and observations define this regression; assertion failure keeps its generated
+ * evidence.
+ */
 static void it_rejects_a_retained_lock_without_guessing_its_age(void) {
     file("generated/native/.ama-native.lock", "retained");
     begin_scaffold();
@@ -71,6 +98,11 @@ static void it_rejects_a_retained_lock_without_guessing_its_age(void) {
     assert(removed == 0);
 }
 
+/**
+ * Assert that the component refuses to refresh a different entry into the same scope. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_refuses_to_refresh_a_different_entry_into_the_same_scope(void) {
     setup_frontend();
     ModuleRoot root = {"generated/project", NULL, 0};
@@ -84,6 +116,11 @@ static void it_refuses_to_refresh_a_different_entry_into_the_same_scope(void) {
     end_scaffold();
 }
 
+/**
+ * Assert that the component never claims an unknown existing file as generated. The explicit
+ * fixture setup and observations define this regression; assertion failure keeps its generated
+ * evidence.
+ */
 static void it_never_claims_an_unknown_existing_file_as_generated(void) {
     directory("generated/unowned");
     file("generated/unowned/ama-native-types.h", "/* preexisting unknown file */\n");
@@ -99,6 +136,11 @@ static void it_never_claims_an_unknown_existing_file_as_generated(void) {
     end_scaffold();
 }
 
+/**
+ * Assert that the component rejects symlinks and malformed manifests even with overwrite. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_rejects_symlinks_and_malformed_manifests_even_with_overwrite(void) {
     int removed = unlink("generated/native/ama-native-types.h");
     assert(removed == 0);
@@ -121,6 +163,10 @@ static void it_rejects_symlinks_and_malformed_manifests_even_with_overwrite(void
     end_scaffold();
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     prepare_native();
     begin_scaffold();
@@ -138,6 +184,10 @@ void run(void) {
     it_rejects_symlinks_and_malformed_manifests_even_with_overwrite();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

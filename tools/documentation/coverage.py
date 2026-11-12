@@ -31,7 +31,11 @@ def inventory(root):
             continue
         is_code = path.suffix in ('.c', '.h', '.inc', '.py', '.sh', '.mk', '.abi') or path.name in ('Makefile', 'Doxyfile')
         is_fixture = (relative.startswith('tests/') and '/project/' in relative) or (relative.startswith('stdlib/modules/') and path.suffix != '.md')
-        if is_code or is_fixture or relative in historical:
+        is_observation = (relative.startswith('tests/') and path.name in (
+            'expected.txt', 'expected-error.txt', 'expected-abi-error.txt',
+            'expected-ambiguity.txt'))
+        is_library_contract = relative == 'stdlib/README.md'
+        if is_code or is_fixture or is_observation or is_library_contract or relative in historical:
             if (root / relative).is_file():
                 result.add(relative)
     return result
@@ -68,6 +72,38 @@ def check_test_interfaces(root, ready):
                             'DOCUMENTATION_PROBE=' + str(probe), 'documentation-interface-check'], check=True)
 
 
+
+def check_header(root, path, command, expected_failure):
+    """Compile the actual header; explicit rejection fixtures must fail as declared.
+
+    Only maintained test-project headers may declare a negative contract. Check
+    the exact compiler exit and diagnostic text, so a missing tool, unexpected
+    acceptance or unrelated failure cannot become positive coverage evidence.
+    Ordinary headers still require successful independent C compilation.
+    """
+    # A header may intentionally contain only macros or companion markers. A
+    # neutral C11 declaration keeps that valid header from making an empty TU;
+    # it supplies no missing type, namespace or definition to the header itself.
+    source = ('#include "' + path + '"\n'
+              '_Static_assert(1, "Standalone header probe");\n')
+    if expected_failure is None:
+        subprocess.run(command, cwd=root, input=source, text=True, check=True)
+        return
+    if (not path.startswith('tests/') or '/project/' not in path
+            or not isinstance(expected_failure, dict)
+            or set(expected_failure) != {'exit_code', 'diagnostic'}
+            or type(expected_failure['exit_code']) is not int
+            or expected_failure['exit_code'] != 1
+            or not isinstance(expected_failure['diagnostic'], str)
+            or not expected_failure['diagnostic']):
+        raise ValueError('invalid negative header contract: ' + path)
+    completed = subprocess.run(command, cwd=root, input=source, text=True,
+                               capture_output=True, check=False)
+    if (completed.returncode != expected_failure['exit_code']
+            or expected_failure['diagnostic'] not in completed.stderr):
+        raise ValueError('negative header contract was not observed: ' + path)
+
+
 def check(root, complete=False):
     """Reject unregistered files/stale evidence; full mode also rejects all debt."""
     home = root / 'docs/implementation/documentation'
@@ -99,13 +135,13 @@ def check(root, complete=False):
             if not re.search(r'[@\\]file\b', prose) or not re.search(r'[@\\]brief\s+\S', prose):
                 raise ValueError('missing Doxygen file purpose: ' + path)
             _, targets = transform(path, content, registry)
-            if path.startswith('src/') and not targets:
+            if path.startswith('src/') and not any(target.startswith('ama_rule_') for target in targets):
                 raise ValueError('compiler purpose lacks canonical rule reference: ' + path)
         if path.endswith('.h'):
             command = entry.get('standalone_header_command')
             if not command:
                 raise ValueError('missing independent header compilation: ' + path)
-            subprocess.run(command, cwd=root, input='#include "' + path + '"\n', text=True, check=True)
+            check_header(root, path, command, entry.get('header_expected_failure'))
     check_test_interfaces(root, ready)
     if complete and debt:
         raise ValueError(str(len(debt)) + ' explicitly owned documentation/coverage debts remain')

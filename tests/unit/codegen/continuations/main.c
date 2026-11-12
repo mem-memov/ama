@@ -1,11 +1,27 @@
+/**
+ * @file
+ * @brief Run generated continuation entry, yield, resume, copy and host-disposal scenarios.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "../execution/common.c"
 
+/**
+ * Assert that the component resumes repeated yields and restarts at entry. The explicit fixture
+ * setup and observations define this regression; assertion failure keeps its generated evidence.
+ */
 static void it_resumes_repeated_yields_and_restarts_at_entry(void) {
     directory("generated/project");
     file("generated/project/task", "@!\nprobe\n.worker\nprobe!\n < |10\n%\nprobe!\n < |20\n%\nprobe!\n < |30\n");
     execute_project("@!\ntask\n.task\ntask!\ntask%\ntask%\ntask%\n:\n task!\ntask!\n", "10:1:0\n20:2:0\n30:3:0\n10:4:0\n10:5:0\n", true);
 }
 
+/**
+ * Assert that the component resumes inside a loop without preserving c activations. The explicit
+ * fixture setup and observations define this regression; assertion failure keeps its generated
+ * evidence.
+ */
 static void it_resumes_inside_a_loop_without_preserving_c_activations(void) {
     directory("generated/project");
     native_fixture("decrement", "@<\ninput\n.value\n@>\noutput\n.value\n@C\n");
@@ -13,11 +29,20 @@ static void it_resumes_inside_a_loop_without_preserving_c_activations(void) {
     execute_project("@!\ntask\n.task\ntask!\ntask%\ntask%\ntask%\n", "count=3\ncount=2\ncount=1\n", true);
 }
 
+/**
+ * Assert that the component rejects unhandled root yield after cleanup. The explicit fixture
+ * setup and observations define this regression; assertion failure keeps its generated evidence.
+ */
 static void it_rejects_unhandled_root_yield_after_cleanup(void) {
     execute_project("@!\n%\n", "", false);
     expect_diagnostic("Unhandled root yield");
 }
 
+/**
+ * Assert that the component exposes explicit host resume restart disposal and terminal failure.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_exposes_explicit_host_resume_restart_disposal_and_terminal_failure(void) {
     host_launcher = "#include \"project.h\"\n#include \"project.c\"\n#include <assert.h>\n"
         "int main(void) { AmaProjectHost host={0}, other={0};\n"
@@ -40,18 +65,33 @@ static void it_exposes_explicit_host_resume_restart_disposal_and_terminal_failur
     host_launcher = NULL;
 }
 
+/**
+ * Assert that the component executes independent continuation copies and clears ordinary
+ * positions. The explicit fixture setup and observations define this regression; assertion
+ * failure keeps its generated evidence.
+ */
 static void it_executes_independent_continuation_copies_and_clears_ordinary_positions(void) {
     directory("generated/project");
     file("generated/project/task", "@!\nprobe\n.worker\nprobe!\n < |10\n%\nprobe!\n < |20\n%\nprobe!\n < |30\n");
     execute_project("@!\noriginal\n.task\ncopy\n.task\nplain\n.task\nprobe\n.worker\noriginal!\ncopy\n %original\nplain\n original\ncopy%\noriginal%\ncopy%\nplain%\n:\n probe!\n  < |90\n", "10:1:0\n20:2:0\n20:2:0\n30:3:0\n90:1:10\n", true);
 }
 
+/**
+ * Assert that the component resumes both branch successors and transfers retained outputs. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_resumes_both_branch_successors_and_transfers_retained_outputs(void) {
     directory("generated/project");
     file("generated/project/task", "@<\ncondition\n.value\n@>\nresult\n.value\n |9\n@!\nprobe\n.worker\ncondition\n?\n %\n:\n %\nprobe!\n < result\n > result\n%\n");
     execute_project("@!\ntask\n.task\nresult\n.value\nprobe\n.worker\ntask!\n < |1\n > result\ntask%\n > result\nprobe!\n < result\ntask%\ntask!\n < |0\ntask%\n > result\nprobe!\n < result\n", "9:1:0\n10:1:0\n9:2:0\n11:2:0\n", true);
 }
 
+/**
+ * Assert that the component disposes yielded owned states and never resumes a failed execution.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_disposes_yielded_owned_states_and_never_resumes_a_failed_execution(void) {
     directory("generated/project");
     file("generated/project/task", "@!\nprobe\n.worker\nprobe!\n < |1\n%\nprobe!\n < |2\n");
@@ -74,6 +114,11 @@ static void it_disposes_yielded_owned_states_and_never_resumes_a_failed_executio
     host_launcher = NULL;
 }
 
+/**
+ * Assert that the component reports the new caller after a yield releases the original link. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_reports_the_new_caller_after_a_yield_releases_the_original_link(void) {
     directory("generated/project");
     file("generated/project/task", "@!\nworker\n.worker\n%\nworker!\n < |500\n");
@@ -91,6 +136,10 @@ static void it_reports_the_new_caller_after_a_yield_releases_the_original_link(v
     assert(strstr(bytes, "generated/project/original:") == NULL);
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_resumes_repeated_yields_and_restarts_at_entry();
     it_resumes_inside_a_loop_without_preserving_c_activations();
@@ -101,4 +150,8 @@ void run(void) {
     it_disposes_yielded_owned_states_and_never_resumes_a_failed_execution();
     it_reports_the_new_caller_after_a_yield_releases_the_original_link();
 }
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) { run(); return EXIT_SUCCESS; }

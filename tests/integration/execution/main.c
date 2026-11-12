@@ -1,6 +1,17 @@
+/**
+ * @file
+ * @brief Build and run published verified executables and preserve prior/unowned output on failure.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../docs/implementation/library-tests-and-build.md)
+ */
 #include <sys/stat.h>
 #include "../common.c"
 
+/**
+ * Execute the newly published fixture binary in a child and return its checked normal exit
+ * status for acceptance assertions.
+ */
 static int run_built_program(void) {
     pid_t process = fork();
     assert(process >= 0);
@@ -15,6 +26,11 @@ static int run_built_program(void) {
     return WEXITSTATUS(status);
 }
 
+/**
+ * Assert that the component builds and runs a verified executable through the real command. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_builds_and_runs_a_verified_executable_through_the_real_command(void) {
     setup_test();
     char *arguments[] = {AMA_EXECUTABLE,"--emit","project",".main","--out","generated/complete","--sdk",TEST_SDK,"--compile",NULL};
@@ -31,6 +47,11 @@ static void it_builds_and_runs_a_verified_executable_through_the_real_command(vo
     destroy_test();
 }
 
+/**
+ * Assert that the component preserves the previous program when native compilation fails. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_preserves_the_previous_program_when_native_compilation_fails(void) {
     setup_test();
     char *arguments[] = {AMA_EXECUTABLE,"--emit","project",".broken","--out","generated/complete","--sdk",TEST_SDK,"--compile",NULL};
@@ -44,6 +65,10 @@ static void it_preserves_the_previous_program_when_native_compilation_fails(void
     destroy_test();
 }
 
+/**
+ * Assert that the component refuses to overwrite an unowned program. The explicit fixture setup
+ * and observations define this regression; assertion failure keeps its generated evidence.
+ */
 static void it_refuses_to_overwrite_an_unowned_program(void) {
     setup_test();
     int created = mkdir("generated/conflict",0700);
@@ -65,9 +90,17 @@ static void it_refuses_to_overwrite_an_unowned_program(void) {
     destroy_test();
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_builds_and_runs_a_verified_executable_through_the_real_command();
     it_preserves_the_previous_program_when_native_compilation_fails();
     it_refuses_to_overwrite_an_unowned_program();
 }
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) { run(); return EXIT_SUCCESS; }

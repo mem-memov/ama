@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Validate complete generated C assembly, source selectors, exact IR sites and allocation-failure unwind.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "../../compiler/common.c"
 #include <stdint.h>
 #include <sys/wait.h>
@@ -7,6 +14,10 @@
 
 static NativeScaffold assembly;
 
+/**
+ * Create the explicit native/source model used by project assembly tests; publication remains
+ * separate from in-memory generation.
+ */
 static void prepare_assembly(void) {
     directory("generated/project");
     file("generated/project/main", "@=\n常量\n.value\n |native bytes\n@!\nfirst\n.value\nsecond\n.other\nreference&\n.node\n");
@@ -30,6 +41,10 @@ static void prepare_assembly(void) {
     file("generated/project/node", "@!\nnext&\n.node\n");
 }
 
+/**
+ * Initialize the complete checked frontend and scaffold fixture owners in dependency order
+ * before emission.
+ */
 static void begin_assembly(void) {
     setup_frontend();
     ModuleRoot root = {"generated/project", NULL, 0};
@@ -38,15 +53,28 @@ static void begin_assembly(void) {
     native_scaffold_init(&assembly, &frontend, sources.allocator);
 }
 
+/**
+ * Build the real project artifact set under the fixture options and return the production result
+ * for assertions.
+ */
 static bool build_assembly(void) {
     return project_codegen_build(&assembly, (ScaffoldOptions){.directory = "generated/output", .sdk = TEST_SDK});
 }
 
+/**
+ * Destroy scaffold before its borrowed frontend/source storage, then verify counted allocations
+ * are released.
+ */
 static void end_assembly(void) {
     native_scaffold_destroy(&assembly);
     destroy_frontend();
 }
 
+/**
+ * Assert that the component composes the real runtime and qualified native sources in one c
+ * unit. The explicit fixture setup and observations define this regression; assertion failure
+ * keeps its generated evidence.
+ */
 static void it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit(void) {
     prepare_assembly();
     begin_assembly();
@@ -75,6 +103,10 @@ static void it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_u
     end_assembly();
 }
 
+/**
+ * Write a complete executable native fixture through the real signature/namespace emitters;
+ * subsequent generated-program tests compile this authored body.
+ */
 static void emit_executable_native(const ScaffoldType *type) {
     FILE *body = fopen(type->body_path, "wb");
     assert(body != NULL);
@@ -103,6 +135,11 @@ static void emit_executable_native(const ScaffoldType *type) {
     assert(emitted && closed == 0);
 }
 
+/**
+ * Assert that the component runs constant and root lifetimes from the emitted heap layout. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout(void) {
     begin_assembly();
     bool built = build_assembly();
@@ -146,6 +183,11 @@ static void it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout(voi
     end_assembly();
 }
 
+/**
+ * Assert that the component unwinds every assembly emission allocation failure. The explicit
+ * fixture setup and observations define this regression; assertion failure keeps its generated
+ * evidence.
+ */
 static void it_unwinds_every_assembly_emission_allocation_failure(void) {
     begin_assembly();
     size_t start = allocation_count;
@@ -162,6 +204,11 @@ static void it_unwinds_every_assembly_emission_allocation_failure(void) {
     }
 }
 
+/**
+ * Assert that the component refuses source map identity exhaustion without wrapping to zero. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero(void) {
     begin_assembly();
     frontend.plan.next_selector = SIZE_MAX;
@@ -205,6 +252,10 @@ static void it_rejects_missing_or_duplicate_required_control_sites_before_public
     }
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit();
     it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout();
@@ -213,6 +264,10 @@ void run(void) {
     it_rejects_missing_or_duplicate_required_control_sites_before_publication();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

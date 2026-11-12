@@ -1,6 +1,18 @@
+/**
+ * @file
+ * @brief Check ordered structural syntax trees, source spans and iterative nested-body ownership.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include <stdio.h>
 #include "../ast-common.c"
 
+/**
+ * Assert that the component builds typed declarations and preserves each initializer source
+ * form. The explicit fixture setup and observations define this regression; assertion failure
+ * keeps its generated evidence.
+ */
 static void it_builds_typed_declarations_and_preserves_each_initializer_source_form(void) {
     setup_tree();
     ParseStatus parsed = parse_text("@=\n价格\n.商店.金额\n |12 # data  \r\n@<\ntarget&\n.shop.item\n &owned\n"
@@ -22,6 +34,11 @@ static void it_builds_typed_declarations_and_preserves_each_initializer_source_f
     destroy_tree();
 }
 
+/**
+ * Assert that the component preserves embedded nul in literal payload without string
+ * interpretation. The explicit fixture setup and observations define this regression; assertion
+ * failure keeps its generated evidence.
+ */
 static void it_preserves_embedded_nul_in_literal_payload_without_string_interpretation(void) {
     setup_tree();
     const unsigned char bytes[] = {'@', '!', '\n', 'a', '\n', '.', 't', '\n', ' ', '|', 'x', 0, 'y', '\n'};
@@ -36,6 +53,11 @@ static void it_preserves_embedded_nul_in_literal_payload_without_string_interpre
     destroy_tree();
 }
 
+/**
+ * Assert that the component represents assignments nested indices calls reads and resume. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_represents_assignments_nested_indices_calls_reads_and_resume(void) {
     setup_tree();
     ParseStatus parsed = parse_text("@!\ndestination\n source\nreference&\n &items[positions[index]]\n"
@@ -61,6 +83,11 @@ static void it_represents_assignments_nested_indices_calls_reads_and_resume(void
     destroy_tree();
 }
 
+/**
+ * Assert that the component builds branches loops and control without a symbol table. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_builds_branches_loops_and_control_without_a_symbol_table(void) {
     setup_tree();
     ParseStatus parsed = parse_text("@!\nready\n# adjacent comment\n?\n active\n {\n  worker!\n  %\n  ^\n }\n:\n >\n");
@@ -74,6 +101,11 @@ static void it_builds_branches_loops_and_control_without_a_symbol_table(void) {
     destroy_tree();
 }
 
+/**
+ * Assert that the component rejects invalid accesses layout and incomplete active declarations.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_rejects_invalid_accesses_layout_and_incomplete_active_declarations(void) {
     const char *invalid[] = {"@=\nname", "@!\nname\n.type&", "@!\nname\n  source",
         "@!\nname\n |literal", "@!\nref&\n &other&", "@!\nx\n items[0]",
@@ -91,6 +123,11 @@ static void it_rejects_invalid_accesses_layout_and_incomplete_active_declaration
     }
 }
 
+/**
+ * Assert that the component parses deep control and indices without recursive c activations. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_parses_deep_control_and_indices_without_recursive_c_activations(void) {
     const size_t depth = 512;
     size_t capacity = depth * depth + depth * 12 + 32;
@@ -148,6 +185,11 @@ static void it_parses_deep_control_and_indices_without_recursive_c_activations(v
     free(text);
 }
 
+/**
+ * Assert that the component cleans every failed allocation in composed tree construction. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_cleans_every_failed_allocation_in_composed_tree_construction(void) {
     const char *text = "@=\nconstant\n.type\n |x\n@!\nready\n?\n worker!\n  < |# bytes\t  \n  > result\n:\n target\n  %source\n";
     setup_tree();
@@ -171,6 +213,10 @@ static void it_cleans_every_failed_allocation_in_composed_tree_construction(void
     }
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_builds_typed_declarations_and_preserves_each_initializer_source_form();
     it_preserves_embedded_nul_in_literal_payload_without_string_interpretation();
@@ -181,6 +227,10 @@ void run(void) {
     it_cleans_every_failed_allocation_in_composed_tree_construction();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

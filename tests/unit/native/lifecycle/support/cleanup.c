@@ -1,6 +1,17 @@
+/**
+ * @file
+ * @brief Consume lifecycle fixture resource credits and retain every secondary cleanup failure.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../../docs/implementation/library-tests-and-build.md)
+ */
 #ifndef AMA_TEST_LIFECYCLE_CLEANUP_C
 #define AMA_TEST_LIFECYCLE_CLEANUP_C
 
+/**
+ * Record every non-success cleanup status in the bounded fixture diagnostics and preserve the
+ * first primary failure.
+ */
 static AmaStatus observe_cleanup(Model *model, AmaStatus primary, AmaStatus additional) {
     if (!ama_status_is_success(additional)) {
         assert(model->diagnostic_count < 4);
@@ -9,6 +20,10 @@ static AmaStatus observe_cleanup(Model *model, AmaStatus primary, AmaStatus addi
     return ama_cleanup_primary(primary, additional);
 }
 
+/**
+ * Consume native credit then reverse initialized child credits, observe every destructor result
+ * and finish the ledger without allocating.
+ */
 static AmaStatus model_cleanup(Model *model, AmaStatus primary) {
     AmaStatus status = ama_lifetime_begin_cleanup(&model->lifetime);
     if (!ama_status_is_success(status)) {

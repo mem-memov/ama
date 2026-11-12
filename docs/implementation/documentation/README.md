@@ -45,7 +45,13 @@ registered case to have type `void (void)`. The probe uses the real leaf Makefil
 `COMPILE_COMMAND`, preserving fixture defines and include paths. This proves name
 and signature, not assertion quality or execution. Review the independent expected
 outcomes and run the registered commands before claiming behavioral evidence.
-Ready headers also compile as the first and only include. Purpose checks parse
+Ready ordinary headers compile as the first and only include, followed by a neutral
+C11 static assertion so macro-only/marker headers do not make an empty translation
+unit. Authored native payload fragments explicitly supply only their documented
+SDK/namespace context through compiler options. A deliberate test-project #error
+header instead requires exit code 1 and its exact configured diagnostic; unexpected
+acceptance, a different error or a failed tool does not satisfy that contract.
+Purpose checks parse
 actual C documentation comments; markers hidden in literals do not count.
 
 ## Exact source-to-HTML mapping
@@ -69,7 +75,10 @@ An identity hashes a length-framed tuple of kind, full repository path and stabl
 rule ID with SHA-256. The registry stores the original tuple and rejects a hash
 collision between distinct tuples. Rule definitions become `@anchor` on the same
 line. Links become `@ref` only in disposable views under `build/documentation/`;
-page identities are explicit, deterministic labels. Rule links incoming from
+page identities are explicit, deterministic labels. A finite explicit list also
+includes the documentation entry and shared library/test/build contract. Links
+to those nonauthoritative pages map by complete resolved path to their own page
+identity; they cannot satisfy a compiler file's mandatory canonical-rule link. Rule links incoming from
 other specification pages use the same mapping. All transformed files preserve
 line counts. Maintained input hashes are rechecked after generation.
 
@@ -79,8 +88,9 @@ unique definition belongs to its canonical chapter and checks the target file
 and fragment. It also requires a file compound for every maintained code input.
 `build/documentation/report.json` records versions, input fingerprints and counts.
 Canonical-link checks are strict now. Ordinary narrative links in old derived
-documents remain T137/T134 debt: the obsolete standard-library README is deliberately
-not a Markdown input. Warnings about other narrative links and heading levels
+documents remain T134 work. The retained standard-library README is outside the
+C input tree; the shared library/test/build contract is an explicit Markdown input
+so its source-comment references have generated destinations. Warnings about other narrative links and heading levels
 remain visible in `build/documentation/warnings.log`; they are not conformance.
 
 ## Invariants and argument
@@ -122,3 +132,9 @@ ranges). Doxygen must parse them with `EXTENSION_MAPPING = inc=C`; its default f
 that suffix is PHP. T145's real-rendering regression includes a canonical rule link
 on an `.inc` file page, so the generated file-page/link check detects losing this
 mapping rather than merely counting an empty file compound.
+
+T151 closes the remaining ready/debt partition: 675 maintained inputs have explicit
+purpose, contract and named consumer evidence; the debt registry is empty. Inventory
+retains expected observation files and the standard-library contract independently
+of that empty history. This documents retained code; language conformance still
+follows the unfinished roadmap. T134 performs the complete documentation gate.

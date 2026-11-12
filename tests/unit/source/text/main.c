@@ -1,6 +1,17 @@
+/**
+ * @file
+ * @brief Check stable original bytes, line positions, spans and source ownership.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include <stdio.h>
 #include "../common.c"
 
+/**
+ * Assert that the component preserves bytes and spans across additions. The explicit fixture
+ * setup and observations define this regression; assertion failure keeps its generated evidence.
+ */
 static void it_preserves_bytes_and_spans_across_additions(void) {
     setup_test();
     const unsigned char bytes[] = {'a', 0, '\r', '\n', 0xe4, 0xb8, 0xad, '\n'};
@@ -28,6 +39,11 @@ static void it_preserves_bytes_and_spans_across_additions(void) {
     destroy_test();
 }
 
+/**
+ * Assert that the component matches every offset against a linear line model. The explicit
+ * fixture setup and observations define this regression; assertion failure keeps its generated
+ * evidence.
+ */
 static void it_matches_every_offset_against_a_linear_line_model(void) {
     setup_test();
     const unsigned char bytes[] = "a\r\nb\nc\r";
@@ -48,6 +64,11 @@ static void it_matches_every_offset_against_a_linear_line_model(void) {
     destroy_test();
 }
 
+/**
+ * Assert that the component unwinds each failed allocation without publishing. The explicit
+ * fixture setup and observations define this regression; assertion failure keeps its generated
+ * evidence.
+ */
 static void it_unwinds_each_failed_allocation_without_publishing(void) {
     for (size_t failure = 1; failure <= 4; failure++) {
         setup_test();
@@ -60,6 +81,11 @@ static void it_unwinds_each_failed_allocation_without_publishing(void) {
     }
 }
 
+/**
+ * Assert that the component loads original file bytes and reports io failures. The explicit
+ * fixture setup and observations define this regression; assertion failure keeps its generated
+ * evidence.
+ */
 static void it_loads_original_file_bytes_and_reports_io_failures(void) {
     setup_test();
     FILE *stream = fopen("generated/input", "wb");
@@ -83,6 +109,10 @@ static void it_loads_original_file_bytes_and_reports_io_failures(void) {
     destroy_test();
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_preserves_bytes_and_spans_across_additions();
     it_matches_every_offset_against_a_linear_line_model();
@@ -90,6 +120,10 @@ void run(void) {
     it_loads_original_file_bytes_and_reports_io_failures();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

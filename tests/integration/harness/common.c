@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Own copied recursive-harness fixtures and verify preserved failure artifacts.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../docs/implementation/library-tests-and-build.md)
+ */
 #ifndef AMA_TEST_HARNESS_COMMON_C
 #define AMA_TEST_HARNESS_COMMON_C
 
@@ -15,6 +22,10 @@
 #include "../support/files.c"
 #include "support/process.c"
 
+/**
+ * Use lstat to distinguish an existing fixture path from ENOENT; other filesystem failures are
+ * test failures.
+ */
 static int path_exists(const char *path) {
     struct stat information;
     int result = lstat(path, &information);
@@ -22,6 +33,10 @@ static int path_exists(const char *path) {
     return result == 0;
 }
 
+/**
+ * Compare a complete bounded fixture file with the expected exact bytes, checking read and close
+ * completion.
+ */
 static void expect_contents(const char *path, const char *expected) {
     FILE *file = fopen(path, "r");
     assert(file != NULL);
@@ -34,12 +49,20 @@ static void expect_contents(const char *path, const char *expected) {
     assert(result == 0);
 }
 
+/**
+ * Copy the actual maintained build rules into an isolated project before changing its fixture
+ * inputs; never mutate the repository rules under test.
+ */
 static void copy_rules(void) {
     copy_file(TEST_ROOT "/make/configuration.mk", "generated/project/make/configuration.mk");
     copy_file(TEST_ROOT "/tests/parent.mk", "generated/project/tests/parent.mk");
     copy_file(TEST_ROOT "/tests/leaf.mk", "generated/project/tests/leaf.mk");
 }
 
+/**
+ * Copy the explicitly enumerated fixture inputs into test-owned generated storage; all path
+ * construction and copying is checked.
+ */
 static void copy_fixture(void) {
     const char *names[] = {
         "Makefile", "common.c", "left/Makefile", "right/Makefile", "left/main.c", "right/main.c"
@@ -56,6 +79,11 @@ static void copy_fixture(void) {
     }
 }
 
+/**
+ * Initialize this leaf fixture before its assertions; the enclosing file contract identifies
+ * owned streams, source storage or model state. Setup failure is an assertion, never an accepted
+ * product failure.
+ */
 static void setup_test(void) {
     const char *directories[] = {
         "generated/project", "generated/project/make", "generated/project/generated",
@@ -68,10 +96,18 @@ static void setup_test(void) {
     copy_fixture();
 }
 
+/**
+ * Release or reset this leaf fixture after observations, in reverse borrow order. Counted owners
+ * assert zero remaining live allocations; assertions remain enabled by the leaf harness.
+ */
 static void destroy_test(void) {
     remove_tree("generated/project");
 }
 
+/**
+ * Require the failed leaf binary/started marker and exact setup/run trace to remain available;
+ * successful cleanup would incorrectly erase this evidence.
+ */
 static void expect_failure_outputs(void) {
     assert(path_exists("generated/project/tests/left/generated/test"));
     assert(path_exists("generated/project/tests/left/generated/started"));

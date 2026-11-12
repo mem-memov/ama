@@ -1,5 +1,16 @@
+/**
+ * @file
+ * @brief Verify exact project dependency closure, requester chains and failed-load cleanup.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "../common.c"
 
+/**
+ * Write the explicit diamond dependency fixture so shared module identity and requester edges
+ * are observable.
+ */
 static void prepare_diamond(void) {
     directory("generated/diamond");
     file("generated/diamond/main", "@<\nleft\n.left\n@>\nright\n.right\n@!\nagain\n.left\n");
@@ -10,6 +21,11 @@ static void prepare_diamond(void) {
     file("generated/diamond/unused", "@!\n syntactically invalid\n");
 }
 
+/**
+ * Assert that the component shares diamond dependencies and ignores unused syntax. The explicit
+ * fixture setup and observations define this regression; assertion failure keeps its generated
+ * evidence.
+ */
 static void it_shares_diamond_dependencies_and_ignores_unused_syntax(void) {
     prepare_diamond();
     setup_project();
@@ -26,6 +42,10 @@ static void it_shares_diamond_dependencies_and_ignores_unused_syntax(void) {
     destroy_project();
 }
 
+/**
+ * Assert that the component finishes self and mutual loading cycles. The explicit fixture setup
+ * and observations define this regression; assertion failure keeps its generated evidence.
+ */
 static void it_finishes_self_and_mutual_loading_cycles(void) {
     directory("generated/cycle");
     file("generated/cycle/main", "@!\nself&\n.main\nother&[]\n.other\n");
@@ -38,6 +58,11 @@ static void it_finishes_self_and_mutual_loading_cycles(void) {
     destroy_project();
 }
 
+/**
+ * Assert that the component discovers all source forms and nested blocks in lexical order. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_discovers_all_source_forms_and_nested_blocks_in_lexical_order(void) {
     directory("generated/forms");
     file("generated/forms/main", "@=\nconstant\n.kind\n .constants.value\n"
@@ -71,6 +96,10 @@ static void it_discovers_all_source_forms_and_nested_blocks_in_lexical_order(voi
     destroy_project();
 }
 
+/**
+ * Write a finite explicit dependency chain for exact requester diagnostics and iterative closure
+ * tests.
+ */
 static void prepare_chain(const char *last) {
     directory("generated/chain");
     file("generated/chain/main", "@!\nchild\n.middle\n");
@@ -80,6 +109,10 @@ static void prepare_chain(const char *last) {
     }
 }
 
+/**
+ * Compare the actual requester/dependency chain with the exact expected module sequence; no
+ * basename or depth approximation.
+ */
 static void expect_chain(ProjectStatus expected) {
     setup_project();
     ProjectStatus status = load_root("generated/chain");
@@ -94,6 +127,11 @@ static void expect_chain(ProjectStatus expected) {
     destroy_project();
 }
 
+/**
+ * Assert that the component reports request chains for missing draft and invalid modules. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_reports_request_chains_for_missing_draft_and_invalid_modules(void) {
     prepare_chain(NULL);
     expect_chain(PROJECT_MISSING);
@@ -103,6 +141,10 @@ static void it_reports_request_chains_for_missing_draft_and_invalid_modules(void
     expect_chain(PROJECT_SYNTAX_ERROR);
 }
 
+/**
+ * Assert that the component owns entry errors and locates a draft entry. The explicit fixture
+ * setup and observations define this regression; assertion failure keeps its generated evidence.
+ */
 static void it_owns_entry_errors_and_locates_a_draft_entry(void) {
     directory("generated/entry");
     setup_project();
@@ -122,6 +164,11 @@ static void it_owns_entry_errors_and_locates_a_draft_entry(void) {
     destroy_project();
 }
 
+/**
+ * Assert that the component rejects constants only entries but accepts them as dependencies. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_rejects_constants_only_entries_but_accepts_them_as_dependencies(void) {
     directory("generated/constants");
     file("generated/constants/main", "@=\n");
@@ -137,6 +184,11 @@ static void it_rejects_constants_only_entries_but_accepts_them_as_dependencies(v
     destroy_project();
 }
 
+/**
+ * Assert that the component resolves multiple roots and submodules without loading the parent.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_resolves_multiple_roots_and_submodules_without_loading_the_parent(void) {
     directory("generated/application");
     directory("generated/library");
@@ -166,6 +218,11 @@ static void it_resolves_multiple_roots_and_submodules_without_loading_the_parent
     destroy_project();
 }
 
+/**
+ * Assert that the component cleans every allocation failure in success and error paths. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_cleans_every_allocation_failure_in_success_and_error_paths(void) {
     prepare_diamond();
     prepare_chain("unfinished");
@@ -187,6 +244,11 @@ static void it_cleans_every_allocation_failure_in_success_and_error_paths(void) 
     }
 }
 
+/**
+ * Assert that the component matches reachability for every directed graph on three modules. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_matches_reachability_for_every_directed_graph_on_three_modules(void) {
     directory("generated/graphs");
     const char *names[] = {"main", "left", "right"};
@@ -240,6 +302,11 @@ static void it_matches_reachability_for_every_directed_graph_on_three_modules(vo
     }
 }
 
+/**
+ * Assert that the component walks deep blocks and dependency chains without c recursion. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_walks_deep_blocks_and_dependency_chains_without_c_recursion(void) {
     directory("generated/deep");
     const size_t depth = 128;
@@ -278,6 +345,10 @@ static void it_walks_deep_blocks_and_dependency_chains_without_c_recursion(void)
     destroy_project();
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_shares_diamond_dependencies_and_ignores_unused_syntax();
     it_finishes_self_and_mutual_loading_cycles();
@@ -291,6 +362,10 @@ void run(void) {
     it_walks_deep_blocks_and_dependency_chains_without_c_recursion();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

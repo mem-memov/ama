@@ -1,5 +1,16 @@
+/**
+ * @file
+ * @brief Check independent owned copies, exact internal reference remapping and permitted saved state.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "../common.c"
 
+/**
+ * Borrow the exact fixture pool cell after successful identity lookup so clone tests can inspect
+ * service state without copying payloads.
+ */
 static AmaPoolCell *cell(AmaHandle handle) {
     AmaPoolCell *result = NULL;
     AmaObjectType *type = ama_world_type(&world, handle.type_id);
@@ -8,6 +19,11 @@ static AmaPoolCell *cell(AmaHandle handle) {
     return result;
 }
 
+/**
+ * Assert that the component remaps root ancestor forward and cyclic references but preserves
+ * external targets. The explicit fixture setup and observations define this regression;
+ * assertion failure keeps its generated evidence.
+ */
 static void it_remaps_root_ancestor_forward_and_cyclic_references_but_preserves_external_targets(void) {
     setup_objects();
     AmaHandle source, external, copy;
@@ -57,6 +73,11 @@ static void it_remaps_root_ancestor_forward_and_cyclic_references_but_preserves_
     destroy_objects();
 }
 
+/**
+ * Assert that the component copies saved positions only in explicit continuation mode. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_copies_saved_positions_only_in_explicit_continuation_mode(void) {
     for (size_t continuation = 0; continuation < 2; continuation++) {
         setup_objects();
@@ -89,6 +110,11 @@ static void it_copies_saved_positions_only_in_explicit_continuation_mode(void) {
     }
 }
 
+/**
+ * Assert that the component refuses busy descendants and missing clone capabilities before
+ * native hooks. The explicit fixture setup and observations define this regression; assertion
+ * failure keeps its generated evidence.
+ */
 static void it_refuses_busy_descendants_and_missing_clone_capabilities_before_native_hooks(void) {
     for (size_t scenario = 0; scenario < 2; scenario++) {
         setup_objects();
@@ -107,6 +133,11 @@ static void it_refuses_busy_descendants_and_missing_clone_capabilities_before_na
     }
 }
 
+/**
+ * Assert that the component preserves the source and releases each failed clone prefix. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_preserves_the_source_and_releases_each_failed_clone_prefix(void) {
     for (size_t continuation = 0; continuation < 2; continuation++) {
         size_t count = 0;
@@ -140,6 +171,11 @@ static void it_preserves_the_source_and_releases_each_failed_clone_prefix(void) 
     }
 }
 
+/**
+ * Assert that the component uses independent clone contexts for repeated source initializers.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_uses_independent_clone_contexts_for_repeated_source_initializers(void) {
     setup_objects();
     AmaHandle source, root;
@@ -167,6 +203,11 @@ static void it_uses_independent_clone_contexts_for_repeated_source_initializers(
     destroy_objects();
 }
 
+/**
+ * Assert that the component preserves mixed positions in owned lists without resuming the root.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_preserves_mixed_positions_in_owned_lists_without_resuming_the_root(void) {
     for (size_t continuation = 0; continuation < 2; continuation++) {
         setup_objects();
@@ -200,6 +241,11 @@ static void it_preserves_mixed_positions_in_owned_lists_without_resuming_the_roo
     }
 }
 
+/**
+ * Assert that the component refuses every busy descendant before continuation clone hooks. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_refuses_every_busy_descendant_before_continuation_clone_hooks(void) {
     const AmaInstanceActivity busy[] = {AMA_INSTANCE_RUNNING, AMA_INSTANCE_WAITING, AMA_INSTANCE_ACQUIRED};
     for (size_t index = 0; index < sizeof(busy) / sizeof(busy[0]); index++) {
@@ -223,6 +269,10 @@ static void it_refuses_every_busy_descendant_before_continuation_clone_hooks(voi
     }
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_refuses_every_busy_descendant_before_continuation_clone_hooks();
     it_preserves_mixed_positions_in_owned_lists_without_resuming_the_root();
@@ -233,6 +283,10 @@ void run(void) {
     it_uses_independent_clone_contexts_for_repeated_source_initializers();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

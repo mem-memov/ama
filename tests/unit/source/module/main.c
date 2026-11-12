@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Check exact physical/logical roots, module catalog identity and filesystem failures.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include <errno.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -5,11 +12,19 @@
 #include "../common.c"
 #include "source/module/catalog.h"
 
+/**
+ * Create a test-owned fixture directory or accept its existing directory setup as specified by
+ * the caller; other mkdir errors fail assertions.
+ */
 static void directory(const char *path) {
     int result = mkdir(path, 0700);
     assert(result == 0 || errno == EEXIST);
 }
 
+/**
+ * Write exact supplied source text into a fixture path, checking full byte count and close
+ * before loading it.
+ */
 static void file(const char *path, const char *content) {
     FILE *stream = fopen(path, "wb");
     assert(stream != NULL);
@@ -21,16 +36,26 @@ static void file(const char *path, const char *content) {
 
 static ModuleCatalog catalog;
 
+/**
+ * Initialize a counted exact module catalog and physical fixture ownership before indexing.
+ */
 static void setup_catalog(void) {
     setup_test();
     module_catalog_init(&catalog, sources.allocator);
 }
 
+/**
+ * Destroy catalog/source records before allocator teardown and assert no allocation remains.
+ */
 static void destroy_catalog(void) {
     module_catalog_destroy(&catalog);
     destroy_test();
 }
 
+/**
+ * Write this scenario's explicit source/native fixtures in test-owned storage before loading or
+ * compiling them; the caller controls their lifetime and expected result.
+ */
 static void prepare_project(void) {
     directory("generated/project");
     directory("generated/project/shop");
@@ -47,11 +72,20 @@ static void prepare_project(void) {
     file("generated/project/README.md", "not a source");
 }
 
+/**
+ * Return the explicit fixture root/options used for catalog tests, retaining no unrelated
+ * filesystem search policy.
+ */
 static ModuleRoot project_root(void) {
     static const char *const exclusions[] = {"generated"};
     return (ModuleRoot){"generated/project", exclusions, 1};
 }
 
+/**
+ * Assert that the component resolves nested submodules and physical native companions. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_resolves_nested_submodules_and_physical_native_companions(void) {
     prepare_project();
     setup_catalog();
@@ -76,6 +110,11 @@ static void it_resolves_nested_submodules_and_physical_native_companions(void) {
     destroy_catalog();
 }
 
+/**
+ * Assert that the component rejects duplicates across roots instead of preferring one. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_rejects_duplicates_across_roots_instead_of_preferring_one(void) {
     directory("generated/first");
     directory("generated/second");
@@ -97,6 +136,11 @@ static void it_rejects_duplicates_across_roots_instead_of_preferring_one(void) {
     }
 }
 
+/**
+ * Assert that the component rejects orphans hardlink aliases and symlink roots. The explicit
+ * fixture setup and observations define this regression; assertion failure keeps its generated
+ * evidence.
+ */
 static void it_rejects_orphans_hardlink_aliases_and_symlink_roots(void) {
     directory("generated/orphan");
     directory("generated/orphan/item+");
@@ -127,6 +171,11 @@ static void it_rejects_orphans_hardlink_aliases_and_symlink_roots(void) {
     destroy_catalog();
 }
 
+/**
+ * Assert that the component distinguishes case and canonically equivalent source spellings. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_distinguishes_case_and_canonically_equivalent_source_spellings(void) {
     directory("generated/spelling");
     const char *names[] = {"generated/spelling/Item", "generated/spelling/item",
@@ -147,6 +196,11 @@ static void it_distinguishes_case_and_canonically_equivalent_source_spellings(vo
     destroy_catalog();
 }
 
+/**
+ * Assert that the component reports the exact invalid utf8 span in sources and abi. The explicit
+ * fixture setup and observations define this regression; assertion failure keeps its generated
+ * evidence.
+ */
 static void it_reports_the_exact_invalid_utf8_span_in_sources_and_abi(void) {
     directory("generated/invalid");
     file("generated/invalid/item", "@!\n\xff");
@@ -165,6 +219,11 @@ static void it_reports_the_exact_invalid_utf8_span_in_sources_and_abi(void) {
     destroy_catalog();
 }
 
+/**
+ * Assert that the component rejects aliased directory roots even when empty. The explicit
+ * fixture setup and observations define this regression; assertion failure keeps its generated
+ * evidence.
+ */
 static void it_rejects_aliased_directory_roots_even_when_empty(void) {
     directory("generated/empty");
     ModuleRoot roots[] = {{"generated/empty", NULL, 0}, {"generated/./empty", NULL, 0}};
@@ -174,6 +233,10 @@ static void it_rejects_aliased_directory_roots_even_when_empty(void) {
     destroy_catalog();
 }
 
+/**
+ * Assert that the component unwinds every catalog allocation failure. The explicit fixture setup
+ * and observations define this regression; assertion failure keeps its generated evidence.
+ */
 static void it_unwinds_every_catalog_allocation_failure(void) {
     prepare_project();
     setup_catalog();
@@ -191,6 +254,10 @@ static void it_unwinds_every_catalog_allocation_failure(void) {
     }
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_resolves_nested_submodules_and_physical_native_companions();
     it_rejects_duplicates_across_roots_instead_of_preferring_one();
@@ -201,6 +268,10 @@ void run(void) {
     it_unwinds_every_catalog_allocation_failure();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

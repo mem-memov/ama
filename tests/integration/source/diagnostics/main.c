@@ -1,5 +1,17 @@
+/**
+ * @file
+ * @brief Compose exact Unicode source identity, path diagnostics and C source mapping.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "../common.c"
 
+/**
+ * Assert that the component composes source lookup identity spans and human diagnostics. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_composes_source_lookup_identity_spans_and_human_diagnostics(void) {
     setup_test();
     ModuleRoot root = {"project", NULL, 0};
@@ -19,6 +31,11 @@ static void it_composes_source_lookup_identity_spans_and_human_diagnostics(void)
     destroy_test();
 }
 
+/**
+ * Assert that the component reports real source ambiguity with both physical paths. The explicit
+ * fixture setup and observations define this regression; assertion failure keeps its generated
+ * evidence.
+ */
 static void it_reports_real_source_ambiguity_with_both_physical_paths(void) {
     setup_test();
     ModuleRoot roots[] = {{"project/商店", NULL, 0}, {"project/other", NULL, 0}};
@@ -32,6 +49,11 @@ static void it_reports_real_source_ambiguity_with_both_physical_paths(void) {
     destroy_test();
 }
 
+/**
+ * Assert that the component renders an actual invalid utf8 input without losing its bytes. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_renders_an_actual_invalid_utf8_input_without_losing_its_bytes(void) {
     setup_test();
     int created = mkdir("generated/bad", 0700);
@@ -53,6 +75,11 @@ static void it_renders_an_actual_invalid_utf8_input_without_losing_its_bytes(voi
     destroy_test();
 }
 
+/**
+ * Assert that the component compiles line mappings with unicode quotes controls and backslashes.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_compiles_line_mappings_with_unicode_quotes_controls_and_backslashes(void) {
     setup_test();
     const char *path = "商店/\"item\\name\t\n" "?" "?/";
@@ -85,6 +112,10 @@ static void it_compiles_line_mappings_with_unicode_quotes_controls_and_backslash
     destroy_test();
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_composes_source_lookup_identity_spans_and_human_diagnostics();
     it_reports_real_source_ambiguity_with_both_physical_paths();
@@ -92,6 +123,10 @@ void run(void) {
     it_compiles_line_mappings_with_unicode_quotes_controls_and_backslashes();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

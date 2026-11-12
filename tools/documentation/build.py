@@ -12,7 +12,7 @@ import shutil
 import subprocess
 import sys
 
-from linking.registry import Registry
+from linking.registry import DOCUMENTATION_PAGES, Registry
 from linking.view import transform
 from rendered import file_pages, validate
 
@@ -31,9 +31,10 @@ def generate(root, destination, doxygen):
                         for path in (root / base).rglob('*')
                         if path.is_file() and path.suffix in ('.c', '.h', '.inc', '.py', '.md')
                         and not {'generated', 'build', '__pycache__'}.intersection(path.relative_to(root).parts))
-    # Stale library prose is an explicit T137 debt; it is not a second spec input.
+    # Keep specification authority separate from derived narrative documents;
+    # include the explicitly referenced fixture contract alongside the entry page.
     maintained = [path for path in maintained if path.suffix != '.md' or path.is_relative_to(root / 'spec')]
-    maintained.append(root / 'docs/documentation.md')
+    maintained.extend(root / name for name in DOCUMENTATION_PAGES)
     hashes = {}
     for path in maintained:
         relative = path.relative_to(root).as_posix()

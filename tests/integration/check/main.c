@@ -1,6 +1,18 @@
+/**
+ * @file
+ * @brief Run actual check/status/emission commands without accidental native execution.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../docs/implementation/library-tests-and-build.md)
+ */
 #include <sys/stat.h>
 #include "../common.c"
 
+/**
+ * Assert that the component checks a real project without c compilation or output artifacts. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_checks_a_real_project_without_c_compilation_or_output_artifacts(void) {
     setup_test();
     char *arguments[] = {AMA_EXECUTABLE, "--check", "project", ".main", NULL};
@@ -16,6 +28,11 @@ static void it_checks_a_real_project_without_c_compilation_or_output_artifacts(v
     destroy_test();
 }
 
+/**
+ * Assert that the component reports exact missing modules and malformed options. The explicit
+ * fixture setup and observations define this regression; assertion failure keeps its generated
+ * evidence.
+ */
 static void it_reports_exact_missing_modules_and_malformed_options(void) {
     setup_test();
     char *arguments[] = {AMA_EXECUTABLE, "--check", "project", ".missing", NULL};
@@ -32,6 +49,11 @@ static void it_reports_exact_missing_modules_and_malformed_options(void) {
     destroy_test();
 }
 
+/**
+ * Assert that the component reports drafts distinctly without accepting them as required
+ * modules. The explicit fixture setup and observations define this regression; assertion failure
+ * keeps its generated evidence.
+ */
 static void it_reports_drafts_distinctly_without_accepting_them_as_required_modules(void) {
     setup_test();
     char *arguments[] = {AMA_EXECUTABLE, "--status", "project", ".draft", NULL};
@@ -48,6 +70,11 @@ static void it_reports_drafts_distinctly_without_accepting_them_as_required_modu
     destroy_test();
 }
 
+/**
+ * Assert that the component emits from the same frontend without invoking the native c compiler.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_emits_from_the_same_frontend_without_invoking_the_native_c_compiler(void) {
     setup_test();
     char *arguments[] = {AMA_EXECUTABLE, "--emit", "project", ".main", "--out", "generated/assembly", "--sdk", TEST_SDK, NULL};
@@ -61,6 +88,10 @@ static void it_emits_from_the_same_frontend_without_invoking_the_native_c_compil
     destroy_test();
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_checks_a_real_project_without_c_compilation_or_output_artifacts();
     it_emits_from_the_same_frontend_without_invoking_the_native_c_compiler();
@@ -68,6 +99,10 @@ void run(void) {
     it_reports_drafts_distinctly_without_accepting_them_as_required_modules();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

@@ -1,5 +1,17 @@
+/**
+ * @file
+ * @brief Check ordered interface preparation, protected supplied inputs, retained results and immediate-caller yield.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "common.c"
 
+/**
+ * Assert that the component constructs literals once per call and initializes results after
+ * parameters. The explicit fixture setup and observations define this regression; assertion
+ * failure keeps its generated evidence.
+ */
 static void it_constructs_literals_once_per_call_and_initializes_results_after_parameters(void) {
     setup_call();
     for (size_t iteration = 0; iteration < 3; iteration++) {
@@ -18,6 +30,11 @@ static void it_constructs_literals_once_per_call_and_initializes_results_after_p
     finish_call();
 }
 
+/**
+ * Assert that the component protects supplied values while defaults observe new parameters. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_protects_supplied_values_while_defaults_observe_new_parameters(void) {
     setup_call();
     supplied.source = default_source;
@@ -34,6 +51,11 @@ static void it_protects_supplied_values_while_defaults_observe_new_parameters(vo
     finish_call();
 }
 
+/**
+ * Assert that the component releases acquisition after constructor failure and preserves
+ * previous value. The explicit fixture setup and observations define this regression; assertion
+ * failure keeps its generated evidence.
+ */
 static void it_releases_acquisition_after_constructor_failure_and_preserves_previous_value(void) {
     setup_call();
     bool refused = false;
@@ -50,6 +72,10 @@ static void it_releases_acquisition_after_constructor_failure_and_preserves_prev
     finish_call();
 }
 
+/**
+ * Assert that the component refuses a busy input before any constructor. The explicit fixture
+ * setup and observations define this regression; assertion failure keeps its generated evidence.
+ */
 static void it_refuses_a_busy_input_before_any_constructor(void) {
     setup_call();
     RootValue *value = object_payload(caller);
@@ -67,6 +93,11 @@ static void it_refuses_a_busy_input_before_any_constructor(void) {
     finish_call();
 }
 
+/**
+ * Assert that the component releases all leases after each preparation allocation failure. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_releases_all_leases_after_each_preparation_allocation_failure(void) {
     size_t count = 0;
     for (size_t failure = 0; failure <= count; failure++) {
@@ -89,6 +120,11 @@ static void it_releases_all_leases_after_each_preparation_allocation_failure(voi
     }
 }
 
+/**
+ * Assert that the component keeps earlier committed parameters when a later constructor fails.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_keeps_earlier_committed_parameters_when_a_later_constructor_fails(void) {
     setup_call();
     root_fields[1].role=AMA_PROGRAM_PARAMETER;
@@ -105,6 +141,11 @@ static void it_keeps_earlier_committed_parameters_when_a_later_constructor_fails
     finish_call();
 }
 
+/**
+ * Assert that the component skips interface preparation for reads and resume acquisitions. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_skips_interface_preparation_for_reads_and_resume_acquisitions(void) {
     setup_call();
     RootValue *value = object_payload(target);
@@ -135,6 +176,11 @@ static void it_skips_interface_preparation_for_reads_and_resume_acquisitions(voi
     finish_call();
 }
 
+/**
+ * Assert that the component saves unhandled refusals and preserves the immediate caller context.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_saves_unhandled_refusals_and_preserves_the_immediate_caller_context(void) {
     setup_call();
     RootValue *value = object_payload(caller);
@@ -172,6 +218,11 @@ static void it_saves_unhandled_refusals_and_preserves_the_immediate_caller_conte
     finish_call();
 }
 
+/**
+ * Assert that the component returns yielded targets without copying the active caller chain. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_returns_yielded_targets_without_copying_the_active_caller_chain(void) {
     setup_call();
     AmaPoolCell *context = NULL, *nested = NULL;
@@ -205,6 +256,10 @@ static void it_returns_yielded_targets_without_copying_the_active_caller_chain(v
     finish_call();
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_returns_yielded_targets_without_copying_the_active_caller_chain();
     it_constructs_literals_once_per_call_and_initializes_results_after_parameters();
@@ -216,4 +271,8 @@ void run(void) {
     it_skips_interface_preparation_for_reads_and_resume_acquisitions();
     it_saves_unhandled_refusals_and_preserves_the_immediate_caller_context();
 }
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) { run(); return EXIT_SUCCESS; }

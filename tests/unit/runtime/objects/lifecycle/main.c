@@ -1,5 +1,17 @@
+/**
+ * @file
+ * @brief Check selected constructors, child/native cleanup order and every failed initialization prefix.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "../common.c"
 
+/**
+ * Assert that the component constructs children before payload and finalizes parent before
+ * reverse children. The explicit fixture setup and observations define this regression;
+ * assertion failure keeps its generated evidence.
+ */
 static void it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children(void) {
     setup_objects();
     AmaHandle root;
@@ -13,6 +25,11 @@ static void it_constructs_children_before_payload_and_finalizes_parent_before_re
     destroy_objects();
 }
 
+/**
+ * Assert that the component uses one selected constructor without default then overwrite. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_uses_one_selected_constructor_without_default_then_overwrite(void) {
     setup_objects();
     const unsigned char byte = 42;
@@ -29,6 +46,11 @@ static void it_uses_one_selected_constructor_without_default_then_overwrite(void
     destroy_objects();
 }
 
+/**
+ * Assert that the component cleans every failed prefix without destroying the failed native
+ * payload. The explicit fixture setup and observations define this regression; assertion failure
+ * keeps its generated evidence.
+ */
 static void it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload(void) {
     for (size_t failure = 1; failure <= 3; failure++) {
         setup_objects();
@@ -41,6 +63,11 @@ static void it_cleans_every_failed_prefix_without_destroying_the_failed_native_p
     }
 }
 
+/**
+ * Assert that the component continues cleanup after errors and marks the world terminal. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_continues_cleanup_after_errors_and_marks_the_world_terminal(void) {
     setup_objects();
     AmaHandle root;
@@ -54,6 +81,10 @@ static void it_continues_cleanup_after_errors_and_marks_the_world_terminal(void)
     destroy_objects();
 }
 
+/**
+ * Assert that the component unwinds every construction allocation failure. The explicit fixture
+ * setup and observations define this regression; assertion failure keeps its generated evidence.
+ */
 static void it_unwinds_every_construction_allocation_failure(void) {
     setup_objects();
     AmaHandle root;
@@ -73,6 +104,11 @@ static void it_unwinds_every_construction_allocation_failure(void) {
     }
 }
 
+/**
+ * Assert that the component preserves the construction error when secondary cleanup also fails.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_preserves_the_construction_error_when_secondary_cleanup_also_fails(void) {
     setup_objects();
     failed_constructor = 3;
@@ -84,6 +120,11 @@ static void it_preserves_the_construction_error_when_secondary_cleanup_also_fail
     destroy_objects();
 }
 
+/**
+ * Assert that the component unwinds list buffers and nested ownership on each allocation
+ * failure. The explicit fixture setup and observations define this regression; assertion failure
+ * keeps its generated evidence.
+ */
 static void it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure(void) {
     size_t count = 0;
     for (size_t failure = 0; failure <= count; failure++) {
@@ -107,6 +148,10 @@ static void it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_fail
     }
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children();
     it_uses_one_selected_constructor_without_default_then_overwrite();
@@ -117,6 +162,10 @@ void run(void) {
     it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

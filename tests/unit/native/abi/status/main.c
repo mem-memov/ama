@@ -1,8 +1,20 @@
+/**
+ * @file
+ * @brief Check status/message/library code validity and distinct index outcomes.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "../common.c"
 
 #include "native/status/index.h"
 #include "native/status/library.h"
 
+/**
+ * Assert that the component represents success without allocating a message. The explicit
+ * fixture setup and observations define this regression; assertion failure keeps its generated
+ * evidence.
+ */
 static void it_represents_success_without_allocating_a_message(void) {
     AmaStatus status = {0};
     assert(ama_status_is_success(status));
@@ -10,6 +22,11 @@ static void it_represents_success_without_allocating_a_message(void) {
     assert(status.message == NULL && status.message_length == 0);
 }
 
+/**
+ * Assert that the component preserves unterminated program lifetime message bytes. The explicit
+ * fixture setup and observations define this regression; assertion failure keeps its generated
+ * evidence.
+ */
 static void it_preserves_unterminated_program_lifetime_message_bytes(void) {
     static const char message[] = {'o', 'o', 'm'};
     AmaStatus status = ama_status_make(AMA_OUT_OF_MEMORY, message, sizeof(message));
@@ -19,6 +36,11 @@ static void it_preserves_unterminated_program_lifetime_message_bytes(void) {
     assert(!ama_status_has_valid_message_view(status));
 }
 
+/**
+ * Assert that the component classifies index results by code and never message text. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_classifies_index_results_by_code_and_never_message_text(void) {
     AmaStatus refused = ama_status_make(AMA_INVALID_INDEX, NULL, 0);
     AmaStatus failed = ama_status_make(AMA_OUT_OF_MEMORY, "invalid index", 13);
@@ -27,6 +49,11 @@ static void it_classifies_index_results_by_code_and_never_message_text(void) {
     assert(ama_index_outcome(failed) == AMA_INDEX_FAILED);
 }
 
+/**
+ * Assert that the component assigns collision free library codes and rejects zero fields. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_assigns_collision_free_library_codes_and_rejects_zero_fields(void) {
     for (uint16_t namespace_id = 1; namespace_id <= 8; namespace_id++) {
         for (uint16_t reason = 1; reason <= 8; reason++) {
@@ -45,6 +72,10 @@ static void it_assigns_collision_free_library_codes_and_rejects_zero_fields(void
     assert(ama_status_is_success(status) && code == UINT32_MAX);
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_represents_success_without_allocating_a_message();
     it_preserves_unterminated_program_lifetime_message_bytes();
@@ -52,6 +83,10 @@ void run(void) {
     it_assigns_collision_free_library_codes_and_rejects_zero_fields();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

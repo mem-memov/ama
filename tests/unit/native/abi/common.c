@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Share native ABI types, assertions and protocol fixture declarations.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #ifndef AMA_TEST_NATIVE_ABI_COMMON_C
 #define AMA_TEST_NATIVE_ABI_COMMON_C
 

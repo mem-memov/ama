@@ -1,9 +1,20 @@
+/**
+ * @file
+ * @brief Check exact qualified identity encoding, SHA padding vectors and collision rejection.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "../common.c"
 #include "source/identity/identity.h"
 #include "source/identity/internal.h"
 #include "source/identity/hash/sha256.h"
 #include "vectors.inc"
 
+/**
+ * Encode all 32 digest bytes as 64 lowercase hexadecimal digits in caller-owned writable storage,
+ * followed by a terminator for independent expected-vector comparison.
+ */
 static void digest_text(const unsigned char digest[32], char text[65]) {
     const char *digits = "0123456789abcdef";
     for (size_t index = 0; index < 32; index++) {
@@ -13,6 +24,11 @@ static void digest_text(const unsigned char digest[32], char text[65]) {
     text[64] = 0;
 }
 
+/**
+ * Assert that the component matches sha256 vectors across padding and block boundaries. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_matches_sha256_vectors_across_padding_and_block_boundaries(void) {
     unsigned char bytes[129];
     for (size_t index = 0; index < sizeof(bytes); index++) {
@@ -32,6 +48,11 @@ static void it_matches_sha256_vectors_across_padding_and_block_boundaries(void) 
     assert(strcmp(text, "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad") == 0);
 }
 
+/**
+ * Assert that the component preserves unicode names and matches a stable full identity vector.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_preserves_unicode_names_and_matches_a_stable_full_identity_vector(void) {
     setup_test();
     IdentityRegistry registry;
@@ -50,6 +71,11 @@ static void it_preserves_unicode_names_and_matches_a_stable_full_identity_vector
     destroy_test();
 }
 
+/**
+ * Assert that the component separates categories components case and unicode spelling. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_separates_categories_components_case_and_unicode_spelling(void) {
     setup_test();
     IdentityRegistry registry;
@@ -82,6 +108,11 @@ static void it_separates_categories_components_case_and_unicode_spelling(void) {
     destroy_test();
 }
 
+/**
+ * Assert that the component refuses a forced digest collision without merging full keys. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_refuses_a_forced_digest_collision_without_merging_full_keys(void) {
     setup_test();
     IdentityRegistry registry;
@@ -106,6 +137,11 @@ static void it_refuses_a_forced_digest_collision_without_merging_full_keys(void)
     destroy_test();
 }
 
+/**
+ * Assert that the component releases every failed registration and rejects invalid identities.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_releases_every_failed_registration_and_rejects_invalid_identities(void) {
     for (size_t failure = 1; failure <= 4; failure++) {
         setup_test();
@@ -126,6 +162,10 @@ static void it_releases_every_failed_registration_and_rejects_invalid_identities
     }
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_matches_sha256_vectors_across_padding_and_block_boundaries();
     it_preserves_unicode_names_and_matches_a_stable_full_identity_vector();
@@ -134,6 +174,10 @@ void run(void) {
     it_releases_every_failed_registration_and_rejects_invalid_identities();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

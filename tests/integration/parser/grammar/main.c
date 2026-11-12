@@ -1,5 +1,16 @@
+/**
+ * @file
+ * @brief Compose catalog, structural grammar, diagnostics and typed native C fixtures.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "../common.c"
 
+/**
+ * Count the actual structural nodes used by the parser composition assertions; no source-line
+ * heuristic substitutes for the AST.
+ */
 static size_t node_count(AstBlock block) {
     size_t count = 0;
     for (AstNode *node = block.first; node != NULL; node = node->next) {
@@ -8,6 +19,11 @@ static size_t node_count(AstBlock block) {
     return count;
 }
 
+/**
+ * Assert that the component preserves source ranges through real file discovery and ast
+ * construction. The explicit fixture setup and observations define this regression; assertion
+ * failure keeps its generated evidence.
+ */
 static void it_preserves_source_ranges_through_real_file_discovery_and_ast_construction(void) {
     setup_test();
     const ModuleSource *source = find_fixture(".程序");
@@ -35,6 +51,11 @@ static void it_preserves_source_ranges_through_real_file_discovery_and_ast_const
     destroy_test();
 }
 
+/**
+ * Assert that the component reports a real parser error with original source and actionable
+ * help. The explicit fixture setup and observations define this regression; assertion failure
+ * keeps its generated evidence.
+ */
 static void it_reports_a_real_parser_error_with_original_source_and_actionable_help(void) {
     setup_test();
     const ModuleSource *source = find_fixture(".broken");
@@ -44,6 +65,11 @@ static void it_reports_a_real_parser_error_with_original_source_and_actionable_h
     destroy_test();
 }
 
+/**
+ * Assert that the component keeps a native companion from activating an unfinished draft. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_keeps_a_native_companion_from_activating_an_unfinished_draft(void) {
     setup_test();
     const ModuleSource *source = find_fixture(".draft");
@@ -53,6 +79,11 @@ static void it_keeps_a_native_companion_from_activating_an_unfinished_draft(void
     destroy_test();
 }
 
+/**
+ * Assert that the component renders duplicate abi bindings with both source locations. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_renders_duplicate_abi_bindings_with_both_source_locations(void) {
     setup_test();
     const SourceText *source;
@@ -64,6 +95,10 @@ static void it_renders_duplicate_abi_bindings_with_both_source_locations(void) {
     destroy_test();
 }
 
+/**
+ * Emit the test-only typed C bindings derived from the parsed native fixture, so C signature
+ * compatibility is checked by compilation.
+ */
 static void write_typed_bindings(FILE *output) {
     const char *declarations[] = {
         "AmaStatus (*construct)(AMA_NATIVE(NativeValue) *) = ",
@@ -86,6 +121,10 @@ static void write_typed_bindings(FILE *output) {
     }
 }
 
+/**
+ * Emit one namespaced native fixture probe for actual compilation; equal local helper names must
+ * remain separate across modules.
+ */
 static void write_module_probe(FILE *output, const ModuleSource *source, const IdentityName *name) {
     abi_table_destroy(&table);
     abi_table_init(&table, source_system_allocator());
@@ -110,6 +149,11 @@ static void write_module_probe(FILE *output, const ModuleSource *source, const I
     assert(emitted);
 }
 
+/**
+ * Assert that the component isolates identical native names and compiles typed abi uses. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_isolates_identical_native_names_and_compiles_typed_abi_uses(void) {
     setup_test();
     const ModuleSource *source = find_fixture(".native");
@@ -150,6 +194,10 @@ static void it_isolates_identical_native_names_and_compiles_typed_abi_uses(void)
     destroy_test();
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_preserves_source_ranges_through_real_file_discovery_and_ast_construction();
     it_reports_a_real_parser_error_with_original_source_and_actionable_help();
@@ -158,6 +206,10 @@ void run(void) {
     it_isolates_identical_native_names_and_compiles_typed_abi_uses();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

@@ -1,5 +1,16 @@
+/**
+ * @file
+ * @brief Check one exact nominal namespace and declaration identity.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "../common.c"
 
+/**
+ * Assert that the component rejects all pairs of duplicate storage forms. The explicit fixture
+ * setup and observations define this regression; assertion failure keeps its generated evidence.
+ */
 static void it_rejects_all_pairs_of_duplicate_storage_forms(void) {
     directory("generated/names");
     file("generated/names/value", "@C\n");
@@ -21,6 +32,10 @@ static void it_rejects_all_pairs_of_duplicate_storage_forms(void) {
     }
 }
 
+/**
+ * Write exact namespace declarations whose duplicate/nominal behavior is checked by the
+ * semantic-name cases.
+ */
 static void prepare_names(void) {
     directory("generated/valid");
     file("generated/valid/main", "@=\nconstant\n.value\n@<\nparameter\n.value\n@>\nresult\n.value\n"
@@ -28,6 +43,11 @@ static void prepare_names(void) {
     file("generated/valid/value", "@!\nconstant&\n.value\n");
 }
 
+/**
+ * Assert that the component preserves section and nested declaration order without cross module
+ * conflicts. The explicit fixture setup and observations define this regression; assertion
+ * failure keeps its generated evidence.
+ */
 static void it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts(void) {
     prepare_names();
     setup_semantic();
@@ -46,6 +66,11 @@ static void it_preserves_section_and_nested_declaration_order_without_cross_modu
     destroy_semantic();
 }
 
+/**
+ * Assert that the component cleans partial namespace storage on every allocation failure. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_cleans_partial_namespace_storage_on_every_allocation_failure(void) {
     prepare_names();
     setup_semantic();
@@ -69,12 +94,20 @@ static void it_cleans_partial_namespace_storage_on_every_allocation_failure(void
     }
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_rejects_all_pairs_of_duplicate_storage_forms();
     it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts();
     it_cleans_partial_namespace_storage_on_every_allocation_failure();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

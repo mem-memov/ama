@@ -1,3 +1,6 @@
+# @file
+# @brief Compile explicit leaf sources, run assertions, clean successful output and preserve failures.
+# Contract: ../docs/implementation/library-tests-and-build.md; generated output is never a maintained input.
 .RECIPEPREFIX := >
 .DEFAULT_GOAL := all
 .DELETE_ON_ERROR:

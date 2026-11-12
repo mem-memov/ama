@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Exercise all native lifecycle/conversion hooks with owned byte buffers and refusal snapshots.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "../common.c"
 
 #include <stdio.h>
@@ -7,6 +14,10 @@
 #include "project/buffer.c"
 #include "native/status/index.h"
 
+/**
+ * Assert that the component checks all six bound function signatures. The explicit fixture setup
+ * and observations define this regression; assertion failure keeps its generated evidence.
+ */
 static void it_checks_all_six_bound_function_signatures(void) {
     AmaStatus (*initialize)(AMA_NATIVE(FixtureBuffer) *) = AMA_NATIVE(initialize);
     AmaStatus (*destroy)(AMA_NATIVE(FixtureBuffer) *) = AMA_NATIVE(destroy);
@@ -17,6 +28,11 @@ static void it_checks_all_six_bound_function_signatures(void) {
     assert(initialize && destroy && literal && clone && condition && index);
 }
 
+/**
+ * Assert that the component constructs once and clones independent native resources. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_constructs_once_and_clones_independent_native_resources(void) {
     AMA_NATIVE(FixtureBuffer) empty, source, copy;
     AmaStatus status = AMA_NATIVE(initialize)(&empty);
@@ -37,6 +53,11 @@ static void it_constructs_once_and_clones_independent_native_resources(void) {
     assert(ama_status_is_success(status));
 }
 
+/**
+ * Assert that the component distinguishes invalid indices from technical failure without
+ * outputs. The explicit fixture setup and observations define this regression; assertion failure
+ * keeps its generated evidence.
+ */
 static void it_distinguishes_invalid_indices_from_technical_failure_without_outputs(void) {
     AMA_NATIVE(FixtureBuffer) value;
     const unsigned char negative[] = "-1";
@@ -55,6 +76,11 @@ static void it_distinguishes_invalid_indices_from_technical_failure_without_outp
     assert(ama_status_is_success(status));
 }
 
+/**
+ * Assert that the component accepts size max and refuses arithmetic overflow. The explicit
+ * fixture setup and observations define this regression; assertion failure keeps its generated
+ * evidence.
+ */
 static void it_accepts_size_max_and_refuses_arithmetic_overflow(void) {
     char text[sizeof(size_t) * CHAR_BIT + 2];
     int length = snprintf(text, sizeof(text), "%zu", SIZE_MAX);
@@ -79,6 +105,11 @@ static void it_accepts_size_max_and_refuses_arithmetic_overflow(void) {
     assert(ama_status_is_success(status));
 }
 
+/**
+ * Assert that the component returns declared results and refusal data separately from technical
+ * status. The explicit fixture setup and observations define this regression; assertion failure
+ * keeps its generated evidence.
+ */
 static void it_returns_declared_results_and_refusal_data_separately_from_technical_status(void) {
     AMA_NATIVE(FixtureBuffer) state, caller, bound;
     AmaStatus status = AMA_NATIVE(initialize)(&state);
@@ -108,6 +139,10 @@ static void it_returns_declared_results_and_refusal_data_separately_from_technic
     assert(ama_status_is_success(status));
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_checks_all_six_bound_function_signatures();
     it_constructs_once_and_clones_independent_native_resources();
@@ -116,6 +151,10 @@ void run(void) {
     it_returns_declared_results_and_refusal_data_separately_from_technical_status();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

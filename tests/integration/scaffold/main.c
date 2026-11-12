@@ -1,6 +1,17 @@
+/**
+ * @file
+ * @brief Exercise actual native authoring commands, Unicode paths and explicit overwrite policy.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../docs/implementation/library-tests-and-build.md)
+ */
 #include <sys/stat.h>
 #include "../common.c"
 
+/**
+ * Write a complete explicit fixture file and check final close; callers provide a test-owned
+ * path and valid content.
+ */
 static void write_file(const char *path, const char *text) {
     FILE *file = fopen(path, "wb");
     assert(file != NULL);
@@ -9,6 +20,11 @@ static void write_file(const char *path, const char *text) {
     assert(written == strlen(text) && closed == 0);
 }
 
+/**
+ * Assert that the component creates unicode native companions and refreshes only owned outputs.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_creates_unicode_native_companions_and_refreshes_only_owned_outputs(void) {
     int created = mkdir("generated/project", 0700);
     assert(created == 0);
@@ -46,6 +62,11 @@ static void it_creates_unicode_native_companions_and_refreshes_only_owned_output
     destroy_test();
 }
 
+/**
+ * Assert that the component checks exported commands without shell splitting unicode paths or
+ * arguments. The explicit fixture setup and observations define this regression; assertion
+ * failure keeps its generated evidence.
+ */
 static void it_checks_exported_commands_without_shell_splitting_unicode_paths_or_arguments(void) {
     pid_t process = fork();
     assert(process >= 0);
@@ -64,6 +85,11 @@ static void it_checks_exported_commands_without_shell_splitting_unicode_paths_or
     assert(waited == process && WIFEXITED(status) && WEXITSTATUS(status) == 0);
 }
 
+/**
+ * Assert that the component rejects invalid protocols and accidental overwrite requests. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_rejects_invalid_protocols_and_accidental_overwrite_requests(void) {
     setup_test();
     char *arguments[] = {AMA_EXECUTABLE, "--native", "generated/project", ".模块", "--out", "generated/输出 files",
@@ -81,12 +107,20 @@ static void it_rejects_invalid_protocols_and_accidental_overwrite_requests(void)
     destroy_test();
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_creates_unicode_native_companions_and_refreshes_only_owned_outputs();
     it_checks_exported_commands_without_shell_splitting_unicode_paths_or_arguments();
     it_rejects_invalid_protocols_and_accidental_overwrite_requests();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

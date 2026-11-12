@@ -1,9 +1,21 @@
+/**
+ * @file
+ * @brief Verify extended native alignment and stable resource addresses through pool and replacement operations.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "../../source/common.c"
 #include "runtime/objects/objects.h"
 
+/** Address-sensitive extended-alignment fixture payload; replacement must construct at its final bank address rather than move resources. */
 typedef struct { _Alignas(128) void *address; size_t number; } AlignedValue;
 static size_t destroyed;
 
+/**
+ * Construct an address-sensitive aligned native fixture resource at its provided final payload
+ * address.
+ */
 static AmaStatus initialize(void *payload) {
     AlignedValue *value = payload;
     assert((uintptr_t)payload % _Alignof(AlignedValue) == 0);
@@ -12,12 +24,19 @@ static AmaStatus initialize(void *payload) {
     return ama_status_success();
 }
 
+/**
+ * Construct an independent aligned resource at destination while retaining source content;
+ * copying payload addresses would fail later fixture checks.
+ */
 static AmaStatus clone(void *destination, const void *source) {
     AmaStatus status = initialize(destination);
     ((AlignedValue *)destination)->number = ((const AlignedValue *)source)->number;
     return status;
 }
 
+/**
+ * Verify aligned resource self-address/ownership invariants before releasing it exactly once.
+ */
 static AmaStatus finalize(void *payload) {
     AlignedValue *value = payload;
     assert(value->address == value && value->number == 17);
@@ -25,6 +44,11 @@ static AmaStatus finalize(void *payload) {
     return ama_status_success();
 }
 
+/**
+ * Assert that the component preserves extended c alignment through growth replacement and
+ * reclamation. The explicit fixture setup and observations define this regression; assertion
+ * failure keeps its generated evidence.
+ */
 static void it_preserves_extended_c_alignment_through_growth_replacement_and_reclamation(void) {
     setup_test();
     AmaObjectType type;
@@ -54,6 +78,11 @@ static void it_preserves_extended_c_alignment_through_growth_replacement_and_rec
     destroy_test();
 }
 
+/**
+ * Assert that the component rejects nonrepresentable alignment and size arithmetic. The explicit
+ * fixture setup and observations define this regression; assertion failure keeps its generated
+ * evidence.
+ */
 static void it_rejects_nonrepresentable_alignment_and_size_arithmetic(void) {
     AmaPool pool;
     AmaStatus status = ama_pool_init_aligned(&pool, source_system_allocator(), 1, 1, 3, 2, 2);
@@ -62,11 +91,19 @@ static void it_rejects_nonrepresentable_alignment_and_size_arithmetic(void) {
     assert(status.code == AMA_LIMIT_EXCEEDED);
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_preserves_extended_c_alignment_through_growth_replacement_and_reclamation();
     it_rejects_nonrepresentable_alignment_and_size_arithmetic();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

@@ -100,9 +100,11 @@ def rendered():
     (root / 'docs').mkdir()
     shutil.copyfile(ROOT / 'docs/Doxyfile', root / 'docs/Doxyfile')
     (root / 'docs/documentation.md').write_text('# Fixture\n')
+    (root / 'docs/implementation').mkdir()
+    (root / 'docs/implementation/library-tests-and-build.md').write_text('# Fixture lifetime contract\n')
     nested = root / 'src/a/b/c'
     nested.mkdir(parents=True)
-    code = '/** @file\n * @brief Keep identity under [RT-13](../../../../spec/runtime.md#rt-13).\n */\nint fixture(void) { return 0; }\n'
+    code = '/** @file\n * @brief Keep identity under [RT-13](../../../../spec/runtime.md#rt-13).\n * @see [Fixture contract](../../../../docs/implementation/library-tests-and-build.md)\n */\nint fixture(void) { return 0; }\n'
     original = nested / 'fixture.c'
     original.write_text(code)
     included = nested / 'ranges.inc'
@@ -116,6 +118,8 @@ def rendered():
     file_page = next(path for path in output.glob('*.html') if path.name.endswith('_8c.html'))
     require(any('#' + anchor in href for href in Page(file_page.read_text()).hrefs), 'file purpose has no rendered rule link')
     validate(output, {'src/a/b/c/ranges.inc': [anchor]})
+    contract_page = registry.identity('page', 'docs/implementation/library-tests-and-build.md')
+    validate(output, {'src/a/b/c/fixture.c': [contract_page]})
     content = file_page.read_text()
     file_page.write_text(content.replace('#' + anchor, '#ama_rule_missing'))
     rejected(lambda: validate(output, [anchor]))
@@ -126,7 +130,7 @@ def rendered():
     moved = root / 'src/moved.c'
     moved.write_text(code)
     rejected(lambda: transform('src/moved.c', code, registry))
-    moved.write_text(code.replace('../../../../spec/', '../spec/'))
+    moved.write_text(code.replace('../../../../spec/', '../spec/').replace('../../../../docs/', '../docs/'))
     original.unlink()
     shutil.rmtree(output)
     generate(root, output, shutil.which('doxygen'))
@@ -155,8 +159,43 @@ def coverage_scenario():
         (home / 'ready.json').write_text(json.dumps(ready))
         (home / 'debt.json').write_text(json.dumps(debt))
     save()
+    # Closing debt must not remove non-C expected observations from inventory.
+    original_inventory = coverage.inventory
+    original_listing = subprocess.check_output
+    observation = root / 'tests/fixture/expected-error.txt'
+    observation.parent.mkdir(parents=True)
+    observation.write_text('exact diagnostic bytes\n')
+    library_contract = root / 'stdlib/README.md'
+    library_contract.parent.mkdir(parents=True)
+    library_contract.write_text('# Retained library contract\n')
+    def inventory_listing(command, cwd):
+        require(command[0] == 'git' and cwd == root, 'unexpected inventory source')
+        return b'sample.h\0case.c\0tests/fixture/expected-error.txt\0stdlib/README.md\0'
+    try:
+        (home / 'debt.json').write_text('{}')
+        subprocess.check_output = inventory_listing
+        maintained = original_inventory(root)
+        require({'tests/fixture/expected-error.txt', 'stdlib/README.md'} <= maintained,
+                'closed non-C inputs vanished with historical debt')
+    finally:
+        subprocess.check_output = original_listing
+        save()
     coverage.inventory = lambda _: {'sample.h', 'case.c'}
     coverage.check(root)
+    # Narrative page references cannot stand in for compiler requirement links.
+    contract = root / 'docs/implementation/library-tests-and-build.md'
+    contract.write_text('# Fixture contract\n')
+    compiler = root / 'src/only_contract.c'
+    compiler.parent.mkdir()
+    compiler.write_text('/** @file\n * @brief Only a [fixture contract](../docs/implementation/library-tests-and-build.md).\n */\n')
+    ready['src/only_contract.c'] = {'purpose': 'Missing rule fixture', 'contract': 'Fixture',
+                                    'tests': entry['tests']}
+    save()
+    coverage.inventory = lambda _: {'sample.h', 'case.c', 'src/only_contract.c'}
+    rejected(lambda: coverage.check(root))
+    del ready['src/only_contract.c']
+    save()
+    coverage.inventory = lambda _: {'sample.h', 'case.c'}
     rejected(lambda: coverage.check(root, True))
     entry['tests'][0]['case'] = 'it_absent'
     save()
@@ -168,6 +207,26 @@ def coverage_scenario():
     coverage.inventory = lambda _: {'sample.h', 'case.c'}
     code.write_text(code.read_text() + 'typedef no_such_type invalid_header;\n')
     rejected(lambda: coverage.check(root))
+    # A deliberate #error header is independently checked as rejection evidence,
+    # never skipped or treated as an ordinary successfully compiled interface.
+    negative = root / 'tests/fixture/project/rejected.h'
+    negative.parent.mkdir(parents=True)
+    negative.write_text('/** @file\n * @brief Reject forbidden native compilation.\n */\n#error Native compilation is forbidden\n')
+    command = entry['standalone_header_command']
+    contract = {'exit_code': 1, 'diagnostic': '#error Native compilation is forbidden'}
+    coverage.check_header(root, 'tests/fixture/project/rejected.h', command, contract)
+    rejected(lambda: coverage.check_header(root, 'sample.h', command, contract))
+    rejected(lambda: coverage.check_header(root, 'tests/fixture/project/rejected.h', command, []))
+    rejected(lambda: coverage.check_header(root, 'tests/fixture/project/rejected.h', command,
+                                         {'exit_code': True, 'diagnostic': contract['diagnostic']}))
+    rejected(lambda: coverage.check_header(root, 'tests/fixture/project/rejected.h', command,
+                                         {'exit_code': 1, 'diagnostic': 'another failure'}))
+    negative.write_text('/** @file\n * @brief No longer reject compilation.\n */\n')
+    coverage.check_header(root, 'tests/fixture/project/rejected.h', command, None)
+    rejected(lambda: coverage.check_header(root, 'tests/fixture/project/rejected.h', command, contract))
+    negative.write_text('#error Native compilation is forbidden\n')
+    rejected(lambda: coverage.check_header(root, 'tests/fixture/project/rejected.h',
+                                         [sys.executable, '-c', 'raise SystemExit(127)'], contract))
     case.write_text(case.read_text() + '\n')
     rejected(lambda: coverage.check(root))
 

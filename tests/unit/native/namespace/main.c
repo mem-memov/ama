@@ -1,6 +1,18 @@
+/**
+ * @file
+ * @brief Verify complete module-qualified native naming and scoped macro cleanup.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "../../source/common.c"
 #include "native/namespace/namespace.h"
 
+/**
+ * Assert that the component qualifies local names with stable module specific prefixes. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_qualifies_local_names_with_stable_module_specific_prefixes(void) {
     setup_test();
     IdentityRegistry registry;
@@ -41,6 +53,11 @@ static void it_qualifies_local_names_with_stable_module_specific_prefixes(void) 
     destroy_test();
 }
 
+/**
+ * Assert that the component rejects non namespace identities and reports output failure. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_rejects_non_namespace_identities_and_reports_output_failure(void) {
     setup_test();
     IdentityRegistry registry;
@@ -76,11 +93,19 @@ static void it_rejects_non_namespace_identities_and_reports_output_failure(void)
     destroy_test();
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_qualifies_local_names_with_stable_module_specific_prefixes();
     it_rejects_non_namespace_identities_and_reports_output_failure();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

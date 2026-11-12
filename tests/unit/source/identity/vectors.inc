@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Supply independent SHA-256 padding-boundary byte-pattern vectors.
+ *
+ * This C include borrows its enclosing fixture declarations and namespace.
+ * The enclosing assertion suite compiles or compares its complete behavior.
+ */
 /* Independent Python hashlib vectors: bytes(range(length)). */
 static const struct {
     size_t length;

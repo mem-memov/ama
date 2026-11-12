@@ -1,5 +1,17 @@
+/**
+ * @file
+ * @brief Verify exact local identities, per-instance access, return links and host outcomes.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "../common.c"
 
+/**
+ * Assert that the component checks type liveness slot and generation before access. The explicit
+ * fixture setup and observations define this regression; assertion failure keeps its generated
+ * evidence.
+ */
 static void it_checks_type_liveness_slot_and_generation_before_access(void) {
     setup_test();
     AmaHandle handle = {7, 0, 1};
@@ -22,6 +34,11 @@ static void it_checks_type_liveness_slot_and_generation_before_access(void) {
     destroy_test();
 }
 
+/**
+ * Assert that the component retires exhausted generations without wrap or resurrection. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_retires_exhausted_generations_without_wrap_or_resurrection(void) {
     AmaSlotIdentity slot = {7, 0, UINT64_MAX - 1, false, false};
     AmaStatus status = ama_slot_advance_generation(&slot);
@@ -38,6 +55,11 @@ static void it_retires_exhausted_generations_without_wrap_or_resurrection(void) 
     assert(status.code == AMA_BUSY && slot.generation == 1);
 }
 
+/**
+ * Assert that the component refuses busy instances but allows another instance of the same type.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_refuses_busy_instances_but_allows_another_instance_of_the_same_type(void) {
     setup_test();
     const AmaInstanceActivity states[] = {
@@ -58,6 +80,11 @@ static void it_refuses_busy_instances_but_allows_another_instance_of_the_same_ty
     destroy_test();
 }
 
+/**
+ * Assert that the component keeps return connections and resume positions separate. The explicit
+ * fixture setup and observations define this regression; assertion failure keeps its generated
+ * evidence.
+ */
 static void it_keeps_return_connections_and_resume_positions_separate(void) {
     setup_test();
     caller.service.activity = AMA_INSTANCE_WAITING;
@@ -75,6 +102,11 @@ static void it_keeps_return_connections_and_resume_positions_separate(void) {
     destroy_test();
 }
 
+/**
+ * Assert that the component preserves caller refusals and exposes only a value snapshot. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_preserves_caller_refusals_and_exposes_only_a_value_snapshot(void) {
     setup_test();
     AmaStatus status = ama_service_record_refusal(&caller.service,
@@ -98,6 +130,11 @@ static void it_preserves_caller_refusals_and_exposes_only_a_value_snapshot(void)
     destroy_test();
 }
 
+/**
+ * Assert that the component copies only permitted continuation state into fresh service
+ * contexts. The explicit fixture setup and observations define this regression; assertion
+ * failure keeps its generated evidence.
+ */
 static void it_copies_only_permitted_continuation_state_into_fresh_service_contexts(void) {
     setup_test();
     caller.service.activity = AMA_INSTANCE_YIELDED;
@@ -122,6 +159,11 @@ static void it_copies_only_permitted_continuation_state_into_fresh_service_conte
     destroy_test();
 }
 
+/**
+ * Assert that the component requires a saved position for resume and never resumes failed
+ * execution. The explicit fixture setup and observations define this regression; assertion
+ * failure keeps its generated evidence.
+ */
 static void it_requires_a_saved_position_for_resume_and_never_resumes_failed_execution(void) {
     setup_test();
     AmaStatus status = ama_instance_access(&caller, AMA_ACCESS_RESUME);
@@ -140,6 +182,11 @@ static void it_requires_a_saved_position_for_resume_and_never_resumes_failed_exe
     destroy_test();
 }
 
+/**
+ * Assert that the component distinguishes all host outcomes and initialization failure. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_distinguishes_all_host_outcomes_and_initialization_failure(void) {
     AmaHostResult result = {AMA_HOST_COMPLETED, {7, 0, 1}, {0}};
     assert(ama_host_result_is_valid(result));
@@ -159,6 +206,10 @@ static void it_distinguishes_all_host_outcomes_and_initialization_failure(void) 
     assert(!ama_host_result_is_valid(result));
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_checks_type_liveness_slot_and_generation_before_access();
     it_retires_exhausted_generations_without_wrap_or_resurrection();
@@ -170,6 +221,10 @@ void run(void) {
     it_distinguishes_all_host_outcomes_and_initialization_failure();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

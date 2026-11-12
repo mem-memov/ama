@@ -1,5 +1,17 @@
+/**
+ * @file
+ * @brief Check stable-root replacement, address-sensitive native resources and destructive failure cleanup.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "../common.c"
 
+/**
+ * Assert that the component prepares in place without moving native resources and preserves root
+ * identity. The explicit fixture setup and observations define this regression; assertion
+ * failure keeps its generated evidence.
+ */
 static void it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity(void) {
     setup_objects();
     AmaHandle source, destination;
@@ -33,6 +45,11 @@ static void it_prepares_in_place_without_moving_native_resources_and_preserves_r
     destroy_objects();
 }
 
+/**
+ * Assert that the component preserves old destination on every preparation allocation failure.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_preserves_old_destination_on_every_preparation_allocation_failure(void) {
     size_t count = 0;
     for (size_t failure = 0; failure <= count; failure++) {
@@ -66,6 +83,11 @@ static void it_preserves_old_destination_on_every_preparation_allocation_failure
     }
 }
 
+/**
+ * Assert that the component cleans old and prepared resources once when destructive commit
+ * fails. The explicit fixture setup and observations define this regression; assertion failure
+ * keeps its generated evidence.
+ */
 static void it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails(void) {
     for (size_t failure = 1; failure <= 3; failure++) {
         setup_objects();
@@ -88,6 +110,11 @@ static void it_cleans_old_and_prepared_resources_once_when_destructive_commit_fa
     }
 }
 
+/**
+ * Assert that the component preserves destination when the prepared native constructor fails.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_preserves_destination_when_the_prepared_native_constructor_fails(void) {
     setup_objects();
     AmaHandle source, destination;
@@ -108,6 +135,10 @@ static void it_preserves_destination_when_the_prepared_native_constructor_fails(
     destroy_objects();
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity();
     it_preserves_old_destination_on_every_preparation_allocation_failure();
@@ -115,6 +146,10 @@ void run(void) {
     it_preserves_destination_when_the_prepared_native_constructor_fails();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

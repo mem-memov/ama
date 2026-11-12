@@ -1,6 +1,18 @@
+/**
+ * @file
+ * @brief Represent retained bounded size_t index payloads with checked decimal conversion.
+ *
+ * All inputs/views are operation-scoped; generated interfaces establish the native naming context. See the retained library contract and pending scalar roadmap.
+ * @see [Fixture and coverage contract](../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "ama_n_5872038ba96f7054949ef1f548e74751fe5e5e1167ceeb923383318a83c085dc.interface.h"
 #include "ama_n_5872038ba96f7054949ef1f548e74751fe5e5e1167ceeb923383318a83c085dc.begin.h"
 
+/**
+ * Execute this explicit native body synchronously over borrowed parameter/result views. Set
+ * status on every return and retain no view; authored effects are defined by the enclosing
+ * module fixture.
+ */
 AMA_NATIVE_ENTRY void AMA_NATIVE(entry)(AMA_NATIVE(State) *state,
     const ama_t_e1b37561440520e4518a451a38b874c265c14d70b04dafd12318aadd3fd48c8a *parameters, ama_t_c45e2a38927349057a787b832fb3397687446949664134245f019255c5012458 *results,
     const AmaNativeServices *services, AmaStatus *status) {
@@ -8,18 +20,34 @@ AMA_NATIVE_ENTRY void AMA_NATIVE(entry)(AMA_NATIVE(State) *state,
     *status = ama_status_success();
 }
 
+/**
+ * Initialize one fresh native State with its success default; no prior live resource may occupy
+ * destination.
+ */
 AmaStatus AMA_NATIVE(initialize)(AMA_NATIVE(State) *destination) {
     *destination = (AMA_NATIVE(State)){0};
     return ama_status_success();
 }
+/**
+ * Release only successfully constructed native State. Retained scalar modules own no resource;
+ * fixture-specific injected failures are returned after cleanup.
+ */
 AmaStatus AMA_NATIVE(destroy)(AMA_NATIVE(State) *state) {
     (void)state;
     return ama_status_success();
 }
+/**
+ * Copy source native data into fresh destination storage without copying runtime identity or
+ * transient execution links; source stays unchanged.
+ */
 AmaStatus AMA_NATIVE(clone)(AMA_NATIVE(State) *destination, const AMA_NATIVE(State) *source) {
     *destination = *source;
     return ama_status_success();
 }
+/**
+ * Decode bounded literal bytes with checked arithmetic before installing State. Reject
+ * malformed/range values and never depend on a terminator.
+ */
 AmaStatus AMA_NATIVE(literal)(AMA_NATIVE(State) *destination, AmaByteView literal) {
     if (literal.length == 0) { return ama_status_make(AMA_INVALID_LITERAL, NULL, 0); }
     size_t number = 0;
@@ -32,10 +60,18 @@ AmaStatus AMA_NATIVE(literal)(AMA_NATIVE(State) *destination, AmaByteView litera
     destination->value = number;
     return ama_status_success();
 }
+/**
+ * Read native payload and publish its explicit condition result without mutating State or
+ * retaining the output pointer.
+ */
 AmaStatus AMA_NATIVE(condition)(const AMA_NATIVE(State) *state, bool *result) {
     *result = state->value != 0;
     return ama_status_success();
 }
+/**
+ * Read the retained exact nonnegative host-size value through the explicit index protocol; no
+ * compiler assumption about payload layout is implied.
+ */
 AmaStatus AMA_NATIVE(index)(const AMA_NATIVE(State) *state, size_t *result) {
     *result = state->value;
     return ama_status_success();

@@ -1,6 +1,18 @@
+/**
+ * @file
+ * @brief Check structured diagnostic source/related records before rendering.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "../common.c"
 #include "diagnostics/adapters/adapters.h"
 
+/**
+ * Assert that the component keeps primary cause expected help and multiple related spans
+ * separate. The explicit fixture setup and observations define this regression; assertion
+ * failure keeps its generated evidence.
+ */
 static void it_keeps_primary_cause_expected_help_and_multiple_related_spans_separate(void) {
     setup_test();
     DiagnosticRelated notes[] = {
@@ -17,6 +29,11 @@ static void it_keeps_primary_cause_expected_help_and_multiple_related_spans_sepa
     destroy_test();
 }
 
+/**
+ * Assert that the component rejects invalid spans mismatched paths and missing related arrays.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_rejects_invalid_spans_mismatched_paths_and_missing_related_arrays(void) {
     setup_test();
     Diagnostic diagnostic = {0};
@@ -33,6 +50,11 @@ static void it_rejects_invalid_spans_mismatched_paths_and_missing_related_arrays
     destroy_test();
 }
 
+/**
+ * Assert that the component adapts every source failure without allocating messages. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_adapts_every_source_failure_without_allocating_messages(void) {
     setup_test();
     for (int status = MODULE_MISSING; status <= MODULE_INVALID_UTF8; status++) {
@@ -57,6 +79,11 @@ static void it_adapts_every_source_failure_without_allocating_messages(void) {
     destroy_test();
 }
 
+/**
+ * Assert that the component retains both original names for an identity collision. The explicit
+ * fixture setup and observations define this regression; assertion failure keeps its generated
+ * evidence.
+ */
 static void it_retains_both_original_names_for_an_identity_collision(void) {
     setup_test();
     IdentityName previous = {0};
@@ -73,6 +100,10 @@ static void it_retains_both_original_names_for_an_identity_collision(void) {
     destroy_test();
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_keeps_primary_cause_expected_help_and_multiple_related_spans_separate();
     it_rejects_invalid_spans_mismatched_paths_and_missing_related_arrays();
@@ -80,6 +111,10 @@ void run(void) {
     it_retains_both_original_names_for_an_identity_collision();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

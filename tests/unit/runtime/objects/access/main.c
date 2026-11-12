@@ -1,5 +1,16 @@
+/**
+ * @file
+ * @brief Check complete-tree availability, exact copy boundaries and protected failure cleanup.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "../common.c"
 
+/**
+ * Resolve and assert the exact fixture handle cell through the real nominal pool lookup; borrow
+ * storage only while its object remains alive.
+ */
 static AmaPoolCell *lookup(AmaHandle handle) {
     AmaObjectType *type = ama_world_type(&world, handle.type_id);
     AmaPoolCell *cell = NULL;
@@ -8,6 +19,11 @@ static AmaPoolCell *lookup(AmaHandle handle) {
     return cell;
 }
 
+/**
+ * Assert that the component treats runtime identity self assignment as a noop but rejects self
+ * continuation copy. The explicit fixture setup and observations define this regression;
+ * assertion failure keeps its generated evidence.
+ */
 static void it_treats_runtime_identity_self_assignment_as_a_noop_but_rejects_self_continuation_copy(void) {
     setup_objects();
     AmaHandle root;
@@ -31,6 +47,11 @@ static void it_treats_runtime_identity_self_assignment_as_a_noop_but_rejects_sel
     destroy_objects();
 }
 
+/**
+ * Assert that the component rejects ancestor descendant copy in both directions before native
+ * hooks. The explicit fixture setup and observations define this regression; assertion failure
+ * keeps its generated evidence.
+ */
 static void it_rejects_ancestor_descendant_copy_in_both_directions_before_native_hooks(void) {
     setup_objects();
     AmaFieldRecipe fields[6] = {0};
@@ -60,6 +81,11 @@ static void it_rejects_ancestor_descendant_copy_in_both_directions_before_native
     destroy_objects();
 }
 
+/**
+ * Assert that the component preflights every source and destination node before hooks or
+ * destruction. The explicit fixture setup and observations define this regression; assertion
+ * failure keeps its generated evidence.
+ */
 static void it_preflights_every_source_and_destination_node_before_hooks_or_destruction(void) {
     for (size_t side = 0; side < 2; side++) {
         for (size_t node = 0; node < 9; node++) {
@@ -97,6 +123,11 @@ static void it_preflights_every_source_and_destination_node_before_hooks_or_dest
     }
 }
 
+/**
+ * Assert that the component finalizes a failed nested replacement and active links without
+ * emergency allocation. The explicit fixture setup and observations define this regression;
+ * assertion failure keeps its generated evidence.
+ */
 static void it_finalizes_a_failed_nested_replacement_and_active_links_without_emergency_allocation(void) {
     setup_objects();
     AmaHandle parent, source;
@@ -123,6 +154,11 @@ static void it_finalizes_a_failed_nested_replacement_and_active_links_without_em
     destroy_objects();
 }
 
+/**
+ * Assert that the component leaves a delete unchanged on every preflight allocation failure. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_leaves_a_delete_unchanged_on_every_preflight_allocation_failure(void) {
     setup_objects();
     AmaHandle root;
@@ -147,6 +183,11 @@ static void it_leaves_a_delete_unchanged_on_every_preflight_allocation_failure(v
     }
 }
 
+/**
+ * Assert that the component refuses native reentry while the complete source tree is protected.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_refuses_native_reentry_while_the_complete_source_tree_is_protected(void) {
     setup_objects();
     AmaHandle source, copy;
@@ -163,6 +204,11 @@ static void it_refuses_native_reentry_while_the_complete_source_tree_is_protecte
     destroy_objects();
 }
 
+/**
+ * Assert that the component reuses its own authorized source protection across nested
+ * initializer boundaries. The explicit fixture setup and observations define this regression;
+ * assertion failure keeps its generated evidence.
+ */
 static void it_reuses_its_own_authorized_source_protection_across_nested_initializer_boundaries(void) {
     setup_objects();
     AmaHandle source, result;
@@ -188,6 +234,11 @@ static void it_reuses_its_own_authorized_source_protection_across_nested_initial
     destroy_objects();
 }
 
+/**
+ * Assert that the component checks owned list element capability even when the list is empty.
+ * The explicit fixture setup and observations define this regression; assertion failure keeps
+ * its generated evidence.
+ */
 static void it_checks_owned_list_element_capability_even_when_the_list_is_empty(void) {
     setup_objects();
     AmaObjectType list_type;
@@ -210,6 +261,11 @@ static void it_checks_owned_list_element_capability_even_when_the_list_is_empty(
     destroy_objects();
 }
 
+/**
+ * Assert that the component validates empty stale and wrong type copy sources before capability
+ * checks. The explicit fixture setup and observations define this regression; assertion failure
+ * keeps its generated evidence.
+ */
 static void it_validates_empty_stale_and_wrong_type_copy_sources_before_capability_checks(void) {
     setup_objects();
     AmaHandle source, copy = {0};
@@ -227,6 +283,10 @@ static void it_validates_empty_stale_and_wrong_type_copy_sources_before_capabili
     destroy_objects();
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_treats_runtime_identity_self_assignment_as_a_noop_but_rejects_self_continuation_copy();
     it_rejects_ancestor_descendant_copy_in_both_directions_before_native_hooks();
@@ -239,6 +299,10 @@ void run(void) {
     it_validates_empty_stale_and_wrong_type_copy_sources_before_capability_checks();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

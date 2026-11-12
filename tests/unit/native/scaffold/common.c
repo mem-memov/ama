@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Own authoring frontend/scaffold fixtures and independently compile emitted interfaces.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #ifndef AMA_SCAFFOLD_TEST_COMMON
 #define AMA_SCAFFOLD_TEST_COMMON
 
@@ -9,6 +16,10 @@
 static NativeScaffold scaffold;
 static const char *contract = "+ initialize\n- destroy\n| literal\n= clone\n? condition\n[] index\n";
 
+/**
+ * Write the explicit native module and companion contract fixtures for this semantic/authoring
+ * scenario.
+ */
 static inline void prepare_native(void) {
     directory("generated/project");
     file("generated/project/main", "@<\n输入\n.value\nlink&\n.node\nitems[]\n.value\nlinks&[]\n.node\n@>\n输出\n.value\n@C\n");
@@ -19,6 +30,10 @@ static inline void prepare_native(void) {
     file("generated/project/node", "@!\nnext&\n.node\nvalue\n.value\n");
 }
 
+/**
+ * Initialize frontend authoring and scaffold owners in borrow order using the explicit proposed
+ * contract.
+ */
 static void begin_scaffold(void) {
     setup_frontend();
     ModuleRoot root = {"generated/project", NULL, 0};
@@ -27,16 +42,28 @@ static void begin_scaffold(void) {
     native_scaffold_init(&scaffold, &frontend, sources.allocator);
 }
 
+/**
+ * Destroy scaffold artifacts/identity storage before frontend sources and assert counted
+ * allocations are gone.
+ */
 static void end_scaffold(void) {
     native_scaffold_destroy(&scaffold);
     destroy_frontend();
 }
 
+/**
+ * Invoke production authoring generation with explicit create/overwrite/output/SDK options;
+ * publication and independent C checks remain separate observations.
+ */
 static bool build_scaffold(bool overwrite) {
     return native_scaffold_build(&scaffold, (ScaffoldOptions){
         .directory = "generated/native", .sdk = TEST_SDK, .compiler = "gcc", .create = true, .overwrite = overwrite});
 }
 
+/**
+ * Compile the emitted declaration/interface in an independent strict C process and return its
+ * normal exit for assertions.
+ */
 static inline int compile_file(const char *path) {
     pid_t process = fork();
     assert(process >= 0);

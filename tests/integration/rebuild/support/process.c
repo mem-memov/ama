@@ -1,8 +1,19 @@
+/**
+ * @file
+ * @brief Execute checked build subprocesses and observe resulting test programs.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #ifndef AMA_TEST_BUILD_PROCESS_C
 #define AMA_TEST_BUILD_PROCESS_C
 
 #include <fcntl.h>
 
+/**
+ * Wait for the exact child through EINTR, assert normal exit and return its actual code; signals
+ * are not silently treated as expected compile failure.
+ */
 static int wait_for_process(pid_t process) {
     assert(process >= 0);
     int status;
@@ -14,6 +25,10 @@ static int wait_for_process(pid_t process) {
     return WEXITSTATUS(status);
 }
 
+/**
+ * Child-only setup: append build logs, clear inherited Make flags, install exact compiler/trace
+ * variables and exec Make; failure exits 127.
+ */
 static void execute_build(char *const arguments[]) {
     int descriptor = open("generated/make.log", O_WRONLY | O_CREAT | O_APPEND, 0600);
     if (descriptor < 0 || dup2(descriptor, STDOUT_FILENO) < 0 ||
@@ -30,6 +45,10 @@ static void execute_build(char *const arguments[]) {
     _exit(127);
 }
 
+/**
+ * Compose exact Make arguments for one isolated target/override, run the child and require
+ * successful completion; recorded invocations remain observable separately.
+ */
 static void run_build(const char *directory, const char *target, const char *override) {
     char compiler_option[4096];
     int length = snprintf(compiler_option, sizeof(compiler_option),
@@ -48,6 +67,10 @@ static void run_build(const char *directory, const char *target, const char *ove
     assert(result == EXIT_SUCCESS);
 }
 
+/**
+ * Run the isolated built program and require its exact normal exit value, proving the changed
+ * dependency affected linked behavior.
+ */
 static void expect_program_value(int expected) {
     pid_t process = fork();
     if (process == 0) {

@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Own copied build rules and projects for isolated incremental-build scenarios.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../docs/implementation/library-tests-and-build.md)
+ */
 #ifndef AMA_TEST_BUILD_COMMON_C
 #define AMA_TEST_BUILD_COMMON_C
 
@@ -16,6 +23,10 @@ static char trace_path[4096];
 #include "support/process.c"
 #include "support/trace.c"
 
+/**
+ * Copy the maintained compiler/test Make rules into isolated generated storage before exercising
+ * incremental invalidation.
+ */
 static void copy_build_rules(void) {
     copy_file(TEST_ROOT "/Makefile", "generated/project/Makefile");
     copy_file(TEST_ROOT "/make/sources.mk", "generated/project/make/sources.mk");
@@ -23,6 +34,11 @@ static void copy_build_rules(void) {
     copy_file(TEST_ROOT "/tests/leaf.mk", "generated/project/tests/leaf.mk");
 }
 
+/**
+ * Initialize this leaf fixture before its assertions; the enclosing file contract identifies
+ * owned streams, source storage or model state. Setup failure is an assertion, never an accepted
+ * product failure.
+ */
 static void setup_test(void) {
     char *directory = getcwd(working_directory, sizeof(working_directory));
     assert(directory != NULL);
@@ -42,6 +58,10 @@ static void setup_test(void) {
     reset_trace();
 }
 
+/**
+ * Copy the explicitly enumerated fixture inputs into test-owned generated storage; all path
+ * construction and copying is checked.
+ */
 static void copy_fixture(void) {
     const char *files[] = {
         "src/main.c", "src/nested/value.c", "src/nested/value.h",
@@ -59,6 +79,10 @@ static void copy_fixture(void) {
     }
 }
 
+/**
+ * Create the isolated build fixture and its exact compiler tracing environment; repository build
+ * inputs remain untouched.
+ */
 static void prepare_build(const char *directory) {
     setup_test();
     copy_fixture();
@@ -66,6 +90,10 @@ static void prepare_build(const char *directory) {
     reset_trace();
 }
 
+/**
+ * Write this scenario's explicit source/native fixtures in test-owned storage before loading or
+ * compiling them; the caller controls their lifetime and expected result.
+ */
 static void prepare_project(void) {
     setup_test();
     copy_fixture();
@@ -73,6 +101,10 @@ static void prepare_project(void) {
     reset_trace();
 }
 
+/**
+ * Release or reset this leaf fixture after observations, in reverse borrow order. Counted owners
+ * assert zero remaining live allocations; assertions remain enabled by the leaf harness.
+ */
 static void destroy_test(void) {
     remove_tree("generated/project");
 }

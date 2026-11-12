@@ -468,13 +468,25 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   gained exact failing-field diagnostic checks (the previously unused shared
   checker had broken `-Werror`). Doxygen checked 512 maintained file pages and
   canonical destinations; 396 ready inputs and 279 explicit T151 debts remain.
-- [ ] **T151 — Document library, tests and build support.** Needs: T133. Cover
+- [x] **T151 — Document library, tests and build support.** Needs: T133. Cover
   remaining native library sources/headers, test executables/shared fixtures,
   ABI/module inputs and Make infrastructure. Explain public contracts, fixture
   purpose and build/test responsibilities using syntax valid for each format.
   Keep malformed byte-exact cases unchanged and document their exact paths
   externally. Reconcile direct/native/process consumers and any remaining
   per-file gaps, then generate and validate the complete retained-code reference.
+  Evidence: [library/fixture/build contract](docs/implementation/library-tests-and-build.md),
+  purpose/type/helper comments and named actual consumers close all 279 remaining
+  records. All 132 changed C/header/include inputs retain identical compiler-lexed
+  code; 47 declarations/expected observations retain identical bytes and have
+  exact path-specific explanations. Headers compile with their documented context;
+  the deliberate check-only #error header has independently verified rejection.
+  Fixed inventory retention after debt closure and added exact narrative-page
+  mapping without weakening mandatory compiler rule links. Strict root tests
+  passed all 69 leaves; focused strict documentation regressions cover each new
+  checker boundary. Doxygen validates 512 maintained file pages and 224 canonical
+  page/rule destinations. All 675 maintained inputs are ready and debt is empty;
+  remaining whole-reference diagnostics/quality checks belong to T134.
 - [ ] **T134 — Complete documenting comments for all retained code.** Needs:
   T145–T151. Close the initial inventory's documentation and per-file test gaps,
   including unchanged retained files, headers, native companions and test support.

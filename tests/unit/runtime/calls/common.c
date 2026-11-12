@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Compose caller/callee fixtures with supplied inputs and explicit terminal teardown.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #ifndef AMA_RUNTIME_CALLS_COMMON
 #define AMA_RUNTIME_CALLS_COMMON
 #include "../objects/common.c"
@@ -14,6 +21,10 @@ static const AmaProgramSource default_source = {.kind = AMA_SOURCE_LOCAL, .acces
 static AmaProgramInput supplied;
 static AmaProgramInvocation invocation;
 
+/**
+ * Create explicit caller/callee objects, program field roles and supplied invocation input; mark
+ * only the fixture caller Running.
+ */
 static void setup_call(void) {
     setup_objects();
     for (size_t index = 0; index < 2; index++) { leaf_fields[index] = (AmaProgramField){.role = AMA_PROGRAM_STATE}; }
@@ -40,6 +51,10 @@ static void setup_call(void) {
     invocation = (AmaProgramInvocation){.target = &target_access, .mode = AMA_ACCESS_ENTRY, .inputs = &supplied, .input_count = 1};
 }
 
+/**
+ * Force terminal cleanup of the fixture target and program, then assert all counted allocations
+ * have been released.
+ */
 static void finish_call(void) {
     world.failed = true;
     AmaStatus status = ama_object_destroy(&world, target);

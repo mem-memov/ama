@@ -1,6 +1,17 @@
+/**
+ * @file
+ * @brief Validate explicit ABI companion protocols and native type obligations.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include <unistd.h>
 #include "../common.c"
 
+/**
+ * Write the explicit native module and companion contract fixtures for this semantic/authoring
+ * scenario.
+ */
 static void prepare_native(unsigned mask) {
     directory("generated/native");
     file("generated/native/main", "@!\nchild\n.value\n");
@@ -16,6 +27,11 @@ static void prepare_native(unsigned mask) {
     }
 }
 
+/**
+ * Assert that the component checks every combination of missing required companions. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_checks_every_combination_of_missing_required_companions(void) {
     for (unsigned mask = 0; mask < 8; mask++) {
         prepare_native(mask);
@@ -34,6 +50,11 @@ static void it_checks_every_combination_of_missing_required_companions(void) {
     }
 }
 
+/**
+ * Assert that the component parses required abi and keeps helper names module local. The
+ * explicit fixture setup and observations define this regression; assertion failure keeps its
+ * generated evidence.
+ */
 static void it_parses_required_abi_and_keeps_helper_names_module_local(void) {
     prepare_native(7);
     file("generated/native/main", "@<\nchild\n.value\n@C\n");
@@ -63,6 +84,11 @@ static void it_parses_required_abi_and_keeps_helper_names_module_local(void) {
     destroy_semantic();
 }
 
+/**
+ * Assert that the component cleans every native contract allocation failure. The explicit
+ * fixture setup and observations define this regression; assertion failure keeps its generated
+ * evidence.
+ */
 static void it_cleans_every_native_contract_allocation_failure(void) {
     prepare_native(7);
     setup_semantic();
@@ -84,12 +110,20 @@ static void it_cleans_every_native_contract_allocation_failure(void) {
     }
 }
 
+/**
+ * Run every explicitly selected assertion case in this executable; a failed assertion preserves
+ * leaf generated output for diagnosis.
+ */
 void run(void) {
     it_checks_every_combination_of_missing_required_companions();
     it_parses_required_abi_and_keeps_helper_names_module_local();
     it_cleans_every_native_contract_allocation_failure();
 }
 
+/**
+ * Enter the explicit test run and return success only if all assertions complete; the parent
+ * harness observes this process status.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

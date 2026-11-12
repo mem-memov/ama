@@ -1,10 +1,20 @@
+/**
+ * @file
+ * @brief Own counted address-sensitive native resources and typed object tree fixtures.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #ifndef AMA_OBJECT_TEST_COMMON
 #define AMA_OBJECT_TEST_COMMON
 #include "../../source/common.c"
 #include "runtime/objects/objects.h"
 
+/** Own one counted resource and remember its own final address so accidental native payload relocation is detectable. */
 typedef struct { void *resource; size_t number; void *address; } NativeValue;
+/** Declared peer/root reference fields plus owned native resource; references never acquire lifecycle ownership. */
 typedef struct { AmaHandle peer; AmaHandle root; NativeValue native; } LeafValue;
+/** Declared owned scalar/list and reference fields plus native resource, exercising both internal and external clone-map boundaries. */
 typedef struct {
     AmaHandle left;
     AmaHandle right;
@@ -22,6 +32,10 @@ static size_t destruction_order[100];
 static AmaHandle protected_source;
 static size_t reentry_attempts;
 
+/**
+ * Allocate a counted address-sensitive resource, record construction order and clean its own
+ * deliberately failed constructor prefix.
+ */
 static AmaStatus initialize_payload(void *address) {
     NativeValue *value = address;
     value->address = value;
@@ -36,12 +50,20 @@ static AmaStatus initialize_payload(void *address) {
     return ama_status_success();
 }
 
+/**
+ * Use one fixture constructor and install literal data only after success; this fixture hook is
+ * not a language literal interpretation rule.
+ */
 static AmaStatus literal_payload(void *address, AmaByteView literal) {
     AmaStatus status = initialize_payload(address);
     if (status.code == AMA_OK && literal.length != 0) { ((NativeValue *)address)->number = literal.data[0]; }
     return status;
 }
 
+/**
+ * Attempt selected forbidden reentry to prove complete source protection, then allocate
+ * independent resource state while preserving source numeric data.
+ */
 static AmaStatus clone_payload(void *address, const void *source) {
     if (protected_source.generation != 0) {
         AmaStatus refused = ama_object_destroy(&world, protected_source);
@@ -68,6 +90,10 @@ static AmaStatus clone_payload(void *address, const void *source) {
     return status;
 }
 
+/**
+ * Assert resource/self-address validity, record exact destruction order, release once and only
+ * then return the selected injected cleanup failure.
+ */
 static AmaStatus destroy_payload(void *address) {
     NativeValue *value = address;
     assert(value->resource != NULL && value->address == value && destroyed < 100);
@@ -77,12 +103,20 @@ static AmaStatus destroy_payload(void *address) {
     return destroyed == failed_destructor ? ama_status_make(AMA_IO_FAILURE, NULL, 0) : ama_status_success();
 }
 
+/**
+ * Count synchronous non-success reports independently from returned primary status; expose no
+ * runtime reentry capability.
+ */
 static void report_status(void *context, AmaStatus status) {
     (void)context;
     assert(status.code != AMA_OK);
     reports++;
 }
 
+/**
+ * Initialize counted allocation, typed leaf/root descriptors and explicit native hooks for
+ * ownership/copy/failure scenarios.
+ */
 static void setup_objects(void) {
     setup_test();
     constructed = cloned = destroyed = failed_constructor = failed_destructor = reports = 0;
@@ -110,6 +144,10 @@ static void setup_objects(void) {
     world = (AmaWorld){.types = types, .type_count = 2, .allocator = sources.allocator, .report = report_status};
 }
 
+/**
+ * Require zero published objects, dispose finalized pools and verify the counted source
+ * allocator has no live allocations.
+ */
 static inline void destroy_objects(void) {
     assert(leaf_type.pool.live_count == 0 && root_type.pool.live_count == 0);
     ama_pool_dispose(&leaf_type.pool);
@@ -117,6 +155,10 @@ static inline void destroy_objects(void) {
     destroy_test();
 }
 
+/**
+ * Resolve the exact nominal object handle and borrow its active payload for assertions; callers
+ * keep the owner alive.
+ */
 static inline void *object_payload(AmaHandle handle) {
     AmaObjectType *type = ama_world_type(&world, handle.type_id);
     AmaPoolCell *cell = NULL;

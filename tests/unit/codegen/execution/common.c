@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Create native companions, compile generated projects and observe exact execution output/diagnostics.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ */
 #ifndef AMA_CODEGEN_EXECUTION_COMMON
 #define AMA_CODEGEN_EXECUTION_COMMON
 #include "../../compiler/common.c"
@@ -13,6 +20,10 @@ static bool wrong_entry_result;
 static const char *forced_header;
 static const char *host_launcher;
 
+/**
+ * Create the explicit native interface/body/ABI companion set used by this leaf. The caller
+ * supplies its known contract; no native capability is inferred from a C name.
+ */
 static void native_fixture(const char *name, const char *interface) {
     char path[160];
     int length = snprintf(path, sizeof(path), "generated/project/%s", name);
@@ -29,6 +40,10 @@ static void native_fixture(const char *name, const char *interface) {
     file(path, "+ initialize\n- destroy\n| literal\n= clone\n? condition\n[] index\n");
 }
 
+/**
+ * Emit the scenario-specific native body using the generated typed interface and exact naming
+ * context; keep body effects explicit for execution assertions.
+ */
 static void executable_native(const ScaffoldType *type) {
     FILE *body = fopen(type->body_path, "wb");
     assert(body != NULL);
@@ -84,6 +99,10 @@ static void executable_native(const ScaffoldType *type) {
     assert(emitted && closed == 0);
 }
 
+/**
+ * Write this scenario's explicit source/native fixtures in test-owned storage before loading or
+ * compiling them; the caller controls their lifetime and expected result.
+ */
 static void prepare_project(const char *main_source) {
     directory("generated/project");
     file("generated/project/main", main_source);
@@ -124,6 +143,10 @@ static void prepare_project(const char *main_source) {
     }
 }
 
+/**
+ * Load/check the generated fixture, emit/compile/verify/publish it, execute the resulting
+ * process and compare exact stdout and expected success. Destroy scaffold before source owners.
+ */
 static void execute_project(const char *main_source, const char *expected, bool success) {
     prepare_project(main_source);
     bool compiled = project_codegen_compile(&assembly, stderr);
@@ -161,6 +184,10 @@ static void execute_project(const char *main_source, const char *expected, bool 
     destroy_frontend();
 }
 
+/**
+ * Observe the real structured or captured runtime diagnostic using this fixture contract.
+ * Require the expected bytes/text and complete IO rather than relying on exit failure alone.
+ */
 static void expect_diagnostic(const char *part) {
     FILE *errors = fopen("generated/errors.txt", "rb");
     assert(errors != NULL);

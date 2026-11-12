@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Compile native probes, inspect surviving entries and run only accepted binaries.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../docs/implementation/library-tests-and-build.md)
+ */
 #ifndef AMA_TEST_NATIVE_COMMON_C
 #define AMA_TEST_NATIVE_COMMON_C
 
@@ -11,6 +18,10 @@
 #include <unistd.h>
 #include "native/toolchain/symbols.h"
 
+/**
+ * Run one exact native tool argv under the fixture output/diagnostic policy and return the
+ * observed status for positive or negative assertions.
+ */
 static int run_tool(char *const arguments[], const char *output) {
     pid_t process = fork();
     assert(process >= 0);
@@ -34,6 +45,10 @@ static int run_tool(char *const arguments[], const char *output) {
     return WEXITSTATUS(status);
 }
 
+/**
+ * Compile the selected maintained C probe using the supported toolchain flags into test-owned
+ * object storage; assert or return the expected outcome at its caller.
+ */
 static int compile_fixture(const char *source, const char *optimization) {
     char *arguments[] = {
         TEST_REAL_COMPILER, "-std=c11", "-pedantic-errors", "-Wall", "-Wextra", "-Werror",
@@ -45,6 +60,10 @@ static int compile_fixture(const char *source, const char *optimization) {
     return run_tool(arguments, "generated/compiler.log");
 }
 
+/**
+ * Inspect the actual probe object symbol listing and classify the exact native entry using the
+ * production checker, not source spelling or execution alone.
+ */
 static AmaSymbolCheck inspect_entry(void) {
     char *arguments[] = {"nm", "--format=posix", "generated/module.o", NULL};
     int result = run_tool(arguments, "generated/symbols.txt");
@@ -61,6 +80,10 @@ static AmaSymbolCheck inspect_entry(void) {
     return ama_check_native_symbols((AmaByteView) {bytes, length}, &entry, 1);
 }
 
+/**
+ * Link and run the accepted probe only after object inspection; verify normal process success so
+ * surviving-entry rejection cannot be bypassed.
+ */
 static void link_and_execute(void) {
     char *link[] = {TEST_REAL_COMPILER, "-fno-lto", "generated/module.o", "-o", "generated/program", NULL};
     int result = run_tool(link, "generated/link.log");

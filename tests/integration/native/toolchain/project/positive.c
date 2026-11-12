@@ -1,10 +1,25 @@
+/**
+ * @file
+ * @brief Demonstrate inline native entry, permitted ordinary C recursion and label-based caller return.
+ *
+ * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
+ * @see [Fixture and coverage contract](../../../../../docs/implementation/library-tests-and-build.md)
+ */
 #include "types.h"
 #include <stdlib.h>
 
+/**
+ * Demonstrate ordinary recursive C helper calls remain permitted inside an inlined native entry;
+ * this is not recursive Ama dispatch.
+ */
 __attribute__((noinline, noipa)) size_t allowed_helper(size_t value) {
     return value == 0 ? 0 : value + allowed_helper(value - 1);
 }
 
+/**
+ * Implement the selected native toolchain probe body; the file contract states whether
+ * successful inlining or deliberate rejection is expected.
+ */
 AMA_NATIVE_ENTRY void ama_fixture_native_entry(Payload *state, const Inputs *parameters,
     Outputs *results, const AmaNativeServices *services, AmaStatus *status) {
     state->total += allowed_helper(*parameters->value);
@@ -13,6 +28,7 @@ AMA_NATIVE_ENTRY void ama_fixture_native_entry(Payload *state, const Inputs *par
     (void) services;
 }
 
+/** Finite probe instance storage with explicit busy/caller/return metadata; this handwritten acceptance model is not the production execution-context implementation. */
 typedef struct {
     Payload payload;
     size_t input, output, caller, return_selector;
@@ -25,6 +41,10 @@ static struct {
     AmaStatus status;
 } execution;
 
+/**
+ * Run the finite handwritten label-dispatch probe, invoke the inline native entry and verify
+ * caller output/busy state before releasing its instance array.
+ */
 int main(void) {
     execution.instances = calloc(2, sizeof(Instance));
     if (execution.instances == NULL) {
