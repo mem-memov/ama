@@ -1,6 +1,10 @@
 # Native ABI implementation contract
 
-This fixes engineering representations for section 2 of [TODO.md](../../TODO.md),
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
+This records tested native engineering representations; [TODO.md](../../TODO.md) tracks current conformance,
 under CABI-01 through CABI-05, PROTO-01 through PROTO-11, LIFE-01 through LIFE-05,
 STACK-01 through STACK-04 and ERROR-03 through ERROR-06. It does not change
 [the specification](../../spec/README.md) or claim frontend support.
@@ -115,5 +119,5 @@ Native violations remain unsupported native code under CABI-05.
 
 Run `make -C tests/unit/native/abi/layout`. Independent headers compile as C11;
 byte-length and aligned-storage tests check the selected representation. Subsequent
-section-2 tasks extend this contract with status, real hooks, lifecycle and
+native component tests compose this representation with status, real hooks, lifecycle and
 control-flow evidence. Nothing here is a completed Ama backend claim.

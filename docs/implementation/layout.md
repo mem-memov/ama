@@ -1,5 +1,9 @@
 # Physical layout and literal boundaries
 
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
 Boundary: `src/lexer/layout/` and `src/lexer/literals/`, implementing
 SYN-01/02/04, LIT-01/02 and CALL-07 physical input boundaries.
 `SourceLayout` owns line nodes in an arena; source ranges borrow their manager.

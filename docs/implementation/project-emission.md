@@ -1,5 +1,9 @@
 # One project C assembly
 
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
 `ama --emit ROOT .module --out DIR --sdk /path/to/ama/src` uses the same strict
 frontend and typed plan as `--check`. It generates C without executing constructors
 or invoking the C compiler. Add `--compile` to compile, verify and publish
@@ -68,7 +72,8 @@ non-inlined entry. [CLI tests](../../tests/integration/execution/main.c) execute
 published binary and protect previous/unowned files on failure. [Check-only tests](../../tests/integration/check/main.c)
 prove that `--check` and emission without `--compile` never invoke native C.
 
-Suspension/resume execution and list action dispatch remain sections 9 and 10;
-this stage supports their existing acquisition checks and rejects unsupported
-execution explicitly. Whole-list value copying and indexed result routing already
-use the typed lifecycle runtime.
+[Suspension and resume](continuations.md) execute in the tested old-source subset.
+Typed list services and traversal remain T075–T084; whole-list execution and
+retained results fail before emission. Whole-list value copying and indexed
+result routing use the retained lifecycle runtime. Context-local assembly and
+current result/control trees remain separate open work in TODO.

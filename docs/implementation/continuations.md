@@ -1,5 +1,9 @@
 # Suspension and continuation contracts
 
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
 ## Control boundary
 
 `src/codegen/control/emit.c` lowers a yield into a saved selector and a runtime

@@ -1,6 +1,10 @@
 # Semantic analysis and resolved plans
 
-This implements section 5 of [TODO](../../TODO.md) incrementally, under
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
+This describes the semantic subset audited in T001; [TODO](../../TODO.md) tracks adaptation under
 NAME-04, TYPE-01/TYPE-05 and COMP-01/COMP-02 of the
 [specification](../../spec/README.md). The public boundary is
 [semantic.h](../../src/semantic/semantic.h). Passing an earlier stage never
@@ -105,18 +109,14 @@ Stored-result reads expose results; namespace reads expose constants; neither
 makes body/private fields public. Synthetic output values are typed records,
 not fabricated parser nodes or C text.
 
-Whole-list calls use LIST-04's four-input/three-output positional schema.
-`SemanticLibraries` supplies explicit full module paths for action, index,
-condition and outcome roles; paths are copied into the semantic owner. Required
-role types must already belong to the loaded closure. There are no hard-coded
-English module identities or guessed library protocols. The caller/bootstrap must
-load its configured library types along with source requirements; publishing the
-standard library and wiring its configuration into the CLI are subsequent tasks.
-Missing/invalid mappings fail semantic checking before any emitter. Owning-list
-input three requires clone capability whenever supplied, even if unused or empty;
-a placeholder permits default creation of a noncopyable element. Reference-list
-input three copies handles. Opaque native constant purity/resource restrictions
-remain native-library obligations, never guessed from C helper names or payloads.
+Whole-list execution and retained-result bindings are rejected before lowering.
+The current semantic API accepts no configurable list role types. The target
+[LIST-04 interface](../../spec/language/lists.md#list-04) gives each intrinsic
+method its own typed inputs/results; T075–T084 implement those interfaces,
+method-specific capabilities and service-frame lifetimes. Existing indexed
+scalar access and whole-list value transfers remain separate boundaries.
+Opaque native constant purity/resource restrictions remain native-library
+obligations, never guessed from C helper names or payloads.
 
 The invariants of each stage compose: identity links are complete before any use
 check; every resolved access names one symbol and recursively well-typed index;

@@ -1,6 +1,10 @@
 # Native lifecycle bookkeeping and failure model
 
-This validates section 2's lifecycle task under LIFE-01 through LIFE-03 and
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
+This records the tested lifecycle component under LIFE-01 through LIFE-03 and
 PROTO-08 through PROTO-10. `src/runtime/lifecycle/` implements the reusable ledger
 and primary-error combination; the independently runnable model composes it with
 real native allocations. Generated ownership layouts, replacement commit and

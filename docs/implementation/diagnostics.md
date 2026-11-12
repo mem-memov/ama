@@ -1,5 +1,9 @@
 # Structured compiler diagnostics
 
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
 Boundary: `src/diagnostics/record/diagnostic.h`, `record/` and `adapters/`.
 Implements COMP-04 source/type context and preserves NAME-03 original names.
 It does not introduce runtime exceptions or a language parser.
@@ -37,4 +41,4 @@ already recorded by a source component require no additional allocation to adapt
 Evidence: `make -C tests/unit/diagnostics/record` passed C11/pedantic/Werror.
 Tests exercise multiple declaration/type notes, original international names,
 span/path failures, every module failure category and collision context. Rendering
-and composed filesystem-to-message tests are a separate final section-3 task.
+and composed filesystem-to-message tests are documented in [rendering](diagnostic-rendering.md).

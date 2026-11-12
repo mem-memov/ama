@@ -1,5 +1,9 @@
 # Test harness contract and acceptance
 
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
 This closes the unit/integration harness task in [TODO.md](../../TODO.md).
 The harness remains recursive Makefiles and independent C/assert executables.
 There is no test registry, common executable main, shell test script, or new

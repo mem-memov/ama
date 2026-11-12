@@ -1,5 +1,9 @@
 # Executable native ABI harness
 
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
 This closes the six-binding/void-entry harness task in [TODO.md](../../TODO.md).
 The production boundary is the [native ABI](native-abi.md), status headers and
 read-only `AmaNativeServices` snapshot. The executable companion is the handwritten

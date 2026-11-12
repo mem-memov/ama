@@ -1,5 +1,9 @@
 # Required project dependency closure
 
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
 This implements the source-loading part of DEP-01/DEP-02 and SRC-01 through
 SRC-05 in the [technical specification](../../spec/README.md).
 The public boundary is [project.h](../../src/project/dependencies/project.h).

@@ -1,5 +1,9 @@
 # Stable instances and ownership operations
 
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
 ## Pool identity algebra
 
 A per-executable-type pool issues `(type, slot, generation)` handles. Generation
@@ -188,14 +192,13 @@ failed nested replacement disposal with the next allocation forced to fail.
 
 ## Completion boundary
 
-Section 7 provides independently tested pool and ownership runtime components.
-It does not execute Ama statements or generate concrete runtime layouts. Section 8
-must connect the typed plan and initializer evaluations to descriptors/recipes,
-assert concrete C alignment/offset/representation assumptions, initialize shared
-constants and explicit host roots, and preserve these ownership protocols in the
-final stackless assembly. Native authoring ABI views are operation-scoped typed
-adapters, not aliases of this internal generic schema. List mutation/growth and
-whole standalone collection operations remain with the list implementation stage.
+The pool/ownership components are independently tested and connected to the
+[project assembly](project-emission.md), which supplies concrete layouts,
+descriptors, recipes and explicit roots for the supported subset. Native authoring
+ABI views are operation-scoped typed adapters, not aliases of the internal generic
+schema. Current context ownership, inferred scopes, service frames and list
+memberships/cursors remain open TODO tasks. The retained [list storage
+foundation](lists.md) does not establish complete list-service support.
 
 Extended alignment is tested with a 128-byte-aligned native representation,
 self-address checks, repeated replacement and reclamation in the

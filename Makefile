@@ -64,7 +64,7 @@ rebuild:
 >    $(MAKE) all
 
 help:
->    @echo "make: build the implementation foundation (not a working Ama compiler)"
+>    @echo "make: build the current Ama compiler (specification conformance is incomplete)"
 >    @echo "make test: run independent C/assert unit and integration leaves"
 >    @echo "make docs: generate the Doxygen C file reference in docs/technical/index.html"
 >    @echo "make docs-clean: remove generated documentation and its warning log"

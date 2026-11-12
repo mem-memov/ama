@@ -193,13 +193,22 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   reject whole-list execution/retained results before IR. Clean compiler build,
   independent header checks and Doxygen's actual rule/file destinations passed.
   Typed services, membership/cursor behavior and length remain T075–T084.
-- [ ] **T137 — Remove conflicting derived descriptions and proposals.** Needs:
+- [x] **T137 — Remove conflicting derived descriptions and proposals.** Needs:
   T136. Close audit F09 after T002's refreshed map: update library/native/build
   descriptions to their actual current boundaries, repair links to authoritative
   spec files, and remove superseded list conversion/dispatcher proposals. Preserve
   useful historical execution evidence with its limits; retain no alternate API
   contract. Check every maintained documentation link and obsolete description
   identified by the audit without editing `spec/`.
+  Evidence: corrected library/check/native/build/driver descriptions and explicit
+  scope notices on retained component arguments. Removed the superseded conversion
+  proposal; no selector/outcome mapping remains a published API. Source truth and
+  grammar links point into `spec/`, current emission/continuation compositions
+  replace obsolete “no backend” claims, and old phase-number references were
+  replaced with boundaries or stable tasks. Checked all 73 maintained Markdown
+  files and 997 local prose links/anchors, the 200-rule registry, `make help`,
+  `make docs-check` and whitespace consistency. No canonical specification changed;
+  no compiler-semantic or runtime test rerun is claimed for this documentation task.
 - [ ] **T132 — Remove the obsolete implementation completely.** Needs:
   T136, T137.
   Complete the removal tasks identified by T001/T002: delete retired code paths,
@@ -760,7 +769,7 @@ Contracts: [library](spec/language/library.md),
   text/byte types using immutable shared backing, verify independent Ama values,
   both destruction orders, replacement isolation, share overflow and rollback.
 - [ ] **T087 — Standardize and test library compositions.** Needs: T084, T086.
-  Make parameter/result ordering predictable and remove obsolete list action APIs.
+  Keep parameter/result ordering predictable without list action APIs.
   Apply the single condition-capable failure-value convention to operations
   reporting expected failures; keep intrinsic list refusals and ordinary false
   predicates distinct. Test no stale result processing after a refused call.

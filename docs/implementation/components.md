@@ -14,8 +14,8 @@ There is no blanket instruction to delete those foundations. The
 [per-file audit](audit/files.csv) assigns every maintained input a decision and
 follow-up; [findings](audit/findings.md) identify the specific obsolete contracts.
 
-Remove the list action/outcome dispatcher and its dead consumers through T136,
-then remove conflicting derived descriptions through T137. Adapt grammar,
+T136 removed the list action/outcome dispatcher and its consumers; T137 updates
+conflicting derived descriptions. Adapt grammar,
 identities and other changed contracts in their owning feature tasks. Do not keep
 an alternate legacy parser/backend or claim that old input acceptance establishes
 current conformance. A missing new feature remains explicitly unsupported.

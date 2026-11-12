@@ -9,7 +9,8 @@ backend. Unsupported executable compilation must never report successful output.
 [Recognition](../../../src/driver/request/request.h) accepts a nonnegative count
 and that many nonnull NUL-terminated strings; a zero count permits a null vector.
 It borrows them without mutation. Standalone `--help` selects Help; otherwise an
-exact `--check`, `--status` or `--native` selects its command before operand validation. Other requests
+exact `--check`, `--status`, `--native` or `--emit` selects its command before
+operand validation. Other requests
 are unavailable. Count checks precede every argument access. The exact string
 predicates and fallback partition the domain; prefixes/extra help arguments do
 not accidentally select Help.

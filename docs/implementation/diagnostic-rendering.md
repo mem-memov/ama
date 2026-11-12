@@ -1,5 +1,9 @@
 # Source excerpts and C line mappings
 
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
 Boundary: `src/diagnostics/render/` and `src/source/mapping/directive.h`.
 Implements COMP-04/05 and NAME-03 using the independent structured record and
 immutable source components. No generated-C diagnostic needs reparsing.
@@ -57,10 +61,11 @@ Evidence:
   `ASAN_OPTIONS=detect_leaks=0` and non-PIE sanitizer builds. LeakSanitizer is not
   certified in this ptrace-supervised environment.
 - The full `make -j4 test` passed with C11, pedantic, Werror and NDEBUG; test flags
-  restore assertions with UNDEBUG. New section-3 boundaries have 33 explicit
+  restore assertions with UNDEBUG. That recorded source/diagnostic stage had 33 explicit
   scenarios, including exhaustive Unicode domain and allocation-failure loops.
 
-The CLI still exposes the implementation foundation only. Complete grammar
-parsing is section 4; dependency closure and draft semantics are section 5;
-shared check/build command orchestration is later in the plan. The technical
-specification was not changed to fit these implementation boundaries.
+Source/rendering tests isolate diagnostic behavior. Current CLI checking and
+[project emission](project-emission.md) compose it with the parser and dependency
+closure. The [audit](audit/README.md) distinguishes old-subset acceptance from
+remaining current grammar/draft-validation work. The specification was not
+changed to fit implementation boundaries.

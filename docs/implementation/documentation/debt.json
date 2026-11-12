@@ -1700,8 +1700,8 @@
   "stdlib/README.md": {
     "audited_test_consumers": "",
     "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "69e5331e56d7ee3613202bd8dc3a20e4f88519ad38e81e98955b311b9c18d05e"
+    "reason": "T137 replaced obsolete published API claims and repaired authority links. Retained standard-library companion coverage and final per-file documentation remain T151.",
+    "sha256": "29858df020f3bea804ead52a650e9978bb2f6ebbdeb95859541b3541dbab17a1"
   },
   "stdlib/modules/std/condition": {
     "audited_test_consumers": "",

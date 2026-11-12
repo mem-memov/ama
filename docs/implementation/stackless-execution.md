@@ -1,5 +1,9 @@
 # Stackless execution and native boundaries
 
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
 The emitted launcher has one Ama execution function. Each lowered control
 selector has a C label. Branches, loops, calls and early returns use direct label
 transfers. Straight-line preparation/replacement nodes are fused into lifecycle
@@ -59,5 +63,5 @@ The build verifies native entry disappearance in the unstripped project object.
 
 Suspension releases the active caller link and preserves only an explicit saved
 position. The [continuation contract](continuations.md) covers recursive copying
-and explicit host outcomes. List action dispatch remains section 10; unsupported
-list execution paths fail explicitly.
+and explicit host outcomes. Whole-list execution and retained results are
+rejected by semantic checking. Typed list services/traversal remain T075–T084.

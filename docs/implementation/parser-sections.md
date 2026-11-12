@@ -1,5 +1,9 @@
 # Module activation and sections
 
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
 Boundary: `src/parser/module/sections.*`, implementing SYN-03/04/05.
 Section views borrow the immutable layout. Recognition allocates nothing and
 publishes output only on success. UTF-8 must already have passed layout reading.

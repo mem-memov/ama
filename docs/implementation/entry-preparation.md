@@ -1,5 +1,9 @@
 # Entry preparation and typed transfers
 
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
 `runtime/program/calls/` connects the resolved invocation tables to stable pool
 instances. Target selection occurs once. Bounds failure, empty/stale identities,
 busy state and a missing resume position are acquisition refusals. A native
@@ -42,8 +46,9 @@ References between elements follow their corresponding new identities. Empty
 handles never participate in that map. Reference lists copy handles only. Parent
 lifetime counts change with the committed list shape; failed staging cleans its
 completed prefix, while failed destruction cleans both old and prepared values
-and leaves terminal state for final disposal. List action dispatch and retained
-list-operation results belong to section 10, not these value transfers.
+and leaves terminal state for final disposal. Typed list methods and their
+result-frame lifetimes remain T075–T084; these data transfers are not executable
+list services.
 
 ## Argument for correctness
 

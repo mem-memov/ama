@@ -1,9 +1,13 @@
 # Source AST and structural parser
 
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
 Boundary: `src/ast/` and `src/parser/{access,declarations,body,calls,module}/`.
 Implements COMP-01/02, TYPE-01/02, source/access syntax, SYN-01 through SYN-05
 and call/control syntax. Full type, declaration-order, capability and ownership
-checks remain section 5. In particular multiple scalar initializers, constant
+checks belong to semantic resolution. In particular multiple scalar initializers, constant
 reference storage and break-outside-loop are represented for semantic rejection.
 
 An AstModule owns a layout and an arena. Nodes contain original half-open source

@@ -1,5 +1,9 @@
 # Source storage
 
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
 Boundary: `src/source/text/source.h`, `text/` and `io/`. Implements SRC-01,
 SRC-03 byte preservation and NAME-03 source coordinates, not tokenization.
 
@@ -38,4 +42,4 @@ exclusive access; there is no shared mutable compiler singleton.
 Evidence: `make -C tests/unit/source/text` passed with C11, pedantic and Werror.
 Tests preserve Unicode/NUL/CRLF bytes across 100 additions, compare every offset
 against a linear line model, inject every allocation failure for add/load, and
-exercise missing files. This component does not yet open a compiler project.
+exercise missing files. This component itself owns source storage, not a compiler project.

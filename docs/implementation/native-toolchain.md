@@ -1,6 +1,10 @@
 # Native entry and label-transfer conformance
 
-This implements the fourth section-2 task under STACK-01 through STACK-04 and
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
+This records the tested toolchain boundary under STACK-01 through STACK-04 and
 GEN-01 through GEN-03. It is an executable backend constraint harness, not a
 source-language frontend or a completed runtime.
 

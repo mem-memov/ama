@@ -1,5 +1,9 @@
 # Exact UTF-8, identifiers and entry spelling
 
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
 Boundary: `src/source/unicode/` and `src/source/path/exact.h`. Implements SRC-03;
 physical module mapping and whole-project alias checks belong to the path catalog.
 Pinned input, license, digest and offline regeneration are in

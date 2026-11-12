@@ -18,7 +18,7 @@ Handwritten native companions qualify their module-owned C names through
 global C functions. The generated context uses the same collision-checked module
 prefix for `.h`, `.c` and typed uses. Include guards and external C names retain
 ordinary C rules. The [namespace contract and probes](docs/implementation/native-namespaces.md)
-cover this boundary independently of the unfinished project backend.
+cover this boundary both independently and in supported generated projects.
 
 The generated assembly declares the types needed by the project and its transitive
 dependencies. Generated typed declarations determine native entry signatures:
@@ -30,7 +30,10 @@ The concrete [C signatures and toolchain](docs/implementation/native-abi.md),
 [status codes](docs/implementation/native-status.md),
 [lifecycle ledger](docs/implementation/native-lifecycle.md) and
 [runtime metadata](docs/implementation/runtime-metadata.md) are specified and
-validated by section-2 harnesses. They are not yet connected to the frontend.
+validated by native harnesses and generated-project compositions. The
+[audit](docs/implementation/audit/README.md) records the remaining current-contract
+gaps; isolated contexts, the host-size bridge and compiled-library transports
+are not certified by those older tests.
 
 Instances execute directly in stable pool storage. Native code may borrow typed
 views for the current operation; these views must not escape through globals,
@@ -80,7 +83,7 @@ native-entry inlining contracts.
 Generated headers/configuration have designated ownership; handwritten companion
 files are preserved unless their creation/replacement is explicitly requested.
 These requirements describe the target generator; its implementation remains
-tracked in section 6 of [TODO.md](TODO.md).
+tracked by the native-authoring and release tasks in [TODO.md](TODO.md).
 
 ## Fixed capabilities
 

@@ -1,5 +1,9 @@
 # Full identities and generated names
 
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
 Boundary: `src/source/identity/`, implementing NAME-01/02. The registry owns original
 encodings, readable source names and generated C names. Declaration spans borrow
 source-manager storage. No source spelling is changed to accommodate C.

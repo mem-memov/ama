@@ -1,5 +1,9 @@
 # Module-qualified native C symbols
 
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
 Boundary: `src/native/namespace/` and the native-namespace category in
 `src/source/identity/`. Implements NAME-05's naming facility and PROTO-01/11's
 module-local binding interpretation. It emits naming contexts and qualified

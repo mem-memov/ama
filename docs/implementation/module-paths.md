@@ -1,5 +1,9 @@
 # Module source catalog
 
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
 Boundary: `src/source/module/catalog.h`, with `scan/`, `resolve/`, exact-entry
 probing and immutable sources. Implements SRC-01/02/03/05. This is source discovery
 and lookup, not dependency closure, draft parsing or type resolution.

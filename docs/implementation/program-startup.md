@@ -1,5 +1,9 @@
 # Constants and instance startup
 
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
 The generated project supplies immutable type, field, source and constant tables.
 `runtime/program/` interprets construction data only; it does not dispatch Ama
 bodies. `ama_program_start` attaches declaration resolvers, initializes shared
@@ -61,7 +65,8 @@ emitted launcher with real typed native lifecycle hooks and verify destruction
 order and literal content. They also compile isolated scaffolding against the
 same declarations. Runtime tests run under ASan/UBSan.
 
-This connects startup and completion of declarations-only Ama bodies. Calls,
-interface preparation, native entry execution, return dispatch and runtime source
-traces remain separate section 8 tasks. Unsupported execution currently fails
-explicitly rather than skipping an operation.
+These startup tests isolate declarations and lifetime ordering. Separate
+[entry preparation](entry-preparation.md), [execution](stackless-execution.md) and
+[continuation](continuations.md) suites compose calls, return/yield dispatch and
+runtime traces. Current context-local storage and new control/result-tree rules
+remain open; none is inferred from declarations-only acceptance.

@@ -1,5 +1,9 @@
 # Fixed native ABI table parser
 
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
 Boundary: `src/parser/abi/`, implementing PROTO-11. AbiTable owns physical layout
 nodes and borrows original source spans for six fixed operation slots. Parse once
 and consume slots only after valid=true; destroy cleans all partial layout.

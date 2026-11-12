@@ -1,6 +1,10 @@
 # Runtime service metadata contract
 
-This completes section 2's metadata task under REF-05/REF-06, RT-01 through RT-16,
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
+This records tested metadata operations under REF-05/REF-06, RT-01 through RT-16,
 CABI-05, ERROR-06 and DEBUG-01 through DEBUG-03. Declarations and small checked
 operations are in `src/runtime/metadata/`. They fix the engineering representation;
 their consumers are the [instance pools](instance-ownership.md) and

@@ -17,7 +17,9 @@ preserve or implement. It also separates native publication from relocation,
 and ordinary native views from compiled-component transports.
 
 Entries below retain useful existing arguments and executable test locations;
-they do not certify later grammar, list dispatcher, context or embedding changes.
+they do not certify current grammar, typed list services, context or embedding
+conformance. T136 removed the superseded dispatcher; T137 corrected derived
+descriptions without changing the canonical requirements.
 When adapting a component, update its old description rather than keeping
 competing API contracts. File/interface reference pages come from Doxygen through
 `make docs`; this registry records mathematical arguments and acceptance evidence.

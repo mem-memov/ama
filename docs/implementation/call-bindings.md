@@ -1,7 +1,11 @@
 # Call bindings, typed literals and positional holes
 
-Boundary: `src/parser/calls/`, especially `bindings/`, implementing section 7
-call-mode/placeholder requirements and the fixed positional collection interface.
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
+Boundary: `src/parser/calls/`, especially `bindings/`, records call modes and
+placeholders in the currently tested parser subset.
 No callee interface or declared-name lookup is used during parsing.
 
 An argument retains its complete line/marker spans, kind, optional declaration
@@ -24,7 +28,7 @@ The call-list state consists of mode, one selected naming style, input/output
 counts and whether an output was seen. Entry accepts inputs before outputs, never
 >>. Resume accepts only >. Retained/static reads require one or more >>. Every
 new binding preserves this finite-state predicate or fails before append. A
-whole-list interface uses positional bindings only. Induction over the list
+binding sequence has independent direction counters. Induction over that sequence
 establishes mode/style/order consistency and positions equal to the preceding
 count in the same direction, independently for inputs and outputs.
 
@@ -38,8 +42,8 @@ per binding and source/access nodes only for supplied operands. Failure leaves
 the parent module invalid and all partial storage owned until destruction.
 
 Evidence: `make -C tests/unit/parser/calls` passed C11/pedantic/Werror. Tests check
-three-input/three-output holes and their exact positions, resume holes, whole-list
-calls/reads, comments, malformed spacing, exact literal bytes including embedded zero/EOF,
+three-input/three-output holes and their exact positions, scalar resume holes,
+comments, malformed spacing, exact literal bytes including embedded zero/EOF,
 empty literals versus holes, forbidden literal positions/modes, all mixed modes and
 named placeholders. An independent finite-language oracle checks all 5856 call
 forms: four modes times every sequence of length zero through three over eleven

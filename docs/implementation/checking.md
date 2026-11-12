@@ -1,18 +1,20 @@
 # Check-only project frontend
 
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
 `ama --check ROOT .module` uses [CompilerFrontend](../../src/compiler/frontend.h),
 the same loaded/semantic/planned project API consumed by native authoring and the
-future compiler backend. It performs no C emission, toolchain invocation, native
+project emitter. It performs no C emission, toolchain invocation, native
 execution or filesystem writes. Handwritten C bodies/signatures are checked by
 later C-toolchain integration, not declared correct by check-only success.
 
 Additional `--root DIR` values supply explicit library roots. `--exclude PATH`
 applies an exact root-relative exclusion to every configured root; there are no
-guessed generated-directory exclusions. `--list-action`, `--list-index`,
-`--list-condition` and `--list-outcome` supply full module paths for the four
-library roles. Configured roles are explicit additional closure requirements,
-even when their types do not appear in source declarations. Repeated module
-identities still share the one project record. Output is `checked .module` only
+guessed generated-directory exclusions or configurable list role mappings.
+Dependencies follow the declared source closure; repeated module identities share
+one project record. Output is `checked .module` only
 after all source, semantic, relation, shared-storage and control-plan stages pass.
 
 Initialize the frontend owner, check once, inspect success or its borrowed error,
@@ -27,7 +29,7 @@ publishes its existing diagnostic and no valid-looking result; otherwise each
 stage's postcondition establishes the next one's precondition. Success therefore
 means exactly that the reusable frontend accepted this project, independent of
 whether a caller intends checking or later emission. Costs are the sum of the
-existing source/semantic/planning costs plus linear command/role processing;
+existing source/semantic/planning costs plus linear command processing;
 integer argument-array sizes are checked before allocation. No source traversal
 or resource limit is guessed.
 
@@ -36,8 +38,9 @@ handoffs, invalid syntax/dependencies/types/cycles and every frontend allocation
 failure. [CLI tests](../../tests/integration/check/main.c) run the real executable
 on native inputs containing `#error`, checking status/streams and absence of
 source-root output directories. Recursive leaves retain the existing C/assert
-harness. Release/Werror focused checks pass. Compilation/execution are not yet
-implemented; CLI success is deliberately limited to the frontend boundary.
+harness. Release/Werror focused checks pass. Check-only success is deliberately
+limited to this boundary; [emission](project-emission.md) separately compiles and
+executes the supported subset.
 
 ## Inspecting activation without project validation
 
@@ -63,6 +66,7 @@ The scaffold consumes the exact `ProgramPlan` returned by strict checking, rathe
 than reparsing or rebuilding its own type relation. `--create` is a separate
 authoring mode with a selected explicit ABI proposal; it does not weaken ordinary
 checks or certify the proposed C implementation. [Scaffold acceptance](../../tests/unit/native/scaffold/declarations/main.c)
-checks this identity and fault-injects the complete authoring frontend. No executable
-backend exists yet; check-versus-compilation agreement is currently enforced by
-this shared service and will receive a final assembly check when that consumer exists.
+checks this identity and fault-injects the complete authoring frontend. The
+project emitter consumes that same plan; real generated-project tests verify its
+C compilation and native execution. Current syntax/conformance gaps remain in
+the [audit](audit/README.md).

@@ -1,5 +1,9 @@
 # Typed storage, lifecycle and control-flow plans
 
+Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
+The [specification](../../spec/README.md) defines current behavior; this
+component description does not certify the open work in [TODO](../../TODO.md).
+
 The public boundary is [plan.h](../../src/planning/plan.h), implementing COMP-02,
 GEN-02/GEN-03, STATE-01 through STATE-03, CALL-08 and LIFE-01 through LIFE-05.
 It consumes a successful [semantic program](semantic-analysis.md), including
@@ -99,10 +103,10 @@ mutation, following the resolved storage form and copy mode.
    transfers to one receiver remain ordered rather than simultaneous.
 
 Retained reads omit steps 2/3. Static constant reads also omit acquisition/release
-and use the resolved shared storage. Whole-list calls use four fully typed input
-installation nodes, including defaults, then one list-action operation; stored
-reads transfer retained list results. They never iterate element module bodies.
-The library role types are resolved before lowering, not inferred by an emitter.
+and use the resolved shared storage. There are no list-action or list-input
+installation opcodes. Semantic checking rejects whole-list execution and retained
+list results before a plan is accepted. Typed intrinsic methods and their result
+frames are T075–T084, under [LIST-04](../../spec/language/lists.md#list-04).
 
 A refusal handler first snapshots the status into caller service storage.
 The AST explicitly records handler presence: an empty `:` body handles refusal as

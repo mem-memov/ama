@@ -1,106 +1,78 @@
-# Ama standard library
+# Standard-library implementation
 
-[TECHNICAL_SPECIFICATION.md](../TECHNICAL_SPECIFICATION.md) is the source of truth.
-The [grammar](../EBNF.md) defines the language and the
-[native value ABI](../VALUE_ABI.md) defines native capabilities and lifetimes.
-Implementation work is tracked in [TODO.md](../TODO.md).
+The [product specification](../spec/README.md) is authoritative, including the
+[grammar](../spec/grammar.md), [library boundary](../spec/language/library.md) and
+[native interface](../spec/implementation/native-interface.md). This document
+records retained source and executable evidence; it does not define another
+library API. [TODO.md](../TODO.md) tracks conformance work.
 
-## Library boundary
+## Required library boundary
 
-Scalar types, literal interpretation, enumerations, conditions and indices are
-library capabilities. The compiler uses the fixed declared contracts instead of
-assuming a universal integer payload or recognizing special English field names.
-Public paths and action/outcome constants must be published by the library.
-Example `.std.*` paths in language documentation illustrate these roles; they do
-not reserve a canonical package layout.
+Standard-library paths begin with `..`; ordinary project roots begin with `.`.
+Literal interpretation, copying, conditions and indices are declared module
+capabilities. The compiler uses checked protocol identities and signatures,
+without assuming a native numeric payload or inferring protocols from C names.
+The canonical `..integer` type and its exact `from_size` constructor are required
+by [LIST-04](../spec/language/lists.md#list-04) and
+[PROTO-03](../spec/implementation/native-interface.md#proto-03). T085 validates
+that library, including its full host-size range.
 
-Shared `@=` constants are immutable, copyable values initialized once before the
-root. Library enumeration types interpret their literals and expose qualified
-constant names. Distinct module types remain incompatible even if their native
-tags have equal values. Domain functionality extends through modules, preserving
-the core syntax and semantics.
+Lists expose six typed intrinsic methods under LIST-04, not action constants or
+retained completion/outcome fields. Their method frames, membership records and
+mutable traversal are still T075–T084. Expected application errors use the one
+condition-capable failure value with its own description under
+[ERROR-01](../spec/implementation/diagnostics.md#error-01), implemented in T086.
+Technical native status and acquisition refusal remain separate outcomes.
 
-## Modules and companions
+## Retained sources and probes
 
-Interfaces and handwritten C sources live under `stdlib/modules/`.
-The current `.std.status` type stores an immutable-message `AmaStatus` value.
-`.std.refusal` has one `.std.status` result containing the invoking instance’s
-last acquisition refusal; the reader itself succeeds even when that saved code
-is nonzero. Add this directory with `--root /path/to/stdlib/modules`. These are
-public library paths, not language keywords. An executable
-module has an extensionless Ama interface and may select `@C` with companion `.h`,
-`.c` and `.abi` files. The fixed ABI requires default construction and destruction;
-literal construction, cloning, condition and index conversion are explicit optional
-capabilities. Never infer a protocol from helper names or guess a representation.
+Interfaces and handwritten C companions live under `modules/`. The current
+frontend still uses the older root/path model recorded in the
+[audit](../docs/implementation/audit/README.md); its scalar fixtures are inputs
+to the forthcoming migration, not a published substitute for standard-root
+identity or the canonical integer/failure APIs.
 
-Qualify module-owned C types, functions, tags and objects with
-`AMA_NATIVE(local_name)`. ABI records contain the local identifier; the generated
-module context supplies its full-identity prefix. Use unique include guards and
-contain other C macros. The [native namespace contract](../docs/implementation/native-namespaces.md)
-documents the implemented naming facility and composed probes.
-
-Submodules of `name` reside in `name+/`, while their logical identities omit `+`.
-Dependency resolution loads transitive Ama modules once, checks their contracts
-and includes required native dependencies in the generated project assembly.
-Native entry bodies inline; internal native helpers may use C calls and the stack.
-
-## Ownership and failures
-
-Opaque native payloads own native resources only. Persistent Ama relationships
-must be declared as Ama fields so generated copying and cleanup can see them.
-Borrowed views cannot escape their operation. Follow the common status contract,
-partial-construction cleanup, independent cloning and at-most-once destruction.
-
-Lists use the fixed four-input/three-output interface and six actions specified
-in the technical specification. Action and outcome names are typed library
-constants, not language keywords. Conditions and indices use registered conversion
-capabilities; list positions begin at zero. Acquisition refusal, ordinary list
-refusal and technical failure retain their distinct contracts.
-
-## Contributing and verification
-
-Follow [CONTRIBUTORS.md](../CONTRIBUTORS.md). Define narrow interfaces, decompose
-implementation into a readable tree of small operations, and test both individual
-components and their real composition. Use exact algorithms with explicit domains,
-invariants and mathematical/algebraic justification; avoid heuristic special cases.
-
-Test literal boundaries, invalid conversion, ownership/copy laws, resource failure,
-cleanup ordering and generated native signatures. Verify the module through the
-same generated C assembly used by projects. Build with `make`, run tests with
-`make test`, and clean test outputs with `make test-clean` from the repository root.
-Acceptance evidence establishes implemented support; documenting a contract alone
-does not establish it.
-
-## Published scalar modules
-
-| Path | Representation and capabilities |
+| Retained physical source | Existing probe behavior |
 |---|---|
-| `.std.index` | Checked nonnegative `size_t` value; decimal `|`, independent `=`, `[]` and `?` |
-| `.std.condition` | Exactly `0` or `1`; `|`, `=`, `?` and `[]` |
-| `.std.list.action` | Finite tags Inspect=0, Append=1, Insert=2, Remove=3, Clear=4, Swap=5 |
-| `.std.list.outcome` | Success=0, empty=7, stale=8, busy=9, bounds=12 |
-| `.std.status` | Common status value |
-| `.std.refusal` | Read the immediate caller's retained acquisition-refusal status |
+| `modules/std/index` | Checked nonnegative `size_t` literal, clone, index and condition hooks |
+| `modules/std/condition` | Boolean literal, clone, condition and index hooks |
+| `modules/std/status` | Common immutable-message `AmaStatus` representation |
+| `modules/std/refusal` | Read the immediate caller's saved acquisition-refusal status |
+| `modules/std/index+/next`, `add`, `before` | Checked successor, addition and comparison compositions |
 
-The action and outcome modules publish typed named constants in their own `@=`
-sections. Unknown enum tags are rejected by their literal constructors; equal
-numeric tags of different module types are incompatible. These tags are library
-contracts, never Ama numeric-literal syntax. All native scalar payloads are accessed
-through their declared ABI hooks; programs may wrap these public modules with
-local Unicode names.
+The compiled scalar suite uses these fixtures through the old frontend's explicit
+`--root` option. It verifies nominal type checking, malformed/overflowing literal
+rejection, declared field ordering, named inputs independent of text order and
+omitted inputs receiving defaults. The arithmetic probes return their sole result
+first and report overflow as technical status. Their acceptance does not establish
+`..integer`, failure-value conventions or current grammar support.
 
-`.std.index.next` takes one index and returns its checked successor.
-`.std.index.add` takes left then right and returns their checked sum.
-`.std.index.before` takes left then right and returns their strict-order condition.
-All three place their sole result first. Overflow is a technical status, not
-wrapping arithmetic. Their physical source files live in `std/index+/`, retaining
-the logical `.std.index.*` identities. No domain operation names are parser rules.
+## Native construction and ownership
 
-The compiler-to-library encoding of list action inputs and retained results needs
-an explicit mapping contract before the whole-list execution boundary is complete.
+An extensionless Ama interface may select `@C` and have `.h`, `.c` and `.abi`
+companions. The six ABI capabilities and their requirements are defined in the
+canonical native-interface chapter. [The implementation ABI guide](../VALUE_ABI.md)
+and [namespace contract](../docs/implementation/native-namespaces.md) explain the
+checked C boundaries and their tests.
 
-The compiled library suite verifies that named bindings select the declared field
-independently of their textual order; every related scalar helper returns its
-value in result position one. Empty positional inputs preserve the module's
-default, for example an omitted `.std.index.next` input yields one. Parameter and
-result bindings in a call must consistently use either named or positional mode.
+Qualify module-owned C names with `AMA_NATIVE(local_name)`; ABI records contain
+local identifiers and the generated context supplies their complete identity.
+Use unique include guards and contain temporary C macros. `name+/` is physical
+submodule storage, while logical identity omits `+`. Generated projects load
+transitive dependencies, inline native entry bodies and permit normal C calls
+inside native helper code.
+
+Opaque native payloads own native resources. Ordinary persistent Ama relationships
+must occupy declared Ama fields, visible to copying and cleanup. Borrowed views
+cannot outlive their operation. The separate compiled-component resource exception
+is specified by [EMBED-07/08](../spec/implementation/c-library.md#embed-07); that
+exception and compiled-library embedding remain open implementation tasks.
+
+## Verification
+
+Run `make -C tests/unit/codegen/library` for compiled scalar compositions and
+`make test` for the recursive component/integration tree. Follow
+[CONTRIBUTORS.md](../CONTRIBUTORS.md) for decomposition, Doxygen rule links,
+per-file tests and failure/lifecycle checks. Use `make docs` for generated file
+reference pages. Current acceptance limits remain explicit in the audit and TODO;
+no library representation is inferred from a translated diagnostic message.
