@@ -1,3 +1,13 @@
+/**
+ * @file
+ * @brief Represent allocation-free native outcomes as a code and borrowed message.
+ *
+ * [ERROR-03](../../../spec/implementation/diagnostics.md#error-03) makes the
+ * numeric code authoritative and permits an unterminated optional message.
+ * [ERROR-04](../../../spec/implementation/diagnostics.md#error-04) requires
+ * immutable program-lifetime message storage: these helpers never allocate,
+ * retain ownership or release the borrowed bytes.
+ */
 #ifndef AMA_NATIVE_STATUS_H
 #define AMA_NATIVE_STATUS_H
 
@@ -7,8 +17,9 @@
 
 #include "codes.h"
 
-/* Message storage is immutable UTF-8 with program lifetime, never owned here.
- * NULL requires length zero. No terminator is required; code controls behavior.
+/** Native outcome with immutable borrowed UTF-8 bytes; NULL requires zero length.
+ * The caller supplies valid program-lifetime storage and an operation-specific
+ * numeric code. No terminating NUL is required and wording never controls flow.
  */
 typedef struct {
     uint32_t code;
@@ -16,18 +27,24 @@ typedef struct {
     size_t message_length;
 } AmaStatus;
 
+/** Return success with an empty message and no allocation or side effects. */
 static inline AmaStatus ama_status_success(void) {
     return (AmaStatus) {AMA_OK, NULL, 0};
 }
 
+/** Borrow the supplied immutable program-lifetime bytes without validation.
+ * The caller supplies a valid message view; no ownership transfer occurs.
+ */
 static inline AmaStatus ama_status_make(uint32_t code, const char *message, size_t length) {
     return (AmaStatus) {code, message, length};
 }
 
+/** Classify success by numeric code, independently of translated message text. */
 static inline bool ama_status_is_success(AmaStatus status) {
     return status.code == AMA_OK;
 }
 
+/** Check NULL/length consistency; storage lifetime and UTF-8 remain caller duties. */
 static inline bool ama_status_has_valid_message_view(AmaStatus status) {
     return status.message != NULL || status.message_length == 0;
 }

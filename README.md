@@ -98,7 +98,7 @@ mathematical/algebraic justification are implementation requirements.
 
 ## Building and testing
 
-Generate the C file and interface reference with `make docs` (requires Doxygen),
+Generate the C file and interface reference with `make docs` (requires Doxygen and the pinned Python Markdown parser),
 then open `docs/technical/index.html`. See the
 [documentation build guide](docs/documentation.md) for inputs and cleanup.
 

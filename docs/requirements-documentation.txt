@@ -1,0 +1,3 @@
+# Source-position adapters are validated against this exact CommonMark parser.
+markdown-it-py==3.0.0
+mdurl==0.1.2

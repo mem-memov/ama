@@ -157,7 +157,7 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   and exercised. LeakSanitizer failed with its ptrace diagnostic; the explicit
   `detect_leaks=0` profile retains address/UB checks and claims no leak certification.
   The existing correct harness was reused, not rewritten or replaced.
-- [ ] **T005 — Establish code-to-tests and generated documentation checks.**
+- [x] **T005 — Establish code-to-tests and generated documentation checks.**
   Needs: T004. Inventory every project code/header file and its test coverage;
   register uncovered files for the owning tasks. Extend the `make docs` Doxygen
   build from docs/Doxyfile with reproducibility checks and checks for
@@ -165,6 +165,16 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   links, including source-relative rule links and deterministic read-only Doxygen
   anchor mapping. Test actual rendered destinations and stale-link failures.
   Validate the workflow on existing small components before expanding it.
+  Evidence: [checked workflow and invariants](docs/implementation/documentation/README.md),
+  current ready/debt registries and the independent documentation C/assert leaf.
+  All 200 canonical rules map through read-only views to checked HTML destinations;
+  actual originating pages and canonical chapters are verified. Two complete
+  Doxygen 1.11.0 generations were byte-identical. Standalone status-header inclusion,
+  existing native-status tests, strict documentation tests and complete
+  `make -j4 test` passed (59 registered leaves). The bootstrap explicitly checks
+  18 ready inputs and assigns 582 remaining input debts to T145–T151; the full
+  `docs-complete` gate fails until they close. Source navigation was exercised with
+  VS Code's real `--goto`; no GUI-click or complete documentation claim is made.
 - [ ] **T136 — Retire the old list dispatcher across its consumers.** Needs:
   T005. Remove action/outcome modules, configuration flags, fixed positional
   interfaces, dispatch requests, obsolete list result fields and unsupported

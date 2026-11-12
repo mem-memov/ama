@@ -6,7 +6,7 @@ OUTPUT_DIRECTORY       = docs/technical
 INPUT                  = docs/documentation.md src stdlib/modules tools tests spec
 USE_MDFILE_AS_MAINPAGE  = docs/documentation.md
 RECURSIVE              = YES
-FILE_PATTERNS          = *.c *.h *.md
+FILE_PATTERNS          = *.c *.h *.inc *.py *.md
 EXCLUDE_SYMLINKS       = YES
 EXCLUDE_PATTERNS       = */build/* */generated/*
 FULL_PATH_NAMES        = YES
@@ -26,7 +26,7 @@ GENERATE_TAGFILE        = docs/technical/ama.tag
 HAVE_DOT               = NO
 QUIET                  = YES
 WARNINGS               = YES
-# Inventory undocumented retained code now; T005/T134 add and close strict
-# documentation coverage and source-to-rendered specification-link checks.
+# Extract retained declarations during migration. The staged build checks
+# ready-file purposes and canonical links; T134 closes the explicit old debts.
 WARN_IF_UNDOCUMENTED   = NO
 WARN_LOGFILE           = build/documentation/warnings.log

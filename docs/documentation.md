@@ -6,7 +6,8 @@ standard-library, native companion, tool and test components. The included
 specification pages remain the language authority; generated reference pages
 describe the implementation and do not replace those contracts.
 
-From the repository root, install Doxygen and run:
+From the repository root, install Doxygen and the pinned Python parser
+(`python3 -m pip install -r docs/requirements-documentation.txt`), then run:
 
 ```sh
 make docs
@@ -24,17 +25,15 @@ The generator recursively includes maintained `.c` and `.h` files under `src/`,
 output contracts. Byte-exact malformed fixtures retain external purpose
 explanations, as required by the contributor guide.
 
-The initial build extracts all maintained file interfaces, including existing
-undocumented declarations. A successful generation is not a claim that all code
-has documenting comments or that every specification link has been verified.
-Inspect `build/documentation/warnings.log`. TODO tasks T005, T134 and T135 establish
-strict coverage/link validation, close retained-code documentation gaps and
-regenerate the final deliverable after implementation is complete. Keep purpose
-and contract explanations beside the code; let Doxygen produce the file and
-interface pages automatically.
+The build checks the reviewed per-file coverage registry, creates read-only
+Doxygen input views and verifies actual canonical-rule destinations in HTML.
+`make docs-reproducible` requires two complete generations to be byte-identical;
+`make docs-complete` fails until every registered documentation/test debt is closed.
+See `docs/implementation/documentation/README.md` for the exact
+mapping, purpose/header/test checks, source navigation and remaining limits.
 
-Initial command acceptance used Doxygen 1.11.0: `make docs-clean` followed by
-`make docs` generated the entry page and tag-file entries for all 428 maintained
-C sources/headers. A missing generator was checked to fail the Make target.
-Existing documentation warnings remain visible; this evidence does not close
-the later coverage and rendered-link tasks.
+The reference still extracts existing undocumented declarations. Bootstrap success
+is not complete documentation or current-language conformance: T134/T135 close
+retained-code gaps and regenerate the final deliverable after implementation.
+Warnings remain visible in `build/documentation/warnings.log`. Keep purpose and
+contract explanations beside code; let Doxygen generate file/interface pages.

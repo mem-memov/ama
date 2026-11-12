@@ -1,0 +1,243 @@
+{
+  "Makefile": {
+    "contract": "docs/implementation/documentation/README.md",
+    "purpose": "Build and verify generated component documentation.",
+    "tests": [
+      {
+        "case": "it_checks_actual_rendered_destinations_and_source_stability",
+        "command": "make -C tests/unit/documentation",
+        "source": "tests/unit/documentation/main.c"
+      }
+    ]
+  },
+  "docs/Doxyfile": {
+    "contract": "docs/implementation/documentation/README.md",
+    "purpose": "Build and verify generated component documentation.",
+    "tests": [
+      {
+        "case": "it_checks_actual_rendered_destinations_and_source_stability",
+        "command": "make -C tests/unit/documentation",
+        "source": "tests/unit/documentation/main.c"
+      }
+    ]
+  },
+  "make/configuration.mk": {
+    "contract": "docs/implementation/incremental-build.md",
+    "purpose": "Isolate simultaneous Make command-manifest checks and propagate errors.",
+    "tests": [
+      {
+        "case": "it_preserves_overlapping_same_configuration_checks",
+        "command": "make -C tests/integration/rebuild/concurrent",
+        "source": "tests/integration/rebuild/concurrent/main.c"
+      },
+      {
+        "case": "it_propagates_comparison_errors_without_replacing_the_old_location",
+        "command": "make -C tests/integration/rebuild/concurrent",
+        "source": "tests/integration/rebuild/concurrent/main.c"
+      }
+    ]
+  },
+  "src/native/status/status.h": {
+    "contract": "spec/implementation/diagnostics.md#error-03",
+    "purpose": "Represent native status without allocation or owned message storage.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_represents_success_without_allocating_a_message",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_preserves_unterminated_program_lifetime_message_bytes",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      }
+    ]
+  },
+  "tests/integration/rebuild/concurrent/Makefile": {
+    "contract": "docs/implementation/incremental-build.md",
+    "purpose": "Isolate simultaneous Make command-manifest checks and propagate errors.",
+    "tests": [
+      {
+        "case": "it_preserves_overlapping_same_configuration_checks",
+        "command": "make -C tests/integration/rebuild/concurrent",
+        "source": "tests/integration/rebuild/concurrent/main.c"
+      },
+      {
+        "case": "it_propagates_comparison_errors_without_replacing_the_old_location",
+        "command": "make -C tests/integration/rebuild/concurrent",
+        "source": "tests/integration/rebuild/concurrent/main.c"
+      }
+    ]
+  },
+  "tests/integration/rebuild/concurrent/main.c": {
+    "contract": "docs/implementation/incremental-build.md",
+    "purpose": "Isolate simultaneous Make command-manifest checks and propagate errors.",
+    "tests": [
+      {
+        "case": "it_preserves_overlapping_same_configuration_checks",
+        "command": "make -C tests/integration/rebuild/concurrent",
+        "source": "tests/integration/rebuild/concurrent/main.c"
+      },
+      {
+        "case": "it_propagates_comparison_errors_without_replacing_the_old_location",
+        "command": "make -C tests/integration/rebuild/concurrent",
+        "source": "tests/integration/rebuild/concurrent/main.c"
+      }
+    ]
+  },
+  "tests/integration/rebuild/concurrent/project/shell.c": {
+    "contract": "docs/implementation/incremental-build.md",
+    "purpose": "Isolate simultaneous Make command-manifest checks and propagate errors.",
+    "tests": [
+      {
+        "case": "it_preserves_overlapping_same_configuration_checks",
+        "command": "make -C tests/integration/rebuild/concurrent",
+        "source": "tests/integration/rebuild/concurrent/main.c"
+      },
+      {
+        "case": "it_propagates_comparison_errors_without_replacing_the_old_location",
+        "command": "make -C tests/integration/rebuild/concurrent",
+        "source": "tests/integration/rebuild/concurrent/main.c"
+      }
+    ]
+  },
+  "tests/integration/rebuild/concurrent/support/process.c": {
+    "contract": "docs/implementation/incremental-build.md",
+    "purpose": "Isolate simultaneous Make command-manifest checks and propagate errors.",
+    "tests": [
+      {
+        "case": "it_preserves_overlapping_same_configuration_checks",
+        "command": "make -C tests/integration/rebuild/concurrent",
+        "source": "tests/integration/rebuild/concurrent/main.c"
+      },
+      {
+        "case": "it_propagates_comparison_errors_without_replacing_the_old_location",
+        "command": "make -C tests/integration/rebuild/concurrent",
+        "source": "tests/integration/rebuild/concurrent/main.c"
+      }
+    ]
+  },
+  "tests/unit/documentation/Makefile": {
+    "contract": "docs/implementation/documentation/README.md",
+    "purpose": "Build and verify generated component documentation.",
+    "tests": [
+      {
+        "case": "it_checks_actual_rendered_destinations_and_source_stability",
+        "command": "make -C tests/unit/documentation",
+        "source": "tests/unit/documentation/main.c"
+      }
+    ]
+  },
+  "tests/unit/documentation/main.c": {
+    "contract": "docs/implementation/documentation/README.md",
+    "purpose": "Build and verify generated component documentation.",
+    "tests": [
+      {
+        "case": "it_checks_actual_rendered_destinations_and_source_stability",
+        "command": "make -C tests/unit/documentation",
+        "source": "tests/unit/documentation/main.c"
+      }
+    ]
+  },
+  "tests/unit/documentation/project/scenarios.py": {
+    "contract": "docs/implementation/documentation/README.md",
+    "purpose": "Build and verify generated component documentation.",
+    "tests": [
+      {
+        "case": "it_checks_actual_rendered_destinations_and_source_stability",
+        "command": "make -C tests/unit/documentation",
+        "source": "tests/unit/documentation/main.c"
+      }
+    ]
+  },
+  "tools/documentation/build.py": {
+    "contract": "docs/implementation/documentation/README.md",
+    "purpose": "Orchestrate staged Doxygen generation and verify reproducibility.",
+    "tests": [
+      {
+        "case": "it_checks_actual_rendered_destinations_and_source_stability",
+        "command": "make -C tests/unit/documentation",
+        "source": "tests/unit/documentation/main.c"
+      }
+    ]
+  },
+  "tools/documentation/coverage.py": {
+    "contract": "docs/implementation/documentation/README.md",
+    "purpose": "Enforce explicit per-file documentation/test ownership and visible debt.",
+    "tests": [
+      {
+        "case": "it_checks_current_coverage_and_exposes_unclosed_debt",
+        "command": "make -C tests/unit/documentation",
+        "source": "tests/unit/documentation/main.c"
+      }
+    ]
+  },
+  "tools/documentation/linking/markdown.py": {
+    "contract": "docs/implementation/documentation/README.md",
+    "purpose": "Locate real Markdown links while preserving physical source positions.",
+    "tests": [
+      {
+        "case": "it_preserves_code_literals_and_maps_nested_markdown",
+        "command": "make -C tests/unit/documentation",
+        "source": "tests/unit/documentation/main.c"
+      }
+    ]
+  },
+  "tools/documentation/linking/registry.py": {
+    "contract": "docs/implementation/documentation/README.md",
+    "purpose": "Resolve canonical rule identities and produce collision-checked anchors.",
+    "tests": [
+      {
+        "case": "it_rejects_invalid_canonical_links",
+        "command": "make -C tests/unit/documentation",
+        "source": "tests/unit/documentation/main.c"
+      }
+    ]
+  },
+  "tools/documentation/linking/source.py": {
+    "contract": "docs/implementation/documentation/README.md",
+    "purpose": "Extract C documentation comments without touching literals or code.",
+    "tests": [
+      {
+        "case": "it_preserves_code_literals_and_maps_nested_markdown",
+        "command": "make -C tests/unit/documentation",
+        "source": "tests/unit/documentation/main.c"
+      }
+    ]
+  },
+  "tools/documentation/linking/view.py": {
+    "contract": "docs/implementation/documentation/README.md",
+    "purpose": "Build read-only Doxygen input views with source-stable rule references.",
+    "tests": [
+      {
+        "case": "it_checks_actual_rendered_destinations_and_source_stability",
+        "command": "make -C tests/unit/documentation",
+        "source": "tests/unit/documentation/main.c"
+      }
+    ]
+  },
+  "tools/documentation/rendered.py": {
+    "contract": "docs/implementation/documentation/README.md",
+    "purpose": "Check generated Doxygen destinations instead of trusting successful exit.",
+    "tests": [
+      {
+        "case": "it_checks_actual_rendered_destinations_and_source_stability",
+        "command": "make -C tests/unit/documentation",
+        "source": "tests/unit/documentation/main.c"
+      }
+    ]
+  }
+}

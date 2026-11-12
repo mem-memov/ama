@@ -1,3 +1,5 @@
+# Build the compiler, recursive C tests and checked Doxygen reference.
+# Documentation contracts: docs/implementation/documentation/README.md.
 .RECIPEPREFIX := >
 .DEFAULT_GOAL := all
 .DELETE_ON_ERROR:
@@ -7,6 +9,7 @@ C_COMPILER_FLAGS ?= -O2 -Wall -Wextra -std=c11 -pedantic -D_POSIX_C_SOURCE=20080
 LTO_FLAGS ?=
 LINKER_FLAGS ?=
 DOXYGEN ?= doxygen
+DOCUMENTATION_PYTHON ?= python3
 
 include make/sources.mk
 PROJECT_SOURCES := $(call source_files,src)
@@ -19,7 +22,7 @@ COMPILE_COMMAND = $(C_COMPILER) $(CPPFLAGS) -Isrc $(C_COMPILER_FLAGS) $(LTO_FLAG
 LINK_COMMAND = $(C_COMPILER) $(C_COMPILER_FLAGS) $(LTO_FLAGS) $(LINKER_FLAGS)
 include make/configuration.mk
 
-.PHONY: all test test-clean docs docs-clean clean rebuild help
+.PHONY: all test test-clean docs docs-check docs-complete docs-reproducible docs-clean clean rebuild help
 all: ama
 
 ama: $(PROJECT_OBJECTS) build/link.configuration
@@ -38,9 +41,17 @@ test-clean:
 >    $(MAKE) -C tests clean
 
 # Generate the file reference from maintained C comments; no compiler build is needed.
-docs: docs/Doxyfile
->    @mkdir -p build/documentation
->    "$(DOXYGEN)" docs/Doxyfile
+docs: docs/Doxyfile docs-check
+>    "$(DOCUMENTATION_PYTHON)" tools/documentation/build.py --doxygen "$(DOXYGEN)"
+
+docs-check:
+>    "$(DOCUMENTATION_PYTHON)" tools/documentation/coverage.py
+
+docs-complete:
+>    "$(DOCUMENTATION_PYTHON)" tools/documentation/coverage.py --complete
+
+docs-reproducible: docs-check
+>    "$(DOCUMENTATION_PYTHON)" tools/documentation/build.py --doxygen "$(DOXYGEN)" --reproducible
 
 docs-clean:
 >    $(RM) -r docs/technical build/documentation
