@@ -1,6 +1,15 @@
+/**
+ * @file
+ * @brief Compose in-memory native authoring artifacts without implicit filesystem replacement.
+ *
+ * [CABI-06](../../../spec/implementation/native-interface.md#cabi-06)
+ * Only explicit publication writes completed artifacts; create/overwrite policy controls authored companions.
+ */
 #include <assert.h>
 #include "internal.h"
 
+/** Join one generated artifact name to the explicit output directory, then stage complete bytes under generated rather than authored ownership.
+ */
 static bool generated(NativeScaffold *scaffold, const char *name, ScaffoldEmitter emitter, const ScaffoldType *type) {
     const char *path = scaffold_join(scaffold, scaffold->directory, "/", name);
     return scaffold_artifact(scaffold, path, false, emitter, type);

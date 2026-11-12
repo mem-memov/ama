@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Enforce the verified GCC, C11 and x86_64 Linux representation assumptions.
+ *
+ * [STACK-04](../../../spec/implementation/compiler.md#stack-04)
+ * Always-inline entry declarations and target assertions are part of the supported backend contract, not portable C ABI promises.
+ */
 #ifndef AMA_NATIVE_TOOLCHAIN_GCC_H
 #define AMA_NATIVE_TOOLCHAIN_GCC_H
 
@@ -18,6 +25,10 @@ _Static_assert(sizeof(uint32_t) == 4 && sizeof(uint64_t) == 8, "Invalid integer 
 _Static_assert(sizeof(bool) == 1, "Invalid bool representation");
 
 /* Only direct entry calls are supported; taking entry addresses is forbidden. */
+/** Required direct-entry inlining declaration under the verified backend.
+ * Taking native entry addresses is outside this contract; ordinary C helpers
+ * may still call/return/ recurse on the C stack under STACK-02.
+ */
 #define AMA_NATIVE_ENTRY static inline __attribute__((always_inline))
 
 #endif

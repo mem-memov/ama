@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Declare module-qualified native name and scoped preprocessing output.
+ *
+ * [NAME-05](../../../spec/implementation/native-interface.md#name-05)
+ * Borrow registered namespace identities and validated local identifiers; context macros must end before another module starts.
+ */
 #ifndef AMA_NATIVE_NAMESPACE_H
 #define AMA_NATIVE_NAMESPACE_H
 
@@ -9,8 +16,14 @@
  * frontend. Emit begin/includes/typed uses/end as one sequential module context.
  * No inputs are retained. False reports invalid arguments or output failure;
  * a failed output stream is not a usable generated artifact. */
+/** Emit a registered namespace macro with an explicit nested-context guard. Borrow output/identity; invalid category or partial IO failure returns false.
+ */
 bool native_namespace_begin(FILE *output, const IdentityName *name);
+/** Undefine the temporary namespace macro on a borrowed stream; caller owns final flush/close and may see partial output on failure.
+ */
 bool native_namespace_end(FILE *output);
+/** Write exact registered prefix plus original validated identifier span. No input is retained; caller supplies valid source lifetime and checks final stream completion.
+ */
 bool native_namespace_symbol(FILE *output, const IdentityName *name, SourceSpan local);
 
 #endif

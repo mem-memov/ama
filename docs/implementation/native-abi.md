@@ -121,3 +121,13 @@ Run `make -C tests/unit/native/abi/layout`. Independent headers compile as C11;
 byte-length and aligned-storage tests check the selected representation. Subsequent
 native component tests compose this representation with status, real hooks, lifecycle and
 control-flow evidence. Nothing here is a completed Ama backend claim.
+
+
+T148 documents bounded byte views, read-only service snapshots, exact code
+classification and supported representation/toolchain assumptions beside their
+declarations. Message-view helpers check pointer/length shape only; valid UTF-8,
+program lifetime and actual pointed memory remain the native caller's obligations.
+The library-code helper merely combines an already assigned nonzero 16-bit
+provider/reason pair. Its arithmetic injectivity does not implement compiler-side
+provider registration. Full malformed-status/context boundary validation remains
+T007 and later consumers, rather than an inferred guarantee from a C struct.

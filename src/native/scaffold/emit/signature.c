@@ -1,13 +1,21 @@
+/**
+ * @file
+ * @brief Write exact six-protocol C signatures and validated include directives.
+ *
+ * [PROTO-03](../../../../spec/implementation/native-interface.md#proto-03)
+ * Signature spelling depends only on a valid protocol operation and validated local function bytes, not a whole type model.
+ */
 #include "native/scaffold/internal.h"
 
+/** Write validated original local identifier bytes inside AMA_NATIVE without decoding, transliterating or expanding a different helper name.
+ */
 static bool function_name(FILE *output, SourceSpan name) {
     return fputs("AMA_NATIVE(", output) != EOF
         && fwrite(source_bytes(name.source) + name.start, 1, name.end - name.start, output) == name.end - name.start
         && fputc(')', output) != EOF;
 }
 
-bool scaffold_emit_signature(FILE *output, const ScaffoldType *type, AbiOperation operation, SourceSpan function) {
-    (void)type;
+bool scaffold_emit_signature(FILE *output, AbiOperation operation, SourceSpan function) {
     if (fputs("AmaStatus ", output) == EOF || !function_name(output, function)) {
         return false;
     }

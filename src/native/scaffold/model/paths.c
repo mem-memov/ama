@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Prepare explicit absolute output/SDK paths and verify required SDK headers.
+ *
+ * [CABI-06](../../../../spec/implementation/native-interface.md#cabi-06)
+ * Reject paths not representable in a C header name; no guessed output directory or hidden include is supplied.
+ */
 #define _XOPEN_SOURCE 700
 #include <errno.h>
 #include <stdint.h>
@@ -7,6 +14,8 @@
 #include <unistd.h>
 #include "native/scaffold/internal.h"
 
+/** Own a getcwd buffer in the arena, growing only after ERANGE with checked doubling; preserve the first IO/allocation error.
+ */
 static const char *working_directory(NativeScaffold *scaffold) {
     size_t capacity = 128;
     for (;;) {

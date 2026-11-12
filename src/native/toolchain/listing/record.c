@@ -1,11 +1,22 @@
+/**
+ * @file
+ * @brief Read bounded POSIX nm-style token records without accepting control-byte truncation.
+ *
+ * [STACK-04](../../../../spec/implementation/compiler.md#stack-04)
+ * The verified tool workflow supplies an unstripped non-LTO listing; malformed token/hex records fail closed.
+ */
 #include "internal.h"
 
 #include <stdbool.h>
 
+/** Recognize only nm token separators, ASCII space and TAB, independently of Ama source whitespace rules.
+ */
 static bool is_space(unsigned char byte) {
     return byte == ' ' || byte == '\t';
 }
 
+/** Require every byte of an already nonempty token to be an ASCII hexadecimal digit.
+ */
 static bool is_hex(AmaByteView word) {
     for (size_t index = 0; index < word.length; index++) {
         unsigned char byte = word.data[index];
@@ -17,6 +28,8 @@ static bool is_hex(AmaByteView word) {
     return true;
 }
 
+/** Skip listing separators and borrow one nonempty bounded token; embedded control bytes fail rather than truncating the name.
+ */
 static bool next_word(AmaByteView line, size_t *position, AmaByteView *word) {
     while (*position < line.length && is_space(line.data[*position])) {
         (*position)++;
@@ -32,6 +45,8 @@ static bool next_word(AmaByteView line, size_t *position, AmaByteView *word) {
     return word->length != 0;
 }
 
+/** Read at most four bounded tokens, preserving record completeness; excess/invalid tokens return zero.
+ */
 static size_t read_words(AmaByteView line, AmaByteView words[4]) {
     size_t position = 0;
     size_t count = 0;

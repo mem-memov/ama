@@ -144,8 +144,9 @@ names into one C unit, uses typed parameter/result payload views to transfer a
 value, calls both inline entries directly, and runs the harness. It checks isolated
 headers, Unicode paths/names, paths with spaces, quoted compiler arguments, exported
 commands and the real authoring/check/refresh CLI. [Ownership tests](../../tests/unit/native/scaffold/ownership/main.c)
-are a separate leaf. The final Ama assembly is not implemented and is not certified
-by this native-only composition test.
+are a separate leaf. The [final Ama assembly](project-emission.md) has its own
+actual generated-execution tests; this native-only composition certifies only
+declaration/namespace agreement.
 
 ## Bounds and failure invariants
 
@@ -178,3 +179,30 @@ path. Different entries/projects use separate output directories; switching a
 valid existing scope requires explicit overwrite. This prevents generating one
 module's smaller closure over another module's common type header by accident.
 Malformed scope syntax remains an error with overwrite.
+
+
+T148 adds Doxygen contracts for every retained native model/emitter/namespace/
+ABI/toolchain boundary, reusing T139's independently checked frontend-free
+publication phases. The model/identity/source owners borrow the complete frontend;
+publication borrows only the IO/error/ownership views documented in
+[native publication](native-publication.md). Scope/digest records are explicit
+refresh authority under the stable-filesystem/lock assumptions, not generated
+ownership inferred from a legal basename. No power-loss transaction or protection
+against an unrelated writer outside the lock protocol is claimed.
+
+The six protocol metadata records are independent of C definition deduplication.
+T148's regression found that sharing one compatible C helper for `+` and `-`
+emitted only `+`, making the generated `.abi` fail its own mandatory-slot parser.
+The generator now emits every present binding while still declaring/defining the
+compatible C function once. The regression parses the actual staged ABI bytes and
+checks both exact bindings; it failed before the correction. The signature writer
+also now receives only stream, protocol operation and original function span;
+its unused type-model argument and the matching private helper argument are gone.
+
+Supported configuration strings are UTF-8, and path preparation rejects C header
+name syntax hazards rather than inventing an escaping convention. C signatures,
+header include order, nominal view constness and namespace cleanup are checked by
+actual isolated/composed C compilation. Those checks cannot prove arbitrary native
+ownership, pointer lifetime or callback purity: trusted authored C must satisfy
+its bounded-borrow/resource contracts. Compiled-component exports and cross-context
+ABI/configuration compatibility remain their own TODO work.

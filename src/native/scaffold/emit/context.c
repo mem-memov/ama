@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Emit scoped field/input/output aliases and their complete cleanup.
+ *
+ * [NAME-05](../../../../spec/implementation/native-interface.md#name-05)
+ * Ordinal access macros name qualified declarations and never leak into the next module context.
+ */
 #include "native/scaffold/internal.h"
 
 bool scaffold_emit_context(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type) {

@@ -79,3 +79,13 @@ The probe uses additional optimization controls to preserve observable native
 helper calls and avoid relying on sibling-call optimization. An initial probe with
 blanket `-fno-inline` plus `-Werror=inline` rejected ordinary optional inline helpers;
 that blanket restriction is not used. Only native entry expansion is mandatory.
+
+
+T148 adds source-linked contracts for target/compiler assertions, nm record/token
+recognition and exact entry-family checks. A clear result is meaningful only for
+the declared GCC 15.2.0, C11, x86_64 Linux, unstripped non-LTO object workflow.
+The listing recognizer accepts its documented bounded token grammar; it is not a
+general parser for arbitrary debugger/assembler output. Required inlining plus
+actual positive/negative compiled probes establish this supported execution
+boundary; symbol absence alone does not prove functional correctness or native
+borrow/resource behavior. Ordinary C helper recursion remains permitted.

@@ -2134,6 +2134,980 @@
       }
     ]
   },
+  "src/native/abi/bytes.h": {
+    "contract": "docs/implementation/native-abi.md",
+    "purpose": "Declare bounded borrowed literal bytes independently of string terminators.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_checks_all_six_bound_function_signatures",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_constructs_once_and_clones_independent_native_resources",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_distinguishes_invalid_indices_from_technical_failure_without_outputs",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_accepts_size_max_and_refuses_arithmetic_overflow",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_returns_declared_results_and_refusal_data_separately_from_technical_status",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_represents_success_without_allocating_a_message",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_preserves_unterminated_program_lifetime_message_bytes",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_classifies_index_results_by_code_and_never_message_text",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_assigns_collision_free_library_codes_and_rejects_zero_fields",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      }
+    ]
+  },
+  "src/native/abi/services.h": {
+    "contract": "docs/implementation/native-abi.md",
+    "purpose": "Expose read-only operation-scoped ABI service values without runtime pointers.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_checks_all_six_bound_function_signatures",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_constructs_once_and_clones_independent_native_resources",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_distinguishes_invalid_indices_from_technical_failure_without_outputs",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_accepts_size_max_and_refuses_arithmetic_overflow",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_returns_declared_results_and_refusal_data_separately_from_technical_status",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_represents_success_without_allocating_a_message",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_preserves_unterminated_program_lifetime_message_bytes",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_classifies_index_results_by_code_and_never_message_text",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_assigns_collision_free_library_codes_and_rejects_zero_fields",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      }
+    ]
+  },
+  "src/native/namespace/context.c": {
+    "contract": "docs/implementation/native-namespaces.md",
+    "purpose": "Emit explicit native naming-context establishment and cleanup.",
+    "tests": [
+      {
+        "case": "it_qualifies_local_names_with_stable_module_specific_prefixes",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_rejects_non_namespace_identities_and_reports_output_failure",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_exports_a_database_that_an_independent_json_consumer_can_execute",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_each_scaffold_model_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_composes_typed_views_and_identically_named_native_helpers_in_one_c_unit",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_uses_the_same_strict_frontend_for_checking_and_generation",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      }
+    ]
+  },
+  "src/native/namespace/namespace.h": {
+    "contract": "docs/implementation/native-namespaces.md",
+    "purpose": "Declare module-qualified native name and scoped preprocessing output.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_qualifies_local_names_with_stable_module_specific_prefixes",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_rejects_non_namespace_identities_and_reports_output_failure",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_exports_a_database_that_an_independent_json_consumer_can_execute",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_each_scaffold_model_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_composes_typed_views_and_identically_named_native_helpers_in_one_c_unit",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_uses_the_same_strict_frontend_for_checking_and_generation",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      }
+    ]
+  },
+  "src/native/namespace/symbol.c": {
+    "contract": "docs/implementation/native-namespaces.md",
+    "purpose": "Write an exact qualified native symbol from its registered prefix and original local bytes.",
+    "tests": [
+      {
+        "case": "it_qualifies_local_names_with_stable_module_specific_prefixes",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_rejects_non_namespace_identities_and_reports_output_failure",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_exports_a_database_that_an_independent_json_consumer_can_execute",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_each_scaffold_model_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_composes_typed_views_and_identically_named_native_helpers_in_one_c_unit",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_uses_the_same_strict_frontend_for_checking_and_generation",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/emit/body.c": {
+    "contract": "docs/implementation/native-scaffolding.md",
+    "purpose": "Emit fail-first native skeletons and complete explicit ABI binding records.",
+    "tests": [
+      {
+        "case": "it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_exports_a_database_that_an_independent_json_consumer_can_execute",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_each_scaffold_model_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_composes_typed_views_and_identically_named_native_helpers_in_one_c_unit",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_uses_the_same_strict_frontend_for_checking_and_generation",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/emit/context.c": {
+    "contract": "docs/implementation/native-scaffolding.md",
+    "purpose": "Emit scoped field/input/output aliases and their complete cleanup.",
+    "tests": [
+      {
+        "case": "it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_exports_a_database_that_an_independent_json_consumer_can_execute",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_each_scaffold_model_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_composes_typed_views_and_identically_named_native_helpers_in_one_c_unit",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_uses_the_same_strict_frontend_for_checking_and_generation",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/emit/interface.c": {
+    "contract": "docs/implementation/native-scaffolding.md",
+    "purpose": "Emit a self-contained guarded native entry/hook declaration header.",
+    "tests": [
+      {
+        "case": "it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_exports_a_database_that_an_independent_json_consumer_can_execute",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_each_scaffold_model_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_composes_typed_views_and_identically_named_native_helpers_in_one_c_unit",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_uses_the_same_strict_frontend_for_checking_and_generation",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/emit/signature.c": {
+    "contract": "docs/implementation/native-scaffolding.md",
+    "purpose": "Write exact six-protocol C signatures and validated include directives.",
+    "tests": [
+      {
+        "case": "it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_exports_a_database_that_an_independent_json_consumer_can_execute",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_each_scaffold_model_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_composes_typed_views_and_identically_named_native_helpers_in_one_c_unit",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_uses_the_same_strict_frontend_for_checking_and_generation",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/emit/test.c": {
+    "contract": "docs/implementation/native-scaffolding.md",
+    "purpose": "Emit an explicit native lifecycle test skeleton using the generated interface.",
+    "tests": [
+      {
+        "case": "it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_exports_a_database_that_an_independent_json_consumer_can_execute",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_each_scaffold_model_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_composes_typed_views_and_identically_named_native_helpers_in_one_c_unit",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_uses_the_same_strict_frontend_for_checking_and_generation",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/emit/tooling.c": {
+    "contract": "docs/implementation/native-scaffolding.md",
+    "purpose": "Emit machine-readable native compilation arguments without shell quoting inference.",
+    "tests": [
+      {
+        "case": "it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_exports_a_database_that_an_independent_json_consumer_can_execute",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_each_scaffold_model_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_composes_typed_views_and_identically_named_native_helpers_in_one_c_unit",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_uses_the_same_strict_frontend_for_checking_and_generation",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/emit/types.c": {
+    "contract": "docs/implementation/native-scaffolding.md",
+    "purpose": "Emit forward declarations, native representations and complete typed borrowed views.",
+    "tests": [
+      {
+        "case": "it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_exports_a_database_that_an_independent_json_consumer_can_execute",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_each_scaffold_model_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_composes_typed_views_and_identically_named_native_helpers_in_one_c_unit",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_uses_the_same_strict_frontend_for_checking_and_generation",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/generate.c": {
+    "contract": "docs/implementation/native-scaffolding.md",
+    "purpose": "Compose in-memory native authoring artifacts without implicit filesystem replacement.",
+    "tests": [
+      {
+        "case": "it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_exports_a_database_that_an_independent_json_consumer_can_execute",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_each_scaffold_model_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_composes_typed_views_and_identically_named_native_helpers_in_one_c_unit",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_uses_the_same_strict_frontend_for_checking_and_generation",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/internal.h": {
+    "contract": "docs/implementation/native-scaffolding.md",
+    "purpose": "Declare native model, C declaration emission and artifact-ownership phase contracts.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_exports_a_database_that_an_independent_json_consumer_can_execute",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_each_scaffold_model_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_composes_typed_views_and_identically_named_native_helpers_in_one_c_unit",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_uses_the_same_strict_frontend_for_checking_and_generation",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/model/hooks.c": {
+    "contract": "docs/implementation/native-scaffolding.md",
+    "purpose": "Validate compatible shared native helper roles before emitting C declarations.",
+    "tests": [
+      {
+        "case": "it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_exports_a_database_that_an_independent_json_consumer_can_execute",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_each_scaffold_model_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_composes_typed_views_and_identically_named_native_helpers_in_one_c_unit",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_uses_the_same_strict_frontend_for_checking_and_generation",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/model/lifetime.c": {
+    "contract": "docs/implementation/native-scaffolding.md",
+    "purpose": "Own scaffold arena, exact identities, source bytes and first-error lifetime.",
+    "tests": [
+      {
+        "case": "it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_exports_a_database_that_an_independent_json_consumer_can_execute",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_each_scaffold_model_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_composes_typed_views_and_identically_named_native_helpers_in_one_c_unit",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_uses_the_same_strict_frontend_for_checking_and_generation",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/model/paths.c": {
+    "contract": "docs/implementation/native-scaffolding.md",
+    "purpose": "Prepare explicit absolute output/SDK paths and verify required SDK headers.",
+    "tests": [
+      {
+        "case": "it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_exports_a_database_that_an_independent_json_consumer_can_execute",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_each_scaffold_model_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_composes_typed_views_and_identically_named_native_helpers_in_one_c_unit",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_uses_the_same_strict_frontend_for_checking_and_generation",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/model/types.c": {
+    "contract": "docs/implementation/native-scaffolding.md",
+    "purpose": "Register exact nominal view/member identities and stable native artifact names.",
+    "tests": [
+      {
+        "case": "it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_exports_a_database_that_an_independent_json_consumer_can_execute",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_each_scaffold_model_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_composes_typed_views_and_identically_named_native_helpers_in_one_c_unit",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_uses_the_same_strict_frontend_for_checking_and_generation",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/output/artifact.c": {
+    "contract": "docs/implementation/native-scaffolding.md",
+    "purpose": "Stage complete emitter bytes into owned immutable artifact records.",
+    "tests": [
+      {
+        "case": "it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_exports_a_database_that_an_independent_json_consumer_can_execute",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_each_scaffold_model_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_composes_typed_views_and_identically_named_native_helpers_in_one_c_unit",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_uses_the_same_strict_frontend_for_checking_and_generation",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      }
+    ]
+  },
   "src/native/scaffold/output/artifact.h": {
     "contract": "docs/implementation/native-publication.md",
     "purpose": "Check explicit publication ownership through narrow filesystem phases and real composition.",
@@ -2187,6 +3161,144 @@
         "case": "it_retains_old_backup_when_rollback_itself_fails",
         "command": "make -C tests/unit/native/scaffold/publication",
         "source": "tests/unit/native/scaffold/publication/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/output/ownership/ownership.h": {
+    "contract": "docs/implementation/native-scaffolding.md",
+    "purpose": "Declare scoped generated-output ownership and manifest integrity records.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_refreshes_owned_outputs_and_preserves_handwritten_companions",
+        "command": "make -C tests/unit/native/scaffold/ownership",
+        "source": "tests/unit/native/scaffold/ownership/main.c"
+      },
+      {
+        "case": "it_rejects_edited_owned_outputs_before_publishing_other_files",
+        "command": "make -C tests/unit/native/scaffold/ownership",
+        "source": "tests/unit/native/scaffold/ownership/main.c"
+      },
+      {
+        "case": "it_cleans_staging_and_locks_after_every_publication_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/ownership",
+        "source": "tests/unit/native/scaffold/ownership/main.c"
+      },
+      {
+        "case": "it_rejects_a_retained_lock_without_guessing_its_age",
+        "command": "make -C tests/unit/native/scaffold/ownership",
+        "source": "tests/unit/native/scaffold/ownership/main.c"
+      },
+      {
+        "case": "it_refuses_to_refresh_a_different_entry_into_the_same_scope",
+        "command": "make -C tests/unit/native/scaffold/ownership",
+        "source": "tests/unit/native/scaffold/ownership/main.c"
+      },
+      {
+        "case": "it_never_claims_an_unknown_existing_file_as_generated",
+        "command": "make -C tests/unit/native/scaffold/ownership",
+        "source": "tests/unit/native/scaffold/ownership/main.c"
+      },
+      {
+        "case": "it_rejects_symlinks_and_malformed_manifests_even_with_overwrite",
+        "command": "make -C tests/unit/native/scaffold/ownership",
+        "source": "tests/unit/native/scaffold/ownership/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/output/ownership/read.c": {
+    "contract": "docs/implementation/native-scaffolding.md",
+    "purpose": "Read exact manifest scope/name/digest records and preserve first ownership failures.",
+    "tests": [
+      {
+        "case": "it_refreshes_owned_outputs_and_preserves_handwritten_companions",
+        "command": "make -C tests/unit/native/scaffold/ownership",
+        "source": "tests/unit/native/scaffold/ownership/main.c"
+      },
+      {
+        "case": "it_rejects_edited_owned_outputs_before_publishing_other_files",
+        "command": "make -C tests/unit/native/scaffold/ownership",
+        "source": "tests/unit/native/scaffold/ownership/main.c"
+      },
+      {
+        "case": "it_cleans_staging_and_locks_after_every_publication_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/ownership",
+        "source": "tests/unit/native/scaffold/ownership/main.c"
+      },
+      {
+        "case": "it_rejects_a_retained_lock_without_guessing_its_age",
+        "command": "make -C tests/unit/native/scaffold/ownership",
+        "source": "tests/unit/native/scaffold/ownership/main.c"
+      },
+      {
+        "case": "it_refuses_to_refresh_a_different_entry_into_the_same_scope",
+        "command": "make -C tests/unit/native/scaffold/ownership",
+        "source": "tests/unit/native/scaffold/ownership/main.c"
+      },
+      {
+        "case": "it_never_claims_an_unknown_existing_file_as_generated",
+        "command": "make -C tests/unit/native/scaffold/ownership",
+        "source": "tests/unit/native/scaffold/ownership/main.c"
+      },
+      {
+        "case": "it_rejects_symlinks_and_malformed_manifests_even_with_overwrite",
+        "command": "make -C tests/unit/native/scaffold/ownership",
+        "source": "tests/unit/native/scaffold/ownership/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/output/ownership/write.c": {
+    "contract": "docs/implementation/native-scaffolding.md",
+    "purpose": "Write scoped output ownership and verify previously generated bytes before refresh.",
+    "tests": [
+      {
+        "case": "it_refreshes_owned_outputs_and_preserves_handwritten_companions",
+        "command": "make -C tests/unit/native/scaffold/ownership",
+        "source": "tests/unit/native/scaffold/ownership/main.c"
+      },
+      {
+        "case": "it_rejects_edited_owned_outputs_before_publishing_other_files",
+        "command": "make -C tests/unit/native/scaffold/ownership",
+        "source": "tests/unit/native/scaffold/ownership/main.c"
+      },
+      {
+        "case": "it_cleans_staging_and_locks_after_every_publication_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/ownership",
+        "source": "tests/unit/native/scaffold/ownership/main.c"
+      },
+      {
+        "case": "it_rejects_a_retained_lock_without_guessing_its_age",
+        "command": "make -C tests/unit/native/scaffold/ownership",
+        "source": "tests/unit/native/scaffold/ownership/main.c"
+      },
+      {
+        "case": "it_refuses_to_refresh_a_different_entry_into_the_same_scope",
+        "command": "make -C tests/unit/native/scaffold/ownership",
+        "source": "tests/unit/native/scaffold/ownership/main.c"
+      },
+      {
+        "case": "it_never_claims_an_unknown_existing_file_as_generated",
+        "command": "make -C tests/unit/native/scaffold/ownership",
+        "source": "tests/unit/native/scaffold/ownership/main.c"
+      },
+      {
+        "case": "it_rejects_symlinks_and_malformed_manifests_even_with_overwrite",
+        "command": "make -C tests/unit/native/scaffold/ownership",
+        "source": "tests/unit/native/scaffold/ownership/main.c"
       }
     ]
   },
@@ -2646,6 +3758,265 @@
       }
     ]
   },
+  "src/native/scaffold/scaffold.h": {
+    "contract": "docs/implementation/native-scaffolding.md",
+    "purpose": "Own validated native declaration models, artifact bytes and explicit publication state.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_exports_a_database_that_an_independent_json_consumer_can_execute",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_each_scaffold_model_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_composes_typed_views_and_identically_named_native_helpers_in_one_c_unit",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_uses_the_same_strict_frontend_for_checking_and_generation",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      }
+    ]
+  },
+  "src/native/status/codes.h": {
+    "contract": "docs/implementation/native-status.md",
+    "purpose": "Define the retained fixed-width core status code domain.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_represents_success_without_allocating_a_message",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_preserves_unterminated_program_lifetime_message_bytes",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_classifies_index_results_by_code_and_never_message_text",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_assigns_collision_free_library_codes_and_rejects_zero_fields",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_checks_all_six_bound_function_signatures",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_constructs_once_and_clones_independent_native_resources",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_distinguishes_invalid_indices_from_technical_failure_without_outputs",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_accepts_size_max_and_refuses_arithmetic_overflow",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_returns_declared_results_and_refusal_data_separately_from_technical_status",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      }
+    ]
+  },
+  "src/native/status/index.h": {
+    "contract": "docs/implementation/native-status.md",
+    "purpose": "Separate converted, explicitly invalid and technically failed native index outcomes.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_represents_success_without_allocating_a_message",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_preserves_unterminated_program_lifetime_message_bytes",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_classifies_index_results_by_code_and_never_message_text",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_assigns_collision_free_library_codes_and_rejects_zero_fields",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_checks_all_six_bound_function_signatures",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_constructs_once_and_clones_independent_native_resources",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_distinguishes_invalid_indices_from_technical_failure_without_outputs",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_accepts_size_max_and_refuses_arithmetic_overflow",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_returns_declared_results_and_refusal_data_separately_from_technical_status",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      }
+    ]
+  },
+  "src/native/status/library.h": {
+    "contract": "docs/implementation/native-status.md",
+    "purpose": "Compose caller-supplied nonzero provider/reason pairs into disjoint library codes.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_represents_success_without_allocating_a_message",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_preserves_unterminated_program_lifetime_message_bytes",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_classifies_index_results_by_code_and_never_message_text",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_assigns_collision_free_library_codes_and_rejects_zero_fields",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_checks_all_six_bound_function_signatures",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_constructs_once_and_clones_independent_native_resources",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_distinguishes_invalid_indices_from_technical_failure_without_outputs",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_accepts_size_max_and_refuses_arithmetic_overflow",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_returns_declared_results_and_refusal_data_separately_from_technical_status",
+        "command": "make -C tests/unit/native/abi/hooks",
+        "source": "tests/unit/native/abi/hooks/main.c"
+      }
+    ]
+  },
   "src/native/status/status.h": {
     "contract": "spec/implementation/diagnostics.md#error-03",
     "purpose": "Represent native status without allocation or owned message storage.",
@@ -2672,6 +4043,182 @@
         "case": "it_preserves_unterminated_program_lifetime_message_bytes",
         "command": "make -C tests/unit/native/abi/status",
         "source": "tests/unit/native/abi/status/main.c"
+      }
+    ]
+  },
+  "src/native/toolchain/gcc.h": {
+    "contract": "docs/implementation/native-toolchain.md",
+    "purpose": "Enforce the verified GCC, C11 and x86_64 Linux representation assumptions.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_inlines_native_entries_and_runs_label_returns_with_native_recursion",
+        "command": "make -C tests/integration/native/toolchain",
+        "source": "tests/integration/native/toolchain/main.c"
+      },
+      {
+        "case": "it_rejects_surviving_entry_bodies_even_if_the_c_program_would_run",
+        "command": "make -C tests/integration/native/toolchain",
+        "source": "tests/integration/native/toolchain/main.c"
+      },
+      {
+        "case": "it_requires_a_compiler_error_for_uninlinable_native_entries",
+        "command": "make -C tests/integration/native/toolchain",
+        "source": "tests/integration/native/toolchain/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_native_conversion_signatures",
+        "command": "make -C tests/integration/native/toolchain",
+        "source": "tests/integration/native/toolchain/main.c"
+      }
+    ]
+  },
+  "src/native/toolchain/listing/internal.h": {
+    "contract": "docs/implementation/native-toolchain.md",
+    "purpose": "Separate bounded symbol-record recognition from exact entry-family matching.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_accepts_unrelated_helpers_and_complete_empty_objects",
+        "command": "make -C tests/unit/native/toolchain/symbols",
+        "source": "tests/unit/native/toolchain/symbols/main.c"
+      },
+      {
+        "case": "it_rejects_entry_definitions_references_and_compiler_specializations",
+        "command": "make -C tests/unit/native/toolchain/symbols",
+        "source": "tests/unit/native/toolchain/symbols/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_or_truncated_records_instead_of_certifying_them",
+        "command": "make -C tests/unit/native/toolchain/symbols",
+        "source": "tests/unit/native/toolchain/symbols/main.c"
+      }
+    ]
+  },
+  "src/native/toolchain/listing/match.c": {
+    "contract": "docs/implementation/native-toolchain.md",
+    "purpose": "Match only an exact generated entry or its dot-suffixed compiler family.",
+    "tests": [
+      {
+        "case": "it_accepts_unrelated_helpers_and_complete_empty_objects",
+        "command": "make -C tests/unit/native/toolchain/symbols",
+        "source": "tests/unit/native/toolchain/symbols/main.c"
+      },
+      {
+        "case": "it_rejects_entry_definitions_references_and_compiler_specializations",
+        "command": "make -C tests/unit/native/toolchain/symbols",
+        "source": "tests/unit/native/toolchain/symbols/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_or_truncated_records_instead_of_certifying_them",
+        "command": "make -C tests/unit/native/toolchain/symbols",
+        "source": "tests/unit/native/toolchain/symbols/main.c"
+      }
+    ]
+  },
+  "src/native/toolchain/listing/record.c": {
+    "contract": "docs/implementation/native-toolchain.md",
+    "purpose": "Read bounded POSIX nm-style token records without accepting control-byte truncation.",
+    "tests": [
+      {
+        "case": "it_accepts_unrelated_helpers_and_complete_empty_objects",
+        "command": "make -C tests/unit/native/toolchain/symbols",
+        "source": "tests/unit/native/toolchain/symbols/main.c"
+      },
+      {
+        "case": "it_rejects_entry_definitions_references_and_compiler_specializations",
+        "command": "make -C tests/unit/native/toolchain/symbols",
+        "source": "tests/unit/native/toolchain/symbols/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_or_truncated_records_instead_of_certifying_them",
+        "command": "make -C tests/unit/native/toolchain/symbols",
+        "source": "tests/unit/native/toolchain/symbols/main.c"
+      }
+    ]
+  },
+  "src/native/toolchain/symbols.c": {
+    "contract": "docs/implementation/native-toolchain.md",
+    "purpose": "Scan every symbol record and reject malformed output or a surviving native entry family.",
+    "tests": [
+      {
+        "case": "it_accepts_unrelated_helpers_and_complete_empty_objects",
+        "command": "make -C tests/unit/native/toolchain/symbols",
+        "source": "tests/unit/native/toolchain/symbols/main.c"
+      },
+      {
+        "case": "it_rejects_entry_definitions_references_and_compiler_specializations",
+        "command": "make -C tests/unit/native/toolchain/symbols",
+        "source": "tests/unit/native/toolchain/symbols/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_or_truncated_records_instead_of_certifying_them",
+        "command": "make -C tests/unit/native/toolchain/symbols",
+        "source": "tests/unit/native/toolchain/symbols/main.c"
+      }
+    ]
+  },
+  "src/native/toolchain/symbols.h": {
+    "contract": "docs/implementation/native-toolchain.md",
+    "purpose": "Declare allocation-free surviving-entry-family checks on verified nm output.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_accepts_unrelated_helpers_and_complete_empty_objects",
+        "command": "make -C tests/unit/native/toolchain/symbols",
+        "source": "tests/unit/native/toolchain/symbols/main.c"
+      },
+      {
+        "case": "it_rejects_entry_definitions_references_and_compiler_specializations",
+        "command": "make -C tests/unit/native/toolchain/symbols",
+        "source": "tests/unit/native/toolchain/symbols/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_or_truncated_records_instead_of_certifying_them",
+        "command": "make -C tests/unit/native/toolchain/symbols",
+        "source": "tests/unit/native/toolchain/symbols/main.c"
       }
     ]
   },
@@ -10637,6 +12184,52 @@
         "case": "it_rejects_every_retired_list_configuration_option",
         "command": "make -C tests/unit/driver/run",
         "source": "tests/unit/driver/run/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/scaffold/declarations/main.c": {
+    "contract": "docs/implementation/native-scaffolding.md",
+    "purpose": "Verify standalone typed native declarations, authoring models and complete ABI round trips.",
+    "tests": [
+      {
+        "case": "it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_exports_a_database_that_an_independent_json_consumer_can_execute",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_each_scaffold_model_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_composes_typed_views_and_identically_named_native_helpers_in_one_c_unit",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_uses_the_same_strict_frontend_for_checking_and_generation",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
       }
     ]
   },

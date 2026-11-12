@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Own scaffold arena, exact identities, source bytes and first-error lifetime.
+ *
+ * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03)
+ * The validated frontend remains borrowed; failed model/output storage is released by one explicit owner.
+ */
 #include <assert.h>
 #include <string.h>
 #include "native/scaffold/internal.h"

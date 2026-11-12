@@ -1,7 +1,16 @@
+/**
+ * @file
+ * @brief Emit fail-first native skeletons and complete explicit ABI binding records.
+ *
+ * [CABI-06](../../../../spec/implementation/native-interface.md#cabi-06)
+ * A skeleton includes its own interface; compatible C definition deduplication must not remove mandatory + or - metadata.
+ */
 #include "native/scaffold/internal.h"
 
-static bool hook(FILE *output, const ScaffoldType *type, AbiOperation operation, const AbiBinding *binding) {
-    if (!scaffold_emit_signature(output, type, operation, binding->function) || fputs(" {\n", output) == EOF) {
+/** Emit one compatible protocol function definition with exact typed signature and an explicit unwritten-native failure result.
+ */
+static bool hook(FILE *output, AbiOperation operation, const AbiBinding *binding) {
+    if (!scaffold_emit_signature(output, operation, binding->function) || fputs(" {\n", output) == EOF) {
         return false;
     }
     const char *unused = operation == ABI_DEFAULT ? "    (void)destination;\n"
@@ -30,7 +39,7 @@ bool scaffold_emit_body(NativeScaffold *scaffold, FILE *output, const ScaffoldTy
     }
     for (AbiOperation operation = ABI_DEFAULT; operation < ABI_BINDING_COUNT; operation++) {
         const AbiBinding *binding = &type->plan->type->abi.bindings[operation];
-        if (binding->present && scaffold_hook_first(type, operation) && !hook(output, type, operation, binding)) {
+        if (binding->present && scaffold_hook_first(type, operation) && !hook(output, operation, binding)) {
             return false;
         }
     }
@@ -52,7 +61,7 @@ bool scaffold_emit_abi(NativeScaffold *scaffold, FILE *output, const ScaffoldTyp
     const char *const symbols[] = {"+", "-", "|", "=", "?", "[]"};
     for (AbiOperation operation = ABI_DEFAULT; operation < ABI_BINDING_COUNT; operation++) {
         const AbiBinding *binding = &type->plan->type->abi.bindings[operation];
-        if (binding->present && scaffold_hook_first(type, operation) && (fprintf(output, "%s ", symbols[operation]) < 0
+        if (binding->present && (fprintf(output, "%s ", symbols[operation]) < 0
                 || fwrite(source_bytes(binding->function.source) + binding->function.start,
                     1, binding->function.end - binding->function.start, output) != binding->function.end - binding->function.start
                 || fputc('\n', output) == EOF)) {

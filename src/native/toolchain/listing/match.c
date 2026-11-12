@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Match only an exact generated entry or its dot-suffixed compiler family.
+ *
+ * [STACK-04](../../../../spec/implementation/compiler.md#stack-04)
+ * Unrelated helpers sharing a prefix are not entry evidence; the family is tied to the verified GCC configuration.
+ */
 #include "internal.h"
 
 #include <string.h>

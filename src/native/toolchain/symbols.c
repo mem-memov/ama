@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Scan every symbol record and reject malformed output or a surviving native entry family.
+ *
+ * [STACK-04](../../../spec/implementation/compiler.md#stack-04)
+ * Use exact generated names and the supported compiler suffix family, never a guessed source-name substring.
+ */
 #include "symbols.h"
 
 #include <stdbool.h>

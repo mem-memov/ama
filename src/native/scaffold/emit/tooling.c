@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Emit machine-readable native compilation arguments without shell quoting inference.
+ *
+ * [CABI-06](../../../../spec/implementation/native-interface.md#cabi-06)
+ * The supported UTF-8 configuration supplies working directory, includes, flags and file paths as a JSON argument array.
+ */
 #include <string.h>
 #include "native/scaffold/internal.h"
 
@@ -22,10 +29,14 @@ bool scaffold_json(FILE *output, const char *text) {
     return fputc('"', output) != EOF;
 }
 
+/** Append one independently JSON-escaped argv string; never combine flags into a shell command.
+ */
 static bool argument(FILE *output, const char *text) {
     return fputs(", ", output) != EOF && scaffold_json(output, text);
 }
 
+/** Emit one compilation database record with supported UTF-8 cwd/file/compiler/flags. Borrow the model only during synchronous emission.
+ */
 static bool command(NativeScaffold *scaffold, FILE *output, const char *path, bool *first) {
     if ((!*first && fputs(",\n", output) == EOF)
         || fputs("  {\"directory\": ", output) == EOF || !scaffold_json(output, scaffold->working_directory)

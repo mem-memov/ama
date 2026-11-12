@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Emit a self-contained guarded native entry/hook declaration header.
+ *
+ * [CABI-06](../../../../spec/implementation/native-interface.md#cabi-06)
+ * Establish and clean its module context explicitly so independent C checking needs no final project assembly.
+ */
 #include "native/scaffold/internal.h"
 
 bool scaffold_emit_interface(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type) {
@@ -15,7 +22,7 @@ bool scaffold_emit_interface(NativeScaffold *scaffold, FILE *output, const Scaff
     }
     for (AbiOperation operation = ABI_DEFAULT; operation < ABI_BINDING_COUNT; operation++) {
         const AbiBinding *binding = &type->plan->type->abi.bindings[operation];
-        if (binding->present && scaffold_hook_first(type, operation) && (!scaffold_emit_signature(output, type, operation, binding->function)
+        if (binding->present && scaffold_hook_first(type, operation) && (!scaffold_emit_signature(output, operation, binding->function)
                 || fputs(";\n", output) == EOF)) {
             return false;
         }

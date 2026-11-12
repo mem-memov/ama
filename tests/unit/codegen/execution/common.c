@@ -68,7 +68,7 @@ static void executable_native(const ScaffoldType *type) {
     assert(written != EOF);
     for (AbiOperation operation = ABI_DEFAULT; operation < ABI_BINDING_COUNT; operation++) {
         const AbiBinding *binding = &type->plan->type->abi.bindings[operation];
-        emitted = scaffold_emit_signature(body, type, operation, binding->function);
+        emitted = scaffold_emit_signature(body, operation, binding->function);
         assert(emitted);
         const char *implementation = operation == ABI_DEFAULT ? " { *destination=(AMA_NATIVE(State)){.address=destination}; return ama_status_success(); }\n"
             : operation == ABI_DESTROY ? " { assert(state->address==state); return ama_status_success(); }\n"

@@ -1,6 +1,15 @@
+/**
+ * @file
+ * @brief Register exact nominal view/member identities and stable native artifact names.
+ *
+ * [NAME-01](../../../../spec/implementation/compiler.md#name-01)
+ * Sort the retained supported logical identities explicitly; forward/reference cycles do not recursively expand C layouts.
+ */
 #include <string.h>
 #include "native/scaffold/internal.h"
 
+/** Register one complete supported nominal/member/native-namespace key and retain exact collision/allocation failure; temporary member arrays are copied during registration.
+ */
 static const IdentityName *identity(NativeScaffold *scaffold, const PlannedType *type,
     IdentityCategory category, const char *member, SourceSpan site) {
     QualifiedIdentity key = {category, type->type->module->source->logical_path,
@@ -14,6 +23,8 @@ static const IdentityName *identity(NativeScaffold *scaffold, const PlannedType 
     return name;
 }
 
+/** Create ordered field/member records with original names and category-separated identities; all strings/records belong to the scaffold.
+ */
 static bool members(NativeScaffold *scaffold, ScaffoldType *type) {
     ScaffoldMember **next = &type->members;
     for (const StorageField *field = type->plan->first; field != NULL; field = field->next) {
@@ -36,6 +47,8 @@ static bool members(NativeScaffold *scaffold, ScaffoldType *type) {
     return true;
 }
 
+/** Register every declared view role and native prefix before member emission; no locale, transliteration or sequential name counter.
+ */
 static bool names(NativeScaffold *scaffold, ScaffoldType *type) {
     static const char *const roles[] = {"read", "write", "reference-storage", "reference-read", "reference-write",
         "list-storage", "list-read", "list-write", "reference-list-storage", "reference-list-read",
@@ -50,6 +63,8 @@ static bool names(NativeScaffold *scaffold, ScaffoldType *type) {
     return type->native_prefix != NULL && members(scaffold, type);
 }
 
+/** Derive selected native companion and generated artifact names from explicit physical/module-qualified identities; preserve first path failure.
+ */
 static bool paths(NativeScaffold *scaffold, ScaffoldType *type) {
     type->ama_path = scaffold_absolute(scaffold, source_path(type->plan->type->module->source->text));
     if (type->ama_path == NULL) {

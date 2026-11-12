@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Stage complete emitter bytes into owned immutable artifact records.
+ *
+ * [COMP-04](../../../../spec/implementation/compiler.md#comp-04)
+ * Check emission, flush, measurement, read and close before appending; no partial artifact becomes ready for publication.
+ */
 #include <stdint.h>
 #include "native/scaffold/internal.h"
 

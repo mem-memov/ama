@@ -1,10 +1,20 @@
+/**
+ * @file
+ * @brief Compose caller-supplied nonzero provider/reason pairs into disjoint library codes.
+ *
+ * [ERROR-03](../../../spec/implementation/diagnostics.md#error-03)
+ * The helper checks the pair only; complete provider registration and status-boundary validation remain T007.
+ */
 #ifndef AMA_NATIVE_STATUS_LIBRARY_H
 #define AMA_NATIVE_STATUS_LIBRARY_H
 
 #include "status.h"
 
-/* The compiler assigns unique nonzero namespaces by sorted provider identity.
- * Reject zero namespace/reason without changing the supplied output.
+/* Callers supply an already unique provider namespace; automatic registration
+ * is separate T007 work. Reject zero fields without changing output. */
+/** Require caller-assigned unique provider identity and nonzero reason, both 16-bit.
+ * @param[out] output Changes only on success; caller supplies writable storage.
+ * @return Invalid state for either zero field, otherwise the collision-free concatenation (namespace << 16) | reason. No namespace registry is implemented here.
  */
 static inline AmaStatus ama_library_status_code(uint16_t namespace_id,
     uint16_t reason, uint32_t *output) {

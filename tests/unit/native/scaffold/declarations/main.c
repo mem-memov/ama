@@ -1,6 +1,11 @@
+/**
+ * @file
+ * @brief Verify standalone typed native declarations, authoring models and complete ABI round trips.
+ */
 #include "../common.c"
 #include "native/scaffold/internal.h"
 
+/** Compile each generated interface as the first project include, verify repeated inclusion/macro cleanup and untouched authored skeleton syntax. */
 static void it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds(void) {
     prepare_native();
     begin_scaffold();
@@ -27,6 +32,7 @@ static void it_generates_complete_cycle_safe_headers_and_standalone_native_scaff
     end_scaffold();
 }
 
+/** Parse the actual compilation database independently and execute its argv records without shell reconstruction. */
 static void it_exports_a_database_that_an_independent_json_consumer_can_execute(void) {
     pid_t process = fork();
     assert(process >= 0);
@@ -44,6 +50,7 @@ static void it_exports_a_database_that_an_independent_json_consumer_can_execute(
     assert(waited == process && WIFEXITED(status) && WEXITSTATUS(status) == 0);
 }
 
+/** Inject each measured allocation failure into model/type/artifact generation and require safe owner teardown. */
 static void it_unwinds_each_scaffold_model_allocation_failure(void) {
     begin_scaffold();
     size_t start = allocation_count;
@@ -109,6 +116,7 @@ static void write_composed_harness(FILE *output) {
     assert(written > 0);
 }
 
+/** Compile/run qualified typed C contributions with equal local names, proving namespace and data-view agreement. */
 static void it_composes_typed_views_and_identically_named_native_helpers_in_one_c_unit(void) {
     begin_scaffold();
     bool built = build_scaffold(false);
@@ -139,6 +147,7 @@ static void it_composes_typed_views_and_identically_named_native_helpers_in_one_
     end_scaffold();
 }
 
+/** Require authoring and check-only paths to consume the same validated semantic/plan structure. */
 static void it_uses_the_same_strict_frontend_for_checking_and_generation(void) {
     setup_frontend();
     ModuleRoot root = {"generated/project", NULL, 0};
@@ -150,6 +159,7 @@ static void it_uses_the_same_strict_frontend_for_checking_and_generation(void) {
     end_scaffold();
 }
 
+/** Deduplicate only compatible C lifecycle helpers and reject reserved names/incompatible typed signatures. */
 static void it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles(void) {
     const char *saved = contract;
     contract = "+ shared\n- shared\n";
@@ -183,6 +193,33 @@ static void it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles(
     contract = saved;
 }
 
+/** Deduplicate compatible C definitions without dropping mandatory protocol records. */
+static void it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper(void) {
+    const char *saved = contract;
+    contract = "+ shared\n- shared\n";
+    begin_scaffold();
+    bool built = build_scaffold(true);
+    assert(built);
+    size_t found = 0;
+    for (const ScaffoldArtifact *artifact = scaffold.first; artifact != NULL; artifact = artifact->next) {
+        size_t length = strlen(artifact->path);
+        if (!artifact->authored || length < 4 || strcmp(artifact->path + length - 4, ".abi") != 0) { continue; }
+        AbiTable table;
+        abi_table_init(&table, sources.allocator);
+        ParseStatus status = parser_abi_parse(&table, artifact->content);
+        assert(status == PARSE_OK && table.valid);
+        assert(table.bindings[ABI_DEFAULT].present && table.bindings[ABI_DESTROY].present);
+        assert(layout_text_is(table.bindings[ABI_DEFAULT].function, "shared"));
+        assert(layout_text_is(table.bindings[ABI_DESTROY].function, "shared"));
+        found++;
+        abi_table_destroy(&table);
+    }
+    assert(found == 1);
+    end_scaffold();
+    contract = saved;
+}
+
+/** Enumerate every measured proposed-ABI/frontend allocation failure and require a retained out-of-memory diagnostic. */
 static void it_unwinds_every_proposed_frontend_allocation_failure(void) {
     setup_frontend();
     ModuleRoot root = {"generated/project", NULL, 0};
@@ -207,6 +244,7 @@ void run(void) {
     it_uses_the_same_strict_frontend_for_checking_and_generation();
     it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles();
     it_unwinds_every_proposed_frontend_allocation_failure();
+    it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper();
 }
 
 int main(void) {

@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Read exact manifest scope/name/digest records and preserve first ownership failures.
+ *
+ * [COMP-04](../../../../../spec/implementation/compiler.md#comp-04)
+ * Reject malformed/duplicate/unsafe records before publication; explicit overwrite does not excuse malformed metadata.
+ */
 #include <errno.h>
 #include <stdint.h>
 #include <string.h>
@@ -23,10 +30,14 @@ void scaffold_scope(const NativeScaffold *scaffold, unsigned char digest[32]) {
     identity_sha256((const unsigned char *)path, strlen(path), digest);
 }
 
+/** Decode only lowercase manifest hexadecimal digits; every other byte is malformed metadata.
+ */
 static int hexadecimal(unsigned char byte) {
     return byte >= '0' && byte <= '9' ? byte - '0' : byte >= 'a' && byte <= 'f' ? byte - 'a' + 10 : -1;
 }
 
+/** Validate one complete digest/safe-basename record and reject duplicate names before linking ownership authority. Partial allocations remain arena-owned.
+ */
 static bool record(NativeScaffold *scaffold, const unsigned char *bytes, size_t length) {
     if (length <= 65 || bytes[64] != ' ') {
         return false;
@@ -69,6 +80,8 @@ static bool record(NativeScaffold *scaffold, const unsigned char *bytes, size_t 
     return true;
 }
 
+/** Validate exact scope syntax/digest; only explicit overwrite permits a different well-formed scope, never malformed metadata.
+ */
 static bool scope_matches(NativeScaffold *scaffold, const unsigned char *bytes, size_t length) {
     if (length < 71 || memcmp(bytes, "scope ", 6) != 0 || bytes[70] != '\n') {
         return false;

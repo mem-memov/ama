@@ -1,6 +1,15 @@
+/**
+ * @file
+ * @brief Validate compatible shared native helper roles before emitting C declarations.
+ *
+ * [PROTO-02](../../../../spec/implementation/native-interface.md#proto-02)
+ * A single + and - helper may share its compatible signature; incompatible roles and reserved generated names fail.
+ */
 #include <string.h>
 #include "native/scaffold/internal.h"
 
+/** Compare complete validated native identifier byte spans, not hashes or declaration order.
+ */
 static bool same_name(SourceSpan left, SourceSpan right) {
     size_t length = left.end - left.start;
     return length == right.end - right.start

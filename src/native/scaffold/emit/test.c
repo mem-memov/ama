@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Emit an explicit native lifecycle test skeleton using the generated interface.
+ *
+ * [CABI-06](../../../../spec/implementation/native-interface.md#cabi-06)
+ * The template exercises authored initialize/destroy after implementation; it does not certify an unwritten fail-first hook.
+ */
 #include "native/scaffold/internal.h"
 
 bool scaffold_emit_test(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type) {

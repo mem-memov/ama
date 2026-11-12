@@ -1,6 +1,15 @@
+/**
+ * @file
+ * @brief Emit forward declarations, native representations and complete typed borrowed views.
+ *
+ * [CABI-06](../../../../spec/implementation/native-interface.md#cabi-06)
+ * All required types precede permitted field access; source locations retain original Ama names without runtime/body inclusion.
+ */
 #include "native/scaffold/internal.h"
 #include "source/mapping/directive.h"
 
+/** Declare all nominal view names and native State tags before dependency field use, permitting legal reference cycles.
+ */
 static bool forward(FILE *output, const ScaffoldType *type) {
     for (size_t role = 0; role < SCAFFOLD_ROLE_COUNT; role++) {
         const char *name = type->names[role]->internal_name;
@@ -13,6 +22,8 @@ static bool forward(FILE *output, const ScaffoldType *type) {
             type->native_prefix->internal_name, type->native_prefix->internal_name) >= 0;
 }
 
+/** Map one checked storage form and read/write capability to the exact generated view family.
+ */
 static ScaffoldTypeRole field_role(StorageForm form, bool write) {
     return form == STORAGE_REFERENCE ? (write ? SCAFFOLD_REFERENCE_WRITE : SCAFFOLD_REFERENCE_READ)
         : form == STORAGE_OWNING_LIST ? (write ? SCAFFOLD_LIST_WRITE : SCAFFOLD_LIST_READ)
@@ -20,6 +31,8 @@ static ScaffoldTypeRole field_role(StorageForm form, bool write) {
         : write ? SCAFFOLD_WRITE : SCAFFOLD_READ;
 }
 
+/** Emit only the selected whole/interface role with original source/name comments and exact qualified field identity; empty C structs receive a reserved byte.
+ */
 static bool fields(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type,
     bool write, bool interface, SymbolRole role) {
     size_t count = 0;
@@ -42,6 +55,8 @@ static bool fields(NativeScaffold *scaffold, FILE *output, const ScaffoldType *t
     return count != 0 || fprintf(output, "    unsigned char reserved;\n") >= 0;
 }
 
+/** Emit opaque reference/list storage views plus scalar read/write views, retaining payload constness and typed field access.
+ */
 static bool views(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type) {
     const ScaffoldTypeRole reads[] = {SCAFFOLD_REFERENCE_READ, SCAFFOLD_LIST_READ, SCAFFOLD_REFERENCE_LIST_READ};
     for (size_t index = 0; index < 3; index++) {

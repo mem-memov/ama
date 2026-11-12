@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Define the retained fixed-width core status code domain.
+ *
+ * [ERROR-03](../../../spec/implementation/diagnostics.md#error-03)
+ * Numeric codes, not translated message text, select success/refusal/technical behavior; full boundary validation remains T007.
+ */
 #ifndef AMA_NATIVE_STATUS_CODES_H
 #define AMA_NATIVE_STATUS_CODES_H
 

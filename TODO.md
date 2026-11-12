@@ -417,11 +417,24 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   Strict project/semantic/planning leaves, generated execution and full root
   `make -j4 test` passed (69 leaves). Doxygen checked 512 file pages and canonical
   links; 262 ready records and 413 explicit documentation/coverage debts remain.
-- [ ] **T148 — Document native contracts, scaffolds and toolchain checks.** Needs:
+- [x] **T148 — Document native contracts, scaffolds and toolchain checks.** Needs:
   T133. Cover `src/native/` and its headers. Explain typed hooks, scoped names,
   borrowed views, artifact ownership, transactional publication and verification
   assumptions with canonical links. Reconcile per-file ABI/compile/runtime tests
   and validate Doxygen pages rather than merely adding comment markers.
+
+  Evidence: native ABI/status/namespace/scaffold/ownership/toolchain contracts now
+  cover all 45 retained native inputs and 15 independently compiled headers,
+  including T139's already verified publication phases. Corrected a generated ABI
+  bug: compatible shared + and - C helpers still need both mandatory records.
+  The actual staged-table round-trip regression failed before the fix and now
+  passes while C definitions remain deduplicated. Removed the signature writer's
+  unused type argument and updated real assembly/execution consumers. Forty-one
+  other native inputs retain identical compiler-lexed C. Strict native parent,
+  independent toolchain probes and full root `make -j4 test` passed (69 leaves).
+  Doxygen checked 512 file pages/canonical links; 295 ready inputs and 380 explicit
+  debts remain. Native C borrowing/purity and unsupported context/export work are
+  stated as contracts/remaining tasks, not inferred from compatible prototypes.
 - [ ] **T149 — Document retained runtime components.** Needs: T133. Cover every
   `src/runtime/` C/header file, including assembly-only inputs. Explain local
   identity, pool/lifecycle, ownership, clone/replace, interface/control and diagnostic
