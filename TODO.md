@@ -104,7 +104,7 @@ was not claimed and must not be inferred here.
 Contracts: [compiler architecture](spec/implementation/compiler.md),
 [conformance](spec/implementation/tools-and-conformance.md).
 
-- [ ] **T001 — Audit the implementation delta.** Needs: none. Build a matrix for
+- [x] **T001 — Audit the implementation delta.** Needs: none. Build a matrix for
   all 200 indexed requirements and acceptance rows against existing components,
   code files and executable evidence. Inventory all maintained implementation,
   native companion, test/support and build/tool code; classify each file and
@@ -115,6 +115,12 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   wholesale. Record independently testable changes as stable component tasks
   with prerequisites, acceptance evidence and separate commits before the
   relevant T132–T134 completion gate. Stop on contradictory requirements.
+  Evidence: [audit](docs/implementation/audit/README.md), 586 inventoried paths,
+  200 requirement rows, 108 acceptance rows and actual preprocessing dependencies
+  of 57 registered test leaves. `make test` passed; eleven isolated source probes
+  confirmed current-contract gaps. No production code or specification changed.
+  Findings route removals/refactoring/documentation through T136–T151; historical
+  sanitizer reports and full current-language conformance remain unclaimed.
 - [ ] **T002 — Refresh component contracts and boundaries.** Needs: T001. Update
   the responsibility tree and contract registry; identify narrow reusable APIs,
   required decompositions and exact invariant arguments. Give each retained
@@ -138,7 +144,23 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   links, including source-relative rule links and deterministic read-only Doxygen
   anchor mapping. Test actual rendered destinations and stale-link failures.
   Validate the workflow on existing small components before expanding it.
-- [ ] **T132 — Remove the obsolete implementation completely.** Needs: T005.
+- [ ] **T136 — Retire the old list dispatcher across its consumers.** Needs:
+  T005. Remove action/outcome modules, configuration flags, fixed positional
+  interfaces, dispatch requests, obsolete list result fields and unsupported
+  action IR/emission paths identified by audit F02. Migrate retained consumers
+  and keep contract-independent capacity, bounds and ownership operations with
+  explicit component tests. Replace obsolete-only expectations; do not claim
+  current typed methods are implemented before T075–T084. Check CLI diagnostics,
+  library closure, clean build and affected runtime/semantic/emission compositions.
+- [ ] **T137 — Remove conflicting derived descriptions and proposals.** Needs:
+  T136. Close audit F09 after T002's refreshed map: update library/native/build
+  descriptions to their actual current boundaries, repair links to authoritative
+  spec files, and remove superseded list conversion/dispatcher proposals. Preserve
+  useful historical execution evidence with its limits; retain no alternate API
+  contract. Check every maintained documentation link and obsolete description
+  identified by the audit without editing `spec/`.
+- [ ] **T132 — Remove the obsolete implementation completely.** Needs:
+  T136, T137.
   Complete the removal tasks identified by T001/T002: delete retired code paths,
   duplicate superseded implementations, obsolete-only tests, build registrations
   and conflicting derived descriptions. Update all retained consumers; leave no
@@ -148,7 +170,48 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   obsolete. Reconcile every removal against the audit inventory and verify a clean
   build, independent affected suites and their real parent compositions. Keep
   this gate open until every obsolete implementation item has been removed.
-- [ ] **T133 — Decompose the retained implementation.** Needs: T132. Complete
+- [ ] **T138 — Separate driver option recognition and request assembly.** Needs:
+  T132. Decompose the phases in `src/driver/options/parse.c`: exact option
+  recognition, owned argument storage, request-specific validation and root/output
+  configuration. Use narrow child contracts, valid Doxygen comments and rule
+  links; preserve borrowed argument lifetimes and allocation-failure cleanup.
+  Test invalid/duplicate/missing options and real check/native/emit CLI composition.
+- [ ] **T139 — Separate native publication transaction phases.** Needs: T132.
+  Decompose `src/native/scaffold/output/publish.c` into narrow directory/lock,
+  preflight, staging, publication and rollback/cleanup responsibilities. State
+  descriptor/path/backup ownership and the exact commit point. Keep orchestration
+  small and document the phase invariants with rule links. Exercise real filesystem
+  conflicts and staged failures through independent and assembled publication tests.
+- [ ] **T140 — Separate control and descriptor emission responsibilities.** Needs:
+  T132. Decompose `src/codegen/control/emit.c` and `data.c` by resolved control/data
+  operation responsibilities. Keep source locations, label identities, native-entry
+  boundaries and failure routing explicit; do not infer missing IR from C text.
+  Add Doxygen contracts/rule links and compile/run real emitted projects, including
+  output errors and native inlining rejection, before accepting the refactoring.
+- [ ] **T141 — Separate object construction phases.** Needs: T132. Refine
+  `src/runtime/objects/construction/build.c` into narrow reservation, constructor,
+  field-construction, publication and unwind operations. Document initialized-prefix
+  and reserved-identity invariants, ownership and failures with canonical links.
+  Verify lifecycle ordering, every allocation/constructor failure boundary and
+  real parent creation; refactoring does not substitute for T050's new semantics.
+- [ ] **T142 — Separate clone preparation phases.** Needs: T132. Refine
+  `src/runtime/objects/clone/prepare.c` around capability/access checks, native
+  preparation, child work and map bookkeeping. Keep the single operation-scoped
+  injective mapping and rollback ownership explicit. Add linked Doxygen arguments
+  and independently test failure transitions plus full clone/replacement composition.
+- [ ] **T143 — Separate invocation input preparation phases.** Needs: T132.
+  Decompose `src/runtime/program/calls/prepare.c` into source selection, source
+  protection, affected-field preflight and declaration-order installation.
+  Document alias/borrow/cleanup contracts and CALL-08 correspondence. Test repeated
+  sources, overlap, defaults observing earlier inputs, one selected constructor,
+  partial installation failure and actual nested call composition.
+- [ ] **T144 — Separate value selection and list transfer phases.** Needs: T132.
+  Refine `src/runtime/program/values/source.c` and `transfers/lists.c` into exact
+  selection, validation, preparation, fixup, commit and cleanup responsibilities.
+  Keep owned/reference/shared selection and lifetime boundaries distinct, with
+  linked Doxygen contracts. Test whole-forest reference remapping, alias/failure
+  boundaries and generated-program consumers; do not preserve retired list state.
+- [ ] **T133 — Decompose the retained implementation.** Needs: T138–T144. Complete
   the component-sized refactoring tasks from T002 for all retained code, using
   nested responsibility directories, small single-operation functions and narrow
   explicit interfaces. Separate orchestration, recognition, validation, state
@@ -159,8 +222,48 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   tests, and update include paths, build discovery and the coverage registry.
   Reject arbitrary line-count splitting, empty hierarchy and wrapper-only changes;
   close the gate only when every retained responsibility has its reviewed home.
+- [ ] **T145 — Document source, identity and diagnostic foundations.** Needs:
+  T133. Cover `src/source/`, `src/diagnostics/` and the Unicode generator, including
+  headers and checked-in data provenance. Explain purpose, exact algorithms,
+  ownership/failure contracts and source/identity rule links. Reconcile each file
+  with meaningful independent and parent tests; verify the Doxygen output and links.
+- [ ] **T146 — Document lexical, AST and parser components.** Needs: T133.
+  Cover `src/lexer/`, `src/ast/` and `src/parser/`, including internal headers.
+  Explain byte/span ownership, iterative frame boundaries, syntax recognition and
+  diagnostics with exact specification links. Identify current implementation gaps
+  honestly; verify file-level tests and rendered documentation without claiming
+  unsupported current forms are already accepted.
+- [ ] **T147 — Document dependency, semantic and planning components.** Needs:
+  T133. Cover `src/project/`, `src/semantic/`, `src/planning/` and `src/lowering/`.
+  Explain namespace/graph distinctions, fixed points, typed plans, source ordering,
+  storage/control ownership and failure invariants. Link exact rules, map meaningful
+  component/composition tests and validate generated reference destinations.
+- [ ] **T148 — Document native contracts, scaffolds and toolchain checks.** Needs:
+  T133. Cover `src/native/` and its headers. Explain typed hooks, scoped names,
+  borrowed views, artifact ownership, transactional publication and verification
+  assumptions with canonical links. Reconcile per-file ABI/compile/runtime tests
+  and validate Doxygen pages rather than merely adding comment markers.
+- [ ] **T149 — Document retained runtime components.** Needs: T133. Cover every
+  `src/runtime/` C/header file, including assembly-only inputs. Explain local
+  identity, pool/lifecycle, ownership, clone/replace, interface/control and diagnostic
+  boundaries and their exact invariants. Distinguish existing behavior from pending
+  context/membership/foreach work. Map direct tests or actual generated-program
+  consumers and validate source/rendered rule links.
+- [ ] **T150 — Document driver, compiler and generated-code components.** Needs:
+  T133. Cover `src/main.c`, `src/driver/`, `src/compiler/` and `src/codegen/`.
+  Explain explicit stage contracts, option/output ownership, IR correspondence,
+  native boundaries and emitted failure paths. Cite canonical rules and record
+  actual CLI/generated-project tests, including the executable-only entry file;
+  validate all file/interface pages and rendered references.
+- [ ] **T151 — Document library, tests and build support.** Needs: T133. Cover
+  remaining native library sources/headers, test executables/shared fixtures,
+  ABI/module inputs and Make infrastructure. Explain public contracts, fixture
+  purpose and build/test responsibilities using syntax valid for each format.
+  Keep malformed byte-exact cases unchanged and document their exact paths
+  externally. Reconcile direct/native/process consumers and any remaining
+  per-file gaps, then generate and validate the complete retained-code reference.
 - [ ] **T134 — Complete documenting comments for all retained code.** Needs:
-  T133. Close the initial inventory's documentation and per-file test gaps,
+  T145–T151. Close the initial inventory's documentation and per-file test gaps,
   including unchanged retained files, headers, native companions and test support.
   Add Doxygen `@file`/`@brief` comments to C sources and headers; for other code
   formats use valid local comments and linked Doxygen input documentation under
@@ -904,7 +1007,7 @@ this table is navigation, not a parallel semantic definition.
 
 | Canonical requirements | Main task range |
 |---|---|
-| CORE-01–CORE-05; ARCH-01–ARCH-06; TEST-01–TEST-08 | T001–T005, T132–T135 and the completion criteria; T116–T122 |
+| CORE-01–CORE-05; ARCH-01–ARCH-06; TEST-01–TEST-08 | T001–T005, T132–T151 and the completion criteria; T116–T122 |
 | SRC-01–SRC-05; SYN-01–SYN-06; NAME-01–NAME-03; DEP-01–DEP-03 | T014–T029, T110–T114, T118 |
 | NAME-04, NAME-06; TYPE-01–TYPE-06; LIT-01–LIT-04; STATE-01–STATE-03 | T030–T040, T042–T045, T049, T063–T069, T081 |
 | CONST-01–CONST-05 | T034, T052, T065, T100 |

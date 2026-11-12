@@ -1,0 +1,17 @@
+{
+  "source_commit": "220b3aea8b1e9fee75248f0a6b0e28adf02e9909",
+  "maintained_paths": 586,
+  "c_headers": 428,
+  "test_leaves": 57,
+  "canonical_requirements": 200,
+  "acceptance_rows": 108,
+  "source_probes": 11,
+  "test_command": "make test",
+  "test_exit": 0,
+  "test_log_sha256": "742dd95dfa479a1dc26c13894fd0946b19de747987d74c70bcb0ba384d1d23c4",
+  "doxygen_file_comments": 0,
+  "make_version": "GNU Make 4.4.1",
+  "c_compiler_version": "gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+  "c_compiler_flags": "-O2 -Wall -Wextra -std=c11 -pedantic -D_POSIX_C_SOURCE=200809L",
+  "test_assertions": "-UNDEBUG"
+}

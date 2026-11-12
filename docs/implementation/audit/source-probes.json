@@ -1,0 +1,101 @@
+[
+  {
+    "name": "spaced_entry_suffix",
+    "source": "@!\nworker\n.value\nworker !\n",
+    "expected_exit": 0,
+    "actual_exit": 1,
+    "stdout": "",
+    "stderr": "<project>/main:4:7: error[syntax]: Invalid or incomplete variable access\n    subject: .main\n    4 | worker !\n    span: bytes [23, 24)\n    expected: end of access\n",
+    "mode": "--check"
+  },
+  {
+    "name": "obsolete_unspaced_entry",
+    "source": "@!\nworker\n.value\nworker!\n",
+    "expected_exit": 1,
+    "actual_exit": 0,
+    "stdout": "checked .main\n",
+    "stderr": "",
+    "mode": "--check"
+  },
+  {
+    "name": "multiword_name",
+    "source": "@!\nworker state\n.value\n",
+    "expected_exit": 0,
+    "actual_exit": 1,
+    "stdout": "",
+    "stderr": "<project>/main:2:7: error[syntax]: Invalid or incomplete variable access\n    subject: .main\n    2 | worker state\n    span: bytes [9, 10)\n    expected: end of access\n",
+    "mode": "--check"
+  },
+  {
+    "name": "receiver_inference",
+    "source": "@!\nsource\n.value\ncopy\n source\n",
+    "expected_exit": 0,
+    "actual_exit": 1,
+    "stdout": "",
+    "stderr": "<project>/main:4:1: error[type-mismatch]: The variable is not declared in this module\n    4 | copy\n    span: bytes [17, 21)\n",
+    "mode": "--check"
+  },
+  {
+    "name": "self_reference",
+    "source": "@>\nself&\n.main\n &\n@!\n",
+    "expected_exit": 0,
+    "actual_exit": 1,
+    "stdout": "",
+    "stderr": "<project>/main:4:3: error[syntax]: Invalid or incomplete variable access\n    subject: .main\n    4 |  &\n    span: bytes [17, 17)\n    expected: a Unicode name, optional reference suffix, and optional [] or [named index]\n",
+    "mode": "--check"
+  },
+  {
+    "name": "foreach_header",
+    "source": "@!\nitems[]\n.value\nitems[item&]\n{\n}\n",
+    "expected_exit": 0,
+    "actual_exit": 1,
+    "stdout": "",
+    "stderr": "<project>/main:4:12: error[syntax]: Invalid or incomplete variable access\n    subject: .main\n    4 | items[item&]\n    span: bytes [29, 30)\n    expected: a Unicode name, optional reference suffix, and optional [] or [named index]\n",
+    "mode": "--check"
+  },
+  {
+    "name": "negative_only_branch",
+    "source": "@!\nflag\n.std.condition\n |1\nflag\n:\n",
+    "expected_exit": 0,
+    "actual_exit": 1,
+    "stdout": "",
+    "stderr": "<project>/main:5:1: error[syntax]: A bare target is not an executable statement\n    subject: .main\n    5 | flag\n    span: bytes [27, 31)\n    expected: a type line, an indented copy source, an adjacent condition marker, !, %, or >> requests\n    help: Use ! to execute, % to resume, or indented >> bindings to read results\n",
+    "mode": "--check"
+  },
+  {
+    "name": "tab_in_comment",
+    "source": "@!\n#\tcomment\n",
+    "expected_exit": 1,
+    "actual_exit": 0,
+    "stdout": "checked .main\n",
+    "stderr": "",
+    "mode": "--check"
+  },
+  {
+    "name": "tab_in_draft",
+    "source": "#\tcomment\n",
+    "expected_exit": 1,
+    "actual_exit": 0,
+    "stdout": "draft .main\n",
+    "stderr": "",
+    "mode": "--status"
+  },
+  {
+    "name": "space_only_line",
+    "source": "@!\n \n",
+    "expected_exit": 1,
+    "actual_exit": 0,
+    "stdout": "checked .main\n",
+    "stderr": "",
+    "mode": "--check"
+  },
+  {
+    "name": "trailing_code_space",
+    "source": "@! \n",
+    "expected_exit": 1,
+    "actual_exit": 0,
+    "stdout": "checked .main\n",
+    "stderr": "",
+    "mode": "--check"
+  }
+]
