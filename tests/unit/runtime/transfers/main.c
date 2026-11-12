@@ -1,23 +1,10 @@
-#include "../objects/common.c"
-#include "runtime/program/calls/call.h"
+/**
+ * @file
+ * @brief Verify complete forest transfers, continuation copies and allocation rollback.
+ */
+#include "common.c"
 
-static void make_source(AmaHandle *source, AmaHandle *destination) {
-    AmaRecipe children[2] = {{0}, {0}};
-    AmaFieldRecipe fields[6] = {{0}};
-    fields[2] = (AmaFieldRecipe){.count = 2, .children = children};
-    AmaRecipe recipe = {.fields = fields, .field_count = 6};
-    AmaStatus status = ama_object_create(&world, 2, &recipe, source);
-    assert(status.code == AMA_OK);
-    status = ama_object_create(&world, 2, NULL, destination);
-    assert(status.code == AMA_OK);
-    RootValue *owner = object_payload(*source);
-    RootValue *first = object_payload(owner->branches.items[0]);
-    RootValue *second = object_payload(owner->branches.items[1]);
-    first->self = owner->branches.items[1];
-    second->self = owner->branches.items[0];
-    first->selected = second->left;
-}
-
+/** Cross-element references use one complete map; ordinary self-copy allocates nothing. */
 static void it_clones_one_forest_and_remaps_references_between_sibling_elements(void) {
     setup_objects();
     AmaHandle source, destination;
@@ -48,6 +35,7 @@ static void it_clones_one_forest_and_remaps_references_between_sibling_elements(
     destroy_objects();
 }
 
+/** Enumerate every measured staging allocation failure and verify unchanged old storage. */
 static void it_preserves_the_previous_list_on_every_preparation_allocation_failure(void) {
     size_t count = 0;
     for (size_t failure = 0; failure <= count; failure++) {
@@ -77,6 +65,7 @@ static void it_preserves_the_previous_list_on_every_preparation_allocation_failu
     }
 }
 
+/** Explicit continuation mode preserves only saved positions across the copied forest. */
 static void it_copies_continuations_through_one_owned_list_forest(void) {
     for (size_t continuation = 0; continuation < 2; continuation++) {
         setup_objects();

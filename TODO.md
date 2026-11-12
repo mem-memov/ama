@@ -323,12 +323,23 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   (`detect_leaks=0`) and full root `make -j4 test` passed (66 leaves), including
   allocation-prefix failures and generated nested calls. Doxygen checked 495 file
   pages; 97 ready inputs and 558 explicit documentation/coverage debts remain.
-- [ ] **T144 — Separate value selection and list transfer phases.** Needs: T132.
+- [x] **T144 — Separate value selection and list transfer phases.** Needs: T132.
   Refine `src/runtime/program/values/source.c` and `transfers/lists.c` into exact
   selection, validation, preparation, fixup, commit and cleanup responsibilities.
   Keep owned/reference/shared selection and lifetime boundaries distinct, with
   linked Doxygen contracts. Test whole-forest reference remapping, alias/failure
   boundaries and generated-program consumers; do not preserve retired list state.
+
+  Evidence: [selection and forest-transfer argument](docs/implementation/value-selection-and-list-transfer.md).
+  Split shared/instance/index/payload selection and list validation, staging,
+  complete-map fixup, destructive commit and cleanup. Successful commit explicitly
+  consumes staging ownership; failure leaves it available for prefix cleanup.
+  Three selection and four transfer phase cases cover exact protocol effects,
+  numeric-status/refusal separation, private cross-root fixups, self-copy,
+  parent/destructor failures and busy/stale/empty reference handles. Strict phase
+  leaves, ASan/UBSan (`detect_leaks=0`) and full root `make -j4 test` passed
+  (68 leaves), including forest allocation-prefix and generated consumers.
+  Doxygen checked 511 file pages; 118 ready inputs and 555 explicit debts remain.
 - [ ] **T133 — Decompose the retained implementation.** Needs: T138–T144. Complete
   the component-sized refactoring tasks from T002 for all retained code, using
   nested responsibility directories, small single-operation functions and narrow

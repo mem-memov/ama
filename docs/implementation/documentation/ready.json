@@ -3187,6 +3187,491 @@
       }
     ]
   },
+  "src/runtime/program/transfers/list/cleanup.c": {
+    "contract": "docs/implementation/value-selection-and-list-transfer.md",
+    "purpose": "Select exact shared/owned/reference views and transfer staged forests through checked ownership phases.",
+    "tests": [
+      {
+        "case": "it_checks_aliases_shapes_and_continuation_self_copy_before_allocation",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_fixes_one_complete_private_forest_before_consuming_staging_at_commit",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_retains_staging_for_cleanup_on_parent_failure_and_destructive_failure",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_copies_reference_handles_including_busy_stale_and_empty_targets",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_clones_one_forest_and_remaps_references_between_sibling_elements",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_the_previous_list_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_copies_continuations_through_one_owned_list_forest",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/transfers/list/commit.c": {
+    "contract": "docs/implementation/value-selection-and-list-transfer.md",
+    "purpose": "Select exact shared/owned/reference views and transfer staged forests through checked ownership phases.",
+    "tests": [
+      {
+        "case": "it_checks_aliases_shapes_and_continuation_self_copy_before_allocation",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_fixes_one_complete_private_forest_before_consuming_staging_at_commit",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_retains_staging_for_cleanup_on_parent_failure_and_destructive_failure",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_copies_reference_handles_including_busy_stale_and_empty_targets",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_clones_one_forest_and_remaps_references_between_sibling_elements",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_the_previous_list_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_copies_continuations_through_one_owned_list_forest",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/transfers/list/fixup.c": {
+    "contract": "docs/implementation/value-selection-and-list-transfer.md",
+    "purpose": "Select exact shared/owned/reference views and transfer staged forests through checked ownership phases.",
+    "tests": [
+      {
+        "case": "it_checks_aliases_shapes_and_continuation_self_copy_before_allocation",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_fixes_one_complete_private_forest_before_consuming_staging_at_commit",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_retains_staging_for_cleanup_on_parent_failure_and_destructive_failure",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_copies_reference_handles_including_busy_stale_and_empty_targets",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_clones_one_forest_and_remaps_references_between_sibling_elements",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_the_previous_list_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_copies_continuations_through_one_owned_list_forest",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/transfers/list/internal.h": {
+    "contract": "docs/implementation/value-selection-and-list-transfer.md",
+    "purpose": "Select exact shared/owned/reference views and transfer staged forests through checked ownership phases.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_checks_aliases_shapes_and_continuation_self_copy_before_allocation",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_fixes_one_complete_private_forest_before_consuming_staging_at_commit",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_retains_staging_for_cleanup_on_parent_failure_and_destructive_failure",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_copies_reference_handles_including_busy_stale_and_empty_targets",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_clones_one_forest_and_remaps_references_between_sibling_elements",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_the_previous_list_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_copies_continuations_through_one_owned_list_forest",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/transfers/list/preflight.c": {
+    "contract": "docs/implementation/value-selection-and-list-transfer.md",
+    "purpose": "Select exact shared/owned/reference views and transfer staged forests through checked ownership phases.",
+    "tests": [
+      {
+        "case": "it_checks_aliases_shapes_and_continuation_self_copy_before_allocation",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_fixes_one_complete_private_forest_before_consuming_staging_at_commit",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_retains_staging_for_cleanup_on_parent_failure_and_destructive_failure",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_copies_reference_handles_including_busy_stale_and_empty_targets",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_clones_one_forest_and_remaps_references_between_sibling_elements",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_the_previous_list_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_copies_continuations_through_one_owned_list_forest",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/transfers/list/prepare.c": {
+    "contract": "docs/implementation/value-selection-and-list-transfer.md",
+    "purpose": "Select exact shared/owned/reference views and transfer staged forests through checked ownership phases.",
+    "tests": [
+      {
+        "case": "it_checks_aliases_shapes_and_continuation_self_copy_before_allocation",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_fixes_one_complete_private_forest_before_consuming_staging_at_commit",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_retains_staging_for_cleanup_on_parent_failure_and_destructive_failure",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_copies_reference_handles_including_busy_stale_and_empty_targets",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_clones_one_forest_and_remaps_references_between_sibling_elements",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_the_previous_list_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_copies_continuations_through_one_owned_list_forest",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/transfers/lists.c": {
+    "contract": "docs/implementation/value-selection-and-list-transfer.md",
+    "purpose": "Select exact shared/owned/reference views and transfer staged forests through checked ownership phases.",
+    "tests": [
+      {
+        "case": "it_checks_aliases_shapes_and_continuation_self_copy_before_allocation",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_fixes_one_complete_private_forest_before_consuming_staging_at_commit",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_retains_staging_for_cleanup_on_parent_failure_and_destructive_failure",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_copies_reference_handles_including_busy_stale_and_empty_targets",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_clones_one_forest_and_remaps_references_between_sibling_elements",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_the_previous_list_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_copies_continuations_through_one_owned_list_forest",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/values/selection/access.c": {
+    "contract": "docs/implementation/value-selection-and-list-transfer.md",
+    "purpose": "Select exact shared/owned/reference views and transfer staged forests through checked ownership phases.",
+    "tests": [
+      {
+        "case": "it_selects_declared_instance_storage_without_acquiring_reference_targets",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_keeps_shared_values_outside_mutable_pool_identity_and_checks_shape",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/values/selection/index.c": {
+    "contract": "docs/implementation/value-selection-and-list-transfer.md",
+    "purpose": "Select exact shared/owned/reference views and transfer staged forests through checked ownership phases.",
+    "tests": [
+      {
+        "case": "it_selects_declared_instance_storage_without_acquiring_reference_targets",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_keeps_shared_values_outside_mutable_pool_identity_and_checks_shape",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/values/selection/instance.c": {
+    "contract": "docs/implementation/value-selection-and-list-transfer.md",
+    "purpose": "Select exact shared/owned/reference views and transfer staged forests through checked ownership phases.",
+    "tests": [
+      {
+        "case": "it_selects_declared_instance_storage_without_acquiring_reference_targets",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_keeps_shared_values_outside_mutable_pool_identity_and_checks_shape",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/values/selection/internal.h": {
+    "contract": "docs/implementation/value-selection-and-list-transfer.md",
+    "purpose": "Select exact shared/owned/reference views and transfer staged forests through checked ownership phases.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_selects_declared_instance_storage_without_acquiring_reference_targets",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_keeps_shared_values_outside_mutable_pool_identity_and_checks_shape",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/values/selection/payload.c": {
+    "contract": "docs/implementation/value-selection-and-list-transfer.md",
+    "purpose": "Select exact shared/owned/reference views and transfer staged forests through checked ownership phases.",
+    "tests": [
+      {
+        "case": "it_selects_declared_instance_storage_without_acquiring_reference_targets",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_keeps_shared_values_outside_mutable_pool_identity_and_checks_shape",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/values/selection/shared.c": {
+    "contract": "docs/implementation/value-selection-and-list-transfer.md",
+    "purpose": "Select exact shared/owned/reference views and transfer staged forests through checked ownership phases.",
+    "tests": [
+      {
+        "case": "it_selects_declared_instance_storage_without_acquiring_reference_targets",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_keeps_shared_values_outside_mutable_pool_identity_and_checks_shape",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/values/selection/types.c": {
+    "contract": "docs/implementation/value-selection-and-list-transfer.md",
+    "purpose": "Select exact shared/owned/reference views and transfer staged forests through checked ownership phases.",
+    "tests": [
+      {
+        "case": "it_selects_declared_instance_storage_without_acquiring_reference_targets",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_keeps_shared_values_outside_mutable_pool_identity_and_checks_shape",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/values/source.c": {
+    "contract": "docs/implementation/value-selection-and-list-transfer.md",
+    "purpose": "Select exact shared/owned/reference views and transfer staged forests through checked ownership phases.",
+    "tests": [
+      {
+        "case": "it_selects_declared_instance_storage_without_acquiring_reference_targets",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_keeps_shared_values_outside_mutable_pool_identity_and_checks_shape",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      }
+    ]
+  },
   "tests/integration/rebuild/concurrent/Makefile": {
     "contract": "docs/implementation/incremental-build.md",
     "purpose": "Isolate simultaneous Make command-manifest checks and propagate errors.",
@@ -3736,6 +4221,88 @@
       }
     ]
   },
+  "tests/unit/runtime/list-transfer/Makefile": {
+    "contract": "docs/implementation/value-selection-and-list-transfer.md",
+    "purpose": "Select exact shared/owned/reference views and transfer staged forests through checked ownership phases.",
+    "tests": [
+      {
+        "case": "it_checks_aliases_shapes_and_continuation_self_copy_before_allocation",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_fixes_one_complete_private_forest_before_consuming_staging_at_commit",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_retains_staging_for_cleanup_on_parent_failure_and_destructive_failure",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_copies_reference_handles_including_busy_stale_and_empty_targets",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_clones_one_forest_and_remaps_references_between_sibling_elements",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_the_previous_list_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_copies_continuations_through_one_owned_list_forest",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/list-transfer/main.c": {
+    "contract": "docs/implementation/value-selection-and-list-transfer.md",
+    "purpose": "Select exact shared/owned/reference views and transfer staged forests through checked ownership phases.",
+    "tests": [
+      {
+        "case": "it_checks_aliases_shapes_and_continuation_self_copy_before_allocation",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_fixes_one_complete_private_forest_before_consuming_staging_at_commit",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_retains_staging_for_cleanup_on_parent_failure_and_destructive_failure",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_copies_reference_handles_including_busy_stale_and_empty_targets",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_clones_one_forest_and_remaps_references_between_sibling_elements",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_the_previous_list_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_copies_continuations_through_one_owned_list_forest",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      }
+    ]
+  },
   "tests/unit/runtime/lists/main.c": {
     "contract": "docs/implementation/lists.md",
     "purpose": "Check handle-vector insertion/removal and lifecycle without an action dispatcher.",
@@ -4068,6 +4635,130 @@
         "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
         "command": "make -C tests/unit/runtime/objects/lifecycle",
         "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/transfers/common.c": {
+    "contract": "docs/implementation/value-selection-and-list-transfer.md",
+    "purpose": "Select exact shared/owned/reference views and transfer staged forests through checked ownership phases.",
+    "tests": [
+      {
+        "case": "it_checks_aliases_shapes_and_continuation_self_copy_before_allocation",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_fixes_one_complete_private_forest_before_consuming_staging_at_commit",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_retains_staging_for_cleanup_on_parent_failure_and_destructive_failure",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_copies_reference_handles_including_busy_stale_and_empty_targets",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_clones_one_forest_and_remaps_references_between_sibling_elements",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_the_previous_list_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_copies_continuations_through_one_owned_list_forest",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/transfers/main.c": {
+    "contract": "docs/implementation/value-selection-and-list-transfer.md",
+    "purpose": "Select exact shared/owned/reference views and transfer staged forests through checked ownership phases.",
+    "tests": [
+      {
+        "case": "it_checks_aliases_shapes_and_continuation_self_copy_before_allocation",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_fixes_one_complete_private_forest_before_consuming_staging_at_commit",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_retains_staging_for_cleanup_on_parent_failure_and_destructive_failure",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_copies_reference_handles_including_busy_stale_and_empty_targets",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_clones_one_forest_and_remaps_references_between_sibling_elements",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_the_previous_list_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_copies_continuations_through_one_owned_list_forest",
+        "command": "make -C tests/unit/runtime/transfers",
+        "source": "tests/unit/runtime/transfers/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/value-selection/Makefile": {
+    "contract": "docs/implementation/value-selection-and-list-transfer.md",
+    "purpose": "Select exact shared/owned/reference views and transfer staged forests through checked ownership phases.",
+    "tests": [
+      {
+        "case": "it_selects_declared_instance_storage_without_acquiring_reference_targets",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_keeps_shared_values_outside_mutable_pool_identity_and_checks_shape",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/value-selection/main.c": {
+    "contract": "docs/implementation/value-selection-and-list-transfer.md",
+    "purpose": "Select exact shared/owned/reference views and transfer staged forests through checked ownership phases.",
+    "tests": [
+      {
+        "case": "it_selects_declared_instance_storage_without_acquiring_reference_targets",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_keeps_shared_values_outside_mutable_pool_identity_and_checks_shape",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
       }
     ]
   },
