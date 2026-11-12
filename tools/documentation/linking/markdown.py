@@ -154,3 +154,45 @@ def links(source):
         raise ValueError('documentation inputs require LF and no NUL')
     parser.parse(source)
     return collected
+
+
+def compact_heading_levels(source):
+    """Return exact ATX prefix edits preserving the original heading parent tree.
+
+    CommonMark identifies headings, so fenced examples and nested containers are
+    never guessed from a hash substring. The parent is the nearest preceding
+    top-level heading of lower original rank. Assign parent display rank plus one
+    to eliminate absent intermediate ranks in Doxygen's temporary view. Titles,
+    order, parent relations, GitHub title anchors and line counts stay unchanged.
+    """
+    if version('markdown-it-py') != '3.0.0':
+        raise ValueError('documentation requires markdown-it-py==3.0.0')
+    if '\r' in source or '\0' in source:
+        raise ValueError('documentation inputs require LF and no NUL')
+    # CommonMark line maps count LF, not every Unicode splitlines separator.
+    lines = source.split('\n')
+    starts, offset = [], 0
+    for line in lines:
+        starts.append(offset)
+        offset += len(line) + 1
+    stack, edits = [], []
+    for token in MarkdownIt('commonmark').parse(source):
+        if token.type != 'heading_open' or token.level != 0:
+            continue
+        original = int(token.tag[1:])
+        while stack and stack[-1][0] >= original:
+            stack.pop()
+        display = stack[-1][1] + 1 if stack else original
+        stack.append((original, display))
+        if display == original:
+            continue
+        if not token.markup.startswith('#'):
+            raise ValueError('setext heading cannot need rank compaction')
+        line = token.map[0]
+        indentation = len(lines[line]) - len(lines[line].lstrip(' '))
+        start = starts[line] + indentation
+        end = start + len(token.markup)
+        if source[start:end] != '#' * original:
+            raise ValueError('heading parser/source-map disagreement')
+        edits.append((start, end, '#' * display))
+    return edits

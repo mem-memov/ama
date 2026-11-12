@@ -237,6 +237,10 @@ void run(void) {
     it_retains_old_backup_when_rollback_itself_fails();
     it_owns_only_its_exclusive_lock_and_reports_release_failure();
 }
+/**
+ * Run the explicit assertion suite and return success only after every selected case completes;
+ * failed assertions preserve generated leaf evidence.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

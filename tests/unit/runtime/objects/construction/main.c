@@ -167,6 +167,10 @@ void run(void) {
     it_rejects_unrepresentable_lists_and_wrong_reference_types_before_payload();
     it_preserves_explicit_continuations_and_fixups_through_publication();
 }
+/**
+ * Run the explicit assertion suite and return success only after every selected case completes;
+ * failed assertions preserve generated leaf evidence.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

@@ -154,6 +154,10 @@ static void it_rolls_back_each_native_failure_without_destroying_the_source_or_f
     }
 }
 
+/**
+ * Execute every named assertion case selected by this leaf; the recursive harness owns process
+ * status and success-only cleanup.
+ */
 void run(void) {
     it_exposes_registered_work_on_late_field_failure_and_releases_each_prefix();
     it_installs_the_child_identity_before_crediting_success();
@@ -161,6 +165,10 @@ void run(void) {
     it_rolls_back_each_native_failure_without_destroying_the_source_or_failed_payload();
 }
 
+/**
+ * Run the explicit assertion suite and return success only after every selected case completes;
+ * failed assertions preserve generated leaf evidence.
+ */
 int main(void) {
     run();
     return 0;

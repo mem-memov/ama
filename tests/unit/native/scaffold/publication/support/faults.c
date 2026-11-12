@@ -18,7 +18,15 @@ static struct {
     size_t fail_second_rename;
 } publication_faults;
 
+/**
+ * Linker-provided original POSIX link used when a publication test has not selected this fault
+ * ordinal; source/destination paths stay borrowed through the call.
+ */
 int __real_link(const char *, const char *);
+/**
+ * Linker-provided original POSIX rename used outside the selected injected failure; test-owned
+ * publication paths may change only under the tested operation.
+ */
 int __real_rename(const char *, const char *);
 
 /** Fail the selected link before effects; otherwise preserve the real outcome. */

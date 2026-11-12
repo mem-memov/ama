@@ -487,7 +487,7 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   checker boundary. Doxygen validates 512 maintained file pages and 224 canonical
   page/rule destinations. All 675 maintained inputs are ready and debt is empty;
   remaining whole-reference diagnostics/quality checks belong to T134.
-- [ ] **T134 — Complete documenting comments for all retained code.** Needs:
+- [x] **T134 — Complete documenting comments for all retained code.** Needs:
   T145–T151. Close the initial inventory's documentation and per-file test gaps,
   including unchanged retained files, headers, native companions and test support.
   Add Doxygen `@file`/`@brief` comments to C sources and headers; for other code
@@ -501,6 +501,20 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   meaningful test mappings, generate the complete baseline reference and check
   source links, rendered rule destinations and undocumented-interface diagnostics.
   Do not defer retained-code documentation debt to the release phase.
+  Evidence: [strict reference workflow](docs/implementation/documentation/README.md).
+  `make docs-complete` checks all 675 maintained records with no debt. Added the
+  remaining 77 extracted function/type explanations and completed partial parameter
+  contracts. Every extracted XML function/typedef/enum/class/struct/union now needs
+  a real description; indexed records cannot disappear through missing/empty XML.
+  Doxygen warnings fail generation. Narrative page mapping and CommonMark heading
+  parent-tree compaction preserve source/specification bytes and line counts.
+  Strict documentation tests reject missing descriptions/indexed files, malformed
+  XML, warnings and incorrect mappings, including Unicode LF-offset boundaries.
+  `make docs-reproducible` produced two byte-identical complete outputs: 512 file
+  pages, 2112 described declaration records, all 284 page/rule destinations and zero
+  warnings. Forty-five changed C/header inputs retain identical compiler-lexed code
+  to the passing T151 69-leaf baseline. No spec file was changed. T135 only regenerates
+  the final reference after the remaining implementation work.
 
 ## Phase 1. Fix execution-context and native boundaries before consumers
 

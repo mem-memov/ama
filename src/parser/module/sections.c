@@ -40,7 +40,7 @@ static bool fail(ParseError *error, SourceSpan span, const char *message, Parser
     return parser_error_set(error, span, message, expected);
 }
 
-/** Return the local section record for an already recognized marker; @!/@C share implementation storage.
+/** Return the local section record for an already recognized marker; `@!`/`@C` share implementation storage.
  */
 static ParsedSection *select_section(ModuleSections *sections, int marker) {
     return marker == 0 ? &sections->constants : marker == 1 ? &sections->parameters

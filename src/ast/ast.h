@@ -64,6 +64,10 @@ typedef enum {
     AST_DECLARATION, AST_ASSIGNMENT, AST_CALL, AST_BRANCH,
     AST_LOOP, AST_BREAK, AST_RETURN, AST_SUSPEND
 } AstNodeKind;
+/**
+ * Forward declaration of an arena-owned structural syntax node; its complete tagged body follows
+ * and references borrow the module lifetime.
+ */
 typedef struct AstNode AstNode;
 /** AST-owned source-order list with explicit append tail; empty bodies have null endpoints. */
 typedef struct {

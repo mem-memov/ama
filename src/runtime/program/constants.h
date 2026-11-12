@@ -9,6 +9,10 @@
 #define AMA_RUNTIME_PROGRAM_CONSTANTS_H
 #include "model.h"
 
+/**
+ * Forward name for immutable shared storage outside pools; the complete owned arrays and
+ * partial-cleanup ledger follow.
+ */
 typedef struct AmaConstantValue AmaConstantValue;
 /** Owned array of immutable shared child values; count also bounds partial reverse cleanup. */
 typedef struct { AmaConstantValue *items; size_t count; } AmaConstantField;

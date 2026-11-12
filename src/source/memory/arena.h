@@ -10,6 +10,10 @@
 
 #include "allocator.h"
 
+/**
+ * Opaque arena-owned allocation chain node; source clients can allocate without depending on its
+ * private representation.
+ */
 typedef struct SourceAllocation SourceAllocation;
 /** Owner of independently allocated aligned records; returned addresses remain stable until destroy. */
 typedef struct {

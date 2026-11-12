@@ -173,6 +173,10 @@ static void it_copies_reference_handles_including_busy_stale_and_empty_targets(v
     finish_transfer();
 }
 
+/**
+ * Execute every named assertion case selected by this leaf; the recursive harness owns process
+ * status and success-only cleanup.
+ */
 void run(void) {
     it_checks_aliases_shapes_and_continuation_self_copy_before_allocation();
     it_fixes_one_complete_private_forest_before_consuming_staging_at_commit();
@@ -180,6 +184,10 @@ void run(void) {
     it_copies_reference_handles_including_busy_stale_and_empty_targets();
 }
 
+/**
+ * Run the explicit assertion suite and return success only after every selected case completes;
+ * failed assertions preserve generated leaf evidence.
+ */
 int main(void) {
     run();
     return 0;

@@ -67,6 +67,10 @@ static void it_unwinds_each_scaffold_model_allocation_failure(void) {
     }
 }
 
+/**
+ * Find the exact .value fixture model in the scaffold registry, asserting its required presence;
+ * returned storage borrows scaffold lifetime.
+ */
 static const ScaffoldType *value_type(void) {
     for (const ScaffoldType *type = scaffold.types; type != NULL; type = type->next) {
         if (strcmp(type->plan->type->module->source->logical_path, ".value") == 0) {
@@ -77,6 +81,10 @@ static const ScaffoldType *value_type(void) {
     return NULL;
 }
 
+/**
+ * Write a real typed native harness that composes both emitted modules, transfers values and
+ * verifies naming macros are cleaned before the next scope.
+ */
 static void write_composed_harness(FILE *output) {
     const ScaffoldType *type = scaffold.selected;
     const ScaffoldType *value = value_type();
@@ -236,6 +244,10 @@ static void it_unwinds_every_proposed_frontend_allocation_failure(void) {
     }
 }
 
+/**
+ * Execute every named assertion case selected by this leaf; the recursive harness owns process
+ * status and success-only cleanup.
+ */
 void run(void) {
     it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds();
     it_exports_a_database_that_an_independent_json_consumer_can_execute();
@@ -247,6 +259,10 @@ void run(void) {
     it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper();
 }
 
+/**
+ * Run the explicit assertion suite and return success only after every selected case completes;
+ * failed assertions preserve generated leaf evidence.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

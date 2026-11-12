@@ -18,6 +18,10 @@ typedef enum {
 } ProjectStatus;
 /** Registry admission state; loading records exist before parsing to terminate module cycles. */
 typedef enum { PROJECT_MODULE_LOADING, PROJECT_MODULE_READY } ProjectModuleState;
+/**
+ * Forward name for one exact project-owned loaded module, permitting reference cycles without
+ * recursive C type expansion.
+ */
 typedef struct ProjectModule ProjectModule;
 /** Project-owned exact path edge and original request site; target shares the unique module record. */
 typedef struct ProjectDependency {

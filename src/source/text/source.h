@@ -21,6 +21,10 @@ typedef enum {
     SOURCE_INVALID_ARGUMENT
 } SourceStatus;
 
+/**
+ * Opaque manager-owned original bytes/path/line-index record; borrowed spans remain valid until
+ * manager destruction.
+ */
 typedef struct SourceText SourceText;
 /** Manager owns records and borrows allocator authority until destruction. */
 typedef struct {
@@ -55,12 +59,18 @@ void source_manager_destroy(SourceManager *manager);
 /** Copy path and exact bytes, then publish one complete stable record. Inputs need survive only this call.
  * @param[out] output Changes only on SOURCE_OK; other manager records remain valid on failure.
  * @return Invalid argument, checked-size/allocation failure, or success; UTF-8 validation is separate.
+ * @param[in,out] manager Mutable source owner; its allocator callbacks remain valid through destruction.
+ * @param[in] path Borrowed NUL-terminated path copied before return.
+ * @param[in] bytes Borrowed exact input bytes; null is allowed only for zero length.
+ * @param[in] length Original byte count, including any embedded zeros or CRLF.
  */
 SourceStatus source_manager_add(SourceManager *manager, const char *path,
     const unsigned char *bytes, size_t length, const SourceText **output);
 /** Read a borrowed path in binary mode and close the private stream on every path.
  * @param[out] output Changes only after reading and copying a complete record.
  * @return Preserve the first read/allocation error; failed close also prevents publication.
+ * @param[in,out] manager Mutable source owner receiving one complete stable record on success.
+ * @param[in] path Borrowed NUL-terminated physical path used only during this synchronous load.
  */
 SourceStatus source_manager_load(SourceManager *manager, const char *path,
     const SourceText **output);
@@ -79,6 +89,8 @@ bool source_span_valid(SourceSpan span);
 /** Find the greatest line-start not exceeding offset, including EOF. Columns count bytes.
  * @param[out] output Changes only on true; excerpts exclude LF and its preceding CR.
  * @return false for null arguments or offset past EOF; never allocate or modify source bytes.
+ * @param[in] source Borrowed live source record with its exact line-start index.
+ * @param[in] offset Original byte offset including EOF; offsets beyond length are invalid.
  */
 bool source_position(const SourceText *source, size_t offset, SourcePosition *output);
 

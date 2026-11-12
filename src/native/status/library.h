@@ -15,6 +15,8 @@
 /** Require caller-assigned unique provider identity and nonzero reason, both 16-bit.
  * @param[out] output Changes only on success; caller supplies writable storage.
  * @return Invalid state for either zero field, otherwise the collision-free concatenation (namespace << 16) | reason. No namespace registry is implemented here.
+ * @param[in] namespace_id Caller-assigned unique nonzero 16-bit provider namespace; this helper does not register providers.
+ * @param[in] reason Nonzero 16-bit provider-local reason, concatenated without arithmetic overlap.
  */
 static inline AmaStatus ama_library_status_code(uint16_t namespace_id,
     uint16_t reason, uint32_t *output) {

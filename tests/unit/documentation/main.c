@@ -57,6 +57,10 @@ void run(void) {
     it_checks_current_coverage_and_exposes_unclosed_debt();
 }
 
+/**
+ * Run the explicit assertion suite and return success only after every selected case completes;
+ * failed assertions preserve generated leaf evidence.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

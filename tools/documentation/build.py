@@ -12,9 +12,9 @@ import shutil
 import subprocess
 import sys
 
-from linking.registry import DOCUMENTATION_PAGES, Registry
+from linking.registry import Registry
 from linking.view import transform
-from rendered import file_pages, validate
+from rendered import file_pages, interfaces, validate
 
 
 def generate(root, destination, doxygen):
@@ -34,7 +34,7 @@ def generate(root, destination, doxygen):
     # Keep specification authority separate from derived narrative documents;
     # include the explicitly referenced fixture contract alongside the entry page.
     maintained = [path for path in maintained if path.suffix != '.md' or path.is_relative_to(root / 'spec')]
-    maintained.extend(root / name for name in DOCUMENTATION_PAGES)
+    maintained.extend(root / name for name in registry.pages)
     hashes = {}
     for path in maintained:
         relative = path.relative_to(root).as_posix()
@@ -69,6 +69,7 @@ def generate(root, destination, doxygen):
     if not required_files.issubset(rendered_files):
         raise ValueError('Doxygen omitted maintained file pages: ' + ', '.join(sorted(required_files - rendered_files.keys())))
     result['maintained_file_pages'] = len(required_files)
+    result['documented_interfaces'] = interfaces(destination)
     for relative, digest in hashes.items():
         if hashlib.sha256((root / relative).read_bytes()).hexdigest() != digest:
             raise ValueError('maintained input changed during generation: ' + relative)
@@ -79,6 +80,7 @@ def generate(root, destination, doxygen):
 
 
 def main():
+    """Parse the explicit Doxygen/reproducibility request, generate complete reference output and optionally compare two complete byte manifests; failures propagate as unsuccessful process status."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--doxygen', default='doxygen')
     parser.add_argument('--reproducible', action='store_true')

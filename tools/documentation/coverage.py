@@ -149,6 +149,7 @@ def check(root, complete=False):
 
 
 def main():
+    """Parse the complete-coverage gate and validate the exact maintained input partition, independent header contracts and actual named test signatures."""
     parser = argparse.ArgumentParser()
     parser.add_argument('--complete', action='store_true')
     args = parser.parse_args()

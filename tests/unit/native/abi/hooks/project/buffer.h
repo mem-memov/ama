@@ -30,11 +30,13 @@ typedef struct {
 
 /** Borrow the immutable input buffer only for the synchronous entry. */
 typedef struct {
+    /** Borrow the native input buffer during this synchronous entry only. */
     const AMA_NATIVE(FixtureBuffer) *value;
 } AMA_NATIVE(FixtureInputs);
 
 /** Borrow writable count/status result locations only for the synchronous entry. */
 typedef struct {
+    /** Borrow the writable length result; no output pointer survives entry. */
     AMA_NATIVE(FixtureCount) *length;
     AmaStatus *refusal;
 } AMA_NATIVE(FixtureOutputs);

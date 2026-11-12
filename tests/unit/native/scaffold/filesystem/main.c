@@ -170,6 +170,10 @@ void run(void) {
     it_checks_directory_temporary_and_allocation_failures();
     it_acquires_and_releases_only_its_own_lock();
 }
+/**
+ * Run the explicit assertion suite and return success only after every selected case completes;
+ * failed assertions preserve generated leaf evidence.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

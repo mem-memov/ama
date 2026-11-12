@@ -263,6 +263,10 @@ static void it_reserves_zero_for_absent_control_and_source_positions(void) {
     destroy_plan();
 }
 
+/**
+ * Execute every named assertion case selected by this leaf; the recursive harness owns process
+ * status and success-only cleanup.
+ */
 void run(void) {
     it_keeps_runtime_replacement_checks_for_identically_spelled_assignments();
     it_links_same_type_reentry_through_instance_selection_and_return_metadata();
@@ -278,6 +282,10 @@ void run(void) {
     it_cleans_partial_lifecycle_storage_and_control_plans_on_every_allocation_failure();
 }
 
+/**
+ * Run the explicit assertion suite and return success only after every selected case completes;
+ * failed assertions preserve generated leaf evidence.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

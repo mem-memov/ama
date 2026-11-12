@@ -13,6 +13,10 @@
 
 /** Graph outcome distinguishes concrete cycle evidence from allocation exhaustion. */
 typedef enum { GRAPH_OK, GRAPH_CYCLE, GRAPH_OUT_OF_MEMORY } GraphStatus;
+/**
+ * Forward name for one exact semantic relation graph vertex; complete state remains owned by the
+ * graph arena.
+ */
 typedef struct GraphVertex GraphVertex;
 /** Graph-owned prerequisite edge borrowing its original semantic source site. */
 typedef struct GraphEdge {

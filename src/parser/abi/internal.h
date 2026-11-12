@@ -12,6 +12,7 @@
 
 /** Validate one nonempty retained native C identifier/UCN spelling, rejecting exact keyword text.
  * @param[out] error_offset Original byte offset of the first invalid scalar or initial offset for empty/keyword input.
+ * @param[in] text Live bounded original source span containing one native identifier spelling.
  */
 bool abi_identifier(SourceSpan text, size_t *error_offset);
 /** Test exact supported C scalar ranges and initial/continuation restrictions; never use Ama XID tables as a substitute.

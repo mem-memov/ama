@@ -24,11 +24,14 @@ HTML_OUTPUT            = .
 TIMESTAMP              = NO
 GENERATE_TREEVIEW      = YES
 GENERATE_LATEX         = NO
+GENERATE_XML           = YES
+XML_PROGRAMLISTING     = NO
 GENERATE_TAGFILE        = docs/technical/ama.tag
 HAVE_DOT               = NO
 QUIET                  = YES
 WARNINGS               = YES
-# Extract retained declarations during migration. The staged build checks
-# ready-file purposes and canonical links; T134 closes the explicit old debts.
+# Keep all declarations visible. The XML gate requires descriptions for every
+# function/type; fields, macros and enum values use their enclosing type contract.
 WARN_IF_UNDOCUMENTED   = NO
+WARN_AS_ERROR          = FAIL_ON_WARNINGS
 WARN_LOGFILE           = build/documentation/warnings.log

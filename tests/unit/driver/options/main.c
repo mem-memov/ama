@@ -154,6 +154,10 @@ void run(void) {
     it_assembles_native_creation_and_check_defaults();
     it_cleans_every_partial_allocation_and_rejects_unrepresentable_storage();
 }
+/**
+ * Run the explicit assertion suite and return success only after every selected case completes;
+ * failed assertions preserve generated leaf evidence.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

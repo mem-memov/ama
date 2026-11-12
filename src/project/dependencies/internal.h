@@ -15,6 +15,10 @@
 ProjectModule *project_lookup(Project *project, const char *path);
 /** Reuse an existing identity or insert one loading record before parsing dependencies.
  * @param[out] output Changes only on success and borrows project lifetime. requester/requirement record first-discovery context.
+ * @param[in,out] project Mutable project owner with registry/source storage valid through every output consumer.
+ * @param[in] requester First requesting module, or null for the explicit entry.
+ * @param[in] path Borrowed complete logical module path copied into project-owned storage as needed.
+ * @param[in] requirement Original source span locating this request; its owner remains project-owned.
  */
 bool project_require(Project *project, ProjectModule *requester,
     const char *path, SourceSpan requirement, ProjectModule **output);

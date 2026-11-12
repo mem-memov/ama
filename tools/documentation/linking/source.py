@@ -9,6 +9,7 @@ _TRIGRAPHS = dict(zip("=/'()!<>-", "#\\^[]|{}~"))
 
 
 def _logical(source):
+    """Apply C11 trigraph replacement and escaped-newline removal while retaining an exact physical offset for every surviving logical character; do not mutate source."""
     chars, offsets = [], []
     index = 0
     while index < len(source):

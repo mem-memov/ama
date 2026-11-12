@@ -136,12 +136,20 @@ static void it_decodes_each_index_once_and_never_guesses_refusal_from_status_cod
     finish_selection();
 }
 
+/**
+ * Execute every named assertion case selected by this leaf; the recursive harness owns process
+ * status and success-only cleanup.
+ */
 void run(void) {
     it_selects_declared_instance_storage_without_acquiring_reference_targets();
     it_keeps_shared_values_outside_mutable_pool_identity_and_checks_shape();
     it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes();
 }
 
+/**
+ * Run the explicit assertion suite and return success only after every selected case completes;
+ * failed assertions preserve generated leaf evidence.
+ */
 int main(void) {
     run();
     return 0;

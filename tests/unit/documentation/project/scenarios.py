@@ -12,21 +12,23 @@ import sys
 
 ROOT = Path(sys.argv[1])
 sys.path.insert(0, str(ROOT / 'tools/documentation'))
-from linking.markdown import links
+from linking.markdown import compact_heading_levels, links
 from linking.registry import Registry
 from linking.source import comments
 from linking.view import transform
-from rendered import Page, validate
+from rendered import Page, interfaces, validate
 from build import generate
 import coverage
 
 
 def require(condition, description):
+    """Assert one exact scenario observation by raising ValueError; this fixture helper does not reinterpret a failing subprocess as success."""
     if not condition:
         raise ValueError(description)
 
 
 def rejected(operation):
+    """Require the supplied invalid operation to raise its declared validation/compiler failure; normal return is a regression."""
     try:
         operation()
     except (ValueError, subprocess.CalledProcessError):
@@ -35,6 +37,7 @@ def rejected(operation):
 
 
 def prepare(name):
+    """Create one isolated generated scenario root with minimal canonical requirements; remove only that prior test-owned fixture if present."""
     root = Path('generated') / name
     if root.exists():
         shutil.rmtree(root)
@@ -45,6 +48,23 @@ def prepare(name):
 
 
 def source():
+    """Check physical Markdown/C source offsets, prose-only canonical rewrites and untouched code examples/literal bytes."""
+    headings = '# Root\n\n#### Child\n\n```md\n###### Literal\n```\n\n#### Sibling\n\n##### Grandchild\n'
+    compacted = headings
+    for begin, end, replacement in reversed(compact_heading_levels(headings)):
+        compacted = compacted[:begin] + replacement + compacted[end:]
+    require(compacted == '# Root\n\n## Child\n\n```md\n###### Literal\n```\n\n## Sibling\n\n### Grandchild\n',
+            'heading compaction changed the parent tree or a fenced example')
+    require(compacted.count('\n') == headings.count('\n'), 'heading compaction changed source line count')
+    quoted = '# Root\n\n> #### Quoted\n\n#### Child\n'
+    require(compact_heading_levels(quoted) == [(quoted.index('#### Child'), quoted.index('#### Child') + 4, '##')],
+            'heading compaction interpreted a nested container as top-level')
+    separated = '# Root\u2028suffix\n\n#### Child\n'
+    require(compact_heading_levels(separated) == [(separated.index('#### Child'), separated.index('#### Child') + 4, '##')],
+            'Unicode prose separator changed CommonMark LF offsets')
+    setext = 'Root\n====\n\n#### Child\n'
+    require(compact_heading_levels(setext) == [(setext.index('#### Child'), setext.index('#### Child') + 4, '##')],
+            'setext parent rank was not preserved')
     registry = Registry(ROOT)
     path = 'src/runtime/pool/deep/fixture.c'
     href = '../../../../spec/implementation/runtime.md#rt-13'
@@ -75,6 +95,7 @@ def source():
 
 
 def registry():
+    """Reject exact stale, duplicate, out-of-tree, mismatched and collision-forced canonical rule identities."""
     root = prepare('registry')
     rules = Registry(root)
     rejected(lambda: rules.reference('deep/file.c', 'RT-13', '../spec/runtime.md#missing', True))
@@ -96,15 +117,16 @@ def registry():
 
 
 def rendered():
+    """Run real Doxygen on nested and moved sources, verify originating file/page links and reject tampered rendered canonical destinations."""
     root = prepare('rendered')
     (root / 'docs').mkdir()
     shutil.copyfile(ROOT / 'docs/Doxyfile', root / 'docs/Doxyfile')
     (root / 'docs/documentation.md').write_text('# Fixture\n')
     (root / 'docs/implementation').mkdir()
-    (root / 'docs/implementation/library-tests-and-build.md').write_text('# Fixture lifetime contract\n')
+    (root / 'docs/implementation/library-tests-and-build.md').write_text('# Fixture lifetime contract\n\n#### Preserved child\n\n[Child](#preserved-child)\n')
     nested = root / 'src/a/b/c'
     nested.mkdir(parents=True)
-    code = '/** @file\n * @brief Keep identity under [RT-13](../../../../spec/runtime.md#rt-13).\n * @see [Fixture contract](../../../../docs/implementation/library-tests-and-build.md)\n */\nint fixture(void) { return 0; }\n'
+    code = '/** @file\n * @brief Keep identity under [RT-13](../../../../spec/runtime.md#rt-13).\n * @see [Fixture contract](../../../../docs/implementation/library-tests-and-build.md)\n */\n/** Provide one constant fixture value. */\nint fixture(void) { return 0; }\n'
     original = nested / 'fixture.c'
     original.write_text(code)
     included = nested / 'ranges.inc'
@@ -120,6 +142,33 @@ def rendered():
     validate(output, {'src/a/b/c/ranges.inc': [anchor]})
     contract_page = registry.identity('page', 'docs/implementation/library-tests-and-build.md')
     validate(output, {'src/a/b/c/fixture.c': [contract_page]})
+    # A rendered file page alone cannot certify its extracted interfaces.
+    import xml.etree.ElementTree as ET
+    interface_file = next(path for path in (output / 'xml').glob('*.xml')
+                          if ET.parse(path).getroot().find(".//memberdef[@kind='function']") is not None)
+    original_xml = interface_file.read_bytes()
+    xml_index = output / 'xml/index.xml'
+    original_index = xml_index.read_bytes()
+    xml_index.write_text('<not-closed>')
+    rejected(lambda: interfaces(output))
+    xml_index.write_bytes(original_index)
+    interface_file.unlink()
+    rejected(lambda: interfaces(output))
+    interface_file.write_text('<doxygen/>')
+    rejected(lambda: interfaces(output))
+    interface_file.write_bytes(original_xml)
+    tree = ET.parse(interface_file)
+    declaration = tree.getroot().find(".//memberdef[@kind='function']")
+    declaration.find('briefdescription').clear()
+    declaration.find('detaileddescription').clear()
+    tree.write(interface_file)
+    rejected(lambda: interfaces(output))
+    interface_file.write_bytes(original_xml)
+    require(interfaces(output) > 0, 'documented interface fixture was not extracted')
+    original.write_text(code.replace(' * @brief Keep', ' * @C\n * @brief Keep', 1))
+    rejected(lambda: generate(root, root / 'rejected-html', shutil.which('doxygen')))
+    original.write_text(code)
+
     content = file_page.read_text()
     file_page.write_text(content.replace('#' + anchor, '#ama_rule_missing'))
     rejected(lambda: validate(output, [anchor]))
@@ -141,6 +190,7 @@ def rendered():
 
 
 def coverage_scenario():
+    """Verify exact inventory retention, header acceptance/rejection contracts, compiler-rule requirements and declared actual test signatures; reject each invalid boundary."""
     root = prepare('coverage')
     home = root / 'docs/implementation/documentation'
     home.mkdir(parents=True)

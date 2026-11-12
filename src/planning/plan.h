@@ -14,6 +14,9 @@
 typedef enum { PLAN_OK, PLAN_INVALID, PLAN_OUT_OF_MEMORY } PlanStatus;
 /** Logical ownership/cardinality form, independent of target C representation. */
 typedef enum { STORAGE_OWNED, STORAGE_REFERENCE, STORAGE_OWNING_LIST, STORAGE_REFERENCE_LIST } StorageForm;
+/**
+ * Forward name for one resolved type/storage/control plan borrowing its semantic nominal type.
+ */
 typedef struct PlannedType PlannedType;
 /** Plan-owned ordered nonconstant field with exact semantic declaration/type and logical slot. */
 typedef struct StorageField {

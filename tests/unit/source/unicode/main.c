@@ -211,6 +211,10 @@ static void it_regenerates_pinned_tables_and_rejects_invalid_input_and_output(vo
     assert(execute(write_failure, "generated/small-properties", true) != 0);
 }
 
+/**
+ * Execute every named assertion case selected by this leaf; the recursive harness owns process
+ * status and success-only cleanup.
+ */
 void run(void) {
     it_decodes_every_unicode_scalar_and_rejects_surrogates();
     it_rejects_overlong_out_of_range_and_malformed_sequences();
@@ -220,6 +224,10 @@ void run(void) {
     it_regenerates_pinned_tables_and_rejects_invalid_input_and_output();
 }
 
+/**
+ * Run the explicit assertion suite and return success only after every selected case completes;
+ * failed assertions preserve generated leaf evidence.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

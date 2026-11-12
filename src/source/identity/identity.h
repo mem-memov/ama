@@ -69,6 +69,8 @@ void identity_registry_init(IdentityRegistry *registry, SourceAllocator allocato
  */
 void identity_registry_destroy(IdentityRegistry *registry);
 /** Encode a supported complete identity, hash it, and compare full keys before publication.
+ * @param[in,out] registry Exact full-key registry and arena owner; names borrow its lifetime.
+ * @param[in] identity Complete category/module/member key and source span; registration copies the key.
  * @param[out] output Changes only on IDENTITY_OK; repeats reuse the same record.
  * @return Malformed identity, checked limit, allocation failure, unequal-key collision or success. Failed scratch remains arena-owned until destroy.
  */

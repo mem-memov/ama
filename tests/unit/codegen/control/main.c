@@ -196,6 +196,10 @@ void run(void) {
     it_keeps_original_source_lines_and_preserves_explicit_trace_locations();
     it_executes_emitted_control_fragments_with_real_c_types();
 }
+/**
+ * Run the explicit assertion suite and return success only after every selected case completes;
+ * failed assertions preserve generated leaf evidence.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

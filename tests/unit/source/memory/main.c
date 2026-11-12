@@ -57,12 +57,20 @@ static void it_uses_the_system_authority_without_global_compiler_state(void) {
     source_arena_destroy(&arena);
 }
 
+/**
+ * Execute every named assertion case selected by this leaf; the recursive harness owns process
+ * status and success-only cleanup.
+ */
 void run(void) {
     it_keeps_aligned_addresses_stable_and_releases_every_record();
     it_preserves_existing_strings_on_limit_and_allocation_failure();
     it_uses_the_system_authority_without_global_compiler_state();
 }
 
+/**
+ * Run the explicit assertion suite and return success only after every selected case completes;
+ * failed assertions preserve generated leaf evidence.
+ */
 int main(void) {
     run();
     return 0;

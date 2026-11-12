@@ -13,6 +13,7 @@
 
 /* FIPS 180-4 SHA-256, 32 bytes, input shorter than 2^61 bytes. */
 /** Compute FIPS 180-4 SHA-256 for a finite input shorter than 2^61 bytes.
+ * @param[in] length Exact input byte count, required by the caller to be less than 2^61.
  * @param[in] bytes Borrowed input; null permitted only for zero length.
  * @param[out] digest Caller supplies 32 writable bytes not overlapping input. No allocation or collision assumption.
  */

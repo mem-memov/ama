@@ -11,18 +11,29 @@ from urllib.parse import unquote, urlsplit
 from .markdown import links
 
 
-# Explicit nonauthoritative narrative inputs shared with the staging builder.
-# Their complete path identities are distinct from canonical requirement IDs.
-DOCUMENTATION_PAGES = (
-    'docs/documentation.md',
-    'docs/implementation/library-tests-and-build.md',
-)
+def documentation_pages(root):
+    """Enumerate maintained narrative Markdown separately from canonical rules.
+
+    Keep every complete path and omit generated documentation/build trees. This
+    finite explicit responsibility set includes repository guides and evidence,
+    never promotes a narrative requirement to canonical specification authority.
+    """
+    root = Path(root)
+    paths = set(root.glob('*.md'))
+    for directory in ('docs', 'stdlib', 'third_party'):
+        paths.update((root / directory).rglob('*.md'))
+    pages = {path.relative_to(root).as_posix() for path in paths if path.is_file()
+             and not {'technical', 'generated', 'build', '__pycache__'}.intersection(path.relative_to(root).parts)}
+    pages.update(('docs/documentation.md', 'docs/implementation/library-tests-and-build.md'))
+    return tuple(sorted(pages))
 
 
 class Registry:
     """Own an immutable canonical-rule map for one repository root."""
     def __init__(self, root, digest=None):
+        """Build and validate one exact canonical requirement map and narrative page set; reject duplicate IDs/anchors or unequal-key digest collisions before exposing links."""
         self.root = Path(root).resolve()
+        self.pages = documentation_pages(self.root)
         self.rules = {}
         self.destinations = {}
         self.identities = {}
@@ -82,7 +93,7 @@ class Registry:
                 raise ValueError('rule reference outside spec: ' + href)
             if path.is_relative_to(self.root):
                 relative = path.relative_to(self.root).as_posix()
-                if relative in DOCUMENTATION_PAGES and not parsed.fragment:
+                if relative in self.pages and not parsed.fragment:
                     if parsed.query or not path.is_file():
                         raise ValueError('missing/invalid documentation page: ' + href)
                     return self.identity('page', relative)

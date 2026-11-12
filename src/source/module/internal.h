@@ -55,6 +55,8 @@ ModuleStatus module_walk_root(ModuleCatalog *catalog, const ModuleRoot *root);
 /** Read/copy/sort actual entry names in exact byte order, excluding dot entries. Always close the stream.
  * @param[out] names Published only on success; catalog arena owns all copied names/partial scratch.
  * @param[out] count May describe a copied prefix on failure; never use it with absent names.
+ * @param[in,out] walk Mutable catalog scan owner retaining copied entry names and first issue.
+ * @param[in] directory Borrowed already verified directory selected by the finite scan queue.
  */
 ModuleStatus module_read_entries(ModuleWalk *walk, const ModuleDirectory *directory,
     const char ***names, size_t *count);

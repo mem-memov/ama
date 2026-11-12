@@ -7,6 +7,11 @@
 #include "../objects/common.c"
 #include "runtime/lists/list.h"
 
+/**
+ * Assert that the component grows geometrically without moving states and preserves data on
+ * failure. The case observes actual production behavior through explicit fixture setup and
+ * teardown.
+ */
 static void it_grows_geometrically_without_moving_states_and_preserves_data_on_failure(void) {
     setup_objects();
     AmaHandleList list = {0};
@@ -27,6 +32,10 @@ static void it_grows_geometrically_without_moving_states_and_preserves_data_on_f
     world.allocator.release(world.allocator.context, list.items);
     destroy_objects();
 }
+/**
+ * Assert that the component preserves order and identity and invalidates only removed owners.
+ * The case observes actual production behavior through explicit fixture setup and teardown.
+ */
 static void it_preserves_order_and_identity_and_invalidates_only_removed_owners(void) {
     setup_objects();
     AmaHandle owner;
@@ -65,6 +74,11 @@ static void it_preserves_order_and_identity_and_invalidates_only_removed_owners(
     destroy_objects();
 }
 
+/**
+ * Assert that the component preflights all clear descendants and does not acquire reference
+ * targets. The case observes actual production behavior through explicit fixture setup and
+ * teardown.
+ */
 static void it_preflights_all_clear_descendants_and_does_not_acquire_reference_targets(void) {
     setup_objects();
     AmaHandle owner;
@@ -103,6 +117,10 @@ static void it_preflights_all_clear_descendants_and_does_not_acquire_reference_t
     destroy_objects();
 }
 
+/**
+ * Assert that the component preserves contents after every default insertion allocation failure.
+ * The case observes actual production behavior through explicit fixture setup and teardown.
+ */
 static void it_preserves_contents_after_every_default_insertion_allocation_failure(void) {
     size_t allocations = 0;
     for (size_t failure = 0; failure <= allocations; failure++) {
@@ -124,6 +142,10 @@ static void it_preserves_contents_after_every_default_insertion_allocation_failu
     }
 }
 
+/**
+ * Assert that the component treats destructor failure as terminal and completes clear cleanup.
+ * The case observes actual production behavior through explicit fixture setup and teardown.
+ */
 static void it_treats_destructor_failure_as_terminal_and_completes_clear_cleanup(void) {
     setup_objects();
     AmaHandle owner;
@@ -207,6 +229,10 @@ static void it_rejects_reentrant_storage_work_without_mutating_or_allocating(voi
     destroy_objects();
 }
 
+/**
+ * Execute every named assertion case selected by this leaf; the recursive harness owns process
+ * status and success-only cleanup.
+ */
 void run(void) {
     it_rejects_reentrant_storage_work_without_mutating_or_allocating();
     it_clones_inserted_owned_state_and_remaps_internal_references();
@@ -216,4 +242,8 @@ void run(void) {
     it_preflights_all_clear_descendants_and_does_not_acquire_reference_targets();
     it_preserves_contents_after_every_default_insertion_allocation_failure();
 }
+/**
+ * Run the explicit assertion suite and return success only after every selected case completes;
+ * failed assertions preserve generated leaf evidence.
+ */
 int main(void) { run(); return EXIT_SUCCESS; }

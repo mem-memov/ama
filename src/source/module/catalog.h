@@ -56,6 +56,10 @@ typedef struct {
     size_t offset;
 } ModuleIssue;
 
+/**
+ * Opaque catalog-owned physical directory identity used to reject aliases during iterative
+ * discovery.
+ */
 typedef struct ModuleDirectoryIdentity ModuleDirectoryIdentity;
 
 /** Build-once owner of records, source bytes, directory identities and failure context. */
@@ -85,6 +89,8 @@ ModuleStatus module_catalog_build(ModuleCatalog *catalog,
 /** Look up one validated retained logical spelling after successful build.
  * @param[out] output Changes only on MODULE_OK and borrows catalog lifetime.
  * @return Invalid path/partial build, absent module or exact match; no root precedence is applied.
+ * @param[in] catalog Borrowed complete catalog retaining every source record through output use.
+ * @param[in] logical_path Borrowed exact full logical identity; no prefix, normalization or fallback lookup.
  */
 ModuleStatus module_catalog_find(const ModuleCatalog *catalog,
     const char *logical_path, const ModuleSource **output);

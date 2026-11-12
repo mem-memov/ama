@@ -175,6 +175,10 @@ static void it_releases_every_partial_resolved_value_binding_and_access(void) {
     }
 }
 
+/**
+ * Execute every named assertion case selected by this leaf; the recursive harness owns process
+ * status and success-only cleanup.
+ */
 void run(void) {
     it_requires_owned_copy_capability_even_for_statically_identical_storage();
     it_releases_every_partial_resolved_value_binding_and_access();
@@ -186,6 +190,10 @@ void run(void) {
     it_rejects_whole_list_execution_and_retained_results();
 }
 
+/**
+ * Run the explicit assertion suite and return success only after every selected case completes;
+ * failed assertions preserve generated leaf evidence.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

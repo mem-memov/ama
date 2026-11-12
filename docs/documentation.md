@@ -28,12 +28,19 @@ explanations, as required by the contributor guide.
 The build checks the reviewed per-file coverage registry, creates read-only
 Doxygen input views and verifies actual canonical-rule destinations in HTML.
 `make docs-reproducible` requires two complete generations to be byte-identical;
-`make docs-complete` fails until every registered documentation/test debt is closed.
+`make docs-complete` checks that every maintained input has reviewed documentation
+and executable-consumer evidence, with no registered debt.
 See `docs/implementation/documentation/README.md` for the exact
 mapping, purpose/header/test checks, source navigation and remaining limits.
 
-The reference still extracts existing undocumented declarations. Bootstrap success
-is not complete documentation or current-language conformance: T134/T135 close
-retained-code gaps and regenerate the final deliverable after implementation.
-Warnings remain visible in `build/documentation/warnings.log`. Keep purpose and
-contract explanations beside code; let Doxygen generate file/interface pages.
+The baseline reference includes every retained file and extracted function/type.
+Its XML gate rejects missing interface descriptions, and Doxygen warnings fail
+the build; diagnostics remain visible in `build/documentation/warnings.log`.
+Narrative guides are included with checked page identities. Temporary heading
+compaction preserves their original parent tree and source line counts. Maintained
+specification bytes remain unchanged.
+
+This documents the retained implementation, whose language conformance remains
+incomplete. T135 regenerates the final deliverable after implementation. Keep
+purpose and contract explanations beside code; let Doxygen generate all reference
+pages and source views.

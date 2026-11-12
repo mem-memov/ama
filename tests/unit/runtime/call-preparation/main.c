@@ -167,6 +167,10 @@ static void it_installs_one_constructor_per_field_and_retains_the_successful_pre
     }
 }
 
+/**
+ * Execute every named assertion case selected by this leaf; the recursive harness owns process
+ * status and success-only cleanup.
+ */
 void run(void) {
     it_selects_indexed_sources_once_in_text_order_before_acquisition();
     it_keeps_repeated_sources_protected_across_distinct_field_commits();
@@ -174,6 +178,10 @@ void run(void) {
     it_installs_one_constructor_per_field_and_retains_the_successful_prefix();
 }
 
+/**
+ * Run the explicit assertion suite and return success only after every selected case completes;
+ * failed assertions preserve generated leaf evidence.
+ */
 int main(void) {
     run();
     return 0;

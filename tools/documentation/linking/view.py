@@ -5,7 +5,7 @@
 # source and specification files are never opened for writing.
 import re
 
-from .markdown import links
+from .markdown import compact_heading_levels, links
 from .source import comments, mask_examples
 
 
@@ -13,6 +13,7 @@ def transform(path, content, registry):
     """Return a line-count-preserving view and the canonical anchors it uses."""
     edits, references = [], []
     if path.endswith('.md'):
+        edits.extend(compact_heading_levels(content))
         regions = [(content, list(range(len(content))))]
         for rule, (chapter, fragment) in registry.rules.items():
             if chapter == path:

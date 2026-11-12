@@ -4,6 +4,10 @@
  */
 #include "../common.c"
 
+/**
+ * Assert that the component documents verified project compilation. The case observes actual
+ * production behavior through explicit fixture setup and teardown.
+ */
 static void it_documents_verified_project_compilation(void) {
     setup_test();
     char *arguments[] = {"ama", "--help"};
@@ -17,6 +21,10 @@ static void it_documents_verified_project_compilation(void) {
     destroy_test();
 }
 
+/**
+ * Assert that the component rejects missing explicit commands on the error stream. The case
+ * observes actual production behavior through explicit fixture setup and teardown.
+ */
 static void it_rejects_missing_explicit_commands_on_the_error_stream(void) {
     setup_test();
     char *arguments[] = {"ama", "project"};
@@ -30,6 +38,10 @@ static void it_rejects_missing_explicit_commands_on_the_error_stream(void) {
     destroy_test();
 }
 
+/**
+ * Assert that the component reports failure when help cannot be written. The case observes
+ * actual production behavior through explicit fixture setup and teardown.
+ */
 static void it_reports_failure_when_help_cannot_be_written(void) {
     setup_test();
     FILE *read_only = fopen("main.c", "r");
@@ -59,6 +71,10 @@ static void it_rejects_every_retired_list_configuration_option(void) {
     }
 }
 
+/**
+ * Execute every named assertion case selected by this leaf; the recursive harness owns process
+ * status and success-only cleanup.
+ */
 void run(void) {
     it_rejects_every_retired_list_configuration_option();
     it_documents_verified_project_compilation();
@@ -66,6 +82,10 @@ void run(void) {
     it_rejects_missing_explicit_commands_on_the_error_stream();
 }
 
+/**
+ * Run the explicit assertion suite and return success only after every selected case completes;
+ * failed assertions preserve generated leaf evidence.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

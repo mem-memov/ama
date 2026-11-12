@@ -24,6 +24,7 @@ typedef enum {
 /** Validate before writing, then render original names, byte locations and complete intersecting source lines.
  * @param[in,out] output Borrowed stream; flush but never close. Partial text can remain on IO failure.
  * @return Invalid record/stream, IO failure or success; compiler heap allocation is unnecessary.
+ * @param[in] diagnostic Borrowed validated diagnostic and source/related views, alive through the synchronous write.
  */
 DiagnosticRenderStatus diagnostic_render(FILE *output, const Diagnostic *diagnostic);
 

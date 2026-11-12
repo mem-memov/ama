@@ -14,6 +14,10 @@
 
 /** Storage form separates ownership from scalar/list shape; references never acquire lifecycle ownership. */
 typedef enum { AMA_FIELD_OWNED, AMA_FIELD_REFERENCE, AMA_FIELD_OWNING_LIST, AMA_FIELD_REFERENCE_LIST } AmaFieldKind;
+/**
+ * Forward name for borrowed selected constructor recipes; the complete fields and
+ * source-lifetime contract follow.
+ */
 typedef struct AmaRecipe AmaRecipe;
 /** Borrowed selected field initialization recipe; supplied distinguishes an explicit empty list from absent defaults, operation locates failures. */
 typedef struct {
@@ -51,6 +55,10 @@ typedef struct {
     AmaStatus (*clone)(void *, const void *);
     AmaStatus (*destroy)(void *);
 } AmaPayloadHooks;
+/**
+ * Forward name for the borrowed registry, allocator and synchronous lifecycle operation
+ * authority; complete ownership is defined below.
+ */
 typedef struct AmaWorld AmaWorld;
 /** One nominal pool plus borrowed field/default/hook descriptors and recipe callback context. Registry/type storage must outlive all instances. */
 typedef struct {

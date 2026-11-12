@@ -16,11 +16,31 @@
 typedef enum { SEMANTIC_OK, SEMANTIC_INVALID, SEMANTIC_OUT_OF_MEMORY } SemanticStatus;
 /** Declared storage roles have independent ordinals and initialization domains. */
 typedef enum { SYMBOL_CONSTANT, SYMBOL_PARAMETER, SYMBOL_RESULT, SYMBOL_STATE } SymbolRole;
+/**
+ * Forward name for one nominal module type owned by the semantic program.
+ */
 typedef struct SemanticType SemanticType;
+/**
+ * Forward name for an immutable-value construction plan whose storage belongs to semantic
+ * analysis.
+ */
 typedef struct SemanticConstantPlan SemanticConstantPlan;
+/**
+ * Forward name for an exactly resolved source descriptor borrowing original syntax and semantic
+ * symbols.
+ */
 typedef struct SemanticSource SemanticSource;
+/**
+ * Forward name for a resolved finite field/index access graph, owned by the semantic program.
+ */
 typedef struct SemanticAccess SemanticAccess;
+/**
+ * Forward name for one ordered resolved invocation binding borrowing its syntax source.
+ */
 typedef struct SemanticBinding SemanticBinding;
+/**
+ * Forward name for a typed statement and its explicit nested blocks, owned by semantic analysis.
+ */
 typedef struct SemanticStatement SemanticStatement;
 /** Validated construction/transfer kind; ordinary identity no-op is deliberately not a static enum case. */
 typedef enum {

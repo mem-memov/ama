@@ -173,6 +173,10 @@ static void it_matches_the_call_mode_language_for_every_short_binding_sequence(v
     }
 }
 
+/**
+ * Execute every named assertion case selected by this leaf; the recursive harness owns process
+ * status and success-only cleanup.
+ */
 void run(void) {
     it_parses_binding_structure_without_a_retired_list_dispatch_contract();
     it_counts_skipped_inputs_and_outputs_independently();
@@ -183,6 +187,10 @@ void run(void) {
     it_matches_the_call_mode_language_for_every_short_binding_sequence();
 }
 
+/**
+ * Run the explicit assertion suite and return success only after every selected case completes;
+ * failed assertions preserve generated leaf evidence.
+ */
 int main(void) {
     run();
     return EXIT_SUCCESS;

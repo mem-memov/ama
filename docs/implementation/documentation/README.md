@@ -14,10 +14,12 @@ with `DOXYGEN` and `DOCUMENTATION_PYTHON`. The bootstrap evidence uses Doxygen
 - `make docs-check` checks the current per-file registry, reviewed purpose and
   contract records, real C test-case interfaces and standalone ready headers.
 - `make docs` also generates and checks actual HTML destinations, canonical
-  chapter placement and maintained file pages.
+  chapter placement, maintained file pages and XML function/type descriptions.
+  Every Doxygen warning is a build failure; warnings are never an accepted debt.
 - `make docs-reproducible` performs two complete generations and requires identical
   file membership and SHA-256 bytes for every output, including the tag file.
-- `make docs-complete` additionally fails while any registered debt remains.
+- `make docs-complete` checks the complete per-file partition and fails while any
+  registered debt remains; generation is the separate `make docs` command.
 - `make docs-clean` removes the generated site, staged views, reports and warnings.
 - `make -C tests/unit/documentation` runs the independent C/assert contract leaf.
 
@@ -75,10 +77,10 @@ An identity hashes a length-framed tuple of kind, full repository path and stabl
 rule ID with SHA-256. The registry stores the original tuple and rejects a hash
 collision between distinct tuples. Rule definitions become `@anchor` on the same
 line. Links become `@ref` only in disposable views under `build/documentation/`;
-page identities are explicit, deterministic labels. A finite explicit list also
-includes the documentation entry and shared library/test/build contract. Links
-to those nonauthoritative pages map by complete resolved path to their own page
-identity; they cannot satisfy a compiler file's mandatory canonical-rule link. Rule links incoming from
+page identities are explicit, deterministic labels. The explicit narrative scope includes root guides and maintained Markdown under
+`docs/`, `stdlib/` and `third_party/`, excluding generated trees. Links to these
+non-authoritative pages map by complete resolved path to their own page identity;
+they cannot satisfy a compiler file's mandatory canonical-rule link. Rule links incoming from
 other specification pages use the same mapping. All transformed files preserve
 line counts. Maintained input hashes are rechecked after generation.
 
@@ -87,11 +89,22 @@ tag file, requires every mapped link on its originating page, verifies each rule
 unique definition belongs to its canonical chapter and checks the target file
 and fragment. It also requires a file compound for every maintained code input.
 `build/documentation/report.json` records versions, input fingerprints and counts.
-Canonical-link checks are strict now. Ordinary narrative links in old derived
-documents remain T134 work. The retained standard-library README is outside the
-C input tree; the shared library/test/build contract is an explicit Markdown input
-so its source-comment references have generated destinations. Warnings about other narrative links and heading levels
-remain visible in `build/documentation/warnings.log`; they are not conformance.
+Canonical-link and extracted-interface checks are strict. Doxygen emits XML as
+well as HTML; the gate requires actual nonempty brief or detailed descriptions on
+every extracted function, typedef, enum and class/struct/union. EXTRACT_ALL keeps
+missing interfaces visible to that check rather than silently omitting them.
+Fields, macros and enum values use the enclosing documented type contract.
+An absent description, malformed/missing XML, warning or unresolved canonical
+page/rule destination fails generation. Counts refer to extracted declaration
+records, not a claim of unique external ABI symbols.
+
+Skipped Markdown heading ranks are compacted only in temporary views. CommonMark
+supplies real top-level heading tokens; fenced examples and nested containers are
+untouched. A stack assigns each heading its nearest lower-ranked predecessor as
+parent, then uses parent display rank plus one. This preserves the exact parent
+tree, title text, order and title-derived anchors while removing Doxygen's invalid
+rank jumps. It edits only ATX hash prefixes and preserves every source newline.
+Specification files are never edited to accommodate the renderer.
 
 ## Invariants and argument
 
@@ -137,4 +150,5 @@ T151 closes the remaining ready/debt partition: 675 maintained inputs have expli
 purpose, contract and named consumer evidence; the debt registry is empty. Inventory
 retains expected observation files and the standard-library contract independently
 of that empty history. This documents retained code; language conformance still
-follows the unfinished roadmap. T134 performs the complete documentation gate.
+follows the unfinished roadmap. T134 verifies the full baseline, warnings, all extracted interfaces and two-run
+byte reproducibility. T135 remains the final post-implementation regeneration.

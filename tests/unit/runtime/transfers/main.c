@@ -106,9 +106,17 @@ static void it_copies_continuations_through_one_owned_list_forest(void) {
     }
 }
 
+/**
+ * Execute every named assertion case selected by this leaf; the recursive harness owns process
+ * status and success-only cleanup.
+ */
 void run(void) {
     it_copies_continuations_through_one_owned_list_forest();
     it_clones_one_forest_and_remaps_references_between_sibling_elements();
     it_preserves_the_previous_list_on_every_preparation_allocation_failure();
 }
+/**
+ * Run the explicit assertion suite and return success only after every selected case completes;
+ * failed assertions preserve generated leaf evidence.
+ */
 int main(void) { run(); return EXIT_SUCCESS; }
