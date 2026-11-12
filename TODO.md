@@ -146,10 +146,17 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   complete `make -j4 test` (58 registered leaves). Generated Doxygen reference and
   local links for all three new C file pages were checked. Sanitizer/failure
   infrastructure verification continues in T004; no language support is inferred.
-- [ ] **T004 — Verify the shared failure/test infrastructure.** Needs: T003.
+- [x] **T004 — Verify the shared failure/test infrastructure.** Needs: T003.
   Maintain C leaf `main`/`it_*`/`run`, guarded fixtures, assertions under release
   flags and deterministic failure injection. Test harness failures, cleanup and
   sanitizer invocation without introducing a second test framework.
+  Evidence: [harness revalidation](docs/implementation/test-harness.md#t004-revalidation-and-deterministic-failures).
+  Nine real harness lifecycle/failure scenarios passed under strict release flags;
+  ASan/UBSan passed the pool leaf and all four object-parent leaves. Existing
+  allocation/native-failure injection and live-resource balances were reviewed
+  and exercised. LeakSanitizer failed with its ptrace diagnostic; the explicit
+  `detect_leaks=0` profile retains address/UB checks and claims no leak certification.
+  The existing correct harness was reused, not rewritten or replaced.
 - [ ] **T005 — Establish code-to-tests and generated documentation checks.**
   Needs: T004. Inventory every project code/header file and its test coverage;
   register uncovered files for the owning tasks. Extend the `make docs` Doxygen

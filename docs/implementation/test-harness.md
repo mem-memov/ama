@@ -99,3 +99,49 @@ No fixed temporary path, sleep duration or assumed sibling schedule is required.
 
 The complete suite passed with parallel Make and `-DNDEBUG -Werror`. These are
 harness acceptance tests; they are not evidence of unimplemented Ama semantics.
+
+## T004 revalidation and deterministic failures
+
+The existing C/Make harness remains the implementation; no replacement test
+framework was introduced. The nine lifecycle scenarios passed again with the
+outer harness built using `-O2 -Werror -DNDEBUG`. Its child fixtures explicitly
+exercise `-DNDEBUG` in both general flags and `TEST_DEFINES`, and the real leaf's
+final `-UNDEBUG` keeps their assertions active. Build/run/cleanup, deliberate
+compile/link/assertion failures and parallel-parent propagation are covered by
+actual subprocesses and filesystem effects.
+
+The guarded `tests/unit/source/common.c` allocator numbers requests in exact call
+order. A configured request returns NULL, while successful allocation/release
+updates a live-allocation balance checked at teardown. Runtime object scenarios
+first measure N requests on their successful fixed-input path, then exercise
+each first-failure position from 1 through N. Before that position the same
+deterministic request prefix is taken; failure-specific cleanup is checked by
+its ownership/resource assertions. This is exhaustive for those fixed scenarios,
+not a proof over all possible programs or all combinations of multiple failures.
+Separate native constructor/destructor failure cases exercise cleanup ordering,
+unchanged prepared destinations, preserved primary causes and terminal commit
+failure. Those tests remain the foundation for later feature-specific failures.
+
+ASan/UBSan runs passed for `tests/unit/runtime/pool` and all four independent
+children of the real `tests/unit/runtime/objects` parent: lifecycle, clone,
+replacement and access. For example:
+
+```sh
+ASAN_OPTIONS=detect_leaks=0:halt_on_error=1 UBSAN_OPTIONS=halt_on_error=1 \
+make -j4 -C tests/unit/runtime/objects \
+  C_COMPILER_FLAGS='-O1 -g -Wall -Wextra -Werror -std=c11 -pedantic -D_POSIX_C_SOURCE=200809L -fsanitize=address,undefined -fno-omit-frame-pointer'
+```
+
+Use the same profile with `make -C tests/unit/runtime/pool`. GNU Make 4.4.1 and
+GCC 15.2.0 were used. The initial pool attempt with `detect_leaks=1` failed in
+LeakSanitizer with its diagnostic that it does not work under ptrace. That failed
+run preserved generated outputs; the rerun with leak detection explicitly disabled
+passed and cleaned normally. Address/undefined-behavior instrumentation remained
+enabled. No LeakSanitizer result or whole-project leak certification is claimed;
+the allocator/resource balances cover only their stated fixture domains.
+
+T003's complete 58-leaf parallel run supplies the unchanged normal-profile parent
+composition evidence. These sanitizer checks add focused ownership/failure
+evidence; they do not establish current grammar, context isolation, list membership,
+asynchronous behavior or release-wide acceptance. T120 still owns the final
+supported-toolchain/sanitizer pass.
