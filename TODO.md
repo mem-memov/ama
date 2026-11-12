@@ -134,10 +134,18 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   responsibility has independent and real-parent test homes, explicit state/API
   ownership and its current acceptance limit. Existing suites passed in T001;
   this contract-only task checked links, source/API paths and dependency order.
-- [ ] **T003 — Verify recursive builds and invalidation.** Needs: T002. Confirm
+- [x] **T003 — Verify recursive builds and invalidation.** Needs: T002. Confirm
   nested source discovery, header/toolchain/link-membership dependencies, parallel
   make ordering and clean/failure artifact rules. Test no-op and changed-input
   rebuilds through real parent and independent leaf builds.
+  Evidence: [build contract](docs/implementation/incremental-build.md), existing
+  13 tracking scenarios and two new controlled candidate-isolation/I/O scenarios.
+  Fixed shared manifest scratch names: each live Make process now owns its own
+  candidate. The old code failed the forced interleaving; the fix passed the new
+  independent leaf, real rebuild parent, strict `-Werror`/`-DNDEBUG` checks and
+  complete `make -j4 test` (58 registered leaves). Generated Doxygen reference and
+  local links for all three new C file pages were checked. Sanitizer/failure
+  infrastructure verification continues in T004; no language support is inferred.
 - [ ] **T004 — Verify the shared failure/test infrastructure.** Needs: T003.
   Maintain C leaf `main`/`it_*`/`run`, guarded fixtures, assertions under release
   flags and deterministic failure injection. Test harness failures, cleanup and

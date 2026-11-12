@@ -1,2 +1,2 @@
-SUBDIRECTORIES := tracking
+SUBDIRECTORIES := tracking concurrent
 include ../../parent.mk

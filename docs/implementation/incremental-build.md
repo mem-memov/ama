@@ -23,6 +23,10 @@ Content edits deliberately preserving timestamps require a clean build too.
 One Make invocation owns each output tree. Parallel targets within it are
 supported; independently launched concurrent builds into the same output tree
 are outside the contract. Tests create their own isolated output trees.
+Recursive test leaves may revisit the unchanged compiler configuration after
+their root build prerequisite has completed. These same-command checks must not
+share temporary candidates. This does not authorize overlapping rebuilds with
+different settings or concurrent object/link writers.
 
 Generated dependency/configuration files live under `build/` for the project and
 under each test leaf's `generated/`. Neither handwritten sources nor fixtures are
@@ -61,6 +65,16 @@ Each output tree records two complete strings:
 
 At each build, GNU Make writes each candidate directly to a temporary file. This
 avoids evaluating configuration text as an extra shell command while recording it.
+The candidate name combines the target path and its live Make process ID. Make
+reads that ID once from the directly invoked shell's `PPID`; shell wrappers must
+`exec` the POSIX shell rather than insert another persistent parent process.
+If that identity is unavailable, configuration processing fails explicitly.
+The Make process remains alive until its recipes finish. Distinct live Make
+processes have distinct PIDs, and distinct targets within one process have
+distinct paths, so the candidate-name function is injective over overlapping
+supported checks. An exited process may leave a failed-build candidate; PID
+reuse truncates only that inactive candidate, not another live check's file.
+
 Byte-for-byte comparison has three outcomes: unchanged content removes the
 candidate; changed or absent content replaces the manifest; an I/O/comparison
 error fails the build. Comparison errors are not treated as content differences.
@@ -99,7 +113,7 @@ production rules still accept ordinary compiler command prefixes. Nested Make
 calls receive explicit settings and their own parallel job pool. Wrapper trace
 records use one checked append write per invocation; test failures retain logs.
 
-Thirteen explicit `it_*` cases cover:
+Thirteen explicit `it_*` cases in `tracking/` cover:
 
 - Nested source discovery, initial compilation and zero work on unchanged builds.
 - Transitive-header edits, exact consumer counts and changed executable behavior.
@@ -110,7 +124,42 @@ Thirteen explicit `it_*` cases cover:
 - Test definitions, test compile settings and production-source list changes.
 - Unchanged test builds and successful execution after incremental changes.
 
+The independent `concurrent/` leaf verifies candidate isolation. It copies the
+actual shared configuration rules into a minimal project and first publishes
+the current manifest. Two Make processes then write their same-command candidates.
+A small C shell fixture reports readiness immediately before each comparison
+recipe and blocks on a release pipe. The parent waits for both readiness markers,
+releases/reaps the first check, then releases/reaps the second. Both must succeed.
+The former shared `.tmp` implementation deterministically failed the second
+comparison with status 2 after the first removed its candidate. Private candidates
+preserve both checks without sleeps, assumed sibling ordering or random stress.
+This fixture's three C inputs are covered by the leaf's real compilation/process
+execution, including its included pipe controller and shell-forwarding helper.
+Its second case replaces the old manifest location with a directory and requires
+the real comparison error to propagate without replacing that directory. An I/O
+error must not be mistaken for merely different command content.
+
 The tests do not inspect pre-existing build artifacts or mutate committed inputs.
 They validate this build contract, not Ama language acceptance or future runtime
 semantics. Test output cleanup/failure preservation is covered separately by
 [test-harness acceptance](test-harness.md).
+
+## T003 revalidation
+
+The controlled overlap failed against the original shared candidate and passed
+after introducing live-process-private candidates. The real `rebuild/` parent
+passed all 15 tracking/concurrency/error scenarios, and `make -j4 test` passed
+all 58 registered leaves after the shared-rule fix. A final focused parent run
+also passed after clarifying the test helper's small process/logging operations.
+GNU Make 4.4.1 and GCC 15.2.0 were used. The new leaf additionally passed:
+
+```sh
+make -C tests/integration/rebuild/concurrent \
+  C_COMPILER_FLAGS='-O2 -Wall -Wextra -Werror -std=c11 -pedantic -D_POSIX_C_SOURCE=200809L -DNDEBUG' \
+  'TEST_DEFINES=-DTEST_ROOT=\"$(ROOT)\" -DNDEBUG'
+```
+
+Assertions remained enabled by the actual leaf flags. Doxygen 1.11.0 regenerated
+the reference, and local links/anchors on all three added C file pages resolved.
+Existing whole-project documentation debt remains assigned to T005/T134; this
+does not claim all old comments or rendered specification links are complete.
