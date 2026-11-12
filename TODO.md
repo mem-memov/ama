@@ -19,7 +19,9 @@ A phase is a planning group, not one large implementation commit.
 The checkboxes below describe work against the current specification, including
 revalidation of reusable implementations. They do not claim that every listed
 component is absent. Task T001 decides which existing contracts and evidence can
-be reused. When a task is already implemented correctly, complete it by verifying
+be reused. T132–T134 remove obsolete implementation, decompose retained code and
+complete its documenting comments before further language implementation starts.
+When a task is already implemented correctly, complete it by verifying
 and recording the current evidence rather than rewriting working code. Do not
 mark a feature complete from an old checkbox, a design document or a passing
 unrelated suite.
@@ -104,14 +106,22 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
 
 - [ ] **T001 — Audit the implementation delta.** Needs: none. Build a matrix for
   all 200 indexed requirements and acceptance rows against existing components,
-  code files and executable evidence. Validate every reported baseline item;
-  distinguish confirmed support, changed contracts, gaps and blockers without
-  resetting or trusting old checkmarks wholesale. Record the smallest remaining
-  work under the stable tasks below; stop on contradictory requirements.
+  code files and executable evidence. Inventory all maintained implementation,
+  native companion, test/support and build/tool code; classify each file and
+  mixed-responsibility portion as retained, needing adaptation, needing
+  decomposition/documentation, or obsolete, with its consumers and exact reason.
+  Validate every reported baseline item; distinguish confirmed support, changed
+  contracts, gaps and blockers without resetting or trusting old checkmarks
+  wholesale. Record independently testable changes as stable component tasks
+  with prerequisites, acceptance evidence and separate commits before the
+  relevant T132–T134 completion gate. Stop on contradictory requirements.
 - [ ] **T002 — Refresh component contracts and boundaries.** Needs: T001. Update
   the responsibility tree and contract registry; identify narrow reusable APIs,
-  required decompositions and exact invariant arguments. Validate that each
-  planned component and assembled parent has an independently runnable test home.
+  required decompositions and exact invariant arguments. Give each retained
+  responsibility a target subdirectory, owning component, explicit interface and
+  migration/test mapping; distinguish reusable behavior from retired contracts.
+  Validate that each planned component and assembled parent has an independently
+  runnable test home. This plan drives T132–T134 rather than a wholesale rewrite.
 - [ ] **T003 — Verify recursive builds and invalidation.** Needs: T002. Confirm
   nested source discovery, header/toolchain/link-membership dependencies, parallel
   make ordering and clean/failure artifact rules. Test no-op and changed-input
@@ -127,6 +137,41 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   links, including source-relative rule links and deterministic read-only Doxygen
   anchor mapping. Test actual rendered destinations and stale-link failures.
   Validate the workflow on existing small components before expanding it.
+- [ ] **T132 — Remove the obsolete implementation completely.** Needs: T005.
+  Complete the removal tasks identified by T001/T002: delete retired code paths,
+  duplicate superseded implementations, obsolete-only tests, build registrations
+  and conflicting derived descriptions. Update all retained consumers; leave no
+  compatibility dispatcher, dormant alternative implementation or stale source
+  registration for a retired contract. Preserve conforming reusable behavior and
+  its valid evidence; needing a later feature adaptation alone does not make code
+  obsolete. Reconcile every removal against the audit inventory and verify a clean
+  build, independent affected suites and their real parent compositions. Keep
+  this gate open until every obsolete implementation item has been removed.
+- [ ] **T133 — Decompose the retained implementation.** Needs: T132. Complete
+  the component-sized refactoring tasks from T002 for all retained code, using
+  nested responsibility directories, small single-operation functions and narrow
+  explicit interfaces. Separate orchestration, recognition, validation, state
+  changes and cleanup wherever their contracts are distinct; state ownership,
+  invariants and failure effects at each boundary. Add Doxygen explanations and
+  tests with each moved or extracted component. Verify preserved conforming
+  behavior before and after each refactoring through independent and composed
+  tests, and update include paths, build discovery and the coverage registry.
+  Reject arbitrary line-count splitting, empty hierarchy and wrapper-only changes;
+  close the gate only when every retained responsibility has its reviewed home.
+- [ ] **T134 — Complete documenting comments for all retained code.** Needs:
+  T133. Close the initial inventory's documentation and per-file test gaps,
+  including unchanged retained files, headers, native companions and test support.
+  Add Doxygen `@file`/`@brief` comments to C sources and headers; for other code
+  formats use valid local comments and linked Doxygen input documentation under
+  CONTRIBUTORS.md. Explain each nontrivial function, type and interface: why it
+  exists, its inputs/results, ownership, side effects, invariants and failure
+  behavior. Compiler explanations must link to the exact
+  canonical `spec/` file and rule anchor and explain their implementation relation.
+  Preserve byte-exact malformed fixtures by documenting their purpose externally
+  under the fixture rules in CONTRIBUTORS.md. Verify all maintained files have
+  meaningful test mappings, generate the complete baseline reference and check
+  source links, rendered rule destinations and undocumented-interface diagnostics.
+  Do not defer retained-code documentation debt to the release phase.
 
 ## Phase 1. Fix execution-context and native boundaries before consumers
 
@@ -135,7 +180,7 @@ Contracts: [runtime](spec/implementation/runtime.md),
 [diagnostics](spec/implementation/diagnostics.md),
 [context isolation](spec/language/async-and-parallelism.md#par-01).
 
-- [ ] **T006 — Establish context ownership and identity.** Needs: T005. Define
+- [ ] **T006 — Establish context ownership and identity.** Needs: T134. Define
   explicit context-local pool/constant/error/control ownership and checked host
   identities. Test lifecycle, nonwrapping context identity, rejection of foreign
   access with colliding local numbers and nonreentrant executor entry.
@@ -179,7 +224,7 @@ Contracts: [runtime](spec/implementation/runtime.md),
 Contracts: [source and names](spec/language/source-and-names.md),
 [compiler identity/dependencies](spec/implementation/compiler.md).
 
-- [ ] **T014 — Verify original-byte source storage.** Needs: T005. Preserve spans,
+- [ ] **T014 — Verify original-byte source storage.** Needs: T134. Preserve spans,
   physical line endings, optional final newline and byte-based diagnostic columns.
   Test EOF, empty files, CRLF and allocation failure without fabricated bytes.
 - [ ] **T015 — Verify strict Unicode recognition.** Needs: T014. Pin Unicode XID
@@ -827,8 +872,24 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
 - [ ] **T122 — Finish the implementation release checkpoint.** Needs: T121.
   Remove obsolete mechanisms and conflicting derived descriptions, verify links
   and complete clean build/test/documentation reproduction. Reconcile all task
-  statuses and commit the final acceptance evidence without claiming unverified
-  behavior or automatically publishing outside the repository.
+  statuses through this checkpoint and commit the final acceptance evidence
+  without claiming unverified behavior or automatically publishing outside the
+  repository. All implementation changes must be complete before T135.
+- [ ] **T135 — Deliver the final technical documentation folder.** Needs: T122.
+  Only after all implementation, cleanup and acceptance work is ready, regenerate
+  `docs/technical/` from the final code and its Doxygen comments. Document every
+  maintained C source and header, including compiler/runtime components, standard
+  library and native companions, C tools, tests and fixtures; reconcile coverage
+  with the final file inventory and its documented fixture exceptions. Include
+  a readable entry page, architecture/component navigation, per-file and interface
+  references, ownership/invariant/failure explanations, clickable source/specification
+  links and links to test evidence. Include a coverage manifest with source
+  fingerprints and reproducible generation instructions, tool versions and
+  configuration. Describe generated C through its generators and verified output
+  contracts; temporary build/test outputs are not maintained-source inventory.
+  Validate complete maintained-file coverage, all rendered destinations and clean
+  regeneration; any later code change requires regeneration and renewed checks.
+  Deliver the folder in the repository and commit it with its generation evidence.
 
 ## Requirement coverage map
 
@@ -838,7 +899,7 @@ this table is navigation, not a parallel semantic definition.
 
 | Canonical requirements | Main task range |
 |---|---|
-| CORE-01–CORE-05; ARCH-01–ARCH-06; TEST-01–TEST-08 | T001–T005 and the completion criteria; T116–T122 |
+| CORE-01–CORE-05; ARCH-01–ARCH-06; TEST-01–TEST-08 | T001–T005, T132–T135 and the completion criteria; T116–T122 |
 | SRC-01–SRC-05; SYN-01–SYN-06; NAME-01–NAME-03; DEP-01–DEP-03 | T014–T029, T110–T114, T118 |
 | NAME-04, NAME-06; TYPE-01–TYPE-06; LIT-01–LIT-04; STATE-01–STATE-03 | T030–T040, T042–T045, T049, T063–T069, T081 |
 | CONST-01–CONST-05 | T034, T052, T065, T100 |
@@ -867,4 +928,7 @@ unrelated components after a documentation-only edit.
 
 The plan is complete when every current requirement has implementation,
 independent and composed acceptance evidence, readable generated documentation
-and a recorded successful task commit. Checkboxes alone are never that evidence.
+in the final `docs/technical/` folder and a recorded successful task commit.
+The initial code audit, complete removal of obsolete implementation, retained-code
+decomposition and documenting comments must also have passed their explicit gates.
+Checkboxes alone are never that evidence.
