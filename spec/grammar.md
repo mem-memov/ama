@@ -28,35 +28,60 @@ are an explicit fixed interface described in [Working with lists](language/lists
 
 ## Reading this grammar
 
+This document uses a **project-specific, indentation-parameterized EBNF
+(Extended Backus–Naur Form)**. Its grouping, optionality, and repetition operators
+follow the Wirth-style convention. Angle-bracketed names, `::=`, special
+sequences, and indentation parameters are the conventions defined below; this
+is not a claim of conformance to ISO/IEC 14977, and this notation is not ABNF.
+
 | Notation | Meaning |
 |---|---|
-| `::=` | Definition |
-| `"x"` | Exact terminal text |
-| `{ x }` | Zero or more repetitions |
-| `[ x ]` | Optional part |
-| `x \| y` | Alternative |
-| `? ... ?` | Explicit lexical or contextual constraint |
+| `<name>` | Nonterminal defined by another production |
+| `::=` | Defines the nonterminal on the left |
+| `"x"` | Exact terminal text, including any spaces inside the quotes |
+| `x y` | Concatenation: recognize `x`, then `y` |
+| `x \| y` | Alternative: recognize either `x` or `y` |
+| `( x )` | Grouping |
+| `[ x ]` | Optional part: zero or one occurrence |
+| `{ x }` | Repetition: zero or more occurrences |
+| `? ... ?` | Special sequence whose lexical or contextual predicate is stated in words |
+| `<rule(n)>` | A family of nonterminals parameterized by indentation depth |
 
-`<statement(n)>` starts at indentation `n`; `<indent(n)>` means exactly `n`
-ASCII spaces. The parameter is notation, not source text. Whitespace is explicit
-grammar and is never freely skipped. Recognition consumes the whole file.
-Layout can have more than one grammatical attachment but contributes no
-declarations, operands, or control nodes.
+Repetition and optionality apply to their enclosed groups. Concatenation binds
+more tightly than alternatives; parentheses override that grouping. Metasyntax
+outside quoted terminals contributes no source characters. In particular, the
+spaces used to align these productions are document formatting, whereas `" "`
+and `<space>` explicitly recognize a source space. All definition operators
+share one column; continuation lines align with the right-hand side, with
+additional indentation for nested groups.
+
+The indentation parameter `n` is a nonnegative integer. `<statement(n)>` starts
+at indentation `n`; `<indent(n)>` means exactly `n` ASCII spaces. `n+1` denotes
+the next nesting level, and `0` denotes the outermost level. Parameters are
+metanotation, not Ama source text: for any fixed depth they expand to ordinary
+productions with that exact indentation. They do not infer names, types, or
+nesting from declarations.
+
+Source whitespace is explicit grammar and is never freely skipped. Recognition
+consumes the whole file. Layout can have more than one grammatical attachment
+but contributes no declarations, operands, or control nodes. The constraints
+stated after production blocks are part of this grammar; name binding, type
+compatibility, and execution behavior remain defined in the language chapters.
 
 ## Physical lines, comments, and spacing
 
 ```ebnf
-<newline>      ::= ? physical LF, physical CRLF, or the final virtual LF boundary ?
-<space>        ::= " "
-<separator>    ::= <space>
-<indent(n)>    ::= ? exactly n ASCII spaces ?
-<comment>      ::= "#" { ? any Unicode scalar except TAB, CR, or LF ? }
-<comment-suffix> ::= { <space> } <comment>
-<line-end>     ::= [ <comment-suffix> ] <newline>
-<blank-line>   ::= <newline>
-<comment-line(n)> ::= <indent(n)> <comment> <newline>
-<layout(n)>       ::= { <blank-line> | <comment-line(n)> }
-<comment-gap(n)>  ::= { <comment-line(n)> }
+<newline>                    ::= ? physical LF, physical CRLF, or the final virtual LF boundary ?
+<space>                      ::= " "
+<separator>                  ::= <space>
+<indent(n)>                  ::= ? exactly n ASCII spaces ?
+<comment>                    ::= "#" { ? any Unicode scalar except TAB, CR, or LF ? }
+<comment-suffix>             ::= { <space> } <comment>
+<line-end>                   ::= [ <comment-suffix> ] <newline>
+<blank-line>                 ::= <newline>
+<comment-line(n)>            ::= <indent(n)> <comment> <newline>
+<layout(n)>                  ::= { <blank-line> | <comment-line(n)> }
+<comment-gap(n)>             ::= { <comment-line(n)> }
 ```
 
 The lexical rules are specified in
@@ -103,12 +128,12 @@ is data.
 ### Complete names and paths
 
 ```ebnf
-<identifier-start>    ::= "_" | ? Unicode scalar with property XID_Start ?
-<identifier-continue> ::= "_" | ? Unicode scalar with property XID_Continue ?
-<name-word>           ::= <identifier-start> { <identifier-continue> }
-<identifier>          ::= <name-word> { <space> <name-word> }
-<module-root>         ::= "." | ".."
-<module-path>         ::= <module-root> <identifier> { "." <identifier> }
+<identifier-start>           ::= "_" | ? Unicode scalar with property XID_Start ?
+<identifier-continue>        ::= "_" | ? Unicode scalar with property XID_Continue ?
+<name-word>                  ::= <identifier-start> { <identifier-continue> }
+<identifier>                 ::= <name-word> { <space> <name-word> }
+<module-root>                ::= "." | ".."
+<module-path>                ::= <module-root> <identifier> { "." <identifier> }
 ```
 
 Use Unicode 17.0.0 identifier properties. Names are case-sensitive and compared
@@ -131,12 +156,12 @@ is defined by SRC-05 in [Source files and paths](language/source-and-names.md).
 ### Declaration names
 
 ```ebnf
-<owned-name>          ::= <identifier>
-<reference-name>      ::= <identifier> "&"
-<owned-list-name>     ::= <identifier> "[]"
-<reference-list-name> ::= <identifier> "&[]"
-<declaration-name>    ::= <owned-name> | <reference-name>
-                        | <owned-list-name> | <reference-list-name>
+<owned-name>                 ::= <identifier>
+<reference-name>             ::= <identifier> "&"
+<owned-list-name>            ::= <identifier> "[]"
+<reference-list-name>        ::= <identifier> "&[]"
+<declaration-name>           ::= <owned-name> | <reference-name>
+                                 | <owned-list-name> | <reference-list-name>
 ```
 
 | Form | Declared storage |
@@ -154,27 +179,27 @@ visibility, receiver inference, and the non-shadowing rule for foreach locals.
 ### Accesses and sources
 
 ```ebnf
-<index>                 ::= <owned-access>
-<owned-access>          ::= <identifier>
-                          | <identifier> "[" <index> "]"
-<reference-access>      ::= <identifier> "&"
-                          | <identifier> "&[" <index> "]"
-<reference-acquisition> ::= "&" <owned-access>
-<self-reference>        ::= "&"
-<constant-access>       ::= <module-path> "."
-                           ( <owned-name> | <owned-list-name> )
-<whole-list-access>     ::= <owned-list-name> | <reference-list-name>
-<continuation-copy>     ::= "%" <space> ( <owned-access> | <reference-access> )
-<value-source>          ::= <owned-access> | <reference-access>
-                          | <reference-acquisition> | <self-reference>
-                          | <constant-access>
-<copy-source>           ::= <value-source> | <whole-list-access>
-                          | <continuation-copy>
-<indexed-receiver>      ::= <identifier> "[" <index> "]"
-                          | <identifier> "&[" <index> "]"
-<receiver>              ::= <declaration-name> | <indexed-receiver>
-<instance-target>       ::= <owned-access> | <reference-access>
-<call-target>           ::= <instance-target> | <whole-list-access>
+<index>                      ::= <owned-access>
+<owned-access>               ::= <identifier>
+                                 | <identifier> "[" <index> "]"
+<reference-access>           ::= <identifier> "&"
+                                 | <identifier> "&[" <index> "]"
+<reference-acquisition>      ::= "&" <owned-access>
+<self-reference>             ::= "&"
+<constant-access>            ::= <module-path> "."
+                                 ( <owned-name> | <owned-list-name> )
+<whole-list-access>          ::= <owned-list-name> | <reference-list-name>
+<continuation-copy>          ::= "%" <space> ( <owned-access> | <reference-access> )
+<value-source>               ::= <owned-access> | <reference-access>
+                                 | <reference-acquisition> | <self-reference>
+                                 | <constant-access>
+<copy-source>                ::= <value-source> | <whole-list-access>
+                                 | <continuation-copy>
+<indexed-receiver>           ::= <identifier> "[" <index> "]"
+                                 | <identifier> "&[" <index> "]"
+<receiver>                   ::= <declaration-name> | <indexed-receiver>
+<instance-target>            ::= <owned-access> | <reference-access>
+<call-target>                ::= <instance-target> | <whole-list-access>
 ```
 
 `&item` forms a reference to owned storage; `target&` reads reference storage.
@@ -206,8 +231,8 @@ and internal-reference remapping are specified in
 ## Literal data
 
 ```ebnf
-<literal-payload> ::= { ? any Unicode scalar except TAB, CR, or LF ? }
-<literal-line(n)> ::= <indent(n)> "|" <literal-payload> <newline>
+<literal-payload>            ::= { ? any Unicode scalar except TAB, CR, or LF ? }
+<literal-line(n)>            ::= <indent(n)> "|" <literal-payload> <newline>
 ```
 
 There are two literal positions: a declaration initializer beginning with `|`
@@ -232,30 +257,30 @@ are defined in [Declarations and scope](language/declarations.md).
 ## Module files and declarations
 
 ```ebnf
-<module-file>            ::= <draft-file> | <complete-module-file>
-<draft-file>             ::= ? well-formed UTF-8 source without a genuine
-                              zero-indent @=, @!, or @C activation marker ?
-<complete-module-file>   ::= <executable-module-file> | <constants-only-file>
-<executable-module-file> ::= <layout(0)>
-                             [ <constants-section> ]
-                             [ <parameters-section> ]
-                             [ <results-section> ]
-                             <implementation-section>
-<constants-only-file>    ::= <layout(0)> <constants-section>
-<constants-section>      ::= "@=" <line-end> <declarations(0)>
-<parameters-section>     ::= "@<" <line-end> <declarations(0)>
-<results-section>        ::= "@>" <line-end> <declarations(0)>
-<implementation-section> ::= "@!" <line-end> <body(0)>
-                            | "@C" <line-end> <layout(0)>
-<declarations(n)>        ::= <layout(n)> { <declaration(n)> <layout(n)> }
-<body(n)>                ::= <layout(n)> { <statement(n)> <layout(n)> }
-<declaration(n)>         ::= <indent(n)> <declaration-name> <line-end>
-                             <layout(n)>
-                             <indent(n)> <module-path> <line-end>
-                             <initializers(n+1)>
-<initializers(n)>        ::= <layout(n)> { <initializer(n)> <layout(n)> }
-<initializer(n)>         ::= <literal-line(n)>
-                            | <indent(n)> <copy-source> <line-end>
+<module-file>                ::= <draft-file> | <complete-module-file>
+<draft-file>                 ::= ? well-formed UTF-8 source without a genuine
+                                   zero-indent @=, @!, or @C activation marker ?
+<complete-module-file>       ::= <executable-module-file> | <constants-only-file>
+<executable-module-file>     ::= <layout(0)>
+                                 [ <constants-section> ]
+                                 [ <parameters-section> ]
+                                 [ <results-section> ]
+                                 <implementation-section>
+<constants-only-file>        ::= <layout(0)> <constants-section>
+<constants-section>          ::= "@=" <line-end> <declarations(0)>
+<parameters-section>         ::= "@<" <line-end> <declarations(0)>
+<results-section>            ::= "@>" <line-end> <declarations(0)>
+<implementation-section>     ::= "@!" <line-end> <body(0)>
+                                 | "@C" <line-end> <layout(0)>
+<declarations(n)>            ::= <layout(n)> { <declaration(n)> <layout(n)> }
+<body(n)>                    ::= <layout(n)> { <statement(n)> <layout(n)> }
+<declaration(n)>             ::= <indent(n)> <declaration-name> <line-end>
+                                 <layout(n)>
+                                 <indent(n)> <module-path> <line-end>
+                                 <initializers(n+1)>
+<initializers(n)>            ::= <layout(n)> { <initializer(n)> <layout(n)> }
+<initializer(n)>             ::= <literal-line(n)>
+                                 | <indent(n)> <copy-source> <line-end>
 ```
 
 | Annotation | Section |
@@ -300,12 +325,12 @@ lines[]
 ## Executable statements and structural recognition
 
 ```ebnf
-<statement(n)> ::= <declaration(n)> | <assignment(n)> | <call(n)>
-                  | <constant-read(n)> | <branch(n)> | <loop(n)> | <foreach(n)>
-                  | <break(n)> | <return(n)> | <suspend(n)>
-<assignment(n)> ::= <indent(n)> <receiver> <line-end>
-                    <layout(n+1)>
-                    <indent(n+1)> <copy-source> <line-end>
+<statement(n)>               ::= <declaration(n)> | <assignment(n)> | <call(n)>
+                                 | <constant-read(n)> | <branch(n)> | <loop(n)> | <foreach(n)>
+                                 | <break(n)> | <return(n)> | <suspend(n)>
+<assignment(n)>              ::= <indent(n)> <receiver> <line-end>
+                                 <layout(n+1)>
+                                 <indent(n+1)> <copy-source> <line-end>
 ```
 
 An assignment has one source exactly one level below its receiver. It cannot
@@ -347,51 +372,51 @@ line cannot turn a second unindented name into an assignment source.
 ## Invocation, retained reads, and result selection
 
 ```ebnf
-<call(n)> ::= ( <execution-call(n)> | <resume-call(n)> | <read-call(n)> )
-              [ <layout(n)> <indent(n)> ":" <line-end> <body(n+1)> ]
-<execution-call(n)> ::= <indent(n)> <call-target> <space> "!" <line-end>
-                        <layout(n+1)> <execution-arguments(n+1)>
-<resume-call(n)> ::= <indent(n)> <instance-target> <space> "%" <line-end>
-                     <layout(n+1)> <resume-arguments(n+1)>
-<read-call(n)> ::= <indent(n)> <call-target> <line-end>
-                   <layout(n+1)> <read-arguments(n+1)>
-<constant-read(n)> ::= <indent(n)> <module-path> <line-end>
-                       <layout(n+1)> <constant-read-arguments(n+1)>
-<execution-arguments(n)> ::= { <parameter-line(n)> <layout(n)> }
-                             { <execution-output-action(n)> }
-<resume-arguments(n)> ::= { <execution-output-action(n)> }
+<call(n)>                    ::= ( <execution-call(n)> | <resume-call(n)> | <read-call(n)> )
+                                 [ <layout(n)> <indent(n)> ":" <line-end> <body(n+1)> ]
+<execution-call(n)>          ::= <indent(n)> <call-target> <space> "!" <line-end>
+                                 <layout(n+1)> <execution-arguments(n+1)>
+<resume-call(n)>             ::= <indent(n)> <instance-target> <space> "%" <line-end>
+                                 <layout(n+1)> <resume-arguments(n+1)>
+<read-call(n)>               ::= <indent(n)> <call-target> <line-end>
+                                 <layout(n+1)> <read-arguments(n+1)>
+<constant-read(n)>           ::= <indent(n)> <module-path> <line-end>
+                                 <layout(n+1)> <constant-read-arguments(n+1)>
+<execution-arguments(n)>     ::= { <parameter-line(n)> <layout(n)> }
+                                 { <execution-output-action(n)> }
+<resume-arguments(n)>        ::= { <execution-output-action(n)> }
 <execution-output-action(n)> ::= <indent(n)> <result> <line-end> <layout(n)>
-                               | <selected-result-call(n)> <layout(n)>
-<read-arguments(n)> ::= <read-action(n)> { <read-action(n)> }
-<read-action(n)> ::= <indent(n)> <saved-result> <line-end> <layout(n)>
-                    | <selected-result-call(n)> <layout(n)>
+                                 | <selected-result-call(n)> <layout(n)>
+<read-arguments(n)>          ::= <read-action(n)> { <read-action(n)> }
+<read-action(n)>             ::= <indent(n)> <saved-result> <line-end> <layout(n)>
+                                 | <selected-result-call(n)> <layout(n)>
 <constant-read-arguments(n)> ::= <indent(n)> <saved-result> <line-end> <layout(n)>
-                                { <indent(n)> <saved-result> <line-end> <layout(n)> }
-<selected-result-call(n)> ::= ( <selected-execution-call(n)>
-                               | <selected-resume-call(n)>
-                               | <selected-read-call(n)> )
-                              [ <layout(n)> <indent(n)> ":" <line-end> <body(n+1)> ]
+                                 { <indent(n)> <saved-result> <line-end> <layout(n)> }
+<selected-result-call(n)>    ::= ( <selected-execution-call(n)>
+                                 | <selected-resume-call(n)>
+                                 | <selected-read-call(n)> )
+                                 [ <layout(n)> <indent(n)> ":" <line-end> <body(n+1)> ]
 <selected-execution-call(n)> ::= <indent(n)> <result-target> <space> "!" <line-end>
-                                <layout(n+1)> <execution-arguments(n+1)>
-<selected-resume-call(n)> ::= <indent(n)> <result-target> <space> "%" <line-end>
-                             <layout(n+1)> <resume-arguments(n+1)>
-<selected-read-call(n)> ::= <indent(n)> <result-target> <line-end>
-                           <layout(n+1)> <read-arguments(n+1)>
-<result-target> ::= <call-target>
-<parameter-line(n)> ::= <indent(n)> <parameter> <line-end>
-                       | <indent(n)> <literal-parameter> <newline>
-<parameter> ::= "<"
-               | "<" <separator> <copy-source>
-               | <declaration-name> <separator> "<" <separator> <copy-source>
-<literal-parameter> ::= "<" <separator> "|" <literal-payload>
-                       | <declaration-name> <separator> "<" <separator>
-                         "|" <literal-payload>
-<result> ::= ">"
-            | ">" <separator> <output-receiver>
-            | <declaration-name> <separator> ">" <separator> <output-receiver>
-<saved-result> ::= ">>" <separator> <output-receiver>
-                  | <declaration-name> <separator> ">>" <separator> <output-receiver>
-<output-receiver> ::= <receiver>
+                                 <layout(n+1)> <execution-arguments(n+1)>
+<selected-resume-call(n)>    ::= <indent(n)> <result-target> <space> "%" <line-end>
+                                 <layout(n+1)> <resume-arguments(n+1)>
+<selected-read-call(n)>      ::= <indent(n)> <result-target> <line-end>
+                                 <layout(n+1)> <read-arguments(n+1)>
+<result-target>              ::= <call-target>
+<parameter-line(n)>          ::= <indent(n)> <parameter> <line-end>
+                                 | <indent(n)> <literal-parameter> <newline>
+<parameter>                  ::= "<"
+                                 | "<" <separator> <copy-source>
+                                 | <declaration-name> <separator> "<" <separator> <copy-source>
+<literal-parameter>          ::= "<" <separator> "|" <literal-payload>
+                                 | <declaration-name> <separator> "<" <separator>
+                                 "|" <literal-payload>
+<result>                     ::= ">"
+                                 | ">" <separator> <output-receiver>
+                                 | <declaration-name> <separator> ">" <separator> <output-receiver>
+<saved-result>               ::= ">>" <separator> <output-receiver>
+                                 | <declaration-name> <separator> ">>" <separator> <output-receiver>
+<output-receiver>            ::= <receiver>
 ```
 
 Every separator above is explicit. `>>` is one token; `> >` is invalid. A literal
@@ -468,34 +493,34 @@ results are in [Working with lists](language/lists.md#calling-list-methods).
 ## Branches, loops, completion, and suspension
 
 ```ebnf
-<branch(n)> ::= <indent(n)> <owned-access> <line-end> <comment-gap(n)>
-                ( <indent(n)> "?" <line-end> <body(n+1)>
-                  [ <layout(n)> <indent(n)> ":" <line-end> <body(n+1)> ]
-                | <indent(n)> ":" <line-end> <body(n+1)> )
-<loop(n)> ::= <owned-condition-loop(n)> | <condition-chain-loop(n)>
-<owned-condition-loop(n)> ::= <indent(n)> <owned-access> <line-end> <comment-gap(n)>
-                              <indent(n)> "{" <line-end> <body(n+1)>
-                              <indent(n)> "}" <line-end>
-<condition-chain-loop(n)> ::= ( <condition-entry-link(n)>
-                               | <condition-resume-link(n)>
-                               | <condition-read-link(n)> )
-                              [ <layout(n)> <indent(n)> ":" <line-end> <body(n+1)> ]
-<condition-entry-link(n)> ::= <indent(n)> <call-target> <space> "!" <line-end>
-                              <layout(n+1)>
-                              { <parameter-line(n+1)> <layout(n+1)> }
-                              <loop(n+1)>
-<condition-resume-link(n)> ::= <indent(n)> <instance-target> <space> "%" <line-end>
-                               <layout(n+1)> <loop(n+1)>
-<condition-read-link(n)> ::= <indent(n)> <call-target> <line-end>
-                             <layout(n+1)> <loop(n+1)>
-<foreach(n)> ::= <indent(n)> <foreach-header> <line-end> <comment-gap(n)>
-                  <indent(n)> "{" <line-end> <body(n+1)>
-                  <indent(n)> "}" <line-end>
-<foreach-header> ::= <identifier> "[" <reference-name> "]"
-                    | <identifier> "&[" <reference-name> "]"
-<break(n)>   ::= <indent(n)> "^" <line-end>
-<return(n)>  ::= <indent(n)> ">" <line-end>
-<suspend(n)> ::= <indent(n)> "%" <line-end>
+<branch(n)>                  ::= <indent(n)> <owned-access> <line-end> <comment-gap(n)>
+                                 ( <indent(n)> "?" <line-end> <body(n+1)>
+                                   [ <layout(n)> <indent(n)> ":" <line-end> <body(n+1)> ]
+                                 | <indent(n)> ":" <line-end> <body(n+1)> )
+<loop(n)>                    ::= <owned-condition-loop(n)> | <condition-chain-loop(n)>
+<owned-condition-loop(n)>    ::= <indent(n)> <owned-access> <line-end> <comment-gap(n)>
+                                 <indent(n)> "{" <line-end> <body(n+1)>
+                                 <indent(n)> "}" <line-end>
+<condition-chain-loop(n)>    ::= ( <condition-entry-link(n)>
+                                 | <condition-resume-link(n)>
+                                 | <condition-read-link(n)> )
+                                 [ <layout(n)> <indent(n)> ":" <line-end> <body(n+1)> ]
+<condition-entry-link(n)>    ::= <indent(n)> <call-target> <space> "!" <line-end>
+                                 <layout(n+1)>
+                                 { <parameter-line(n+1)> <layout(n+1)> }
+                                 <loop(n+1)>
+<condition-resume-link(n)>   ::= <indent(n)> <instance-target> <space> "%" <line-end>
+                                 <layout(n+1)> <loop(n+1)>
+<condition-read-link(n)>     ::= <indent(n)> <call-target> <line-end>
+                                 <layout(n+1)> <loop(n+1)>
+<foreach(n)>                 ::= <indent(n)> <foreach-header> <line-end> <comment-gap(n)>
+                                 <indent(n)> "{" <line-end> <body(n+1)>
+                                 <indent(n)> "}" <line-end>
+<foreach-header>             ::= <identifier> "[" <reference-name> "]"
+                                 | <identifier> "&[" <reference-name> "]"
+<break(n)>                   ::= <indent(n)> "^" <line-end>
+<return(n)>                  ::= <indent(n)> ">" <line-end>
+<suspend(n)>                 ::= <indent(n)> "%" <line-end>
 ```
 
 ### Marker layout and contextual distinctions
@@ -584,13 +609,13 @@ A physical source filename followed by `.abi` names a flat binding table, not
 an Ama module. Active `@C` modules require their native companions under SRC-01.
 
 ```ebnf
-<abi-file>         ::= { <abi-record> | <abi-blank> | <abi-comment-line> }
-<abi-symbol>       ::= "+" | "-" | "|" | "=" | "?" | "[]"
-<abi-function>     ::= ? one module-local C function identifier accepted by
-                        the supported C toolchain ?
-<abi-record>       ::= <abi-symbol> <separator> <abi-function> <line-end>
-<abi-blank>        ::= <newline>
-<abi-comment-line> ::= { <space> } <comment> <newline>
+<abi-file>                   ::= { <abi-record> | <abi-blank> | <abi-comment-line> }
+<abi-symbol>                 ::= "+" | "-" | "|" | "=" | "?" | "[]"
+<abi-function>               ::= ? one module-local C function identifier accepted by
+                                   the supported C toolchain ?
+<abi-record>                 ::= <abi-symbol> <separator> <abi-function> <line-end>
+<abi-blank>                  ::= <newline>
+<abi-comment-line>           ::= { <space> } <comment> <newline>
 ```
 
 Records start in column one, in any order, with exactly one separator between

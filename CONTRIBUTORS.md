@@ -7,7 +7,32 @@ or reconstructing hidden dependencies.
 [The specification in `spec/`](spec/README.md) is the source of truth.
 [Its grammar](spec/grammar.md) defines source forms; [VALUE_ABI.md](VALUE_ABI.md) explains
 the native contract. [TODO.md](TODO.md) tracks implementation work. Change the
-specification only when the user explicitly requests it.
+specification only after explicit user authorization for the particular change;
+implementation, refactoring, or TODO work does not grant it.
+
+## Work from a task with a defined contract
+
+When asked to implement or continue implementation, choose a ready task from
+[TODO.md](TODO.md) and satisfy its dependencies and acceptance criteria. Keep its
+status and evidence current. A finished task includes the implementation,
+documentation, tests at the relevant component scales, and
+successful required checks. Commit each completed task with its TODO update;
+the workflow instructions provide standing authorization for these commits. Stage
+explicit paths and inspect the staged diff so unrelated changes remain untouched.
+Do not defer several completed tasks to one later commit, and do not describe
+blocked or partially implemented work as complete.
+
+If the specified behavior is ambiguous, contradictory, or missing, stop the
+affected task before selecting an interpretation. Record a minimal example,
+requirement links, the current task, the question, and the consequences of possible
+answers in [AMBIGUITIES.md](AMBIGUITIES.md). Ask the user and wait for an explicit
+answer; do not invent semantics, switch TODO tasks to evade the issue, or treat
+silence as approval. Record the resolution before resuming. A behavioral answer
+does not itself grant permission to edit `spec/`: obtain authorization for a
+necessary specification change unless the answer already requests it.
+
+Ordinary implementation choices that preserve an unambiguous contract do not need
+user approval. Choose exact algorithms and document the relevant invariants.
 
 ## Names explain roles
 
@@ -50,10 +75,13 @@ source/path/UTF-8 handling, lexical layout/literals, parsing, semantic checking,
 lowering, storage planning, C emission and runtime support.
 
 Parent-level orchestration should read as short named operations. Functions have
-one responsibility at one level of abstraction and should normally fit one editor
-screen. Decompose long multi-phase or deeply nested logic; justify exceptions in
-review. Do not create an unrestricted utility directory or artificial public APIs
-merely to split trivial private helpers into files. The build recursively discovers C sources under `src/`; compiler dependency
+one responsibility at one level of abstraction. Decompose multi-phase or deeply
+nested logic into independently understandable responsibilities;
+subdirectories should explain increasingly specific operations. A child component
+must expose a narrow contract and be testable without constructing unrelated
+compiler state. Folder depth or file count alone is not evidence of decomposition.
+Do not create an unrestricted utility directory or artificial public APIs merely
+to split trivial private helpers into files. The build recursively discovers C sources under `src/`; compiler dependency
 files track included headers and fixture files. Keep deeper source directories
 and new independently runnable test leaves connected to these build rules.
 
@@ -65,6 +93,39 @@ compiler state or pass the whole project where a symbol table/source view suffic
 Compiler C helpers may use ordinary functions and the stack. Small visible helpers
 may be `static inline`; LTO is an optimization. Those choices are distinct from
 the target generated native-entry inlining requirement.
+
+## Explain purpose with Doxygen comments
+
+Every maintained code file must explain what it is for. C source/header files,
+including native companions, tests, and shared test fixtures, begin with a Doxygen
+`@file` comment and `@brief` description of their responsibility. Explain the
+component's callers, owned and borrowed state, and lifetime constraints where
+relevant. Comments must help readers understand the code and support generated
+project documentation; a filename repeated as a description is insufficient.
+
+Document each nontrivial function, type, and interface with a Doxygen comment.
+State why the operation exists, when callers use it, and the contract needed to
+use it correctly. Add `@param[in]`, `@param[out]`, `@param[in,out]`, and `@return`
+where applicable; describe ownership transfer, allowed aliasing, preconditions,
+postconditions, state changes, refusals, and cleanup obligations. Explain the
+invariants or algorithmic reason behind non-obvious implementation blocks near
+the code. Do not narrate every assignment or repeat a signature in prose.
+
+Keep public contracts next to their declarations and implementation-specific
+reasoning next to the implementation; link them rather than duplicating text.
+Update comments in the same task as the behavior they explain. Documentation
+generation and checks must include maintained source and header files, not
+compiler-generated output.
+
+Use the file format's valid comment syntax for Ama, scripts, and Makefiles.
+Ama comments obey the same one-space structural indentation as code. Where the
+format or documentation generator cannot accept Doxygen annotations, record a
+path-specific purpose and contract in the component's Doxygen input documentation
+and use a valid local comment to point to it. For byte-exact or deliberately
+malformed test inputs where adding a comment would change the case, put that
+explanation in the test leaf's documentation/contract and identify the exact path.
+Never corrupt source syntax, ABI records, literal payloads, or expected test bytes
+to insert a documentation marker.
 
 ## Resolve dependencies, then generate
 
@@ -248,6 +309,37 @@ Before completing each task, link its actual source boundary, proof argument,
 tests run and remaining assumptions. Small private helpers may share a meaningful
 parent contract. The [driver contract](docs/implementation/contracts/driver.md) is
 a completed example; future components still require their own evidence.
+
+## Account for tests of every maintained code file
+
+Each maintained code file must have explicit test evidence. In the component
+contract or task evidence, map each file path to named tests and an executable
+command. A shared component test may cover several cohesive files, but an
+unexplained statement that the whole suite passed is not a per-file coverage map.
+Choose behavior and invariant checks with independent expected outcomes; do not
+mirror implementation steps or invent a coverage percentage as a substitute.
+
+- C implementation files need independently runnable tests of their meaningful
+  component behavior. Real component handoffs also need composition tests.
+- Headers need standalone inclusion/compilation checks and tests of their consumer
+  contract; linking a production unit through its header remains required.
+- Native source, headers, Ama interfaces, and `.abi` files need ABI/signature,
+  lifecycle/failure, and compiled execution checks as applicable to their role.
+- Ama project inputs and other fixtures need registered integration or component
+  scenarios that identify what each file demonstrates or rejects.
+- Scripts, Makefiles, and other maintained executable infrastructure need checks
+  through their real entry commands, covering relevant failures and incremental
+  or parallel behavior. Compilation alone does not test a build rule's effects.
+- Test source and support files are validated by compiling and running their
+  explicitly registered leaf/harness and exercising their setup, assertions, and
+  cleanup paths. Record those commands and relevant harness checks; this does not
+  require an infinite hierarchy of tests of tests.
+
+Generated code is verified through its generator's tests and applicable output
+compilation, composition, or execution checks. Do not hand-edit generated files
+or treat them as independently maintained source. Existing handwritten files
+without evidence remain visible backlog work; touching a file does not justify
+silently exempting it from documentation or coverage requirements.
 
 ## Native C modules
 

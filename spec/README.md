@@ -98,10 +98,19 @@ explicit contracts, not code that the Ama compiler proves correct.
 
 ## Maintaining the specification
 
-Change the specification only when the user explicitly requests a requirements
-change. Implementation or refactoring work does not authorize changing a rule
-to fit existing code. Report contradictions with the relevant requirement IDs
-and obtain a decision rather than silently weakening a contract.
+Agents must obtain the user's explicit authorization for the particular change
+before editing any file in `spec/`, including editorial changes, grammar,
+examples, generated indexes, and the roadmap. A TODO item, implementation task,
+refactoring request, or discovered ambiguity does not grant that authorization.
+An explicit request to edit a specified part of the specification authorizes
+that stated scope; it is not permission for unrelated changes.
+
+If a task exposes ambiguous or contradictory required behavior, stop the
+affected task before selecting an interpretation. Record the requirement IDs,
+minimal example, competing interpretations, and precise question in the
+root [ambiguity log](../AMBIGUITIES.md), then ask the user and wait for a decision.
+The log records questions and answers; it does not amend the specification.
+Implementation must not silently weaken a rule to fit existing code.
 
 An authorized semantic change updates its canonical chapter, affected grammar,
 examples, and acceptance scenarios together. Correct derived documentation if

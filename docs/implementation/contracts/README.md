@@ -1,7 +1,7 @@
 # Component contracts and correctness arguments
 
 This is the working procedure for ARCH-05/ARCH-06 and TEST-08 in the
-[technical specification](../../../TECHNICAL_SPECIFICATION.md). It makes those
+[technical specification](../../../spec/README.md). It makes those
 requirements usable during implementation; it does not add language semantics.
 Use the [component template](component-template.md) and the completed
 [driver example](driver.md).

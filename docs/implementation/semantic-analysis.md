@@ -2,7 +2,7 @@
 
 This implements section 5 of [TODO](../../TODO.md) incrementally, under
 NAME-04, TYPE-01/TYPE-05 and COMP-01/COMP-02 of the
-[specification](../../TECHNICAL_SPECIFICATION.md). The public boundary is
+[specification](../../spec/README.md). The public boundary is
 [semantic.h](../../src/semantic/semantic.h). Passing an earlier stage never
 certifies an unimplemented later stage.
 

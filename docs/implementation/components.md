@@ -1,7 +1,7 @@
 # Implementation component map
 
 This is the result of the first task in [TODO.md](../../TODO.md).
-[TECHNICAL_SPECIFICATION.md](../../TECHNICAL_SPECIFICATION.md) remains the source
+[Product specification](../../spec/README.md) remains the source
 of truth. This map assigns implementation responsibilities; it does not change
 language rules or certify the existing implementation.
 

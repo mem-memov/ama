@@ -1,7 +1,7 @@
 # Required project dependency closure
 
 This implements the source-loading part of DEP-01/DEP-02 and SRC-01 through
-SRC-05 in the [technical specification](../../TECHNICAL_SPECIFICATION.md).
+SRC-05 in the [technical specification](../../spec/README.md).
 The public boundary is [project.h](../../src/project/dependencies/project.h).
 It consumes configured roots and one valid logical entry path and produces the
 required, source-mapped module graph. It does not instantiate modules or claim

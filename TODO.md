@@ -1,381 +1,751 @@
-# Ama implementation tasks
+# Ama implementation work queue
 
-[TECHNICAL_SPECIFICATION.md](TECHNICAL_SPECIFICATION.md) is the source of truth.
-This is an execution order, not a new language design or a claim that any task
-is complete. Follow [EBNF.md](EBNF.md), [VALUE_ABI.md](VALUE_ABI.md) and
-[CONTRIBUTORS.md](CONTRIBUTORS.md). Do not change the specification without an
-explicit user request.
+The whole [spec/](spec/README.md) directory is authoritative. The
+[requirement index](spec/requirements.md) locates all 192 current requirements;
+[spec/grammar.md](spec/grammar.md) defines source forms. This file orders the
+engineering work needed to implement those contracts. It neither changes the
+language nor grants permission to edit the specification.
 
-Work in the order below. Finish each independently testable contract before
-building its consumers. User-facing tooling reuses compiler components; it must
-not introduce a second parser, resolver or type system.
+## How to use this queue
 
-## 1. Establish component contracts and the test/build foundation
+Start with the first unfinished task whose prerequisites are satisfied. Complete
+one independently testable task, record its evidence here and in the relevant
+component contract, and commit that task before beginning the next one. Task
+identifiers are stable; retain them when adding or splitting future work. A
+phase is a planning group, not one large implementation commit.
 
-- [x] Map existing source components to the specification and identify what can
-  be reused, replaced or removed. Evidence and replacement decisions are recorded
-  in the [component map](docs/implementation/components.md); existing compiler
-  bodies and old tests were not analyzed.
-- [x] Arrange responsibilities as nested directories with short orchestration
-  functions, narrow interfaces and explicit contexts. Split components as they
-  are implemented; avoid a separate repository-wide mechanical refactoring phase.
-  The new driver separates request recognition, output and orchestration; old
-  implementations and test cases have been removed. Build and test rules have
-  been reset to support this foundation; their acceptance checks remain below.
-- [x] Make source discovery and test dependency tracking support the full nested
-  source tree and rebuild affected consumers after header changes. Exact command
-  manifests additionally track compiler settings and link-input membership;
-  [incremental-build tests and invariants](docs/implementation/incremental-build.md)
-  cover the project and independent test leaves.
-- [x] Retain two simple recursive C/Make harnesses: component tests and integration
-  tests. Each leaf has `main.c`, descriptive `it_*` functions and explicit `run()`;
-  guarded parent `common.c` fixtures use `assert`.
-  [Harness acceptance](docs/implementation/test-harness.md) verifies parallel
-  ordering, failure artifacts, explicit cleanup and assertions under release flags.
-- [x] Establish and apply the component-contract procedure: domains, invariants,
-  pre/postconditions, failure effects, complexity and a general mathematical/
-  algebraic argument with boundary, failure and composition tests. The
-  [procedure, template and registry](docs/implementation/contracts/README.md)
-  cover existing components and require evidence for every subsequent one.
-  No heuristics or example-specific exceptions (ARCH-05/ARCH-06, TEST-08).
+The checkboxes below describe work against the current specification, including
+revalidation of reusable implementations. They do not claim that every listed
+component is absent. Task T001 decides which existing contracts and evidence can
+be reused. When a task is already implemented correctly, complete it by verifying
+and recording the current evidence rather than rewriting working code. Do not
+mark a feature complete from an old checkbox, a design document or a passing
+unrelated suite.
 
-Completed: nested components and their assembled parents build/test independently;
-rebuild and harness acceptance tests verify dependencies and cleanup, and the
-contract registry records the justification and executable evidence. The compiler
-itself remains an implementation foundation; the next implementation tasks are in section 2.
+Each task states its prerequisites, deliverable and specific acceptance focus.
+The common completion criteria also apply to every task. Tasks in later phases
+may begin as soon as their explicit prerequisites pass; no consumer may skip an
+unfinished prerequisite. The sequence intentionally reaches a runnable stackless
+program before implementing all calls, continuations, collections and tooling.
 
-## 2. Validate the native ABI and generated-C execution constraints
+If a genuine ambiguity or contradiction prevents an exact implementation, stop
+work on the affected task, describe the issue and competing interpretations in
+[AMBIGUITIES.md](AMBIGUITIES.md), and ask the user for a decision. Do not guess,
+add a heuristic, silently pick a language rule, or edit `spec/` to fit the code.
+An implementation task, including one in this queue, is not permission to amend
+`spec/`. Follow [AGENTS.md](AGENTS.md) and
+[CONTRIBUTORS.md](CONTRIBUTORS.md) for the remaining project workflow.
 
-- [x] Select and document the supported C toolchain and exact native signatures,
-  including byte views, representation includes and alignment requirements.
-- [x] Implement common `AmaStatus` code/message/length, allocate distinct service
-  codes and distinguish invalid-index refusal from technical conversion failure.
-- [x] Build a small C harness for all six ABI bindings: mandatory `+`/`-`, optional
-  `|`/`=`/`?`/`[]`, plus a void-return native entry with service status output.
-- [x] Verify mandatory native-entry inlining while permitting internal native C
-  calls and stack use. Verify labels and explicit return dispatch for Ama control.
-- [x] Validate fresh/constructing/live/finalized bookkeeping, failed-constructor
-  responsibilities, reverse cleanup, destroy errors and no double destruction.
-- [x] Specify service metadata for handles, acquisition, return links, saved
-  positions, source locations and host outcomes without hidden Ama links in C.
-- [x] Apply NAME-05 to native authoring and ABI probes: register category-separated
-  module prefixes, emit scoped `AMA_NATIVE(name)` contexts and qualified uses,
-  and compile two companions with identical local names in one translation unit.
-  The [namespace contract](docs/implementation/native-namespaces.md) records the
-  exact naming argument, failure behavior and executable evidence.
+### Completion criteria for every task
 
-Completed: [ABI](docs/implementation/native-abi.md),
-[status](docs/implementation/native-status.md),
-[hook harness](docs/implementation/native-hooks.md),
-[toolchain](docs/implementation/native-toolchain.md),
-[lifecycle](docs/implementation/native-lifecycle.md) and
-[metadata](docs/implementation/runtime-metadata.md) contracts have executable evidence.
-Frontend integration, real pool allocation and the complete execution dispatcher
-remain later tasks. ASan/UBSan passed with LeakSanitizer disabled because ptrace
-supervision prevents it from running; leak-check certification is not claimed.
+1. Implement only the stated contract in small components under nested directories
+   that mirror responsibilities. Parent orchestration calls narrow child operations;
+   do not collect unrelated behavior in a long function or artificial shared context.
+2. State the domain, ownership, pre/postconditions, invariants, failure effects,
+   termination and complexity. Keep the general correctness argument with the
+   component contract under ARCH-05/ARCH-06; use exact algorithms throughout.
+3. Add or update Doxygen explanations of every changed code file's purpose and
+   the meaningful types, interfaces and algorithms it contains. Explain why the
+   component exists, what it owns and how its failure/lifetime boundary works.
+   Generate documentation and check cross-references for changed interfaces.
+4. Map every added or changed code file, including headers and handwritten native
+   companions, to meaningful tests in the component evidence registry. Header-only
+   declarations need independent compile checks and tests of their consumers;
+   generated code is tested through its generator and compiled outputs. Cover the
+   actual behavior and failure boundary, not just execution of lines. Existing
+   uncovered files become explicit audit tasks, never silent exceptions.
+5. Run focused leaf tests and the affected real parent composition. Add boundary,
+   invalid-input and failure-injection cases where the contract has those paths.
+   Use the existing C/recursive-Make harness. Execution and ABI claims require
+   compiling and running generated C; use relevant sanitizers and the supported
+   toolchain checks. Documentation-only tasks use document checks instead.
+6. Record the requirement IDs, changed components, test commands/results and any
+   actual limitations. Mark the checkbox only after its acceptance checks pass.
+   Commit the completed task with its evidence and a descriptive task-ID message;
+   do not include unrelated user changes. Leave blocked or failing tasks unchecked.
 
-## 3. Implement source storage, identities and structured diagnostics
+## Reported implementation baseline
 
-- [x] Build a source manager with stable spans, original UTF-8 bytes, line tables
-  and precise file/line/column reporting, including allocation-failure paths.
-- [x] Implement strict UTF-8 and pinned Unicode XID tables, case-sensitive byte
-  identity and deterministic filesystem lookup without normalization guesses.
-- [x] Resolve extensionless module paths, physical `name+/` submodules and native
-  companions. Keep logical identities distinct from physical diagnostic paths.
-- [x] Generate collision-checked hashes from complete, unambiguously encoded
-  identities; retain source names and stable Unicode test vectors.
-- [x] Represent diagnostics structurally: primary span, cause, expected construct,
-  related declaration/type spans and an actionable explanation when exact.
-- [x] Render source excerpts and original module names, never internal hashes as
-  the only explanation. Reuse this representation in later command-line/editor tools.
+This table preserves the previous TODO's completion reports. Its linked evidence
+has **not been revalidated in this planning change**, and the implementation was
+not inspected. The reports predate several current language contracts. They are
+inputs to T001, not a blanket claim of current conformance.
 
-Ready when: source and identity errors are precise, deterministic and usable
-without parsing generated C diagnostics.
+| Previous section | Previously reported completion and evidence | What still needs current verification |
+|---|---|---|
+| 1. Components and test/build foundation | Component map, nested driver responsibilities, recursive C harnesses, incremental command/dependency manifests and formal contract registry. [Map](docs/implementation/components.md), [build](docs/implementation/incremental-build.md), [harness](docs/implementation/test-harness.md), [contracts](docs/implementation/contracts/README.md). | Every current component, its parent composition, file-level test mapping and Doxygen coverage. |
+| 2. Native ABI foundation | Supported toolchain; common status and reserved invalid-index distinction; all six hooks; entry inlining probes; construction/finalization bookkeeping; service metadata and qualified native names. [ABI](docs/implementation/native-abi.md), [status](docs/implementation/native-status.md), [hooks](docs/implementation/native-hooks.md), [toolchain](docs/implementation/native-toolchain.md), [lifecycle](docs/implementation/native-lifecycle.md), [metadata](docs/implementation/runtime-metadata.md), [namespaces](docs/implementation/native-namespaces.md). | Context-local state, current list-service ABI, asynchronous native lifetime and parallel access contracts. |
+| 3. Source and identities | Stable UTF-8 spans, Unicode 17.0.0 XID tables/generator, extensionless and `name+/` paths, length-delimited category-separated SHA-256 identities with collision rejection, structural diagnostics and compiled source maps. POSIX catalog reportedly rejects symlinks/inode aliases and has explicit output exclusions. [Storage](docs/implementation/source-storage.md), [Unicode](docs/implementation/unicode.md), [paths](docs/implementation/module-paths.md), [identities](docs/implementation/identities.md), [diagnostics](docs/implementation/diagnostics.md), [rendering](docs/implementation/diagnostic-rendering.md). | Current `.`/`..` roots, spaced path components, exact source spelling, draft activation and complete dependency invalidation. |
+| 4. Parsing | Byte-preserving layout/AST, entry literal boundaries, draft/section handling, positional placeholders, fixed ABI records, iterative nesting, precise expected-token diagnostics and allocation-failure tests. [Frontend evidence](docs/implementation/parser-errors.md). | Current strict spaces/comments, inferred-receiver syntax, self-reference, result trees, loop condition chains and foreach forms. |
+| 5. Semantic analysis and plans | Transitive closure; one base-name namespace; nominal storage/capability checks; separate dependency relations; greatest-fixed-point copy capability; native companions; constants; typed lifecycle/control/storage plans and source-related errors. [Closure](docs/implementation/project-dependencies.md), [semantics](docs/implementation/semantic-analysis.md), [plans](docs/implementation/typed-plans.md). | Exact source-order inference/no-shadow foreach integration, current method interfaces, context-local constants and updated control metadata. |
+| 6. Check-only and native authoring | Shared frontend, draft diagnostics, self-contained generated headers/skeletons, native naming contexts, machine-readable C tooling configuration, handwritten-file preservation and isolated header/skeleton checks. | Current grammar/semantics and agreement with the final project assembly. |
+| 7. Runtime ownership | Stable typed block pools; empty/stale/generation handles; reclamation; lifecycle failure cleanup; injective clone maps; staged replacement; copy overlap/availability and busy-descendant preflight. | Context boundaries, reserved self-identity during construction, current self-copy capability checks and membership-aware list copying. |
+| 8. Stackless execution | Verified `--emit ... --compile` output; direct stable-slot execution; startup constants/root; literal and ordered entry preparation; retained results, control transfers, refusal snapshots and pre-cleanup source diagnostics. [Entry](docs/implementation/entry-preparation.md), [execution](docs/implementation/stackless-execution.md), [emission](docs/implementation/project-emission.md). | Current source semantics, direct result actions, intrinsic list frames and explicit context parameterization. |
+| 9. Continuations | Explicit saved positions, output-only resume, entry restart, host outcomes, recursive ordinary clearing/explicit preservation and generated-program/custom-host tests. [Continuation evidence](docs/implementation/continuations.md). | Foreach cursor/origin state, live mutation correction, copy mappings and asynchronous resource/enrollment boundaries. |
+| 10. Lists and library, partial | Contiguous handle storage, checked growth/index conversion, standalone mutation/preflight, scalar and refusal-reader modules, interface-order checks and runtime/generated-library suites were reported. Whole-list execution integration remained incomplete. | LIST-03/LIST-13 membership records, six typed methods, service busy protection, live-boundary traversal and current scalar contracts require explicit verification. |
+| 11–12. Exploration and release | Examples, editor/debugger integration and final conformance/reproducibility remained unchecked. | Covered by the actionable tasks below; no completion is inferred. |
 
-Section 3 is complete. Contracts and executable evidence cover
-[source storage](docs/implementation/source-storage.md),
-[Unicode](docs/implementation/unicode.md),
-[module paths](docs/implementation/module-paths.md),
-[identities](docs/implementation/identities.md),
-[diagnostic records](docs/implementation/diagnostics.md) and
-[rendering/source maps](docs/implementation/diagnostic-rendering.md).
-Unicode 17.0.0 tables and their C generator are vendored; internal C names use
-versioned, length-delimited SHA-256 identities with exact collision rejection.
-The POSIX catalog rejects symlinks and inode aliases, and takes explicit output
-exclusions. Source/ABI UTF-8 errors and ambiguous paths are tested through real
-filesystem-to-message composition. Source mapping is checked by compiling/running
-C. ASan/UBSan passed with LeakSanitizer disabled; the full release/Werror test tree
-passed. Parsing, required-draft semantics, dependency closure and CLI integration
-remain their subsequent tasks; this section does not claim a working compiler.
+The earlier list action dispatcher, action/outcome enumeration API, retained
+inspection results and undecided conversion-profile proposal are superseded by
+the current typed-method specification. Their old pause is not a blocker for
+this queue; do not implement or revive those obsolete contracts. Previously
+reported release/Werror and focused ASan/UBSan successes remain historical evidence.
+LeakSanitizer was reported disabled under ptrace supervision; leak certification
+was not claimed and must not be inferred here.
 
-## 4. Parse the complete grammar without semantic guesses
+## Phase 0. Establish the current baseline and evidence workflow
 
-- [x] Implement CALL-07 entry literal inputs before starting section 5: recognize
-  `|` only at the input operand boundary (positional/named), preserve all payload
-  bytes through physical EOL, build AST_LITERAL_SOURCE with exact spans, count
-  its input position, and replace literal-prohibition tests with positive/negative
-  grammar tests. Distinguish empty `< |` from omitted `<`; keep literal outputs,
-  assignments, conditions, indices and resume/read inputs forbidden. Extend
-  source-to-AST/diagnostic composition and allocation-failure tests.
-  Ama literal classification and ABI record classification now use explicit
-  entry points: ABI `|` remains a protocol symbol, not a data boundary.
+Contracts: [compiler architecture](spec/implementation/compiler.md),
+[conformance](spec/implementation/tools-and-conformance.md).
 
-- [x] Read indentation, comments and literal boundaries without altering payload
-  bytes, trailing spaces or deliberate line endings.
-- [x] Parse sections, constants-only modules and the specified draft boundary.
-- [x] Build an AST with spans for declarations, initialization, assignment,
-  references, lists, qualified constants, entry/read/resume calls and control flow.
-- [x] Parse empty positional `<`/`>` placeholders with independent arity counts;
-  distinguish them from named bindings and retained `>>` requests.
-- [x] Parse the fixed `.abi` records and report malformed, duplicate, unknown or
-  missing mandatory bindings at their exact locations.
-- [x] Add syntax-error explanations and deterministic expected-token information.
-  Do not use declared-name lookup to decide which construct a line represents.
+- [ ] **T001 — Audit the implementation delta.** Needs: none. Build a matrix for
+  all 192 indexed requirements and acceptance rows against existing components,
+  code files and executable evidence. Validate every reported baseline item;
+  distinguish confirmed support, changed contracts, gaps and blockers without
+  resetting or trusting old checkmarks wholesale. Record the smallest remaining
+  work under the stable tasks below; stop on contradictory requirements.
+- [ ] **T002 — Refresh component contracts and boundaries.** Needs: T001. Update
+  the responsibility tree and contract registry; identify narrow reusable APIs,
+  required decompositions and exact invariant arguments. Validate that each
+  planned component and assembled parent has an independently runnable test home.
+- [ ] **T003 — Verify recursive builds and invalidation.** Needs: T002. Confirm
+  nested source discovery, header/toolchain/link-membership dependencies, parallel
+  make ordering and clean/failure artifact rules. Test no-op and changed-input
+  rebuilds through real parent and independent leaf builds.
+- [ ] **T004 — Verify the shared failure/test infrastructure.** Needs: T003.
+  Maintain C leaf `main`/`it_*`/`run`, guarded fixtures, assertions under release
+  flags and deterministic failure injection. Test harness failures, cleanup and
+  sanitizer invocation without introducing a second test framework.
+- [ ] **T005 — Establish code-to-tests and generated documentation checks.**
+  Needs: T004. Inventory every project code/header file and its test coverage;
+  register uncovered files for the owning tasks. Add a reproducible Doxygen build
+  and checks for purpose/contract comments, independent headers and documentation
+  links. Validate the workflow on existing small components before expanding it.
 
-Ready when: complete valid and invalid grammar cases have independently runnable
-parser tests; parsing does not depend on executable code generation.
+## Phase 1. Fix execution-context and native boundaries before consumers
 
-Section 4, including CALL-07 source/AST support, is implemented.
-[Frontend contracts and evidence](docs/implementation/parser-errors.md)
-cover byte-preserving layout, exact draft activation/sections, a source-mapped AST,
-iterative nested access/control parsing, call placeholders/modes and fixed ABI
-records. Grammar expectations have stable keys and precise source diagnostics;
-recognition never looks up aliases or creates hidden numeric values. Eight new
-leaves contain explicit scenarios, including finite access/call models, deep
-nesting, truncation and allocation failures. The composed suite loads actual files,
-renders handwritten diagnostic expectations and compiles/runs typed native-binding
-probes. Full release/Werror tests and focused ASan/UBSan passed (LeakSanitizer
-remains disabled). Semantic checks and CLI integration stay in subsequent sections;
-no code generator or runnable Ama program is claimed by parser completion.
+Contracts: [runtime](spec/implementation/runtime.md),
+[native interface](spec/implementation/native-interface.md),
+[diagnostics](spec/implementation/diagnostics.md),
+[context isolation](spec/language/async-and-parallelism.md#par-01).
 
-## 5. Resolve dependencies, types, capabilities and storage plans
+- [ ] **T006 — Establish context ownership and identity.** Needs: T005. Define
+  explicit context-local pool/constant/error/control ownership and checked host
+  identities. Test lifecycle, nonwrapping context identity, rejection of foreign
+  access with colliding local numbers and nonreentrant executor entry.
+- [ ] **T007 — Validate status and refusal records.** Needs: T006. Preserve the
+  common code/message/length ABI, allocation-free immutable messages and distinct
+  invalid-index/refusal/fatal paths. Test zero success, malformed native status,
+  nested caller refusal preservation and diagnostics during allocation failure.
+- [ ] **T008 — Validate the supported C execution contract.** Needs: T007. Record
+  toolchain/target settings and exact checks for required native-entry inlining
+  and label dispatch. Compile positive internal-helper/recursion probes and reject
+  surviving native-entry calls or Ama function-call dispatch.
+- [ ] **T009 — Validate all six native protocol adapters.** Needs: T008. Freeze
+  typed signatures, byte views, includes, alignment and void-entry service status
+  in the ABI harness. Compile and run every hook, wrong-signature rejection,
+  unsupported optional capabilities and invalid-index versus fatal conversion.
+  Supply a conforming `..integer` test module with literal/clone/index support
+  over the supported host-size range for subsequent list-interface consumers;
+  T085 later validates the production scalar library.
+- [ ] **T010 — Validate native symbol namespaces.** Needs: T009. Reuse complete
+  module identity for qualified author names and clean inclusion contexts. Use
+  fixed collision-checked prefix vectors in this isolated harness; connect the
+  current identity provider after T017 in T055. Test
+  same-basename hooks/types/helpers, macro cleanup and consistent header/body uses
+  in one translation unit without parsing or rewriting arbitrary C.
+- [ ] **T011 — Validate lifecycle state transitions.** Needs: T009. Establish
+  fresh/constructing/live/finalized bookkeeping, one selected constructor,
+  reverse cleanup and terminal destroy failures. Inject failure at every
+  construction/cleanup boundary and prove at-most-once finalization.
+- [ ] **T012 — Validate native borrow and resource boundaries.** Needs: T010,
+  T011. Expose narrow generated typed access, separate declared Ama graph state
+  from native payloads and bound borrow lifetimes. Exercise native copies and
+  access failures without retaining Ama addresses, handles or callback views.
+- [ ] **T013 — Validate the host/context lifecycle interface.** Needs: T006,
+  T007, T011, T012. Define completed/yielded/failed outcomes and startup/resume/
+  disposal ownership. Test concurrent/reentrant-entry refusal, failed nonresume,
+  disposal states and independence of two sequential contexts before threading.
 
-- [x] Load the transitive project/library closure once per logical module identity;
-  report missing, ambiguous and required draft modules explicitly.
-  [Closure contract and evidence](docs/implementation/project-dependencies.md):
-  one AST per identity, occurrence spans and requester traces, iterative cycle-safe
-  discovery; exhaustive three-module graphs, real UTF-8 diagnostic composition and
-  allocation-failure cleanup. Native companion/type validation is covered below.
-- [x] Enforce one base-name namespace across constants, interfaces and body fields.
-  [Namespace contract and tests](docs/implementation/semantic-analysis.md) cover
-  nested lexical order, cross-section collisions and all storage-form pairs.
-- [x] Resolve declarations, sources and interfaces into typed symbols; check
-  defaults, literal/clone capabilities, binding arity and storage compatibility.
-  For CALL-07, derive literal type from the selected owned scalar parameter and
-  reject reference/list destinations or missing `|` support; retain binding and
-  parameter/type declaration spans in diagnostics.
-  Apply TYPE-05's nominal storage matrix without implicit dereference or list
-  conversion. Reject duplicate named callee labels while preserving binding order.
-- [x] Distinguish dependency, eager ownership-layout and constant-initialization
-  cycles from dynamic busy-instance reentry. Derive legal orders from each relation.
-  Follow TYPE-04's eager edges, CONST-02's declaration-level dependency graph and
-  PROTO-07's greatest fixed point for clone capability; recursive empty-list
-  structures and benign self-typed constants are not automatically cycles.
-- [x] Validate mandatory `.h`/`.c`/`.abi` companions only after a required module
-  is known to select `@C`; unused drafts remain inactive. Treat ABI function names
-  as module-local identifiers under NAME-05.
-- [x] Plan shared constants separately from instance storage, including qualified
-  reads, typed library enumerations, startup ordering and reverse cleanup.
-- [x] Build explicit typed lifecycle/control-flow IR and storage plans. Preserve
-  spans and type identities through every handoff; never use C text as semantic IR.
-- [x] Add type-error messages showing both module types and related declarations.
+## Phase 2. Source storage, Unicode identities and diagnostics
 
-Ready when: validated projects have inspectable layouts and IR, with no unresolved
-interpretations deferred to the C emitter.
+Contracts: [source and names](spec/language/source-and-names.md),
+[compiler identity/dependencies](spec/implementation/compiler.md).
 
-Section 5 is implemented through the reusable semantic-analysis and typed-plan
-APIs. [Semantic contracts](docs/implementation/semantic-analysis.md) and
-[storage/lifecycle/control plans](docs/implementation/typed-plans.md) document
-ownership, exact algorithms and evidence. Independent leaves cover namespaces,
-native contracts, nominal/storage rules, three-vertex graph models, shared startup,
-typed transitions, Unicode diagnostics, deep nesting and allocation failures.
-Full release/Werror tests and focused ASan/UBSan pass (LeakSanitizer disabled).
-Layouts describe typed logical storage; native C sizes/alignment remain C-toolchain
-facts. Check-only CLI/scaffolding, concrete runtime services, C emission and actual
-Ama execution remain in the following sections, not implied by frontend completion.
+- [ ] **T014 — Verify original-byte source storage.** Needs: T005. Preserve spans,
+  physical line endings, optional final newline and byte-based diagnostic columns.
+  Test EOF, empty files, CRLF and allocation failure without fabricated bytes.
+- [ ] **T015 — Verify strict Unicode recognition.** Needs: T014. Pin Unicode XID
+  data and strict UTF-8 decoding; preserve byte identity without normalization.
+  Test malformed encodings, boundary scalars and multiword international names.
+- [ ] **T016 — Implement current physical-to-logical path mapping.** Needs: T015.
+  Resolve explicit `.` and `..` roots, extensionless modules and `name+/` topology.
+  Test spaced components, root-kind distinctions, conflicting roots/aliases and
+  precise missing/ambiguous paths without search-order fallbacks.
+- [ ] **T017 — Verify deterministic generated identities.** Needs: T016. Use
+  complete category-separated identities, unambiguous encoding and exact hash
+  collision rejection. Check stable Unicode vectors, forced collisions and
+  distinct native/shared/type/control categories.
+- [ ] **T018 — Verify the module registry and source catalog.** Needs:
+  T016, T017. Register each complete identity once, preserve physical diagnostic
+  paths and exclude owned outputs. Test duplicate physical identities and
+  deterministic enumeration. Exact activation/draft classification belongs to
+  T023's shared lexical/parser path; required-draft validation follows in T029.
+- [ ] **T019 — Verify structured frontend diagnostics.** Needs: T014, T018.
+  Preserve primary/cause/related spans and stable expected-construct information.
+  Compose filesystem, Unicode and identity failures through user-facing messages.
+- [ ] **T020 — Verify rendering and C source mappings.** Needs: T019. Render
+  original names/excerpts and correctly escaped `#line` paths. Compile generated
+  mapping probes and test allocation-free fallback reporting.
+- [ ] **T021 — Compose source loading and dependency invalidation.** Needs: T018,
+  T020. Track source/configuration/native/generated inputs without duplicate loads.
+  Verify changed transitive files and root settings invalidate exactly dependent
+  consumers. Integrate inactive-to-active semantics in T029 after T023 establishes
+  the shared activation recognizer; do not introduce a second draft parser here.
 
-## 6. Expose fast checking and generate native scaffolding
+## Phase 3. Parse current source forms without semantic guesses
 
-- [x] Provide an explicit check-only command using the same source manager, parser,
-  resolver and checker as compilation, without generating or compiling C.
-- [x] Report draft status distinctly; a required draft remains a build error.
-- [x] Generate native headers/signatures and optional C/ABI/test skeletons from
-  validated interfaces and ABI contracts instead of duplicating declarations.
-  Follow CABI-06: every C skeleton directly includes a self-contained generated
-  interface header supplying required parameter/result/state/service types and
-  transitive standard/native/generated includes. Arrange complete definitions and
-  permitted forward declarations for legal reference cycles, with consistent
-  NAME-05 contexts and repeat-inclusion guards. Establish and clean up the header
-  and skeleton-body contexts explicitly, without leaking header macros to the body.
-  Keep declaration headers free of Ama companion `.c` files, native entry/hook
-  bodies and project runtime/storage definitions; ordinary external-header inline
-  utilities remain permitted. No prior/forced include or final project assembly
-  may be needed to edit the scaffold.
-- [x] Generate machine-readable C-tooling configuration for native scaffolds:
-  working directory, include search paths, required defines and language/toolchain
-  flags, for example in a compilation database. It must support C language-service
-  analysis and syntax checks before the execution backend is available.
-- [x] Make output ownership explicit. Preserve existing handwritten companions;
-  show conflicts and require an explicit generation/overwrite request.
-- [x] Test that checking and compilation agree on frontend validity and diagnostics,
-  and that generated native declarations compile against the ABI harness.
-  Independently syntax-check each generated interface header as the first project
-  include and each untouched C skeleton using the generated tooling configuration.
-  Check their agreement with the final assembly on types and NAME-05 identities;
-  cover transitive types, same-basename helpers across modules, legal reference
-  cycles, repeat inclusion and naming-context cleanup. Independent checks do not
-  introduce separate native translation units or weaken mandatory entry inlining.
-  Shared-frontend and native-only composition coverage is complete; the final
-  assembly comparison is tracked with its backend consumer in section 8.
+Contracts: [grammar](spec/grammar.md),
+[source layout](spec/language/source-and-names.md).
 
-Ready when: contributors can validate interfaces and obtain correct scaffolding
-with editor-resolvable types and reproducible C syntax checks before the execution
-backend is complete. Final assembly composition checks are completed when the
-backend is available. These tools do not extend the grammar.
+- [ ] **T022 — Implement exact layout and token boundaries.** Needs: T015, T019.
+  Enforce one-space nesting and separators, compact paths/reference/list markers,
+  comment indentation, tabs/trailing-space rejection and literal byte preservation.
+  Test every boundary across LF/CRLF and optional final newline.
+- [ ] **T023 — Parse sections, drafts and declarations.** Needs: T022. Build
+  source-mapped AST nodes for executable/constants/native sections, explicit
+  declarations, all four storage forms and initialization. Check activation,
+  constants-only files, malformed sections and deep nested bodies.
+- [ ] **T024 — Parse accesses, assignments and inferred receivers.** Needs: T023.
+  Recognize indexed/qualified/self-reference sources and uniform assignment nodes
+  without name lookup. Test suffix/spacing boundaries, legal source modes and
+  forbidden literal assignments with exact diagnostics.
+- [ ] **T025 — Parse calls and binding phases.** Needs: T024. Recognize entry,
+  resume, retained/constant reads, named/positional bindings, empty placeholders
+  and entry literal payloads. Test phase/mode/arity structure and explicit empty
+  literal versus omitted input without semantic classification in the parser.
+- [ ] **T026 — Parse direct-result trees and refusal handlers.** Needs: T025.
+  Retain selector paths, sibling order and each handler's owning operation.
+  Test nested modes, colon indentation and structural rejection independently
+  of declared names or runtime availability.
+- [ ] **T027 — Parse branches, loops and foreach.** Needs: T026. Represent
+  positive/negative branches, empty bodies, single-root linear condition loops,
+  break/return/yield and reference-binding foreach. Test exact repeat roots,
+  comments between markers, deep nesting and malformed near-matches.
+- [ ] **T028 — Compose the parser and ABI table reader.** Needs: T009, T021,
+  T027. Validate fixed `.abi` records separately from Ama literal classification;
+  exhaust malformed/duplicate/missing bindings. Run current documented examples,
+  grammar boundary cases, truncations and source-to-AST failure cleanup.
 
-## 7. Implement stable instances and ownership operations
+## Phase 4. Resolve exact types, visibility and operation contracts
 
-- [x] Build stable block pools per executable module type, typed slot/generation
-  handles, empty references, free-slot reuse and generation-exhaustion retirement.
-- [x] Reclaim free trailing blocks without reviving stale handles after regrowth.
-- [x] Construct owned fields and native payloads in the specified order; implement
-  partial failure cleanup, at-most-once destruction and terminal cleanup errors.
-- [x] Implement independent ownership-tree cloning with an injective clone map,
-  internal-reference remapping and unchanged external targets.
-- [x] Prepare replacements before destructive commit; preserve destinations on
-  preparation failure and finalize resources correctly after commit failure.
-- [x] Check source-tree availability, ownership overlap and copy capability;
-  preserve ordinary self-assignment and reject continuation self-copy.
-  Preflight the complete affected old ownership subtree before deletion/reset/
-  replacement, including busy descendants of an available root (REF-08).
+Contracts: [declarations](spec/language/declarations.md),
+[values](spec/language/values-and-references.md),
+[calls](spec/language/calls-and-results.md),
+[control](spec/language/control-flow.md), [lists](spec/language/lists.md).
 
-Ready when: small exhaustive state models and failure-injection tests establish
-handle, lifetime, clone and replacement invariants independently of module execution.
+- [ ] **T029 — Verify complete project closure.** Needs: T028. Load transitive
+  Ama/native dependencies once per identity and retain requester traces. Test
+  legal dependency cycles, missing required drafts and companion selection only
+  for active native modules, including invalidation when a draft becomes active.
+- [ ] **T030 — Resolve explicit declaration inventories.** Needs: T029. Enforce
+  one base-name namespace across sections and storage spellings; resolve full
+  nominal module types. Provide shared exact source/interface-member lookup and
+  declared result-label/position metadata for inference and later call validation.
+  Test later visible explicit fields and duplicate-related
+  spans without conflating visibility with initialization.
+- [ ] **T031 — Implement source-order inference and foreach scope together.**
+  Needs: T030. Apply TYPE-06/NAME-06's single ordered algorithm, immediately type
+  new receivers and resolve/reuse foreach bindings with no shadowing. Test earlier
+  unresolved occurrences, later explicit collisions, inferred list sources,
+  disjoint locals, nested reuse and forbidden construction-time local access.
+- [ ] **T032 — Verify transfers and self-reference typing.** Needs: T031.
+  Enforce the complete storage-form matrix, constant/indexed sources and lexical
+  standalone `&`. Test absent/mismatched suffixes, exact root-kind identity and
+  storage compatibility without inferring unsupported conversions.
+- [ ] **T033 — Derive dependency and capability fixed points.** Needs: T032.
+  Provide exact dependency/cycle algorithms; derive the eager-owned-layout and
+  clone-capability relations separately from module dependencies. Test finite
+  graphs, recursive empty lists and noncopyable owned descendants. Require static
+  copy capability before runtime self-assignment no-op handling; do not reject
+  benign execution/reference cycles. T034 supplies resolved initializer edges.
+- [ ] **T034 — Validate constants and initialization plans.** Needs: T033.
+  Resolve qualified members and legal constant sources, then construct actual
+  initializer dependencies and reject their forbidden cycles. Derive exact
+  startup/reverse cleanup order. Test constants-only modules, constant cycles,
+  inferred-field defaults and visibility without forward initializer reads.
+- [ ] **T035 — Validate normal call/read bindings.** Needs: T032, T034. Resolve
+  current named/positional rules, placeholders, exact input/result types, defaults
+  and literal capabilities. Test mode-specific rejection and both declaration
+  and binding locations without adding unaccepted mixed-mode behavior.
+- [ ] **T036 — Validate direct-result operation trees.** Needs: T035. Resolve
+  selectors only in parent result interfaces and operands in the initiating
+  caller's environment. Test reference/continuation targets, sequential methods,
+  inaccessible private names and per-link handlers.
+- [ ] **T037 — Validate intrinsic typed list services.** Needs: T009, T033, T036.
+  Model six fixed method interfaces and the required `..integer` capabilities;
+  enforce service-parent modes, typed receivers and omitted-source versus explicit
+  owning-copy capability. Reject obsolete action-dispatch and retained-state APIs.
+- [ ] **T038 — Validate control-flow contexts.** Needs: T031, T036, T037. Check
+  owned truth/index capabilities, branch forms, empty-body warnings, exact linear
+  loop roots and handler break context. Ensure foreach has distinct binding and
+  traversal semantics, including statically checking skipped/empty paths.
+- [ ] **T039 — Validate continuations and copy boundaries statically.** Needs:
+  T033, T038. Enforce no resume inputs, exact ordinary/continuation copy forms,
+  static copy capability and detectable ownership overlap. Test self-copy,
+  noncopyable resources and legal external reference transfers.
+- [ ] **T040 — Compose semantic analysis with current diagnostics.** Needs:
+  T034–T039. Check valid/invalid full projects, preservation of spans/storage forms,
+  deterministic classification and allocation cleanup. Confirm every interpretation
+  is resolved before lowering or C emission.
 
-## 8. Connect the smallest complete stackless program
+## Phase 5. Make resolved behavior explicit in IR and storage plans
 
-- [x] Emit one project assembly containing required includes, generated types,
-  constants, native bodies and Ama labels, included by a launcher translation unit.
-  Connect section 7 runtime descriptors/recipes to the typed plan; verify concrete
-  payload alignment, field offsets and type identities against generated C layouts.
-  Reuse section 6 declaration/identity emission and add the deferred final-assembly
-  comparison with isolated native headers/scaffolds and check-only diagnostics.
-- [x] Execute directly over heap instances without working-state mirrors or
-  implicit default objects. Initialize constants before creating the explicit root.
-- [x] Implement CALL-07 literal construction in entry preparation: select `|` once
-  for supplied owned scalar parameters without default-then-overwrite, preserve
-  normal construction/commit cleanup, construct on every call, and report failures
-  with call/binding/type context outside `:`. Test skipped/default inputs, literal
-  failures, acquisition release and prevention of body entry after failure.
-- [x] Implement CALL-08 evaluation order for every call/read mode: acquire the
-  selected target, resolve/protect input sources before reset, construct parameters
-  from supplied/default values in declaration order, then construct results.
-  Resolve output receivers/indices in binding text order; reject conflicting
-  ownership without implicit snapshots. Resume/read skip entry preparation and
-  no whole-call rollback is promised. Initial root startup constructs once.
-- [x] Lower entry calls, interface reset/defaults, retained results, result routing,
-  branches, loops and return links to explicit transfers and service metadata.
-- [x] Integrate native execution/status and lifecycle code; prohibit C dispatch of
-  Ama modules and persistent borrowed views in opaque native state.
-- [x] Exercise two module types with multiple instances, nested same-type calls,
-  busy refusal, pool growth during calls and persistent body state.
-- [x] Implement acquisition refusal snapshots and their read-only library reader;
-  preserve caller-context ownership across successful and nested calls.
-- [x] Emit source maps and execution-path diagnostics before cleanup, including
-  failure before root entry and reporting without a newly allocated trace buffer.
+Contracts: [compiler](spec/implementation/compiler.md),
+[runtime](spec/implementation/runtime.md).
 
-Ready when: a real project compiles to C and runs with verified native inlining,
-label transfers, stable instance addresses and correct cleanup.
+- [ ] **T041 — Define current typed IR boundaries.** Needs: T013, T040. Represent
+  resolved type/storage identities, lifecycle, operations, failure edges and source
+  maps independently of C text. Validate narrow independently inspectable nodes
+  and reject unresolved source-level decisions at the boundary.
+- [ ] **T042 — Plan context and instance storage.** Needs: T041. Separate per-context
+  constants/runtime from stable-slot fields, interface state and control metadata.
+  Include constructing identity, return links, saved positions and fixed lexical
+  chain/foreach frames. Verify deterministic layout dependencies and no mirrors.
+- [ ] **T043 — Lower entry, transfer and cleanup order.** Needs: T042. Emit
+  explicit acquire/preflight/prepare/commit/result/release actions with distinct
+  refusal and fatal edges. Test CALL-08 evaluation order and source-lifetime
+  handoffs without inserting snapshots or whole-call rollback.
+- [ ] **T044 — Lower structured control and result actions.** Needs: T043.
+  Assign fixed loop repeat/break labels and depth-first result continuations.
+  Test empty-loop single conversion, per-link handlers, nested exits and bounded
+  frame use before C generation.
+- [ ] **T045 — Verify complete frontend-to-plan composition.** Needs: T044.
+  Preserve nominal types, source locations, ownership/capability facts and all
+  control successors. Run real source-to-plan cases and invariant checks, including
+  drafts, native contracts and invalid-project cleanup.
 
-Acceptance: `--emit ... --compile` publishes a verified executable. Runtime,
-planning, assembly and real generated-program tests pass with Werror; runtime
-and generated-C suites also pass ASan/UBSan. See
-[entry preparation](docs/implementation/entry-preparation.md),
-[stackless execution](docs/implementation/stackless-execution.md) and
-[project emission](docs/implementation/project-emission.md). Suspension/resume
-execution and list action dispatch remain the explicit next sections.
+## Phase 6. Stable ownership storage before executing user bodies
 
-## 9. Add suspension and continuation copying
+Contracts: [references and copying](spec/language/values-and-references.md),
+[lifecycle](spec/implementation/native-interface.md#complete-lifecycle-and-cleanup-protocol),
+[pools](spec/implementation/runtime.md).
 
-- [x] Save explicit branch/loop positions at `%`, separating available yielded
-  state from a busy instance waiting for a nested call.
-- [x] Implement output-only resumption, entry restart and completed/yielded/failed
-  host outcomes. Failed execution is not resumable; root resume is host-explicit.
-- [x] Clear positions throughout ordinary copies and preserve them throughout `%`
-  copies, without copying callers, busy state or refusal history.
-- [x] Test repeated yields, nested owned states, busy descendants, clone failures,
-  host disposal and rejection of unhandled root yield by the standard launcher.
+- [ ] **T046 — Verify stable typed block pools.** Needs: T006, T011, T042. Reuse
+  free slots before growth without moving live payloads; reserve final identities
+  while constructing. Test multiple same-type instances and pool growth with
+  live addresses, without implicit default instances.
+- [ ] **T047 — Verify generations and reclamation history.** Needs: T046. Retire
+  exhausted identities and reclaim only free trailing blocks while preserving
+  staleness across regrowth. Exhaust small generation/state models and failure
+  paths; keep capacity, free slots and live counts distinct.
+- [ ] **T048 — Verify acquisition and destruction preflight.** Needs: T047.
+  Check whole affected owned subtrees, current-owner authorization and ordinary
+  busy/refusal transitions. Test available roots with busy descendants, foreign
+  context handles and protection release on every supported failure.
+- [ ] **T049 — Integrate ordered construction and destruction.** Needs: T012,
+  T048. Initialize fields once, expose final self-identity only under constructing
+  rules and finalize children/native payload in the prescribed order. Inject
+  failures and test escaped self-handles never revive after failed construction.
+- [ ] **T050 — Build exact clone maps.** Needs: T049. Clone independent owned
+  trees with injective final-destination mapping and internal-reference fixups;
+  preserve external handles and clear ordinary saved positions. Test self/peer
+  links, duplicate external targets and failed preparation cleanup. This task
+  establishes scalar-owned trees; T076 integrates membership-aware lists.
+- [ ] **T051 — Integrate staged replacement and overlap checks.** Needs: T050.
+  Validate capability/identity/ancestry/source availability before replacement;
+  preserve destinations on preparation failure. Test ordinary self no-op only
+  after static capability validation and terminal cleanup failure after commit.
+- [ ] **T052 — Separate shared constants from pools.** Needs: T034, T051.
+  Initialize immutable module storage per context in dependency order and clean it
+  in reverse order. Test no constants-only instance pool, two independent contexts
+  and startup failure before root creation. Establish scalar-owned constant trees
+  here; T076 supplies concrete list copying and T087 integrates list constants.
+- [ ] **T053 — Compose runtime descriptors with planned C layouts.** Needs:
+  T045, T052. Verify concrete sizes/alignment/offsets and nominal identity without
+  raw-word universal casts. Compile descriptor checks and real native borrow/
+  lifecycle probes against planned generated declarations.
+- [ ] **T054 — Verify ownership services independently of dispatch.** Needs:
+  T053. Exhaust small allocation/acquisition/clone/replacement transition models
+  and run sanitizer/failure-injection compositions. Record evidence before using
+  these services to execute Ama bodies.
 
-Completed: continuation semantics compose with ownership and failures without
-capturing a native C activation or adding an implicit scheduler. The independent
-`tests/unit/codegen/continuations` suite runs verified generated projects, including
-custom hosts. See `docs/implementation/continuations.md` for invariants and evidence.
+## Phase 7. Deliver the first current-spec stackless vertical slice
 
-## 10. Complete lists and a coherent standard library
+Contracts: [generated C](spec/implementation/compiler.md#generated-project-organization),
+[host outcomes](spec/implementation/runtime.md#root-execution-and-host-control).
 
-- [x] Implement ordered contiguous handle arrays over stable element pools,
-  checked geometric capacity growth and zero-based index conversion.
-- [ ] Implement the specified four-input/three-output interface and six actions,
-  default Inspect, positional skips, owning construction/clone and reference lists.
-  Supplying an owning source input requires static element clone capability
-  even for an empty/unused handle; omission permits default noncopyable creation.
-  Initial retained results represent successful inspection; copies retain last
-  completion/outcome data without acquisition/refusal history (LIST-09/LIST-11).
-- [ ] Preflight destructive mutations and distinguish ordinary refusal from
-  technical failure; maintain retained length/results and order-preserving removal.
-- [x] Publish scalar, condition/index, action/outcome and refusal-reader modules
-  with documented paths and typed shared constants.
-- [x] Establish consistent parameter/result ordering across related library
-  interfaces and test it. Keep domain operation names out of parser rules.
-- [ ] Cover traversal, empty references, busy deletion, Clear preflight, pool
-  reclamation and stale-reference rejection through real compiled projects.
+- [ ] **T055 — Emit reusable native declarations and scaffold contexts.** Needs:
+  T010, T028, T040. Generate self-contained typed headers, optional untouched
+  skeletons and C tooling configuration from validated interfaces. Independently
+  check headers as first includes, reference cycles and prefix cleanup; preserve
+  handwritten files without an explicit overwrite request.
+- [ ] **T056 — Emit the single project assembly.** Needs: T045, T054, T055.
+  Order declarations/types/constants/native bodies/runtime/labels under one
+  context-parameterized execution function. Compile agreement checks with isolated
+  scaffolds; never emit a C function per ordinary Ama module.
+- [ ] **T057 — Execute startup, simple calls and returns.** Needs: T056. Create
+  one explicit root after constants; dispatch between two module types/multiple
+  instances using stable slots and validated return selectors. Begin with calls
+  that have no inputs or requested outputs; complete entry bindings in T063–T064.
+  Compile and run
+  nested same-type calls and early completion without payload save/restore.
+- [ ] **T058 — Integrate native entry and lifecycle status.** Needs: T057.
+  Enforce entry inlining and direct typed access; return normally from native C
+  before status handling. Execute all constructor paths and permitted internal
+  helpers; reject unsupported entry implementations with precise diagnostics.
+- [ ] **T059 — Integrate runtime refusal and source diagnostics.** Needs: T020,
+  T058. Report active source/caller paths before cleanup and preserve per-caller
+  refusal snapshots. Run busy/stale/pre-root/native-failure cases, including
+  allocation-free reporting and secondary destruction errors.
+- [ ] **T060 — Expose check-only and verified compilation commands.** Needs:
+  T055, T059. Use one shared frontend and explicit generated-output ownership.
+  Test draft reporting, check/compile diagnostic agreement and atomic publication
+  of `--emit ... --compile` outputs with the toolchain verifier.
+- [ ] **T061 — Expose initial host completion/failure/disposal.** Needs: T060.
+  Connect explicit context APIs to generated code and launcher policy. Test
+  startup failure, normal completion, prohibited reentry and independent contexts
+  with no process-global mutable runtime state.
+- [ ] **T062 — Accept the minimal runnable slice.** Needs: T061. Publish a small
+  complete transitive Ama/native project with stable-address pool growth, return
+  routing and cleanup. Compile/run it under supported flags and relevant sanitizers;
+  record exactly which later features remain unsupported.
 
-Checkpoint: storage, standalone mutation/preflight and scalar library modules are
-implemented. `tests/unit/runtime/lists` covers mutation failure paths;
-`tests/unit/codegen/library` compiles and executes scalar library compositions.
-Whole-list call integration and its compiled-project acceptance tests remain open.
+## Phase 8. Complete calls, result chains and ordinary control flow
 
-Deferred specification question: the compiler/library conversion mapping for
-list actions and typed results is recorded with its rationale and alternatives in
-[the design note](docs/design/list-library-conversion-question.md).
-No conversion profile has been accepted. Work is paused at the user's request;
-do not select a profile or amend the specification without an explicit decision.
+Contracts: [calls](spec/language/calls-and-results.md),
+[control](spec/language/control-flow.md).
 
-Ready when: library interfaces compose predictably without new core operators.
+This execution slice covers scalar/reference targets and their control flow.
+Concrete whole-list/indexed operands and list-service results complete in Phase 10;
+their parsed and typed plans are already available from Phases 3–5.
 
-## 11. Make the language easy to explore and debug
+- [ ] **T063 — Complete entry preparation and defaults.** Needs: T062. Acquire
+  target and protect sources before reset; construct supplied/default parameters
+  in declaration order and then results. Test self-dependent inputs, omitted
+  bindings and failures preserving only the effects promised by CALL-08.
+- [ ] **T064 — Complete literal inputs and ordered result receivers.** Needs:
+  T063. Select literal construction once, preserve payload bytes and resolve
+  output receivers/indices in written order. Execute inferred scalar/reference
+  receivers, placeholders and failures before body entry or result publication;
+  integrate planned list receivers with their concrete storage in T076.
+- [ ] **T065 — Complete retained and constant result reads.** Needs: T064.
+  Copy the complete permitted value state without executing/resetting the target;
+  preserve ordinary copy clearing. Test qualified constants, inferred receivers,
+  partial output progress and busy/stale refusal before receiver changes.
+- [ ] **T066 — Execute direct-result operation trees.** Needs: T065. Act on
+  actual retained result storage, follow returned references, sequence sibling
+  methods depth-first and keep parent protections until all actions finish.
+  Test stateful constructor/method examples with no intermediate clone.
+- [ ] **T067 — Complete local refusal-handler unwinding.** Needs: T066. Release
+  only the initiating operation tree before its failing link's handler, skip
+  unfinished siblings and retain prior committed effects. Test empty handlers,
+  ancestor boundaries and caller lexical scope throughout nested result actions.
+- [ ] **T068 — Complete branches, loops and exact repeat boundaries.** Needs:
+  T067. Execute standalone negative branches, empty-body single checks, fixed-root
+  linear condition commands and nested break/return. Test conversion errors,
+  per-link refusal paths and protection release before loop bodies.
+- [ ] **T069 — Accept the synchronous language slice.** Needs: T068. Run
+  multi-instance state/method/control examples and source-to-generated-program
+  failure compositions. Check constant/default initialization order, no hidden
+  retries and no unaccepted syntax introduced by implementation shortcuts.
 
-- [ ] Create small complete examples for persistent state, native I/O, object lists,
-  and stepwise simulation with independent scenario copies.
-- [ ] Use the examples to review diagnostics, repeated paths and auxiliary-variable
-  burden. Record concrete friction before proposing any language change.
-- [ ] Add editor highlighting, module-path completion, definition navigation and
-  signature/type display using the existing frontend and source spans.
-- [ ] Add rename support using resolved references, including qualified constants;
-  verify affected files rather than performing unchecked textual substitution.
-- [ ] Provide explicit debugger inspection of instance type, persistent fields,
-  retained interface values, acquisition state, saved position and refusal reason.
-  Reuse runtime metadata and respect native borrowing and opaque-payload boundaries.
+## Phase 9. Saved execution positions and independent continuation copies
 
-Ready when: a contributor can understand, navigate and diagnose a complete example
-without decoding internal C names or consulting unrelated implementation files.
+Contracts: [continuations](spec/language/continuations.md),
+[return links](spec/implementation/runtime.md#return-links-and-resumption-positions).
 
-## 12. Finish acceptance and reproducibility
+- [ ] **T070 — Execute statement-boundary yield/resume.** Needs: T069. Save
+  exact structured positions separately from active return links and make yielded
+  instances available. Test repeated yields, nested immediate-caller return and
+  the distinction between busy Waiting and available Yielded.
+- [ ] **T071 — Complete restart and host yield policy.** Needs: T070. Restart
+  entry without resetting persistent body fields; resume without inputs/interface
+  reset. Test root completed/yielded/failed outcomes, explicit host resume/disposal
+  and diagnosed standard-launcher rejection of unhandled root yield.
+- [ ] **T072 — Copy continuation control state explicitly.** Needs: T050,
+  T071. Preserve allowed owned descendant positions for `%` copies and clear all
+  positions for ordinary copies. Test distinct identity requirements, whole-source
+  availability and absence of copied busy state, callers or refusal history in
+  scalar-owned trees. Membership-aware list/cursor continuation copies complete
+  in T084 after their storage and live traversal contracts are implemented.
+- [ ] **T073 — Integrate continuation failure and cleanup paths.** Needs: T072.
+  Reject native-stack capture, ensure failed contexts cannot resume and destroy
+  yielded state without executing its continuation. Exercise native resource
+  clone failures and mixed completed/yielded ownership trees.
+- [ ] **T074 — Accept resumable generated programs.** Needs: T073. Compile/run
+  custom-host and nested same-type continuation examples, including ordinary and
+  explicit independent copies. Verify source traces use the new active caller
+  rather than historical copied return connections.
 
-- [ ] Complete the specification's acceptance matrix at component, composition
-  and generated-C integration levels, with recorded formal arguments and test evidence.
-- [ ] Verify deterministic output, transitive dependency invalidation, Unicode paths,
-  collisions, allocation arithmetic, output failures and resource exhaustion.
-- [ ] Run the full build/tests, relevant ASan/UBSan and supported-toolchain checks;
-  confirm both mandatory entry inlining and permitted internal native calls.
-- [ ] Remove nonconforming mechanisms and obsolete descriptions; publish actual
-  conformance limitations, supported toolchain versions and reproducible commands.
+## Phase 10. Membership-aware typed lists and live traversal
 
-## Verification throughout the work
+Contracts: [lists](spec/language/lists.md),
+[foreach scope](spec/language/declarations.md#name-06).
 
-Run focused tests after each component and composition tests at its next handoff.
-Compile and run generated C for execution/ABI claims. Successful leaves clean their
-outputs; failures preserve debugging artifacts. Use `make`, `make test` and
-`make test-clean`, plus relevant individual suites described in the contributor guide.
-Documentation-only work requires link, structure and consistency checks rather
-than unrelated compiler test claims. Do not mark a task complete without evidence.
+- [ ] **T075 — Implement checked list membership records.** Needs: T037, T054.
+  Replace or adapt reusable order storage to contiguous membership identifiers
+  and stable record pools with current positions. Test duplicate reference
+  targets as distinct entries, membership generations and collection incarnations.
+- [ ] **T076 — Implement indexed selection and complete list copies.** Needs:
+  T065, T075. Check conversion/bounds/membership before target effects and preserve
+  exact owned/reference transfer rules. Integrate inferred list receivers and
+  list-owned clone boundaries deferred by the scalar execution slice. Test
+  stale/empty indices, fresh copied memberships, whole-list self no-op and
+  replacement invalidation.
+- [ ] **T077 — Implement list service acquisition and method frames.** Needs:
+  T066, T076. Hold owner/list protection across sibling methods/results, permit
+  only exact direct structural helper token borrowing and finalize ephemeral
+  result storage once. Test alias/callback reentry refusal and escaped stale views.
+- [ ] **T078 — Implement append and insert.** Needs: T077. Support omitted default
+  creation versus explicit owning clone or reference-handle copy. Reserve counters
+  and prepare before publication; test invalid positions, clone capability, busy
+  sources, allocation overflow/failure and unchanged destinations on refusal.
+- [ ] **T079 — Implement remove and clear.** Needs: T078. Preflight full affected
+  owned subtrees, retire memberships and release resources in specified order.
+  Test busy descendants, reference removal without destroying external targets,
+  atomic no-partial clear and terminal destruction failure.
+- [ ] **T080 — Implement swap and length.** Needs: T079. Preserve membership
+  identity through swap and construct length via the fixed `..integer` contract.
+  Test both method positions, representability, sequential service actions and
+  selected-result failures without obsolete retained outcome state.
+- [ ] **T081 — Implement live foreach selection and bindings.** Needs: T031,
+  T074, T080. Store one fixed lexical cursor/cell per instance, validate source
+  incarnation and use short acquisitions. Test empty bodies/lists, absent referents,
+  compatible reuse, no-shadow errors and busy live targets not silently skipped.
+- [ ] **T082 — Correct every active or suspended boundary on mutation.** Needs:
+  T081. Apply exact insert/remove/clear adjustments and unchanged swap boundaries
+  in each complete publication. Test nested same-list scans, insert at the gap,
+  append, remove/reinsert, clear/append, swap repeats/skips and O(K) cursor work.
+- [ ] **T083 — Enforce missing-membership guards and resume behavior.** Needs:
+  T082. Preserve origin associations, detach only as specified and validate active
+  loops outermost first after resume. Test removed current entries with live
+  external referents, nested reused bindings and collection replacement failure
+  before any resumed user statement.
+- [ ] **T084 — Copy and accept live traversal state.** Needs: T083. Map full
+  collection/membership/origin identities in `%` clones, preserve boundary values
+  and discard ordinary-copy control state. Verify removed-origin nonrevival,
+  membership/clone failure paths, candidate-potential bounds and complete compiled
+  mutation/traversal examples without snapshot arrays or hidden visited sets.
+
+## Phase 11. Coherent library contracts and explanatory examples
+
+Contracts: [library](spec/language/library.md),
+[acceptance](spec/implementation/tools-and-conformance.md#acceptance-matrix).
+
+- [ ] **T085 — Validate the scalar and canonical integer library.** Needs:
+  T069, T080. Publish actual paths/interfaces and literal/clone/truth/index
+  capabilities, including full supported length range for `..integer`. Test
+  malformed data and nominal typing without automatic numeric assumptions.
+- [ ] **T086 — Validate refusal and resource library interfaces.** Needs: T085.
+  Keep refusal reading ordinary/read-only and native resources governed by explicit
+  lifecycle/clone contracts. Compile realistic same-name modules and test expected
+  operation errors separately from context-ending technical failures.
+- [ ] **T087 — Standardize and test library compositions.** Needs: T084, T086.
+  Make parameter/result ordering predictable and remove obsolete list action APIs.
+  Integrate list-valued constant startup/cleanup with T052's context-local scalar
+  foundation. Compile real ownership/list/native combinations and document actual
+  capability limitations without parser-level domain operation names.
+- [ ] **T088 — Publish complete synchronous and continuation examples.** Needs:
+  T087. Supply reproducible modules for persistent state, self-reference,
+  constructor-owned methods, mutable list traversal and independent simulations.
+  Execute expected outputs/state changes and explain the governing contracts.
+- [ ] **T089 — Review usability through the examples.** Needs: T088. Improve
+  diagnostics, source navigation metadata and Doxygen explanations using concrete
+  failures and repeated workflows. Record proposed language changes as questions;
+  do not alter `spec/` or infer new semantics while improving implementation.
+
+## Phase 12. Explicit cooperative tasks and native events
+
+Contracts: [ASYNC-01–ASYNC-12](spec/language/async-and-parallelism.md).
+
+- [ ] **T090 — Define and implement the ordinary task-phase interface.** Needs:
+  T074, T087. Use typed Ready/Awaiting/Completed results through existing calls,
+  not new syntax or universal task casts. Test phase/yield consistency, first
+  entry versus later resume and explicit propagation of nested waiting.
+- [ ] **T091 — Implement visible scheduler ownership and enrollment.** Needs:
+  T090. Store task references/owners, run epochs and registration generations in
+  declared Ama state. Test restart/removal invalidation, nonwrapping exhaustion
+  and rejection of stale enrollments without hidden hooks on ordinary calls.
+- [ ] **T092 — Implement native submission and completion storage.** Needs:
+  T012, T091. Keep native buffers/resources and service/submission tokens separate
+  from Ama identities. Test synchronous completion during submission, token reuse
+  and worker/callback paths that queue records without entering Ama.
+- [ ] **T093 — Implement registration and readiness reconciliation.** Needs:
+  T092. Publish waits before arming, retain completion records, recheck before
+  awaiting and match full identities on import. Exhaust small interleavings for
+  completion before/after recheck, duplicate/late events and no lost wakeups.
+- [ ] **T094 — Implement unique FIFO ready membership.** Needs: T093. Coalesce
+  readiness and append newly ready/yielding tasks at the tail. Test observed
+  completion order, stable ordering within unordered batches and multiple typed
+  queues without hidden references or duplicate task steps.
+- [ ] **T095 — Implement bounded scheduling rounds and reactor waits.** Needs:
+  T094. Enforce finite positive step/import budgets and queue service bounds;
+  import before blocking and report quiescence. Test continuously replenished
+  work, wakeup races and event fairness without treating live foreach as a budget.
+- [ ] **T096 — Implement registration detachment and native record retirement.**
+  Needs: T095. Invalidate visible waits before release and retain native callback
+  state until callback completion/acknowledgment. Test task/context disposal,
+  restart and slot reuse while late callbacks remain possible.
+- [ ] **T097 — Implement cooperative cancellation terminal outcomes.** Needs:
+  T096. Wake awaiting tasks and commit exactly one cancellation/completion outcome
+  at the declared linearization point. Test races and late-result cleanup through
+  safe detachment without interrupting native entries or running continuations
+  during destruction.
+- [ ] **T098 — Enforce copy and failure boundaries for tasks.** Needs: T072,
+  T097. Require fresh enrollment of copied tasks and genuine independent native
+  operation clones or noncopyable resources. Test external operation sharing,
+  subscriber rights and context-wide technical failure with complete detachment.
+- [ ] **T099 — Accept the asynchronous library and supported host.** Needs:
+  T089, T098. Publish working event/task examples and declared library/host APIs.
+  Exercise reactor integration through the supported arrangement, cancellation,
+  finite scheduling bounds and all ASYNC acceptance races under native sanitizers.
+
+## Phase 13. Isolated parallel contexts and explicit messages
+
+Contracts: [PAR-01–PAR-08](spec/language/async-and-parallelism.md#parallelism-uses-isolated-execution-contexts).
+
+- [ ] **T100 — Audit context-local generated and native state.** Needs: T061,
+  T099. Verify pools/constants/control/errors are independent and native hooks,
+  constant lifecycle and linked dependencies are safe for concurrent contexts.
+  Test equal local identities and reject foreign host access; identify dependencies
+  requiring serialized access or separate-process execution.
+- [ ] **T101 — Execute two contexts concurrently.** Needs: T100. Share generated
+  code only, with one exclusive executor per context. Test independent startup,
+  slot reuse, failures and event delivery while another context runs; run supported
+  data-race tooling in addition to lifetime checks.
+- [ ] **T102 — Implement quiescent executor transfer.** Needs: T101. Publish
+  state across an explicit synchronization boundary with no live native borrow
+  or conflicting access. Test yield/resume transfer, nonreentrant rejection and
+  thread-affine resources that require a pinned executor.
+- [ ] **T103 — Implement typed message encoding and decoding.** Needs: T086,
+  T101. Validate version/schema/size before publishing independent received
+  values, excluding Ama identities/control state/native pointers. Test malformed
+  data, partial construction cleanup and technical decode failure.
+- [ ] **T104 — Implement bounded single-sender/single-receiver channels.** Needs:
+  T103. Enforce atomic whole-message acceptance, count/byte limits, FIFO and
+  explicit ownership transfer. Test full/rejected sends, capacity release on take
+  and no implied cross-channel order or application acknowledgment.
+- [ ] **T105 — Integrate channel waits and endpoint shutdown.** Needs: T097,
+  T104. Provide backpressure without withholding ready tasks; drain on sender
+  close and abort on receiver disposal. Test cancellation, pending events,
+  sender/receiver failure and native queue lifetime after context teardown.
+- [ ] **T106 — Accept isolated parallel execution and supervision.** Needs:
+  T102, T105. Run native-only worker and two-context messaging examples with
+  independent failure continuation and explicit supervisor policy. Verify all
+  PAR invariants and document process isolation for unsupported native concurrency.
+
+## Phase 14. Reusable exploration, debugging and relocation tools
+
+Contracts: [tools](spec/implementation/tools-and-conformance.md),
+[diagnostics](spec/implementation/diagnostics.md).
+
+- [ ] **T107 — Expose reusable editor analysis results.** Needs: T060, T089.
+  Reuse original source spans, parser/resolver and structured diagnostics for
+  highlighting, completion, definitions and type/signature display. Test incomplete
+  drafts and changed files without a second grammar, resolver or type system.
+- [ ] **T108 — Implement identity-aware rename.** Needs: T107. Plan edits from
+  resolved declarations/references, including qualified constants and scoped
+  foreach locals. Test collisions, preserved unrelated bytes and revalidation
+  before applying source changes.
+- [ ] **T109 — Expose explicit debugger inspection.** Needs: T084, T099, T106.
+  Inspect type, persistent/interface state, acquisition, saved positions, cursors,
+  refusal and task/context state through authorized metadata. Test no hidden native
+  payload access, mutable concurrent inspection or fabricated execution history.
+- [ ] **T110 — Build complete relocation discovery and preview.** Needs: T018,
+  T040, T107. Enumerate all configured active sources, including external importers
+  and unused modules, while keeping drafts opaque. Test exact destination, carried
+  roots, cross-root kind changes, collisions and orphan `name+/` preflight.
+- [ ] **T111 — Derive relocation identity and reference maps.** Needs: T110.
+  Compute complete physical/root/module mappings and resolved path-span edits.
+  Test injectivity and graph preservation across cycles, qualified constants,
+  unchanged logical identities and importers outside the moved directory.
+- [ ] **T112 — Validate staged relocation bytes and configuration.** Needs:
+  T111. Preserve all non-path bytes and opaque companion/assets; update only
+  documented project settings and invalidate generated outputs. Reparse and
+  reresolve staged active files; test line endings, comments/literals and drafts.
+- [ ] **T113 — Apply relocation as a recoverable transaction.** Needs: T112.
+  Require exclusive access and unchanged original file identities/bytes; stage
+  moves/importer/configuration edits across supported filesystems. Inject I/O
+  failures and verify exact rollback with originals retained until commit.
+- [ ] **T114 — Implement relocation recovery and reporting.** Needs: T113.
+  Persist commit/rollback state and recover idempotently after interruption. Test
+  incomplete rollback retains recovery data and reports affected paths; never
+  report success for a partly applied move or rewrite text twice.
+- [ ] **T115 — Accept user-facing tools through real projects.** Needs: T108,
+  T109, T114. Run editor/rename/debugger/relocation workflows against complete
+  projects and regenerate verified output afterward. Document exact scope,
+  preserved opaque files, unsupported editors and actual tool limitations.
+
+## Phase 15. Complete coverage, conformance and release evidence
+
+Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acceptance-matrix),
+[exact algorithms](spec/implementation/compiler.md#exact-algorithms-and-formal-justification).
+
+- [ ] **T116 — Close every code-file documentation and test gap.** Needs: T005,
+  T106, T115. Complete the inventory for compiler/runtime/library/tools and headers;
+  map every code file to meaningful behavioral or compile tests. Generate complete
+  Doxygen output and check every substantial component's contract/proof/evidence.
+- [ ] **T117 — Close all requirement and composition gaps.** Needs: T116.
+  Update T001's matrix for all 192 requirements and every acceptance row, with
+  exact commands and current evidence. Add missing independent leaf, parent and
+  generated-program cases; no unsupported feature can be marked complete.
+- [ ] **T118 — Verify deterministic and incremental product behavior.** Needs:
+  T117. Check repeated output, transitive/configuration/native dependency changes,
+  Unicode paths, collisions and source maps across clean/reused builds. Verify
+  generated files never overwrite handwritten inputs.
+- [ ] **T119 — Verify resource and cleanup boundaries.** Needs: T118. Exercise
+  arithmetic overflow, identity exhaustion, allocation/output failures, partial
+  construction, destructor errors, stale events and transaction recovery through
+  real composed paths. Confirm failures preserve every promised precommit effect.
+- [ ] **T120 — Run full supported-toolchain and sanitizer acceptance.** Needs:
+  T119. Run build, recursive unit/integration suites, relevant ASan/UBSan and
+  parallel race checks; verify machine-level entry inlining/stackless boundaries.
+  Record unsupported checks and leak-check limitations precisely.
+- [ ] **T121 — Publish reproducible examples and conformance report.** Needs:
+  T120. Document supported toolchains, library/native/host APIs, complete usage
+  commands and evidence-backed limitations. Rebuild example outputs and generated
+  documentation from a clean checkout; request permission for any needed spec change.
+- [ ] **T122 — Finish the implementation release checkpoint.** Needs: T121.
+  Remove obsolete mechanisms and conflicting derived descriptions, verify links
+  and complete clean build/test/documentation reproduction. Reconcile all task
+  statuses and commit the final acceptance evidence without claiming unverified
+  behavior or automatically publishing outside the repository.
+
+## Requirement coverage map
+
+This map routes each indexed requirement family to its implementation tasks.
+T001 and T117 maintain the finer requirement-to-file-to-test evidence matrix;
+this table is navigation, not a parallel semantic definition.
+
+| Canonical requirements | Main task range |
+|---|---|
+| CORE-01–CORE-05; ARCH-01–ARCH-06; TEST-01–TEST-08 | T001–T005 and the completion criteria; T116–T122 |
+| SRC-01–SRC-05; SYN-01–SYN-06; NAME-01–NAME-03; DEP-01–DEP-03 | T014–T029, T110–T114, T118 |
+| NAME-04, NAME-06; TYPE-01–TYPE-06; LIT-01–LIT-04; STATE-01–STATE-03 | T030–T040, T042–T045, T049, T063–T069, T081 |
+| CONST-01–CONST-05 | T034, T052, T065, T100 |
+| REF-01–REF-08; COPY-01–COPY-07 | T032–T033, T039, T046–T054, T072–T084 |
+| CALL-01–CALL-09; FLOW-01–FLOW-04 | T025–T027, T035–T044, T057–T069 |
+| FLOW-05; LIST-01–LIST-13 | T031, T037–T044, T075–T087 |
+| CONT-01–CONT-06 | T039, T070–T074, T083–T084, T098 |
+| NAME-05; CABI-01–CABI-06; PROTO-01–PROTO-11; LIFE-01–LIFE-05 | T008–T013, T028–T055, T058, T072–T073, T085–T086, T097–T105 |
+| ERROR-01–ERROR-06; DEBUG-01–DEBUG-04 | T007, T019–T020, T059, T067, T098, T109, T119 |
+| RT-01–RT-16; GEN-01–GEN-04; STACK-01–STACK-04; COMP-01–COMP-05 | T006–T013, T041–T074, T100–T102, T118–T120 |
+| LIB-01–LIB-02 | T085–T089, T099, T106 |
+| ASYNC-01–ASYNC-12 | T090–T099 |
+| PAR-01–PAR-08 | T006, T013, T052, T061, T100–T106 |
+| TOOL-01–TOOL-04 | T110–T115 |
+
+## Useful verification commands
+
+Use focused suites for the changed component, then its real parent composition.
+The normal project entry points remain `make`, `make test`,
+`make -C tests/unit/driver/request` and `make test-clean`; exact new leaf paths
+belong in the evidence for their owning tasks. Successful leaves clean outputs;
+failed leaves preserve them for diagnosis. Run broad checks when required by the
+changed contracts or the release phase, rather than repeatedly rebuilding
+unrelated components after a documentation-only edit.
+
+The plan is complete when every current requirement has implementation,
+independent and composed acceptance evidence, readable generated documentation
+and a recorded successful task commit. Checkboxes alone are never that evidence.

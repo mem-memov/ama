@@ -1,8 +1,8 @@
 # Native value ABI
 
 This guide describes the native value contract derived from
-[TECHNICAL_SPECIFICATION.md](TECHNICAL_SPECIFICATION.md), the source of truth.
-The [grammar](EBNF.md) defines source declarations and `.abi` records;
+[Product specification](spec/README.md), the source of truth.
+The [grammar](spec/grammar.md) defines source declarations and `.abi` records;
 [TODO.md](TODO.md) tracks implementation. This contract does not certify that
 all implementation work is complete.
 

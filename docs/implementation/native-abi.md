@@ -3,7 +3,7 @@
 This fixes engineering representations for section 2 of [TODO.md](../../TODO.md),
 under CABI-01 through CABI-05, PROTO-01 through PROTO-11, LIFE-01 through LIFE-05,
 STACK-01 through STACK-04 and ERROR-03 through ERROR-06. It does not change
-[the specification](../../TECHNICAL_SPECIFICATION.md) or claim frontend support.
+[the specification](../../spec/README.md) or claim frontend support.
 
 ## Supported backend toolchain
 

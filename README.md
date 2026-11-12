@@ -5,7 +5,7 @@ explicit state. A module defines behavior and a type; instances own state, and
 references identify instances without owning them. Domain capabilities belong in
 libraries rather than an expanding collection of language primitives.
 
-[TECHNICAL_SPECIFICATION.md](TECHNICAL_SPECIFICATION.md) is the source of truth.
+[The product specification](spec/README.md) is the source of truth.
 The implementation is being rebuilt from this specification. `./ama --check ROOT
 .module` validates dependencies, syntax, types and typed plans without emitting or
 compiling C. `./ama --status ROOT .module` reports source activation without
@@ -20,8 +20,8 @@ C/assert tests. Check-only success does not validate handwritten C bodies.
 
 ## Reading the project
 
-- [Grammar](EBNF.md): source layout, declarations, calls and control flow.
-- [Technical specification](TECHNICAL_SPECIFICATION.md): terminology, architecture,
+- [Grammar](spec/grammar.md): source layout, declarations, calls and control flow.
+- [Product specification](spec/README.md): terminology, architecture,
   runtime, native contracts, translation scheme and acceptance requirements.
 - [Native value ABI](VALUE_ABI.md): values, capabilities, lifetimes and errors.
 - [Contributor guide](CONTRIBUTORS.md): readable components, formatting and tests.
@@ -46,7 +46,7 @@ to the declared type. The following paths illustrate library types:
 ```text
 @!
 quantity
-.std.integer
+..integer
  |12
 item
 .shop.item
