@@ -61,7 +61,8 @@ then checks activity. Running/Waiting/Acquired return Busy; Free is stale; Faile
 cannot resume. Ready/Yielded permit entry and retained read, but only Yielded
 permits resume. Invalid modes or inconsistent available-state metadata report
 InvalidState. A different instance of the same type is checked independently.
-These are pure eligibility checks; actual acquisition/transfer/release is later work.
+These are pure eligibility checks; actual acquisition, transfer and release belong
+to the [program transition layer](runtime-components.md#program-transitions-and-diagnostics).
 
 ## Refusal and native service views
 
@@ -83,8 +84,9 @@ storage; failed preflight leaves output unchanged. It builds zero service state,
 optionally copies only the resume position, then selects Ready or Yielded.
 Caller links, current operation and refusal history remain zero. Identity and
 payload/lifetime are outside this operation and cannot be copied accidentally.
-This is not a complete ownership-tree clone: whole-source availability, ancestry,
-fixups and publication are enforced by later copy integration.
+This is not a complete ownership-tree clone: the retained
+[clone preparation](clone-preparation.md) layer enforces whole-source availability,
+ancestry, fixups and publication.
 
 ## Source maps and host boundary
 
@@ -101,7 +103,9 @@ root and current identities per host runtime. Failed execution terminates, yield
 returns Idle without a caller connection, and a host explicitly resumes or disposes.
 The standard launcher must diagnose an unhandled yield, not spin or succeed.
 The [generated host boundary](continuations.md) implements those transitions
-using `AmaHostResult`, the current program identity and the host root identity.
+using `AmaHostResult`, the current program identity and the host root identity. These are local handles;
+structural validation does not authenticate context ownership, and independent
+checked context/token boundaries remain T006 and the embedding tasks.
 The standalone launcher diagnoses unhandled root yield and disposes the root.
 
 ## Justification, effects and evidence
@@ -123,8 +127,9 @@ reinterpreted as a tracked relationship.
 Run `make -C tests/unit/native/metadata/control`. Eight cases cover handle/type/
 liveness/generation checks, exhaustion and no revival, busy states and distinct
 same-type instances, root/ordinary return links, caller snapshot independence,
-ordinary/continuation service copies, resume refusal and host outcomes. The model
-exercises metadata operations only and is not presented as a working runtime.
+ordinary/continuation service copies, resume refusal and host outcomes. This leaf exercises metadata operations only; the
+[runtime composition evidence](runtime-components.md#evidence) separately tests
+its pool and generated-execution consumers.
 
 The metadata suite and symbol checker also pass ASan/UBSan with leak detection
 explicitly disabled for the same ptrace limitation described in the lifecycle

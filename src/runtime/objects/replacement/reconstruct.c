@@ -1,6 +1,14 @@
+/**
+ * @file
+ * @brief Prepare the selected constructor in the destination spare bank before cleanup.
+ *
+ * [LIFE-04](../../../../spec/implementation/native-interface.md#life-04)
+ * Preparation failure preserves the old value; destructive failure terminates the world. Final self-reference construction remains T050.
+ */
 #include <string.h>
 #include "runtime/objects/internal.h"
 
+/** Within an existing operation, select direct clone replacement or one default/literal recipe in the inactive bank. No default-then-overwrite construction and no payload relocation. */
 AmaStatus ama_object_reconstruct_in(AmaObjectOperation *operation, AmaHandle destination, const AmaRecipe *recipe) {
     if (recipe != NULL && recipe->constructor == AMA_CONSTRUCT_CLONE && recipe->source.generation != 0) {
         return ama_object_replace_in(operation, destination, recipe->source, recipe->continuation);

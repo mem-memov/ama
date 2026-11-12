@@ -1,7 +1,15 @@
+/**
+ * @file
+ * @brief Construct one aligned shared native payload with exactly one selected hook.
+ *
+ * [CONST-02](../../../../spec/language/declarations.md#const-02)
+ * Record the allocation before invoking native code; only a successful hook creates a destructor credit.
+ */
 #include <stdint.h>
 #include <string.h>
 #include "internal.h"
 
+/** Record an aligned allocation, then invoke exactly clone, literal or default hook. Only success creates native_live; failed constructor cleanup remains the hook contract. */
 AmaStatus ama_constant_payload(AmaProgram *program, AmaConstantBuildWork *work) {
     AmaObjectType *type = work->value->type->object;
     program->world->construction_operation = work->operation;

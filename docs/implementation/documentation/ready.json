@@ -6508,6 +6508,427 @@
       }
     ]
   },
+  "src/runtime/assembly.h": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Assemble retained runtime operations in the single generated project translation unit.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_initializes_shared_values_outside_pools_before_root_creation",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_once_in_field_order_and_clones_completed_private_fields",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_clones_shared_values_into_owned_fields_without_pool_defaults",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_never_creates_the_root_after_constant_failure",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_compound_constants_using_earlier_fields_and_reverse_cleanup",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_keeps_scalar_list_and_indexed_self_copies_checked_in_generated_execution",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_diagnoses_unicode_execution_paths_and_failures_before_root_entry",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_failure_with_no_available_runtime_heap_or_root_frame",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_exposes_explicit_host_resume_restart_disposal_and_terminal_failure",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_executes_independent_continuation_copies_and_clears_ordinary_positions",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_reports_the_new_caller_after_a_yield_releases_the_original_link",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      }
+    ]
+  },
+  "src/runtime/lifecycle/cleanup.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Consume the constructed resource prefix exactly once during cleanup.",
+    "tests": [
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_selects_exactly_one_constructor_and_destroys_native_before_reverse_children",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_cleans_every_constructed_prefix_without_destroying_failed_payloads",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_every_combination_of_native_errors",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_transitions_and_never_cleans_children_before_native",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_finalizes_ama_only_storage_without_a_native_destroy_request",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      }
+    ]
+  },
+  "src/runtime/lifecycle/construction.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Track the one selected constructor and successfully completed child prefix.",
+    "tests": [
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_selects_exactly_one_constructor_and_destroys_native_before_reverse_children",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_cleans_every_constructed_prefix_without_destroying_failed_payloads",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_every_combination_of_native_errors",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_transitions_and_never_cleans_children_before_native",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_finalizes_ama_only_storage_without_a_native_destroy_request",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      }
+    ]
+  },
+  "src/runtime/lifecycle/errors.h": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Preserve the primary failure while cleanup reports secondary failures.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_selects_exactly_one_constructor_and_destroys_native_before_reverse_children",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_cleans_every_constructed_prefix_without_destroying_failed_payloads",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_every_combination_of_native_errors",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_transitions_and_never_cleans_children_before_native",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_finalizes_ama_only_storage_without_a_native_destroy_request",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      }
+    ]
+  },
+  "src/runtime/lifecycle/lifetime.h": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Declare the lifecycle ledger independently of payload and execution activity.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_selects_exactly_one_constructor_and_destroys_native_before_reverse_children",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_cleans_every_constructed_prefix_without_destroying_failed_payloads",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_every_combination_of_native_errors",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_transitions_and_never_cleans_children_before_native",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_finalizes_ama_only_storage_without_a_native_destroy_request",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      }
+    ]
+  },
+  "src/runtime/lists/capacity.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Grow contiguous handle storage without relocating instance payloads.",
+    "tests": [
+      {
+        "case": "it_grows_geometrically_without_moving_states_and_preserves_data_on_failure",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preserves_order_and_identity_and_invalidates_only_removed_owners",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preflights_all_clear_descendants_and_does_not_acquire_reference_targets",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preserves_contents_after_every_default_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_treats_destructor_failure_as_terminal_and_completes_clear_cleanup",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_clones_inserted_owned_state_and_remaps_internal_references",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_rejects_reentrant_storage_work_without_mutating_or_allocating",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      }
+    ]
+  },
   "src/runtime/lists/list.h": {
     "contract": "docs/implementation/lists.md",
     "purpose": "Check handle-vector insertion/removal and lifecycle without an action dispatcher.",
@@ -6525,6 +6946,144 @@
       "-fsyntax-only",
       "-"
     ],
+    "tests": [
+      {
+        "case": "it_grows_geometrically_without_moving_states_and_preserves_data_on_failure",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preserves_order_and_identity_and_invalidates_only_removed_owners",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preflights_all_clear_descendants_and_does_not_acquire_reference_targets",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preserves_contents_after_every_default_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_treats_destructor_failure_as_terminal_and_completes_clear_cleanup",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_clones_inserted_owned_state_and_remaps_internal_references",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_rejects_reentrant_storage_work_without_mutating_or_allocating",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      }
+    ]
+  },
+  "src/runtime/lists/mutation/insert.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Prepare one owned value or reference before inserting its handle.",
+    "tests": [
+      {
+        "case": "it_grows_geometrically_without_moving_states_and_preserves_data_on_failure",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preserves_order_and_identity_and_invalidates_only_removed_owners",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preflights_all_clear_descendants_and_does_not_acquire_reference_targets",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preserves_contents_after_every_default_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_treats_destructor_failure_as_terminal_and_completes_clear_cleanup",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_clones_inserted_owned_state_and_remaps_internal_references",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_rejects_reentrant_storage_work_without_mutating_or_allocating",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      }
+    ]
+  },
+  "src/runtime/lists/mutation/internal.h": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Declare guarded list-storage insertion and removal phase inputs.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_grows_geometrically_without_moving_states_and_preserves_data_on_failure",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preserves_order_and_identity_and_invalidates_only_removed_owners",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preflights_all_clear_descendants_and_does_not_acquire_reference_targets",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preserves_contents_after_every_default_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_treats_destructor_failure_as_terminal_and_completes_clear_cleanup",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_clones_inserted_owned_state_and_remaps_internal_references",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_rejects_reentrant_storage_work_without_mutating_or_allocating",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      }
+    ]
+  },
+  "src/runtime/lists/mutation/remove.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Destroy removed owners and compact the remaining handle sequence.",
     "tests": [
       {
         "case": "it_grows_geometrically_without_moving_states_and_preserves_data_on_failure",
@@ -6601,6 +7160,1298 @@
         "case": "it_rejects_reentrant_storage_work_without_mutating_or_allocating",
         "command": "make -C tests/unit/runtime/lists",
         "source": "tests/unit/runtime/lists/main.c"
+      }
+    ]
+  },
+  "src/runtime/metadata/access.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Check entry, resume and read eligibility from service metadata.",
+    "tests": [
+      {
+        "case": "it_checks_type_liveness_slot_and_generation_before_access",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_retires_exhausted_generations_without_wrap_or_resurrection",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_refuses_busy_instances_but_allows_another_instance_of_the_same_type",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_keeps_return_connections_and_resume_positions_separate",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_preserves_caller_refusals_and_exposes_only_a_value_snapshot",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_copies_only_permitted_continuation_state_into_fresh_service_contexts",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_requires_a_saved_position_for_resume_and_never_resumes_failed_execution",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_all_host_outcomes_and_initialization_failure",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      }
+    ]
+  },
+  "src/runtime/metadata/clone.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Copy only explicitly permitted available-instance control state.",
+    "tests": [
+      {
+        "case": "it_checks_type_liveness_slot_and_generation_before_access",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_retires_exhausted_generations_without_wrap_or_resurrection",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_refuses_busy_instances_but_allows_another_instance_of_the_same_type",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_keeps_return_connections_and_resume_positions_separate",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_preserves_caller_refusals_and_exposes_only_a_value_snapshot",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_copies_only_permitted_continuation_state_into_fresh_service_contexts",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_requires_a_saved_position_for_resume_and_never_resumes_failed_execution",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_all_host_outcomes_and_initialization_failure",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      }
+    ]
+  },
+  "src/runtime/metadata/host.h": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Declare structural outcomes for the retained generated host boundary.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_checks_type_liveness_slot_and_generation_before_access",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_retires_exhausted_generations_without_wrap_or_resurrection",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_refuses_busy_instances_but_allows_another_instance_of_the_same_type",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_keeps_return_connections_and_resume_positions_separate",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_preserves_caller_refusals_and_exposes_only_a_value_snapshot",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_copies_only_permitted_continuation_state_into_fresh_service_contexts",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_requires_a_saved_position_for_resume_and_never_resumes_failed_execution",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_all_host_outcomes_and_initialization_failure",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      }
+    ]
+  },
+  "src/runtime/metadata/identity.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Validate local slot identity and permanently retire exhausted generations.",
+    "tests": [
+      {
+        "case": "it_checks_type_liveness_slot_and_generation_before_access",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_retires_exhausted_generations_without_wrap_or_resurrection",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_refuses_busy_instances_but_allows_another_instance_of_the_same_type",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_keeps_return_connections_and_resume_positions_separate",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_preserves_caller_refusals_and_exposes_only_a_value_snapshot",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_copies_only_permitted_continuation_state_into_fresh_service_contexts",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_requires_a_saved_position_for_resume_and_never_resumes_failed_execution",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_all_host_outcomes_and_initialization_failure",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      }
+    ]
+  },
+  "src/runtime/metadata/identity.h": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Declare exact context-local nominal slot and generation identities.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_checks_type_liveness_slot_and_generation_before_access",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_retires_exhausted_generations_without_wrap_or_resurrection",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_refuses_busy_instances_but_allows_another_instance_of_the_same_type",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_keeps_return_connections_and_resume_positions_separate",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_preserves_caller_refusals_and_exposes_only_a_value_snapshot",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_copies_only_permitted_continuation_state_into_fresh_service_contexts",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_requires_a_saved_position_for_resume_and_never_resumes_failed_execution",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_all_host_outcomes_and_initialization_failure",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      }
+    ]
+  },
+  "src/runtime/metadata/instance.h": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Combine published identity, lifecycle and service eligibility checks.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_checks_type_liveness_slot_and_generation_before_access",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_retires_exhausted_generations_without_wrap_or_resurrection",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_refuses_busy_instances_but_allows_another_instance_of_the_same_type",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_keeps_return_connections_and_resume_positions_separate",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_preserves_caller_refusals_and_exposes_only_a_value_snapshot",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_copies_only_permitted_continuation_state_into_fresh_service_contexts",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_requires_a_saved_position_for_resume_and_never_resumes_failed_execution",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_all_host_outcomes_and_initialization_failure",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      }
+    ]
+  },
+  "src/runtime/metadata/refusal.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Record explicit acquisition refusals and expose immutable native snapshots.",
+    "tests": [
+      {
+        "case": "it_checks_type_liveness_slot_and_generation_before_access",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_retires_exhausted_generations_without_wrap_or_resurrection",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_refuses_busy_instances_but_allows_another_instance_of_the_same_type",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_keeps_return_connections_and_resume_positions_separate",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_preserves_caller_refusals_and_exposes_only_a_value_snapshot",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_copies_only_permitted_continuation_state_into_fresh_service_contexts",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_requires_a_saved_position_for_resume_and_never_resumes_failed_execution",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_all_host_outcomes_and_initialization_failure",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      }
+    ]
+  },
+  "src/runtime/metadata/runtime.h": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Declare host phase and root/current local identities without a C activation stack.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_checks_type_liveness_slot_and_generation_before_access",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_retires_exhausted_generations_without_wrap_or_resurrection",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_refuses_busy_instances_but_allows_another_instance_of_the_same_type",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_keeps_return_connections_and_resume_positions_separate",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_preserves_caller_refusals_and_exposes_only_a_value_snapshot",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_copies_only_permitted_continuation_state_into_fresh_service_contexts",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_requires_a_saved_position_for_resume_and_never_resumes_failed_execution",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_all_host_outcomes_and_initialization_failure",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      }
+    ]
+  },
+  "src/runtime/metadata/service.h": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Separate transient return connections from saved resume positions and refusal history.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_checks_type_liveness_slot_and_generation_before_access",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_retires_exhausted_generations_without_wrap_or_resurrection",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_refuses_busy_instances_but_allows_another_instance_of_the_same_type",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_keeps_return_connections_and_resume_positions_separate",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_preserves_caller_refusals_and_exposes_only_a_value_snapshot",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_copies_only_permitted_continuation_state_into_fresh_service_contexts",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_requires_a_saved_position_for_resume_and_never_resumes_failed_execution",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_all_host_outcomes_and_initialization_failure",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      }
+    ]
+  },
+  "src/runtime/metadata/source.h": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Declare immutable generated source locations using bounded UTF-8 byte views.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_checks_type_liveness_slot_and_generation_before_access",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_retires_exhausted_generations_without_wrap_or_resurrection",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_refuses_busy_instances_but_allows_another_instance_of_the_same_type",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_keeps_return_connections_and_resume_positions_separate",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_preserves_caller_refusals_and_exposes_only_a_value_snapshot",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_copies_only_permitted_continuation_state_into_fresh_service_contexts",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_requires_a_saved_position_for_resume_and_never_resumes_failed_execution",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_all_host_outcomes_and_initialization_failure",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/access/capability.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Check clone capability over the exact reachable declared ownership graph.",
+    "tests": [
+      {
+        "case": "it_treats_runtime_identity_self_assignment_as_a_noop_but_rejects_self_continuation_copy",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_rejects_ancestor_descendant_copy_in_both_directions_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_preflights_every_source_and_destination_node_before_hooks_or_destruction",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_finalizes_a_failed_nested_replacement_and_active_links_without_emergency_allocation",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_leaves_a_delete_unchanged_on_every_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_refuses_native_reentry_while_the_complete_source_tree_is_protected",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_reuses_its_own_authorized_source_protection_across_nested_initializer_boundaries",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_checks_owned_list_element_capability_even_when_the_list_is_empty",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_validates_empty_stale_and_wrong_type_copy_sources_before_capability_checks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_old_destination_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/access/overlap.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Reject overlapping ownership boundaries before copy preparation.",
+    "tests": [
+      {
+        "case": "it_treats_runtime_identity_self_assignment_as_a_noop_but_rejects_self_continuation_copy",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_rejects_ancestor_descendant_copy_in_both_directions_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_preflights_every_source_and_destination_node_before_hooks_or_destruction",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_finalizes_a_failed_nested_replacement_and_active_links_without_emergency_allocation",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_leaves_a_delete_unchanged_on_every_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_refuses_native_reentry_while_the_complete_source_tree_is_protected",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_reuses_its_own_authorized_source_protection_across_nested_initializer_boundaries",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_checks_owned_list_element_capability_even_when_the_list_is_empty",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_validates_empty_stale_and_wrong_type_copy_sources_before_capability_checks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_old_destination_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/access/source.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Resolve public sources or completed private work in the same operation.",
+    "tests": [
+      {
+        "case": "it_treats_runtime_identity_self_assignment_as_a_noop_but_rejects_self_continuation_copy",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_rejects_ancestor_descendant_copy_in_both_directions_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_preflights_every_source_and_destination_node_before_hooks_or_destruction",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_finalizes_a_failed_nested_replacement_and_active_links_without_emergency_allocation",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_leaves_a_delete_unchanged_on_every_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_refuses_native_reentry_while_the_complete_source_tree_is_protected",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_reuses_its_own_authorized_source_protection_across_nested_initializer_boundaries",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_checks_owned_list_element_capability_even_when_the_list_is_empty",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_validates_empty_stale_and_wrong_type_copy_sources_before_capability_checks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_old_destination_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/access/tree.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Protect complete owned trees before any clone or destructive native effect.",
+    "tests": [
+      {
+        "case": "it_treats_runtime_identity_self_assignment_as_a_noop_but_rejects_self_continuation_copy",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_rejects_ancestor_descendant_copy_in_both_directions_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_preflights_every_source_and_destination_node_before_hooks_or_destruction",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_finalizes_a_failed_nested_replacement_and_active_links_without_emergency_allocation",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_leaves_a_delete_unchanged_on_every_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_refuses_native_reentry_while_the_complete_source_tree_is_protected",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_reuses_its_own_authorized_source_protection_across_nested_initializer_boundaries",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_checks_owned_list_element_capability_even_when_the_list_is_empty",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_validates_empty_stale_and_wrong_type_copy_sources_before_capability_checks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_old_destination_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/cleanup/destroy.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Compose protected normal destruction and terminal-world cleanup.",
+    "tests": [
+      {
+        "case": "it_treats_runtime_identity_self_assignment_as_a_noop_but_rejects_self_continuation_copy",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_rejects_ancestor_descendant_copy_in_both_directions_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_preflights_every_source_and_destination_node_before_hooks_or_destruction",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_finalizes_a_failed_nested_replacement_and_active_links_without_emergency_allocation",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_leaves_a_delete_unchanged_on_every_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_refuses_native_reentry_while_the_complete_source_tree_is_protected",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_reuses_its_own_authorized_source_protection_across_nested_initializer_boundaries",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_checks_owned_list_element_capability_even_when_the_list_is_empty",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_validates_empty_stale_and_wrong_type_copy_sources_before_capability_checks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_old_destination_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/cleanup/terminate.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Clear active links across a terminal owned tree without allocation.",
+    "tests": [
+      {
+        "case": "it_treats_runtime_identity_self_assignment_as_a_noop_but_rejects_self_continuation_copy",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_rejects_ancestor_descendant_copy_in_both_directions_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_preflights_every_source_and_destination_node_before_hooks_or_destruction",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_finalizes_a_failed_nested_replacement_and_active_links_without_emergency_allocation",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_leaves_a_delete_unchanged_on_every_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_refuses_native_reentry_while_the_complete_source_tree_is_protected",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_reuses_its_own_authorized_source_protection_across_nested_initializer_boundaries",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_checks_owned_list_element_capability_even_when_the_list_is_empty",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_validates_empty_stale_and_wrong_type_copy_sources_before_capability_checks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_old_destination_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/cleanup/tree.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Finalize initialized resources and release owned slots iteratively.",
+    "tests": [
+      {
+        "case": "it_treats_runtime_identity_self_assignment_as_a_noop_but_rejects_self_continuation_copy",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_rejects_ancestor_descendant_copy_in_both_directions_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_preflights_every_source_and_destination_node_before_hooks_or_destruction",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_finalizes_a_failed_nested_replacement_and_active_links_without_emergency_allocation",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_leaves_a_delete_unchanged_on_every_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_refuses_native_reentry_while_the_complete_source_tree_is_protected",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_reuses_its_own_authorized_source_protection_across_nested_initializer_boundaries",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_checks_owned_list_element_capability_even_when_the_list_is_empty",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_validates_empty_stale_and_wrong_type_copy_sources_before_capability_checks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_old_destination_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
       }
     ]
   },
@@ -7876,6 +9727,1245 @@
       }
     ]
   },
+  "src/runtime/objects/internal.h": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Declare private construction, protection, copy and cleanup phase ownership.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_treats_runtime_identity_self_assignment_as_a_noop_but_rejects_self_continuation_copy",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_rejects_ancestor_descendant_copy_in_both_directions_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_preflights_every_source_and_destination_node_before_hooks_or_destruction",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_finalizes_a_failed_nested_replacement_and_active_links_without_emergency_allocation",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_leaves_a_delete_unchanged_on_every_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_refuses_native_reentry_while_the_complete_source_tree_is_protected",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_reuses_its_own_authorized_source_protection_across_nested_initializer_boundaries",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_checks_owned_list_element_capability_even_when_the_list_is_empty",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_validates_empty_stale_and_wrong_type_copy_sources_before_capability_checks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_old_destination_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_distinguishes_unreserved_failure_from_registered_partial_work",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_keeps_child_ownership_and_prefix_cleanup_explicit",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_publishes_completed_state_without_moving_payloads",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_rejects_unrepresentable_lists_and_wrong_reference_types_before_payload",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_preserves_explicit_continuations_and_fixups_through_publication",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_remaps_root_ancestor_forward_and_cyclic_references_but_preserves_external_targets",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_copies_saved_positions_only_in_explicit_continuation_mode",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_busy_descendants_and_missing_clone_capabilities_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_the_source_and_releases_each_failed_clone_prefix",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_uses_independent_clone_contexts_for_repeated_source_initializers",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_mixed_positions_in_owned_lists_without_resuming_the_root",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_every_busy_descendant_before_continuation_clone_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/model/fields.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Interpret validated field descriptors and initialized owned-child positions.",
+    "tests": [
+      {
+        "case": "it_treats_runtime_identity_self_assignment_as_a_noop_but_rejects_self_continuation_copy",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_rejects_ancestor_descendant_copy_in_both_directions_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_preflights_every_source_and_destination_node_before_hooks_or_destruction",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_finalizes_a_failed_nested_replacement_and_active_links_without_emergency_allocation",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_leaves_a_delete_unchanged_on_every_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_refuses_native_reentry_while_the_complete_source_tree_is_protected",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_reuses_its_own_authorized_source_protection_across_nested_initializer_boundaries",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_checks_owned_list_element_capability_even_when_the_list_is_empty",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_validates_empty_stale_and_wrong_type_copy_sources_before_capability_checks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_old_destination_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_distinguishes_unreserved_failure_from_registered_partial_work",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_keeps_child_ownership_and_prefix_cleanup_explicit",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_publishes_completed_state_without_moving_payloads",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_rejects_unrepresentable_lists_and_wrong_reference_types_before_payload",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_preserves_explicit_continuations_and_fixups_through_publication",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_remaps_root_ancestor_forward_and_cyclic_references_but_preserves_external_targets",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_copies_saved_positions_only_in_explicit_continuation_mode",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_busy_descendants_and_missing_clone_capabilities_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_the_source_and_releases_each_failed_clone_prefix",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_uses_independent_clone_contexts_for_repeated_source_initializers",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_mixed_positions_in_owned_lists_without_resuming_the_root",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_every_busy_descendant_before_continuation_clone_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/model/types.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Validate typed payload layouts and resolve exact registered object types.",
+    "tests": [
+      {
+        "case": "it_treats_runtime_identity_self_assignment_as_a_noop_but_rejects_self_continuation_copy",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_rejects_ancestor_descendant_copy_in_both_directions_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_preflights_every_source_and_destination_node_before_hooks_or_destruction",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_finalizes_a_failed_nested_replacement_and_active_links_without_emergency_allocation",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_leaves_a_delete_unchanged_on_every_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_refuses_native_reentry_while_the_complete_source_tree_is_protected",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_reuses_its_own_authorized_source_protection_across_nested_initializer_boundaries",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_checks_owned_list_element_capability_even_when_the_list_is_empty",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_validates_empty_stale_and_wrong_type_copy_sources_before_capability_checks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_old_destination_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/objects.h": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Expose synchronous ownership and lifecycle operations over stable typed pools.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_treats_runtime_identity_self_assignment_as_a_noop_but_rejects_self_continuation_copy",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_rejects_ancestor_descendant_copy_in_both_directions_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_preflights_every_source_and_destination_node_before_hooks_or_destruction",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_finalizes_a_failed_nested_replacement_and_active_links_without_emergency_allocation",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_leaves_a_delete_unchanged_on_every_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_refuses_native_reentry_while_the_complete_source_tree_is_protected",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_reuses_its_own_authorized_source_protection_across_nested_initializer_boundaries",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_checks_owned_list_element_capability_even_when_the_list_is_empty",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_validates_empty_stale_and_wrong_type_copy_sources_before_capability_checks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_old_destination_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_distinguishes_unreserved_failure_from_registered_partial_work",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_keeps_child_ownership_and_prefix_cleanup_explicit",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_publishes_completed_state_without_moving_payloads",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_rejects_unrepresentable_lists_and_wrong_reference_types_before_payload",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_preserves_explicit_continuations_and_fixups_through_publication",
+        "command": "make -C tests/unit/runtime/objects/construction",
+        "source": "tests/unit/runtime/objects/construction/main.c"
+      },
+      {
+        "case": "it_remaps_root_ancestor_forward_and_cyclic_references_but_preserves_external_targets",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_copies_saved_positions_only_in_explicit_continuation_mode",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_busy_descendants_and_missing_clone_capabilities_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_the_source_and_releases_each_failed_clone_prefix",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_uses_independent_clone_contexts_for_repeated_source_initializers",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_preserves_mixed_positions_in_owned_lists_without_resuming_the_root",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_refuses_every_busy_descendant_before_continuation_clone_hooks",
+        "command": "make -C tests/unit/runtime/objects/clone",
+        "source": "tests/unit/runtime/objects/clone/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/replacement/reconstruct.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Prepare the selected constructor in the destination spare bank before cleanup.",
+    "tests": [
+      {
+        "case": "it_treats_runtime_identity_self_assignment_as_a_noop_but_rejects_self_continuation_copy",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_rejects_ancestor_descendant_copy_in_both_directions_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_preflights_every_source_and_destination_node_before_hooks_or_destruction",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_finalizes_a_failed_nested_replacement_and_active_links_without_emergency_allocation",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_leaves_a_delete_unchanged_on_every_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_refuses_native_reentry_while_the_complete_source_tree_is_protected",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_reuses_its_own_authorized_source_protection_across_nested_initializer_boundaries",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_checks_owned_list_element_capability_even_when_the_list_is_empty",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_validates_empty_stale_and_wrong_type_copy_sources_before_capability_checks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_old_destination_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/replacement/replace.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Commit a fully prepared replacement while preserving root identity and native addresses.",
+    "tests": [
+      {
+        "case": "it_treats_runtime_identity_self_assignment_as_a_noop_but_rejects_self_continuation_copy",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_rejects_ancestor_descendant_copy_in_both_directions_before_native_hooks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_preflights_every_source_and_destination_node_before_hooks_or_destruction",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_finalizes_a_failed_nested_replacement_and_active_links_without_emergency_allocation",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_leaves_a_delete_unchanged_on_every_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_refuses_native_reentry_while_the_complete_source_tree_is_protected",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_reuses_its_own_authorized_source_protection_across_nested_initializer_boundaries",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_checks_owned_list_element_capability_even_when_the_list_is_empty",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_validates_empty_stale_and_wrong_type_copy_sources_before_capability_checks",
+        "command": "make -C tests/unit/runtime/objects/access",
+        "source": "tests/unit/runtime/objects/access/main.c"
+      },
+      {
+        "case": "it_prepares_in_place_without_moving_native_resources_and_preserves_root_identity",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_old_destination_on_every_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_cleans_old_and_prepared_resources_once_when_destructive_commit_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/replacement",
+        "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_uses_one_selected_constructor_without_default_then_overwrite",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_errors_and_marks_the_world_terminal",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_every_construction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_the_construction_error_when_secondary_cleanup_also_fails",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      }
+    ]
+  },
+  "src/runtime/pool/growth.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Append stable aligned slot blocks after checked directory allocation.",
+    "tests": [
+      {
+        "case": "it_keeps_payload_addresses_stable_through_directory_growth",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_never_reissues_an_exhausted_slot_or_accepts_stale_empty_and_wrong_type_handles",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_preserves_pool_validity_when_each_growth_allocation_fails",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_preserves_extended_c_alignment_through_growth_replacement_and_reclamation",
+        "command": "make -C tests/unit/runtime/alignment",
+        "source": "tests/unit/runtime/alignment/main.c"
+      },
+      {
+        "case": "it_rejects_nonrepresentable_alignment_and_size_arithmetic",
+        "command": "make -C tests/unit/runtime/alignment",
+        "source": "tests/unit/runtime/alignment/main.c"
+      }
+    ]
+  },
+  "src/runtime/pool/internal.h": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Declare private pool address lookup and growth operations.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_keeps_payload_addresses_stable_through_directory_growth",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_never_reissues_an_exhausted_slot_or_accepts_stale_empty_and_wrong_type_handles",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_preserves_pool_validity_when_each_growth_allocation_fails",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_preserves_extended_c_alignment_through_growth_replacement_and_reclamation",
+        "command": "make -C tests/unit/runtime/alignment",
+        "source": "tests/unit/runtime/alignment/main.c"
+      },
+      {
+        "case": "it_rejects_nonrepresentable_alignment_and_size_arithmetic",
+        "command": "make -C tests/unit/runtime/alignment",
+        "source": "tests/unit/runtime/alignment/main.c"
+      }
+    ]
+  },
+  "src/runtime/pool/pool.h": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Own stable slot blocks, exact generation history and private replacement banks.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_keeps_payload_addresses_stable_through_directory_growth",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_never_reissues_an_exhausted_slot_or_accepts_stale_empty_and_wrong_type_handles",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_preserves_pool_validity_when_each_growth_allocation_fails",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_preserves_extended_c_alignment_through_growth_replacement_and_reclamation",
+        "command": "make -C tests/unit/runtime/alignment",
+        "source": "tests/unit/runtime/alignment/main.c"
+      },
+      {
+        "case": "it_rejects_nonrepresentable_alignment_and_size_arithmetic",
+        "command": "make -C tests/unit/runtime/alignment",
+        "source": "tests/unit/runtime/alignment/main.c"
+      }
+    ]
+  },
+  "src/runtime/pool/reclaim.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Free only empty trailing payload blocks while retaining permanent identity history.",
+    "tests": [
+      {
+        "case": "it_keeps_payload_addresses_stable_through_directory_growth",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_never_reissues_an_exhausted_slot_or_accepts_stale_empty_and_wrong_type_handles",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_preserves_pool_validity_when_each_growth_allocation_fails",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_preserves_extended_c_alignment_through_growth_replacement_and_reclamation",
+        "command": "make -C tests/unit/runtime/alignment",
+        "source": "tests/unit/runtime/alignment/main.c"
+      },
+      {
+        "case": "it_rejects_nonrepresentable_alignment_and_size_arithmetic",
+        "command": "make -C tests/unit/runtime/alignment",
+        "source": "tests/unit/runtime/alignment/main.c"
+      }
+    ]
+  },
+  "src/runtime/pool/slots.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Reserve, publish, invalidate and retire individual slot identities.",
+    "tests": [
+      {
+        "case": "it_keeps_payload_addresses_stable_through_directory_growth",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_never_reissues_an_exhausted_slot_or_accepts_stale_empty_and_wrong_type_handles",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_preserves_pool_validity_when_each_growth_allocation_fails",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_preserves_extended_c_alignment_through_growth_replacement_and_reclamation",
+        "command": "make -C tests/unit/runtime/alignment",
+        "source": "tests/unit/runtime/alignment/main.c"
+      },
+      {
+        "case": "it_rejects_nonrepresentable_alignment_and_size_arithmetic",
+        "command": "make -C tests/unit/runtime/alignment",
+        "source": "tests/unit/runtime/alignment/main.c"
+      }
+    ]
+  },
+  "src/runtime/pool/storage.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Validate aligned pool layout and access active or staged payload banks.",
+    "tests": [
+      {
+        "case": "it_keeps_payload_addresses_stable_through_directory_growth",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_never_reissues_an_exhausted_slot_or_accepts_stale_empty_and_wrong_type_handles",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_preserves_pool_validity_when_each_growth_allocation_fails",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_preserves_extended_c_alignment_through_growth_replacement_and_reclamation",
+        "command": "make -C tests/unit/runtime/alignment",
+        "source": "tests/unit/runtime/alignment/main.c"
+      },
+      {
+        "case": "it_rejects_nonrepresentable_alignment_and_size_arithmetic",
+        "command": "make -C tests/unit/runtime/alignment",
+        "source": "tests/unit/runtime/alignment/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/calls/acquire.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Select and acquire one invocation target with explicit refusal provenance.",
+    "tests": [
+      {
+        "case": "it_constructs_literals_once_per_call_and_initializes_results_after_parameters",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_protects_supplied_values_while_defaults_observe_new_parameters",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_releases_acquisition_after_constructor_failure_and_preserves_previous_value",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_refuses_a_busy_input_before_any_constructor",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_releases_all_leases_after_each_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_keeps_earlier_committed_parameters_when_a_later_constructor_fails",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_skips_interface_preparation_for_reads_and_resume_acquisitions",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_saves_unhandled_refusals_and_preserves_the_immediate_caller_context",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_returns_yielded_targets_without_copying_the_active_caller_chain",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_exposes_explicit_host_resume_restart_disposal_and_terminal_failure",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_executes_independent_continuation_copies_and_clears_ordinary_positions",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_reports_the_new_caller_after_a_yield_releases_the_original_link",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/calls/call.h": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Declare ordered invocation preparation and stackless return transitions.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_constructs_literals_once_per_call_and_initializes_results_after_parameters",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_protects_supplied_values_while_defaults_observe_new_parameters",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_releases_acquisition_after_constructor_failure_and_preserves_previous_value",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_refuses_a_busy_input_before_any_constructor",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_releases_all_leases_after_each_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_keeps_earlier_committed_parameters_when_a_later_constructor_fails",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_skips_interface_preparation_for_reads_and_resume_acquisitions",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_saves_unhandled_refusals_and_preserves_the_immediate_caller_context",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_returns_yielded_targets_without_copying_the_active_caller_chain",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_exposes_explicit_host_resume_restart_disposal_and_terminal_failure",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_executes_independent_continuation_copies_and_clears_ordinary_positions",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_reports_the_new_caller_after_a_yield_releases_the_original_link",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      }
+    ]
+  },
   "src/runtime/program/calls/preparation/fields.c": {
     "contract": "docs/implementation/entry-preparation.md",
     "purpose": "Select all supplied sources before protection, conflict checks and declaration-order installation.",
@@ -8317,6 +11407,833 @@
       }
     ]
   },
+  "src/runtime/program/calls/return.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Connect and return between stable instances using explicit caller links.",
+    "tests": [
+      {
+        "case": "it_constructs_literals_once_per_call_and_initializes_results_after_parameters",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_protects_supplied_values_while_defaults_observe_new_parameters",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_releases_acquisition_after_constructor_failure_and_preserves_previous_value",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_refuses_a_busy_input_before_any_constructor",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_releases_all_leases_after_each_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_keeps_earlier_committed_parameters_when_a_later_constructor_fails",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_skips_interface_preparation_for_reads_and_resume_acquisitions",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_saves_unhandled_refusals_and_preserves_the_immediate_caller_context",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_returns_yielded_targets_without_copying_the_active_caller_chain",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_exposes_explicit_host_resume_restart_disposal_and_terminal_failure",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_executes_independent_continuation_copies_and_clears_ordinary_positions",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_reports_the_new_caller_after_a_yield_releases_the_original_link",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/constants.h": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Represent shared immutable values outside instance pools.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_initializes_shared_values_outside_pools_before_root_creation",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_once_in_field_order_and_clones_completed_private_fields",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_clones_shared_values_into_owned_fields_without_pool_defaults",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_never_creates_the_root_after_constant_failure",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_compound_constants_using_earlier_fields_and_reverse_cleanup",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/constants/begin.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Begin one shared value and register its zero-initialized field storage.",
+    "tests": [
+      {
+        "case": "it_initializes_shared_values_outside_pools_before_root_creation",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_once_in_field_order_and_clones_completed_private_fields",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_clones_shared_values_into_owned_fields_without_pool_defaults",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_never_creates_the_root_after_constant_failure",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_compound_constants_using_earlier_fields_and_reverse_cleanup",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/constants/build.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Construct shared values in declaration order with iterative owned-child traversal.",
+    "tests": [
+      {
+        "case": "it_initializes_shared_values_outside_pools_before_root_creation",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_once_in_field_order_and_clones_completed_private_fields",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_clones_shared_values_into_owned_fields_without_pool_defaults",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_never_creates_the_root_after_constant_failure",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_compound_constants_using_earlier_fields_and_reverse_cleanup",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/constants/cleanup.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Destroy shared payloads and reverse field prefixes without allocating.",
+    "tests": [
+      {
+        "case": "it_initializes_shared_values_outside_pools_before_root_creation",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_once_in_field_order_and_clones_completed_private_fields",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_clones_shared_values_into_owned_fields_without_pool_defaults",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_never_creates_the_root_after_constant_failure",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_compound_constants_using_earlier_fields_and_reverse_cleanup",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/constants/fields.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Allocate one shared field according to declared ownership and initializer count.",
+    "tests": [
+      {
+        "case": "it_initializes_shared_values_outside_pools_before_root_creation",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_once_in_field_order_and_clones_completed_private_fields",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_clones_shared_values_into_owned_fields_without_pool_defaults",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_never_creates_the_root_after_constant_failure",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_compound_constants_using_earlier_fields_and_reverse_cleanup",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/constants/internal.h": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Declare the arena-owned iterative constant construction cursor.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_initializes_shared_values_outside_pools_before_root_creation",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_once_in_field_order_and_clones_completed_private_fields",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_clones_shared_values_into_owned_fields_without_pool_defaults",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_never_creates_the_root_after_constant_failure",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_compound_constants_using_earlier_fields_and_reverse_cleanup",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/constants/payload.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Construct one aligned shared native payload with exactly one selected hook.",
+    "tests": [
+      {
+        "case": "it_initializes_shared_values_outside_pools_before_root_creation",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_once_in_field_order_and_clones_completed_private_fields",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_clones_shared_values_into_owned_fields_without_pool_defaults",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_never_creates_the_root_after_constant_failure",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_compound_constants_using_earlier_fields_and_reverse_cleanup",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/constants/recipe.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Translate immutable shared ownership into arena-owned clone recipes.",
+    "tests": [
+      {
+        "case": "it_initializes_shared_values_outside_pools_before_root_creation",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_once_in_field_order_and_clones_completed_private_fields",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_clones_shared_values_into_owned_fields_without_pool_defaults",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_never_creates_the_root_after_constant_failure",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_compound_constants_using_earlier_fields_and_reverse_cleanup",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/construction/recipes.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Resolve ordered field initializers into explicit constructor recipes.",
+    "tests": [
+      {
+        "case": "it_initializes_shared_values_outside_pools_before_root_creation",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_once_in_field_order_and_clones_completed_private_fields",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_clones_shared_values_into_owned_fields_without_pool_defaults",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_never_creates_the_root_after_constant_failure",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_compound_constants_using_earlier_fields_and_reverse_cleanup",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/construction/start.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Initialize shared storage before the explicit root and coordinate reverse shutdown.",
+    "tests": [
+      {
+        "case": "it_initializes_shared_values_outside_pools_before_root_creation",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_once_in_field_order_and_clones_completed_private_fields",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_clones_shared_values_into_owned_fields_without_pool_defaults",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_never_creates_the_root_after_constant_failure",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_compound_constants_using_earlier_fields_and_reverse_cleanup",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/diagnostics/trace.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Report the first runtime failure with its still-intact explicit caller chain.",
+    "tests": [
+      {
+        "case": "it_keeps_scalar_list_and_indexed_self_copies_checked_in_generated_execution",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_diagnoses_unicode_execution_paths_and_failures_before_root_entry",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_failure_with_no_available_runtime_heap_or_root_frame",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_exposes_explicit_host_resume_restart_disposal_and_terminal_failure",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_executes_independent_continuation_copies_and_clears_ordinary_positions",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_reports_the_new_caller_after_a_yield_releases_the_original_link",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/diagnostics/trace.h": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Declare program-lifetime diagnostic locations and the synchronous report callback.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_keeps_scalar_list_and_indexed_self_copies_checked_in_generated_execution",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_diagnoses_unicode_execution_paths_and_failures_before_root_entry",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_failure_with_no_available_runtime_heap_or_root_frame",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_exposes_explicit_host_resume_restart_disposal_and_terminal_failure",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_executes_independent_continuation_copies_and_clears_ordinary_positions",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_reports_the_new_caller_after_a_yield_releases_the_original_link",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/internal.h": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Declare private shared construction and recipe resolution interfaces.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_initializes_shared_values_outside_pools_before_root_creation",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_once_in_field_order_and_clones_completed_private_fields",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_clones_shared_values_into_owned_fields_without_pool_defaults",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_never_creates_the_root_after_constant_failure",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_compound_constants_using_earlier_fields_and_reverse_cleanup",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/model.h": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Describe resolved accesses, initializers and explicit native value protocols.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_initializes_shared_values_outside_pools_before_root_creation",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_once_in_field_order_and_clones_completed_private_fields",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_clones_shared_values_into_owned_fields_without_pool_defaults",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_never_creates_the_root_after_constant_failure",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_compound_constants_using_earlier_fields_and_reverse_cleanup",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/program.h": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Declare generated-program ownership, value selection and startup boundaries.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_initializes_shared_values_outside_pools_before_root_creation",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_once_in_field_order_and_clones_completed_private_fields",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_clones_shared_values_into_owned_fields_without_pool_defaults",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_never_creates_the_root_after_constant_failure",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_compound_constants_using_earlier_fields_and_reverse_cleanup",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_keeps_scalar_list_and_indexed_self_copies_checked_in_generated_execution",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_diagnoses_unicode_execution_paths_and_failures_before_root_entry",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_failure_with_no_available_runtime_heap_or_root_frame",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_exposes_explicit_host_resume_restart_disposal_and_terminal_failure",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_executes_independent_continuation_copies_and_clears_ordinary_positions",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_reports_the_new_caller_after_a_yield_releases_the_original_link",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/transfers/internal.h": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Declare scalar/list store phases and immutable-source recipe conversion.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_initializes_shared_values_outside_pools_before_root_creation",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_once_in_field_order_and_clones_completed_private_fields",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_clones_shared_values_into_owned_fields_without_pool_defaults",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_never_creates_the_root_after_constant_failure",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_compound_constants_using_earlier_fields_and_reverse_cleanup",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_keeps_scalar_list_and_indexed_self_copies_checked_in_generated_execution",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_diagnoses_unicode_execution_paths_and_failures_before_root_entry",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_failure_with_no_available_runtime_heap_or_root_frame",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_exposes_explicit_host_resume_restart_disposal_and_terminal_failure",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_executes_independent_continuation_copies_and_clears_ordinary_positions",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_reports_the_new_caller_after_a_yield_releases_the_original_link",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      }
+    ]
+  },
   "src/runtime/program/transfers/list/cleanup.c": {
     "contract": "docs/implementation/value-selection-and-list-transfer.md",
     "purpose": "Select exact shared/owned/reference views and transfer staged forests through checked ownership phases.",
@@ -8616,6 +12533,77 @@
         "case": "it_copies_continuations_through_one_owned_list_forest",
         "command": "make -C tests/unit/runtime/transfers",
         "source": "tests/unit/runtime/transfers/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/transfers/value.c": {
+    "contract": "docs/implementation/runtime-components.md",
+    "purpose": "Select receivers before sources and install typed values under one operation guard.",
+    "tests": [
+      {
+        "case": "it_initializes_shared_values_outside_pools_before_root_creation",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_once_in_field_order_and_clones_completed_private_fields",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_clones_shared_values_into_owned_fields_without_pool_defaults",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_never_creates_the_root_after_constant_failure",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_compound_constants_using_earlier_fields_and_reverse_cleanup",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
+        "command": "make -C tests/unit/runtime/program",
+        "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_keeps_scalar_list_and_indexed_self_copies_checked_in_generated_execution",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_diagnoses_unicode_execution_paths_and_failures_before_root_entry",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_failure_with_no_available_runtime_heap_or_root_frame",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_exposes_explicit_host_resume_restart_disposal_and_terminal_failure",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_executes_independent_continuation_copies_and_clears_ordinary_positions",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_reports_the_new_caller_after_a_yield_releases_the_original_link",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
       }
     ]
   },

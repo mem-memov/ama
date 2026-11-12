@@ -1,5 +1,13 @@
+/**
+ * @file
+ * @brief Destroy shared payloads and reverse field prefixes without allocating.
+ *
+ * [CONST-02](../../../../spec/language/declarations.md#const-02)
+ * Clear each native-live credit before its destructor, continue after errors and release every initialized allocation.
+ */
 #include "runtime/program/internal.h"
 
+/** Consume native credit then reverse initialized child/field prefixes using parent links. Release all storage without allocation; secondary failures mark terminal state and preserve the primary status. */
 AmaStatus ama_program_constant_cleanup(AmaProgram *program, AmaConstantValue *root, AmaStatus primary) {
     AmaConstantValue *value = root;
     while (value != NULL) {
@@ -37,6 +45,7 @@ AmaStatus ama_program_constant_cleanup(AmaProgram *program, AmaConstantValue *ro
     return primary;
 }
 
+/** Clean declarations and list elements in reverse order, releasing arrays and resetting storage even when destructors fail. */
 AmaStatus ama_program_constants_destroy(AmaProgram *program, AmaStatus primary) {
     for (size_t declaration = program->constant_count; declaration != 0;) {
         AmaConstantStorage *storage = program->constants[--declaration].storage;

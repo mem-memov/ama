@@ -1,7 +1,15 @@
+/**
+ * @file
+ * @brief Allocate one shared field according to declared ownership and initializer count.
+ *
+ * [CONST-01](../../../../spec/language/declarations.md#const-01)
+ * Reference fields contain no mutable instance identity; partial field arrays remain owned by the enclosing constant.
+ */
 #include <stdint.h>
 #include <string.h>
 #include "internal.h"
 
+/** Allocate the declared field array once with checked count arithmetic. References require no owned child payload; evaluate explicit reference sources without introducing mutable constant handles. */
 AmaStatus ama_constant_field(AmaProgram *program, AmaConstantBuildWork *work) {
     const AmaProgramField *declaration = &work->value->type->fields[work->field];
     AmaFieldKind kind = work->value->type->object->fields[work->field].kind;

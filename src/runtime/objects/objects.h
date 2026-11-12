@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Expose synchronous ownership and lifecycle operations over stable typed pools.
+ *
+ * [RT-02](../../../spec/implementation/runtime.md#rt-02)
+ * Borrow immutable descriptors and recipes. Native hooks cannot reenter Ama and must clean resources of a failed constructor themselves.
+ */
 #ifndef AMA_RUNTIME_OBJECTS_H
 #define AMA_RUNTIME_OBJECTS_H
 
@@ -5,8 +12,10 @@
 #include "native/abi/bytes.h"
 #include "source/memory/arena.h"
 
+/** Storage form separates ownership from scalar/list shape; references never acquire lifecycle ownership. */
 typedef enum { AMA_FIELD_OWNED, AMA_FIELD_REFERENCE, AMA_FIELD_OWNING_LIST, AMA_FIELD_REFERENCE_LIST } AmaFieldKind;
 typedef struct AmaRecipe AmaRecipe;
+/** Borrowed selected field initialization recipe; supplied distinguishes an explicit empty list from absent defaults, operation locates failures. */
 typedef struct {
     size_t count;
     const AmaRecipe *children;
@@ -14,6 +23,7 @@ typedef struct {
     bool supplied;
     uint64_t operation;
 } AmaFieldRecipe;
+/** One selected constructor plus borrowed literal/source/field data. Source lifetime and operation protections must cover construction. */
 struct AmaRecipe {
     AmaConstructorKind constructor;
     AmaByteView literal;
@@ -23,14 +33,18 @@ struct AmaRecipe {
     const AmaFieldRecipe *fields;
     size_t field_count;
 };
+/** Owned handle buffer with logical count/capacity and storage busy flag; element payloads remain in stable pools. Membership identities/cursors remain pending. */
 typedef struct {
     AmaHandle *items;
     size_t count;
     size_t capacity;
     bool acquired;
 } AmaHandleList;
+/** Require a consistent handle array and allocator. Checked geometric growth allocates/copies before releasing old storage; failure preserves count, capacity and items. */
 AmaStatus ama_handle_list_reserve(SourceAllocator, AmaHandleList *, size_t);
+/** Validated nominal field descriptor with exact C payload offset; C layout truth is a generated-descriptor precondition. */
 typedef struct { AmaFieldKind kind; uint64_t type_id; size_t offset; } AmaObjectField;
+/** Synchronous native lifecycle hooks; successful constructors create one destroy credit, failed constructors clean their own partial resources and cannot reenter Ama. */
 typedef struct {
     AmaStatus (*initialize)(void *);
     AmaStatus (*literal)(void *, AmaByteView);
@@ -38,6 +52,7 @@ typedef struct {
     AmaStatus (*destroy)(void *);
 } AmaPayloadHooks;
 typedef struct AmaWorld AmaWorld;
+/** One nominal pool plus borrowed field/default/hook descriptors and recipe callback context. Registry/type storage must outlive all instances. */
 typedef struct {
     AmaPool pool;
     const AmaObjectField *fields;
@@ -49,6 +64,7 @@ typedef struct {
     AmaStatus (*resolve_field)(AmaWorld *, SourceArena *, AmaHandle, size_t, AmaFieldRecipe *, void *);
     void *field_context;
 } AmaObjectType;
+/** Borrowed unique type registry, allocator and synchronous report authority; operation_active rejects reentry, failed marks terminal lifecycle failure. Not a shared-thread context API. */
 struct AmaWorld {
     AmaObjectType *const *types;
     size_t type_count;
@@ -64,16 +80,23 @@ struct AmaWorld {
  * edges occupy declared handle fields only. Native hooks operate on payloads,
  * cannot reenter Ama, and must clean their own failed constructor resources.
  * These helpers execute lifecycle operations, never module bodies. */
+/** Initialize the validated object layout with default max_align_t payload alignment; explicit extended alignment uses the aligned interface. */
 AmaStatus ama_object_type_init(AmaObjectType *, SourceAllocator, uint64_t,
     size_t size, size_t slots, uint64_t generation_limit, const AmaObjectField *,
     size_t field_count, size_t native_offset, AmaPayloadHooks);
+/** Validate truthful generated field extents/alignment/disjointness and compatible hook presence, then initialize an empty aligned pool. Descriptors remain borrowed; no native constructor runs. */
 AmaStatus ama_object_type_init_aligned(AmaObjectType *, SourceAllocator, uint64_t,
     size_t size, size_t alignment, size_t slots, uint64_t generation_limit,
     const AmaObjectField *, size_t field_count, size_t native_offset, AmaPayloadHooks);
+/** Resolve exact nominal type ID in a unique borrowed registry, or null; no allocation or source-name matching. */
 AmaObjectType *ama_world_type(const AmaWorld *, uint64_t);
+/** Own guarded private construction and publish output only after complete success. Failure unwinds the initialized prefix; native module bodies are not executed. */
 AmaStatus ama_object_create(AmaWorld *, uint64_t, const AmaRecipe *, AmaHandle *);
+/** Acquire one world operation guard, preflight normal destruction or clear terminal active links, then clean the tree. Always release protections and scratch, preserving the primary failure. */
 AmaStatus ama_object_destroy(AmaWorld *, AmaHandle);
+/** Own guarded whole-tree copy and exact reference fixups, then publish fresh identities. Ordinary mode clears positions, explicit continuation mode retains eligible saved positions. */
 AmaStatus ama_object_clone(AmaWorld *, AmaHandle source, bool continuation, AmaHandle *);
+/** Own one nonreentrant world operation, its protection records and scratch for replacement; release all temporary authority on every return. */
 AmaStatus ama_object_replace(AmaWorld *, AmaHandle destination, AmaHandle source, bool continuation);
 
 #endif

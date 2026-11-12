@@ -1,5 +1,13 @@
+/**
+ * @file
+ * @brief Finalize initialized resources and release owned slots iteratively.
+ *
+ * [LIFE-03](../../../../spec/implementation/native-interface.md#life-03)
+ * Invalidate identity before native cleanup, preserve the first failure and continue through the reverse initialized prefix.
+ */
 #include "runtime/objects/internal.h"
 
+/** Release every owned/reference list handle buffer after child cleanup; referenced targets are never destroyed by releasing their array. */
 static void ama_cleanup_buffers(AmaWorld *world, AmaObjectType *type, AmaPoolCell *cell) {
     unsigned char *payload = ama_pool_payload(&type->pool, cell);
     for (size_t field = 0; field < type->field_count; field++) {
@@ -11,6 +19,7 @@ static void ama_cleanup_buffers(AmaWorld *world, AmaObjectType *type, AmaPoolCel
     }
 }
 
+/** Iteratively invalidate and finalize one initialized tree, native resource first and children in reverse. Continue after destructor errors, marking the world terminal; optionally retain the root slot for replacement. */
 AmaStatus ama_object_cleanup_keep(AmaWorld *world, AmaHandle root, AmaStatus primary, bool keep_root) {
     AmaHandle current = root;
     for (;;) {
@@ -52,6 +61,7 @@ AmaStatus ama_object_cleanup_keep(AmaWorld *world, AmaHandle root, AmaStatus pri
     }
 }
 
+/** Clean the complete initialized tree and release its root slot, retaining the supplied primary failure over secondary cleanup errors. */
 AmaStatus ama_object_cleanup(AmaWorld *world, AmaHandle root, AmaStatus primary) {
     return ama_object_cleanup_keep(world, root, primary, false);
 }

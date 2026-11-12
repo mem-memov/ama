@@ -1,5 +1,13 @@
+/**
+ * @file
+ * @brief Clear active links across a terminal owned tree without allocation.
+ *
+ * [LIFE-05](../../../../spec/implementation/native-interface.md#life-05)
+ * Use stable owner links and per-cell cursors, not recursive C calls or an emergency work allocation.
+ */
 #include "runtime/objects/internal.h"
 
+/** Walk the initialized owned tree using owner links and cell cursors, clearing transient service controls without allocation or recursive C calls. This is terminal cleanup only. */
 AmaStatus ama_object_end_active_links(AmaWorld *world, AmaHandle root) {
     AmaHandle current = root;
     AmaObjectType *type;

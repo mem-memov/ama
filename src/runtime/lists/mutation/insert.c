@@ -1,7 +1,15 @@
+/**
+ * @file
+ * @brief Prepare one owned value or reference before inserting its handle.
+ *
+ * [LIFE-04](../../../../spec/implementation/native-interface.md#life-04)
+ * The storage guard supplies validated bounds and protected sources. Commit shifts handles, not native payloads.
+ */
 #include <stdint.h>
 #include <string.h>
 #include "internal.h"
 
+/** Require validated position and guarded mutation inputs. Prepare/publish one value before shifting handles; failure before commit preserves contents, though capacity may grow. */
 AmaStatus ama_list_insert(AmaListMutation *mutation, size_t position, AmaHandle source) {
     AmaWorld *world = mutation->objects.world;
     AmaHandleList *list = mutation->list;

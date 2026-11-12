@@ -1,5 +1,13 @@
+/**
+ * @file
+ * @brief Select receivers before sources and install typed values under one operation guard.
+ *
+ * [REF-03](../../../../spec/language/values-and-references.md#ref-03)
+ * Reference assignment copies handles without acquiring targets; owned replacement stages construction and explicit condition protocols may fail technically.
+ */
 #include "internal.h"
 
+/** Require an owned scalar source; produce an immutable-constant recipe or exact handle clone recipe with explicit continuation mode. Arena/source lifetimes cover construction. */
 AmaStatus ama_program_value_recipe(AmaProgram *program, SourceArena *arena, const AmaProgramValue *value,
     bool continuation, AmaRecipe *recipe) {
     if (value->form != AMA_FIELD_OWNED) { return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0); }
@@ -8,6 +16,7 @@ AmaStatus ama_program_value_recipe(AmaProgram *program, SourceArena *arena, cons
     return ama_status_success();
 }
 
+/** Install one typed scalar or delegate whole-list transfer. Reference assignment copies handles without target acquisition; owning values use staged reconstruction in the caller operation. */
 AmaStatus ama_program_store(AmaProgram *program, AmaProgramValue *destination, const AmaProgramValue *source,
     const AmaFieldRecipe *initializers, AmaObjectOperation *operation) {
     if (destination->form == AMA_FIELD_OWNING_LIST || destination->form == AMA_FIELD_REFERENCE_LIST) {
@@ -29,6 +38,7 @@ AmaStatus ama_program_store(AmaProgram *program, AmaProgramValue *destination, c
     return status.code == AMA_OK ? ama_object_reconstruct_in(operation, destination->handle, &recipe) : status;
 }
 
+/** Own guard, arena and protections for selection plus store of an already selected source; release temporary authority on every return. */
 AmaStatus ama_program_transfer(AmaProgram *program, AmaHandle current, const AmaProgramAccess *receiver,
     const AmaProgramValue *source) {
     if (program->world->operation_active || program->world->failed) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
@@ -44,6 +54,7 @@ AmaStatus ama_program_transfer(AmaProgram *program, AmaHandle current, const Ama
     return status;
 }
 
+/** Select receiver first and source once, then install under one guard. Explicit owned continuation copy uses continuation replacement; release protections/scratch on every path. */
 AmaStatus ama_program_assign(AmaProgram *program, AmaHandle current, const AmaProgramAccess *receiver,
     const AmaProgramSource *source) {
     if (program->world->operation_active || program->world->failed) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
@@ -63,6 +74,7 @@ AmaStatus ama_program_assign(AmaProgram *program, AmaHandle current, const AmaPr
     return status;
 }
 
+/** Select readable scalar payload and invoke its explicit condition protocol under a guard. Technical protocol errors propagate; there is no universal truth conversion. */
 AmaStatus ama_program_condition(AmaProgram *program, AmaHandle current, const AmaProgramAccess *access, bool *result) {
     if (program->world->operation_active || program->world->failed) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
     program->world->operation_active = true;

@@ -1,7 +1,15 @@
+/**
+ * @file
+ * @brief Begin one shared value and register its zero-initialized field storage.
+ *
+ * [CONST-02](../../../../spec/language/declarations.md#const-02)
+ * Borrow the selected initializer/source through construction; partial output remains safely cleanable if allocation fails.
+ */
 #include <stdint.h>
 #include <string.h>
 #include "internal.h"
 
+/** Allocate one arena cursor, resolve a nonliteral shared source once, check exact type and register zeroed field storage. Partial constant storage remains owned by cleanup on failure. */
 AmaStatus ama_constant_begin(AmaProgram *program, SourceArena *arena, AmaConstantValue *value,
     uint64_t type_id, const AmaProgramSource *initializer, const AmaConstantValue *source,
     AmaConstantBuildWork *parent, AmaConstantBuildWork **output) {

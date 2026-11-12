@@ -1,6 +1,14 @@
+/**
+ * @file
+ * @brief Commit a fully prepared replacement while preserving root identity and native addresses.
+ *
+ * [COPY-02](../../../../spec/language/values-and-references.md#copy-02)
+ * The spare bank stages lifecycle replacement only; ordinary execution uses active storage directly and never saves/restores a working copy.
+ */
 #include <string.h>
 #include "runtime/objects/internal.h"
 
+/** After successful old-value cleanup, flip to the prepared payload bank and publish the new ledger/children under the unchanged root identity. Release only scratch root identity; native payloads are never moved. */
 void ama_object_replacement_publish(AmaObjectOperation *operation, AmaObjectType *type, AmaPoolCell *cell, AmaHandle destination) {
     AmaObjectWork *root = operation->first;
     cell->alternate_payload = !cell->alternate_payload;
@@ -19,6 +27,7 @@ void ama_object_replacement_publish(AmaObjectOperation *operation, AmaObjectType
     (void)ama_pool_release(&type->pool, root->handle);
 }
 
+/** Protect source/destination, prepare in the inactive destination bank, then destroy old state and publish. Preparation failure preserves old state; cleanup failure terminates the world and cleans prepared resources. */
 static AmaStatus ama_replacement_commit(AmaObjectOperation *operation, AmaHandle destination, AmaHandle source, bool continuation) {
     AmaObjectType *type = NULL;
     AmaPoolCell *cell = NULL;
@@ -45,12 +54,14 @@ static AmaStatus ama_replacement_commit(AmaObjectOperation *operation, AmaHandle
     return status;
 }
 
+/** Apply exact copy/overlap checks inside a caller-owned guarded operation; prepare/commit only when runtime identity is not an ordinary self-copy. */
 AmaStatus ama_object_replace_in(AmaObjectOperation *operation, AmaHandle destination, AmaHandle source, bool continuation) {
     bool no_op = false;
     AmaStatus status = ama_object_copy_checks(operation->world, destination, source, continuation, &no_op);
     return status.code == AMA_OK && !no_op ? ama_replacement_commit(operation, destination, source, continuation) : status;
 }
 
+/** Own one nonreentrant world operation, its protection records and scratch for replacement; release all temporary authority on every return. */
 AmaStatus ama_object_replace(AmaWorld *world, AmaHandle destination, AmaHandle source, bool continuation) {
     if (world->operation_active || world->failed) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
     world->operation_active = true;

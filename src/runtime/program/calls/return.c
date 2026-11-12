@@ -1,5 +1,13 @@
+/**
+ * @file
+ * @brief Connect and return between stable instances using explicit caller links.
+ *
+ * [CONT-01](../../../../spec/language/continuations.md#cont-01)
+ * Yield returns to the immediate caller, retains a separate resume position and keeps results acquired for caller-side processing.
+ */
 #include "call.h"
 
+/** Require an acquired outgoing target, attach the immediate caller/return selector/site, mark caller Waiting and target Running, and change current only after checks. */
 AmaStatus ama_program_connect(AmaProgram *program, AmaHandle *current, uint64_t continuation, uint64_t site) {
     AmaPoolCell *caller = NULL, *target = NULL;
     AmaStatus status = ama_program_cell(program, *current, &caller);
@@ -16,6 +24,7 @@ AmaStatus ama_program_connect(AmaProgram *program, AmaHandle *current, uint64_t 
     return ama_status_success();
 }
 
+/** Validate current Running state, no nested outgoing call and a matching return connection before mutation. Host returns become available directly; ordinary returns retain target acquisition for caller result processing. */
 static AmaStatus ama_program_return(AmaProgram *program, AmaHandle *current, uint64_t *continuation, bool yielded) {
     AmaPoolCell *cell = NULL, *caller = NULL;
     AmaStatus status = ama_program_cell(program, *current, &cell);
@@ -49,10 +58,12 @@ static AmaStatus ama_program_return(AmaProgram *program, AmaHandle *current, uin
     return ama_status_success();
 }
 
+/** Return normally to the immediate caller or host and clear the target saved resume position; output continuation selects the caller label or zero for host. */
 AmaStatus ama_program_complete(AmaProgram *program, AmaHandle *current, uint64_t *continuation) {
     return ama_program_return(program, current, continuation, false);
 }
 
+/** Require an explicit nonzero saved resume selector and return to the immediate caller or host while preserving it; no active caller chain is copied. */
 AmaStatus ama_program_yield(AmaProgram *program, AmaHandle *current, uint64_t *continuation) {
     return ama_program_return(program, current, continuation, true);
 }

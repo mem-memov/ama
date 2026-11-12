@@ -1,8 +1,16 @@
+/**
+ * @file
+ * @brief Declare private construction, protection, copy and cleanup phase ownership.
+ *
+ * [ARCH-03](../../../spec/implementation/compiler.md#arch-03)
+ * Operation arenas own scratch; work and protection records borrow stable slots. Callers must release protections before destroying scratch.
+ */
 #ifndef AMA_RUNTIME_OBJECTS_INTERNAL_H
 #define AMA_RUNTIME_OBJECTS_INTERNAL_H
 #include "objects.h"
 #include "runtime/lifecycle/errors.h"
 
+/** Arena-owned private construction/clone cursor; registered stable cells own payloads, clone_root scopes exact remapping boundaries and parent tracks initialized-prefix unwind. */
 typedef struct AmaObjectWork {
     struct AmaObjectWork *parent;
     struct AmaObjectWork *next;
@@ -19,6 +27,7 @@ typedef struct AmaObjectWork {
     bool field_ready;
     AmaFieldRecipe field_recipe;
 } AmaObjectWork;
+/** Operation-owned read/destruction protection record; previous captures service state, epoch detects duplicate ownership and restore identifies sole restoration authority. */
 typedef struct AmaObjectProtection {
     struct AmaObjectProtection *next;
     AmaObjectType *type;
@@ -29,6 +38,7 @@ typedef struct AmaObjectProtection {
     bool copy;
     bool restore;
 } AmaObjectProtection;
+/** One guarded synchronous lifecycle operation. Own arena/protection/work lists; borrow source_authority only while its outer operation remains alive. */
 typedef struct {
     AmaWorld *world;
     SourceArena arena;
@@ -41,30 +51,55 @@ typedef struct {
     void *root_payload;
 } AmaObjectOperation;
 
+/** Validate empty/type/slot identity before exposing a cell. Private lookup is for trusted construction phases; type output may be selected before a later slot failure. */
 AmaStatus ama_object_lookup(AmaWorld *, AmaHandle, bool private_slot, AmaObjectType **, AmaPoolCell **);
+/** Synchronously report a non-success status through the optional borrowed callback; the callback cannot reenter Ama. */
 void ama_object_report(AmaWorld *, AmaStatus);
+/** Compare complete local handle triples without implying availability or liveness. */
 bool ama_same_handle(AmaHandle, AmaHandle);
+/** Borrow one validated scalar field location or list array and count. The descriptor index/layout must be valid and returned storage expires with its owner or array mutation. */
 AmaHandle *ama_object_handles(const AmaObjectType *, void *payload, size_t field, size_t *count);
+/** Recognize only declared scalar/list ownership forms; references never imply lifecycle ownership. */
 bool ama_field_owns(AmaFieldKind);
+/** Recognize the two list storage forms independently of whether they own their targets. */
 bool ama_field_list(AmaFieldKind);
+/** Invoke the selected native clone hook into private stable storage and credit native ownership only after success; source remains protected. */
 AmaStatus ama_object_clone_payload(AmaObjectOperation *, AmaObjectWork *, bool);
+/** Rewrite internal declared references through the exact operation copy map and final-root identity; preserve external targets without acquiring them. */
 void ama_object_fix_references(AmaObjectOperation *, AmaObjectWork *, AmaHandle);
+/** Prepare private field storage and child counts from validated source descriptors; partial buffers remain registered for operation cleanup. */
 AmaStatus ama_object_clone_fields(AmaWorld *, AmaObjectWork *);
+/** Resolve normal public storage first; only a stale public lookup may match exact completed private work owned by this operation. Never expose unrelated reserved storage. */
 AmaStatus ama_object_source_lookup(AmaObjectOperation *, AmaHandle, AmaObjectType **, AmaPoolCell **);
+/** Validate supplied recipe field count and begin the private lifecycle ledger; construction phases populate and credit the exact owned-child prefix. */
 AmaStatus ama_object_fields(AmaWorld *, AmaObjectWork *);
+/** Resolve one valid flattened owned-child index to its declared handle location/type. Reference fields are skipped; the caller supplies an initialized-prefix index. */
 AmaHandle *ama_object_child(AmaObjectWork *, size_t index, uint64_t *type_id, const AmaRecipe **);
+/** Validate destination availability and both identities, then exact runtime self-copy and overlap. Distinct-source availability is checked by whole-tree preflight before cloning. Ordinary exact self is effect-free; continuation self and ancestor/descendant overlap fail. Static clone capability remains mandatory in the compiler. */
 AmaStatus ama_object_copy_checks(AmaWorld *, AmaHandle, AmaHandle, bool, bool *);
+/** Walk the initialized owned tree using owner links and cell cursors, clearing transient service controls without allocation or recursive C calls. This is terminal cleanup only. */
 AmaStatus ama_object_end_active_links(AmaWorld *, AmaHandle);
+/** Iteratively invalidate and finalize one initialized tree, native resource first and children in reverse. Continue after destructor errors, marking the world terminal; optionally retain the root slot for replacement. */
 AmaStatus ama_object_cleanup_keep(AmaWorld *, AmaHandle root, AmaStatus primary, bool keep_root);
+/** Clean the complete initialized tree and release its root slot, retaining the supplied primary failure over secondary cleanup errors. */
 AmaStatus ama_object_cleanup(AmaWorld *, AmaHandle root, AmaStatus primary);
+/** Compute finite monotone reachability over every declared owned field, including empty-list element types. Reject any reachable native resource lacking clone; scratch remains operation-owned. */
 AmaStatus ama_object_copy_capability(AmaObjectOperation *, uint64_t);
+/** Protect the complete initialized owned tree before hooks or destruction. Follow ownership only, check declared copy capability and nonwrapping epochs; caller unprotects partial records on failure. */
 AmaStatus ama_object_preflight(AmaObjectOperation *, AmaHandle, bool copy, bool continuation);
+/** Restore only records that own restoration authority and still identify the same occupied generation; never resurrect released or replaced identities. */
 void ama_object_unprotect(AmaObjectOperation *);
+/** Iteratively construct private work and publish only after all phases succeed; failures unwind exactly the initialized prefix without recursive C calls. */
 AmaStatus ama_object_build(AmaObjectOperation *, uint64_t, const AmaRecipe *, AmaHandle *);
+/** Build a protected private clone under one copy boundary and fix internal references before publication. Final-root redirection preserves replacement identity. */
 AmaStatus ama_object_clone_prepare(AmaObjectOperation *, AmaHandle, AmaHandle final_root,
     bool continuation, void *root_payload, AmaHandle *);
+/** After successful old-value cleanup, flip to the prepared payload bank and publish the new ledger/children under the unchanged root identity. Release only scratch root identity; native payloads are never moved. */
 void ama_object_replacement_publish(AmaObjectOperation *, AmaObjectType *, AmaPoolCell *, AmaHandle);
+/** Apply exact copy/overlap checks inside a caller-owned guarded operation; prepare/commit only when runtime identity is not an ordinary self-copy. */
 AmaStatus ama_object_replace_in(AmaObjectOperation *, AmaHandle, AmaHandle, bool);
+/** Within an existing operation, select direct clone replacement or one default/literal recipe in the inactive bank. No default-then-overwrite construction and no payload relocation. */
 AmaStatus ama_object_reconstruct_in(AmaObjectOperation *, AmaHandle, const AmaRecipe *);
+/** Check exact root equality or validated owner ancestry using the finite occupied-population bound; output is meaningful only on success. */
 AmaStatus ama_object_contains(AmaWorld *, AmaHandle, AmaHandle, bool *);
 #endif

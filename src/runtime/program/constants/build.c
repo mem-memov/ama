@@ -1,7 +1,15 @@
+/**
+ * @file
+ * @brief Construct shared values in declaration order with iterative owned-child traversal.
+ *
+ * [CONST-02](../../../../spec/language/declarations.md#const-02)
+ * No root instance is created before all constants succeed; failures clean the partial value and preserve the primary status.
+ */
 #include <stdint.h>
 #include <string.h>
 #include "internal.h"
 
+/** Use arena parent cursors to construct child fields before native payload without C recursion. On failure report and clean the partial root before freeing scratch. */
 AmaStatus ama_program_constant_build(AmaProgram *program, AmaConstantValue *root, uint64_t type_id,
     const AmaProgramSource *initializer, const AmaConstantValue *source) {
     SourceArena arena;
@@ -44,6 +52,7 @@ AmaStatus ama_program_constant_build(AmaProgram *program, AmaConstantValue *root
     return status;
 }
 
+/** Build shared declarations/elements in order, recording partial storage for shutdown. Failure stops before later constants or root creation. */
 AmaStatus ama_program_constants_initialize(AmaProgram *program) {
     for (size_t index = 0; index < program->constant_count; index++) {
         const AmaProgramConstant *declaration = &program->constants[index];

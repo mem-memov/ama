@@ -1,5 +1,13 @@
+/**
+ * @file
+ * @brief Copy only explicitly permitted available-instance control state.
+ *
+ * [COPY-03](../../../spec/language/values-and-references.md#copy-03)
+ * Ordinary copies clear saved positions; explicit continuation copying retains only the resume position, never caller links or refusal history.
+ */
 #include "service.h"
 
+/** Require distinct source/output and an available source. Publish a zero-transient service copy only after validation, preserving the resume position only when requested. */
 AmaStatus ama_service_clone(const AmaServiceState *source, bool preserve_resume,
     AmaServiceState *destination) {
     if (source == destination) {

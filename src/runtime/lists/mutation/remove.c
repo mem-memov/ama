@@ -1,6 +1,14 @@
+/**
+ * @file
+ * @brief Destroy removed owners and compact the remaining handle sequence.
+ *
+ * [REF-08](../../../../spec/language/values-and-references.md#ref-08)
+ * Preflight the entire affected owned forest before destructive work. Reference removal never destroys its target.
+ */
 #include <string.h>
 #include "internal.h"
 
+/** Require a validated range and acquired storage. Preflight all removed owners, then destroy in reverse and compact; destructive failure is terminal and cleanup still completes. */
 AmaStatus ama_list_remove(AmaListMutation *mutation, size_t position, size_t count) {
     AmaHandleList *list = mutation->list;
     AmaStatus status = ama_status_success();

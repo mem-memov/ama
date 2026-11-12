@@ -1,6 +1,14 @@
+/**
+ * @file
+ * @brief Free only empty trailing payload blocks while retaining permanent identity history.
+ *
+ * [REF-06](../../../spec/language/values-and-references.md#ref-06)
+ * Rebuild free links before freeing storage; null historical entries stay retired and future growth appends new IDs.
+ */
 #include <stdint.h>
 #include "internal.h"
 
+/** Rebuild free links solely from retained nonoccupied, nonretired cells before any trailing block is freed; historical null blocks are skipped. */
 static void ama_pool_rebuild_free(AmaPool *pool, size_t retained) {
     pool->free_head = SIZE_MAX;
     for (size_t block = retained; block != 0;) {
@@ -19,6 +27,7 @@ static void ama_pool_rebuild_free(AmaPool *pool, size_t retained) {
     }
 }
 
+/** Free only unoccupied trailing blocks and retain null directory history forever. Report released block count; live payload addresses and all old identity exclusions remain unchanged. */
 AmaStatus ama_pool_reclaim(AmaPool *pool, size_t *released) {
     size_t retained = pool->block_count;
     while (retained != 0 && pool->blocks[retained - 1].occupied == 0) {

@@ -435,12 +435,23 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   Doxygen checked 512 file pages/canonical links; 295 ready inputs and 380 explicit
   debts remain. Native C borrowing/purity and unsupported context/export work are
   stated as contracts/remaining tasks, not inferred from compatible prototypes.
-- [ ] **T149 — Document retained runtime components.** Needs: T133. Cover every
+- [x] **T149 — Document retained runtime components.** Needs: T133. Cover every
   `src/runtime/` C/header file, including assembly-only inputs. Explain local
   identity, pool/lifecycle, ownership, clone/replace, interface/control and diagnostic
   boundaries and their exact invariants. Distinguish existing behavior from pending
   context/membership/foreach work. Map direct tests or actual generated-program
   consumers and validate source/rendered rule links.
+  Evidence: [runtime contract](docs/implementation/runtime-components.md) and
+  per-file ready records cover all 98 retained runtime inputs, including the
+  assembly-only helpers. Added purpose, type and operation contracts to the 58
+  remaining inputs; compiler-lexed C is identical to the preceding commit.
+  Exact generation retirement, permanent reclamation history, initialized-prefix
+  cleanup, protected copies, replacement-bank ownership, immediate-caller return
+  and pre-cleanup diagnostics are explained with explicit context/list limitations.
+  Strict runtime, native metadata and lifecycle parents passed; actual generated
+  assembly/execution/continuation/library consumers passed through the codegen
+  parent. Doxygen checked 512 maintained file pages and canonical links;
+  353 ready inputs and 322 explicit documentation debts remain.
 - [ ] **T150 — Document driver, compiler and generated-code components.** Needs:
   T133. Cover `src/main.c`, `src/driver/`, `src/compiler/` and `src/codegen/`.
   Explain explicit stage contracts, option/output ownership, IR correspondence,

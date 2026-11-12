@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Assemble retained runtime operations in the single generated project translation unit.
+ *
+ * [STACK-04](../../spec/implementation/compiler.md#stack-04)
+ * Include once; these helpers never dispatch Ama bodies. Generated labels and inlined native entry implement body execution.
+ */
 #ifndef AMA_RUNTIME_ASSEMBLY_H
 #define AMA_RUNTIME_ASSEMBLY_H
 

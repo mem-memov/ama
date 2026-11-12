@@ -1,7 +1,15 @@
+/**
+ * @file
+ * @brief Append stable aligned slot blocks after checked directory allocation.
+ *
+ * [RT-12](../../../spec/implementation/runtime.md#rt-12)
+ * Directory relocation never moves payloads. Historical reclaimed identities are not reused.
+ */
 #include <stdint.h>
 #include <string.h>
 #include "internal.h"
 
+/** Grow/copy the block directory before freeing its old allocation. Existing block payload addresses stay stable; allocation failure preserves directory state. */
 static AmaStatus ama_pool_grow_directory(AmaPool *pool) {
     if (pool->block_count < pool->directory_capacity) {
         return ama_status_success();
@@ -24,6 +32,7 @@ static AmaStatus ama_pool_grow_directory(AmaPool *pool) {
     return ama_status_success();
 }
 
+/** Append one checked aligned block with fresh historical slot IDs and generation one. Failure leaves existing cells valid; reclaimed IDs are never reissued. */
 AmaStatus ama_pool_grow(AmaPool *pool) {
     if (pool->block_count >= SIZE_MAX / pool->slots_per_block) {
         return ama_status_make(AMA_LIMIT_EXCEEDED, NULL, 0);

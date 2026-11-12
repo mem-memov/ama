@@ -1,13 +1,22 @@
+/**
+ * @file
+ * @brief Translate immutable shared ownership into arena-owned clone recipes.
+ *
+ * [COPY-01](../../../../spec/language/values-and-references.md#copy-01)
+ * Borrow native source payloads through construction; copied recipes create fresh owned instances rather than pool-backed constant aliases.
+ */
 #include <stdint.h>
 #include <string.h>
 #include "runtime/program/internal.h"
 
+/** Arena-linked pending shared-to-owned recipe conversion; source values remain borrowed and child recipes are owned by the same scratch arena. */
 typedef struct AmaConstantRecipeWork {
     struct AmaConstantRecipeWork *next;
     const AmaConstantValue *source;
     AmaRecipe *recipe;
 } AmaConstantRecipeWork;
 
+/** Iteratively create arena-owned field/child clone recipes borrowing immutable shared native payloads. Failures retain scratch for caller bulk release; source lifetime must cover construction. */
 AmaStatus ama_program_constant_recipe(AmaProgram *program, SourceArena *arena,
     const AmaConstantValue *source, AmaRecipe *recipe) {
     (void)program;
