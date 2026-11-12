@@ -335,13 +335,11 @@ implemented. `tests/unit/runtime/lists` covers mutation failure paths;
 `tests/unit/codegen/library` compiles and executes scalar library compositions.
 Whole-list call integration and its compiled-project acceptance tests remain open.
 
-Blocking specification decision: define the compiler/library conversion mapping
-for action tags and typed length/completion/outcome values. `LIB-01` forbids payload
-assumptions, while existing `[]` and `?` are readers. A proposed library profile
-uses action `[]` tags 0–5 and literal `|` constructors for decimal length, `0`/`1`
-completion and documented outcome codes; explicit C adapter registration is the
-alternative. Do not assume either profile or change the specification before the
-user decides.
+Deferred specification question: the compiler/library conversion mapping for
+list actions and typed results is recorded with its rationale and alternatives in
+[the design note](docs/design/list-library-conversion-question.md).
+No conversion profile has been accepted. Work is paused at the user's request;
+do not select a profile or amend the specification without an explicit decision.
 
 Ready when: library interfaces compose predictably without new core operators.
 
