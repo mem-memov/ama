@@ -1,2 +1,2 @@
-SUBDIRECTORIES := request run
+SUBDIRECTORIES := request options run
 include ../../parent.mk

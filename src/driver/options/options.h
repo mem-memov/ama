@@ -1,9 +1,18 @@
+/**
+ * @file
+ * @brief Own one parsed CLI request while borrowing its argument strings.
+ *
+ * [ARCH-03](../../../spec/implementation/compiler.md#arch-03) requires an explicit
+ * boundary: this owner contains configuration and diagnostics, never a frontend.
+ */
 #ifndef AMA_DRIVER_OPTIONS_H
 #define AMA_DRIVER_OPTIONS_H
 
-#include "compiler/frontend.h"
+#include "source/module/catalog.h"
+#include "diagnostics/record/diagnostic.h"
 #include "driver/request/request.h"
 
+/** Completed configuration; the arena owns arrays and argv owns stored strings. */
 typedef struct {
     SourceArena arena;
     DriverRequest request;
@@ -23,10 +32,14 @@ typedef struct {
     bool valid;
 } DriverOptions;
 
-/* Borrow argument strings until destruction; own arrays. Exact options only,
- * no implicit roots/library names or guessed output exclusions. Parse once. */
+/** Initialize an empty owner using the supplied allocation/release callbacks. */
 void driver_options_init(DriverOptions *options, SourceAllocator allocator);
+/** Release all complete/partial arena allocations and clear the owner. */
 void driver_options_destroy(DriverOptions *options);
+/** Parse once after initialization; borrow argv until destruction.
+ * Exact options only, without implicit roots or inferred output exclusions.
+ * Failure leaves valid false, a diagnostic and safely destructible partial arrays.
+ */
 bool driver_options_parse(DriverOptions *options, int count, char *const arguments[]);
 
 #endif

@@ -284,8 +284,8 @@
   "src/driver/commands/check.c": {
     "audited_test_consumers": "tests/unit/driver/run",
     "owner": "T150",
-    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T150.",
-    "sha256": "4818a1e1d288fe7b96f328044c930749686cf4c376566ceeb8f35cc636abe9e3"
+    "reason": "T138 registered the option child or made the frontend include explicit after narrowing the options header. Full remaining file review stays with T150.",
+    "sha256": "c722f18d6fe4f856d0e8da5dc55be3dba2d7e039c32f1ce868a5bbcd4fb9cdcf"
   },
   "src/driver/commands/commands.h": {
     "audited_test_consumers": "tests/unit/driver/run",
@@ -316,18 +316,6 @@
     "owner": "T150",
     "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
     "sha256": "9b4a1b639a5db79ae72a9290f5c8e14a835c3656112f68edecd6301f201db44f"
-  },
-  "src/driver/options/options.h": {
-    "audited_test_consumers": "tests/unit/driver/run",
-    "owner": "T150",
-    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T150.",
-    "sha256": "bafcc9c51206517ed72e623e73e1225c8e60f0c8314c7d5cfda91a9cbbee8f83"
-  },
-  "src/driver/options/parse.c": {
-    "audited_test_consumers": "tests/unit/driver/run",
-    "owner": "T150",
-    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T150.",
-    "sha256": "0a33533c4b10045d43c1c85a24285cf61b162d34f432aa34dc2846116630f5dd"
   },
   "src/driver/output/output.h": {
     "audited_test_consumers": "tests/unit/driver/run",
@@ -2678,8 +2666,8 @@
   "tests/unit/driver/Makefile": {
     "audited_test_consumers": "",
     "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "1a4bbbc2897b6b8aafdc3fd0ed2e2384bee2df74a31e8f3de1fb9520132d1979"
+    "reason": "T138 registered the option child or made the frontend include explicit after narrowing the options header. Full remaining file review stays with T151.",
+    "sha256": "c5f99bd50865ae405cfb4f6aee5649b2eb2aa44c4b8de90710219684e38da31a"
   },
   "tests/unit/driver/common.c": {
     "audited_test_consumers": "tests/unit/driver/run",

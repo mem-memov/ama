@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "commands.h"
+#include "compiler/frontend.h"
 #include "diagnostics/render/render.h"
 
 int driver_check(const DriverOptions *options, FILE *output, FILE *errors) {

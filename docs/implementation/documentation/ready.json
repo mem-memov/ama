@@ -37,6 +37,287 @@
       }
     ]
   },
+  "src/driver/options/assembly/consume.c": {
+    "contract": "docs/implementation/driver-options.md",
+    "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
+    "tests": [
+      {
+        "case": "it_preserves_repeated_values_flags_and_shared_root_exclusions",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_missing_and_wrong_request_options",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_assembles_native_creation_and_check_defaults",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      }
+    ]
+  },
+  "src/driver/options/assembly/consume.h": {
+    "contract": "docs/implementation/driver-options.md",
+    "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_preserves_repeated_values_flags_and_shared_root_exclusions",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_missing_and_wrong_request_options",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_assembles_native_creation_and_check_defaults",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      }
+    ]
+  },
+  "src/driver/options/options.h": {
+    "contract": "docs/implementation/driver-options.md",
+    "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_recognizes_only_exact_applicable_options",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_preserves_repeated_values_flags_and_shared_root_exclusions",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_missing_and_wrong_request_options",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_assembles_native_creation_and_check_defaults",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_cleans_every_partial_allocation_and_rejects_unrepresentable_storage",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      }
+    ]
+  },
+  "src/driver/options/parse.c": {
+    "contract": "docs/implementation/driver-options.md",
+    "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
+    "tests": [
+      {
+        "case": "it_recognizes_only_exact_applicable_options",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_preserves_repeated_values_flags_and_shared_root_exclusions",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_missing_and_wrong_request_options",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_assembles_native_creation_and_check_defaults",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_cleans_every_partial_allocation_and_rejects_unrepresentable_storage",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      }
+    ]
+  },
+  "src/driver/options/recognition/option.h": {
+    "contract": "docs/implementation/driver-options.md",
+    "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_recognizes_only_exact_applicable_options",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      }
+    ]
+  },
+  "src/driver/options/recognition/read.c": {
+    "contract": "docs/implementation/driver-options.md",
+    "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
+    "tests": [
+      {
+        "case": "it_recognizes_only_exact_applicable_options",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      }
+    ]
+  },
+  "src/driver/options/storage/arrays.c": {
+    "contract": "docs/implementation/driver-options.md",
+    "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
+    "tests": [
+      {
+        "case": "it_preserves_repeated_values_flags_and_shared_root_exclusions",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_cleans_every_partial_allocation_and_rejects_unrepresentable_storage",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      }
+    ]
+  },
+  "src/driver/options/storage/lifetime.c": {
+    "contract": "docs/implementation/driver-options.md",
+    "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
+    "tests": [
+      {
+        "case": "it_preserves_repeated_values_flags_and_shared_root_exclusions",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_cleans_every_partial_allocation_and_rejects_unrepresentable_storage",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      }
+    ]
+  },
+  "src/driver/options/storage/storage.h": {
+    "contract": "docs/implementation/driver-options.md",
+    "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_preserves_repeated_values_flags_and_shared_root_exclusions",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_cleans_every_partial_allocation_and_rejects_unrepresentable_storage",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      }
+    ]
+  },
+  "src/driver/options/validation/request.c": {
+    "contract": "docs/implementation/driver-options.md",
+    "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
+    "tests": [
+      {
+        "case": "it_rejects_invalid_missing_and_wrong_request_options",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_assembles_native_creation_and_check_defaults",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      }
+    ]
+  },
+  "src/driver/options/validation/validation.h": {
+    "contract": "docs/implementation/driver-options.md",
+    "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_rejects_invalid_missing_and_wrong_request_options",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_assembles_native_creation_and_check_defaults",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      }
+    ]
+  },
   "src/native/status/status.h": {
     "contract": "spec/implementation/diagnostics.md#error-03",
     "purpose": "Represent native status without allocation or owned message storage.",
@@ -256,6 +537,68 @@
         "case": "it_checks_actual_rendered_destinations_and_source_stability",
         "command": "make -C tests/unit/documentation",
         "source": "tests/unit/documentation/main.c"
+      }
+    ]
+  },
+  "tests/unit/driver/options/Makefile": {
+    "contract": "docs/implementation/driver-options.md",
+    "purpose": "Exercise option children and composed requests without frontend linkage.",
+    "tests": [
+      {
+        "case": "it_recognizes_only_exact_applicable_options",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_preserves_repeated_values_flags_and_shared_root_exclusions",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_missing_and_wrong_request_options",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_assembles_native_creation_and_check_defaults",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_cleans_every_partial_allocation_and_rejects_unrepresentable_storage",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      }
+    ]
+  },
+  "tests/unit/driver/options/main.c": {
+    "contract": "docs/implementation/driver-options.md",
+    "purpose": "Exercise option children and composed requests without frontend linkage.",
+    "tests": [
+      {
+        "case": "it_recognizes_only_exact_applicable_options",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_preserves_repeated_values_flags_and_shared_root_exclusions",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_missing_and_wrong_request_options",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_assembles_native_creation_and_check_defaults",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_cleans_every_partial_allocation_and_rejects_unrepresentable_storage",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
       }
     ]
   },

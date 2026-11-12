@@ -229,12 +229,22 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   T137 closes conflicting prose/proposals. Reused those recorded outcomes and
   rechecked inventory, symbols, links and `docs-check`; no new runtime behavior
   or complete language conformance is claimed by this gate.
-- [ ] **T138 — Separate driver option recognition and request assembly.** Needs:
+- [x] **T138 — Separate driver option recognition and request assembly.** Needs:
   T132. Decompose the phases in `src/driver/options/parse.c`: exact option
   recognition, owned argument storage, request-specific validation and root/output
   configuration. Use narrow child contracts, valid Doxygen comments and rule
   links; preserve borrowed argument lifetimes and allocation-failure cleanup.
   Test invalid/duplicate/missing options and real check/native/emit CLI composition.
+  Evidence: [option domain, invariants and refinement argument](docs/implementation/driver-options.md).
+  Extracted exact table recognition, scoped array ownership/publication, request
+  validation and argument consumption; the public options header no longer
+  imports the frontend. Five independent cases cover the full 4×10 recognition
+  relation, repeat policies, missing/invalid inputs and every allocation failure.
+  Strict release, ASan/UBSan (`detect_leaks=0`), actual driver parent, check/native/
+  emit compositions and complete root `make -j4 test` passed (60 leaves).
+  Five standalone headers, named test interfaces and Doxygen's actual destinations
+  passed. All extracted files have purpose/contract comments and canonical rule
+  links; the current registry exposes 35 ready inputs and 567 remaining debts.
 - [ ] **T139 — Separate native publication transaction phases.** Needs: T132.
   Decompose `src/native/scaffold/output/publish.c` into narrow directory/lock,
   preflight, staging, publication and rollback/cleanup responsibilities. State
