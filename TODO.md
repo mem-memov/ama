@@ -132,8 +132,9 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   sanitizer invocation without introducing a second test framework.
 - [ ] **T005 — Establish code-to-tests and generated documentation checks.**
   Needs: T004. Inventory every project code/header file and its test coverage;
-  register uncovered files for the owning tasks. Add a reproducible Doxygen build
-  and checks for purpose/contract comments, independent headers and documentation
+  register uncovered files for the owning tasks. Extend the `make docs` Doxygen
+  build from docs/Doxyfile with reproducibility checks and checks for
+  purpose/contract comments, independent headers and documentation
   links, including source-relative rule links and deterministic read-only Doxygen
   anchor mapping. Test actual rendered destinations and stale-link failures.
   Validate the workflow on existing small components before expanding it.
@@ -877,7 +878,9 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   repository. All implementation changes must be complete before T135.
 - [ ] **T135 — Deliver the final technical documentation folder.** Needs: T122.
   Only after all implementation, cleanup and acceptance work is ready, regenerate
-  `docs/technical/` from the final code and its Doxygen comments. Document every
+  `docs/technical/` with Doxygen through `make docs`, using the final code and its
+  Doxygen comments. Doxygen must generate file/interface descriptions and navigation;
+  do not author substitute reference pages manually. Document every
   maintained C source and header, including compiler/runtime components, standard
   library and native companions, C tools, tests and fixtures; reconcile coverage
   with the final file inventory and its documented fixture exceptions. Include
@@ -889,7 +892,9 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   contracts; temporary build/test outputs are not maintained-source inventory.
   Validate complete maintained-file coverage, all rendered destinations and clean
   regeneration; any later code change requires regeneration and renewed checks.
-  Deliver the folder in the repository and commit it with its generation evidence.
+  Deliver the regenerated folder at that repository path; commit generator inputs,
+  configuration and generation evidence. Generated pages remain reproducible
+  outputs, not handwritten or versioned source.
 
 ## Requirement coverage map
 

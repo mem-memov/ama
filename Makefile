@@ -6,6 +6,7 @@ C_COMPILER ?= gcc
 C_COMPILER_FLAGS ?= -O2 -Wall -Wextra -std=c11 -pedantic -D_POSIX_C_SOURCE=200809L
 LTO_FLAGS ?=
 LINKER_FLAGS ?=
+DOXYGEN ?= doxygen
 
 include make/sources.mk
 PROJECT_SOURCES := $(call source_files,src)
@@ -18,7 +19,7 @@ COMPILE_COMMAND = $(C_COMPILER) $(CPPFLAGS) -Isrc $(C_COMPILER_FLAGS) $(LTO_FLAG
 LINK_COMMAND = $(C_COMPILER) $(C_COMPILER_FLAGS) $(LTO_FLAGS) $(LINKER_FLAGS)
 include make/configuration.mk
 
-.PHONY: all test test-clean clean rebuild help
+.PHONY: all test test-clean docs docs-clean clean rebuild help
 all: ama
 
 ama: $(PROJECT_OBJECTS) build/link.configuration
@@ -36,7 +37,15 @@ test: all
 test-clean:
 >    $(MAKE) -C tests clean
 
-clean: test-clean
+# Generate the file reference from maintained C comments; no compiler build is needed.
+docs: docs/Doxyfile
+>    @mkdir -p build/documentation
+>    "$(DOXYGEN)" docs/Doxyfile
+
+docs-clean:
+>    $(RM) -r docs/technical build/documentation
+
+clean: test-clean docs-clean
 >    $(RM) -r build ama
 
 rebuild:
@@ -46,6 +55,8 @@ rebuild:
 help:
 >    @echo "make: build the implementation foundation (not a working Ama compiler)"
 >    @echo "make test: run independent C/assert unit and integration leaves"
+>    @echo "make docs: generate the Doxygen C file reference in docs/technical/index.html"
+>    @echo "make docs-clean: remove generated documentation and its warning log"
 >    @echo "make test-clean: remove test outputs; make clean: remove all build outputs"
 
 export C_COMPILER C_COMPILER_FLAGS CPPFLAGS LTO_FLAGS LINKER_FLAGS

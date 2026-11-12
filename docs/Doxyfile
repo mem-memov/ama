@@ -1,0 +1,32 @@
+# Generate the maintained C file/interface reference; this is not a handwritten
+# replacement for it. Run from the repository root through `make docs`.
+PROJECT_NAME           = Ama
+PROJECT_BRIEF          = "Maintained C components and their specification contracts"
+OUTPUT_DIRECTORY       = docs/technical
+INPUT                  = docs/documentation.md src stdlib/modules tools tests spec
+USE_MDFILE_AS_MAINPAGE  = docs/documentation.md
+RECURSIVE              = YES
+FILE_PATTERNS          = *.c *.h *.md
+EXCLUDE_SYMLINKS       = YES
+EXCLUDE_PATTERNS       = */build/* */generated/*
+FULL_PATH_NAMES        = YES
+STRIP_FROM_PATH        = .
+EXTRACT_ALL            = YES
+EXTRACT_STATIC         = YES
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = NO
+REFERENCED_BY_RELATION  = YES
+REFERENCES_RELATION     = YES
+GENERATE_HTML          = YES
+HTML_OUTPUT            = .
+TIMESTAMP              = NO
+GENERATE_TREEVIEW      = YES
+GENERATE_LATEX         = NO
+GENERATE_TAGFILE        = docs/technical/ama.tag
+HAVE_DOT               = NO
+QUIET                  = YES
+WARNINGS               = YES
+# Inventory undocumented retained code now; T005/T134 add and close strict
+# documentation coverage and source-to-rendered specification-link checks.
+WARN_IF_UNDOCUMENTED   = NO
+WARN_LOGFILE           = build/documentation/warnings.log

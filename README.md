@@ -98,6 +98,10 @@ mathematical/algebraic justification are implementation requirements.
 
 ## Building and testing
 
+Generate the C file and interface reference with `make docs` (requires Doxygen),
+then open `docs/technical/index.html`. See the
+[documentation build guide](docs/documentation.md) for inputs and cleanup.
+
 ```sh
 make
 ./ama --help
