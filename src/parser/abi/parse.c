@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Compose physical ABI reading, record validation and required lifecycle slots.
+ *
+ * [PROTO-11](../../../spec/implementation/native-interface.md#proto-11)
+ * Require declared constructor/destructor slots before publishing a valid binding table.
+ */
 #include "internal.h"
 
 void abi_table_init(AbiTable *table, SourceAllocator allocator) {

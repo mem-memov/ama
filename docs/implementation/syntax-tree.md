@@ -5,8 +5,8 @@ The [specification](../../spec/README.md) defines current behavior; this
 component description does not certify the open work in [TODO](../../TODO.md).
 
 Boundary: `src/ast/` and `src/parser/{access,declarations,body,calls,module}/`.
-Implements COMP-01/02, TYPE-01/02, source/access syntax, SYN-01 through SYN-05
-and call/control syntax. Full type, declaration-order, capability and ownership
+Retains structural machinery for COMP-01/02, TYPE-01/02, source/access syntax,
+sections and call/control syntax; current forms still require T022–T028. Full type, declaration-order, capability and ownership
 checks belong to semantic resolution. In particular multiple scalar initializers, constant
 reference storage and break-outside-loop are represented for semantic rejection.
 
@@ -59,3 +59,13 @@ calls, reads, resumes, alternatives, shared reads, branches/loops/return/break/
 yield, negative syntax partitions, 512-deep control and index chains, and every
 allocation refusal in a composed parse. Call binding ASTs and positional-hole invariants are described in the
 [call contract](call-bindings.md).
+
+
+T146 documents every retained AST type, parser helper and iterative frame boundary.
+The represented subset still lacks complete multiword/two-root access parsing,
+standalone self sources, direct-result trees, negative-only conditionals,
+foreach bindings and the complete current condition-loop repeat model. It retains
+older whitespace/adjacency rules described as implementation limits above. These
+are assigned feature tasks, not unresolved choices or a second accepted grammar.
+Source classification never queries declared names, and failed partial trees
+remain unusable while their arenas stay destructible.

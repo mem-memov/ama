@@ -1,5 +1,14 @@
+/**
+ * @file
+ * @brief Build explicit declaration/type/initializer structure in source order.
+ *
+ * [TYPE-01](../../../spec/language/declarations.md#type-01)
+ * Do not infer a missing type or resolve a declaration name while parsing.
+ */
 #include "../internal.h"
 
+/** Append one successfully parsed initializer, extend its parent span/count, then advance past layout. Partial storage remains AST-owned.
+ */
 static bool add_initializer(Parser *parser, AstNode *node) {
     AstInitializer *initializer = parser_allocate(parser, sizeof(*initializer), parser_site(parser));
     if (initializer == NULL || !parser_source(parser, parser->line, parser->line->code,

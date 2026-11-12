@@ -1,5 +1,14 @@
+/**
+ * @file
+ * @brief Classify literal, constant, value, acquisition and continuation source syntax.
+ *
+ * [REF-01](../../../spec/language/values-and-references.md#ref-01)
+ * Suffix/source form is structural; standalone self-reference support remains T024.
+ */
 #include "../internal.h"
 
+/** Split a validated retained qualified constant at its last dot, with explicit list suffix; require both module and member without resolving either.
+ */
 static bool constant_source(Parser *parser, SourceSpan text, AstSource *source) {
     const unsigned char *bytes = source_bytes(text.source);
     SourceSpan path = text;

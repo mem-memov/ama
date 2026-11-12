@@ -3,7 +3,7 @@
  * @brief Recognize XID words using exact binary searches over pinned immutable ranges.
  *
  * [SRC-03](../../../spec/language/source-and-names.md#src-03)
- * Word membership is separate from complete names with spaces; T014 adds their composition.
+ * Word membership is separate from complete names with spaces; T022 adds their lexical composition.
  */
 #include "unicode.h"
 

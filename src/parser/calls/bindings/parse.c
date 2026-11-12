@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Recognize binding marker, optional label and source/receiver structure.
+ *
+ * [CALL-06](../../../../spec/language/calls-and-results.md#call-06)
+ * Differentiate omitted positions from empty literal payloads without looking up a callee.
+ */
 #include "internal.h"
 
 bool parser_binding(Parser *parser, AstArgument *argument) {

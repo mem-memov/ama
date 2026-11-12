@@ -1,6 +1,15 @@
+/**
+ * @file
+ * @brief Locate retained positional/named entry-literal boundaries without resolving names.
+ *
+ * [CALL-07](../../../spec/language/calls-and-results.md#call-07)
+ * Preserve literal bytes after a recognized marker; exact one-space/multiword recognition remains T022/T025.
+ */
 #include "../layout/internal.h"
 #include "source/unicode/unicode.h"
 
+/** Recognize retained positional or XID-word label structure before an input marker. Return end for nonbinding text; multiword/exact separator changes remain T022.
+ */
 static size_t binding_marker(SourceSpan text) {
     const unsigned char *bytes = source_bytes(text.source);
     size_t cursor = text.start;

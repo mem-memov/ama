@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Map every retained grammar-expectation key to fixed display text.
+ *
+ * [COMP-04](../../../spec/implementation/compiler.md#comp-04)
+ * Compile-time table cardinality prevents missing keys; current grammar extensions remain explicit TODO tasks.
+ */
 #include "error.h"
 
 const char *parser_expected_text(ParserExpectation expectation) {
@@ -27,7 +34,6 @@ const char *parser_expected_text(ParserExpectation expectation) {
         "name < source or name < |payload, name > receiver, or name >> receiver",
         "a space and source/receiver after the marker",
         "one binding style throughout a call",
-        "positional <, > or >> bindings",
         "inputs < before outputs >",
         "outputs > only",
         "retained outputs >> only",

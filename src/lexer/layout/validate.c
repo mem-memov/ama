@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Apply the retained active-layout CR/tab checks independently of physical reading.
+ *
+ * [SYN-01](../../../spec/language/source-and-names.md#syn-01)
+ * This older partial check is not the global TAB/spacing contract; T022 replaces its remaining gaps.
+ */
 #include "internal.h"
 
 LayoutStatus layout_validate(SourceLayout *layout, bool native_abi) {

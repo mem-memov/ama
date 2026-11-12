@@ -1,5 +1,14 @@
+/**
+ * @file
+ * @brief Build allocation-free parser errors with exact sites and branch-specific help.
+ *
+ * [COMP-04](../../../spec/implementation/compiler.md#comp-04)
+ * First-error ownership belongs to the parser caller; no name lookup or heuristic repair is performed.
+ */
 #include "error.h"
 
+/** Return immutable branch-specific help only for explicitly supported grammar keys; absent help remains null rather than a guessed repair.
+ */
 static const char *explanation(ParserExpectation expected) {
     switch (expected) {
         case EXPECT_RIGHT_BRACKET:

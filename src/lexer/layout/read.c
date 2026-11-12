@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Validate UTF-8 and split original source into owned physical line records.
+ *
+ * [NAME-03](../../../spec/implementation/compiler.md#name-03)
+ * Retain original spans and CRLF/LF/no-ending distinctions for diagnostics and literal payloads.
+ */
 #include "internal.h"
 #include "source/unicode/unicode.h"
 
@@ -23,6 +30,8 @@ LayoutStatus layout_failure(SourceLayout *layout, LayoutStatus status,
     return status;
 }
 
+/** Allocate/classify one line privately, including CRLF exclusion, then append. Allocation failure leaves prior nodes and the exact failed site owned.
+ */
 static LayoutStatus append_line(SourceLayout *layout, size_t start, size_t end,
     bool newline, bool literal_payloads) {
     const unsigned char *bytes = source_bytes(layout->source);
@@ -45,6 +54,8 @@ static LayoutStatus append_line(SourceLayout *layout, size_t start, size_t end,
     return LAYOUT_OK;
 }
 
+/** Validate the complete finite byte input before splitting at LF; preserve original bytes and create no fictitious final line after a terminator.
+ */
 static LayoutStatus read_source(SourceLayout *layout, const SourceText *source,
     bool literal_payloads) {
     layout->source = source;

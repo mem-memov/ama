@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Classify physical indentation, comment code and untouched literal payload boundaries.
+ *
+ * [LIT-01](../../../spec/language/declarations.md#lit-01)
+ * Payload spans retain original bytes; exact current spacing/comment placement remains T022 work.
+ */
 #include <string.h>
 #include "internal.h"
 

@@ -71,7 +71,7 @@ released. Case and normalization-distinct physical files retain distinct lookups
 T145 documents each catalog scan/resolution/source-publication phase and internal
 view lifetime. The retained logical-path validator still accepts only the old
 single-dot sequence of Unicode words. Complete multiword components, the separate
-standard-library root and their identity encoding remain T014/T015; exact-byte
+standard-library root and their identity encoding remain T016/T017; exact-byte
 filesystem tests do not certify those unimplemented source forms. Native companion
 lookup and invalid UTF-8 diagnostics retain their original loaded bytes even on
 failure, until catalog destruction.

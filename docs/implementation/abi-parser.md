@@ -4,7 +4,9 @@ Implementation evidence for the subset recorded in the [T001 audit](audit/README
 The [specification](../../spec/README.md) defines current behavior; this
 component description does not certify the open work in [TODO](../../TODO.md).
 
-Boundary: `src/parser/abi/`, implementing PROTO-11. AbiTable owns physical layout
+Boundary: `src/parser/abi/`, retaining the six-slot record machinery for PROTO-11.
+Exact current one-space enforcement remains T022; lexical acceptance below does
+not certify that remaining rule. AbiTable owns physical layout
 nodes and borrows original source spans for six fixed operation slots. Parse once
 and consume slots only after valid=true; destroy cleans all partial layout.
 
@@ -46,3 +48,9 @@ required bindings, invalid UTF-8, tab/lone-CR rejection and every line-allocatio
 failure. Signature conformance remains separately covered by native ABI tests;
 [Frontend composition](parser-errors.md) compiles two module-qualified
 companions and all six typed uses in one C translation unit.
+
+
+T146 adds linked Doxygen contracts for slot ownership, marker recognition, native
+scalar/UCN parsing and duplicate diagnostic lifetimes. The supported C lexical
+domain remains distinct from Ama XID names, and later typed C uses still verify
+actual helper usability. Only record/identifier structure is decided here.

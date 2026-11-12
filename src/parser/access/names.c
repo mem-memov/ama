@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Recognize retained XID-word names, dot paths and access shape predicates.
+ *
+ * [SRC-03](../../../spec/language/source-and-names.md#src-03)
+ * This word-only scanner does not implement complete names with spaces; T022/T024 adapt it.
+ */
 #include "../internal.h"
 #include "source/unicode/unicode.h"
 

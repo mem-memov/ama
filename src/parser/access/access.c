@@ -1,5 +1,14 @@
+/**
+ * @file
+ * @brief Build nested named-index access nodes without recursive C calls.
+ *
+ * [COMP-01](../../../spec/implementation/compiler.md#comp-01)
+ * Represent exact source spans and suffix structure without interpreting declarations or runtime values.
+ */
 #include "../internal.h"
 
+/** Select the exact offending byte or zero-width end and retain its explicit failed grammar expectation.
+ */
 static bool fail_access(Parser *parser, SourceSpan text, size_t cursor, ParserExpectation expected) {
     SourceSpan site = {text.source, cursor, cursor < text.end ? cursor + 1 : cursor};
     return parser_fail(parser, site, "Invalid or incomplete variable access", expected);

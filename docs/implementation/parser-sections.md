@@ -4,7 +4,8 @@ Implementation evidence for the subset recorded in the [T001 audit](audit/README
 The [specification](../../spec/README.md) defines current behavior; this
 component description does not certify the open work in [TODO](../../TODO.md).
 
-Boundary: `src/parser/module/sections.*`, implementing SYN-03/04/05.
+Boundary: `src/parser/module/sections.*`, retaining section/activation structure
+for SYN-03/04/05; full current lexical validation remains T022/T023.
 Section views borrow the immutable layout. Recognition allocates nothing and
 publishes output only on success. UTF-8 must already have passed layout reading.
 
@@ -32,3 +33,10 @@ unfinished drafts, false activation inside payload/comments, empty constants and
 bodies, both implementations, missing implementations, ordering, duplicates,
 unknown/indented annotations and nonlayout native content. This component alone
 does not claim that declaration/body grammar has been validated.
+
+
+T146 adds Doxygen contracts for the local rank pass and borrowed section intervals.
+The retained implementation skips active whitespace validation for drafts; the
+current specification requires its global lexical checks independently of
+activation. T022/T023 implement that change. A passing draft test here is not
+permission to accept forbidden TAB/spacing in inactive current-language input.

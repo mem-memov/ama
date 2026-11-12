@@ -3,7 +3,7 @@
  * @brief Encode nominal categories and complete component bytes with explicit lengths.
  *
  * [NAME-01](../../../../spec/implementation/compiler.md#name-01)
- * Preserve component boundaries and original spelling; new root-kind encoding remains T015 work.
+ * Preserve component boundaries and original spelling; new root-kind encoding remains T017 work.
  */
 #include <stdint.h>
 #include <string.h>

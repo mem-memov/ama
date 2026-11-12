@@ -72,6 +72,13 @@ Verification performed:
 Type compatibility, actual binding arity, namespace uniqueness, initialization
 order/cycles, required-draft dependencies and native callable/signature checking
 remain their resolution/build stages. A syntactically valid AST may fail them.
-The command-line executable remains the explicit implementation foundation until
-shared check/build commands are implemented. The revised CALL-07 grammar is implemented at the source/AST boundary;
-constructor execution and semantic capability checking remain later work.
+The shared check/scaffold/emission frontend consumes these structural records.
+[Entry preparation](entry-preparation.md) separately tests selected constructors
+and capability boundaries; parser tests alone do not certify runtime behavior
+or complete current CALL-07 lexical conformance.
+
+
+T146 documents error keys/record construction and removes the retired positional
+list-action expectation. Expected forms describe the actual failed retained
+parser branch; current grammar extensions must update those forms with T022–T028.
+They are implementation diagnostics, not an alternative language specification.

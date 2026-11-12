@@ -55,3 +55,14 @@ CALL-08 evaluation order is retained in the AST's binding order and distinct
 interface blocks. Duplicate callee labels, interface arity, types, constructor
 selection, source protection and ordered output transfer are semantic/lowering
 contracts; this parser does not execute or certify those later operations.
+
+
+T146 removes a remaining target-specific "fixed positional list interface" branch
+and its obsolete expectation key. Binding syntax now uses the same mode/style
+state machine regardless of whole-list target spelling. This does not enable
+whole-list execution: the real semantic composition still rejects it, including
+named arguments, before lowering. A new parser case isolates that structural
+boundary, and a semantic regression verifies that unsupported execution is never
+accepted. Intrinsic typed list services remain their implementation tasks.
+The existing finite binding-model proof applies only to that retained core, not
+full current spacing, multiword-name or direct-result-tree syntax.

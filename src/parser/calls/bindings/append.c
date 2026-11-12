@@ -1,13 +1,16 @@
+/**
+ * @file
+ * @brief Validate call mode/style/order before appending one structural binding.
+ *
+ * [CALL-08](../../../../spec/language/calls-and-results.md#call-08)
+ * The grammar does not select a retired positional list-action interface from target spelling.
+ */
 #include "internal.h"
 
 bool parser_append_argument(Parser *parser, AstNode *node, AstArgument *argument) {
     bool named = argument->label != NULL;
     if (node->as.call.first != NULL && named != node->as.call.named) {
         return parser_fail(parser, argument->span, "Named and positional bindings cannot mix", EXPECT_BINDING_STYLE);
-    }
-    if (named && node->as.call.target != NULL && node->as.call.target->whole_list) {
-        return parser_fail(parser, argument->span, "Whole-list bindings use the fixed positional interface",
-            EXPECT_POSITIONAL_BINDING);
     }
     AstCallMode mode = node->as.call.mode;
     if ((mode == AST_ENTRY_CALL && argument->kind == AST_SAVED_OUTPUT)

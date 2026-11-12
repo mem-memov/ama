@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Check native identifier scalars against exact supported C11 Annex-D ranges.
+ *
+ * [PROTO-11](../../../../spec/implementation/native-interface.md#proto-11)
+ * This fixed finite-domain test is separate from pinned Ama Unicode XID properties.
+ */
 #include <stdint.h>
 #include "../internal.h"
 

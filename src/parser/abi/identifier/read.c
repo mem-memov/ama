@@ -1,13 +1,24 @@
+/**
+ * @file
+ * @brief Read native C identifier scalars/UCNs and reject exact C keyword spellings.
+ *
+ * [PROTO-11](../../../../spec/implementation/native-interface.md#proto-11)
+ * Native identifiers use the supported C lexical domain, independently of Ama XID names.
+ */
 #include <stdint.h>
 #include "../internal.h"
 #include "source/unicode/unicode.h"
 
+/** Decode exactly one ASCII hexadecimal digit, returning -1 for every other byte.
+ */
 static int hex_digit(unsigned char byte) {
     return byte >= '0' && byte <= '9' ? byte - '0'
         : byte >= 'a' && byte <= 'f' ? byte - 'a' + 10
         : byte >= 'A' && byte <= 'F' ? byte - 'A' + 10 : -1;
 }
 
+/** Decode one UTF-8 scalar or fixed-width C UCN. Validate digit count and restricted low values before publishing scalar/width.
+ */
 static bool read_scalar(const unsigned char *bytes, size_t length, uint32_t *scalar, size_t *width) {
     if (length == 0 || bytes[0] != '\\') {
         return utf8_decode(bytes, length, scalar, width);
@@ -32,6 +43,8 @@ static bool read_scalar(const unsigned char *bytes, size_t length, uint32_t *sca
     return true;
 }
 
+/** Reject exact supported C11 keyword spellings using a fixed finite set; no locale or naming-prefix heuristic.
+ */
 static bool keyword(SourceSpan text) {
     static const char *const words[] = {
         "auto", "break", "case", "char", "const", "continue", "default", "do", "double",

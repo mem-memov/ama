@@ -4,8 +4,9 @@ Implementation evidence for the subset recorded in the [T001 audit](audit/README
 The [specification](../../spec/README.md) defines current behavior; this
 component description does not certify the open work in [TODO](../../TODO.md).
 
-Boundary: `src/lexer/layout/` and `src/lexer/literals/`, implementing
-SYN-01/02/04, LIT-01/02 and CALL-07 physical input boundaries.
+Boundary: `src/lexer/layout/` and `src/lexer/literals/`, retaining physical
+line/payload machinery needed by SYN-01/02/04, LIT-01/02 and CALL-07. This is
+partial implementation evidence, not complete current lexical conformance.
 `SourceLayout` owns line nodes in an arena; source ranges borrow their manager.
 Read once after init and destroy after dependent parsers. Failed reads retain
 only owned partial storage and an allocation-free structured diagnostic.
@@ -44,3 +45,13 @@ Evidence: `make -C tests/unit/lexer/layout` passed C11/pedantic/Werror. Tests co
 CRLF/LF/no-final-newline, positional/named input boundaries, malformed separators,
 literal tabs/comments/trailing spaces, ABI tab rejection, lenient draft
 reading versus strict whitespace, invalid UTF-8, and every line-allocation failure.
+
+
+T146 documents every line/read/classification/validation operation and its borrowed
+span/owned-node lifetime. The current validator still permits TAB in some payloads
+and inactive files, accepts separators/trailing code spaces that the specification
+forbids, and does not enforce all comment indentation. T022 must replace these
+remaining gaps before current-source acceptance is claimed. Literal preservation
+means preserving legal bytes; it does not override the specified global TAB ban.
+Existing positive TAB fixtures measure the retained code and must change in that
+feature task. No alternate whitespace contract is offered to Ama programmers.

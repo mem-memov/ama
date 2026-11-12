@@ -1,6 +1,11 @@
+/**
+ * @file
+ * @brief Test retained call-binding grammar, omissions, literal bytes and target-independent parsing.
+ */
 #include <stdio.h>
 #include "../ast-common.c"
 
+/** Verify independent positional direction counters and explicit no-value omission nodes. */
 static void it_counts_skipped_inputs_and_outputs_independently(void) {
     setup_tree();
     ParseStatus parsed = parse_text("@!\nworker!\n < first\n < # default\n < third\n >\n > selected\n > # skip\n>\n");
@@ -21,6 +26,7 @@ static void it_counts_skipped_inputs_and_outputs_independently(void) {
     destroy_tree();
 }
 
+/** Separate scalar resume output omissions from forbidden resume inputs. */
 static void it_permits_output_placeholders_on_scalar_resume(void) {
     const char *valid[] = {"@!\nworker%\n >\n > selected", "@!\nworker!", "@!\nworker%"};
     for (size_t index = 0; index < sizeof(valid) / sizeof(*valid); index++) {
@@ -31,6 +37,7 @@ static void it_permits_output_placeholders_on_scalar_resume(void) {
     }
 }
 
+/** Preserve retained physical payload bytes and distinguish empty literal construction from omitted input. */
 static void it_preserves_typed_literal_inputs_and_distinguishes_empty_values_from_skips(void) {
     setup_tree();
     ParseStatus parsed = parse_text("@!\nwriter!\n < |Hello # data\t  \r\n < |\n <\n > result\n"
@@ -54,6 +61,7 @@ static void it_preserves_typed_literal_inputs_and_distinguishes_empty_values_fro
     destroy_tree();
 }
 
+/** Verify payload length by source offsets instead of NUL-terminated string interpretation. */
 static void it_preserves_embedded_zero_bytes_in_unterminated_input_literals(void) {
     setup_tree();
     const unsigned char bytes[] = "@!\nwriter!\n < |x\0y#\t ";
@@ -70,12 +78,13 @@ static void it_preserves_embedded_zero_bytes_in_unterminated_input_literals(void
     destroy_tree();
 }
 
+/** Reject finite malformed mode/style/operand partitions with a valid structured diagnostic. */
 static void it_rejects_empty_reads_named_placeholders_invalid_literals_and_mixed_styles(void) {
     const char *invalid[] = {"@!\nworker\n >>", "@!\nworker!\n value <", "@!\nworker!\n value >",
         "@!\nworker!\n <\n value > destination", "@!\nworker%\n <", "@!\nworker!\n >> value",
         "@!\nworker\n >", "@!\nworker\n >> value\n > destination", "@!\nworker!\n >\n <",
         "@!\nworker!\n <|12", "@!\nworker!\n <12", "@!\nworker!\n name< value",
-        "@!\nworker\n > > value", "@!\nitems[]!\n action < value", "@!\nworker!\n > &item"};
+        "@!\nworker\n > > value", "@!\nworker!\n > &item"};
     for (size_t index = 0; index < sizeof(invalid) / sizeof(invalid[0]); index++) {
         setup_tree();
         ParseStatus parsed = parse_text(invalid[index]);
@@ -84,6 +93,21 @@ static void it_rejects_empty_reads_named_placeholders_invalid_literals_and_mixed
     }
 }
 
+/** Parsing a binding must not resurrect the retired list action interface.
+ * This structural tree is still rejected by semantic whole-list execution checks;
+ * this case certifies only target-independent named binding recognition.
+ */
+static void it_parses_binding_structure_without_a_retired_list_dispatch_contract(void) {
+    setup_tree();
+    ParseStatus parsed = parse_text("@!\nitems[]!\n action < value\n");
+    assert(parsed == PARSE_OK);
+    AstNode *call = module.body.first;
+    assert(call->as.call.target->whole_list && call->as.call.named && call->as.call.input_count == 1);
+    assert(layout_text_is(call->as.call.first->label->name, "action"));
+    destroy_tree();
+}
+
+/** Independent binding-token alphabet: direction, naming style and omission, with retained spelling for finite-model tests. */
 typedef struct {
     const char *text;
     int direction;
@@ -91,6 +115,7 @@ typedef struct {
     bool omitted;
 } BindingModel;
 
+/** Independent finite-state oracle for the retained binding mode/style/order core, not full current lexical conformance. */
 static bool model_accepts(size_t mode, const BindingModel *tokens, const size_t *sequence, size_t count) {
     if (mode >= 2 && count == 0) {
         return false;
@@ -110,6 +135,7 @@ static bool model_accepts(size_t mode, const BindingModel *tokens, const size_t 
     return true;
 }
 
+/** Enumerate four modes and every length-zero-through-three sequence over eleven binding forms; compare the independent finite-state model. */
 static void it_matches_the_call_mode_language_for_every_short_binding_sequence(void) {
     const BindingModel tokens[] = {
         {" < value\n", 0, false, false}, {" <\n", 0, false, true},
@@ -148,6 +174,7 @@ static void it_matches_the_call_mode_language_for_every_short_binding_sequence(v
 }
 
 void run(void) {
+    it_parses_binding_structure_without_a_retired_list_dispatch_contract();
     it_counts_skipped_inputs_and_outputs_independently();
     it_permits_output_placeholders_on_scalar_resume();
     it_preserves_typed_literal_inputs_and_distinguishes_empty_values_from_skips();

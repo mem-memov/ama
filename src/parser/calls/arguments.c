@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Read one binding level and preserve argument spans, payloads and text order.
+ *
+ * [CALL-06](../../../spec/language/calls-and-results.md#call-06)
+ * Positional omissions are explicit nodes, not invented default values or hidden receivers.
+ */
 #include "bindings/internal.h"
 
 bool parser_call_arguments(Parser *parser, AstNode *node, size_t indentation) {

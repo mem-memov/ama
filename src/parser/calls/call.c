@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Build call mode/target structure and attach its same-level refusal alternative.
+ *
+ * [CALL-01](../../../spec/language/calls-and-results.md#call-01)
+ * Keep caller-side target syntax and lexical handler ownership explicit; direct-result trees remain T026.
+ */
 #include "../internal.h"
 
 bool parser_start_call(Parser *parser, ParseFrame **frame, AstNode *node,

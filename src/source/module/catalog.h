@@ -3,7 +3,7 @@
  * @brief Own one exact physical-source catalog and its diagnostic lifetimes.
  *
  * [SRC-02](../../../spec/language/source-and-names.md#src-02)
- * Build without root shadowing; the current single-dot/word path representation awaits T014/T015.
+ * Build without root shadowing; the current single-dot/word path representation awaits T016.
  */
 #ifndef AMA_SOURCE_MODULE_CATALOG_H
 #define AMA_SOURCE_MODULE_CATALOG_H
@@ -89,7 +89,7 @@ ModuleStatus module_catalog_build(ModuleCatalog *catalog,
 ModuleStatus module_catalog_find(const ModuleCatalog *catalog,
     const char *logical_path, const ModuleSource **output);
 /** Validate the retained single-dot, nonempty Unicode-word component form.
- * @return Exact supported-form membership only; complete multiword names and distinct standard-library roots remain T014/T015.
+ * @return Exact supported-form membership only; complete multiword names and distinct standard-library roots remain T016.
  */
 bool module_path_valid(const char *path);
 

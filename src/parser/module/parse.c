@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Compose physical layout, sections, declarations and iterative body parsing.
+ *
+ * [COMP-01](../../../spec/implementation/compiler.md#comp-01)
+ * Publish a usable AST only after all required structural stages succeed; no symbol lookup occurs.
+ */
 #include "../internal.h"
 
 ParseStatus parser_module_parse(AstModule *module, const SourceText *source) {

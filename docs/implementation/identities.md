@@ -74,6 +74,6 @@ Existing categories retain their encoding and stable vectors.
 T145 documents each encoding/hash/registry operation and its borrowed/owned
 lifetimes next to the code. Current encoding uses the retained single-dot path
 validator: distinct root kinds and multiword component composition remain
-T014/T015. The current stable digest vectors certify that supported domain,
+T016/T017. The current stable digest vectors certify that supported domain,
 not the still-planned complete source identity model. SHA-256 is only a candidate
 index; forced equal-digest/unequal-key tests remain the exact collision authority.

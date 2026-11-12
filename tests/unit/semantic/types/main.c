@@ -104,7 +104,7 @@ static void it_keeps_resolved_bindings_and_literal_bytes_in_source_order(void) {
 /** Whole-list execution/read cannot reach retired positional bindings. */
 static void it_rejects_whole_list_execution_and_retained_results(void) {
     prepare_types();
-    const char *operations[] = {"items[]!\n", "items[]\n >> value\n"};
+    const char *operations[] = {"items[]!\n", "items[]\n >> value\n", "items[]!\n action < value\n"};
     for (size_t index = 0; index < sizeof(operations) / sizeof(*operations); index++) {
         char text[512];
         int length = snprintf(text, sizeof(text), "@!\nvalue\n.value\nitems[]\n.resource\n%s", operations[index]);

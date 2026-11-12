@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Own parser cursor helpers, first-error recording and zeroed arena nodes.
+ *
+ * [COMP-04](../../spec/implementation/compiler.md#comp-04)
+ * Preserve the exact first failed site and retain all partial storage until AST destruction.
+ */
 #include <string.h>
 #include "internal.h"
 

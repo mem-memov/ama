@@ -379,12 +379,24 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   Strict source/diagnostic/composition suites, arena ASan/UBSan (`detect_leaks=0`),
   documentation tests and full root `make -j4 test` passed (69 leaves). `make docs`
   checked 512 file pages and canonical links; 167 ready records and 508 debts remain.
-- [ ] **T146 — Document lexical, AST and parser components.** Needs: T133.
+- [x] **T146 — Document lexical, AST and parser components.** Needs: T133.
   Cover `src/lexer/`, `src/ast/` and `src/parser/`, including internal headers.
   Explain byte/span ownership, iterative frame boundaries, syntax recognition and
   diagnostics with exact specification links. Identify current implementation gaps
   honestly; verify file-level tests and rendered documentation without claiming
   unsupported current forms are already accepted.
+
+  Evidence: linked Doxygen contracts cover all 34 lexer/AST/parser inputs and
+  their ten independently compiled headers; current lexical/control/result-tree
+  gaps remain explicitly assigned to T022–T028. Thirty-one inputs preprocess
+  identically apart from the three intentional retirement edits. Removed the
+  remaining fixed-positional list parser rule and its expectation key; structural
+  named bindings still fail actual whole-list semantic execution. The regression
+  failed during parsing before the fix and now reaches the correct semantic
+  rejection. Strict lexer/parser/semantic leaves and full root `make -j4 test`
+  passed (69 leaves), including actual grammar/native and generated consumers.
+  Corrected task references for pending path/root encoding to T016/T017.
+  Doxygen checked 512 file pages; 202 ready inputs and 473 explicit debts remain.
 - [ ] **T147 — Document dependency, semantic and planning components.** Needs:
   T133. Cover `src/project/`, `src/semantic/`, `src/planning/` and `src/lowering/`.
   Explain namespace/graph distinctions, fixed points, typed plans, source ordering,

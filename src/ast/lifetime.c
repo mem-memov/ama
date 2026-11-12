@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Initialize and release complete or failed structural syntax owners.
+ *
+ * [ARCH-03](../../spec/implementation/compiler.md#arch-03)
+ * Nodes/layout belong to explicit arenas; their text spans borrow the source manager.
+ */
 #include "ast.h"
 
 void ast_module_init(AstModule *module, SourceAllocator allocator) {

@@ -1,5 +1,14 @@
+/**
+ * @file
+ * @brief Classify supported statement shapes from physical structure without name lookup.
+ *
+ * [COMP-01](../../../spec/implementation/compiler.md#comp-01)
+ * The retained adjacent-marker/compact-call subset is not full current control or spacing conformance.
+ */
 #include "../internal.h"
 
+/** Attach a parsed nonliteral source to a structural receiver and advance exactly past that source line; no first-use declaration inference occurs here.
+ */
 static bool assignment(Parser *parser, AstNode *node, AstAccess *receiver, const LayoutLine *source) {
     node->kind = AST_ASSIGNMENT;
     node->as.assignment.receiver = receiver;
@@ -11,6 +20,8 @@ static bool assignment(Parser *parser, AstNode *node, AstAccess *receiver, const
     return true;
 }
 
+/** Attach an adjacent owned-syntax condition to a retained branch/loop frame. Current blank-adjacency restriction is an implementation gap assigned to T027.
+ */
 static bool control(Parser *parser, ParseFrame **frame, AstNode *node,
     AstAccess *condition, const LayoutLine *marker, bool blank) {
     if (blank || !parser_owned_access(condition)) {
@@ -27,6 +38,8 @@ static bool control(Parser *parser, ParseFrame **frame, AstNode *node,
         (*frame)->indentation + 1, loop ? FRAME_LOOP : FRAME_BRANCH);
 }
 
+/** Distinguish supported declaration, assignment, control or retained-read tails by physical structure only. Never query a declaration inventory to choose syntax.
+ */
 static bool bare_target(Parser *parser, ParseFrame **frame, AstNode *node) {
     const LayoutLine *line = parser->line;
     bool blank = false;

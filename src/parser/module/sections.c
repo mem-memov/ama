@@ -1,5 +1,14 @@
+/**
+ * @file
+ * @brief Recognize genuine activation markers and monotonically ordered section intervals.
+ *
+ * [SYN-03](../../../spec/language/source-and-names.md#syn-03)
+ * Comments/literals do not activate modules; the retained pre-validation draft policy still needs T022/T023.
+ */
 #include "sections.h"
 
+/** Recognize only genuine complete code-line section markers; literals/comments cannot activate a file.
+ */
 static int annotation(const LayoutLine *line) {
     const char *markers[] = {"@=", "@<", "@>", "@!", "@C"};
     if (line->kind != LINE_CODE) {
@@ -13,6 +22,8 @@ static int annotation(const LayoutLine *line) {
     return -1;
 }
 
+/** Test the finite line sequence for an unindented constants/implementation marker under the retained activation contract.
+ */
 static bool active_file(const SourceLayout *layout) {
     for (const LayoutLine *line = layout->first; line != NULL; line = line->next) {
         int marker = annotation(line);
@@ -23,15 +34,21 @@ static bool active_file(const SourceLayout *layout) {
     return false;
 }
 
+/** Publish an exact source-mapped section error using the shared parser diagnostic constructor.
+ */
 static bool fail(ParseError *error, SourceSpan span, const char *message, ParserExpectation expected) {
     return parser_error_set(error, span, message, expected);
 }
 
+/** Return the local section record for an already recognized marker; @!/@C share implementation storage.
+ */
 static ParsedSection *select_section(ModuleSections *sections, int marker) {
     return marker == 0 ? &sections->constants : marker == 1 ? &sections->parameters
         : marker == 2 ? &sections->results : &sections->implementation;
 }
 
+/** Maintain strictly increasing section rank, assigning each nonmarker line to its current interval. Partial local intervals are unpublished on failure.
+ */
 static bool read_sections(SourceLayout *layout, ModuleSections *sections, ParseError *error) {
     int previous = -1;
     ParsedSection *current = NULL;

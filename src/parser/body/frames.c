@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Drive indentation-scoped branch/loop frames iteratively.
+ *
+ * [COMP-01](../../../spec/implementation/compiler.md#comp-01)
+ * A finite frame chain owns explicit body intervals; expanded control/result trees remain T026/T027.
+ */
 #include "../internal.h"
 
 bool parser_push_frame(Parser *parser, ParseFrame **frame, AstBlock *block,
@@ -11,6 +18,8 @@ bool parser_push_frame(Parser *parser, ParseFrame **frame, AstBlock *block,
     return true;
 }
 
+/** Close one retained branch/loop frame or switch to its alternative. Require the matching loop close at owner indentation; every successful close decreases finite frame depth.
+ */
 static bool finish_frame(Parser *parser, ParseFrame **frame) {
     ParseFrame *current = *frame;
     const LayoutLine *line = parser->line;
