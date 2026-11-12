@@ -139,6 +139,14 @@ or LIST-10 preflight refusal selects `:`. No list method reports an action/outco
 enumeration instead of handling its pre-entry refusal. Fatal
 errors use the active diagnostic record rather than stale last-refusal metadata.
 
+The snapshot is logical per-instance state. [RT-02](runtime.md#rt-02) and
+[GEN-03](compiler.md#gen-03) permit a compact or implicit representation only
+when every allowed reader observes exactly this same status. For example, a
+proved always-success snapshot may be reconstructed as zero without allocating
+all status fields in each instance. Distinct callers' nonconstant snapshots
+must remain independent, and a successful call must not clear one as a storage
+shortcut. The C transport representation under ERROR-03 is unchanged.
+
 ### Map execution to source locations
 
 <a id="debug-01"></a>

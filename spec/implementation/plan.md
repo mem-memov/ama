@@ -13,11 +13,13 @@ the target behavior at every stage.
 
 Use the agreed in-place pools, native-state boundary, lifecycle protocol, shared
 constants, status representation and host outcomes as fixed inputs. Select the
-supported toolchain, write checked C prototypes/adapters for the six bindings,
-and verify native-entry inlining while allowing internal C helper/library calls.
+supported toolchain and write checked C prototypes/adapters for the six bindings
+and PROTO-03's fixed `..integer` host-size constructor. Verify native-entry
+inlining while allowing internal C helper/library calls.
 Specify metadata for ownership, generations, current operation, return links and
-per-instance acquisition-refusal snapshots. Do not expand syntax merely to fill
-an implementation detail.
+per-instance acquisition-refusal snapshots. Separate this logical state from
+RT-02's compact physical layouts and state GEN-03's preservation obligations.
+Do not expand syntax merely to fill an implementation detail.
 
 Deliverable: an executable native-ABI harness and source-linked contract checklist
 covering the settled design, including library refusal-context reading.
@@ -40,9 +42,11 @@ Resolve declarations and library contracts, including symbolic `.abi` bindings
 and compile-time capability checks. Build owned layouts and interface
 layouts; detect eager ownership cycles. Represent lifecycle actions, acquisition,
 calls, result routing, and continuations explicitly in typed IR. Implement
-operation-scoped clone mappings and internal-reference fixups, including whole-list
-boundaries. Check self-identity and ownership ancestry before cloning; test static
-and runtime overlap refusal and no-op self-assignment. Verify initialization/copy/
+exact capability/liveness analysis for any optional storage/check elimination;
+retain the general representation whenever its proof obligations are unmet.
+Implement operation-scoped clone mappings and internal-reference fixups, including
+whole-list boundaries. Check self-identity and ownership ancestry before cloning;
+test static and runtime overlap refusal and no-op self-assignment. Verify initialization/copy/
 move/destruction failure cleanup before execution integration.
 
 Deliverable: validated typed projects and inspectable layout/control-flow plans.
@@ -91,10 +95,16 @@ Deliverable: resumable instances with failure-safe cloning and no copied active 
 Implement typed list-service methods, checked membership records and live
 foreach boundaries over contiguous order arrays, plus index/truth
 mappings, shared constant sections and constants-only modules, resource native types, and necessary scalar operations.
-Implement intrusive pool free lists and safe trailing-block reclamation. Test
+Implement intrusive pool free lists and safe fully-free-block reclamation,
+including sparse-directory interior reclamation when selected. Test
 order-preserving list removal, ownership destruction, stable references, busy
 refusal, and reclaim/regrow generation safety. Keep optional queue specialization
 in libraries. Support application-managed work queues without adding an implicit scheduler.
+
+Use compact local order indices without weakening full membership identities,
+and select the documented exact lexical-scan or active-cursor correction strategy.
+Construct lengths through the fixed typed bridge. Native text/byte values may
+share immutable backing under PROTO-06 while retaining independent Ama values.
 
 Deliverable: documented library contracts and representative complete examples.
 
@@ -152,12 +162,14 @@ an engineering task; it does not reopen a source-language decision.
   CONT-04 continuation handling; publish library paths/types and traversal
   examples, including insertion/removal on both sides of live boundaries,
   append/clear, swap repeat/skip behavior, atomic reference replacement versus
-  remove/reinsert, suspended/nested cursor correction, O(K) lexical-slot
-  enumeration, potential-based termination bounds, busy/refusal cleanup,
-  absent membership guards, and independent continuation-copy mappings.
+  remove/reinsert, suspended/nested cursor correction, the documented O(K) scan
+  or O(A) exact registration strategy, potential-based termination bounds,
+  busy/refusal cleanup, absent membership guards, and independent
+  continuation-copy mappings.
 - Generate typed native layouts/entry adapters and exact C prototypes implementing
-  the six `.abi` bindings and LIFE-01 through LIFE-05. Fix C declaration spelling,
-  representation includes, alignment checks, and byte-view typedefs in the backend.
+  the six `.abi` bindings, PROTO-03's fixed size bridge, and LIFE-01 through LIFE-05.
+  Fix C declaration spelling, representation includes, alignment checks, and
+  byte-view typedefs in the backend.
 - Implement per-instance refusal snapshots and a read-only library status reader;
   publish its normal interface without adding special source names or bindings.
 - Allocate the common nonzero status codes without collisions; reserve the invalid
@@ -175,7 +187,9 @@ an engineering task; it does not reopen a source-language decision.
 - Verify mandatory native-entry inlining under the supported toolchain and preserve
   allowed internal C calls. Complete unit/integration/sanitizer/negative checks.
 - Keep documentation consistent with this specification and record actual
-  acceptance evidence before claiming implementation support.
+  acceptance evidence before claiming implementation support. Compiler Doxygen
+  explanations link canonical file/rule anchors under ARCH-06; validate source
+  and rendered-documentation navigation without modifying canonical inputs.
 
 These tasks may expose a genuine contradictory requirement. Record and fix that
 contradiction explicitly; an unwritten function signature or unchosen allocation

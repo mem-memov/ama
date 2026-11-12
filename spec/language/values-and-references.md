@@ -169,9 +169,56 @@ into reference storage changes the stored handle, not its target's state.
 and lists. References stored inside the copy that point into the copied ownership
 tree follow their corresponding new instances. References to objects outside that
 tree retain their existing targets. Copying a reference variable alone copies
-identity only and does not clone or redirect its target. A native resource that
-cannot be cloned independently must report unsupported copying; it must not
-silently become shared ownership.
+identity only and does not clone or redirect its target. Independence is a
+requirement on the values' behavior, ownership, and lifetime, not a requirement
+to duplicate every immutable byte. The native clone contract may share explicitly
+immutable native backing storage under PROTO-06. Each destination still has its
+own Ama identity, fields, control state, and independently constructed native
+payload. Sharing mutable external resources as a substitute for independent
+cloning is forbidden. A native resource that cannot satisfy these rules must
+report unsupported copying.
+
+#### Explanation: independent text values can share immutable bytes
+
+**Example.** Assume the library's `..text` type owns an immutable UTF-8 byte
+buffer through a native payload, supports `=`, and has no other owned data that
+needs copying:
+
+```text
+first
+..text
+ |A long immutable text
+
+second
+ first
+```
+
+`first` and `second` are separate Ama instances. A reference to `first` does not
+become a reference to `second`; deleting one does not invalidate the other. Their
+payloads may each own one counted share of the same immutable byte allocation.
+The native `=` hook still constructs the destination payload, and its `-` hook
+releases only that payload's share. If the type later offers a value-changing
+operation, it must construct a new immutable buffer before replacing the old
+payload; it cannot edit bytes that another value observes.
+
+**Implementation explanation.** A buffer record can contain a byte length, a
+checked owner count, and immutable bytes. Constructing the first payload takes
+one share. Cloning validates that incrementing the count is representable, adds
+one share, then publishes the new payload; it never publishes before acquiring
+that share. Finalizing either payload drops exactly its own share and frees the
+record only when the count reaches zero. A failed surrounding clone releases
+the prepared payload's share during rollback. The source and previous
+destination retain their shares under COPY-02. Borrows remain limited to the
+current native operation under CABI-03; a view does not gain an independent
+lifetime by pointing at shared bytes.
+
+For a byte sequence of length `n`, this representation can make copying its
+native payload `O(1)` time and additional space instead of `O(n)`; cloning the
+rest of its Ama ownership tree still has its ordinary cost. The optimization
+permits shared immutable storage, not hidden Ama handles, mutable resource
+aliasing, or a general copy-on-write facility. The full native ownership,
+failure, and cross-context constraints are in
+[PROTO-06](../implementation/native-interface.md#proto-06).
 
 ### Value copying clears saved execution positions
 

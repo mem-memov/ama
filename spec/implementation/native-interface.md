@@ -119,6 +119,11 @@ must not substitute for instance state. The layout or address of a live native
 payload is not implicitly moved during Ama invocation or pool growth. Internal
 replacement storage may require a typed transfer implementation that preserves
 native resource invariants; it is not permission to relocate live pool slots.
+[RT-02](runtime.md#rt-02) may permit omission of unobservable instance machinery,
+but an optimizer must not infer that an arbitrary native payload is movable or
+that a hook has no effects. Any observed native address remains valid for its
+declared lifetime, including bounded views; storage elision must preserve that
+contract and all required lifecycle calls.
 
 ### Keep Ama references out of opaque payloads
 
@@ -288,6 +293,61 @@ ERROR-05. These are conversion helper signatures, not the void-return entry
 interface of a native Ama module. On success the helper initializes its
 output. On failure the output is not consumed.
 
+#### Construct an integer from a host size without decimal text
+
+The fixed standard-library `..integer` module additionally supplies this typed
+native bridge in its representation header and companion implementation:
+
+```c
+AmaStatus AMA_NATIVE(from_size)(AMA_NATIVE(State) *destination, size_t value);
+```
+
+The name `from_size` is fixed for this bridge, qualified by that module's
+NAME-05 prefix; `State` here illustrates its authored payload type as above.
+Generated declarations bind the actual payload type explicitly. Generated list
+code invokes this helper only for the exact standard-library identity
+`..integer` when constructing LIST-04's `length` result. Missing or incompatible
+bridge declarations are native-interface build errors. A project module with a
+similar name does not acquire this contract.
+
+`destination` is fresh, suitably aligned native payload storage, not a live
+integer to overwrite. Its generated owned fields have already been constructed
+under LIFE-01. The helper constructs exactly the mathematical nonnegative integer
+`value`, for every input from zero through `SIZE_MAX`, and makes the payload live
+only on success. It must not report invalid-index or range refusal for a valid
+`size_t` input. Allocation or other technical failure uses the same `AmaStatus`
+contract, releases partial native resources, and leaves the payload non-live;
+generated cleanup finalizes previously constructed Ama fields. A successful
+payload uses the ordinary `-` lifecycle and must round-trip through the type's
+`[]` conversion to the original `size_t` value.
+
+This is an explicitly required helper of one fixed library module, not a seventh
+`.abi` binding, an extensible conversion registry, a universal numeric cast, or
+permission to inspect arbitrary native layouts. The `.abi` table still contains
+only the six symbols in PROTO-01/PROTO-11. The generator knows this helper's typed
+declaration and module identity; it does not parse its C implementation or infer
+it from arbitrary C function names. Library algorithms can use the bridge under
+the same fresh-storage contract; other Ama types do not acquire it implicitly.
+
+**Purpose.** List length already exists as structural `size_t` metadata. Requiring
+decimal formatting and then literal parsing adds temporary bytes and two
+conversions merely to return the same number. The bridge constructs the usual
+owned Ama result directly. Source literals and omitted source defaults still
+use their selected `|` or `+` constructor; this bridge does not introduce a new
+Ama literal syntax or change ordinary literal decoding.
+
+**Implementation explanation.** The integer companion can reserve the required
+native limbs and populate them directly. For example, for a representable limb
+base `B >= 2`, repeatedly emit `value % B` and replace `value` by `value / B`,
+with a single zero limb for input zero. All division is unsigned and bounded by
+the original `size_t`; no decimal bytes, signed narrowing, or out-of-range shift
+is required. Other integer representations may use an equivalent exact
+algorithm. Representation choice belongs to `..integer`, rather than generated
+list code. Tests must cover zero, one, limb boundaries, `SIZE_MAX`, round-trips,
+and injected preparation failure with no live partial payload. LIST-04 selects
+this bridge as its single native payload constructor under LIFE-02, never
+default construction followed by overwriting the initialized integer.
+
 ### Conversions inspect current state
 
 <a id="proto-04"></a>
@@ -335,12 +395,67 @@ a file-resource type may omit `=` while an integer type
 binds `= clone`. The binding is metadata, not a new assignment operator
 in Ama source and not an equality-comparison protocol.
 
-The helper constructs independent destination native payload from a read-only
-source and reports explicit success/failure. It must obey the fresh-storage and
+The helper constructs an independent destination native payload from a read-only
+source and reports explicit success/failure. Independent payloads may retain
+counted shares of explicitly immutable native backing storage under the rules
+below; their mutable state, resource disposition, and observable value behavior
+remain independent. The helper must obey the fresh-storage and
 failure-cleanup protocol in LIFE-01 through LIFE-05. It does not contain, clone,
 or redirect persistent Ama handles; COPY-05 handles generated Ama fields only.
 The runtime handles saved execution positions separately; ordinary and `%` copying
 invoke the same data-clone contract, not different native clone modes.
+
+#### Share immutable native backing without sharing mutable values
+
+The native type contract may define a shared backing record containing immutable
+bytes, their immutable size/description, and lifetime bookkeeping. Each native
+payload owns its own share and any mutable per-instance state. No conforming
+operation, borrowed view, external native owner, or callback may modify the
+shared bytes while any payload or borrow can observe them. Shared files, sockets,
+device state, mutable buffers, or persistent Ama identities cannot be treated as
+immutable backing by declaration alone. CABI-05 continues to prohibit hidden Ama
+handles and pointers in both the payload and its backing records.
+
+The backing address and share count are not an Ama instance identity. Sharing
+is permitted only when the declared native/library contract allows immutable
+backing aliasing and preserves any promised address or resource-identity
+observations. A bounded native view may expose its actual byte address during
+the permitted operation; this does not turn that address into an Ama identity
+or make lifetime bookkeeping mutable application state.
+
+Construct each destination payload by invoking `=` normally, with fresh storage;
+do not replace that invocation with an untyped payload `memcpy`. A checked share
+count is a permitted lifetime algorithm: increment before publishing a new
+payload, reject count overflow as technical clone failure without changing the
+source or destination, decrement exactly once when that payload is finalized,
+and free only after the final owner and its permitted borrows are finished.
+Explicit bounds or another exact ownership algorithm are also permitted if they
+prove the same invariant. Cloning failure must undo every share acquired by that
+failed constructor; failure of a later child or reference-fixup step releases
+the already successful prepared payload through ordinary rollback cleanup.
+
+Borrowing does not transfer a share or extend CABI-03's lifetime: the backing
+must stay alive throughout each operation's permitted view, and no view escapes
+the operation. A value-changing operation must prepare a new immutable backing
+and perform the ordinary replacement protocol. There is no permission to defer
+a required allocation to an unspecified future mutation, mutate shared bytes,
+or introduce general copy-on-write semantics.
+
+The simplest implementation confines the record and its non-atomic share count
+to one execution context. Sharing immutable native backing across contexts
+requires an explicit native resource contract satisfying
+[PAR-05](../language/async-and-parallelism.md#par-05): synchronized lifetime
+bookkeeping, safe concurrent read access, and no shared mutable Ama state or
+cross-context Ama handles. It cannot be inferred from immutability of the byte
+array alone or used to bypass serialized message boundaries.
+
+Acceptance must exercise two copies with distinct Ama identities sharing one
+immutable buffer, destruction in both orders, per-instance replacement without
+altering the other value, rollback after acquiring a share, reduced-width share
+count overflow, and borrows held during their permitted operation. A
+cross-context implementation additionally needs concurrent ownership/cleanup
+tests. These checks establish independent value semantics, not merely equal
+addresses or lower allocation counts.
 
 ### Derive copy capability over owned types
 
@@ -376,9 +491,11 @@ TYPE-04 check. There is no inference from current list length.
 A supported clone may still fail at runtime, for example on allocation. Clean up
 partially created native/owned data and clone-context metadata, preserve the
 source and previous destination, then follow the technical-failure diagnostic
-protocol. Never silently share an owned external resource to make cloning succeed.
-A registered clone must implement genuine independent data semantics; shared
-access is expressed through reference storage instead.
+protocol. Never silently share a mutable owned external resource to make cloning
+succeed. A registered clone must implement independent data semantics;
+PROTO-06's explicitly immutable backing is permitted because neither value can
+change the other's data or invalidate its lifetime. Shared access to a mutable
+Ama object is expressed through reference storage instead.
 
 ### Select one fresh constructor
 
@@ -387,8 +504,9 @@ access is expressed through reference storage instead.
 **PROTO-08.** `+` initializes fresh native storage without executing the module
 body. `|` constructs a value from immutable UTF-8 bytes and an explicit length;
 it is required only when literal initialization is used. Default construction,
-literal construction, and cloning are distinct construction paths over fresh
-native storage, as specified in LIFE-01 through LIFE-05; a value is not initialized
+literal construction, cloning, and PROTO-03's fixed `..integer` size bridge are
+distinct construction paths over fresh native storage, as specified in LIFE-01
+through LIFE-05; a value is not initialized
 twice. Construction failures release partial resources and leave no
 published partially live value. The compiler-generated lifecycle combines native
 hooks with owned-field construction/cleanup; hooks must not double-destroy fields
@@ -406,8 +524,9 @@ LIFE-01 through LIFE-05.
 <a id="proto-09"></a>
 
 **PROTO-09.** All native operations use one explicit technical-status/error
-contract: default initialization, literal decoding, cloning, condition/index
-conversion, destruction, and native module execution. The contract distinguishes
+contract: default initialization, literal decoding, cloning, the fixed
+`..integer` size bridge, condition/index conversion, destruction, and native
+module execution. The contract distinguishes
 success from failure and carries a reason code plus optional diagnostic context.
 The runtime supplies Ama source location and execution-path context. The status
 uses the code/message/length representation and immutable-message lifetime in
@@ -520,7 +639,8 @@ mapping instead of reevaluating self-reference defaults.
 <a id="life-02"></a>
 
 **LIFE-02.** Select exactly one payload constructor: `+` for a default, `|` for a
-literal, or `=` for a clone. Do not invoke `+` and then overwrite its resources
+literal, `=` for a clone, or PROTO-03's fixed `..integer` size bridge when
+LIST-04 requests it. Do not invoke `+` and then overwrite its resources
 with another constructor. Constructors receive fresh destination payload storage.
 A successful constructor makes it live; a failed constructor must release every
 resource it acquired, report status, and leave that payload non-live. The runtime

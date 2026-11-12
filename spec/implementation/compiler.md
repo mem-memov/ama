@@ -134,7 +134,92 @@ must occupy instance or explicit runtime control storage; shared `@=` values
 occupy separate immutable module storage within each execution context. C automatic temporaries are
 allowed only when their lifetime cannot cross a transfer and their addresses
 cannot escape. Compiler transformations must preserve source evaluation order
-and failure behavior.
+and failure behavior under the observation and resource rules below. Logical
+state need not be represented by a separate physical field when RT-02's exact
+storage analysis proves an equivalent representation. This permission never
+introduces a C activation that must survive an Ama transfer or yield.
+
+#### Why the optimization boundary is explicit
+
+**Explanation.** A simple integer can need fewer control fields than a module
+that yields inside a list traversal. Rechecking a protected handle can also be
+unnecessary if no intervening operation can invalidate it. Requiring the same
+physical records and allocation attempts in both cases would make the general
+runtime representation an unavoidable cost of every small value.
+
+The language therefore fixes observable behavior and exact safety predicates,
+while permitting representations that establish the same predicates with less
+work. An optimization is optional; an unoptimized conforming path remains valid.
+Choosing the general path when a proof is unavailable is conservative compilation,
+not a heuristic interpretation of source text.
+
+#### Preserve observations, not redundant bookkeeping
+
+An optimization must have a reviewable preservation argument over the resolved
+IR and the applicable native contracts. For every input in its declared domain,
+preserve application values, retained interface state, checked reference identity
+and lifetime, ownership, busy/refusal behavior, saved execution positions, output
+action order, and native/external effects. Preserve required diagnostics, including
+the original failing operation and active caller path. Host/debugger observations
+allowed by the declared generated interface are part of this obligation. Debug
+inspection must reconstruct any logically present optimized state accurately;
+it must not fabricate an available object or a lost continuation.
+
+Static type, capability, syntax, and source-order checks still apply to the
+complete source, including operations later removed from generated code. Do not
+accept an otherwise invalid copy, conversion, or declaration because an optimizer
+expects it not to run. Inferred persistent fields still have TYPE-02/TYPE-06's
+creation-time initialization; their later assignments do not authorize skipping
+observable initializers. CALL-08's interface reset and COPY-01's retained-source
+value semantics also remain in force.
+
+For implementation, attach explicit facts and preconditions to a proposed IR
+transformation, derive them with a terminating exact data-flow or graph algorithm,
+then validate the transformed storage/control plan. A fact about an opaque native
+hook must follow from its actual supported contract or a verified transformation
+by the C toolchain. A type name, example execution, apparent scalar layout, or
+missing observed failure is not evidence that a hook is pure or infallible.
+No additional native trait or implicit byte-copy capability is introduced here.
+
+#### Reuse a check only while its guarantee remains true
+
+A handle check or acquisition step may be removed only when its full success
+predicate is already established for every execution reaching that point.
+Protection must prevent destruction, generation reuse, conflicting replacement,
+and other relevant mutation throughout the proven region. Preserve any still
+needed acquisition/release effects even when their validation branch is redundant.
+Reference formation alone does not establish this protection under REF-07.
+
+For example, after acquiring an owned target, generated code may reuse its
+validated typed access within that protected operation if none of the intervening
+actions can invalidate the relevant field. It may not reuse an indexed selection
+across an earlier output action that changes its index or list membership. A
+control transfer, native call, or yield is a proof boundary unless the analysis
+establishes exactly which guarantees survive it. A `%` suspension never carries
+an acquisition grant into its later resumption.
+
+#### Internal allocation counts are not observable behavior
+
+The number, size, addresses, and timing of internal compiler/runtime allocations
+are representation choices, except where an explicit ABI or valid borrow makes
+them observable. An allowed optimization may remove an internal allocation and
+therefore remove an out-of-memory failure that could arise only from that
+allocation. Different conforming layouts need not fail at the same memory limit
+or on the same numbered allocation attempt.
+
+Every allocation that remains must use checked arithmetic, report actual failure,
+and satisfy the specified preparation/cleanup guarantees. A native constructor,
+clone, conversion, or destructor's declared effects and reported status are not
+mere internal allocation bookkeeping. Do not skip or defer such an operation
+unless its complete observable behavior is proven preserved. In particular,
+there is no automatic move of a retained result and no general copy-on-write
+permission for mutable native state.
+
+Failure-injection tests identify an allocation or preparation transition in the
+implementation being tested. They must not require optimized and general layouts
+to make an identical sequence of allocation attempts. Equivalence tests compare
+values, effects, identity/refusal/control transitions, and source diagnostics;
+separate allocation/operation counters demonstrate the claimed reduction.
 
 ## Overall translation to C
 
@@ -648,3 +733,34 @@ Keep the argument close to the component's contract or design documentation.
 Tests check the laws and implementation; they do not replace the justification.
 No new syntax, protocol or semantic exception may be invented to avoid solving a
 case within the existing contract.
+
+Compiler source explanations must make this reasoning traceable to the canonical
+requirements. Each maintained compiler file's Doxygen purpose/contract comment,
+and each nontrivial rule-implementing function or algorithm explanation, must
+contain clickable links to the relevant files in `spec/` and their stable rule
+anchors. The visible link text includes the requirement ID; a bare code such as
+`RT-13` or an unlinked filename is insufficient. Explain how the implementation
+maintains that rule, rather than substituting a link for the explanation. Generic
+helpers may refer to their documented parent contract when no narrower language
+rule applies; do not invent an unrelated rule citation.
+
+For example, for a source file at `src/runtime/pool/reclaim.c`, its comment can
+state:
+
+```c
+/**
+ * @brief Releases an empty pool block without reviving an issued identity.
+ *
+ * Remove its free-list entries before releasing storage, and retain generation
+ * history in the directory so a later allocation cannot validate an old handle.
+ * @see [RT-13: safe pool reclamation](../../../spec/implementation/runtime.md#rt-13)
+ */
+```
+
+Source links are relative to the containing source file, with exact case and
+the canonical rule anchor. Generated Doxygen documentation must preserve a
+clickable destination for the same rule. Its build must include the specification
+or apply a deterministic read-only link/anchor mapping to generated specification
+pages; it must not modify `spec/` to make documentation links work. Validate both
+source link resolution and rendered HTML destinations/anchors. The concrete
+generation workflow is described in [CONTRIBUTORS.md](../../CONTRIBUTORS.md).

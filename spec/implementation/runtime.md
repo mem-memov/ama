@@ -7,6 +7,7 @@ In this chapter:
 
 - [Explanation: state stays with its instance](#explanation-state-stays-with-its-instance)
 - [Pools, identities, and availability](#pools-identities-and-availability)
+- [Compact physical storage with unchanged logical state](#compact-physical-storage-with-unchanged-logical-state)
 - [Execution directly over instance storage](#execution-directly-over-instance-storage)
 - [Return links and resumption positions](#return-links-and-resumption-positions)
 - [Root execution and host control](#root-execution-and-host-control)
@@ -48,6 +49,10 @@ module bodies. Pool existence never implies a default live instance. Apart from
 the root described below, live objects are created through explicit ownership,
 collection, and copy operations. The exact initial capacity remains an
 implementation policy, independent of object creation.
+These are logical runtime facilities: a verified storage optimization under
+RT-02/RT-05 and GEN-03 may omit a physical representation whose absence cannot
+be observed. Pool creation alone must not introduce observable instance
+construction or native lifecycle calls.
 
 ### Create one explicit root
 
@@ -70,8 +75,16 @@ or construct that interface a second time before executing its first statement.
 
 <a id="rt-02"></a>
 
-**RT-02.** A slot stores its permanent data, retained interface values, identity
-metadata, acquisition state, saved resume position, and service control fields.
+**RT-02.** An instance's logical state comprises its permanent data, retained
+interface values, identity metadata, acquisition state, saved resume position,
+and service control fields. Its ordinary physical representation stores that
+state in a stable pool slot. These categories describe the required information,
+not a mandatory common C struct containing every possible field for every type.
+The compiler may specialize physical layout only under the proof obligations
+in [compact physical storage](#compact-physical-storage-with-unchanged-logical-state)
+below and [GEN-03](compiler.md#gen-03). Preserve every permitted observation of
+logical state; representation changes alone cannot relax identity, lifetime,
+acquisition, continuation, cleanup, or native/host-interface contracts.
 Active foreach cursors and declared scoped reference cells are compiler-visible
 control storage in that instance, not opaque native payloads or separate heap
 activations. Each lexical foreach needs at most one cursor/cell per active
@@ -101,20 +114,51 @@ clean up the initialized parts and invalidate the reserved identity under
 REF-04 through REF-06 before release or reuse; no issued handle may later become
 valid for a different object. This reservation does not execute a module body.
 
-### Reclaim only safe trailing storage
+### Reclaim entirely free blocks without moving live storage
 
 <a id="rt-13"></a>
 
-**RT-13.** Pool memory may be reclaimed from fully free trailing blocks only;
-no live payload is compacted or moved. A partly occupied block cannot be released
-merely because half its slots are free. Remove reclaimed slots from free-list
-links before releasing a block. Preserve sufficient generation/identity metadata,
-or permanently retire released identities under REF-05 through REF-06, so
-reallocation of a trailing block never makes a previously stale handle valid again.
-Never return generation-exhausted slots to the free list. Reclamation timing,
-block size, and free-list strategy are implementation policies. Allocation,
-removal, and reclamation must not silently introduce per-instance heap allocation
-for ordinary slot storage.
+**RT-13.** Pool memory may be reclaimed from any entirely free block, including
+a block before other occupied blocks. A block is reclaimable only when it has no
+live or constructing slot and no outstanding protection/borrow requiring that
+block's storage. No live payload is compacted or moved. A partly occupied block
+cannot be released merely because most of its slots are free.
+
+Use a block directory with explicit absent entries, so releasing a middle block
+does not renumber later slots. A checked slot identity resolves in O(1) by an
+exact block/offset calculation followed by presence, generation, and state
+checks; lookup never scans for a surviving block. The directory may move or grow,
+but addresses of all materialized live payloads remain stable. A reference to a
+released block must refuse through the ordinary stale-identity checks before
+dereferencing its absent storage.
+
+Remove every reclaimed slot from the free list before releasing its block.
+Preserve sufficient generation/identity metadata outside the released payload,
+or permanently retire the released slot identities under REF-05 through REF-06.
+If an absent directory entry is materialized again, no previously issued handle
+may become valid for a different instance. Never return generation-exhausted
+slots to the free list. Reclamation timing, block size, and free-list bookkeeping
+are explicit implementation policies; they preserve identities, lifecycle
+effects, and execution order. Changes to internal allocation failures follow
+GEN-03's explicit optimization contract.
+Allocation, removal, and reclamation must not silently introduce a separate heap
+allocation for every ordinary instance.
+
+**Explanation and implementation.** Suppose three blocks each hold 100 slots.
+After a temporary workload, only one object in the third block remains alive.
+The first two blocks can release their payload memory immediately when the
+chosen reclamation policy runs; their small directory entries and required
+identity history remain. Requiring free blocks to form a trailing suffix would
+keep all three payload blocks allocated until that last object disappeared.
+
+Maintain exact live/construction/protection counts for each materialized block.
+When a block qualifies, unlink its free-list entries, preserve or retire its
+identity history, publish the absent directory entry, and release the block
+without an intervening Ama operation. Free-list filtering may have its own
+explicit cost; constant-time handle lookup does not imply constant-time block
+reclamation. Tests must reclaim a middle block, keep and access live later
+objects, and attempt stale reads after block rematerialization. Reduced-width
+generation tests must also cover repeated reclamation and exhaustion.
 
 ### Protect storage while it is in use
 
@@ -148,13 +192,65 @@ available instance of the same module may execute while the first is waiting.
 The same busy instance is refused. The language needs no manual `busy` field
 checked by every programmer before invocation.
 
+## Compact physical storage with unchanged logical state
+
+**Explanation.** A small numeric value should not need a field for every
+possible runtime feature merely because some other module can yield or keep a
+large result-action tree. Specializing storage reduces per-instance overhead
+and increases the number of useful values fitting in a cache line. The saving
+is especially significant in large collections of small instances.
+
+The implementation can compute exact capabilities from resolved typed IR and
+the native/host contracts, then construct a per-type storage plan. For example,
+a type for which entry can never yield, directly or indirectly under the
+specified control-flow rules, needs no saved resume-position field. The runtime
+can reject an attempted resume of that type without loading a nonexistent field.
+A return selector can use a representation covering exactly the generated
+continuation set. Immutable type descriptions, field selectors, and code
+addresses can be stored once per type instead of once per instance. Busy and
+construction states still need their required representation whenever they can
+affect access, even when the module has no declared user fields.
+
+Every omitted field needs an exact justification: its logical value is constant,
+is derivable without changing required complexity, or can never be observed
+before it is overwritten or discarded. A type with no textual `%` is not by
+itself proof of every control-flow property. The proof must include generated
+result actions, nested calls, native effects, and supported host operations.
+Layout alternatives are compiler decisions with documented predicates, rather
+than a programmer-visible collection of performance profiles.
+
+An even stronger optimization may omit a separate physical pool slot for an
+instance only when its distinct storage, identity, and address cannot be observed
+through any permitted Ama, native, or host operation. The proof must account for
+all aliases and lifetimes, standalone `&`, identity-sensitive self-copy,
+acquisition/refusal, saved continuations, source diagnostics, and lifecycle
+effects. Non-escaping source syntax alone is insufficient: an initializer or
+native helper may have observable behavior. Without a complete proof, use the
+ordinary stable pool slot and checked identity. An optimized value that later
+needs observable identity must already have a representation satisfying these
+rules; it may not be retroactively assigned an incompatible identity.
+
+No storage optimization permits a native payload to hide Ama handles, a movable
+address to escape as an Ama reference, duplicate working state, or an automatic
+C local to carry Ama state across a control transfer. Required native hooks,
+their ordering, effects, and reported failures remain governed by GEN-03. Only
+failures of eliminated internal allocation bookkeeping may disappear; a native
+hook's allocation failure is not automatically exempt from preservation.
+Verify a proposed specialization against the ordinary representation with
+identity/alias, busy-state, restart/resume, lifecycle-failure, and diagnostic
+cases, not only numeric output comparisons. Record both the proof predicate and
+the measured space/time change in component evidence; no particular performance
+improvement is guaranteed for every program.
+
 ## Execution directly over instance storage
 
 ### Execute directly over instance storage
 
 <a id="rt-05"></a>
 
-**RT-05.** Instance data stays in its heap slot during execution. Generated Ama
+**RT-05.** In the ordinary representation, instance data stays in its heap slot
+during execution. A proved compact representation under RT-02 and GEN-03 retains
+the same logical state and permitted observations. Generated Ama
 code accesses permanent fields, parameters, and retained results directly through
 the selected instance. There is no separate working area per module type and no
 set of global variables mirroring every field of every module. The runtime needs

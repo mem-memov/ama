@@ -172,6 +172,24 @@ its specified semantics. Record both the formal argument and executable evidence
 neither a passing example suite nor a proof detached from the actual component
 satisfies acceptance.
 
+Storage and execution optimizations additionally require the observation and
+resource-boundary checks in GEN-03. Use a general conforming implementation or
+an independently derived transition model as the semantic reference. Compare
+values, checked identities, lifecycle effects, refusals, continuation state,
+and source diagnostics, rather than requiring identical internal allocation
+attempts. Measure concrete storage sizes, retained pool blocks, moved order
+bytes, or examined cursor slots to substantiate the particular optimization.
+Record the input domain, toolchain, configuration, and measurement command;
+do not replace a proof with an unqualified speedup percentage. An optimization
+that is not implemented must remain an explicitly unclaimed capability.
+
+Documentation acceptance includes ARCH-06's specification links from compiler
+comments. Validate source-relative file/rule targets, deterministic generated
+anchor mapping, and actual HTML links. A successful Doxygen invocation without
+clickable correct destinations is insufficient. Test missing/wrong anchors,
+deeply nested source paths, and source moves without changing canonical spec
+bytes to accommodate the documentation generator.
+
 ### Directory relocation utility
 
 ### Move a source directory through resolved identities
@@ -328,6 +346,8 @@ ownership effects, and source diagnostics are covered. At minimum:
 
 | Area | Required acceptance evidence |
 |---|---|
+| Specification-linked comments | Compiler file/algorithm Doxygen explanations name and link their canonical rule IDs; source links resolve from the actual source location; rendered documentation links open the correct generated specification page and anchor; stale or mismatched links fail documentation checks |
+| Optimization equivalence | General and optimized plans agree on values, effects, identity/refusal/control transitions and source diagnostics; mandatory static checks still reject invalid eliminated code; internal allocation attempts may differ under GEN-03; remaining failure transitions retain cleanup guarantees |
 | Translation pipeline | Source/AST/resolved IR/storage plans remain distinct; one assembled project C translation unit; labels/explicit return links for Ama, verified inline native entries, original source maps |
 | Ama dependencies | Transitive type/constant/native closure loaded once per logical identity; shared code/constants but separate owned instances; missing/draft/duplicate dependencies diagnosed with requesting paths; no textual Ama includes or function linking |
 | Directory relocation | Physical subtree and native companions moved; all active Ama references updated, including external/unreachable importers and qualified constants with member preserved; exact mapping across `.`, `..`, ordinary roots and nested `name+/`; whole-root/container moves update root locations and supported relative configuration against its final base; unchanged identities require no path edit; multiword/Unicode names and shared textual prefixes; reference-graph invariant and cycles; comments/literals/formatting/native bytes preserved; drafts listed unchanged; source/destination topology, aliases, collisions and read-only required writes rejected before mutation |
@@ -395,6 +415,7 @@ ownership effects, and source diagnostics are covered. At minimum:
 | Current-instance reference | Standalone `&` in a reference result/default, assignment, explicit input and reference-list element; exact containing-module type including root kind; caller input versus callee default and parent initializer versus child declaration contexts; actual target after reference/direct-result/resume calls; no implicit result/field or owned conversion; shared constants and receiver/call/index/condition/continuation-copy uses rejected; running self-handle formation allowed without acquisition; later protected-ancestor access still refused; returned handle preserves identity without extending lifetime; whole-instance copies remap self-handles while reference-result copies preserve them; final identity reserved before initializers, partial construction inaccessible, failure invalidates it permanently before reuse |
 | Generation exhaustion | Reduced-width counters reach maximum without wrap; exhausted slots permanently retired and excluded from free lists; reclaim/regrow preserves history or permanently retires released identities |
 | Ownership | Independent child/list clones; internal references follow cloned targets, external references retain targets; native clone refusal; partial-construction rollback |
+| Immutable native backing | Distinct Ama identities/payloads may share immutable bytes; clone/destroy hooks remain selected; destruction in either order and replacement of one value preserve the other; checked share-count exhaustion and rollback release exactly their own shares; bounded borrows and any cross-context native synchronization remain valid |
 | Copy boundaries | Self/ancestor/forward references and reference cycles remapped; cross-element references remapped for whole owning-list copy; sibling references external for element-only copy; reference-only copies unchanged |
 | Clone failure atomicity | Preparation failures preserve source/destination and release partial clones; destructor failure after commit is terminal without rollback; replacement root identity preserved; same reference rules for `%` copies |
 | Self-assignment/overlap | Static owned-copy capability checked even for exact self-assignment; a well-typed ordinary self-assignment preserves data/resources/position without clone hooks; `%` self-copy and ancestor/descendant copies rejected before mutation; busy old destination descendants block replacement; sibling copies allowed; non-owning links do not imply overlap |
@@ -408,8 +429,10 @@ ownership effects, and source diagnostics are covered. At minimum:
 | Foreach scope and lifetime | New reference visible only in its body, no runtime cell for empty traversal, static checks still required; compatible explicit/earlier-inferred/enclosing-local variables reused, incompatible names rejected; explicit later fields visible but later inferred fields do not rebind earlier loops; local-resolved uses excluded from TYPE-06 scan; sibling locals and later independent same-name inference; persistent creation-time initializers cannot read runtime locals; executable handle escape allowed; body rebinding/nested reuse has no cursor effect or automatic value restoration; break/return/restart/failure clean only exited scopes |
 | Foreach mutation and resumption | Insert/remove before each boundary corrects it by +1/-1; insertion at/after it is visited and deletion there prevents selection; append included, clear then append included in a still-running body, closed cursor never reopened; all matching active/suspended lexical slots corrected together before outputs; refused preparation changes no cursor; nested boundaries independent; swap retains q and may repeat/skip memberships, atomic reference replacement retains q while explicit remove+insert may revisit a position; invariant 0 <= q <= length and potential bound with finite future additions, no unconditional termination; associated binding refuses removed membership even for live external referent; explicit different-handle rebinding detaches origin, independent aliases remain ordinary references; last-role origin cleanup and nested reuse; resume removed current skips remaining body and selects from corrected q; no retained acquisition; continuation copying preserves q and exact full-identity membership/origin maps, removed origins remain dead, destination cursors activated after list construction and evolve independently |
 | Membership identity | Contiguous order array with direct checked membership lookup and current-position invariant; duplicate refs distinct; remove/reinsert never revives identity; owned payload changes preserve entry, reference retarget replaces membership without moving boundary; independent clone memberships and exact continuation map; list replacement advances incarnation, legitimate mutations do not invalidate boundary cursor; nonwrapping generations/incarnations and reduced-width exhaustion failure tests |
+| Compact list bookkeeping | Local order indices reconstruct exact live identities from owner/header/record data; saved cursor/origin identities retain generations and incarnation; reused record slots never revive a removed origin; cursor correction agrees with the full lexical scan for exact active/suspended registration, including copy/restart/replacement/cleanup |
 | List performance/lifetimes | Geometric growth and direct positional access; shifts move membership identifiers and update record positions, never instance payloads; borrowed buffer addresses obey invalidation rules; no separate node allocation per entry |
 | List method interface | Six typed intrinsic methods append/insert/remove/clear/swap/length selected directly, no action constants or dispatcher; method-specific named/positional arity, placeholders and inferred outputs; no first-class method values, root !/resume/retained method reads rejected; ..integer index/length identity and validated protocol/range; owning explicit source clone check only for insertion methods, omitted source default-creates, reference insertion copies handle |
+| Typed list length construction | Fixed qualified `..integer` native `from_size` bridge receives fresh payload storage and constructs length once without decimal formatting/literal parsing; zero, one, native representation boundaries and SIZE_MAX round-trip through index conversion; missing/wrong C signature and technical construction failure are diagnosed; six-symbol .abi grammar remains unchanged |
 | List method refusal and busy state | List acquired before inputs and busy through selected method/result subtrees/siblings; exact parent-token delegation only; indexed absent targets refuse before input/body/output; method bounds/source/subtree preflight after input preparation refuses own method before mutation/results; staged cleanup and unchanged receivers, no outcome enums; fatal resource/conversion errors remain fatal; foreach releases list before body; disposal releases every grant |
 | Zero-based positions | First element at zero, last at `n - 1`; access/removal/replacement reject `n`; insertion at `n` appends; empty list permits insertion only at zero; no implicit offset |
 
@@ -423,7 +446,8 @@ ownership effects, and source diagnostics are covered. At minimum:
 | Continuation copy | Saved positions preserved recursively for root/owned children/list elements; ordinary copying clears all positions; mixed yielded/completed descendants retain their respective position presence; no inherited caller/busy/identity |
 | Copy-tree availability | Available root with busy or waiting owned descendant refused before replacement; source protected during clone hooks; busy external target does not block handle copying; no-position root with yielded child remains nonresumable itself |
 | Pools/lists | Separate pools per context/module; capacity/live count distinct; growth preserves slot addresses/handles; contiguous membership-identifier order and checked records; owned versus reference removal; busy-removal refusal; overflow/allocation failure |
-| Pool reuse/reclamation | Free slots reused before growth; only fully free trailing blocks reclaimed; free links exclude released blocks; old handles remain stale after reclaim/regrow |
+| Pool reuse/reclamation | Free slots reused before growth; only fully free blocks reclaimed, including optional interior holes; no live payload moves; sparse directory/free links exclude released storage; old handles remain stale after reclaim/regrow; a late live block does not prevent reclaiming an eligible earlier block when interior reclamation is implemented |
+| Compact instance state | Capability/liveness proofs justify omitted or implicit control fields and any unobservable instance-storage elimination; observable identities, native payload addresses/borrows, lifecycle/reset effects and debug state remain valid; general layouts remain available when proof is absent; storage measurements identify the actual saving |
 
 ### Native integration, lifecycle, and diagnostics
 

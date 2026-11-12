@@ -94,9 +94,11 @@ and receiver-inferred declarations apply separately to each method.
 The reference type is specialized to the list's exact element module identity,
 including root kind. The standard-library module `..integer` must provide
 ordinary copying, a literal initializer for every nonnegative position/length
-representable by the implementation, and a read-only `[]` conversion covering
-that full supported range. Positions zero and length zero use its `|0`
-initializer. Its public nominal module identity is fixed here; runtime code
+representable by the implementation, a read-only `[]` conversion covering
+that full supported range, and the exact typed native `from_size` constructor
+defined by [PROTO-03](../implementation/native-interface.md#proto-03). Omitted
+position inputs use its `|0` initializer; length results use `from_size`,
+including zero. Its public nominal module identity is fixed here; runtime code
 must still use the declared native protocols, not assume a numeric payload
 layout. ERROR-05/PROTO-05's reserved invalid-index conversion status, including
 negative/host-size-overflow positions, is an expected LIST-10 preflight refusal,
@@ -119,10 +121,26 @@ or a C-stack activation. Keep results live and protected through their complete
 output-action subtree, then finalize them exactly once before the next sibling
 or failure cleanup. Ordinary copies into caller fields survive this cleanup;
 escaped non-owning references to an ephemeral owned result become stale.
-`length` constructs `value` exactly once with `..integer`'s ordinary `|`
-constructor, supplying canonical ASCII decimal bytes for stored length: `0` for
-zero, otherwise digits without a sign or leading zero. This is runtime native
-construction, not source-text parsing or an assumed native numeric layout.
+`length` constructs `value` exactly once from the stored `size_t` length through
+`..integer`'s explicit typed native `from_size` constructor. Initialize its
+declared Ama fields normally, then select that constructor for its fresh native
+payload under [LIFE-02](../implementation/native-interface.md#life-02); do not
+first construct a payload with `+` or `|` and then overwrite it. The bridge
+represents every value from zero through `SIZE_MAX` exactly. Its technical
+failure uses the normal status/partial-construction cleanup path, never a `:`
+range refusal. Result protection and destruction remain unchanged.
+
+**Why use a typed bridge.** List length is already structural machine metadata.
+Formatting it into decimal bytes and reparsing those bytes would add work to
+every `length !` without changing the resulting integer. The generated code
+instead includes the fixed `..integer` native header in its qualified context
+and calls the declared constructor with the current length. This neither
+assumes the integer payload layout nor introduces a numeric source literal,
+untyped machine-value source, or seventh `.abi` protocol. Source literals still
+use their ordinary `|` protocol. Acceptance checks cover empty lists, lengths
+around native integer representation boundaries, the full bridge range, and
+constructor failure/cleanup; a test hook must confirm that length construction
+does not invoke decimal formatting or literal parsing.
 
 ### What each method changes
 
@@ -587,24 +605,72 @@ cursor. Duplicate reference entries remain separate candidates. A live but busy
 target is not filtered: an actual attempt to execute/access it uses normal
 acquisition and refusal rules.
 
-### Fixed compiler-generated cursor slots
+### Fixed cursor slots and two exact correction strategies
 
 For each list field, the compiler enumerates the fixed set of lexical foreach
 sites whose resolved source is that field. Each owning instance has a generated
 cursor slot for each such site under RT-02, including an active/suspended marker,
 checked collection identity, boundary, and current-membership state. Let `K` be
-the number of these lexical slots, including currently inactive ones. For a
-committed insert/remove/clear, examine these slots in lexical order and apply
-FLOW-05's exact correction only to active or suspended cursors whose full
-collection identity, including incarnation, matches the mutated list. Inactive,
-closed, other-instance, and obsolete-incarnation cursors are not adjusted or
-reactivated. This costs O(K) per such mutation in addition to LIST-05's structural
-and lifecycle costs; it needs no target search, global cursor registry, native
-pointer, or saved array of list entries. Append requires no enumeration because
-its position is always at or after every valid boundary. Swap, capacity changes,
-owned payload updates, and atomic reference-slot replacement likewise require no
-numeric correction. Fresh-loop setup and each selection cost O(1), with O(1)
-storage per lexical cursor independent of list length.
+the number of these lexical slots, including currently inactive ones, and `A`
+the number currently active or suspended for this exact collection. Choose and
+document either of the following exact correction strategies:
+
+- **Fixed scan:** for each committed insert/remove/clear, inspect the `K` slots
+  in lexical order. Apply FLOW-05's exact correction only to active or suspended
+  cursors whose full collection identity, including incarnation, matches the
+  mutated list. This costs O(K) and needs no separate registration structure.
+- **Active registry:** maintain an intrusive per-list chain of exactly its `A`
+  active/suspended cursor slots. A cursor uses compiler-visible previous/next
+  links and the list uses a head selector. Links identify explicit cursor slots
+  by checked owner identity and compiler-known lexical selector, never opaque
+  native pointers. Enroll on activation and unlink on closure or exit in O(1).
+  A committed insert/remove/clear visits each registered cursor once, validates
+  its exact collection association, and applies the same correction in O(A).
+  Registration order is explicit and deterministic; it cannot change the
+  numerical correction or expose partially corrected state to application code.
+
+The registry invariant is a bijection between live registrations and cursor
+slots active or suspended for that exact full collection identity. No cursor
+appears twice. Inactive, closed, other-instance, and obsolete-incarnation cursors
+are never adjusted or reactivated by either strategy. Before unregistering or
+following a link, validate its identity; after a containing instance is destroyed
+or reset, no registry may retain a link to its retired cursor storage. Scope
+exit, fresh `!`, break, return, completion, failure, disposal, and whole-list
+replacement must remove all affected registrations before invalidating storage.
+Yield keeps the registration because the saved boundary still needs correction.
+Whole-list replacement does not silently reopen old cursors: invalidate them
+under the ordinary incarnation rules after detaching their registrations.
+
+Registrations are runtime bookkeeping, not copied application data. Ordinary
+copying creates no registrations. A `%` continuation copy first performs
+CONT-04's exact collection/cursor/origin remapping and then establishes one fresh
+registration for each copied active/suspended cursor against its mapped
+collection. It copies no previous/next link or acquisition token. Failure
+cleanup removes any partial registrations. Publish registrations with the
+destination's completed state, before its saved continuation can execute and
+without interleaving user code; do not expose constructing cursor storage in a
+live collection's registry. Resume validates the saved cursor
+and existing registration without registering it a second time; a removed
+current membership still follows FLOW-05's skip-and-advance rule.
+
+Append requires no enumeration because its position is always at or after every
+valid boundary. Swap, capacity changes, owned payload updates, and atomic
+reference-slot replacement likewise need no numeric correction. Fresh-loop
+setup and each selection cost O(1), with O(1) storage per lexical cursor
+independent of list length. Neither strategy uses a target search, a global
+cursor registry, or a saved array of list entries.
+
+**Explanation.** A module may have 100 lexical traversals of a field while only
+one traversal is currently active: the registry corrects one boundary instead
+of inspecting 100 slots. With only one or two lexical sites, a fixed scan can
+save link storage and registration work. Both are valid representations of the
+same boundary semantics. Select by an explicit implementation rule or proved
+layout capability, and measure the tradeoff; no runtime guess may change which
+entries are visited. Tests must exercise nested and suspended cursors, empty
+bodies, early exits, replacement, continuation copies, and failure cleanup under
+the implemented strategy, including reduced-width identity exhaustion. A
+component offering both strategies must demonstrate equivalent semantic
+outcomes for these cases; implementing both is not a conformance requirement.
 
 ### Publishing one complete mutation
 
@@ -656,21 +722,57 @@ blanket rejection of structural mutation may substitute for these identity check
 
 <a id="list-03"></a>
 
-**LIST-03.** A list stores a contiguous ordered array of membership identifiers.
-A per-list record pool maps each live membership identifier to a checked target
-handle and its current array position. Identifiers include the collection
-incarnation, a record-slot index, and a nonzero record generation. A record-slot
-identifier is always qualified by the checked owner type/slot/generation and
-fixed list-field selector; equal local counter values in different lists never
-denote the same membership. A record-slot generation never wraps or repeats
-within its collection incarnation;
-retiring a record invalidates its old identifiers before that slot is reused.
-This gives O(1) exact membership lookup without searching for a target handle.
-Duplicate handles in a reference list have distinct membership identifiers.
+**LIST-03.** A list's logical order is a contiguous ordered array of membership
+identifiers. Its physical order array may store only local record-slot indices.
+A per-list record pool maps each live local index to a checked target handle,
+its current array position, and a nonzero record generation. The complete
+membership identity comprises checked owner type/slot/generation, fixed
+list-field selector, collection incarnation, local record index, and record
+generation. Equal local counter values in different lists never denote the same
+membership. A record-slot generation never wraps or repeats within its
+collection incarnation; retiring a record invalidates its old identifiers
+before that slot is reused. Exact membership lookup is O(1), without searching
+for a target handle. Duplicate handles in a reference list have distinct
+membership identifiers.
 
-Instance states stay in their module's stable-address pool, outside both the
-order array and the membership records. Growing or reordering list storage must
-not move instance payloads. Keep each live record's position equal to its entry's
+The compact order entry obtains its owner/field/incarnation from the acquired
+list and its generation from the selected live record. This reconstruction is
+valid only for a current order entry under that list acquisition. Every saved
+cursor current-membership value, iterator-origin association, or other identity
+kept beyond that acquisition must retain the full checked identity, explicitly
+or by an equally exact non-ambiguous representation. It may not recover a saved
+generation from whichever record later occupies that index. In particular,
+record-slot reuse and duplicate target handles cannot make a removed membership
+look unchanged.
+
+For every current order position `i`, its local index selects exactly one live
+record whose stored position is `i`; that record appears at no other order
+position. Its reconstructed full identity is the membership at `i`. Preserve
+these invariants at every publication. Narrow local index widths are permitted
+only with checked representability and exact conversion. Before publishing an
+index beyond the current width, perform checked growth/re-encoding; inability
+to allocate that representation follows the ordinary technical resource-failure
+contract. A narrow encoding must not silently impose a smaller language-level
+length limit or cause truncation, wrap, or aliasing.
+
+**Explanation and implementation.** Moving an order suffix during insertion
+need only move these local indices. Owner identity, field selector, and
+incarnation already belong to the list header; repeating them in every array
+entry would spend memory and copy bandwidth without adding information. Keep
+generations in the record table, perform the index shift, update the affected
+records' positions, and publish the whole mutation under LIST-10/LIST-13.
+For example, removing one of two reference entries pointing to the same target
+retires just its full membership, even if its local index is immediately reused.
+Tests must retain that retired identity and reject it after reuse while the
+other entry remains usable. No particular machine-word size or byte saving is
+part of the language contract.
+
+In the ordinary representation, instance states stay in their module's
+stable-address pool, outside both the order array and membership records.
+RT-02/GEN-03 permit a different physical representation only when their complete
+proof obligations hold; iterator-reference observations remain part of that
+proof. Growing or reordering list storage must not move an observable live
+instance payload. Keep each live record's position equal to its entry's
 current array index after every committed mutation. Lists must not use linked
 occupied-slot chains to represent ordinary positional order.
 
@@ -687,9 +789,11 @@ allocations.
 **LIST-05.** An index denotes current order, not stable element or membership
 identity. Indexing and membership lookup are O(1); append is amortized O(1),
 and swapping two positions is O(1). Insertion or order-preserving removal can
-move O(n) identifiers and must update the affected records' positions. Add O(K)
-for correcting live boundaries on insert/remove/clear under LIST-13, where K is
-the number of lexical cursor slots associated with this field in its owner type.
+move O(n) order entries and must update the affected records' positions. Add
+O(K) for the fixed cursor scan or O(A) for the exact active registry on
+insert/remove/clear under LIST-13. Here K is the number of lexical cursor slots
+associated with this field in its owner type and A is the active/suspended count
+for this exact collection. Registry activation and removal cost O(1) per cursor.
 Append, swap, and atomic reference-slot replacement need no numeric boundary
 correction. These bounds exclude element lifecycle costs; foreach setup and
 per-cursor storage are O(1), without a list-length-dependent allocation.

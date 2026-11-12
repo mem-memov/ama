@@ -47,6 +47,8 @@ An implementation task, including one in this queue, is not permission to amend
 3. Add or update Doxygen explanations of every changed code file's purpose and
    the meaningful types, interfaces and algorithms it contains. Explain why the
    component exists, what it owns and how its failure/lifetime boundary works.
+   Link compiler explanations to canonical `spec/` files and stable rule anchors
+   under ARCH-06; verify both source navigation and generated HTML destinations.
    Generate documentation and check cross-references for changed interfaces.
 4. Map every added or changed code file, including headers and handwritten native
    companions, to meaningful tests in the component evidence registry. Header-only
@@ -120,7 +122,9 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   Needs: T004. Inventory every project code/header file and its test coverage;
   register uncovered files for the owning tasks. Add a reproducible Doxygen build
   and checks for purpose/contract comments, independent headers and documentation
-  links. Validate the workflow on existing small components before expanding it.
+  links, including source-relative rule links and deterministic read-only Doxygen
+  anchor mapping. Test actual rendered destinations and stale-link failures.
+  Validate the workflow on existing small components before expanding it.
 
 ## Phase 1. Fix execution-context and native boundaries before consumers
 
@@ -146,7 +150,8 @@ Contracts: [runtime](spec/implementation/runtime.md),
   in the ABI harness. Compile and run every hook, wrong-signature rejection,
   unsupported optional capabilities and invalid-index versus fatal conversion.
   Supply a conforming `..integer` test module with literal/clone/index support
-  over the supported host-size range for subsequent list-interface consumers;
+  and the fixed typed `from_size` constructor over the full host-size range;
+  compile its signature and test exact round-trips for later list consumers;
   T085 later validates the production scalar library.
 - [ ] **T010 — Validate native symbol namespaces.** Needs: T009. Reuse complete
   module identity for qualified author names and clean inclusion contexts. Use
@@ -311,7 +316,9 @@ Contracts: [compiler](spec/implementation/compiler.md),
 - [ ] **T042 — Plan context and instance storage.** Needs: T041. Separate per-context
   constants/runtime from stable-slot fields, interface state and control metadata.
   Include constructing identity, return links, saved positions and fixed lexical
-  chain/foreach frames. Verify deterministic layout dependencies and no mirrors.
+  chain/foreach frames as logical state. Permit compact or implicit physical
+  fields only with exact capability/liveness proofs under RT-02/GEN-03; record
+  the general fallback and verify deterministic layout dependencies and no mirrors.
 - [ ] **T043 — Lower entry, transfer and cleanup order.** Needs: T042. Emit
   explicit acquire/preflight/prepare/commit/result/release actions with distinct
   refusal and fatal edges. Test CALL-08 evaluation order and source-lifetime
@@ -336,9 +343,11 @@ Contracts: [references and copying](spec/language/values-and-references.md),
   while constructing. Test multiple same-type instances and pool growth with
   live addresses, without implicit default instances.
 - [ ] **T047 — Verify generations and reclamation history.** Needs: T046. Retire
-  exhausted identities and reclaim only free trailing blocks while preserving
-  staleness across regrowth. Exhaust small generation/state models and failure
-  paths; keep capacity, free slots and live counts distinct.
+  exhausted identities and reclaim only entirely free blocks while preserving
+  staleness across regrowth. For interior reclamation, validate sparse directory
+  holes, retained identity history and free-list removal with live later blocks.
+  Exhaust small generation/state models and failure paths; keep capacity, free
+  slots and live counts distinct and record the implemented reclamation policy.
 - [ ] **T048 — Verify acquisition and destruction preflight.** Needs: T047.
   Check whole affected owned subtrees, current-owner authorization and ordinary
   busy/refusal transitions. Test available roots with busy descendants, foreign
@@ -364,7 +373,9 @@ Contracts: [references and copying](spec/language/values-and-references.md),
 - [ ] **T053 — Compose runtime descriptors with planned C layouts.** Needs:
   T045, T052. Verify concrete sizes/alignment/offsets and nominal identity without
   raw-word universal casts. Compile descriptor checks and real native borrow/
-  lifecycle probes against planned generated declarations.
+  lifecycle probes against planned generated declarations. For any implemented
+  compact/elided layout, compare observable transitions with the general model
+  and measure actual size without demanding identical allocation-attempt counts.
 - [ ] **T054 — Verify ownership services independently of dispatch.** Needs:
   T053. Exhaust small allocation/acquisition/clone/replacement transition models
   and run sanitizer/failure-injection compositions. Record evidence before using
@@ -487,6 +498,8 @@ Contracts: [lists](spec/language/lists.md),
   Replace or adapt reusable order storage to contiguous membership identifiers
   and stable record pools with current positions. Test duplicate reference
   targets as distinct entries, membership generations and collection incarnations.
+  Permit compact local order indices with exact identity reconstruction; saved
+  membership/origin references retain every required generation and incarnation.
 - [ ] **T076 — Implement indexed selection and complete list copies.** Needs:
   T065, T075. Check conversion/bounds/membership before target effects and preserve
   exact owned/reference transfer rules. Integrate inferred list receivers and
@@ -507,6 +520,8 @@ Contracts: [lists](spec/language/lists.md),
   atomic no-partial clear and terminal destruction failure.
 - [ ] **T080 — Implement swap and length.** Needs: T079. Preserve membership
   identity through swap and construct length via the fixed `..integer` contract.
+  Use PROTO-03's typed `from_size` bridge exactly once, without decimal text or
+  double construction; test the full supported host-size conversion boundary.
   Test both method positions, representability, sequential service actions and
   selected-result failures without obsolete retained outcome state.
 - [ ] **T081 — Implement live foreach selection and bindings.** Needs: T031,
@@ -516,7 +531,9 @@ Contracts: [lists](spec/language/lists.md),
 - [ ] **T082 — Correct every active or suspended boundary on mutation.** Needs:
   T081. Apply exact insert/remove/clear adjustments and unchanged swap boundaries
   in each complete publication. Test nested same-list scans, insert at the gap,
-  append, remove/reinsert, clear/append, swap repeats/skips and O(K) cursor work.
+  append, remove/reinsert, clear/append and swap repeats/skips. Record either the
+  exact O(K) lexical scan or O(A) active/suspended registration strategy; compare
+  corrected states and cover registration cleanup/copy/restart if implemented.
 - [ ] **T083 — Enforce missing-membership guards and resume behavior.** Needs:
   T082. Preserve origin associations, detach only as specified and validate active
   loops outermost first after resume. Test removed current entries with live
@@ -535,12 +552,15 @@ Contracts: [library](spec/language/library.md),
 
 - [ ] **T085 — Validate the scalar and canonical integer library.** Needs:
   T069, T080. Publish actual paths/interfaces and literal/clone/truth/index
-  capabilities, including full supported length range for `..integer`. Test
-  malformed data and nominal typing without automatic numeric assumptions.
+  capabilities and the fixed host-size bridge, including the full supported
+  length range for `..integer`. Test malformed data and nominal typing without
+  automatic numeric assumptions.
 - [ ] **T086 — Validate refusal and resource library interfaces.** Needs: T085.
   Keep refusal reading ordinary/read-only and native resources governed by explicit
   lifecycle/clone contracts. Compile realistic same-name modules and test expected
-  operation errors separately from context-ending technical failures.
+  operation errors separately from context-ending technical failures. For native
+  text/byte types using immutable shared backing, verify independent Ama values,
+  both destruction orders, replacement isolation, share overflow and rollback.
 - [ ] **T087 — Standardize and test library compositions.** Needs: T084, T086.
   Make parameter/result ordering predictable and remove obsolete list action APIs.
   Integrate list-valued constant startup/cleanup with T052's context-local scalar

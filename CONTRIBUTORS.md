@@ -127,6 +127,83 @@ explanation in the test leaf's documentation/contract and identify the exact pat
 Never corrupt source syntax, ABI records, literal payloads, or expected test bytes
 to insert a documentation marker.
 
+## Link compiler explanations to specification rules
+
+Every compiler source/header `@file` comment must link the canonical requirement
+or requirements that define its responsibility. Comments for nontrivial rule
+implementations, algorithms, and invariants must link the particular rules they
+implement or preserve and explain the connection. Cite the exact rule definition
+in `spec/`, with its stable requirement ID visible in the link label. Linking only
+the specification index, listing bare IDs, or repeating the rule without explaining
+the code's purpose is insufficient. A generic private helper may share the nearest
+documented component contract when it has no separate language requirement; do not
+invent a rule merely to give every helper a different citation.
+
+Use ordinary Markdown links with paths relative to the commented source file,
+including the rule's explicit anchor. For example, this is an illustrative
+`@file` comment for `src/runtime/pool/reclaim.c`:
+
+```c
+/**
+ * @file
+ * @brief Release unused pool blocks while preserving every live slot address.
+ *
+ * Retain the generation history needed to keep stale handles invalid when a
+ * block identifier is reused. Removing storage must not revive an identity.
+ * @see [RT-13](../../../spec/implementation/runtime.md#rt-13)
+ */
+```
+
+The three `..` segments are correct for that illustrative location; calculate the
+path again for a file at another depth. Keep each link target on one line. Do not
+use machine-specific absolute paths, IDE-specific URL schemes, unstable line
+numbers, or a remote branch URL as the only specification link. Moving code or
+moving an authorized specification definition requires updating its links in the
+same task. Supported source-navigation tools must open the local specification
+file at the named rule; verify this in the documented editor/source-viewer setup.
+
+Doxygen's generated page names and output directories differ from repository
+paths. Do not assume that a source-relative `spec/...md#rule` URL will remain valid
+in generated HTML. The documentation-generation task must provide and test an
+exact resolution step, while leaving maintained source and canonical `spec/`
+bytes unchanged. The required mapping is:
+
+1. Resolve every specification-rule link from its source directory. Require a
+   file inside `spec/`, an existing unique rule anchor, and a matching requirement
+   ID. Read the canonical requirement registry to reject stale, duplicate, or mismatched
+   destinations; do not choose a similarly named file or nearby anchor.
+2. Include the specification Markdown pages in the Doxygen input. In a temporary
+   documentation view, expose each canonical rule as a unique Doxygen anchor,
+   such as `@anchor ama_spec_rt_13` for RT-13. Rewrite the corresponding comment
+   link only for generation to `[RT-13](@ref ama_spec_rt_13)`. Map incoming rule
+   links in the generated specification view to that same anchor as well, so
+   replacing the original rule-anchor line does not break chapter cross-links.
+   Generate page and anchor identities deterministically from full repository
+   paths and stable
+   rule IDs, with collision checks. Preserve explanations and example bytes;
+   do not apply link rewriting inside string literals or displayed code examples.
+3. A Doxygen `INPUT_FILTER` or equivalent staged-input mechanism may supply this
+   view. A filter must preserve input line counts and emit only filtered content,
+   so source locations remain correct. Reuse the canonical Markdown rule-anchor
+   line for its generated `@anchor`; do not insert lines into compiler input.
+   Keep generated views and output outside maintained source directories and
+   outside `spec/`. Reading specifications for documentation generation does not
+   authorize editing them.
+4. Check the generated HTML, not only the input strings or successful Doxygen
+   exit status: each specification reference must have a link whose target file
+   exists and whose fragment identifies the expected rule on that page. Treat
+   unresolved references and duplicate anchors as failures. Include a deeply
+   nested compiler-file case, a moved-file case, and missing/wrong-anchor cases
+   in the documentation-tool tests. Record an actual source-navigation check as
+   well as the generated-link check before claiming this feature is implemented.
+
+The syntax is based on Doxygen's documented
+[Markdown links and Markdown pages](https://www.doxygen.nl/manual/markdown.html),
+[anchor and reference commands](https://www.doxygen.nl/manual/commands.html), and
+[input-filter contract](https://www.doxygen.nl/manual/config.html#cfg_input_filter).
+These requirements define the documentation tooling to implement; a prose example
+does not establish that the repository's current tooling already performs it.
+
 ## Resolve dependencies, then generate
 
 Ama dependencies come from declared module types, constant namespaces/sources and
@@ -156,10 +233,13 @@ normally. Do not turn Ama module invocation into a C call or separate C module l
 ## Generated execution must be stackless
 
 Ordinary Ama modules become labels/direct jumps in one C execution function.
-Instances execute in stable heap slots; do not copy caller state into working
-globals or save/load payloads around calls. Caller identity and return selectors
-form the allowed explicit return chain. Refuse the same busy instance; distinct
-available instances of one type may execute with proper current-instance selection.
+Instances normally execute in stable heap slots. RT-02 and the compiler's
+optimization contract permit compact representations or storage elimination only
+with the specified proof of preserved observable behavior. Do not copy caller
+state into working globals or save/load payloads around calls. Caller identity
+and return selectors form the allowed explicit return chain. Refuse the same
+busy instance; distinct available instances of one type may execute with proper
+current-instance selection.
 
 `!` starts at entry and reinitializes the interface; explicit literal inputs
 select their typed construction instead of default-then-overwrite. `%` resumes with output-only

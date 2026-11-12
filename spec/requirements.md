@@ -210,7 +210,7 @@ you need the model, examples, or reasons behind a rule.
 | [RT-10](implementation/runtime.md#rt-10) | Clean up every exit path |
 | [RT-11](implementation/runtime.md#rt-11) | Create one explicit root |
 | [RT-12](implementation/runtime.md#rt-12) | Reuse free slots without reviving identities |
-| [RT-13](implementation/runtime.md#rt-13) | Reclaim only safe trailing storage |
+| [RT-13](implementation/runtime.md#rt-13) | Reclaim entirely free blocks without moving live storage |
 | [RT-14](implementation/runtime.md#rt-14) | Return an explicit outcome to the host |
 | [RT-15](implementation/runtime.md#rt-15) | Resume or dispose a yielded root |
 | [RT-16](implementation/runtime.md#rt-16) | Keep launcher policy explicit |

@@ -74,6 +74,13 @@
   New C source/header files and test C files use Doxygen `@file` documentation;
   document each nontrivial function/type/interface's purpose, contracts, ownership,
   side effects, and failure behavior. Explain why non-obvious code is needed.
+- Compiler purpose comments and explanations of rule implementations must cite
+  the relevant canonical `spec/` files and stable requirement IDs with clickable
+  Markdown links. Resolve paths relative to the commented source file and include
+  the rule anchor; see the source-location example in `CONTRIBUTORS.md`.
+  Explain how the cited rule determines the operation or invariant; a bare ID
+  is insufficient. Follow `CONTRIBUTORS.md` for
+  coverage, source navigation, and generated Doxygen link validation.
 
 ## Target implementation boundaries
 
@@ -83,7 +90,10 @@
   `TEST-06` through `TEST-08`).
 - Ama modules translate through resolved IR into labels in one project C assembly;
   native entry bodies inline, while calls inside native C may use the stack.
-- Instances execute directly in stable pool slots. Do not introduce working-state
+- Instances execute directly in stable pool slots by default. Apply the compact
+  representations and storage elimination permitted by RT-02 and the compiler's
+  optimization contract only with a proof that observable identity, lifecycle,
+  control, and native effects are preserved. Do not introduce working-state
   save/restore or implicit default instances. Persistent Ama references belong to
   declared Ama fields, never opaque native payloads.
 - Asynchrony is explicit and cooperative. `%` returns to the immediate caller;
