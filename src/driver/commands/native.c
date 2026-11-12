@@ -49,8 +49,8 @@ int driver_native(const DriverOptions *options, FILE *output, FILE *errors) {
             .message = "Protocols must be unique optional symbols: |, =, ?, []"};
     } else {
         checked = options->create ? compiler_frontend_authoring(&frontend, options->roots, options->root_count,
-            options->entry, options->libraries, proposed) : compiler_frontend_check(&frontend, options->roots,
-                options->root_count, options->entry, options->libraries);
+            options->entry, proposed) : compiler_frontend_check(&frontend, options->roots,
+                options->root_count, options->entry);
     }
     if (checked && proposed != NULL && frontend.project.entry->source->native_abi != NULL && !options->overwrite) {
         frontend.error = (Diagnostic){.code = DIAGNOSTIC_INVALID_PATH,

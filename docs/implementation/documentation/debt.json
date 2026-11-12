@@ -32,8 +32,8 @@
   "src/codegen/control/emit.c": {
     "audited_test_consumers": "tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/driver/run",
     "owner": "T150",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "21ddef76e5fcfc72cd0b6717c32155093791b459250f6e9a63196902e40cf2a1"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T150.",
+    "sha256": "318427b51cfb6411a9f9b4f90491095a57e2fdae080dcd1ec0f5e9c010eb7ae6"
   },
   "src/codegen/control/native.c": {
     "audited_test_consumers": "tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/driver/run",
@@ -182,20 +182,20 @@
   "src/compiler/authoring/check.c": {
     "audited_test_consumers": "tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/check; tests/unit/compiler/status; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership",
     "owner": "T150",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "d83329509bf6a5ccee4f22d885caea505a1bafdef7b418e372de96a28402153d"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T150.",
+    "sha256": "647bf98819ec955517b106b1060d759ae053c0f64e3f6eb798ac5229207e5600"
   },
   "src/compiler/frontend.c": {
     "audited_test_consumers": "tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/check; tests/unit/compiler/status; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership",
     "owner": "T150",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "5e5fe5fad6ac34a165e2359138c24eeeb18623fa32e47fe1eafe3400781dcc5c"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T150.",
+    "sha256": "a138b4a67f06cf09472f6d08efbe3e25beac6b2566b4b0f93d4800f23522a023"
   },
   "src/compiler/frontend.h": {
     "audited_test_consumers": "tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/check; tests/unit/compiler/status; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership",
     "owner": "T150",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "927b61900cb6561ac63aaed41d2d6e6761da3d9babefa63d8cd79eb533a5186c"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T150.",
+    "sha256": "ad75e35e45a5193c796a5125185188bb7bed0128401d2f13c0c5c46b02313e16"
   },
   "src/compiler/inspect/module.c": {
     "audited_test_consumers": "tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/status; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership",
@@ -212,14 +212,14 @@
   "src/compiler/internal.h": {
     "audited_test_consumers": "tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/check; tests/unit/compiler/status; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership",
     "owner": "T150",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "3046a077f5e8e2bd60f093c433ee6afd01c7d31dde05b575b9bd0e5bbb7878b5"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T150.",
+    "sha256": "12cbbbba6a10eadb89fb2b141235d01aee1488060e56ed4ce2635496e31cf658"
   },
   "src/compiler/load.c": {
     "audited_test_consumers": "tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/check; tests/unit/compiler/status; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership",
     "owner": "T150",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "92018c77f3afab6137b56cb4efc03ea761169c92e386ccc0a4ac38209b2737fc"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T150.",
+    "sha256": "35b7f72147deae624dc533162c8f2f1b694485be8afee7a96c669e3b11b416a6"
   },
   "src/diagnostics/adapters/adapters.h": {
     "audited_test_consumers": "tests/integration/parser/grammar; tests/integration/semantic/types; tests/integration/source/diagnostics; tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/check; tests/unit/compiler/status; tests/unit/diagnostics/record; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership; tests/unit/planning/ir; tests/unit/semantic/constants; tests/unit/semantic/diagnostics; tests/unit/semantic/names; tests/unit/semantic/native; tests/unit/semantic/relations; tests/unit/semantic/types",
@@ -284,8 +284,8 @@
   "src/driver/commands/check.c": {
     "audited_test_consumers": "tests/unit/driver/run",
     "owner": "T150",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "b44f9763727aae4a18ce3319640456e6523c117ba030fec6a9015eb67fc6d3f0"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T150.",
+    "sha256": "4818a1e1d288fe7b96f328044c930749686cf4c376566ceeb8f35cc636abe9e3"
   },
   "src/driver/commands/commands.h": {
     "audited_test_consumers": "tests/unit/driver/run",
@@ -296,14 +296,14 @@
   "src/driver/commands/emit.c": {
     "audited_test_consumers": "tests/unit/driver/run",
     "owner": "T150",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "95dd892a39b8d5972ea854aa155110fdd6c00fc948a4e7c7cdcba7dbf67ef743"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T150.",
+    "sha256": "256fa3c2fdd0f0d5255cf3dc55cb86a3b5f1d6f306a6a1108859b00a94317c52"
   },
   "src/driver/commands/native.c": {
     "audited_test_consumers": "tests/unit/driver/run",
     "owner": "T150",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "7b62bab3b8dec5c3b1c4603aad6557dc9c17cb5ef74a27d7a82e52750c05c022"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T150.",
+    "sha256": "2dc52b587ebccd709d5e0a42f5802be8280a7a5821ca5804520603a1633d08f7"
   },
   "src/driver/commands/status.c": {
     "audited_test_consumers": "tests/unit/driver/run",
@@ -320,14 +320,14 @@
   "src/driver/options/options.h": {
     "audited_test_consumers": "tests/unit/driver/run",
     "owner": "T150",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "cb973020285e3243868912a168051d574226e9feec085fe91c9eeade4a371435"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T150.",
+    "sha256": "bafcc9c51206517ed72e623e73e1225c8e60f0c8314c7d5cfda91a9cbbee8f83"
   },
   "src/driver/options/parse.c": {
     "audited_test_consumers": "tests/unit/driver/run",
     "owner": "T150",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "0ae4d2a495f4d8f0cdfb94dc1338e180b84164fa640b4b0ffbb44d6eb7509760"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T150.",
+    "sha256": "0a33533c4b10045d43c1c85a24285cf61b162d34f432aa34dc2846116630f5dd"
   },
   "src/driver/output/output.h": {
     "audited_test_consumers": "tests/unit/driver/run",
@@ -404,20 +404,20 @@
   "src/lowering/calls/install.c": {
     "audited_test_consumers": "tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/check; tests/unit/compiler/status; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership; tests/unit/planning/ir",
     "owner": "T150",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "a36b8c9b9616305816b618fc1032668e74335a9a50752d0c45e821cd6a20b35d"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T150.",
+    "sha256": "24901eeac430c53465aab18b548260aa1edddb9112314e19343c403412519fc7"
   },
   "src/lowering/calls/internal.h": {
     "audited_test_consumers": "tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/check; tests/unit/compiler/status; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership; tests/unit/planning/ir",
     "owner": "T150",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "24ed279f44ad7452f245a42732603aaa6fea8d6551e08edb9ac05b0f7359abed"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T150.",
+    "sha256": "3b3b6860cf567282792d1aec7108d84e78cb9926ffaa4a0564ef4795e92e05df"
   },
   "src/lowering/calls/operation.c": {
     "audited_test_consumers": "tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/check; tests/unit/compiler/status; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership; tests/unit/planning/ir",
     "owner": "T150",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "59d9223452e355f42bd39c58839b50ed82f5d969d0d050f91ffb4e1d868cc664"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T150.",
+    "sha256": "1995a159fe1b1113f358eaf14b2e78c92dcfa971826337c7b5956120257c849e"
   },
   "src/lowering/control/assign.c": {
     "audited_test_consumers": "tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/check; tests/unit/compiler/status; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership; tests/unit/planning/ir",
@@ -842,8 +842,8 @@
   "src/planning/plan.h": {
     "audited_test_consumers": "tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/check; tests/unit/compiler/status; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership; tests/unit/planning/ir",
     "owner": "T147",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "0596f4c0f54f53202864721156724976ad2ed4430003245048c2c9a9bf906ddb"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T147.",
+    "sha256": "7a46e0917b68d86c911e76b2d2847b400d0e0cd312043aee98198cf081e4f548"
   },
   "src/planning/program.c": {
     "audited_test_consumers": "tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/check; tests/unit/compiler/status; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership; tests/unit/planning/ir",
@@ -902,8 +902,8 @@
   "src/runtime/assembly.h": {
     "audited_test_consumers": "",
     "owner": "T149",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "60d4ab2e81eee7741ff9d1169832a62c0f264d42d8a93d1d7a1c6e1b356fdcfb"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T149.",
+    "sha256": "1d7dc35559c3d1a7d7b249ba007ffe7ea97ae8d569bf386219fcd8eec2f5c899"
   },
   "src/runtime/lifecycle/cleanup.c": {
     "audited_test_consumers": "tests/unit/native/lifecycle/model; tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
@@ -934,18 +934,6 @@
     "owner": "T149",
     "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
     "sha256": "1db9987916ecd7b9966a161181b250e26bd290f51ec381a0271be9a0350ec7f8"
-  },
-  "src/runtime/lists/list.h": {
-    "audited_test_consumers": "tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
-    "owner": "T149",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "1ae32d56b6df973c124aebc06721ac90408516a22127a6f770d73bef4ee20276"
-  },
-  "src/runtime/lists/mutation/apply.c": {
-    "audited_test_consumers": "tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
-    "owner": "T149",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "1368f8f30ce25ef145a6ba90056829c03ef59d374d8c58f006524a9bb1a4b8b1"
   },
   "src/runtime/lists/mutation/insert.c": {
     "audited_test_consumers": "tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
@@ -1076,8 +1064,8 @@
   "src/runtime/objects/clone/fields.c": {
     "audited_test_consumers": "tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
     "owner": "T149",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "75d9a7788687bfe7f3a4402ba1a4cdf43a8f075d8e9ab44471045b9da65b2956"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T149.",
+    "sha256": "11622dd41b23ecb791236f23c6ed4278b04f7cf3e904661d79ea0b446f749735"
   },
   "src/runtime/objects/clone/prepare.c": {
     "audited_test_consumers": "tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
@@ -1112,8 +1100,8 @@
   "src/runtime/objects/objects.h": {
     "audited_test_consumers": "tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
     "owner": "T149",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "c35731396cfa6e4a7fcccf16b8b7876603af591bdedde64df3a775cbd7f64927"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T149.",
+    "sha256": "d89e1106ebd3ce5b6392ff9006e60b28d76566868f706af331df02bffbf03695"
   },
   "src/runtime/objects/replacement/reconstruct.c": {
     "audited_test_consumers": "tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
@@ -1286,8 +1274,8 @@
   "src/runtime/program/transfers/lists.c": {
     "audited_test_consumers": "tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
     "owner": "T149",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "355d25c40aecadad8b554a94a768e160672cf70aea7481bf3a91f349585eba1b"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T149.",
+    "sha256": "40d90cea98961558c5f1bc4c7bdd87219da7a66c0d69644651f90a2e730f400a"
   },
   "src/runtime/program/transfers/value.c": {
     "audited_test_consumers": "tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
@@ -1304,8 +1292,8 @@
   "src/semantic/analyze.c": {
     "audited_test_consumers": "tests/integration/semantic/types; tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/check; tests/unit/compiler/status; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership; tests/unit/planning/ir; tests/unit/semantic/constants; tests/unit/semantic/diagnostics; tests/unit/semantic/names; tests/unit/semantic/native; tests/unit/semantic/relations; tests/unit/semantic/types",
     "owner": "T147",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "5605856e4a2cba14acbdb27082ba6e78fff28a46725902e336b4b24370246eec"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T147.",
+    "sha256": "cd64cc3ebb3bd12de950c468fa383ea928c9f6d9256677a056bc8a695d98c0d5"
   },
   "src/semantic/calls/fields.c": {
     "audited_test_consumers": "tests/integration/semantic/types; tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/check; tests/unit/compiler/status; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership; tests/unit/planning/ir; tests/unit/semantic/constants; tests/unit/semantic/diagnostics; tests/unit/semantic/names; tests/unit/semantic/native; tests/unit/semantic/relations; tests/unit/semantic/types",
@@ -1316,20 +1304,14 @@
   "src/semantic/calls/internal.h": {
     "audited_test_consumers": "tests/integration/semantic/types; tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/check; tests/unit/compiler/status; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership; tests/unit/planning/ir; tests/unit/semantic/constants; tests/unit/semantic/diagnostics; tests/unit/semantic/names; tests/unit/semantic/native; tests/unit/semantic/relations; tests/unit/semantic/types",
     "owner": "T147",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "f08ce5a8e60fccbdb351160895943b0001a4c5698b6dcc59b31110ba10cf703d"
-  },
-  "src/semantic/calls/lists.c": {
-    "audited_test_consumers": "tests/integration/semantic/types; tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/check; tests/unit/compiler/status; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership; tests/unit/planning/ir; tests/unit/semantic/constants; tests/unit/semantic/diagnostics; tests/unit/semantic/names; tests/unit/semantic/native; tests/unit/semantic/relations; tests/unit/semantic/types",
-    "owner": "T147",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "640c0b6dca3949ffaf06db2af1bf8445a69da22c7f9da13bc5fd8fc79403cd8a"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T147.",
+    "sha256": "9d02a23f3a9e5c35896585293b99012acd1ffcdb3d8919284089e92391b372b6"
   },
   "src/semantic/calls/resolve.c": {
     "audited_test_consumers": "tests/integration/semantic/types; tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/check; tests/unit/compiler/status; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership; tests/unit/planning/ir; tests/unit/semantic/constants; tests/unit/semantic/diagnostics; tests/unit/semantic/names; tests/unit/semantic/native; tests/unit/semantic/relations; tests/unit/semantic/types",
     "owner": "T147",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "6370abb18592167e92c2a59da07010364807b8b3765d84f827e0b3129279e908"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T147.",
+    "sha256": "2e52b3cfdb69ef460e14f8a82161453b7936341787a40dce0cb231f6cccb6104"
   },
   "src/semantic/calls/values.c": {
     "audited_test_consumers": "tests/integration/semantic/types; tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/check; tests/unit/compiler/status; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership; tests/unit/planning/ir; tests/unit/semantic/constants; tests/unit/semantic/diagnostics; tests/unit/semantic/names; tests/unit/semantic/native; tests/unit/semantic/relations; tests/unit/semantic/types",
@@ -1466,8 +1448,8 @@
   "src/semantic/resolve/program.c": {
     "audited_test_consumers": "tests/integration/semantic/types; tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/check; tests/unit/compiler/status; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership; tests/unit/planning/ir; tests/unit/semantic/constants; tests/unit/semantic/diagnostics; tests/unit/semantic/names; tests/unit/semantic/native; tests/unit/semantic/relations; tests/unit/semantic/types",
     "owner": "T147",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "448896e0b56e0b694f926eaed0d6c916cf769b789fdef8d95959c81ae915d60e"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T147.",
+    "sha256": "25d0b7ea4adab7011d340aca6f826125c8af722540947b6210a35cb8a1000f31"
   },
   "src/semantic/resolve/statements.c": {
     "audited_test_consumers": "tests/integration/semantic/types; tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/check; tests/unit/compiler/status; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership; tests/unit/planning/ir; tests/unit/semantic/constants; tests/unit/semantic/diagnostics; tests/unit/semantic/names; tests/unit/semantic/native; tests/unit/semantic/relations; tests/unit/semantic/types",
@@ -1484,8 +1466,8 @@
   "src/semantic/semantic.h": {
     "audited_test_consumers": "tests/integration/semantic/types; tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/check; tests/unit/compiler/status; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership; tests/unit/planning/ir; tests/unit/semantic/constants; tests/unit/semantic/diagnostics; tests/unit/semantic/names; tests/unit/semantic/native; tests/unit/semantic/relations; tests/unit/semantic/types",
     "owner": "T147",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "f5530c36f7a8579f95fd0ff6ec1cf6cdfbcd5a6c908d7daa111e6cc53d609555"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T147.",
+    "sha256": "c1de0e204c78b58e762c02851aefc6cd0972a8d189d9a403742e4c91c6b9d12e"
   },
   "src/semantic/values/access.c": {
     "audited_test_consumers": "tests/integration/semantic/types; tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/check; tests/unit/compiler/status; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership; tests/unit/planning/ir; tests/unit/semantic/constants; tests/unit/semantic/diagnostics; tests/unit/semantic/names; tests/unit/semantic/native; tests/unit/semantic/relations; tests/unit/semantic/types",
@@ -1836,54 +1818,6 @@
     "sha256": "7d2f7e79bccd3c69542804663a3ec263759df13d8b308a782fcf4697f6ded530"
   },
   "stdlib/modules/std/index.h": {
-    "audited_test_consumers": "",
-    "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "5e6f8877534074c47dd64bd6d64805ec67c11dffcd9a7af771e558a62c1859f9"
-  },
-  "stdlib/modules/std/list/action": {
-    "audited_test_consumers": "",
-    "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "77237d687a309c324e7a65dbedbcc6dadfabf312d24b263ef1eed133f2a5f8f2"
-  },
-  "stdlib/modules/std/list/action.abi": {
-    "audited_test_consumers": "",
-    "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "f9cf3bd2ffd4d2b41fad3eb03c658df118577b7682f72c3066730a339fdd6d5f"
-  },
-  "stdlib/modules/std/list/action.c": {
-    "audited_test_consumers": "",
-    "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "bc54b89ad8c0d913ad92d472d4e66846c64191f8cee87d2d1809893be2b9c3b4"
-  },
-  "stdlib/modules/std/list/action.h": {
-    "audited_test_consumers": "",
-    "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "5e6f8877534074c47dd64bd6d64805ec67c11dffcd9a7af771e558a62c1859f9"
-  },
-  "stdlib/modules/std/list/outcome": {
-    "audited_test_consumers": "",
-    "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "fceced5f39aa56ac69303ec9f751a0b5c75d38cb09dc65fbe8af111d5c1372f2"
-  },
-  "stdlib/modules/std/list/outcome.abi": {
-    "audited_test_consumers": "",
-    "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "f9cf3bd2ffd4d2b41fad3eb03c658df118577b7682f72c3066730a339fdd6d5f"
-  },
-  "stdlib/modules/std/list/outcome.c": {
-    "audited_test_consumers": "",
-    "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "bb38c27e69bcf03c5a2ca39ddd0fceb56ed80d9835d4149c0171ea966b2a3860"
-  },
-  "stdlib/modules/std/list/outcome.h": {
     "audited_test_consumers": "",
     "owner": "T151",
     "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
@@ -2474,8 +2408,8 @@
   "tests/integration/semantic/types/main.c": {
     "audited_test_consumers": "tests/integration/semantic/types",
     "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "63c8c9fd12d11b974ad6c64160f055f66881833808a961e833ce9af9e8fdaba8"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T151.",
+    "sha256": "caabea193b0bbf13447b899f3c057a06d25bbb7eb9cf242c905a64a8e35b2c8d"
   },
   "tests/integration/semantic/types/project/main": {
     "audited_test_consumers": "",
@@ -2624,8 +2558,8 @@
   "tests/unit/codegen/assembly/main.c": {
     "audited_test_consumers": "tests/unit/codegen/assembly",
     "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "ce980e113ed945e06c9dd2e8f730a15c9610dfa85829a3211b1308bf1c035376"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T151.",
+    "sha256": "96aead457b88628aa1397b5ddf96c7509e2a03c7a0e613622188ad3d069d3f59"
   },
   "tests/unit/codegen/continuations/Makefile": {
     "audited_test_consumers": "",
@@ -2648,8 +2582,8 @@
   "tests/unit/codegen/execution/common.c": {
     "audited_test_consumers": "tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library",
     "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "bc783ca4dae9bec8678a4cff4f4d25712763a783dae1f4b5948c59bfa9b0c283"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T151.",
+    "sha256": "3d00880f8b4acb94a2287c22d9a5e78d6a22d14fc2f598563a9bb4c3d0cc62e2"
   },
   "tests/unit/codegen/execution/main.c": {
     "audited_test_consumers": "tests/unit/codegen/execution",
@@ -2666,8 +2600,8 @@
   "tests/unit/codegen/library/main.c": {
     "audited_test_consumers": "tests/unit/codegen/library",
     "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "c6ff7450609add84487957c5f82e8cf05d1317dfb034af9e0cea499cf9ffd86e"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T151.",
+    "sha256": "40a5a5efe9c2f6d1cd8bb906364106f5a5aa215f34fb24d855b0305781278540"
   },
   "tests/unit/compiler/Makefile": {
     "audited_test_consumers": "",
@@ -2690,8 +2624,8 @@
   "tests/unit/compiler/common.c": {
     "audited_test_consumers": "tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/compiler/check; tests/unit/compiler/status; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership",
     "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "955bb961857e3c0b001d6351fc830de98949ff571b07f380a76f61d63dd707cc"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T151.",
+    "sha256": "338438f9f0e17cff56cce56a9aa6e04c75d0b1a267c1cfbfa31d5307202b7206"
   },
   "tests/unit/compiler/status/Makefile": {
     "audited_test_consumers": "",
@@ -2770,12 +2704,6 @@
     "owner": "T151",
     "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
     "sha256": "4b3adb09d93c7be487b77bdb9b9fad635da29b3385761eacebfd6e07d961fe1f"
-  },
-  "tests/unit/driver/run/main.c": {
-    "audited_test_consumers": "tests/unit/driver/run",
-    "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "b287f7328babcf052b368af01d6f292d7c27c35b5a263523a62867fda35e8c4f"
   },
   "tests/unit/lexer/Makefile": {
     "audited_test_consumers": "",
@@ -2966,8 +2894,8 @@
   "tests/unit/native/scaffold/common.c": {
     "audited_test_consumers": "tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership",
     "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "3cfc454e16bb3f9320a320ba326126027de2bf2afed156578757a7a99f4287c8"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T151.",
+    "sha256": "fadc0f23d09dfe87c91632938b2b7aa64f3081a4c6f40267f71246c930c0039d"
   },
   "tests/unit/native/scaffold/declarations/Makefile": {
     "audited_test_consumers": "",
@@ -2978,8 +2906,8 @@
   "tests/unit/native/scaffold/declarations/main.c": {
     "audited_test_consumers": "tests/unit/native/scaffold/declarations",
     "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "23b13dd6be6eb973895cbe8a1c1ae26127d57d7cf1b7122806239e37062b6208"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T151.",
+    "sha256": "8732a74793d50f643cedc1575207071b5a67cb32c19401bb07d52e6dde35e7db"
   },
   "tests/unit/native/scaffold/ownership/Makefile": {
     "audited_test_consumers": "",
@@ -2990,8 +2918,8 @@
   "tests/unit/native/scaffold/ownership/main.c": {
     "audited_test_consumers": "tests/unit/native/scaffold/ownership",
     "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "63f1ab95c405e3a93ba3b7bdfa333935d6b453162f73bb870b9d75a02dfa6b19"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T151.",
+    "sha256": "20e83bd85d8b6bf7bc71d760509343c906a648a257cf96ec4cf836f5f016b20e"
   },
   "tests/unit/native/scaffold/sources.mk": {
     "audited_test_consumers": "",
@@ -3062,8 +2990,8 @@
   "tests/unit/parser/calls/main.c": {
     "audited_test_consumers": "tests/unit/parser/calls",
     "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "f0326fe3c6d807b39b511494cd9ad0015a651991172e4b5a12de6e18e5075418"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T151.",
+    "sha256": "f0b544bfaac5ed92c5ad9068e74dde22843cdde13515f55e74c92049ba6a4f5f"
   },
   "tests/unit/parser/common.c": {
     "audited_test_consumers": "tests/unit/parser/module",
@@ -3122,8 +3050,8 @@
   "tests/unit/planning/common.c": {
     "audited_test_consumers": "tests/unit/planning/ir",
     "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "9dcbd6100b24a382d0e3d8894e2d2b4ebd0671e34b8deb44a586aff2571b22f6"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T151.",
+    "sha256": "b9a3594d451f3a3f518be01bae2e469f2835ef7ab2196d54dcf3d95e2edb6808"
   },
   "tests/unit/planning/ir/Makefile": {
     "audited_test_consumers": "",
@@ -3134,8 +3062,8 @@
   "tests/unit/planning/ir/main.c": {
     "audited_test_consumers": "tests/unit/planning/ir",
     "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "b6e9672e5341332eee8645934aa2af2e07b10f146229ef4b117a4ce8368bb4ad"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T151.",
+    "sha256": "18595ebb20d59f9f7217dfe56e4b5dcfbc99ea89cafa5145cda20ccbd41910f8"
   },
   "tests/unit/planning/sources.mk": {
     "audited_test_consumers": "",
@@ -3214,12 +3142,6 @@
     "owner": "T151",
     "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
     "sha256": "883effa502ba458e55ff3a5cdd5160a4f661c2ed69fe1f43cb64dbbbab7ea5af"
-  },
-  "tests/unit/runtime/lists/main.c": {
-    "audited_test_consumers": "tests/unit/runtime/lists",
-    "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "73dcd92719138cf38873c2af2f8cd6525af159dea9ced763d79afdb289639712"
   },
   "tests/unit/runtime/objects/Makefile": {
     "audited_test_consumers": "",
@@ -3344,8 +3266,8 @@
   "tests/unit/semantic/constants/main.c": {
     "audited_test_consumers": "tests/unit/semantic/constants",
     "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "04622cc0b799a96edb628c153f4539160765c346062d151332d0156ee1faad8b"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T151.",
+    "sha256": "46404c8d8610cec8881cde751d32757644f38fe7bac2c4c0291c361513138464"
   },
   "tests/unit/semantic/diagnostics/Makefile": {
     "audited_test_consumers": "",
@@ -3356,8 +3278,8 @@
   "tests/unit/semantic/diagnostics/main.c": {
     "audited_test_consumers": "tests/unit/semantic/diagnostics",
     "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "a4a7066f1a65c22eefa4b648a1b3d6455e0a3f36e354322c87838b9afc86ef43"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T151.",
+    "sha256": "a70ae4314d07c6c9a8df19382874b7c0bb89afdf7bc8cd612bf679cdc6493913"
   },
   "tests/unit/semantic/names/Makefile": {
     "audited_test_consumers": "",
@@ -3392,8 +3314,8 @@
   "tests/unit/semantic/relations/main.c": {
     "audited_test_consumers": "tests/unit/semantic/relations",
     "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "216e1789eed1e6ab51babff2aada366c55650ab6efcdda1c64985cffe147113c"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T151.",
+    "sha256": "a288fd7d7760682743696bffcb3bd173cc887afd9f77bd4205c321c6012a8c18"
   },
   "tests/unit/semantic/sources.mk": {
     "audited_test_consumers": "",
@@ -3404,8 +3326,8 @@
   "tests/unit/semantic/typed-common.c": {
     "audited_test_consumers": "tests/unit/planning/ir; tests/unit/semantic/constants; tests/unit/semantic/diagnostics; tests/unit/semantic/relations; tests/unit/semantic/types",
     "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "04879821ccdaf5bdae5220790b0391209a8d7d7c391c36645f0255011abf7e5e"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T151.",
+    "sha256": "79f1a07931e8f64828b1bd93f200afb9e4261a9311e4e339b042f964aaea2cb6"
   },
   "tests/unit/semantic/types/Makefile": {
     "audited_test_consumers": "",
@@ -3416,8 +3338,8 @@
   "tests/unit/semantic/types/main.c": {
     "audited_test_consumers": "tests/unit/semantic/types",
     "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "1b531e9ca9392987a744177bdedb4313993cb34f03f85f62b1e2e2e372a7718a"
+    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T151.",
+    "sha256": "69c89d52c577699671857bbd0c0bc732a9d0a18fd5417a28bc3c4dc5ccede828"
   },
   "tests/unit/source/Makefile": {
     "audited_test_consumers": "",

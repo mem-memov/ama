@@ -66,6 +66,102 @@
       }
     ]
   },
+  "src/runtime/lists/list.h": {
+    "contract": "docs/implementation/lists.md",
+    "purpose": "Check handle-vector insertion/removal and lifecycle without an action dispatcher.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_grows_geometrically_without_moving_states_and_preserves_data_on_failure",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preserves_order_and_identity_and_invalidates_only_removed_owners",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preflights_all_clear_descendants_and_does_not_acquire_reference_targets",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preserves_contents_after_every_default_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_treats_destructor_failure_as_terminal_and_completes_clear_cleanup",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_clones_inserted_owned_state_and_remaps_internal_references",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_rejects_reentrant_storage_work_without_mutating_or_allocating",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      }
+    ]
+  },
+  "src/runtime/lists/mutation/storage.c": {
+    "contract": "docs/implementation/lists.md",
+    "purpose": "Check handle-vector insertion/removal and lifecycle without an action dispatcher.",
+    "tests": [
+      {
+        "case": "it_grows_geometrically_without_moving_states_and_preserves_data_on_failure",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preserves_order_and_identity_and_invalidates_only_removed_owners",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preflights_all_clear_descendants_and_does_not_acquire_reference_targets",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preserves_contents_after_every_default_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_treats_destructor_failure_as_terminal_and_completes_clear_cleanup",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_clones_inserted_owned_state_and_remaps_internal_references",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_rejects_reentrant_storage_work_without_mutating_or_allocating",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      }
+    ]
+  },
   "tests/integration/rebuild/concurrent/Makefile": {
     "contract": "docs/implementation/incremental-build.md",
     "purpose": "Isolate simultaneous Make command-manifest checks and propagate errors.",
@@ -160,6 +256,58 @@
         "case": "it_checks_actual_rendered_destinations_and_source_stability",
         "command": "make -C tests/unit/documentation",
         "source": "tests/unit/documentation/main.c"
+      }
+    ]
+  },
+  "tests/unit/driver/run/main.c": {
+    "contract": "docs/implementation/contracts/driver.md",
+    "purpose": "Exercise command selection, output failure and exact retired-option rejection.",
+    "tests": [
+      {
+        "case": "it_rejects_every_retired_list_configuration_option",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/lists/main.c": {
+    "contract": "docs/implementation/lists.md",
+    "purpose": "Check handle-vector insertion/removal and lifecycle without an action dispatcher.",
+    "tests": [
+      {
+        "case": "it_grows_geometrically_without_moving_states_and_preserves_data_on_failure",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preserves_order_and_identity_and_invalidates_only_removed_owners",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preflights_all_clear_descendants_and_does_not_acquire_reference_targets",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preserves_contents_after_every_default_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_treats_destructor_failure_as_terminal_and_completes_clear_cleanup",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_clones_inserted_owned_state_and_remaps_internal_references",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_rejects_reentrant_storage_work_without_mutating_or_allocating",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
       }
     ]
   },

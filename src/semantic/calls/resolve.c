@@ -1,3 +1,11 @@
+/**
+ * @file
+ * @brief Resolve scalar call bindings and reject unsupported whole-list services.
+ *
+ * [LIST-02](../../../spec/language/lists.md#list-02) forbids whole-list execution.
+ * [LIST-04](../../../spec/language/lists.md#list-04) gives each intrinsic method
+ * its own typed interface, so no positional dispatcher binding may reach IR.
+ */
 #include "internal.h"
 
 static bool target(SemanticProgram *program, SemanticType *caller, SemanticStatement *statement) {
@@ -19,25 +27,14 @@ static bool target(SemanticProgram *program, SemanticType *caller, SemanticState
     return true;
 }
 
-static bool list_contract(SemanticProgram *program, SemanticStatement *statement) {
-    for (size_t index = 0; index < 4; index++) {
-        SemanticType *type = program->library_types[index];
-        if (type == NULL || !type->cloneable || (index == 1 && !type->abi.bindings[ABI_INDEX].present)
-            || (index == 2 && !type->abi.bindings[ABI_CONDITION].present)) {
-            return semantic_fail(program, statement->syntax->span,
-                "Whole-list operations require configured copyable action/index/condition/outcome types", NULL);
-        }
-    }
-    return true;
-}
-
 bool semantic_call(SemanticProgram *program, SemanticType *type, SemanticStatement *statement) {
     if (!target(program, type, statement)) {
         return false;
     }
     bool list = statement->access != NULL && statement->access->list;
-    if (list && !list_contract(program, statement)) {
-        return false;
+    if (list) {
+        return semantic_fail(program, statement->syntax->span,
+            "A whole list cannot execute or expose retained results; typed list services are not implemented", NULL);
     }
     for (const AstArgument *argument = statement->syntax->as.call.first;
         argument != NULL; argument = argument->next) {
@@ -46,8 +43,7 @@ bool semantic_call(SemanticProgram *program, SemanticType *type, SemanticStateme
             return false;
         }
         binding->syntax = argument;
-        if (!(list ? semantic_list_field(program, statement, argument, binding)
-                : semantic_call_field(program, statement, argument, binding))
+        if (!semantic_call_field(program, statement, argument, binding)
             || !semantic_binding_value(program, type, statement, binding)) {
             return false;
         }

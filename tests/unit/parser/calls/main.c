@@ -21,10 +21,9 @@ static void it_counts_skipped_inputs_and_outputs_independently(void) {
     destroy_tree();
 }
 
-static void it_permits_output_placeholders_on_resume_and_positional_list_operations(void) {
-    const char *valid[] = {"@!\nworker%\n >\n > selected", "@!\nitems[]!\n <\n <\n < &item\n > length",
-        "@!\nitems&[]\n >> length", "@!\nworker!", "@!\nworker%"};
-    for (size_t index = 0; index < 5; index++) {
+static void it_permits_output_placeholders_on_scalar_resume(void) {
+    const char *valid[] = {"@!\nworker%\n >\n > selected", "@!\nworker!", "@!\nworker%"};
+    for (size_t index = 0; index < sizeof(valid) / sizeof(*valid); index++) {
         setup_tree();
         ParseStatus parsed = parse_text(valid[index]);
         assert(parsed == PARSE_OK);
@@ -150,7 +149,7 @@ static void it_matches_the_call_mode_language_for_every_short_binding_sequence(v
 
 void run(void) {
     it_counts_skipped_inputs_and_outputs_independently();
-    it_permits_output_placeholders_on_resume_and_positional_list_operations();
+    it_permits_output_placeholders_on_scalar_resume();
     it_preserves_typed_literal_inputs_and_distinguishes_empty_values_from_skips();
     it_preserves_embedded_zero_bytes_in_unterminated_input_literals();
     it_rejects_empty_reads_named_placeholders_invalid_literals_and_mixed_styles();

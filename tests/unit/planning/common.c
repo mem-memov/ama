@@ -6,8 +6,8 @@
 
 static ProgramPlan plan;
 
-static PlanStatus plan_libraries(const char *text, SemanticLibraries libraries) {
-    SemanticStatus status = resolve_text(text, libraries);
+static PlanStatus plan_text(const char *text) {
+    SemanticStatus status = resolve_text(text);
     assert(status == SEMANTIC_OK);
     status = semantic_relations(&semantic);
     assert(status == SEMANTIC_OK);
@@ -15,10 +15,6 @@ static PlanStatus plan_libraries(const char *text, SemanticLibraries libraries) 
     assert(status == SEMANTIC_OK);
     program_plan_init(&plan, &semantic, sources.allocator);
     return program_plan_build(&plan);
-}
-
-static PlanStatus plan_text(const char *text) {
-    return plan_libraries(text, (SemanticLibraries){0});
 }
 
 static void destroy_plan(void) {

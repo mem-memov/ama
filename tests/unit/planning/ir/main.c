@@ -160,7 +160,7 @@ static void it_cleans_partial_lifecycle_storage_and_control_plans_on_every_alloc
     assert(baseline > count && count > 0);
     destroy_plan();
     for (size_t failure = 1; failure <= count; failure++) {
-        SemanticStatus resolved = resolve_text(text, (SemanticLibraries){0});
+        SemanticStatus resolved = resolve_text(text);
         assert(resolved == SEMANTIC_OK);
         resolved = semantic_relations(&semantic);
         assert(resolved == SEMANTIC_OK);
@@ -172,32 +172,6 @@ static void it_cleans_partial_lifecycle_storage_and_control_plans_on_every_alloc
         assert(status == PLAN_OUT_OF_MEMORY && !plan.valid && diagnostic_valid(&plan.error));
         destroy_plan();
     }
-}
-
-static void it_resolves_every_list_installation_type_including_omitted_positions(void) {
-    prepare_types();
-    PlanStatus status = plan_libraries("@!\nvalue\n.value\nitems[]\n.resource\nitems[]!\n < value\n > value\n"
-        "items[]\n >> value\n", (SemanticLibraries){".value", ".value", ".value", ".value"});
-    assert(status == PLAN_OK);
-    ControlNode *node = plan.entry->entry;
-    assert(node->operation == CONTROL_ACQUIRE_LIST);
-    node = node->next;
-    assert(node->operation == CONTROL_EVALUATE_INPUT);
-    node = node->next;
-    for (size_t position = 0; position < 4; position++) {
-        assert(node->operation == CONTROL_LIST_INSTALL_INPUT && node->position == position);
-        assert(node->value_type != NULL);
-        assert(node->value_type == semantic_find_type(&semantic, position == 2 ? ".resource" : ".value"));
-        assert(node->value_form == (position == 2 ? STORAGE_REFERENCE : STORAGE_OWNED));
-        node = node->next;
-    }
-    assert(node->operation == CONTROL_LIST_ACTION);
-    node = node->next;
-    assert(node->operation == CONTROL_TRANSFER_OUTPUT);
-    node = node->next->next;
-    assert(node->operation == CONTROL_ACQUIRE_LIST && node->next->operation == CONTROL_TRANSFER_OUTPUT);
-    assert(program_plan_type(&plan, semantic_find_type(&semantic, ".resource"))->clone.first == NULL);
-    destroy_plan();
 }
 
 static void it_lowers_deep_branch_nesting_without_recursive_c_activations(void) {
@@ -264,7 +238,6 @@ void run(void) {
     it_keeps_refusal_alternatives_distinct_from_technical_failure_even_when_empty();
     it_lowers_loop_break_branch_yield_and_early_return_to_explicit_edges();
     it_retains_receiver_source_preflight_prepare_commit_order_for_assignment();
-    it_resolves_every_list_installation_type_including_omitted_positions();
     it_lowers_deep_branch_nesting_without_recursive_c_activations();
     it_cleans_partial_lifecycle_storage_and_control_plans_on_every_allocation_failure();
 }

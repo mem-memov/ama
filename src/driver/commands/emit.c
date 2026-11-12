@@ -7,7 +7,7 @@ int driver_emit(const DriverOptions *options, FILE *output, FILE *errors) {
     CompilerFrontend frontend;
     compiler_frontend_init(&frontend, source_system_allocator());
     int result = EXIT_FAILURE;
-    if (!compiler_frontend_check(&frontend, options->roots, options->root_count, options->entry, options->libraries)) {
+    if (!compiler_frontend_check(&frontend, options->roots, options->root_count, options->entry)) {
         (void)diagnostic_render(errors, &frontend.error);
     } else {
         NativeScaffold assembly;

@@ -4,8 +4,8 @@
 #include "frontend.h"
 
 bool compiler_frontend_load(CompilerFrontend *frontend, const ModuleRoot *roots,
-    size_t count, const char *entry, SemanticLibraries libraries);
-bool compiler_frontend_finish(CompilerFrontend *frontend, SemanticLibraries libraries,
+    size_t count, const char *entry);
+bool compiler_frontend_finish(CompilerFrontend *frontend,
     const SemanticNativeAuthoring *authoring);
 
 #endif

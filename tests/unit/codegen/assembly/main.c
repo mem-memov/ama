@@ -33,7 +33,7 @@ static void prepare_assembly(void) {
 static void begin_assembly(void) {
     setup_frontend();
     ModuleRoot root = {"generated/project", NULL, 0};
-    bool checked = compiler_frontend_check(&frontend, &root, 1, ".main", (SemanticLibraries){0});
+    bool checked = compiler_frontend_check(&frontend, &root, 1, ".main");
     assert(checked);
     native_scaffold_init(&assembly, &frontend, sources.allocator);
 }

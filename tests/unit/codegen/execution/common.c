@@ -91,7 +91,7 @@ static void prepare_project(const char *main_source) {
     native_fixture("worker", "@<\ninput\n.value\n |7\n@>\noutput\n.value\n input\nother\n.value\n |99\n@C\n");
     setup_frontend();
     ModuleRoot roots[] = {{"generated/project", NULL, 0}, {TEST_STDLIB, NULL, 0}};
-    bool checked = compiler_frontend_check(&frontend, roots, 2, ".main", (SemanticLibraries){0});
+    bool checked = compiler_frontend_check(&frontend, roots, 2, ".main");
     if (!checked) { fprintf(stderr, "Frontend failed: %s\n", frontend.error.message); }
     assert(checked);
     native_scaffold_init(&assembly, &frontend, sources.allocator);

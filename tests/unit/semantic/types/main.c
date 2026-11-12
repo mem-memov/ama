@@ -91,7 +91,7 @@ static void it_keeps_resolved_bindings_and_literal_bytes_in_source_order(void) {
     prepare_types();
     file("generated/program/worker", "@<\nfirst\n.value\nsecond\n.value\n@>\noutput\n.value\n@!\n");
     SemanticStatus status = resolve_text("@!\nworker\n.worker\nvalue\n.value\n"
-        "worker!\n second < |last # data  \n first < value\n output > value\n", (SemanticLibraries){0});
+        "worker!\n second < |last # data  \n first < value\n output > value\n");
     assert(status == SEMANTIC_OK);
     SemanticStatement *call = semantic.first->last_statement;
     assert(call->bindings->position == 1 && call->bindings->next->position == 0);
@@ -101,28 +101,26 @@ static void it_keeps_resolved_bindings_and_literal_bytes_in_source_order(void) {
     destroy_semantic();
 }
 
-static void it_uses_configured_list_types_and_enforces_owning_source_copy_capability(void) {
+/** Whole-list execution/read cannot reach retired positional bindings. */
+static void it_rejects_whole_list_execution_and_retained_results(void) {
     prepare_types();
-    SemanticLibraries libraries = {".value", ".value", ".value", ".value"};
-    const char *text = "@!\nvalue\n.value\nitems[]\n.resource\nitems[]!\n < value\n <\n <\n > value\n";
-    SemanticStatus status = resolve_text(text, libraries);
-    assert(status == SEMANTIC_OK);
-    destroy_semantic();
-    status = resolve_text("@!\nvalue\n.value\nreference&\n.resource\nitems[]\n.resource\n"
-        "items[]!\n < value\n <\n < reference&\n", libraries);
-    assert(status == SEMANTIC_INVALID);
-    destroy_semantic();
-    status = resolve_text("@!\nvalue\n.value\nreference&\n.resource\nitems&[]\n.resource\n"
-        "items&[]!\n < value\n <\n < reference&\nitems&[]\n >> value\n", libraries);
-    assert(status == SEMANTIC_OK);
-    destroy_semantic();
+    const char *operations[] = {"items[]!\n", "items[]\n >> value\n"};
+    for (size_t index = 0; index < sizeof(operations) / sizeof(*operations); index++) {
+        char text[512];
+        int length = snprintf(text, sizeof(text), "@!\nvalue\n.value\nitems[]\n.resource\n%s", operations[index]);
+        assert(length > 0 && (size_t)length < sizeof(text));
+        SemanticStatus status = resolve_text(text);
+        assert(status == SEMANTIC_INVALID);
+        assert(strstr(semantic.error.message, "whole list") != NULL);
+        destroy_semantic();
+    }
 }
 
 static void it_releases_every_partial_resolved_value_binding_and_access(void) {
     prepare_types();
     file("generated/program/worker", "@<\ninput\n.value\n@>\noutput\n.value\n@!\n");
     const char *text = "@!\nvalue\n.value\n |initial\nworker\n.worker\nworker!\n < |input\n > value\n";
-    SemanticStatus status = resolve_text(text, (SemanticLibraries){0});
+    SemanticStatus status = resolve_text(text);
     assert(status == SEMANTIC_OK);
     size_t total = allocation_count;
     destroy_semantic();
@@ -138,7 +136,7 @@ static void it_releases_every_partial_resolved_value_binding_and_access(void) {
             continue;
         }
         failure_at = failure;
-        status = semantic_resolve(&semantic, (SemanticLibraries){0});
+        status = semantic_resolve(&semantic);
         assert(status == SEMANTIC_OUT_OF_MEMORY && !semantic.resolved);
         assert(diagnostic_valid(&semantic.error));
         destroy_semantic();
@@ -152,7 +150,7 @@ void run(void) {
     it_resolves_calls_bindings_defaults_and_saved_constant_reads();
     it_requires_native_condition_and_index_capabilities_without_inheritance();
     it_keeps_resolved_bindings_and_literal_bytes_in_source_order();
-    it_uses_configured_list_types_and_enforces_owning_source_copy_capability();
+    it_rejects_whole_list_execution_and_retained_results();
 }
 
 int main(void) {

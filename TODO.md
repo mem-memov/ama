@@ -175,7 +175,7 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   18 ready inputs and assigns 582 remaining input debts to T145–T151; the full
   `docs-complete` gate fails until they close. Source navigation was exercised with
   VS Code's real `--goto`; no GUI-click or complete documentation claim is made.
-- [ ] **T136 — Retire the old list dispatcher across its consumers.** Needs:
+- [x] **T136 — Retire the old list dispatcher across its consumers.** Needs:
   T005. Remove action/outcome modules, configuration flags, fixed positional
   interfaces, dispatch requests, obsolete list result fields and unsupported
   action IR/emission paths identified by audit F02. Migrate retained consumers
@@ -183,6 +183,16 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   explicit component tests. Replace obsolete-only expectations; do not claim
   current typed methods are implemented before T075–T084. Check CLI diagnostics,
   library closure, clean build and affected runtime/semantic/emission compositions.
+  Evidence: [retained storage contract](docs/implementation/lists.md). Removed
+  the dispatcher and its frontend/semantic/IR/emission configuration, both native
+  action/outcome module families and retained list result flags, including clone
+  and transfer copies. Direct storage operations return status and preserve
+  checked capacity/range/lifecycle machinery. Complete `make -j4 test` passed
+  (59 leaves); seven storage cases passed strict release and ASan/UBSan profiles
+  (`detect_leaks=0`). CLI rejects all four removed mappings; semantic checks
+  reject whole-list execution/retained results before IR. Clean compiler build,
+  independent header checks and Doxygen's actual rule/file destinations passed.
+  Typed services, membership/cursor behavior and length remain T075–T084.
 - [ ] **T137 — Remove conflicting derived descriptions and proposals.** Needs:
   T136. Close audit F09 after T002's refreshed map: update library/native/build
   descriptions to their actual current boundaries, repair links to authoritative

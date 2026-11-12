@@ -23,9 +23,9 @@ typedef struct {
 void compiler_frontend_init(CompilerFrontend *frontend, SourceAllocator allocator);
 void compiler_frontend_destroy(CompilerFrontend *frontend);
 bool compiler_frontend_check(CompilerFrontend *frontend, const ModuleRoot *roots,
-    size_t count, const char *entry, SemanticLibraries libraries);
+    size_t count, const char *entry);
 
 bool compiler_frontend_authoring(CompilerFrontend *frontend, const ModuleRoot *roots,
-    size_t count, const char *entry, SemanticLibraries libraries, const char *proposed_abi);
+    size_t count, const char *entry, const char *proposed_abi);
 
 #endif

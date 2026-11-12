@@ -13,6 +13,6 @@ ControlNode *lower_outputs(Lowering *lowering, const SemanticStatement *statemen
 ControlNode *lower_inputs(Lowering *lowering, const SemanticStatement *statement,
     ReverseBinding *reverse, ControlNode *after);
 ControlNode *lower_install(Lowering *lowering, const SemanticStatement *statement,
-    ControlNode *after, bool list);
+    ControlNode *after);
 
 #endif

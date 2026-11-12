@@ -10,7 +10,6 @@ typedef struct {
     ModuleRoot *roots;
     size_t root_count;
     const char *entry;
-    SemanticLibraries libraries;
     const char *output;
     const char *compiler;
     const char *sdk;

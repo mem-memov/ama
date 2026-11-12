@@ -1,40 +1,93 @@
-# Ordered lists
+# Handle-vector storage foundation
 
-## Storage law
+The [list specification](../../spec/language/lists.md) requires typed intrinsic
+methods, checked memberships and live traversal. Those services remain T075–T084.
+The retained C component below implements storage/lifecycle operations only; it
+is not an executable list interface or evidence of foreach support.
 
-`runtime/lists/capacity.c` grows a contiguous identifier buffer geometrically,
-checking the handle-count and byte-size bounds before allocation. Growth allocates
-and copies before replacing the old buffer, so allocation failure preserves both
-order and capacity. Only identifiers move; pool payloads retain their addresses.
+T136 removed the runtime action/request dispatcher, fixed positional semantic
+bindings, configurable action/index/condition/outcome type mappings, list action
+IR and the action/outcome library modules. `AmaHandleList` retains its vector,
+length, capacity and acquisition bookkeeping, without retained refusal/outcome
+fields. Copies transfer data, not an old completion flag. Whole-list execution
+and retained reads now fail semantic checking before unsupported IR is created.
 
-Capacity is at least count. Initial construction and whole-list copying establish
-this invariant; disposal clears both. Doubling gives a geometric sum of copied
-identifiers bounded by twice the final capacity, hence amortized constant-time
-append excluding lifecycle costs. Positional indexing remains zero-based.
+## Domain and authority
 
-The runtime list suite checks ordered growth, allocation failure and arithmetic
-limits. Existing ownership/clone/transfer suites check composition with stable
-payloads and reference remapping.
+`src/runtime/lists/list.h` exposes two direct C operations: insert before one
+position, and remove one contiguous range. `AmaListStorage` borrows a live
+owner's exact field, matching element type and ownership. Its caller supplies
+exclusive authority and a handle-vector representation without cursor or
+membership records. It is not a language-level method frame or an action value.
+The storage object owns no persistent source/result and changes no Ama body
+execution position. The world prevents lifecycle reentry while an edit runs.
 
-## Mutation boundary
+The foundation's limitations are explicit: collection incarnation, membership
+retirement, cursor correction, typed method results, checked list acquisition
+and the integer length bridge are still required before language list services
+can call a completed representation. Do not treat this vector as the final
+membership order array from LIST-03.
 
-`runtime/lists/mutation/` implements Inspect, Append, Insert, Remove, Clear and
-Swap over the ordered handle buffer. It accepts an already decoded request;
-module payload representation is outside this component's domain.
+## Capacity and stable payloads
 
-Bounds checks precede ownership work. Owned-source copy preflight covers the
-whole source tree; Clear preflights all affected ownership trees before the first
-destructor. Availability refusals update completion/outcome metadata but preserve
-contents and state. Allocation, constructor and destructor failures remain
-technical errors. Insertion publishes a fully built ownership tree before adding
-its handle. Deletion completes cleanup and updates the parent's child ledger,
-even when a destructor reports terminal failure. Reference entries never acquire
-or destroy their targets, including empty and busy targets.
+`src/runtime/lists/capacity.c` checks handle-count and byte-size bounds before
+allocation. Growth copies the existing handle prefix before replacing its old
+buffer; allocation failure preserves contents, count and capacity. Only handles
+move. Live instance payloads remain in stable pool slots.
 
-Preflight and preparation are separate from commit. Thus expected refusals have
-no destructive prefix. Insert/remove shift precisely the suffix outside the
-selected range, preserving relative order; Swap exchanges two identities only.
-Lifetime child counts change by exactly the committed owned-element count.
-The tests cover each action, Clear with a busy descendant, all allocation failures
-in default insertion, terminal destruction, stale references and empty pool-block
-reclamation. ASan/UBSan run with LeakSanitizer disabled in the traced environment.
+The invariant is `count <= capacity <= SIZE_MAX / sizeof(AmaHandle)`. Starting
+at four and doubling, with a final checked saturation, gives a geometric bound
+on copied handles and amortized O(1) growth per append, excluding lifecycle
+work. Initial construction and whole-list copying establish the invariant;
+disposal clears the vector. Capacity reservation can succeed before a later
+constructor fails; that failure preserves logical contents without promising
+unchanged reserved capacity.
+
+## Preflight, construction and cleanup
+
+Insertion requires `position <= count`. Range removal requires
+`position <= count` and `range_count <= count - position`; subtraction follows
+the first check, avoiding overflow even for `SIZE_MAX` inputs. Violations return
+`AMA_INDEX_BOUNDS` directly. Availability refusals also return their status,
+without modifying list completion state or turning refusal into success.
+
+Owned insertion preflights a nonempty source before constructing an independent
+ordinary clone. Empty source constructs initial state. The existing object
+builder remaps internal references and clears saved positions. Publish the
+complete constructed tree and its owner ledger before publishing its handle.
+Reference insertion copies the complete supplied handle, including empty/stale
+handles, without acquiring the target or running constructors.
+
+Owned removal preflights every affected ownership tree before its first
+destructor. Preparation refusal therefore has no destructive prefix. Removal
+continues terminal cleanup after destructor failure, preserves the primary
+failure and adjusts the parent ledger by the removed owned roots. Reference
+removal neither acquires nor destroys referenced targets. All exits after a
+successful operation setup release preflight protection and scratch storage.
+
+Insertion shifts exactly the suffix `[position, count)` right by one. Range
+removal shifts `[position + range_count, count)` left by `range_count`.
+Consequently surviving handles retain their relative order and payload identity;
+removed owned roots become stale, while unrelated references remain unchanged.
+Position checks and bookkeeping cost O(1); suffix shifts cost O(n), excluding
+owned-tree preflight/construction/destruction. These are storage laws, not the
+additional membership/cursor obligations of the complete list contract.
+
+## Executable evidence
+
+Run `make -C tests/unit/runtime/lists` independently. Its seven named cases cover
+geometric growth and allocation/size limits; ordered insertion/removal and stale
+owned roots; busy descendants before any destruction; empty/busy reference
+storage; every allocation-failure prefix of default insertion; terminal cleanup;
+ordinary cloned state with remapped self/child references and cleared resume;
+and reentrant/failed-world rejection without allocation or mutation.
+`make -C tests/unit/runtime/objects` and the generated-project suites compose the
+same retained lifetime/copy/transfer components through their real parents.
+The complete `make -j4 test` is the acceptance check after removing old API
+consumers and updating the runtime C assembly's source membership.
+
+CLI tests in `tests/unit/driver/run` reject all four retired configuration
+options before opening roots. `tests/unit/semantic/types` rejects whole-list
+execution and retained-result bindings before planning. Scalar native-library
+compositions continue to compile and run; the old enum-literal expectation was
+removed together with its obsolete module.

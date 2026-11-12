@@ -1,7 +1,7 @@
 #include "../typed-common.c"
 
 static void expect_relations(const char *text, bool valid) {
-    SemanticStatus status = resolve_text(text, (SemanticLibraries){0});
+    SemanticStatus status = resolve_text(text);
     assert(status == SEMANTIC_OK);
     status = semantic_relations(&semantic);
     if ((status == SEMANTIC_OK) != valid) {
@@ -25,13 +25,13 @@ static void it_distinguishes_loading_eager_construction_and_clone_cycles(void) {
 static void it_accepts_recursive_empty_lists_and_propagates_noncopyable_owned_edges(void) {
     prepare_types();
     file("generated/program/worker", "@!\nchildren[]\n.worker\n");
-    SemanticStatus status = resolve_text("@!\nworker\n.worker\ncopy\n.worker\n worker\n", (SemanticLibraries){0});
+    SemanticStatus status = resolve_text("@!\nworker\n.worker\ncopy\n.worker\n worker\n");
     assert(status == SEMANTIC_OK && semantic.last->cloneable);
     status = semantic_relations(&semantic);
     assert(status == SEMANTIC_OK);
     destroy_semantic();
     file("generated/program/worker", "@!\nchildren[]\n.worker\nresource\n.resource\n");
-    status = resolve_text("@!\nworker\n.worker\ncopy\n.worker\n worker\n", (SemanticLibraries){0});
+    status = resolve_text("@!\nworker\n.worker\ncopy\n.worker\n worker\n");
     assert(status == SEMANTIC_INVALID);
     destroy_semantic();
     file("generated/program/worker", "@!\nchildren[]\n.worker\nresource&\n.resource\n");
@@ -41,7 +41,7 @@ static void it_accepts_recursive_empty_lists_and_propagates_noncopyable_owned_ed
 static void it_orders_constants_by_declarations_and_actual_value_reads(void) {
     prepare_types();
     file("generated/program/worker", "@=\nvalue\n.value\n |ready\n");
-    SemanticStatus status = resolve_text("@=\nfirst\n.value\n .worker.value\nsecond\n.value\n first\n@!\n", (SemanticLibraries){0});
+    SemanticStatus status = resolve_text("@=\nfirst\n.value\n .worker.value\nsecond\n.value\n first\n@!\n");
     assert(status == SEMANTIC_OK);
     status = semantic_relations(&semantic);
     assert(status == SEMANTIC_OK);
@@ -157,7 +157,7 @@ static void it_matches_clone_capability_to_reachability_of_a_noncopyable_native_
         file("generated/program/left", other_text);
         graph_interface(other_text, sizeof(other_text), bits, 2);
         file("generated/program/right", other_text);
-        SemanticStatus status = resolve_text(main_text, (SemanticLibraries){0});
+        SemanticStatus status = resolve_text(main_text);
         assert(status == SEMANTIC_OK);
         bool reaches[3][3] = {{false}};
         for (size_t from = 0; from < 3; from++) {
@@ -185,7 +185,7 @@ static void it_cleans_successful_and_cyclic_relation_plans_after_every_allocatio
     prepare_types();
     const char *texts[] = {"@=\nfirst\n.value\n |one\nsecond\n.value\n first\n@!\n", "@!\nchild\n.main\n"};
     for (size_t test = 0; test < 2; test++) {
-        SemanticStatus status = resolve_text(texts[test], (SemanticLibraries){0});
+        SemanticStatus status = resolve_text(texts[test]);
         assert(status == SEMANTIC_OK);
         size_t before = allocation_count;
         status = semantic_relations(&semantic);
@@ -193,7 +193,7 @@ static void it_cleans_successful_and_cyclic_relation_plans_after_every_allocatio
         size_t count = allocation_count - before;
         destroy_semantic();
         for (size_t failure = 1; failure <= count; failure++) {
-            status = resolve_text(texts[test], (SemanticLibraries){0});
+            status = resolve_text(texts[test]);
             assert(status == SEMANTIC_OK);
             failure_at = allocation_count + failure;
             status = semantic_relations(&semantic);

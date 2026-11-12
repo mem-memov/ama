@@ -99,12 +99,6 @@ struct SemanticStatement {
     SemanticTransfer transfer;
 };
 typedef struct {
-    const char *action;
-    const char *index;
-    const char *condition;
-    const char *outcome;
-} SemanticLibraries;
-typedef struct {
     const ProjectModule *module;
     const SourceText *abi;
 } SemanticNativeAuthoring;
@@ -126,8 +120,6 @@ typedef struct {
     bool resolved;
     bool relations_attempted;
     bool relations_valid;
-    SemanticLibraries libraries;
-    SemanticType *library_types[4];
     SemanticConstantPlan *constant_first;
     SemanticConstantPlan *constant_last;
     size_t constant_count;
@@ -141,13 +133,13 @@ typedef struct {
 void semantic_program_init(SemanticProgram *program, const Project *project,
     SourceAllocator allocator);
 void semantic_program_destroy(SemanticProgram *program);
-SemanticStatus semantic_analyze(SemanticProgram *program, SemanticLibraries libraries);
-SemanticStatus semantic_analyze_authoring(SemanticProgram *program, SemanticLibraries libraries,
+SemanticStatus semantic_analyze(SemanticProgram *program);
+SemanticStatus semantic_analyze_authoring(SemanticProgram *program,
     const SemanticNativeAuthoring *authoring);
 SemanticStatus semantic_names(SemanticProgram *program);
 SemanticStatus semantic_native(SemanticProgram *program);
 SemanticStatus semantic_native_authoring(SemanticProgram *program, const SemanticNativeAuthoring *authoring);
-SemanticStatus semantic_resolve(SemanticProgram *program, SemanticLibraries libraries);
+SemanticStatus semantic_resolve(SemanticProgram *program);
 SemanticStatus semantic_relations(SemanticProgram *program);
 SemanticStatus semantic_constants(SemanticProgram *program);
 SemanticType *semantic_find_type(const SemanticProgram *program, const char *logical_path);

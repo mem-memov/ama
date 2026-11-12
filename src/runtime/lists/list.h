@@ -1,9 +1,40 @@
+/**
+ * @file
+ * @brief Provide checked storage/lifecycle primitives without a list dispatcher.
+ *
+ * [LIST-04](../../../spec/language/lists.md#list-04) requires typed services,
+ * not an action selector or retained completion state. These C primitives keep
+ * reusable construction/removal machinery; service acquisition, memberships,
+ * cursors and typed method frames are implemented in their dedicated tasks.
+ */
 #ifndef AMA_RUNTIME_LIST_H
 #define AMA_RUNTIME_LIST_H
 #include "runtime/objects/objects.h"
-typedef enum { AMA_LIST_INSPECT, AMA_LIST_APPEND, AMA_LIST_INSERT, AMA_LIST_REMOVE, AMA_LIST_CLEAR, AMA_LIST_SWAP } AmaListAction;
-typedef struct { AmaListAction action; size_t position, secondary; AmaHandle source; } AmaListRequest;
-/* Technical failures return status. Expected refusals update list results only. */
-AmaStatus ama_list_apply(AmaWorld *, AmaHandle owner, AmaHandleList *, uint64_t element_type,
-    bool owning, const AmaListRequest *);
+
+/** Borrow a live owner's exact declared handle-vector field for one operation.
+ * The caller guarantees exclusive field authority, matching element type and
+ * ownership, and no cursor/membership representation. This foundation does not
+ * expose a language-level service interface and retains no argument/result.
+ */
+typedef struct {
+    AmaWorld *world;
+    AmaHandle owner;
+    AmaHandleList *list;
+    uint64_t element_type;
+    bool owning;
+} AmaListStorage;
+
+/** Insert before position (including count for append), without executing bodies.
+ * Owning storage constructs/clones; reference storage copies the complete handle.
+ * Failure/refusal is returned directly as status, never stored on the vector.
+ * Preflight failure leaves contents intact; successful reserve may grow capacity.
+ */
+AmaStatus ama_list_storage_insert(AmaListStorage *, size_t position, AmaHandle source);
+
+/** Remove an ordered range after preflighting every owned tree before cleanup.
+ * Bounds are checked without overflowing. Owning destructor failure is terminal;
+ * cleanup continues and preserves the primary failure. Reference targets are not
+ * acquired or destroyed. Zero count is valid at the end of the vector.
+ */
+AmaStatus ama_list_storage_remove(AmaListStorage *, size_t position, size_t count);
 #endif

@@ -1,3 +1,7 @@
+/**
+ * @file
+ * @brief Verify driver commands, exact option rejection and output failures.
+ */
 #include "../common.c"
 
 static void it_documents_verified_project_compilation(void) {
@@ -38,7 +42,25 @@ static void it_reports_failure_when_help_cannot_be_written(void) {
     destroy_test();
 }
 
+/** Retired list type mappings cannot enter frontend loading through the CLI. */
+static void it_rejects_every_retired_list_configuration_option(void) {
+    const char *retired[] = {"--list-action", "--list-index", "--list-condition", "--list-outcome"};
+    for (size_t index = 0; index < sizeof(retired) / sizeof(*retired); index++) {
+        setup_test();
+        char *arguments[] = {"ama", "--check", "unopened-root", ".main", (char *)retired[index], ".value"};
+        int result = driver_run(6, arguments, output, errors);
+        char message[1024];
+        read_stream(errors, message, sizeof(message));
+        assert(result == EXIT_FAILURE);
+        assert(strstr(message, "Unknown command option") != NULL);
+        read_stream(output, message, sizeof(message));
+        assert(message[0] == '\0');
+        destroy_test();
+    }
+}
+
 void run(void) {
+    it_rejects_every_retired_list_configuration_option();
     it_documents_verified_project_compilation();
     it_reports_failure_when_help_cannot_be_written();
     it_rejects_missing_explicit_commands_on_the_error_stream();

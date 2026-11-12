@@ -23,14 +23,6 @@ static bool value_option(DriverOptions *options, const char *name, const char *v
         options->roots[options->root_count++].path = value;
     } else if (strcmp(name, "--exclude") == 0) {
         (*exclusions)[(*excluded)++] = value;
-    } else if (strcmp(name, "--list-action") == 0) {
-        options->libraries.action = value;
-    } else if (strcmp(name, "--list-index") == 0) {
-        options->libraries.index = value;
-    } else if (strcmp(name, "--list-condition") == 0) {
-        options->libraries.condition = value;
-    } else if (strcmp(name, "--list-outcome") == 0) {
-        options->libraries.outcome = value;
     } else if ((options->request == DRIVER_REQUEST_NATIVE || options->request == DRIVER_REQUEST_EMIT) && strcmp(name, "--out") == 0) {
         options->output = value;
     } else if ((options->request == DRIVER_REQUEST_NATIVE || options->request == DRIVER_REQUEST_EMIT) && strcmp(name, "--sdk") == 0) {

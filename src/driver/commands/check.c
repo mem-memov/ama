@@ -6,7 +6,7 @@ int driver_check(const DriverOptions *options, FILE *output, FILE *errors) {
     CompilerFrontend frontend;
     compiler_frontend_init(&frontend, source_system_allocator());
     bool checked = compiler_frontend_check(&frontend, options->roots, options->root_count,
-        options->entry, options->libraries);
+        options->entry);
     int result = EXIT_FAILURE;
     if (checked) {
         if (fprintf(output, "checked %s\n", options->entry) >= 0 && fflush(output) == 0) {

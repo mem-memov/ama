@@ -2,9 +2,9 @@
 #include "compiler/internal.h"
 
 bool compiler_frontend_authoring(CompilerFrontend *frontend, const ModuleRoot *roots,
-    size_t count, const char *entry, SemanticLibraries libraries, const char *proposed_abi) {
+    size_t count, const char *entry, const char *proposed_abi) {
     frontend->authoring = true;
-    if (!compiler_frontend_load(frontend, roots, count, entry, libraries)) {
+    if (!compiler_frontend_load(frontend, roots, count, entry)) {
         return false;
     }
     const ProjectModule *module = frontend->project.entry;
@@ -34,5 +34,5 @@ bool compiler_frontend_authoring(CompilerFrontend *frontend, const ModuleRoot *r
         return false;
     }
     SemanticNativeAuthoring authoring = {module, abi};
-    return compiler_frontend_finish(frontend, libraries, &authoring);
+    return compiler_frontend_finish(frontend, &authoring);
 }

@@ -142,7 +142,7 @@ static void it_composes_typed_views_and_identically_named_native_helpers_in_one_
 static void it_uses_the_same_strict_frontend_for_checking_and_generation(void) {
     setup_frontend();
     ModuleRoot root = {"generated/project", NULL, 0};
-    bool checked = compiler_frontend_check(&frontend, &root, 1, ".main", (SemanticLibraries){0});
+    bool checked = compiler_frontend_check(&frontend, &root, 1, ".main");
     assert(checked && !frontend.authoring && frontend.plan.valid);
     native_scaffold_init(&scaffold, &frontend, sources.allocator);
     bool built = build_scaffold(false);
@@ -186,14 +186,14 @@ static void it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles(
 static void it_unwinds_every_proposed_frontend_allocation_failure(void) {
     setup_frontend();
     ModuleRoot root = {"generated/project", NULL, 0};
-    bool checked = compiler_frontend_authoring(&frontend, &root, 1, ".main", (SemanticLibraries){0}, contract);
+    bool checked = compiler_frontend_authoring(&frontend, &root, 1, ".main", contract);
     assert(checked);
     size_t count = allocation_count;
     destroy_frontend();
     for (size_t failure = 1; failure <= count; failure++) {
         setup_frontend();
         failure_at = failure;
-        checked = compiler_frontend_authoring(&frontend, &root, 1, ".main", (SemanticLibraries){0}, contract);
+        checked = compiler_frontend_authoring(&frontend, &root, 1, ".main", contract);
         assert(!checked && frontend.error.code == DIAGNOSTIC_OUT_OF_MEMORY);
         destroy_frontend();
     }

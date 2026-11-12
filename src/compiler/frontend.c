@@ -19,11 +19,11 @@ void compiler_frontend_destroy(CompilerFrontend *frontend) {
     *frontend = (CompilerFrontend){0};
 }
 
-bool compiler_frontend_finish(CompilerFrontend *frontend, SemanticLibraries libraries,
+bool compiler_frontend_finish(CompilerFrontend *frontend,
     const SemanticNativeAuthoring *authoring) {
     semantic_program_init(&frontend->semantic, &frontend->project, frontend->allocator);
     frontend->semantic_initialized = true;
-    if (semantic_analyze_authoring(&frontend->semantic, libraries, authoring) != SEMANTIC_OK) {
+    if (semantic_analyze_authoring(&frontend->semantic, authoring) != SEMANTIC_OK) {
         frontend->error = frontend->semantic.error;
         return false;
     }
@@ -38,7 +38,7 @@ bool compiler_frontend_finish(CompilerFrontend *frontend, SemanticLibraries libr
 }
 
 bool compiler_frontend_check(CompilerFrontend *frontend, const ModuleRoot *roots,
-    size_t count, const char *entry, SemanticLibraries libraries) {
-    return compiler_frontend_load(frontend, roots, count, entry, libraries)
-        && compiler_frontend_finish(frontend, libraries, NULL);
+    size_t count, const char *entry) {
+    return compiler_frontend_load(frontend, roots, count, entry)
+        && compiler_frontend_finish(frontend, NULL);
 }

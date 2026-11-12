@@ -5,7 +5,7 @@
  * Ama bodies; generated labels and direct native-entry uses provide execution. */
 #include "source/memory/arena.c"
 #include "runtime/lists/capacity.c"
-#include "runtime/lists/mutation/apply.c"
+#include "runtime/lists/mutation/storage.c"
 #include "runtime/lists/mutation/insert.c"
 #include "runtime/lists/mutation/remove.c"
 #include "runtime/lifecycle/cleanup.c"

@@ -1,13 +1,10 @@
 #include "internal.h"
 
 static ControlNode *execute(Lowering *lowering, const SemanticStatement *statement,
-    ControlNode *outputs, bool list) {
+    ControlNode *outputs) {
     AstCallMode mode = statement->syntax->as.call.mode;
     if (mode == AST_CONSTANT_READ || mode == AST_RETAINED_READ) {
         return outputs;
-    }
-    if (list) {
-        return lower_prepend(lowering, CONTROL_LIST_ACTION, statement, NULL, outputs);
     }
     ControlNode *entry = lower_prepend(lowering, mode == AST_RESUME_CALL
         ? CONTROL_RESUME_INSTANCE : CONTROL_ENTER_INSTANCE, statement, NULL, NULL);
@@ -24,9 +21,8 @@ static ControlNode *execute(Lowering *lowering, const SemanticStatement *stateme
 }
 
 static ControlNode *acquire(Lowering *lowering, const SemanticStatement *statement,
-    ControlNode *next, ControlNode *after, ControlNode *break_target, bool list) {
-    ControlNode *node = lower_prepend(lowering, list ? CONTROL_ACQUIRE_LIST
-        : CONTROL_ACQUIRE_INSTANCE, statement, NULL, next);
+    ControlNode *next, ControlNode *after, ControlNode *break_target) {
+    ControlNode *node = lower_prepend(lowering, CONTROL_ACQUIRE_INSTANCE, statement, NULL, next);
     if (node == NULL) {
         return NULL;
     }
@@ -45,7 +41,6 @@ static ControlNode *acquire(Lowering *lowering, const SemanticStatement *stateme
 ControlNode *lower_call(Lowering *lowering, const SemanticStatement *statement,
     ControlNode *after, ControlNode *break_target) {
     bool static_read = statement->syntax->as.call.mode == AST_CONSTANT_READ;
-    bool list = statement->access != NULL && statement->access->list;
     ReverseBinding *reverse = lower_reverse_bindings(lowering, statement);
     if (lowering->plan->status != PLAN_OK) {
         return NULL;
@@ -55,15 +50,15 @@ ControlNode *lower_call(Lowering *lowering, const SemanticStatement *statement,
     if (outputs == NULL || (outputs = lower_outputs(lowering, statement, reverse, outputs)) == NULL) {
         return NULL;
     }
-    ControlNode *next = execute(lowering, statement, outputs, list);
+    ControlNode *next = execute(lowering, statement, outputs);
     if (next == NULL) {
         return NULL;
     }
     if (statement->syntax->as.call.mode == AST_ENTRY_CALL) {
-        next = lower_install(lowering, statement, next, list);
+        next = lower_install(lowering, statement, next);
         if (next == NULL || (next = lower_inputs(lowering, statement, reverse, next)) == NULL) {
             return NULL;
         }
     }
-    return static_read ? next : acquire(lowering, statement, next, after, break_target, list);
+    return static_read ? next : acquire(lowering, statement, next, after, break_target);
 }

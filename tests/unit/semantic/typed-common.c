@@ -22,7 +22,7 @@ static void prepare_types(void) {
     file("generated/program/worker", "@!\n");
 }
 
-static SemanticStatus resolve_text(const char *text, SemanticLibraries libraries) {
+static SemanticStatus resolve_text(const char *text) {
     file("generated/program/main", text);
     setup_semantic();
     SemanticStatus status = load_semantic("generated/program");
@@ -31,13 +31,13 @@ static SemanticStatus resolve_text(const char *text, SemanticLibraries libraries
         status = semantic_native(&semantic);
     }
     if (status == SEMANTIC_OK) {
-        status = semantic_resolve(&semantic, libraries);
+        status = semantic_resolve(&semantic);
     }
     return status;
 }
 
 static inline void expect_resolved(const char *text, bool valid) {
-    SemanticStatus status = resolve_text(text, (SemanticLibraries){0});
+    SemanticStatus status = resolve_text(text);
     if ((status == SEMANTIC_OK) != valid) {
         fprintf(stderr, "Unexpected type check: %s\n%s\n", semantic.error.message, text);
     }

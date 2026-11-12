@@ -4,7 +4,7 @@ static SemanticStatus prepare_constant_plan(void) {
     prepare_types();
     file("generated/program/worker", "@=\nfirst\n.value\n |+\nsecond\n.value\n |-\n");
     SemanticStatus status = resolve_text("@=\nfirst\n.value\n .worker.second\nsecond\n.value\n first\n"
-        "@!\nreceiver\n.value\n.worker\n first >> receiver\n", (SemanticLibraries){0});
+        "@!\nreceiver\n.value\n.worker\n first >> receiver\n");
     assert(status == SEMANTIC_OK);
     status = semantic_relations(&semantic);
     assert(status == SEMANTIC_OK);
@@ -47,8 +47,7 @@ static void it_uses_path_order_for_ready_constants_and_excludes_unused_namespace
     prepare_types();
     file("generated/program/worker", "@=\nfirst\n.value\n |worker\n");
     file("generated/program/unused", "@=\nvalue\n.value\n |unused\n");
-    SemanticStatus status = resolve_text("@=\nfirst\n.value\n |main\n@!\nreceiver\n.value\n.worker\n >> receiver\n",
-        (SemanticLibraries){0});
+    SemanticStatus status = resolve_text("@=\nfirst\n.value\n |main\n@!\nreceiver\n.value\n.worker\n >> receiver\n");
     assert(status == SEMANTIC_OK);
     status = semantic_relations(&semantic);
     assert(status == SEMANTIC_OK);
@@ -67,8 +66,7 @@ static void it_releases_a_partially_built_shared_storage_plan(void) {
     for (size_t failure = 1; failure <= count; failure++) {
         prepare_types();
         file("generated/program/worker", "@=\nfirst\n.value\n |+\nsecond\n.value\n |-\n");
-        status = resolve_text("@=\nfirst\n.value\n .worker.second\nsecond\n.value\n first\n@!\n",
-            (SemanticLibraries){0});
+        status = resolve_text("@=\nfirst\n.value\n .worker.second\nsecond\n.value\n first\n@!\n");
         assert(status == SEMANTIC_OK);
         status = semantic_relations(&semantic);
         assert(status == SEMANTIC_OK);
