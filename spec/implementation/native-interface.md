@@ -1,4 +1,4 @@
-# Native modules and their lifecycle
+# Native ABI, modules, and lifecycle
 
 [Specification index](../README.md)
 
@@ -6,6 +6,7 @@
 In this chapter:
 
 - [Explanation: native code supplies a typed foundation](#explanation-native-code-supplies-a-typed-foundation)
+- [Reading the ABI contract](#reading-the-abi-contract)
 - [Qualify handwritten native symbols](#qualify-handwritten-native-symbols)
 - [Native modules and representations](#native-modules-and-representations)
 - [Symbolic protocol registration in `.abi`](#symbolic-protocol-registration-in-abi)
@@ -31,6 +32,75 @@ descriptor and its buffers. An Ama field can refer to a task that uses that
 operation. A native callback may retain its own operation record, but it cannot
 retain a borrowed pointer to the task or later execute Ama from that callback.
 See [asynchronous event delivery](../language/async-and-parallelism.md).
+
+## Reading the ABI contract
+
+**Explanation.** ABI means *application binary interface*. In Ama it names the
+contract connecting generated code, authored C companions, and native resources
+for a supported target. The contract includes the C declarations and the
+ownership, lifetime, status, and execution rules needed to use them correctly.
+A matching C prototype alone cannot establish that a borrowed pointer may be
+retained or that a native resource can be cloned.
+
+This contract belongs to the product specification. Native authors need to know
+what they may depend on before they write their companions; the backend needs
+the same obligations before it generates declarations and adapters. Three
+levels must remain distinct:
+
+| Level | What it determines | Canonical requirements |
+|---|---|---|
+| Required native boundary | Nominal types, input/output direction, ownership and bounded borrows, native protocols, status channels, construction/clone/destruction, and permitted execution | CABI-01 through CABI-05, PROTO-01 through PROTO-11, LIFE-01 through LIFE-05; ERROR-01 through ERROR-06 and STACK-01 through STACK-04 |
+| Concrete target binding | The exact checked declarations for the selected backend, actual authored payload types, native layout/alignment, C calling convention, and documented toolchain settings | CABI-04 and CABI-06, subject to the fixed constraints above |
+| Internal realization | Private pool records, directory/free-list storage, control-field encoding, acquisition bookkeeping, and generated helper decomposition | The runtime/compiler chapters; these are not automatically public native ABI |
+
+The implementation chapters still constrain internal realization. For example,
+stable observable addresses and stale-reference invalidation remain required.
+Calling a representation private does not waive those rules; it means a native
+companion cannot depend on an otherwise unspecified struct offset or control
+field. [RT-02](runtime.md#rt-02) and [GEN-03](compiler.md#gen-03) permit proved
+layout optimizations without changing the allowed native observations.
+
+### A generated header expresses the contract for one build
+
+**Explanation.** The source of requirements is this specification together with
+the validated Ama interface and authored native representation. A generated
+header expresses those inputs as exact C declarations for a particular target
+and configuration. Native code uses that header instead of copying declarations
+from prose or reconstructing them from generated names.
+
+The header is binding when compiling that build, but is not an independent
+source of language requirements. If it disagrees with a requirement, fix the
+generator or its inputs; do not amend the specification to match accidental
+output. The checks in CABI-06 connect the specification, independently usable
+authoring header, and final project assembly.
+
+Independent header checking does not promise independently linkable native Ama
+module binaries or a universal plugin ABI. [GEN-01](compiler.md#gen-01) still
+requires one project C assembly, and [STACK-01](compiler.md#stack-01) still
+requires the native entry boundary to disappear through verified inlining.
+Ordinary native helpers and external C libraries may use normal calls under
+[STACK-02](compiler.md#stack-02).
+
+### Which names and layouts in examples are fixed?
+
+**Reading convention.** A C block illustrates only the roles and constraints
+identified by its surrounding requirement. Placeholder spellings do not create
+additional required symbols. In particular:
+
+| Spelling or representation | Status |
+|---|---|
+| `AMA_NATIVE(local_name)` | Required module-qualification facility under NAME-05 |
+| `AmaStatus` and its `code`, `message`, `message_length` fields | Required shared status declaration under ERROR-03; the physical layout follows the selected target C ABI |
+| The six `.abi` symbols | Fixed binding syntax under PROTO-01/PROTO-11; authored hook names are selected by their records |
+| `from_size` for the exact module `..integer` | Fixed qualified helper name and typed bridge under PROTO-03 |
+| `State`, `initialize`, `to_condition`, `to_index`, and C parameter names in examples | Illustrative local names unless the particular rule explicitly fixes one; actual hooks come from `.abi` and actual payload types from the native representation |
+| Private generated structs, field offsets, selectors, and helper names | No public spelling/layout guarantee unless explicitly exposed by the supported native contract |
+
+Illustrative names do not make the associated types, constness, data direction,
+fresh-storage requirements, or status behavior optional. Conversely, the status
+declaration does not prescribe a universal byte size, padding, or pointer width:
+these depend on the target described under CABI-06. An in-memory C struct is not
+by itself a serialization format for files or cross-context messages.
 
 ## Qualify handwritten native symbols
 
@@ -82,7 +152,18 @@ are build errors, never permission to bind one module's hook to another's.
 parameters/results define the interface; the generator supplies collision-safe
 C types and declarations. C parameters receive the corresponding C types;
 results are written through typed output storage. A native implementation has
-no Ama-visible C return value. Exact adapter spelling is an ABI decision.
+no Ama-visible C return value. Exact generated adapter declarations must be
+documented and checked under CABI-06; where this chapter leaves their spelling
+open, that choice must preserve the specified types, direction, and semantics.
+
+The native interface has two separate outcome channels. Declared Ama results
+carry application values, including [ERROR-01](diagnostics.md#error-01)'s
+condition-capable failure module with its contained description. The generated
+technical-status output reports whether native execution itself succeeded under
+PROTO-09. A true application failure value can therefore accompany technical
+success. It does not become a nonzero technical status or select the call's
+`:` handler. Failure to construct that result uses the technical channel and
+the ordinary cleanup rules.
 
 ### Preserve nominal type identity
 
@@ -124,6 +205,15 @@ but an optimizer must not infer that an arbitrary native payload is movable or
 that a hook has no effects. Any observed native address remains valid for its
 declared lifetime, including bounded views; storage elision must preserve that
 contract and all required lifecycle calls.
+
+An authored payload layout or published typed view is binding for native uses
+within its supported build. Its size, alignment, and any declared field access
+must agree with generated storage and adapters. This is distinct from exposing
+the enclosing pool slot's private identity, busy, cursor, or return-link records.
+Native code must use generated access operations for those runtime services;
+it must not recover private metadata by pointer arithmetic, guessed offsets,
+or casts to an independently reconstructed slot struct. Changing private layout
+requires no source-language change when its native observations remain valid.
 
 ### Keep Ama references out of opaque payloads
 
@@ -208,6 +298,47 @@ editors without the relevant C-analysis support. Normal generation refreshes
 owned headers/configuration; creating or replacing handwritten companions follows
 COMP-04's explicit-request and output-ownership rules.
 
+#### State the target and compatibility assumptions
+
+The supported backend must document its native ABI contract edition and the
+target/build assumptions needed to interpret the generated declarations. The
+generated authoring artifacts and C-tooling configuration together must identify:
+
+- The target architecture/platform and C language/toolchain mode, including
+  required extensions and settings used to verify native-entry inlining.
+- The target C data model and calling convention relevant to exposed types:
+  pointer and `size_t` widths, required alignments, aggregate layout, and any
+  ABI-affecting packing or compilation options. Use target declarations and
+  checked properties, not an assumed universal layout for `bool` or `AmaStatus`.
+- The actual generated/public native declarations, qualified identity scheme,
+  representation headers, and external C dependencies needed for that build.
+- Which compiler/native-ABI editions and toolchain configurations are supported
+  together, and the changes that require regeneration, rechecking, or rebuilding
+  affected native artifacts.
+
+The format of this information and its generated identifiers are engineering
+choices; no new `.abi` record or runtime capability registry is introduced.
+The selected configuration must be explicit and reproducible. Cross-compilation
+uses target properties rather than the compiler host's pointer/size layout.
+Identical C type names or successful checks under a different configuration do
+not establish compatibility. Do not combine stale generated headers, incompatible
+representation definitions, or prebuilt external dependencies with a new assembly
+by assuming that their layouts happen to match. The build must validate recorded
+configuration and checkable declarations/layout properties against its supported
+contract, and diagnose unsupported declared configurations or detected mismatches
+before accepting a verified executable. Native authors and integrators supply
+accurate external-library headers and ABI/build requirements; the compiler does
+not recover or prove an arbitrary opaque library's ABI by inspecting its binary.
+
+Changing a private generator/runtime implementation need not change the native
+contract edition when all published obligations still hold. A change to exposed
+types, signatures, naming, status meaning, ownership, or lifetime is a native
+contract change even if C compilation would still succeed. No backward- or
+cross-platform binary compatibility promise follows from this specification;
+supported combinations require explicit evidence. Regenerate and rebuild affected
+artifacts when compatibility has not been established, rather than preserving
+an obsolete interface as an alternative contract.
+
 Acceptance requires an isolated C syntax check with the generated interface header
 as the first project include, a syntax check of the untouched generated `.c`
 skeleton using the supplied tooling settings, and a composed project check proving
@@ -216,6 +347,13 @@ native helper basenames in different modules, supported reference cycles, repeat
 inclusion and temporary naming-context cleanup. These are declaration/scaffold
 checks, not permission to link native modules separately or relax native-entry
 inlining.
+
+The acceptance evidence must identify the target/configuration actually checked.
+Exercise recorded ABI-affecting configuration or representation mismatches and
+reject unsupported declared combinations. Verify size/alignment/type agreement with the target
+C compiler where applicable; a text comparison of prototype spellings alone is
+insufficient. Lifecycle, bounded-borrow, status, and execution probes are still
+required because compatible C declarations cannot prove those behavioral rules.
 
 ## Symbolic protocol registration in `.abi`
 
@@ -279,7 +417,9 @@ An `.abi` file contains no C bodies and must not duplicate the native state layo
 
 <a id="proto-03"></a>
 
-**PROTO-03.** Conceptual C signatures are:
+**PROTO-03.** The following signature patterns specify read-only payload input,
+typed output, and the common status result. Hook and payload names shown here
+are illustrative under the reading convention above:
 
 ```c
 AmaStatus AMA_NATIVE(to_condition)(const AMA_NATIVE(State) *state, bool *result);
@@ -695,6 +835,10 @@ destroyed Ama state, while any required native record remains alive until its
 external completion is finished. Native cleanup hooks cannot call back into Ama
 or create new Ama work. Cleanup of this context does not dispose another one.
 
-The precise generated C parameter names, type aliases, and helper decomposition
-are implementation work. They must preserve these preconditions, order, lifetime,
-and status guarantees; they are not additional unresolved language semantics.
+Generated C parameter names, private type aliases, and helper decomposition are
+implementation work wherever no rule fixes them. This freedom does not rename
+`AmaStatus`, change its required declaration, replace NAME-05's naming facility,
+or alter the fixed `..integer` `from_size` bridge. Concrete declarations must
+follow CABI-06 and preserve the required types, preconditions, order, lifetime,
+and status guarantees; their engineering spelling is not an unresolved language
+semantic and cannot weaken the native boundary.
