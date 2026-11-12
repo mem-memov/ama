@@ -866,8 +866,8 @@
   "src/runtime/assembly.h": {
     "audited_test_consumers": "",
     "owner": "T149",
-    "reason": "T142 reviewed clone-phase assembly and registered phase tests; remaining file-wide documentation/coverage closure stays with its owning task.",
-    "sha256": "8fb8bee121211e4c7f2a1ee7565fe74370ee2f1a65fe6ce7fecac13c9a412606"
+    "reason": "T143 reviewed phase include ordering and registered standalone call-preparation tests; remaining file-wide documentation/coverage closure stays with its owning task.",
+    "sha256": "156b3d2ed887ef618a8d34c771feace39c62ce7dbf83830ee41f30056e989110"
   },
   "src/runtime/lifecycle/cleanup.c": {
     "audited_test_consumers": "tests/unit/native/lifecycle/model; tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
@@ -1102,12 +1102,6 @@
     "owner": "T149",
     "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
     "sha256": "07c2ddebc982c85ebe52c7a5c42b257df7173c2dff7fe826a92170f7b2a24a6a"
-  },
-  "src/runtime/program/calls/prepare.c": {
-    "audited_test_consumers": "tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
-    "owner": "T149",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "0cdd7701e2d3a73cd411a149a1338b566ae30b4e4866315ce3caf10be33b0cc2"
   },
   "src/runtime/program/calls/return.c": {
     "audited_test_consumers": "tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
@@ -3044,8 +3038,8 @@
   "tests/unit/runtime/Makefile": {
     "audited_test_consumers": "",
     "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "954709b1f1fdba9204a2dfcea06314aedbac89f6da14f4e1cf46161b995b7c80"
+    "reason": "T143 reviewed phase include ordering and registered standalone call-preparation tests; remaining file-wide documentation/coverage closure stays with its owning task.",
+    "sha256": "3e8c0d34075c4eb56b990b63fa9b85bbea28063b555ab46066ef9c69bc0899c3"
   },
   "tests/unit/runtime/alignment/Makefile": {
     "audited_test_consumers": "",

@@ -25,6 +25,35 @@ invoke `+` first. Later defaults read already installed earlier parameters.
 Persistent body fields and the target's native payload remain intact. Initial
 root construction is separate and does not repeat entry preparation.
 
+## Preparation phase boundaries
+
+T143 separates the entry driver from sibling phases under
+`src/runtime/program/calls/preparation/`. The outer driver owns its world guard,
+scratch array and source protections. `sources.c` receives the caller and resolved
+binding sequence; it evaluates nonliteral sources exactly once, writes diagnostic
+locations in text order and acquires nothing. `protection.c` receives only the
+selected array and a runtime protection operation. It acquires owned trees after
+selection is complete, reusing exact source authority for repeated values. Literal,
+shared and reference values do not cause referent acquisition in this phase.
+
+`fields.c` checks every non-state interface field before installation. Temporary
+check protections are restored even if a later field conflicts; selected source
+protections remain with the outer owner. List conflict checks compare storage
+identity even for empty lists, and reject an owning reset whose subtree contains
+a selected list's container. An empty list is still a location in an object that
+could otherwise be invalidated by reset.
+
+`installation.c` receives the target's type, resolved invocation, selected inputs,
+borrowed source authority and the exact diagnostic-operation location to update.
+It walks parameter declarations and then result declarations, never binding-text
+order. The per-field operation selects literal, supplied value or default and
+owns its own scratch/cleanup. It borrows source authority without restoring the
+outer owner's acquisitions. The driver releases those acquisitions once all
+installation or failure cleanup is complete. Read/resume modes return before
+these entry phases. This is the retained implementation boundary of
+[CALL-08](../../spec/language/calls-and-results.md#call-08), not certification of
+still-planned result trees, self references or intrinsic list services.
+
 ## Source authority and lifetime
 
 Preparation owns one transient protection context. Individual field replacements
@@ -60,10 +89,18 @@ have their new contents. One constructor adds one destructor obligation, and the
 existing initialized-prefix ledger accounts for all children. Induction over the
 parameter sequence and then the result sequence proves CALL-07/CALL-08 ordering.
 
+Extracting source selection and protection into separate operations preserves the
+former two-loop order: no source can be reacquired while another binding still
+needs to evaluate its index. Splitting affected-field checks and installation
+preserves the all-checks-before-first-reset boundary. A successful installation
+advances exactly one declaration; failure leaves the preceding commits intact.
+Each extracted phase keeps the same branch conditions, statuses and effect order.
+
 Every iteration advances a finite binding/field/element cursor. Ownership walks
-are bounded by the exact occupied-slot population. Work is linear in visited
-value trees excluding hook costs, with linear registry/map searches and the
-explicit field-by-source conflict checks. No timeout, spelling convention or
+are bounded by the exact occupied-slot population. The orchestration walks B bindings and F fields with O(B*F) binding matching
+and explicit field-by-source conflict checks; tree traversal, registry/map lookup,
+allocation and hook costs add separately. In particular, the current exact linear
+identity-map searches do not justify a blanket linear-time claim. No timeout, spelling convention or
 heuristic chooses ownership, construction or refusal semantics.
 
 [Call tests](../../tests/unit/runtime/calls/main.c) check repeated literal
@@ -74,3 +111,12 @@ list preparation allocation failure. [Generated execution](../../tests/unit/code
 uses the real frontend, emitter, compiler and native entry verifier to test default
 and skipped inputs, literal failures outside `:`, retained reads, ordered indexed
 output receivers, branches, loops and nested calls.
+
+The independent [preparation phase cases](../../tests/unit/runtime/call-preparation/main.c)
+check once-only indexed source order, repeated owned sources held across two
+independent clones, identical empty-list and nested-container reset conflicts,
+and literal/default installation with a failure after the first commit. They
+inspect diagnostic operation IDs and verify the target's persistent native
+resource stays unchanged. Existing call cases enumerate each measured allocation
+failure and generated execution exercises real nested calls. Doxygen, rather
+than this contract, produces file/function reference documentation.

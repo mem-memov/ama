@@ -307,12 +307,22 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   three-node tree. Strict phase tests, ASan/UBSan (`detect_leaks=0`) and full root
   `make -j4 test` passed (65 leaves), including clone/replacement/forest/generated
   consumers. Doxygen checked 489 file pages; 89 ready inputs and 559 debts remain.
-- [ ] **T143 — Separate invocation input preparation phases.** Needs: T132.
+- [x] **T143 — Separate invocation input preparation phases.** Needs: T132.
   Decompose `src/runtime/program/calls/prepare.c` into source selection, source
   protection, affected-field preflight and declaration-order installation.
   Document alias/borrow/cleanup contracts and CALL-08 correspondence. Test repeated
   sources, overlap, defaults observing earlier inputs, one selected constructor,
   partial installation failure and actual nested call composition.
+
+  Evidence: [entry preparation phases](docs/implementation/entry-preparation.md).
+  Separated once-only text-order source selection, owned-source protection,
+  all-field conflict checks and parameter/result declaration-order installation.
+  Four standalone cases cover indexed/repeated sources, borrowed authority across
+  field commits, empty-list/ancestor overlap, defaults observing installed values,
+  diagnostic locations and partial failure. Strict phase tests, ASan/UBSan
+  (`detect_leaks=0`) and full root `make -j4 test` passed (66 leaves), including
+  allocation-prefix failures and generated nested calls. Doxygen checked 495 file
+  pages; 97 ready inputs and 558 explicit documentation/coverage debts remain.
 - [ ] **T144 — Separate value selection and list transfer phases.** Needs: T132.
   Refine `src/runtime/program/values/source.c` and `transfers/lists.c` into exact
   selection, validation, preparation, fixup, commit and cleanup responsibilities.

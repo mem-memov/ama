@@ -2746,6 +2746,447 @@
       }
     ]
   },
+  "src/runtime/program/calls/preparation/fields.c": {
+    "contract": "docs/implementation/entry-preparation.md",
+    "purpose": "Select all supplied sources before protection, conflict checks and declaration-order installation.",
+    "tests": [
+      {
+        "case": "it_selects_indexed_sources_once_in_text_order_before_acquisition",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_keeps_repeated_sources_protected_across_distinct_field_commits",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_rejects_same_list_and_empty_nested_list_container_overlap_before_construction",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_installs_one_constructor_per_field_and_retains_the_successful_prefix",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_constructs_literals_once_per_call_and_initializes_results_after_parameters",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_protects_supplied_values_while_defaults_observe_new_parameters",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_releases_acquisition_after_constructor_failure_and_preserves_previous_value",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_refuses_a_busy_input_before_any_constructor",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_releases_all_leases_after_each_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_keeps_earlier_committed_parameters_when_a_later_constructor_fails",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_skips_interface_preparation_for_reads_and_resume_acquisitions",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_saves_unhandled_refusals_and_preserves_the_immediate_caller_context",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_returns_yielded_targets_without_copying_the_active_caller_chain",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/calls/preparation/installation.c": {
+    "contract": "docs/implementation/entry-preparation.md",
+    "purpose": "Select all supplied sources before protection, conflict checks and declaration-order installation.",
+    "tests": [
+      {
+        "case": "it_selects_indexed_sources_once_in_text_order_before_acquisition",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_keeps_repeated_sources_protected_across_distinct_field_commits",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_rejects_same_list_and_empty_nested_list_container_overlap_before_construction",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_installs_one_constructor_per_field_and_retains_the_successful_prefix",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_constructs_literals_once_per_call_and_initializes_results_after_parameters",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_protects_supplied_values_while_defaults_observe_new_parameters",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_releases_acquisition_after_constructor_failure_and_preserves_previous_value",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_refuses_a_busy_input_before_any_constructor",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_releases_all_leases_after_each_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_keeps_earlier_committed_parameters_when_a_later_constructor_fails",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_skips_interface_preparation_for_reads_and_resume_acquisitions",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_saves_unhandled_refusals_and_preserves_the_immediate_caller_context",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_returns_yielded_targets_without_copying_the_active_caller_chain",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/calls/preparation/internal.h": {
+    "contract": "docs/implementation/entry-preparation.md",
+    "purpose": "Select all supplied sources before protection, conflict checks and declaration-order installation.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_selects_indexed_sources_once_in_text_order_before_acquisition",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_keeps_repeated_sources_protected_across_distinct_field_commits",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_rejects_same_list_and_empty_nested_list_container_overlap_before_construction",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_installs_one_constructor_per_field_and_retains_the_successful_prefix",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_constructs_literals_once_per_call_and_initializes_results_after_parameters",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_protects_supplied_values_while_defaults_observe_new_parameters",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_releases_acquisition_after_constructor_failure_and_preserves_previous_value",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_refuses_a_busy_input_before_any_constructor",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_releases_all_leases_after_each_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_keeps_earlier_committed_parameters_when_a_later_constructor_fails",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_skips_interface_preparation_for_reads_and_resume_acquisitions",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_saves_unhandled_refusals_and_preserves_the_immediate_caller_context",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_returns_yielded_targets_without_copying_the_active_caller_chain",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/calls/preparation/protection.c": {
+    "contract": "docs/implementation/entry-preparation.md",
+    "purpose": "Select all supplied sources before protection, conflict checks and declaration-order installation.",
+    "tests": [
+      {
+        "case": "it_selects_indexed_sources_once_in_text_order_before_acquisition",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_keeps_repeated_sources_protected_across_distinct_field_commits",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_rejects_same_list_and_empty_nested_list_container_overlap_before_construction",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_installs_one_constructor_per_field_and_retains_the_successful_prefix",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_constructs_literals_once_per_call_and_initializes_results_after_parameters",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_protects_supplied_values_while_defaults_observe_new_parameters",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_releases_acquisition_after_constructor_failure_and_preserves_previous_value",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_refuses_a_busy_input_before_any_constructor",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_releases_all_leases_after_each_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_keeps_earlier_committed_parameters_when_a_later_constructor_fails",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_skips_interface_preparation_for_reads_and_resume_acquisitions",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_saves_unhandled_refusals_and_preserves_the_immediate_caller_context",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_returns_yielded_targets_without_copying_the_active_caller_chain",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/calls/preparation/sources.c": {
+    "contract": "docs/implementation/entry-preparation.md",
+    "purpose": "Select all supplied sources before protection, conflict checks and declaration-order installation.",
+    "tests": [
+      {
+        "case": "it_selects_indexed_sources_once_in_text_order_before_acquisition",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_keeps_repeated_sources_protected_across_distinct_field_commits",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_rejects_same_list_and_empty_nested_list_container_overlap_before_construction",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_installs_one_constructor_per_field_and_retains_the_successful_prefix",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_constructs_literals_once_per_call_and_initializes_results_after_parameters",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_protects_supplied_values_while_defaults_observe_new_parameters",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_releases_acquisition_after_constructor_failure_and_preserves_previous_value",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_refuses_a_busy_input_before_any_constructor",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_releases_all_leases_after_each_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_keeps_earlier_committed_parameters_when_a_later_constructor_fails",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_skips_interface_preparation_for_reads_and_resume_acquisitions",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_saves_unhandled_refusals_and_preserves_the_immediate_caller_context",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_returns_yielded_targets_without_copying_the_active_caller_chain",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/calls/prepare.c": {
+    "contract": "docs/implementation/entry-preparation.md",
+    "purpose": "Select all supplied sources before protection, conflict checks and declaration-order installation.",
+    "tests": [
+      {
+        "case": "it_selects_indexed_sources_once_in_text_order_before_acquisition",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_keeps_repeated_sources_protected_across_distinct_field_commits",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_rejects_same_list_and_empty_nested_list_container_overlap_before_construction",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_installs_one_constructor_per_field_and_retains_the_successful_prefix",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_constructs_literals_once_per_call_and_initializes_results_after_parameters",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_protects_supplied_values_while_defaults_observe_new_parameters",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_releases_acquisition_after_constructor_failure_and_preserves_previous_value",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_refuses_a_busy_input_before_any_constructor",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_releases_all_leases_after_each_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_keeps_earlier_committed_parameters_when_a_later_constructor_fails",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_skips_interface_preparation_for_reads_and_resume_acquisitions",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_saves_unhandled_refusals_and_preserves_the_immediate_caller_context",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_returns_yielded_targets_without_copying_the_active_caller_chain",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      }
+    ]
+  },
   "tests/integration/rebuild/concurrent/Makefile": {
     "contract": "docs/implementation/incremental-build.md",
     "purpose": "Isolate simultaneous Make command-manifest checks and propagate errors.",
@@ -3150,6 +3591,148 @@
         "case": "it_retains_old_backup_when_rollback_itself_fails",
         "command": "make -C tests/unit/native/scaffold/publication",
         "source": "tests/unit/native/scaffold/publication/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/call-preparation/Makefile": {
+    "contract": "docs/implementation/entry-preparation.md",
+    "purpose": "Select all supplied sources before protection, conflict checks and declaration-order installation.",
+    "tests": [
+      {
+        "case": "it_selects_indexed_sources_once_in_text_order_before_acquisition",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_keeps_repeated_sources_protected_across_distinct_field_commits",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_rejects_same_list_and_empty_nested_list_container_overlap_before_construction",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_installs_one_constructor_per_field_and_retains_the_successful_prefix",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_constructs_literals_once_per_call_and_initializes_results_after_parameters",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_protects_supplied_values_while_defaults_observe_new_parameters",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_releases_acquisition_after_constructor_failure_and_preserves_previous_value",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_refuses_a_busy_input_before_any_constructor",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_releases_all_leases_after_each_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_keeps_earlier_committed_parameters_when_a_later_constructor_fails",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_skips_interface_preparation_for_reads_and_resume_acquisitions",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_saves_unhandled_refusals_and_preserves_the_immediate_caller_context",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_returns_yielded_targets_without_copying_the_active_caller_chain",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/call-preparation/main.c": {
+    "contract": "docs/implementation/entry-preparation.md",
+    "purpose": "Select all supplied sources before protection, conflict checks and declaration-order installation.",
+    "tests": [
+      {
+        "case": "it_selects_indexed_sources_once_in_text_order_before_acquisition",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_keeps_repeated_sources_protected_across_distinct_field_commits",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_rejects_same_list_and_empty_nested_list_container_overlap_before_construction",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_installs_one_constructor_per_field_and_retains_the_successful_prefix",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_constructs_literals_once_per_call_and_initializes_results_after_parameters",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_protects_supplied_values_while_defaults_observe_new_parameters",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_releases_acquisition_after_constructor_failure_and_preserves_previous_value",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_refuses_a_busy_input_before_any_constructor",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_releases_all_leases_after_each_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_keeps_earlier_committed_parameters_when_a_later_constructor_fails",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_skips_interface_preparation_for_reads_and_resume_acquisitions",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_saves_unhandled_refusals_and_preserves_the_immediate_caller_context",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_returns_yielded_targets_without_copying_the_active_caller_chain",
+        "command": "make -C tests/unit/runtime/calls",
+        "source": "tests/unit/runtime/calls/main.c"
       }
     ]
   },
