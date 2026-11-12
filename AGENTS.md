@@ -19,15 +19,22 @@
 
 ## Specification authority
 
-- `TECHNICAL_SPECIFICATION.md` is the source of truth for language semantics and
-  implementation requirements. EBNF and all other documentation must conform to it.
-- Do not modify the technical specification unless the user explicitly requests
+- The entire `spec/` directory is the source of truth for language semantics,
+  product behavior, and implementation requirements. Start at `spec/README.md`;
+  use `spec/requirements.md` to locate a stable requirement ID. The canonical
+  grammar is `spec/grammar.md` and follows the language chapters. Root-level
+  specification/EBNF files are navigation links, not parallel contracts.
+- Do not modify files in `spec/` unless the user explicitly requests
   that change. An implementation or refactoring request does not authorize changing
   requirements to fit the code. Report contradictions and ask for a decision.
 - No backward-compatibility documentation is required. Remove obsolete proposals
   and API descriptions instead of preserving alternative contracts.
 - Follow ARCH-05/ARCH-06: use exact algorithms, forbid heuristics, and provide
   general mathematical/algebraic justification with explicit invariants and tests.
+- Keep specification chapters readable: explain the model and motivation, show
+  Ama examples with assumptions and expected effects, then state complete rules.
+  Label informative explanation/examples; define each requirement once and link
+  related chapters rather than duplicating semantics in the grammar.
 
 ## Style
 
@@ -39,12 +46,19 @@
 ## Target implementation boundaries
 
 - Follow the compiler decomposition and component/composite testing requirements
-  in `TECHNICAL_SPECIFICATION.md` (`ARCH-01` through `ARCH-06`, `TEST-06` through `TEST-08`).
+  in `spec/implementation/compiler.md` and
+  `spec/implementation/tools-and-conformance.md` (`ARCH-01` through `ARCH-06`,
+  `TEST-06` through `TEST-08`).
 - Ama modules translate through resolved IR into labels in one project C assembly;
   native entry bodies inline, while calls inside native C may use the stack.
 - Instances execute directly in stable pool slots. Do not introduce working-state
   save/restore or implicit default instances. Persistent Ama references belong to
   declared Ama fields, never opaque native payloads.
+- Asynchrony is explicit and cooperative. `%` returns to the immediate caller;
+  native callbacks do not retain borrowed Ama state or execute Ama. Parallelism
+  uses isolated execution contexts with one executor each and explicit messages,
+  under `spec/language/async-and-parallelism.md`; do not share mutable instances
+  or checked Ama references between contexts.
 - `name+/` is physical submodule storage, not part of the logical identity.
   Document implementation support only when backed by acceptance evidence.
 

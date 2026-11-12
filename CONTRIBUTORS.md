@@ -4,8 +4,8 @@ The project should read like a clear book: an operation, its inputs, state chang
 result and failure path should be understandable without decoding abbreviations
 or reconstructing hidden dependencies.
 
-[TECHNICAL_SPECIFICATION.md](TECHNICAL_SPECIFICATION.md) is the source of truth.
-[EBNF.md](EBNF.md) maintains its grammar; [VALUE_ABI.md](VALUE_ABI.md) explains
+[The specification in `spec/`](spec/README.md) is the source of truth.
+[Its grammar](spec/grammar.md) defines source forms; [VALUE_ABI.md](VALUE_ABI.md) explains
 the native contract. [TODO.md](TODO.md) tracks implementation work. Change the
 specification only when the user explicitly requests it.
 
@@ -160,10 +160,13 @@ ordinary self-assignment is a no-op and `%` self-copy is invalid.
 
 Use target `AmaStatus` code/message/length, with immutable program-lifetime text.
 Capture the active trace
-before cleanup; no exceptions or universal rollback are promised. Acquisition-only
-`:` uses a caller-owned last-refusal snapshot. An ordinary library reader returns
+before cleanup; no exceptions or universal rollback are promised. Refusal to begin
+an operation, including list-method preflight refusal, uses its own `:` and a
+caller-owned last-refusal snapshot. An ordinary library reader returns
 that status as data and must not treat its nonzero code as failure of the reader.
-List operation refusals remain ordinary results, distinct from technical errors.
+Expected application failures remain ordinary results, distinct from operation
+refusals and technical errors. See the canonical task and isolated-parallel
+contracts in [asynchrony and parallelism](spec/language/async-and-parallelism.md).
 
 Shared `@=` constants initialize once before the root, outside executable pools.
 They are immutable, copyable values without mutable-object references/open external
