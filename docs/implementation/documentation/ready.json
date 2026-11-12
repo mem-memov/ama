@@ -37,6 +37,525 @@
       }
     ]
   },
+  "src/codegen/control/data.c": {
+    "contract": "docs/implementation/control-emission.md",
+    "purpose": "Emit explicit control/data from resolved IR with exact site identity and narrow byte writers.",
+    "tests": [
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_writes_repeated_receivers_in_binding_text_order",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reads_shared_namespaces_and_qualified_values_without_default_instances",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/codegen/control/data/data.h": {
+    "contract": "docs/implementation/control-emission.md",
+    "purpose": "Emit explicit control/data from resolved IR with exact site identity and narrow byte writers.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_writes_repeated_receivers_in_binding_text_order",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reads_shared_namespaces_and_qualified_values_without_default_instances",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/codegen/control/data/invocation.c": {
+    "contract": "docs/implementation/control-emission.md",
+    "purpose": "Emit explicit control/data from resolved IR with exact site identity and narrow byte writers.",
+    "tests": [
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_writes_repeated_receivers_in_binding_text_order",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reads_shared_namespaces_and_qualified_values_without_default_instances",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/codegen/control/data/values.c": {
+    "contract": "docs/implementation/control-emission.md",
+    "purpose": "Emit explicit control/data from resolved IR with exact site identity and narrow byte writers.",
+    "tests": [
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_writes_repeated_receivers_in_binding_text_order",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_reads_shared_namespaces_and_qualified_values_without_default_instances",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/codegen/control/emission/calls.c": {
+    "contract": "docs/implementation/control-emission.md",
+    "purpose": "Emit explicit control/data from resolved IR with exact site identity and narrow byte writers.",
+    "tests": [
+      {
+        "case": "it_resolves_unique_binding_and_interface_sites_without_a_frontend",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_duplicate_required_sites",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_propagates_unwritable_streams_for_each_operation_family",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_keeps_original_source_lines_and_preserves_explicit_trace_locations",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_executes_emitted_control_fragments_with_real_c_types",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      }
+    ]
+  },
+  "src/codegen/control/emission/emission.h": {
+    "contract": "docs/implementation/control-emission.md",
+    "purpose": "Emit explicit control/data from resolved IR with exact site identity and narrow byte writers.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_resolves_unique_binding_and_interface_sites_without_a_frontend",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_duplicate_required_sites",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_propagates_unwritable_streams_for_each_operation_family",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_keeps_original_source_lines_and_preserves_explicit_trace_locations",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_executes_emitted_control_fragments_with_real_c_types",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      }
+    ]
+  },
+  "src/codegen/control/emission/flow.c": {
+    "contract": "docs/implementation/control-emission.md",
+    "purpose": "Emit explicit control/data from resolved IR with exact site identity and narrow byte writers.",
+    "tests": [
+      {
+        "case": "it_resolves_unique_binding_and_interface_sites_without_a_frontend",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_duplicate_required_sites",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_propagates_unwritable_streams_for_each_operation_family",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_keeps_original_source_lines_and_preserves_explicit_trace_locations",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_executes_emitted_control_fragments_with_real_c_types",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      }
+    ]
+  },
+  "src/codegen/control/emission/location.c": {
+    "contract": "docs/implementation/control-emission.md",
+    "purpose": "Emit explicit control/data from resolved IR with exact site identity and narrow byte writers.",
+    "tests": [
+      {
+        "case": "it_resolves_unique_binding_and_interface_sites_without_a_frontend",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_duplicate_required_sites",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_propagates_unwritable_streams_for_each_operation_family",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_keeps_original_source_lines_and_preserves_explicit_trace_locations",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_executes_emitted_control_fragments_with_real_c_types",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      }
+    ]
+  },
+  "src/codegen/control/emission/positions.c": {
+    "contract": "docs/implementation/control-emission.md",
+    "purpose": "Emit explicit control/data from resolved IR with exact site identity and narrow byte writers.",
+    "tests": [
+      {
+        "case": "it_resolves_unique_binding_and_interface_sites_without_a_frontend",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_duplicate_required_sites",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_propagates_unwritable_streams_for_each_operation_family",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_keeps_original_source_lines_and_preserves_explicit_trace_locations",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_executes_emitted_control_fragments_with_real_c_types",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      }
+    ]
+  },
+  "src/codegen/control/emission/values.c": {
+    "contract": "docs/implementation/control-emission.md",
+    "purpose": "Emit explicit control/data from resolved IR with exact site identity and narrow byte writers.",
+    "tests": [
+      {
+        "case": "it_resolves_unique_binding_and_interface_sites_without_a_frontend",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_duplicate_required_sites",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_propagates_unwritable_streams_for_each_operation_family",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_keeps_original_source_lines_and_preserves_explicit_trace_locations",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_executes_emitted_control_fragments_with_real_c_types",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      }
+    ]
+  },
+  "src/codegen/control/emit.c": {
+    "contract": "docs/implementation/control-emission.md",
+    "purpose": "Emit explicit control/data from resolved IR with exact site identity and narrow byte writers.",
+    "tests": [
+      {
+        "case": "it_resolves_unique_binding_and_interface_sites_without_a_frontend",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_duplicate_required_sites",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_propagates_unwritable_streams_for_each_operation_family",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_keeps_original_source_lines_and_preserves_explicit_trace_locations",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_executes_emitted_control_fragments_with_real_c_types",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      }
+    ]
+  },
+  "src/codegen/control/native.c": {
+    "contract": "docs/implementation/control-emission.md",
+    "purpose": "Emit explicit control/data from resolved IR with exact site identity and narrow byte writers.",
+    "tests": [
+      {
+        "case": "it_resolves_unique_binding_and_interface_sites_without_a_frontend",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_duplicate_required_sites",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_propagates_unwritable_streams_for_each_operation_family",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_keeps_original_source_lines_and_preserves_explicit_trace_locations",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_executes_emitted_control_fragments_with_real_c_types",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      }
+    ]
+  },
+  "src/codegen/control/resolution/site.c": {
+    "contract": "docs/implementation/control-emission.md",
+    "purpose": "Emit explicit control/data from resolved IR with exact site identity and narrow byte writers.",
+    "tests": [
+      {
+        "case": "it_resolves_unique_binding_and_interface_sites_without_a_frontend",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_duplicate_required_sites",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      }
+    ]
+  },
+  "src/codegen/control/resolution/site.h": {
+    "contract": "docs/implementation/control-emission.md",
+    "purpose": "Emit explicit control/data from resolved IR with exact site identity and narrow byte writers.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_resolves_unique_binding_and_interface_sites_without_a_frontend",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_duplicate_required_sites",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      }
+    ]
+  },
   "src/driver/options/assembly/consume.c": {
     "contract": "docs/implementation/driver-options.md",
     "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
@@ -1016,6 +1535,88 @@
         "case": "it_propagates_comparison_errors_without_replacing_the_old_location",
         "command": "make -C tests/integration/rebuild/concurrent",
         "source": "tests/integration/rebuild/concurrent/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/control/Makefile": {
+    "contract": "docs/implementation/control-emission.md",
+    "purpose": "Emit explicit control/data from resolved IR with exact site identity and narrow byte writers.",
+    "tests": [
+      {
+        "case": "it_resolves_unique_binding_and_interface_sites_without_a_frontend",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_duplicate_required_sites",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_propagates_unwritable_streams_for_each_operation_family",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_keeps_original_source_lines_and_preserves_explicit_trace_locations",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_executes_emitted_control_fragments_with_real_c_types",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/control/main.c": {
+    "contract": "docs/implementation/control-emission.md",
+    "purpose": "Emit explicit control/data from resolved IR with exact site identity and narrow byte writers.",
+    "tests": [
+      {
+        "case": "it_resolves_unique_binding_and_interface_sites_without_a_frontend",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_duplicate_required_sites",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_propagates_unwritable_streams_for_each_operation_family",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_keeps_original_source_lines_and_preserves_explicit_trace_locations",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_executes_emitted_control_fragments_with_real_c_types",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
       }
     ]
   },

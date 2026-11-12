@@ -261,12 +261,22 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   tests, the actual scaffold parent, ASan/UBSan filesystem checks (`detect_leaks=0`)
   and full `make -j4 test` passed (62 leaves). Standalone headers, all canonical
   links and 462 generated file pages passed; 52 ready inputs/566 debts are explicit.
-- [ ] **T140 — Separate control and descriptor emission responsibilities.** Needs:
+- [x] **T140 — Separate control and descriptor emission responsibilities.** Needs:
   T132. Decompose `src/codegen/control/emit.c` and `data.c` by resolved control/data
   operation responsibilities. Keep source locations, label identities, native-entry
   boundaries and failure routing explicit; do not infer missing IR from C text.
   Add Doxygen contracts/rule links and compile/run real emitted projects, including
   output errors and native inlining rejection, before accepting the refactoring.
+  Evidence: [control translation and exact-site argument](docs/implementation/control-emission.md).
+  Split scalar/location/position/call writers, model-level descriptor families and
+  unique IR queries; native output no longer receives an unused scaffold owner.
+  Required input/interface sites cannot fall back to an acquisition selector;
+  missing/duplicate required IR fails before publication. Explicit unused metadata
+  preserves read/resume/state behavior. Five standalone cases execute typed C
+  fragments, source locations and real stream failures. Corrupted-plan assembly,
+  real execution/continuation leaves, negative native inlining and complete root
+  `make -j4 test` passed (63 leaves). Header checks and 474 Doxygen file pages passed;
+  68 ready inputs and 563 remaining documentation/coverage debts are explicit.
 - [ ] **T141 — Separate object construction phases.** Needs: T132. Refine
   `src/runtime/objects/construction/build.c` into narrow reservation, constructor,
   field-construction, publication and unwind operations. Document initialized-prefix

@@ -29,7 +29,7 @@ bool codegen_access_definition(NativeScaffold *, FILE *, const char *, const Sem
 const char *codegen_control_name(NativeScaffold *, const ScaffoldType *, const ControlNode *);
 bool codegen_emit_controls(NativeScaffold *, FILE *);
 bool codegen_emit_control(NativeScaffold *, FILE *, const ScaffoldType *, const ControlNode *);
-bool codegen_emit_native_entry(NativeScaffold *, FILE *, const ScaffoldType *);
+bool codegen_emit_native_entry(FILE *, const ScaffoldType *);
 size_t codegen_declaration_selector(NativeScaffold *, const SemanticSymbol *);
 bool codegen_emit_locations(NativeScaffold *, FILE *);
 #endif

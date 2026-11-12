@@ -1,7 +1,17 @@
+/**
+ * @file
+ * @brief Emit the qualified inline native-entry boundary from its resolved type view.
+ *
+ * [STACK-03](../../../spec/implementation/compiler.md#stack-03) requires verified
+ * native-entry inlining. This writer borrows only its type/member view and stream.
+ */
 #include "codegen/internal.h"
 
-bool codegen_emit_native_entry(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type) {
-    (void)scaffold;
+/** Borrow qualified type/member names and emit one operation-scoped native call.
+ * Runtime borrows, caller-refusal snapshot and reentry guard stay inside the
+ * emitted scope. False reports stream failure; this function executes no native code.
+ */
+bool codegen_emit_native_entry(FILE *output, const ScaffoldType *type) {
     const char *name = type->names[SCAFFOLD_WRITE]->internal_name;
     if (fprintf(output, "{\n%s_Scope scope={0};\n%s parameters={0};\n%s results={0};\n"
             "AmaNativeServices services={.caller_refusal=ama_status_success()};\n"

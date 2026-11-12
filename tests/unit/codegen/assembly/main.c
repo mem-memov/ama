@@ -170,11 +170,47 @@ static void it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero(v
     end_assembly();
 }
 
+/** Corrupted required IR must fail composition before any artifact publication. */
+static void it_rejects_missing_or_duplicate_required_control_sites_before_publication(void) {
+    for (size_t mode = 0; mode < 3; mode++) {
+        prepare_assembly();
+        file("generated/project/callee", "@<\ninput\n.value\n@>\noutput\n.value\n@!\n");
+        file("generated/project/main", "@!\nvalue\n.value\nworker\n.callee\nworker!\n < value\n > value\n");
+        begin_assembly();
+        PlannedType *owner = frontend.plan.entry;
+        ControlNode *selected = NULL;
+        for (ControlNode *node = owner->controls; node != NULL; node = node->allocated_next) {
+            if (node->operation == (mode == 2 ? CONTROL_INSTALL_PARAMETER : CONTROL_EVALUATE_INPUT)) {
+                selected = node;
+                break;
+            }
+        }
+        assert(selected != NULL);
+        ControlNode *original = owner->controls;
+        ControlOperation operation = selected->operation;
+        ControlNode duplicate = *selected;
+        if (mode == 1) {
+            duplicate.allocated_next = original;
+            owner->controls = &duplicate;
+        } else {
+            selected->operation = CONTROL_RELEASE_VALUES;
+        }
+        bool built = build_assembly();
+        assert(!built && !assembly.ready && !assembly.publish_attempted);
+        assert(assembly.error.code == DIAGNOSTIC_TYPE_MISMATCH);
+        assert(strstr(assembly.error.message, mode == 2 ? "required interface operation" : "required input operation") != NULL);
+        selected->operation = operation;
+        owner->controls = original;
+        end_assembly();
+    }
+}
+
 void run(void) {
     it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit();
     it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout();
     it_unwinds_every_assembly_emission_allocation_failure();
     it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero();
+    it_rejects_missing_or_duplicate_required_control_sites_before_publication();
 }
 
 int main(void) {

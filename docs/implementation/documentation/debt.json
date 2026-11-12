@@ -23,24 +23,6 @@
     "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
     "sha256": "570c1cb08ce3d58ca67f6ac97b3f5c721f94130fb2278bcaa21cb1b7a09f1f4c"
   },
-  "src/codegen/control/data.c": {
-    "audited_test_consumers": "tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/driver/run",
-    "owner": "T150",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "e61c11e6ef4240854272d86d691007eb29efc50b1dbda3c9e053833bf7bda5b3"
-  },
-  "src/codegen/control/emit.c": {
-    "audited_test_consumers": "tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/driver/run",
-    "owner": "T150",
-    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T150.",
-    "sha256": "318427b51cfb6411a9f9b4f90491095a57e2fdae080dcd1ec0f5e9c010eb7ae6"
-  },
-  "src/codegen/control/native.c": {
-    "audited_test_consumers": "tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/driver/run",
-    "owner": "T150",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "b55605d19317a8ce688054f094ec7c4ca7ce20823a25b19cadf57a029996ceaf"
-  },
   "src/codegen/emit/descriptors.c": {
     "audited_test_consumers": "tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/driver/run",
     "owner": "T150",
@@ -92,8 +74,8 @@
   "src/codegen/internal.h": {
     "audited_test_consumers": "tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/driver/run",
     "owner": "T150",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "39dd583c321cf4e5ebcf797a556718377f35015779c3bf5f936be2df1f3bc169"
+    "reason": "T140 narrowed the native-entry signature or registered exact-site/control-writer tests and composed invalid-IR checks. Remaining full file documentation review stays with T150.",
+    "sha256": "84657f57d039a704e34f16a7a3ea25940af6e54626ee9825187f81b9cd069d2b"
   },
   "src/codegen/model/identity.c": {
     "audited_test_consumers": "tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/driver/run",
@@ -2528,8 +2510,8 @@
   "tests/unit/codegen/Makefile": {
     "audited_test_consumers": "",
     "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "47f11f2335b62229e3dd9559f21ce1ca7add6e7879c4af309a9ab6019fa0b41d"
+    "reason": "T140 narrowed the native-entry signature or registered exact-site/control-writer tests and composed invalid-IR checks. Remaining full file documentation review stays with T151.",
+    "sha256": "9a5ec4ac185ee72003109eec2f9ae71fee0bf3dee49bd3285d33454756207f60"
   },
   "tests/unit/codegen/assembly/Makefile": {
     "audited_test_consumers": "",
@@ -2540,8 +2522,8 @@
   "tests/unit/codegen/assembly/main.c": {
     "audited_test_consumers": "tests/unit/codegen/assembly",
     "owner": "T151",
-    "reason": "T136 removed retired dispatcher/configuration/results or updated its direct callers/tests. Remaining full purpose/contract/header/behavior review stays with T151.",
-    "sha256": "96aead457b88628aa1397b5ddf96c7509e2a03c7a0e613622188ad3d069d3f59"
+    "reason": "T140 narrowed the native-entry signature or registered exact-site/control-writer tests and composed invalid-IR checks. Remaining full file documentation review stays with T151.",
+    "sha256": "ba6fcf8dd9cfab4ac94065c466150f40c5ee9a733b10623b99df29c7979fb403"
   },
   "tests/unit/codegen/continuations/Makefile": {
     "audited_test_consumers": "",
