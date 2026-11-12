@@ -209,7 +209,7 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   files and 997 local prose links/anchors, the 200-rule registry, `make help`,
   `make docs-check` and whitespace consistency. No canonical specification changed;
   no compiler-semantic or runtime test rerun is claimed for this documentation task.
-- [ ] **T132 — Remove the obsolete implementation completely.** Needs:
+- [x] **T132 — Remove the obsolete implementation completely.** Needs:
   T136, T137.
   Complete the removal tasks identified by T001/T002: delete retired code paths,
   duplicate superseded implementations, obsolete-only tests, build registrations
@@ -220,6 +220,15 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   obsolete. Reconcile every removal against the audit inventory and verify a clean
   build, independent affected suites and their real parent compositions. Keep
   this gate open until every obsolete implementation item has been removed.
+  Evidence: [exhaustive removal reconciliation](docs/implementation/audit/removal-closure.md).
+  All eleven retire/remove decisions are closed: ten audited paths removed and
+  the storage header rewritten. Retired API/IR/result/configuration symbols and
+  source registrations are absent; only negative tests retain removed CLI flag
+  spellings. T136's clean build, independent affected suites, full 59-leaf parent
+  composition and Doxygen/header checks remain valid for the unchanged code.
+  T137 closes conflicting prose/proposals. Reused those recorded outcomes and
+  rechecked inventory, symbols, links and `docs-check`; no new runtime behavior
+  or complete language conformance is claimed by this gate.
 - [ ] **T138 — Separate driver option recognition and request assembly.** Needs:
   T132. Decompose the phases in `src/driver/options/parse.c`: exact option
   recognition, owned argument storage, request-specific validation and root/output

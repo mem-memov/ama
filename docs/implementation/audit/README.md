@@ -11,6 +11,9 @@ by this audit. [Snapshot metadata](snapshot.json) records the input revision,
 inventory sizes and successful baseline test-log fingerprint. Later work must
 refresh affected evidence instead of treating this snapshot as current forever.
 
+[T132 removal closure](removal-closure.md) reconciles the later cleanup against
+this immutable inventory and records its independent/composed evidence.
+
 - [File inventory](files.csv): all 586 tracked paths under `src/`, `stdlib/`,
   `tools/`, `tests/`, `make/`, plus the root Makefile and Doxygen configuration.
   It includes code, ABI/module inputs, fixture expectations and checked-in data.
