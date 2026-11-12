@@ -1,6 +1,14 @@
+/**
+ * @file
+ * @brief Compute exact SHA-256 blocks and padding for bounded identity encodings.
+ *
+ * [NAME-02](../../../../spec/implementation/compiler.md#name-02)
+ * Registry callers reject full-key collisions; this routine does not assume hash injectivity.
+ */
 #include <string.h>
 #include "sha256.h"
 
+/** Fixed FIPS 180-4 round constants; arithmetic below is explicitly uint32_t modular addition. */
 static const uint32_t round_constants[64] = {
     0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
     0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
@@ -12,10 +20,14 @@ static const uint32_t round_constants[64] = {
     0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
 };
 
+/** Rotate a 32-bit word for fixed SHA counts strictly between zero and 32.
+ */
 static uint32_t rotate(uint32_t value, unsigned int count) {
     return (value >> count) | (value << (32 - count));
 }
 
+/** Read one 64-byte block big-endian and extend its 64-word SHA schedule modulo 2^32.
+ */
 static void expand_words(const unsigned char block[64], uint32_t words[64]) {
     for (size_t index = 0; index < 16; index++) {
         size_t offset = index * 4;
@@ -31,6 +43,8 @@ static void expand_words(const unsigned char block[64], uint32_t words[64]) {
     }
 }
 
+/** Apply all 64 rounds to a private working copy then add it into the running state modulo 2^32.
+ */
 static void compress_block(uint32_t state[8], const unsigned char block[64]) {
     uint32_t words[64];
     uint32_t working[8];
@@ -52,6 +66,8 @@ static void compress_block(uint32_t state[8], const unsigned char block[64]) {
     }
 }
 
+/** Consume complete blocks, append exact bit-length padding and write the final big-endian digest. The bounded caller contract prevents bit-length overflow.
+ */
 void identity_sha256(const unsigned char *bytes, size_t length, unsigned char digest[32]) {
     uint32_t state[8] = {0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a,
         0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19};

@@ -1,5 +1,13 @@
+/**
+ * @file
+ * @brief Adapt explicit source-discovery failures into stable diagnostic records.
+ *
+ * [COMP-04](../../../spec/implementation/compiler.md#comp-04)
+ * Keep both conflicting paths and the exact malformed byte without allocating an error message.
+ */
 #include "adapters.h"
 
+/** Immutable per-status explanation; no allocation is needed even for out-of-memory diagnostics. */
 typedef struct {
     DiagnosticCode code;
     const char *message;
@@ -8,6 +16,7 @@ typedef struct {
     const char *help;
 } ModuleExplanation;
 
+/** Exact indexed source-status mapping; MODULE_OK is rejected before indexing. */
 static const ModuleExplanation explanations[] = {
     {DIAGNOSTIC_INVALID_PATH, NULL, NULL, NULL, NULL},
     {DIAGNOSTIC_MISSING_MODULE, "Module source was not found", "The exact path does not exist",

@@ -361,11 +361,24 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   this documentation gate does not claim another runtime run. Exact inventory,
   hash, contract/consumer-location and Markdown checks passed. `make docs` checked
   511 file pages and 118 ready records; 555 debts remain assigned to T145–T151.
-- [ ] **T145 — Document source, identity and diagnostic foundations.** Needs:
+- [x] **T145 — Document source, identity and diagnostic foundations.** Needs:
   T133. Cover `src/source/`, `src/diagnostics/` and the Unicode generator, including
   headers and checked-in data provenance. Explain purpose, exact algorithms,
   ownership/failure contracts and source/identity rule links. Reconcile each file
   with meaningful independent and parent tests; verify the Doxygen output and links.
+
+  Evidence: linked Doxygen purpose/type/function contracts cover all 45 source,
+  identity, diagnostic and generator inputs; all 16 headers compile independently.
+  The 44 source/diagnostic C/header/include inputs preprocess identically before
+  and after comments; every XID range declaration is unchanged. Three new arena
+  cases verify alignment, stable lifetime, checked failure and system authority.
+  The Unicode leaf now regenerates exact tables and rejects edition/range/output
+  failures. Its readonly-output case failed before the generator checked final
+  fflush and passes with that fix. Doxygen's .inc-as-PHP default was caught by
+  actual originating-page validation, corrected to inc=C and regression-tested.
+  Strict source/diagnostic/composition suites, arena ASan/UBSan (`detect_leaks=0`),
+  documentation tests and full root `make -j4 test` passed (69 leaves). `make docs`
+  checked 512 file pages and canonical links; 167 ready records and 508 debts remain.
 - [ ] **T146 — Document lexical, AST and parser components.** Needs: T133.
   Cover `src/lexer/`, `src/ast/` and `src/parser/`, including internal headers.
   Explain byte/span ownership, iterative frame boundaries, syntax recognition and

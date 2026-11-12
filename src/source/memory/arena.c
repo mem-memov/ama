@@ -1,7 +1,15 @@
+/**
+ * @file
+ * @brief Allocate aligned arena records and checked concatenated strings.
+ *
+ * [ARCH-05](../../../spec/implementation/compiler.md#arch-05)
+ * Check representable sizes before allocation; failure never links a partial record.
+ */
 #include <stdint.h>
 #include <string.h>
 #include "arena.h"
 
+/** Private allocation header; max_align_t makes the following user region suitably aligned. */
 struct SourceAllocation {
     SourceAllocation *next;
     max_align_t alignment;
@@ -19,6 +27,8 @@ void source_arena_destroy(SourceArena *arena) {
     }
 }
 
+/** A header precedes each aligned allocation; link only after allocation succeeds, so teardown owns exactly the successful requests.
+ */
 void *source_arena_allocate(SourceArena *arena, size_t size) {
     if (size > SIZE_MAX - sizeof(SourceAllocation)) {
         return NULL;
@@ -33,6 +43,8 @@ void *source_arena_allocate(SourceArena *arena, size_t size) {
     return allocation + 1;
 }
 
+/** Measure before allocation and check every sum. Copy only into fresh arena storage, permitting input strings already owned by this arena.
+ */
 char *source_arena_join(SourceArena *arena, const char *left,
     const char *separator, const char *right) {
     size_t left_length = strlen(left);

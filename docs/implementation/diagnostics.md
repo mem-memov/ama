@@ -23,8 +23,8 @@ this view representation does not silently assume that ownership.
 Validation checks the finite code domain, required text, all span bounds/path
 consistency and related-array consistency. Induction over related entries proves
 all exposed locations satisfy the same location invariant. It does not interpret
-or guess a correction from source spelling. Syntax/type codes are available for
-later consumers but no parsing/type-checking implementation is claimed.
+or guess a correction from source spelling. Syntax/type codes are consumed by later stages; these record tests alone do not
+certify their parsing/type-checking semantics.
 
 Module adaptation maps each explicit ModuleStatus to its own message/cause;
 ambiguous/aliased sources retain both physical paths. A malformed UTF-8 issue
@@ -42,3 +42,11 @@ Evidence: `make -C tests/unit/diagnostics/record` passed C11/pedantic/Werror.
 Tests exercise multiple declaration/type notes, original international names,
 span/path failures, every module failure category and collision context. Rendering
 and composed filesystem-to-message tests are documented in [rendering](diagnostic-rendering.md).
+
+
+T145 adds Doxygen contracts for every record/adapter/rendering boundary and links
+the exact source-coordinate/collision/diagnostic rules in source comments. Records
+and renderers remain separate owners/views; declarations explain which storage
+must outlive consumers and when output may be partial. Header compilation and
+actual source/identity-to-diagnostic compositions check those handoffs; file and
+interface reference pages come from Doxygen, not this narrative.

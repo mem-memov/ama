@@ -1,14 +1,24 @@
+/**
+ * @file
+ * @brief Read original file bytes with explicit temporary-buffer and stream ownership.
+ *
+ * [SRC-01](../../../spec/language/source-and-names.md#src-01)
+ * Load physical sources without changing bytes or guessing logical module identity.
+ */
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
 #include "source/text/source.h"
 
+/** Private growable binary read buffer; caller releases it even after failed read/close. */
 typedef struct {
     unsigned char *bytes;
     size_t length;
     size_t capacity;
 } SourceBuffer;
 
+/** Grow private temporary bytes geometrically after checked addition. Allocate/copy before releasing old storage; failure preserves the old buffer.
+ */
 static SourceStatus append_chunk(SourceAllocator allocator, SourceBuffer *buffer,
     const unsigned char *chunk, size_t length) {
     if (length > SIZE_MAX - buffer->length) {
@@ -35,6 +45,8 @@ static SourceStatus append_chunk(SourceAllocator allocator, SourceBuffer *buffer
     return SOURCE_OK;
 }
 
+/** Read finite binary chunks without interpreting bytes. Caller retains buffer ownership and stream closure on every status.
+ */
 static SourceStatus read_stream(FILE *stream, SourceAllocator allocator,
     SourceBuffer *buffer) {
     unsigned char chunk[4096];

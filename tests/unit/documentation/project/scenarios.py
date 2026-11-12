@@ -105,6 +105,8 @@ def rendered():
     code = '/** @file\n * @brief Keep identity under [RT-13](../../../../spec/runtime.md#rt-13).\n */\nint fixture(void) { return 0; }\n'
     original = nested / 'fixture.c'
     original.write_text(code)
+    included = nested / 'ranges.inc'
+    included.write_text(code.replace('int fixture(void) { return 0; }', 'static const int fixture_ranges[] = {0};'))
     hashes = {path: hashlib.sha256(path.read_bytes()).hexdigest() for path in root.rglob('*') if path.is_file()}
     output = root / 'html'
     generate(root, output, shutil.which('doxygen'))
@@ -113,6 +115,7 @@ def rendered():
     anchor = registry.identity('rule', 'spec/runtime.md', 'RT-13')
     file_page = next(path for path in output.glob('*.html') if path.name.endswith('_8c.html'))
     require(any('#' + anchor in href for href in Page(file_page.read_text()).hrefs), 'file purpose has no rendered rule link')
+    validate(output, {'src/a/b/c/ranges.inc': [anchor]})
     content = file_page.read_text()
     file_page.write_text(content.replace('#' + anchor, '#ama_rule_missing'))
     rejected(lambda: validate(output, [anchor]))

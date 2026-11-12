@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Load unique source/ABI bytes and associate checked native companions.
+ *
+ * [SRC-01](../../../../spec/language/source-and-names.md#src-01)
+ * Publish a source record only after its checked companions load; all partial storage stays catalog-owned.
+ */
 #include <string.h>
 #include "../internal.h"
 #include "source/unicode/unicode.h"
@@ -18,6 +25,8 @@ ModuleStatus module_load_utf8(ModuleCatalog *catalog, const char *physical,
     return MODULE_OK;
 }
 
+/** Compare complete logical names and exact device/inode pairs; retain the prior physical path for either ambiguity or alias.
+ */
 static ModuleStatus check_unique(ModuleCatalog *catalog, const char *physical,
     const char *logical, const struct stat *metadata) {
     for (ModuleSource *other = catalog->first; other != NULL; other = other->next) {
@@ -31,6 +40,8 @@ static ModuleStatus check_unique(ModuleCatalog *catalog, const char *physical,
     return MODULE_OK;
 }
 
+/** Probe a named optional C/header/ABI companion with exact bytes; missing is valid, unsupported entries fail, ABI text is loaded/UTF-8 checked.
+ */
 static ModuleStatus load_companion(ModuleCatalog *catalog, const char *physical,
     const char *suffix, const char **output, const SourceText **text) {
     const char *path = source_arena_join(&catalog->arena, physical, "", suffix);

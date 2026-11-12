@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Verify exact directory entries before inspecting their filesystem metadata.
+ *
+ * [SRC-02](../../../spec/language/source-and-names.md#src-02)
+ * Reject spelling aliases and unsupported symlinks rather than guessing a match.
+ */
 #include <stdbool.h>
 #include <dirent.h>
 #include <errno.h>

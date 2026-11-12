@@ -115,3 +115,10 @@ Markdown URLs with stable rule anchors. This evidence does not claim an automate
 GUI mouse-click test. Recalculate paths after moves; the documentation fixture
 checks a deep source, rejects its stale moved link, then renders the corrected
 moved source successfully.
+
+
+Maintained C includes use the `.inc` extension (for example the pinned Unicode
+ranges). Doxygen must parse them with `EXTENSION_MAPPING = inc=C`; its default for
+that suffix is PHP. T145's real-rendering regression includes a canonical rule link
+on an `.inc` file page, so the generated file-page/link check detects losing this
+mapping rather than merely counting an empty file compound.

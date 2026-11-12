@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Collect and sort actual directory names with checked allocation and stream cleanup.
+ *
+ * [COMP-05](../../../../spec/implementation/compiler.md#comp-05)
+ * Sorting exact bytes makes discovery independent of filesystem enumeration order.
+ */
 #include <dirent.h>
 #include <errno.h>
 #include <stdint.h>
@@ -5,15 +12,20 @@
 #include <string.h>
 #include "../internal.h"
 
+/** Arena-owned copy of an unstable readdir name, later flattened into a sorted array. */
 typedef struct EntryName {
     struct EntryName *next;
     const char *name;
 } EntryName;
 
+/** Order borrowed byte strings with strcmp for reproducible discovery; no Unicode normalization or locale collation.
+ */
 static int compare_names(const void *left, const void *right) {
     return strcmp(*(const char *const *)left, *(const char *const *)right);
 }
 
+/** Copy each non-dot readdir entry before the next readdir call. Checked count/allocation/read failure leaves scratch in catalog arena.
+ */
 static ModuleStatus remember_names(ModuleWalk *walk, DIR *stream,
     EntryName **first, size_t *count) {
     struct dirent *entry;

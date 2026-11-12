@@ -48,3 +48,16 @@ Evidence: `make -C tests/unit/source/unicode` passed with C11/pedantic/Werror;
 regeneration and `cmp` reproduced the committed table byte-for-byte. The suite
 checks actual Unicode entry lookup, absence and symlink refusal. Whole-project
 resolution is a separate boundary; no compiler frontend is claimed here.
+
+
+T145 documents the decoder, range-search and offline-generator contracts in
+source. The [Unicode test leaf](../../tests/unit/source/unicode/main.c) now compiles
+and executes the maintained generator, compares its complete output byte-for-byte
+with the committed include, rejects wrong editions and reversed/out-of-domain
+ranges, and checks a short output through a readonly stdout descriptor. The latter
+failed before the generator checked its final `fflush`; it now reports that IO
+failure correctly instead of letting process-exit buffering hide it. This changes
+no scalar/property membership: every generated range declaration is unchanged.
+The generated include's purpose/rule comment is emitted by the generator rather
+than manually inserted into its property ranges. No host Unicode tables or
+network access participate in generation or tests.

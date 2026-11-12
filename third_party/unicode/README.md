@@ -15,5 +15,7 @@ gcc -std=c11 -D_POSIX_C_SOURCE=200809L tools/unicode/generate.c -o /tmp/ama-unic
 cmp src/source/unicode/xid_tables.inc /tmp/ama-xid-tables.inc
 ```
 
-Copy the regenerated output only when deliberately updating pinned input. Builds
+Copy regenerated output only for an intentional pinned-data update or generator
+format/documentation change. A documentation-only regeneration must preserve every
+range declaration; the Unicode test leaf compares the complete regenerated output. Builds
 use the committed table and require neither network nor a host Unicode library.

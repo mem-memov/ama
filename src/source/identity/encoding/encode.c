@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Encode nominal categories and complete component bytes with explicit lengths.
+ *
+ * [NAME-01](../../../../spec/implementation/compiler.md#name-01)
+ * Preserve component boundaries and original spelling; new root-kind encoding remains T015 work.
+ */
 #include <stdint.h>
 #include <string.h>
 #include "../internal.h"
@@ -6,18 +13,24 @@
 
 _Static_assert(SIZE_MAX <= UINT64_MAX, "Identity lengths require at most 64 bits");
 
+/** Write one unsigned 64-bit number in big-endian order into premeasured output capacity.
+ */
 static void append_number(unsigned char **cursor, uint64_t number) {
     for (size_t index = 0; index < 8; index++) {
         *(*cursor)++ = (unsigned char)(number >> ((7 - index) * 8));
     }
 }
 
+/** Write an explicit byte length and complete unnormalized component into checked capacity.
+ */
 static void append_part(unsigned char **cursor, const char *bytes, size_t length) {
     append_number(cursor, length);
     memcpy(*cursor, bytes, length);
     *cursor += length;
 }
 
+/** Validate the retained identity form and bound every field/length for size_t and SHA bit length. Full new root kinds remain a separate feature task.
+ */
 static IdentityStatus measure(QualifiedIdentity identity, size_t *total, size_t *module_count) {
     if (identity.category < IDENTITY_TYPE || identity.category > IDENTITY_NATIVE_NAMESPACE
         || (identity.category == IDENTITY_NATIVE_NAMESPACE && identity.member_count != 0)
@@ -52,6 +65,8 @@ static IdentityStatus measure(QualifiedIdentity identity, size_t *total, size_t 
     return (uint64_t)*total > UINT64_MAX / 8 ? IDENTITY_LIMIT : IDENTITY_OK;
 }
 
+/** Serialize path and member boundaries using measured component counts; dots delimit only the already validated retained path form.
+ */
 static void encode_parts(unsigned char *cursor, QualifiedIdentity identity, size_t module_count) {
     append_number(&cursor, module_count);
     const char *part = identity.module_path + 1;

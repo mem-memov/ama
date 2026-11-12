@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Verify every physical root component with exact entry spelling.
+ *
+ * [SRC-02](../../../../spec/language/source-and-names.md#src-02)
+ * Path resolution must not silently follow aliases or accept normalized spellings.
+ */
 #include <string.h>
 #include "../internal.h"
 #include "source/unicode/unicode.h"

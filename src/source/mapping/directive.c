@@ -1,8 +1,17 @@
+/**
+ * @file
+ * @brief Emit C-escaped original paths and representable physical line numbers.
+ *
+ * [NAME-03](../../../spec/implementation/compiler.md#name-03)
+ * Escaping protects C syntax and trigraphs without transliterating source names.
+ */
 #include <stdint.h>
 #include <string.h>
 #include "directive.h"
 #include "source/unicode/unicode.h"
 
+/** Escape quotes, backslashes, question marks and controls for C string syntax, retaining other original UTF-8 bytes. Return false on partial IO failure.
+ */
 static bool write_filename(FILE *output, const unsigned char *path) {
     for (; *path != 0; path++) {
         unsigned char byte = *path;

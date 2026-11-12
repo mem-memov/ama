@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Guard one catalog build and expose lookup only after complete success.
+ *
+ * [SRC-02](../../../spec/language/source-and-names.md#src-02)
+ * Duplicate logical sources fail instead of selecting whichever root was visited first.
+ */
 #include <string.h>
 #include "internal.h"
 

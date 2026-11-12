@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Validate the retained single-dot sequence of Unicode word components.
+ *
+ * [SRC-03](../../../../spec/language/source-and-names.md#src-03)
+ * This is an existing restricted validator, not full multiword/two-root support; T014/T015 replace it.
+ */
 #include <string.h>
 #include "../catalog.h"
 #include "source/unicode/unicode.h"

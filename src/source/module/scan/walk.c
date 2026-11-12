@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Walk verified directory work records iteratively with explicit exclusions.
+ *
+ * [SRC-02](../../../../spec/language/source-and-names.md#src-02)
+ * Every physical directory is registered once; duplicate identities fail rather than cycling.
+ */
 #include "../internal.h"
 
 ModuleStatus module_queue(ModuleWalk *walk, const char *physical,

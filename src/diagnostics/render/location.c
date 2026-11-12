@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Render original byte coordinates and complete intersecting physical lines.
+ *
+ * [NAME-03](../../../spec/implementation/compiler.md#name-03)
+ * Half-open spans include exactly their intersecting lines, with EOF/empty spans handled explicitly.
+ */
 #include "internal.h"
 
 bool diagnostic_write_location(FILE *output, DiagnosticLocation location) {
@@ -16,6 +23,8 @@ bool diagnostic_write_location(FILE *output, DiagnosticLocation location) {
     return true;
 }
 
+/** Render one already located physical line without line-ending bytes; preserve original content through byte escaping.
+ */
 static bool write_line(FILE *output, const SourceText *source, SourcePosition position) {
     return fprintf(output, "    %zu | ", position.line) >= 0
         && diagnostic_write_bytes(output, source_bytes(source) + position.line_start,

@@ -1,6 +1,15 @@
+/**
+ * @file
+ * @brief Publish a complete internal name only after exact digest/key comparison.
+ *
+ * [NAME-02](../../../../spec/implementation/compiler.md#name-02)
+ * Report unequal-key digest collisions with both names instead of merging or suffixing them.
+ */
 #include <string.h>
 #include "../internal.h"
 
+/** Format category plus the full lowercase digest into caller-provided 71-byte storage; category is already validated.
+ */
 static void format_name(char output[71], IdentityCategory category,
     const unsigned char digest[32]) {
     static const char digits[] = "0123456789abcdef";
@@ -15,6 +24,8 @@ static void format_name(char output[71], IdentityCategory category,
     output[70] = 0;
 }
 
+/** Compare full encodings for equal digests before allocating/linking a name; an unequal key is a diagnosed collision, never a generated suffix.
+ */
 IdentityStatus identity_insert(IdentityRegistry *registry, IdentityEncoding encoding,
     const unsigned char digest[32], const IdentityName **output) {
     registry->conflicting = NULL;

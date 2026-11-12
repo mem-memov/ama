@@ -1,10 +1,21 @@
+/**
+ * @file
+ * @brief Render validated primary/related diagnostics and flush explicit output failures.
+ *
+ * [COMP-04](../../../spec/implementation/compiler.md#comp-04)
+ * Keep message, cause, expected construct, help and related context distinct.
+ */
 #include "internal.h"
 
+/** Omit null optional prose; otherwise write its label and escaped text, propagating the first output failure.
+ */
 static bool write_field(FILE *output, const char *label, const char *text) {
     return text == NULL || (fputs(label, output) != EOF
         && diagnostic_write_text(output, text) && fputc('\n', output) != EOF);
 }
 
+/** Render one validated primary diagnostic and distinct optional cause/expected/help sections; no source content is guessed.
+ */
 static bool write_primary(FILE *output, const Diagnostic *diagnostic) {
     return diagnostic_write_location(output, diagnostic->primary)
         && fprintf(output, ": error[%s]: ", diagnostic_code_name(diagnostic->code)) >= 0
@@ -17,6 +28,8 @@ static bool write_primary(FILE *output, const Diagnostic *diagnostic) {
         && write_field(output, "    help: ", diagnostic->help);
 }
 
+/** Render one validated related declaration/path and its explicit role/name, preserving the borrowed source context.
+ */
 static bool write_related(FILE *output, const DiagnosticRelated *related) {
     return diagnostic_write_location(output, related->location)
         && fputs(": note: ", output) != EOF

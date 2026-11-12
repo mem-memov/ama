@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Retain both full source names and declarations for an internal-name collision.
+ *
+ * [NAME-02](../../../spec/implementation/compiler.md#name-02)
+ * A digest collision must be diagnosed instead of merged or silently renamed.
+ */
 #include "adapters.h"
 
 bool diagnostic_from_identity_collision(const IdentityName *previous,

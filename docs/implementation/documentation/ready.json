@@ -556,6 +556,326 @@
       }
     ]
   },
+  "src/diagnostics/adapters/adapters.h": {
+    "contract": "docs/implementation/diagnostics.md",
+    "purpose": "Declare allocation-free source and identity diagnostic adapters.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_keeps_primary_cause_expected_help_and_multiple_related_spans_separate",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_spans_mismatched_paths_and_missing_related_arrays",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_adapts_every_source_failure_without_allocating_messages",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_retains_both_original_names_for_an_identity_collision",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      }
+    ]
+  },
+  "src/diagnostics/adapters/identity.c": {
+    "contract": "docs/implementation/diagnostics.md",
+    "purpose": "Retain both full source names and declarations for an internal-name collision.",
+    "tests": [
+      {
+        "case": "it_keeps_primary_cause_expected_help_and_multiple_related_spans_separate",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_spans_mismatched_paths_and_missing_related_arrays",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_adapts_every_source_failure_without_allocating_messages",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_retains_both_original_names_for_an_identity_collision",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      }
+    ]
+  },
+  "src/diagnostics/adapters/module.c": {
+    "contract": "docs/implementation/diagnostics.md",
+    "purpose": "Adapt explicit source-discovery failures into stable diagnostic records.",
+    "tests": [
+      {
+        "case": "it_keeps_primary_cause_expected_help_and_multiple_related_spans_separate",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_spans_mismatched_paths_and_missing_related_arrays",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_adapts_every_source_failure_without_allocating_messages",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_retains_both_original_names_for_an_identity_collision",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      }
+    ]
+  },
+  "src/diagnostics/record/diagnostic.h": {
+    "contract": "docs/implementation/diagnostics.md",
+    "purpose": "Expose allocation-free borrowed compiler diagnostics and related source locations.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_keeps_primary_cause_expected_help_and_multiple_related_spans_separate",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_spans_mismatched_paths_and_missing_related_arrays",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_adapts_every_source_failure_without_allocating_messages",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_retains_both_original_names_for_an_identity_collision",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      }
+    ]
+  },
+  "src/diagnostics/record/validate.c": {
+    "contract": "docs/implementation/diagnostics.md",
+    "purpose": "Validate diagnostic code, required prose and exact location consistency.",
+    "tests": [
+      {
+        "case": "it_keeps_primary_cause_expected_help_and_multiple_related_spans_separate",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_spans_mismatched_paths_and_missing_related_arrays",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_adapts_every_source_failure_without_allocating_messages",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_retains_both_original_names_for_an_identity_collision",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      }
+    ]
+  },
+  "src/diagnostics/render/internal.h": {
+    "contract": "docs/implementation/diagnostic-rendering.md",
+    "purpose": "Separate diagnostic byte escaping, locations and excerpts from record validation.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_renders_original_names_byte_coordinates_and_related_declarations",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_handles_multiline_empty_eof_and_malformed_source_excerpts",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_records_before_output_and_reports_output_failures",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_escapes_source_mapping_paths_without_rewriting_unicode",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      }
+    ]
+  },
+  "src/diagnostics/render/location.c": {
+    "contract": "docs/implementation/diagnostic-rendering.md",
+    "purpose": "Render original byte coordinates and complete intersecting physical lines.",
+    "tests": [
+      {
+        "case": "it_renders_original_names_byte_coordinates_and_related_declarations",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_handles_multiline_empty_eof_and_malformed_source_excerpts",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_records_before_output_and_reports_output_failures",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_escapes_source_mapping_paths_without_rewriting_unicode",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      }
+    ]
+  },
+  "src/diagnostics/render/render.c": {
+    "contract": "docs/implementation/diagnostic-rendering.md",
+    "purpose": "Render validated primary/related diagnostics and flush explicit output failures.",
+    "tests": [
+      {
+        "case": "it_renders_original_names_byte_coordinates_and_related_declarations",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_handles_multiline_empty_eof_and_malformed_source_excerpts",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_records_before_output_and_reports_output_failures",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_escapes_source_mapping_paths_without_rewriting_unicode",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      }
+    ]
+  },
+  "src/diagnostics/render/render.h": {
+    "contract": "docs/implementation/diagnostic-rendering.md",
+    "purpose": "Declare human diagnostic rendering over a borrowed output stream.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_renders_original_names_byte_coordinates_and_related_declarations",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_handles_multiline_empty_eof_and_malformed_source_excerpts",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_records_before_output_and_reports_output_failures",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_escapes_source_mapping_paths_without_rewriting_unicode",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      }
+    ]
+  },
+  "src/diagnostics/render/text.c": {
+    "contract": "docs/implementation/diagnostic-rendering.md",
+    "purpose": "Preserve printable UTF-8 while escaping malformed and control bytes.",
+    "tests": [
+      {
+        "case": "it_renders_original_names_byte_coordinates_and_related_declarations",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_handles_multiline_empty_eof_and_malformed_source_excerpts",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_records_before_output_and_reports_output_failures",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_escapes_source_mapping_paths_without_rewriting_unicode",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      }
+    ]
+  },
   "src/driver/options/assembly/consume.c": {
     "contract": "docs/implementation/driver-options.md",
     "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
@@ -3672,6 +3992,1325 @@
       }
     ]
   },
+  "src/source/identity/encoding/encode.c": {
+    "contract": "docs/implementation/identities.md",
+    "purpose": "Encode nominal categories and complete component bytes with explicit lengths.",
+    "tests": [
+      {
+        "case": "it_matches_sha256_vectors_across_padding_and_block_boundaries",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_preserves_unicode_names_and_matches_a_stable_full_identity_vector",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_separates_categories_components_case_and_unicode_spelling",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_refuses_a_forced_digest_collision_without_merging_full_keys",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_registration_and_rejects_invalid_identities",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      }
+    ]
+  },
+  "src/source/identity/hash/sha256.c": {
+    "contract": "docs/implementation/identities.md",
+    "purpose": "Compute exact SHA-256 blocks and padding for bounded identity encodings.",
+    "tests": [
+      {
+        "case": "it_matches_sha256_vectors_across_padding_and_block_boundaries",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_preserves_unicode_names_and_matches_a_stable_full_identity_vector",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_separates_categories_components_case_and_unicode_spelling",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_refuses_a_forced_digest_collision_without_merging_full_keys",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_registration_and_rejects_invalid_identities",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      }
+    ]
+  },
+  "src/source/identity/hash/sha256.h": {
+    "contract": "docs/implementation/identities.md",
+    "purpose": "Declare the deterministic SHA-256 candidate digest for identity registries.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_matches_sha256_vectors_across_padding_and_block_boundaries",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_preserves_unicode_names_and_matches_a_stable_full_identity_vector",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_separates_categories_components_case_and_unicode_spelling",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_refuses_a_forced_digest_collision_without_merging_full_keys",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_registration_and_rejects_invalid_identities",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      }
+    ]
+  },
+  "src/source/identity/identity.h": {
+    "contract": "docs/implementation/identities.md",
+    "purpose": "Own complete encoded identities and collision-checked internal names.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_matches_sha256_vectors_across_padding_and_block_boundaries",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_preserves_unicode_names_and_matches_a_stable_full_identity_vector",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_separates_categories_components_case_and_unicode_spelling",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_refuses_a_forced_digest_collision_without_merging_full_keys",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_registration_and_rejects_invalid_identities",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      }
+    ]
+  },
+  "src/source/identity/internal.h": {
+    "contract": "docs/implementation/identities.md",
+    "purpose": "Separate identity encoding from exact registry insertion.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_matches_sha256_vectors_across_padding_and_block_boundaries",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_preserves_unicode_names_and_matches_a_stable_full_identity_vector",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_separates_categories_components_case_and_unicode_spelling",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_refuses_a_forced_digest_collision_without_merging_full_keys",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_registration_and_rejects_invalid_identities",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      }
+    ]
+  },
+  "src/source/identity/registry/insert.c": {
+    "contract": "docs/implementation/identities.md",
+    "purpose": "Publish a complete internal name only after exact digest/key comparison.",
+    "tests": [
+      {
+        "case": "it_matches_sha256_vectors_across_padding_and_block_boundaries",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_preserves_unicode_names_and_matches_a_stable_full_identity_vector",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_separates_categories_components_case_and_unicode_spelling",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_refuses_a_forced_digest_collision_without_merging_full_keys",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_registration_and_rejects_invalid_identities",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      }
+    ]
+  },
+  "src/source/identity/registry/register.c": {
+    "contract": "docs/implementation/identities.md",
+    "purpose": "Own identity registry lifetime and compose encoding, digest and insertion.",
+    "tests": [
+      {
+        "case": "it_matches_sha256_vectors_across_padding_and_block_boundaries",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_preserves_unicode_names_and_matches_a_stable_full_identity_vector",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_separates_categories_components_case_and_unicode_spelling",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_refuses_a_forced_digest_collision_without_merging_full_keys",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_registration_and_rejects_invalid_identities",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      }
+    ]
+  },
+  "src/source/io/load.c": {
+    "contract": "docs/implementation/source-storage.md",
+    "purpose": "Read original file bytes with explicit temporary-buffer and stream ownership.",
+    "tests": [
+      {
+        "case": "it_preserves_bytes_and_spans_across_additions",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_matches_every_offset_against_a_linear_line_model",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_unwinds_each_failed_allocation_without_publishing",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_loads_original_file_bytes_and_reports_io_failures",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      }
+    ]
+  },
+  "src/source/mapping/directive.c": {
+    "contract": "docs/implementation/diagnostic-rendering.md",
+    "purpose": "Emit C-escaped original paths and representable physical line numbers.",
+    "tests": [
+      {
+        "case": "it_renders_original_names_byte_coordinates_and_related_declarations",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_handles_multiline_empty_eof_and_malformed_source_excerpts",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_records_before_output_and_reports_output_failures",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_escapes_source_mapping_paths_without_rewriting_unicode",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      }
+    ]
+  },
+  "src/source/mapping/directive.h": {
+    "contract": "docs/implementation/diagnostic-rendering.md",
+    "purpose": "Declare original-source C line mapping with explicit output errors.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_renders_original_names_byte_coordinates_and_related_declarations",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_handles_multiline_empty_eof_and_malformed_source_excerpts",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_records_before_output_and_reports_output_failures",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_escapes_source_mapping_paths_without_rewriting_unicode",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      }
+    ]
+  },
+  "src/source/memory/allocator.h": {
+    "contract": "docs/implementation/source-storage.md",
+    "purpose": "Pass explicit allocation/release authority across compiler components.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_keeps_aligned_addresses_stable_and_releases_every_record",
+        "command": "make -C tests/unit/source/memory",
+        "source": "tests/unit/source/memory/main.c"
+      },
+      {
+        "case": "it_preserves_existing_strings_on_limit_and_allocation_failure",
+        "command": "make -C tests/unit/source/memory",
+        "source": "tests/unit/source/memory/main.c"
+      },
+      {
+        "case": "it_uses_the_system_authority_without_global_compiler_state",
+        "command": "make -C tests/unit/source/memory",
+        "source": "tests/unit/source/memory/main.c"
+      },
+      {
+        "case": "it_matches_sha256_vectors_across_padding_and_block_boundaries",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_preserves_unicode_names_and_matches_a_stable_full_identity_vector",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_separates_categories_components_case_and_unicode_spelling",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_refuses_a_forced_digest_collision_without_merging_full_keys",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_registration_and_rejects_invalid_identities",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      }
+    ]
+  },
+  "src/source/memory/arena.c": {
+    "contract": "docs/implementation/source-storage.md",
+    "purpose": "Allocate aligned arena records and checked concatenated strings.",
+    "tests": [
+      {
+        "case": "it_keeps_aligned_addresses_stable_and_releases_every_record",
+        "command": "make -C tests/unit/source/memory",
+        "source": "tests/unit/source/memory/main.c"
+      },
+      {
+        "case": "it_preserves_existing_strings_on_limit_and_allocation_failure",
+        "command": "make -C tests/unit/source/memory",
+        "source": "tests/unit/source/memory/main.c"
+      },
+      {
+        "case": "it_uses_the_system_authority_without_global_compiler_state",
+        "command": "make -C tests/unit/source/memory",
+        "source": "tests/unit/source/memory/main.c"
+      },
+      {
+        "case": "it_matches_sha256_vectors_across_padding_and_block_boundaries",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_preserves_unicode_names_and_matches_a_stable_full_identity_vector",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_separates_categories_components_case_and_unicode_spelling",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_refuses_a_forced_digest_collision_without_merging_full_keys",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_registration_and_rejects_invalid_identities",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      }
+    ]
+  },
+  "src/source/memory/arena.h": {
+    "contract": "docs/implementation/source-storage.md",
+    "purpose": "Own aligned scratch allocations until deterministic arena teardown.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_keeps_aligned_addresses_stable_and_releases_every_record",
+        "command": "make -C tests/unit/source/memory",
+        "source": "tests/unit/source/memory/main.c"
+      },
+      {
+        "case": "it_preserves_existing_strings_on_limit_and_allocation_failure",
+        "command": "make -C tests/unit/source/memory",
+        "source": "tests/unit/source/memory/main.c"
+      },
+      {
+        "case": "it_uses_the_system_authority_without_global_compiler_state",
+        "command": "make -C tests/unit/source/memory",
+        "source": "tests/unit/source/memory/main.c"
+      },
+      {
+        "case": "it_matches_sha256_vectors_across_padding_and_block_boundaries",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_preserves_unicode_names_and_matches_a_stable_full_identity_vector",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_separates_categories_components_case_and_unicode_spelling",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_refuses_a_forced_digest_collision_without_merging_full_keys",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_registration_and_rejects_invalid_identities",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      }
+    ]
+  },
+  "src/source/module/catalog.c": {
+    "contract": "docs/implementation/module-paths.md",
+    "purpose": "Guard one catalog build and expose lookup only after complete success.",
+    "tests": [
+      {
+        "case": "it_resolves_nested_submodules_and_physical_native_companions",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_duplicates_across_roots_instead_of_preferring_one",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_orphans_hardlink_aliases_and_symlink_roots",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_distinguishes_case_and_canonically_equivalent_source_spellings",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_reports_the_exact_invalid_utf8_span_in_sources_and_abi",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_aliased_directory_roots_even_when_empty",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_every_catalog_allocation_failure",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      }
+    ]
+  },
+  "src/source/module/catalog.h": {
+    "contract": "docs/implementation/module-paths.md",
+    "purpose": "Own one exact physical-source catalog and its diagnostic lifetimes.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_resolves_nested_submodules_and_physical_native_companions",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_duplicates_across_roots_instead_of_preferring_one",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_orphans_hardlink_aliases_and_symlink_roots",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_distinguishes_case_and_canonically_equivalent_source_spellings",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_reports_the_exact_invalid_utf8_span_in_sources_and_abi",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_aliased_directory_roots_even_when_empty",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_every_catalog_allocation_failure",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      }
+    ]
+  },
+  "src/source/module/internal.h": {
+    "contract": "docs/implementation/module-paths.md",
+    "purpose": "Declare catalog scan, resolution and source-publication phase contracts.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_resolves_nested_submodules_and_physical_native_companions",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_duplicates_across_roots_instead_of_preferring_one",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_orphans_hardlink_aliases_and_symlink_roots",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_distinguishes_case_and_canonically_equivalent_source_spellings",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_reports_the_exact_invalid_utf8_span_in_sources_and_abi",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_aliased_directory_roots_even_when_empty",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_every_catalog_allocation_failure",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      }
+    ]
+  },
+  "src/source/module/resolve/directory.c": {
+    "contract": "docs/implementation/module-paths.md",
+    "purpose": "Reject repeated physical directory identities across configured roots.",
+    "tests": [
+      {
+        "case": "it_resolves_nested_submodules_and_physical_native_companions",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_duplicates_across_roots_instead_of_preferring_one",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_orphans_hardlink_aliases_and_symlink_roots",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_distinguishes_case_and_canonically_equivalent_source_spellings",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_reports_the_exact_invalid_utf8_span_in_sources_and_abi",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_aliased_directory_roots_even_when_empty",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_every_catalog_allocation_failure",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      }
+    ]
+  },
+  "src/source/module/resolve/logical.c": {
+    "contract": "docs/implementation/module-paths.md",
+    "purpose": "Validate the retained single-dot sequence of Unicode word components.",
+    "tests": [
+      {
+        "case": "it_resolves_nested_submodules_and_physical_native_companions",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_duplicates_across_roots_instead_of_preferring_one",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_orphans_hardlink_aliases_and_symlink_roots",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_distinguishes_case_and_canonically_equivalent_source_spellings",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_reports_the_exact_invalid_utf8_span_in_sources_and_abi",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_aliased_directory_roots_even_when_empty",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_every_catalog_allocation_failure",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      }
+    ]
+  },
+  "src/source/module/resolve/probe.c": {
+    "contract": "docs/implementation/module-paths.md",
+    "purpose": "Verify every physical root component with exact entry spelling.",
+    "tests": [
+      {
+        "case": "it_resolves_nested_submodules_and_physical_native_companions",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_duplicates_across_roots_instead_of_preferring_one",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_orphans_hardlink_aliases_and_symlink_roots",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_distinguishes_case_and_canonically_equivalent_source_spellings",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_reports_the_exact_invalid_utf8_span_in_sources_and_abi",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_aliased_directory_roots_even_when_empty",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_every_catalog_allocation_failure",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      }
+    ]
+  },
+  "src/source/module/resolve/source.c": {
+    "contract": "docs/implementation/module-paths.md",
+    "purpose": "Load unique source/ABI bytes and associate checked native companions.",
+    "tests": [
+      {
+        "case": "it_resolves_nested_submodules_and_physical_native_companions",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_duplicates_across_roots_instead_of_preferring_one",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_orphans_hardlink_aliases_and_symlink_roots",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_distinguishes_case_and_canonically_equivalent_source_spellings",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_reports_the_exact_invalid_utf8_span_in_sources_and_abi",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_aliased_directory_roots_even_when_empty",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_every_catalog_allocation_failure",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      }
+    ]
+  },
+  "src/source/module/scan/entries.c": {
+    "contract": "docs/implementation/module-paths.md",
+    "purpose": "Collect and sort actual directory names with checked allocation and stream cleanup.",
+    "tests": [
+      {
+        "case": "it_resolves_nested_submodules_and_physical_native_companions",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_duplicates_across_roots_instead_of_preferring_one",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_orphans_hardlink_aliases_and_symlink_roots",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_distinguishes_case_and_canonically_equivalent_source_spellings",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_reports_the_exact_invalid_utf8_span_in_sources_and_abi",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_aliased_directory_roots_even_when_empty",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_every_catalog_allocation_failure",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      }
+    ]
+  },
+  "src/source/module/scan/visit.c": {
+    "contract": "docs/implementation/module-paths.md",
+    "purpose": "Classify declared source candidates and physical submodule directories.",
+    "tests": [
+      {
+        "case": "it_resolves_nested_submodules_and_physical_native_companions",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_duplicates_across_roots_instead_of_preferring_one",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_orphans_hardlink_aliases_and_symlink_roots",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_distinguishes_case_and_canonically_equivalent_source_spellings",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_reports_the_exact_invalid_utf8_span_in_sources_and_abi",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_aliased_directory_roots_even_when_empty",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_every_catalog_allocation_failure",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      }
+    ]
+  },
+  "src/source/module/scan/walk.c": {
+    "contract": "docs/implementation/module-paths.md",
+    "purpose": "Walk verified directory work records iteratively with explicit exclusions.",
+    "tests": [
+      {
+        "case": "it_resolves_nested_submodules_and_physical_native_companions",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_duplicates_across_roots_instead_of_preferring_one",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_orphans_hardlink_aliases_and_symlink_roots",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_distinguishes_case_and_canonically_equivalent_source_spellings",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_reports_the_exact_invalid_utf8_span_in_sources_and_abi",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_aliased_directory_roots_even_when_empty",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_every_catalog_allocation_failure",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      }
+    ]
+  },
+  "src/source/path/exact.c": {
+    "contract": "docs/implementation/unicode.md",
+    "purpose": "Verify exact directory entries before inspecting their filesystem metadata.",
+    "tests": [
+      {
+        "case": "it_matches_exact_filesystem_bytes_and_refuses_symlinks",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      }
+    ]
+  },
+  "src/source/path/exact.h": {
+    "contract": "docs/implementation/unicode.md",
+    "purpose": "Declare byte-exact child lookup beneath an already verified parent.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_matches_exact_filesystem_bytes_and_refuses_symlinks",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      }
+    ]
+  },
+  "src/source/text/internal.h": {
+    "contract": "docs/implementation/source-storage.md",
+    "purpose": "Declare private source-record storage and partial-construction cleanup.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_preserves_bytes_and_spans_across_additions",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_matches_every_offset_against_a_linear_line_model",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_unwinds_each_failed_allocation_without_publishing",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_loads_original_file_bytes_and_reports_io_failures",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      }
+    ]
+  },
+  "src/source/text/lines.c": {
+    "contract": "docs/implementation/source-storage.md",
+    "purpose": "Index original LF offsets and locate byte positions by exact predecessor search.",
+    "tests": [
+      {
+        "case": "it_preserves_bytes_and_spans_across_additions",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_matches_every_offset_against_a_linear_line_model",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_unwinds_each_failed_allocation_without_publishing",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_loads_original_file_bytes_and_reports_io_failures",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      }
+    ]
+  },
+  "src/source/text/manager.c": {
+    "contract": "docs/implementation/source-storage.md",
+    "purpose": "Build and release stable source records without publishing partial additions.",
+    "tests": [
+      {
+        "case": "it_preserves_bytes_and_spans_across_additions",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_matches_every_offset_against_a_linear_line_model",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_unwinds_each_failed_allocation_without_publishing",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_loads_original_file_bytes_and_reports_io_failures",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      }
+    ]
+  },
+  "src/source/text/source.h": {
+    "contract": "docs/implementation/source-storage.md",
+    "purpose": "Own immutable source bytes and expose bounded borrowed spans.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_preserves_bytes_and_spans_across_additions",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_matches_every_offset_against_a_linear_line_model",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_unwinds_each_failed_allocation_without_publishing",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_loads_original_file_bytes_and_reports_io_failures",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      }
+    ]
+  },
+  "src/source/text/view.c": {
+    "contract": "docs/implementation/source-storage.md",
+    "purpose": "Expose immutable source views and validate half-open byte spans.",
+    "tests": [
+      {
+        "case": "it_preserves_bytes_and_spans_across_additions",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_matches_every_offset_against_a_linear_line_model",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_unwinds_each_failed_allocation_without_publishing",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_loads_original_file_bytes_and_reports_io_failures",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      }
+    ]
+  },
+  "src/source/unicode/decode.c": {
+    "contract": "docs/implementation/unicode.md",
+    "purpose": "Decode shortest-form Unicode scalars and report exact malformed byte offsets.",
+    "tests": [
+      {
+        "case": "it_decodes_every_unicode_scalar_and_rejects_surrogates",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_rejects_overlong_out_of_range_and_malformed_sequences",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_matches_pinned_properties_over_the_entire_scalar_domain",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_preserves_unicode_spelling_and_identifier_boundaries",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_matches_exact_filesystem_bytes_and_refuses_symlinks",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_regenerates_pinned_tables_and_rejects_invalid_input_and_output",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      }
+    ]
+  },
+  "src/source/unicode/identifier.c": {
+    "contract": "docs/implementation/unicode.md",
+    "purpose": "Recognize XID words using exact binary searches over pinned immutable ranges.",
+    "tests": [
+      {
+        "case": "it_decodes_every_unicode_scalar_and_rejects_surrogates",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_rejects_overlong_out_of_range_and_malformed_sequences",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_matches_pinned_properties_over_the_entire_scalar_domain",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_preserves_unicode_spelling_and_identifier_boundaries",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_matches_exact_filesystem_bytes_and_refuses_symlinks",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_regenerates_pinned_tables_and_rejects_invalid_input_and_output",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      }
+    ]
+  },
+  "src/source/unicode/unicode.h": {
+    "contract": "docs/implementation/unicode.md",
+    "purpose": "Declare strict scalar decoding and pinned Unicode XID word recognition.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_decodes_every_unicode_scalar_and_rejects_surrogates",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_rejects_overlong_out_of_range_and_malformed_sequences",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_matches_pinned_properties_over_the_entire_scalar_domain",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_preserves_unicode_spelling_and_identifier_boundaries",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_matches_exact_filesystem_bytes_and_refuses_symlinks",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_regenerates_pinned_tables_and_rejects_invalid_input_and_output",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      }
+    ]
+  },
+  "src/source/unicode/xid_tables.inc": {
+    "contract": "docs/implementation/unicode.md",
+    "purpose": "Pinned Unicode 17.0.0 XID ranges, regenerated offline without host Unicode state.",
+    "tests": [
+      {
+        "case": "it_decodes_every_unicode_scalar_and_rejects_surrogates",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_rejects_overlong_out_of_range_and_malformed_sequences",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_matches_pinned_properties_over_the_entire_scalar_domain",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_preserves_unicode_spelling_and_identifier_boundaries",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_matches_exact_filesystem_bytes_and_refuses_symlinks",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_regenerates_pinned_tables_and_rejects_invalid_input_and_output",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      }
+    ]
+  },
   "tests/integration/rebuild/concurrent/Makefile": {
     "contract": "docs/implementation/incremental-build.md",
     "purpose": "Isolate simultaneous Make command-manifest checks and propagate errors.",
@@ -4762,6 +6401,180 @@
       }
     ]
   },
+  "tests/unit/source/Makefile": {
+    "contract": "docs/implementation/source-storage.md",
+    "purpose": "Register independent source storage, arena, Unicode, catalog and identity suites.",
+    "tests": [
+      {
+        "case": "it_keeps_aligned_addresses_stable_and_releases_every_record",
+        "command": "make -C tests/unit/source/memory",
+        "source": "tests/unit/source/memory/main.c"
+      },
+      {
+        "case": "it_preserves_existing_strings_on_limit_and_allocation_failure",
+        "command": "make -C tests/unit/source/memory",
+        "source": "tests/unit/source/memory/main.c"
+      },
+      {
+        "case": "it_uses_the_system_authority_without_global_compiler_state",
+        "command": "make -C tests/unit/source/memory",
+        "source": "tests/unit/source/memory/main.c"
+      },
+      {
+        "case": "it_matches_sha256_vectors_across_padding_and_block_boundaries",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_preserves_unicode_names_and_matches_a_stable_full_identity_vector",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_separates_categories_components_case_and_unicode_spelling",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_refuses_a_forced_digest_collision_without_merging_full_keys",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_registration_and_rejects_invalid_identities",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      }
+    ]
+  },
+  "tests/unit/source/memory/Makefile": {
+    "contract": "docs/implementation/source-storage.md",
+    "purpose": "Verify arena alignment, checked arithmetic, failure ownership and system callbacks.",
+    "tests": [
+      {
+        "case": "it_keeps_aligned_addresses_stable_and_releases_every_record",
+        "command": "make -C tests/unit/source/memory",
+        "source": "tests/unit/source/memory/main.c"
+      },
+      {
+        "case": "it_preserves_existing_strings_on_limit_and_allocation_failure",
+        "command": "make -C tests/unit/source/memory",
+        "source": "tests/unit/source/memory/main.c"
+      },
+      {
+        "case": "it_uses_the_system_authority_without_global_compiler_state",
+        "command": "make -C tests/unit/source/memory",
+        "source": "tests/unit/source/memory/main.c"
+      },
+      {
+        "case": "it_matches_sha256_vectors_across_padding_and_block_boundaries",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_preserves_unicode_names_and_matches_a_stable_full_identity_vector",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_separates_categories_components_case_and_unicode_spelling",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_refuses_a_forced_digest_collision_without_merging_full_keys",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_registration_and_rejects_invalid_identities",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      }
+    ]
+  },
+  "tests/unit/source/memory/main.c": {
+    "contract": "docs/implementation/source-storage.md",
+    "purpose": "Verify explicit arena allocation authority, alignment and failed-prefix cleanup.",
+    "tests": [
+      {
+        "case": "it_keeps_aligned_addresses_stable_and_releases_every_record",
+        "command": "make -C tests/unit/source/memory",
+        "source": "tests/unit/source/memory/main.c"
+      },
+      {
+        "case": "it_preserves_existing_strings_on_limit_and_allocation_failure",
+        "command": "make -C tests/unit/source/memory",
+        "source": "tests/unit/source/memory/main.c"
+      },
+      {
+        "case": "it_uses_the_system_authority_without_global_compiler_state",
+        "command": "make -C tests/unit/source/memory",
+        "source": "tests/unit/source/memory/main.c"
+      },
+      {
+        "case": "it_matches_sha256_vectors_across_padding_and_block_boundaries",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_preserves_unicode_names_and_matches_a_stable_full_identity_vector",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_separates_categories_components_case_and_unicode_spelling",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_refuses_a_forced_digest_collision_without_merging_full_keys",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_registration_and_rejects_invalid_identities",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      }
+    ]
+  },
+  "tests/unit/source/unicode/main.c": {
+    "contract": "docs/implementation/unicode.md",
+    "purpose": "Verify the complete Unicode scalar/XID domain, exact paths and offline regeneration.",
+    "tests": [
+      {
+        "case": "it_decodes_every_unicode_scalar_and_rejects_surrogates",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_rejects_overlong_out_of_range_and_malformed_sequences",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_matches_pinned_properties_over_the_entire_scalar_domain",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_preserves_unicode_spelling_and_identifier_boundaries",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_matches_exact_filesystem_bytes_and_refuses_symlinks",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_regenerates_pinned_tables_and_rejects_invalid_input_and_output",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      }
+    ]
+  },
   "tools/documentation/build.py": {
     "contract": "docs/implementation/documentation/README.md",
     "purpose": "Orchestrate staged Doxygen generation and verify reproducibility.",
@@ -4836,6 +6649,17 @@
         "case": "it_checks_actual_rendered_destinations_and_source_stability",
         "command": "make -C tests/unit/documentation",
         "source": "tests/unit/documentation/main.c"
+      }
+    ]
+  },
+  "tools/unicode/generate.c": {
+    "contract": "docs/implementation/unicode.md",
+    "purpose": "Regenerate maximal immutable XID ranges from the pinned Unicode input.",
+    "tests": [
+      {
+        "case": "it_regenerates_pinned_tables_and_rejects_invalid_input_and_output",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
       }
     ]
   }

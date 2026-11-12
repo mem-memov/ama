@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Reject repeated physical directory identities across configured roots.
+ *
+ * [SRC-02](../../../../spec/language/source-and-names.md#src-02)
+ * Equal device/inode pairs expose aliases even for empty directories.
+ */
 #include "../internal.h"
 
 ModuleStatus module_remember_directory(ModuleCatalog *catalog, const char *path) {

@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Preserve printable UTF-8 while escaping malformed and control bytes.
+ *
+ * [NAME-03](../../../spec/implementation/compiler.md#name-03)
+ * Never lose original byte identity through transliteration or replacement glyphs.
+ */
 #include <string.h>
 #include "internal.h"
 #include "source/unicode/unicode.h"

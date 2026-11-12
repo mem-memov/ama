@@ -1,7 +1,16 @@
+/**
+ * @file
+ * @brief Classify declared source candidates and physical submodule directories.
+ *
+ * [SRC-05](../../../../spec/language/source-and-names.md#src-05)
+ * A trailing plus is storage organization and requires its regular sibling module; it is not logical identity.
+ */
 #include <string.h>
 #include "../internal.h"
 #include "source/unicode/unicode.h"
 
+/** Match only a configured physical relative path or its slash-delimited descendants; no module-name heuristics.
+ */
 static bool excluded(const ModuleRoot *root, const char *relative) {
     for (size_t index = 0; index < root->excluded_count; index++) {
         size_t length = strlen(root->excluded[index]);
@@ -13,6 +22,8 @@ static bool excluded(const ModuleRoot *root, const char *relative) {
     return false;
 }
 
+/** Require the exact regular sibling module for a physical plus directory; missing/nonregular anchors become orphan diagnostics.
+ */
 static ModuleStatus verify_anchor(ModuleWalk *walk, const ModuleDirectory *directory,
     const char *base) {
     const char *anchor = source_arena_join(&walk->catalog->arena, directory->physical, "/", base);
@@ -27,6 +38,8 @@ static ModuleStatus verify_anchor(ModuleWalk *walk, const ModuleDirectory *direc
     return status;
 }
 
+/** Translate a validated base name to a logical component, then handle checked regular files/directories under the retained storage mapping.
+ */
 static ModuleStatus visit_candidate(ModuleWalk *walk, const ModuleDirectory *directory,
     const char *name, const char *base, bool submodule,
     const char *physical, const char *relative) {

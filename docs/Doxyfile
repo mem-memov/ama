@@ -7,6 +7,8 @@ INPUT                  = docs/documentation.md src stdlib/modules tools tests sp
 USE_MDFILE_AS_MAINPAGE  = docs/documentation.md
 RECURSIVE              = YES
 FILE_PATTERNS          = *.c *.h *.inc *.py *.md
+# Maintained .inc inputs are C; Doxygen otherwise parses this suffix as PHP.
+EXTENSION_MAPPING      = inc=C
 EXCLUDE_SYMLINKS       = YES
 EXCLUDE_PATTERNS       = */build/* */generated/*
 FULL_PATH_NAMES        = YES

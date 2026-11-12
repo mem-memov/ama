@@ -1,6 +1,15 @@
+/**
+ * @file
+ * @brief Validate diagnostic code, required prose and exact location consistency.
+ *
+ * [COMP-04](../../../spec/implementation/compiler.md#comp-04)
+ * Reject malformed borrowed records before any renderer consumes them.
+ */
 #include <string.h>
 #include "diagnostic.h"
 
+/** Allow absent locations only with zero offsets; otherwise require a bounded span and exact explicit/original path agreement.
+ */
 static bool location_valid(DiagnosticLocation location) {
     if (location.span.source == NULL) {
         return location.span.start == 0 && location.span.end == 0;

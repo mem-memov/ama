@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Build and release stable source records without publishing partial additions.
+ *
+ * [NAME-03](../../../spec/implementation/compiler.md#name-03)
+ * Preserve original paths and bytes for later diagnostic coordinates.
+ */
 #include <stdint.h>
 #include <string.h>
 #include "internal.h"
@@ -24,6 +31,8 @@ void source_manager_destroy(SourceManager *manager) {
     }
 }
 
+/** Copy path, bytes and line index into zeroed private storage. Failure leaves all completed allocations attached for caller cleanup.
+ */
 static SourceStatus copy_text(SourceManager *manager, SourceText *source,
     const char *path, const unsigned char *bytes, size_t length) {
     size_t path_length = strlen(path);

@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief Index original LF offsets and locate byte positions by exact predecessor search.
+ *
+ * [NAME-03](../../../spec/implementation/compiler.md#name-03)
+ * Report physical source lines and byte columns without rewriting Unicode.
+ */
 #include <stdint.h>
 #include "internal.h"
 
