@@ -108,7 +108,42 @@ share immutable backing under PROTO-06 while retaining independent Ama values.
 
 Deliverable: documented library contracts and representative complete examples.
 
-### Stage 7: Explicit asynchronous tasks
+### Stage 7: Compiled Ama libraries and C consumers
+
+Implement [EMBED-01 through EMBED-08](c-library.md) using the existing typed
+project, single generated C assembly and checked context/host boundary. Resolve
+explicit exports and supported public value schemas before emitting a consumer
+header; the header exposes opaque identities and independent native values,
+not the internal instance representation or the native-authoring interface.
+Validate target and ABI compatibility before creating a context. Initialize its
+constants and explicitly construct selected instances without automatically
+starting their bodies. Preserve entry/restart, output-only resume, retained reads
+and the three Ama execution outcomes; API rejection remains a separate result.
+
+Package that assembly as a static or supported shared library. Link it from a
+multi-translation-unit C host alongside another generated Ama component, including
+components that use the same logical module names. Verify public symbol
+isolation and pin executable code until its contexts, callbacks and exported
+allocations have been released. Test independent snapshots, especially one
+application-failure value containing its condition and description, through
+context disposal and injected allocation failures.
+
+Then embed a separately compiled child component inside a native C module of an
+outer Ama project. The native payload owns an opaque foreign context as a native
+resource; it does not hold a hidden Ama reference into the outer project. Use
+independent public C values across the boundary and make that resource
+noncopyable unless a genuine independent clone is provided. A child yield returns
+normally through the adapter's C activation. The outer module then explicitly
+chooses completion or its own yield; later resume starts a fresh native
+activation. Exercise child failure supervision separately from deliberate
+technical-failure propagation to the parent, and reject reentry into either
+already active context.
+
+Deliverable: reproducible standalone C-host and Ama → native C → child Ama
+examples, with typed public headers, exact build/link commands and lifecycle,
+suspension, failure and unload evidence for every EMBED requirement.
+
+### Stage 8: Explicit asynchronous tasks
 
 Implement the task-phase protocol, visible registrations, ready queues, and
 native reactor boundary from ASYNC-01 through ASYNC-12. Test readiness already
@@ -120,7 +155,7 @@ the task library and host interfaces with working complete examples.
 Deliverable: a responsive cooperative task system with no borrowed Ama state in
 callbacks and no hidden change to ordinary calls.
 
-### Stage 8: Isolated parallel contexts
+### Stage 9: Isolated parallel contexts
 
 Parameterize generated execution by an explicit context. Give every context its
 own mutable runtime and constant lifecycle. Implement audited native workers and
@@ -132,11 +167,13 @@ continues. Use process isolation for unaudited native dependencies.
 Deliverable: independently executing contexts communicating through explicit
 messages, without sharing mutable Ama instances or checked references.
 
-### Stage 9: Release hardening
+### Stage 10: Release hardening
 
 Run the acceptance matrix, sanitizer checks, failure injection, reproducibility
 checks, diagnostic review, and target-specific stackless verification. Update
-README, EBNF, ABI documentation, and contributor instructions together. Publish
+README, generated ABI headers, derived documentation and contributor instructions
+together. Canonical specification changes still need prior explicit user
+authorization; do not modify it to match implementation limitations. Publish
 explicit limitations and supported toolchain versions.
 Deliver the directory relocation utility and its source-graph, preservation,
 rollback, and recovery evidence under TOOL-01 through TOOL-04.
@@ -186,6 +223,12 @@ an engineering task; it does not reopen a source-language decision.
   resumable failed execution.
 - Verify mandatory native-entry inlining under the supported toolchain and preserve
   allowed internal C calls. Complete unit/integration/sanitizer/negative checks.
+- Implement the explicit compiled-library boundary from EMBED-01 through EMBED-08:
+  export resolution, compatible consumer headers, independent public values,
+  context/instance lifecycle, entry/resume/read, static/shared packaging and code
+  lifetime. Test both ordinary multi-file C consumers and a native Ama companion
+  owning a separately compiled child context, with explicit suspension/failure
+  supervision and no context reentry or hidden cross-component Ama references.
 - Keep documentation consistent with this specification and record actual
   acceptance evidence before claiming implementation support. Compiler Doxygen
   explanations link canonical file/rule anchors under ARCH-06; validate source

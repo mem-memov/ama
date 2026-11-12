@@ -226,6 +226,19 @@ you need the model, examples, or reasons behind a rule.
 | [CABI-05](implementation/native-interface.md#cabi-05) | Keep Ama references out of opaque payloads |
 | [CABI-06](implementation/native-interface.md#cabi-06) | Generate a usable native authoring interface |
 
+## Compiled libraries and C embedding
+
+| Requirement | Chapter section |
+|---|---|
+| [EMBED-01](implementation/c-library.md#embed-01) | Build an explicitly exported component |
+| [EMBED-02](implementation/c-library.md#embed-02) | Own contexts and exported instances explicitly |
+| [EMBED-03](implementation/c-library.md#embed-03) | Enter, resume, and read through a checked C boundary |
+| [EMBED-04](implementation/c-library.md#embed-04) | Transfer independently owned typed data |
+| [EMBED-05](implementation/c-library.md#embed-05) | Keep application and execution failures distinct |
+| [EMBED-06](implementation/c-library.md#embed-06) | Isolate names, ABI editions, allocators, and code lifetimes |
+| [EMBED-07](implementation/c-library.md#embed-07) | Own a foreign component as a native resource |
+| [EMBED-08](implementation/c-library.md#embed-08) | Complete nested C boundaries before yielding |
+
 ## Native protocols
 
 | Requirement | Chapter section |
@@ -276,7 +289,7 @@ you need the model, examples, or reasons behind a rule.
 
 | Requirement | Chapter section |
 |---|---|
-| [GEN-01](implementation/compiler.md#gen-01) | Emit one project assembly |
+| [GEN-01](implementation/compiler.md#gen-01) | Emit one assembly per independently compiled component |
 | [GEN-02](implementation/compiler.md#gen-02) | Lower Ama bodies to labels |
 | [GEN-03](implementation/compiler.md#gen-03) | Store values that survive control transfers explicitly |
 | [GEN-04](implementation/compiler.md#gen-04) | Emit from resolved IR |

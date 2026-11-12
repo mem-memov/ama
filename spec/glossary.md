@@ -73,6 +73,9 @@ See [values and references](language/values-and-references.md) and
 |---|---|
 | Runtime | Generated program machinery for pools, current-instance selection, access checks, lifecycle, control transfers, host outcomes, and diagnostics. It is distinct from the compiler. |
 | Execution context | An isolated runtime lifetime with its own pools, constants, current-instance selection, diagnostics, and one Ama executor. Checked Ama identities are local to it. |
+| Compiled component | An explicitly exported Ama dependency closure compiled as one generated C unit and packaged with a public C interface and target/ABI metadata under EMBED-01. A larger C application may link several components without merging their Ama state. |
+| Host control handle | A component-specific checked control token for a library context or exported instance. It is not a transferable Ama reference or access to private pool layout; EMBED-02 through EMBED-04 govern its origin, lifetime, and permitted operations. |
+| Foreign-context resource | An opaque owned library-context resource used by an Ama native wrapper under EMBED-07. Its isolated context is managed through the foreign public API; the wrapper cannot hide references into its own or an ancestor context in that payload. |
 | Executor | The single execution owner allowed to run Ama operations and change Ama state in one execution context. A native worker or external callback is not that executor. |
 | Task | An explicitly scheduled computation whose state lives in an instance. Its library protocol distinguishes runnable work, event waiting, and completion; it does not change ordinary call semantics. |
 | Reactor | Native event-waiting machinery that records native operation completions and makes them available to the context's executor without retaining borrowed Ama pointers. |

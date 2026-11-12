@@ -36,6 +36,10 @@ same generated code with independent mutable runtime state. Native hooks and
 linked libraries used concurrently must meet the parallel chapter's reentrancy
 requirements.
 
+Here a project assembly means the assembly of one independently compiled Ama
+component. A larger C application can link several such components; each keeps
+its own generated control flow and explicit context boundaries.
+
 ## Generated names and source maps
 
 ### Generate names from complete identities
@@ -49,6 +53,19 @@ must include the root kind, unambiguous component boundaries, and a versioned
 encoding; removing punctuation from component names must not erase root identity.
 Handwritten native symbols use the module-prefix facility in NAME-05; they are
 not discovered or rewritten by hashing a C source file.
+
+Link-visible names must additionally distinguish independently compiled Ama
+components under [EMBED-06](c-library.md#embed-06). Use collision-checked component
+qualification or genuine internal C linkage so two libraries can
+contain the same Ama module identities and standard-library dependencies without
+duplicate definitions or symbol interposition. This qualification changes C
+linkage identity, not a module's source-language nominal identity or context-local
+instance identities. Public host types and functions use their component's
+generated namespace; private native/runtime declarations must not leak a shared
+unqualified C type into that public header.
+Visibility settings may additionally restrict shared-library exports, but hiding
+an externally linked name alone does not make duplicate names safe when static
+objects are linked into one program.
 
 ### Detect hash collisions exactly
 
@@ -75,14 +92,23 @@ Do not change module identity merely to make it a C identifier.
 
 ## Generated project organization
 
-### Emit one project assembly
+### Emit one assembly per independently compiled component
 
 <a id="gen-01"></a>
 
-**GEN-01.** Generate one C translation unit per project, using either a standalone
-`.c` or a coordinated `.h`/`.c` pair included by a launcher. Do not create separate
-C functions for ordinary Ama modules or compile independent module C translation
-units whose boundaries defeat mandatory inlining.
+**GEN-01.** Generate one C translation unit per independently compiled Ama
+component, using either a standalone `.c` or a coordinated `.h`/`.c` pair included
+by a launcher. A component is the complete resolved Ama dependency closure of
+one compilation, with its selected entry or explicit library exports. Do not
+create separate C functions for ordinary Ama modules or compile independent
+module C translation units whose boundaries defeat mandatory inlining.
+
+A larger C project may contain many translation units and link one or more
+complete Ama components as static or shared libraries under
+[EMBED-01](c-library.md#embed-01). That external packaging boundary does not
+split a component's internal Ama execution into C calls. A separately compiled
+library is accessed through its generated host interface in its own execution
+context; it is not an unresolved Ama module body that the caller jumps into.
 
 The required logical order is external declarations and required forward types,
 native representation/generated type definitions, shared-constant
@@ -108,8 +134,9 @@ ordering and single translation-unit execution contract are requirements.
 
 Generated native interface headers and authoring scaffolds under CABI-06 are
 additional declaration/authoring artifacts. Checking them independently does not
-make native modules separate program translation units; the executable still
-uses the single project assembly required here.
+make native modules separate program translation units. A library's generated
+public host header is a different artifact under [EMBED-01](c-library.md#embed-01):
+consumers compile it without including the component's execution assembly.
 
 ### Lower Ama bodies to labels
 
@@ -323,11 +350,15 @@ must not be implemented as a hidden C call per Ama invocation.
 
 <a id="stack-01"></a>
 
-**STACK-01.** Ama-to-Ama execution MUST NOT use the C function-call stack.
+**STACK-01.** Ama-to-Ama execution inside one compiled component MUST NOT use the
+C function-call stack.
 The generated entry body for an `@C` module MUST be inlined into generated
 execution. Plain `inline`, `static inline`, or LTO alone are not proof that this
 entry boundary has disappeared. The backend must enforce that boundary under
-the supported toolchain and reject unsupported entry implementations.
+the supported toolchain and reject unsupported entry implementations. An explicit
+call through a separately compiled library's generated host API is a component
+boundary governed by [EMBED-08](c-library.md#embed-08), not an internal Ama call
+or permission to generate one C function per module.
 
 ### Allow ordinary native helper calls
 
@@ -339,15 +370,32 @@ Allocation, I/O, and native lifecycle callbacks may use the C stack. They are
 not required to inline transitively. Native code must still obey Ama's ownership,
 reference-lifetime, acquisition, and interface contracts.
 
+A synchronous native helper may act as the host of a separately compiled Ama
+library through its generated API, using a distinct isolated context under
+[EMBED-08](c-library.md#embed-08). The child API returns normally with its admission
+result and, when execution started, completed, yielded, or failed. All helper
+activations must return before the outer Ama body continues or yields. The helper may
+not enter its current or any active ancestor context. Retained native callbacks
+remain subject to [ASYNC-05](../language/async-and-parallelism.md#async-05) and
+cannot use this host boundary to execute Ama.
+
 ### Never yield across an unfinished native call
 
 <a id="stack-03"></a>
 
 **STACK-03.** Native C calls must complete normally before control returns to
-Ama. A native helper or callback must not become an alternative C-call dispatcher
-for Ama modules. An Ama yield saves only explicit Ama state, not an active C
-stack; yielding through an unfinished native call is unsupported. Native nonlocal
-exits must not bypass runtime cleanup or leave instances busy.
+their calling Ama component. A native helper or callback must not become an
+alternative C-call dispatcher for that component's Ama modules. An Ama yield
+saves only explicit Ama state, not an active C stack; yielding through an
+unfinished native call is unsupported. Native nonlocal exits must not bypass
+runtime cleanup or leave instances busy.
+
+When an explicit native host calls a separate library context, the child's `%`
+returns `yielded` normally through that child's generated API. The helper then
+returns normally to its own native entry. Only afterwards may the outer Ama
+component itself yield. No helper frame remains attached to either continuation,
+and no automatic resume loop is introduced; see
+[EMBED-08](c-library.md#embed-08).
 
 ### Verify the generated control-flow property
 

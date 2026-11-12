@@ -1,7 +1,7 @@
 # Ama implementation work queue
 
 The whole [spec/](spec/README.md) directory is authoritative. The
-[requirement index](spec/requirements.md) locates all 192 current requirements;
+[requirement index](spec/requirements.md) locates all 200 current requirements;
 [spec/grammar.md](spec/grammar.md) defines source forms. This file orders the
 engineering work needed to implement those contracts. It neither changes the
 language nor grants permission to edit the specification.
@@ -11,8 +11,10 @@ language nor grants permission to edit the specification.
 Start with the first unfinished task whose prerequisites are satisfied. Complete
 one independently testable task, record its evidence here and in the relevant
 component contract, and commit that task before beginning the next one. Task
-identifiers are stable; retain them when adding or splitting future work. A
-phase is a planning group, not one large implementation commit.
+identifiers are stable; retain them when adding or splitting future work.
+New tasks can therefore appear before lower-numbered tasks when their dependency
+position requires it: follow prerequisites and presentation order, not ID order.
+A phase is a planning group, not one large implementation commit.
 
 The checkboxes below describe work against the current specification, including
 revalidation of reusable implementations. They do not claim that every listed
@@ -101,7 +103,7 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
 [conformance](spec/implementation/tools-and-conformance.md).
 
 - [ ] **T001 — Audit the implementation delta.** Needs: none. Build a matrix for
-  all 192 indexed requirements and acceptance rows against existing components,
+  all 200 indexed requirements and acceptance rows against existing components,
   code files and executable evidence. Validate every reported baseline item;
   distinguish confirmed support, changed contracts, gaps and blockers without
   resetting or trusting old checkmarks wholesale. Record the smallest remaining
@@ -586,7 +588,85 @@ Contracts: [library](spec/language/library.md),
   failures and repeated workflows. Record proposed language changes as questions;
   do not alter `spec/` or infer new semantics while improving implementation.
 
-## Phase 12. Explicit cooperative tasks and native events
+## Phase 12. Compiled Ama libraries and C-module embedding
+
+Contracts: [EMBED-01–EMBED-08](spec/implementation/c-library.md),
+[native boundary](spec/implementation/native-interface.md),
+[host control](spec/implementation/runtime.md#rt-14).
+
+- [ ] **T123 — Resolve explicit C-library exports and build inputs.** Needs:
+  T040, T061, T087. Implement the documented export manifest, explicit component
+  identity and target/ABI metadata without scanning module names or exporting all
+  internals. Resolve exported entries and supported value schemas through the
+  existing typed project. Test missing/duplicate exports, identity collisions,
+  unsupported schemas, dependency invalidation and preservation of handwritten
+  inputs. Keep the executable launcher and library target separate.
+- [ ] **T124 — Generate the public C consumer header.** Needs: T055, T085,
+  T086, T123. Emit self-contained namespaced declarations, opaque host identities,
+  documented ownership and exact ABI/version checks from one export schema. Keep
+  native-authoring headers and private runtime layouts outside this public
+  boundary. Compile multiple independent C consumers and incompatible-header
+  negatives; cover ERROR-01's single condition-capable failure value through its
+  independent C snapshot rather than separate Boolean and reason results.
+- [ ] **T125 — Implement exported context and instance lifecycle.** Needs:
+  T013, T074, T124. Create independent contexts, initialize their constants and
+  explicitly construct exported instances without executing their bodies.
+  Implement quiescent release/disposal with checked owner, generation and ABI
+  identities. Test partial startup, retained completed/yielded state, cross-context
+  access with equal local numbers, nonreentrant execution, failure cleanup and
+  exactly-once disposal without automatically running saved continuations.
+- [ ] **T126 — Implement typed inputs and independent result snapshots.** Needs:
+  T069, T084, T086, T125. Generate checked factories, argument preparation and
+  public value reads using the documented supported schemas; publish outputs
+  only after successful preparation. No consumer receives internal Ama addresses,
+  reference handles or continuation storage. Test byte lengths, empty values,
+  malformed/schema-mismatched data, overflow/allocation rollback, repeated retained
+  reads and snapshots that remain usable after instance/context disposal. Verify
+  a failure snapshot contains both its condition value and owned description.
+- [ ] **T127 — Implement exported entry, resume and refusal outcomes.** Needs:
+  T067, T074, T126. Preserve the three Ama execution outcomes and report invalid
+  C requests or operation refusals through the separate API result. Test restart
+  versus resume, output-only resume, busy/absent/stale selections, independent
+  application-failure values and context-ending technical failure. Reject foreign
+  owners and invalid requests before entering Ama or changing execution state;
+  do not introduce a fourth Ama outcome or an implicit scheduling loop.
+- [ ] **T128 — Build static and shared components with pinned code lifetime.**
+  Needs: T008, T010, T017, T123, T124, T127. Compile the complete Ama closure as
+  one C translation unit and package its object as a static or supported shared
+  library. Apply the component namespace to every externally linked symbol and
+  keep generated internals private. Link two independently generated components
+  into a multi-translation-unit C host, including overlapping Ama module names.
+  Test target/ABI incompatibility, repeatable build metadata and refusal to unload
+  code while contexts, callbacks or component-owned values still require it.
+  Exercise lifetime pins with a minimal native probe here; the full asynchronous
+  and concurrent component compositions follow in T099 and T106.
+- [ ] **T129 — Own a foreign Ama component inside a native Ama module.** Needs:
+  T012, T073, T128. Implement an example native adapter that owns an opaque child
+  context as a native resource in another compiled component. Configure child
+  constants/instances explicitly, transfer only supported independent C values
+  and release them on all construction/destruction paths. Omit native clone
+  support unless a genuine independent resource clone is supplied; do not copy
+  an opaque pointer as value cloning. Test that the parent and child cannot
+  exchange checked Ama references or use each other's instance identities.
+- [ ] **T130 — Exercise nested suspension and failure supervision.** Needs:
+  T074, T086, T129. Execute the exact chain parent Ama entry → native C adapter →
+  child component context without reentering either active context. Have child
+  yield return normally through C; explicitly return or yield the parent and
+  resume each context only after its previous native activation has ended. Test
+  retained child state, explicit parent policy for child failure, copied diagnostic
+  data surviving child cleanup, independent parent continuation and deliberately
+  requested propagation as a parent technical failure. Cover child abandonment/
+  disposal without automatically resuming its saved position or retaining borrows.
+- [ ] **T131 — Accept standalone and nested C-library consumption.** Needs:
+  T089, T128, T130. Publish reproducible static/shared-library host and nested
+  Ama/native/Ama examples with generated headers, manifest and exact build/link
+  commands. Run independent-header, multi-C-file, two-component, ownership,
+  yield/resume, failure, teardown and supported sanitizer tests; map every
+  EMBED-01–EMBED-08 rule to current component and composed evidence. Explain the
+  difference between same-context Ama calls and a separately compiled child
+  component, and document actual supported targets and loader limitations.
+
+## Phase 13. Explicit cooperative tasks and native events
 
 Contracts: [ASYNC-01–ASYNC-12](spec/language/async-and-parallelism.md).
 
@@ -630,11 +710,13 @@ Contracts: [ASYNC-01–ASYNC-12](spec/language/async-and-parallelism.md).
   operation clones or noncopyable resources. Test external operation sharing,
   subscriber rights and context-wide technical failure with complete detachment.
 - [ ] **T099 — Accept the asynchronous library and supported host.** Needs:
-  T089, T098. Publish working event/task examples and declared library/host APIs.
+  T089, T098, T131. Publish working event/task examples and declared library/host APIs.
   Exercise reactor integration through the supported arrangement, cancellation,
   finite scheduling bounds and all ASYNC acceptance races under native sanitizers.
+  Include exported components with pending native completions: code remains
+  pinned until detachment/acknowledgment and owned exported values are released.
 
-## Phase 13. Isolated parallel contexts and explicit messages
+## Phase 14. Isolated parallel contexts and explicit messages
 
 Contracts: [PAR-01–PAR-08](spec/language/async-and-parallelism.md#parallelism-uses-isolated-execution-contexts).
 
@@ -667,8 +749,10 @@ Contracts: [PAR-01–PAR-08](spec/language/async-and-parallelism.md#parallelism-
   T102, T105. Run native-only worker and two-context messaging examples with
   independent failure continuation and explicit supervisor policy. Verify all
   PAR invariants and document process isolation for unsupported native concurrency.
+  Include separately generated components and nested child-context resources in
+  the namespace, native thread-safety, executor-affinity and code-lifetime checks.
 
-## Phase 14. Reusable exploration, debugging and relocation tools
+## Phase 15. Reusable exploration, debugging and relocation tools
 
 Contracts: [tools](spec/implementation/tools-and-conformance.md),
 [diagnostics](spec/implementation/diagnostics.md).
@@ -710,17 +794,18 @@ Contracts: [tools](spec/implementation/tools-and-conformance.md),
   projects and regenerate verified output afterward. Document exact scope,
   preserved opaque files, unsupported editors and actual tool limitations.
 
-## Phase 15. Complete coverage, conformance and release evidence
+## Phase 16. Complete coverage, conformance and release evidence
 
 Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acceptance-matrix),
 [exact algorithms](spec/implementation/compiler.md#exact-algorithms-and-formal-justification).
 
 - [ ] **T116 — Close every code-file documentation and test gap.** Needs: T005,
-  T106, T115. Complete the inventory for compiler/runtime/library/tools and headers;
+  T106, T115, T131. Complete the inventory for compiler/runtime/library/tools,
+  exported components, native embedding adapters and headers;
   map every code file to meaningful behavioral or compile tests. Generate complete
   Doxygen output and check every substantial component's contract/proof/evidence.
 - [ ] **T117 — Close all requirement and composition gaps.** Needs: T116.
-  Update T001's matrix for all 192 requirements and every acceptance row, with
+  Update T001's matrix for all 200 requirements and every acceptance row, with
   exact commands and current evidence. Add missing independent leaf, parent and
   generated-program cases; no unsupported feature can be marked complete.
 - [ ] **T118 — Verify deterministic and incremental product behavior.** Needs:
@@ -767,6 +852,7 @@ this table is navigation, not a parallel semantic definition.
 | LIB-01–LIB-02 | T085–T089, T099, T106 |
 | ASYNC-01–ASYNC-12 | T090–T099 |
 | PAR-01–PAR-08 | T006, T013, T052, T061, T100–T106 |
+| EMBED-01–EMBED-08 | T123–T131, T116–T122 |
 | TOOL-01–TOOL-04 | T110–T115 |
 
 ## Useful verification commands

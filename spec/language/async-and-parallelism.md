@@ -237,6 +237,12 @@ The callback must never resume a task itself, including when the underlying
 native library invokes the callback synchronously during operation submission.
 The record is queued for delivery in both cases. This prevents callback-driven
 reentry while inputs, output actions, or native views are still protected.
+The restriction includes entering any other Ama library context: the synchronous
+native-host facility in [EMBED-08](../implementation/c-library.md#embed-08) is
+not available from a retained completion callback. The owned child-context
+resource allowed by [CABI-05](../implementation/native-interface.md#cabi-05)
+belongs to an explicit wrapper operation, not a callback record or completion
+endpoint.
 
 <a id="async-06"></a>
 
@@ -433,7 +439,8 @@ bound. A task that never returns is outside that cooperative progress guarantee.
 <a id="par-01"></a>
 
 **PAR-01.** **A context is the unit of isolation.** An execution context contains
-its own root, module instance pools, shared constants, initialization state,
+its own explicit root instances, module instance pools, shared constants,
+initialization state,
 checked identities, current-instance selector, acquisition state, diagnostic
 state, and executor control state. Constants are shared between instances of a
 module within that context; their Ama storage is not shared between contexts.
@@ -474,9 +481,9 @@ resume on another thread after the required ownership transfer.
 
 <a id="par-03"></a>
 
-**PAR-03.** **A message is independently owned data.** Communication between
-contexts uses an explicitly declared channel and a self-contained typed message
-schema. A sender serializes an application value into native-owned bytes; a
+**PAR-03.** **A message is independently owned data.** Asynchronous communication
+between contexts uses an explicitly declared channel and a self-contained typed
+message schema. A sender serializes an application value into native-owned bytes; a
 receiver validates the schema and constructs independent Ama values in its own
 context. Message data must not contain checked Ama handles, instance or field
 addresses, list-buffer addresses, saved code selectors, continuation records,
@@ -495,6 +502,16 @@ resource is forbidden.
 Serialization can deliberately send the data used by a computation so that a
 receiver starts a new computation. It does not transfer the sender's executable
 continuation. The receiver chooses its own declared entry module and state.
+
+A synchronous C host call into a separately compiled Ama library is a distinct
+explicit boundary, not an asynchronous channel operation. Its generated typed
+native-value transport or serialized schema follows
+[EMBED-04](../implementation/c-library.md#embed-04), constructs independent values,
+and exports no live Ama storage or checked Ama references. This permits a C
+caller or native adapter to pass a text value directly through the published
+library API without inventing a queued message. It does not authorize arbitrary
+cross-context field access, shared mutable instances, or continuation transfer.
+Channel operations still obey all channel-schema and FIFO requirements above.
 
 <a id="par-04"></a>
 
@@ -576,9 +593,13 @@ and do not acquire a C activation per Ama invocation.
 
 The context object owns its runtime state through initialization, execution,
 yield, resume, failure, and disposal. A host may own and retain that execution
-object at the root boundary; this is distinct from a native Ama payload hiding
-references to instances. Its concrete C type names and entry functions are ABI
-artifacts, not new Ama syntax or fixed `.abi` records.
+object at the root boundary. An `@C` wrapper may likewise own a separate library
+context and its checked instance-control resources only through
+[EMBED-07](../implementation/c-library.md#embed-07)'s narrow native-resource
+contract and [CABI-05](../implementation/native-interface.md#cabi-05). These
+control capabilities are not ordinary Ama references and do not let the parent
+resolve or share the child's fields. Its concrete C type names and entry
+functions are ABI artifacts, not new Ama syntax or fixed `.abi` records.
 
 <a id="par-08"></a>
 
@@ -593,7 +614,8 @@ Channel tests cover FIFO acceptance, full capacity, byte limits, malformed
 messages, close with queued data, receiver abort, sender shutdown, cancellation,
 and failure during decoding. Native event tests include completions arriving
 while another context runs and after the original context is disposed. General
-invariants are: one executor per context; no Ama identity crosses a context
-boundary; accepted messages have one owner at each stage; callbacks have no Ama
+invariants are: one executor per context; no context resolves another context's
+Ama identity or receives its checked reference as a value; accepted messages
+have one owner at each stage; callbacks have no Ama
 access; and every accepted wakeup is either pending, delivered, or invalidated
 by an explicit lifecycle event.

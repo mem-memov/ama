@@ -49,6 +49,7 @@ program is well typed and what happens when it executes.
 |---|---|
 | [Runtime](implementation/runtime.md) | Stable pools, availability, control transfers, host outcomes, and execution contexts |
 | [Native interface](implementation/native-interface.md) | C interfaces, the six native protocols, state boundaries, and lifecycle |
+| [Compiled Ama libraries in C](implementation/c-library.md) | Exported C interfaces, static/shared packaging, checked host objects, and use inside another Ama native module |
 | [Compiler](implementation/compiler.md) | Resolution, typed IR, generated C, component boundaries, and exact algorithms |
 | [Diagnostics](implementation/diagnostics.md) | Expected refusals, fatal failures, status values, and execution traces |
 | [Tools and conformance](implementation/tools-and-conformance.md) | Deliverables, tests, relocation tooling, and acceptance scenarios |
@@ -90,6 +91,13 @@ and `%` returns to the immediate caller. Programs can opt into the explicit task
 and event-loop contracts in the asynchrony chapter. Independent contexts may
 execute in parallel and communicate through explicit messages; mutable Ama
 instances and checked references do not cross that boundary.
+
+The [compiled-library contract](implementation/c-library.md) also permits a
+C host, including an Ama native wrapper acting as that host, to call a separately
+compiled component through its exported API. Each selected library context owns
+its state independently. Data cross the boundary as declared independent native
+values; an opaque foreign-context resource does not grant access to another
+context's Ama instances.
 
 No hidden scheduler changes the meaning of a normal call. There is no implicit
 default instance, automatic retry of a busy target, general expression language,

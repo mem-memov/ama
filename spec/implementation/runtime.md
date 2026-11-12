@@ -47,8 +47,8 @@ Capacity, live instance count, and the set of available slots are separate value
 Allocating initial capacity does not initialize every slot or require executing
 module bodies. Pool existence never implies a default live instance. Apart from
 the root described below, live objects are created through explicit ownership,
-collection, and copy operations. The exact initial capacity remains an
-implementation policy, independent of object creation.
+collection, copy, and generated host-instance creation operations. The exact
+initial capacity remains an implementation policy, independent of object creation.
 These are logical runtime facilities: a verified storage optimization under
 RT-02/RT-05 and GEN-03 may omit a physical representation whose absence cannot
 be observed. Pool creation alone must not introduce observable instance
@@ -59,8 +59,8 @@ construction or native lifecycle calls.
 <a id="rt-11"></a>
 
 **RT-11.** After that context's shared constants have initialized successfully,
-context startup selects one executable entry module and creates one root
-instance of its type, initializes its owned state and interface defaults, and
+standalone context startup selects one executable entry module and creates one
+root instance of its type, initializes its owned state and interface defaults, and
 starts it at entry. This is a host startup rule, not permission to execute a type
 path in Ama source. Initialize owned children recursively without executing their
 bodies; lists without initializers are empty and references without initializers
@@ -70,6 +70,18 @@ sentinel. Root completion, yield, and failure return control to the host under
 RT-14 through RT-16; startup does not introduce an implicit scheduler.
 The initial root entry uses the interface just constructed; it does not reset
 or construct that interface a second time before executing its first statement.
+
+An explicit library host can instead create an initialized context without
+selecting or executing a root, then create an instance of a declared export
+without executing its body. Context creation initializes constants; instance
+creation initializes that instance's owned state and interface. These operations
+do not acquire an implicit root body or run library code as a loader side
+effect. The later explicit host entry follows ordinary CALL-08 interface
+preparation, including supplied/default inputs, whereas the combined standalone
+startup above consumes its freshly prepared initial interface once. This keeps
+construction and invocation distinct without adding a second initialization to
+the combined path. The exact host operations and their rollback contracts are
+specified in [EMBED-02](c-library.md#embed-02).
 
 ### Keep state and control metadata in stable slots
 
@@ -343,6 +355,16 @@ or C stack activation is preserved for later resumption; all continuation data
 lives in explicit instance/runtime storage. Returning to and reentering the host
 interface is a program boundary, not a C call per Ama module invocation.
 
+These are execution outcomes, not every possible host API response. A generated
+library API can reject a request before starting execution, for example because
+its context or instance identity is invalid or the context is already active.
+Such rejection is separate from `failed`: it does not enter Ama, fail an otherwise
+valid context, reset its interface, bind inputs, or change retained results.
+The host must observe the admission result before interpreting an execution
+outcome. Its checked control handles and precise distinction between admission
+rejection and execution failure are governed by
+[EMBED-03](c-library.md#embed-03) and [EMBED-05](c-library.md#embed-05).
+
 ### Resume or dispose a yielded root
 
 <a id="rt-15"></a>
@@ -356,9 +378,18 @@ of the entire context, including through another selected entry, and preserve
 that context's pools and identities between resumes. Different contexts may
 execute independently under PAR-01 through PAR-03.
 Destroying a yielded root performs normal ownership cleanup, not continuation
-execution. An explicit host may inspect retained results under the usual access
-contract before deciding what to do next. Concrete C API names remain an ABI
+execution. An explicit host may inspect a healthy, available instance's retained
+results under the usual access contract before deciding what to do next.
+Concrete C API names remain an ABI
 implementation detail.
+
+An `@C` module can itself be that host for a separate library context under
+[EMBED-08](c-library.md#embed-08). The outer context stays active until its native
+entry returns; it cannot be reentered by the child, by an ancestor lookup, or
+through a callback. A child yield or technical failure returns normally to the
+native host and affects only that child context unless the host explicitly
+chooses a wider failure policy. Destroying a child context performs nonexecuting
+cleanup, not implicit resumption of its suspended body.
 
 ### Keep launcher policy explicit
 

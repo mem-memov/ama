@@ -23,7 +23,10 @@ The compiler checks declarations and generated uses. It does not prove the C
 implementation correct.
 
 The most important ownership boundary is simple: generated Ama fields hold Ama
-objects and references; opaque native payloads hold native resources. Keeping
+objects and references; opaque native payloads hold native resources. A checked
+control resource for a separately hosted library context has the narrow exception
+described in CABI-05 and [EMBED-07](c-library.md#embed-07); it is not a reference
+to an object in the enclosing Ama graph. Keeping
 that boundary visible lets the runtime copy the ownership graph and invalidate
 references without asking arbitrary C payloads to reveal hidden pointers.
 
@@ -74,11 +77,16 @@ generator or its inputs; do not amend the specification to match accidental
 output. The checks in CABI-06 connect the specification, independently usable
 authoring header, and final project assembly.
 
-Independent header checking does not promise independently linkable native Ama
-module binaries or a universal plugin ABI. [GEN-01](compiler.md#gen-01) still
-requires one project C assembly, and [STACK-01](compiler.md#stack-01) still
-requires the native entry boundary to disappear through verified inlining.
-Ordinary native helpers and external C libraries may use normal calls under
+Independent header checking does not make each native Ama module an independently
+linkable binary or establish a universal plugin ABI. [GEN-01](compiler.md#gen-01)
+requires one C assembly per compiled Ama component, and
+[STACK-01](compiler.md#stack-01) still requires the native entry boundary within
+that assembly to disappear through verified inlining. A complete independently
+compiled component can instead expose the generated public C library interface
+under [EMBED-01](c-library.md#embed-01).
+Its public host header is distinct from an individual native companion's
+authoring header. Ordinary native helpers and external C libraries, including
+that separate component's explicit host interface, may use normal calls under
 [STACK-02](compiler.md#stack-02).
 
 ### Which names and layouts in examples are fixed?
@@ -133,6 +141,18 @@ selected by basename. The generator establishes the same prefix for its `.h`
 and `.c` and generated typed uses, and removes the temporary naming context
 after each inclusion. The prefix is independent of file discovery/include order.
 Shared ABI declarations such as `AmaStatus` have one documented runtime namespace.
+
+That namespace and module-prefix isolation apply within one compiled component.
+When several compiled Ama libraries are linked together, NAME-01 and
+[EMBED-06](c-library.md#embed-06) additionally require component-qualified external
+symbols or genuine internal C linkage, including native helpers. Shared-library
+visibility alone does not replace unique external names when static objects are
+linked together. The public library host header uses its own component-qualified
+types; it must not export
+an unqualified private `AmaStatus`, native payload type, or authoring macro merely
+because it is present in the component's native assembly. A host status type
+expresses the documented host contract rather than exposing that private native
+declaration by accident.
 
 This mechanism qualifies authored identifiers; it does not parse or rewrite
 arbitrary C. The preprocessor's macro namespace is still shared: companion macros
@@ -224,11 +244,12 @@ requires no source-language change when its native observations remain valid.
 | Domain | Persistent contents | Ownership and copy authority |
 |---|---|---|
 | Compiler-visible Ama fields | Owned instances/lists, reference variables/lists, interface values, execution/control metadata | Compiler/runtime |
-| Opaque native payload | Native scalars, buffers, file/socket/device handles, and other native-owned resources | Native lifecycle hooks |
+| Opaque native payload | Native scalars, buffers, file/socket/device handles, other native-owned resources, and the restricted external library control resources below | Native lifecycle hooks |
 
-All persistent ownership of Ama instances and all persistent Ama references MUST
-be represented by declared Ama fields. An opaque payload must not hide Ama handles,
-addresses of instances or fields, list-buffer addresses, caller connections, or
+All persistent ownership of instances in the component's Ama graph and all
+persistent Ama references MUST be represented by declared Ama fields. An opaque
+payload must not hide Ama handles, addresses of instances or fields,
+list-buffer addresses, caller connections, or
 saved execution positions. Encoding such identities as integers or bytes does
 not exempt them from this rule. Raw `void *` is permitted only for native resources
 under their lifecycle contract, not as an untracked Ama reference or owner.
@@ -251,6 +272,37 @@ fixup responsibility. There is no additional tracing protocol for hidden referen
 This boundary applies equally to default values, parameters/results, list elements,
 ordinary clones, and `%` copies. C remains capable of arbitrary operations, but
 violating this native contract is unsupported native code, not defined Ama behavior.
+
+#### A native wrapper may own an isolated library host resource
+
+The sole additional control-resource case is an `@C` wrapper acting as the host
+of a separately compiled Ama library under [EMBED-07](c-library.md#embed-07).
+Its opaque payload may own that library's execution context and retain generated,
+checked host-control handles for instances in that owned context. These handles
+are native API capabilities: they are not ordinary Ama reference values, borrowed
+views, cross-context aliases, or handles that the enclosing runtime can resolve.
+The child context is a separately disposed native resource, not an invisible
+owned edge in the enclosing Ama graph. CABI-05's prohibition still covers
+ordinary Ama handles, addresses, current/ancestor context control handles, and
+encoded equivalents. This exception does not permit borrowing another context's
+instances or hiding references back into the parent.
+
+Construction may create the child context, initialize its constants, and construct
+explicit exported instances without running their bodies. Actual entry and resume
+occur only in explicit wrapper operations. Destruction disposes of child resources
+without executing suspended Ama statements. The wrapper must retain the library's
+code and required native operation records until disposal and completion of any
+callback that can still use them; unloading an image does not cancel those users.
+The canonical lifecycle and shutdown contract is
+[EMBED-06](c-library.md#embed-06).
+
+The baseline owning wrapper omits `=` and is therefore statically noncopyable,
+including through an owned enclosing field. Neither ordinary copying nor `%`
+copying can duplicate a child context, its control handles, or native callback
+registrations implicitly. Supporting an independently reconstructed child requires
+an explicit conforming clone contract; sharing a mutable child context between
+copied payloads does not implement PROTO-06. This exception does not add a seventh
+`.abi` protocol or make the enclosing runtime trace the child's graph.
 
 ### Generate a usable native authoring interface
 
@@ -345,8 +397,10 @@ skeleton using the supplied tooling settings, and a composed project check provi
 agreement of types, names and include ordering. Exercise transitive types, equal
 native helper basenames in different modules, supported reference cycles, repeat
 inclusion and temporary naming-context cleanup. These are declaration/scaffold
-checks, not permission to link native modules separately or relax native-entry
-inlining.
+checks, not permission to link individual native modules separately or relax
+native-entry inlining. Complete component-library packaging and its separate
+public-header checks follow [EMBED-01](c-library.md#embed-01) and
+[EMBED-06](c-library.md#embed-06).
 
 The acceptance evidence must identify the target/configuration actually checked.
 Exercise recorded ABI-affecting configuration or representation mismatches and

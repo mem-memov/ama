@@ -96,6 +96,11 @@
   control, and native effects are preserved. Do not introduce working-state
   save/restore or implicit default instances. Persistent Ama references belong to
   declared Ama fields, never opaque native payloads.
+- Compiled Ama libraries use the checked C boundary in `spec/implementation/c-library.md`.
+  An Ama native wrapper may own an opaque foreign-context resource only under
+  EMBED-07/EMBED-08; it must not hide ordinary Ama references or reenter a running
+  context. C calls between isolated compiled components do not replace internal
+  Ama label dispatch, and a child yield must return normally before an outer yield.
 - Asynchrony is explicit and cooperative. `%` returns to the immediate caller;
   native callbacks do not retain borrowed Ama state or execute Ama. Parallelism
   uses isolated execution contexts with one executor each and explicit messages,

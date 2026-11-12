@@ -47,6 +47,10 @@ The implementation MUST provide:
 10. Explicit asynchronous task/event facilities and isolated parallel execution
     contexts under ASYNC-01 through ASYNC-12 and PAR-01 through PAR-08, with
     documented library/host interfaces and conformance evidence.
+11. Compiled Ama components with generated public C headers, explicit export
+    configuration and target/ABI metadata, static and target-supported shared
+    library artifacts, and documented host/native-wrapper examples under
+    [EMBED-01 through EMBED-08](c-library.md).
 
 The compiler MAY reuse independently tested source-management, hashing, layout,
 and ownership components from the existing project. Reuse must not preserve
@@ -469,6 +473,27 @@ ownership effects, and source diagnostics are covered. At minimum:
 | Error diagnostics | Nested failures report original module/file/line and caller sites before cleanup; same-type instances remain distinct; resumed traces use the new caller; native status is reported after normal C return |
 | Diagnostic failure | Allocation failure can report without heap trace construction; pre-root failures show initialization context; native stack/history is not fabricated |
 | Cleanup | Success/failure/shutdown release each owned resource once; generated files never overwrite handwritten inputs |
+
+### Compiled libraries and native-wrapper embedding
+
+| Area | Required acceptance evidence |
+|---|---|
+| Exports and packaging | Explicit export configuration and complete Ama/native closure; public header compiles as the first project include in two independent C consumer units; static and supported shared artifacts link into a larger C program without generated main or automatic Ama body execution |
+| Explicit library objects | Context creation initializes constants without executing root bodies; exported instance creation is explicit and unexecuted; repeated entry resets only the interface, preserves body state, and supports retained read and valid resume; destroy/context disposal clean resources once |
+| Checked host entry | Foreign/stale/wrong-type control handles and reentrant/concurrent entry are rejected before state changes; API rejection is distinct from the three accepted execution outcomes; refused invocation does not publish a new result; failed contexts cannot resume |
+| Typed C values | Caller input views do not escape; decoded Ama values and exported C snapshots own their data; reference-bearing types require a valid declared value serializer; no raw Ama handle or live field address crosses a component boundary; copies preserve one failure value's condition and description |
+| Component identities | Two independently built libraries containing equal Ama logical module paths and helper basenames link without collision or unintended symbol interposition; their mutable state and host tokens remain isolated; ABI/profile/schema mismatches are rejected through documented checks |
+| Code and allocator lifetime | Allocations are released through the owning component's documented API; outstanding objects, snapshots, borrowed diagnostics and detached native completions retain required code lifetime; unsupported unload is forbidden and cleanup cannot jump into released code |
+| Native-owned foreign resource | A native wrapper owns only a checked opaque foreign context/instance resource, with no own-context Ama handles in its payload; constructor does not start child bodies, finalization disposes the child once, and baseline owned copying is rejected when the native resource omits clone support |
+| Nested yield and failure | Child execution can complete, yield or fail while an outer context waits in native C; every child C call returns normally before the outer Ama adapter yields; later steps resume the correct child without new inputs; active-ancestor reentry is rejected, retained completion callbacks only post native events, and child failure is explicitly propagated or mapped after cleanup, never silently resumed |
+
+The compiled-library examples must use the actual produced artifacts, not a
+manually combined source-only launcher. Include a C application with several
+translation units and a separate Ama project whose handwritten native adapter
+links the produced component. Verify the internal stackless property separately
+from the permitted C call at each exported component boundary. Asynchronous
+completion and unload tests additionally cover late callbacks under ASYNC-09;
+parallel acceptance uses the applicable PAR invariants.
 
 ### Asynchronous and parallel execution
 
