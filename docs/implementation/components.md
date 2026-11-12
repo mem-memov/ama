@@ -92,8 +92,9 @@ replaced, not silently retained as current acceptance.
 
 T138–T144 perform the concrete splits listed in the queue. Each split preserves
 its verified domain and failure behavior, narrows child dependencies and adds
-Doxygen explanations/rule links. T133 reviews whether each retained responsibility
-has an appropriate home. T145–T151 then account for all remaining file comments
+Doxygen explanations/rule links. T133's [closure](audit/decomposition-closure.md) and exact
+[inventory](audit/decomposition.csv) account for every retained responsibility
+and the seven tested phase splits. T145–T151 then account for all remaining file comments
 and tests; T134 cannot close with unassigned debt.
 
 ## Contracts and proof obligations

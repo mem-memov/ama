@@ -11,7 +11,8 @@ Use the [component template](component-template.md) and the completed
 T001's [audit](../audit/README.md) distinguishes passing old-subset evidence from
 current conformance. T002's [component map](../components.md) assigns retained,
 adapted and planned responsibilities, narrow APIs and independent/parent test
-homes. The [current boundary contract](current-boundaries.md) supplies the
+homes. The [T133 decomposition closure](../audit/decomposition-closure.md) reconciles all
+maintained inputs and seven completed phase splits. The [current boundary contract](current-boundaries.md) supplies the
 identity, binding, ownership, context, control and membership invariants to
 preserve or implement. It also separates native publication from relocation,
 and ordinary native views from compiled-component transports.

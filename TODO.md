@@ -340,7 +340,7 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   leaves, ASan/UBSan (`detect_leaks=0`) and full root `make -j4 test` passed
   (68 leaves), including forest allocation-prefix and generated consumers.
   Doxygen checked 511 file pages; 118 ready inputs and 555 explicit debts remain.
-- [ ] **T133 — Decompose the retained implementation.** Needs: T138–T144. Complete
+- [x] **T133 — Decompose the retained implementation.** Needs: T138–T144. Complete
   the component-sized refactoring tasks from T002 for all retained code, using
   nested responsibility directories, small single-operation functions and narrow
   explicit interfaces. Separate orchestration, recognition, validation, state
@@ -351,6 +351,16 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   tests, and update include paths, build discovery and the coverage registry.
   Reject arbitrary line-count splitting, empty hierarchy and wrapper-only changes;
   close the gate only when every retained responsibility has its reviewed home.
+
+  Evidence: [decomposition closure](docs/implementation/audit/decomposition-closure.md)
+  and [exact maintained-input receipt](docs/implementation/audit/decomposition.csv).
+  Reconciled all 673 code/build/fixture inputs (347 under `src/`) with explicit
+  responsibility homes, contracts, current hashes and ready/debt ownership.
+  T138–T144 independently committed the seven identified phase splits and their
+  component/real-parent checks. T144's unchanged-source root run passed 68 leaves;
+  this documentation gate does not claim another runtime run. Exact inventory,
+  hash, contract/consumer-location and Markdown checks passed. `make docs` checked
+  511 file pages and 118 ready records; 555 debts remain assigned to T145–T151.
 - [ ] **T145 — Document source, identity and diagnostic foundations.** Needs:
   T133. Cover `src/source/`, `src/diagnostics/` and the Unicode generator, including
   headers and checked-in data provenance. Explain purpose, exact algorithms,
