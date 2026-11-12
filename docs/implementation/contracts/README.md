@@ -6,6 +6,22 @@ requirements usable during implementation; it does not add language semantics.
 Use the [component template](component-template.md) and the completed
 [driver example](driver.md).
 
+## Current implementation boundary
+
+T001's [audit](../audit/README.md) distinguishes passing old-subset evidence from
+current conformance. T002's [component map](../components.md) assigns retained,
+adapted and planned responsibilities, narrow APIs and independent/parent test
+homes. The [current boundary contract](current-boundaries.md) supplies the
+identity, binding, ownership, context, control and membership invariants to
+preserve or implement. It also separates native publication from relocation,
+and ordinary native views from compiled-component transports.
+
+Entries below retain useful existing arguments and executable test locations;
+they do not certify later grammar, list dispatcher, context or embedding changes.
+When adapting a component, update its old description rather than keeping
+competing API contracts. File/interface reference pages come from Doxygen through
+`make docs`; this registry records mathematical arguments and acceptance evidence.
+
 ## Before implementation
 
 Identify one responsibility and its smallest meaningful public boundary. Link the
@@ -93,5 +109,8 @@ must still supply their own arguments and executable evidence when implemented.
 | Entry disappearance and Ama-shaped label transfers | [Toolchain contract](../native-toolchain.md); exact symbol-family validation plus required compiler enforcement | [Symbol tests](../../../tests/unit/native/toolchain/symbols/main.c), [GCC probes](../../../tests/integration/native/toolchain/main.c) |
 | Native representations, status and typed hook composition | [ABI](../native-abi.md), [status](../native-status.md), [hook harness](../native-hooks.md) | [ABI suites](../../../tests/unit/native/abi/Makefile) |
 
-Full pool/execution contracts will be added only as those components are implemented. The registry does not certify
-those future components or the language as a whole.
+Pool/execution foundations have the component evidence linked above. Their new
+context, result-tree, membership/foreach and external-boundary consumers remain
+open in TODO. Each future component must add its operation-level argument and
+actual acceptance commands before being marked complete; neither this registry
+nor a planned test-home path certifies implementation of the whole language.

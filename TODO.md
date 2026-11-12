@@ -121,13 +121,19 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   confirmed current-contract gaps. No production code or specification changed.
   Findings route removals/refactoring/documentation through T136–T151; historical
   sanitizer reports and full current-language conformance remain unclaimed.
-- [ ] **T002 — Refresh component contracts and boundaries.** Needs: T001. Update
+- [x] **T002 — Refresh component contracts and boundaries.** Needs: T001. Update
   the responsibility tree and contract registry; identify narrow reusable APIs,
   required decompositions and exact invariant arguments. Give each retained
   responsibility a target subdirectory, owning component, explicit interface and
   migration/test mapping; distinguish reusable behavior from retired contracts.
   Validate that each planned component and assembled parent has an independently
   runnable test home. This plan drives T132–T134 rather than a wholesale rewrite.
+  Evidence: [current map](docs/implementation/components.md),
+  [boundary invariants](docs/implementation/contracts/current-boundaries.md) and
+  [registry](docs/implementation/contracts/README.md). Every retained/planned
+  responsibility has independent and real-parent test homes, explicit state/API
+  ownership and its current acceptance limit. Existing suites passed in T001;
+  this contract-only task checked links, source/API paths and dependency order.
 - [ ] **T003 — Verify recursive builds and invalidation.** Needs: T002. Confirm
   nested source discovery, header/toolchain/link-membership dependencies, parallel
   make ordering and clean/failure artifact rules. Test no-op and changed-input
