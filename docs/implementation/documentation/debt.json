@@ -575,17 +575,11 @@
     "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
     "sha256": "67a193f179f643af43532e2d072418480480e8144e6af59f7efad1d3107825a7"
   },
-  "src/native/scaffold/output/publish.c": {
-    "audited_test_consumers": "tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership",
-    "owner": "T148",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "8c0925421c90885f63f4cee9f7569e948684d4e5e0ee9e85ae1c447edb0ad381"
-  },
   "src/native/scaffold/scaffold.h": {
     "audited_test_consumers": "tests/unit/codegen/assembly; tests/unit/codegen/continuations; tests/unit/codegen/execution; tests/unit/codegen/library; tests/unit/driver/run; tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership",
     "owner": "T148",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "dbf3b1426626e680c85843b492f1714c6abadcf30ef122f1919126916c6dfd9d"
+    "reason": "T139 separated artifact records from the model and registered standalone filesystem/publication children. Remaining full file documentation review stays with T148.",
+    "sha256": "b6c3dcf7927adc92bd2ed074981bf9b6d3da8f315563fa8292e3bc2486c69667"
   },
   "src/native/status/codes.h": {
     "audited_test_consumers": "tests/unit/native/abi/hooks; tests/unit/native/abi/status; tests/unit/native/lifecycle/model; tests/unit/native/metadata/control; tests/unit/runtime/alignment; tests/unit/runtime/calls; tests/unit/runtime/lists; tests/unit/runtime/objects/access; tests/unit/runtime/objects/clone; tests/unit/runtime/objects/lifecycle; tests/unit/runtime/objects/replacement; tests/unit/runtime/pool; tests/unit/runtime/program; tests/unit/runtime/transfers",
@@ -2876,8 +2870,8 @@
   "tests/unit/native/scaffold/Makefile": {
     "audited_test_consumers": "",
     "owner": "T151",
-    "reason": "T001 F08: purpose/contract, standalone headers and named behavioral test mapping need review.",
-    "sha256": "f1e9af0baf4d3faa27db7c1c329d9180ff4fcff15480c7163bac4c3346db0190"
+    "reason": "T139 separated artifact records from the model and registered standalone filesystem/publication children. Remaining full file documentation review stays with T151.",
+    "sha256": "2bebc4ace38debde90bd78a5dbe8e96aee871da4e7fb054f3796caf800948b32"
   },
   "tests/unit/native/scaffold/common.c": {
     "audited_test_consumers": "tests/unit/native/scaffold/declarations; tests/unit/native/scaffold/ownership",

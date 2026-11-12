@@ -245,12 +245,22 @@ Contracts: [compiler architecture](spec/implementation/compiler.md),
   Five standalone headers, named test interfaces and Doxygen's actual destinations
   passed. All extracted files have purpose/contract comments and canonical rule
   links; the current registry exposes 35 ready inputs and 567 remaining debts.
-- [ ] **T139 — Separate native publication transaction phases.** Needs: T132.
+- [x] **T139 — Separate native publication transaction phases.** Needs: T132.
   Decompose `src/native/scaffold/output/publish.c` into narrow directory/lock,
   preflight, staging, publication and rollback/cleanup responsibilities. State
   descriptor/path/backup ownership and the exact commit point. Keep orchestration
   small and document the phase invariants with rule links. Exercise real filesystem
   conflicts and staged failures through independent and assembled publication tests.
+  Evidence: [publication contracts and prefix argument](docs/implementation/native-publication.md).
+  Extracted frontend-free artifact/IO records and directory, exclusive lock,
+  preflight-policy, temporary/stream/backup, publication and recovery children.
+  The parent alone adapts the real manifest model; child tests link no frontend.
+  Five filesystem and five real-transaction cases check exact bytes/mode, policy
+  errors, preparation failures, ownership, every selected link/rename failure,
+  prefix restoration and retained backups when restore fails. Strict caller-flag
+  tests, the actual scaffold parent, ASan/UBSan filesystem checks (`detect_leaks=0`)
+  and full `make -j4 test` passed (62 leaves). Standalone headers, all canonical
+  links and 462 generated file pages passed; 52 ready inputs/566 debts are explicit.
 - [ ] **T140 — Separate control and descriptor emission responsibilities.** Needs:
   T132. Decompose `src/codegen/control/emit.c` and `data.c` by resolved control/data
   operation responsibilities. Keep source locations, label identities, native-entry

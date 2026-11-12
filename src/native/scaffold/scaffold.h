@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include "compiler/frontend.h"
+#include "output/artifact.h"
 #include "source/identity/identity.h"
 
 typedef enum {
@@ -33,17 +34,6 @@ typedef struct ScaffoldType {
     const char *template_name;
     const char *test_name;
 } ScaffoldType;
-typedef struct ScaffoldArtifact {
-    struct ScaffoldArtifact *next;
-    const char *path;
-    const SourceText *content;
-    bool authored;
-    bool executable;
-    bool existed;
-    bool published;
-    const char *stage;
-    const char *backup;
-} ScaffoldArtifact;
 typedef struct {
     const char *directory;
     const char *sdk;

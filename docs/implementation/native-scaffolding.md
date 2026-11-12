@@ -73,6 +73,10 @@ spaces are supported. Output-directory components must be ordinary directories.
 
 ## Publication boundary
 
+The [publication phase contract](native-publication.md) describes T139's narrow
+filesystem children, resource ownership, exact completion point and independent/
+real-parent failure checks.
+
 All file bytes are prepared before publication. Destinations are preflighted,
 then staged alongside their targets. Replacement uses per-file atomic rename;
 new files use exclusive hard-link publication. Existing files have rollback

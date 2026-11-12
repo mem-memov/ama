@@ -1,2 +1,2 @@
-SUBDIRECTORIES := declarations ownership
+SUBDIRECTORIES := declarations ownership filesystem publication
 include ../../../parent.mk

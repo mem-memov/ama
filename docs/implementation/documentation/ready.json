@@ -318,6 +318,518 @@
       }
     ]
   },
+  "src/native/scaffold/output/artifact.h": {
+    "contract": "docs/implementation/native-publication.md",
+    "purpose": "Check explicit publication ownership through narrow filesystem phases and real composition.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_publishes_exact_binary_bytes_and_executable_mode_without_a_frontend",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_keeps_ownership_diagnostics_and_bypasses_only_explicit_overwrite",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_restores_replaced_bytes_and_releases_backups",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_checks_directory_temporary_and_allocation_failures",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_acquires_and_releases_only_its_own_lock",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_preserves_all_prior_outputs_on_backup_and_replacement_failure",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_retains_old_backup_when_rollback_itself_fails",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/output/publication/commit/cleanup.c": {
+    "contract": "docs/implementation/native-publication.md",
+    "purpose": "Check explicit publication ownership through narrow filesystem phases and real composition.",
+    "tests": [
+      {
+        "case": "it_publishes_exact_binary_bytes_and_executable_mode_without_a_frontend",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_keeps_ownership_diagnostics_and_bypasses_only_explicit_overwrite",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_restores_replaced_bytes_and_releases_backups",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_checks_directory_temporary_and_allocation_failures",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_acquires_and_releases_only_its_own_lock",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_preserves_all_prior_outputs_on_backup_and_replacement_failure",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_retains_old_backup_when_rollback_itself_fails",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/output/publication/commit/publish.c": {
+    "contract": "docs/implementation/native-publication.md",
+    "purpose": "Check explicit publication ownership through narrow filesystem phases and real composition.",
+    "tests": [
+      {
+        "case": "it_publishes_exact_binary_bytes_and_executable_mode_without_a_frontend",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_keeps_ownership_diagnostics_and_bypasses_only_explicit_overwrite",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_restores_replaced_bytes_and_releases_backups",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_checks_directory_temporary_and_allocation_failures",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_acquires_and_releases_only_its_own_lock",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_preserves_all_prior_outputs_on_backup_and_replacement_failure",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_retains_old_backup_when_rollback_itself_fails",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/output/publication/directory.c": {
+    "contract": "docs/implementation/native-publication.md",
+    "purpose": "Check explicit publication ownership through narrow filesystem phases and real composition.",
+    "tests": [
+      {
+        "case": "it_publishes_exact_binary_bytes_and_executable_mode_without_a_frontend",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_keeps_ownership_diagnostics_and_bypasses_only_explicit_overwrite",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_restores_replaced_bytes_and_releases_backups",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_checks_directory_temporary_and_allocation_failures",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_acquires_and_releases_only_its_own_lock",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_preserves_all_prior_outputs_on_backup_and_replacement_failure",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_retains_old_backup_when_rollback_itself_fails",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/output/publication/error.c": {
+    "contract": "docs/implementation/native-publication.md",
+    "purpose": "Check explicit publication ownership through narrow filesystem phases and real composition.",
+    "tests": [
+      {
+        "case": "it_publishes_exact_binary_bytes_and_executable_mode_without_a_frontend",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_keeps_ownership_diagnostics_and_bypasses_only_explicit_overwrite",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_restores_replaced_bytes_and_releases_backups",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_checks_directory_temporary_and_allocation_failures",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_acquires_and_releases_only_its_own_lock",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_preserves_all_prior_outputs_on_backup_and_replacement_failure",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_retains_old_backup_when_rollback_itself_fails",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/output/publication/lock.c": {
+    "contract": "docs/implementation/native-publication.md",
+    "purpose": "Check explicit publication ownership through narrow filesystem phases and real composition.",
+    "tests": [
+      {
+        "case": "it_publishes_exact_binary_bytes_and_executable_mode_without_a_frontend",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_keeps_ownership_diagnostics_and_bypasses_only_explicit_overwrite",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_restores_replaced_bytes_and_releases_backups",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_checks_directory_temporary_and_allocation_failures",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_acquires_and_releases_only_its_own_lock",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_preserves_all_prior_outputs_on_backup_and_replacement_failure",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_retains_old_backup_when_rollback_itself_fails",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/output/publication/preflight.c": {
+    "contract": "docs/implementation/native-publication.md",
+    "purpose": "Check explicit publication ownership through narrow filesystem phases and real composition.",
+    "tests": [
+      {
+        "case": "it_publishes_exact_binary_bytes_and_executable_mode_without_a_frontend",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_keeps_ownership_diagnostics_and_bypasses_only_explicit_overwrite",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_restores_replaced_bytes_and_releases_backups",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_checks_directory_temporary_and_allocation_failures",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_acquires_and_releases_only_its_own_lock",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_preserves_all_prior_outputs_on_backup_and_replacement_failure",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_retains_old_backup_when_rollback_itself_fails",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/output/publication/publication.h": {
+    "contract": "docs/implementation/native-publication.md",
+    "purpose": "Check explicit publication ownership through narrow filesystem phases and real composition.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "case": "it_publishes_exact_binary_bytes_and_executable_mode_without_a_frontend",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_keeps_ownership_diagnostics_and_bypasses_only_explicit_overwrite",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_restores_replaced_bytes_and_releases_backups",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_checks_directory_temporary_and_allocation_failures",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_acquires_and_releases_only_its_own_lock",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_preserves_all_prior_outputs_on_backup_and_replacement_failure",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_retains_old_backup_when_rollback_itself_fails",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/output/publication/staging/backup.c": {
+    "contract": "docs/implementation/native-publication.md",
+    "purpose": "Check explicit publication ownership through narrow filesystem phases and real composition.",
+    "tests": [
+      {
+        "case": "it_publishes_exact_binary_bytes_and_executable_mode_without_a_frontend",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_keeps_ownership_diagnostics_and_bypasses_only_explicit_overwrite",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_restores_replaced_bytes_and_releases_backups",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_checks_directory_temporary_and_allocation_failures",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_acquires_and_releases_only_its_own_lock",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_preserves_all_prior_outputs_on_backup_and_replacement_failure",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_retains_old_backup_when_rollback_itself_fails",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/output/publication/staging/temporary.c": {
+    "contract": "docs/implementation/native-publication.md",
+    "purpose": "Check explicit publication ownership through narrow filesystem phases and real composition.",
+    "tests": [
+      {
+        "case": "it_publishes_exact_binary_bytes_and_executable_mode_without_a_frontend",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_keeps_ownership_diagnostics_and_bypasses_only_explicit_overwrite",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_restores_replaced_bytes_and_releases_backups",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_checks_directory_temporary_and_allocation_failures",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_acquires_and_releases_only_its_own_lock",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_preserves_all_prior_outputs_on_backup_and_replacement_failure",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_retains_old_backup_when_rollback_itself_fails",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/output/publication/staging/write.c": {
+    "contract": "docs/implementation/native-publication.md",
+    "purpose": "Check explicit publication ownership through narrow filesystem phases and real composition.",
+    "tests": [
+      {
+        "case": "it_publishes_exact_binary_bytes_and_executable_mode_without_a_frontend",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_keeps_ownership_diagnostics_and_bypasses_only_explicit_overwrite",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_restores_replaced_bytes_and_releases_backups",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_checks_directory_temporary_and_allocation_failures",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_acquires_and_releases_only_its_own_lock",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_preserves_all_prior_outputs_on_backup_and_replacement_failure",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_retains_old_backup_when_rollback_itself_fails",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/output/publish.c": {
+    "contract": "docs/implementation/native-publication.md",
+    "purpose": "Check explicit publication ownership through narrow filesystem phases and real composition.",
+    "tests": [
+      {
+        "case": "it_requires_readiness_and_rejects_a_second_publication_attempt",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_owns_only_its_exclusive_lock_and_reports_release_failure",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_rolls_back_each_new_file_publication_failure",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_preserves_all_prior_outputs_on_backup_and_replacement_failure",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_retains_old_backup_when_rollback_itself_fails",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      }
+    ]
+  },
   "src/native/status/status.h": {
     "contract": "spec/implementation/diagnostics.md#error-03",
     "purpose": "Represent native status without allocation or owned message storage.",
@@ -610,6 +1122,161 @@
         "case": "it_rejects_every_retired_list_configuration_option",
         "command": "make -C tests/unit/driver/run",
         "source": "tests/unit/driver/run/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/scaffold/filesystem/Makefile": {
+    "contract": "docs/implementation/native-publication.md",
+    "purpose": "Check explicit publication ownership through narrow filesystem phases and real composition.",
+    "tests": [
+      {
+        "case": "it_publishes_exact_binary_bytes_and_executable_mode_without_a_frontend",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_keeps_ownership_diagnostics_and_bypasses_only_explicit_overwrite",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_restores_replaced_bytes_and_releases_backups",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_checks_directory_temporary_and_allocation_failures",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_acquires_and_releases_only_its_own_lock",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/scaffold/filesystem/main.c": {
+    "contract": "docs/implementation/native-publication.md",
+    "purpose": "Check explicit publication ownership through narrow filesystem phases and real composition.",
+    "tests": [
+      {
+        "case": "it_publishes_exact_binary_bytes_and_executable_mode_without_a_frontend",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_keeps_ownership_diagnostics_and_bypasses_only_explicit_overwrite",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_restores_replaced_bytes_and_releases_backups",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_checks_directory_temporary_and_allocation_failures",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      },
+      {
+        "case": "it_acquires_and_releases_only_its_own_lock",
+        "command": "make -C tests/unit/native/scaffold/filesystem",
+        "source": "tests/unit/native/scaffold/filesystem/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/scaffold/publication/Makefile": {
+    "contract": "docs/implementation/native-publication.md",
+    "purpose": "Check explicit publication ownership through narrow filesystem phases and real composition.",
+    "tests": [
+      {
+        "case": "it_requires_readiness_and_rejects_a_second_publication_attempt",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_owns_only_its_exclusive_lock_and_reports_release_failure",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_rolls_back_each_new_file_publication_failure",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_preserves_all_prior_outputs_on_backup_and_replacement_failure",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_retains_old_backup_when_rollback_itself_fails",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/scaffold/publication/main.c": {
+    "contract": "docs/implementation/native-publication.md",
+    "purpose": "Check explicit publication ownership through narrow filesystem phases and real composition.",
+    "tests": [
+      {
+        "case": "it_requires_readiness_and_rejects_a_second_publication_attempt",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_owns_only_its_exclusive_lock_and_reports_release_failure",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_rolls_back_each_new_file_publication_failure",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_preserves_all_prior_outputs_on_backup_and_replacement_failure",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_retains_old_backup_when_rollback_itself_fails",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/scaffold/publication/support/faults.c": {
+    "contract": "docs/implementation/native-publication.md",
+    "purpose": "Check explicit publication ownership through narrow filesystem phases and real composition.",
+    "tests": [
+      {
+        "case": "it_requires_readiness_and_rejects_a_second_publication_attempt",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_owns_only_its_exclusive_lock_and_reports_release_failure",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_rolls_back_each_new_file_publication_failure",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_preserves_all_prior_outputs_on_backup_and_replacement_failure",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_retains_old_backup_when_rollback_itself_fails",
+        "command": "make -C tests/unit/native/scaffold/publication",
+        "source": "tests/unit/native/scaffold/publication/main.c"
       }
     ]
   },
