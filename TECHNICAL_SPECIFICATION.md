@@ -155,6 +155,8 @@ language, or execution selected by searching for a conveniently named C function
 #### Reading an Ama program
 
 Read a declaration as **name and storage form → module type → initial contents**.
+An output receiver may instead declare its first-occurring name and storage form,
+with its module type supplied by the selected result under TYPE-06.
 Read an assignment as **destination → source**. Read a call as **target and mode
 → input bindings → output bindings → optional refusal alternative**. A dotted
 path is a type/constant namespace; a declared name selects state. The distinction
@@ -208,7 +210,8 @@ does not add language features or substitute for the detailed contracts.
 | Type | A module-defined contract for values/state and permitted operations. Types determine compatibility; matching binary layouts alone do not make values interchangeable. |
 | Instance / object | One independently identified state of an executable module type. Many instances share the module's code but have separate fields and runtime metadata. |
 | Value | The contents represented by typed storage. Owned-value copying constructs independent owned data; reference-value copying copies a checked target identity. |
-| Declaration | A name/storage-form line, a module-type path line, and optional initializers. A declaration introduces storage explicitly; assignment does not implicitly declare a variable. |
+| Declaration | An explicit name/storage-form line, module-type path line, and optional initializers, or a first-occurring output receiver whose type is inferred under TYPE-06. Standalone assignment does not implicitly declare a variable. |
+| Result-inferred declaration | A simple output receiver that is the first textual occurrence of its local base name; it declares persistent caller storage with the selected result's module type and matching explicit storage suffixes. |
 | Base name | An identifier before storage suffixes. `item`, `item&`, `item[]`, and `item&[]` share one base name and cannot coexist as declarations in one module. |
 | Storage form | Whether a declaration is an owned value, reference, owned list, or reference list, as marked by the absence/presence of `&` and `[]` on its name. |
 | Parameter | Interface storage declared in `@<`, reinitialized at entry-start from its default or supplied typed input; explicit literal inputs use CALL-07. |
@@ -395,7 +398,8 @@ have no implicit/default live instances. A module's `@=` section is shared
 immutable storage, not an implicit executable instance. Ordinary source-level execution,
 resumption, and retained-result reads must select an explicit instance through
 an owned name, a reference, or an indexed element. A whole-list operation selects
-an explicitly declared collection under its collection contract, not a type.
+a declared collection under its collection contract, not a type. Instance and
+collection declarations may be explicit or result-inferred under TYPE-06.
 
 **SRC-02.** Duplicate module paths across project and imported library roots
 MUST be rejected. Filesystem aliases must not create two conflicting identities.
@@ -452,7 +456,7 @@ Do not change module identity merely to make it a C identifier.
 
 **NAME-04.** Each module has one declaration namespace covering shared constants,
 parameters, results, and persistent body declarations, including declarations
-inside branches/loops.
+inside branches/loops and result-inferred declarations under TYPE-06.
 A base identifier may be declared only once in that module. `item`, `item&`,
 `item[]`, and `item&[]` share the base name `item` and cannot coexist as separate
 declarations. Storage suffixes express kind, not separate name namespaces.
@@ -560,7 +564,9 @@ no alternate implementation selectors or separate constructor section.
 
 **TYPE-01.** Every variable has a module-defined type. A declaration contains a
 name line, a module-path line at the same indentation, and optional initializer
-lines one space deeper. Storage markers occur only on the name line.
+lines one space deeper, except for a result-inferred declaration under TYPE-06,
+which has no separate type line or initializer. Storage markers occur on the
+declaration name, never on a module-path line.
 
 | Declaration name | Storage meaning |
 |---|---|
@@ -591,7 +597,9 @@ or nested-list construction. Sources must already be initialized and have
 compatible types. Initialization follows declaration order.
 For persistent body fields, that order is lexical source order, traversing nested
 branch/loop bodies at their written location; both branch alternatives contribute
-fields unconditionally. Blocks never make construction conditional on execution.
+fields unconditionally. A result-inferred declaration contributes its field at
+the receiver's source location, with ordinary default initialization under
+TYPE-06. Blocks never make construction conditional on execution.
 
 **TYPE-03.** There is no privileged language-level `size_t`, machine integer,
 raw address, or universal truth value. Integers, bytes, text, and other data
@@ -641,6 +649,96 @@ capability; they cannot initialize reference storage. These rules also govern
 parameter binding and result transfer. An indexed access in target position
 selects an instance to execute/read; that is distinct from transferring a handle.
 
+**TYPE-06.** A simple output receiver may declare a new persistent field without
+a separate module-type line. This applies to `>` bindings on entry-start/resume
+calls and `>>` bindings on retained-result reads, including whole-list operations,
+and on shared-constant reads. Existing named/positional and operation-mode rules
+still apply; whole-list operations remain positional and have no resume. The
+receiving name must be one of `name`, `name&`, `name[]`, or `name&[]`; an indexed receiver cannot declare
+its collection or index. Empty output placeholders declare nothing. No other
+operand position, including standalone assignment, implicitly declares storage.
+
+Classify declarations by this exact source-order algorithm, independently of
+execution, module-loading order, and later explicit declarations:
+
+1. Parse the module's syntax without consulting declared-name lookup. Visit all
+   local variable-name occurrences in increasing source-byte order, including
+   explicit declaration names, operands, call targets, receivers, and names
+   within indices. Traverse every branch and loop in written order. Track the
+   set of base identifiers already encountered, treating all four storage forms
+   as one base name under NAME-04.
+2. Module-path components, qualified constant member names, callee-side binding
+   labels, comments, and literal payloads are not local variable-name occurrences
+   and do not enter that set. A local constant used by its unqualified name does.
+3. If an occurrence is a simple output receiver and its base name has not been
+   encountered, record a result-inferred declaration at that receiver. Otherwise
+   record an ordinary use or explicit declaration according to its syntax. Add
+   every encountered local base name to the set, including unresolved uses.
+4. Collect the complete module namespace and resolve explicit module-type paths.
+   Process recorded result-inferred declarations in receiver source order:
+   resolve the operation target and selected interface position/label, then
+   take exactly the selected result's declared full module identity. A static
+   constant read uses the selected `@=` declaration; a whole-list operation uses
+   the fixed typed result interface in LIST-04. Neither runtime values nor
+   analysis of the callee's body participates in type inference.
+5. Require the receiver's explicit storage form to match the selected result
+   exactly, then apply all namespace, initialization, ownership, capability,
+   and transfer checks. Missing or mismatching `&`/`[]` is an error, not a request
+   to insert suffixes, dereference, form a reference, or convert a list/scalar.
+   A later explicit declaration of an inferred base name is a duplicate, even
+   if its type and suffixes match. A use preceding an output receiver prevents
+   inference there; do not repair that use by inventing a later declaration.
+   A valid later explicit declaration may still resolve ordinary uses under the
+   existing visibility rules; a later output receiver cannot supply one.
+   An invalid first occurrence never triggers a search for another declaration
+   site or a different result type.
+
+After any scanned prefix, the encountered-name set is exactly the set of local
+base names occurring in that prefix; a receiver declares storage if and only if
+it is simple and its base name is absent immediately before that occurrence.
+This invariant makes the classification unique and independent of control flow
+or symbol-resolution success. It does not change existing visibility rules for
+explicit declarations or permit forward/cyclic initializer dependencies.
+
+The target's type must be supplied by an explicit declaration or an earlier
+result-inferred declaration. Interface declarations in `@>`/`@=` have explicit
+module types; fixed list-result types are supplied by the library contract.
+They do not depend on inferred caller fields. Among inferred fields in one
+module, the only type-inference dependencies are through operation targets;
+each target precedes its output bindings. These edges strictly decrease local
+declaration positions and end at explicit types or fixed interfaces, making
+inference well-founded. Existing cross-module loading and eager-construction
+checks remain separate. A missing target type is an error, not permission to
+guess a type or infer backward from later uses.
+
+The inferred field belongs to the caller's module-wide namespace, not to the
+callee or a branch-local scope. It is constructed once with the enclosing
+instance, in body-field declaration order: an owned scalar uses its type's
+default construction, and references/lists start empty. The output binding is
+an executable transfer into that already live field, not its creation-time
+initializer. A later declaration initializer can observe only that field's
+creation-time value, never a future call result. Repeated calls, loop iterations,
+and later receiver occurrences update the same field. Acquisition refusal leaves
+it unchanged, including its default/empty value before the first successful
+transfer. Inferred owned fields participate in TYPE-04's eager-construction graph
+and all normal lifecycle/copy-capability checks; inference cannot bypass them.
+
+For example, assume `worker` has been declared and its results are, in order,
+an owned scalar, a reference scalar, an owning list, and a reference list:
+
+```text
+worker!
+ > value
+ > target&
+ > values[]
+ > targets&[]
+```
+
+If these four base names have no earlier local occurrences, the receivers
+declare four fields with the corresponding result types. A later `> value`
+uses the existing field. In `result > result`, the left `result` is a callee
+label and does not prevent the right `result` from declaring a local field.
+
 ### 5.2 Literals
 
 **LIT-01.** A literal begins with `|` in a declaration initializer or immediately
@@ -685,8 +783,9 @@ typedef spelling is an implementation task, not a different literal semantics.
 ### 5.3 Instance storage and shared constants
 
 **STATE-01.** Body declarations describe permanent instance state, including
-ones written inside branches or loops. Their initializers run once at instance
-creation, not whenever execution reaches the declaration's source location.
+ones inferred at output receivers and ones written inside branches or loops.
+Their initialization runs once at instance creation, not whenever execution
+reaches the declaration's source location.
 Assignments are executable operations and may update that state on every call.
 
 **STATE-02.** Parameters and results are interface storage. An entry-start call
@@ -1056,9 +1155,10 @@ active links/acquisitions under LIFE-05, then destroys owned state.
 | `worker` with indented `>>` | Read retained results | No | None |
 
 **CALL-01.** All entry-start invocations require the suffix `!`, including
-zero-argument invocations. Targets must select explicitly declared instance or
-collection storage. Direct module-path targets such as `.shop.item!`,
-`.shop.item%` are invalid; lookup must not create or select a default instance.
+zero-argument invocations. Targets must select declared instance or collection
+storage, whether explicitly declared or inferred under TYPE-06. Direct module-path
+targets such as `.shop.item!`, `.shop.item%` are invalid; lookup must not create or
+select a default instance.
 A path followed by `>>` is a separate constant read under CONST-03, not an
 invocation or retained-instance read. Parameters and requested results appear on separate
 indented lines. Inputs precede outputs. An operation uses named or positional
@@ -1075,6 +1175,25 @@ inputs copy checked handles. Omitted inputs use their declared defaults for
 entry-start execution. Requested results are transferred on completion or yield;
 unrequested results remain stored. Repeated identical inputs still execute the
 body repeatedly. Reactivity and deduplication are application decisions.
+
+Every requested result, including one received into a TYPE-06 inferred field,
+transfers its complete value state by TYPE-05 and COPY-01 through COPY-07. An
+owned scalar copies any native payload, parameters, retained results, persistent
+fields, and recursively owned children/lists; compiler-visible internal references
+follow the copied ownership tree. A whole owning list copies all elements in one
+copy boundary. A reference scalar copies only its checked identity, and a reference
+list copies its handle entries, without cloning their targets. The source remains
+unchanged and no module body executes as part of copying. Native resources require
+independent clone capability; copying is not raw-byte duplication or shared ownership.
+
+This is ordinary value copying: subject to COPY-06's exact self-assignment no-op,
+COPY-03 clears saved positions throughout a copied owned tree and never copies
+active invocations, caller links, busy flags, or source pool identities. A reference
+copy leaves its target's execution state unchanged.
+The new field has no special continuation-copy behavior; preserving saved positions
+requires a separate explicit `%source` operation allowed by CONT-04, not a new
+output-receiver form. Inference changes how storage is declared, not result-transfer
+semantics or the existing self-assignment rules.
 
 **CALL-07.** An entry-start input accepts a line literal in positional or named
 form. The receiving declaration determines its type; the caller does not specify
@@ -1194,6 +1313,8 @@ and of whether bindings are named or positional:
 
 1. Statically resolve and validate the entire operation: target mode, binding
    labels, input/output order, arity, storage forms, types and capabilities.
+   Classify and type result-inferred declarations under TYPE-06 before runtime;
+   all their receiver fields already exist when the operation begins.
    A named parameter or result label may occur at most once in its respective
    sequence. Different bindings may name the same caller-side receiver.
 2. For an instance/list operation, evaluate the target selection once and acquire
@@ -2437,6 +2558,10 @@ The generated program's stackless constraints do not prohibit compiler call stac
 **COMP-01.** Parse syntax before resolving names. The parser must distinguish
 assignment, declaration, entry call, resume, and retained read by their structure;
 it must not use implicit numeric-variable creation or alias lookup to guess syntax.
+Parse output bindings uniformly; classify their simple receivers as inferred
+declarations or ordinary uses by TYPE-06's source-order rule after parsing, then
+resolve types. Do not use the symbol table to choose different grammar productions
+for the same output-binding text.
 
 **COMP-02.** The AST represents source constructs and spans. Lowered IR represents
 resolved types, explicit copies/moves, acquisition, failure edges, continuation
@@ -2833,6 +2958,9 @@ ownership effects, and source diagnostics are covered. At minimum:
 | Submodule directories | `name` and sibling `name+/` coexist; nested markers map to logical path components without `+`; missing parent/conflicting logical sources diagnosed; native companions use physical filename; debug paths retain `+`; no implicit inheritance/execution |
 | Entry literal inputs | Positional/named `< |payload`, empty literal versus omitted input, exact bytes including #/tabs/trailing spaces, parameter-selected type, repeated construction, one literal constructor without default-then-overwrite, scalar ownership/capability/arity errors, failure cleanup and noncatchability by : |
 | Variable namespace | Duplicate base names rejected across constants/parameters/results/body and all four storage forms; no branch/loop shadowing; different modules may reuse names; diagnostics show both declarations |
+| Result-inferred declarations | First local occurrence at a simple output receiver declares a persistent field; all four storage forms, named/positional `>` and `>>`, entry/resume/retained/constant/list results; exact result-selected type and required suffixes; repeated receivers reuse fields; earlier uses prevent inference while valid later explicit declarations retain existing visibility; later explicit declarations of inferred fields duplicate; labels/paths/comments/literals excluded; indices never introduce fields; classification independent of branches/loading and parsing independent of lookup |
+| Inferred-field lifetime | Default construction once in lexical body order even in unexecuted branches/loops; later initializers see the default rather than a future result; repeated execution replaces the same field; refusal preserves default/previous state; eager cycles and unsupported default/clone capabilities diagnosed; ordinary copy and lifecycle failures preserve their existing guarantees |
+| Complete result values | Inferred and explicit receivers use identical value semantics; complete owned payload/interface/body/children copied with internal-reference remapping; whole-list copy shares one clone context; reference/reference-list results copy identities; saved positions cleared by ordinary copying, with COPY-06 self-assignment unchanged; native clone failure preserves source and old destination before commit |
 | Native namespaces | Identical local hook/type/helper names in different modules resolve through distinct generated prefixes; `.abi` selects only the declaring module; no arbitrary C rewriting; unqualified C/macro conflicts diagnosed by the build |
 | Storage compatibility | Nominal module identity and all four storage forms checked; no implicit dereference/acquisition, scalar-list conversion or splicing; explicit continuation copy into owned storage; empty/stale handle copies do not acquire targets |
 | Evaluation order | Input selections before reset; one selected constructor per parameter in declaration order; later defaults see installed inputs; results follow parameters; output receivers/indices resolved in binding text order; duplicate labels rejected; no whole-call rollback |

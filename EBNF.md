@@ -118,6 +118,7 @@ belong to the name line. A reference list is not a reference to a whole list.
 
 One module has one declaration namespace, covering constants, parameters,
 results, and all body declarations, including declarations inside control flow.
+Body declarations include result-inferred fields under TYPE-06.
 `item`, `item&`, `item[]`, and `item&[]` share the base name `item` and cannot be
 separate declarations there. Blocks introduce no shadowing. Different modules
 may reuse names. Uses must match declared storage forms. See NAME-04.
@@ -138,8 +139,9 @@ may reuse names. Uses must match declared storage forms. See NAME-04.
                           | <reference-acquisition> | <constant-access>
 <copy-source>           ::= <value-source> | <whole-list-access>
                           | <continuation-copy>
-<receiver>              ::= <owned-access> | <reference-access>
-                          | <whole-list-access>
+<indexed-receiver>      ::= <identifier> "[" <index> "]"
+                          | <identifier> "&[" <index> "]"
+<receiver>              ::= <declaration-name> | <indexed-receiver>
 <instance-target>       ::= <owned-access> | <reference-access>
 <call-target>           ::= <instance-target> | <whole-list-access>
 ```
@@ -302,7 +304,14 @@ Owned values use their declared type's construction contract. Body declarations 
 once at instance creation, including declarations written in branches/loops;
 they are not executable assignment statements. Parameters/results initialize at
 creation and reset on entry-start, with the selected input constructors described
-below. Resume preserves them. See TYPE-01 through TYPE-05 and STATE-01/STATE-02.
+below. Resume preserves them. See TYPE-01 through TYPE-06 and STATE-01/STATE-02.
+
+A first-occurring simple output receiver is also a declaration under TYPE-06,
+with no separate module-path line or initializer. Its type comes from the selected
+result and its explicit name suffixes must match that result's storage form.
+It contributes a persistent field at its receiver's lexical position and follows
+the same creation-time default construction and declaration-order rules, even
+inside unexecuted branches/loops. The call/read later transfers a value into it.
 
 Shared `@=` values are immutable, independently copyable, and initialized once
 before the root. Reference/reference-list declarations are forbidden in `@=`;
@@ -324,8 +333,9 @@ exposed as shared constants; there is no separate enumeration keyword.
 ```
 
 An assignment has exactly one source one indentation level below its receiver.
-Both refer to declared compatible storage. Unknown receivers do not create
-variables. Literals occur in declarations or entry inputs, never assignments.
+Both refer to declared compatible storage. Unknown standalone assignment receivers
+do not create variables; TYPE-06 inference applies only to output bindings.
+Literals occur in declarations or entry inputs, never assignments.
 
 ```text
 destination
@@ -346,6 +356,8 @@ Recognition uses structure, not declared types or guessed names:
 - An adjacent suffix `!` starts execution; `%` resumes execution.
 - An unmarked instance/list target with indented `>>` bindings reads retained
   results; a module-path target with `>>` reads shared constants.
+- Simple output receivers may declare storage under TYPE-06 after parsing; this
+  classification does not change the syntactic recognition of a call/read.
 - An owned access followed at the same indentation by `?` or `{` selects control
   flow. Only comment lines may intervene.
 - A standalone `^`, `>`, or `%` is a control statement.
@@ -383,10 +395,11 @@ checks follow syntax recognition. See COMP-01 and REF-03.
                        | <declaration-name> <separator> "<" <separator>
                          "|" <literal-payload>
 <result> ::= ">"
-            | ">" <separator> <receiver>
-            | <declaration-name> <separator> ">" <separator> <receiver>
-<saved-result> ::= ">>" <separator> <receiver>
-                  | <declaration-name> <separator> ">>" <separator> <receiver>
+            | ">" <separator> <output-receiver>
+            | <declaration-name> <separator> ">" <separator> <output-receiver>
+<saved-result> ::= ">>" <separator> <output-receiver>
+                  | <declaration-name> <separator> ">>" <separator> <output-receiver>
+<output-receiver> ::= <receiver>
 ```
 
 Every binding component uses the explicit separators above. `>>` is contiguous;
@@ -445,7 +458,65 @@ worker!
 This supplies inputs one/three and receives only result two. Spaces/comments
 after an otherwise empty marker do not supply an operand.
 
-### 6.3 Typed literal inputs and evaluation order
+### 6.3 Result-inferred declarations
+
+A simple `<output-receiver>` (`name`, `name&`, `name[]`, or `name&[]`) declares
+a persistent caller field if it is the first local variable-name occurrence of
+that base identifier in the module's source text. Otherwise it uses existing
+storage. This rule applies to named/positional outputs from `!`, `%`, instance/list
+`>>`, and constant `>>` reads, subject to the existing mode rules: whole-list
+operations remain positional and cannot resume. Empty `>` declares nothing;
+indexed receivers cannot declare their collection or index.
+
+After parsing, scan local variable-name occurrences in source-byte order,
+including explicit declaration names, operands, call targets, receivers, and names
+inside indices; visit all branches/loops in written order. Track encountered
+base names independently of suffixes. Module-path components, qualified constant
+members, callee-side binding labels, comments, and literal payloads do not count.
+A local constant used by its unqualified name does count. A simple output receiver
+declares a field exactly when its base name is absent from the encountered set;
+then add the base name of every occurrence, including unresolved uses. The set
+therefore equals the local base names in each scanned prefix. Neither execution
+nor later explicit declarations change this classification. See TYPE-06.
+
+Resolve the selected result by its interface position or label and infer its
+exact module type, using LIST-04's typed interface for whole-list results and
+the selected `@=` declaration for constant reads. Require the receiver's explicit
+storage form to match exactly: references require `&`, owning lists `[]`, and
+reference lists `&[]`. Missing/mismatching suffixes are errors. Target types come
+from explicit declarations or earlier inferred receivers; inference dependencies
+strictly decrease in source order. Do not infer from runtime values or callee bodies.
+
+An earlier local use prevents inference at a later output; unresolved names remain
+errors unless supplied by a valid explicit declaration under the existing rules.
+A later explicit declaration of an inferred base name is a duplicate. In
+`result > result`, the left label is not a local occurrence, so the right receiver
+may declare a field. Repeated receiver occurrences update the same field; blocks
+introduce no scope or conditional construction. Inferred fields participate in
+normal initialization-order, eager-cycle, default-construction and clone checks.
+
+For a declared `worker` returning, in order, an owned scalar, reference scalar,
+owning list, and reference list, this declares four previously unseen base names:
+
+```text
+worker!
+ > value
+ > target&
+ > values[]
+ > targets&[]
+```
+
+The receiving fields exist with their default/empty values before execution.
+A binding transfers the complete returned value by ordinary copy semantics:
+owned payload/interface/body fields and descendants are independently copied,
+with internal-reference remapping; whole owning lists use one copy boundary;
+references/reference lists copy handles without cloning their targets. COPY-03
+clears copied saved positions, subject to COPY-06's self-assignment no-op.
+Preserving a continuation still requires a separate `%source` operation allowed
+by CONT-04; `%source` is not an output receiver. Inference does not alter result-transfer
+or lifecycle semantics. See CALL-02 and COPY-01 through COPY-07.
+
+### 6.4 Typed literal inputs and evaluation order
 
 ```text
 writer!
@@ -477,7 +548,7 @@ callee result labels remain forbidden. Each replacement follows its own
 preparation/commit contract; there is no simultaneous assignment or whole-call
 rollback guarantee. See CALL-08 and LIFE-01 through LIFE-05.
 
-### 6.4 Acquisition and retained values
+### 6.5 Acquisition and retained values
 
 Entry-start resets interface storage but preserves permanent state. Resume
 preserves the suspended interface and permanent state. Completion and yield retain
@@ -489,6 +560,7 @@ Entry, resume, and retained reads acquire their selected target through result
 transfer. Missing/stale/busy targets, invalid indexed selection, and resume without
 a saved position are acquisition refusals. Attached `:` handles only that refusal,
 not constructor/copy/body errors. No results are assigned on acquisition refusal.
+An inferred receiver remains at its default/empty or previously stored value.
 Without `:`, refusal ends execution with a diagnostic. Its saved status is readable
 through an ordinary library module, not a magic field. See CALL-04/CALL-05,
 ERROR-05/ERROR-06, and RT-03/RT-04.
@@ -502,7 +574,7 @@ target&!
  unavailable_handler!
 ```
 
-### 6.5 Whole-list operations
+### 6.6 Whole-list operations
 
 `items[]!` and `targets&[]!` operate on the collection, not on every element body.
 Their fixed positional inputs are action, primary position, source reference,
@@ -624,7 +696,7 @@ The following constraints complete this grammar without adding source syntax:
 | Contract | Specification |
 |---|---|
 | Exact namespaces, physical submodules, source identity, native qualification | SRC-01–SRC-05, NAME-01–NAME-05 |
-| Declared types, initialization order, persistent/interface state, constants | TYPE-01–TYPE-05, STATE-01–STATE-03, CONST-01–CONST-05 |
+| Declared/inferred types, initialization order, persistent/interface state, constants | TYPE-01–TYPE-06, STATE-01–STATE-03, CONST-01–CONST-05 |
 | Checked references, ownership, independent copying, deletion safety | REF-01–REF-08, COPY-01–COPY-07 |
 | Call modes, binding order, literals, refusals | CALL-01–CALL-08 |
 | Truth conversion, loops, suspension, continuation copies | FLOW-01–FLOW-03, CONT-01–CONT-06 |
