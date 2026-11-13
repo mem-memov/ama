@@ -5,8 +5,8 @@
  * All inputs/views are operation-scoped; generated interfaces establish the native naming context. See the retained library contract and pending scalar roadmap.
  * @see [Fixture and coverage contract](../../../docs/implementation/library-tests-and-build.md)
  */
-#include "ama_n_558b19480969481b605f45990d14df0dfaad0cd7e00c0620449fb91e42fb22a5.interface.h"
-#include "ama_n_558b19480969481b605f45990d14df0dfaad0cd7e00c0620449fb91e42fb22a5.begin.h"
+#include "ama_n_32e46f3e4df34bff062fc3fc87737294ebfaa344168ad7cac0eaac152a38913a.interface.h"
+#include "ama_n_32e46f3e4df34bff062fc3fc87737294ebfaa344168ad7cac0eaac152a38913a.begin.h"
 
 /**
  * Execute this explicit native body synchronously over borrowed parameter/result views. Set
@@ -14,7 +14,7 @@
  * module fixture.
  */
 AMA_NATIVE_ENTRY void AMA_NATIVE(entry)(AMA_NATIVE(State) *state,
-    const ama_t_664e91b43cc419dfdda8b4f56227c7c50609effcc9ffaf7c69a1870191d05315 *parameters, ama_t_2ca45b4428e8415142fc354b44311915dd722580023fe71369c6d6aeca5677c9 *results,
+    const ama_t_319ee73a92bd570a21eb8d47c7e7072f1c47e1c7649b06379f49fc9c91a20562 *parameters, ama_t_b2639cd4f6be1753732ae383f5b533814e78b2dd2fb50eabb0b71e8bf4daf12a *results,
     const AmaNativeServices *services, AmaStatus *status) {
     (void)state; (void)parameters; (void)results; (void)services;
     *status = ama_status_success();
@@ -78,4 +78,4 @@ AmaStatus AMA_NATIVE(index)(const AMA_NATIVE(State) *state, size_t *result) {
     return ama_status_success();
 }
 
-#include "ama_n_558b19480969481b605f45990d14df0dfaad0cd7e00c0620449fb91e42fb22a5.end.h"
+#include "ama_n_32e46f3e4df34bff062fc3fc87737294ebfaa344168ad7cac0eaac152a38913a.end.h"

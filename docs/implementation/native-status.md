@@ -27,7 +27,7 @@ compiler must sort full error-provider identities and assign unique namespaces
 1 through 65535; exceeding that limit is an explicit compilation error. Each
 provider publishes unique nonzero reason IDs within its namespace. No hashes,
 truncation or duplicate IDs may allocate namespaces. T010 implements the isolated [complete-key provider planner](native-namespaces.md#deterministic-native-error-providers);
-T017/T055 connect current source identities and dependency emission. The encoding
+T017 supplies current full-root identities; T055 connects dependency emission. The encoding
 helper itself performs no registration.
 
 `ama_library_status_code` accepts 16-bit namespace/reason values and a valid output

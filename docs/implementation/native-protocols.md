@@ -95,8 +95,8 @@ of that future frontend consumer.
 Its companion header/implementation supply all six explicitly bound protocols
 and the additional typed `from_size(State *, size_t)` helper. The real AST and
 ABI readers check its declaration and exactly six records. An isolated
-`.fixtures.integer` C namespace is checked against the existing full-key registry;
-new standard-root identity encoding and generated binding remain T017/T055.
+`..integer` C namespace is checked against T017’s current full-root registry;
+actual generated bridge binding remains T055.
 The fixture's empty nominal entry views are the C acceptance harness's concrete
 binding, not a claim that the retained frontend already compiles `..integer`.
 The production library surface remains T085.

@@ -703,10 +703,18 @@ Contracts: [source and names](spec/language/source-and-names.md),
   and warning-free reproducible Doxygen pass: 597 maintained files, 2449
   interfaces and 288 destinations. Encoding/token/CLI completion remains T017,
   T022 and T068 respectively.
-- [ ] **T017 — Verify deterministic generated identities.** Needs: T016. Use
+- [x] **T017 — Verify deterministic generated identities.** Needs: T016. Use
   complete category-separated identities, unambiguous encoding and exact hash
   collision rejection. Check stable Unicode vectors, forced collisions and
   distinct native/shared/type/control categories.
+  Completed with root-aware version-two counted encoding, exact full-key
+  collision checks, checked measurement and one-allocation display construction.
+  Frozen Unicode vectors exercise the public producer; all categories, component
+  boundaries, invalid metadata and every allocation failure are covered. Updated
+  maintained native companions through exact old/new identity mappings. Full strict
+  tests, identity/namespace/integer ASan/UBSan (leak detection disabled), 775-input
+  coverage and Markdown links pass. Two warning-free Doxygen generations are
+  byte-identical: 603 maintained files, 2462 interfaces, 288 destinations.
 - [ ] **T018 — Verify the module registry and source catalog.** Needs:
   T016, T017. Register each complete identity once, preserve physical diagnostic
   paths and exclude owned outputs. Test duplicate physical identities and

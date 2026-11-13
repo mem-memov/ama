@@ -1,9 +1,9 @@
 /**
  * @file
- * @brief Freeze complete root-aware multiword Unicode identity vectors independently of the legacy encoder.
+ * @brief Freeze complete root-aware multiword Unicode identity encodings and verify the current producer.
  *
- * This isolated harness owns key copies in the registry arena. T017/T055 must
- * connect the current identity producer; these bytes do not certify that frontend.
+ * Public identity registration owns its copied keys. Frozen bytes/digests verify
+ * the current producer independently; parser token integration remains separate.
  */
 #ifndef AMA_NATIVE_NAMESPACE_TEST_VECTORS
 #define AMA_NATIVE_NAMESPACE_TEST_VECTORS
@@ -44,21 +44,17 @@ static const unsigned char namespace_key_2[] = {
 };
 static const char namespace_prefix_2[] = "ama_n_027c22ef149338e1e65b7dc8dba5fad1fa2e77a8aa60be820227824b5fd7f16f";
 
-/** Copy a fixture key into the exact registry owner, hash it and publish with collision checks. */
+/** Register complete source spelling and compare its exact key/prefix with independent frozen vectors. */
 static const IdentityName *register_namespace_vector(IdentityRegistry *registry, size_t selected) {
     const unsigned char *keys[] = {namespace_key_0, namespace_key_1, namespace_key_2};
     const size_t lengths[] = {sizeof(namespace_key_0), sizeof(namespace_key_1), sizeof(namespace_key_2)};
     const char *prefixes[] = {namespace_prefix_0, namespace_prefix_1, namespace_prefix_2};
+    const char *paths[] = {".магазин.товар данные", ".магазин.товар другое", "..магазин.товар данные"};
     assert(selected < 3);
-    unsigned char *copy = source_arena_allocate(&registry->arena, lengths[selected]);
-    assert(copy != NULL);
-    memcpy(copy, keys[selected], lengths[selected]);
-    IdentityEncoding encoding = {copy, lengths[selected], "frozen root-aware native vector",
-        IDENTITY_NATIVE_NAMESPACE, {0}};
-    unsigned char digest[32];
-    identity_sha256(copy, lengths[selected], digest);
     const IdentityName *name = NULL;
-    assert(identity_insert(registry, encoding, digest, &name) == IDENTITY_OK);
+    QualifiedIdentity identity = {IDENTITY_NATIVE_NAMESPACE, paths[selected], NULL, 0, {0}};
+    assert(identity_register(registry, identity, &name) == IDENTITY_OK);
+    assert(name->encoding_length == lengths[selected] && memcmp(name->encoding, keys[selected], lengths[selected]) == 0);
     assert(strcmp(name->internal_name, prefixes[selected]) == 0);
     return name;
 }

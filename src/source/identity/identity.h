@@ -22,7 +22,11 @@ typedef enum {
     IDENTITY_NATIVE_NAMESPACE
 } IdentityCategory;
 
-/** Borrowed complete supported identity and its original declaration span. */
+/** Borrowed complete category/root-aware module/member identity and original declaration span.
+ * Module spelling uses the exact single/double-dot complete-name path contract.
+ * Discriminator parts are nonempty UTF-8 strings; resolved compiler roles need
+ * not themselves be source-language declarations. Registration copies all parts.
+ */
 typedef struct {
     IdentityCategory category;
     const char *module_path;

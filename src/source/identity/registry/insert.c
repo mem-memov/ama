@@ -29,6 +29,9 @@ static void format_name(char output[71], IdentityCategory category,
 IdentityStatus identity_insert(IdentityRegistry *registry, IdentityEncoding encoding,
     const unsigned char digest[32], const IdentityName **output) {
     registry->conflicting = NULL;
+    if (encoding.category < IDENTITY_TYPE || encoding.category > IDENTITY_NATIVE_NAMESPACE
+        || encoding.bytes == NULL || encoding.length == 0 || encoding.source_name == NULL
+        || digest == NULL || output == NULL) { return IDENTITY_INVALID; }
     for (IdentityName *other = registry->first; other != NULL; other = other->next) {
         if (memcmp(other->digest, digest, 32) != 0) {
             continue;

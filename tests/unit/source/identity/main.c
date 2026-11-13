@@ -10,6 +10,8 @@
 #include "source/identity/internal.h"
 #include "source/identity/hash/sha256.h"
 #include "vectors.inc"
+#include "support/roots.c"
+#include "support/failures.c"
 
 /**
  * Encode all 32 digest bytes as 64 lowercase hexadecimal digits in caller-owned writable storage,
@@ -63,7 +65,7 @@ static void it_preserves_unicode_names_and_matches_a_stable_full_identity_vector
     IdentityStatus status = identity_register(&registry, identity, &name);
     assert(status == IDENTITY_OK);
     assert(strcmp(name->source_name, ".商店.商品::价格") == 0);
-    assert(strcmp(name->internal_name, "ama_s_9850ad5a414497be44fc24f05843deca415278702c4045e0deacd8ea0e2c1802") == 0);
+    assert(strcmp(name->internal_name, "ama_s_a56eb903510b813e736a527a0a51192611a9a1e8adbd577c4e58dc31ddead8a3") == 0);
     const IdentityName *again = NULL;
     status = identity_register(&registry, identity, &again);
     assert(status == IDENTITY_OK && again == name);
@@ -143,7 +145,16 @@ static void it_refuses_a_forced_digest_collision_without_merging_full_keys(void)
  * its generated evidence.
  */
 static void it_releases_every_failed_registration_and_rejects_invalid_identities(void) {
-    for (size_t failure = 1; failure <= 4; failure++) {
+    setup_test();
+    IdentityRegistry measured;
+    identity_registry_init(&measured, sources.allocator);
+    const char *parts[] = {"price"};
+    const IdentityName *complete = NULL;
+    assert(identity_register(&measured, (QualifiedIdentity){IDENTITY_STATE_MEMBER, ".shop.item", parts, 1, {0}}, &complete) == IDENTITY_OK);
+    size_t count = allocation_count;
+    identity_registry_destroy(&measured);
+    destroy_test();
+    for (size_t failure = 1; failure <= count; failure++) {
         setup_test();
         IdentityRegistry registry;
         identity_registry_init(&registry, sources.allocator);
@@ -167,6 +178,12 @@ static void it_releases_every_failed_registration_and_rejects_invalid_identities
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_builds_many_member_displays_with_constant_allocation_count();
+    it_matches_frozen_root_aware_vectors_through_the_current_identity_producer();
+    it_separates_all_categories_roots_and_complete_component_boundaries();
+    it_measures_exact_root_shape_and_bounds_every_length_prefix_before_allocation();
+    it_rejects_invalid_raw_key_shape_without_publishing_or_dereferencing_missing_data();
+    it_preserves_existing_names_through_every_root_aware_registration_allocation_failure();
     it_matches_sha256_vectors_across_padding_and_block_boundaries();
     it_preserves_unicode_names_and_matches_a_stable_full_identity_vector();
     it_separates_categories_components_case_and_unicode_spelling();

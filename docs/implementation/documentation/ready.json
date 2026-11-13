@@ -18868,6 +18868,26 @@
         "case": "it_releases_every_failed_registration_and_rejects_invalid_identities",
         "command": "make -C tests/unit/source/identity",
         "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_matches_frozen_root_aware_vectors_through_the_current_identity_producer",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_separates_all_categories_roots_and_complete_component_boundaries",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_preserves_existing_names_through_every_root_aware_registration_allocation_failure",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_builds_many_member_displays_with_constant_allocation_count",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
       }
     ]
   },
@@ -18996,6 +19016,21 @@
         "case": "it_releases_every_failed_registration_and_rejects_invalid_identities",
         "command": "make -C tests/unit/source/identity",
         "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_matches_frozen_root_aware_vectors_through_the_current_identity_producer",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_separates_all_categories_roots_and_complete_component_boundaries",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_preserves_existing_names_through_every_root_aware_registration_allocation_failure",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
       }
     ]
   },
@@ -19071,6 +19106,21 @@
       },
       {
         "case": "it_releases_every_failed_registration_and_rejects_invalid_identities",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_separates_all_categories_roots_and_complete_component_boundaries",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_raw_key_shape_without_publishing_or_dereferencing_missing_data",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_preserves_existing_names_through_every_root_aware_registration_allocation_failure",
         "command": "make -C tests/unit/source/identity",
         "source": "tests/unit/source/identity/main.c"
       }
@@ -36817,6 +36867,21 @@
         "case": "it_releases_every_failed_registration_and_rejects_invalid_identities",
         "command": "make -C tests/unit/source/identity",
         "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_matches_frozen_root_aware_vectors_through_the_current_identity_producer",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_preserves_existing_names_through_every_root_aware_registration_allocation_failure",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_builds_many_member_displays_with_constant_allocation_count",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
       }
     ]
   },
@@ -36846,6 +36911,36 @@
       },
       {
         "case": "it_releases_every_failed_registration_and_rejects_invalid_identities",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_matches_frozen_root_aware_vectors_through_the_current_identity_producer",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_separates_all_categories_roots_and_complete_component_boundaries",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_measures_exact_root_shape_and_bounds_every_length_prefix_before_allocation",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_raw_key_shape_without_publishing_or_dereferencing_missing_data",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_preserves_existing_names_through_every_root_aware_registration_allocation_failure",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_builds_many_member_displays_with_constant_allocation_count",
         "command": "make -C tests/unit/source/identity",
         "source": "tests/unit/source/identity/main.c"
       }
@@ -37780,6 +37875,11 @@
         "case": "it_rejects_hash_collisions_before_namespace_planning",
         "command": "make -C tests/unit/native/status-providers",
         "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_matches_frozen_root_aware_vectors_through_the_current_identity_producer",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
       }
     ]
   },
@@ -38517,6 +38617,137 @@
         "case": "it_unwinds_each_multiword_standard_catalog_allocation_failure",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      }
+    ]
+  },
+  "src/source/identity/encoding/internal.h": {
+    "contract": "docs/implementation/identities.md",
+    "purpose": "Separate exact identity-size proof from versioned binary component serialization.",
+    "tests": [
+      {
+        "case": "it_matches_frozen_root_aware_vectors_through_the_current_identity_producer",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_measures_exact_root_shape_and_bounds_every_length_prefix_before_allocation",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_builds_many_member_displays_with_constant_allocation_count",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/identity/encoding/measure.c": {
+    "contract": "docs/implementation/identities.md",
+    "purpose": "Prove complete version-two identity length and explicit root/component shape before allocation.",
+    "tests": [
+      {
+        "case": "it_matches_frozen_root_aware_vectors_through_the_current_identity_producer",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_measures_exact_root_shape_and_bounds_every_length_prefix_before_allocation",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_preserves_existing_names_through_every_root_aware_registration_allocation_failure",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      }
+    ]
+  },
+  "src/source/identity/encoding/parts.c": {
+    "contract": "docs/implementation/identities.md",
+    "purpose": "Serialize full original module/member components with exact big-endian lengths.",
+    "tests": [
+      {
+        "case": "it_matches_frozen_root_aware_vectors_through_the_current_identity_producer",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_separates_all_categories_roots_and_complete_component_boundaries",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      }
+    ]
+  },
+  "src/source/identity/encoding/display.c": {
+    "contract": "docs/implementation/identities.md",
+    "purpose": "Copy a measured original identity display once without retaining repeated member-prefix copies.",
+    "tests": [
+      {
+        "case": "it_preserves_existing_names_through_every_root_aware_registration_allocation_failure",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_builds_many_member_displays_with_constant_allocation_count",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      }
+    ]
+  },
+  "tests/unit/source/identity/support/roots.c": {
+    "contract": "docs/implementation/identities.md",
+    "purpose": "Verify category/root/component injectivity, fixed version-two native vectors and discovery-order independence.",
+    "tests": [
+      {
+        "case": "it_matches_frozen_root_aware_vectors_through_the_current_identity_producer",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_separates_all_categories_roots_and_complete_component_boundaries",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_measures_exact_root_shape_and_bounds_every_length_prefix_before_allocation",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      }
+    ]
+  },
+  "tests/unit/source/identity/support/failures.c": {
+    "contract": "docs/implementation/identities.md",
+    "purpose": "Preserve original identity inputs and registered names through malformed requests and every new encoding allocation failure.",
+    "tests": [
+      {
+        "case": "it_rejects_invalid_raw_key_shape_without_publishing_or_dereferencing_missing_data",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_preserves_existing_names_through_every_root_aware_registration_allocation_failure",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_builds_many_member_displays_with_constant_allocation_count",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
       }
     ]
   }

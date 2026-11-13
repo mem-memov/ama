@@ -12,12 +12,12 @@ symbol uses; it is not a complete project C backend or native dependency loader.
 ## Inputs, ownership and effects
 
 Register a complete logical module identity in an `IdentityRegistry` using
-`IDENTITY_NATIVE_NAMESPACE`, with no member components. The retained registration entry point uses its existing versioned encoding,
-category byte 7, SHA-256 and full-key collision rejection. Its restricted producer
-is replaced by T017; T010 uses independently frozen complete-key vectors with
-explicit project/standard roots and multiword Unicode components through the
-exact insertion boundary. It copies those keys into the registry arena and checks
-the expected full SHA-256 prefix. This does not certify current source parsing. The registry owns the resulting `ama_n_<64 hexadecimal digits>` prefix.
+`IDENTITY_NATIVE_NAMESPACE`, with no member components. Registration uses version-two complete encodings with explicit root kind,
+category byte 7, SHA-256 and full-key collision rejection. T017 now sends the
+frozen project/standard multiword Unicode vectors through the current producer
+and compares their exact bytes and full prefixes. This does not certify parser
+token integration, which remains T022.
+The registry owns the resulting `ama_n_<64 hexadecimal digits>` prefix.
 Identity source spans and local-function spans borrow their source managers.
 
 `native_namespace_begin` emits a module context defining `AMA_NATIVE(local_name)`
@@ -120,7 +120,7 @@ preprocessor errors. Begin rejects either leaked temporary macro; end removes
 both. Header and body inclusions use the same complete identity and planned ID,
 even when their inclusion orders differ. The generator does not inspect native
 C to infer reason IDs, parse local declarations, or rewrite arbitrary source.
-General current-source integration remains T017/T055; that task must call this
+General generated provider-emission integration remains T055; that task must call this
 planner before emitting the dependency closure.
 
 ## Ordering argument and additional acceptance

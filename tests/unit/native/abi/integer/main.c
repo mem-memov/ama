@@ -26,9 +26,9 @@ static void it_binds_the_integer_fixture_module_and_six_protocols_without_a_seve
     identity_registry_init(&registry, sources.allocator);
     const IdentityName *name = NULL;
     IdentityStatus named = identity_register(&registry,
-        (QualifiedIdentity){IDENTITY_NATIVE_NAMESPACE, ".fixtures.integer", NULL, 0, {0}}, &name);
+        (QualifiedIdentity){IDENTITY_NATIVE_NAMESPACE, "..integer", NULL, 0, {0}}, &name);
     assert(named == IDENTITY_OK);
-    assert(strcmp(name->internal_name, "ama_n_162154c80c3cd8c4dc2bad72f3516d731ace493e83faf5b334f20b28fc88d2b8") == 0);
+    assert(strcmp(name->internal_name, "ama_n_1ad46fade0175c4e31ef9315b33c02e79bb0f66fd54f938c04bd36d8838b2a42") == 0);
     identity_registry_destroy(&registry);
     abi_table_destroy(&table);
     ast_module_destroy(&module);

@@ -2,8 +2,8 @@
  * @file
  * @brief Bind the integer ABI fixture to counted allocation and isolated native names.
  *
- * The .fixtures.integer C namespace is a frozen unit context while T017/T055
- * supply standard-root qualification and the actual generated frontend binding.
+ * The fixed ..integer namespace is checked against the current root-aware
+ * identity producer. Actual generated bridge/frontend binding remains T055.
  */
 #ifndef AMA_INTEGER_ABI_TEST_COMMON_C
 #define AMA_INTEGER_ABI_TEST_COMMON_C
@@ -14,7 +14,7 @@
 #include "source/identity/identity.h"
 
 static size_t integer_default_calls, integer_literal_calls, integer_size_calls;
-#define AMA_NATIVE(local_name) ama_n_162154c80c3cd8c4dc2bad72f3516d731ace493e83faf5b334f20b28fc88d2b8_##local_name
+#define AMA_NATIVE(local_name) ama_n_1ad46fade0175c4e31ef9315b33c02e79bb0f66fd54f938c04bd36d8838b2a42_##local_name
 #define AMA_INTEGER_ALLOCATE(size) test_allocate(NULL, size)
 #define AMA_INTEGER_RELEASE(pointer) test_release(NULL, pointer)
 #define AMA_INTEGER_OBSERVE_DEFAULT() (++integer_default_calls)
