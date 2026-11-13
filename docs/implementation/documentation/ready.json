@@ -19416,6 +19416,21 @@
         "case": "it_unwinds_every_catalog_allocation_failure",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_resolves_explicit_root_families_without_fallback_or_physical_root_names",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_unconfigured_root_kind_and_missing_root_inventory",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_standard_roots_and_cross_family_physical_aliases",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
       }
     ]
   },
@@ -19472,6 +19487,31 @@
         "case": "it_unwinds_every_catalog_allocation_failure",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_validates_exact_project_and_standard_paths_with_multiword_components",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_resolves_explicit_root_families_without_fallback_or_physical_root_names",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_unconfigured_root_kind_and_missing_root_inventory",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_maps_nested_multiword_submodules_and_native_companions_in_each_root_kind",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_standard_roots_and_cross_family_physical_aliases",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
       }
     ]
   },
@@ -19526,6 +19566,21 @@
       },
       {
         "case": "it_unwinds_every_catalog_allocation_failure",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_resolves_explicit_root_families_without_fallback_or_physical_root_names",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_maps_nested_multiword_submodules_and_native_companions_in_each_root_kind",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_each_multiword_standard_catalog_allocation_failure",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
       }
@@ -19608,6 +19663,16 @@
       },
       {
         "case": "it_unwinds_every_catalog_allocation_failure",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_validates_exact_project_and_standard_paths_with_multiword_components",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_resolves_explicit_root_families_without_fallback_or_physical_root_names",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
       }
@@ -19774,6 +19839,26 @@
         "case": "it_unwinds_every_catalog_allocation_failure",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_maps_nested_multiword_submodules_and_native_companions_in_each_root_kind",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_standard_roots_and_cross_family_physical_aliases",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_reports_exact_missing_multiword_parent_anchors_without_alternate_resolution",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_each_multiword_standard_catalog_allocation_failure",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
       }
     ]
   },
@@ -19813,6 +19898,26 @@
       },
       {
         "case": "it_unwinds_every_catalog_allocation_failure",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_resolves_explicit_root_families_without_fallback_or_physical_root_names",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_unconfigured_root_kind_and_missing_root_inventory",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_maps_nested_multiword_submodules_and_native_companions_in_each_root_kind",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_each_multiword_standard_catalog_allocation_failure",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
       }
@@ -36907,6 +37012,21 @@
         "case": "it_unwinds_every_catalog_allocation_failure",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_validates_exact_project_and_standard_paths_with_multiword_components",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_resolves_explicit_root_families_without_fallback_or_physical_root_names",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_each_multiword_standard_catalog_allocation_failure",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
       }
     ]
   },
@@ -36946,6 +37066,36 @@
       },
       {
         "case": "it_unwinds_every_catalog_allocation_failure",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_validates_exact_project_and_standard_paths_with_multiword_components",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_resolves_explicit_root_families_without_fallback_or_physical_root_names",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_maps_nested_multiword_submodules_and_native_companions_in_each_root_kind",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_standard_roots_and_cross_family_physical_aliases",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_reports_exact_missing_multiword_parent_anchors_without_alternate_resolution",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_each_multiword_standard_catalog_allocation_failure",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
       }
@@ -38262,6 +38412,21 @@
         "case": "it_applies_the_pinned_start_rule_to_every_word_over_the_complete_scalar_domain",
         "command": "make -C tests/unit/source/unicode",
         "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_validates_exact_project_and_standard_paths_with_multiword_components",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_resolves_explicit_root_families_without_fallback_or_physical_root_names",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_maps_nested_multiword_submodules_and_native_companions_in_each_root_kind",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
       }
     ]
   },
@@ -38305,6 +38470,53 @@
         "case": "it_verifies_the_exact_pinned_unicode_edition_and_source_checksum",
         "command": "make -C tests/unit/source/unicode",
         "source": "tests/unit/source/unicode/main.c"
+      }
+    ]
+  },
+  "tests/unit/source/module/support/roots.c": {
+    "contract": "docs/implementation/module-paths.md",
+    "purpose": "Verify explicit namespace roots, complete path spelling and absence of cross-family fallback.",
+    "tests": [
+      {
+        "case": "it_validates_exact_project_and_standard_paths_with_multiword_components",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_resolves_explicit_root_families_without_fallback_or_physical_root_names",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_unconfigured_root_kind_and_missing_root_inventory",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      }
+    ]
+  },
+  "tests/unit/source/module/support/storage.c": {
+    "contract": "docs/implementation/module-paths.md",
+    "purpose": "Compose multiword plus-directory storage, exact native companions, root-family aliases and failure ownership.",
+    "tests": [
+      {
+        "case": "it_maps_nested_multiword_submodules_and_native_companions_in_each_root_kind",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_standard_roots_and_cross_family_physical_aliases",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_reports_exact_missing_multiword_parent_anchors_without_alternate_resolution",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_each_multiword_standard_catalog_allocation_failure",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
       }
     ]
   }

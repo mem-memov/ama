@@ -55,7 +55,7 @@ static void destroy_test(void) {
  * resulting source until catalog destruction.
  */
 static const ModuleSource *find_fixture(const char *logical_path) {
-    ModuleRoot root = {"project", NULL, 0};
+    ModuleRoot root = {"project", NULL, 0, MODULE_ROOT_PROJECT};
     ModuleStatus status = module_catalog_build(&catalog, &root, 1);
     assert(status == MODULE_OK);
     const ModuleSource *source;

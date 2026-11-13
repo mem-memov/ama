@@ -686,10 +686,23 @@ Contracts: [source and names](spec/language/source-and-names.md),
   strict suite, Unicode ASan/UBSan leaf (leak detection disabled), complete
   767-input coverage, Markdown links and warning-free reproducible Doxygen pass:
   595 maintained files, 2440 interfaces and 288 destinations.
-- [ ] **T016 — Implement current physical-to-logical path mapping.** Needs: T015.
+- [x] **T016 — Implement current physical-to-logical path mapping.** Needs: T015.
   Resolve explicit `.` and `..` roots, extensionless modules and `name+/` topology.
   Test spaced components, root-kind distinctions, conflicting roots/aliases and
   precise missing/ambiguous paths without search-order fallbacks.
+  Evidence: required Project/import or Standard root tags establish exact `.`/
+  `..` prefixes; unknown tags fail before scanning. Complete-name validation now
+  applies to every logical/physical component, preserving nested plus directories
+  only in physical source/companion paths. Seven extended catalog cases cover
+  root-order independence, coexisting shorter names, no cross-family fallback,
+  multiword Chinese anchors/companions, same-family duplicates, cross-family
+  hardlinks and every measured Standard catalog allocation failure. Existing
+  callers explicitly tag ordinary roots and link the shared name predicate;
+  CLI tests check those tags. The full strict suite, catalog/options ASan/UBSan
+  leaves (leak detection disabled), complete 769-input coverage, Markdown links
+  and warning-free reproducible Doxygen pass: 597 maintained files, 2449
+  interfaces and 288 destinations. Encoding/token/CLI completion remains T017,
+  T022 and T068 respectively.
 - [ ] **T017 — Verify deterministic generated identities.** Needs: T016. Use
   complete category-separated identities, unambiguous encoding and exact hash
   collision rejection. Check stable Unicode vectors, forced collisions and

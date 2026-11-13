@@ -105,7 +105,7 @@ static void it_rejects_a_retained_lock_without_guessing_its_age(void) {
  */
 static void it_refuses_to_refresh_a_different_entry_into_the_same_scope(void) {
     setup_frontend();
-    ModuleRoot root = {"generated/project", NULL, 0};
+    ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
     bool checked = compiler_frontend_check(&frontend, &root, 1, ".value");
     assert(checked);
     native_scaffold_init(&scaffold, &frontend, sources.allocator);

@@ -8,10 +8,13 @@ Boundary: `src/source/module/catalog.h`, with `scan/`, `resolve/`, exact-entry
 probing and immutable sources. Implements SRC-01/02/03/05. This is source discovery
 and lookup, not dependency closure, draft parsing or type resolution.
 
-A build takes a finite ordered list of project/library roots with explicit
-root-relative output exclusions. Sources are regular files whose complete names
-are Unicode identifiers. Directories are identifier groups or `identifier+`
-submodule containers. Other well-formed UTF-8 entry names are not source
+A build takes a finite ordered list of explicitly tagged roots with exact
+root-relative output exclusions. `MODULE_ROOT_PROJECT` is the ordinary project/
+import family selected by `.`; `MODULE_ROOT_STANDARD` is selected by `..`.
+Zero/unknown kind is invalid. The root's physical name does not determine its
+kind and is absent from the logical component sequence. Sources are regular
+extensionless files whose complete names satisfy the pinned multiword Unicode
+predicate. Directories are complete-name groups or `name+` submodule containers. Other well-formed UTF-8 entry names are not source
 candidates; in particular `.git`, extensions, C/header/ABI companions are not
 modules. Invalid UTF-8 filenames are unsupported paths. Exact excluded files or
 subtrees are skipped before candidate recognition. No legal identifier such as
@@ -30,8 +33,9 @@ The POSIX implementation checks each configured-root prefix and candidate throug
 exact directory-entry spelling, rejects symlinks, and retains physical source paths.
 The catalog checks `(device, inode)` for source and directory aliases, including
 repeated roots and directory cycles/bind aliases, without claiming inode numbers
-are portable logical identities. Conflicting logical names are rejected across
-all roots. Lookup is enabled only after the entire build succeeds; no root can
+are portable logical identities. Conflicting complete logical identities are rejected across roots of the same
+kind. Equal component sequences in different kinds are distinct. A physical
+module exposed under both kinds still fails the device/inode alias check. Lookup is enabled only after the entire build succeeds; no root can
 win by search order. Different case/canonical Unicode spellings remain distinct
 when the filesystem can represent them. Native encoding here is POSIX UTF-8;
 other platform adapters are not certified. Inputs must not mutate during build.
@@ -69,9 +73,68 @@ released. Case and normalization-distinct physical files retain distinct lookups
 
 
 T145 documents each catalog scan/resolution/source-publication phase and internal
-view lifetime. The retained logical-path validator still accepts only the old
-single-dot sequence of Unicode words. Complete multiword components, the separate
-standard-library root and their identity encoding remain T016/T017; exact-byte
-filesystem tests do not certify those unimplemented source forms. Native companion
+view lifetime. T016 completes the catalog’s root-kind/multiword path contract;
+T017 completes its generated-identity encoding and T022 the parser token consumers.
+Native companion
 lookup and invalid UTF-8 diagnostics retain their original loaded bytes even on
 failure, until catalog destruction.
+
+## T016: absolute roots and complete names
+
+`module_path_valid` accepts exactly `.` or `..` followed by nonempty complete-name
+components separated by dots. It uses `unicode_name` on every already-delimited
+component. Root-only paths, a third leading dot, empty components, plus markers,
+slashes and edge/repeated/separator spaces fail. It neither trims input nor turns
+`..` into a filesystem parent. A valid lookup is exact string equality of this
+complete spelling; `.item`, `.item state` and `..item state` may coexist and no
+shorter prefix is searched when the complete path is absent.
+
+Scanning begins with an empty logical prefix for Project or one dot for Standard.
+Each validated component appends dot plus its original bytes, producing exactly
+the required root marker. Ordinary namespace directories keep every component.
+A plus directory removes exactly its last structural plus after validating the
+remaining complete name and verifying its exact regular sibling. This does not
+make the parent an imported module, inherited state or executable default object.
+The physical source, companions and diagnostics retain every directory's plus.
+
+For example, when `generated/库 2` is configured Standard, a module
+`generated/库 2/item state` is `..item state`: the root directory's name is not a
+logical component and need not itself be a legal language name. Under an ordinary
+root, `商店 工具/商品 状态+/读取 数据+/详情 项目` is
+`.商店 工具.商品 状态.读取 数据.详情 项目`, with the required sibling module files at
+each plus boundary. The same tree under a Standard root keeps `..` instead.
+
+Root inventories are borrowed only for build; published records and discovered
+paths belong to catalog owners. Source/native-companion byte lifetime and failure
+publication rules are unchanged. A NULL nonempty inventory and an unknown kind
+fail explicitly, rather than guessing Project. Existing CLI source/`--root`
+entries are explicitly tagged Project/import; the current-spec CLI standard-root
+configuration remains T068. Parser spans and general generated root identity
+encoding remain T022/T017 respectively. Passing catalog cases does not certify
+those later source/codegen stages.
+
+The mapping is injective after checks: root marker determines kind; each dot
+separates a component because dots are not XID name characters; each complete
+component preserves its original bytes including single internal spaces. Equal
+complete identities are rejected before source publication. Equal physical inode
+identity under different logical spellings is also rejected, so no root order can
+silently select a conflicting source. Missing lookup searches no other root family.
+Physical discovery still uses sorted FIFO traversal and exact entry probes; no
+runtime name heuristic or recursive filesystem walk is added.
+
+The new source/module cases check both root orders for equal names in distinct
+families, coexistence with shorter names, missing cross-family results, invalid
+path spellings and unknown root tags. They compose nested Chinese multiword
+plus paths, draft anchors and C/header/ABI companions in each family. Same-family
+standard duplicates and cross-family hardlinks retain both conflicting physical
+paths. Missing multiword anchors report their exact required filename. Every
+allocation in a successful extended Standard catalog is separately failed;
+lookup stays disabled and teardown releases all partial owners. Existing source,
+parser, project, compiler and driver fixtures now initialize their root kind
+explicitly; they preserve their previously tested ordinary-root domain.
+
+T016 acceptance passes the full strict `-DNDEBUG -Werror` test tree, focused
+catalog/options ASan/UBSan leaves (leak detection disabled), complete coverage
+of 769 maintained inputs and all Markdown links. Warning-free Doxygen checks
+597 maintained files, 2449 interfaces and all 288 canonical/page destinations;
+two complete generations produce byte-identical output.

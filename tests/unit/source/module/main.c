@@ -52,6 +52,9 @@ static void destroy_catalog(void) {
     destroy_test();
 }
 
+#include "support/roots.c"
+#include "support/storage.c"
+
 /**
  * Write this scenario's explicit source/native fixtures in test-owned storage before loading or
  * compiling them; the caller controls their lifetime and expected result.
@@ -78,7 +81,7 @@ static void prepare_project(void) {
  */
 static ModuleRoot project_root(void) {
     static const char *const exclusions[] = {"generated"};
-    return (ModuleRoot){"generated/project", exclusions, 1};
+    return (ModuleRoot){"generated/project", exclusions, 1, MODULE_ROOT_PROJECT};
 }
 
 /**
@@ -120,7 +123,7 @@ static void it_rejects_duplicates_across_roots_instead_of_preferring_one(void) {
     directory("generated/second");
     file("generated/first/item", "@!\n");
     file("generated/second/item", "@!\n");
-    ModuleRoot roots[] = {{"generated/first", NULL, 0}, {"generated/second", NULL, 0}};
+    ModuleRoot roots[] = {{"generated/first", NULL, 0, MODULE_ROOT_PROJECT}, {"generated/second", NULL, 0, MODULE_ROOT_PROJECT}};
     for (size_t order = 0; order < 2; order++) {
         setup_catalog();
         ModuleStatus status = module_catalog_build(&catalog, roots, 2);
@@ -145,7 +148,7 @@ static void it_rejects_orphans_hardlink_aliases_and_symlink_roots(void) {
     directory("generated/orphan");
     directory("generated/orphan/item+");
     setup_catalog();
-    ModuleRoot root = {"generated/orphan", NULL, 0};
+    ModuleRoot root = {"generated/orphan", NULL, 0, MODULE_ROOT_PROJECT};
     ModuleStatus status = module_catalog_build(&catalog, &root, 1);
     assert(status == MODULE_ORPHAN_DIRECTORY);
     destroy_catalog();
@@ -184,7 +187,7 @@ static void it_distinguishes_case_and_canonically_equivalent_source_spellings(vo
         file(names[index], "@!\n");
     }
     setup_catalog();
-    ModuleRoot root = {"generated/spelling", NULL, 0};
+    ModuleRoot root = {"generated/spelling", NULL, 0, MODULE_ROOT_PROJECT};
     ModuleStatus status = module_catalog_build(&catalog, &root, 1);
     assert(status == MODULE_OK);
     const char *logical[] = {".Item", ".item", ".é", ".e\xcc\x81"};
@@ -204,7 +207,7 @@ static void it_distinguishes_case_and_canonically_equivalent_source_spellings(vo
 static void it_reports_the_exact_invalid_utf8_span_in_sources_and_abi(void) {
     directory("generated/invalid");
     file("generated/invalid/item", "@!\n\xff");
-    ModuleRoot root = {"generated/invalid", NULL, 0};
+    ModuleRoot root = {"generated/invalid", NULL, 0, MODULE_ROOT_PROJECT};
     setup_catalog();
     ModuleStatus status = module_catalog_build(&catalog, &root, 1);
     assert(status == MODULE_INVALID_UTF8 && catalog.issue.offset == 3);
@@ -226,7 +229,7 @@ static void it_reports_the_exact_invalid_utf8_span_in_sources_and_abi(void) {
  */
 static void it_rejects_aliased_directory_roots_even_when_empty(void) {
     directory("generated/empty");
-    ModuleRoot roots[] = {{"generated/empty", NULL, 0}, {"generated/./empty", NULL, 0}};
+    ModuleRoot roots[] = {{"generated/empty", NULL, 0, MODULE_ROOT_PROJECT}, {"generated/./empty", NULL, 0, MODULE_ROOT_PROJECT}};
     setup_catalog();
     ModuleStatus status = module_catalog_build(&catalog, roots, 2);
     assert(status == MODULE_FILE_ALIAS);
@@ -259,6 +262,13 @@ static void it_unwinds_every_catalog_allocation_failure(void) {
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_validates_exact_project_and_standard_paths_with_multiword_components();
+    it_resolves_explicit_root_families_without_fallback_or_physical_root_names();
+    it_rejects_unconfigured_root_kind_and_missing_root_inventory();
+    it_maps_nested_multiword_submodules_and_native_companions_in_each_root_kind();
+    it_rejects_conflicting_standard_roots_and_cross_family_physical_aliases();
+    it_reports_exact_missing_multiword_parent_anchors_without_alternate_resolution();
+    it_unwinds_each_multiword_standard_catalog_allocation_failure();
     it_resolves_nested_submodules_and_physical_native_companions();
     it_rejects_duplicates_across_roots_instead_of_preferring_one();
     it_rejects_orphans_hardlink_aliases_and_symlink_roots();

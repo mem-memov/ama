@@ -14,7 +14,7 @@
  */
 static void it_composes_source_lookup_identity_spans_and_human_diagnostics(void) {
     setup_test();
-    ModuleRoot root = {"project", NULL, 0};
+    ModuleRoot root = {"project", NULL, 0, MODULE_ROOT_PROJECT};
     ModuleStatus discovered = module_catalog_build(&catalog, &root, 1);
     assert(discovered == MODULE_OK);
     const ModuleSource *module;
@@ -38,7 +38,7 @@ static void it_composes_source_lookup_identity_spans_and_human_diagnostics(void)
  */
 static void it_reports_real_source_ambiguity_with_both_physical_paths(void) {
     setup_test();
-    ModuleRoot roots[] = {{"project/商店", NULL, 0}, {"project/other", NULL, 0}};
+    ModuleRoot roots[] = {{"project/商店", NULL, 0, MODULE_ROOT_PROJECT}, {"project/other", NULL, 0, MODULE_ROOT_PROJECT}};
     ModuleStatus discovered = module_catalog_build(&catalog, roots, 2);
     assert(discovered == MODULE_AMBIGUOUS);
     Diagnostic diagnostic;
@@ -64,7 +64,7 @@ static void it_renders_an_actual_invalid_utf8_input_without_losing_its_bytes(voi
     size_t written = fwrite(bytes, 1, sizeof(bytes), input);
     int closed = fclose(input);
     assert(written == sizeof(bytes) && closed == 0);
-    ModuleRoot root = {"generated/bad", NULL, 0};
+    ModuleRoot root = {"generated/bad", NULL, 0, MODULE_ROOT_PROJECT};
     ModuleStatus discovered = module_catalog_build(&catalog, &root, 1);
     assert(discovered == MODULE_INVALID_UTF8);
     Diagnostic diagnostic;

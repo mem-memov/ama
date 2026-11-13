@@ -60,7 +60,7 @@ static void file(const char *path, const char *content) {
  * compiler or executable is invoked.
  */
 static inline bool check_project(void) {
-    ModuleRoot root = {"generated/project", NULL, 0};
+    ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
     return compiler_frontend_check(&frontend, &root, 1, ".main");
 }
 

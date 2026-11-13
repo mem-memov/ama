@@ -64,6 +64,7 @@ static void it_preserves_repeated_values_flags_and_shared_root_exclusions(void) 
     assert(options.compile && options.overwrite && !options.create);
     assert(options.c_flag_count == 2 && options.c_flags[0] == arguments[23] && options.c_flags[1] == arguments[25]);
     for (size_t index = 0; index < options.root_count; index++) {
+        assert(options.roots[index].kind == MODULE_ROOT_PROJECT);
         assert(options.roots[index].excluded == options.roots[0].excluded);
         assert(options.roots[index].excluded_count == 2);
         assert(options.roots[index].excluded[0] == arguments[9]);

@@ -4,6 +4,8 @@
  *
  * [SRC-05](../../../../spec/language/source-and-names.md#src-05)
  * A trailing plus is storage organization and requires its regular sibling module; it is not logical identity.
+ * [SRC-03](../../../../spec/language/source-and-names.md#src-03) validates the
+ * complete base, including exact single spaces, before candidate publication.
  */
 #include <string.h>
 #include "../internal.h"
@@ -38,7 +40,7 @@ static ModuleStatus verify_anchor(ModuleWalk *walk, const ModuleDirectory *direc
     return status;
 }
 
-/** Translate a validated base name to a logical component, then handle checked regular files/directories under the retained storage mapping.
+/** Translate a validated base name to a logical component, then handle checked regular files/directories under the explicit root/submodule storage mapping.
  */
 static ModuleStatus visit_candidate(ModuleWalk *walk, const ModuleDirectory *directory,
     const char *name, const char *base, bool submodule,
@@ -87,7 +89,7 @@ ModuleStatus module_visit_entry(ModuleWalk *walk, const ModuleDirectory *directo
     if (!utf8_validate((const unsigned char *)name, length, &error)) {
         return module_fail(walk->catalog, MODULE_UNSUPPORTED_PATH, physical);
     }
-    if (!unicode_identifier((const unsigned char *)base, strlen(base), &error)) {
+    if (!unicode_name((const unsigned char *)base, strlen(base), &error)) {
         return MODULE_OK;
     }
     return visit_candidate(walk, directory, name, base, submodule, physical, relative);

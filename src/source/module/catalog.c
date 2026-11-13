@@ -32,7 +32,7 @@ ModuleStatus module_fail(ModuleCatalog *catalog, ModuleStatus status, const char
 
 ModuleStatus module_catalog_build(ModuleCatalog *catalog,
     const ModuleRoot *roots, size_t root_count) {
-    if (catalog->attempted) {
+    if (catalog->attempted || (root_count != 0 && roots == NULL)) {
         return MODULE_INVALID_PATH;
     }
     catalog->attempted = true;

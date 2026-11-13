@@ -23,7 +23,10 @@ struct ModuleDirectoryIdentity {
  */
 ModuleStatus module_remember_directory(ModuleCatalog *catalog, const char *path);
 
-/** Queued immutable physical/relative/logical path views owned by the catalog arena. */
+/** Queued immutable physical/relative paths and logical prefix views owned by the arena.
+ * Initial prefixes are empty for project/import or one dot for standard roots;
+ * appending dot plus a component produces the exact single/double-dot source path.
+ */
 typedef struct ModuleDirectory {
     struct ModuleDirectory *next;
     const char *physical;
@@ -60,7 +63,7 @@ ModuleStatus module_walk_root(ModuleCatalog *catalog, const ModuleRoot *root);
  */
 ModuleStatus module_read_entries(ModuleWalk *walk, const ModuleDirectory *directory,
     const char ***names, size_t *count);
-/** Apply exact explicit exclusions, validate candidate spelling and queue a directory or load a regular source. Invalid noncandidate names are ignored under the retained discovery contract.
+/** Apply exact explicit exclusions, validate candidate spelling and queue a directory or load a regular source. Invalid noncandidate names are ignored under the explicit discovery contract.
  */
 ModuleStatus module_visit_entry(ModuleWalk *walk, const ModuleDirectory *directory,
     const char *name);

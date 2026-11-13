@@ -60,7 +60,7 @@ static void file(const char *path, const char *content) {
  * Load .main from exactly the supplied physical root through the production closure loader.
  */
 static ProjectStatus load_root(const char *root) {
-    ModuleRoot input = {root, NULL, 0};
+    ModuleRoot input = {root, NULL, 0, MODULE_ROOT_PROJECT};
     return project_load(&project, &input, 1, ".main");
 }
 

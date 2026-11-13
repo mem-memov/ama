@@ -3,7 +3,10 @@
  * @brief Own one exact physical-source catalog and its diagnostic lifetimes.
  *
  * [SRC-02](../../../spec/language/source-and-names.md#src-02)
- * Build without root shadowing; the current single-dot/word path representation awaits T016.
+ * Select project/import or standard roots explicitly; complete multiword components
+ * preserve original bytes and never shadow an earlier physical source.
+ * [SRC-01](../../../spec/language/source-and-names.md#src-01) makes the declared
+ * root kind authoritative instead of inferring it from a physical directory name.
  */
 #ifndef AMA_SOURCE_MODULE_CATALOG_H
 #define AMA_SOURCE_MODULE_CATALOG_H
@@ -38,13 +41,23 @@ typedef struct ModuleSource {
     ino_t inode;
 } ModuleSource;
 
-/** Borrowed physical root plus exact relative exclusions, used only during build. */
+/** Logical namespace family; zero is deliberately invalid until a root is explicitly configured. */
+typedef enum {
+    MODULE_ROOT_PROJECT = 1,
+    MODULE_ROOT_STANDARD = 2
+} ModuleRootKind;
+
+/** Borrowed physical root plus exact relative exclusions and required namespace family.
+ * Project/import roots share the single-dot family; standard roots use double dot.
+ * Physical directory names do not determine or override the declared kind.
+ */
 typedef struct {
     const char *path;
     /* Exact physical paths relative to this root, including output subtrees.
      * No guessed exclusions based on otherwise legal module names. */
     const char *const *excluded;
     size_t excluded_count;
+    ModuleRootKind kind;
 } ModuleRoot;
 
 /** Borrowed catalog-owned failure context, including both conflict paths or an original malformed-byte source. */
@@ -94,8 +107,8 @@ ModuleStatus module_catalog_build(ModuleCatalog *catalog,
  */
 ModuleStatus module_catalog_find(const ModuleCatalog *catalog,
     const char *logical_path, const ModuleSource **output);
-/** Validate the retained single-dot, nonempty Unicode-word component form.
- * @return Exact supported-form membership only; complete multiword names and distinct standard-library roots remain T016.
+/** Validate an absolute single/double-dot selector and nonempty complete-name components.
+ * @return Exact spelling membership with no edge/separator spaces, filesystem parent traversal or normalization.
  */
 bool module_path_valid(const char *path);
 

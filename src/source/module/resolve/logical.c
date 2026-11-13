@@ -1,30 +1,27 @@
 /**
  * @file
- * @brief Validate the retained single-dot sequence of Unicode word components.
+ * @brief Validate absolute project/standard module paths with exact multiword Unicode components.
  *
- * [SRC-03](../../../../spec/language/source-and-names.md#src-03)
- * This is an existing restricted validator, not full multiword/two-root support; T016 replaces it.
+ * [SRC-01](../../../../spec/language/source-and-names.md#src-01) distinguishes
+ * single/double-dot namespace selectors; [SRC-03](../../../../spec/language/source-and-names.md#src-03)
+ * applies complete-name rules to each dot-delimited component without trimming.
  */
-#include <string.h>
 #include "../catalog.h"
 #include "source/unicode/unicode.h"
 
+/** Consume exactly one root marker, then every nonempty complete component.
+ * Every accepted separator advances a byte index; malformed or empty components
+ * fail before another iteration. Physical filesystem traversal is never involved.
+ */
 bool module_path_valid(const char *path) {
-    if (path == NULL || path[0] != '.' || path[1] == 0) {
-        return false;
-    }
-    const char *start = path + 1;
-    do {
-        const char *end = strchr(start, '.');
-        size_t length = end == NULL ? strlen(start) : (size_t)(end - start);
+    if (path == NULL || path[0] != '.') { return false; }
+    size_t start = path[1] == '.' ? 2 : 1;
+    for (;;) {
+        size_t end = start;
+        while (path[end] != 0 && path[end] != '.') { end++; }
         size_t error;
-        if (!unicode_identifier((const unsigned char *)start, length, &error)) {
-            return false;
-        }
-        if (end == NULL) {
-            return true;
-        }
+        if (!unicode_name((const unsigned char *)path + start, end - start, &error)) { return false; }
+        if (path[end] == 0) { return true; }
         start = end + 1;
-    } while (true);
+    }
 }
-

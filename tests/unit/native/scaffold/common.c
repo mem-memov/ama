@@ -36,7 +36,7 @@ static inline void prepare_native(void) {
  */
 static void begin_scaffold(void) {
     setup_frontend();
-    ModuleRoot root = {"generated/project", NULL, 0};
+    ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
     bool valid = compiler_frontend_authoring(&frontend, &root, 1, ".main", contract);
     assert(valid && frontend.authoring);
     native_scaffold_init(&scaffold, &frontend, sources.allocator);

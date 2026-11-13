@@ -148,7 +148,7 @@ static void it_reports_request_chains_for_missing_draft_and_invalid_modules(void
 static void it_owns_entry_errors_and_locates_a_draft_entry(void) {
     directory("generated/entry");
     setup_project();
-    ModuleRoot root = {"generated/entry", NULL, 0};
+    ModuleRoot root = {"generated/entry", NULL, 0, MODULE_ROOT_PROJECT};
     char entry[] = ".main";
     ProjectStatus status = project_load(&project, &root, 1, entry);
     entry[1] = 'X';
@@ -197,7 +197,7 @@ static void it_resolves_multiple_roots_and_submodules_without_loading_the_parent
     file("generated/library/商店/商品", "unfinished parent");
     directory("generated/library/商店/商品+");
     file("generated/library/商店/商品+/详情", "@C\n");
-    ModuleRoot roots[] = {{"generated/application", NULL, 0}, {"generated/library", NULL, 0}};
+    ModuleRoot roots[] = {{"generated/application", NULL, 0, MODULE_ROOT_PROJECT}, {"generated/library", NULL, 0, MODULE_ROOT_PROJECT}};
     for (size_t order = 0; order < 2; order++) {
         setup_project();
         ProjectStatus status = project_load(&project, roots, 2, ".main");

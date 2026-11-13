@@ -159,7 +159,7 @@ static void it_composes_typed_views_and_identically_named_native_helpers_in_one_
 /** Require authoring and check-only paths to consume the same validated semantic/plan structure. */
 static void it_uses_the_same_strict_frontend_for_checking_and_generation(void) {
     setup_frontend();
-    ModuleRoot root = {"generated/project", NULL, 0};
+    ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
     bool checked = compiler_frontend_check(&frontend, &root, 1, ".main");
     assert(checked && !frontend.authoring && frontend.plan.valid);
     native_scaffold_init(&scaffold, &frontend, sources.allocator);
@@ -231,7 +231,7 @@ static void it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper(v
 /** Enumerate every measured proposed-ABI/frontend allocation failure and require a retained out-of-memory diagnostic. */
 static void it_unwinds_every_proposed_frontend_allocation_failure(void) {
     setup_frontend();
-    ModuleRoot root = {"generated/project", NULL, 0};
+    ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
     bool checked = compiler_frontend_authoring(&frontend, &root, 1, ".main", contract);
     assert(checked);
     size_t count = allocation_count;

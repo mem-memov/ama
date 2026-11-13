@@ -25,7 +25,7 @@ static SemanticProgram semantic;
 static void setup_test(void) {
     SourceAllocator allocator = source_system_allocator();
     project_init(&project, allocator);
-    ModuleRoot root = {"project", NULL, 0};
+    ModuleRoot root = {"project", NULL, 0, MODULE_ROOT_PROJECT};
     ProjectStatus loaded = project_load(&project, &root, 1, ".main");
     assert(loaded == PROJECT_OK);
     semantic_program_init(&semantic, &project, allocator);

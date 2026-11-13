@@ -21,7 +21,7 @@ static void it_reports_all_four_activation_states_without_loading_dependencies(v
         setup_frontend();
         ModuleInspection inspection;
         compiler_inspection_init(&inspection, sources.allocator);
-        ModuleRoot root = {"generated/project", NULL, 0};
+        ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
         bool valid = compiler_inspect_module(&inspection, &root, 1, ".main");
         assert(valid && inspection.syntax.sections.kind == (ParsedModuleKind)index);
         compiler_inspection_destroy(&inspection);
@@ -39,7 +39,7 @@ static void it_releases_every_partial_inspection_allocation(void) {
     setup_frontend();
     ModuleInspection inspection;
     compiler_inspection_init(&inspection, sources.allocator);
-    ModuleRoot root = {"generated/project", NULL, 0};
+    ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
     bool valid = compiler_inspect_module(&inspection, &root, 1, ".main");
     assert(valid);
     size_t total = allocation_count;

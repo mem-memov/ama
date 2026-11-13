@@ -5,6 +5,8 @@
  * [COMP-05](../../../../spec/implementation/compiler.md#comp-05) requires a
  * deterministic request. Scalar destinations retain the existing last-value
  * behavior; root/exclusion/C-flag entries retain argv order, and flags are idempotent.
+ * [SRC-01](../../../../spec/language/source-and-names.md#src-01) keeps source/--root
+ * entries in the project/import family; standard authority is never guessed from paths.
  */
 #include "consume.h"
 #include "driver/options/recognition/option.h"
@@ -16,7 +18,9 @@
 static void install(DriverOptions *options, DriverOptionStorage *storage,
     DriverOptionKind kind, const char *value) {
     switch (kind) {
-        case DRIVER_OPTION_ROOT: options->roots[options->root_count++].path = value; break;
+        case DRIVER_OPTION_ROOT:
+            options->roots[options->root_count++] = (ModuleRoot){.path = value, .kind = MODULE_ROOT_PROJECT};
+            break;
         case DRIVER_OPTION_EXCLUDE: storage->exclusions[storage->excluded++] = value; break;
         case DRIVER_OPTION_OUTPUT: options->output = value; break;
         case DRIVER_OPTION_SDK: options->sdk = value; break;
