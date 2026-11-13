@@ -4,6 +4,8 @@
  *
  * [RT-02](../../../spec/implementation/runtime.md#rt-02)
  * Callers finalize resources before disposal. Directory history is retained so reclaimed slot IDs cannot revive.
+ * [LIFE-05](../../../spec/implementation/native-interface.md#life-05) root-order
+ * links belong to stable cell metadata and survive payload-bank replacement.
  */
 #ifndef AMA_RUNTIME_POOL_H
 #define AMA_RUNTIME_POOL_H
@@ -12,10 +14,18 @@
 #include "runtime/metadata/instance.h"
 #include "source/memory/allocator.h"
 
-/** Stable cell metadata and owner/free/traversal links. preparation_payload redirects private construction into a destination bank without relocating resources. */
-typedef struct {
+/** Stable cell metadata and owner/free/traversal links. root_previous/root_next and
+ * nonzero root_type_id register only successful independent roots for
+ * [LIFE-05](../../../spec/implementation/native-interface.md#life-05) cleanup.
+ * These runtime links survive payload-bank replacement and are cleared before
+ * slot reuse. preparation_payload redirects private construction without moving resources.
+ */
+typedef struct AmaPoolCell {
     AmaInstanceMetadata metadata;
     AmaHandle owner;
+    struct AmaPoolCell *root_previous;
+    struct AmaPoolCell *root_next;
+    uint64_t root_type_id;
     size_t next_free;
     size_t traversal_child;
     bool occupied;

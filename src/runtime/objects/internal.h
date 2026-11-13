@@ -83,6 +83,14 @@ AmaStatus ama_object_end_active_links(AmaWorld *, AmaHandle);
 AmaStatus ama_object_cleanup_keep(AmaWorld *, AmaHandle root, AmaStatus primary, bool keep_root);
 /** Clean the complete initialized tree and release its root slot, retaining the supplied primary failure over secondary cleanup errors. */
 AmaStatus ama_object_cleanup(AmaWorld *, AmaHandle root, AmaStatus primary);
+/** Append a completely published independent root to successful-creation order.
+ * The stable cell is unlinked and exclusively owned by this world; no allocation or hook runs.
+ */
+void ama_object_root_append(AmaWorld *, AmaHandle, AmaPoolCell *);
+/** Unlink a registered root before slot release; private work and owned children are no-ops.
+ * Keeping a root slot for replacement must preserve its links and original position.
+ */
+void ama_object_root_remove(AmaWorld *, AmaPoolCell *);
 /** Compute finite monotone reachability over every declared owned field, including empty-list element types. Reject any reachable native resource lacking clone; scratch remains operation-owned. */
 AmaStatus ama_object_copy_capability(AmaObjectOperation *, uint64_t);
 /** Protect the complete initialized owned tree before hooks or destruction. Follow ownership only, check declared copy capability and nonwrapping epochs; caller unprotects partial records on failure. */

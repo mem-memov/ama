@@ -3,7 +3,7 @@
  * @brief Emit declared handle/list fields followed by actual native payload storage.
  *
  * [RT-02](../../../spec/implementation/runtime.md#rt-02)
- * Types without pools allocate no instance storage. Current type descriptors remain assembly globals until the T006 context migration.
+ * Types without pools allocate no instance storage. Current type descriptors remain assembly globals until the T061 context migration.
  */
 #include "codegen/internal.h"
 

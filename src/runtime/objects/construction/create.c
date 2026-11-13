@@ -21,6 +21,7 @@ AmaStatus ama_object_create(AmaWorld *world, uint64_t id, const AmaRecipe *recip
     AmaStatus status = ama_object_build(&operation, id, recipe, &handle);
     if (status.code == AMA_OK) {
         ama_construction_publish(&operation);
+        ama_object_root_append(world, handle, operation.first->cell);
         *output = handle;
     }
     ama_object_unprotect(&operation);

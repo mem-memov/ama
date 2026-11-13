@@ -134,8 +134,9 @@ constant-lifecycle metadata under [PAR-01](../language/async-and-parallelism.md#
 Instance disposal invalidates its host identity and destroys its owned tree;
 disposing a yielded instance does not run its continuation. Context disposal
 invalidates all remaining instance identities and performs the supported full
-cleanup, including constants. Operations on running contexts or instances are
-rejected under EMBED-03; disposal is not asynchronous interruption. Contexts
+cleanup in the root and constant order defined by
+[LIFE-05](native-interface.md#life-05). Operations on running contexts or instances
+are rejected under EMBED-03; disposal is not asynchronous interruption. Contexts
 that failed technically permit diagnostic extraction and cleanup, not further
 entry, resume, or ordinary retained reads. Cleanup errors are reported while
 remaining cleanup continues under [LIFE-05](native-interface.md#life-05).

@@ -54,6 +54,7 @@ AmaStatus ama_object_cleanup_keep(AmaWorld *world, AmaHandle root, AmaStatus pri
         ama_cleanup_buffers(world, type, cell);
         if (lifetime->cleanup_active) { (void)ama_lifetime_end_cleanup(lifetime); }
         if (!keep_root || !ama_same_handle(current, root)) {
+            ama_object_root_remove(world, cell);
             (void)ama_pool_release(&type->pool, current);
         }
         if (ama_same_handle(current, root)) { return primary; }

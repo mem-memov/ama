@@ -125,9 +125,10 @@ Host-result validation checks structural encoding and message views only.
 ## Explicit remaining work
 
 Local handles are not context-authenticated C-library tokens. Current generated
-assembly still has the context-ownership debt recorded by the audit; T006 and the
-embedding tasks implement independent context admission, registries and boundary
-validation. The existing storage layer has no per-membership IDs, live-boundary
+assembly still has the context-ownership debt recorded by the audit. The
+[independent context foundation](execution-contexts.md) provides explicit runtime
+ownership, registries and origin validation; T061 connects generated hosts and the
+embedding tasks provide their public component boundary. The existing storage layer has no per-membership IDs, live-boundary
 foreach cursor or typed intrinsic method frames; T075 onward provide those.
 Current continuation records therefore do not certify foreach/async cursor copies.
 Construction-time final self identity remains T050. Neither metadata declarations

@@ -3,7 +3,7 @@
  * @brief Declare generated-program ownership, value selection and startup boundaries.
  *
  * [RT-05](../../../spec/implementation/runtime.md#rt-05)
- * Operate directly on stable world storage. This retained representation does not yet implement independent checked execution contexts.
+ * Operate directly on stable world storage. The runtime/context owner supplies isolated descriptors; generated assembly wiring remains T061.
  */
 #ifndef AMA_RUNTIME_PROGRAM_H
 #define AMA_RUNTIME_PROGRAM_H

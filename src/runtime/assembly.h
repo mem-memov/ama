@@ -45,6 +45,7 @@
 #include "runtime/objects/construction/create.c"
 #include "runtime/objects/model/fields.c"
 #include "runtime/objects/model/types.c"
+#include "runtime/objects/roots/order.c"
 #include "runtime/objects/replacement/reconstruct.c"
 #include "runtime/objects/replacement/replace.c"
 #include "runtime/pool/growth.c"

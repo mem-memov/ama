@@ -523,10 +523,19 @@ Contracts: [runtime](spec/implementation/runtime.md),
 [diagnostics](spec/implementation/diagnostics.md),
 [context isolation](spec/language/async-and-parallelism.md#par-01).
 
-- [ ] **T006 — Establish context ownership and identity.** Needs: T134. Define
+- [x] **T006 — Establish context ownership and identity.** Needs: T134. Define
   explicit context-local pool/constant/error/control ownership and checked host
   identities. Test lifecycle, nonwrapping context identity, rejection of foreign
   access with colliding local numbers and nonreentrant executor entry.
+  Completed: [context ownership contract](docs/implementation/execution-contexts.md).
+  [AMB-001](AMBIGUITIES.md#amb-001) is resolved by the authorized LIFE-05 root-order
+  clarification. Eighteen component cases cover isolated resources, exact context
+  identity, executor admission, failure prefixes and reverse root cleanup across
+  reuse/replacement. The strict full suite (`-DNDEBUG -Werror`) and focused
+  ASan/UBSan pass (leak detection disabled). Documentation checks register all
+  694 maintained inputs with zero debt; Doxygen documents 530 files and 2207
+  interfaces with all 285 canonical/page destinations, zero warnings and identical
+  bytes across two complete generations. Generated host wiring remains T061.
 - [ ] **T007 — Validate status and refusal records.** Needs: T006. Preserve the
   common code/message/length ABI, allocation-free immutable messages and distinct
   invalid-index/refusal/fatal paths. Test zero success, malformed native status,

@@ -4,6 +4,8 @@
  *
  * [RT-02](../../../spec/implementation/runtime.md#rt-02)
  * Borrow immutable descriptors and recipes. Native hooks cannot reenter Ama and must clean resources of a failed constructor themselves.
+ * [LIFE-05](../../../spec/implementation/native-interface.md#life-05) requires
+ * independent roots to retain successful-publication order through replacement.
  */
 #ifndef AMA_RUNTIME_OBJECTS_H
 #define AMA_RUNTIME_OBJECTS_H
@@ -72,7 +74,12 @@ typedef struct {
     AmaStatus (*resolve_field)(AmaWorld *, SourceArena *, AmaHandle, size_t, AmaFieldRecipe *, void *);
     void *field_context;
 } AmaObjectType;
-/** Borrowed unique type registry, allocator and synchronous report authority; operation_active rejects reentry, failed marks terminal lifecycle failure. Not a shared-thread context API. */
+/** Borrowed unique type registry, allocator and synchronous report authority;
+ * operation_active rejects reentry, failed marks terminal lifecycle failure.
+ * first_root/last_root borrow stable cells in successful publication order under
+ * [LIFE-05](../../../spec/implementation/native-interface.md#life-05); no payload
+ * ownership is transferred by these runtime-only links. Not a shared-thread context API.
+ */
 struct AmaWorld {
     AmaObjectType *const *types;
     size_t type_count;
@@ -82,6 +89,8 @@ struct AmaWorld {
     uint64_t construction_operation;
     bool operation_active;
     bool failed;
+    AmaPoolCell *first_root;
+    AmaPoolCell *last_root;
 };
 
 /* Generated descriptors/recipes and the registry are borrowed. Persistent Ama

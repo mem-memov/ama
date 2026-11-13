@@ -3,7 +3,7 @@
  * @brief Declare host phase and root/current local identities without a C activation stack.
  *
  * [RT-05](../../../spec/implementation/runtime.md#rt-05)
- * This representation is not a scheduler or a thread-safe context API; explicit context ownership remains T006.
+ * The runtime/context owner gates this metadata; generated host wiring remains T061, and no scheduler is implied.
  */
 #ifndef AMA_RUNTIME_METADATA_RUNTIME_H
 #define AMA_RUNTIME_METADATA_RUNTIME_H
@@ -18,7 +18,7 @@ typedef enum {
 } AmaRuntimePhase;
 
 /* Per-host runtime control, no independent activation stack or payload mirrors. */
-/** Host root/current control without activation stack or state mirrors; independent checked context ownership remains future work. */
+/** Host root/current control without activation stack or state mirrors; runtime/context supplies independent ownership and access admission. */
 typedef struct {
     AmaRuntimePhase phase;
     AmaHandle root;

@@ -29,6 +29,7 @@ AmaStatus ama_object_clone(AmaWorld *world, AmaHandle source, bool continuation,
             (void)ama_pool_publish(&work->type->pool, work->handle);
             work->cell->metadata.service = service;
         }
+        ama_object_root_append(world, result, operation.first->cell);
         *output = result;
     }
     ama_object_unprotect(&operation);

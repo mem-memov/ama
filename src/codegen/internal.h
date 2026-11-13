@@ -80,7 +80,7 @@ bool codegen_emit_header(NativeScaffold *, FILE *, const ScaffoldType *);
 /**
  * Write retained owner admission and idempotent disposal with busy checks. Shared static
  * descriptor ownership limits this API to one retained project owner; independent contexts
- * remain T006.
+ * remain T061.
  */
 bool codegen_emit_host_context(FILE *);
 /**

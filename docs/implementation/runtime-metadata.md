@@ -105,7 +105,8 @@ The standard launcher must diagnose an unhandled yield, not spin or succeed.
 The [generated host boundary](continuations.md) implements those transitions
 using `AmaHostResult`, the current program identity and the host root identity. These are local handles;
 structural validation does not authenticate context ownership, and independent
-checked context/token boundaries remain T006 and the embedding tasks.
+[context foundation](execution-contexts.md) supplies origin-checked access; generated
+host wiring remains T061 and public embedding tokens remain the embedding tasks.
 The standalone launcher diagnoses unhandled root yield and disposes the root.
 
 ## Justification, effects and evidence

@@ -878,16 +878,34 @@ helpers implement this protocol without introducing new source operations.
 **LIFE-05.** Technical failure first reports the active diagnostic context, then
 ends the active execution context and releases its outstanding acquisitions/return
 links through explicit runtime bookkeeping, not C exception unwinding. Failed
-execution is not resumable. Runtime disposal destroys its root ownership tree
-and remaining explicitly host-owned roots in that context exactly once, then its shared constant
-storage in reverse initialization order, continuing cleanup after errors. At a normal completed/yielded host boundary, disposal uses the same
-ownership cleanup rules. A host may not destroy a running or waiting instance;
-there is no preemptive cancellation of active Ama execution. The explicit task
+execution is not resumable. Runtime disposal destroys each remaining root
+ownership tree in that context exactly once. Independent roots, including
+explicitly host-owned roots, are destroyed in reverse order of their successful
+creation. A creation counts only when construction succeeds and its root
+identity is published;
+failed creation adds no root to this order. Explicit earlier disposal removes
+that root from the remaining order. Replacing a root's contents while preserving
+its identity does not change its position. Nominal type, pool layout and slot
+reuse do not determine the order. Each root's owned tree follows
+[LIFE-03](#life-03).
+
+After all roots, disposal destroys shared constant storage in reverse
+initialization order. Cleanup continues after errors and preserves the primary
+failure under [PROTO-10](#proto-10). At a normal completed/yielded host boundary,
+disposal uses the same ownership cleanup rules. A host may not destroy a running
+or waiting instance; there is no preemptive cancellation of active Ama execution.
+The explicit task
 cancellation protocol does not change this boundary. Outstanding native operation
 records follow ASYNC-09: detachment must prevent later callbacks from accessing
 destroyed Ama state, while any required native record remains alive until its
 external completion is finished. Native cleanup hooks cannot call back into Ama
 or create new Ama work. Cleanup of this context does not dispose another one.
+
+**Informative example.** If a host successfully creates independent roots `a`,
+`b`, then `c`, context disposal destroys `c`, `b`, then `a`, followed by the
+constants. If the host has already disposed `b`, only `c` and `a` remain, in that
+order. Replacing `a`'s contents does not make it newer than `c`. This resource-stack
+order makes cleanup predictable independently of storage allocation choices.
 
 Generated C parameter names, private type aliases, and helper decomposition are
 implementation work wherever no rule fixes them. This freedom does not rename

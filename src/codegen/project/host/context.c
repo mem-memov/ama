@@ -3,14 +3,14 @@
  * @brief Emit retained synchronous host admission and disposal ownership checks.
  *
  * [RT-14](../../../../spec/implementation/runtime.md#rt-14)
- * The static single-owner guard reflects current global descriptors; independent context storage and thread-safe admission remain T006.
+ * The static single-owner guard reflects current global descriptors; independent context storage and thread-safe admission remain T061.
  */
 #include "codegen/internal.h"
 
 /**
  * Write retained owner admission and idempotent disposal with busy checks. Shared static
  * descriptor ownership limits this API to one retained project owner; independent contexts
- * remain T006.
+ * remain T061.
  */
 bool codegen_emit_host_context(FILE *output) {
     return fputs(

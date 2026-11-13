@@ -9060,6 +9060,478 @@
         "case": "it_reports_the_new_caller_after_a_yield_releases_the_original_link",
         "command": "make -C tests/unit/codegen/continuations",
         "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_orders_mixed_root_types_after_early_disposal_and_slot_reuse",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_keeps_replaced_root_identity_in_its_original_cleanup_position",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_registers_public_clones_after_their_source_roots",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_excludes_failed_create_and_clone_from_root_publication_order",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_continues_reverse_root_cleanup_after_distinct_destructor_errors",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      }
+    ]
+  },
+  "src/runtime/context/admission.c": {
+    "contract": "docs/implementation/execution-contexts.md",
+    "purpose": "Lease one nonreentrant context executor while retaining independent concurrency.",
+    "tests": [
+      {
+        "case": "it_refuses_reentry_and_rolls_back_busy_registry_close_admission",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_executor_but_allows_an_independent_context",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      }
+    ]
+  },
+  "src/runtime/context/context.h": {
+    "contract": "docs/implementation/execution-contexts.md",
+    "purpose": "Own isolated runtime context schemas and checked host leases.",
+    "tests": [
+      {
+        "case": "it_owns_constants_pools_and_diagnostics_without_an_implicit_root",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_rejects_foreign_origin_before_touching_colliding_local_handles",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_destroys_all_explicit_roots_and_invalidates_the_context_before_reuse",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_refuses_reentry_and_rolls_back_busy_registry_close_admission",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_finishes_all_registry_cleanup_and_preserves_the_first_destructor_error",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_never_wraps_or_reissues_exhausted_context_identity_frontiers",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_factory_allocation_failure_without_poisoning_the_registry",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_rejects_bad_schema_and_cleans_failed_constants_without_a_published_handle",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_keeps_failure_and_diagnostic_state_local_to_the_failed_context",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_invalidates_before_cleanup_and_keeps_lifecycle_callbacks_outside_metadata_gates",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_publishes_distinct_context_identities_from_simultaneous_factories",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_executor_but_allows_an_independent_context",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_orders_mixed_root_types_after_early_disposal_and_slot_reuse",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_keeps_replaced_root_identity_in_its_original_cleanup_position",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_registers_public_clones_after_their_source_roots",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_excludes_failed_create_and_clone_from_root_publication_order",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_continues_reverse_root_cleanup_after_distinct_destructor_errors",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/runtime/context/identity/issue.c": {
+    "contract": "docs/implementation/execution-contexts.md",
+    "purpose": "Issue nonwrapping runtime-image context identities.",
+    "tests": [
+      {
+        "case": "it_never_wraps_or_reissues_exhausted_context_identity_frontiers",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_publishes_distinct_context_identities_from_simultaneous_factories",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      }
+    ]
+  },
+  "src/runtime/context/internal.h": {
+    "contract": "docs/implementation/execution-contexts.md",
+    "purpose": "Separate registry membership, admission and private context ownership.",
+    "tests": [
+      {
+        "case": "it_owns_constants_pools_and_diagnostics_without_an_implicit_root",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_rejects_foreign_origin_before_touching_colliding_local_handles",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_destroys_all_explicit_roots_and_invalidates_the_context_before_reuse",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_refuses_reentry_and_rolls_back_busy_registry_close_admission",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_finishes_all_registry_cleanup_and_preserves_the_first_destructor_error",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_never_wraps_or_reissues_exhausted_context_identity_frontiers",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_factory_allocation_failure_without_poisoning_the_registry",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_rejects_bad_schema_and_cleans_failed_constants_without_a_published_handle",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_keeps_failure_and_diagnostic_state_local_to_the_failed_context",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_invalidates_before_cleanup_and_keeps_lifecycle_callbacks_outside_metadata_gates",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_publishes_distinct_context_identities_from_simultaneous_factories",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_executor_but_allows_an_independent_context",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_orders_mixed_root_types_after_early_disposal_and_slot_reuse",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_keeps_replaced_root_identity_in_its_original_cleanup_position",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_registers_public_clones_after_their_source_roots",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_excludes_failed_create_and_clone_from_root_publication_order",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_continues_reverse_root_cleanup_after_distinct_destructor_errors",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/runtime/context/references.c": {
+    "contract": "docs/implementation/execution-contexts.md",
+    "purpose": "Check context origin before resolving local instance identities.",
+    "tests": [
+      {
+        "case": "it_rejects_foreign_origin_before_touching_colliding_local_handles",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_keeps_failure_and_diagnostic_state_local_to_the_failed_context",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_executor_but_allows_an_independent_context",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      }
+    ]
+  },
+  "src/runtime/context/registry/access.c": {
+    "contract": "docs/implementation/execution-contexts.md",
+    "purpose": "Protect exact context membership without holding gates across native hooks.",
+    "tests": [
+      {
+        "case": "it_refuses_reentry_and_rolls_back_busy_registry_close_admission",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_invalidates_before_cleanup_and_keeps_lifecycle_callbacks_outside_metadata_gates",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_publishes_distinct_context_identities_from_simultaneous_factories",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      }
+    ]
+  },
+  "src/runtime/context/registry/close.c": {
+    "contract": "docs/implementation/execution-contexts.md",
+    "purpose": "Admit all context gates before terminal registry closure.",
+    "tests": [
+      {
+        "case": "it_refuses_reentry_and_rolls_back_busy_registry_close_admission",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_finishes_all_registry_cleanup_and_preserves_the_first_destructor_error",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_invalidates_before_cleanup_and_keeps_lifecycle_callbacks_outside_metadata_gates",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      }
+    ]
+  },
+  "src/runtime/context/registry/create.c": {
+    "contract": "docs/implementation/execution-contexts.md",
+    "purpose": "Pin registry lifetime during fallible private context factories.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_factory_allocation_failure_without_poisoning_the_registry",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_rejects_bad_schema_and_cleans_failed_constants_without_a_published_handle",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_publishes_distinct_context_identities_from_simultaneous_factories",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      }
+    ]
+  },
+  "src/runtime/context/registry/dispose.c": {
+    "contract": "docs/implementation/execution-contexts.md",
+    "purpose": "Retire a context identity before exclusive resource cleanup.",
+    "tests": [
+      {
+        "case": "it_destroys_all_explicit_roots_and_invalidates_the_context_before_reuse",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_invalidates_before_cleanup_and_keeps_lifecycle_callbacks_outside_metadata_gates",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_refuses_reentry_and_rolls_back_busy_registry_close_admission",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      }
+    ]
+  },
+  "src/runtime/context/storage/cleanup.c": {
+    "contract": "docs/implementation/execution-contexts.md",
+    "purpose": "Consume roots in reverse successful-creation order before constants.",
+    "tests": [
+      {
+        "case": "it_orders_mixed_root_types_after_early_disposal_and_slot_reuse",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_keeps_replaced_root_identity_in_its_original_cleanup_position",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_registers_public_clones_after_their_source_roots",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_excludes_failed_create_and_clone_from_root_publication_order",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_continues_reverse_root_cleanup_after_distinct_destructor_errors",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_destroys_all_explicit_roots_and_invalidates_the_context_before_reuse",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      }
+    ]
+  },
+  "src/runtime/context/storage/prepare.c": {
+    "contract": "docs/implementation/execution-contexts.md",
+    "purpose": "Construct independent descriptors and shared constants privately.",
+    "tests": [
+      {
+        "case": "it_owns_constants_pools_and_diagnostics_without_an_implicit_root",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_factory_allocation_failure_without_poisoning_the_registry",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_rejects_bad_schema_and_cleans_failed_constants_without_a_published_handle",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_keeps_failure_and_diagnostic_state_local_to_the_failed_context",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      }
+    ]
+  },
+  "src/runtime/context/storage/validate.c": {
+    "contract": "docs/implementation/execution-contexts.md",
+    "purpose": "Validate exact resolved context schema shapes before construction.",
+    "tests": [
+      {
+        "case": "it_rejects_bad_schema_and_cleans_failed_constants_without_a_published_handle",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_owns_constants_pools_and_diagnostics_without_an_implicit_root",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
       }
     ]
   },
@@ -10921,6 +11393,36 @@
         "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
         "command": "make -C tests/unit/runtime/objects/lifecycle",
         "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_orders_mixed_root_types_after_early_disposal_and_slot_reuse",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_keeps_replaced_root_identity_in_its_original_cleanup_position",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_registers_public_clones_after_their_source_roots",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_excludes_failed_create_and_clone_from_root_publication_order",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_continues_reverse_root_cleanup_after_distinct_destructor_errors",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
       }
     ]
   },
@@ -11083,6 +11585,31 @@
         "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
         "command": "make -C tests/unit/runtime/objects/replacement",
         "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_orders_mixed_root_types_after_early_disposal_and_slot_reuse",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_keeps_replaced_root_identity_in_its_original_cleanup_position",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_registers_public_clones_after_their_source_roots",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_excludes_failed_create_and_clone_from_root_publication_order",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_continues_reverse_root_cleanup_after_distinct_destructor_errors",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
       }
     ]
   },
@@ -11782,6 +12309,31 @@
         "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
         "command": "make -C tests/unit/runtime/objects/lifecycle",
         "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_orders_mixed_root_types_after_early_disposal_and_slot_reuse",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_keeps_replaced_root_identity_in_its_original_cleanup_position",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_registers_public_clones_after_their_source_roots",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_excludes_failed_create_and_clone_from_root_publication_order",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_continues_reverse_root_cleanup_after_distinct_destructor_errors",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
       }
     ]
   },
@@ -12374,6 +12926,36 @@
         "case": "it_refuses_every_busy_descendant_before_continuation_clone_hooks",
         "command": "make -C tests/unit/runtime/objects/clone",
         "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_orders_mixed_root_types_after_early_disposal_and_slot_reuse",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_keeps_replaced_root_identity_in_its_original_cleanup_position",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_registers_public_clones_after_their_source_roots",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_excludes_failed_create_and_clone_from_root_publication_order",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_continues_reverse_root_cleanup_after_distinct_destructor_errors",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
       }
     ]
   },
@@ -12827,6 +13409,36 @@
         "case": "it_refuses_every_busy_descendant_before_continuation_clone_hooks",
         "command": "make -C tests/unit/runtime/objects/clone",
         "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_orders_mixed_root_types_after_early_disposal_and_slot_reuse",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_keeps_replaced_root_identity_in_its_original_cleanup_position",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_registers_public_clones_after_their_source_roots",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_excludes_failed_create_and_clone_from_root_publication_order",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_continues_reverse_root_cleanup_after_distinct_destructor_errors",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
       }
     ]
   },
@@ -13042,6 +13654,42 @@
       }
     ]
   },
+  "src/runtime/objects/roots/order.c": {
+    "contract": "docs/implementation/execution-contexts.md",
+    "purpose": "Register and remove stable independent roots in successful-publication order.",
+    "tests": [
+      {
+        "case": "it_orders_mixed_root_types_after_early_disposal_and_slot_reuse",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_keeps_replaced_root_identity_in_its_original_cleanup_position",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_registers_public_clones_after_their_source_roots",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_excludes_failed_create_and_clone_from_root_publication_order",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_continues_reverse_root_cleanup_after_distinct_destructor_errors",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      }
+    ]
+  },
   "src/runtime/pool/growth.c": {
     "contract": "docs/implementation/runtime-components.md",
     "purpose": "Append stable aligned slot blocks after checked directory allocation.",
@@ -13177,6 +13825,36 @@
         "case": "it_rejects_nonrepresentable_alignment_and_size_arithmetic",
         "command": "make -C tests/unit/runtime/alignment",
         "source": "tests/unit/runtime/alignment/main.c"
+      },
+      {
+        "case": "it_orders_mixed_root_types_after_early_disposal_and_slot_reuse",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_keeps_replaced_root_identity_in_its_original_cleanup_position",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_registers_public_clones_after_their_source_roots",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_excludes_failed_create_and_clone_from_root_publication_order",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_continues_reverse_root_cleanup_after_distinct_destructor_errors",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
       }
     ]
   },
@@ -29033,6 +29711,31 @@
         "case": "it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes",
         "command": "make -C tests/unit/runtime/value-selection",
         "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_orders_mixed_root_types_after_early_disposal_and_slot_reuse",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_keeps_replaced_root_identity_in_its_original_cleanup_position",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_registers_public_clones_after_their_source_roots",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_excludes_failed_create_and_clone_from_root_publication_order",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_continues_reverse_root_cleanup_after_distinct_destructor_errors",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
       }
     ]
   },
@@ -29360,6 +30063,357 @@
         "case": "it_returns_yielded_targets_without_copying_the_active_caller_chain",
         "command": "make -C tests/unit/runtime/calls",
         "source": "tests/unit/runtime/calls/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/contexts/Makefile": {
+    "contract": "docs/implementation/execution-contexts.md",
+    "purpose": "Build and run the explicit context ownership component.",
+    "tests": [
+      {
+        "case": "it_owns_constants_pools_and_diagnostics_without_an_implicit_root",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_rejects_foreign_origin_before_touching_colliding_local_handles",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_destroys_all_explicit_roots_and_invalidates_the_context_before_reuse",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_refuses_reentry_and_rolls_back_busy_registry_close_admission",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_finishes_all_registry_cleanup_and_preserves_the_first_destructor_error",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_never_wraps_or_reissues_exhausted_context_identity_frontiers",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_factory_allocation_failure_without_poisoning_the_registry",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_rejects_bad_schema_and_cleans_failed_constants_without_a_published_handle",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_keeps_failure_and_diagnostic_state_local_to_the_failed_context",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_invalidates_before_cleanup_and_keeps_lifecycle_callbacks_outside_metadata_gates",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_publishes_distinct_context_identities_from_simultaneous_factories",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_executor_but_allows_an_independent_context",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_orders_mixed_root_types_after_early_disposal_and_slot_reuse",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_keeps_replaced_root_identity_in_its_original_cleanup_position",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_registers_public_clones_after_their_source_roots",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_excludes_failed_create_and_clone_from_root_publication_order",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_continues_reverse_root_cleanup_after_distinct_destructor_errors",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/contexts/common.c": {
+    "contract": "docs/implementation/execution-contexts.md",
+    "purpose": "Own immutable fixture schemas and counted address-sensitive context resources.",
+    "tests": [
+      {
+        "case": "it_owns_constants_pools_and_diagnostics_without_an_implicit_root",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_rejects_foreign_origin_before_touching_colliding_local_handles",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_destroys_all_explicit_roots_and_invalidates_the_context_before_reuse",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_refuses_reentry_and_rolls_back_busy_registry_close_admission",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_finishes_all_registry_cleanup_and_preserves_the_first_destructor_error",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_never_wraps_or_reissues_exhausted_context_identity_frontiers",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_factory_allocation_failure_without_poisoning_the_registry",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_rejects_bad_schema_and_cleans_failed_constants_without_a_published_handle",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_keeps_failure_and_diagnostic_state_local_to_the_failed_context",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_invalidates_before_cleanup_and_keeps_lifecycle_callbacks_outside_metadata_gates",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_publishes_distinct_context_identities_from_simultaneous_factories",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_executor_but_allows_an_independent_context",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_orders_mixed_root_types_after_early_disposal_and_slot_reuse",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_keeps_replaced_root_identity_in_its_original_cleanup_position",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_registers_public_clones_after_their_source_roots",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_excludes_failed_create_and_clone_from_root_publication_order",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_continues_reverse_root_cleanup_after_distinct_destructor_errors",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/contexts/main.c": {
+    "contract": "docs/implementation/execution-contexts.md",
+    "purpose": "Verify isolated contexts, checked identities, failure cleanup and executor admission.",
+    "tests": [
+      {
+        "case": "it_owns_constants_pools_and_diagnostics_without_an_implicit_root",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_rejects_foreign_origin_before_touching_colliding_local_handles",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_destroys_all_explicit_roots_and_invalidates_the_context_before_reuse",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_refuses_reentry_and_rolls_back_busy_registry_close_admission",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_finishes_all_registry_cleanup_and_preserves_the_first_destructor_error",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_never_wraps_or_reissues_exhausted_context_identity_frontiers",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_factory_allocation_failure_without_poisoning_the_registry",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_rejects_bad_schema_and_cleans_failed_constants_without_a_published_handle",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_keeps_failure_and_diagnostic_state_local_to_the_failed_context",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_invalidates_before_cleanup_and_keeps_lifecycle_callbacks_outside_metadata_gates",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_publishes_distinct_context_identities_from_simultaneous_factories",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_executor_but_allows_an_independent_context",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_orders_mixed_root_types_after_early_disposal_and_slot_reuse",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_keeps_replaced_root_identity_in_its_original_cleanup_position",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_registers_public_clones_after_their_source_roots",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_excludes_failed_create_and_clone_from_root_publication_order",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_continues_reverse_root_cleanup_after_distinct_destructor_errors",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/contexts/support/callbacks.c": {
+    "contract": "docs/implementation/execution-contexts.md",
+    "purpose": "Probe retiring context callbacks without metadata-gate reentry.",
+    "tests": [
+      {
+        "case": "it_invalidates_before_cleanup_and_keeps_lifecycle_callbacks_outside_metadata_gates",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/contexts/support/concurrency.c": {
+    "contract": "docs/implementation/execution-contexts.md",
+    "purpose": "Exercise simultaneous factories and independent context executor admission.",
+    "tests": [
+      {
+        "case": "it_publishes_distinct_context_identities_from_simultaneous_factories",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_executor_but_allows_an_independent_context",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/contexts/support/order.c": {
+    "contract": "docs/implementation/execution-contexts.md",
+    "purpose": "Verify observable reverse root order across lifecycle and allocation changes.",
+    "tests": [
+      {
+        "case": "it_orders_mixed_root_types_after_early_disposal_and_slot_reuse",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_keeps_replaced_root_identity_in_its_original_cleanup_position",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_registers_public_clones_after_their_source_roots",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_excludes_failed_create_and_clone_from_root_publication_order",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_continues_reverse_root_cleanup_after_distinct_destructor_errors",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
       }
     ]
   },
