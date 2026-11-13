@@ -18,6 +18,8 @@ void *plan_allocate(ProgramPlan *plan, size_t size);
 bool plan_fail(ProgramPlan *plan, SourceSpan site, const char *message);
 /** Reject typed source categories lacking their required executable identity implementation before storage/control publication. */
 bool plan_validate_sources(ProgramPlan *);
+/** Reject selected trees before publication until their target protections and ordered actions can be lowered. */
+bool plan_validate_operations(ProgramPlan *);
 /** Allocate every nominal record before linking fields/shared storage; logical slots/service masks are explicit, not C byte offsets.
  */
 bool plan_storage(ProgramPlan *plan);

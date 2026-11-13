@@ -3,6 +3,8 @@
  * @brief Own resolved nominal types, sources, bindings and separate dependency relations.
  *
  * [COMP-02](../../spec/implementation/compiler.md#comp-02)
+ * [CALL-09](../../spec/language/calls-and-results.md#call-09) retains checked
+ * parent-result identities and ordered output actions without copying targets.
  * [NAME-04](../../spec/language/declarations.md#name-04) shares one exact base
  * namespace; [CALL-08](../../spec/language/calls-and-results.md#call-08) shares
  * declared interface role/ordinal metadata between consumers.
@@ -155,10 +157,22 @@ struct SemanticBinding {
     SemanticAccess *receiver;
     SemanticTransfer transfer;
 };
+/** Ordered checked output action; exactly one binding or selected operation is present.
+ * Selection retains the existing result identity and never implies an owned copy.
+ */
+typedef struct SemanticOutputAction {
+    struct SemanticOutputAction *next;
+    const AstOutputAction *syntax;
+    SemanticBinding *binding;
+    SemanticStatement *operation;
+} SemanticOutputAction;
 /** Semantic-owned typed statement borrowing one exact AST identity and its ordered bindings. */
 struct SemanticStatement {
     SemanticStatement *next;
     const AstNode *syntax;
+    SemanticStatement *enclosing_operation;
+    SemanticOutputAction *actions;
+    SemanticOutputAction *last_action;
     SemanticAccess *access;
     SemanticSource *source;
     SemanticType *namespace_type;

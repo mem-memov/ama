@@ -1007,10 +1007,20 @@ Contracts: [declarations](spec/language/declarations.md),
   Every complete-binding semantic allocation unwinds. Strict semantic unit and
   integration suites, ASan+UBSan calls and 912-input documentation checks passed;
   final Doxygen generations are byte-identical.
-- [ ] **T036 — Validate direct-result operation trees.** Needs: T035. Resolve
+- [x] **T036 — Validate direct-result operation trees.** Needs: T035. Resolve
   selectors only in parent result interfaces and operands in the initiating
   caller's environment. Test reference/continuation targets, sequential methods,
   inaccessible private names and per-link handlers.
+  Evidence: [selected operations](docs/implementation/selected-operations.md)
+  records exact parent-result symbols, caller-local index/operand resolution and
+  ordered typed action links. Repeated selections retain the declared field;
+  selecting a noncopyable method requires no target clone. All 36 parent/child
+  mode/form combinations, interleaved binding/selection siblings, caller-variable
+  collisions, handler roots, wrong roles/suffixes/indices and 256-level reference
+  paths pass. Every complete-tree semantic allocation unwinds. Full strict tests,
+  ASan+UBSan selected checks and 922-input coverage passed. Planning explicitly
+  guards execution before storage publication until IR/lifetime action lowering;
+  intrinsic service semantics remain T037. Final Doxygen is reproducible.
 - [ ] **T037 — Validate intrinsic typed list services.** Needs: T009, T033, T036.
   Model six fixed method interfaces and the required `..integer` capabilities;
   enforce service-parent modes, typed receivers and omitted-source versus explicit

@@ -6,39 +6,12 @@
  * [LIST-04](../../../spec/language/lists.md#list-04) gives each intrinsic method
  * its own typed interface, so no positional dispatcher binding may reach IR.
  * [CALL-09](../../../spec/language/calls-and-results.md#call-09) requires complete
- * operation-tree resolution; until T036, reject selected actions explicitly rather than silently dropping them.
+ * operation-tree resolution: selectors retain parent fields while ordinary operands remain caller-side.
  */
 #include "internal.h"
 
-/** Resolve the exact explicit constant namespace or scalar instance form; a constant symbol cannot become an executable instance target.
- */
-static bool target(SemanticProgram *program, SemanticType *caller, SemanticStatement *statement) {
-    const AstNode *node = statement->syntax;
-    if (node->as.call.mode == AST_CONSTANT_READ) {
-        statement->namespace_type = semantic_type(program, node->as.call.namespace_path);
-        return statement->namespace_type != NULL || semantic_fail(program, node->span,
-            "The constant namespace is unavailable", NULL);
-    }
-    statement->access = semantic_access(program, caller, node->as.call.target, false, NULL);
-    if (statement->access == NULL) {
-        return false;
-    }
-    if (statement->access->symbol->role == SYMBOL_CONSTANT) {
-        return semantic_fail(program, node->as.call.target->span,
-            "Shared constants cannot be executable or retained-result targets", statement->access->symbol);
-    }
-    statement->namespace_type = statement->access->symbol->type;
-    return true;
-}
-
 bool semantic_call(SemanticProgram *program, SemanticType *type, SemanticStatement *statement) {
-    if (statement->syntax->as.call.has_selected) {
-        (void)semantic_fail(program, statement->syntax->span,
-            "Direct result-selection trees are not supported by this compiler yet", NULL);
-        program->error.code = DIAGNOSTIC_UNSUPPORTED_FEATURE;
-        return false;
-    }
-    if (!target(program, type, statement)) {
+    if (!semantic_call_target(program, type, statement)) {
         return false;
     }
     bool list = statement->access != NULL && statement->access->list;

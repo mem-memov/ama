@@ -54,5 +54,6 @@ static bool statement(SemanticProgram *program, SemanticType *type, const AstNod
 }
 
 bool semantic_statements(SemanticProgram *program, SemanticType *type) {
-    return semantic_walk(program, type, type->module->syntax.body, statement, NULL);
+    return semantic_walk(program, type, type->module->syntax.body, statement, NULL)
+        && semantic_output_actions(program, type);
 }

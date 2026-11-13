@@ -12,7 +12,8 @@ bool inference_select_result(Inference *inference, const InferenceOperation *par
         if (!inference_result(inference, parent, target, 0, target->span, value)) { return false; }
     } else if (parent->kind == INFER_INSTANCE) {
         SemanticSymbol *field = semantic_interface_name(parent->value.type, SYMBOL_RESULT, target->name);
-        if (field == NULL) { return semantic_fail(inference->program, target->name, "The operation has no such declared result", NULL); }
+        if (field == NULL) { return semantic_fail(inference->program, target->name, "The operation has no such declared result",
+            semantic_symbol(parent->value.type, target->name)); }
         *value = (InferenceValue){field->type, field, field->reference, field->list};
     } else {
         return semantic_fail(inference->program, target->span, "This service/namespace has no ordinary selected result", NULL);

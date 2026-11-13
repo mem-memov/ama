@@ -149,6 +149,9 @@ and focused ASan/UBSan supplement the derivation; LeakSanitizer remains disabled
 [T033 relation evidence](type-relations.md) details the independent predicates,
 fixed-point proof, admission-order tests and finite failure checks.
 
+[T036 selected operations](selected-operations.md) retains exact parent fields
+and ordered typed actions, with an explicit pre-storage execution guard.
+
 ## Separate relation graphs and exact ordering
 
 `semantic_relations` requires resolved values and constructs two independent

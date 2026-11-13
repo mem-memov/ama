@@ -5,6 +5,8 @@
  * [TYPE-05](../../../spec/language/declarations.md#type-05)
  * [NAME-06](../../../spec/language/declarations.md#name-06) resolves lexical
  * local cells first and forbids their use during instance construction.
+ * [CALL-09](../../../spec/language/calls-and-results.md#call-09) uses a declared
+ * parent result only for the leading selector; indices keep the caller namespace.
  * References do not implicitly dereference or inherit conversion capability from an owned field.
  */
 #include "semantic/internal.h"
@@ -33,13 +35,15 @@ bool semantic_condition(SemanticProgram *program, SemanticAccess *access,
     return true;
 }
 
-SemanticAccess *semantic_access(SemanticProgram *program, SemanticType *type,
-    const AstAccess *syntax, bool writable, const SemanticSymbol *initializing) {
+/** Resolve the leading symbol in its explicit domain while keeping nested index operands caller-local; the loop uses no C recursion. */
+static SemanticAccess *resolve(SemanticProgram *program, SemanticType *type,
+    const AstAccess *syntax, bool writable, const SemanticSymbol *initializing,
+    SemanticSymbol *selected) {
     SemanticAccess *first = NULL;
     SemanticAccess **destination = &first;
     bool outer = true;
     for (const AstAccess *node = syntax; node != NULL; node = node->index) {
-        SemanticSymbol *symbol = semantic_local_at(type, node->name, node->span);
+        SemanticSymbol *symbol = outer && selected != NULL ? selected : semantic_local_at(type, node->name, node->span);
         if (symbol != NULL && initializing != NULL) {
             semantic_fail(program, node->name, "Instance construction cannot read a runtime foreach-local binding", symbol);
             return NULL;
@@ -66,4 +70,14 @@ SemanticAccess *semantic_access(SemanticProgram *program, SemanticType *type,
         outer = false;
     }
     return first;
+}
+
+SemanticAccess *semantic_access(SemanticProgram *program, SemanticType *type,
+    const AstAccess *syntax, bool writable, const SemanticSymbol *initializing) {
+    return resolve(program, type, syntax, writable, initializing, NULL);
+}
+
+SemanticAccess *semantic_selected_access(SemanticProgram *program, SemanticType *caller,
+    const AstAccess *syntax, SemanticSymbol *field) {
+    return resolve(program, caller, syntax, false, NULL, field);
 }

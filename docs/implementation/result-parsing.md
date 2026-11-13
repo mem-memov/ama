@@ -4,7 +4,7 @@ T026 implements the structural tree in
 [CALL-09](../../spec/language/calls-and-results.md#call-09). A selected result is
 an operation target, not an ordinary output binding or a new caller variable.
 Parsing records selector paths, exact modes, sibling order and handler ownership;
-T036 supplies result-interface typing and later tasks implement execution.
+[T036](selected-operations.md) supplies result-interface typing; later tasks implement execution.
 
 For example:
 
@@ -88,11 +88,11 @@ recursive C activation. Every allocation of a mixed tree and refusal body is
 failed once; partial modules stay invalid and all storage is released.
 
 The ordinary 5856-form binding oracle and compiled execution suites still apply
-to operations without selections. Until T036 resolves the complete tree, the
-scalar semantic consumer returns `unsupported-feature` on a root containing
-selected actions. It cannot silently compile only the root or lose a subtree.
-`make -C tests/unit/compiler/check` verifies that this staged rejection prevents
-planning/publication. T029 extends dependency traversal to the new action tree;
-T027 supplies condition-chain loops and foreach; typed IR/lifetime/emission tasks
-implement CALL-09's execution/protection rules. Parser success is not a claim of
-those later runtime features.
+to operations without selections. [T036 static selection](selected-operations.md)
+now resolves the complete tree and links typed output actions. Planning retains
+an explicit `unsupported-feature` guard until selected target lifetime/action
+lowering exists; it cannot compile only the root or emit selected fields as caller
+accesses. `make -C tests/unit/compiler/check` verifies successful semantics followed
+by rejection before storage publication. T029 supplies full dependency traversal;
+T027 supplies condition-chain loops and foreach syntax. Parser/static success is
+not a claim that later execution/protection features are implemented.

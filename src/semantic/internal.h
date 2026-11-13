@@ -47,6 +47,10 @@ bool semantic_statements(SemanticProgram *program, SemanticType *type);
  */
 SemanticAccess *semantic_access(SemanticProgram *program, SemanticType *type,
     const AstAccess *syntax, bool writable, const SemanticSymbol *initializing);
+/** Resolve a selected declared result as the leading field, with every index operand in the initiating caller; no clone or implicit dereference occurs. */
+SemanticAccess *semantic_selected_access(SemanticProgram *, SemanticType *, const AstAccess *, SemanticSymbol *);
+/** Link each checked output action to its exact binding/selected statement after the complete source-ordered statement inventory exists. */
+bool semantic_output_actions(SemanticProgram *, SemanticType *);
 /** Retain exact source spans/payload and resolve local/qualified constant modes; return owned metadata or null with context.
  */
 SemanticSource *semantic_source(SemanticProgram *program, SemanticType *type,

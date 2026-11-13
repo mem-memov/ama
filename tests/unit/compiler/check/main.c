@@ -153,7 +153,9 @@ static void it_reports_unsupported_result_selection_instead_of_dropping_selected
     file("generated/project/method", "@!\n");
     setup_frontend();
     bool valid = check_project();
-    assert(!valid && !frontend.valid && !frontend.plan_initialized);
+    assert(!valid && !frontend.valid && frontend.plan_initialized);
+    assert(frontend.semantic.resolved && frontend.semantic.constants_valid);
+    assert(!frontend.plan.valid && frontend.plan.first == NULL);
     assert(diagnostic_valid(&frontend.error) && frontend.error.code == DIAGNOSTIC_UNSUPPORTED_FEATURE);
     assert(strstr(frontend.error.message, "result-selection") != NULL);
     destroy_frontend();

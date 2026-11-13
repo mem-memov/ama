@@ -10267,6 +10267,11 @@
         "case": "it_reports_unsupported_self_reference_execution_after_successful_static_typing",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_reports_unsupported_result_selection_instead_of_dropping_selected_actions",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -10701,6 +10706,11 @@
       },
       {
         "case": "it_reports_unsupported_self_reference_execution_after_successful_static_typing",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_reports_unsupported_result_selection_instead_of_dropping_selected_actions",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       }
@@ -19601,6 +19611,36 @@
         "case": "it_unwinds_each_allocation_in_complete_ordinary_binding_resolution",
         "command": "make -C tests/unit/semantic/calls",
         "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_retains_selected_field_identity_and_ordered_sibling_actions_without_cloning",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_starts_handler_calls_in_the_caller_instead_of_the_selected_interface",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_accepts_each_parent_child_mode_and_scalar_reference_indexed_form",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_rejects_selector_fallback_wrong_roles_forms_and_caller_index_capabilities",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_resolves_deep_reference_result_trees_iteratively",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
       }
     ]
   },
@@ -19702,6 +19742,36 @@
         "case": "it_unwinds_each_allocation_in_complete_ordinary_binding_resolution",
         "command": "make -C tests/unit/semantic/calls",
         "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_retains_selected_field_identity_and_ordered_sibling_actions_without_cloning",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_starts_handler_calls_in_the_caller_instead_of_the_selected_interface",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_accepts_each_parent_child_mode_and_scalar_reference_indexed_form",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_rejects_selector_fallback_wrong_roles_forms_and_caller_index_capabilities",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_resolves_deep_reference_result_trees_iteratively",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
       }
     ]
   },
@@ -20354,6 +20424,36 @@
         "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_retains_selected_field_identity_and_ordered_sibling_actions_without_cloning",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_starts_handler_calls_in_the_caller_instead_of_the_selected_interface",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_accepts_each_parent_child_mode_and_scalar_reference_indexed_form",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_rejects_selector_fallback_wrong_roles_forms_and_caller_index_capabilities",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_resolves_deep_reference_result_trees_iteratively",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
       }
     ]
   },
@@ -21691,6 +21791,36 @@
         "case": "it_reports_unsupported_control_trees_without_lowering_an_incomplete_operation",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_retains_selected_field_identity_and_ordered_sibling_actions_without_cloning",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_starts_handler_calls_in_the_caller_instead_of_the_selected_interface",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_accepts_each_parent_child_mode_and_scalar_reference_indexed_form",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_rejects_selector_fallback_wrong_roles_forms_and_caller_index_capabilities",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_resolves_deep_reference_result_trees_iteratively",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
       }
     ]
   },
@@ -22023,6 +22153,36 @@
         "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_retains_selected_field_identity_and_ordered_sibling_actions_without_cloning",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_starts_handler_calls_in_the_caller_instead_of_the_selected_interface",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_accepts_each_parent_child_mode_and_scalar_reference_indexed_form",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_rejects_selector_fallback_wrong_roles_forms_and_caller_index_capabilities",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_resolves_deep_reference_result_trees_iteratively",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
       }
     ]
   },
@@ -22139,6 +22299,36 @@
         "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_retains_selected_field_identity_and_ordered_sibling_actions_without_cloning",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_starts_handler_calls_in_the_caller_instead_of_the_selected_interface",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_accepts_each_parent_child_mode_and_scalar_reference_indexed_form",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_rejects_selector_fallback_wrong_roles_forms_and_caller_index_capabilities",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_resolves_deep_reference_result_trees_iteratively",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
       }
     ]
   },
@@ -39144,6 +39334,36 @@
         "case": "it_unwinds_each_allocation_in_complete_ordinary_binding_resolution",
         "command": "make -C tests/unit/semantic/calls",
         "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_retains_selected_field_identity_and_ordered_sibling_actions_without_cloning",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_starts_handler_calls_in_the_caller_instead_of_the_selected_interface",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_accepts_each_parent_child_mode_and_scalar_reference_indexed_form",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_rejects_selector_fallback_wrong_roles_forms_and_caller_index_capabilities",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_resolves_deep_reference_result_trees_iteratively",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
       }
     ]
   },
@@ -48737,6 +48957,36 @@
         "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_retains_selected_field_identity_and_ordered_sibling_actions_without_cloning",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_starts_handler_calls_in_the_caller_instead_of_the_selected_interface",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_accepts_each_parent_child_mode_and_scalar_reference_indexed_form",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_rejects_selector_fallback_wrong_roles_forms_and_caller_index_capabilities",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_resolves_deep_reference_result_trees_iteratively",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
       }
     ]
   },
@@ -49740,6 +49990,281 @@
         "case": "it_unwinds_each_allocation_in_complete_ordinary_binding_resolution",
         "command": "make -C tests/unit/semantic/calls",
         "source": "tests/unit/semantic/calls/main.c"
+      }
+    ]
+  },
+  "src/semantic/calls/tree/lookup.c": {
+    "contract": "docs/implementation/selected-operations.md",
+    "purpose": "Locate operation parents by resolved syntax identity rather than source names or dynamic caller chains.",
+    "tests": [
+      {
+        "case": "it_retains_selected_field_identity_and_ordered_sibling_actions_without_cloning",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_starts_handler_calls_in_the_caller_instead_of_the_selected_interface",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_accepts_each_parent_child_mode_and_scalar_reference_indexed_form",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_rejects_selector_fallback_wrong_roles_forms_and_caller_index_capabilities",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_resolves_deep_reference_result_trees_iteratively",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      }
+    ]
+  },
+  "src/semantic/calls/tree/target.c": {
+    "contract": "docs/implementation/selected-operations.md",
+    "purpose": "Resolve root targets in the caller and selected targets only in the parent's declared result interface.",
+    "tests": [
+      {
+        "case": "it_retains_selected_field_identity_and_ordered_sibling_actions_without_cloning",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_starts_handler_calls_in_the_caller_instead_of_the_selected_interface",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_accepts_each_parent_child_mode_and_scalar_reference_indexed_form",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_rejects_selector_fallback_wrong_roles_forms_and_caller_index_capabilities",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_resolves_deep_reference_result_trees_iteratively",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      }
+    ]
+  },
+  "src/semantic/calls/tree/actions.c": {
+    "contract": "docs/implementation/selected-operations.md",
+    "purpose": "Link typed output bindings and selected operation subtrees in their original action order.",
+    "tests": [
+      {
+        "case": "it_retains_selected_field_identity_and_ordered_sibling_actions_without_cloning",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_starts_handler_calls_in_the_caller_instead_of_the_selected_interface",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_accepts_each_parent_child_mode_and_scalar_reference_indexed_form",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_rejects_selector_fallback_wrong_roles_forms_and_caller_index_capabilities",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_resolves_deep_reference_result_trees_iteratively",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      }
+    ]
+  },
+  "src/planning/validation/operations.c": {
+    "contract": "docs/implementation/selected-operations.md",
+    "purpose": "Reject typed direct-result trees until explicit selected-target lifetime and action lowering exists.",
+    "tests": [
+      {
+        "case": "it_reports_unsupported_result_selection_instead_of_dropping_selected_actions",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/selected/Makefile": {
+    "contract": "docs/implementation/selected-operations.md",
+    "purpose": "Build and verify parent-result selection separately from ordinary bindings and runtime lowering.",
+    "tests": [
+      {
+        "case": "it_retains_selected_field_identity_and_ordered_sibling_actions_without_cloning",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_starts_handler_calls_in_the_caller_instead_of_the_selected_interface",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_accepts_each_parent_child_mode_and_scalar_reference_indexed_form",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_rejects_selector_fallback_wrong_roles_forms_and_caller_index_capabilities",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_resolves_deep_reference_result_trees_iteratively",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/selected/main.c": {
+    "contract": "docs/implementation/selected-operations.md",
+    "purpose": "Verify typed selected result identities, caller operands, ordered actions, handler roots and allocation failures.",
+    "tests": [
+      {
+        "case": "it_retains_selected_field_identity_and_ordered_sibling_actions_without_cloning",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_starts_handler_calls_in_the_caller_instead_of_the_selected_interface",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_accepts_each_parent_child_mode_and_scalar_reference_indexed_form",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_rejects_selector_fallback_wrong_roles_forms_and_caller_index_capabilities",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_resolves_deep_reference_result_trees_iteratively",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/selected/support/fixture.c": {
+    "contract": "docs/implementation/selected-operations.md",
+    "purpose": "Create noncopyable method results and distinct caller/parent interfaces for exact selection assertions.",
+    "tests": [
+      {
+        "case": "it_retains_selected_field_identity_and_ordered_sibling_actions_without_cloning",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_starts_handler_calls_in_the_caller_instead_of_the_selected_interface",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_accepts_each_parent_child_mode_and_scalar_reference_indexed_form",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_rejects_selector_fallback_wrong_roles_forms_and_caller_index_capabilities",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_resolves_deep_reference_result_trees_iteratively",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/selected/support/actions.c": {
+    "contract": "docs/implementation/selected-operations.md",
+    "purpose": "Inspect resolved parent-result identities, interleaved action links and caller-owned handler/operand contexts.",
+    "tests": [
+      {
+        "case": "it_retains_selected_field_identity_and_ordered_sibling_actions_without_cloning",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_starts_handler_calls_in_the_caller_instead_of_the_selected_interface",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/selected/support/modes.c": {
+    "contract": "docs/implementation/selected-operations.md",
+    "purpose": "Exhaust parent/child call modes and target forms, rejecting every private-name or suffix reinterpretation.",
+    "tests": [
+      {
+        "case": "it_accepts_each_parent_child_mode_and_scalar_reference_indexed_form",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_rejects_selector_fallback_wrong_roles_forms_and_caller_index_capabilities",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_resolves_deep_reference_result_trees_iteratively",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/selected/support/failures.c": {
+    "contract": "docs/implementation/selected-operations.md",
+    "purpose": "Fail every semantic allocation in caller operands, selected targets, indices, nested handlers and ordered action publication.",
+    "tests": [
+      {
+        "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
       }
     ]
   }
