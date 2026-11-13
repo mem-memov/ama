@@ -1283,10 +1283,22 @@ Contracts: [references and copying](spec/language/values-and-references.md),
   materialized. Strict codegen parent/dispatch checks and ASan+UBSan for both the
   parent and standalone compiled probe passed; all 1067 maintained inputs have
   coverage. Final Doxygen reproducibility is checked before commit.
-- [ ] **T054 — Verify ownership services independently of dispatch.** Needs:
+- [x] **T054 — Verify ownership services independently of dispatch.** Needs:
   T053. Exhaust small allocation/acquisition/clone/replacement transition models
   and run sanitizer/failure-injection compositions. Record evidence before using
   these services to execute Ama bodies.
+  Evidence: [ownership foundation](docs/implementation/ownership-foundation.md)
+  exhausts all 104,976 length-four words over eighteen explicit two-tree/caller
+  actions with exact public identities, self/peer graphs, native data/resources,
+  stable cells, stale history, service/grant/refusal facts and occupied counts
+  checked at every prefix. Root versus descendant acquisitions distinguish whole
+  tree refusal from effect-free admitted self-copy. A longer trace fails every
+  mandatory allocation while preserving the model and clearing private ownership
+  and borrowed construction authority. Earlier lifecycle/history/map/compiled-C
+  cases supply complementary component evidence. Full strict tests and ASan+UBSan
+  passed; all 1077 maintained inputs have coverage. Final Doxygen reproducibility
+  is checked before commit. No Ama body or opaque saved selector is dispatched by
+  this model; subsequent execution/list/context adapters retain their tasks.
 
 ## Phase 7. Deliver the first current-spec stackless vertical slice
 

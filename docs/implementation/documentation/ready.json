@@ -15024,6 +15024,16 @@
         "case": "it_restores_protected_prefixes_when_owned_edges_are_invalid",
         "command": "make -C tests/unit/runtime/objects/preflight",
         "source": "tests/unit/runtime/objects/preflight/main.c"
+      },
+      {
+        "case": "it_matches_every_bounded_ownership_acquisition_clone_and_replacement_trace",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
       }
     ]
   },
@@ -15130,6 +15140,16 @@
         "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
         "command": "make -C tests/unit/runtime/objects/lifecycle",
         "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_matches_every_bounded_ownership_acquisition_clone_and_replacement_trace",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
       }
     ]
   },
@@ -15664,6 +15684,16 @@
         "case": "it_unwinds_every_scalar_clone_allocation_without_publishing_or_reinitializing",
         "command": "make -C tests/unit/runtime/objects/clone-map",
         "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_matches_every_bounded_ownership_acquisition_clone_and_replacement_trace",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
       }
     ]
   },
@@ -16538,6 +16568,16 @@
         "case": "it_continues_reverse_root_cleanup_after_distinct_destructor_errors",
         "command": "make -C tests/unit/runtime/contexts",
         "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_matches_every_bounded_ownership_acquisition_clone_and_replacement_trace",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
       }
     ]
   },
@@ -18155,6 +18195,16 @@
         "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
         "command": "make -C tests/unit/runtime/objects/lifecycle",
         "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_matches_every_bounded_ownership_acquisition_clone_and_replacement_trace",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
       }
     ]
   },
@@ -18252,6 +18302,16 @@
         "case": "it_matches_every_small_pool_schedule_against_identity_and_occupancy_invariants",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_matches_every_bounded_ownership_acquisition_clone_and_replacement_trace",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
       }
     ]
   },
@@ -18531,6 +18591,16 @@
         "case": "it_matches_every_small_pool_schedule_against_identity_and_occupancy_invariants",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_matches_every_bounded_ownership_acquisition_clone_and_replacement_trace",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
       }
     ]
   },
@@ -18663,6 +18733,16 @@
         "case": "it_records_only_valid_index_refusal_and_ignores_failed_conversion_outputs",
         "command": "make -C tests/unit/runtime/value-selection",
         "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_matches_every_bounded_ownership_acquisition_clone_and_replacement_trace",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
       }
     ]
   },
@@ -38648,6 +38728,16 @@
         "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
         "command": "make -C tests/unit/runtime/shared-storage",
         "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_matches_every_bounded_ownership_acquisition_clone_and_replacement_trace",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
       }
     ]
   },
@@ -58013,6 +58103,16 @@
         "case": "it_finishes_old_and_prepared_cleanup_when_each_destructive_commit_hook_fails",
         "command": "make -C tests/unit/runtime/objects/reconstruction",
         "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_matches_every_bounded_ownership_acquisition_clone_and_replacement_trace",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
       }
     ]
   },
@@ -58141,6 +58241,16 @@
         "case": "it_finishes_old_and_prepared_cleanup_when_each_destructive_commit_hook_fails",
         "command": "make -C tests/unit/runtime/objects/reconstruction",
         "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_matches_every_bounded_ownership_acquisition_clone_and_replacement_trace",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
       }
     ]
   },
@@ -58790,6 +58900,166 @@
         "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
         "command": "make -C tests/unit/codegen/layouts",
         "source": "tests/unit/codegen/layouts/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/ownership-model/main.c": {
+    "contract": "docs/implementation/ownership-foundation.md",
+    "purpose": "Exhaust bounded ownership/acquisition transitions and every allocation failure in their real composed trace.",
+    "tests": [
+      {
+        "case": "it_matches_every_bounded_ownership_acquisition_clone_and_replacement_trace",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/ownership-model/Makefile": {
+    "contract": "docs/implementation/ownership-foundation.md",
+    "purpose": "Exhaust bounded ownership/acquisition transitions and every allocation failure in their real composed trace.",
+    "tests": [
+      {
+        "case": "it_matches_every_bounded_ownership_acquisition_clone_and_replacement_trace",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/ownership-model/support/invariants.c": {
+    "contract": "docs/implementation/ownership-foundation.md",
+    "purpose": "Exhaust bounded ownership/acquisition transitions and every allocation failure in their real composed trace.",
+    "tests": [
+      {
+        "case": "it_matches_every_bounded_ownership_acquisition_clone_and_replacement_trace",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/ownership-model/support/transitions.c": {
+    "contract": "docs/implementation/ownership-foundation.md",
+    "purpose": "Exhaust bounded ownership/acquisition transitions and every allocation failure in their real composed trace.",
+    "tests": [
+      {
+        "case": "it_matches_every_bounded_ownership_acquisition_clone_and_replacement_trace",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/ownership-model/support/state.c": {
+    "contract": "docs/implementation/ownership-foundation.md",
+    "purpose": "Exhaust bounded ownership/acquisition transitions and every allocation failure in their real composed trace.",
+    "tests": [
+      {
+        "case": "it_matches_every_bounded_ownership_acquisition_clone_and_replacement_trace",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/ownership-model/support/schedules.c": {
+    "contract": "docs/implementation/ownership-foundation.md",
+    "purpose": "Exhaust bounded ownership/acquisition transitions and every allocation failure in their real composed trace.",
+    "tests": [
+      {
+        "case": "it_matches_every_bounded_ownership_acquisition_clone_and_replacement_trace",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/ownership-model/support/actions/cleanup.c": {
+    "contract": "docs/implementation/ownership-foundation.md",
+    "purpose": "Exhaust bounded ownership/acquisition transitions and every allocation failure in their real composed trace.",
+    "tests": [
+      {
+        "case": "it_matches_every_bounded_ownership_acquisition_clone_and_replacement_trace",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/ownership-model/support/actions/replacement.c": {
+    "contract": "docs/implementation/ownership-foundation.md",
+    "purpose": "Exhaust bounded ownership/acquisition transitions and every allocation failure in their real composed trace.",
+    "tests": [
+      {
+        "case": "it_matches_every_bounded_ownership_acquisition_clone_and_replacement_trace",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/ownership-model/support/actions/acquisition.c": {
+    "contract": "docs/implementation/ownership-foundation.md",
+    "purpose": "Exhaust bounded ownership/acquisition transitions and every allocation failure in their real composed trace.",
+    "tests": [
+      {
+        "case": "it_matches_every_bounded_ownership_acquisition_clone_and_replacement_trace",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/ownership-model/support/actions/construction.c": {
+    "contract": "docs/implementation/ownership-foundation.md",
+    "purpose": "Exhaust bounded ownership/acquisition transitions and every allocation failure in their real composed trace.",
+    "tests": [
+      {
+        "case": "it_matches_every_bounded_ownership_acquisition_clone_and_replacement_trace",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
+        "command": "make -C tests/unit/runtime/ownership-model",
+        "source": "tests/unit/runtime/ownership-model/main.c"
       }
     ]
   }
