@@ -163,3 +163,34 @@ cycle even when loading edges do. Original-source spans and catalog bytes outliv
 all project/semantic consumers. Required-draft/current activation refinements and
 new AST dependency sources remain T029 and their syntax consumers; existing
 closure evidence does not assert those missing forms are already implemented.
+
+## T018 complete-identity registry composition
+
+The registry's key is the complete catalog spelling, including its explicit root
+marker and original component bytes. T016/T017 establish its exact source and
+encoded identity domains. `project_load_required` also accepts explicit additional
+seeds, so the registry can be verified with multiword Project and Standard names
+before the new token/parser consumers are completed in T022/T023. These tests use
+minimal `@C` sources and make no claim about executable native ABI validation.
+
+Let `S` be the ordered entry-plus-additional-seed sequence. The closure proof above
+generalizes by replacing `{entry}` with `set(S)`; duplicate seeds cannot create
+another record because registration compares before insertion. Registry order is
+first seed/discovery order, independently of physical directory creation or root
+order on a successful catalog. The catalog's own list order is a separate scan
+implementation detail. The failure proof includes every allocation of a composed
+multiword, two-root closure: no failure enables `project_find`, and all owners are
+released by project destruction.
+
+[Complete-identity scenarios](../../tests/unit/project/closure/support/identity.c)
+check repeated explicit seeds, distinct root families with identical components,
+record/source pointer sharing, exact retained physical paths, both root orders,
+missing Standard identities without Project fallback, copied diagnostic names and
+every allocation failure. Existing exhaustive three-node graph tests continue to
+prove the registry composition against independent finite reachability results;
+cycle and diamond tests cover repeated source-discovered edges. Run
+`make -C tests/unit/project/closure`.
+
+T018 verifies the existing exact registry algorithm; it adds evidence rather than
+an alternative identity cache or parser. Activation/draft classification remains
+T023 and required-draft semantics T029. New source path syntax remains T022.

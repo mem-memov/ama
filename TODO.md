@@ -715,11 +715,18 @@ Contracts: [source and names](spec/language/source-and-names.md),
   tests, identity/namespace/integer ASan/UBSan (leak detection disabled), 775-input
   coverage and Markdown links pass. Two warning-free Doxygen generations are
   byte-identical: 603 maintained files, 2462 interfaces, 288 destinations.
-- [ ] **T018 — Verify the module registry and source catalog.** Needs:
+- [x] **T018 — Verify the module registry and source catalog.** Needs:
   T016, T017. Register each complete identity once, preserve physical diagnostic
   paths and exclude owned outputs. Test duplicate physical identities and
   deterministic enumeration. Exact activation/draft classification belongs to
   T023's shared lexical/parser path; required-draft validation follows in T029.
+  Verified existing exact registry/catalog algorithms with multiword seeds in
+  both root families, repeated registration, source pointer/physical-path
+  retention, root and file-creation order independence, exact output-subtree
+  exclusions, missing-family refusal and every composed allocation failure.
+  Focused strict release and ASan/UBSan leaves pass (leak detection disabled),
+  as do 777-input coverage and Markdown links. Doxygen is warning-free and
+  byte-reproducible: 605 maintained files, 2467 interfaces, 288 destinations.
 - [ ] **T019 — Verify structured frontend diagnostics.** Needs: T014, T018.
   Preserve primary/cause/related spans and stable expected-construct information.
   Compose filesystem, Unicode and identity failures through user-facing messages.

@@ -8982,6 +8982,21 @@
         "case": "it_walks_deep_blocks_and_dependency_chains_without_c_recursion",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_shares_complete_multiword_seeds_across_root_orders",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_preserves_exact_missing_seed_identity_without_family_fallback",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_identity_registry_allocation_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ]
   },
@@ -9163,6 +9178,21 @@
       },
       {
         "case": "it_walks_deep_blocks_and_dependency_chains_without_c_recursion",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_shares_complete_multiword_seeds_across_root_orders",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_preserves_exact_missing_seed_identity_without_family_fallback",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_identity_registry_allocation_failure",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
       }
@@ -19481,6 +19511,16 @@
         "case": "it_rejects_conflicting_standard_roots_and_cross_family_physical_aliases",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_enumerates_the_same_catalog_independently_of_file_creation_order",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_excludes_only_declared_owned_paths_and_slash_delimited_descendants",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
       }
     ]
   },
@@ -19848,6 +19888,16 @@
         "case": "it_unwinds_every_catalog_allocation_failure",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_enumerates_the_same_catalog_independently_of_file_creation_order",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_excludes_only_declared_owned_paths_and_slash_delimited_descendants",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
       }
     ]
   },
@@ -19909,6 +19959,16 @@
         "case": "it_unwinds_each_multiword_standard_catalog_allocation_failure",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_enumerates_the_same_catalog_independently_of_file_creation_order",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_excludes_only_declared_owned_paths_and_slash_delimited_descendants",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
       }
     ]
   },
@@ -19968,6 +20028,16 @@
       },
       {
         "case": "it_unwinds_each_multiword_standard_catalog_allocation_failure",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_enumerates_the_same_catalog_independently_of_file_creation_order",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_excludes_only_declared_owned_paths_and_slash_delimited_descendants",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
       }
@@ -31060,6 +31130,21 @@
         "case": "it_walks_deep_blocks_and_dependency_chains_without_c_recursion",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_shares_complete_multiword_seeds_across_root_orders",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_preserves_exact_missing_seed_identity_without_family_fallback",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_identity_registry_allocation_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ]
   },
@@ -37193,6 +37278,16 @@
         "case": "it_unwinds_each_multiword_standard_catalog_allocation_failure",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_enumerates_the_same_catalog_independently_of_file_creation_order",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_excludes_only_declared_owned_paths_and_slash_delimited_descendants",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
       }
     ]
   },
@@ -38748,6 +38843,43 @@
         "case": "it_builds_many_member_displays_with_constant_allocation_count",
         "command": "make -C tests/unit/source/identity",
         "source": "tests/unit/source/identity/main.c"
+      }
+    ]
+  },
+  "tests/unit/project/closure/support/identity.c": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Verify exact full-identity discovery, deterministic ownership and failed-publication boundaries.",
+    "tests": [
+      {
+        "case": "it_shares_complete_multiword_seeds_across_root_orders",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_preserves_exact_missing_seed_identity_without_family_fallback",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_identity_registry_allocation_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      }
+    ]
+  },
+  "tests/unit/source/module/support/enumeration.c": {
+    "contract": "docs/implementation/module-paths.md",
+    "purpose": "Verify exact full-identity discovery, deterministic ownership and failed-publication boundaries.",
+    "tests": [
+      {
+        "case": "it_enumerates_the_same_catalog_independently_of_file_creation_order",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_excludes_only_declared_owned_paths_and_slash_delimited_descendants",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
       }
     ]
   }

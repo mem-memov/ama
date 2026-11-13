@@ -54,6 +54,7 @@ static void destroy_catalog(void) {
 
 #include "support/roots.c"
 #include "support/storage.c"
+#include "support/enumeration.c"
 
 /**
  * Write this scenario's explicit source/native fixtures in test-owned storage before loading or
@@ -262,6 +263,8 @@ static void it_unwinds_every_catalog_allocation_failure(void) {
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_enumerates_the_same_catalog_independently_of_file_creation_order();
+    it_excludes_only_declared_owned_paths_and_slash_delimited_descendants();
     it_validates_exact_project_and_standard_paths_with_multiword_components();
     it_resolves_explicit_root_families_without_fallback_or_physical_root_names();
     it_rejects_unconfigured_root_kind_and_missing_root_inventory();

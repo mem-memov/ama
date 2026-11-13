@@ -6,6 +6,7 @@
  * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
  */
 #include "../common.c"
+#include "support/identity.c"
 
 /**
  * Write the explicit diamond dependency fixture so shared module identity and requester edges
@@ -350,6 +351,9 @@ static void it_walks_deep_blocks_and_dependency_chains_without_c_recursion(void)
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_shares_complete_multiword_seeds_across_root_orders();
+    it_preserves_exact_missing_seed_identity_without_family_fallback();
+    it_unwinds_every_complete_identity_registry_allocation_failure();
     it_shares_diamond_dependencies_and_ignores_unused_syntax();
     it_finishes_self_and_mutual_loading_cycles();
     it_discovers_all_source_forms_and_nested_blocks_in_lexical_order();
