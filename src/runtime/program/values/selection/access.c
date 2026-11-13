@@ -4,6 +4,9 @@
  *
  * [CALL-08](../../../../../spec/language/calls-and-results.md#call-08)
  * requires each index protocol effect in exact resolved order before use.
+ * [ERROR-05](../../../../../spec/implementation/diagnostics.md#error-05)
+ * makes only a valid dedicated invalid-index result a conversion refusal;
+ * malformed transport and other decoder failures never consume the output.
  */
 #include "internal.h"
 
@@ -31,7 +34,10 @@ AmaStatus ama_program_access(AmaProgram *program, AmaHandle current, const AmaCo
         status = ama_program_payload(program, &value, &payload);
         if (status.code != AMA_OK) { return status; }
         if (type == NULL || type->index == NULL) { return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0); }
-        status = type->index(payload, &selected);
+        status = ama_status_checked(type->index(payload, &selected));
+        if (status.code == AMA_INVALID_INDEX && selection_refusal != NULL) {
+            *selection_refusal = true;
+        }
         if (status.code != AMA_OK) { return status; }
     }
     return ama_status_make(AMA_INVALID_STATE, NULL, 0);

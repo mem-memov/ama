@@ -6351,6 +6351,11 @@
         "case": "it_returns_declared_results_and_refusal_data_separately_from_technical_status",
         "command": "make -C tests/unit/native/abi/hooks",
         "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_checks_status_code_allocation_without_interpreting_message_text",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
       }
     ]
   },
@@ -6417,6 +6422,11 @@
         "case": "it_returns_declared_results_and_refusal_data_separately_from_technical_status",
         "command": "make -C tests/unit/native/abi/hooks",
         "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_normalizes_malformed_success_and_refusal_with_static_failure_storage",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
       }
     ]
   },
@@ -6512,6 +6522,21 @@
         "case": "it_preserves_unterminated_program_lifetime_message_bytes",
         "command": "make -C tests/unit/native/abi/status",
         "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_checks_status_code_allocation_without_interpreting_message_text",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_normalizes_malformed_success_and_refusal_with_static_failure_storage",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_streams_checked_diagnostics_without_runtime_allocation",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
       }
     ]
   },
@@ -9516,6 +9541,11 @@
         "case": "it_keeps_failure_and_diagnostic_state_local_to_the_failed_context",
         "command": "make -C tests/unit/runtime/contexts",
         "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_normalizes_malformed_context_reports_without_allocating_or_changing_refusals",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
       }
     ]
   },
@@ -10468,6 +10498,11 @@
         "case": "it_distinguishes_all_host_outcomes_and_initialization_failure",
         "command": "make -C tests/unit/native/metadata/control",
         "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_refusals_without_overwriting_the_callers_snapshot",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
       }
     ]
   },
@@ -10588,6 +10623,11 @@
       },
       {
         "case": "it_distinguishes_all_host_outcomes_and_initialization_failure",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_refusals_without_overwriting_the_callers_snapshot",
         "command": "make -C tests/unit/native/metadata/control",
         "source": "tests/unit/native/metadata/control/main.c"
       }
@@ -14029,6 +14069,11 @@
         "case": "it_reports_the_new_caller_after_a_yield_releases_the_original_link",
         "command": "make -C tests/unit/codegen/continuations",
         "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_records_only_valid_index_refusal_and_ignores_failed_conversion_outputs",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
       }
     ]
   },
@@ -15048,6 +15093,11 @@
         "case": "it_reports_the_new_caller_after_a_yield_releases_the_original_link",
         "command": "make -C tests/unit/codegen/continuations",
         "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_streams_checked_diagnostics_without_runtime_allocation",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
       }
     ]
   },
@@ -15770,6 +15820,11 @@
       },
       {
         "case": "it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_records_only_valid_index_refusal_and_ignores_failed_conversion_outputs",
         "command": "make -C tests/unit/runtime/value-selection",
         "source": "tests/unit/runtime/value-selection/main.c"
       }
@@ -26565,6 +26620,16 @@
         "case": "it_assigns_collision_free_library_codes_and_rejects_zero_fields",
         "command": "make -C tests/unit/native/abi/status",
         "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_checks_status_code_allocation_without_interpreting_message_text",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_normalizes_malformed_success_and_refusal_with_static_failure_storage",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
       }
     ]
   },
@@ -27010,6 +27075,11 @@
       },
       {
         "case": "it_distinguishes_all_host_outcomes_and_initialization_failure",
+        "command": "make -C tests/unit/native/metadata/control",
+        "source": "tests/unit/native/metadata/control/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_refusals_without_overwriting_the_callers_snapshot",
         "command": "make -C tests/unit/native/metadata/control",
         "source": "tests/unit/native/metadata/control/main.c"
       }
@@ -30159,6 +30229,16 @@
         "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
         "command": "make -C tests/unit/runtime/contexts",
         "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_normalizes_malformed_context_reports_without_allocating_or_changing_refusals",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_streams_checked_diagnostics_without_runtime_allocation",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
       }
     ]
   },
@@ -30253,6 +30333,16 @@
       },
       {
         "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_normalizes_malformed_context_reports_without_allocating_or_changing_refusals",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_streams_checked_diagnostics_without_runtime_allocation",
         "command": "make -C tests/unit/runtime/contexts",
         "source": "tests/unit/runtime/contexts/main.c"
       }
@@ -30351,6 +30441,16 @@
         "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
         "command": "make -C tests/unit/runtime/contexts",
         "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_normalizes_malformed_context_reports_without_allocating_or_changing_refusals",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_streams_checked_diagnostics_without_runtime_allocation",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
       }
     ]
   },
@@ -30376,6 +30476,17 @@
       },
       {
         "case": "it_rejects_a_simultaneous_executor_but_allows_an_independent_context",
+        "command": "make -C tests/unit/runtime/contexts",
+        "source": "tests/unit/runtime/contexts/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/contexts/support/diagnostics.c": {
+    "contract": "docs/implementation/native-status.md",
+    "purpose": "Observe checked streaming diagnostics without runtime allocation or caller-history mutation.",
+    "tests": [
+      {
+        "case": "it_streams_checked_diagnostics_without_runtime_allocation",
         "command": "make -C tests/unit/runtime/contexts",
         "source": "tests/unit/runtime/contexts/main.c"
       }
@@ -32305,6 +32416,11 @@
       },
       {
         "case": "it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_records_only_valid_index_refusal_and_ignores_failed_conversion_outputs",
         "command": "make -C tests/unit/runtime/value-selection",
         "source": "tests/unit/runtime/value-selection/main.c"
       }

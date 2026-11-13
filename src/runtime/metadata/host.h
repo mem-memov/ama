@@ -4,6 +4,8 @@
  *
  * [RT-14](../../../spec/implementation/runtime.md#rt-14)
  * Validation checks encoding only, not context ownership or pool liveness. Local handles are not checked cross-component tokens.
+ * [ERROR-03](../../../spec/implementation/diagnostics.md#error-03) requires
+ * coherent status encoding before accepting any represented outcome.
  */
 #ifndef AMA_RUNTIME_METADATA_HOST_H
 #define AMA_RUNTIME_METADATA_HOST_H
@@ -24,7 +26,8 @@ typedef struct {
 static inline bool ama_host_result_is_valid(AmaHostResult result) {
     bool root_valid = ama_handle_is_empty(result.root) ||
         (result.root.type_id != 0 && result.root.generation != 0);
-    if (!root_valid || !ama_status_has_valid_message_view(result.status)) {
+    if (!root_valid || !ama_status_has_valid_message_view(result.status)
+        || !ama_status_has_valid_code(result.status.code)) {
         return false;
     }
     if (result.outcome == AMA_HOST_FAILED) {

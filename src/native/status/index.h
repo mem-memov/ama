@@ -18,9 +18,12 @@ typedef enum {
 } AmaIndexOutcome;
 
 /* Only the invalid-index code is a conversion refusal; other errors are fatal. */
-/** Classify the authoritative code only. Success converts, exactly AMA_INVALID_INDEX refuses, and every other failure remains technical; message text is irrelevant.
+/** Check transport shape, then classify the authoritative code. Success converts,
+ * exactly AMA_INVALID_INDEX refuses, and every other failure remains technical;
+ * malformed success/refusal cannot permit output consumption. Text is irrelevant.
  */
 static inline AmaIndexOutcome ama_index_outcome(AmaStatus status) {
+    status = ama_status_checked(status);
     if (ama_status_is_success(status)) {
         return AMA_INDEX_CONVERTED;
     }

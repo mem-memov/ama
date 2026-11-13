@@ -130,6 +130,42 @@ static void it_preserves_caller_refusals_and_exposes_only_a_value_snapshot(void)
     destroy_test();
 }
 
+/** Every permitted refusal must have a coherent message view before replacing caller data.
+ * Rejecting malformed records, technical failures or success preserves all saved fields.
+ */
+static void it_rejects_malformed_refusals_without_overwriting_the_callers_snapshot(void) {
+    setup_test();
+    static const char saved[] = {'b', 'u', 's', 'y'};
+    static const char nested[] = {'i', 'n', 'd', 'e', 'x'};
+    AmaStatus status = ama_service_record_refusal(&caller.service,
+        ama_status_make(AMA_BUSY, saved, sizeof(saved)));
+    assert(status.code == AMA_OK);
+    const uint32_t refusals[] = {AMA_INVALID_INDEX, AMA_INDEX_BOUNDS, AMA_TYPE_MISMATCH,
+        AMA_EMPTY_REFERENCE, AMA_STALE_REFERENCE, AMA_BUSY, AMA_NO_RESUME};
+    for (size_t index = 0; index < sizeof(refusals) / sizeof(*refusals); index++) {
+        status = ama_service_record_refusal(&caller.service, ama_status_make(refusals[index], NULL, 1));
+        assert(status.code == AMA_INVALID_STATE);
+        assert(caller.service.last_refusal.code == AMA_BUSY);
+        assert(caller.service.last_refusal.message == saved);
+        assert(caller.service.last_refusal.message_length == sizeof(saved));
+    }
+    status = ama_service_record_refusal(&callee.service,
+        ama_status_make(AMA_INVALID_INDEX, nested, sizeof(nested)));
+    assert(status.code == AMA_OK);
+    AmaNativeServices view = ama_native_services_snapshot(&caller.service);
+    assert(view.caller_refusal.message == saved && view.caller_refusal.code == AMA_BUSY);
+    view.caller_refusal.message_length = 0;
+    view.caller_refusal.code = AMA_OK;
+    assert(caller.service.last_refusal.message_length == sizeof(saved));
+    assert(caller.service.last_refusal.code == AMA_BUSY);
+    status = ama_service_record_refusal(&caller.service, ama_status_success());
+    assert(status.code == AMA_INVALID_STATE && caller.service.last_refusal.message == saved);
+    status = ama_service_record_refusal(&caller.service, ama_status_make(AMA_IO_FAILURE, nested, sizeof(nested)));
+    assert(status.code == AMA_INVALID_STATE && caller.service.last_refusal.message == saved);
+    assert(callee.service.last_refusal.message == nested);
+    destroy_test();
+}
+
 /**
  * Assert that the component copies only permitted continuation state into fresh service
  * contexts. The explicit fixture setup and observations define this regression; assertion
@@ -204,6 +240,13 @@ static void it_distinguishes_all_host_outcomes_and_initialization_failure(void) 
     assert(ama_host_result_is_valid(result));
     result.root = (AmaHandle) {0, 1, 1};
     assert(!ama_host_result_is_valid(result));
+    result.root = (AmaHandle) {0};
+    result.status = ama_status_make(UINT32_C(14), NULL, 0);
+    assert(!ama_host_result_is_valid(result));
+    result.status = ama_status_make(UINT32_C(65536), NULL, 0);
+    assert(!ama_host_result_is_valid(result));
+    result.status = ama_status_make(UINT32_C(65537), NULL, 0);
+    assert(ama_host_result_is_valid(result));
 }
 
 /**
@@ -216,6 +259,7 @@ void run(void) {
     it_refuses_busy_instances_but_allows_another_instance_of_the_same_type();
     it_keeps_return_connections_and_resume_positions_separate();
     it_preserves_caller_refusals_and_exposes_only_a_value_snapshot();
+    it_rejects_malformed_refusals_without_overwriting_the_callers_snapshot();
     it_copies_only_permitted_continuation_state_into_fresh_service_contexts();
     it_requires_a_saved_position_for_resume_and_never_resumes_failed_execution();
     it_distinguishes_all_host_outcomes_and_initialization_failure();

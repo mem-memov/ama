@@ -128,7 +128,7 @@ phase in that context before calling its reporter. Another context's flags,
 constants and instance payloads remain unchanged. Failed contexts retain gated
 diagnostic inspection but reject ordinary checked-reference operations; disposal
 still releases their resources. Context admission errors do not call that reporter
-or overwrite an Ama last-refusal record. Native status validation remains T007.
+or overwrite an Ama last-refusal record. T007 adds checked status normalization before context diagnostic publication.
 
 Private descriptor memory is O(T+K) for T executable types and K shared declarations,
 plus their ordinary fields/pools/resources. Schema membership checks are exact
@@ -140,7 +140,7 @@ reclamation is made beyond the separate pool contract.
 
 ## Evidence and next consumers
 
-`make -C tests/unit/runtime/contexts` runs eighteen assertion cases with counted,
+`make -C tests/unit/runtime/contexts` runs twenty assertion cases with counted,
 address-sensitive resources and the real runtime. They cover distinct constant/
 pool/control ownership with zero implicit roots, colliding local triples and
 origin-first rejection, reverse root order across mixed types, slot reuse, early
@@ -158,9 +158,9 @@ layout and single-owner guard until T061. Their acceptance is not claimed as
 current independent-context execution. No asynchronous reactor, public marshalling
 schema, resource-affinity transfer or message transport is added by this foundation.
 
-Acceptance checks pass with `make -j4 test` using `-DNDEBUG -Werror` and the
+At T006 completion, acceptance checks passed with `make -j4 test` using `-DNDEBUG -Werror` and the
 focused context leaf under ASan/UBSan (`detect_leaks=0`; no leak-sanitizer claim).
-`make docs-check` covers all 694 maintained inputs with zero debt.
-`make docs-reproducible` renders 530 maintained file pages and 2207 documented
-interfaces, resolves all 285 canonical/page destinations, emits no warnings and
-produces byte-identical output across two complete Doxygen generations.
+`make docs-check` covered all 694 maintained inputs with zero debt.
+`make docs-reproducible` rendered 530 maintained file pages and 2207 documented
+interfaces, resolved all 285 canonical/page destinations, emitted no warnings and
+produced byte-identical output across two complete Doxygen generations.

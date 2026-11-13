@@ -7,6 +7,7 @@
  */
 #include "common.c"
 #include "support/order.c"
+#include "support/diagnostics.c"
 #include "support/callbacks.c"
 #include "support/concurrency.c"
 
@@ -259,6 +260,34 @@ static void it_keeps_failure_and_diagnostic_state_local_to_the_failed_context(vo
     finish_contexts();
 }
 
+/** Malformed transport becomes context-local technical failure without allocation.
+ * Its fallback bytes outlive context disposal and never overwrite the instance's refusal.
+ */
+static void it_normalizes_malformed_context_reports_without_allocating_or_changing_refusals(void) {
+    setup_contexts();
+    uint64_t identity = create_context();
+    AmaContextLease lease = {0};
+    AmaContextView view = enter_context(identity, &lease);
+    (void)create_root(&lease, view);
+    AmaPoolCell *root = view.world->last_root;
+    root->metadata.service.last_refusal = ama_status_make(AMA_BUSY, NULL, 0);
+    size_t before = allocation_count;
+    view.world->report(view.world->report_context, ama_status_make(AMA_OK, NULL, 1));
+    AmaStatus status = ama_context_inspect(&lease, &view);
+    assert(status.code == AMA_OK && allocation_count == before && reports == 1);
+    assert(view.status.code == AMA_INVALID_STATE && view.world->failed);
+    assert(view.control->phase == AMA_RUNTIME_TERMINATED);
+    assert(root->metadata.service.last_refusal.code == AMA_BUSY);
+    const char *message = view.status.message;
+    size_t length = view.status.message_length;
+    assert(message != NULL && length == sizeof("Malformed native status") - 1);
+    leave_context(&lease);
+    status = ama_context_dispose(&registry, identity);
+    assert(status.code == AMA_INVALID_STATE && status.message == message);
+    assert(memcmp(message, "Malformed native status", length) == 0);
+    finish_contexts();
+}
+
 /** Remove public identity before callbacks and pin the registry until native cleanup is finished. */
 static void it_invalidates_before_cleanup_and_keeps_lifecycle_callbacks_outside_metadata_gates(void) {
     setup_contexts();
@@ -345,6 +374,8 @@ void run(void) {
     it_unwinds_every_factory_allocation_failure_without_poisoning_the_registry();
     it_rejects_bad_schema_and_cleans_failed_constants_without_a_published_handle();
     it_keeps_failure_and_diagnostic_state_local_to_the_failed_context();
+    it_normalizes_malformed_context_reports_without_allocating_or_changing_refusals();
+    it_streams_checked_diagnostics_without_runtime_allocation();
     it_invalidates_before_cleanup_and_keeps_lifecycle_callbacks_outside_metadata_gates();
     it_publishes_distinct_context_identities_from_simultaneous_factories();
     it_rejects_a_simultaneous_executor_but_allows_an_independent_context();

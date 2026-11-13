@@ -68,7 +68,8 @@ to the [program transition layer](runtime-components.md#program-transitions-and-
 
 The last refusal is an independent `AmaStatus`, initially success. Recording accepts
 only the runtime acquisition-refusal reasons; success or a technical error cannot
-silently overwrite it. Normal access/read does not clear it. Nested callers own
+silently overwrite it. A malformed NULL/length view is also rejected before
+replacing any saved field. Normal access/read does not clear it. Nested callers own
 their own snapshots. The runtime must call recording before entering `:`; static
 constant reads do not call it. An invalid-mode/internal-state failure is technical,
 not a new application-visible acquisition reason.
@@ -98,7 +99,8 @@ must cover them, including initialization diagnostics; no object history is stor
 `AmaHostResult` distinguishes Completed, Yielded and Failed. Normal outcomes have
 success status and nonempty root identity; failure has nonzero status and may
 have an empty root when initialization failed. Structural message views and root
-encodings are checked. `AmaRuntimeMetadata` keeps Idle/Executing/Terminated phase,
+encodings are checked, including the allocated code domain under the
+[checked status contract](native-status.md). `AmaRuntimeMetadata` keeps Idle/Executing/Terminated phase,
 root and current identities per host runtime. Failed execution terminates, yielding
 returns Idle without a caller connection, and a host explicitly resumes or disposes.
 The standard launcher must diagnose an unhandled yield, not spin or succeed.

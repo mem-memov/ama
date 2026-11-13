@@ -17,7 +17,7 @@ invariant, not pointer validity or UTF-8. No operation allocates or frees storag
 Runtime code zero is success; codes 1 through 13 have the distinct names in
 `codes.h`. Values 14 through 65535 are reserved for future runtime service reasons,
 not available for libraries. Invalid-index conversion is exactly code 1; bounds
-refusal uses its separate service code. The conversion classifier maps zero to
+refusal uses its separate service code. After checking transport shape, the conversion classifier maps zero to
 Converted, one to Refused, all other codes to Failed. Only indexed acquisition
 uses that conversion refusal to select `:`; other operation contexts keep their
 own refusal/technical distinction. Message text never controls classification.
@@ -47,3 +47,63 @@ nonterminated messages, invalid NULL/length, text-independent classification,
 zero-field refusal with unchanged output, maximum values and exhaustive inversion
 on namespace/reason pairs 1 through 8. This bounded enumeration checks the code;
 the quotient/remainder argument covers all 16-bit pairs.
+
+## Checked status and caller-refusal boundaries
+
+T007 adds `ama_status_has_valid_code` and `ama_status_checked`. The allocated
+core domain is exactly 0 through 13; a library encoding requires both nonzero
+16-bit fields. Reserved core values and zero provider/reason fields are rejected.
+This encoding check does not establish provider membership: compiler dependency
+planning must still assign collision-free provider namespaces before emission.
+The [native namespace roadmap](../../TODO.md) retains that integration work.
+
+A checked status preserves every valid field, including nonterminated immutable
+message bytes. An inconsistent NULL/length pair or unallocated code becomes
+InvalidState with a static immutable fallback. No allocator or message read is
+needed, and an invalid zero-code status cannot masquerade as successful conversion.
+Pointer extent, UTF-8 and program lifetime remain explicit native C preconditions;
+a representation check cannot prove that borrowed C memory outlives execution.
+
+The index classifier checks transport before deciding whether a conversion
+succeeded, explicitly refused or failed technically. The actual selection and
+acquisition path now marks precisely a valid InvalidIndex result as a refusal.
+Other decoder errors, even IndexBounds, remain technical at this boundary; bounds
+produced by selecting from the target list are a separate refusal origin. A failed
+conversion's output is never used, even if the decoder wrote SIZE_MAX before
+returning failure. No target is acquired or executed on these paths.
+
+Recording an acquisition refusal checks its message shape before replacing the
+initiating caller's snapshot. Invalid records, success and technical codes leave
+all saved fields unchanged. Nested callees own independent snapshots; native readers
+copy code/length and borrow only immutable bytes. Ordinary successful access does
+not clear the snapshot. Host structural outcomes reject malformed status encodings.
+Context reporters normalize status before publishing terminal diagnostics, and the
+streaming program reporter normalizes before reading optional message bytes.
+
+This foundation supplies checked transport and the refusal/index/report consumers.
+T009 composes all six native protocol adapters and their resource-credit rules;
+T013 composes the host lifecycle, and T061 wires isolated generated contexts.
+The status helper alone is not evidence that every native hook already uses it.
+
+The algorithms use fixed field checks and disjoint numeric domains: allocated
+core codes have zero upper halfword, while every library code has nonzero upper
+halfword. Normalization selects either the unchanged input or one immutable static
+failure record, proving both allocation independence and absence of borrowed
+malformed-message access. Refusal recording changes exactly one caller record only
+after those checks; all rejection paths return before its assignment.
+
+Evidence: the ABI status leaf has six cases; native metadata adds malformed-refusal
+and nested-copy preservation, runtime selection exercises dedicated refusal versus
+technical/malformed decoder outcomes with deliberately unusable outputs, and the
+context leaf verifies allocation-free normalization with fallback bytes still valid
+after disposal. The generated execution leaf's existing
+`it_reports_failure_with_no_available_runtime_heap_or_root_frame` checks reporting
+with the real heap unavailable, rather than merely inspecting the helper's code.
+
+T007 acceptance passes the strict full suite with `-DNDEBUG -Werror` and focused
+ASan/UBSan runs of ABI status, native metadata, runtime selection and contexts
+(leak detection disabled). The documentation gate covers 695 maintained inputs
+with zero debt. Two warning-free Doxygen generations produce identical bytes,
+with 531 maintained file pages, 2216 documented interfaces and all 285 required
+canonical/page destinations. These are T007 completion counts, not fixed targets
+for later tasks.

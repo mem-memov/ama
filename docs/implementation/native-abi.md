@@ -129,5 +129,6 @@ declarations. Message-view helpers check pointer/length shape only; valid UTF-8,
 program lifetime and actual pointed memory remain the native caller's obligations.
 The library-code helper merely combines an already assigned nonzero 16-bit
 provider/reason pair. Its arithmetic injectivity does not implement compiler-side
-provider registration. Full malformed-status/context boundary validation remains
-T007 and later consumers, rather than an inferred guarantee from a C struct.
+provider registration. T007 adds [checked transport and refusal/index/report boundaries](native-status.md).
+All-hook protocol composition remains T009 and host lifecycle composition T013;
+a C struct alone does not establish those consumer contracts.

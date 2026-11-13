@@ -4,6 +4,9 @@
  *
  * [DEBUG-02](../../../../spec/implementation/diagnostics.md#debug-02)
  * Secondary failures are reported without rebuilding a destroyed trace. Source lookup uses exact operation IDs.
+ * [ERROR-03](../../../../spec/implementation/diagnostics.md#error-03) requires
+ * coherent status transport before optional message access; malformed records
+ * become a static failure rather than disappearing as zero-code success.
  */
 #include "trace.h"
 #include "runtime/program/calls/call.h"
@@ -23,6 +26,7 @@ static void ama_trace_location(const AmaProgram *program, uint64_t operation) {
 /** Report status bytes, then on the first error walk intact explicit caller links with private slot lookup. Later errors are secondary; call before cleanup destroys trace metadata. */
 void ama_program_report(void *context, AmaStatus status) {
     AmaProgram *program = context;
+    status = ama_status_checked(status);
     if (status.code == AMA_OK) { return; }
     fprintf(stderr, "%sAma runtime failure: %u", program->failure_reported ? "Secondary " : "", (unsigned)status.code);
     if (status.message != NULL) {

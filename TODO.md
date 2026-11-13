@@ -536,10 +536,19 @@ Contracts: [runtime](spec/implementation/runtime.md),
   694 maintained inputs with zero debt; Doxygen documents 530 files and 2207
   interfaces with all 285 canonical/page destinations, zero warnings and identical
   bytes across two complete generations. Generated host wiring remains T061.
-- [ ] **T007 — Validate status and refusal records.** Needs: T006. Preserve the
+- [x] **T007 — Validate status and refusal records.** Needs: T006. Preserve the
   common code/message/length ABI, allocation-free immutable messages and distinct
   invalid-index/refusal/fatal paths. Test zero success, malformed native status,
   nested caller refusal preservation and diagnostics during allocation failure.
+  Completed: [checked native statuses](docs/implementation/native-status.md).
+  Malformed encoding normalizes to static InvalidState; only valid InvalidIndex
+  conversion selects refusal, with failed outputs unused and caller snapshots
+  preserved. ABI/metadata/selection/context cases and real heap-failure diagnostics
+  pass; four focused ASan/UBSan leaves pass with leak detection disabled. The
+  strict full suite (`-DNDEBUG -Werror`) passes. Doxygen checks 695 maintained
+  inputs, 531 files, 2216 interfaces and all 285 destinations with zero debt,
+  zero warnings and byte-identical complete generations. All-hook native adapters
+  remain T009; provider-namespace emission is explicitly covered by T010/T055.
 - [ ] **T008 — Validate the supported C execution contract.** Needs: T007. Record
   toolchain/target settings and exact checks for required native-entry inlining
   and label dispatch. Compile positive internal-helper/recursion probes and reject
@@ -555,7 +564,9 @@ Contracts: [runtime](spec/implementation/runtime.md),
 - [ ] **T010 — Validate native symbol namespaces.** Needs: T009. Reuse complete
   module identity for qualified author names and clean inclusion contexts. Use
   fixed collision-checked prefix vectors in this isolated harness; connect the
-  current identity provider after T017 in T055. Test
+  current identity provider after T017 in T055. Include collision-free native
+  error-provider namespace allocation from sorted complete identities, reserved
+  core-code separation and explicit namespace exhaustion. Test
   same-basename hooks/types/helpers, macro cleanup and consistent header/body uses
   in one translation unit without parsing or rewriting arbitrary C.
 - [ ] **T011 — Validate lifecycle state transitions.** Needs: T009. Establish

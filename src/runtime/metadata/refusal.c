@@ -4,11 +4,18 @@
  *
  * [CALL-04](../../../spec/language/calls-and-results.md#call-04)
  * Technical errors cannot overwrite the last refusal. The native snapshot contains data, not runtime authority.
+ * [ERROR-06](../../../spec/implementation/diagnostics.md#error-06) preserves
+ * independent caller snapshots; malformed message views cannot replace a valid one.
  */
 #include "service.h"
 
-/** Accept only explicit acquisition-refusal codes and replace this caller snapshot; technical errors and success leave the snapshot unchanged. */
+/** Accept only explicit acquisition-refusal codes with a coherent message view;
+ * malformed transport, technical errors and success leave every saved field unchanged.
+ */
 AmaStatus ama_service_record_refusal(AmaServiceState *caller, AmaStatus refusal) {
+    if (!ama_status_has_valid_message_view(refusal)) {
+        return ama_status_make(AMA_INVALID_STATE, NULL, 0);
+    }
     switch (refusal.code) {
         case AMA_INVALID_INDEX:
         case AMA_INDEX_BOUNDS:

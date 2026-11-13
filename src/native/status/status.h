@@ -49,4 +49,25 @@ static inline bool ama_status_has_valid_message_view(AmaStatus status) {
     return status.message != NULL || status.message_length == 0;
 }
 
+/** Recognize allocated core reasons or a nonzero provider/reason pair.
+ * Core values above AMA_IO_FAILURE remain reserved. This checks encoding, not
+ * whether the compiler registered a particular provider or its local reason.
+ */
+static inline bool ama_status_has_valid_code(uint32_t code) {
+    return code <= AMA_IO_FAILURE || ((code >> 16) != 0 && (code & UINT32_C(65535)) != 0);
+}
+
+/** Replace malformed transport with allocation-free technical failure before use.
+ * Valid status fields and message identity remain unchanged. Message storage,
+ * UTF-8 and immutable program lifetime remain the native author's C obligations;
+ * this helper never dereferences a message or infers validity from its wording.
+ */
+static inline AmaStatus ama_status_checked(AmaStatus status) {
+    if (ama_status_has_valid_message_view(status) && ama_status_has_valid_code(status.code)) {
+        return status;
+    }
+    static const char message[] = "Malformed native status";
+    return ama_status_make(AMA_INVALID_STATE, message, sizeof(message) - 1);
+}
+
 #endif

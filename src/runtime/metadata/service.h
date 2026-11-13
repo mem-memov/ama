@@ -64,7 +64,9 @@ static inline bool ama_return_link_is_valid(AmaReturnLink link) {
 
 /** Check a borrowed service record for entry/resume/read eligibility without mutation. Busy states refuse, and inconsistent ready/yielded metadata is technical failure. */
 AmaStatus ama_service_access(const AmaServiceState *service, AmaAccessMode mode);
-/** Accept only explicit acquisition-refusal codes and replace this caller snapshot; technical errors and success leave the snapshot unchanged. */
+/** Accept only explicit acquisition-refusal codes with a valid message view and replace
+ * this caller snapshot; malformed records, technical errors and success leave it unchanged.
+ */
 AmaStatus ama_service_record_refusal(AmaServiceState *caller, AmaStatus refusal);
 /** Require distinct source/output and an available source. Publish a zero-transient service copy only after validation, preserving the resume position only when requested. */
 AmaStatus ama_service_clone(const AmaServiceState *source, bool preserve_resume,

@@ -36,9 +36,11 @@ traversal rescans prefixes, costing O(D² + D*T) for depth D and linear registry
 lookup over T types, plus native decoder costs. It uses constant traversal memory.
 
 Target bounds refusal is an explicit boolean produced by actual list narrowing.
-A decoder failure remains technical even if its status code numerically equals
-`AMA_INDEX_BOUNDS`. Busy/invalid index payloads fail before decoder execution.
-The three independent [selection cases](../../tests/unit/runtime/value-selection/main.c)
+A well-formed dedicated `AMA_INVALID_INDEX` conversion result also refuses under
+ERROR-05. Other decoder failures remain technical even if their numeric code equals
+`AMA_INDEX_BOUNDS`; malformed success/refusal becomes InvalidState before the
+conversion output is consumed. Busy/invalid index payloads fail before decoding.
+The four independent [selection cases](../../tests/unit/runtime/value-selection/main.c)
 exercise shared/mutable views, checked shapes, explicit source flags and this
 same-code/different-origin distinction. Generated execution remains the actual
 consumer of the selection interfaces.

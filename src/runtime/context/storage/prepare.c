@@ -5,6 +5,8 @@
  * [RT-01](../../../../spec/implementation/runtime.md#rt-01) forbids sharing mutable pool or
  * constant lifecycle metadata; [CONST-02](../../../../spec/language/declarations.md#const-02)
  * initializes shared values before any explicit instance/body can be requested.
+ * [ERROR-03](../../../../spec/implementation/diagnostics.md#error-03) requires
+ * checked transport before publishing a context diagnostic or invoking its reporter.
  */
 #include <string.h>
 #include "../internal.h"
@@ -14,6 +16,7 @@
  */
 static void context_report(void *owner, AmaStatus status) {
     AmaContext *context = owner;
+    status = ama_status_checked(status);
     if (status.code == AMA_OK) { return; }
     context->world.failed = true;
     context->control.phase = AMA_RUNTIME_TERMINATED;
