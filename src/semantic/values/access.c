@@ -27,12 +27,8 @@ static bool access_form(SemanticProgram *program, const AstAccess *syntax,
 
 bool semantic_condition(SemanticProgram *program, SemanticAccess *access,
     AbiOperation capability, SourceSpan site) {
-    if (access->reference || access->list || !access->symbol->type->abi.bindings[capability].present) {
-        return semantic_fail(program, site, capability == ABI_INDEX
-            ? "The index must be an owned scalar with the [] capability"
-            : "The condition must be an owned scalar with the ? capability", access->symbol);
-    }
-    return true;
+    return semantic_conversion(program, access->symbol->type, access->reference, access->list,
+        capability, site, access->symbol);
 }
 
 /** Resolve the leading symbol in its explicit domain while keeping nested index operands caller-local; the loop uses no C recursion. */

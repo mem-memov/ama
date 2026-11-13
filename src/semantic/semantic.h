@@ -2,6 +2,8 @@
  * @file
  * @brief Own resolved nominal types, sources, bindings and separate dependency relations.
  *
+ * [FLOW-04](../../spec/language/control-flow.md#flow-04) retains exact header
+ * restart roots and incoming loop identities independently from nested calls.
  * [COMP-02](../../spec/implementation/compiler.md#comp-02)
  * [LIST-04](../../spec/language/lists.md#list-04) represents intrinsic interfaces
  * without fabricated module types, declarations or method instances.
@@ -180,6 +182,16 @@ typedef enum { SEMANTIC_INSTANCE_OPERATION, SEMANTIC_CONSTANT_OPERATION,
     SEMANTIC_LIST_SERVICE_OPERATION, SEMANTIC_LIST_METHOD_OPERATION } SemanticOperationKind;
 /** Exact specialization of one list interface, independent of current contents or reference liveness. */
 typedef struct { SemanticType *element; SemanticType *integer; bool reference; } SemanticListInterface;
+/** Exact selected scalar/list shape, with an original field/access or explicit intrinsic result ordinal. */
+typedef struct {
+    SemanticType *type;
+    SemanticSymbol *field;
+    SemanticAccess *access;
+    bool reference;
+    bool list;
+    bool intrinsic;
+    size_t position;
+} SemanticSelection;
 /** Semantic-owned statement borrowing exact syntax, parent identity and ordered actions.
  * Call kind distinguishes module instances/namespaces from intrinsic services.
  * Ordinary module calls retain namespace_type; services/methods instead retain
@@ -191,6 +203,13 @@ struct SemanticStatement {
     SemanticStatement *next;
     const AstNode *syntax;
     SemanticStatement *enclosing_operation;
+    SemanticStatement *enclosing_loop;
+    SemanticStatement *loop_root;
+    SemanticStatement *condition_owner;
+    SemanticSelection condition;
+    const SemanticForeachBinding *traversal;
+    bool empty_body;
+    bool negative_branch;
     SemanticOperationKind operation_kind;
     SemanticListMethod list_method;
     SemanticListInterface list_interface;

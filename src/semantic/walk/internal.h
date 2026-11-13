@@ -13,6 +13,7 @@ typedef struct SemanticWalkItem {
     struct SemanticWalkItem *next;
     const AstNode *node;
     size_t loop_depth;
+    const AstNode *loop;
 } SemanticWalkItem;
 /** Finite visit sequence with append ownership and checked cardinality. */
 typedef struct { SemanticWalkItem *first; SemanticWalkItem *last; size_t count; } SemanticWalk;

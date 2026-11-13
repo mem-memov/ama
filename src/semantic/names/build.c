@@ -11,8 +11,9 @@
 
 /** Register each explicit declaration once across storage suffix forms, retaining source/role ordinals. Duplicate failure points at the prior declaration.
  */
-static bool declare(SemanticProgram *program, SemanticType *type, const AstNode *node, size_t loop_depth, void *context) {
+static bool declare(SemanticProgram *program, SemanticType *type, const AstNode *node, size_t loop_depth, const AstNode *loop, void *context) {
     (void)loop_depth;
+    (void)loop;
     if (node->kind != AST_DECLARATION) {
         return true;
     }

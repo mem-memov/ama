@@ -10272,6 +10272,11 @@
         "case": "it_reports_unsupported_result_selection_instead_of_dropping_selected_actions",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_reports_unsupported_control_trees_without_lowering_an_incomplete_operation",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -10711,6 +10716,11 @@
       },
       {
         "case": "it_reports_unsupported_result_selection_instead_of_dropping_selected_actions",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_reports_unsupported_control_trees_without_lowering_an_incomplete_operation",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       }
@@ -19671,6 +19681,41 @@
         "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
         "command": "make -C tests/unit/semantic/selected",
         "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
       }
     ]
   },
@@ -20514,6 +20559,41 @@
         "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
         "command": "make -C tests/unit/semantic/selected",
         "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
       }
     ]
   },
@@ -20630,6 +20710,41 @@
         "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
       }
     ]
   },
@@ -21881,6 +21996,41 @@
         "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
         "command": "make -C tests/unit/semantic/selected",
         "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
       }
     ]
   },
@@ -22273,6 +22423,41 @@
         "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
         "command": "make -C tests/unit/semantic/lists",
         "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
       }
     ]
   },
@@ -22419,6 +22604,41 @@
         "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
         "command": "make -C tests/unit/semantic/selected",
         "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
       }
     ]
   },
@@ -22667,6 +22887,41 @@
         "case": "it_preserves_case_and_unicode_byte_distinctions_without_normalization",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
       }
     ]
   },
@@ -30582,6 +30837,11 @@
       },
       {
         "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_reports_unsupported_control_trees_without_lowering_an_incomplete_operation",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       }
@@ -39489,6 +39749,41 @@
         "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
         "command": "make -C tests/unit/semantic/lists",
         "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
       }
     ]
   },
@@ -47832,6 +48127,41 @@
         "case": "it_preserves_case_and_unicode_byte_distinctions_without_normalization",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
       }
     ]
   },
@@ -47893,6 +48223,41 @@
         "case": "it_preserves_case_and_unicode_byte_distinctions_without_normalization",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
       }
     ],
     "standalone_header_command": [
@@ -48152,6 +48517,41 @@
         "case": "it_preserves_case_and_unicode_byte_distinctions_without_normalization",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
       }
     ]
   },
@@ -48213,6 +48613,41 @@
         "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
       }
     ]
   },
@@ -50208,42 +50643,6 @@
       }
     ]
   },
-  "src/semantic/calls/tree/lookup.c": {
-    "contract": "docs/implementation/selected-operations.md",
-    "purpose": "Locate operation parents by resolved syntax identity rather than source names or dynamic caller chains.",
-    "tests": [
-      {
-        "case": "it_retains_selected_field_identity_and_ordered_sibling_actions_without_cloning",
-        "command": "make -C tests/unit/semantic/selected",
-        "source": "tests/unit/semantic/selected/main.c"
-      },
-      {
-        "case": "it_starts_handler_calls_in_the_caller_instead_of_the_selected_interface",
-        "command": "make -C tests/unit/semantic/selected",
-        "source": "tests/unit/semantic/selected/main.c"
-      },
-      {
-        "case": "it_accepts_each_parent_child_mode_and_scalar_reference_indexed_form",
-        "command": "make -C tests/unit/semantic/selected",
-        "source": "tests/unit/semantic/selected/main.c"
-      },
-      {
-        "case": "it_rejects_selector_fallback_wrong_roles_forms_and_caller_index_capabilities",
-        "command": "make -C tests/unit/semantic/selected",
-        "source": "tests/unit/semantic/selected/main.c"
-      },
-      {
-        "case": "it_resolves_deep_reference_result_trees_iteratively",
-        "command": "make -C tests/unit/semantic/selected",
-        "source": "tests/unit/semantic/selected/main.c"
-      },
-      {
-        "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
-        "command": "make -C tests/unit/semantic/selected",
-        "source": "tests/unit/semantic/selected/main.c"
-      }
-    ]
-  },
   "src/semantic/calls/tree/target.c": {
     "contract": "docs/implementation/selected-operations.md",
     "purpose": "Resolve root targets in the caller and selected targets only in the parent's declared result interface.",
@@ -50307,6 +50706,41 @@
         "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
         "command": "make -C tests/unit/semantic/lists",
         "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
       }
     ]
   },
@@ -50343,6 +50777,41 @@
         "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
         "command": "make -C tests/unit/semantic/selected",
         "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
       }
     ]
   },
@@ -50740,7 +51209,7 @@
   },
   "src/semantic/lists/target.c": {
     "contract": "docs/implementation/list-interfaces.md",
-    "purpose": "Resolve fixed intrinsic method selectors and further calls on their ephemeral typed results.",
+    "purpose": "Resolve a fixed intrinsic entry under its exact list-service parent.",
     "tests": [
       {
         "case": "it_specializes_all_six_method_interfaces_without_fabricated_declarations",
@@ -50776,6 +51245,41 @@
         "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
       }
     ]
   },
@@ -50988,6 +51492,480 @@
         "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
         "command": "make -C tests/unit/semantic/lists",
         "source": "tests/unit/semantic/lists/main.c"
+      }
+    ]
+  },
+  "src/semantic/resolve/lookup.c": {
+    "contract": "docs/implementation/selected-operations.md",
+    "purpose": "Locate retained statements by exact syntax identity for operation parents, loop roots and lexical exits.",
+    "tests": [
+      {
+        "case": "it_retains_selected_field_identity_and_ordered_sibling_actions_without_cloning",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_starts_handler_calls_in_the_caller_instead_of_the_selected_interface",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_accepts_each_parent_child_mode_and_scalar_reference_indexed_form",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_rejects_selector_fallback_wrong_roles_forms_and_caller_index_capabilities",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_resolves_deep_reference_result_trees_iteratively",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
+        "command": "make -C tests/unit/semantic/selected",
+        "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      }
+    ]
+  },
+  "src/semantic/control/internal.h": {
+    "contract": "docs/implementation/control-contexts.md",
+    "purpose": "Separate deferred predicate selection from lexical traversal-role completion.",
+    "tests": [
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/control/condition.c": {
+    "contract": "docs/implementation/control-contexts.md",
+    "purpose": "Resolve terminal truth values after all header operations exist and retain the exact root restarted by each iteration.",
+    "tests": [
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      }
+    ]
+  },
+  "src/semantic/control/traversal.c": {
+    "contract": "docs/implementation/control-contexts.md",
+    "purpose": "Retain the exact lexical collection/binder role already classified by source-order inference.",
+    "tests": [
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      }
+    ]
+  },
+  "src/semantic/control/resolve.c": {
+    "contract": "docs/implementation/control-contexts.md",
+    "purpose": "Complete condition and traversal metadata after source-ordered header operation resolution.",
+    "tests": [
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      }
+    ]
+  },
+  "src/semantic/selection/result.c": {
+    "contract": "docs/implementation/control-contexts.md",
+    "purpose": "Resolve one result value for a direct target or terminal condition while keeping all index operands caller-local.",
+    "tests": [
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      }
+    ]
+  },
+  "src/semantic/values/conversion.c": {
+    "contract": "docs/implementation/control-contexts.md",
+    "purpose": "Require an owned scalar's own native condition/index conversion without implicit reference dereference or field inheritance.",
+    "tests": [
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      }
+    ]
+  },
+  "src/planning/validation/control.c": {
+    "contract": "docs/implementation/control-contexts.md",
+    "purpose": "Stop typed traversal and command-header loops before incomplete lexical frames or restart edges enter old lowering.",
+    "tests": [
+      {
+        "case": "it_reports_unsupported_control_trees_without_lowering_an_incomplete_operation",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/control/Makefile": {
+    "contract": "docs/implementation/control-contexts.md",
+    "purpose": "Verify complete predicate, restart-root, iterator-scope and lexical-break metadata.",
+    "tests": [
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/control/main.c": {
+    "contract": "docs/implementation/control-contexts.md",
+    "purpose": "Verify exact control roots and loop ownership independently of later execution-frame lowering.",
+    "tests": [
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/control/support/fixture.c": {
+    "contract": "docs/implementation/control-contexts.md",
+    "purpose": "Supply exact typed header chains, native predicate/index capabilities and a standard intrinsic integer fixture.",
+    "tests": [
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/control/support/roots.c": {
+    "contract": "docs/implementation/control-contexts.md",
+    "purpose": "Check complete loop restart roots and ordinary/intrinsic terminal values independently of nearest preceding calls.",
+    "tests": [
+      {
+        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/control/support/scopes.c": {
+    "contract": "docs/implementation/control-contexts.md",
+    "purpose": "Check syntactic body emptiness, negative-only branches, lexical iterator cells and static checking of skipped paths.",
+    "tests": [
+      {
+        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/control/support/failures.c": {
+    "contract": "docs/implementation/control-contexts.md",
+    "purpose": "Fail every semantic allocation in combined branch, header chain, traversal binding, local transfer and lexical-break resolution.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
+        "command": "make -C tests/unit/semantic/control",
+        "source": "tests/unit/semantic/control/main.c"
       }
     ]
   }

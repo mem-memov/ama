@@ -22,7 +22,7 @@ bool semantic_output_actions(SemanticProgram *program, SemanticType *type) {
                 action->binding = binding(statement, syntax->binding);
                 if (action->binding == NULL) { return semantic_fail(program, statement->syntax->span, "The output binding has no resolved interface", NULL); }
             } else {
-                action->operation = semantic_call_statement(type, syntax->operation);
+                action->operation = semantic_statement_find(type, syntax->operation);
                 if (action->operation == NULL || action->operation->enclosing_operation != statement) {
                     return semantic_fail(program, statement->syntax->span, "The selected action has no resolved parent operation", NULL);
                 }

@@ -12,7 +12,7 @@ bool semantic_walk(SemanticProgram *program, SemanticType *type, AstBlock block,
     if (!semantic_walk_collect(program, block, &walk)) { return false; }
     semantic_walk_sort(&walk);
     for (const SemanticWalkItem *item = walk.first; item != NULL; item = item->next) {
-        if (!visit(program, type, item->node, item->loop_depth, context)) { return false; }
+        if (!visit(program, type, item->node, item->loop_depth, item->loop, context)) { return false; }
     }
     return true;
 }

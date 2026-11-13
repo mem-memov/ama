@@ -1036,10 +1036,21 @@ Contracts: [declarations](spec/language/declarations.md),
   passed. Frontend checking retains the later typed `from_size` build obligation
   without inspecting C; execution remains guarded before storage publication.
   Documentation checks 935 inputs; final Doxygen generations are byte-identical.
-- [ ] **T038 — Validate control-flow contexts.** Needs: T031, T036, T037. Check
+- [x] **T038 — Validate control-flow contexts.** Needs: T031, T036, T037. Check
   owned truth/index capabilities, branch forms, empty-body warnings, exact linear
   loop roots and handler break context. Ensure foreach has distinct binding and
   traversal semantics, including statically checking skipped/empty paths.
+  Evidence: [control contexts](docs/implementation/control-contexts.md) carries
+  exact incoming loop identities through structural collection/source sorting,
+  records full header restart roots and terminal owners, and shares ordinary/
+  intrinsic result selection. Deferred predicate checking preserves exact own
+  native capabilities, negative polarity and syntactic emptiness; foreach retains
+  T031's real lexical collection/cell roles. Tests cover nested/header-handler
+  exits, all nine header mode pairs, caller indices, intrinsic predicates, empty
+  warnings, indexed-versus-foreach forms, nested/disjoint/reused cells, skipped-path
+  errors and every complete-control allocation failure. Full strict tests and
+  control/walker ASan+UBSan passed; 948 inputs have explicit coverage. New execution
+  stays guarded before storage publication. Final Doxygen is reproducible.
 - [ ] **T039 — Validate continuations and copy boundaries statically.** Needs:
   T033, T038. Enforce no resume inputs, exact ordinary/continuation copy forms,
   static copy capability and detectable ownership overlap. Test self-copy,

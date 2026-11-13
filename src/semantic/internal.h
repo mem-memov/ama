@@ -11,7 +11,7 @@
 #include "semantic.h"
 
 /** Borrowed semantic AST callback; false stops traversal and its opaque context remains caller-owned. */
-typedef bool (*SemanticVisitor)(SemanticProgram *, SemanticType *, const AstNode *, size_t, void *);
+typedef bool (*SemanticVisitor)(SemanticProgram *, SemanticType *, const AstNode *, size_t, const AstNode *, void *);
 /** Visit retained blocks in lexical order with explicit loop depth; borrow AST/context and own work in the semantic arena.
  */
 bool semantic_walk(SemanticProgram *program, SemanticType *type, AstBlock block,
@@ -51,6 +51,14 @@ SemanticAccess *semantic_access(SemanticProgram *program, SemanticType *type,
 SemanticAccess *semantic_selected_access(SemanticProgram *, SemanticType *, const AstAccess *, SemanticSymbol *);
 /** Link each checked output action to its exact binding/selected statement after the complete source-ordered statement inventory exists. */
 bool semantic_output_actions(SemanticProgram *, SemanticType *);
+/** Require an owned scalar with its own condition/index ABI protocol; nullable declaration denotes a real intrinsic value, not a fabricated symbol. */
+bool semantic_conversion(SemanticProgram *, SemanticType *, bool, bool, AbiOperation, SourceSpan, const SemanticSymbol *);
+/** Find any retained statement by exact syntax identity; null never causes spelling/dynamic-context fallback. */
+SemanticStatement *semantic_statement_find(SemanticType *, const AstNode *);
+/** Resolve an ordinary or intrinsic result value with all indices in caller context, retaining no runtime storage. */
+bool semantic_select_result(SemanticProgram *, SemanticType *, SemanticStatement *, const AstAccess *, SemanticSelection *);
+/** Resolve deferred branch/loop conditions and foreach roles after header operations have their complete typed inventories. */
+bool semantic_controls(SemanticProgram *, SemanticType *);
 /** Retain exact source spans/payload and resolve local/qualified constant modes; return owned metadata or null with context.
  */
 SemanticSource *semantic_source(SemanticProgram *program, SemanticType *type,

@@ -3,15 +3,16 @@
  */
 #include "semantic/walk/internal.h"
 /** Finite test-owned trace of actual semantic walker callback events. */
-typedef struct { const AstNode *nodes[16]; size_t depths[16]; size_t count; bool stop; } WalkTrace;
+typedef struct { const AstNode *nodes[16]; size_t depths[16]; const AstNode *loops[16]; size_t count; bool stop; } WalkTrace;
 /** Capture exact node identity and lexical loop depth, optionally declining the first event. */
 static bool capture_walk(SemanticProgram *program, SemanticType *type,
-    const AstNode *node, size_t depth, void *context) {
+    const AstNode *node, size_t depth, const AstNode *loop, void *context) {
     (void)program;
     (void)type;
     WalkTrace *trace = context;
     assert(trace->count < 16);
     trace->nodes[trace->count] = node;
+    trace->loops[trace->count] = loop;
     trace->depths[trace->count++] = depth;
     return !trace->stop;
 }
@@ -30,12 +31,13 @@ static void it_visits_every_owned_subtree_in_source_order_with_exact_header_hand
     const AstNode *traversal = inner->as.control.body.first;
     const AstNode *expected[] = {outer, inner, root, child, traversal,
         traversal->as.traversal.body.first, child->as.call.alternative.first, root->as.call.alternative.first};
+    const AstNode *loops[] = {NULL, outer, outer, outer, inner, traversal, outer, outer};
     const size_t depths[] = {0, 1, 1, 1, 2, 3, 1, 1};
     WalkTrace trace = {0};
     bool visited = semantic_walk(&semantic, type, type->module->syntax.body, capture_walk, &trace);
     assert(visited && trace.count == 8);
     for (size_t index = 0; index < 8; index++) {
-        assert(trace.nodes[index] == expected[index] && trace.depths[index] == depths[index]);
+        assert(trace.nodes[index] == expected[index] && trace.depths[index] == depths[index] && trace.loops[index] == loops[index]);
         if (index != 0) { assert(trace.nodes[index - 1]->span.start <= trace.nodes[index]->span.start); }
     }
     trace = (WalkTrace){.stop = true};
@@ -56,7 +58,7 @@ static void it_preserves_visit_multisets_and_equal_site_order_across_sort_width_
             for (size_t index = 0; index < count; index++) {
                 size_t offset = grouped ? (count - 1 - index) / 2 : count - 1 - index;
                 nodes[index].span = (SourceSpan){source, offset, offset + 1};
-                items[index] = (SemanticWalkItem){index + 1 == count ? NULL : &items[index + 1], &nodes[index], 0};
+                items[index] = (SemanticWalkItem){index + 1 == count ? NULL : &items[index + 1], &nodes[index], 0, NULL};
             }
             SemanticWalk walk = {count == 0 ? NULL : items, count == 0 ? NULL : &items[count - 1], count};
             size_t allocations = allocation_count;

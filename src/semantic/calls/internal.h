@@ -12,8 +12,6 @@
 
 #include "semantic/internal.h"
 
-/** Find a previously retained statement by exact AST identity; null never triggers name/body fallback. */
-SemanticStatement *semantic_call_statement(SemanticType *, const AstNode *);
 /** Resolve a caller root or direct parent-result target, retaining the selected parent explicitly. */
 bool semantic_call_target(SemanticProgram *, SemanticType *, SemanticStatement *);
 /** Resolve a role-correct interface declaration/ordinal and reject duplicate labels before value compatibility; preserve the earlier binding site.

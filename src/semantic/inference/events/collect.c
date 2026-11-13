@@ -20,9 +20,10 @@ static bool append(Inference *inference, InferenceEvent event) {
 }
 /** Schedule one node's own source events; structural children are supplied once by the semantic walker. */
 static bool node_events(SemanticProgram *program, SemanticType *type,
-    const AstNode *node, size_t depth, void *context) {
+    const AstNode *node, size_t depth, const AstNode *loop, void *context) {
     (void)program;
     (void)depth;
+    (void)loop;
     Inference *inference = context;
     InferenceEvent event = {.node = node, .site = node->span};
     if (node->kind == AST_DECLARATION) {

@@ -46,7 +46,7 @@ A caller variable also named `method` does not change target selection.
 ## Preserve the action tree explicitly
 
 The source-ordered semantic walk encounters every parent before its descendants.
-[Parent lookup](../../src/semantic/calls/tree/lookup.c) matches exact AST identity,
+[Parent lookup](../../src/semantic/resolve/lookup.c) matches exact AST identity,
 not source spelling or a dynamic caller chain. Repeated selections of the same
 result therefore retain the same declaration with distinct operation records.
 Entry, resume and retained modes are independently retained at every link;

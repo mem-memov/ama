@@ -42,7 +42,7 @@ bool plan_fail(ProgramPlan *plan, SourceSpan site, const char *message) {
 PlanStatus program_plan_build(ProgramPlan *plan) {
     assert(!plan->attempted);
     plan->attempted = true;
-    if (!plan_validate_sources(plan) || !plan_validate_operations(plan) || !plan_storage(plan)) {
+    if (!plan_validate_sources(plan) || !plan_validate_control(plan) || !plan_validate_operations(plan) || !plan_storage(plan)) {
         return plan->status;
     }
     for (PlannedType *type = plan->first; type != NULL; type = type->next) {

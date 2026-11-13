@@ -191,10 +191,13 @@ static void it_reports_unsupported_control_trees_without_lowering_an_incomplete_
         prepare_project();
         file("generated/project/producer", "@>\ncondition\n.value\n@!\n");
         file("generated/project/main", cases[index]);
+        file("generated/project/value.abi", "+ initialize\n- destroy\n| literal\n= clone\n? condition\n[] index\n");
         setup_frontend();
         bool valid = check_project();
         assert(!valid && frontend.error.code == DIAGNOSTIC_UNSUPPORTED_FEATURE);
-        assert(!frontend.plan_initialized && diagnostic_valid(&frontend.error));
+        assert(frontend.plan_initialized && diagnostic_valid(&frontend.error));
+        assert(frontend.semantic.resolved && frontend.semantic.constants_valid && !frontend.plan.valid);
+        assert(frontend.plan.first == NULL);
         destroy_frontend();
     }
 }

@@ -41,7 +41,7 @@ inputs/outputs. A list does not expose retained results, execute all entries or
 have a resume position. A service can originate in the caller or be selected as
 a whole-list result from another operation.
 
-[Target resolution](../../src/semantic/lists/target.c) distinguishes four call
+[Target classification](../../src/semantic/calls/tree/target.c) distinguishes four call
 kinds explicitly: module instance, constant namespace, intrinsic service and
 intrinsic method. A service retains element/integer types and owning/reference
 list kind. A method retains its service parent and fixed interface entry; it has
@@ -55,7 +55,7 @@ contracts, never an invented source declaration. Duplicates still fail by field
 position/direction; ordinary source-declared duplicate diagnostics keep their
 interface declaration and first-binding sites.
 
-The method's outputs are ordinary typed values. Further selection of `element&`
+The method's outputs are ordinary typed values. [Shared result selection](../../src/semantic/selection/result.c) of `element&`
 retains a scalar reference to the element type; selection of length's `value`
 retains owned integer type. Such statements record their parent and intrinsic
 result ordinal, not a fake caller field access. Their inputs and descendants use

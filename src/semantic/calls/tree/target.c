@@ -8,19 +8,16 @@
 /** A selected result keeps its declaration's identity; nested indices resolve in the initiating caller. */
 static bool selected(SemanticProgram *program, SemanticType *caller, SemanticStatement *statement) {
     const AstNode *node = statement->syntax;
-    SemanticStatement *parent = semantic_call_statement(caller, node->as.call.enclosing_operation);
-    if (parent == NULL || parent->namespace_type == NULL || parent->operation_kind != SEMANTIC_INSTANCE_OPERATION) {
-        return semantic_fail(program, node->span, "The enclosing operation has no ordinary selectable result interface", NULL);
-    }
-    const AstAccess *target = node->as.call.target;
-    SemanticSymbol *field = semantic_interface_name(parent->namespace_type, SYMBOL_RESULT, target->name);
-    if (field == NULL) {
-        return semantic_fail(program, target->name, "The operation has no such declared result",
-            semantic_symbol(parent->namespace_type, target->name));
-    }
+    SemanticStatement *parent = semantic_statement_find(caller, node->as.call.enclosing_operation);
+    SemanticSelection value;
+    if (!semantic_select_result(program, caller, parent, node->as.call.target, &value)) { return false; }
     statement->enclosing_operation = parent;
-    statement->access = semantic_selected_access(program, caller, target, field);
-    return statement->access != NULL;
+    statement->access = value.access;
+    statement->namespace_type = value.type;
+    statement->target_reference = value.reference;
+    statement->intrinsic_target = value.intrinsic;
+    statement->intrinsic_result = value.position;
+    return !value.list || semantic_list_service(program, statement);
 }
 bool semantic_call_target(SemanticProgram *program, SemanticType *caller, SemanticStatement *statement) {
     const AstNode *node = statement->syntax;
@@ -31,12 +28,11 @@ bool semantic_call_target(SemanticProgram *program, SemanticType *caller, Semant
             "The constant namespace is unavailable", NULL);
     }
     if (node->as.call.enclosing_operation != NULL) {
-        SemanticStatement *parent = semantic_call_statement(caller, node->as.call.enclosing_operation);
-        if (parent != NULL && (parent->operation_kind == SEMANTIC_LIST_SERVICE_OPERATION
-                || parent->operation_kind == SEMANTIC_LIST_METHOD_OPERATION)) {
+        SemanticStatement *parent = semantic_statement_find(caller, node->as.call.enclosing_operation);
+        if (parent != NULL && parent->operation_kind == SEMANTIC_LIST_SERVICE_OPERATION) {
             return semantic_list_target(program, statement, parent);
         }
-        if (!selected(program, caller, statement)) { return false; }
+        return selected(program, caller, statement);
     } else {
         statement->access = semantic_access(program, caller, node->as.call.target, false, NULL);
         if (statement->access == NULL) { return false; }
