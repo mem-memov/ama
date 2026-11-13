@@ -8,6 +8,12 @@
  */
 #include "semantic/internal.h"
 
+/** Build exactly the TYPE-04 prerequisites after initializer resolution.
+ * Every emitted edge requires at least one child construction before its owner
+ * completes. An empty list emits no such requirement. A finite DAG therefore
+ * supplies a construction order, whereas a cycle requires infinite eager nesting.
+ * Borrowed type/field sites outlive the graph; allocation failure leaves it owned.
+ */
 bool semantic_eager_graph(SemanticProgram *program) {
     DependencyGraph *graph = &program->eager;
     for (SemanticType *type = program->first; type != NULL; type = type->next) {

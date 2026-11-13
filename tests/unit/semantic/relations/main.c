@@ -6,6 +6,11 @@
  * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
  */
 #include "../typed-common.c"
+#include "semantic/internal.h"
+#include "support/capability.c"
+#include "support/eager.c"
+#include "support/order.c"
+#include "support/failures.c"
 
 /**
  * Resolve the supplied declarations and compare actual eager/copy relation results, including
@@ -259,6 +264,11 @@ static void it_cleans_successful_and_cyclic_relation_plans_after_every_allocatio
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_handles_empty_deep_parallel_and_allocation_failed_graphs();
+    it_orders_graphs_independently_of_vertex_and_edge_admission_order();
+    it_matches_every_three_type_storage_graph_and_native_seed_set();
+    it_classifies_every_eager_field_role_form_and_initializer_state();
+    it_keeps_inferred_default_storage_in_the_correct_relations();
     it_distinguishes_loading_eager_construction_and_clone_cycles();
     it_accepts_recursive_empty_lists_and_propagates_noncopyable_owned_edges();
     it_orders_constants_by_declarations_and_actual_value_reads();

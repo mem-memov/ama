@@ -963,12 +963,21 @@ Contracts: [declarations](spec/language/declarations.md),
   Static self typing is complete; an explicit pre-storage planning guard retains
   execution for T049–T050's final construction/clone identities. Documentation
   coverage checks 900 maintained inputs; Doxygen reproducibility is verified.
-- [ ] **T033 — Derive dependency and capability fixed points.** Needs: T032.
+- [x] **T033 — Derive dependency and capability fixed points.** Needs: T032.
   Provide exact dependency/cycle algorithms; derive the eager-owned-layout and
   clone-capability relations separately from module dependencies. Test finite
   graphs, recursive empty lists and noncopyable owned descendants. Require static
   copy capability before runtime self-assignment no-op handling; do not reject
   benign execution/reference cycles. T034 supplies resolved initializer edges.
+  Evidence: [type relations](docs/implementation/type-relations.md) proves the
+  eager-edge predicate, least full-key topological order, actual finite cycle
+  extraction and greatest copy-capability fixed point. Capability seeding clears
+  stale cause witnesses. 2,097,152 graph/seed cases match independent reachability;
+  12,288 graph/admission/key cases match exhaustive topological permutations and
+  retain real cycle spans. All 128 field partitions, inferred defaults, 1024-node
+  deep/parallel shapes and each graph allocation failure pass. Strict semantic
+  unit/integration suites and ASan+UBSan relation checks passed. Documentation
+  covers 904 maintained inputs; final Doxygen generations are byte-identical.
 - [ ] **T034 — Validate constants and initialization plans.** Needs: T033.
   Resolve qualified members and legal constant sources, then construct actual
   initializer dependencies and reject their forbidden cycles. Derive exact

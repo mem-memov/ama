@@ -20520,6 +20520,21 @@
         "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
         "command": "make -C tests/unit/semantic/relations",
         "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_matches_every_three_type_storage_graph_and_native_seed_set",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_classifies_every_eager_field_role_form_and_initializer_state",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_keeps_inferred_default_storage_in_the_correct_relations",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
       }
     ]
   },
@@ -20616,6 +20631,16 @@
         "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_classifies_every_eager_field_role_form_and_initializer_state",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_keeps_inferred_default_storage_in_the_correct_relations",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
       }
     ]
   },
@@ -20655,6 +20680,16 @@
       },
       {
         "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_graphs_independently_of_vertex_and_edge_admission_order",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_handles_empty_deep_parallel_and_allocation_failed_graphs",
         "command": "make -C tests/unit/semantic/relations",
         "source": "tests/unit/semantic/relations/main.c"
       }
@@ -20713,6 +20748,16 @@
         "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
         "command": "make -C tests/unit/semantic/relations",
         "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_graphs_independently_of_vertex_and_edge_admission_order",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_handles_empty_deep_parallel_and_allocation_failed_graphs",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
       }
     ]
   },
@@ -20769,6 +20814,16 @@
         "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
         "command": "make -C tests/unit/semantic/relations",
         "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_graphs_independently_of_vertex_and_edge_admission_order",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_handles_empty_deep_parallel_and_allocation_failed_graphs",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
       }
     ]
   },
@@ -20810,6 +20865,16 @@
         "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
         "command": "make -C tests/unit/semantic/relations",
         "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_graphs_independently_of_vertex_and_edge_admission_order",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_handles_empty_deep_parallel_and_allocation_failed_graphs",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
       }
     ]
   },
@@ -20849,6 +20914,16 @@
       },
       {
         "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_graphs_independently_of_vertex_and_edge_admission_order",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_handles_empty_deep_parallel_and_allocation_failed_graphs",
         "command": "make -C tests/unit/semantic/relations",
         "source": "tests/unit/semantic/relations/main.c"
       }
@@ -39245,6 +39320,31 @@
         "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
         "command": "make -C tests/unit/semantic/relations",
         "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_matches_every_three_type_storage_graph_and_native_seed_set",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_classifies_every_eager_field_role_form_and_initializer_state",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_keeps_inferred_default_storage_in_the_correct_relations",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_orders_graphs_independently_of_vertex_and_edge_admission_order",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_handles_empty_deep_parallel_and_allocation_failed_graphs",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
       }
     ]
   },
@@ -49053,6 +49153,55 @@
         "case": "it_keeps_root_kind_identity_in_the_complete_transfer_matrix",
         "command": "make -C tests/unit/semantic/types",
         "source": "tests/unit/semantic/types/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/relations/support/capability.c": {
+    "contract": "docs/implementation/type-relations.md",
+    "purpose": "Compare greatest-fixed-point capability with independent finite reachability for every three-type storage graph.",
+    "tests": [
+      {
+        "case": "it_matches_every_three_type_storage_graph_and_native_seed_set",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/relations/support/eager.c": {
+    "contract": "docs/implementation/type-relations.md",
+    "purpose": "Check exact eager-edge classification and inferred defaults independently from clone ownership edges.",
+    "tests": [
+      {
+        "case": "it_classifies_every_eager_field_role_form_and_initializer_state",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_keeps_inferred_default_storage_in_the_correct_relations",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/relations/support/order.c": {
+    "contract": "docs/implementation/type-relations.md",
+    "purpose": "Compare all small graph orders with exhaustive topological permutations and verify concrete original cycle sites.",
+    "tests": [
+      {
+        "case": "it_orders_graphs_independently_of_vertex_and_edge_admission_order",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/relations/support/failures.c": {
+    "contract": "docs/implementation/type-relations.md",
+    "purpose": "Check finite deep/empty/parallel dependency shapes and every graph allocation failure with counted owners.",
+    "tests": [
+      {
+        "case": "it_handles_empty_deep_parallel_and_allocation_failed_graphs",
+        "command": "make -C tests/unit/semantic/relations",
+        "source": "tests/unit/semantic/relations/main.c"
       }
     ]
   }

@@ -7,10 +7,17 @@
  */
 #include "semantic/internal.h"
 
+/** Compute the greatest closed subset of native-capable executable types.
+ * Each removal points to an already removed prerequisite, so clone_cause chains
+ * are finite witnesses ending at a native seed. References and constants never
+ * participate; even an empty owning list contributes its element-type edge.
+ * No allocation occurs. At most V removals and one final scan cost O(V(V+F)).
+ */
 void semantic_clone_capabilities(SemanticProgram *program) {
     for (SemanticType *type = program->first; type != NULL; type = type->next) {
         type->cloneable = type->executable && (type->module->syntax.sections.kind != MODULE_NATIVE
             || type->abi.bindings[ABI_CLONE].present);
+        type->clone_cause = NULL;
         type->clone_seed = !type->cloneable && type->executable ? type : NULL;
     }
     bool changed;

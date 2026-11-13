@@ -143,6 +143,9 @@ explicit index/condition capabilities, list mappings/clone restrictions, preserv
 payload bytes/order and every resolved-allocation failure. Release/Werror checks
 and focused ASan/UBSan supplement the derivation; LeakSanitizer remains disabled.
 
+[T033 relation evidence](type-relations.md) details the independent predicates,
+fixed-point proof, admission-order tests and finite failure checks.
+
 ## Separate relation graphs and exact ordering
 
 `semantic_relations` requires resolved values and constructs two independent
