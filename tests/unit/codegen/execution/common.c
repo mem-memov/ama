@@ -20,6 +20,8 @@ static bool wrong_entry_result;
 static const char *forced_header;
 static const char *host_launcher;
 static bool weak_toolchain_options;
+static bool malformed_native_entry;
+static bool malformed_condition;
 
 /**
  * Create the explicit native interface/body/ABI companion set used by this leaf. The caller
@@ -80,7 +82,8 @@ static void executable_native(const ScaffoldType *type) {
             "printf(\"%zu:%zu:%u\\n\",parameters->AMA_INPUT(0)->payload->number,state->calls,(unsigned)services->caller_refusal.code);\n", body);
         assert(written != EOF);
     }
-    written = fputs("*status=ama_status_success(); }\n", body);
+    written = fputs(malformed_native_entry ? "*status=ama_status_make(AMA_OK,NULL,1); }\n"
+        : "*status=ama_status_success(); }\n", body);
     assert(written != EOF);
     for (AbiOperation operation = ABI_DEFAULT; operation < ABI_BINDING_COUNT; operation++) {
         const AbiBinding *binding = &type->plan->type->abi.bindings[operation];
@@ -92,6 +95,9 @@ static void executable_native(const ScaffoldType *type) {
             : operation == ABI_CLONE ? " { *destination=*source; destination->address=destination; return ama_status_success(); }\n"
             : operation == ABI_CONDITION ? " { *result=state->number!=0; return ama_status_success(); }\n"
             : " { if(state->number==9999) return ama_status_make(AMA_NATIVE_FAILURE,\"Index decoder failed\",20); if(state->number>=1000 && state->number<9999) { printf(\"index=%zu\\n\",state->number); *result=state->number-1000; } else { *result=state->number; } return ama_status_success(); }\n";
+        if (operation == ABI_CONDITION && malformed_condition) {
+            implementation = " { (void)state; *result=true; return ama_status_make(AMA_OK,NULL,1); }\n";
+        }
         written = fputs(implementation, body);
         assert(written != EOF);
     }

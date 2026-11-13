@@ -7,6 +7,7 @@
  */
 #include "types.h"
 #include <stdlib.h>
+#include <setjmp.h>
 
 /**
  * Demonstrate ordinary recursive C helper calls remain permitted inside an inlined native entry;
@@ -16,6 +17,15 @@ __attribute__((noinline, noipa)) size_t allowed_helper(size_t value) {
     return value == 0 ? 0 : value + allowed_helper(value - 1);
 }
 
+/** An ordinary inline hint is optional even when the helper cannot inline.
+ * The local setjmp never escapes, performs no nonlocal exit and returns before
+ * Ama resumes; only native entry expansion is mandatory.
+ */
+static inline size_t optional_inline_helper(size_t value) {
+    jmp_buf local;
+    return setjmp(local) == 0 ? value : 0;
+}
+
 /**
  * Implement the selected native toolchain probe body; the file contract states whether
  * successful inlining or deliberate rejection is expected.
@@ -23,6 +33,7 @@ __attribute__((noinline, noipa)) size_t allowed_helper(size_t value) {
 AMA_NATIVE_ENTRY void ama_fixture_native_entry(Payload *state, const Inputs *parameters,
     Outputs *results, const AmaNativeServices *services, AmaStatus *status) {
     state->total += allowed_helper(*parameters->value);
+    state->total += optional_inline_helper(0);
     *results->value = state->total;
     *status = ama_status_success();
     (void) services;

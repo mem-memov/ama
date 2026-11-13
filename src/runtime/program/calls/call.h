@@ -41,6 +41,9 @@ AmaStatus ama_program_cell(AmaProgram *, AmaHandle, AmaPoolCell **);
 AmaStatus ama_program_assign(AmaProgram *, AmaHandle, const AmaProgramAccess *, const AmaProgramSource *);
 /** Own guard, arena and protections for selection plus store of an already selected source; release temporary authority on every return. */
 AmaStatus ama_program_transfer(AmaProgram *, AmaHandle, const AmaProgramAccess *, const AmaProgramValue *);
-/** Select readable scalar payload and invoke its explicit condition protocol under a guard. Technical protocol errors propagate; there is no universal truth conversion. */
+/** Select a readable scalar and invoke its explicit condition protocol under a guard.
+ * Publish output only after checked success; technical failure releases the guard
+ * without altering caller output or refusal history. No universal truth conversion exists.
+ */
 AmaStatus ama_program_condition(AmaProgram *, AmaHandle, const AmaProgramAccess *, bool *);
 #endif

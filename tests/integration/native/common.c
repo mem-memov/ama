@@ -64,7 +64,7 @@ static int compile_fixture(const char *source, const char *optimization) {
  * Inspect the actual probe object symbol listing and classify the exact native entry using the
  * production checker, not source spelling or execution alone.
  */
-static AmaSymbolCheck inspect_entry(void) {
+static AmaSymbolCheck inspect_entries(const AmaByteView *entries, size_t entry_count) {
     char *arguments[] = {"nm", "--format=posix", "generated/module.o", NULL};
     int result = run_tool(arguments, "generated/symbols.txt");
     assert(result == 0);
@@ -75,11 +75,16 @@ static AmaSymbolCheck inspect_entry(void) {
     assert(!ferror(file) && length < sizeof(bytes));
     int closed = fclose(file);
     assert(closed == 0);
+    return ama_check_entry_symbols((AmaByteView) {bytes, length}, entries, entry_count);
+}
+
+/** Check every forbidden native/control entry while permitting ordinary helper symbols. */
+static AmaSymbolCheck inspect_entry(void) {
     static const unsigned char native[] = "ama_fixture_native_entry";
     static const unsigned char first[] = "ama_label_1", second[] = "ama_label_2", third[] = "ama_label_3";
     const AmaByteView entries[] = {{native, sizeof(native) - 1}, {first, sizeof(first) - 1},
         {second, sizeof(second) - 1}, {third, sizeof(third) - 1}};
-    return ama_check_entry_symbols((AmaByteView) {bytes, length}, entries, sizeof(entries) / sizeof(entries[0]));
+    return inspect_entries(entries, sizeof(entries) / sizeof(entries[0]));
 }
 
 /**

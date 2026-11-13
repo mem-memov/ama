@@ -780,6 +780,16 @@
         "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_entry_completion_before_processing_call_results",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_condition_completion_without_executing_either_body",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -9272,6 +9282,56 @@
         "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
         "command": "make -C tests/unit/runtime/contexts",
         "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_unwinds_a_completed_private_clone_without_changing_its_source_root",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_retires_every_constant_clone_resource_before_failed_factory_return",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_consumes_native_credits_once_and_preserves_malformed_destroy_as_primary",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_keeps_condition_outputs_and_refusal_history_unchanged_after_protocol_failure",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_selects_size_construction_once_and_unwinds_its_completed_owned_fields",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_a_completed_default_payload_after_malformed_success",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_unwinds_a_raw_success_child_before_its_parent_receives_completion_credit",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_literal_construction_without_running_the_default_callback",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_native_source_clone_and_preserves_the_shared_original",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
       }
     ]
   },
@@ -9851,6 +9911,56 @@
         "case": "it_finalizes_ama_only_storage_without_a_native_destroy_request",
         "command": "make -C tests/unit/native/lifecycle/model",
         "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_unwinds_a_completed_private_clone_without_changing_its_source_root",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_retires_every_constant_clone_resource_before_failed_factory_return",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_consumes_native_credits_once_and_preserves_malformed_destroy_as_primary",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_keeps_condition_outputs_and_refusal_history_unchanged_after_protocol_failure",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_selects_size_construction_once_and_unwinds_its_completed_owned_fields",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_a_completed_default_payload_after_malformed_success",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_unwinds_a_raw_success_child_before_its_parent_receives_completion_credit",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_literal_construction_without_running_the_default_callback",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_native_source_clone_and_preserves_the_shared_original",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
       }
     ]
   },
@@ -10013,7 +10123,184 @@
         "case": "it_finalizes_ama_only_storage_without_a_native_destroy_request",
         "command": "make -C tests/unit/native/lifecycle/model",
         "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_unwinds_a_completed_private_clone_without_changing_its_source_root",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_retires_every_constant_clone_resource_before_failed_factory_return",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_consumes_native_credits_once_and_preserves_malformed_destroy_as_primary",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_keeps_condition_outputs_and_refusal_history_unchanged_after_protocol_failure",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_selects_size_construction_once_and_unwinds_its_completed_owned_fields",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_a_completed_default_payload_after_malformed_success",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_unwinds_a_raw_success_child_before_its_parent_receives_completion_credit",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_literal_construction_without_running_the_default_callback",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_native_source_clone_and_preserves_the_shared_original",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
       }
+    ]
+  },
+  "src/runtime/lifecycle/native.c": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Credit raw-success native construction before checking status transport.",
+    "tests": [
+      {
+        "case": "it_unwinds_a_completed_private_clone_without_changing_its_source_root",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_retires_every_constant_clone_resource_before_failed_factory_return",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_consumes_native_credits_once_and_preserves_malformed_destroy_as_primary",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_keeps_condition_outputs_and_refusal_history_unchanged_after_protocol_failure",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_selects_size_construction_once_and_unwinds_its_completed_owned_fields",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_a_completed_default_payload_after_malformed_success",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_unwinds_a_raw_success_child_before_its_parent_receives_completion_credit",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_literal_construction_without_running_the_default_callback",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_native_source_clone_and_preserves_the_shared_original",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      }
+    ]
+  },
+  "src/runtime/lifecycle/native.h": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Credit raw-success native construction before checking status transport.",
+    "tests": [
+      {
+        "case": "it_unwinds_a_completed_private_clone_without_changing_its_source_root",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_retires_every_constant_clone_resource_before_failed_factory_return",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_consumes_native_credits_once_and_preserves_malformed_destroy_as_primary",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_keeps_condition_outputs_and_refusal_history_unchanged_after_protocol_failure",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_selects_size_construction_once_and_unwinds_its_completed_owned_fields",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_a_completed_default_payload_after_malformed_success",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_unwinds_a_raw_success_child_before_its_parent_receives_completion_credit",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_literal_construction_without_running_the_default_callback",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_native_source_clone_and_preserves_the_shared_original",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
     ]
   },
   "src/runtime/lists/capacity.c": {
@@ -11620,6 +11907,56 @@
         "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
         "command": "make -C tests/unit/runtime/contexts",
         "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_unwinds_a_completed_private_clone_without_changing_its_source_root",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_retires_every_constant_clone_resource_before_failed_factory_return",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_consumes_native_credits_once_and_preserves_malformed_destroy_as_primary",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_keeps_condition_outputs_and_refusal_history_unchanged_after_protocol_failure",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_selects_size_construction_once_and_unwinds_its_completed_owned_fields",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_a_completed_default_payload_after_malformed_success",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_unwinds_a_raw_success_child_before_its_parent_receives_completion_credit",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_literal_construction_without_running_the_default_callback",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_native_source_clone_and_preserves_the_shared_original",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
       }
     ]
   },
@@ -12146,6 +12483,56 @@
         "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
         "command": "make -C tests/unit/runtime/objects/replacement",
         "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_unwinds_a_completed_private_clone_without_changing_its_source_root",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_retires_every_constant_clone_resource_before_failed_factory_return",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_consumes_native_credits_once_and_preserves_malformed_destroy_as_primary",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_keeps_condition_outputs_and_refusal_history_unchanged_after_protocol_failure",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_selects_size_construction_once_and_unwinds_its_completed_owned_fields",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_a_completed_default_payload_after_malformed_success",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_unwinds_a_raw_success_child_before_its_parent_receives_completion_credit",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_literal_construction_without_running_the_default_callback",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_native_source_clone_and_preserves_the_shared_original",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
       }
     ]
   },
@@ -12744,6 +13131,56 @@
         "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
         "command": "make -C tests/unit/runtime/objects/lifecycle",
         "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_unwinds_a_completed_private_clone_without_changing_its_source_root",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_retires_every_constant_clone_resource_before_failed_factory_return",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_consumes_native_credits_once_and_preserves_malformed_destroy_as_primary",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_keeps_condition_outputs_and_refusal_history_unchanged_after_protocol_failure",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_selects_size_construction_once_and_unwinds_its_completed_owned_fields",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_a_completed_default_payload_after_malformed_success",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_unwinds_a_raw_success_child_before_its_parent_receives_completion_credit",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_literal_construction_without_running_the_default_callback",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_native_source_clone_and_preserves_the_shared_original",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
       }
     ]
   },
@@ -13636,6 +14073,56 @@
         "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
         "command": "make -C tests/unit/runtime/contexts",
         "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_unwinds_a_completed_private_clone_without_changing_its_source_root",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_retires_every_constant_clone_resource_before_failed_factory_return",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_consumes_native_credits_once_and_preserves_malformed_destroy_as_primary",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_keeps_condition_outputs_and_refusal_history_unchanged_after_protocol_failure",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_selects_size_construction_once_and_unwinds_its_completed_owned_fields",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_a_completed_default_payload_after_malformed_success",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_unwinds_a_raw_success_child_before_its_parent_receives_completion_credit",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_literal_construction_without_running_the_default_callback",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_native_source_clone_and_preserves_the_shared_original",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
       }
     ]
   },
@@ -14312,6 +14799,56 @@
         "case": "it_reports_the_new_caller_after_a_yield_releases_the_original_link",
         "command": "make -C tests/unit/codegen/continuations",
         "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_unwinds_a_completed_private_clone_without_changing_its_source_root",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_retires_every_constant_clone_resource_before_failed_factory_return",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_consumes_native_credits_once_and_preserves_malformed_destroy_as_primary",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_keeps_condition_outputs_and_refusal_history_unchanged_after_protocol_failure",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_selects_size_construction_once_and_unwinds_its_completed_owned_fields",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_a_completed_default_payload_after_malformed_success",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_unwinds_a_raw_success_child_before_its_parent_receives_completion_credit",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_literal_construction_without_running_the_default_callback",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_native_source_clone_and_preserves_the_shared_original",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
       }
     ]
   },
@@ -14978,6 +15515,56 @@
         "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
         "command": "make -C tests/unit/runtime/program",
         "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_unwinds_a_completed_private_clone_without_changing_its_source_root",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_retires_every_constant_clone_resource_before_failed_factory_return",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_consumes_native_credits_once_and_preserves_malformed_destroy_as_primary",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_keeps_condition_outputs_and_refusal_history_unchanged_after_protocol_failure",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_selects_size_construction_once_and_unwinds_its_completed_owned_fields",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_a_completed_default_payload_after_malformed_success",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_unwinds_a_raw_success_child_before_its_parent_receives_completion_credit",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_literal_construction_without_running_the_default_callback",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_native_source_clone_and_preserves_the_shared_original",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
       }
     ]
   },
@@ -15065,6 +15652,56 @@
         "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
         "command": "make -C tests/unit/runtime/program",
         "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_unwinds_a_completed_private_clone_without_changing_its_source_root",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_retires_every_constant_clone_resource_before_failed_factory_return",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_consumes_native_credits_once_and_preserves_malformed_destroy_as_primary",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_keeps_condition_outputs_and_refusal_history_unchanged_after_protocol_failure",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_selects_size_construction_once_and_unwinds_its_completed_owned_fields",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_a_completed_default_payload_after_malformed_success",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_unwinds_a_raw_success_child_before_its_parent_receives_completion_credit",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_literal_construction_without_running_the_default_callback",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_native_source_clone_and_preserves_the_shared_original",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
       }
     ]
   },
@@ -15101,6 +15738,56 @@
         "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
         "command": "make -C tests/unit/runtime/program",
         "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_unwinds_a_completed_private_clone_without_changing_its_source_root",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_retires_every_constant_clone_resource_before_failed_factory_return",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_consumes_native_credits_once_and_preserves_malformed_destroy_as_primary",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_keeps_condition_outputs_and_refusal_history_unchanged_after_protocol_failure",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_selects_size_construction_once_and_unwinds_its_completed_owned_fields",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_a_completed_default_payload_after_malformed_success",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_unwinds_a_raw_success_child_before_its_parent_receives_completion_credit",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_literal_construction_without_running_the_default_callback",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_native_source_clone_and_preserves_the_shared_original",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
       }
     ]
   },
@@ -15958,6 +16645,56 @@
         "case": "it_reports_the_new_caller_after_a_yield_releases_the_original_link",
         "command": "make -C tests/unit/codegen/continuations",
         "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_unwinds_a_completed_private_clone_without_changing_its_source_root",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_retires_every_constant_clone_resource_before_failed_factory_return",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_consumes_native_credits_once_and_preserves_malformed_destroy_as_primary",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_keeps_condition_outputs_and_refusal_history_unchanged_after_protocol_failure",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_selects_size_construction_once_and_unwinds_its_completed_owned_fields",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_a_completed_default_payload_after_malformed_success",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_unwinds_a_raw_success_child_before_its_parent_receives_completion_credit",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_literal_construction_without_running_the_default_callback",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_native_source_clone_and_preserves_the_shared_original",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
       }
     ]
   },
@@ -24994,6 +25731,16 @@
         "case": "it_rejects_an_ama_control_function_before_linking_or_publication",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_entry_completion_before_processing_call_results",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_condition_completion_without_executing_either_body",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -25128,6 +25875,32 @@
       },
       {
         "case": "it_rejects_an_ama_control_function_before_linking_or_publication",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_entry_completion_before_processing_call_results",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_condition_completion_without_executing_either_body",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/execution/support/protocols.c": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Verify generated entry and condition failure before Ama continuation.",
+    "tests": [
+      {
+        "case": "it_rejects_malformed_entry_completion_before_processing_call_results",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_condition_completion_without_executing_either_body",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
       }
@@ -26552,6 +27325,46 @@
         "case": "it_assigns_collision_free_library_codes_and_rejects_zero_fields",
         "command": "make -C tests/unit/native/abi/status",
         "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_binds_the_integer_fixture_module_and_six_protocols_without_a_seventh_record",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_checks_integer_protocol_and_fixed_bridge_signatures",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_roundtrips_sizes_at_all_limb_boundaries_without_decimal_or_default_construction",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_clones_literal_magnitudes_and_reads_conditions_without_changing_state",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_host_overflow_indices_without_consuming_outputs",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_cleans_integer_constructor_failures_and_preserves_clone_sources",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_accepts_an_exact_native_constructor_signature",
+        "command": "make -C tests/unit/native/abi/signatures",
+        "source": "tests/unit/native/abi/signatures/main.c"
+      },
+      {
+        "case": "it_rejects_wrong_protocol_entry_and_host_size_signatures",
+        "command": "make -C tests/unit/native/abi/signatures",
+        "source": "tests/unit/native/abi/signatures/main.c"
       }
     ]
   },
@@ -26789,6 +27602,297 @@
       }
     ]
   },
+  "tests/unit/native/abi/integer/Makefile": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Build native integer ABI, source declaration and namespace checks.",
+    "tests": [
+      {
+        "case": "it_binds_the_integer_fixture_module_and_six_protocols_without_a_seventh_record",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_checks_integer_protocol_and_fixed_bridge_signatures",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_roundtrips_sizes_at_all_limb_boundaries_without_decimal_or_default_construction",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_clones_literal_magnitudes_and_reads_conditions_without_changing_state",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_host_overflow_indices_without_consuming_outputs",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_cleans_integer_constructor_failures_and_preserves_clone_sources",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/abi/integer/common.c": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Bind counted native resources and exact fixture namespace to the integer contract.",
+    "tests": [
+      {
+        "case": "it_binds_the_integer_fixture_module_and_six_protocols_without_a_seventh_record",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_checks_integer_protocol_and_fixed_bridge_signatures",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_roundtrips_sizes_at_all_limb_boundaries_without_decimal_or_default_construction",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_clones_literal_magnitudes_and_reads_conditions_without_changing_state",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_host_overflow_indices_without_consuming_outputs",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_cleans_integer_constructor_failures_and_preserves_clone_sources",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/abi/integer/main.c": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Verify integer protocols, direct size construction and allocation-failure cleanup.",
+    "tests": [
+      {
+        "case": "it_binds_the_integer_fixture_module_and_six_protocols_without_a_seventh_record",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_checks_integer_protocol_and_fixed_bridge_signatures",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_roundtrips_sizes_at_all_limb_boundaries_without_decimal_or_default_construction",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_clones_literal_magnitudes_and_reads_conditions_without_changing_state",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_host_overflow_indices_without_consuming_outputs",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_cleans_integer_constructor_failures_and_preserves_clone_sources",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/abi/integer/project/stdlib/integer": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Declare the test standard-library integer module.",
+    "tests": [
+      {
+        "case": "it_binds_the_integer_fixture_module_and_six_protocols_without_a_seventh_record",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/abi/integer/project/stdlib/integer.abi": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Bind exactly six explicit integer protocols without a size pseudo-record.",
+    "tests": [
+      {
+        "case": "it_binds_the_integer_fixture_module_and_six_protocols_without_a_seventh_record",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/abi/integer/project/stdlib/integer.c": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Compose independent integer native constructor and read-only protocol implementations.",
+    "tests": [
+      {
+        "case": "it_binds_the_integer_fixture_module_and_six_protocols_without_a_seventh_record",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_checks_integer_protocol_and_fixed_bridge_signatures",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_roundtrips_sizes_at_all_limb_boundaries_without_decimal_or_default_construction",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_clones_literal_magnitudes_and_reads_conditions_without_changing_state",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_host_overflow_indices_without_consuming_outputs",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_cleans_integer_constructor_failures_and_preserves_clone_sources",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/abi/integer/project/stdlib/integer.h": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Declare typed integer state, bounded protocols and the fixed full-width size bridge.",
+    "tests": [
+      {
+        "case": "it_binds_the_integer_fixture_module_and_six_protocols_without_a_seventh_record",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_checks_integer_protocol_and_fixed_bridge_signatures",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_roundtrips_sizes_at_all_limb_boundaries_without_decimal_or_default_construction",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_clones_literal_magnitudes_and_reads_conditions_without_changing_state",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_host_overflow_indices_without_consuming_outputs",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_cleans_integer_constructor_failures_and_preserves_clone_sources",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_documentation_##name",
+      "-"
+    ]
+  },
+  "tests/unit/native/abi/integer/project/support/integer/conversion.c": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Inspect integer truth and reject negative or overflowing indices without output changes.",
+    "tests": [
+      {
+        "case": "it_roundtrips_sizes_at_all_limb_boundaries_without_decimal_or_default_construction",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_clones_literal_magnitudes_and_reads_conditions_without_changing_state",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_host_overflow_indices_without_consuming_outputs",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/abi/integer/project/support/integer/literal.c": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Decode signed arbitrary-precision fixture literals with exact checked ownership.",
+    "tests": [
+      {
+        "case": "it_clones_literal_magnitudes_and_reads_conditions_without_changing_state",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_host_overflow_indices_without_consuming_outputs",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_cleans_integer_constructor_failures_and_preserves_clone_sources",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/abi/integer/project/support/integer/storage.c": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Own fresh integer limbs, exact size decomposition, independent clone and finalization.",
+    "tests": [
+      {
+        "case": "it_checks_integer_protocol_and_fixed_bridge_signatures",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_roundtrips_sizes_at_all_limb_boundaries_without_decimal_or_default_construction",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_clones_literal_magnitudes_and_reads_conditions_without_changing_state",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_host_overflow_indices_without_consuming_outputs",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_cleans_integer_constructor_failures_and_preserves_clone_sources",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      }
+    ]
+  },
   "tests/unit/native/abi/layout/Makefile": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Build and run this leaf against its explicit production and fixture sources.",
@@ -26818,6 +27922,54 @@
         "case": "it_preserves_extended_payload_alignment_in_typed_storage",
         "command": "make -C tests/unit/native/abi/layout",
         "source": "tests/unit/native/abi/layout/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/abi/signatures/Makefile": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Build isolated positive and negative native C signature probes.",
+    "tests": [
+      {
+        "case": "it_accepts_an_exact_native_constructor_signature",
+        "command": "make -C tests/unit/native/abi/signatures",
+        "source": "tests/unit/native/abi/signatures/main.c"
+      },
+      {
+        "case": "it_rejects_wrong_protocol_entry_and_host_size_signatures",
+        "command": "make -C tests/unit/native/abi/signatures",
+        "source": "tests/unit/native/abi/signatures/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/abi/signatures/main.c": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Require exact C signatures and reject all eight incompatible native boundaries.",
+    "tests": [
+      {
+        "case": "it_accepts_an_exact_native_constructor_signature",
+        "command": "make -C tests/unit/native/abi/signatures",
+        "source": "tests/unit/native/abi/signatures/main.c"
+      },
+      {
+        "case": "it_rejects_wrong_protocol_entry_and_host_size_signatures",
+        "command": "make -C tests/unit/native/abi/signatures",
+        "source": "tests/unit/native/abi/signatures/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/abi/signatures/project/probe.c": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Provide exact and incompatible six-protocol, entry and size-bridge candidates.",
+    "tests": [
+      {
+        "case": "it_accepts_an_exact_native_constructor_signature",
+        "command": "make -C tests/unit/native/abi/signatures",
+        "source": "tests/unit/native/abi/signatures/main.c"
+      },
+      {
+        "case": "it_rejects_wrong_protocol_entry_and_host_size_signatures",
+        "command": "make -C tests/unit/native/abi/signatures",
+        "source": "tests/unit/native/abi/signatures/main.c"
       }
     ]
   },
@@ -30061,6 +31213,56 @@
         "case": "it_continues_reverse_root_cleanup_after_distinct_destructor_errors",
         "command": "make -C tests/unit/runtime/contexts",
         "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_unwinds_a_completed_private_clone_without_changing_its_source_root",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_retires_every_constant_clone_resource_before_failed_factory_return",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_consumes_native_credits_once_and_preserves_malformed_destroy_as_primary",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_keeps_condition_outputs_and_refusal_history_unchanged_after_protocol_failure",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_selects_size_construction_once_and_unwinds_its_completed_owned_fields",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_a_completed_default_payload_after_malformed_success",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_unwinds_a_raw_success_child_before_its_parent_receives_completion_credit",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_literal_construction_without_running_the_default_callback",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_native_source_clone_and_preserves_the_shared_original",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
       }
     ]
   },
@@ -30600,6 +31802,56 @@
         "case": "it_streams_checked_diagnostics_without_runtime_allocation",
         "command": "make -C tests/unit/runtime/contexts",
         "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_unwinds_a_completed_private_clone_without_changing_its_source_root",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_retires_every_constant_clone_resource_before_failed_factory_return",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_consumes_native_credits_once_and_preserves_malformed_destroy_as_primary",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_keeps_condition_outputs_and_refusal_history_unchanged_after_protocol_failure",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_selects_size_construction_once_and_unwinds_its_completed_owned_fields",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_a_completed_default_payload_after_malformed_success",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_unwinds_a_raw_success_child_before_its_parent_receives_completion_credit",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_literal_construction_without_running_the_default_callback",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_native_source_clone_and_preserves_the_shared_original",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
       }
     ]
   },
@@ -32132,6 +33384,254 @@
         "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
         "command": "make -C tests/unit/runtime/program",
         "source": "tests/unit/runtime/program/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/protocols/Makefile": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Build the real-resource checked native protocol component.",
+    "tests": [
+      {
+        "case": "it_unwinds_a_completed_private_clone_without_changing_its_source_root",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_retires_every_constant_clone_resource_before_failed_factory_return",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_consumes_native_credits_once_and_preserves_malformed_destroy_as_primary",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_keeps_condition_outputs_and_refusal_history_unchanged_after_protocol_failure",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_selects_size_construction_once_and_unwinds_its_completed_owned_fields",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_a_completed_default_payload_after_malformed_success",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_unwinds_a_raw_success_child_before_its_parent_receives_completion_credit",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_literal_construction_without_running_the_default_callback",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_native_source_clone_and_preserves_the_shared_original",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/protocols/common.c": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Own injected completion statuses and counted address-sensitive native resources.",
+    "tests": [
+      {
+        "case": "it_unwinds_a_completed_private_clone_without_changing_its_source_root",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_retires_every_constant_clone_resource_before_failed_factory_return",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_consumes_native_credits_once_and_preserves_malformed_destroy_as_primary",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_keeps_condition_outputs_and_refusal_history_unchanged_after_protocol_failure",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_selects_size_construction_once_and_unwinds_its_completed_owned_fields",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_a_completed_default_payload_after_malformed_success",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_unwinds_a_raw_success_child_before_its_parent_receives_completion_credit",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_literal_construction_without_running_the_default_callback",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_native_source_clone_and_preserves_the_shared_original",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/protocols/main.c": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Compose constructor, clone, cleanup, condition and size-recipe contracts.",
+    "tests": [
+      {
+        "case": "it_unwinds_a_completed_private_clone_without_changing_its_source_root",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_retires_every_constant_clone_resource_before_failed_factory_return",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_consumes_native_credits_once_and_preserves_malformed_destroy_as_primary",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_keeps_condition_outputs_and_refusal_history_unchanged_after_protocol_failure",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_selects_size_construction_once_and_unwinds_its_completed_owned_fields",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_a_completed_default_payload_after_malformed_success",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_unwinds_a_raw_success_child_before_its_parent_receives_completion_credit",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_literal_construction_without_running_the_default_callback",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_native_source_clone_and_preserves_the_shared_original",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/protocols/support/clone.c": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Exercise checked native clone lifecycle behavior.",
+    "tests": [
+      {
+        "case": "it_unwinds_a_completed_private_clone_without_changing_its_source_root",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_retires_every_constant_clone_resource_before_failed_factory_return",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/protocols/support/construction.c": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Exercise checked native construction lifecycle behavior.",
+    "tests": [
+      {
+        "case": "it_cleans_a_completed_default_payload_after_malformed_success",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_unwinds_a_raw_success_child_before_its_parent_receives_completion_credit",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_literal_construction_without_running_the_default_callback",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_cleans_native_source_clone_and_preserves_the_shared_original",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/protocols/support/conversion.c": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Exercise checked native conversion lifecycle behavior.",
+    "tests": [
+      {
+        "case": "it_keeps_condition_outputs_and_refusal_history_unchanged_after_protocol_failure",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/protocols/support/destruction.c": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Exercise checked native destruction lifecycle behavior.",
+    "tests": [
+      {
+        "case": "it_consumes_native_credits_once_and_preserves_malformed_destroy_as_primary",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/protocols/support/size.c": {
+    "contract": "docs/implementation/native-protocols.md",
+    "purpose": "Exercise checked native size lifecycle behavior.",
+    "tests": [
+      {
+        "case": "it_selects_size_construction_once_and_unwinds_its_completed_owned_fields",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
       }
     ]
   },

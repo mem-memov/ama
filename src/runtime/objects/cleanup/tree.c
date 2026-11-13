@@ -4,6 +4,9 @@
  *
  * [LIFE-03](../../../../spec/implementation/native-interface.md#life-03)
  * Invalidate identity before native cleanup, preserve the first failure and continue through the reverse initialized prefix.
+ * [ERROR-03](../../../../spec/implementation/diagnostics.md#error-03) requires
+ * checking destroy transport after consuming its credit, so malformed zero-code
+ * completion cannot hide a technical error or cause a retry.
  */
 #include "runtime/objects/internal.h"
 
@@ -36,7 +39,7 @@ AmaStatus ama_object_cleanup_keep(AmaWorld *world, AmaHandle root, AmaStatus pri
             (void)ama_lifetime_begin_cleanup(lifetime);
             if (ama_lifetime_take_native(lifetime)) {
                 void *payload = ama_pool_payload(&type->pool, cell);
-                AmaStatus destroyed = type->hooks.destroy((unsigned char *)payload + type->native_offset);
+                AmaStatus destroyed = ama_status_checked(type->hooks.destroy((unsigned char *)payload + type->native_offset));
                 ama_object_report(world, destroyed);
                 if (destroyed.code != AMA_OK) { world->failed = true; }
                 primary = ama_cleanup_primary(primary, destroyed);

@@ -20,11 +20,14 @@ typedef enum {
     AMA_LIFETIME_FINALIZED
 } AmaLifetimePhase;
 
-/** Exactly one selected constructor kind; a clone/literal never implicitly runs default construction first. */
+/** Exactly one selected constructor kind, including the fixed integer size bridge;
+ * clone, literal and size construction never run the default payload constructor first.
+ */
 typedef enum {
     AMA_CONSTRUCT_DEFAULT,
     AMA_CONSTRUCT_LITERAL,
-    AMA_CONSTRUCT_CLONE
+    AMA_CONSTRUCT_CLONE,
+    AMA_CONSTRUCT_SIZE
 } AmaConstructorKind;
 
 /* Runtime-owned ledger, never part of an opaque native payload.

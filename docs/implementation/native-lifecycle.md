@@ -7,15 +7,16 @@ component description does not certify the open work in [TODO](../../TODO.md).
 This records the tested lifecycle component under LIFE-01 through LIFE-03 and
 PROTO-08 through PROTO-10. `src/runtime/lifecycle/` implements the reusable ledger
 and primary-error combination; the independently runnable model composes it with
-real native allocations. Generated ownership layouts, replacement commit and
-whole-program shutdown remain later integration tasks, not claims made here.
+real native allocations. The [ownership layer](instance-ownership.md) and [context owner](execution-contexts.md)
+compose it with actual pools, replacement and shutdown. Current-language and
+public embedding consumers remain separate roadmap work.
 
 ## Domain and state
 
 `AmaLifetime` is runtime-owned metadata, never opaque payload. A fresh ledger is
 zero-initialized with no resources. Its declared child capacity is a size_t count;
 `live_children` is the initialized declaration-order prefix. A constructor kind
-is exactly Default, Literal or Clone. All pointers supplied to the ledger APIs
+is exactly Default, Literal, Clone or the fixed integer Size bridge. All pointers supplied to the ledger APIs
 are valid borrowed runtime storage; native code cannot modify them.
 
 Invariants are `0 <= live_children <= child_capacity`, no live native payload
@@ -26,14 +27,17 @@ The ledger does not execute callbacks or allocate resources.
 
 Construction selects one kind before acquiring resources. Each successful child
 increments the prefix once; the capacity check prevents overflow. A successful
-native constructor is followed by finish. On constructor failure, do not finish
-or mark its payload live: that hook must release its own partial resources.
+native constructor is followed by finish. Raw nonzero native completion does not
+finish or mark its payload live: that hook releases its own partial resources.
+[T009 checked native completion](native-protocols.md) credits a raw zero-code
+payload before rejecting malformed message transport, so private unwind can still
+release the completed native resource.
 
 ## Cleanup transitions and proof
 
 Begin cleanup accepts Live or partially Constructing state and marks it Finalized
 before releasing resources. The enclosing pool/access layer must also withdraw
-external access before cleanup; that layer is implemented later. Repeating begin
+external access before cleanup; the retained ownership layer does so before hooks. Repeating begin
 is invalid. Taking the native cleanup obligation clears its flag before invoking
 the hook. Next-child selection is forbidden while that obligation remains; then
 it decrements the prefix and returns the removed last index. End requires no

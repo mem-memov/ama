@@ -6,6 +6,9 @@
  * Borrow immutable descriptors and recipes. Native hooks cannot reenter Ama and must clean resources of a failed constructor themselves.
  * [LIFE-05](../../../spec/implementation/native-interface.md#life-05) requires
  * independent roots to retain successful-publication order through replacement.
+ * [PROTO-03](../../../spec/implementation/native-interface.md#proto-03) supplies
+ * the fixed integer host-size constructor; its internal recipe is selected by
+ * exact compiler identity, never exposed as an Ama machine-value source or cast.
  */
 #ifndef AMA_RUNTIME_OBJECTS_H
 #define AMA_RUNTIME_OBJECTS_H
@@ -29,13 +32,19 @@ typedef struct {
     bool supplied;
     uint64_t operation;
 } AmaFieldRecipe;
-/** One selected constructor plus borrowed literal/source/field data. Source lifetime and operation protections must cover construction. */
+/** One selected constructor plus borrowed literal/source/field data. Source lifetime
+ * and operation protections cover construction. from_size is a trusted compiler's
+ * exact typed bridge adapter for the fixed standard-library integer; size_value
+ * is internal service metadata, not an Ama source form or generic conversion.
+ */
 struct AmaRecipe {
     AmaConstructorKind constructor;
     AmaByteView literal;
     AmaHandle source;
     bool continuation;
     const void *native_source;
+    AmaStatus (*from_size)(void *, size_t);
+    size_t size_value;
     const AmaFieldRecipe *fields;
     size_t field_count;
 };

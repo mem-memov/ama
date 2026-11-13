@@ -2,8 +2,11 @@
  * @file
  * @brief Emit the qualified inline native-entry boundary from its resolved type view.
  *
- * [STACK-03](../../../spec/implementation/compiler.md#stack-03) requires verified
- * native-entry inlining. This writer borrows only its type/member view and stream.
+ * [STACK-01](../../../spec/implementation/compiler.md#stack-01) requires verified
+ * native-entry inlining. [STACK-03](../../../spec/implementation/compiler.md#stack-03)
+ * requires the native call to return normally before Ama continues or yields.
+ * [PROTO-09](../../../spec/implementation/native-interface.md#proto-09) checks its
+ * separate technical status before any result action. Borrow only resolved names and stream.
  */
 #include "codegen/internal.h"
 
@@ -30,5 +33,6 @@ bool codegen_emit_native_entry(FILE *output, const ScaffoldType *type) {
         }
     }
     return fprintf(output, "ama_world.operation_active=true;\n%s_entry(scope.write.payload,&parameters,&results,&services,&ama_status);\n"
-        "ama_world.operation_active=false;\nif(ama_status.code!=AMA_OK) goto ama_project_finish;\n}\n", type->native_prefix->internal_name) >= 0;
+        "ama_world.operation_active=false;\nama_status=ama_status_checked(ama_status);\n"
+        "if(ama_status.code!=AMA_OK) goto ama_project_finish;\n}\n", type->native_prefix->internal_name) >= 0;
 }

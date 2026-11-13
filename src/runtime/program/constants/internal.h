@@ -25,6 +25,9 @@ AmaStatus ama_constant_begin(AmaProgram *, SourceArena *, AmaConstantValue *, ui
     const AmaProgramSource *, const AmaConstantValue *, AmaConstantBuildWork *, AmaConstantBuildWork **);
 /** Allocate the declared field array once with checked count arithmetic. References require no owned child payload; evaluate explicit reference sources without introducing mutable constant handles. */
 AmaStatus ama_constant_field(AmaProgram *, AmaConstantBuildWork *);
-/** Record an aligned allocation, then invoke exactly clone, literal or default hook. Only success creates native_live; failed constructor cleanup remains the hook contract. */
+/** Record aligned allocation and invoke exactly clone, literal or default. Raw code
+ * zero creates native_live before checked failure; nonzero construction owns its
+ * own partial native cleanup. Caller rollback consumes completed payload credits.
+ */
 AmaStatus ama_constant_payload(AmaProgram *, AmaConstantBuildWork *);
 #endif

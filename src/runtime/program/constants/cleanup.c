@@ -4,6 +4,9 @@
  *
  * [CONST-02](../../../../spec/language/declarations.md#const-02)
  * Clear each native-live credit before its destructor, continue after errors and release every initialized allocation.
+ * [ERROR-03](../../../../spec/implementation/diagnostics.md#error-03) checks
+ * destroy transport without restoring consumed credits; even malformed success
+ * follows [PROTO-10](../../../../spec/implementation/native-interface.md#proto-10) cleanup.
  */
 #include "runtime/program/internal.h"
 
@@ -14,7 +17,7 @@ AmaStatus ama_program_constant_cleanup(AmaProgram *program, AmaConstantValue *ro
         if (value->type == NULL) { return primary; }
         if (value->native_live) {
             value->native_live = false;
-            AmaStatus status = value->type->object->hooks.destroy(value->payload);
+            AmaStatus status = ama_status_checked(value->type->object->hooks.destroy(value->payload));
             if (status.code != AMA_OK) {
                 if (program->world->report != NULL) { program->world->report(program->world->report_context, status); }
                 program->world->failed = true;

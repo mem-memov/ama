@@ -563,7 +563,7 @@ Contracts: [runtime](spec/implementation/runtime.md),
   generated-execution leaves pass (leak detection disabled). Documentation checks
   cover 700 inputs, 536 files, 2229 interfaces and all 285 destinations with zero
   debt/warnings and byte-identical complete Doxygen generations.
-- [ ] **T009 — Validate all six native protocol adapters.** Needs: T008. Freeze
+- [x] **T009 — Validate all six native protocol adapters.** Needs: T008. Freeze
   typed signatures, byte views, includes, alignment and void-entry service status
   in the ABI harness. Compile and run every hook, wrong-signature rejection,
   unsupported optional capabilities and invalid-index versus fatal conversion.
@@ -571,6 +571,18 @@ Contracts: [runtime](spec/implementation/runtime.md),
   and the fixed typed `from_size` constructor over the full host-size range;
   compile its signature and test exact round-trips for later list consumers;
   T085 later validates the production scalar library.
+  Completed: [checked native protocol composition](docs/implementation/native-protocols.md).
+  Raw-success constructor credits survive transport rejection; object/constant
+  cleanup consumes each credit once; condition/entry failure stops output use.
+  Size recipes construct owned fields then invoke the bridge once. Ten runtime
+  cases, six integer ABI cases, eight negative signature probes and generated
+  malformed-completion cases pass. Existing semantic cases reject unbound optional
+  capabilities. The strict full suite and four focused ASan/UBSan leaves pass
+  (leak detection disabled). Paired O0/O2 probes retain an ordinary inline-hinted
+  C helper while rejecting uninlinable entry; global Winline enforcement is excluded.
+  Complete documentation checks 724 inputs, 555 files, 2292 interfaces and all
+  286 destinations with zero debt/warnings and byte-identical Doxygen generations.
+  Standard-root qualification and actual generated bridge binding remain T017/T055.
 - [ ] **T010 — Validate native symbol namespaces.** Needs: T009. Reuse complete
   module identity for qualified author names and clean inclusion contexts. Use
   fixed collision-checked prefix vectors in this isolated harness; connect the
@@ -810,7 +822,9 @@ Contracts: [generated C](spec/implementation/compiler.md#generated-project-organ
   T010, T028, T040. Generate self-contained typed headers, optional untouched
   skeletons and C tooling configuration from validated interfaces. Independently
   check headers as first includes, reference cycles and prefix cleanup; preserve
-  handwritten files without an explicit overwrite request.
+  handwritten files without an explicit overwrite request. Bind PROTO-03's fixed
+  typed `from_size` only for the exact standard-root `..integer` identity; reject
+  missing/incompatible header declarations and keep the ABI table at six records.
 - [ ] **T056 — Emit the single project assembly.** Needs: T045, T054, T055.
   Order declarations/types/constants/native bodies/runtime/labels under one
   context-parameterized execution function. Compile agreement checks with isolated

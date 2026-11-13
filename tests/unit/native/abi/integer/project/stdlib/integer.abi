@@ -1,0 +1,6 @@
++ initialize
+- destroy
+| from_literal
+= clone
+? to_condition
+[] to_index

@@ -19,6 +19,9 @@ static void it_inlines_native_entries_and_runs_label_returns_with_native_recursi
         assert(result == 0);
         AmaSymbolCheck symbols = inspect_entry();
         assert(symbols == AMA_SYMBOLS_CLEAR);
+        static const unsigned char helper_name[] = "optional_inline_helper";
+        const AmaByteView helper = {helper_name, sizeof(helper_name) - 1};
+        assert(inspect_entries(&helper, 1) == AMA_SYMBOLS_ENTRY_REMAINS);
         link_and_execute();
     }
 }

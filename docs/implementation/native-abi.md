@@ -18,7 +18,7 @@ The compiler implementation itself remains ordinary C; this restriction applies
 to the generated native backend and its conformance harness.
 
 Required backend flags are `-std=c11 -pedantic-errors -Wall -Wextra -Werror
--Werror=attributes -Werror=inline -fno-lto -fno-whole-program`. Verify both `-O0` and `-O2`.
+-Werror=attributes -fno-lto -fno-whole-program`. Verify both `-O0` and `-O2`.
 LTO is not needed for correctness. Native entries use `AMA_NATIVE_ENTRY`, defined
 as `static inline` plus GCC `always_inline`; all entry uses must be direct and
 entry addresses must not escape. GCC documents a required diagnostic for failed
@@ -131,5 +131,6 @@ program lifetime and actual pointed memory remain the native caller's obligation
 The library-code helper merely combines an already assigned nonzero 16-bit
 provider/reason pair. Its arithmetic injectivity does not implement compiler-side
 provider registration. T007 adds [checked transport and refusal/index/report boundaries](native-status.md).
-All-hook protocol composition remains T009 and host lifecycle composition T013;
-a C struct alone does not establish those consumer contracts.
+[T009 native protocol completion](native-protocols.md) composes resource credits,
+checked callbacks and the typed host-size fixture; host lifecycle composition
+remains T013. A C struct alone does not establish those consumer contracts.

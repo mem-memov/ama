@@ -4,12 +4,18 @@
  *
  * [CONST-02](../../../../spec/language/declarations.md#const-02)
  * Record the allocation before invoking native code; only a successful hook creates a destructor credit.
+ * [LIFE-02](../../../../spec/implementation/native-interface.md#life-02) and
+ * [ERROR-03](../../../../spec/implementation/diagnostics.md#error-03) require raw
+ * zero-code payload credit before malformed transport initiates private cleanup.
  */
 #include <stdint.h>
 #include <string.h>
 #include "internal.h"
 
-/** Record an aligned allocation, then invoke exactly clone, literal or default hook. Only success creates native_live; failed constructor cleanup remains the hook contract. */
+/** Record aligned allocation and invoke exactly clone, literal or default. Raw code
+ * zero creates native_live before status normalization; malformed success still
+ * owns a cleanup obligation. A nonzero constructor cleans its own partial native resource.
+ */
 AmaStatus ama_constant_payload(AmaProgram *program, AmaConstantBuildWork *work) {
     AmaObjectType *type = work->value->type->object;
     program->world->construction_operation = work->operation;
@@ -33,6 +39,6 @@ AmaStatus ama_constant_payload(AmaProgram *program, AmaConstantBuildWork *work) 
             : type->hooks.literal(work->value->payload, work->initializer->literal);
     } else { status = type->hooks.initialize(work->value->payload); }
     work->value->native_live = status.code == AMA_OK;
-    return status;
+    return ama_status_checked(status);
 }
 

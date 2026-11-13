@@ -4,6 +4,8 @@
  *
  * [REF-03](../../../../spec/language/values-and-references.md#ref-03)
  * Reference assignment copies handles without acquiring targets; owned replacement stages construction and explicit condition protocols may fail technically.
+ * [PROTO-04](../../../../spec/implementation/native-interface.md#proto-04)
+ * reads current state; checked condition failure never publishes a callback output.
  */
 #include "internal.h"
 
@@ -74,7 +76,10 @@ AmaStatus ama_program_assign(AmaProgram *program, AmaHandle current, const AmaPr
     return status;
 }
 
-/** Select readable scalar payload and invoke its explicit condition protocol under a guard. Technical protocol errors propagate; there is no universal truth conversion. */
+/** Select a readable scalar and call its condition protocol under one guard.
+ * Check transport before publishing the local output. Every failure preserves
+ * caller output and releases the guard; no numeric code becomes implicit truth.
+ */
 AmaStatus ama_program_condition(AmaProgram *program, AmaHandle current, const AmaProgramAccess *access, bool *result) {
     if (program->world->operation_active || program->world->failed) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
     program->world->operation_active = true;
@@ -84,7 +89,10 @@ AmaStatus ama_program_condition(AmaProgram *program, AmaHandle current, const Am
     if (status.code == AMA_OK) { status = ama_program_payload(program, &value, &payload); }
     const AmaProgramType *type = ama_program_type(program, value.type_id);
     if (status.code == AMA_OK) {
-        status = type == NULL || type->condition == NULL ? ama_status_make(AMA_TYPE_MISMATCH, NULL, 0) : type->condition(payload, result);
+        bool condition = false;
+        status = type == NULL || type->condition == NULL ? ama_status_make(AMA_TYPE_MISMATCH, NULL, 0)
+            : ama_status_checked(type->condition(payload, &condition));
+        if (status.code == AMA_OK) { *result = condition; }
     }
     program->world->operation_active = false;
     return status;

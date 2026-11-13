@@ -83,9 +83,8 @@ The fixture verifies the code shape and result routing, not future generation,
 interface reset, pool growth or the complete runtime acquisition state machine.
 
 The probe uses additional optimization controls to preserve observable native
-helper calls and avoid relying on sibling-call optimization. An initial probe with
-blanket `-fno-inline` plus `-Werror=inline` rejected ordinary optional inline helpers;
-that blanket restriction is not used. Only native entry expansion is mandatory.
+helper calls and avoid relying on sibling-call optimization. Native entry expansion
+is mandatory; ordinary helper inline hints remain optional under STACK-02/STACK-04.
 
 
 T148 adds source-linked contracts for target/compiler assertions, nm record/token
@@ -101,7 +100,7 @@ borrow/resource behavior. Ordinary C helper recursion remains permitted.
 
 T008 adds `src/native/toolchain/profile.h`: one fixed argv list shared by real
 project compilation, its compilation database and the native acceptance harness.
-It requires C11, pedantic errors, Wall/Wextra, Werror including attributes/inline,
+It requires C11, pedantic errors, Wall/Wextra, Werror including attribute errors,
 non-LTO and non-whole-program compilation. Optimization remains separate: the
 project backend selects O2; the acceptance harness verifies both O0 and O2.
 The generated native header still enforces GCC 15.2.0, x86_64 Linux and the exact
@@ -148,11 +147,15 @@ C-call dispatcher and the positive ordinary recursive C helper. Tests distinguis
 forbidden Ama entry boundaries from permitted native/helper stack use.
 
 Generated view binders are ordinary static C helpers, marked unused when a type
-needs no such view. They do not carry an inline declaration: under sanitizer
-instrumentation, an optional inline request can exceed GCC's size limit and the
-strict inline diagnostic would reject it. They may still be optimized normally;
-STACK-04 permits their C calls. This keeps mandatory native-entry expansion
-separate from optional view-binding optimization and does not relax diagnostics.
+needs no such view. They may use C calls and may be optimized normally under
+STACK-04. Native entry uses always_inline plus mandatory actual symbol inspection.
+The profile does not globally enable Winline: failure to honor an ordinary inline
+hint is not an Ama boundary violation. An ordinary inline-hinted helper containing
+local setjmp is retained as a real function and executes normally at O0/O2, while
+the native entry containing setjmp directly is rejected as uninlinable. The local
+helper never performs a nonlocal exit or retains its automatic jump buffer.
+These paired probes distinguish mandatory entry expansion from permitted C stack
+use without relaxing the actual native entry check.
 
 T008 acceptance passes the strict full suite with `-DNDEBUG -Werror`, O0/O2
 native toolchain probes, and the symbol/generated-execution leaves under

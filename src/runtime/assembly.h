@@ -17,6 +17,7 @@
 #include "runtime/lists/mutation/remove.c"
 #include "runtime/lifecycle/cleanup.c"
 #include "runtime/lifecycle/construction.c"
+#include "runtime/lifecycle/native.c"
 #include "runtime/metadata/access.c"
 #include "runtime/metadata/clone.c"
 #include "runtime/metadata/identity.c"

@@ -5,8 +5,12 @@
  * [CONT-04](../../../../spec/language/continuations.md#cont-04)
  * permits saved positions only in explicit continuation copies.
  * Native clone success marks its payload initialized before later state validation.
+ * [ERROR-03](../../../../spec/implementation/diagnostics.md#error-03) keeps raw
+ * zero-code resource completion separate from checked transport failure; private
+ * unwind must retain that payload's [LIFE-02](../../../../spec/implementation/native-interface.md#life-02) credit.
  */
 #include "internal.h"
+#include "runtime/lifecycle/native.h"
 
 /** Clone exactly one native payload after all children complete. The source and
  * its saved pre-acquisition state must belong to operation's protections. Failure
@@ -22,13 +26,14 @@ AmaStatus ama_object_clone_payload(AmaObjectOperation *operation, AmaObjectWork 
         void *original = ama_pool_payload(&work->type->pool, source);
         status = work->type->hooks.clone((unsigned char *)destination + work->type->native_offset,
             (unsigned char *)original + work->type->native_offset);
-        if (status.code != AMA_OK) { return status; }
     }
-    status = ama_lifetime_finish(&work->cell->metadata.lifetime, work->type->hooks.initialize != NULL);
+    status = ama_lifetime_finish_native(&work->cell->metadata.lifetime,
+        work->type->hooks.initialize != NULL, status);
+    if (status.code != AMA_OK) { return status; }
     for (AmaObjectProtection *record = operation->protected_first; record != NULL; record = record->next) {
         if (ama_same_handle(record->handle, work->source)) {
             return ama_service_clone(&record->previous, continuation, &work->cell->metadata.service);
         }
     }
-    return status.code == AMA_OK ? ama_status_make(AMA_INVALID_STATE, NULL, 0) : status;
+    return ama_status_make(AMA_INVALID_STATE, NULL, 0);
 }

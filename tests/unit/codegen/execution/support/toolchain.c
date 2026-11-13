@@ -33,7 +33,7 @@ static void it_uses_the_required_profile_in_real_compilation_and_the_compilation
             "import json,subprocess; row=json.load(open('generated/output/compile_commands.json'))[0]; "
             "a=row['arguments']; "
             "required=['-std=c11','-pedantic-errors','-Wall','-Wextra','-Werror',"
-            "'-Werror=attributes','-Werror=inline','-fno-lto','-fno-whole-program']; "
+            "'-Werror=attributes','-fno-lto','-fno-whole-program']; "
             "assert all(a.count(x)==1 for x in required); "
             "assert [a.index(x) for x in required]==sorted(a.index(x) for x in required); "
             "assert a.index('-std=c99')<a.index('-std=c11'); "

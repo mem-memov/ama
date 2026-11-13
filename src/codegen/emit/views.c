@@ -44,9 +44,9 @@ static bool codegen_view_type(NativeScaffold *scaffold, FILE *output, const Scaf
 /**
  * Emit a binder that validates the local handle and borrows active stable storage. General binds
  * require read eligibility; interface binds skip state fields and use existing invocation
- * authority. Ordinary static helpers permit optional compiler inlining without an
- * inline declaration's diagnostic obligation under the strict profile. Unused
- * per-type binders remain harmless when no native body needs that view.
+ * authority. These ordinary static helpers may be optimized normally; they have
+ * no mandatory inline boundary. Unused per-type binders remain harmless when no
+ * native body needs that view.
  */
 static bool codegen_view_bind(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type, bool interface) {
     const char *name = type->names[SCAFFOLD_WRITE]->internal_name;
