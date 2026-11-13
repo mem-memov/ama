@@ -19455,6 +19455,41 @@
         "case": "it_preserves_case_and_unicode_byte_distinctions_without_normalization",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_matches_all_storage_forms_for_inputs_and_each_output_mode",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_preserves_independent_positions_defaults_skips_and_literal_bytes",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_resolves_sources_and_receivers_in_the_caller_not_the_field_owner",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_rejects_binding_role_suffix_arity_and_copy_capability_errors",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_retains_the_declaration_and_both_binding_sites_for_duplicate_labels",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_modes_and_mixed_styles_before_semantic_analysis",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_unwinds_each_allocation_in_complete_ordinary_binding_resolution",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
       }
     ]
   },
@@ -19531,6 +19566,41 @@
         "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_matches_all_storage_forms_for_inputs_and_each_output_mode",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_preserves_independent_positions_defaults_skips_and_literal_bytes",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_resolves_sources_and_receivers_in_the_caller_not_the_field_owner",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_rejects_binding_role_suffix_arity_and_copy_capability_errors",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_retains_the_declaration_and_both_binding_sites_for_duplicate_labels",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_modes_and_mixed_styles_before_semantic_analysis",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_unwinds_each_allocation_in_complete_ordinary_binding_resolution",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
       }
     ]
   },
@@ -19597,6 +19667,41 @@
         "case": "it_reports_unsupported_result_selection_instead_of_dropping_selected_actions",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_matches_all_storage_forms_for_inputs_and_each_output_mode",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_preserves_independent_positions_defaults_skips_and_literal_bytes",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_resolves_sources_and_receivers_in_the_caller_not_the_field_owner",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_rejects_binding_role_suffix_arity_and_copy_capability_errors",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_retains_the_declaration_and_both_binding_sites_for_duplicate_labels",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_modes_and_mixed_styles_before_semantic_analysis",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_unwinds_each_allocation_in_complete_ordinary_binding_resolution",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
       }
     ]
   },
@@ -19658,6 +19763,41 @@
         "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_matches_all_storage_forms_for_inputs_and_each_output_mode",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_preserves_independent_positions_defaults_skips_and_literal_bytes",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_resolves_sources_and_receivers_in_the_caller_not_the_field_owner",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_rejects_binding_role_suffix_arity_and_copy_capability_errors",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_retains_the_declaration_and_both_binding_sites_for_duplicate_labels",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_modes_and_mixed_styles_before_semantic_analysis",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_unwinds_each_allocation_in_complete_ordinary_binding_resolution",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
       }
     ]
   },
@@ -38969,6 +39109,41 @@
         "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_matches_all_storage_forms_for_inputs_and_each_output_mode",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_preserves_independent_positions_defaults_skips_and_literal_bytes",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_resolves_sources_and_receivers_in_the_caller_not_the_field_owner",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_rejects_binding_role_suffix_arity_and_copy_capability_errors",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_retains_the_declaration_and_both_binding_sites_for_duplicate_labels",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_modes_and_mixed_styles_before_semantic_analysis",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_unwinds_each_allocation_in_complete_ordinary_binding_resolution",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
       }
     ]
   },
@@ -49424,6 +49599,147 @@
         "case": "it_rejects_invalid_constant_members_forms_and_forward_reads",
         "command": "make -C tests/unit/semantic/constants",
         "source": "tests/unit/semantic/constants/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/calls/main.c": {
+    "contract": "docs/implementation/ordinary-bindings.md",
+    "purpose": "Verify ordinary entry/resume/retained/constant binding types, omissions, caller context and exact diagnostics.",
+    "tests": [
+      {
+        "case": "it_matches_all_storage_forms_for_inputs_and_each_output_mode",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_preserves_independent_positions_defaults_skips_and_literal_bytes",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_resolves_sources_and_receivers_in_the_caller_not_the_field_owner",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_rejects_binding_role_suffix_arity_and_copy_capability_errors",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_retains_the_declaration_and_both_binding_sites_for_duplicate_labels",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_modes_and_mixed_styles_before_semantic_analysis",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_unwinds_each_allocation_in_complete_ordinary_binding_resolution",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/calls/Makefile": {
+    "contract": "docs/implementation/ordinary-bindings.md",
+    "purpose": "Build and run exact ordinary interface bindings against the resolved semantic components.",
+    "tests": [
+      {
+        "case": "it_matches_all_storage_forms_for_inputs_and_each_output_mode",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_preserves_independent_positions_defaults_skips_and_literal_bytes",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_resolves_sources_and_receivers_in_the_caller_not_the_field_owner",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_rejects_binding_role_suffix_arity_and_copy_capability_errors",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_retains_the_declaration_and_both_binding_sites_for_duplicate_labels",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_modes_and_mixed_styles_before_semantic_analysis",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_unwinds_each_allocation_in_complete_ordinary_binding_resolution",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/calls/support/matrix.c": {
+    "contract": "docs/implementation/ordinary-bindings.md",
+    "purpose": "Exhaust ordinary input and entry/resume/retained/constant output storage-form compatibility.",
+    "tests": [
+      {
+        "case": "it_matches_all_storage_forms_for_inputs_and_each_output_mode",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/calls/support/defaults.c": {
+    "contract": "docs/implementation/ordinary-bindings.md",
+    "purpose": "Inspect exact omission metadata, independent interface positions and caller-owned source/receiver views.",
+    "tests": [
+      {
+        "case": "it_preserves_independent_positions_defaults_skips_and_literal_bytes",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_resolves_sources_and_receivers_in_the_caller_not_the_field_owner",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/calls/support/diagnostics.c": {
+    "contract": "docs/implementation/ordinary-bindings.md",
+    "purpose": "Verify exact binding rejection partitions and original declaration/earlier-binding diagnostics.",
+    "tests": [
+      {
+        "case": "it_rejects_binding_role_suffix_arity_and_copy_capability_errors",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_retains_the_declaration_and_both_binding_sites_for_duplicate_labels",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_modes_and_mixed_styles_before_semantic_analysis",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/calls/support/failures.c": {
+    "contract": "docs/implementation/ordinary-bindings.md",
+    "purpose": "Fail every ordinary-binding semantic allocation after real source/native setup and verify complete owner teardown.",
+    "tests": [
+      {
+        "case": "it_unwinds_each_allocation_in_complete_ordinary_binding_resolution",
+        "command": "make -C tests/unit/semantic/calls",
+        "source": "tests/unit/semantic/calls/main.c"
       }
     ]
   }

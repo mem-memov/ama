@@ -993,10 +993,20 @@ Contracts: [declarations](spec/language/declarations.md),
   closure, cycle diagnostics and publication. Full strict `make -j4 test`, constant
   ASan+UBSan checks and 906-input documentation coverage passed; final Doxygen
   generations are byte-identical.
-- [ ] **T035 — Validate normal call/read bindings.** Needs: T032, T034. Resolve
+- [x] **T035 — Validate normal call/read bindings.** Needs: T032, T034. Resolve
   current named/positional rules, placeholders, exact input/result types, defaults
   and literal capabilities. Test mode-specific rejection and both declaration
   and binding locations without adding unaccepted mixed-mode behavior.
+  Evidence: [ordinary bindings](docs/implementation/ordinary-bindings.md)
+  documents role/ordinal resolution, caller operands, exact forms and omission
+  metadata. Duplicate diagnostics retain the interface declaration and first
+  binding beside the later offending site. The new recursive semantic/calls leaf
+  exhausts input and entry/resume/retained/shared output matrices, literal bytes,
+  noncopyable omissions, independent positions, repeated caller receivers,
+  role/suffix/arity errors, five duplicate modes and parser mode/style rejection.
+  Every complete-binding semantic allocation unwinds. Strict semantic unit and
+  integration suites, ASan+UBSan calls and 912-input documentation checks passed;
+  final Doxygen generations are byte-identical.
 - [ ] **T036 — Validate direct-result operation trees.** Needs: T035. Resolve
   selectors only in parent result interfaces and operands in the initiating
   caller's environment. Test reference/continuation targets, sequential methods,

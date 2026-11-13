@@ -103,6 +103,9 @@ ordinary self identity is decided at runtime only after normal selections and
 access checks. Direct nonindexed `%` self-copy is rejected by exact resolved
 symbol identity; indexed/reference aliases retain runtime identity/overlap checks.
 
+[T035 ordinary bindings](ordinary-bindings.md) records mode/role/form checks,
+omissions and exact duplicate diagnostics.
+
 [Call resolution](../../src/semantic/calls/resolve.c) binds targets, named labels
 or independent positional sequences before consumption. Every placeholder counts
 against arity, without a hidden receiver/source. Named labels must match the full

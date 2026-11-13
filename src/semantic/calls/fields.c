@@ -4,6 +4,8 @@
  *
  * [CALL-08](../../../spec/language/calls-and-results.md#call-08)
  * Direction role and exact storage form must match the callee declaration; placeholders still consume positions.
+ * [COMP-04](../../../spec/implementation/compiler.md#comp-04) keeps the
+ * interface declaration and earlier binding together when rejecting a duplicate.
  */
 #include "internal.h"
 
@@ -25,8 +27,9 @@ bool semantic_call_field(SemanticProgram *program, SemanticStatement *statement,
     for (SemanticBinding *earlier = statement->bindings; earlier != NULL; earlier = earlier->next) {
         if (earlier->field == field && earlier->syntax->kind == argument->kind) {
             semantic_fail(program, argument->span, "The interface field is bound more than once", field);
-            program->related[0].location.span = earlier->syntax->span;
-            program->related[0].role = "earlier binding";
+            program->related[1] = (DiagnosticRelated){{.span = earlier->syntax->span},
+                "earlier binding", statement->namespace_type->module->source->logical_path};
+            program->error.related_count = 2;
             return false;
         }
     }
