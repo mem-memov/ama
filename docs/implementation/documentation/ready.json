@@ -15398,6 +15398,21 @@
         "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
         "command": "make -C tests/unit/runtime/objects/replacement",
         "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_maps_all_scalar_reference_substitutions_by_complete_identity",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_external_state_when_each_native_clone_fails",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_unwinds_every_scalar_clone_allocation_without_publishing_or_reinitializing",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
       }
     ]
   },
@@ -15504,6 +15519,21 @@
         "case": "it_continues_reverse_root_cleanup_after_distinct_destructor_errors",
         "command": "make -C tests/unit/runtime/contexts",
         "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_maps_all_scalar_reference_substitutions_by_complete_identity",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_external_state_when_each_native_clone_fails",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_unwinds_every_scalar_clone_allocation_without_publishing_or_reinitializing",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
       }
     ]
   },
@@ -15585,6 +15615,21 @@
         "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
         "command": "make -C tests/unit/runtime/objects/replacement",
         "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_maps_all_scalar_reference_substitutions_by_complete_identity",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_external_state_when_each_native_clone_fails",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_unwinds_every_scalar_clone_allocation_without_publishing_or_reinitializing",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
       }
     ]
   },
@@ -15762,6 +15807,21 @@
         "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
         "command": "make -C tests/unit/runtime/objects/replacement",
         "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_maps_all_scalar_reference_substitutions_by_complete_identity",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_external_state_when_each_native_clone_fails",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_unwinds_every_scalar_clone_allocation_without_publishing_or_reinitializing",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
       }
     ]
   },
@@ -15893,6 +15953,21 @@
         "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
         "command": "make -C tests/unit/runtime/protocols",
         "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_maps_all_scalar_reference_substitutions_by_complete_identity",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_external_state_when_each_native_clone_fails",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_unwinds_every_scalar_clone_allocation_without_publishing_or_reinitializing",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
       }
     ]
   },
@@ -15974,6 +16049,21 @@
         "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
         "command": "make -C tests/unit/runtime/objects/replacement",
         "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_maps_all_scalar_reference_substitutions_by_complete_identity",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_external_state_when_each_native_clone_fails",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_unwinds_every_scalar_clone_allocation_without_publishing_or_reinitializing",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
       }
     ]
   },
@@ -16055,6 +16145,21 @@
         "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
         "command": "make -C tests/unit/runtime/objects/replacement",
         "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_maps_all_scalar_reference_substitutions_by_complete_identity",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_external_state_when_each_native_clone_fails",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_unwinds_every_scalar_clone_allocation_without_publishing_or_reinitializing",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
       }
     ]
   },
@@ -39307,6 +39412,21 @@
         "case": "it_restores_protected_prefixes_when_owned_edges_are_invalid",
         "command": "make -C tests/unit/runtime/objects/preflight",
         "source": "tests/unit/runtime/objects/preflight/main.c"
+      },
+      {
+        "case": "it_maps_all_scalar_reference_substitutions_by_complete_identity",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_external_state_when_each_native_clone_fails",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_unwinds_every_scalar_clone_allocation_without_publishing_or_reinitializing",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
       }
     ]
   },
@@ -57536,6 +57656,21 @@
         "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
         "command": "make -C tests/unit/runtime/program-construction",
         "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_maps_all_scalar_reference_substitutions_by_complete_identity",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_external_state_when_each_native_clone_fails",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_unwinds_every_scalar_clone_allocation_without_publishing_or_reinitializing",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
       }
     ]
   },
@@ -57629,6 +57764,132 @@
         "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
         "command": "make -C tests/unit/runtime/program-construction",
         "source": "tests/unit/runtime/program-construction/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/objects/clone-map/main.c": {
+    "contract": "docs/implementation/clone-preparation.md",
+    "purpose": "Verify exact scalar-tree maps over all typed reference substitutions and every failed clone prefix.",
+    "tests": [
+      {
+        "case": "it_maps_all_scalar_reference_substitutions_by_complete_identity",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_external_state_when_each_native_clone_fails",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_unwinds_every_scalar_clone_allocation_without_publishing_or_reinitializing",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/objects/clone-map/Makefile": {
+    "contract": "docs/implementation/clone-preparation.md",
+    "purpose": "Verify exact scalar-tree maps over all typed reference substitutions and every failed clone prefix.",
+    "tests": [
+      {
+        "case": "it_maps_all_scalar_reference_substitutions_by_complete_identity",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_external_state_when_each_native_clone_fails",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_unwinds_every_scalar_clone_allocation_without_publishing_or_reinitializing",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/objects/clone-map/support/fixture.c": {
+    "contract": "docs/implementation/clone-preparation.md",
+    "purpose": "Verify exact scalar-tree maps over all typed reference substitutions and every failed clone prefix.",
+    "tests": [
+      {
+        "case": "it_maps_all_scalar_reference_substitutions_by_complete_identity",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_external_state_when_each_native_clone_fails",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_unwinds_every_scalar_clone_allocation_without_publishing_or_reinitializing",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/objects/clone-map/support/projection.c": {
+    "contract": "docs/implementation/clone-preparation.md",
+    "purpose": "Verify exact scalar-tree maps over all typed reference substitutions and every failed clone prefix.",
+    "tests": [
+      {
+        "case": "it_maps_all_scalar_reference_substitutions_by_complete_identity",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_external_state_when_each_native_clone_fails",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_unwinds_every_scalar_clone_allocation_without_publishing_or_reinitializing",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/objects/clone-map/support/failures.c": {
+    "contract": "docs/implementation/clone-preparation.md",
+    "purpose": "Verify exact scalar-tree maps over all typed reference substitutions and every failed clone prefix.",
+    "tests": [
+      {
+        "case": "it_maps_all_scalar_reference_substitutions_by_complete_identity",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_external_state_when_each_native_clone_fails",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_unwinds_every_scalar_clone_allocation_without_publishing_or_reinitializing",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/objects/clone-map/support/matrix.c": {
+    "contract": "docs/implementation/clone-preparation.md",
+    "purpose": "Verify exact scalar-tree maps over all typed reference substitutions and every failed clone prefix.",
+    "tests": [
+      {
+        "case": "it_maps_all_scalar_reference_substitutions_by_complete_identity",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_external_state_when_each_native_clone_fails",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_unwinds_every_scalar_clone_allocation_without_publishing_or_reinitializing",
+        "command": "make -C tests/unit/runtime/objects/clone-map",
+        "source": "tests/unit/runtime/objects/clone-map/main.c"
       }
     ]
   }

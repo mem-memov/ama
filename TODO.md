@@ -1219,11 +1219,22 @@ Contracts: [references and copying](spec/language/values-and-references.md),
   tests and ASan+UBSan passed. All 1041 maintained inputs have coverage. Final
   Doxygen reproducibility is checked before commit; generated self execution
   awaits the pending clone/replacement/layout adapters.
-- [ ] **T050 — Build exact clone maps.** Needs: T049. Clone independent owned
+- [x] **T050 — Build exact clone maps.** Needs: T049. Clone independent owned
   trees with injective final-destination mapping and internal-reference fixups;
   preserve external handles and clear ordinary saved positions. Test self/peer
   links, duplicate external targets and failed preparation cleanup. This task
   establishes scalar-owned trees; T076 integrates membership-aware lists.
+  Evidence: [exact scalar maps](docs/implementation/clone-preparation.md#t050-exact-scalar-tree-map-composition)
+  proves the retained work-record map injective and checks all 8000 typed scalar
+  reference substitutions against an independent positional oracle. Cases include
+  stale generations sharing internal slots, cross-type slot/generation collisions,
+  self/peer/ancestor cycles and duplicate busy external targets. Copies have fresh
+  independent identities/resources, ordinary positions clear, source state stays
+  unchanged and defaults never rerun. Every allocation and native clone failure
+  cleans its prefix without publication. Existing separate-boundary/final-root
+  phase tests compose with the new leaf. Strict runtime tests and ASan+UBSan passed;
+  all 1047 maintained inputs have coverage. Final Doxygen reproducibility is
+  checked before commit.
 - [ ] **T051 — Integrate staged replacement and overlap checks.** Needs: T050.
   Validate capability/identity/ancestry/source availability before replacement;
   preserve destinations on preparation failure. Test ordinary self no-op only
