@@ -121,8 +121,8 @@ static void it_resolves_multiword_declarations_through_both_root_families(void) 
     destroy_frontend();
 }
 
-/** Valid self-reference typing reaches a precise planning guard until final executable identities are available. */
-static void it_reports_unsupported_self_reference_execution_after_successful_static_typing(void) {
+/** Self-reference has complete typed IR even while final executable identity support remains a separate backend capability. */
+static void it_preserves_self_reference_sources_in_complete_ir_without_executing_them(void) {
     const char *programs[] = {
         "@>\nresult&\n.main\n &\n@!\n",
         "@!\nfresh&\n &\n",
@@ -134,35 +134,29 @@ static void it_reports_unsupported_self_reference_execution_after_successful_sta
         file("generated/project/worker", "@<\ncaller&\n.main\n@!\n");
         setup_frontend();
         bool valid = check_project();
-        assert(!valid && !frontend.valid && diagnostic_valid(&frontend.error));
+        assert(valid && frontend.valid && frontend.plan.valid && frontend.plan.storage_ready);
         assert(frontend.semantic.resolved && frontend.semantic.constants_valid && frontend.plan_initialized);
-        assert(!frontend.plan.valid && frontend.plan.first == NULL);
-        assert(frontend.error.code == DIAGNOSTIC_UNSUPPORTED_FEATURE);
-        assert(strcmp(diagnostic_code_name(frontend.error.code), "unsupported-feature") == 0);
-        assert(frontend.error.primary.span.end - frontend.error.primary.span.start == 1);
-        assert(source_bytes(frontend.error.primary.span.source)[frontend.error.primary.span.start] == '&');
+        assert(frontend.plan.first != NULL);
         destroy_frontend();
     }
 }
 
-/** Newly parsed selected operations cannot silently disappear through the old scalar semantic consumer. */
-static void it_reports_unsupported_result_selection_instead_of_dropping_selected_actions(void) {
+/** Selected operations retain complete frame and continuation identities through the full frontend. */
+static void it_preserves_selected_result_actions_in_complete_ir(void) {
     prepare_project();
     file("generated/project/main", "@!\nconstructor\n.constructor\nconstructor\n method !\n");
     file("generated/project/constructor", "@>\nmethod\n.method\n@!\n");
     file("generated/project/method", "@!\n");
     setup_frontend();
     bool valid = check_project();
-    assert(!valid && !frontend.valid && frontend.plan_initialized);
+    assert(valid && frontend.valid && frontend.plan_initialized && frontend.plan.valid);
     assert(frontend.semantic.resolved && frontend.semantic.constants_valid);
-    assert(!frontend.plan.valid && frontend.plan.first == NULL);
-    assert(diagnostic_valid(&frontend.error) && frontend.error.code == DIAGNOSTIC_UNSUPPORTED_FEATURE);
-    assert(strstr(frontend.error.message, "result-selection") != NULL);
+    assert(frontend.plan.entry->frame_count == 2 && frontend.plan.entry->chains != NULL);
     destroy_frontend();
 }
 
-/** Intrinsic interface typing retains a bridge obligation but neither executes C nor emits incomplete service frames. */
-static void it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c(void) {
+/** Intrinsic interface IR retains its bridge obligation and caller frames without inspecting or executing native C. */
+static void it_types_list_interfaces_and_complete_service_ir_without_inspecting_native_c(void) {
     prepare_project();
     directory("generated/standard");
     file("generated/standard/integer", "@C\n");
@@ -174,15 +168,15 @@ static void it_types_list_interfaces_before_guarding_execution_without_inspectin
     ModuleRoot roots[] = {{"generated/project", NULL, 0, MODULE_ROOT_PROJECT},
         {"generated/standard", NULL, 0, MODULE_ROOT_STANDARD}};
     bool valid = compiler_frontend_check(&frontend, roots, 2, ".main");
-    assert(!valid && frontend.semantic.resolved && frontend.semantic.constants_valid);
+    assert(valid && frontend.valid && frontend.semantic.resolved && frontend.semantic.constants_valid);
     assert(frontend.semantic.list_integer != NULL && frontend.semantic.list_integer->requires_size_bridge);
-    assert(frontend.plan_initialized && !frontend.plan.valid && frontend.plan.first == NULL);
-    assert(frontend.error.code == DIAGNOSTIC_UNSUPPORTED_FEATURE && diagnostic_valid(&frontend.error));
+    assert(frontend.plan_initialized && frontend.plan.valid && frontend.plan.first != NULL);
+    assert(frontend.plan.entry->frame_count == 2);
     destroy_frontend();
 }
 
-/** Parsed new control trees must fail explicitly until their typed execution stages exist. */
-static void it_reports_unsupported_control_trees_without_lowering_an_incomplete_operation(void) {
+/** Typed control trees have complete loop labels independently of later execution adapters. */
+static void it_builds_complete_control_ir_for_traversal_and_header_trees(void) {
     const char *cases[] = {
         "@!\nitems[]\n.value\nitems[item&]\n{\n}\n",
         "@!\nroot\n.producer\nroot !\n condition\n {\n }\n"
@@ -194,10 +188,9 @@ static void it_reports_unsupported_control_trees_without_lowering_an_incomplete_
         file("generated/project/value.abi", "+ initialize\n- destroy\n| literal\n= clone\n? condition\n[] index\n");
         setup_frontend();
         bool valid = check_project();
-        assert(!valid && frontend.error.code == DIAGNOSTIC_UNSUPPORTED_FEATURE);
-        assert(frontend.plan_initialized && diagnostic_valid(&frontend.error));
-        assert(frontend.semantic.resolved && frontend.semantic.constants_valid && !frontend.plan.valid);
-        assert(frontend.plan.first == NULL);
+        assert(valid && frontend.valid && frontend.plan_initialized);
+        assert(frontend.semantic.resolved && frontend.semantic.constants_valid && frontend.plan.valid);
+        assert(frontend.plan.entry->loops != NULL);
         destroy_frontend();
     }
 }
@@ -207,10 +200,10 @@ static void it_reports_unsupported_control_trees_without_lowering_an_incomplete_
  * leaf generated output for diagnosis.
  */
 void run(void) {
-    it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c();
-    it_reports_unsupported_control_trees_without_lowering_an_incomplete_operation();
-    it_reports_unsupported_result_selection_instead_of_dropping_selected_actions();
-    it_reports_unsupported_self_reference_execution_after_successful_static_typing();
+    it_types_list_interfaces_and_complete_service_ir_without_inspecting_native_c();
+    it_builds_complete_control_ir_for_traversal_and_header_trees();
+    it_preserves_selected_result_actions_in_complete_ir();
+    it_preserves_self_reference_sources_in_complete_ir_without_executing_them();
     it_resolves_multiword_declarations_through_both_root_families();
     it_composes_owned_frontend_input_snapshots_without_executing_native_c();
     it_returns_the_same_typed_graph_that_compilation_will_consume_without_running_c();

@@ -19,7 +19,8 @@ bool lower_block(Lowering *lowering, AstBlock block, ControlNode *after,
     if (task == NULL) {
         return false;
     }
-    *task = (LowerTask){lowering->pending, block, after, break_target, destination};
+    *task = (LowerTask){.next = lowering->pending, .kind = LOWER_BLOCK_TASK, .block = block,
+        .after = after, .break_target = break_target, .destination = destination};
     lowering->pending = task;
     return true;
 }
@@ -27,6 +28,15 @@ bool lower_block(Lowering *lowering, AstBlock block, ControlNode *after,
 /** Reverse finite AST node links, prepend lowered statements then publish this queued block entry. All reversal scratch remains plan-owned.
  */
 static bool process(Lowering *lowering, const LowerTask *task) {
+    if (task->kind == LOWER_OPERATION_TASK) {
+        lowering->chain = task->chain;
+        ControlNode *entry = lower_call(lowering, task->operation, task->after, task->break_target);
+        lowering->chain = NULL;
+        if (entry == NULL) { return false; }
+        *task->destination = entry;
+        return true;
+    }
+    lowering->chain = NULL;
     ReverseNode *reverse = NULL;
     for (const AstNode *node = task->block.first; node != NULL; node = node->next) {
         ReverseNode *frame = plan_allocate(lowering->plan, sizeof(*frame));
@@ -70,6 +80,7 @@ bool plan_control(ProgramPlan *plan, PlannedType *type) {
         return false;
     }
     Lowering lowering = {.plan = plan, .type = type};
+    if (!lower_loop_inventory(&lowering)) { return false; }
     if (type->type->module->syntax.sections.kind == MODULE_NATIVE) {
         type->entry = lower_prepend(&lowering, CONTROL_NATIVE_ENTRY, NULL, NULL, type->complete);
         return type->entry != NULL;
@@ -84,5 +95,5 @@ bool plan_control(ProgramPlan *plan, PlannedType *type) {
             return false;
         }
     }
-    return true;
+    return lower_finish_loops(&lowering);
 }

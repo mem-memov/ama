@@ -149,7 +149,8 @@ and focused ASan/UBSan supplement the derivation; LeakSanitizer remains disabled
 fixed-point proof, admission-order tests and finite failure checks.
 
 [T036 selected operations](selected-operations.md) retains exact parent fields
-and ordered typed actions, with an explicit pre-storage execution guard.
+and ordered typed actions. T044 supplies complete structured IR; unavailable
+execution adapters are rejected at the C artifact boundary.
 
 [T037 intrinsic list interfaces](list-interfaces.md) shares fixed descriptors
 between inference/full checking and separates services from nominal modules.
@@ -298,8 +299,8 @@ scalar/list/indexed self copies and invalid index conversion exercise its consum
 
 T030–T037 now provide complete declaration inventories, source-order inference,
 exact transfer/constant plans and typed result trees/list services. T038–T040 complete control/continuation validation and semantic composition;
-T041–T045
-supply the corresponding IR/storage/lowering boundaries. Foreach-local bindings
+T041–T044 supply the corresponding IR/storage/lowering boundaries; T045 audits
+complete frontend composition. Foreach-local bindings
 and complete body/header contexts are checked, but traversal execution remains guarded. Parsed ordinary empty
 loops already use one-check behavior from T027; new condition-chain/foreach
 execution remains later work. A declaration-only body is syntactically nonempty;

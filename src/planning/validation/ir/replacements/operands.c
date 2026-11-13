@@ -4,6 +4,7 @@
  * caller sources, callee defaults and retained interface results without snapshots.
  */
 #include "internal.h"
+#include "semantic/lists/interface.h"
 /** Derive ownership/cardinality from an already resolved storage view. */
 static StorageForm form(bool reference, bool list) {
     return list ? (reference ? STORAGE_REFERENCE_LIST : STORAGE_OWNING_LIST)
@@ -64,6 +65,21 @@ bool plan_ir_replacement_operands(const PlannedType *type, const ReplacementPlan
         storage = form(receiver->reference, receiver->list);
         transfer = binding->transfer;
         construction = REPLACEMENT_RETAINED_RESULT;
+    } else if (recipe->context == REPLACE_METHOD_PARAMETER) {
+        if (statement->operation_kind != SEMANTIC_LIST_METHOD_OPERATION || recipe->field != NULL
+            || recipe->intrinsic == NULL || recipe->intrinsic != semantic_list_position(statement->list_method, false, recipe->position)) { return false; }
+        const SemanticBinding *expected = NULL;
+        for (const SemanticBinding *input = statement->bindings; input != NULL; input = input->next) {
+            if (input->syntax->kind == AST_INPUT && input->position == recipe->position && !input->syntax->omitted) { expected = input; break; }
+        }
+        if (binding != expected) { return false; }
+        value_type = recipe->intrinsic->element_reference ? statement->list_interface.element : statement->list_interface.integer;
+        storage = recipe->intrinsic->element_reference ? STORAGE_REFERENCE : STORAGE_OWNED;
+        if (binding != NULL) {
+            source = binding->source;
+            transfer = binding->transfer;
+            construction = transfer == TRANSFER_LITERAL ? REPLACEMENT_SUPPLIED_LITERAL : REPLACEMENT_SUPPLIED_SOURCE;
+        }
     } else if (recipe->context == REPLACE_PARAMETER || recipe->context == REPLACE_RESULT) {
         const SemanticSymbol *field = field_for(recipe);
         if (statement->syntax->kind != AST_CALL || statement->syntax->as.call.mode != AST_ENTRY_CALL
@@ -77,6 +93,7 @@ bool plan_ir_replacement_operands(const PlannedType *type, const ReplacementPlan
             construction = transfer == TRANSFER_LITERAL ? REPLACEMENT_SUPPLIED_LITERAL : REPLACEMENT_SUPPLIED_SOURCE;
         }
     } else { return false; }
+    if (recipe->context != REPLACE_METHOD_PARAMETER && recipe->intrinsic != NULL) { return false; }
     return recipe->source == source && recipe->receiver == receiver && recipe->value_type == value_type
         && recipe->form == storage && recipe->transfer == transfer && recipe->construction == construction;
 }

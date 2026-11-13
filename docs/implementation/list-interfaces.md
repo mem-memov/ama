@@ -130,5 +130,6 @@ resume and retired dispatcher/read forms. Caller variables can reuse method name
 Every semantic allocation in a complete list-service project is independently
 failed and counted ownership must return to zero. `make -C tests/unit/compiler/check`
 proves successful static profile/bridge-obligation analysis without inspecting C,
-followed by the explicit pre-storage execution guard. Full suites and sanitizer
-checks cover composition with earlier inference and ordinary binding behavior.
+and now complete T044 service/method IR. C generation retains the explicit
+execution-capability guard until list adapters are implemented. Full suites and
+sanitizer checks cover inference, ordinary bindings and structured plan composition.

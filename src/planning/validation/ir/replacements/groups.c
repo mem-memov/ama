@@ -27,7 +27,8 @@ static bool enters_inside(const ReplacementPlan *recipe, const ControlNode *targ
 static bool group(const PlannedType *type, const ReplacementPlan *recipe) {
     ControlOperation first = recipe->context == REPLACE_ASSIGNMENT ? CONTROL_SELECT_RECEIVER
         : recipe->context == REPLACE_PARAMETER ? CONTROL_INSTALL_PARAMETER
-        : recipe->context == REPLACE_RESULT ? CONTROL_INITIALIZE_RESULT : CONTROL_TRANSFER_OUTPUT;
+        : recipe->context == REPLACE_RESULT ? CONTROL_INITIALIZE_RESULT
+        : recipe->context == REPLACE_METHOD_PARAMETER ? CONTROL_STAGE_METHOD_INPUT : CONTROL_TRANSFER_OUTPUT;
     const ControlOperation phases[] = {first, CONTROL_SELECT_SOURCE, CONTROL_PREFLIGHT_REPLACEMENT,
         CONTROL_PREPARE_REPLACEMENT, CONTROL_COMMIT_REPLACEMENT, CONTROL_RELEASE_VALUES};
     const ControlNode *node = recipe->first;
@@ -57,7 +58,7 @@ static bool requires_recipe(ControlOperation operation) {
         || operation == CONTROL_PREFLIGHT_REPLACEMENT || operation == CONTROL_PREPARE_REPLACEMENT
         || operation == CONTROL_COMMIT_REPLACEMENT || operation == CONTROL_RELEASE_VALUES
         || operation == CONTROL_INSTALL_PARAMETER || operation == CONTROL_INITIALIZE_RESULT
-        || operation == CONTROL_TRANSFER_OUTPUT;
+        || operation == CONTROL_TRANSFER_OUTPUT || operation == CONTROL_STAGE_METHOD_INPUT;
 }
 bool plan_ir_replacements(ProgramPlan *plan, const PlannedType *type) {
     for (const ControlNode *node = type->controls; node != NULL; node = node->allocated_next) {

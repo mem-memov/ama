@@ -10,6 +10,8 @@
 #include "codegen.h"
 #include "native/scaffold/internal.h"
 
+/** Reject statically valid IR whose execution adapters are not yet implemented, before staging artifacts. */
+bool codegen_validate_execution(NativeScaffold *);
 /**
  * Return the exact descriptor pointer ordinal starting at one, or zero if absent. This is an
  * assembly-local registry key, not a stable external type identity.

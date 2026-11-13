@@ -124,10 +124,10 @@ records are arena-owned and never constitute a successful stage.
 
 Ordinary inferred assignment/call/read fields execute through existing checked
 storage and transfer machinery. Direct-result tree execution, intrinsic service
-execution and lexical-self transfer lowering retain explicit pre-storage planning
-guards. T036–T037 now complete direct-tree/intrinsic static typing.
-[T038](control-contexts.md) completes foreach/control-context checking, while
-execution still requires the later IR/runtime frames.
+execution and lexical-self execution retain explicit C-generation capability
+guards. T036–T037 complete direct-tree/intrinsic static typing; T038 supplies
+foreach/control-context checking and T044 supplies [complete structured IR](structured-lowering.md).
+Execution still requires the corresponding runtime adapters.
 Successful inference is not a claim that those operations execute yet.
 
 ## Invariants, termination and bounds

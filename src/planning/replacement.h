@@ -9,7 +9,7 @@
 #define AMA_PLANNED_REPLACEMENT_H
 #include "storage/state.h"
 /** Determine which side owns the replacement receiver, without resolving source syntax again. */
-typedef enum { REPLACE_ASSIGNMENT, REPLACE_PARAMETER, REPLACE_RESULT, REPLACE_OUTPUT } ReplacementContext;
+typedef enum { REPLACE_ASSIGNMENT, REPLACE_PARAMETER, REPLACE_RESULT, REPLACE_OUTPUT, REPLACE_METHOD_PARAMETER } ReplacementContext;
 /** Exactly one construction path; a supplied value never constructs then overwrites the default. */
 typedef enum { REPLACEMENT_SUPPLIED_SOURCE, REPLACEMENT_SUPPLIED_LITERAL,
     REPLACEMENT_DECLARED_DEFAULT, REPLACEMENT_RETAINED_RESULT } ReplacementConstruction;
@@ -32,6 +32,8 @@ typedef struct ReplacementPlan {
     const SemanticStatement *statement;
     const SemanticBinding *binding;
     const SemanticSymbol *field;
+    const SemanticListField *intrinsic;
+    size_t position;
     const SemanticSource *source;
     const SemanticAccess *receiver;
     SemanticType *value_type;

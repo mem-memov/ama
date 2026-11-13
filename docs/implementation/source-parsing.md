@@ -75,7 +75,7 @@ model and checks Unicode/nested original spans.
 
 [T032 static transfer typing](typed-transfers.md) now gives self its lexical
 module identity without inventing a named access. Execution remains guarded in
-planning until final construction and clone identities are supported. The
-`unsupported-feature` diagnostic retains the original one-byte site;
-`make -C tests/unit/compiler/check` verifies that semantic analysis succeeds and
-no executable storage plan is published for initializer, assignment or input self.
+C generation until final construction and clone identities are supported. The
+`unsupported-feature` diagnostic retains the original one-byte site. T044 accepts
+complete typed plans for initializer, assignment and input self sources;
+`make -C tests/unit/codegen/assembly` verifies rejection before C artifact staging.

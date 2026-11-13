@@ -64,12 +64,12 @@ native-build obligations rather than guessed source meaning.
 ## Semantic validity and executable support
 
 [Frontend completion](../../src/compiler/frontend.c) consumes complete semantic
-success before initializing the plan owner. Explicit pre-storage guards still
-reject self execution, new selected/list operation execution and new control
-frames where later lowering/lifetime support is pending. The semantic graph is
-valid in those cases, but the frontend does not publish an executable plan or
-silently discard a subtree. This distinction lets T041 onward implement IR against
-an already unambiguous semantic graph.
+success before initializing the plan owner. T041–T044 now preserve current source
+forms through [complete structured IR](structured-lowering.md). The frontend
+publishes only a validated full plan. Execution adapter availability is checked
+separately at [C generation](../../src/codegen/project/capabilities.c), before any
+artifact is staged. This boundary accepts typed self/results/loop metadata without
+pretending that their pending runtime adapters already exist or discarding actions.
 
 Failed semantic programs remain safely destructible, with valid source-backed
 diagnostics, until the caller destroys the semantic owner before its project.

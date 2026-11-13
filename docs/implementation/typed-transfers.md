@@ -63,12 +63,12 @@ retain their existing finite lookup/access bounds.
 
 ## Executable boundary
 
-Static acceptance does not yet make self executable. The
-[planning guard](../../src/planning/validation/sources.c) checks every initializer,
-assignment source and binding before allocating/publishing storage plans. It
-reports `unsupported-feature` at the original `&` until T049–T050 supply final
-construction and clone identities. This avoids binding self to temporary
-replacement storage. No fabricated named access reaches emission.
+Self sources now survive complete typed storage/control planning. The
+[execution-capability guard](../../src/codegen/project/capabilities.c) checks every
+initializer, assignment and binding before staging any C artifact. It reports
+`unsupported-feature` at the original `&` until T049–T050 supply final runtime
+construction and clone identity support. The plan retains a typed self source,
+without a fabricated named access or a temporary replacement identity.
 
 ## Evidence
 
@@ -80,7 +80,7 @@ receivers. Every counted allocation in a real self-containing semantic pass is
 failed independently and all owners must unwind.
 
 `make -C tests/unit/compiler/check` proves that initializer, assignment and input
-self sources reach successful semantic/constants analysis and then fail before
-publishing executable storage. `make -C tests/unit/codegen/execution` compiles
+self sources reach complete valid IR. `make -C tests/unit/codegen/assembly`
+verifies their execution-capability rejection before artifact staging. `make -C tests/unit/codegen/execution` compiles
 and runs scalar and indexed shared reads; output traces check selected values,
 independent call state and exactly one index conversion for each access.

@@ -18,10 +18,12 @@ typedef struct ReverseBinding {
 /** Build plan-owned reversal work so prepending preserves exact text order; null may mean empty or failure, distinguished by plan status.
  */
 ReverseBinding *lower_reverse_bindings(Lowering *lowering, const SemanticStatement *statement);
-/** Prepend only nonomitted output transfers in original binding order; retain exact receiver metadata for later evaluation.
- */
-ControlNode *lower_outputs(Lowering *lowering, const SemanticStatement *statement,
-    ReverseBinding *reverse, ControlNode *after);
+/** Lower all typed output actions, queueing selected children without recursive compiler calls. */
+ControlNode *lower_actions(Lowering *, const SemanticStatement *, ControlNode *);
+/** Build whole-chain abandonment before this exact link's handler, preserving the root's caller loop context. */
+ControlNode *lower_refusal(Lowering *, const SemanticStatement *);
+/** Lower one intrinsic method's staged inputs/preflight/commit with no synthetic module invocation. */
+ControlNode *lower_list_method(Lowering *, const SemanticStatement *, ControlNode *, ControlNode *);
 /** Prepend only supplied nonliteral source evaluations in original input order; literal construction belongs to installation.
  */
 ControlNode *lower_inputs(Lowering *lowering, const SemanticStatement *statement,

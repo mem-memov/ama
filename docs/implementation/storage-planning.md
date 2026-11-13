@@ -103,9 +103,9 @@ supplies physical sizes and alignments.
 The internal one-shot `plan_storage` stage accepts complete typed semantics,
 constructs owned plan records and validates them before setting `storage_ready`.
 That flag is separate from the full plan's `valid`: advanced source can have a
-complete storage description while execution lowering remains explicitly
-unsupported. Tests invoke this independent boundary without weakening frontend
-unsupported-feature guards. A full plan is published only after all later
+complete storage description independently of control lowering. T044 now also
+builds complete structured control plans. Tests exercise this independent storage
+boundary and the separate C execution-capability guard. A full plan is published only after all later
 procedures, control graphs and entry links pass their own validation.
 
 [Storage validation](../../src/planning/storage/validate.c) checks the exact entry,

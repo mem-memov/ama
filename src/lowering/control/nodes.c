@@ -7,6 +7,7 @@
  */
 #include <stdint.h>
 #include "internal.h"
+#include "planning/storage/frames/internal.h"
 
 ControlNode *plan_control_node(ProgramPlan *plan, PlannedType *type,
     ControlOperation operation, const SemanticStatement *statement) {
@@ -20,6 +21,7 @@ ControlNode *plan_control_node(ProgramPlan *plan, PlannedType *type,
     if (node != NULL) {
         *node = (ControlNode){.allocated_next = type->controls, .operation = operation,
             .selector = plan->next_selector++, .type = type, .statement = statement,
+            .frame = plan_storage_frame(type, statement),
             .failure = type->failure, .site = statement == NULL
                 ? (SourceSpan){type->type->module->source->text, 0, 0} : statement->syntax->span};
         type->controls = node;
@@ -32,6 +34,7 @@ ControlNode *lower_prepend(Lowering *lowering, ControlOperation operation,
     ControlNode *node = plan_control_node(lowering->plan, lowering->type, operation, statement);
     if (node != NULL) {
         node->binding = binding;
+        node->chain = lowering->chain;
         node->next = after;
         if (binding != NULL) {
             node->site = binding->syntax->span;

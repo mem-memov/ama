@@ -4,6 +4,7 @@
  * sources in the initiating caller, defaults in the callee, and output receivers
  * only at their own ordered transfer. No recipe allocates or copies runtime values.
  */
+#include <assert.h>
 #include "internal.h"
 /** Resolve a recipe from checked semantic operands; every failure leaves its arena prefix owned. */
 static ReplacementPlan *recipe(Lowering *lowering, const SemanticStatement *statement,
@@ -44,13 +45,14 @@ static ReplacementPlan *recipe(Lowering *lowering, const SemanticStatement *stat
     result->construction = result->transfer == TRANSFER_LITERAL ? REPLACEMENT_SUPPLIED_LITERAL : REPLACEMENT_SUPPLIED_SOURCE;
     return result;
 }
-ControlNode *lower_replacement(Lowering *lowering, const SemanticStatement *statement,
-    const SemanticBinding *binding, const StorageField *field, ReplacementContext context, ControlNode *after) {
-    ReplacementPlan *value = recipe(lowering, statement, binding, field, context);
-    if (value == NULL) { return NULL; }
+/** Prepend the fixed failure-safe instruction sequence; selected sources are consumed without reevaluation. */
+static ControlNode *phases(Lowering *lowering, const SemanticStatement *statement,
+    const SemanticBinding *binding, const StorageField *field, ReplacementPlan *value, ControlNode *after) {
+    ReplacementContext context = value->context;
     ControlOperation first = context == REPLACE_ASSIGNMENT ? CONTROL_SELECT_RECEIVER
         : context == REPLACE_PARAMETER ? CONTROL_INSTALL_PARAMETER
-        : context == REPLACE_RESULT ? CONTROL_INITIALIZE_RESULT : CONTROL_TRANSFER_OUTPUT;
+        : context == REPLACE_RESULT ? CONTROL_INITIALIZE_RESULT
+        : context == REPLACE_METHOD_PARAMETER ? CONTROL_STAGE_METHOD_INPUT : CONTROL_TRANSFER_OUTPUT;
     const ControlOperation phases[] = {first, CONTROL_SELECT_SOURCE, CONTROL_PREFLIGHT_REPLACEMENT,
         CONTROL_PREPARE_REPLACEMENT, CONTROL_COMMIT_REPLACEMENT, CONTROL_RELEASE_VALUES};
     ControlNode *next = after;
@@ -61,7 +63,12 @@ ControlNode *lower_replacement(Lowering *lowering, const SemanticStatement *stat
         next->replacement = value;
         if (phases[index - 1] == CONTROL_COMMIT_REPLACEMENT) { value->commit = next; }
         if (phases[index - 1] == CONTROL_RELEASE_VALUES) { value->last = next; }
-        if (field != NULL) {
+        if (context == REPLACE_METHOD_PARAMETER) {
+            next->field = NULL;
+            next->value_type = value->value_type;
+            next->value_form = value->form;
+            next->position = value->position;
+        } else if (field != NULL) {
             next->field = field->symbol;
             next->value_type = field->symbol->type;
             next->value_form = field->form;
@@ -70,4 +77,27 @@ ControlNode *lower_replacement(Lowering *lowering, const SemanticStatement *stat
     }
     value->first = next;
     return next;
+}
+
+ControlNode *lower_replacement(Lowering *lowering, const SemanticStatement *statement,
+    const SemanticBinding *binding, const StorageField *field, ReplacementContext context, ControlNode *after) {
+    assert(context != REPLACE_METHOD_PARAMETER);
+    ReplacementPlan *value = recipe(lowering, statement, binding, field, context);
+    return value == NULL ? NULL : phases(lowering, statement, binding, field, value, after);
+}
+
+ControlNode *lower_method_parameter(Lowering *lowering, const SemanticStatement *statement,
+    const SemanticListField *intrinsic, size_t position, const SemanticBinding *binding, ControlNode *after) {
+    ReplacementPlan *value = plan_allocate(lowering->plan, sizeof(*value));
+    if (value == NULL) { return NULL; }
+    *value = (ReplacementPlan){.allocated_next = lowering->type->replacements, .context = REPLACE_METHOD_PARAMETER,
+        .statement = statement, .binding = binding, .intrinsic = intrinsic, .position = position,
+        .source = binding == NULL ? NULL : binding->source,
+        .value_type = intrinsic->element_reference ? statement->list_interface.element : statement->list_interface.integer,
+        .form = intrinsic->element_reference ? STORAGE_REFERENCE : STORAGE_OWNED,
+        .transfer = binding == NULL ? TRANSFER_DEFAULT : binding->transfer,
+        .construction = binding == NULL ? REPLACEMENT_DECLARED_DEFAULT
+            : binding->transfer == TRANSFER_LITERAL ? REPLACEMENT_SUPPLIED_LITERAL : REPLACEMENT_SUPPLIED_SOURCE};
+    lowering->type->replacements = value;
+    return phases(lowering, statement, binding, NULL, value, after);
 }

@@ -105,9 +105,10 @@ static void it_installs_inputs_in_declaration_order_after_source_order_evaluatio
     assert(node->operation == CONTROL_INITIALIZE_RESULT);
     node = node->replacement->last->next;
     assert(node->operation == CONTROL_SET_RETURN);
-    assert(node->resume->operation == CONTROL_TRANSFER_OUTPUT);
-    assert(node->resume->replacement->last->next->operation == CONTROL_RELEASE_TARGET);
-    assert(node->resume->replacement->last->next->next == plan.entry->complete);
+    assert(node->resume->operation == CONTROL_RETIRE_RETURN);
+    assert(node->resume->next->operation == CONTROL_TRANSFER_OUTPUT);
+    assert(node->resume->next->replacement->last->next->operation == CONTROL_RELEASE_TARGET);
+    assert(node->resume->next->replacement->last->next->next == plan.entry->complete);
     assert(node->next->operation == CONTROL_ENTER_INSTANCE);
     assert(node->next->next == node->next->callee->entry);
     destroy_plan();
@@ -126,7 +127,8 @@ static void it_reads_without_reset_and_resumes_without_input_installation(void) 
     assert(resume->operation == CONTROL_ACQUIRE_INSTANCE);
     assert(resume->next->operation == CONTROL_SET_RETURN);
     assert(resume->next->next->operation == CONTROL_RESUME_INSTANCE);
-    assert(resume->next->resume->operation == CONTROL_TRANSFER_OUTPUT);
+    assert(resume->next->resume->operation == CONTROL_RETIRE_RETURN);
+    assert(resume->next->resume->next->operation == CONTROL_TRANSFER_OUTPUT);
     assert(find_control(plan.entry, CONTROL_INSTALL_PARAMETER) == NULL);
     destroy_plan();
 }
@@ -252,7 +254,8 @@ static void it_links_same_type_reentry_through_instance_selection_and_return_met
     ControlNode *jump = acquire->next->next->next;
     assert(jump->operation == CONTROL_ENTER_INSTANCE && jump->callee == plan.entry);
     assert(jump->next == plan.entry->entry);
-    assert(acquire->next->next->resume->operation == CONTROL_RELEASE_TARGET);
+    assert(acquire->next->next->resume->operation == CONTROL_RETIRE_RETURN);
+    assert(acquire->next->next->resume->next->operation == CONTROL_RELEASE_TARGET);
     destroy_plan();
 }
 

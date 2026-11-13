@@ -159,10 +159,10 @@ exist, so benign call cycles do not recurse during compilation. Graph/AST work
 uses finite explicit records; source nesting does not consume recursive C frames.
 
 Current plan tests prove the retained node families and order. They do not certify
-complete current context/result/foreach/loop semantics: T044–T045 and their runtime
-consumers remain open. Parsed-empty ordinary loops already leave after one condition conversion;
-header and traversal lowering retain explicit unsupported guards until their fixed
-restart and lexical frame operations exist.
+runtime support for current context/result/foreach/loop semantics: their execution
+adapters remain later tasks. T044 now supplies complete structured control IR. Parsed-empty ordinary loops already leave after one condition conversion;
+header and traversal IR now uses fixed restart labels, exact selected targets and
+lexical cursor/cell frames. C generation retains explicit execution-capability guards.
 
 ## T041: publication checks for the typed IR
 
@@ -213,11 +213,14 @@ storage, control and lifecycle operands/edges, source sites, selectors, hooks an
 shared endpoints, and verify rejection without new allocations. Existing planning
 cases exercise valid instruction families and every construction allocation
 failure. Current selected-result, header-loop, foreach and self-reference runtime
-guards remain: T042 onward adds their storage and execution support without
-silently accepting incomplete lowering.
+guards now belong to C generation. Complete static checking preserves their typed
+IR without silently acknowledging unavailable execution adapters.
 
 T042 adds independently validated [context, instance and fixed lexical storage](storage-planning.md).
 The full-plan publication gate also checks this complete storage description.
 
 T043 adds [ordered replacement recipes and invocation validation](transfer-lowering.md),
 with explicit preflight, preparation, commit and release phases for interface and output transfers.
+
+T044 adds [complete structured control and result-action lowering](structured-lowering.md),
+including per-link whole-chain refusal exits and traversal restart/resume templates.

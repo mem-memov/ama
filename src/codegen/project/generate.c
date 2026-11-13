@@ -17,7 +17,7 @@ bool project_codegen_build(NativeScaffold *scaffold, ScaffoldOptions options) {
     assert(!scaffold->attempted);
     scaffold->attempted = true;
     scaffold->options = options;
-    if (scaffold->frontend->authoring || !scaffold_paths(scaffold) || !scaffold_model(scaffold)) { return false; }
+    if (scaffold->frontend->authoring || !codegen_validate_execution(scaffold) || !scaffold_paths(scaffold) || !scaffold_model(scaffold)) { return false; }
     if (!scaffold->selected->plan->requires_pool) {
         return scaffold_error(scaffold, DIAGNOSTIC_TYPE_MISMATCH, "The executable root must be an active Ama or native module", NULL);
     }

@@ -42,7 +42,7 @@ bool plan_fail(ProgramPlan *plan, SourceSpan site, const char *message) {
 PlanStatus program_plan_build(ProgramPlan *plan) {
     assert(!plan->attempted);
     plan->attempted = true;
-    if (!plan_validate_sources(plan) || !plan_validate_control(plan) || !plan_validate_operations(plan) || !plan_storage(plan)) {
+    if (!plan_storage(plan)) {
         return plan->status;
     }
     for (PlannedType *type = plan->first; type != NULL; type = type->next) {
@@ -55,6 +55,8 @@ PlanStatus program_plan_build(ProgramPlan *plan) {
         for (ControlNode *node = type->controls; node != NULL; node = node->allocated_next) {
             if (node->operation == CONTROL_ENTER_INSTANCE) {
                 node->next = node->callee->entry;
+            } else if (node->operation == CONTROL_RESUME_INSTANCE) {
+                node->next = node->callee->resume_entry;
             }
         }
     }

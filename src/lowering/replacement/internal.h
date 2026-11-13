@@ -12,4 +12,7 @@
  */
 ControlNode *lower_replacement(Lowering *, const SemanticStatement *, const SemanticBinding *,
     const StorageField *, ReplacementContext, ControlNode *);
+/** Stage one typed intrinsic input in its caller frame; omitted inputs use the fixed type's default, never a fake module field. */
+ControlNode *lower_method_parameter(Lowering *, const SemanticStatement *, const SemanticListField *,
+    size_t, const SemanticBinding *, ControlNode *);
 #endif

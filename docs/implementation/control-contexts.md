@@ -119,12 +119,12 @@ access resolution. Iterator role lookup is finite over the module's actual
 foreach roles. No source nesting uses the C call stack and no depth threshold,
 previous-line heuristic or dynamic caller-chain lookup chooses a root or exit.
 
-The [pre-storage control guard](../../src/planning/validation/control.c) rejects
-new header-loop/foreach execution until T042/T044 and the runtime tasks provide
-explicit frames, restart/protection edges and live traversal boundaries. Existing
-ordinary branch/loop lowering remains usable, including T027's empty-loop rule.
-All valid control syntax is typed before the new execution guard; unsupported
-execution cannot masquerade as successful partial emission.
+T044 supplies [fixed loop labels and explicit release/scope paths](structured-lowering.md)
+for all these typed forms. The [execution-capability guard](../../src/codegen/project/capabilities.c)
+rejects unsupported runtime adapters before C artifact staging. Ordinary branch
+and named-loop execution remains supported, including the parsed-empty one-check
+rule. A successful frontend now acknowledges the complete control IR, while C
+execution support remains an independently checked boundary.
 
 ## Evidence
 

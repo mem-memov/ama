@@ -89,10 +89,10 @@ failed once; partial modules stay invalid and all storage is released.
 
 The ordinary 5856-form binding oracle and compiled execution suites still apply
 to operations without selections. [T036 static selection](selected-operations.md)
-now resolves the complete tree and links typed output actions. Planning retains
-an explicit `unsupported-feature` guard until selected target lifetime/action
-lowering exists; it cannot compile only the root or emit selected fields as caller
-accesses. `make -C tests/unit/compiler/check` verifies successful semantics followed
-by rejection before storage publication. T029 supplies full dependency traversal;
-T027 supplies condition-chain loops and foreach syntax. Parser/static success is
-not a claim that later execution/protection features are implemented.
+now resolves the complete tree and links typed output actions. T044 supplies
+[complete selected-action IR](structured-lowering.md). Static checking accepts
+that complete plan; C generation explicitly rejects unavailable execution
+adapters before staging artifacts. `make -C tests/unit/compiler/check` and
+`make -C tests/unit/codegen/assembly` verify both boundaries. T029 supplies full
+dependency traversal; T027 supplies condition-chain loops and foreach syntax.
+Parser/static success remains separate from runtime adapter support.

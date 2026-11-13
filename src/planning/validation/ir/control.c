@@ -42,8 +42,9 @@ static bool edges(const ProgramPlan *plan, const PlannedType *type, const Contro
     if ((node->alternative != NULL && !member(type, node->alternative))
         || (node->failure != NULL && !member(type, node->failure))
         || (node->resume != NULL && !member(type, node->resume))) { return false; }
-    if (node->operation == CONTROL_ENTER_INSTANCE) {
-        return plan_ir_type(plan, node->callee) && node->next == node->callee->entry;
+    if (node->operation == CONTROL_ENTER_INSTANCE || node->operation == CONTROL_RESUME_INSTANCE) {
+        return plan_ir_type(plan, node->callee) && node->next == (node->operation == CONTROL_ENTER_INSTANCE
+            ? node->callee->entry : node->callee->resume_entry);
     }
     return node->next == NULL || member(type, node->next);
 }
@@ -63,12 +64,16 @@ static bool installed_field(const ControlNode *node) {
 /** Validate operation-specific mandatory operands, keeping refusal separate from technical failure. */
 static bool operands(const ProgramPlan *plan, const PlannedType *type, const ControlNode *node) {
     bool terminal = node->operation == CONTROL_COMPLETE || node->operation == CONTROL_YIELD
-        || node->operation == CONTROL_FAILURE || node->operation == CONTROL_RESUME_INSTANCE;
+        || node->operation == CONTROL_FAILURE || node->operation == CONTROL_RESUME_INSTANCE
+        || node->operation == CONTROL_RESUME_SAVED;
     if (!terminal && node->next == NULL) { return false; }
-    if (node->operation == CONTROL_CONDITION || node->operation == CONTROL_ACQUIRE_INSTANCE) {
+    if (node->operation == CONTROL_CONDITION || node->operation == CONTROL_ACQUIRE_INSTANCE
+        || node->operation == CONTROL_ACQUIRE_LIST || node->operation == CONTROL_SELECT_RESULT
+        || node->operation == CONTROL_FOREACH_NEXT || node->operation == CONTROL_LIST_METHOD_PREFLIGHT) {
         if (node->alternative == NULL) { return false; }
     }
-    if (node->operation == CONTROL_SAVE_POSITION || node->operation == CONTROL_SET_RETURN) {
+    if (node->operation == CONTROL_SAVE_POSITION || node->operation == CONTROL_SET_RETURN
+        || node->operation == CONTROL_ACTION_NEXT) {
         if (node->resume == NULL) { return false; }
     }
     if (node->operation == CONTROL_SET_RETURN || node->operation == CONTROL_RESUME_INSTANCE
@@ -83,7 +88,9 @@ static bool operands(const ProgramPlan *plan, const PlannedType *type, const Con
         if (node->field != binding->field || node->value_type != binding->type
             || node->position != binding->position || node->value_form != form) { return false; }
     }
-    if (node->operation >= CONTROL_SELECT_RECEIVER && node->operation != CONTROL_NATIVE_ENTRY) {
+    if (node->operation >= CONTROL_SELECT_RECEIVER && node->operation != CONTROL_NATIVE_ENTRY
+        && node->operation != CONTROL_RESET_SCOPES && node->operation != CONTROL_VALIDATE_TRAVERSALS
+        && node->operation != CONTROL_RESUME_SAVED) {
         if (node->statement == NULL || node->failure != type->failure) { return false; }
     }
     if (node->operation == CONTROL_EVALUATE_INPUT || node->operation == CONTROL_TRANSFER_OUTPUT) {

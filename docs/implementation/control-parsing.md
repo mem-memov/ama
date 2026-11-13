@@ -72,8 +72,9 @@ Existing owned-condition execution now directs both successful truth outcomes
 to the exit for a parsed-empty loop. It still executes the checked access and
 native conversion. A declaration-only body retains the ordinary backedge.
 Negative-only branches use the existing negative successor. New condition-chain
-and traversal execution is explicitly rejected as `unsupported-feature` pending
-its semantic/lowering tasks; a parsed tree is not a claim of runtime support.
+and traversal forms now have complete [T044 control IR](structured-lowering.md).
+Their C execution remains guarded before artifact staging until the corresponding
+runtime adapters are implemented; a parsed tree alone is not runtime support.
 
 ## Exactness, ownership and checks
 

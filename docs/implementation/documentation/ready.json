@@ -904,6 +904,51 @@
         "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
       }
     ]
   },
@@ -1611,6 +1656,56 @@
         "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_unimplemented_execution_adapters_after_valid_ir_before_artifact_staging",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
       }
     ]
   },
@@ -1799,6 +1894,56 @@
         "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_unimplemented_execution_adapters_after_valid_ir_before_artifact_staging",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
       }
     ]
   },
@@ -3084,7 +3229,7 @@
         "source": "tests/unit/diagnostics/record/main.c"
       },
       {
-        "case": "it_reports_unsupported_self_reference_execution_after_successful_static_typing",
+        "case": "it_preserves_self_reference_sources_in_complete_ir_without_executing_them",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
@@ -3170,7 +3315,7 @@
         "source": "tests/unit/diagnostics/record/main.c"
       },
       {
-        "case": "it_reports_unsupported_self_reference_execution_after_successful_static_typing",
+        "case": "it_preserves_self_reference_sources_in_complete_ir_without_executing_them",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
@@ -4842,6 +4987,51 @@
         "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
         "command": "make -C tests/unit/planning/transfers",
         "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
       }
     ]
   },
@@ -5014,6 +5204,51 @@
         "case": "it_reserves_zero_for_absent_control_and_source_positions",
         "command": "make -C tests/unit/planning/ir",
         "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
       }
     ]
   },
@@ -5105,6 +5340,51 @@
         "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
         "command": "make -C tests/unit/planning/transfers",
         "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
       }
     ]
   },
@@ -5262,6 +5542,51 @@
         "case": "it_reserves_zero_for_absent_control_and_source_positions",
         "command": "make -C tests/unit/planning/ir",
         "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
       }
     ]
   },
@@ -5343,6 +5668,51 @@
         "case": "it_reserves_zero_for_absent_control_and_source_positions",
         "command": "make -C tests/unit/planning/ir",
         "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
       }
     ]
   },
@@ -5409,6 +5779,51 @@
         "case": "it_reserves_zero_for_absent_control_and_source_positions",
         "command": "make -C tests/unit/planning/ir",
         "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
       }
     ]
   },
@@ -5485,6 +5900,51 @@
         "case": "it_executes_negative_only_branches_with_the_original_truth_conversion",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
       }
     ]
   },
@@ -10364,17 +10824,17 @@
         "source": "tests/unit/planning/ir/main.c"
       },
       {
-        "case": "it_reports_unsupported_self_reference_execution_after_successful_static_typing",
+        "case": "it_preserves_self_reference_sources_in_complete_ir_without_executing_them",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
       {
-        "case": "it_reports_unsupported_result_selection_instead_of_dropping_selected_actions",
+        "case": "it_preserves_selected_result_actions_in_complete_ir",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
       {
-        "case": "it_reports_unsupported_control_trees_without_lowering_an_incomplete_operation",
+        "case": "it_builds_complete_control_ir_for_traversal_and_header_trees",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
@@ -10412,6 +10872,51 @@
         "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
         "command": "make -C tests/unit/planning/storage",
         "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
       }
     ]
   },
@@ -10877,6 +11382,51 @@
         "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
         "command": "make -C tests/unit/planning/transfers",
         "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
       }
     ]
   },
@@ -10945,17 +11495,17 @@
         "source": "tests/unit/planning/ir/main.c"
       },
       {
-        "case": "it_reports_unsupported_self_reference_execution_after_successful_static_typing",
+        "case": "it_preserves_self_reference_sources_in_complete_ir_without_executing_them",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
       {
-        "case": "it_reports_unsupported_result_selection_instead_of_dropping_selected_actions",
+        "case": "it_preserves_selected_result_actions_in_complete_ir",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
       {
-        "case": "it_reports_unsupported_control_trees_without_lowering_an_incomplete_operation",
+        "case": "it_builds_complete_control_ir_for_traversal_and_header_trees",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
@@ -10978,6 +11528,51 @@
         "case": "it_rejects_incomplete_shared_and_required_procedure_inventories",
         "command": "make -C tests/unit/planning/validation",
         "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
       }
     ]
   },
@@ -20089,7 +20684,7 @@
         "source": "tests/unit/semantic/names/main.c"
       },
       {
-        "case": "it_reports_unsupported_result_selection_instead_of_dropping_selected_actions",
+        "case": "it_preserves_selected_result_actions_in_complete_ir",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
@@ -22343,7 +22938,7 @@
         "source": "tests/unit/parser/control/main.c"
       },
       {
-        "case": "it_reports_unsupported_control_trees_without_lowering_an_incomplete_operation",
+        "case": "it_builds_complete_control_ir_for_traversal_and_header_trees",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
@@ -23102,7 +23697,7 @@
         "source": "tests/unit/semantic/names/main.c"
       },
       {
-        "case": "it_reports_unsupported_self_reference_execution_after_successful_static_typing",
+        "case": "it_preserves_self_reference_sources_in_complete_ir_without_executing_them",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
@@ -30420,6 +31015,11 @@
         "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_rejects_unimplemented_execution_adapters_after_valid_ir_before_artifact_staging",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
       }
     ]
   },
@@ -31221,12 +31821,12 @@
         "source": "tests/unit/compiler/check/main.c"
       },
       {
-        "case": "it_reports_unsupported_self_reference_execution_after_successful_static_typing",
+        "case": "it_preserves_self_reference_sources_in_complete_ir_without_executing_them",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
       {
-        "case": "it_reports_unsupported_result_selection_instead_of_dropping_selected_actions",
+        "case": "it_preserves_selected_result_actions_in_complete_ir",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
@@ -31266,17 +31866,17 @@
         "source": "tests/unit/parser/control/main.c"
       },
       {
-        "case": "it_reports_unsupported_control_trees_without_lowering_an_incomplete_operation",
+        "case": "it_builds_complete_control_ir_for_traversal_and_header_trees",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
       {
-        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
+        "case": "it_types_list_interfaces_and_complete_service_ir_without_inspecting_native_c",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
       {
-        "case": "it_reports_unsupported_control_trees_without_lowering_an_incomplete_operation",
+        "case": "it_builds_complete_control_ir_for_traversal_and_header_trees",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       }
@@ -35708,6 +36308,51 @@
         "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
         "command": "make -C tests/unit/planning/transfers",
         "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
       }
     ]
   },
@@ -35906,6 +36551,51 @@
         "case": "it_reserves_zero_for_absent_control_and_source_positions",
         "command": "make -C tests/unit/planning/ir",
         "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
       }
     ]
   },
@@ -51008,17 +51698,6 @@
       }
     ]
   },
-  "src/planning/validation/sources.c": {
-    "contract": "docs/implementation/typed-transfers.md",
-    "purpose": "Reject typed source kinds whose executable identity support has not reached the runtime boundary.",
-    "tests": [
-      {
-        "case": "it_reports_unsupported_self_reference_execution_after_successful_static_typing",
-        "command": "make -C tests/unit/compiler/check",
-        "source": "tests/unit/compiler/check/main.c"
-      }
-    ]
-  },
   "tests/unit/semantic/types/support/self.c": {
     "contract": "docs/implementation/typed-transfers.md",
     "purpose": "Verify lexical self typing, forbidden destinations and allocation-failure cleanup.",
@@ -51455,22 +52134,6 @@
       }
     ]
   },
-  "src/planning/validation/operations.c": {
-    "contract": "docs/implementation/selected-operations.md",
-    "purpose": "Reject typed direct-result trees until explicit selected-target lifetime and action lowering exists.",
-    "tests": [
-      {
-        "case": "it_reports_unsupported_result_selection_instead_of_dropping_selected_actions",
-        "command": "make -C tests/unit/compiler/check",
-        "source": "tests/unit/compiler/check/main.c"
-      },
-      {
-        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
-        "command": "make -C tests/unit/compiler/check",
-        "source": "tests/unit/compiler/check/main.c"
-      }
-    ]
-  },
   "tests/unit/semantic/selected/Makefile": {
     "contract": "docs/implementation/selected-operations.md",
     "purpose": "Build and verify parent-result selection separately from ordinary bindings and runtime lowering.",
@@ -51662,7 +52325,7 @@
         "source": "tests/unit/semantic/lists/main.c"
       },
       {
-        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
+        "case": "it_types_list_interfaces_and_complete_service_ir_without_inspecting_native_c",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       }
@@ -51718,7 +52381,7 @@
         "source": "tests/unit/semantic/lists/main.c"
       },
       {
-        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
+        "case": "it_types_list_interfaces_and_complete_service_ir_without_inspecting_native_c",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       }
@@ -51759,7 +52422,7 @@
         "source": "tests/unit/semantic/lists/main.c"
       },
       {
-        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
+        "case": "it_types_list_interfaces_and_complete_service_ir_without_inspecting_native_c",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       }
@@ -51800,7 +52463,7 @@
         "source": "tests/unit/semantic/lists/main.c"
       },
       {
-        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
+        "case": "it_types_list_interfaces_and_complete_service_ir_without_inspecting_native_c",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       }
@@ -51841,7 +52504,7 @@
         "source": "tests/unit/semantic/lists/main.c"
       },
       {
-        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
+        "case": "it_types_list_interfaces_and_complete_service_ir_without_inspecting_native_c",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       }
@@ -51882,7 +52545,7 @@
         "source": "tests/unit/semantic/lists/main.c"
       },
       {
-        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
+        "case": "it_types_list_interfaces_and_complete_service_ir_without_inspecting_native_c",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
@@ -51958,7 +52621,7 @@
         "source": "tests/unit/semantic/lists/main.c"
       },
       {
-        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
+        "case": "it_types_list_interfaces_and_complete_service_ir_without_inspecting_native_c",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       }
@@ -51999,7 +52662,7 @@
         "source": "tests/unit/semantic/lists/main.c"
       },
       {
-        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
+        "case": "it_types_list_interfaces_and_complete_service_ir_without_inspecting_native_c",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       }
@@ -52040,7 +52703,7 @@
         "source": "tests/unit/semantic/lists/main.c"
       },
       {
-        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
+        "case": "it_types_list_interfaces_and_complete_service_ir_without_inspecting_native_c",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       }
@@ -52081,7 +52744,7 @@
         "source": "tests/unit/semantic/lists/main.c"
       },
       {
-        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
+        "case": "it_types_list_interfaces_and_complete_service_ir_without_inspecting_native_c",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       }
@@ -52419,17 +53082,6 @@
         "case": "it_unwinds_every_allocation_in_complete_control_contexts",
         "command": "make -C tests/unit/semantic/control",
         "source": "tests/unit/semantic/control/main.c"
-      }
-    ]
-  },
-  "src/planning/validation/control.c": {
-    "contract": "docs/implementation/control-contexts.md",
-    "purpose": "Stop typed traversal and command-header loops before incomplete lexical frames or restart edges enter old lowering.",
-    "tests": [
-      {
-        "case": "it_reports_unsupported_control_trees_without_lowering_an_incomplete_operation",
-        "command": "make -C tests/unit/compiler/check",
-        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -53017,6 +53669,51 @@
         "case": "it_rejects_incomplete_shared_and_required_procedure_inventories",
         "command": "make -C tests/unit/planning/validation",
         "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
       }
     ]
   },
@@ -53103,6 +53800,51 @@
         "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
         "command": "make -C tests/unit/planning/transfers",
         "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
       }
     ],
     "standalone_header_command": [
@@ -53230,6 +53972,51 @@
         "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
         "command": "make -C tests/unit/planning/transfers",
         "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
       }
     ]
   },
@@ -53886,6 +54673,51 @@
         "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
         "command": "make -C tests/unit/planning/transfers",
         "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
       }
     ],
     "standalone_header_command": [
@@ -53932,6 +54764,51 @@
         "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
         "command": "make -C tests/unit/planning/transfers",
         "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
       }
     ]
   },
@@ -53963,6 +54840,51 @@
         "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
         "command": "make -C tests/unit/planning/transfers",
         "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
       }
     ],
     "standalone_header_command": [
@@ -54009,6 +54931,51 @@
         "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
         "command": "make -C tests/unit/planning/transfers",
         "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
       }
     ]
   },
@@ -54040,6 +55007,51 @@
         "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
         "command": "make -C tests/unit/planning/transfers",
         "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
       }
     ]
   },
@@ -54117,6 +55129,51 @@
         "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
         "command": "make -C tests/unit/planning/transfers",
         "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
       }
     ]
   },
@@ -54272,6 +55329,1108 @@
         "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
         "command": "make -C tests/unit/planning/transfers",
         "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      }
+    ]
+  },
+  "src/codegen/project/capabilities.c": {
+    "contract": "docs/implementation/structured-lowering.md",
+    "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
+    "tests": [
+      {
+        "case": "it_rejects_unimplemented_execution_adapters_after_valid_ir_before_artifact_staging",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      }
+    ]
+  },
+  "src/lowering/calls/tree/actions.c": {
+    "contract": "docs/implementation/structured-lowering.md",
+    "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
+    "tests": [
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      }
+    ]
+  },
+  "src/lowering/calls/tree/method.c": {
+    "contract": "docs/implementation/structured-lowering.md",
+    "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
+    "tests": [
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      }
+    ]
+  },
+  "src/lowering/calls/tree/refusal.c": {
+    "contract": "docs/implementation/structured-lowering.md",
+    "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
+    "tests": [
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      }
+    ]
+  },
+  "src/lowering/control/operations.c": {
+    "contract": "docs/implementation/structured-lowering.md",
+    "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
+    "tests": [
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      }
+    ]
+  },
+  "src/lowering/loops/condition.c": {
+    "contract": "docs/implementation/structured-lowering.md",
+    "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
+    "tests": [
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      }
+    ]
+  },
+  "src/lowering/loops/finish.c": {
+    "contract": "docs/implementation/structured-lowering.md",
+    "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
+    "tests": [
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      }
+    ]
+  },
+  "src/lowering/loops/inventory.c": {
+    "contract": "docs/implementation/structured-lowering.md",
+    "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
+    "tests": [
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      }
+    ]
+  },
+  "src/lowering/loops/traversal.c": {
+    "contract": "docs/implementation/structured-lowering.md",
+    "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
+    "tests": [
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      }
+    ]
+  },
+  "src/planning/validation/ir/structured/chains.c": {
+    "contract": "docs/implementation/structured-lowering.md",
+    "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
+    "tests": [
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      }
+    ]
+  },
+  "src/planning/validation/ir/structured/internal.h": {
+    "contract": "docs/implementation/structured-lowering.md",
+    "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
+    "tests": [
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/planning/validation/ir/structured/loops.c": {
+    "contract": "docs/implementation/structured-lowering.md",
+    "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
+    "tests": [
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      }
+    ]
+  },
+  "src/planning/validation/ir/structured/nodes.c": {
+    "contract": "docs/implementation/structured-lowering.md",
+    "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
+    "tests": [
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/assembly/support/capabilities.c": {
+    "contract": "docs/implementation/structured-lowering.md",
+    "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
+    "tests": [
+      {
+        "case": "it_rejects_unimplemented_execution_adapters_after_valid_ir_before_artifact_staging",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
+      }
+    ]
+  },
+  "tests/unit/planning/structured/Makefile": {
+    "contract": "docs/implementation/structured-lowering.md",
+    "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
+    "tests": [
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      }
+    ]
+  },
+  "tests/unit/planning/structured/main.c": {
+    "contract": "docs/implementation/structured-lowering.md",
+    "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
+    "tests": [
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      }
+    ]
+  },
+  "tests/unit/planning/structured/support/deep.c": {
+    "contract": "docs/implementation/structured-lowering.md",
+    "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
+    "tests": [
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      }
+    ]
+  },
+  "tests/unit/planning/structured/support/failures.c": {
+    "contract": "docs/implementation/structured-lowering.md",
+    "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
+    "tests": [
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      }
+    ]
+  },
+  "tests/unit/planning/structured/support/fixture.c": {
+    "contract": "docs/implementation/structured-lowering.md",
+    "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
+    "tests": [
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      }
+    ]
+  },
+  "tests/unit/planning/structured/support/loops.c": {
+    "contract": "docs/implementation/structured-lowering.md",
+    "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
+    "tests": [
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      }
+    ]
+  },
+  "tests/unit/planning/structured/support/traversal.c": {
+    "contract": "docs/implementation/structured-lowering.md",
+    "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
+    "tests": [
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      }
+    ]
+  },
+  "tests/unit/planning/structured/support/trees.c": {
+    "contract": "docs/implementation/structured-lowering.md",
+    "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
+    "tests": [
+      {
+        "case": "it_keeps_selected_targets_and_caller_operands_through_depth_first_actions",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_repeats_complete_headers_and_releases_protection_before_body_or_exit",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_converts_intrinsic_header_results_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_lowers_deep_operation_paths_and_traversal_scopes_without_recursive_compiler_calls",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_loop_frames_chain_roots_and_subtree_continuations",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_structured_lowering_allocation",
+        "command": "make -C tests/unit/planning/structured",
+        "source": "tests/unit/planning/structured/main.c"
       }
     ]
   }

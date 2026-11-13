@@ -67,8 +67,9 @@ in binding text order. Each receiver, including its current index, is selected
 at that binding's own action. Two different results may replace the same receiver
 in sequence; they are not simultaneous. An omitted output creates no replacement.
 The target remains protected until the output sequence and cleanup release it.
-Selected subtrees and foreach execution remain T044 and later work; their current
-unsupported-feature guards still prevent incomplete lowering from reaching C.
+T044 adds [selected subtrees and foreach control IR](structured-lowering.md).
+Their execution-capability guards prevent unavailable runtime adapters from
+reaching C artifact staging.
 
 ## Explicit replacement phases and failure meaning
 

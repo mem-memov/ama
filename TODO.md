@@ -1126,10 +1126,24 @@ Contracts: [compiler](spec/implementation/compiler.md),
   receivers, transfer modes, twelve damaged plans and every lowering allocation.
   Full strict tests, final focused IR checks and ASan+UBSan passed; 994 maintained
   inputs have coverage. Final Doxygen reproducibility is checked before commit.
-- [ ] **T044 — Lower structured control and result actions.** Needs: T043.
+- [x] **T044 — Lower structured control and result actions.** Needs: T043.
   Assign fixed loop repeat/break labels and depth-first result continuations.
   Test empty-loop single conversion, per-link handlers, nested exits and bounded
   frame use before C generation.
+  Evidence: iterative block/operation work retains exact caller frames, selected
+  targets, depth-first sibling continuations, retired body returns and whole-chain
+  refusal cleanup before the failing link's handler. Loop records provide fixed
+  header/named repeat roots and body/exit labels; both condition outcomes release
+  header grants before body/exit. Foreach uses fixed enter/next/leave or empty
+  validation, scoped return/restart cleanup and outer-first resume templates.
+  Intrinsic methods stage typed descriptors without synthetic modules. New IR
+  validators check loop/frame/chain/protocol identities. Static checking accepts
+  complete plans; pending runtime adapters are explicitly rejected by C generation
+  before any model/artifact allocation. Tests cover mixed modes, handler yield and
+  outer breaks, intrinsic conditions, empty/declaration-only bodies, 128-deep
+  chains/traversals, ten damaged plans and every lowering allocation. Full strict
+  tests, ASan+UBSan and coverage of all 1013 maintained inputs passed; final Doxygen
+  reproducibility is checked before commit. Runtime execution remains T066 onward.
 - [ ] **T045 — Verify complete frontend-to-plan composition.** Needs: T044.
   Preserve nominal types, source locations, ownership/capability facts and all
   control successors. Run real source-to-plan cases and invariant checks, including

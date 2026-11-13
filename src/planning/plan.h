@@ -18,6 +18,10 @@ typedef enum { PLAN_OK, PLAN_INVALID, PLAN_OUT_OF_MEMORY } PlanStatus;
  * Forward name for one resolved type/storage/control plan borrowing its semantic nominal type.
  */
 typedef struct PlannedType PlannedType;
+/** Forward identity of one lexical operation chain and one ordinary loop. */
+typedef struct PlannedChain PlannedChain;
+/** Forward identity of one source loop and its fixed entry/body/exit labels. */
+typedef struct PlannedLoop PlannedLoop;
 /** Plan-owned ordered nonconstant field with exact semantic declaration/type and logical slot. */
 typedef struct StorageField {
     struct StorageField *next;
@@ -74,7 +78,13 @@ typedef enum {
     CONTROL_EVALUATE_INPUT, CONTROL_INSTALL_PARAMETER, CONTROL_INITIALIZE_RESULT,
     CONTROL_SET_RETURN, CONTROL_ENTER_INSTANCE, CONTROL_RESUME_INSTANCE,
     CONTROL_NATIVE_ENTRY,
-    CONTROL_TRANSFER_OUTPUT, CONTROL_PREFLIGHT_INPUTS, CONTROL_RELEASE_TARGET
+    CONTROL_TRANSFER_OUTPUT, CONTROL_PREFLIGHT_INPUTS,
+    CONTROL_SELECT_RESULT, CONTROL_ACTION_NEXT, CONTROL_ABANDON_CHAIN,
+    CONTROL_RETIRE_RETURN, CONTROL_RELEASE_CHAIN, CONTROL_HEADER_ENTER,
+    CONTROL_FOREACH_ENTER, CONTROL_FOREACH_NEXT, CONTROL_FOREACH_LEAVE, CONTROL_FOREACH_EMPTY,
+    CONTROL_CLEANUP_SCOPES, CONTROL_RESET_SCOPES, CONTROL_VALIDATE_TRAVERSALS, CONTROL_RESUME_SAVED,
+    CONTROL_ACQUIRE_LIST, CONTROL_LIST_METHOD_PREFLIGHT, CONTROL_LIST_METHOD_PREPARE, CONTROL_LIST_METHOD_COMMIT, CONTROL_STAGE_METHOD_INPUT,
+    CONTROL_RELEASE_TARGET
 } ControlOperation;
 /** Plan-owned uniquely selected control node; allocation links are separate from typed execution/alternative/failure/resume edges. */
 typedef struct ControlNode {
@@ -93,9 +103,37 @@ typedef struct ControlNode {
     const SemanticStatement *statement;
     const SemanticBinding *binding;
     const ReplacementPlan *replacement;
+    const StorageFrame *frame;
+    PlannedChain *chain;
+    PlannedLoop *loop;
     SemanticSymbol *field;
     SourceSpan site;
 } ControlNode;
+/** One initiating operation tree, with exact whole-chain refusal exit and optional header terminal.
+ * Runtime target grants live in its lexical frames, never this compile-time record.
+ */
+struct PlannedChain {
+    PlannedChain *next;
+    const SemanticStatement *root;
+    const StorageFrame *root_frame;
+    PlannedLoop *header;
+    ControlNode *exit;
+    ControlNode *break_target;
+};
+/** Fixed source loop labels; parent links represent lexical containment, never dynamic invocation history. */
+struct PlannedLoop {
+    PlannedLoop *next;
+    PlannedLoop *parent;
+    const SemanticStatement *statement;
+    const StorageFrame *frame;
+    PlannedChain *header;
+    ControlNode *entry;
+    ControlNode *repeat;
+    ControlNode *test;
+    ControlNode *body;
+    ControlNode *exit;
+    ControlNode *after;
+};
 /** Explicit logical instance-service requirements; shared immutable storage has none of these bits. */
 enum {
     STORAGE_GENERATION = 1u, STORAGE_BUSY = 2u, STORAGE_POSITION = 4u,
@@ -129,6 +167,10 @@ struct PlannedType {
     LifeProcedure destroy;
     LifeProcedure clone;
     LifeProcedure continuation;
+    PlannedChain *chains;
+    PlannedLoop *loops;
+    PlannedLoop *last_loop;
+    ControlNode *resume_entry;
     ReplacementPlan *replacements;
     ControlNode *controls;
     ControlNode *entry;

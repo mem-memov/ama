@@ -43,7 +43,8 @@ static void it_lowers_source_protection_and_individual_commits_in_the_three_requ
     }
     assert(node->operation == CONTROL_SET_RETURN && node->next->operation == CONTROL_ENTER_INSTANCE);
     assert(node->next->next == node->next->callee->entry);
-    ControlNode *output = node->resume;
+    assert(node->resume->operation == CONTROL_RETIRE_RETURN);
+    ControlNode *output = node->resume->next;
     const SemanticAccess *receiver = output->binding->receiver;
     for (size_t index = 0; index < 2; index++) {
         assert(output->operation == CONTROL_TRANSFER_OUTPUT && output->binding->position == 1 - index);

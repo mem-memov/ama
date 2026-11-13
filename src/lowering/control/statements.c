@@ -8,33 +8,12 @@
  */
 #include "internal.h"
 
-/** Build retained branch/loop condition and body tasks with explicit break/continuation links. Parsed-empty loops exit for both successful outcomes; declaration-only bodies retain their backedge.
- */
-static ControlNode *control(Lowering *lowering, const SemanticStatement *statement,
-    ControlNode *after, ControlNode *break_target) {
-    const AstNode *node = statement->syntax;
-    bool loop = node->kind == AST_LOOP;
-    ControlNode *condition = lower_prepend(lowering, CONTROL_CONDITION, statement, NULL, after);
-    if (condition == NULL) {
-        return NULL;
-    }
-    condition->alternative = after;
-    if (!lower_block(lowering, node->as.control.body, loop && node->as.control.body.first != NULL ? condition : after,
-            loop ? after : break_target, &condition->next)
-        || (!loop && !lower_block(lowering, node->as.control.alternative, after,
-            break_target, &condition->alternative))) {
-        return NULL;
-    }
-    return condition;
-}
-
 ControlNode *lower_statement(Lowering *lowering, const SemanticStatement *statement,
     ControlNode *after, ControlNode *break_target) {
     const AstNode *node = statement->syntax;
     switch (node->kind) {
         case AST_FOREACH:
-            plan_fail(lowering->plan, node->span, "Traversal lowering is not implemented");
-            return NULL;
+            return lower_foreach(lowering, statement, after);
         case AST_DECLARATION:
             return after;
         case AST_ASSIGNMENT:
@@ -43,14 +22,20 @@ ControlNode *lower_statement(Lowering *lowering, const SemanticStatement *statem
             return lower_call(lowering, statement, after, break_target);
         case AST_BRANCH:
         case AST_LOOP:
-            return control(lowering, statement, after, break_target);
+            return lower_control(lowering, statement, after, break_target);
         case AST_BREAK:
             if (break_target == NULL) {
                 plan_fail(lowering->plan, node->span, "Loop exit ^ requires an enclosing loop");
             }
             return break_target;
-        case AST_RETURN:
-            return lowering->type->complete;
+        case AST_RETURN: {
+            const SemanticStatement *scope = statement->enclosing_loop;
+            while (scope != NULL && scope->syntax->kind != AST_FOREACH) { scope = scope->enclosing_loop; }
+            if (scope == NULL) { return lowering->type->complete; }
+            ControlNode *cleanup = lower_prepend(lowering, CONTROL_CLEANUP_SCOPES, statement, NULL, lowering->type->complete);
+            if (cleanup != NULL) { cleanup->loop = lower_loop(lowering->type, scope); }
+            return cleanup;
+        }
         case AST_SUSPEND: {
             ControlNode *yield = lower_prepend(lowering, CONTROL_SAVE_POSITION, statement, NULL, lowering->type->yield);
             if (yield != NULL) {

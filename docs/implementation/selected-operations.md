@@ -83,12 +83,12 @@ new typed statement/action storage is O(N+A); original AST/source owners outlive
 all borrowed metadata. The algorithm has no depth timeout, inferred private-field
 fallback or guessed target identity.
 
-The [planning guard](../../src/planning/validation/operations.c) rejects an operation
-containing selected actions before publishing storage/control plans. Until T041–T044
-provide explicit selected-target lifetime and action lowering, the compiler reports
-`unsupported-feature` at the root operation. Successful static analysis must not
-accidentally emit a selected field access as a caller-local access or discard its
-subtree. Self execution keeps its separate final-construction identity guard.
+T044 now lowers the full tree to [explicit frame/action continuations](structured-lowering.md).
+The [execution-capability guard](../../src/codegen/project/capabilities.c) rejects
+C generation until the corresponding runtime adapters are implemented. Static
+checking publishes a complete typed plan and never drops selected actions or
+turns a selected field into a caller-local access. Self execution retains its
+separate final-identity capability check at that same artifact boundary.
 
 ## Evidence
 
