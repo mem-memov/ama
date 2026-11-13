@@ -31752,6 +31752,26 @@
         "case": "it_releases_every_partial_inspection_allocation",
         "command": "make -C tests/unit/compiler/status",
         "source": "tests/unit/compiler/status/main.c"
+      },
+      {
+        "case": "it_matches_complete_frontend_outputs_to_independent_explicit_stages",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_preserves_exact_failed_stage_diagnostics_and_invalid_project_ownership",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_keeps_native_authoring_contracts_separate_from_strict_frontend_composition",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_frontend_source_semantic_and_plan_allocation",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
       }
     ]
   },
@@ -53611,6 +53631,26 @@
         "case": "it_preserves_the_first_failed_stage_and_original_diagnostic_context",
         "command": "make -C tests/unit/semantic/composition",
         "source": "tests/unit/semantic/composition/main.c"
+      },
+      {
+        "case": "it_matches_complete_frontend_outputs_to_independent_explicit_stages",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_preserves_exact_failed_stage_diagnostics_and_invalid_project_ownership",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_keeps_native_authoring_contracts_separate_from_strict_frontend_composition",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_frontend_source_semantic_and_plan_allocation",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
       }
     ]
   },
@@ -56431,6 +56471,214 @@
         "case": "it_unwinds_every_complete_structured_lowering_allocation",
         "command": "make -C tests/unit/planning/structured",
         "source": "tests/unit/planning/structured/main.c"
+      }
+    ]
+  },
+  "tests/unit/compiler/composition/main.c": {
+    "contract": "docs/implementation/frontend-composition.md",
+    "purpose": "Verify exact complete frontend composition, original diagnostics and partial-owner cleanup.",
+    "tests": [
+      {
+        "case": "it_matches_complete_frontend_outputs_to_independent_explicit_stages",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_preserves_exact_failed_stage_diagnostics_and_invalid_project_ownership",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_keeps_native_authoring_contracts_separate_from_strict_frontend_composition",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_frontend_source_semantic_and_plan_allocation",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/compiler/composition/Makefile": {
+    "contract": "docs/implementation/frontend-composition.md",
+    "purpose": "Verify exact complete frontend composition, original diagnostics and partial-owner cleanup.",
+    "tests": [
+      {
+        "case": "it_matches_complete_frontend_outputs_to_independent_explicit_stages",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_preserves_exact_failed_stage_diagnostics_and_invalid_project_ownership",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_keeps_native_authoring_contracts_separate_from_strict_frontend_composition",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_frontend_source_semantic_and_plan_allocation",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/compiler/composition/support/authoring.c": {
+    "contract": "docs/implementation/frontend-composition.md",
+    "purpose": "Verify exact complete frontend composition, original diagnostics and partial-owner cleanup.",
+    "tests": [
+      {
+        "case": "it_matches_complete_frontend_outputs_to_independent_explicit_stages",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_preserves_exact_failed_stage_diagnostics_and_invalid_project_ownership",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_keeps_native_authoring_contracts_separate_from_strict_frontend_composition",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_frontend_source_semantic_and_plan_allocation",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/compiler/composition/support/fixture.c": {
+    "contract": "docs/implementation/frontend-composition.md",
+    "purpose": "Verify exact complete frontend composition, original diagnostics and partial-owner cleanup.",
+    "tests": [
+      {
+        "case": "it_matches_complete_frontend_outputs_to_independent_explicit_stages",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_preserves_exact_failed_stage_diagnostics_and_invalid_project_ownership",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_keeps_native_authoring_contracts_separate_from_strict_frontend_composition",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_frontend_source_semantic_and_plan_allocation",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/compiler/composition/support/failures.c": {
+    "contract": "docs/implementation/frontend-composition.md",
+    "purpose": "Verify exact complete frontend composition, original diagnostics and partial-owner cleanup.",
+    "tests": [
+      {
+        "case": "it_matches_complete_frontend_outputs_to_independent_explicit_stages",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_preserves_exact_failed_stage_diagnostics_and_invalid_project_ownership",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_keeps_native_authoring_contracts_separate_from_strict_frontend_composition",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_frontend_source_semantic_and_plan_allocation",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/compiler/composition/support/projects.c": {
+    "contract": "docs/implementation/frontend-composition.md",
+    "purpose": "Verify exact complete frontend composition, original diagnostics and partial-owner cleanup.",
+    "tests": [
+      {
+        "case": "it_matches_complete_frontend_outputs_to_independent_explicit_stages",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_preserves_exact_failed_stage_diagnostics_and_invalid_project_ownership",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_keeps_native_authoring_contracts_separate_from_strict_frontend_composition",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_frontend_source_semantic_and_plan_allocation",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/compiler/composition/support/projection/control.c": {
+    "contract": "docs/implementation/frontend-composition.md",
+    "purpose": "Verify exact complete frontend composition, original diagnostics and partial-owner cleanup.",
+    "tests": [
+      {
+        "case": "it_matches_complete_frontend_outputs_to_independent_explicit_stages",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_preserves_exact_failed_stage_diagnostics_and_invalid_project_ownership",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_keeps_native_authoring_contracts_separate_from_strict_frontend_composition",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_frontend_source_semantic_and_plan_allocation",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/compiler/composition/support/projection/storage.c": {
+    "contract": "docs/implementation/frontend-composition.md",
+    "purpose": "Verify exact complete frontend composition, original diagnostics and partial-owner cleanup.",
+    "tests": [
+      {
+        "case": "it_matches_complete_frontend_outputs_to_independent_explicit_stages",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_preserves_exact_failed_stage_diagnostics_and_invalid_project_ownership",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_keeps_native_authoring_contracts_separate_from_strict_frontend_composition",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_frontend_source_semantic_and_plan_allocation",
+        "command": "make -C tests/unit/compiler/composition",
+        "source": "tests/unit/compiler/composition/main.c"
       }
     ]
   }

@@ -1144,10 +1144,18 @@ Contracts: [compiler](spec/implementation/compiler.md),
   chains/traversals, ten damaged plans and every lowering allocation. Full strict
   tests, ASan+UBSan and coverage of all 1013 maintained inputs passed; final Doxygen
   reproducibility is checked before commit. Runtime execution remains T066 onward.
-- [ ] **T045 — Verify complete frontend-to-plan composition.** Needs: T044.
+- [x] **T045 — Verify complete frontend-to-plan composition.** Needs: T044.
   Preserve nominal types, source locations, ownership/capability facts and all
   control successors. Run real source-to-plan cases and invariant checks, including
   drafts, native contracts and invalid-project cleanup.
+  Evidence: [frontend composition](docs/implementation/frontend-composition.md)
+  compares independently owned semantic/storage/lifecycle/control plans against
+  public checking, including every successor and original source identity. Real
+  projects cover selected calls, traversals, continuations, shared values, inactive
+  drafts and isolated ABI authoring. Eight invalid projects and failure of every
+  allocation verify first-stage diagnostics and complete partial-owner cleanup.
+  Full strict tests and ASan+UBSan passed; all 1021 maintained inputs have coverage.
+  Final Doxygen reproducibility is checked before commit.
 
 ## Phase 6. Stable ownership storage before executing user bodies
 
