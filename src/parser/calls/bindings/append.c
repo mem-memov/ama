@@ -20,8 +20,8 @@ bool parser_append_argument(Parser *parser, AstNode *node, AstArgument *argument
         return parser_fail(parser, argument->marker, "Binding marker is not allowed in this call mode/order",
             mode == AST_ENTRY_CALL ? EXPECT_ENTRY_BINDINGS : mode == AST_RESUME_CALL ? EXPECT_RESUME_BINDINGS : EXPECT_READ_BINDINGS);
     }
+    if (argument->kind != AST_INPUT && !parser_output_action(parser, node, argument, NULL)) { return false; }
     node->as.call.named = named;
-    if (argument->kind != AST_INPUT) { node->as.call.outputs_started = true; }
     argument->position = argument->kind == AST_INPUT
         ? node->as.call.input_count++ : node->as.call.output_count++;
     if (node->as.call.last == NULL) {

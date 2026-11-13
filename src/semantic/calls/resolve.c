@@ -5,6 +5,8 @@
  * [LIST-02](../../../spec/language/lists.md#list-02) forbids whole-list execution.
  * [LIST-04](../../../spec/language/lists.md#list-04) gives each intrinsic method
  * its own typed interface, so no positional dispatcher binding may reach IR.
+ * [CALL-09](../../../spec/language/calls-and-results.md#call-09) requires complete
+ * operation-tree resolution; until T036, reject selected actions explicitly rather than silently dropping them.
  */
 #include "internal.h"
 
@@ -30,6 +32,12 @@ static bool target(SemanticProgram *program, SemanticType *caller, SemanticState
 }
 
 bool semantic_call(SemanticProgram *program, SemanticType *type, SemanticStatement *statement) {
+    if (statement->syntax->as.call.has_selected) {
+        (void)semantic_fail(program, statement->syntax->span,
+            "Direct result-selection trees are not supported by this compiler yet", NULL);
+        program->error.code = DIAGNOSTIC_UNSUPPORTED_FEATURE;
+        return false;
+    }
     if (!target(program, type, statement)) {
         return false;
     }

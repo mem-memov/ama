@@ -5,7 +5,7 @@ The [specification](../../spec/README.md) defines current behavior; this
 component description does not certify the open work in [TODO](../../TODO.md).
 
 Boundary: `src/parser/calls/`, especially `bindings/`, records ordinary call modes,
-complete named labels and positional placeholders. Direct result trees follow in T026.
+complete named labels and positional placeholders. [Direct result trees](result-parsing.md) extend these bindings in T026.
 No callee interface or declared-name lookup is used during parsing.
 
 An argument retains its complete line/marker spans, kind, optional declaration
@@ -65,7 +65,7 @@ retain distinct namespace/target metadata without callee lookup.
 
 The explicit output-phase flag is independent of ordinary result ordinals. An
 output placeholder closes the input phase even though it transfers no value.
-This prepares the same transition for T026's selected output actions without
+T026 uses the same transition for selected output actions without
 pretending that a selected operation consumes an ordinary result position.
 
 `make -C tests/unit/parser/bindings` isolates the narrow binding boundary and

@@ -5,7 +5,9 @@
  * [COMP-02](../../spec/implementation/compiler.md#comp-02)
  * Separate parser shape from typed IR; source tags carry no resolved symbols.
  * [CALL-08](../../spec/language/calls-and-results.md#call-08) records output
- * phase independently from ordinary result ordinals. Result trees and foreach remain later tasks.
+ * phase independently from ordinary result ordinals.
+ * [CALL-09](../../spec/language/calls-and-results.md#call-09) retains ordered
+ * result-selection actions and each refusal body's owning operation. Foreach remains later work.
  */
 #ifndef AMA_SYNTAX_AST_H
 #define AMA_SYNTAX_AST_H
@@ -77,6 +79,16 @@ typedef struct {
     AstNode *last;
 } AstBlock;
 
+/** Ordered output actions distinguish ordinary transfers from selected-result operations. */
+typedef enum { AST_BINDING_ACTION, AST_SELECTED_ACTION } AstOutputActionKind;
+/** AST-owned action link; binding/operation views alias nodes owned by the same module arena. */
+typedef struct AstOutputAction {
+    struct AstOutputAction *next;
+    AstOutputActionKind kind;
+    AstArgument *binding;
+    AstNode *operation;
+} AstOutputAction;
+
 /** Tagged AST-only declaration/assignment/call/control payload with original source span. */
 struct AstNode {
     AstNode *next;
@@ -97,12 +109,17 @@ struct AstNode {
             SourceSpan namespace_path;
             AstArgument *first;
             AstArgument *last;
+            AstOutputAction *first_output;
+            AstOutputAction *last_output;
+            AstNode *enclosing_operation;
+            SourceSpan refusal_marker;
             size_t input_count;
             size_t output_count;
             bool named;
             /** [CALL-08](../../spec/language/calls-and-results.md#call-08) keeps
              * output phase independent of ordinary result-position counts. */
             bool outputs_started;
+            bool has_selected;
             bool has_alternative;
             AstBlock alternative;
         } call;

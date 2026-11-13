@@ -1,9 +1,11 @@
 /**
  * @file
- * @brief Drive indentation-scoped branch/loop frames iteratively.
+ * @brief Drive indentation-scoped body and operation frames iteratively.
  *
  * [COMP-01](../../../spec/implementation/compiler.md#comp-01)
- * A finite frame chain owns explicit body intervals; expanded control/result trees remain T026/T027.
+ * A finite frame chain owns explicit body and operation intervals.
+ * [CALL-09](../../../spec/language/calls-and-results.md#call-09) requires nested
+ * result operations and refusal bodies to finish without recursive C activation.
  */
 #include "../internal.h"
 
@@ -13,7 +15,8 @@ bool parser_push_frame(Parser *parser, ParseFrame **frame, AstBlock *block,
     if (child == NULL) {
         return false;
     }
-    *child = (ParseFrame){*frame, block, owner, indentation, kind};
+    *child = (ParseFrame){.parent = *frame, .block = block, .owner = owner,
+        .indentation = indentation, .kind = kind};
     *frame = child;
     return true;
 }
@@ -57,6 +60,10 @@ bool parser_body(Parser *parser, ParsedSection section, AstBlock *output) {
         return false;
     }
     while (frame != NULL) {
+        if (frame->kind == FRAME_CALL) {
+            if (!parser_call_step(parser, &frame)) { return false; }
+            continue;
+        }
         parser_skip_region(parser, frame->indentation);
         if (parser->line == NULL || parser->line == parser->end
             || parser->line->indentation < frame->indentation) {

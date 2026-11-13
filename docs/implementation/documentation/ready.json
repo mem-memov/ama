@@ -236,6 +236,41 @@
         "case": "it_unwinds_every_allocation_failure_in_named_call_construction",
         "command": "make -C tests/unit/parser/bindings",
         "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_builds_the_short_direct_result_form_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_keeps_sibling_action_order_and_binding_style_independent_of_selectors",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_unmarked_reads_and_whole_list_method_parents_as_operation_trees",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_attaches_refusal_markers_to_their_exact_operations_and_resets_handler_selector_context",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_rejects_input_after_selection_and_misindented_or_ineligible_handlers",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_deep_result_paths_without_recursive_c_activation",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
       }
     ]
   },
@@ -7815,6 +7850,41 @@
         "case": "it_produces_valid_diagnostics_for_every_truncated_byte_prefix",
         "command": "make -C tests/unit/parser/errors",
         "source": "tests/unit/parser/errors/main.c"
+      },
+      {
+        "case": "it_builds_the_short_direct_result_form_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_keeps_sibling_action_order_and_binding_style_independent_of_selectors",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_unmarked_reads_and_whole_list_method_parents_as_operation_trees",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_attaches_refusal_markers_to_their_exact_operations_and_resets_handler_selector_context",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_rejects_input_after_selection_and_misindented_or_ineligible_handlers",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_deep_result_paths_without_recursive_c_activation",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
       }
     ]
   },
@@ -7901,6 +7971,41 @@
         "case": "it_cleans_every_allocation_failure_in_self_reference_assignment_construction",
         "command": "make -C tests/unit/parser/sources",
         "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_builds_the_short_direct_result_form_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_keeps_sibling_action_order_and_binding_style_independent_of_selectors",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_unmarked_reads_and_whole_list_method_parents_as_operation_trees",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_attaches_refusal_markers_to_their_exact_operations_and_resets_handler_selector_context",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_rejects_input_after_selection_and_misindented_or_ineligible_handlers",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_deep_result_paths_without_recursive_c_activation",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
       }
     ]
   },
@@ -7942,6 +8047,41 @@
         "case": "it_matches_the_call_mode_language_for_every_short_binding_sequence",
         "command": "make -C tests/unit/parser/calls",
         "source": "tests/unit/parser/calls/main.c"
+      },
+      {
+        "case": "it_builds_the_short_direct_result_form_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_keeps_sibling_action_order_and_binding_style_independent_of_selectors",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_unmarked_reads_and_whole_list_method_parents_as_operation_trees",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_attaches_refusal_markers_to_their_exact_operations_and_resets_handler_selector_context",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_rejects_input_after_selection_and_misindented_or_ineligible_handlers",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_deep_result_paths_without_recursive_c_activation",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
       }
     ]
   },
@@ -8013,6 +8153,41 @@
         "case": "it_unwinds_every_allocation_failure_in_named_call_construction",
         "command": "make -C tests/unit/parser/bindings",
         "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_builds_the_short_direct_result_form_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_keeps_sibling_action_order_and_binding_style_independent_of_selectors",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_unmarked_reads_and_whole_list_method_parents_as_operation_trees",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_attaches_refusal_markers_to_their_exact_operations_and_resets_handler_selector_context",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_rejects_input_after_selection_and_misindented_or_ineligible_handlers",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_deep_result_paths_without_recursive_c_activation",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
       }
     ]
   },
@@ -8211,6 +8386,41 @@
         "case": "it_matches_the_call_mode_language_for_every_short_binding_sequence",
         "command": "make -C tests/unit/parser/calls",
         "source": "tests/unit/parser/calls/main.c"
+      },
+      {
+        "case": "it_builds_the_short_direct_result_form_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_keeps_sibling_action_order_and_binding_style_independent_of_selectors",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_unmarked_reads_and_whole_list_method_parents_as_operation_trees",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_attaches_refusal_markers_to_their_exact_operations_and_resets_handler_selector_context",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_rejects_input_after_selection_and_misindented_or_ineligible_handlers",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_deep_result_paths_without_recursive_c_activation",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
       }
     ]
   },
@@ -8557,6 +8767,41 @@
         "case": "it_cleans_each_allocation_failure_in_complete_name_declaration_construction",
         "command": "make -C tests/unit/parser/declarations",
         "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_builds_the_short_direct_result_form_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_keeps_sibling_action_order_and_binding_style_independent_of_selectors",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_unmarked_reads_and_whole_list_method_parents_as_operation_trees",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_attaches_refusal_markers_to_their_exact_operations_and_resets_handler_selector_context",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_rejects_input_after_selection_and_misindented_or_ineligible_handlers",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_deep_result_paths_without_recursive_c_activation",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
       }
     ]
   },
@@ -17957,6 +18202,11 @@
         "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_reports_unsupported_result_selection_instead_of_dropping_selected_actions",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -27209,6 +27459,11 @@
         "case": "it_reports_unsupported_self_reference_typing_without_dereferencing_a_missing_access",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_reports_unsupported_result_selection_instead_of_dropping_selected_actions",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -30606,7 +30861,7 @@
   },
   "tests/unit/parser/Makefile": {
     "contract": "docs/implementation/library-tests-and-build.md",
-    "purpose": "Dispatch section, declaration, source, tree, call, binding, ABI, access and error suites.",
+    "purpose": "Dispatch section, declaration, source, tree, call, binding, result, ABI, access and error suites.",
     "tests": [
       {
         "case": "it_reads_all_six_symbols_in_any_order_with_physical_spans",
@@ -30767,6 +31022,11 @@
         "case": "it_rejects_extra_or_missing_binding_separators_without_trimming_them",
         "command": "make -C tests/unit/parser",
         "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_builds_the_short_direct_result_form_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/parser",
+        "source": "tests/unit/parser/results/main.c"
       }
     ]
   },
@@ -41164,6 +41424,472 @@
         "case": "it_unwinds_every_allocation_failure_in_named_call_construction",
         "command": "make -C tests/unit/parser/bindings",
         "source": "tests/unit/parser/bindings/main.c"
+      }
+    ]
+  },
+  "src/parser/calls/tree/step.c": {
+    "contract": "docs/implementation/result-parsing.md",
+    "purpose": "Retain ordered selected-result operations, exact handler ownership and finite explicit parser-frame transitions.",
+    "tests": [
+      {
+        "case": "it_builds_the_short_direct_result_form_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_keeps_sibling_action_order_and_binding_style_independent_of_selectors",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_unmarked_reads_and_whole_list_method_parents_as_operation_trees",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_attaches_refusal_markers_to_their_exact_operations_and_resets_handler_selector_context",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_rejects_input_after_selection_and_misindented_or_ineligible_handlers",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_deep_result_paths_without_recursive_c_activation",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      }
+    ]
+  },
+  "src/parser/calls/tree/selected.c": {
+    "contract": "docs/implementation/result-parsing.md",
+    "purpose": "Retain ordered selected-result operations, exact handler ownership and finite explicit parser-frame transitions.",
+    "tests": [
+      {
+        "case": "it_builds_the_short_direct_result_form_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_keeps_sibling_action_order_and_binding_style_independent_of_selectors",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_unmarked_reads_and_whole_list_method_parents_as_operation_trees",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_attaches_refusal_markers_to_their_exact_operations_and_resets_handler_selector_context",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_rejects_input_after_selection_and_misindented_or_ineligible_handlers",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_deep_result_paths_without_recursive_c_activation",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      }
+    ]
+  },
+  "src/parser/calls/tree/finish.c": {
+    "contract": "docs/implementation/result-parsing.md",
+    "purpose": "Retain ordered selected-result operations, exact handler ownership and finite explicit parser-frame transitions.",
+    "tests": [
+      {
+        "case": "it_builds_the_short_direct_result_form_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_keeps_sibling_action_order_and_binding_style_independent_of_selectors",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_unmarked_reads_and_whole_list_method_parents_as_operation_trees",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_attaches_refusal_markers_to_their_exact_operations_and_resets_handler_selector_context",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_rejects_input_after_selection_and_misindented_or_ineligible_handlers",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_deep_result_paths_without_recursive_c_activation",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      }
+    ]
+  },
+  "src/parser/calls/tree/internal.h": {
+    "contract": "docs/implementation/result-parsing.md",
+    "purpose": "Retain ordered selected-result operations, exact handler ownership and finite explicit parser-frame transitions.",
+    "tests": [
+      {
+        "case": "it_builds_the_short_direct_result_form_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_keeps_sibling_action_order_and_binding_style_independent_of_selectors",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_unmarked_reads_and_whole_list_method_parents_as_operation_trees",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_attaches_refusal_markers_to_their_exact_operations_and_resets_handler_selector_context",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_rejects_input_after_selection_and_misindented_or_ineligible_handlers",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_deep_result_paths_without_recursive_c_activation",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/parser/calls/actions.c": {
+    "contract": "docs/implementation/result-parsing.md",
+    "purpose": "Retain ordered selected-result operations, exact handler ownership and finite explicit parser-frame transitions.",
+    "tests": [
+      {
+        "case": "it_builds_the_short_direct_result_form_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_keeps_sibling_action_order_and_binding_style_independent_of_selectors",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_unmarked_reads_and_whole_list_method_parents_as_operation_trees",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_attaches_refusal_markers_to_their_exact_operations_and_resets_handler_selector_context",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_rejects_input_after_selection_and_misindented_or_ineligible_handlers",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_deep_result_paths_without_recursive_c_activation",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      }
+    ]
+  },
+  "src/parser/calls/target.c": {
+    "contract": "docs/implementation/result-parsing.md",
+    "purpose": "Retain ordered selected-result operations, exact handler ownership and finite explicit parser-frame transitions.",
+    "tests": [
+      {
+        "case": "it_builds_the_short_direct_result_form_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_keeps_sibling_action_order_and_binding_style_independent_of_selectors",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_unmarked_reads_and_whole_list_method_parents_as_operation_trees",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_attaches_refusal_markers_to_their_exact_operations_and_resets_handler_selector_context",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_rejects_input_after_selection_and_misindented_or_ineligible_handlers",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_deep_result_paths_without_recursive_c_activation",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      }
+    ]
+  },
+  "tests/unit/parser/results/Makefile": {
+    "contract": "docs/implementation/result-parsing.md",
+    "purpose": "Retain ordered selected-result operations, exact handler ownership and finite explicit parser-frame transitions.",
+    "tests": [
+      {
+        "case": "it_builds_the_short_direct_result_form_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_keeps_sibling_action_order_and_binding_style_independent_of_selectors",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_unmarked_reads_and_whole_list_method_parents_as_operation_trees",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_attaches_refusal_markers_to_their_exact_operations_and_resets_handler_selector_context",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_rejects_input_after_selection_and_misindented_or_ineligible_handlers",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_deep_result_paths_without_recursive_c_activation",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      }
+    ]
+  },
+  "tests/unit/parser/results/main.c": {
+    "contract": "docs/implementation/result-parsing.md",
+    "purpose": "Retain ordered selected-result operations, exact handler ownership and finite explicit parser-frame transitions.",
+    "tests": [
+      {
+        "case": "it_builds_the_short_direct_result_form_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_keeps_sibling_action_order_and_binding_style_independent_of_selectors",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_unmarked_reads_and_whole_list_method_parents_as_operation_trees",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_attaches_refusal_markers_to_their_exact_operations_and_resets_handler_selector_context",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_rejects_input_after_selection_and_misindented_or_ineligible_handlers",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_deep_result_paths_without_recursive_c_activation",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      }
+    ]
+  },
+  "tests/unit/parser/results/support/depth.c": {
+    "contract": "docs/implementation/result-parsing.md",
+    "purpose": "Retain ordered selected-result operations, exact handler ownership and finite explicit parser-frame transitions.",
+    "tests": [
+      {
+        "case": "it_builds_the_short_direct_result_form_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_keeps_sibling_action_order_and_binding_style_independent_of_selectors",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_unmarked_reads_and_whole_list_method_parents_as_operation_trees",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_attaches_refusal_markers_to_their_exact_operations_and_resets_handler_selector_context",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_rejects_input_after_selection_and_misindented_or_ineligible_handlers",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_deep_result_paths_without_recursive_c_activation",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      }
+    ]
+  },
+  "tests/unit/parser/results/support/handlers.c": {
+    "contract": "docs/implementation/result-parsing.md",
+    "purpose": "Retain ordered selected-result operations, exact handler ownership and finite explicit parser-frame transitions.",
+    "tests": [
+      {
+        "case": "it_builds_the_short_direct_result_form_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_keeps_sibling_action_order_and_binding_style_independent_of_selectors",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_unmarked_reads_and_whole_list_method_parents_as_operation_trees",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_attaches_refusal_markers_to_their_exact_operations_and_resets_handler_selector_context",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_rejects_input_after_selection_and_misindented_or_ineligible_handlers",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_deep_result_paths_without_recursive_c_activation",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      }
+    ]
+  },
+  "tests/unit/parser/results/support/actions.c": {
+    "contract": "docs/implementation/result-parsing.md",
+    "purpose": "Retain ordered selected-result operations, exact handler ownership and finite explicit parser-frame transitions.",
+    "tests": [
+      {
+        "case": "it_builds_the_short_direct_result_form_without_an_intermediate_receiver",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_keeps_sibling_action_order_and_binding_style_independent_of_selectors",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_unmarked_reads_and_whole_list_method_parents_as_operation_trees",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_attaches_refusal_markers_to_their_exact_operations_and_resets_handler_selector_context",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_rejects_input_after_selection_and_misindented_or_ineligible_handlers",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_parses_deep_result_paths_without_recursive_c_activation",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
+        "command": "make -C tests/unit/parser/results",
+        "source": "tests/unit/parser/results/main.c"
       }
     ]
   }

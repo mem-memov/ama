@@ -829,10 +829,20 @@ Contracts: [grammar](spec/grammar.md),
   suite and focused ASan/UBSan pass (leak detection disabled), as do 821-input
   coverage and links. Warning-free Doxygen is byte-reproducible: 644 maintained
   files, 2601 interfaces, 292 destinations. Callee arity/types remain semantic work.
-- [ ] **T026 — Parse direct-result trees and refusal handlers.** Needs: T025.
+- [x] **T026 — Parse direct-result trees and refusal handlers.** Needs: T025.
   Retain selector paths, sibling order and each handler's owning operation.
   Test nested modes, colon indentation and structural rejection independently
   of declared names or runtime availability.
+  Added an ordered output-action tree with explicit enclosing operations and
+  independently scoped binding phases. Refusal markers retain exact ownership
+  and source spans; calls inside handlers start ordinary caller-context trees.
+  Explicit parser frames handle 512-level selection paths without recursive C
+  activation. Tests cover sibling order, nested indexed references, mode/style
+  boundaries, malformed indentation and every allocation failure. Until T036,
+  semantic analysis explicitly rejects selection trees instead of dropping them.
+  Full strict suite and focused ASan/UBSan pass (leak detection disabled), as do
+  832-input coverage and links. Warning-free Doxygen is byte-reproducible: 654
+  maintained files, 2630 interfaces, 293 destinations.
 - [ ] **T027 — Parse branches, loops and foreach.** Needs: T026. Represent
   positive/negative branches, empty bodies, single-root linear condition loops,
   break/return/yield and reference-binding foreach. Test exact repeat roots,

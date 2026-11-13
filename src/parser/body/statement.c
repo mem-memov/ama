@@ -46,6 +46,23 @@ static bool control(Parser *parser, ParseFrame **frame, AstNode *node,
         (*frame)->indentation + 1, loop ? FRAME_LOOP : FRAME_BRANCH);
 }
 
+/** Output bindings and explicit modes start operation actions; an unmarked selection requires its own deeper action region.
+ * A copy source has no child region, so this structural distinction never depends on a declared type or name.
+ */
+static bool operation_action(const LayoutLine *line, const LayoutLine *end) {
+    const unsigned char *bytes = source_bytes(line->code.source);
+    if (line->code.end > line->code.start) {
+        unsigned char last = bytes[line->code.end - 1];
+        if (last == '!' || last == '%') { return true; }
+    }
+    for (size_t offset = line->code.start; offset < line->code.end; offset++) {
+        if (bytes[offset] == '<' || bytes[offset] == '>') { return true; }
+    }
+    bool blank = false;
+    const LayoutLine *child = parser_significant(line->next, end, &blank);
+    return child != NULL && child != end && child->indentation == line->indentation + 1;
+}
+
 /** Distinguish supported declaration, assignment, control or retained-read tails by physical structure only. Never query a declaration inventory to choose syntax.
  */
 static bool bare_target(Parser *parser, ParseFrame **frame, AstNode *node) {
@@ -66,12 +83,8 @@ static bool bare_target(Parser *parser, ParseFrame **frame, AstNode *node) {
         return parser_declaration(parser, line->indentation, node);
     }
     if (present && next->indentation == line->indentation + 1) {
-        const unsigned char *bytes = source_bytes(next->code.source);
-        bool binding = false;
-        for (size_t offset = next->code.start; offset < next->code.end; offset++) {
-            binding |= bytes[offset] == '<' || bytes[offset] == '>';
-        }
-        return binding ? parser_start_call(parser, frame, node, line->code, AST_RETAINED_READ)
+        return operation_action(next, parser->end)
+            ? parser_start_call(parser, frame, node, line->code, AST_RETAINED_READ)
             : assignment(parser, node, access);
     }
     return parser_fail(parser, line->code, "A bare target is not an executable statement",
@@ -93,13 +106,10 @@ bool parser_statement(Parser *parser, ParseFrame **frame) {
     }
     const unsigned char *bytes = source_bytes(text.source);
     if (text.end > text.start && (bytes[text.end - 1] == '!' || bytes[text.end - 1] == '%')) {
-        AstCallMode mode = bytes[text.end - 1] == '!' ? AST_ENTRY_CALL : AST_RESUME_CALL;
-        SourceSpan target = text;
-        if (target.end - target.start < 2 || bytes[target.end - 2] != ' ') {
-            return parser_fail(parser, text, "An execution marker requires one preceding space", EXPECT_STATEMENT_TAIL);
-        }
-        target.end -= 2;
-        return parser_start_call(parser, frame, node, target, mode);
+        AstCallMode mode;
+        SourceSpan target;
+        return parser_call_mode(parser, text, &target, &mode)
+            && parser_start_call(parser, frame, node, target, mode);
     }
     if (text.end > text.start && bytes[text.start] == '.') {
         return parser_start_call(parser, frame, node, text, AST_CONSTANT_READ);

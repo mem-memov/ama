@@ -1,5 +1,5 @@
 # @file
-# @brief Dispatch independent child suites: module declarations sources tree calls bindings abi access errors.
+# @brief Dispatch independent child suites: module declarations sources tree calls bindings results abi access errors.
 # Contract: ../../../docs/implementation/library-tests-and-build.md; generated output is never a maintained input.
-SUBDIRECTORIES := module declarations sources tree calls bindings abi access errors
+SUBDIRECTORIES := module declarations sources tree calls bindings results abi access errors
 include ../../parent.mk

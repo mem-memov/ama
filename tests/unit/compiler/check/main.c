@@ -135,11 +135,26 @@ static void it_reports_unsupported_self_reference_typing_without_dereferencing_a
     destroy_frontend();
 }
 
+/** Newly parsed selected operations cannot silently disappear through the old scalar semantic consumer. */
+static void it_reports_unsupported_result_selection_instead_of_dropping_selected_actions(void) {
+    prepare_project();
+    file("generated/project/main", "@!\nconstructor\n.constructor\nconstructor\n method !\n");
+    file("generated/project/constructor", "@>\nmethod\n.method\n@!\n");
+    file("generated/project/method", "@!\n");
+    setup_frontend();
+    bool valid = check_project();
+    assert(!valid && !frontend.valid && !frontend.plan_initialized);
+    assert(diagnostic_valid(&frontend.error) && frontend.error.code == DIAGNOSTIC_UNSUPPORTED_FEATURE);
+    assert(strstr(frontend.error.message, "result-selection") != NULL);
+    destroy_frontend();
+}
+
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_reports_unsupported_result_selection_instead_of_dropping_selected_actions();
     it_reports_unsupported_self_reference_typing_without_dereferencing_a_missing_access();
     it_resolves_multiword_declarations_through_both_root_families();
     it_composes_owned_frontend_input_snapshots_without_executing_native_c();

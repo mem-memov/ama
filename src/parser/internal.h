@@ -20,14 +20,15 @@ typedef struct {
 } Parser;
 
 /** Retained explicit body frame modes; independent of C recursion depth. */
-typedef enum { FRAME_ROOT, FRAME_BRANCH, FRAME_LOOP, FRAME_ALTERNATIVE } ParseFrameKind;
-/** AST-arena-owned frame borrowing parent/block/owner and recording exact required indentation. */
+typedef enum { FRAME_ROOT, FRAME_BRANCH, FRAME_LOOP, FRAME_ALTERNATIVE, FRAME_CALL } ParseFrameKind;
+/** AST-arena-owned frame with exact indentation. Body frames use block; operation frames use owner and completion state. */
 typedef struct ParseFrame {
     struct ParseFrame *parent;
     AstBlock *block;
     AstNode *owner;
     size_t indentation;
     ParseFrameKind kind;
+    bool call_arguments_done;
 } ParseFrame;
 
 /** Record only the first structural failure, mark the parser failed, and return false. Borrow source/message storage through AST lifetime.
@@ -81,13 +82,20 @@ bool parser_body(Parser *parser, ParsedSection section, AstBlock *output);
 /** Classify one retained statement from physical adjacency/mode and append its structural node; failure invalidates the parent AST.
  */
 bool parser_statement(Parser *parser, ParseFrame **frame);
-/** Parse target/mode and bindings, optionally pushing the lexical refusal alternative. No callee type or names are consulted.
+/** Start one ordinary operation frame with exact target/mode; its iterative driver owns bindings and the optional refusal body.
  */
 bool parser_start_call(Parser *parser, ParseFrame **frame, AstNode *node,
     SourceSpan target, AstCallMode mode);
-/** Consume exactly one binding indentation level, preserving text order and directional omissions. Failure publishes no usable parent AST.
- */
-bool parser_call_arguments(Parser *parser, AstNode *node, size_t indentation);
+/** Parse and append one ordinary binding at the current checked call-argument line; advance once on success. */
+bool parser_call_argument(Parser *, AstNode *);
+/** Parse a checked execution/resume suffix or unmarked retained head, preserving exact target bounds. */
+bool parser_call_mode(Parser *, SourceSpan, SourceSpan *, AstCallMode *);
+/** Resolve only structural target form and mode; no callee lookup or runtime acquisition occurs. */
+bool parser_call_target(Parser *, AstNode *, SourceSpan, AstCallMode);
+/** Append one arena-owned ordered output action and close its operation's input phase. Exactly one binding/selected operation is supplied. */
+bool parser_output_action(Parser *, AstNode *, AstArgument *, AstNode *);
+/** Advance an explicit operation frame by one binding, selected child, handler transition or completed frame. */
+bool parser_call_step(Parser *, ParseFrame **);
 /** Allocate a child frame owning one body view, borrowing its owner/block and parent; cursor updates only after successful allocation.
  */
 bool parser_push_frame(Parser *parser, ParseFrame **frame, AstBlock *block,
