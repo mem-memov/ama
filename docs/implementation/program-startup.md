@@ -68,5 +68,6 @@ same declarations. Runtime tests run under ASan/UBSan.
 These startup tests isolate declarations and lifetime ordering. Separate
 [entry preparation](entry-preparation.md), [execution](stackless-execution.md) and
 [continuation](continuations.md) suites compose calls, return/yield dispatch and
-runtime traces. Current context-local storage and new control/result-tree rules
-remain open; none is inferred from declarations-only acceptance.
+runtime traces. [Per-context scalar shared storage](shared-storage.md) is now checked through
+independent context factories and full failure/cleanup paths. New control/result-tree
+execution adapters remain separate tasks; none is inferred from declaration acceptance.

@@ -12945,6 +12945,26 @@
         "case": "it_publishes_distinct_context_identities_from_simultaneous_factories",
         "command": "make -C tests/unit/runtime/contexts",
         "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_owns_nested_shared_values_per_context_without_materializing_instance_pools",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_publishes_no_context_or_root_when_each_shared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_cleans_every_shared_factory_allocation_prefix_and_allows_a_fresh_retry",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
       }
     ]
   },
@@ -13022,6 +13042,26 @@
         "case": "it_reports_the_active_execution_chain_before_releasing_all_context_resources",
         "command": "make -C tests/unit/runtime/host-lifecycle",
         "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_owns_nested_shared_values_per_context_without_materializing_instance_pools",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_publishes_no_context_or_root_when_each_shared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_cleans_every_shared_factory_allocation_prefix_and_allows_a_fresh_retry",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
       }
     ]
   },
@@ -13053,6 +13093,26 @@
         "case": "it_normalizes_malformed_context_reports_without_allocating_or_changing_refusals",
         "command": "make -C tests/unit/runtime/contexts",
         "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_owns_nested_shared_values_per_context_without_materializing_instance_pools",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_publishes_no_context_or_root_when_each_shared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_cleans_every_shared_factory_allocation_prefix_and_allows_a_fresh_retry",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
       }
     ]
   },
@@ -19248,6 +19308,26 @@
         "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
         "command": "make -C tests/unit/runtime/program",
         "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_owns_nested_shared_values_per_context_without_materializing_instance_pools",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_publishes_no_context_or_root_when_each_shared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_cleans_every_shared_factory_allocation_prefix_and_allows_a_fresh_retry",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
       }
     ]
   },
@@ -19284,6 +19364,26 @@
         "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
         "command": "make -C tests/unit/runtime/program",
         "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_owns_nested_shared_values_per_context_without_materializing_instance_pools",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_publishes_no_context_or_root_when_each_shared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_cleans_every_shared_factory_allocation_prefix_and_allows_a_fresh_retry",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
       }
     ]
   },
@@ -19370,6 +19470,26 @@
         "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
         "command": "make -C tests/unit/runtime/protocols",
         "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_owns_nested_shared_values_per_context_without_materializing_instance_pools",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_publishes_no_context_or_root_when_each_shared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_cleans_every_shared_factory_allocation_prefix_and_allows_a_fresh_retry",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
       }
     ]
   },
@@ -19406,6 +19526,26 @@
         "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
         "command": "make -C tests/unit/runtime/program",
         "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_owns_nested_shared_values_per_context_without_materializing_instance_pools",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_publishes_no_context_or_root_when_each_shared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_cleans_every_shared_factory_allocation_prefix_and_allows_a_fresh_retry",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
       }
     ]
   },
@@ -19593,6 +19733,26 @@
         "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
         "command": "make -C tests/unit/runtime/protocols",
         "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_owns_nested_shared_values_per_context_without_materializing_instance_pools",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_publishes_no_context_or_root_when_each_shared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_cleans_every_shared_factory_allocation_prefix_and_allows_a_fresh_retry",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
       }
     ]
   },
@@ -38378,6 +38538,26 @@
         "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
         "command": "make -C tests/unit/runtime/program-construction",
         "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_owns_nested_shared_values_per_context_without_materializing_instance_pools",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_publishes_no_context_or_root_when_each_shared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_cleans_every_shared_factory_allocation_prefix_and_allows_a_fresh_retry",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
       }
     ]
   },
@@ -38967,6 +39147,26 @@
         "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
         "command": "make -C tests/unit/runtime/protocols",
         "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_owns_nested_shared_values_per_context_without_materializing_instance_pools",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_publishes_no_context_or_root_when_each_shared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_cleans_every_shared_factory_allocation_prefix_and_allows_a_fresh_retry",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
       }
     ]
   },
@@ -58180,6 +58380,162 @@
         "case": "it_finishes_old_and_prepared_cleanup_when_each_destructive_commit_hook_fails",
         "command": "make -C tests/unit/runtime/objects/reconstruction",
         "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/shared-storage/main.c": {
+    "contract": "docs/implementation/shared-storage.md",
+    "purpose": "Verify isolated scalar shared dependency trees, pool-free factory startup and every failed cleanup prefix.",
+    "tests": [
+      {
+        "case": "it_owns_nested_shared_values_per_context_without_materializing_instance_pools",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_publishes_no_context_or_root_when_each_shared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_cleans_every_shared_factory_allocation_prefix_and_allows_a_fresh_retry",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/shared-storage/Makefile": {
+    "contract": "docs/implementation/shared-storage.md",
+    "purpose": "Verify isolated scalar shared dependency trees, pool-free factory startup and every failed cleanup prefix.",
+    "tests": [
+      {
+        "case": "it_owns_nested_shared_values_per_context_without_materializing_instance_pools",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_publishes_no_context_or_root_when_each_shared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_cleans_every_shared_factory_allocation_prefix_and_allows_a_fresh_retry",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/shared-storage/support/values.c": {
+    "contract": "docs/implementation/shared-storage.md",
+    "purpose": "Verify isolated scalar shared dependency trees, pool-free factory startup and every failed cleanup prefix.",
+    "tests": [
+      {
+        "case": "it_owns_nested_shared_values_per_context_without_materializing_instance_pools",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_publishes_no_context_or_root_when_each_shared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_cleans_every_shared_factory_allocation_prefix_and_allows_a_fresh_retry",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/shared-storage/support/contexts.c": {
+    "contract": "docs/implementation/shared-storage.md",
+    "purpose": "Verify isolated scalar shared dependency trees, pool-free factory startup and every failed cleanup prefix.",
+    "tests": [
+      {
+        "case": "it_owns_nested_shared_values_per_context_without_materializing_instance_pools",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_publishes_no_context_or_root_when_each_shared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_cleans_every_shared_factory_allocation_prefix_and_allows_a_fresh_retry",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/shared-storage/support/schema.c": {
+    "contract": "docs/implementation/shared-storage.md",
+    "purpose": "Verify isolated scalar shared dependency trees, pool-free factory startup and every failed cleanup prefix.",
+    "tests": [
+      {
+        "case": "it_owns_nested_shared_values_per_context_without_materializing_instance_pools",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_publishes_no_context_or_root_when_each_shared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_cleans_every_shared_factory_allocation_prefix_and_allows_a_fresh_retry",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/shared-storage/support/failures.c": {
+    "contract": "docs/implementation/shared-storage.md",
+    "purpose": "Verify isolated scalar shared dependency trees, pool-free factory startup and every failed cleanup prefix.",
+    "tests": [
+      {
+        "case": "it_owns_nested_shared_values_per_context_without_materializing_instance_pools",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_publishes_no_context_or_root_when_each_shared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_cleans_every_shared_factory_allocation_prefix_and_allows_a_fresh_retry",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
+        "command": "make -C tests/unit/runtime/shared-storage",
+        "source": "tests/unit/runtime/shared-storage/main.c"
       }
     ]
   }

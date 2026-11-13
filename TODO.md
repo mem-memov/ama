@@ -1251,11 +1251,21 @@ Contracts: [references and copying](spec/language/values-and-references.md),
   replacement checks compose with these cases. Full strict tests and ASan+UBSan
   passed; all 1052 maintained inputs have coverage. Final Doxygen reproducibility
   is checked before commit.
-- [ ] **T052 — Separate shared constants from pools.** Needs: T034, T051.
+- [x] **T052 — Separate shared constants from pools.** Needs: T034, T051.
   Initialize immutable module storage per context in dependency order and clean it
   in reverse order. Test no constants-only instance pool, two independent contexts
   and startup failure before root creation. Establish scalar-owned constant trees
   here; T076 supplies concrete list copying and T087 integrates list constants.
+  Evidence: [per-context scalar shared storage](docs/implementation/shared-storage.md)
+  verifies a dependency-ordered literal/compound/whole-copy closure in two isolated
+  contexts. Arrays, child values, payloads and native resources are independent;
+  pool directories and root ledgers stay empty until explicit construction, and
+  shared acquisition refuses. Address traces prove explicit-root cleanup before
+  reverse shared declarations/children. All seven native constructors/destructors
+  and every factory allocation are failed, with no partial identity publication,
+  complete cleanup and successful retry. Strict runtime, semantic constants and
+  storage-planning tests plus ASan+UBSan passed; all 1058 maintained inputs have
+  coverage. Final Doxygen reproducibility is checked before commit.
 - [ ] **T053 — Compose runtime descriptors with planned C layouts.** Needs:
   T045, T052. Verify concrete sizes/alignment/offsets and nominal identity without
   raw-word universal casts. Compile descriptor checks and real native borrow/
