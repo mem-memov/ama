@@ -3,6 +3,8 @@
  * @brief Resolve declared storage forms, writability and explicit truth/index capabilities.
  *
  * [TYPE-05](../../../spec/language/declarations.md#type-05)
+ * [NAME-06](../../../spec/language/declarations.md#name-06) resolves lexical
+ * local cells first and forbids their use during instance construction.
  * References do not implicitly dereference or inherit conversion capability from an owned field.
  */
 #include "semantic/internal.h"
@@ -37,7 +39,12 @@ SemanticAccess *semantic_access(SemanticProgram *program, SemanticType *type,
     SemanticAccess **destination = &first;
     bool outer = true;
     for (const AstAccess *node = syntax; node != NULL; node = node->index) {
-        SemanticSymbol *symbol = semantic_symbol(type, node->name);
+        SemanticSymbol *symbol = semantic_local_at(type, node->name, node->span);
+        if (symbol != NULL && initializing != NULL) {
+            semantic_fail(program, node->name, "Instance construction cannot read a runtime foreach-local binding", symbol);
+            return NULL;
+        }
+        if (symbol == NULL) { symbol = semantic_symbol(type, node->name); }
         if (symbol == NULL) {
             semantic_fail(program, node->name, "The variable is not declared in this module", NULL);
             return NULL;

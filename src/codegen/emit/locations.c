@@ -4,6 +4,7 @@
  *
  * [DEBUG-01](../../../spec/implementation/diagnostics.md#debug-01)
  * Byte-octal string emission preserves original path/name bytes without C escape ambiguity; selector exhaustion fails generation.
+ * [TYPE-06](../../../spec/language/declarations.md#type-06) Introducing receiver sites remain available when no explicit declaration node exists.
  */
 #include <stdint.h>
 #include "codegen/internal.h"
@@ -59,7 +60,7 @@ bool codegen_emit_locations(NativeScaffold *scaffold, FILE *output) {
             if (!codegen_location(output, node->selector, span, role, node->value_type == NULL ? type->plan->type : node->value_type)) { return false; }
         }
         for (const SemanticSymbol *field = type->plan->type->first; field != NULL; field = field->next) {
-            if (!codegen_location(output, codegen_declaration_selector(scaffold, field), field->declaration->span,
+            if (!codegen_location(output, codegen_declaration_selector(scaffold, field), field->site,
                     field->role == SYMBOL_CONSTANT ? "shared construction" : "field construction", field->type)) { return false; }
         }
     }

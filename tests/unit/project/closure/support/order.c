@@ -8,7 +8,7 @@ static void check_dependency_permutation(const size_t *order, const SourceText *
         DependencyPath nodes[7];
         for (size_t index = 0; index < 7; index++) {
             size_t offset = grouped ? order[index] / 2 : order[index];
-            nodes[index] = (DependencyPath){index + 1 == 7 ? NULL : &nodes[index + 1], {source, offset, offset + 1}};
+            nodes[index] = (DependencyPath){.next = index + 1 == 7 ? NULL : &nodes[index + 1], .path = {source, offset, offset + 1}};
         }
         DependencyPaths paths = {nodes, 7};
         size_t allocations = allocation_count;

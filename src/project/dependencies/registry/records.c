@@ -3,6 +3,8 @@
  * @brief Register exact required modules and dependency sites without duplicate loading.
  *
  * [DEP-02](../../../../spec/implementation/compiler.md#dep-02)
+ * [LIST-04](../../../../spec/language/lists.md#list-04) adds only its fixed
+ * Standard integer identity, retaining the actual requiring list target as its site.
  * Reuse existing loading/ready records by complete supported identity, never root search precedence.
  */
 #include <string.h>
@@ -58,24 +60,26 @@ bool project_require(Project *project, ProjectModule *requester,
     return true;
 }
 
+/** Link one already owned identity with its actual explicit or language-contract request site. */
+static bool add_dependency(Project *project, ProjectModule *module, const char *logical, SourceSpan site) {
+    ProjectDependency *dependency = source_arena_allocate(&project->arena, sizeof(*dependency));
+    if (dependency == NULL) { return project_memory_failure(project); }
+    *dependency = (ProjectDependency){.requirement = site, .logical_path = logical};
+    if (!project_require(project, module, logical, site, &dependency->target)) { return false; }
+    if (module->last == NULL) { module->first = dependency; }
+    else { module->last->next = dependency; }
+    module->last = dependency;
+    return true;
+}
 bool project_add_dependency(Project *project, ProjectModule *module, SourceSpan path) {
     size_t length = path.end - path.start;
     char *logical = source_arena_allocate(&project->arena, length + 1);
-    ProjectDependency *dependency = source_arena_allocate(&project->arena, sizeof(*dependency));
-    if (logical == NULL || dependency == NULL) {
-        return project_memory_failure(project);
-    }
+    if (logical == NULL) { return project_memory_failure(project); }
     memcpy(logical, source_bytes(path.source) + path.start, length);
     logical[length] = 0;
-    *dependency = (ProjectDependency){.requirement = path, .logical_path = logical};
-    if (!project_require(project, module, logical, path, &dependency->target)) {
-        return false;
-    }
-    if (module->last == NULL) {
-        module->first = dependency;
-    } else {
-        module->last->next = dependency;
-    }
-    module->last = dependency;
-    return true;
+    return add_dependency(project, module, logical, path);
+}
+bool project_add_implicit_dependency(Project *project, ProjectModule *module, const char *path, SourceSpan site) {
+    const char *logical = source_arena_copy(&project->arena, path);
+    return logical == NULL ? project_memory_failure(project) : add_dependency(project, module, logical, site);
 }

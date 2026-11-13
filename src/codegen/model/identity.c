@@ -4,6 +4,7 @@
  *
  * [NAME-01](../../../spec/implementation/compiler.md#name-01)
  * Runtime type ordinals are assembly-local registry keys, not cross-build external identities. Source names use complete registered keys.
+ * [TYPE-06](../../../spec/language/declarations.md#type-06) Exact semantic base names do not require a synthetic declaration AST.
  */
 #include "codegen/internal.h"
 
@@ -36,7 +37,7 @@ const ScaffoldMember *codegen_member(const ScaffoldType *type, const SemanticSym
  * transliteration.
  */
 const char *codegen_constant_name(NativeScaffold *scaffold, const SemanticConstantPlan *constant) {
-    SourceSpan name = constant->symbol->declaration->as.declaration.name->name;
+    SourceSpan name = constant->symbol->name;
     size_t length = name.end - name.start;
     char *member = scaffold_allocate(scaffold, length + 1);
     if (member == NULL) { return NULL; }

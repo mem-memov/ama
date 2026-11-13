@@ -1139,6 +1139,11 @@
         "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -1259,6 +1264,11 @@
       },
       {
         "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
       }
@@ -1655,6 +1665,11 @@
       },
       {
         "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
       }
@@ -6108,6 +6123,11 @@
         "case": "it_enforces_native_view_constness_nominal_types_and_opaque_graph_storage",
         "command": "make -C tests/unit/native/scaffold/declarations",
         "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -6399,6 +6419,11 @@
         "case": "it_unwinds_every_proposed_frontend_allocation_failure",
         "command": "make -C tests/unit/native/scaffold/declarations",
         "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -10511,6 +10536,11 @@
         "case": "it_reserves_zero_for_absent_control_and_source_positions",
         "command": "make -C tests/unit/planning/ir",
         "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -10815,6 +10845,66 @@
         "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_requires_the_fixed_standard_integer_once_for_intrinsic_interface_parents",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_interface_dependency_allocation_in_success_and_error_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
       }
     ]
   },
@@ -10886,6 +10976,66 @@
         "case": "it_walks_deep_blocks_and_dependency_chains_without_c_recursion",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_requires_the_fixed_standard_integer_once_for_intrinsic_interface_parents",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_interface_dependency_allocation_in_success_and_error_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
       }
     ]
   },
@@ -11200,6 +11350,66 @@
         "case": "it_unwinds_every_complete_identity_registry_allocation_failure",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_requires_the_fixed_standard_integer_once_for_intrinsic_interface_parents",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_interface_dependency_allocation_in_success_and_error_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
       }
     ]
   },
@@ -19545,6 +19755,61 @@
         "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
         "command": "make -C tests/unit/semantic/relations",
         "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -19865,6 +20130,61 @@
         "case": "it_preserves_case_and_unicode_byte_distinctions_without_normalization",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -19931,6 +20251,61 @@
         "case": "it_separates_complete_explicit_visibility_from_initializer_order",
         "command": "make -C tests/unit/semantic/types",
         "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -20171,6 +20546,61 @@
         "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
         "command": "make -C tests/unit/semantic/relations",
         "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -20427,6 +20857,61 @@
         "case": "it_identifies_a_noncopyable_native_seed_inside_a_composed_type",
         "command": "make -C tests/unit/semantic/diagnostics",
         "source": "tests/unit/semantic/diagnostics/main.c"
+      },
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -20448,6 +20933,61 @@
         "case": "it_identifies_a_noncopyable_native_seed_inside_a_composed_type",
         "command": "make -C tests/unit/semantic/diagnostics",
         "source": "tests/unit/semantic/diagnostics/main.c"
+      },
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -20509,6 +21049,61 @@
         "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -20570,6 +21165,61 @@
         "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -20777,6 +21427,61 @@
         "case": "it_separates_complete_explicit_visibility_from_initializer_order",
         "command": "make -C tests/unit/semantic/types",
         "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -20893,6 +21598,61 @@
         "case": "it_preserves_case_and_unicode_byte_distinctions_without_normalization",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -20954,6 +21714,61 @@
         "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -28857,6 +29672,11 @@
         "case": "it_executes_negative_only_branches_with_the_original_truth_conversion",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -33930,6 +34750,66 @@
         "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_requires_the_fixed_standard_integer_once_for_intrinsic_interface_parents",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_interface_dependency_allocation_in_success_and_error_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
       }
     ]
   },
@@ -37779,6 +38659,61 @@
         "case": "it_releases_every_partial_resolved_value_binding_and_access",
         "command": "make -C tests/unit/semantic/types",
         "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -45372,6 +46307,66 @@
         "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_requires_the_fixed_standard_integer_once_for_intrinsic_interface_parents",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_interface_dependency_allocation_in_success_and_error_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
       }
     ],
     "standalone_header_command": [
@@ -45428,6 +46423,66 @@
         "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_requires_the_fixed_standard_integer_once_for_intrinsic_interface_parents",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_interface_dependency_allocation_in_success_and_error_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
       }
     ]
   },
@@ -45694,6 +46749,66 @@
         "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_requires_the_fixed_standard_integer_once_for_intrinsic_interface_parents",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_interface_dependency_allocation_in_success_and_error_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
       }
     ]
   },
@@ -46187,6 +47302,1490 @@
         "case": "it_preserves_case_and_unicode_byte_distinctions_without_normalization",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
+  "src/semantic/inference/events/collect.c": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/semantic/inference/events/sort.c": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/semantic/inference/infer.c": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/semantic/inference/internal.h": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/inference/inventory/encounter.c": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/semantic/inference/inventory/locals.c": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/semantic/inference/inventory/order.c": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/semantic/inference/resolve/access.c": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/semantic/inference/resolve/assignment.c": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/semantic/inference/resolve/binding.c": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/semantic/inference/resolve/foreach.c": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/semantic/inference/resolve/operation.c": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/semantic/inference/resolve/receiver.c": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/semantic/inference/resolve/result.c": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/semantic/inference/resolve/selection.c": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/semantic/inference/resolve/source.c": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "tests/unit/project/closure/support/intrinsic.c": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_requires_the_fixed_standard_integer_once_for_intrinsic_interface_parents",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_interface_dependency_allocation_in_success_and_error_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/inference/Makefile": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/inference/main.c": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/inference/support/assignments.c": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/inference/support/failures.c": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/inference/support/fixture.c": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/inference/support/results.c": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/inference/support/scopes.c": {
+    "contract": "docs/implementation/source-order-inference.md",
+    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
+    "tests": [
+      {
+        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
+        "command": "make -C tests/unit/semantic/inference",
+        "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   }

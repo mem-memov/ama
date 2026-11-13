@@ -32,8 +32,8 @@ declaration one complete base-name symbol, module ordinal and role ordinal.
 Storage suffixes are attributes, and ordinary blocks do not shadow names.
 [Exact lookup](../../src/semantic/names/lookup.c) preserves original UTF-8 bytes;
 [interface lookup](../../src/semantic/names/interface.c) shares declared names,
-positions, types and storage flags with call checking. Receiver inference and
-foreach-local binding classification remain T031.
+positions, types and storage flags with call checking. The [source-order pass](source-order-inference.md) adds receiver-inferred fields
+and classifies foreach-local bindings separately.
 
 The inventory invariant is the unique source-ordered declaration prefix. Exact
 comparison either diagnoses the later duplicate with its earlier declaration or
@@ -68,9 +68,10 @@ ABI bindings and every native-parse allocation failure. Release/Werror tests pas
 
 ## Resolved values, interfaces and storage compatibility
 
-`semantic_resolve` follows namespace/native validation. It first links every
-value declaration to the unique executable module type; constants-only namespaces
-cannot be instance types. It then computes clone capability over all owned
+`semantic_resolve` follows namespace/native validation. The source-order pass first
+links explicit value types, then adds exact inferred fields and lexical foreach
+bindings before full value checking. Constants-only namespaces cannot be instance
+types. It then computes clone capability over all owned
 interface/body fields (including list element types), excluding shared constants
 and reference edges. Starting with every executable type except native types
 without `=`, repeated removal of types owning a removed type computes PROTO-07's

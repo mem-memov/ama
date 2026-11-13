@@ -4,6 +4,7 @@
  *
  * [NAME-04](../../../spec/language/declarations.md#name-04)
  * Reject duplicate base names across storage forms; The complete inventory includes nested selected handlers and traversal bodies; first-receiver inference and iterator bindings remain T031.
+ * [TYPE-06](../../../spec/language/declarations.md#type-06) Explicit spelling/type/initializer metadata precedes receiver classification.
  */
 #include <assert.h>
 #include "semantic/internal.h"
@@ -27,6 +28,10 @@ static bool declare(SemanticProgram *program, SemanticType *type, const AstNode 
         return false;
     }
     *symbol = (SemanticSymbol){.owner = type, .declaration = node, .role = role,
+        .name = name->name, .spelling = name->span, .site = node->span,
+        .type_site = node->as.declaration.type,
+        .initializer_syntax = node->as.declaration.first,
+        .initializer_count = node->as.declaration.initializer_count,
         .ordinal = type->symbol_count++, .role_ordinal = type->counts[role]++,
         .reference = name->reference, .list = name->whole_list};
     if (type->last == NULL) {

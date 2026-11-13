@@ -4,6 +4,7 @@
  *
  * [COMP-04](../../../spec/implementation/compiler.md#comp-04)
  * Nominal mismatch and storage-form mismatch remain distinct causes, and transitive copy errors retain their native seed.
+ * [TYPE-06](../../../spec/language/declarations.md#type-06) Mismatch locations come from uniform explicit/inferred symbol metadata.
  */
 #include "semantic/internal.h"
 
@@ -31,9 +32,9 @@ bool semantic_incompatible(SemanticProgram *program, SemanticType *type, bool re
     program->error.cause = source->type != type ? "The full module identities differ"
         : "The ownership or scalar/list forms differ";
     SourceSpan source_site = source->declaration == NULL
-        ? (SourceSpan){source->type->module->source->text, 0, 0} : source->declaration->declaration->span;
+        ? (SourceSpan){source->type->module->source->text, 0, 0} : source->declaration->site;
     SourceSpan destination_site = destination == NULL
-        ? (SourceSpan){type->module->source->text, 0, 0} : destination->declaration->span;
+        ? (SourceSpan){type->module->source->text, 0, 0} : destination->site;
     program->related[0] = (DiagnosticRelated){{.span = source_site},
         source_role(source->reference, source->list), program->error.subject};
     program->related[1] = (DiagnosticRelated){{.span = destination_site},

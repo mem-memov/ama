@@ -291,11 +291,23 @@ static void it_executes_negative_only_branches_with_the_original_truth_conversio
     execute_project("@!\nprobe\n.worker\ncondition\n.value\n |0\ncondition\n:\n probe !\n  < |8\ncondition\n?\ncondition\n:\n probe !\n  < |9\n", "8:1:0\n9:2:0\n", true);
 }
 
+/** Fresh inferred fields use normal default construction and executable transfers, including refusal before the first result copy. */
+static void it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes(void) {
+    execute_project("@!\nprobe\n.worker\nsource\n.value\n |12\nnew variable\n source\nprobe !\n < new variable\n > returned\nprobe !\n < returned\n", "12:1:0\n13:2:0\n", true);
+    execute_project("@!\nsource\n.value\n |5\ninferred\n source\nsnapshot\n.value\n inferred\nprobe\n.worker\nprobe !\n < snapshot\nprobe !\n < inferred\n", "0:1:0\n5:2:0\n", true);
+    execute_project("@!\nabsent&\n.worker\nprobe\n.worker\nabsent& !\n > fresh\n:\n probe !\n  < fresh\n", "0:1:7\n", true);
+    execute_project("@!\noriginal\n.worker\noriginal !\n < |12\ncopy\n original\ncopy !\n < |20\n", "12:1:0\n20:2:0\n", true);
+    execute_project("@!\nitems[]\n.value\n |3\n |5\ncopies[]\n items[]\nindex\n.value\n |0\nprobe\n.worker\nprobe !\n < copies[index]\n", "3:1:0\n", true);
+    file("generated/project/reference producer", "@>\nresult&\n.value\n@!\n");
+    execute_project("@!\nabsent&\n.reference producer\nprobe\n.worker\nabsent& !\n > fresh&\n:\n fresh& !\n :\n  probe !\n", "7:1:7\n", true);
+}
+
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes();
     it_checks_empty_loops_once_but_repeats_declaration_only_bodies();
     it_executes_negative_only_branches_with_the_original_truth_conversion();
     it_closes_native_borrows_before_normal_or_failed_host_return();

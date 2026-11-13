@@ -4,6 +4,7 @@
  *
  * [CABI-06](../../../../spec/implementation/native-interface.md#cabi-06)
  * All required types precede permitted field access; source locations retain original Ama names without runtime/body inclusion.
+ * [TYPE-06](../../../../spec/language/declarations.md#type-06) Semantic spellings cover inferred fields alongside explicit declarations.
  */
 #include "native/scaffold/internal.h"
 #include "source/mapping/directive.h"
@@ -42,7 +43,7 @@ static bool fields(NativeScaffold *scaffold, FILE *output, const ScaffoldType *t
         }
         const ScaffoldType *child = native_scaffold_type(scaffold, member->field->symbol->type);
         const char *name = child->names[field_role(member->field->form, write)]->internal_name;
-        SourceSpan source_name = member->field->symbol->declaration->as.declaration.name->span;
+        SourceSpan source_name = member->field->symbol->spelling;
         if (source_write_line_directive(output, source_name.source, source_name.start) != SOURCE_OK
             || fprintf(output, "    /* %zu: ", interface ? member->field->symbol->role_ordinal : member->field->symbol->ordinal) < 0
             || fwrite(source_bytes(source_name.source) + source_name.start, 1, source_name.end - source_name.start, output)

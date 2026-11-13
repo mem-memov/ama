@@ -4,6 +4,7 @@
  *
  * [CONST-02](../../../spec/language/declarations.md#const-02)
  * Keep each module declaration prefix and cross-module value reads in one exact initialization relation.
+ * [TYPE-06](../../../spec/language/declarations.md#type-06) Symbol spelling metadata remains independent of syntax-node storage.
  */
 #include "internal.h"
 
@@ -17,7 +18,7 @@ bool semantic_constant_graph(SemanticProgram *program) {
             GraphVertex *vertex = semantic_constant_vertex(&program->constants, symbol);
             if (vertex == NULL || (previous != NULL && !dependency_edge(&program->constants, vertex,
                     semantic_constant_vertex(&program->constants, previous),
-                    symbol->declaration->as.declaration.name->span))) {
+                    symbol->spelling))) {
                 return false;
             }
             previous = symbol;

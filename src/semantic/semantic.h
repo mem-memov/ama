@@ -6,7 +6,10 @@
  * [NAME-04](../../spec/language/declarations.md#name-04) shares one exact base
  * namespace; [CALL-08](../../spec/language/calls-and-results.md#call-08) shares
  * declared interface role/ordinal metadata between consumers.
- * Borrow the loaded project; only successful stage outputs are consumable. Complete explicit names and interface metadata precede inference/lexical locals in T031.
+ * [TYPE-06](../../spec/language/declarations.md#type-06) keeps inferred field
+ * metadata independent from explicit declaration syntax;
+ * [NAME-06](../../spec/language/declarations.md#name-06) retains lexical local cells separately.
+ * Borrow the loaded project; only successful stage outputs are consumable. Only successful explicit/inferred stages publish usable metadata.
  */
 #ifndef AMA_SEMANTIC_PROGRAM_H
 #define AMA_SEMANTIC_PROGRAM_H
@@ -56,10 +59,23 @@ typedef struct SemanticInitializer {
     SemanticSource *source;
     SemanticTransfer transfer;
 } SemanticInitializer;
-/** Resolved declaration with exact owner/type/storage/role ordinals and ordered initializer metadata. */
+/** Typed persistent field or lexical reference cell with original source metadata.
+ * Only explicit fields retain declaration syntax; inferred fields have no creation-time
+ * initializer source. Module/role ordinals apply to persistent fields; locals retain
+ * their foreach scope and are excluded from the normal field/ownership inventory.
+ */
 typedef struct SemanticSymbol {
     struct SemanticSymbol *next;
     const AstNode *declaration;
+    SourceSpan name;
+    SourceSpan spelling;
+    SourceSpan site;
+    SourceSpan type_site;
+    const AstInitializer *initializer_syntax;
+    size_t initializer_count;
+    bool inferred;
+    bool local;
+    const AstNode *scope;
     SemanticType *owner;
     SemanticType *type;
     SymbolRole role;
@@ -71,6 +87,14 @@ typedef struct SemanticSymbol {
     SemanticInitializer *last_initializer;
     SemanticConstantPlan *shared;
 } SemanticSymbol;
+/** One lexical foreach role, borrowing its syntax and retaining the chosen mutable scalar-reference cell. */
+typedef struct SemanticForeachBinding {
+    struct SemanticForeachBinding *next;
+    const AstNode *syntax;
+    SemanticSymbol *collection;
+    SemanticSymbol *binding;
+    bool introduced;
+} SemanticForeachBinding;
 /** Nominal project-module identity with declarations, checked ABI and copy-capability cause; no runtime instance is created. */
 struct SemanticType {
     SemanticType *next;
@@ -79,6 +103,9 @@ struct SemanticType {
     SemanticSymbol *last;
     size_t symbol_count;
     size_t counts[4];
+    SemanticSymbol *locals;
+    SemanticForeachBinding *foreach_bindings;
+    SemanticForeachBinding *last_foreach_binding;
     AbiTable abi;
     bool executable;
     bool cloneable;
@@ -159,6 +186,8 @@ typedef struct {
     bool names_valid;
     bool native_attempted;
     bool native_valid;
+    bool inference_attempted;
+    bool inference_valid;
     bool resolve_attempted;
     bool resolved;
     bool relations_attempted;
@@ -225,5 +254,14 @@ SemanticSymbol *semantic_interface_name(const SemanticType *, SymbolRole, Source
  * metadata carries its exact type/storage.
  */
 SemanticSymbol *semantic_interface_position(const SemanticType *, SymbolRole, size_t);
+/** Classify source-ordered receivers and foreach bindings after explicit/native inventories.
+ * Success publishes typed inferred fields and lexical binding metadata; full transfer,
+ * capability and execution validation remains in the subsequent semantic stages.
+ */
+SemanticStatus semantic_infer(SemanticProgram *);
+/** Find the innermost introduced foreach-local binding containing this executable source site.
+ * Module fields are excluded; no runtime contents or declaration-name guesses participate.
+ */
+SemanticSymbol *semantic_local_at(const SemanticType *, SourceSpan, SourceSpan);
 
 #endif

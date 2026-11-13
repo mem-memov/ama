@@ -37,7 +37,10 @@ handler, folded loop commands, loop/branch bodies and traversal bodies. Explicit
 project-owned work frames replace recursive C traversal.
 
 Declaration type paths, qualified constant sources and constant-read namespaces
-contribute requests. Calls resolve through declared types later; selector names,
+contribute requests. A structural list-service parent also requires LIST-04's
+fixed `..integer` interface type at its actual target span; no synthetic source
+file/path span or family fallback is created. Ordinary list storage/copy/traversal
+alone does not add this interface dependency. Calls resolve through declared types later; selector names,
 local operands, indices, iterator binders, self references and literals do not
 invent imports. Ordinary output-action bindings alias arguments and are not
 visited as extra source occurrences. A loop's terminal-owner link also aliases

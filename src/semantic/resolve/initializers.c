@@ -4,16 +4,17 @@
  *
  * [TYPE-02](../../../spec/language/declarations.md#type-02)
  * Each list initializer is a scalar element; native literal/copy capability is checked before planning.
+ * [TYPE-06](../../../spec/language/declarations.md#type-06) An inferred executable source never becomes a creation-time initializer.
  */
 #include "semantic/internal.h"
 
 bool semantic_initializers(SemanticProgram *program, SemanticType *type) {
     for (SemanticSymbol *symbol = type->first; symbol != NULL; symbol = symbol->next) {
         if (symbol->role == SYMBOL_CONSTANT && !symbol->type->cloneable) {
-            return semantic_fail(program, symbol->declaration->as.declaration.type,
+            return semantic_fail(program, symbol->type_site,
                 "A shared constant requires an independently copyable type", symbol);
         }
-        for (AstInitializer *value = symbol->declaration->as.declaration.first;
+        for (const AstInitializer *value = symbol->initializer_syntax;
             value != NULL; value = value->next) {
             SemanticInitializer *initializer = semantic_allocate(program, sizeof(*initializer));
             if (initializer == NULL) {

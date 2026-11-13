@@ -3,8 +3,8 @@
 This is the T030 boundary for [NAME-04/NAME-06](../../spec/language/declarations.md#name-04),
 [TYPE-01](../../spec/language/declarations.md#type-01) and declared interface
 metadata under [CALL-08](../../spec/language/calls-and-results.md#call-08).
-It completes explicit inventories before source-order receiver inference and
-foreach-local classification in T031. It does not infer variables or claim new
+It supplies the explicit inventory consumed by [source-order receiver inference
+and foreach classification](source-order-inference.md). It does not infer variables or claim new
 list/result-chain execution support.
 
 ## One inventory, independent of execution
@@ -49,9 +49,9 @@ its same-site command node.
 Each event is arena-owned. Collection or visitor failure leaves one destructible
 semantic owner. A callback failure stops further callbacks. The walker performs
 no recursive C descent, native execution or source mutation. These are node-start
-positions, not a serialized stream of every operand: T031 must merge operand and
-binding occurrences at their own written positions rather than scanning all of a
-parent call's bindings before its selected children.
+positions, not a serialized stream of every operand. The inference pass creates
+its own binding/operand events at their written positions, rather than scanning
+a parent call's entire binding list before selected children.
 
 ## Shared interface metadata
 
@@ -64,8 +64,8 @@ reference/list flags. Binding labels still undergo storage-form checks separatel
 Omitted bindings consume their normal declared positions; selectors do not add
 new declared result ordinals.
 
-Call checking consumes these functions now. T031 and later result checking can
-consume the same metadata rather than inventing another label/position map.
+Call checking and source-order inference consume these functions. Later result
+checking shares that metadata rather than inventing another label/position map.
 Named binding diagnostics still retain a known wrong-role declaration as context
 without accepting it as an interface field.
 

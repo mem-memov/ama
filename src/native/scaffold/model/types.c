@@ -4,6 +4,7 @@
  *
  * [NAME-01](../../../../spec/implementation/compiler.md#name-01)
  * Sort the retained supported logical identities explicitly; forward/reference cycles do not recursively expand C layouts.
+ * [TYPE-06](../../../../spec/language/declarations.md#type-06) Member identities use exact semantic names for both declaration forms.
  */
 #include <string.h>
 #include "native/scaffold/internal.h"
@@ -28,7 +29,7 @@ static const IdentityName *identity(NativeScaffold *scaffold, const PlannedType 
 static bool members(NativeScaffold *scaffold, ScaffoldType *type) {
     ScaffoldMember **next = &type->members;
     for (const StorageField *field = type->plan->first; field != NULL; field = field->next) {
-        SourceSpan span = field->symbol->declaration->as.declaration.name->name;
+        SourceSpan span = field->symbol->name;
         char *text = scaffold_allocate(scaffold, span.end - span.start + 1);
         ScaffoldMember *member = scaffold_allocate(scaffold, sizeof(*member));
         if (text == NULL || member == NULL) {

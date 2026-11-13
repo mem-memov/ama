@@ -4,6 +4,7 @@
  *
  * [LIFE-03](../../../spec/implementation/native-interface.md#life-03)
  * Failure paths unwind initialized prefixes and release copy maps before reporting procedure failure.
+ * [TYPE-06](../../../spec/language/declarations.md#type-06) Inferred fields retain introducing receiver sites for their normal lifecycle operations.
  */
 #include "internal.h"
 
@@ -13,7 +14,7 @@ LifeNode *plan_life_node(ProgramPlan *plan, PlannedType *type, LifeOperation ope
     if (node != NULL) {
         *node = (LifeNode){.operation = operation, .type = type, .field = field, .binding = binding,
             .site = field == NULL ? (SourceSpan){type->type->module->source->text, 0, 0}
-                : field->symbol->declaration->span};
+                : field->symbol->site};
     }
     return node;
 }

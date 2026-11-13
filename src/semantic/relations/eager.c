@@ -4,6 +4,7 @@
  *
  * [TYPE-04](../../../spec/language/declarations.md#type-04)
  * Nonowning references and empty recursive lists do not create eager construction cycles.
+ * [TYPE-06](../../../spec/language/declarations.md#type-06) Inferred owned fields participate in the same eager-construction graph.
  */
 #include "semantic/internal.h"
 
@@ -23,7 +24,7 @@ bool semantic_eager_graph(SemanticProgram *program) {
             bool eager = field->role != SYMBOL_CONSTANT && !field->reference
                 && (!field->list || field->initializers != NULL);
             if (eager && !dependency_edge(graph, owner, semantic_type_vertex(graph, field->type),
-                    field->declaration->as.declaration.type)) {
+                    field->type_site)) {
                 return false;
             }
         }
@@ -38,5 +39,5 @@ GraphVertex *semantic_type_vertex(DependencyGraph *graph, SemanticType *type) {
 
 GraphVertex *semantic_constant_vertex(DependencyGraph *graph, SemanticSymbol *symbol) {
     return dependency_vertex(graph, symbol, symbol->owner->module->source->logical_path,
-        symbol->role_ordinal, symbol->declaration->as.declaration.name->span);
+        symbol->role_ordinal, symbol->spelling);
 }

@@ -924,11 +924,31 @@ Contracts: [declarations](spec/language/declarations.md),
   focused cases and ASan/UBSan pass (leak detection disabled), as do 869-input
   coverage and links. Warning-free Doxygen is byte-reproducible: 689 maintained
   files, 2732 interfaces, 296 destinations. Inference/local bindings remain T031.
-- [ ] **T031 — Implement source-order inference and foreach scope together.**
+- [x] **T031 — Implement source-order inference and foreach scope together.**
   Needs: T030. Apply TYPE-06/NAME-06's single ordered algorithm, immediately type
   new receivers and resolve/reuse foreach bindings with no shadowing. Test earlier
   unresolved occurrences, later explicit collisions, inferred list sources,
   disjoint locals, nested reuse and forbidden construction-time local access.
+  Added one exact event stream for actual declarations, sources, operation heads
+  and interleaved bindings. Encountered names remain separate from the hoisted
+  explicit inventory; first receivers are typed immediately and later explicit
+  collisions retain both real sites. Typed result paths use interfaces only;
+  literals, labels, paths and selector bases never become caller occurrences.
+  Foreach records compatible reuse or distinct lexical local cells, rejects
+  shadowing/construction-time local reads and preserves earlier bindings when a
+  later module field reuses the name. Normal fields carry direct source/type/name
+  metadata without synthetic declarations; inferred executable sources never
+  become creation-time initializer hints. Field order, eager/copy graphs, lifecycle
+  planning, diagnostics and C emission consume the same metadata. Intrinsic result
+  shapes add only LIST-04's fixed Standard integer dependency with real request
+  sites and no family fallback. Runtime tests cover assignments/results, full
+  module-state and list copies, pre-assignment constructor snapshots, and default
+  owned/empty-reference values after acquisition refusal. Scope/order/storage,
+  implicit dependencies and every inference/closure allocation failure pass.
+  Full strict suite and focused ASan/UBSan pass (leak detection disabled), as do
+  893-input coverage and links. Warning-free Doxygen is byte-reproducible: 712
+  maintained files, 2815 interfaces, 297 destinations. Direct-tree/list-service/
+  foreach execution and lexical-self transfer guards remain their later tasks.
 - [ ] **T032 — Verify transfers and self-reference typing.** Needs: T031.
   Enforce the complete storage-form matrix, constant/indexed sources and lexical
   standalone `&`. Test absent/mismatched suffixes, exact root-kind identity and

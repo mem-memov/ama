@@ -4,6 +4,7 @@
  *
  * [NAME-04](../../../spec/language/declarations.md#name-04)
  * These lookups consume the explicit inventory, not a spelling heuristic for syntax or inferred variables.
+ * [TYPE-06](../../../spec/language/declarations.md#type-06) Inference introduces exact semantic names without manufacturing declarations.
  */
 #include <string.h>
 #include "semantic/internal.h"
@@ -21,7 +22,7 @@ SemanticType *semantic_type(const SemanticProgram *program, SourceSpan path) {
 
 SemanticSymbol *semantic_symbol(const SemanticType *type, SourceSpan name) {
     for (SemanticSymbol *symbol = type->first; symbol != NULL; symbol = symbol->next) {
-        if (semantic_same_text(symbol->declaration->as.declaration.name->name, name)) {
+        if (semantic_same_text(symbol->name, name)) {
             return symbol;
         }
     }

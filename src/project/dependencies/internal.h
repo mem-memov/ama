@@ -31,6 +31,8 @@ bool project_discover(Project *project, ProjectModule *module);
 /** Copy the complete path, require its exact module and append one source-mapped edge. Partial allocations remain project-owned on failure.
  */
 bool project_add_dependency(Project *project, ProjectModule *module, SourceSpan path);
+/** Add one fixed language-required module identity while retaining the real source construct that requires it. */
+bool project_add_implicit_dependency(Project *, ProjectModule *, const char *, SourceSpan);
 /** Copy entry spellings and merge original cause notes with the finite first-requester chain.
  * @return false, with all diagnostic text/related storage valid through project destruction; allocation failure replaces it with an allocation-free error.
  */

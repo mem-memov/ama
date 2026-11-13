@@ -4,6 +4,7 @@
  *
  * [COMP-04](../../../spec/implementation/compiler.md#comp-04)
  * Diagnostic views borrow semantic/project storage; reporting does not guess repairs or allocate a fallback message.
+ * [TYPE-06](../../../spec/language/declarations.md#type-06) Original symbol sites preserve inferred/local context without fabricated syntax.
  */
 #include "semantic/internal.h"
 
@@ -21,7 +22,7 @@ bool semantic_fail(SemanticProgram *program, SourceSpan span, const char *messag
         .message = message, .primary = {.span = span}};
     if (related != NULL) {
         program->related[0] = (DiagnosticRelated){
-            {.span = related->declaration->span},
+            {.span = related->site},
             "related declaration", related->owner->module->source->logical_path};
         program->error.related = program->related;
         program->error.related_count = 1;
