@@ -7,6 +7,10 @@
  */
 #include "../../source/common.c"
 #include "runtime/pool/pool.h"
+#include "support/fixture.c"
+#include "support/reuse.c"
+#include "support/publication.c"
+#include "support/failures.c"
 
 /**
  * Assert that the component keeps payload addresses stable through directory growth. The
@@ -161,6 +165,9 @@ static void it_reclaims_only_free_trailing_blocks_and_never_revives_their_identi
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_reuses_free_slots_without_allocation_or_live_state_changes();
+    it_keeps_final_identity_private_until_lifecycle_publication();
+    it_preserves_live_instances_through_each_later_growth_failure();
     it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities();
     it_keeps_payload_addresses_stable_through_directory_growth();
     it_never_reissues_an_exhausted_slot_or_accepts_stale_empty_and_wrong_type_handles();

@@ -1163,10 +1163,18 @@ Contracts: [references and copying](spec/language/values-and-references.md),
 [lifecycle](spec/implementation/native-interface.md#complete-lifecycle-and-cleanup-protocol),
 [pools](spec/implementation/runtime.md).
 
-- [ ] **T046 — Verify stable typed block pools.** Needs: T006, T011, T042. Reuse
+- [x] **T046 — Verify stable typed block pools.** Needs: T006, T011, T042. Reuse
   free slots before growth without moving live payloads; reserve final identities
   while constructing. Test multiple same-type instances and pool growth with
   live addresses, without implicit default instances.
+  Evidence: [stable typed allocation](docs/implementation/instance-ownership.md#t046-stable-typed-allocation-and-publication)
+  proves address preservation and tests published and private slots. New cases
+  cover 33 live instances at three block sizes, reuse with allocation disabled,
+  independent controls, final nominal identity, publication gates and both later
+  growth allocation failures. Existing implementation satisfied these contracts;
+  no alternative pool was introduced. Strict runtime composition and ASan+UBSan
+  passed, with coverage of all 1025 maintained inputs. Final Doxygen reproducibility
+  is checked before commit; generation/reclamation policy remains T047.
 - [ ] **T047 — Verify generations and reclamation history.** Needs: T046. Retire
   exhausted identities and reclaim only entirely free blocks while preserving
   staleness across regrowth. For interior reclamation, validate sparse directory

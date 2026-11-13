@@ -17722,6 +17722,21 @@
         "case": "it_rejects_nonrepresentable_alignment_and_size_arithmetic",
         "command": "make -C tests/unit/runtime/alignment",
         "source": "tests/unit/runtime/alignment/main.c"
+      },
+      {
+        "case": "it_reuses_free_slots_without_allocation_or_live_state_changes",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_keeps_final_identity_private_until_lifecycle_publication",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_preserves_live_instances_through_each_later_growth_failure",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
       }
     ]
   },
@@ -17773,6 +17788,21 @@
         "case": "it_rejects_nonrepresentable_alignment_and_size_arithmetic",
         "command": "make -C tests/unit/runtime/alignment",
         "source": "tests/unit/runtime/alignment/main.c"
+      },
+      {
+        "case": "it_reuses_free_slots_without_allocation_or_live_state_changes",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_keeps_final_identity_private_until_lifecycle_publication",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_preserves_live_instances_through_each_later_growth_failure",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
       }
     ]
   },
@@ -17854,6 +17884,21 @@
         "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
         "command": "make -C tests/unit/runtime/contexts",
         "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_reuses_free_slots_without_allocation_or_live_state_changes",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_keeps_final_identity_private_until_lifecycle_publication",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_preserves_live_instances_through_each_later_growth_failure",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
       }
     ]
   },
@@ -17926,6 +17971,21 @@
         "case": "it_rejects_nonrepresentable_alignment_and_size_arithmetic",
         "command": "make -C tests/unit/runtime/alignment",
         "source": "tests/unit/runtime/alignment/main.c"
+      },
+      {
+        "case": "it_reuses_free_slots_without_allocation_or_live_state_changes",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_keeps_final_identity_private_until_lifecycle_publication",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_preserves_live_instances_through_each_later_growth_failure",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
       }
     ]
   },
@@ -17962,6 +18022,21 @@
         "case": "it_rejects_nonrepresentable_alignment_and_size_arithmetic",
         "command": "make -C tests/unit/runtime/alignment",
         "source": "tests/unit/runtime/alignment/main.c"
+      },
+      {
+        "case": "it_reuses_free_slots_without_allocation_or_live_state_changes",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_keeps_final_identity_private_until_lifecycle_publication",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_preserves_live_instances_through_each_later_growth_failure",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
       }
     ]
   },
@@ -39791,6 +39866,21 @@
         "case": "it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_reuses_free_slots_without_allocation_or_live_state_changes",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_keeps_final_identity_private_until_lifecycle_publication",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_preserves_live_instances_through_each_later_growth_failure",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
       }
     ]
   },
@@ -39815,6 +39905,21 @@
       },
       {
         "case": "it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_reuses_free_slots_without_allocation_or_live_state_changes",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_keeps_final_identity_private_until_lifecycle_publication",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_preserves_live_instances_through_each_later_growth_failure",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
       }
@@ -56679,6 +56784,90 @@
         "case": "it_unwinds_every_complete_frontend_source_semantic_and_plan_allocation",
         "command": "make -C tests/unit/compiler/composition",
         "source": "tests/unit/compiler/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/pool/support/reuse.c": {
+    "contract": "docs/implementation/instance-ownership.md",
+    "purpose": "Verify stable published storage, allocation-free reuse and private final-identity publication.",
+    "tests": [
+      {
+        "case": "it_reuses_free_slots_without_allocation_or_live_state_changes",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_keeps_final_identity_private_until_lifecycle_publication",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_preserves_live_instances_through_each_later_growth_failure",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/pool/support/fixture.c": {
+    "contract": "docs/implementation/instance-ownership.md",
+    "purpose": "Verify stable published storage, allocation-free reuse and private final-identity publication.",
+    "tests": [
+      {
+        "case": "it_reuses_free_slots_without_allocation_or_live_state_changes",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_keeps_final_identity_private_until_lifecycle_publication",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_preserves_live_instances_through_each_later_growth_failure",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/pool/support/publication.c": {
+    "contract": "docs/implementation/instance-ownership.md",
+    "purpose": "Verify stable published storage, allocation-free reuse and private final-identity publication.",
+    "tests": [
+      {
+        "case": "it_reuses_free_slots_without_allocation_or_live_state_changes",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_keeps_final_identity_private_until_lifecycle_publication",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_preserves_live_instances_through_each_later_growth_failure",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/pool/support/failures.c": {
+    "contract": "docs/implementation/instance-ownership.md",
+    "purpose": "Verify stable published storage, allocation-free reuse and private final-identity publication.",
+    "tests": [
+      {
+        "case": "it_reuses_free_slots_without_allocation_or_live_state_changes",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_keeps_final_identity_private_until_lifecycle_publication",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_preserves_live_instances_through_each_later_growth_failure",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
       }
     ]
   }

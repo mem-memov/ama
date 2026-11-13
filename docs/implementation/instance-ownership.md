@@ -34,6 +34,59 @@ before allocation, and SIZE_MAX is reserved as the free-chain sentinel.
 growth steps, every issued historical handle with a three-generation limit, empty
 and mismatched handles, and both growth allocation failures.
 
+## T046: stable typed allocation and publication
+
+The [pool API](../../src/runtime/pool/pool.h) implements the storage boundary of
+[RT-02](../../spec/implementation/runtime.md#rt-02) and
+[RT-12](../../spec/implementation/runtime.md#rt-12). T046 verifies its existing
+implementation with live instances, rather than substituting an additional pool
+or execution-state copy. Later generation/reclamation work remains T047 and
+construction-expression integration remains T049.
+
+Within a materialized block, `cell = block + offset * stride` is fixed for its
+lifetime. Only the directory array can relocate on growth. Therefore induction
+over successful reservations preserves every existing cell/payload address:
+free-list removal changes only unused metadata, while growth appends disjoint
+blocks without changing previous pointers. Publication changes visibility, not
+address or identity. No default instance is created by initializing a pool or
+by obtaining spare block capacity.
+
+Reservation removes exactly one free identifier before returning it, retaining
+its final type/slot/generation. If the free chain is nonempty, reservation performs
+no allocation. Release advances the generation and returns only nonretired unused
+slots to that chain. Its ordering is private; the test checks membership and
+uniqueness, without assuming lowest-address or LIFO semantics. Resetting reused
+storage clears both payload banks and transient controls. Other occupied cells
+retain their own payloads and saved positions.
+
+Private reservation is not public acquisition authority. Normal lookup refuses
+unpublished cells, and instance access refuses a nonlive identity for entry,
+resume and read. Publication requires a completed Live lifecycle ledger and
+rejects duplicate publication; a live identity cannot be released. The trusted
+construction path can use the final reserved identity before publication without
+making uninitialized contents externally accessible. Source-level self-reference
+initializers and owned-child construction are verified by their later integration
+tasks, rather than claimed by these direct pool tests.
+
+Growth allocation failure leaves handle/cell output parameters untouched and
+preserves existing identities and payloads. A directory enlargement may remain
+after the following payload allocation fails; directory capacity is not a live
+instance count or a published block. Retrying is valid without rolling back that
+spare capacity. Checked arithmetic and alignment remain covered by the existing
+alignment leaf. The bounds above apply to storage operations; no native hooks or
+module bodies execute here.
+
+Run `make -C tests/unit/runtime/pool`. New named cases check 33 live same-type
+instances at block sizes 1, 2 and 7; reuse of 16 holes with the next allocation
+forced to fail; final private identity and lifecycle/publication gates across two
+nominal types; and failure of each later directory/payload growth allocation with
+live earlier blocks. Existing private-address growth and reduced-generation cases
+remain in the same leaf. The runtime parent composes this with real object
+construction/publication, aligned native resources and invocation consumers;
+address/undefined-behavior sanitizer checks supplement counted allocation cleanup.
+The [coverage registry](documentation/ready.json) identifies each touched source,
+header, fixture and build file and preserves standalone header checks.
+
 ## Reclamation
 
 Reclamation finds the last occupied block, rebuilds the free chain using only
