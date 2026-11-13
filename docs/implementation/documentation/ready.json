@@ -27935,6 +27935,11 @@
         "case": "it_emits_from_the_same_frontend_without_invoking_the_native_c_compiler",
         "command": "make -C tests/integration/check",
         "source": "tests/integration/check/main.c"
+      },
+      {
+        "case": "it_matches_check_and_verified_compile_diagnostics_without_publishing_failed_projects",
+        "command": "make -C tests/integration/check",
+        "source": "tests/integration/check/main.c"
       }
     ]
   },

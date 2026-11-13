@@ -88,11 +88,39 @@ static void it_emits_from_the_same_frontend_without_invoking_the_native_c_compil
     destroy_test();
 }
 
+/** Both commands must reject the same frontend defect before any native toolchain or output publication. */
+static void it_matches_check_and_verified_compile_diagnostics_without_publishing_failed_projects(void) {
+    const char *entries[] = {".missing", ".draft"};
+    for (size_t index = 0; index < sizeof(entries) / sizeof(*entries); index++) {
+        setup_test();
+        char *checked[] = {AMA_EXECUTABLE, "--check", "project", (char *)entries[index], NULL};
+        int result = run_compiler_arguments(checked);
+        char expected[4096], acknowledgement[512];
+        read_stream(errors, expected, sizeof(expected));
+        read_stream(output, acknowledgement, sizeof(acknowledgement));
+        assert(result == EXIT_FAILURE && expected[0] != 0 && acknowledgement[0] == 0);
+        destroy_test();
+        setup_test();
+        char *compiled[] = {AMA_EXECUTABLE, "--emit", "project", (char *)entries[index],
+            "--out", "generated/rejected", "--sdk", TEST_SDK, "--compile", NULL};
+        result = run_compiler_arguments(compiled);
+        char actual[4096];
+        read_stream(errors, actual, sizeof(actual));
+        read_stream(output, acknowledgement, sizeof(acknowledgement));
+        assert(result == EXIT_FAILURE && strcmp(expected, actual) == 0 && acknowledgement[0] == 0);
+        struct stat metadata;
+        int found = stat("generated/rejected", &metadata);
+        assert(found == -1 && errno == ENOENT);
+        destroy_test();
+    }
+}
+
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_matches_check_and_verified_compile_diagnostics_without_publishing_failed_projects();
     it_checks_a_real_project_without_c_compilation_or_output_artifacts();
     it_emits_from_the_same_frontend_without_invoking_the_native_c_compiler();
     it_reports_exact_missing_modules_and_malformed_options();

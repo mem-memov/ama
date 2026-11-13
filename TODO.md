@@ -1379,10 +1379,19 @@ Contracts: [generated C](spec/implementation/compiler.md#generated-project-organ
   allocation-disabled reporting with intact links/refusal snapshots. All 1090
   maintained inputs have coverage; local links passed and final Doxygen
   reproducibility is checked before commit.
-- [ ] **T060 — Expose check-only and verified compilation commands.** Needs:
+- [x] **T060 — Expose check-only and verified compilation commands.** Needs:
   T055, T059. Use one shared frontend and explicit generated-output ownership.
   Test draft reporting, check/compile diagnostic agreement and atomic publication
   of `--emit ... --compile` outputs with the toolchain verifier.
+  Evidence: [verified CLI composition](docs/implementation/verified-commands.md).
+  Actual CLI tests now compare exact check/verified-compile diagnostics for
+  missing modules and active drafts and require no failed output directory.
+  Existing commands share the frontend; verified assembly is staged, compiled,
+  inspected and linked before owned publication. Strict CLI check/execution,
+  driver and publication leaves passed, including preservation of prior programs,
+  unowned output and replacement-prefix rollback. Coverage/local links passed;
+  final Doxygen reproducibility is checked before commit. No second frontend or
+  additional compatibility path was introduced.
 - [ ] **T061 — Expose initial host completion/failure/disposal.** Needs: T060.
   Connect explicit context APIs to generated code and launcher policy. Test
   startup failure, normal completion, prohibited reentry and independent contexts
