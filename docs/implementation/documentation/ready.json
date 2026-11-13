@@ -10277,6 +10277,41 @@
         "case": "it_reports_unsupported_control_trees_without_lowering_an_incomplete_operation",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_separates_context_permanent_interface_and_fixed_lexical_storage",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_retains_the_general_fallback_and_keeps_shared_namespaces_out_of_pools",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_preserves_deterministic_storage_across_independent_plan_owners",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_or_duplicated_logical_storage_without_allocating",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_unwinds_every_storage_frame_cell_and_origin_allocation",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_bounds_deep_chain_and_traversal_storage_by_lexical_sites",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
       }
     ]
   },
@@ -10682,6 +10717,41 @@
         "case": "it_rejects_incomplete_shared_and_required_procedure_inventories",
         "command": "make -C tests/unit/planning/validation",
         "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_separates_context_permanent_interface_and_fixed_lexical_storage",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_retains_the_general_fallback_and_keeps_shared_namespaces_out_of_pools",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_preserves_deterministic_storage_across_independent_plan_owners",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_or_duplicated_logical_storage_without_allocating",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_unwinds_every_storage_frame_cell_and_origin_allocation",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_bounds_deep_chain_and_traversal_storage_by_lexical_sites",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
       }
     ]
   },
@@ -10849,6 +10919,41 @@
         "case": "it_reserves_zero_for_absent_control_and_source_positions",
         "command": "make -C tests/unit/planning/ir",
         "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_separates_context_permanent_interface_and_fixed_lexical_storage",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_retains_the_general_fallback_and_keeps_shared_namespaces_out_of_pools",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_preserves_deterministic_storage_across_independent_plan_owners",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_or_duplicated_logical_storage_without_allocating",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_unwinds_every_storage_frame_cell_and_origin_allocation",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_bounds_deep_chain_and_traversal_storage_by_lexical_sites",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
       }
     ]
   },
@@ -35418,6 +35523,41 @@
         "case": "it_rejects_incomplete_shared_and_required_procedure_inventories",
         "command": "make -C tests/unit/planning/validation",
         "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_separates_context_permanent_interface_and_fixed_lexical_storage",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_retains_the_general_fallback_and_keeps_shared_namespaces_out_of_pools",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_preserves_deterministic_storage_across_independent_plan_owners",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_or_duplicated_logical_storage_without_allocating",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_unwinds_every_storage_frame_cell_and_origin_allocation",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_bounds_deep_chain_and_traversal_storage_by_lexical_sites",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
       }
     ]
   },
@@ -52753,6 +52893,41 @@
         "case": "it_rejects_incomplete_shared_and_required_procedure_inventories",
         "command": "make -C tests/unit/planning/validation",
         "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_separates_context_permanent_interface_and_fixed_lexical_storage",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_retains_the_general_fallback_and_keeps_shared_namespaces_out_of_pools",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_preserves_deterministic_storage_across_independent_plan_owners",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_or_duplicated_logical_storage_without_allocating",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_unwinds_every_storage_frame_cell_and_origin_allocation",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_bounds_deep_chain_and_traversal_storage_by_lexical_sites",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
       }
     ],
     "standalone_header_command": [
@@ -52820,6 +52995,41 @@
         "case": "it_rejects_incomplete_shared_and_required_procedure_inventories",
         "command": "make -C tests/unit/planning/validation",
         "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_separates_context_permanent_interface_and_fixed_lexical_storage",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_retains_the_general_fallback_and_keeps_shared_namespaces_out_of_pools",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_preserves_deterministic_storage_across_independent_plan_owners",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_or_duplicated_logical_storage_without_allocating",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_unwinds_every_storage_frame_cell_and_origin_allocation",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_bounds_deep_chain_and_traversal_storage_by_lexical_sites",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
       }
     ]
   },
@@ -52898,6 +53108,528 @@
         "case": "it_rejects_incomplete_shared_and_required_procedure_inventories",
         "command": "make -C tests/unit/planning/validation",
         "source": "tests/unit/planning/validation/main.c"
+      }
+    ]
+  },
+  "src/planning/storage/frames/cells.c": {
+    "contract": "docs/implementation/storage-planning.md",
+    "purpose": "Plan and validate exact context/instance domains and fixed lexical storage without executing bodies.",
+    "tests": [
+      {
+        "case": "it_separates_context_permanent_interface_and_fixed_lexical_storage",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_retains_the_general_fallback_and_keeps_shared_namespaces_out_of_pools",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_preserves_deterministic_storage_across_independent_plan_owners",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_or_duplicated_logical_storage_without_allocating",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_unwinds_every_storage_frame_cell_and_origin_allocation",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_bounds_deep_chain_and_traversal_storage_by_lexical_sites",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      }
+    ]
+  },
+  "src/planning/storage/frames/frames.c": {
+    "contract": "docs/implementation/storage-planning.md",
+    "purpose": "Plan and validate exact context/instance domains and fixed lexical storage without executing bodies.",
+    "tests": [
+      {
+        "case": "it_separates_context_permanent_interface_and_fixed_lexical_storage",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_retains_the_general_fallback_and_keeps_shared_namespaces_out_of_pools",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_preserves_deterministic_storage_across_independent_plan_owners",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_or_duplicated_logical_storage_without_allocating",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_unwinds_every_storage_frame_cell_and_origin_allocation",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_bounds_deep_chain_and_traversal_storage_by_lexical_sites",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      }
+    ]
+  },
+  "src/planning/storage/frames/internal.h": {
+    "contract": "docs/implementation/storage-planning.md",
+    "purpose": "Plan and validate exact context/instance domains and fixed lexical storage without executing bodies.",
+    "tests": [
+      {
+        "case": "it_separates_context_permanent_interface_and_fixed_lexical_storage",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_retains_the_general_fallback_and_keeps_shared_namespaces_out_of_pools",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_preserves_deterministic_storage_across_independent_plan_owners",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_or_duplicated_logical_storage_without_allocating",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_unwinds_every_storage_frame_cell_and_origin_allocation",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_bounds_deep_chain_and_traversal_storage_by_lexical_sites",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/planning/storage/state.h": {
+    "contract": "docs/implementation/storage-planning.md",
+    "purpose": "Plan and validate exact context/instance domains and fixed lexical storage without executing bodies.",
+    "tests": [
+      {
+        "case": "it_separates_context_permanent_interface_and_fixed_lexical_storage",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_retains_the_general_fallback_and_keeps_shared_namespaces_out_of_pools",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_preserves_deterministic_storage_across_independent_plan_owners",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_or_duplicated_logical_storage_without_allocating",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_unwinds_every_storage_frame_cell_and_origin_allocation",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_bounds_deep_chain_and_traversal_storage_by_lexical_sites",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/planning/storage/validate.c": {
+    "contract": "docs/implementation/storage-planning.md",
+    "purpose": "Plan and validate exact context/instance domains and fixed lexical storage without executing bodies.",
+    "tests": [
+      {
+        "case": "it_separates_context_permanent_interface_and_fixed_lexical_storage",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_retains_the_general_fallback_and_keeps_shared_namespaces_out_of_pools",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_preserves_deterministic_storage_across_independent_plan_owners",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_or_duplicated_logical_storage_without_allocating",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_unwinds_every_storage_frame_cell_and_origin_allocation",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_bounds_deep_chain_and_traversal_storage_by_lexical_sites",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      }
+    ]
+  },
+  "src/planning/validation/ir/frames.c": {
+    "contract": "docs/implementation/storage-planning.md",
+    "purpose": "Plan and validate exact context/instance domains and fixed lexical storage without executing bodies.",
+    "tests": [
+      {
+        "case": "it_separates_context_permanent_interface_and_fixed_lexical_storage",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_retains_the_general_fallback_and_keeps_shared_namespaces_out_of_pools",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_preserves_deterministic_storage_across_independent_plan_owners",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_or_duplicated_logical_storage_without_allocating",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_unwinds_every_storage_frame_cell_and_origin_allocation",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_bounds_deep_chain_and_traversal_storage_by_lexical_sites",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      }
+    ]
+  },
+  "tests/unit/planning/storage/Makefile": {
+    "contract": "docs/implementation/storage-planning.md",
+    "purpose": "Plan and validate exact context/instance domains and fixed lexical storage without executing bodies.",
+    "tests": [
+      {
+        "case": "it_separates_context_permanent_interface_and_fixed_lexical_storage",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_retains_the_general_fallback_and_keeps_shared_namespaces_out_of_pools",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_preserves_deterministic_storage_across_independent_plan_owners",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_or_duplicated_logical_storage_without_allocating",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_unwinds_every_storage_frame_cell_and_origin_allocation",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_bounds_deep_chain_and_traversal_storage_by_lexical_sites",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      }
+    ]
+  },
+  "tests/unit/planning/storage/main.c": {
+    "contract": "docs/implementation/storage-planning.md",
+    "purpose": "Plan and validate exact context/instance domains and fixed lexical storage without executing bodies.",
+    "tests": [
+      {
+        "case": "it_separates_context_permanent_interface_and_fixed_lexical_storage",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_retains_the_general_fallback_and_keeps_shared_namespaces_out_of_pools",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_preserves_deterministic_storage_across_independent_plan_owners",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_or_duplicated_logical_storage_without_allocating",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_unwinds_every_storage_frame_cell_and_origin_allocation",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_bounds_deep_chain_and_traversal_storage_by_lexical_sites",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      }
+    ]
+  },
+  "tests/unit/planning/storage/support/deep.c": {
+    "contract": "docs/implementation/storage-planning.md",
+    "purpose": "Plan and validate exact context/instance domains and fixed lexical storage without executing bodies.",
+    "tests": [
+      {
+        "case": "it_separates_context_permanent_interface_and_fixed_lexical_storage",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_retains_the_general_fallback_and_keeps_shared_namespaces_out_of_pools",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_preserves_deterministic_storage_across_independent_plan_owners",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_or_duplicated_logical_storage_without_allocating",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_unwinds_every_storage_frame_cell_and_origin_allocation",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_bounds_deep_chain_and_traversal_storage_by_lexical_sites",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      }
+    ]
+  },
+  "tests/unit/planning/storage/support/domains.c": {
+    "contract": "docs/implementation/storage-planning.md",
+    "purpose": "Plan and validate exact context/instance domains and fixed lexical storage without executing bodies.",
+    "tests": [
+      {
+        "case": "it_separates_context_permanent_interface_and_fixed_lexical_storage",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_retains_the_general_fallback_and_keeps_shared_namespaces_out_of_pools",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_preserves_deterministic_storage_across_independent_plan_owners",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_or_duplicated_logical_storage_without_allocating",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_unwinds_every_storage_frame_cell_and_origin_allocation",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_bounds_deep_chain_and_traversal_storage_by_lexical_sites",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      }
+    ]
+  },
+  "tests/unit/planning/storage/support/failures.c": {
+    "contract": "docs/implementation/storage-planning.md",
+    "purpose": "Plan and validate exact context/instance domains and fixed lexical storage without executing bodies.",
+    "tests": [
+      {
+        "case": "it_separates_context_permanent_interface_and_fixed_lexical_storage",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_retains_the_general_fallback_and_keeps_shared_namespaces_out_of_pools",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_preserves_deterministic_storage_across_independent_plan_owners",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_or_duplicated_logical_storage_without_allocating",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_unwinds_every_storage_frame_cell_and_origin_allocation",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_bounds_deep_chain_and_traversal_storage_by_lexical_sites",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      }
+    ]
+  },
+  "tests/unit/planning/storage/support/fixture.c": {
+    "contract": "docs/implementation/storage-planning.md",
+    "purpose": "Plan and validate exact context/instance domains and fixed lexical storage without executing bodies.",
+    "tests": [
+      {
+        "case": "it_separates_context_permanent_interface_and_fixed_lexical_storage",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_retains_the_general_fallback_and_keeps_shared_namespaces_out_of_pools",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_preserves_deterministic_storage_across_independent_plan_owners",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_or_duplicated_logical_storage_without_allocating",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_unwinds_every_storage_frame_cell_and_origin_allocation",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_bounds_deep_chain_and_traversal_storage_by_lexical_sites",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
+        "command": "make -C tests/unit/planning/storage",
+        "source": "tests/unit/planning/storage/main.c"
       }
     ]
   }

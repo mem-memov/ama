@@ -9,6 +9,7 @@
 #define AMA_TYPED_PROJECT_PLAN_H
 
 #include "semantic/semantic.h"
+#include "storage/state.h"
 
 /** Typed planning status; invalid/partial arena records remain owned but unusable. */
 typedef enum { PLAN_OK, PLAN_INVALID, PLAN_OUT_OF_MEMORY } PlanStatus;
@@ -98,7 +99,8 @@ typedef struct ControlNode {
 /** Explicit logical instance-service requirements; shared immutable storage has none of these bits. */
 enum {
     STORAGE_GENERATION = 1u, STORAGE_BUSY = 2u, STORAGE_POSITION = 4u,
-    STORAGE_RETURN_LINK = 8u, STORAGE_REFUSAL = 16u, STORAGE_ACQUISITION = 32u
+    STORAGE_RETURN_LINK = 8u, STORAGE_REFUSAL = 16u, STORAGE_ACQUISITION = 32u,
+    STORAGE_CONSTRUCTING_IDENTITY = 64u, STORAGE_OWNERSHIP = 128u
 };
 /** One planned nominal type with logical fields/service requirements, lifecycle procedures and retained body graph. */
 struct PlannedType {
@@ -110,6 +112,17 @@ struct PlannedType {
     size_t layout_ordinal;
     unsigned service_storage;
     bool requires_pool;
+    /** General stable-slot representation; no elision is claimed without an exact proof. */
+    bool stable_slots;
+    StorageFrame *frames;
+    StorageFrame *last_frame;
+    size_t frame_count;
+    ScopedStorageCell *cells;
+    ScopedStorageCell *last_cell;
+    size_t cell_count;
+    ReferenceOriginStorage *origins;
+    ReferenceOriginStorage *last_origin;
+    size_t origin_count;
     LifeNode *lifecycles;
     LifeProcedure create;
     LifeProcedure literal;
@@ -133,6 +146,8 @@ typedef struct {
     const SemanticConstantPlan *constant_cleanup;
     SharedStorage *shared_first;
     SharedStorage *shared_last;
+    ContextStorage context_storage;
+    bool storage_ready;
     size_t next_selector;
     PlanStatus status;
     Diagnostic error;

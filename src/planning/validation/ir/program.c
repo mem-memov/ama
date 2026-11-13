@@ -9,15 +9,16 @@ bool program_plan_validate(ProgramPlan *plan) {
     if (!plan->attempted || plan->status != PLAN_OK) { return false; }
     bool published = plan->valid;
     plan->valid = false;
-    if (!plan->semantic->constants_valid || !plan->semantic->resolved || !plan_ir_type(plan, plan->entry)) {
+    if (!plan->storage_ready || !plan->semantic->constants_valid || !plan->semantic->resolved || !plan_ir_type(plan, plan->entry)) {
         return plan_fail(plan, (SourceSpan){0}, "Typed IR requires complete semantic analysis and an exact entry identity");
     }
+    if (!plan_validate_storage(plan)) { return false; }
     const SemanticType *semantic = plan->semantic->first;
     for (const PlannedType *type = plan->first; type != NULL; type = type->next) {
         if (semantic == NULL || type->type != semantic || type->requires_pool != semantic->executable) {
             return plan_fail(plan, (SourceSpan){0}, "Typed IR nominal inventory differs from resolved types");
         }
-        if (!plan_ir_storage(plan, type) || !plan_ir_lifecycle(plan, type) || !plan_ir_control(plan, type)) {
+        if (!plan_ir_lifecycle(plan, type) || !plan_ir_control(plan, type)) {
             return false;
         }
         semantic = semantic->next;

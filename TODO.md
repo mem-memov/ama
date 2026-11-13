@@ -1095,12 +1095,23 @@ Contracts: [compiler](spec/implementation/compiler.md),
   inputs have coverage; final Doxygen reproducibility is checked before commit.
   T042–T045 retain responsibility for new storage and operation lowering; existing
   unsupported-feature guards remain explicit.
-- [ ] **T042 — Plan context and instance storage.** Needs: T041. Separate per-context
+- [x] **T042 — Plan context and instance storage.** Needs: T041. Separate per-context
   constants/runtime from stable-slot fields, interface state and control metadata.
   Include constructing identity, return links, saved positions and fixed lexical
   chain/foreach frames as logical state. Permit compact or implicit physical
   fields only with exact capability/liveness proofs under RT-02/GEN-03; record
   the general fallback and verify deterministic layout dependencies and no mirrors.
+  Evidence: context schemas enumerate independent runtime domains and exact
+  pool/constant counts; stable instance schemas retain constructing identity and
+  the complete general control state. Fixed source-site operation/foreach frames,
+  conditional cells and shared binding origins have exact parent identities and
+  an allocation-free validation boundary independent of unfinished lowering.
+  No physical state is elided and no payload mirror or method instance is added.
+  Tests cover native intrinsic outputs, nested reuse versus sibling locals,
+  permanent bindings, 128-level chains/traversals, independent-plan determinism,
+  damaged schemas and every storage allocation. Full strict tests and ASan+UBSan
+  passed; all 982 maintained inputs have coverage. Final Doxygen reproducibility
+  is checked before commit; runtime cursor correction remains a later task.
 - [ ] **T043 — Lower entry, transfer and cleanup order.** Needs: T042. Emit
   explicit acquire/preflight/prepare/commit/result/release actions with distinct
   refusal and fatal edges. Test CALL-08 evaluation order and source-lifetime

@@ -5,7 +5,9 @@
  * [STATE-03](../../../spec/language/declarations.md#state-03)
  * Create all nominal type records before field links; constants own no executable pool or service identity.
  */
+#include <assert.h>
 #include "planning/internal.h"
+#include "frames/internal.h"
 
 PlannedType *program_plan_type(const ProgramPlan *plan, const SemanticType *type) {
     for (PlannedType *candidate = plan->first; candidate != NULL; candidate = candidate->next) {
@@ -64,6 +66,7 @@ static bool shared_storage(ProgramPlan *plan) {
 }
 
 bool plan_storage(ProgramPlan *plan) {
+    assert(plan->first == NULL && !plan->storage_ready);
     for (SemanticType *semantic = plan->semantic->first; semantic != NULL; semantic = semantic->next) {
         PlannedType *type = plan_allocate(plan, sizeof(*type));
         if (type == NULL) {
@@ -71,8 +74,11 @@ bool plan_storage(ProgramPlan *plan) {
         }
         type->type = semantic;
         type->requires_pool = semantic->executable;
+        type->stable_slots = semantic->executable;
+        if (semantic->executable) { plan->context_storage.pools++; }
         type->service_storage = semantic->executable ? STORAGE_GENERATION | STORAGE_BUSY
-            | STORAGE_POSITION | STORAGE_RETURN_LINK | STORAGE_REFUSAL | STORAGE_ACQUISITION : 0;
+            | STORAGE_POSITION | STORAGE_RETURN_LINK | STORAGE_REFUSAL | STORAGE_ACQUISITION
+            | STORAGE_CONSTRUCTING_IDENTITY | STORAGE_OWNERSHIP : 0;
         if (plan->last == NULL) {
             plan->first = type;
         } else {
@@ -84,7 +90,7 @@ bool plan_storage(ProgramPlan *plan) {
         }
     }
     for (PlannedType *type = plan->first; type != NULL; type = type->next) {
-        if (!fields(plan, type)) {
+        if (!fields(plan, type) || !plan_storage_frames(plan, type)) {
             return false;
         }
     }
@@ -92,5 +98,13 @@ bool plan_storage(ProgramPlan *plan) {
     for (GraphVertex *vertex = plan->semantic->eager.order; vertex != NULL; vertex = vertex->order_next) {
         program_plan_type(plan, vertex->value)->layout_ordinal = ordinal++;
     }
-    return shared_storage(plan);
+    plan->context_storage.domains = CONTEXT_POOL_DIRECTORY | CONTEXT_SHARED_VALUES | CONTEXT_CURRENT_INSTANCE
+        | CONTEXT_EXECUTOR | CONTEXT_ROOT_LEDGER | CONTEXT_DIAGNOSTICS;
+    if (!shared_storage(plan)) { return false; }
+    for (const SharedStorage *value = plan->shared_first; value != NULL; value = value->next) {
+        plan->context_storage.constants++;
+    }
+    if (!plan_validate_storage(plan)) { return false; }
+    plan->storage_ready = true;
+    return true;
 }

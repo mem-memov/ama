@@ -35,7 +35,8 @@ static void it_separates_shared_interface_persistent_and_service_storage(void) {
     assert(field->next->symbol->role == SYMBOL_RESULT);
     assert(plan.entry->last->form == STORAGE_REFERENCE_LIST);
     assert(plan.entry->service_storage == (STORAGE_GENERATION | STORAGE_BUSY | STORAGE_POSITION
-        | STORAGE_RETURN_LINK | STORAGE_REFUSAL | STORAGE_ACQUISITION));
+        | STORAGE_RETURN_LINK | STORAGE_REFUSAL | STORAGE_ACQUISITION
+        | STORAGE_CONSTRUCTING_IDENTITY | STORAGE_OWNERSHIP));
     assert(plan.constant_startup->symbol->role == SYMBOL_CONSTANT);
     assert(plan.shared_first->constant == plan.constant_startup);
     assert(plan.shared_first->immutable && plan.shared_first->service_storage == 0);

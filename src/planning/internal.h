@@ -25,6 +25,8 @@ bool plan_validate_operations(ProgramPlan *);
 /** Allocate every nominal record before linking fields/shared storage; logical slots/service masks are explicit, not C byte offsets.
  */
 bool plan_storage(ProgramPlan *plan);
+/** Check complete context/instance storage independently of control lowering; no allocations or execution occur. */
+bool plan_validate_storage(ProgramPlan *);
 /** Construct default/destruction and supported literal/copy procedures from checked type capabilities.
  */
 bool plan_lifecycles(ProgramPlan *plan, PlannedType *type);

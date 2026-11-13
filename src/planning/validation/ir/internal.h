@@ -12,6 +12,8 @@ bool plan_ir_type(const ProgramPlan *, const PlannedType *);
 bool plan_ir_field(const PlannedType *, const StorageField *);
 /** Check storage identities and semantic-owner correspondence without allocating. */
 bool plan_ir_storage(ProgramPlan *, const PlannedType *);
+/** Check fixed lexical slots, shared binding origins and exact parent/frame identities. */
+bool plan_ir_frames(ProgramPlan *, const PlannedType *);
 /** Check lifecycle instruction operands, endpoints and failure graph membership. */
 bool plan_ir_lifecycle(ProgramPlan *, const PlannedType *);
 /** Check control selectors, local/callee edges, resolved operands and source maps. */
