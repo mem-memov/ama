@@ -5,6 +5,9 @@
  * [ARCH-02](../../../spec/implementation/compiler.md#arch-02) keeps this layer at
  * orchestration level. [STACK-01](../../../spec/implementation/compiler.md#stack-01)
  * preserves label transfers, explicit return metadata and native-entry boundaries.
+ * [CALL-08](../../../spec/language/calls-and-results.md#call-08) permits the
+ * contiguous helper implementation only with the same source/install/output order
+ * and no interior entry into a validated replacement group.
  */
 #include "codegen/internal.h"
 #include "emission/emission.h"
@@ -37,6 +40,12 @@ bool codegen_emit_control(NativeScaffold *scaffold, FILE *output, const Scaffold
         case CONTROL_YIELD: return codegen_control_yield(output);
         case CONTROL_RESUME_INSTANCE: return codegen_control_resume(output);
         case CONTROL_ENTER_INSTANCE: written = codegen_control_restart(output); break;
+        /* The current backend executes the contiguous preparation prefix in
+         * ama_program_prepare at acquisition and each replacement in its lead
+         * runtime helper. These explicit audit phases must not repeat effects.
+         * [CALL-08](../../../spec/language/calls-and-results.md#call-08) fixes
+         * their order; validated groups have no interior branch/resume entry. */
+        case CONTROL_PREFLIGHT_INPUTS:
         case CONTROL_EVALUATE_INPUT: case CONTROL_INSTALL_PARAMETER: case CONTROL_INITIALIZE_RESULT:
         case CONTROL_SELECT_SOURCE: case CONTROL_PREFLIGHT_REPLACEMENT: case CONTROL_PREPARE_REPLACEMENT:
         case CONTROL_COMMIT_REPLACEMENT: case CONTROL_RELEASE_VALUES:

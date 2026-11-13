@@ -159,7 +159,7 @@ exist, so benign call cycles do not recurse during compilation. Graph/AST work
 uses finite explicit records; source nesting does not consume recursive C frames.
 
 Current plan tests prove the retained node families and order. They do not certify
-complete current context/result/foreach/loop semantics: T043–T045 and their runtime
+complete current context/result/foreach/loop semantics: T044–T045 and their runtime
 consumers remain open. Parsed-empty ordinary loops already leave after one condition conversion;
 header and traversal lowering retain explicit unsupported guards until their fixed
 restart and lexical frame operations exist.
@@ -218,3 +218,6 @@ silently accepting incomplete lowering.
 
 T042 adds independently validated [context, instance and fixed lexical storage](storage-planning.md).
 The full-plan publication gate also checks this complete storage description.
+
+T043 adds [ordered replacement recipes and invocation validation](transfer-lowering.md),
+with explicit preflight, preparation, commit and release phases for interface and output transfers.

@@ -16,6 +16,10 @@ bool plan_ir_storage(ProgramPlan *, const PlannedType *);
 bool plan_ir_frames(ProgramPlan *, const PlannedType *);
 /** Check lifecycle instruction operands, endpoints and failure graph membership. */
 bool plan_ir_lifecycle(ProgramPlan *, const PlannedType *);
+/** Verify CALL-08 selection/preflight/install/output order independently of runtime execution. */
+bool plan_ir_invocations(ProgramPlan *, const PlannedType *);
+/** Verify complete replacement recipes, exact phase groups and source-lifetime handoffs. */
+bool plan_ir_replacements(ProgramPlan *, const PlannedType *);
 /** Check control selectors, local/callee edges, resolved operands and source maps. */
 bool plan_ir_control(ProgramPlan *, const PlannedType *);
 #endif

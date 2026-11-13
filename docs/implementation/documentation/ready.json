@@ -4817,6 +4817,31 @@
         "case": "it_reserves_zero_for_absent_control_and_source_positions",
         "command": "make -C tests/unit/planning/ir",
         "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_source_protection_and_individual_commits_in_the_three_required_orders",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_omits_entry_preparation_for_resume_retained_and_constant_reads",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_assignment_and_reference_output_modes_without_snapshot_sources",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_replacement_recipes_and_partial_commit_groups",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
       }
     ]
   },
@@ -4883,6 +4908,31 @@
         "case": "it_reserves_zero_for_absent_control_and_source_positions",
         "command": "make -C tests/unit/planning/ir",
         "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_source_protection_and_individual_commits_in_the_three_required_orders",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_omits_entry_preparation_for_resume_retained_and_constant_reads",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_assignment_and_reference_output_modes_without_snapshot_sources",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_replacement_recipes_and_partial_commit_groups",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
       }
     ]
   },
@@ -5030,6 +5080,31 @@
         "case": "it_reserves_zero_for_absent_control_and_source_positions",
         "command": "make -C tests/unit/planning/ir",
         "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_source_protection_and_individual_commits_in_the_three_required_orders",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_omits_entry_preparation_for_resume_retained_and_constant_reads",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_assignment_and_reference_output_modes_without_snapshot_sources",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_replacement_recipes_and_partial_commit_groups",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
       }
     ]
   },
@@ -5096,6 +5171,31 @@
         "case": "it_reserves_zero_for_absent_control_and_source_positions",
         "command": "make -C tests/unit/planning/ir",
         "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_lowers_source_protection_and_individual_commits_in_the_three_required_orders",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_omits_entry_preparation_for_resume_retained_and_constant_reads",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_assignment_and_reference_output_modes_without_snapshot_sources",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_replacement_recipes_and_partial_commit_groups",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
       }
     ]
   },
@@ -10752,6 +10852,31 @@
         "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
         "command": "make -C tests/unit/planning/storage",
         "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_lowers_source_protection_and_individual_commits_in_the_three_required_orders",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_omits_entry_preparation_for_resume_retained_and_constant_reads",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_assignment_and_reference_output_modes_without_snapshot_sources",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_replacement_recipes_and_partial_commit_groups",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
       }
     ]
   },
@@ -35558,6 +35683,31 @@
         "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
         "command": "make -C tests/unit/planning/storage",
         "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_lowers_source_protection_and_individual_commits_in_the_three_required_orders",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_omits_entry_preparation_for_resume_retained_and_constant_reads",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_assignment_and_reference_output_modes_without_snapshot_sources",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_replacement_recipes_and_partial_commit_groups",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
       }
     ]
   },
@@ -52928,6 +53078,31 @@
         "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
         "command": "make -C tests/unit/planning/storage",
         "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_lowers_source_protection_and_individual_commits_in_the_three_required_orders",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_omits_entry_preparation_for_resume_retained_and_constant_reads",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_assignment_and_reference_output_modes_without_snapshot_sources",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_replacement_recipes_and_partial_commit_groups",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
       }
     ],
     "standalone_header_command": [
@@ -53030,6 +53205,31 @@
         "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
         "command": "make -C tests/unit/planning/storage",
         "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_lowers_source_protection_and_individual_commits_in_the_three_required_orders",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_omits_entry_preparation_for_resume_retained_and_constant_reads",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_assignment_and_reference_output_modes_without_snapshot_sources",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_replacement_recipes_and_partial_commit_groups",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
       }
     ]
   },
@@ -53287,6 +53487,31 @@
         "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
         "command": "make -C tests/unit/planning/storage",
         "source": "tests/unit/planning/storage/main.c"
+      },
+      {
+        "case": "it_lowers_source_protection_and_individual_commits_in_the_three_required_orders",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_omits_entry_preparation_for_resume_retained_and_constant_reads",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_assignment_and_reference_output_modes_without_snapshot_sources",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_replacement_recipes_and_partial_commit_groups",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
       }
     ],
     "standalone_header_command": [
@@ -53630,6 +53855,423 @@
         "case": "it_keeps_intrinsic_results_in_caller_frames_without_method_instances",
         "command": "make -C tests/unit/planning/storage",
         "source": "tests/unit/planning/storage/main.c"
+      }
+    ]
+  },
+  "src/lowering/replacement/internal.h": {
+    "contract": "docs/implementation/transfer-lowering.md",
+    "purpose": "Lower and validate ordered failure-safe value replacement and explicit source-lifetime handoffs.",
+    "tests": [
+      {
+        "case": "it_lowers_source_protection_and_individual_commits_in_the_three_required_orders",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_omits_entry_preparation_for_resume_retained_and_constant_reads",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_assignment_and_reference_output_modes_without_snapshot_sources",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_replacement_recipes_and_partial_commit_groups",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/lowering/replacement/recipe.c": {
+    "contract": "docs/implementation/transfer-lowering.md",
+    "purpose": "Lower and validate ordered failure-safe value replacement and explicit source-lifetime handoffs.",
+    "tests": [
+      {
+        "case": "it_lowers_source_protection_and_individual_commits_in_the_three_required_orders",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_omits_entry_preparation_for_resume_retained_and_constant_reads",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_assignment_and_reference_output_modes_without_snapshot_sources",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_replacement_recipes_and_partial_commit_groups",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      }
+    ]
+  },
+  "src/planning/replacement.h": {
+    "contract": "docs/implementation/transfer-lowering.md",
+    "purpose": "Lower and validate ordered failure-safe value replacement and explicit source-lifetime handoffs.",
+    "tests": [
+      {
+        "case": "it_lowers_source_protection_and_individual_commits_in_the_three_required_orders",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_omits_entry_preparation_for_resume_retained_and_constant_reads",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_assignment_and_reference_output_modes_without_snapshot_sources",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_replacement_recipes_and_partial_commit_groups",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/planning/validation/ir/invocations.c": {
+    "contract": "docs/implementation/transfer-lowering.md",
+    "purpose": "Lower and validate ordered failure-safe value replacement and explicit source-lifetime handoffs.",
+    "tests": [
+      {
+        "case": "it_lowers_source_protection_and_individual_commits_in_the_three_required_orders",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_omits_entry_preparation_for_resume_retained_and_constant_reads",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_assignment_and_reference_output_modes_without_snapshot_sources",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_replacement_recipes_and_partial_commit_groups",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      }
+    ]
+  },
+  "src/planning/validation/ir/replacements/groups.c": {
+    "contract": "docs/implementation/transfer-lowering.md",
+    "purpose": "Lower and validate ordered failure-safe value replacement and explicit source-lifetime handoffs.",
+    "tests": [
+      {
+        "case": "it_lowers_source_protection_and_individual_commits_in_the_three_required_orders",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_omits_entry_preparation_for_resume_retained_and_constant_reads",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_assignment_and_reference_output_modes_without_snapshot_sources",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_replacement_recipes_and_partial_commit_groups",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      }
+    ]
+  },
+  "src/planning/validation/ir/replacements/internal.h": {
+    "contract": "docs/implementation/transfer-lowering.md",
+    "purpose": "Lower and validate ordered failure-safe value replacement and explicit source-lifetime handoffs.",
+    "tests": [
+      {
+        "case": "it_lowers_source_protection_and_individual_commits_in_the_three_required_orders",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_omits_entry_preparation_for_resume_retained_and_constant_reads",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_assignment_and_reference_output_modes_without_snapshot_sources",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_replacement_recipes_and_partial_commit_groups",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/planning/validation/ir/replacements/operands.c": {
+    "contract": "docs/implementation/transfer-lowering.md",
+    "purpose": "Lower and validate ordered failure-safe value replacement and explicit source-lifetime handoffs.",
+    "tests": [
+      {
+        "case": "it_lowers_source_protection_and_individual_commits_in_the_three_required_orders",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_omits_entry_preparation_for_resume_retained_and_constant_reads",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_assignment_and_reference_output_modes_without_snapshot_sources",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_replacement_recipes_and_partial_commit_groups",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      }
+    ]
+  },
+  "tests/unit/planning/transfers/Makefile": {
+    "contract": "docs/implementation/transfer-lowering.md",
+    "purpose": "Lower and validate ordered failure-safe value replacement and explicit source-lifetime handoffs.",
+    "tests": [
+      {
+        "case": "it_lowers_source_protection_and_individual_commits_in_the_three_required_orders",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_omits_entry_preparation_for_resume_retained_and_constant_reads",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_assignment_and_reference_output_modes_without_snapshot_sources",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_replacement_recipes_and_partial_commit_groups",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      }
+    ]
+  },
+  "tests/unit/planning/transfers/main.c": {
+    "contract": "docs/implementation/transfer-lowering.md",
+    "purpose": "Lower and validate ordered failure-safe value replacement and explicit source-lifetime handoffs.",
+    "tests": [
+      {
+        "case": "it_lowers_source_protection_and_individual_commits_in_the_three_required_orders",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_omits_entry_preparation_for_resume_retained_and_constant_reads",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_assignment_and_reference_output_modes_without_snapshot_sources",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_replacement_recipes_and_partial_commit_groups",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      }
+    ]
+  },
+  "tests/unit/planning/transfers/support/failures.c": {
+    "contract": "docs/implementation/transfer-lowering.md",
+    "purpose": "Lower and validate ordered failure-safe value replacement and explicit source-lifetime handoffs.",
+    "tests": [
+      {
+        "case": "it_lowers_source_protection_and_individual_commits_in_the_three_required_orders",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_omits_entry_preparation_for_resume_retained_and_constant_reads",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_assignment_and_reference_output_modes_without_snapshot_sources",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_replacement_recipes_and_partial_commit_groups",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      }
+    ]
+  },
+  "tests/unit/planning/transfers/support/fixture.c": {
+    "contract": "docs/implementation/transfer-lowering.md",
+    "purpose": "Lower and validate ordered failure-safe value replacement and explicit source-lifetime handoffs.",
+    "tests": [
+      {
+        "case": "it_lowers_source_protection_and_individual_commits_in_the_three_required_orders",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_omits_entry_preparation_for_resume_retained_and_constant_reads",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_assignment_and_reference_output_modes_without_snapshot_sources",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_replacement_recipes_and_partial_commit_groups",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      }
+    ]
+  },
+  "tests/unit/planning/transfers/support/order.c": {
+    "contract": "docs/implementation/transfer-lowering.md",
+    "purpose": "Lower and validate ordered failure-safe value replacement and explicit source-lifetime handoffs.",
+    "tests": [
+      {
+        "case": "it_lowers_source_protection_and_individual_commits_in_the_three_required_orders",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_omits_entry_preparation_for_resume_retained_and_constant_reads",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_preserves_assignment_and_reference_output_modes_without_snapshot_sources",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_rejects_damaged_replacement_recipes_and_partial_commit_groups",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
+      },
+      {
+        "case": "it_unwinds_every_ordered_transfer_lowering_allocation",
+        "command": "make -C tests/unit/planning/transfers",
+        "source": "tests/unit/planning/transfers/main.c"
       }
     ]
   }

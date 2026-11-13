@@ -6,6 +6,7 @@
  * Later defaults must observe earlier installed parameters; persistent state fields are excluded from reset.
  */
 #include "internal.h"
+#include "lowering/replacement/internal.h"
 
 /** Find one nonomitted resolved input by exact interface ordinal; duplicates were rejected semantically and omitted inputs select defaults.
  */
@@ -24,16 +25,10 @@ ControlNode *lower_install(Lowering *lowering, const SemanticStatement *statemen
     for (StorageField *field = callee->last; field != NULL; field = field->previous) {
         SymbolRole role = field->symbol->role;
         if (role == SYMBOL_PARAMETER || role == SYMBOL_RESULT) {
-            after = lower_prepend(lowering, role == SYMBOL_PARAMETER ? CONTROL_INSTALL_PARAMETER
-                : CONTROL_INITIALIZE_RESULT, statement, role == SYMBOL_PARAMETER
-                    ? input(statement, field->symbol->role_ordinal) : NULL, after);
-            if (after == NULL) {
-                return NULL;
-            }
-            after->field = field->symbol;
-            after->value_type = field->symbol->type;
-            after->value_form = field->form;
-            after->position = field->symbol->role_ordinal;
+            after = lower_replacement(lowering, statement, role == SYMBOL_PARAMETER
+                ? input(statement, field->symbol->role_ordinal) : NULL, field,
+                role == SYMBOL_PARAMETER ? REPLACE_PARAMETER : REPLACE_RESULT, after);
+            if (after == NULL) { return NULL; }
         }
     }
     return after;

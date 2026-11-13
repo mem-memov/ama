@@ -1112,10 +1112,20 @@ Contracts: [compiler](spec/implementation/compiler.md),
   damaged schemas and every storage allocation. Full strict tests and ASan+UBSan
   passed; all 982 maintained inputs have coverage. Final Doxygen reproducibility
   is checked before commit; runtime cursor correction remains a later task.
-- [ ] **T043 — Lower entry, transfer and cleanup order.** Needs: T042. Emit
+- [x] **T043 — Lower entry, transfer and cleanup order.** Needs: T042. Emit
   explicit acquire/preflight/prepare/commit/result/release actions with distinct
   refusal and fatal edges. Test CALL-08 evaluation order and source-lifetime
   handoffs without inserting snapshots or whole-call rollback.
+  Evidence: parameter/result/output replacements now share exact typed recipes
+  with explicit preflight, fresh preparation, commit and release groups. A distinct
+  aggregate input preflight follows caller-text source selection and precedes
+  declaration-order installation; resume/read modes omit entry preparation.
+  Recipe/group/invocation validators check construction choice, original operands,
+  commit endpoints, source/install/output order and no interior entry. Tests cover
+  exact literals, omitted noncopyable references, callee defaults, repeated output
+  receivers, transfer modes, twelve damaged plans and every lowering allocation.
+  Full strict tests, final focused IR checks and ASan+UBSan passed; 994 maintained
+  inputs have coverage. Final Doxygen reproducibility is checked before commit.
 - [ ] **T044 — Lower structured control and result actions.** Needs: T043.
   Assign fixed loop repeat/break labels and depth-first result continuations.
   Test empty-loop single conversion, per-link handlers, nested exits and bounded

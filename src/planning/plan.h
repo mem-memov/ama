@@ -10,11 +10,10 @@
 
 #include "semantic/semantic.h"
 #include "storage/state.h"
+#include "replacement.h"
 
 /** Typed planning status; invalid/partial arena records remain owned but unusable. */
 typedef enum { PLAN_OK, PLAN_INVALID, PLAN_OUT_OF_MEMORY } PlanStatus;
-/** Logical ownership/cardinality form, independent of target C representation. */
-typedef enum { STORAGE_OWNED, STORAGE_REFERENCE, STORAGE_OWNING_LIST, STORAGE_REFERENCE_LIST } StorageForm;
 /**
  * Forward name for one resolved type/storage/control plan borrowing its semantic nominal type.
  */
@@ -75,7 +74,7 @@ typedef enum {
     CONTROL_EVALUATE_INPUT, CONTROL_INSTALL_PARAMETER, CONTROL_INITIALIZE_RESULT,
     CONTROL_SET_RETURN, CONTROL_ENTER_INSTANCE, CONTROL_RESUME_INSTANCE,
     CONTROL_NATIVE_ENTRY,
-    CONTROL_TRANSFER_OUTPUT, CONTROL_RELEASE_TARGET
+    CONTROL_TRANSFER_OUTPUT, CONTROL_PREFLIGHT_INPUTS, CONTROL_RELEASE_TARGET
 } ControlOperation;
 /** Plan-owned uniquely selected control node; allocation links are separate from typed execution/alternative/failure/resume edges. */
 typedef struct ControlNode {
@@ -93,6 +92,7 @@ typedef struct ControlNode {
     StorageForm value_form;
     const SemanticStatement *statement;
     const SemanticBinding *binding;
+    const ReplacementPlan *replacement;
     SemanticSymbol *field;
     SourceSpan site;
 } ControlNode;
@@ -129,6 +129,7 @@ struct PlannedType {
     LifeProcedure destroy;
     LifeProcedure clone;
     LifeProcedure continuation;
+    ReplacementPlan *replacements;
     ControlNode *controls;
     ControlNode *entry;
     ControlNode *complete;

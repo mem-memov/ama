@@ -6,6 +6,7 @@
  * Reverse work construction preserves forward execution order; literals and omissions have separate installation paths.
  */
 #include "internal.h"
+#include "lowering/replacement/internal.h"
 
 ReverseBinding *lower_reverse_bindings(Lowering *lowering, const SemanticStatement *statement) {
     ReverseBinding *reverse = NULL;
@@ -25,7 +26,7 @@ ControlNode *lower_outputs(Lowering *lowering, const SemanticStatement *statemen
     for (; reverse != NULL; reverse = reverse->next) {
         const SemanticBinding *binding = reverse->binding;
         if (binding->syntax->kind != AST_INPUT && !binding->syntax->omitted) {
-            after = lower_prepend(lowering, CONTROL_TRANSFER_OUTPUT, statement, binding, after);
+            after = lower_replacement(lowering, statement, binding, NULL, REPLACE_OUTPUT, after);
             if (after == NULL) {
                 return NULL;
             }

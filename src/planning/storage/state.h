@@ -7,6 +7,8 @@
 #ifndef AMA_PLANNED_STORAGE_STATE_H
 #define AMA_PLANNED_STORAGE_STATE_H
 #include "semantic/semantic.h"
+/** Logical ownership/cardinality, independent of physical C representation. */
+typedef enum { STORAGE_OWNED, STORAGE_REFERENCE, STORAGE_OWNING_LIST, STORAGE_REFERENCE_LIST } StorageForm;
 /** Per-context runtime domains, instantiated independently even when code/descriptors are shared. */
 enum {
     CONTEXT_POOL_DIRECTORY = 1u, CONTEXT_SHARED_VALUES = 2u, CONTEXT_CURRENT_INSTANCE = 4u,

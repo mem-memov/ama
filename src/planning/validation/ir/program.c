@@ -18,7 +18,7 @@ bool program_plan_validate(ProgramPlan *plan) {
         if (semantic == NULL || type->type != semantic || type->requires_pool != semantic->executable) {
             return plan_fail(plan, (SourceSpan){0}, "Typed IR nominal inventory differs from resolved types");
         }
-        if (!plan_ir_lifecycle(plan, type) || !plan_ir_control(plan, type)) {
+        if (!plan_ir_lifecycle(plan, type) || !plan_ir_control(plan, type) || !plan_ir_replacements(plan, type) || !plan_ir_invocations(plan, type)) {
             return false;
         }
         semantic = semantic->next;

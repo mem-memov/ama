@@ -1,5 +1,5 @@
 # @file
-# @brief Dispatch independent child suites: ir, validation, storage.
+# @brief Dispatch independent child suites: ir, validation, storage, transfers.
 # Contract: ../../../docs/implementation/library-tests-and-build.md; generated output is never a maintained input.
-SUBDIRECTORIES := ir validation storage
+SUBDIRECTORIES := ir validation storage transfers
 include ../../parent.mk

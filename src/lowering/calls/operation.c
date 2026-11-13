@@ -67,6 +67,7 @@ ControlNode *lower_call(Lowering *lowering, const SemanticStatement *statement,
     }
     if (statement->syntax->as.call.mode == AST_ENTRY_CALL) {
         next = lower_install(lowering, statement, next);
+        if (next != NULL) { next = lower_prepend(lowering, CONTROL_PREFLIGHT_INPUTS, statement, NULL, next); }
         if (next == NULL || (next = lower_inputs(lowering, statement, reverse, next)) == NULL) {
             return NULL;
         }

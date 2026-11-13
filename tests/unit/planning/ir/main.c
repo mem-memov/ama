@@ -95,17 +95,19 @@ static void it_installs_inputs_in_declaration_order_after_source_order_evaluatio
     node = node->next;
     assert(node->operation == CONTROL_EVALUATE_INPUT && node->binding->position == 1);
     node = node->next;
+    assert(node->operation == CONTROL_PREFLIGHT_INPUTS);
+    node = node->next;
     assert(node->operation == CONTROL_INSTALL_PARAMETER && node->position == 0);
     assert(node->binding->transfer == TRANSFER_LITERAL);
-    node = node->next;
+    node = node->replacement->last->next;
     assert(node->operation == CONTROL_INSTALL_PARAMETER && node->position == 1);
-    node = node->next;
+    node = node->replacement->last->next;
     assert(node->operation == CONTROL_INITIALIZE_RESULT);
-    node = node->next;
+    node = node->replacement->last->next;
     assert(node->operation == CONTROL_SET_RETURN);
     assert(node->resume->operation == CONTROL_TRANSFER_OUTPUT);
-    assert(node->resume->next->operation == CONTROL_RELEASE_TARGET);
-    assert(node->resume->next->next == plan.entry->complete);
+    assert(node->resume->replacement->last->next->operation == CONTROL_RELEASE_TARGET);
+    assert(node->resume->replacement->last->next->next == plan.entry->complete);
     assert(node->next->operation == CONTROL_ENTER_INSTANCE);
     assert(node->next->next == node->next->callee->entry);
     destroy_plan();
@@ -120,7 +122,7 @@ static void it_reads_without_reset_and_resumes_without_input_installation(void) 
     ControlNode *read = plan.entry->entry;
     assert(read->operation == CONTROL_ACQUIRE_INSTANCE);
     assert(read->next->operation == CONTROL_TRANSFER_OUTPUT);
-    ControlNode *resume = read->next->next->next;
+    ControlNode *resume = read->next->replacement->last->next->next;
     assert(resume->operation == CONTROL_ACQUIRE_INSTANCE);
     assert(resume->next->operation == CONTROL_SET_RETURN);
     assert(resume->next->next->operation == CONTROL_RESUME_INSTANCE);
@@ -245,11 +247,12 @@ static void it_links_same_type_reentry_through_instance_selection_and_return_met
     ControlNode *acquire = plan.entry->entry;
     assert(acquire->operation == CONTROL_ACQUIRE_INSTANCE);
     assert(acquire->alternative == plan.entry->failure);
-    assert(acquire->next->operation == CONTROL_SET_RETURN);
-    ControlNode *jump = acquire->next->next;
+    assert(acquire->next->operation == CONTROL_PREFLIGHT_INPUTS);
+    assert(acquire->next->next->operation == CONTROL_SET_RETURN);
+    ControlNode *jump = acquire->next->next->next;
     assert(jump->operation == CONTROL_ENTER_INSTANCE && jump->callee == plan.entry);
     assert(jump->next == plan.entry->entry);
-    assert(acquire->next->resume->operation == CONTROL_RELEASE_TARGET);
+    assert(acquire->next->next->resume->operation == CONTROL_RELEASE_TARGET);
     destroy_plan();
 }
 
