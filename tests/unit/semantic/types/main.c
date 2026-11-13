@@ -174,11 +174,32 @@ static void it_releases_every_partial_resolved_value_binding_and_access(void) {
     }
 }
 
+/** Explicit later declarations are visible to body operations, while creation-time initializers still require an earlier initialized source. */
+static void it_separates_complete_explicit_visibility_from_initializer_order(void) {
+    prepare_types();
+    const char *valid[] = {
+        "@!\ndestination\n.value\ndestination\n later\nlater\n.value\n |7\n",
+        "@!\nready\n.value\n |0\ndestination\n.value\ndestination\n later\nready\n?\n later\n .value\n  |7\n",
+        "@!\nworker !\nworker\n.worker\n"
+    };
+    for (size_t index = 0; index < sizeof(valid) / sizeof(valid[0]); index++) {
+        SemanticStatus status = resolve_text(valid[index]);
+        assert(status == SEMANTIC_OK && semantic.resolved);
+        destroy_semantic();
+    }
+    SemanticStatus status = resolve_text("@!\ndestination\n.value\n later\nlater\n.value\n |7\n");
+    assert(status == SEMANTIC_INVALID && strstr(semantic.error.message, "not initialized yet") != NULL);
+    assert(semantic.error.related_count == 1 && diagnostic_valid(&semantic.error));
+    assert(semantic.error.primary.span.start < semantic.error.related[0].location.span.start);
+    destroy_semantic();
+}
+
 /**
  * Execute every named assertion case selected by this leaf; the recursive harness owns process
  * status and success-only cleanup.
  */
 void run(void) {
+    it_separates_complete_explicit_visibility_from_initializer_order();
     it_requires_owned_copy_capability_even_for_statically_identical_storage();
     it_releases_every_partial_resolved_value_binding_and_access();
     it_applies_the_complete_nominal_storage_matrix_without_conversions();

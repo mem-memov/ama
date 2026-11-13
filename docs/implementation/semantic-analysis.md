@@ -19,33 +19,30 @@ the caller destroys the project. All declaration/use spans borrow that project.
 Allocation failure retains an allocation-free diagnostic and partial owned
 records solely for cleanup. No C text, native execution or filesystem writes occur.
 
-[The walker](../../src/semantic/walk/blocks.c) advances explicit frames over AST
-blocks; it visits nested alternatives and loop bodies in lexical depth-first
-order without recursive C calls. [Namespace construction](../../src/semantic/names/build.c)
-visits constants, parameters, results and body in order. Every declaration gets
-one base-name symbol, a module ordinal and a section ordinal. Storage suffixes
-are attributes, not part of the lookup key; blocks create no shadowing namespace.
-[Lookup](../../src/semantic/names/lookup.c) compares original UTF-8 bytes exactly.
-Equal names in different module tables do not conflict. A duplicate error retains
-both complete declaration spans, including the original storage forms.
+The [complete declaration boundary](declaration-inventories.md) records T030's
+inventory, exact source ordering, shared interface lookup, proof and checks.
+[Collection](../../src/semantic/walk/collect.c) visits every owning structural
+subtree, including selected handlers, folded headers and traversal bodies.
+[Stable event sorting](../../src/semantic/walk/sort.c) establishes physical order
+before callbacks; no C recursion represents source nesting. Only loop/traversal
+bodies add a loop-depth scope, while header handlers retain incoming context.
 
-Induction over the finite traversal gives the invariant: the table contains
-exactly the declarations in the visited prefix, with unique base names and
-ordinals in lexical order. Before every insertion, full byte equality either
-finds the unique earlier declaration and rejects duplication or proves insertion
-preserves uniqueness. Thus successful construction implements NAME-04 for every
-storage-form pair and every nesting shape, not just the examples in tests.
-Each AST node advances once and every pending frame exhausts a finite block, so
-the traversal terminates. With `D` declarations, `N` AST nodes and maximum name
-length `L`, namespace construction costs `O(N + D² L)` time, `O(D + N)` owned
-storage, plus the existing project. Representable arena sizes bound counts.
+[Namespace construction](../../src/semantic/names/build.c) gives every explicit
+declaration one complete base-name symbol, module ordinal and role ordinal.
+Storage suffixes are attributes, and ordinary blocks do not shadow names.
+[Exact lookup](../../src/semantic/names/lookup.c) preserves original UTF-8 bytes;
+[interface lookup](../../src/semantic/names/interface.c) shares declared names,
+positions, types and storage flags with call checking. Receiver inference and
+foreach-local binding classification remain T031.
 
-[Namespace tests](../../tests/unit/semantic/names/main.c) use the real loader and
-parser, enumerate all 16 pairs of storage suffixes, check ordering across sections
-and nested alternatives, allow reuse across modules, and inject every semantic
-allocation failure with live-allocation cleanup counters. The suite is independently
-runnable through `make -C tests/unit/semantic/names`; release flags and `-Werror`
-retain assertions through the shared leaf harness.
+The inventory invariant is the unique source-ordered declaration prefix. Exact
+comparison either diagnoses the later duplicate with its earlier declaration or
+preserves that invariant by insertion. For N nodes, D declarations and maximum
+name length L, construction costs O(N log N + D² L) time and O(N + D) storage.
+Tests cover all 256 section/storage pairs, expanded source/context ordering,
+exact root nominal identities, complete metadata and every allocation failure.
+Run `make -C tests/unit/semantic/names`; typed visibility/initializer checks run
+through `make -C tests/unit/semantic/types`.
 
 ## Native contracts for the required closure
 
@@ -60,8 +57,9 @@ executed; later generated C uses check handwritten signatures.
 
 The complete selection predicate is `required && selector == MODULE_NATIVE`.
 Exhaustion of that finite set establishes all required companion/table checks;
-unused draft ABI grammar cannot enter the selection. Existing source catalog
-UTF-8/filesystem checks still apply globally. The phase costs the sum of required
+unused draft ABI grammar cannot enter the selection. Source catalog checks
+apply to indexed module sources; native companions are acquired only after
+required parsing establishes `@C`, as described in the [closure contract](project-dependencies.md). The phase costs the sum of required
 ABI parsing costs plus `O(V)` type visits and owns those tables until program
 destruction. All exits preserve the table/arena ownership established before
 parsing. [Native tests](../../tests/unit/semantic/native/main.c) enumerate all eight

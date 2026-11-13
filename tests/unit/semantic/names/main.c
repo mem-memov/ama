@@ -94,11 +94,23 @@ static void it_cleans_partial_namespace_storage_on_every_allocation_failure(void
     }
 }
 
+#include "support/inventory.c"
+#include "support/duplicates.c"
+#include "support/walk.c"
+
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_visits_every_owned_subtree_in_source_order_with_exact_header_handler_depth();
+    it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries();
+    it_unwinds_every_complete_inventory_allocation_failure();
+    it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types();
+    it_shares_exact_interface_metadata_between_named_and_positional_lookup();
+    it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_later_primary_site();
+    it_reports_header_handler_duplicates_against_the_earlier_body_declaration();
+    it_preserves_case_and_unicode_byte_distinctions_without_normalization();
     it_rejects_all_pairs_of_duplicate_storage_forms();
     it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts();
     it_cleans_partial_namespace_storage_on_every_allocation_failure();

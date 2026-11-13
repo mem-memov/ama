@@ -100,7 +100,8 @@ static void it_resolves_nested_submodules_and_physical_native_companions(void) {
     status = module_catalog_find(&catalog, ".shop.item.验证", &source);
     assert(status == MODULE_OK);
     assert(strcmp(source_path(source->text), "generated/project/shop/item+/验证") == 0);
-    assert(module_catalog_load_native(&catalog, source) == MODULE_OK);
+    status = module_catalog_load_native(&catalog, source);
+    assert(status == MODULE_OK);
     assert(strcmp(source->native_c, "generated/project/shop/item+/验证.c") == 0);
     assert(strcmp(source->native_header, "generated/project/shop/item+/验证.h") == 0);
     assert(strcmp(source_path(source->native_abi), "generated/project/shop/item+/验证.abi") == 0);

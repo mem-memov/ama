@@ -3,7 +3,10 @@
  * @brief Own resolved nominal types, sources, bindings and separate dependency relations.
  *
  * [COMP-02](../../spec/implementation/compiler.md#comp-02)
- * Borrow the loaded project; only successful stage outputs are consumable. Inference/lexical locals remain T030/T031.
+ * [NAME-04](../../spec/language/declarations.md#name-04) shares one exact base
+ * namespace; [CALL-08](../../spec/language/calls-and-results.md#call-08) shares
+ * declared interface role/ordinal metadata between consumers.
+ * Borrow the loaded project; only successful stage outputs are consumable. Complete explicit names and interface metadata precede inference/lexical locals in T031.
  */
 #ifndef AMA_SEMANTIC_PROGRAM_H
 #define AMA_SEMANTIC_PROGRAM_H
@@ -211,5 +214,16 @@ SemanticType *semantic_type(const SemanticProgram *program, SourceSpan path);
 /** Resolve one exact declared base name in its explicit owner inventory; no spelling-based inference or storage-suffix overloading.
  */
 SemanticSymbol *semantic_symbol(const SemanticType *type, SourceSpan name);
+
+/** Find one exact declared interface base name in its requested constant/input/result role.
+ * State fields and absent/wrong-role names return null. Storage suffix and capability checks
+ * remain the consumer's responsibility; lookup allocates nothing and never changes the inventory.
+ */
+SemanticSymbol *semantic_interface_name(const SemanticType *, SymbolRole, SourceSpan);
+/** Find one direction-specific interface ordinal, including fields omitted at a call site.
+ * State roles and absent positions return null; after nominal linking the result
+ * metadata carries its exact type/storage.
+ */
+SemanticSymbol *semantic_interface_position(const SemanticType *, SymbolRole, size_t);
 
 #endif

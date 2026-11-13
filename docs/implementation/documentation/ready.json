@@ -19190,6 +19190,46 @@
         "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_visits_every_owned_subtree_in_source_order_with_exact_header_handler_depth",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_later_primary_site",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_reports_header_handler_duplicates_against_the_earlier_body_declaration",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_case_and_unicode_byte_distinctions_without_normalization",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
       }
     ]
   },
@@ -19785,6 +19825,46 @@
         "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_visits_every_owned_subtree_in_source_order_with_exact_header_handler_depth",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_later_primary_site",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_reports_header_handler_duplicates_against_the_earlier_body_declaration",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_case_and_unicode_byte_distinctions_without_normalization",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
       }
     ]
   },
@@ -19806,6 +19886,51 @@
         "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_visits_every_owned_subtree_in_source_order_with_exact_header_handler_depth",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_later_primary_site",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_reports_header_handler_duplicates_against_the_earlier_body_declaration",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_case_and_unicode_byte_distinctions_without_normalization",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_separates_complete_explicit_visibility_from_initializer_order",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
       }
     ]
   },
@@ -20607,6 +20732,51 @@
         "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_visits_every_owned_subtree_in_source_order_with_exact_header_handler_depth",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_later_primary_site",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_reports_header_handler_duplicates_against_the_earlier_body_declaration",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_case_and_unicode_byte_distinctions_without_normalization",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_separates_complete_explicit_visibility_from_initializer_order",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
       }
     ]
   },
@@ -20681,6 +20851,46 @@
       },
       {
         "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_visits_every_owned_subtree_in_source_order_with_exact_header_handler_depth",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_later_primary_site",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_reports_header_handler_duplicates_against_the_earlier_body_declaration",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_case_and_unicode_byte_distinctions_without_normalization",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
       }
@@ -20930,6 +21140,46 @@
       },
       {
         "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_visits_every_owned_subtree_in_source_order_with_exact_header_handler_depth",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_later_primary_site",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_reports_header_handler_duplicates_against_the_earlier_body_declaration",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_case_and_unicode_byte_distinctions_without_normalization",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
       }
@@ -37856,6 +38106,46 @@
         "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_visits_every_owned_subtree_in_source_order_with_exact_header_handler_depth",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_later_primary_site",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_reports_header_handler_duplicates_against_the_earlier_body_declaration",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_case_and_unicode_byte_distinctions_without_normalization",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
       }
     ]
   },
@@ -38434,6 +38724,11 @@
         "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
         "command": "make -C tests/unit/parser/control",
         "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_separates_complete_explicit_visibility_from_initializer_order",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
       }
     ]
   },
@@ -45450,6 +45745,448 @@
         "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      }
+    ]
+  },
+  "src/semantic/names/interface.c": {
+    "contract": "docs/implementation/declaration-inventories.md",
+    "purpose": "Build complete exact explicit inventories and shared interface metadata.",
+    "tests": [
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_visits_every_owned_subtree_in_source_order_with_exact_header_handler_depth",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_later_primary_site",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_reports_header_handler_duplicates_against_the_earlier_body_declaration",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_case_and_unicode_byte_distinctions_without_normalization",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
+  "src/semantic/walk/collect.c": {
+    "contract": "docs/implementation/declaration-inventories.md",
+    "purpose": "Build complete exact explicit inventories and shared interface metadata.",
+    "tests": [
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_visits_every_owned_subtree_in_source_order_with_exact_header_handler_depth",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_later_primary_site",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_reports_header_handler_duplicates_against_the_earlier_body_declaration",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_case_and_unicode_byte_distinctions_without_normalization",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
+  "src/semantic/walk/internal.h": {
+    "contract": "docs/implementation/declaration-inventories.md",
+    "purpose": "Build complete exact explicit inventories and shared interface metadata.",
+    "tests": [
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_visits_every_owned_subtree_in_source_order_with_exact_header_handler_depth",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_later_primary_site",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_reports_header_handler_duplicates_against_the_earlier_body_declaration",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_case_and_unicode_byte_distinctions_without_normalization",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/walk/sort.c": {
+    "contract": "docs/implementation/declaration-inventories.md",
+    "purpose": "Build complete exact explicit inventories and shared interface metadata.",
+    "tests": [
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_visits_every_owned_subtree_in_source_order_with_exact_header_handler_depth",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_later_primary_site",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_reports_header_handler_duplicates_against_the_earlier_body_declaration",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_case_and_unicode_byte_distinctions_without_normalization",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/names/support/duplicates.c": {
+    "contract": "docs/implementation/declaration-inventories.md",
+    "purpose": "Build complete exact explicit inventories and shared interface metadata.",
+    "tests": [
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_visits_every_owned_subtree_in_source_order_with_exact_header_handler_depth",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_later_primary_site",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_reports_header_handler_duplicates_against_the_earlier_body_declaration",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_case_and_unicode_byte_distinctions_without_normalization",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/names/support/inventory.c": {
+    "contract": "docs/implementation/declaration-inventories.md",
+    "purpose": "Build complete exact explicit inventories and shared interface metadata.",
+    "tests": [
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_visits_every_owned_subtree_in_source_order_with_exact_header_handler_depth",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_later_primary_site",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_reports_header_handler_duplicates_against_the_earlier_body_declaration",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_case_and_unicode_byte_distinctions_without_normalization",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/names/support/walk.c": {
+    "contract": "docs/implementation/declaration-inventories.md",
+    "purpose": "Build complete exact explicit inventories and shared interface metadata.",
+    "tests": [
+      {
+        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_visits_every_owned_subtree_in_source_order_with_exact_header_handler_depth",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_unwinds_every_complete_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_later_primary_site",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_reports_header_handler_duplicates_against_the_earlier_body_declaration",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_preserves_case_and_unicode_byte_distinctions_without_normalization",
+        "command": "make -C tests/unit/semantic/names",
+        "source": "tests/unit/semantic/names/main.c"
       }
     ]
   }

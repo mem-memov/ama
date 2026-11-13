@@ -895,7 +895,7 @@ Contracts: [declarations](spec/language/declarations.md),
   create duplicate visits or imports. The allocation-free merge sort is checked
   on all 5040 seven-request permutations, with equal-key stability and multiset laws.
   Native companions are selected atomically only after a required source parses as
-  @C; ordinary, unused and draft sources ignore stale companions. Repeated native
+  `@C`; ordinary, unused and draft sources ignore stale companions. Repeated native
   selection reuses the same views. Missing companions remain available to explicit
   authoring; strict native checks still enforce complete contracts. Tests cover
   expanded requester traces, draft activation, native-to-Ama input invalidation,
@@ -904,12 +904,26 @@ Contracts: [declarations](spec/language/declarations.md),
   Full strict suite and focused ASan/UBSan pass (leak detection disabled), as do
   862-input coverage and links. Warning-free Doxygen is byte-reproducible: 682
   maintained files, 2708 interfaces, 295 destinations.
-- [ ] **T030 — Resolve explicit declaration inventories.** Needs: T029. Enforce
+- [x] **T030 — Resolve explicit declaration inventories.** Needs: T029. Enforce
   one base-name namespace across sections and storage spellings; resolve full
   nominal module types. Provide shared exact source/interface-member lookup and
   declared result-label/position metadata for inference and later call validation.
   Test later visible explicit fields and duplicate-related
   spans without conflating visibility with initialization.
+  Semantic visitation now collects every owning AST subtree and stably sorts node
+  events by physical position, including selected handlers, folded headers and
+  traversal bodies. Loop/foreach bodies alone add loop depth; header handlers keep
+  incoming context. The complete explicit inventory preserves module/role ordinals,
+  exact storage flags and distinct Project/Standard nominal identities. Shared
+  allocation-free interface lookups by name/position now serve call checking and
+  subsequent inference. Wrong-role binding diagnostics retain their declarations.
+  Tests exhaust all 256 section/storage duplicate pairs, header-handler ordering,
+  Unicode/case distinctions, stable-sort boundaries, lexical depths and every
+  expanded inventory allocation failure. Later explicit source/target uses succeed;
+  forward creation-time initialization still fails. Full strict suite, updated
+  focused cases and ASan/UBSan pass (leak detection disabled), as do 869-input
+  coverage and links. Warning-free Doxygen is byte-reproducible: 689 maintained
+  files, 2732 interfaces, 296 destinations. Inference/local bindings remain T031.
 - [ ] **T031 — Implement source-order inference and foreach scope together.**
   Needs: T030. Apply TYPE-06/NAME-06's single ordered algorithm, immediately type
   new receivers and resolve/reuse foreach bindings with no shadowing. Test earlier

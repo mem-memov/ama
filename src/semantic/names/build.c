@@ -3,7 +3,7 @@
  * @brief Build the retained explicit declaration inventory in deterministic source order.
  *
  * [NAME-04](../../../spec/language/declarations.md#name-04)
- * Reject duplicate base names across storage forms; first-receiver inference and lexical foreach bindings remain T030/T031.
+ * Reject duplicate base names across storage forms; The complete inventory includes nested selected handlers and traversal bodies; first-receiver inference and iterator bindings remain T031.
  */
 #include <assert.h>
 #include "semantic/internal.h"
