@@ -18899,6 +18899,11 @@
         "case": "it_releases_every_failed_registration_and_rejects_invalid_identities",
         "command": "make -C tests/unit/source/identity",
         "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_verifies_the_exact_pinned_unicode_edition_and_source_checksum",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
       }
     ]
   },
@@ -20068,6 +20073,16 @@
         "case": "it_regenerates_pinned_tables_and_rejects_invalid_input_and_output",
         "command": "make -C tests/unit/source/unicode",
         "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_validates_every_two_byte_view_and_preserves_output_failure_contracts",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_rejects_all_nonminimal_widths_and_out_of_range_four_byte_payloads",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
       }
     ]
   },
@@ -20104,12 +20119,22 @@
         "case": "it_regenerates_pinned_tables_and_rejects_invalid_input_and_output",
         "command": "make -C tests/unit/source/unicode",
         "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_validates_complete_international_names_without_trimming_or_normalizing",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_applies_the_pinned_start_rule_to_every_word_over_the_complete_scalar_domain",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
       }
     ]
   },
   "src/source/unicode/unicode.h": {
     "contract": "docs/implementation/unicode.md",
-    "purpose": "Declare strict scalar decoding and pinned Unicode XID word recognition.",
+    "purpose": "Declare strict scalar decoding and pinned Unicode word/complete-name recognition.",
     "standalone_header_command": [
       "cc",
       "-std=c11",
@@ -20153,6 +20178,31 @@
       },
       {
         "case": "it_regenerates_pinned_tables_and_rejects_invalid_input_and_output",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_verifies_the_exact_pinned_unicode_edition_and_source_checksum",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_validates_complete_international_names_without_trimming_or_normalizing",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_applies_the_pinned_start_rule_to_every_word_over_the_complete_scalar_domain",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_validates_every_two_byte_view_and_preserves_output_failure_contracts",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_rejects_all_nonminimal_widths_and_out_of_range_four_byte_payloads",
         "command": "make -C tests/unit/source/unicode",
         "source": "tests/unit/source/unicode/main.c"
       }
@@ -37021,6 +37071,21 @@
         "case": "it_regenerates_pinned_tables_and_rejects_invalid_input_and_output",
         "command": "make -C tests/unit/source/unicode",
         "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_verifies_the_exact_pinned_unicode_edition_and_source_checksum",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_validates_complete_international_names_without_trimming_or_normalizing",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_validates_every_two_byte_view_and_preserves_output_failure_contracts",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
       }
     ]
   },
@@ -37055,6 +37120,21 @@
       },
       {
         "case": "it_regenerates_pinned_tables_and_rejects_invalid_input_and_output",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_verifies_the_exact_pinned_unicode_edition_and_source_checksum",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_validates_complete_international_names_without_trimming_or_normalizing",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_validates_every_two_byte_view_and_preserves_output_failure_contracts",
         "command": "make -C tests/unit/source/unicode",
         "source": "tests/unit/source/unicode/main.c"
       }
@@ -38166,6 +38246,65 @@
         "case": "it_unwinds_every_multichunk_load_allocation_preserving_existing_sources",
         "command": "make -C tests/unit/source/text",
         "source": "tests/unit/source/text/main.c"
+      }
+    ]
+  },
+  "src/source/unicode/name.c": {
+    "contract": "docs/implementation/unicode.md",
+    "purpose": "Validate an already-delimited complete name as exact XID words separated by single ASCII spaces.",
+    "tests": [
+      {
+        "case": "it_validates_complete_international_names_without_trimming_or_normalizing",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_applies_the_pinned_start_rule_to_every_word_over_the_complete_scalar_domain",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      }
+    ]
+  },
+  "tests/unit/source/unicode/support/names.c": {
+    "contract": "docs/implementation/unicode.md",
+    "purpose": "Verify complete multiword Unicode names, exact spelling and first invalid original-byte positions.",
+    "tests": [
+      {
+        "case": "it_validates_complete_international_names_without_trimming_or_normalizing",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_applies_the_pinned_start_rule_to_every_word_over_the_complete_scalar_domain",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      }
+    ]
+  },
+  "tests/unit/source/unicode/support/decoding.c": {
+    "contract": "docs/implementation/unicode.md",
+    "purpose": "Cover every short byte view, all nonminimal widths and the complete out-of-range four-byte payload domain.",
+    "tests": [
+      {
+        "case": "it_validates_every_two_byte_view_and_preserves_output_failure_contracts",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "case": "it_rejects_all_nonminimal_widths_and_out_of_range_four_byte_payloads",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
+      }
+    ]
+  },
+  "tests/unit/source/unicode/support/provenance.c": {
+    "contract": "docs/implementation/unicode.md",
+    "purpose": "Check the pinned Unicode edition and full vendored source checksum before trusting regenerated tables.",
+    "tests": [
+      {
+        "case": "it_verifies_the_exact_pinned_unicode_edition_and_source_checksum",
+        "command": "make -C tests/unit/source/unicode",
+        "source": "tests/unit/source/unicode/main.c"
       }
     ]
   }

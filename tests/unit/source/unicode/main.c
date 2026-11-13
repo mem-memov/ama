@@ -29,6 +29,10 @@ static size_t encode_scalar(uint32_t scalar, unsigned char bytes[4]) {
     return width;
 }
 
+#include "support/names.c"
+#include "support/decoding.c"
+#include "support/provenance.c"
+
 /** Enumerate the complete scalar domain and truncate every multibyte encoding; surrogate code points must fail. */
 static void it_decodes_every_unicode_scalar_and_rejects_surrogates(void) {
     for (uint32_t scalar = 0; scalar <= 0x10ffff; scalar++) {
@@ -43,7 +47,7 @@ static void it_decodes_every_unicode_scalar_and_rejects_surrogates(void) {
             assert(valid && decoded == scalar && width == length);
             for (size_t truncated = 0; truncated < length; truncated++) {
                 valid = utf8_decode(bytes, truncated, &decoded, &width);
-                assert(!valid);
+                assert(!valid && decoded == scalar && width == length);
             }
         }
     }
@@ -216,6 +220,11 @@ static void it_regenerates_pinned_tables_and_rejects_invalid_input_and_output(vo
  * status and success-only cleanup.
  */
 void run(void) {
+    it_verifies_the_exact_pinned_unicode_edition_and_source_checksum();
+    it_validates_complete_international_names_without_trimming_or_normalizing();
+    it_applies_the_pinned_start_rule_to_every_word_over_the_complete_scalar_domain();
+    it_validates_every_two_byte_view_and_preserves_output_failure_contracts();
+    it_rejects_all_nonminimal_widths_and_out_of_range_four_byte_payloads();
     it_decodes_every_unicode_scalar_and_rejects_surrogates();
     it_rejects_overlong_out_of_range_and_malformed_sequences();
     it_matches_pinned_properties_over_the_entire_scalar_domain();

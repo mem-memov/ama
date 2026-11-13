@@ -672,9 +672,20 @@ Contracts: [source and names](spec/language/source-and-names.md),
   The full strict suite, source/diagnostic ASan/UBSan leaves (leak detection
   disabled), complete 763-input coverage, Markdown links and warning-free
   reproducible Doxygen pass: 591 maintained files, 2432 interfaces and 288 destinations.
-- [ ] **T015 — Verify strict Unicode recognition.** Needs: T014. Pin Unicode XID
+- [x] **T015 — Verify strict Unicode recognition.** Needs: T014. Pin Unicode XID
   data and strict UTF-8 decoding; preserve byte identity without normalization.
   Test malformed encodings, boundary scalars and multiword international names.
+  Evidence: Unicode 17.0.0 remains pinned with an exact source-checksum case,
+  whole-domain XID comparison and byte-identical offline table regeneration.
+  The new allocation-free complete-name predicate composes exact XID words with
+  single ASCII spaces, retaining original spelling and precise error offsets;
+  token/path integration remains T016/T022. Cases cover every scalar after a
+  word separator, all 65536 two-byte views, all nonminimal widths, every out-of-
+  range four-byte payload, invalid continuation classes and unchanged truncation
+  outputs, alongside existing canonical-scalar/surrogate enumeration. The full
+  strict suite, Unicode ASan/UBSan leaf (leak detection disabled), complete
+  767-input coverage, Markdown links and warning-free reproducible Doxygen pass:
+  595 maintained files, 2440 interfaces and 288 destinations.
 - [ ] **T016 — Implement current physical-to-logical path mapping.** Needs: T015.
   Resolve explicit `.` and `..` roots, extensionless modules and `name+/` topology.
   Test spaced components, root-kind distinctions, conflicting roots/aliases and

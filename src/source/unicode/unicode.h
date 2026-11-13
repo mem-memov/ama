@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief Declare strict scalar decoding and pinned Unicode XID word recognition.
+ * @brief Declare strict scalar decoding and pinned Unicode word/complete-name recognition.
  *
  * [SRC-03](../../../spec/language/source-and-names.md#src-03)
  * Recognize individual words without normalizing or composing complete multiword names.
@@ -43,5 +43,16 @@ bool unicode_identifier_continue(uint32_t scalar);
  * @param[in] length Exact byte length of that word; spaces belong to a separate grammar layer.
  */
 bool unicode_identifier(const unsigned char *bytes, size_t length, size_t *error_offset);
+
+/** Validate one complete name, with one nonempty XID word per single ASCII-space separator.
+ * No leading/trailing/repeated space, other whitespace, normalization or case folding.
+ * This predicate receives an already delimited span; it does not select tokens.
+ * @param[in] bytes Borrowed exact UTF-8 name bytes; never changed or retained.
+ * @param[in] length Complete span length, including its internal single spaces.
+ * @param[out] error_offset Valid writable storage; changes only on false to the
+ * first invalid word/scalar/space byte. Empty input reports zero, trailing space
+ * reports that space, and malformed UTF-8 reports its leading byte.
+ */
+bool unicode_name(const unsigned char *bytes, size_t length, size_t *error_offset);
 
 #endif
