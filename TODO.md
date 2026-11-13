@@ -815,10 +815,20 @@ Contracts: [grammar](spec/grammar.md),
   Full strict suite, focused ASan/UBSan (leak detection disabled), 817-input
   coverage and links pass. Warning-free Doxygen is byte-reproducible: 641
   maintained files, 2588 interfaces, 292 destinations.
-- [ ] **T025 — Parse calls and binding phases.** Needs: T024. Recognize entry,
+- [x] **T025 — Parse calls and binding phases.** Needs: T024. Recognize entry,
   resume, retained/constant reads, named/positional bindings, empty placeholders
   and entry literal payloads. Test phase/mode/arity structure and explicit empty
   literal versus omitted input without semantic classification in the parser.
+  Split label/operand parsing from marker orchestration and removed all separator
+  trimming. Added a narrow independently tested binding boundary, complete Unicode
+  label/storage cases, exact comments, Standard reads, indexed-reference retained
+  reads/resumes and independent direction ordinals. Explicit output-phase state
+  is separate from ordinary output counts for the following result-tree task.
+  Empty literal and omitted input remain distinct; every named-call allocation
+  failure unwinds. The exhaustive 5856-form mode/style/order oracle, full strict
+  suite and focused ASan/UBSan pass (leak detection disabled), as do 821-input
+  coverage and links. Warning-free Doxygen is byte-reproducible: 644 maintained
+  files, 2601 interfaces, 292 destinations. Callee arity/types remain semantic work.
 - [ ] **T026 — Parse direct-result trees and refusal handlers.** Needs: T025.
   Retain selector paths, sibling order and each handler's owning operation.
   Test nested modes, colon indentation and structural rejection independently

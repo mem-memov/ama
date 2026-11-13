@@ -3,7 +3,9 @@
  * @brief Own source-mapped structural syntax without resolved symbols or generated C.
  *
  * [COMP-02](../../spec/implementation/compiler.md#comp-02)
- * Separate parser shape from typed IR; current result-tree/foreach/self-source nodes remain future tasks.
+ * Separate parser shape from typed IR; source tags carry no resolved symbols.
+ * [CALL-08](../../spec/language/calls-and-results.md#call-08) records output
+ * phase independently from ordinary result ordinals. Result trees and foreach remain later tasks.
  */
 #ifndef AMA_SYNTAX_AST_H
 #define AMA_SYNTAX_AST_H
@@ -98,6 +100,9 @@ struct AstNode {
             size_t input_count;
             size_t output_count;
             bool named;
+            /** [CALL-08](../../spec/language/calls-and-results.md#call-08) keeps
+             * output phase independent of ordinary result-position counts. */
+            bool outputs_started;
             bool has_alternative;
             AstBlock alternative;
         } call;

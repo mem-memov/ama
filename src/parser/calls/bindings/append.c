@@ -16,11 +16,12 @@ bool parser_append_argument(Parser *parser, AstNode *node, AstArgument *argument
     if ((mode == AST_ENTRY_CALL && argument->kind == AST_SAVED_OUTPUT)
         || (mode == AST_RESUME_CALL && argument->kind != AST_OUTPUT)
         || ((mode == AST_RETAINED_READ || mode == AST_CONSTANT_READ) && argument->kind != AST_SAVED_OUTPUT)
-        || (argument->kind == AST_INPUT && node->as.call.output_count != 0)) {
+        || (argument->kind == AST_INPUT && node->as.call.outputs_started)) {
         return parser_fail(parser, argument->marker, "Binding marker is not allowed in this call mode/order",
             mode == AST_ENTRY_CALL ? EXPECT_ENTRY_BINDINGS : mode == AST_RESUME_CALL ? EXPECT_RESUME_BINDINGS : EXPECT_READ_BINDINGS);
     }
     node->as.call.named = named;
+    if (argument->kind != AST_INPUT) { node->as.call.outputs_started = true; }
     argument->position = argument->kind == AST_INPUT
         ? node->as.call.input_count++ : node->as.call.output_count++;
     if (node->as.call.last == NULL) {

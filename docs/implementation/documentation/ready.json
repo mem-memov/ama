@@ -206,6 +206,36 @@
         "case": "it_cleans_every_allocation_failure_in_self_reference_assignment_construction",
         "command": "make -C tests/unit/parser/sources",
         "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_rejects_extra_or_missing_binding_separators_without_trimming_them",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_preserves_complete_labels_and_empty_literal_versus_omitted_input",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_composes_named_binding_phases_and_independent_direction_positions",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_binding_comments_in_the_exact_call_region",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_preserves_resume_retained_and_standard_constant_read_modes",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_named_call_construction",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
       }
     ]
   },
@@ -7953,6 +7983,36 @@
         "case": "it_matches_the_call_mode_language_for_every_short_binding_sequence",
         "command": "make -C tests/unit/parser/calls",
         "source": "tests/unit/parser/calls/main.c"
+      },
+      {
+        "case": "it_rejects_extra_or_missing_binding_separators_without_trimming_them",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_preserves_complete_labels_and_empty_literal_versus_omitted_input",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_composes_named_binding_phases_and_independent_direction_positions",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_binding_comments_in_the_exact_call_region",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_preserves_resume_retained_and_standard_constant_read_modes",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_named_call_construction",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
       }
     ]
   },
@@ -8009,6 +8069,36 @@
         "case": "it_matches_the_call_mode_language_for_every_short_binding_sequence",
         "command": "make -C tests/unit/parser/calls",
         "source": "tests/unit/parser/calls/main.c"
+      },
+      {
+        "case": "it_rejects_extra_or_missing_binding_separators_without_trimming_them",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_preserves_complete_labels_and_empty_literal_versus_omitted_input",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_composes_named_binding_phases_and_independent_direction_positions",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_binding_comments_in_the_exact_call_region",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_preserves_resume_retained_and_standard_constant_read_modes",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_named_call_construction",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
       }
     ]
   },
@@ -8050,6 +8140,36 @@
         "case": "it_matches_the_call_mode_language_for_every_short_binding_sequence",
         "command": "make -C tests/unit/parser/calls",
         "source": "tests/unit/parser/calls/main.c"
+      },
+      {
+        "case": "it_rejects_extra_or_missing_binding_separators_without_trimming_them",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_preserves_complete_labels_and_empty_literal_versus_omitted_input",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_composes_named_binding_phases_and_independent_direction_positions",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_binding_comments_in_the_exact_call_region",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_preserves_resume_retained_and_standard_constant_read_modes",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_named_call_construction",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
       }
     ]
   },
@@ -30486,7 +30606,7 @@
   },
   "tests/unit/parser/Makefile": {
     "contract": "docs/implementation/library-tests-and-build.md",
-    "purpose": "Dispatch section, declaration, source, tree, call, ABI, access and error suites.",
+    "purpose": "Dispatch section, declaration, source, tree, call, binding, ABI, access and error suites.",
     "tests": [
       {
         "case": "it_reads_all_six_symbols_in_any_order_with_physical_spans",
@@ -30642,6 +30762,11 @@
         "case": "it_builds_uniform_assignments_without_classifying_first_use_receivers",
         "command": "make -C tests/unit/parser",
         "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_rejects_extra_or_missing_binding_separators_without_trimming_them",
+        "command": "make -C tests/unit/parser",
+        "source": "tests/unit/parser/bindings/main.c"
       }
     ]
   },
@@ -40895,6 +41020,150 @@
         "case": "it_cleans_every_allocation_failure_in_self_reference_assignment_construction",
         "command": "make -C tests/unit/parser/sources",
         "source": "tests/unit/parser/sources/main.c"
+      }
+    ]
+  },
+  "src/parser/calls/bindings/label.c": {
+    "contract": "docs/implementation/call-bindings.md",
+    "purpose": "Parse exact complete binding labels and operands, preserving explicit omission and independent call phases.",
+    "tests": [
+      {
+        "case": "it_rejects_extra_or_missing_binding_separators_without_trimming_them",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_preserves_complete_labels_and_empty_literal_versus_omitted_input",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_composes_named_binding_phases_and_independent_direction_positions",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_binding_comments_in_the_exact_call_region",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_preserves_resume_retained_and_standard_constant_read_modes",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_named_call_construction",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      }
+    ]
+  },
+  "src/parser/calls/bindings/operand.c": {
+    "contract": "docs/implementation/call-bindings.md",
+    "purpose": "Parse exact complete binding labels and operands, preserving explicit omission and independent call phases.",
+    "tests": [
+      {
+        "case": "it_rejects_extra_or_missing_binding_separators_without_trimming_them",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_preserves_complete_labels_and_empty_literal_versus_omitted_input",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_composes_named_binding_phases_and_independent_direction_positions",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_binding_comments_in_the_exact_call_region",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_preserves_resume_retained_and_standard_constant_read_modes",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_named_call_construction",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      }
+    ]
+  },
+  "tests/unit/parser/bindings/main.c": {
+    "contract": "docs/implementation/call-bindings.md",
+    "purpose": "Parse exact complete binding labels and operands, preserving explicit omission and independent call phases.",
+    "tests": [
+      {
+        "case": "it_rejects_extra_or_missing_binding_separators_without_trimming_them",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_preserves_complete_labels_and_empty_literal_versus_omitted_input",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_composes_named_binding_phases_and_independent_direction_positions",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_binding_comments_in_the_exact_call_region",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_preserves_resume_retained_and_standard_constant_read_modes",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_named_call_construction",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      }
+    ]
+  },
+  "tests/unit/parser/bindings/Makefile": {
+    "contract": "docs/implementation/call-bindings.md",
+    "purpose": "Parse exact complete binding labels and operands, preserving explicit omission and independent call phases.",
+    "tests": [
+      {
+        "case": "it_rejects_extra_or_missing_binding_separators_without_trimming_them",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_preserves_complete_labels_and_empty_literal_versus_omitted_input",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_composes_named_binding_phases_and_independent_direction_positions",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_binding_comments_in_the_exact_call_region",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_preserves_resume_retained_and_standard_constant_read_modes",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_failure_in_named_call_construction",
+        "command": "make -C tests/unit/parser/bindings",
+        "source": "tests/unit/parser/bindings/main.c"
       }
     ]
   }

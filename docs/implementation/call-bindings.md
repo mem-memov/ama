@@ -4,8 +4,8 @@ Implementation evidence for the subset recorded in the [T001 audit](audit/README
 The [specification](../../spec/README.md) defines current behavior; this
 component description does not certify the open work in [TODO](../../TODO.md).
 
-Boundary: `src/parser/calls/`, especially `bindings/`, records call modes and
-placeholders in the currently tested parser subset.
+Boundary: `src/parser/calls/`, especially `bindings/`, records ordinary call modes,
+complete named labels and positional placeholders. Direct result trees follow in T026.
 No callee interface or declared-name lookup is used during parsing.
 
 An argument retains its complete line/marker spans, kind, optional declaration
@@ -16,7 +16,7 @@ invented. Actual type compatibility and callee arity are checked after resolutio
 
 Recognition finds the first ASCII angle marker: such bytes cannot occur in a
 valid name/access/copy source. Literal payload is excluded from that code view. Optional labels must have declaration-name syntax;
-spaces separate label, marker and nonempty operand. >> must be contiguous. Empty
+exactly one ASCII space separates label, marker and nonempty operand. >> must be contiguous. Empty
 named bindings and empty >> are invalid. Comment-only text after < or > supplies
 no operand. Input sources and output receivers use distinct grammar boundaries. A recognized
 input `|` produces AST_LITERAL_SOURCE with a payload view and a source span from
@@ -25,7 +25,7 @@ literal and omitted input are distinct nodes. Literal type/storage/capability
 checks belong to resolution; no inferred numeric value or hidden source is built.
 
 The call-list state consists of mode, one selected naming style, input/output
-counts and whether an output was seen. Entry accepts inputs before outputs, never
+counts and an explicit `outputs_started` flag. Entry accepts inputs before outputs, never
 >>. Resume accepts only >. Retained/static reads require one or more >>. Every
 new binding preserves this finite-state predicate or fails before append. A
 binding sequence has independent direction counters. Induction over that sequence
@@ -57,12 +57,21 @@ selection, source protection and ordered output transfer are semantic/lowering
 contracts; this parser does not execute or certify those later operations.
 
 
-T146 removes a remaining target-specific "fixed positional list interface" branch
-and its obsolete expectation key. Binding syntax now uses the same mode/style
-state machine regardless of whole-list target spelling. This does not enable
-whole-list execution: the real semantic composition still rejects it, including
-named arguments, before lowering. A new parser case isolates that structural
-boundary, and a semantic regression verifies that unsupported execution is never
-accepted. Intrinsic typed list services remain their implementation tasks.
-The existing finite binding-model proof applies only to that retained core, not
-full current spacing, multiword-name or direct-result-tree syntax.
+T025 splits label, operand and marker orchestration into cohesive binding files.
+Neither label nor operand parsing trims repeated spaces, even when called directly
+without the enclosing token prepass. Complete Unicode labels retain their compact
+reference/list suffixes. Standard-root constant reads and indexed reference resumes
+retain distinct namespace/target metadata without callee lookup.
+
+The explicit output-phase flag is independent of ordinary result ordinals. An
+output placeholder closes the input phase even though it transfers no value.
+This prepares the same transition for T026's selected output actions without
+pretending that a selected operation consumes an ordinary result position.
+
+`make -C tests/unit/parser/bindings` isolates the narrow binding boundary and
+composes real named calls, all root/read/resume forms, marker/label/operand spacing,
+empty literal versus omitted input, exact comment regions, parent-comment closure,
+independent direction positions and every allocation in a named call. The existing
+5856-form mode/style/order oracle and compiled execution cases remain acceptance
+evidence. Source acquisition, source protection, actual interface arity and ordered
+runtime transfers remain their semantic/planning tasks.
