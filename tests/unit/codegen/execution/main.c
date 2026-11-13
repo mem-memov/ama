@@ -302,11 +302,17 @@ static void it_executes_inferred_assignments_and_outputs_with_normal_persistent_
     execute_project("@!\nabsent&\n.reference producer\nprobe\n.worker\nabsent& !\n > fresh&\n:\n fresh& !\n :\n  probe !\n", "7:1:7\n", true);
 }
 
+/** Unqualified immutable sources retain their indexed access, evaluating each caller index once before transfer. */
+static void it_preserves_scalar_and_indexed_shared_source_access_in_compiled_transfers(void) {
+    execute_project("@=\nentry\n.value\n |7\nentries[]\n.value\n |3\n |5\n@!\nposition\n.value\n |1001\nprobe\n.worker\nprobe !\n < entry\nprobe !\n < entries[position]\nselected\n entries[position]\nprobe !\n < selected\n", "7:1:0\nindex=1001\n5:2:0\nindex=1001\n5:3:0\n", true);
+}
+
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_preserves_scalar_and_indexed_shared_source_access_in_compiled_transfers();
     it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes();
     it_checks_empty_loops_once_but_repeats_declaration_only_bodies();
     it_executes_negative_only_branches_with_the_original_truth_conversion();

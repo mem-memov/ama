@@ -16,6 +16,8 @@ void *plan_allocate(ProgramPlan *plan, size_t size);
 /** Publish an exact borrowed source-site planning error and return false without allocating reporting storage.
  */
 bool plan_fail(ProgramPlan *plan, SourceSpan site, const char *message);
+/** Reject typed source categories lacking their required executable identity implementation before storage/control publication. */
+bool plan_validate_sources(ProgramPlan *);
 /** Allocate every nominal record before linking fields/shared storage; logical slots/service masks are explicit, not C byte offsets.
  */
 bool plan_storage(ProgramPlan *plan);

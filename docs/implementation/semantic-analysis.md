@@ -10,6 +10,9 @@ NAME-04, TYPE-01/TYPE-05 and COMP-01/COMP-02 of the
 [semantic.h](../../src/semantic/semantic.h). Passing an earlier stage never
 certifies an unimplemented later stage.
 
+[Exact transfers and lexical self](typed-transfers.md) records T032's storage
+matrix, constant/indexed source handling and staged executable boundary.
+
 ## Namespace construction
 
 `semantic_program_init` borrows a valid loaded project, which must outlive the

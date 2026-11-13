@@ -949,10 +949,20 @@ Contracts: [declarations](spec/language/declarations.md),
   893-input coverage and links. Warning-free Doxygen is byte-reproducible: 712
   maintained files, 2815 interfaces, 297 destinations. Direct-tree/list-service/
   foreach execution and lexical-self transfer guards remain their later tasks.
-- [ ] **T032 — Verify transfers and self-reference typing.** Needs: T031.
+- [x] **T032 — Verify transfers and self-reference typing.** Needs: T031.
   Enforce the complete storage-form matrix, constant/indexed sources and lexical
   standalone `&`. Test absent/mismatched suffixes, exact root-kind identity and
   storage compatibility without inferring unsupported conversions.
+  Evidence: [exact transfers](docs/implementation/typed-transfers.md) separates
+  constant/named/self resolution; lexical self has the containing module's exact
+  scalar-reference type without a fabricated access. Complete nominal/form and
+  cross-root matrices, caller/default self contexts, suffix errors and every
+  semantic allocation failure pass. Indexed shared sources retain their access
+  chains in emission; compiled traces prove one index conversion per access.
+  Full strict `make -j4 test` and semantic/frontend ASan+UBSan checks passed.
+  Static self typing is complete; an explicit pre-storage planning guard retains
+  execution for T049–T050's final construction/clone identities. Documentation
+  coverage checks 900 maintained inputs; Doxygen reproducibility is verified.
 - [ ] **T033 — Derive dependency and capability fixed points.** Needs: T032.
   Provide exact dependency/cycle algorithms; derive the eager-owned-layout and
   clone-capability relations separately from module dependencies. Test finite

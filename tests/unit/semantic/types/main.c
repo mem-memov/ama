@@ -3,6 +3,8 @@
  * @brief Test retained exact transfer/capability rules, call typing and allocation failures.
  */
 #include "../typed-common.c"
+#include "support/root-identities.c"
+#include "support/self.c"
 
 /** Same spelling cannot exempt syntactic owned copies from COPY-06 capability checks. */
 static void it_requires_owned_copy_capability_even_for_statically_identical_storage(void) {
@@ -199,6 +201,10 @@ static void it_separates_complete_explicit_visibility_from_initializer_order(voi
  * status and success-only cleanup.
  */
 void run(void) {
+    it_keeps_root_kind_identity_in_the_complete_transfer_matrix();
+    it_types_lexical_self_in_initializers_assignments_and_explicit_inputs();
+    it_rejects_incompatible_self_destinations_without_adopting_their_types();
+    it_unwinds_every_allocation_while_typing_self_sources();
     it_separates_complete_explicit_visibility_from_initializer_order();
     it_requires_owned_copy_capability_even_for_statically_identical_storage();
     it_releases_every_partial_resolved_value_binding_and_access();

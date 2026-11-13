@@ -1393,6 +1393,11 @@
         "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_preserves_scalar_and_indexed_shared_source_access_in_compiled_transfers",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -3079,7 +3084,7 @@
         "source": "tests/unit/diagnostics/record/main.c"
       },
       {
-        "case": "it_reports_unsupported_self_reference_typing_without_dereferencing_a_missing_access",
+        "case": "it_reports_unsupported_self_reference_execution_after_successful_static_typing",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
@@ -3165,7 +3170,7 @@
         "source": "tests/unit/diagnostics/record/main.c"
       },
       {
-        "case": "it_reports_unsupported_self_reference_typing_without_dereferencing_a_missing_access",
+        "case": "it_reports_unsupported_self_reference_execution_after_successful_static_typing",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
@@ -10257,6 +10262,11 @@
         "case": "it_reserves_zero_for_absent_control_and_source_positions",
         "command": "make -C tests/unit/planning/ir",
         "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reports_unsupported_self_reference_execution_after_successful_static_typing",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -10688,6 +10698,11 @@
         "case": "it_reserves_zero_for_absent_control_and_source_positions",
         "command": "make -C tests/unit/planning/ir",
         "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_reports_unsupported_self_reference_execution_after_successful_static_typing",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -21832,9 +21847,29 @@
         "source": "tests/unit/semantic/names/main.c"
       },
       {
-        "case": "it_reports_unsupported_self_reference_typing_without_dereferencing_a_missing_access",
+        "case": "it_reports_unsupported_self_reference_execution_after_successful_static_typing",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_types_lexical_self_in_initializers_assignments_and_explicit_inputs",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_self_destinations_without_adopting_their_types",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_while_typing_self_sources",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_root_kind_identity_in_the_complete_transfer_matrix",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
       }
     ]
   },
@@ -29677,6 +29712,11 @@
         "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_preserves_scalar_and_indexed_shared_source_access_in_compiled_transfers",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -29856,7 +29896,7 @@
         "source": "tests/unit/compiler/check/main.c"
       },
       {
-        "case": "it_reports_unsupported_self_reference_typing_without_dereferencing_a_missing_access",
+        "case": "it_reports_unsupported_self_reference_execution_after_successful_static_typing",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
@@ -39664,6 +39704,26 @@
         "case": "it_separates_complete_explicit_visibility_from_initializer_order",
         "command": "make -C tests/unit/semantic/types",
         "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_types_lexical_self_in_initializers_assignments_and_explicit_inputs",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_self_destinations_without_adopting_their_types",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_while_typing_self_sources",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_root_kind_identity_in_the_complete_transfer_matrix",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
       }
     ]
   },
@@ -48786,6 +48846,213 @@
         "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/semantic/values/source/internal.h": {
+    "contract": "docs/implementation/typed-transfers.md",
+    "purpose": "Separate source categories while retaining one typed transfer contract.",
+    "tests": [
+      {
+        "case": "it_types_lexical_self_in_initializers_assignments_and_explicit_inputs",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_self_destinations_without_adopting_their_types",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_while_typing_self_sources",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_root_kind_identity_in_the_complete_transfer_matrix",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/values/source/constant.c": {
+    "contract": "docs/implementation/typed-transfers.md",
+    "purpose": "Resolve exact immutable qualified sources independently from local/self identity.",
+    "tests": [
+      {
+        "case": "it_requires_owned_copy_capability_even_for_statically_identical_storage",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_applies_the_complete_nominal_storage_matrix_without_conversions",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_checks_initialization_literals_reference_formation_and_continuation_copy",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_resolves_calls_bindings_defaults_and_saved_constant_reads",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_requires_native_condition_and_index_capabilities_without_inheritance",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_resolved_bindings_and_literal_bytes_in_source_order",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_whole_list_execution_and_retained_results",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_resolved_value_binding_and_access",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      }
+    ]
+  },
+  "src/semantic/values/source/instance.c": {
+    "contract": "docs/implementation/typed-transfers.md",
+    "purpose": "Resolve named caller sources and explicit acquisition/continuation modes without implicit dereference.",
+    "tests": [
+      {
+        "case": "it_requires_owned_copy_capability_even_for_statically_identical_storage",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_applies_the_complete_nominal_storage_matrix_without_conversions",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_checks_initialization_literals_reference_formation_and_continuation_copy",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_resolves_calls_bindings_defaults_and_saved_constant_reads",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_requires_native_condition_and_index_capabilities_without_inheritance",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_resolved_bindings_and_literal_bytes_in_source_order",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_whole_list_execution_and_retained_results",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_releases_every_partial_resolved_value_binding_and_access",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_root_kind_identity_in_the_complete_transfer_matrix",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      }
+    ]
+  },
+  "src/semantic/values/source/self.c": {
+    "contract": "docs/implementation/typed-transfers.md",
+    "purpose": "Type standalone self as the exact lexical module rather than the dynamic caller or destination.",
+    "tests": [
+      {
+        "case": "it_types_lexical_self_in_initializers_assignments_and_explicit_inputs",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_self_destinations_without_adopting_their_types",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_while_typing_self_sources",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_root_kind_identity_in_the_complete_transfer_matrix",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      }
+    ]
+  },
+  "src/planning/validation/sources.c": {
+    "contract": "docs/implementation/typed-transfers.md",
+    "purpose": "Reject typed source kinds whose executable identity support has not reached the runtime boundary.",
+    "tests": [
+      {
+        "case": "it_reports_unsupported_self_reference_execution_after_successful_static_typing",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/types/support/self.c": {
+    "contract": "docs/implementation/typed-transfers.md",
+    "purpose": "Verify lexical self typing, forbidden destinations and allocation-failure cleanup.",
+    "tests": [
+      {
+        "case": "it_types_lexical_self_in_initializers_assignments_and_explicit_inputs",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_self_destinations_without_adopting_their_types",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_unwinds_every_allocation_while_typing_self_sources",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/types/support/root-identities.c": {
+    "contract": "docs/implementation/typed-transfers.md",
+    "purpose": "Exhaust nominal transfer forms across distinct physical root families.",
+    "tests": [
+      {
+        "case": "it_keeps_root_kind_identity_in_the_complete_transfer_matrix",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
       }
     ]
   }

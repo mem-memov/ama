@@ -73,11 +73,9 @@ every allocation failure of a composed self-reference assignment. The existing
 access leaf independently exhausts all short `a&[]` strings against its grammar
 model and checks Unicode/nested original spans.
 
-Parser acceptance is not implementation of self-reference typing or execution.
-Until T032 supplies the semantic representation, a frontend reaching the new self
-source returns the explicit `unsupported-feature` diagnostic instead of passing
-its intentionally absent access into the old named-access resolver. The new code
-is appended after existing diagnostic codes, preserving their numeric identities;
-a compile-time cardinality assertion and diagnostic-domain tests cover its fixed
-machine name. `make -C tests/unit/compiler/check` verifies this safe staged boundary.
-Later planning/lifetime/emission tasks still supply the enclosing live identity.
+[T032 static transfer typing](typed-transfers.md) now gives self its lexical
+module identity without inventing a named access. Execution remains guarded in
+planning until final construction and clone identities are supported. The
+`unsupported-feature` diagnostic retains the original one-byte site;
+`make -C tests/unit/compiler/check` verifies that semantic analysis succeeds and
+no executable storage plan is published for initializer, assignment or input self.
