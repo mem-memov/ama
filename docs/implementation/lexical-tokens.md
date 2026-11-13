@@ -48,7 +48,8 @@ next request observes no further allocation while the cursor scans valid tokens.
 
 This is a lexical component, not a complete source parser. It does not establish
 balanced accesses, statement mode/arity, section order or legal control flow.
-T023/T024 integrate checked regions/tokens with section/declaration/access ASTs;
+[T023](declaration-parsing.md) connects checked regions and the shared bounded
+`lex_name` operation to section/declaration ASTs; T024 completes access sources;
 T025–T027 apply the same contracts to calls and structural bodies, and T028 composes
 the complete parser/ABI reader. Historical parser acceptance is not evidence that
 these remaining current-source forms are already implemented. In particular,

@@ -22,6 +22,9 @@ bool parser_push_frame(Parser *parser, ParseFrame **frame, AstBlock *block,
  */
 static bool finish_frame(Parser *parser, ParseFrame **frame) {
     ParseFrame *current = *frame;
+    if (current->kind == FRAME_BRANCH && current->indentation != 0) {
+        parser_skip_region(parser, current->indentation - 1);
+    }
     const LayoutLine *line = parser->line;
     bool at_owner = line != NULL && line != parser->end
         && current->indentation != 0 && line->indentation == current->indentation - 1;
@@ -54,7 +57,7 @@ bool parser_body(Parser *parser, ParsedSection section, AstBlock *output) {
         return false;
     }
     while (frame != NULL) {
-        parser_skip_layout(parser);
+        parser_skip_region(parser, frame->indentation);
         if (parser->line == NULL || parser->line == parser->end
             || parser->line->indentation < frame->indentation) {
             if (!finish_frame(parser, &frame)) {

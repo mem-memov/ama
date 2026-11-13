@@ -3,7 +3,7 @@
  * @brief Represent borrowed section intervals and implementation activation kind.
  *
  * [SYN-03](../../../spec/language/source-and-names.md#syn-03)
- * Section structure is separate from declaration/body parsing; strict inactive layout remains T022/T023.
+ * Section structure is separate from declaration/body parsing; shared lexical checks precede draft exclusion.
  */
 #ifndef AMA_PARSER_SECTIONS_H
 #define AMA_PARSER_SECTIONS_H
@@ -28,11 +28,16 @@ typedef struct {
     ParsedSection implementation;
 } ModuleSections;
 
-/* Recognize genuine activation markers before validating active whitespace.
+/* Check shared lexical rules, then recognize genuine activation markers.
  * Output is published only on success; section views borrow layout. This stage
  * checks section structure only; declarations/body are parsed by their stages. */
-/** Publish borrowed half-open section intervals only on success. Recognize retained activation/order without parsing declarations or bodies; T022/T023 supply full current inactive-layout validation.
+/** Publish borrowed half-open section intervals only on success. Check shared lexical tokens and section order without parsing declarations or bodies.
  */
 bool parser_sections(SourceLayout *layout, ModuleSections *output, ParseError *error);
 
+/** Check shared lexical whitespace/tokens and publish whether a genuine activation marker exists.
+ * Incomplete draft declarations need not parse. Comments retain indentation for
+ * later active-region validation. Output changes only on complete success.
+ */
+bool parser_module_classify(const SourceLayout *, bool *, ParseError *);
 #endif

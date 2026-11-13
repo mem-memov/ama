@@ -87,7 +87,10 @@ bool parser_statement(Parser *parser, ParseFrame **frame) {
     if (text.end > text.start && (bytes[text.end - 1] == '!' || bytes[text.end - 1] == '%')) {
         AstCallMode mode = bytes[text.end - 1] == '!' ? AST_ENTRY_CALL : AST_RESUME_CALL;
         SourceSpan target = text;
-        target.end--;
+        if (target.end - target.start < 2 || bytes[target.end - 2] != ' ') {
+            return parser_fail(parser, text, "An execution marker requires one preceding space", EXPECT_STATEMENT_TAIL);
+        }
+        target.end -= 2;
         return parser_start_call(parser, frame, node, target, mode);
     }
     if (text.end > text.start && bytes[text.start] == '.') {

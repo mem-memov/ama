@@ -98,11 +98,35 @@ static void it_composes_owned_frontend_input_snapshots_without_executing_native_
     destroy_frontend();
 }
 
+/** Full checked frontend keeps equal component spellings nominally distinct across Project and Standard roots. */
+static void it_resolves_multiword_declarations_through_both_root_families(void) {
+    prepare_project();
+    directory("generated/standard");
+    file("generated/standard/value", "@C\n");
+    file("generated/standard/value.h", "#error Checking must not invoke C\n");
+    file("generated/standard/value.c", "#error Checking must not invoke C\n");
+    file("generated/standard/value.abi", "+ initialize\n- destroy\n| literal\n= clone\n");
+    file("generated/project/main", "@!\nordinary state\n.value\n |a\nstandard state\n..value\n |b\n");
+    setup_frontend();
+    ModuleRoot roots[] = {{"generated/project",NULL,0,MODULE_ROOT_PROJECT},
+        {"generated/standard",NULL,0,MODULE_ROOT_STANDARD}};
+    bool valid = compiler_frontend_check(&frontend, roots, 2, ".main");
+    assert(valid && frontend.valid);
+    const ProjectModule *ordinary = project_find(&frontend.project, ".value");
+    const ProjectModule *standard = project_find(&frontend.project, "..value");
+    assert(ordinary != NULL && standard != NULL && ordinary != standard);
+    assert(frontend.plan.entry->first->symbol->type != frontend.plan.entry->first->next->symbol->type);
+    assert(layout_text_is(frontend.project.entry->syntax.body.first->as.declaration.name->name, "ordinary state"));
+    assert(layout_text_is(frontend.project.entry->syntax.body.last->as.declaration.type, "..value"));
+    destroy_frontend();
+}
+
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_resolves_multiword_declarations_through_both_root_families();
     it_composes_owned_frontend_input_snapshots_without_executing_native_c();
     it_returns_the_same_typed_graph_that_compilation_will_consume_without_running_c();
     it_preserves_source_semantic_and_relation_diagnostics();

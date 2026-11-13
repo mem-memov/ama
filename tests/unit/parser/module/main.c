@@ -13,7 +13,7 @@
  * its generated evidence.
  */
 static void it_keeps_unfinished_files_drafts_without_literal_or_comment_activation(void) {
-    const char *drafts[] = {"", "@<\nunfinished", "# @!\n |@C\n", " @!\n", "@unknown"};
+    const char *drafts[] = {"", "@<\nunfinished", "# @!\n |@C\n", "unfinished[", "unfinished name"};
     for (size_t index = 0; index < 5; index++) {
         setup_test();
         LayoutStatus read = read_layout(drafts[index]);

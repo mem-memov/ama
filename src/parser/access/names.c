@@ -1,45 +1,25 @@
 /**
  * @file
- * @brief Recognize retained XID-word names, dot paths and access shape predicates.
+ * @brief Recognize complete Unicode names and exact Project/Standard paths without binding.
  *
  * [SRC-03](../../../spec/language/source-and-names.md#src-03)
- * This word-only scanner does not implement complete names with spaces; T022/T024 adapt it.
+ * Reuse the lexical name scanner so declaration and access words cannot receive different segmentations.
  */
 #include "../internal.h"
-#include "source/unicode/unicode.h"
-
-bool parser_name(SourceSpan text, size_t *cursor, SourceSpan *name) {
-    const unsigned char *bytes = source_bytes(text.source);
-    size_t start = *cursor;
-    size_t offset = start;
-    while (offset < text.end) {
-        uint32_t scalar;
-        size_t width;
-        if (!utf8_decode(bytes + offset, text.end - offset, &scalar, &width)
-            || !(offset == start ? unicode_identifier_start(scalar)
-                : unicode_identifier_continue(scalar))) {
-            break;
-        }
-        offset += width;
-    }
-    if (offset == start) {
-        return false;
-    }
-    *name = (SourceSpan){text.source, start, offset};
-    *cursor = offset;
-    return true;
-}
+#include "lexer/tokens/tokens.h"
 
 bool parser_path(SourceSpan text) {
+    if (!source_span_valid(text) || text.start == text.end) { return false; }
     const unsigned char *bytes = source_bytes(text.source);
     size_t cursor = text.start;
-    SourceSpan name;
-    do {
-        if (cursor == text.end || bytes[cursor++] != '.' || !parser_name(text, &cursor, &name)) {
-            return false;
-        }
-    } while (cursor < text.end);
-    return true;
+    if (bytes[cursor++] != '.') { return false; }
+    if (cursor < text.end && bytes[cursor] == '.') { cursor++; }
+    for (;;) {
+        SourceSpan name;
+        if (!lex_name(text, &cursor, &name)) { return false; }
+        if (cursor == text.end) { return true; }
+        if (bytes[cursor++] != '.') { return false; }
+    }
 }
 
 bool parser_declaration_name(const AstAccess *access) {

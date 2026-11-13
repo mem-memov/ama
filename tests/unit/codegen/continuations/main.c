@@ -13,8 +13,8 @@
  */
 static void it_resumes_repeated_yields_and_restarts_at_entry(void) {
     directory("generated/project");
-    file("generated/project/task", "@!\nprobe\n.worker\nprobe!\n < |10\n%\nprobe!\n < |20\n%\nprobe!\n < |30\n");
-    execute_project("@!\ntask\n.task\ntask!\ntask%\ntask%\ntask%\n:\n task!\ntask!\n", "10:1:0\n20:2:0\n30:3:0\n10:4:0\n10:5:0\n", true);
+    file("generated/project/task", "@!\nprobe\n.worker\nprobe !\n < |10\n%\nprobe !\n < |20\n%\nprobe !\n < |30\n");
+    execute_project("@!\ntask\n.task\ntask !\ntask %\ntask %\ntask %\n:\n task !\ntask !\n", "10:1:0\n20:2:0\n30:3:0\n10:4:0\n10:5:0\n", true);
 }
 
 /**
@@ -25,8 +25,8 @@ static void it_resumes_repeated_yields_and_restarts_at_entry(void) {
 static void it_resumes_inside_a_loop_without_preserving_c_activations(void) {
     directory("generated/project");
     native_fixture("decrement", "@<\ninput\n.value\n@>\noutput\n.value\n@C\n");
-    file("generated/project/task", "@!\ncount\n.value\n |3\nstep\n.decrement\ncount\n{\n step!\n  < count\n  > count\n %\n}\n");
-    execute_project("@!\ntask\n.task\ntask!\ntask%\ntask%\ntask%\n", "count=3\ncount=2\ncount=1\n", true);
+    file("generated/project/task", "@!\ncount\n.value\n |3\nstep\n.decrement\ncount\n{\n step !\n  < count\n  > count\n %\n}\n");
+    execute_project("@!\ntask\n.task\ntask !\ntask %\ntask %\ntask %\n", "count=3\ncount=2\ncount=1\n", true);
 }
 
 /**
@@ -61,7 +61,7 @@ static void it_exposes_explicit_host_resume_restart_disposal_and_terminal_failur
         "result=ama_project_execute(&other,AMA_ACCESS_ENTRY); assert(result.outcome==AMA_HOST_YIELDED);\n"
         "AmaStatus status=ama_project_dispose(&other); assert(status.code==AMA_OK);\n"
         "status=ama_project_dispose(&other); assert(status.code==AMA_OK); return 0; }\n";
-    execute_project("@<\ninput\n.value\n |7\n@>\nresult\n.value\n input\n@!\nworker\n.worker\nworker!\n < result\n > result\n%\nworker!\n < result\n > result\n%\n", "7:1:0\n8:2:0\n7:3:0\n10:4:0\n7:1:0\n", true);
+    execute_project("@<\ninput\n.value\n |7\n@>\nresult\n.value\n input\n@!\nworker\n.worker\nworker !\n < result\n > result\n%\nworker !\n < result\n > result\n%\n", "7:1:0\n8:2:0\n7:3:0\n10:4:0\n7:1:0\n", true);
     host_launcher = NULL;
 }
 
@@ -72,8 +72,8 @@ static void it_exposes_explicit_host_resume_restart_disposal_and_terminal_failur
  */
 static void it_executes_independent_continuation_copies_and_clears_ordinary_positions(void) {
     directory("generated/project");
-    file("generated/project/task", "@!\nprobe\n.worker\nprobe!\n < |10\n%\nprobe!\n < |20\n%\nprobe!\n < |30\n");
-    execute_project("@!\noriginal\n.task\ncopy\n.task\nplain\n.task\nprobe\n.worker\noriginal!\ncopy\n %original\nplain\n original\ncopy%\noriginal%\ncopy%\nplain%\n:\n probe!\n  < |90\n", "10:1:0\n20:2:0\n20:2:0\n30:3:0\n90:1:10\n", true);
+    file("generated/project/task", "@!\nprobe\n.worker\nprobe !\n < |10\n%\nprobe !\n < |20\n%\nprobe !\n < |30\n");
+    execute_project("@!\noriginal\n.task\ncopy\n.task\nplain\n.task\nprobe\n.worker\noriginal !\ncopy\n % original\nplain\n original\ncopy %\noriginal %\ncopy %\nplain %\n:\n probe !\n  < |90\n", "10:1:0\n20:2:0\n20:2:0\n30:3:0\n90:1:10\n", true);
 }
 
 /**
@@ -83,8 +83,8 @@ static void it_executes_independent_continuation_copies_and_clears_ordinary_posi
  */
 static void it_resumes_both_branch_successors_and_transfers_retained_outputs(void) {
     directory("generated/project");
-    file("generated/project/task", "@<\ncondition\n.value\n@>\nresult\n.value\n |9\n@!\nprobe\n.worker\ncondition\n?\n %\n:\n %\nprobe!\n < result\n > result\n%\n");
-    execute_project("@!\ntask\n.task\nresult\n.value\nprobe\n.worker\ntask!\n < |1\n > result\ntask%\n > result\nprobe!\n < result\ntask%\ntask!\n < |0\ntask%\n > result\nprobe!\n < result\n", "9:1:0\n10:1:0\n9:2:0\n11:2:0\n", true);
+    file("generated/project/task", "@<\ncondition\n.value\n@>\nresult\n.value\n |9\n@!\nprobe\n.worker\ncondition\n?\n %\n:\n %\nprobe !\n < result\n > result\n%\n");
+    execute_project("@!\ntask\n.task\nresult\n.value\nprobe\n.worker\ntask !\n < |1\n > result\ntask %\n > result\nprobe !\n < result\ntask %\ntask !\n < |0\ntask %\n > result\nprobe !\n < result\n", "9:1:0\n10:1:0\n9:2:0\n11:2:0\n", true);
 }
 
 /**
@@ -94,7 +94,7 @@ static void it_resumes_both_branch_successors_and_transfers_retained_outputs(voi
  */
 static void it_disposes_yielded_owned_states_and_never_resumes_a_failed_execution(void) {
     directory("generated/project");
-    file("generated/project/task", "@!\nprobe\n.worker\nprobe!\n < |1\n%\nprobe!\n < |2\n");
+    file("generated/project/task", "@!\nprobe\n.worker\nprobe !\n < |1\n%\nprobe !\n < |2\n");
     host_launcher = "#include \"project.h\"\n#include \"project.c\"\n#include <assert.h>\n"
         "int main(void) { AmaProjectHost host={0};\n"
         "AmaHostResult result=ama_project_execute(&host,AMA_ACCESS_ENTRY);\n"
@@ -102,7 +102,7 @@ static void it_disposes_yielded_owned_states_and_never_resumes_a_failed_executio
         "AmaStatus status=ama_project_dispose(&host); assert(status.code==AMA_OK);\n"
         "for(size_t i=0;i<host.world.type_count;i++) assert(host.world.types[i]->pool.live_count==0);\n"
         "return 0; }\n";
-    execute_project("@!\ntask\n.task\ntask!\n%\ntask%\n", "1:1:0\n", true);
+    execute_project("@!\ntask\n.task\ntask !\n%\ntask %\n", "1:1:0\n", true);
     host_launcher = "#include \"project.h\"\n#include \"project.c\"\n#include <assert.h>\n"
         "int main(void) { AmaProjectHost host={0};\n"
         "AmaHostResult result=ama_project_execute(&host,AMA_ACCESS_ENTRY);\n"
@@ -110,7 +110,7 @@ static void it_disposes_yielded_owned_states_and_never_resumes_a_failed_executio
         "for(size_t i=0;i<host.world.type_count;i++) assert(host.world.types[i]->pool.live_count==0);\n"
         "result=ama_project_execute(&host,AMA_ACCESS_RESUME); assert(result.outcome==AMA_HOST_FAILED);\n"
         "return 0; }\n";
-    execute_project("@!\nworker\n.worker\nworker!\n < |500\n%\n", "native-entered\n", true);
+    execute_project("@!\nworker\n.worker\nworker !\n < |500\n%\n", "native-entered\n", true);
     host_launcher = NULL;
 }
 
@@ -121,10 +121,10 @@ static void it_disposes_yielded_owned_states_and_never_resumes_a_failed_executio
  */
 static void it_reports_the_new_caller_after_a_yield_releases_the_original_link(void) {
     directory("generated/project");
-    file("generated/project/task", "@!\nworker\n.worker\n%\nworker!\n < |500\n");
-    file("generated/project/original", "@<\ntarget&\n.task\n@!\ntarget&!\n");
-    file("generated/project/resumer", "@<\ntarget&\n.task\n@!\ntarget&%\n");
-    execute_project("@!\ntask\n.task\noriginal\n.original\nresumer\n.resumer\noriginal!\n < &task\nresumer!\n < &task\n", "native-entered\n", false);
+    file("generated/project/task", "@!\nworker\n.worker\n%\nworker !\n < |500\n");
+    file("generated/project/original", "@<\ntarget&\n.task\n@!\ntarget& !\n");
+    file("generated/project/resumer", "@<\ntarget&\n.task\n@!\ntarget& %\n");
+    execute_project("@!\ntask\n.task\noriginal\n.original\nresumer\n.resumer\noriginal !\n < &task\nresumer !\n < &task\n", "native-entered\n", false);
     expect_diagnostic("generated/project/task:5:1");
     expect_diagnostic("generated/project/resumer:5:1");
     FILE *errors = fopen("generated/errors.txt", "rb");

@@ -14,8 +14,8 @@ items&[]
  &owned
 copy
 .shop.item
- %original
-worker!
+ % original
+worker !
  < |原文 # |@!   
  <
  >
@@ -24,7 +24,7 @@ sensor
  >> selected
 ready
 ?
- worker%
+ worker %
   >
 :
  %

@@ -39,7 +39,7 @@ static void it_rejects_all_pairs_of_duplicate_storage_forms(void) {
 static void prepare_names(void) {
     directory("generated/valid");
     file("generated/valid/main", "@=\nconstant\n.value\n@<\nparameter\n.value\n@>\nresult\n.value\n"
-        "@!\nflag\n?\n nested\n .value\n:\n other\n .value\nworker!\n:\n fallback\n .value\n");
+        "@!\nflag\n?\n nested\n .value\n:\n other\n .value\nworker !\n:\n fallback\n .value\n");
     file("generated/valid/value", "@!\nconstant&\n.value\n");
 }
 

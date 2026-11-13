@@ -44,4 +44,9 @@ bool lex_line_begin(LexCursor *, const LayoutLine *, size_t);
  * payloads. Structural grammar/name binding remains the parser's responsibility.
  */
 LexStatus lex_token_next(LexCursor *, LexToken *);
+/** Scan a maximal complete name from a bounded cursor using the same predicate as tokens.
+ * Failure changes neither cursor nor name; punctuation/separators remain outside
+ * the returned span. No name lookup or shorter-name alternative is attempted.
+ */
+bool lex_name(SourceSpan, size_t *, SourceSpan *);
 #endif

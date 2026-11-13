@@ -69,7 +69,7 @@ static void it_discovers_all_source_forms_and_nested_blocks_in_lexical_order(voi
     directory("generated/forms");
     file("generated/forms/main", "@=\nconstant\n.kind\n .constants.value\n"
         "@<\nparameter\n.kind\n@>\nresult\n.kind\n@!\n"
-        "copy\n .assignment.value\nworker!\n < .argument.value\n:\n"
+        "copy\n .assignment.value\nworker !\n < .argument.value\n:\n"
         " fallback\n .fallback\nready\n?\n flag\n {\n  child\n  .nested\n }\n:\n"
         " alternative\n .alternative\n.namespace\n value >> answer\n");
     const char *names[] = {"kind", "constants", "assignment", "argument", "fallback",

@@ -27,7 +27,7 @@ bool parser_access(Parser *parser, SourceSpan text, AstAccess **output) {
         }
         *destination = access;
         access->span = (SourceSpan){text.source, cursor, text.end - depth};
-        if (!parser_name(text, &cursor, &access->name)) {
+        if (!lex_name(text, &cursor, &access->name)) {
             return fail_access(parser, text, cursor, EXPECT_ACCESS);
         }
         if (cursor < text.end && bytes[cursor] == '&') {

@@ -23,7 +23,7 @@ static void it_reports_specific_expected_constructs_at_exact_source_offsets(void
         {"@!\nx\n items[position", EXPECT_RIGHT_BRACKET, 20},
         {"@!\nworker", EXPECT_STATEMENT_TAIL, 3},
         {"@!\nready\n\n?", EXPECT_CONDITION_ADJACENCY, 3},
-        {"@!\nworker!\n >> answer", EXPECT_ENTRY_BINDINGS, 12}
+        {"@!\nworker !\n >> answer", EXPECT_ENTRY_BINDINGS, 13}
     };
     for (size_t index = 0; index < sizeof(cases) / sizeof(cases[0]); index++) {
         setup_tree();
@@ -79,7 +79,7 @@ static void it_keeps_layout_and_utf8_failures_in_the_same_structured_error_contr
  * generated evidence.
  */
 static void it_produces_valid_diagnostics_for_every_truncated_byte_prefix(void) {
-    const char *program = "@=\n常量\n.type\n |@! # data\n@!\nready\n{\n worker!\n  <\n  > answer\n %\n}\n";
+    const char *program = "@=\n常量\n.type\n |@! # data\n@!\nready\n{\n worker !\n  <\n  > answer\n %\n}\n";
     size_t length = strlen(program);
     char *prefix = malloc(length + 1);
     assert(prefix != NULL);

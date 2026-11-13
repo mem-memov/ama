@@ -7517,6 +7517,26 @@
         "case": "it_cleans_every_failed_allocation_in_composed_tree_construction",
         "command": "make -C tests/unit/parser/tree",
         "source": "tests/unit/parser/tree/main.c"
+      },
+      {
+        "case": "it_builds_all_storage_forms_with_multiword_names_and_standard_root_types",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_keeps_declaration_and_initializer_comments_in_their_exact_regions",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_shares_draft_activation_and_lexical_validation_without_parsing_unfinished_declarations",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_cleans_each_allocation_failure_in_complete_name_declaration_construction",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
       }
     ]
   },
@@ -7568,6 +7588,31 @@
         "case": "it_cleans_every_failed_allocation_in_composed_tree_construction",
         "command": "make -C tests/unit/parser/tree",
         "source": "tests/unit/parser/tree/main.c"
+      },
+      {
+        "case": "it_builds_all_storage_forms_with_multiword_names_and_standard_root_types",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_keeps_declaration_and_initializer_comments_in_their_exact_regions",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_shares_draft_activation_and_lexical_validation_without_parsing_unfinished_declarations",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_cleans_each_allocation_failure_in_complete_name_declaration_construction",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_resolves_multiword_declarations_through_both_root_families",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -8083,6 +8128,31 @@
         "case": "it_produces_valid_diagnostics_for_every_truncated_byte_prefix",
         "command": "make -C tests/unit/parser/errors",
         "source": "tests/unit/parser/errors/main.c"
+      },
+      {
+        "case": "it_builds_all_storage_forms_with_multiword_names_and_standard_root_types",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_keeps_declaration_and_initializer_comments_in_their_exact_regions",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_shares_draft_activation_and_lexical_validation_without_parsing_unfinished_declarations",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_cleans_each_allocation_failure_in_complete_name_declaration_construction",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_resolves_multiword_declarations_through_both_root_families",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -8262,6 +8332,26 @@
         "case": "it_produces_valid_diagnostics_for_every_truncated_byte_prefix",
         "command": "make -C tests/unit/parser/errors",
         "source": "tests/unit/parser/errors/main.c"
+      },
+      {
+        "case": "it_builds_all_storage_forms_with_multiword_names_and_standard_root_types",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_keeps_declaration_and_initializer_comments_in_their_exact_regions",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_shares_draft_activation_and_lexical_validation_without_parsing_unfinished_declarations",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_cleans_each_allocation_failure_in_complete_name_declaration_construction",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
       }
     ]
   },
@@ -8374,6 +8464,31 @@
         "case": "it_cleans_every_failed_allocation_in_composed_tree_construction",
         "command": "make -C tests/unit/parser/tree",
         "source": "tests/unit/parser/tree/main.c"
+      },
+      {
+        "case": "it_builds_all_storage_forms_with_multiword_names_and_standard_root_types",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_keeps_declaration_and_initializer_comments_in_their_exact_regions",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_shares_draft_activation_and_lexical_validation_without_parsing_unfinished_declarations",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_cleans_each_allocation_failure_in_complete_name_declaration_construction",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_resolves_multiword_declarations_through_both_root_families",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -8445,6 +8560,26 @@
         "case": "it_cleans_every_failed_allocation_in_composed_tree_construction",
         "command": "make -C tests/unit/parser/tree",
         "source": "tests/unit/parser/tree/main.c"
+      },
+      {
+        "case": "it_builds_all_storage_forms_with_multiword_names_and_standard_root_types",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_keeps_declaration_and_initializer_comments_in_their_exact_regions",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_shares_draft_activation_and_lexical_validation_without_parsing_unfinished_declarations",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_cleans_each_allocation_failure_in_complete_name_declaration_construction",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
       }
     ]
   },
@@ -26854,6 +26989,11 @@
         "case": "it_unwinds_every_frontend_allocation_failure",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_resolves_multiword_declarations_through_both_root_families",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -30251,7 +30391,7 @@
   },
   "tests/unit/parser/Makefile": {
     "contract": "docs/implementation/library-tests-and-build.md",
-    "purpose": "Dispatch independent child suites: module tree calls abi access errors.",
+    "purpose": "Dispatch section, declaration, tree, call, ABI, access and error suites.",
     "tests": [
       {
         "case": "it_reads_all_six_symbols_in_any_order_with_physical_spans",
@@ -30397,6 +30537,11 @@
         "case": "it_cleans_every_failed_allocation_in_composed_tree_construction",
         "command": "make -C tests/unit/parser/tree",
         "source": "tests/unit/parser/tree/main.c"
+      },
+      {
+        "case": "it_builds_all_storage_forms_with_multiword_names_and_standard_root_types",
+        "command": "make -C tests/unit/parser",
+        "source": "tests/unit/parser/declarations/main.c"
       }
     ]
   },
@@ -40017,6 +40162,11 @@
         "case": "it_rejects_global_tabs_and_lone_cr_before_any_literal_or_activation_interpretation",
         "command": "make -C tests/unit/lexer/tokens",
         "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_shares_bounded_maximal_name_scanning_with_parser_consumers",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
       }
     ]
   },
@@ -40138,6 +40288,11 @@
       },
       {
         "case": "it_rejects_global_tabs_and_lone_cr_before_any_literal_or_activation_interpretation",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_shares_bounded_maximal_name_scanning_with_parser_consumers",
         "command": "make -C tests/unit/lexer/tokens",
         "source": "tests/unit/lexer/tokens/main.c"
       }
@@ -40263,6 +40418,213 @@
         "case": "it_rejects_global_tabs_and_lone_cr_before_any_literal_or_activation_interpretation",
         "command": "make -C tests/unit/lexer/tokens",
         "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_shares_bounded_maximal_name_scanning_with_parser_consumers",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      }
+    ]
+  },
+  "src/parser/module/internal.h": {
+    "contract": "docs/implementation/declaration-parsing.md",
+    "purpose": "Compose shared lexical activation, complete declarations and exact structural region lifetime.",
+    "tests": [
+      {
+        "case": "it_builds_all_storage_forms_with_multiword_names_and_standard_root_types",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_keeps_declaration_and_initializer_comments_in_their_exact_regions",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_shares_draft_activation_and_lexical_validation_without_parsing_unfinished_declarations",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_cleans_each_allocation_failure_in_complete_name_declaration_construction",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/parser/module/recognition/annotation.c": {
+    "contract": "docs/implementation/declaration-parsing.md",
+    "purpose": "Compose shared lexical activation, complete declarations and exact structural region lifetime.",
+    "tests": [
+      {
+        "case": "it_builds_all_storage_forms_with_multiword_names_and_standard_root_types",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_keeps_declaration_and_initializer_comments_in_their_exact_regions",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_shares_draft_activation_and_lexical_validation_without_parsing_unfinished_declarations",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_cleans_each_allocation_failure_in_complete_name_declaration_construction",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      }
+    ]
+  },
+  "src/parser/module/recognition/classify.c": {
+    "contract": "docs/implementation/declaration-parsing.md",
+    "purpose": "Compose shared lexical activation, complete declarations and exact structural region lifetime.",
+    "tests": [
+      {
+        "case": "it_builds_all_storage_forms_with_multiword_names_and_standard_root_types",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_keeps_declaration_and_initializer_comments_in_their_exact_regions",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_shares_draft_activation_and_lexical_validation_without_parsing_unfinished_declarations",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_cleans_each_allocation_failure_in_complete_name_declaration_construction",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      }
+    ]
+  },
+  "src/parser/layout/region.c": {
+    "contract": "docs/implementation/declaration-parsing.md",
+    "purpose": "Compose shared lexical activation, complete declarations and exact structural region lifetime.",
+    "tests": [
+      {
+        "case": "it_builds_all_storage_forms_with_multiword_names_and_standard_root_types",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_keeps_declaration_and_initializer_comments_in_their_exact_regions",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_shares_draft_activation_and_lexical_validation_without_parsing_unfinished_declarations",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_cleans_each_allocation_failure_in_complete_name_declaration_construction",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      }
+    ]
+  },
+  "tests/unit/parser/declarations/main.c": {
+    "contract": "docs/implementation/declaration-parsing.md",
+    "purpose": "Compose shared lexical activation, complete declarations and exact structural region lifetime.",
+    "tests": [
+      {
+        "case": "it_builds_all_storage_forms_with_multiword_names_and_standard_root_types",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_keeps_declaration_and_initializer_comments_in_their_exact_regions",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_shares_draft_activation_and_lexical_validation_without_parsing_unfinished_declarations",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_cleans_each_allocation_failure_in_complete_name_declaration_construction",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      }
+    ]
+  },
+  "tests/unit/parser/declarations/Makefile": {
+    "contract": "docs/implementation/declaration-parsing.md",
+    "purpose": "Compose shared lexical activation, complete declarations and exact structural region lifetime.",
+    "tests": [
+      {
+        "case": "it_builds_all_storage_forms_with_multiword_names_and_standard_root_types",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_keeps_declaration_and_initializer_comments_in_their_exact_regions",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_shares_draft_activation_and_lexical_validation_without_parsing_unfinished_declarations",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_cleans_each_allocation_failure_in_complete_name_declaration_construction",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      }
+    ]
+  },
+  "src/lexer/tokens/name.c": {
+    "contract": "docs/implementation/lexical-tokens.md",
+    "purpose": "Scan maximal bounded complete Unicode names without shorter declaration-dependent alternatives.",
+    "tests": [
+      {
+        "case": "it_shares_bounded_maximal_name_scanning_with_parser_consumers",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_builds_all_storage_forms_with_multiword_names_and_standard_root_types",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_keeps_declaration_and_initializer_comments_in_their_exact_regions",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_shares_draft_activation_and_lexical_validation_without_parsing_unfinished_declarations",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_cleans_each_allocation_failure_in_complete_name_declaration_construction",
+        "command": "make -C tests/unit/parser/declarations",
+        "source": "tests/unit/parser/declarations/main.c"
       }
     ]
   }

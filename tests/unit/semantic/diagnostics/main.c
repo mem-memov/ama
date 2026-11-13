@@ -33,7 +33,7 @@ static void it_reports_both_nominal_types_and_original_declarations(void) {
 static void it_preserves_callee_parameter_context_for_literal_capability_errors(void) {
     prepare_types();
     file("generated/program/worker", "@<\ninput\n.resource\n@!\n");
-    SemanticStatus status = resolve_text("@!\nworker\n.worker\nworker!\n input < |payload\n");
+    SemanticStatus status = resolve_text("@!\nworker\n.worker\nworker !\n input < |payload\n");
     assert(status == SEMANTIC_INVALID && strcmp(semantic.error.subject, ".resource") == 0);
     assert(semantic.error.related_count == 2);
     assert(layout_text_is(semantic.error.related[0].location.span, "input\n.resource"));

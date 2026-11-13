@@ -785,11 +785,21 @@ Contracts: [grammar](spec/grammar.md),
   and links pass. Doxygen is warning-free and byte-reproducible: 631 maintained
   files, 2564 interfaces, 290 destinations. AST integration of checked regions and
   tokens proceeds in T023–T028; this step certifies the lexical component.
-- [ ] **T023 — Parse sections, drafts and declarations.** Needs: T022. Build
+- [x] **T023 — Parse sections, drafts and declarations.** Needs: T022. Build
   source-mapped AST nodes using T022 checked tokens/regions for executable,
-  constants and native sections, explicit
-  declarations, all four storage forms and initialization. Check activation,
+  constants and native sections, explicit declarations, all four storage forms
+  and initialization. Check activation,
   constants-only files, malformed sections and deep nested bodies.
+  Shared lexical classification now precedes activation, with an atomic reusable
+  draft/active predicate. The AST uses the shared maximal-name scanner and complete
+  Project/Standard type paths. Explicit region cursors enforce declaration/type/
+  initializer comments and prevent reopening after a parent comment. All storage
+  forms, section/ending cases, invalid drafts and every allocation failure pass.
+  Full frontend composition preserves distinct nominal types across both roots.
+  Updated call/copy fixture separators through exact successful-AST positions and
+  reviewed explicit negative fragments. Full strict suite, parser/compiler ASan/
+  UBSan (leak detection disabled), 812-input coverage and links pass. Warning-free
+  Doxygen is byte-reproducible: 637 maintained files, 2577 interfaces, 291 destinations.
 - [ ] **T024 — Parse accesses, assignments and inferred receivers.** Needs: T023.
   Recognize indexed/qualified/self-reference sources and uniform assignment nodes
   without name lookup. Test suffix/spacing boundaries, legal source modes and

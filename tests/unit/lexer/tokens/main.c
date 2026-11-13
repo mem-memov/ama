@@ -164,10 +164,33 @@ static void it_recognizes_every_annotation_and_standalone_marker(void) {
     destroy_layout();
 }
 
+/** The shared name scanner respects bounds and preserves outputs when no valid starting word exists. */
+static void it_shares_bounded_maximal_name_scanning_with_parser_consumers(void) {
+    setup_test();
+    LayoutStatus read = read_layout("商品 状态[]");
+    assert(read == LAYOUT_OK);
+    SourceSpan text = layout.first->code;
+    SourceSpan name = {0};
+    size_t cursor = text.start;
+    bool found = lex_name(text, &cursor, &name);
+    assert(found && layout_text_is(name, "商品 状态"));
+    assert(cursor == strlen("商品 状态"));
+    SourceSpan previous = name;
+    size_t previous_cursor = cursor;
+    found = lex_name(text, &cursor, &name);
+    assert(!found && cursor == previous_cursor);
+    assert(name.source == previous.source && name.start == previous.start && name.end == previous.end);
+    text.start = text.end;
+    found = lex_name(text, &cursor, &name);
+    assert(!found && cursor == previous_cursor);
+    destroy_layout();
+}
+
 /** Run every exact-layout/token boundary scenario explicitly. */
 void run(void) {
     it_preserves_complete_names_compound_tokens_and_all_line_ending_forms();
     it_recognizes_every_annotation_and_standalone_marker();
+    it_shares_bounded_maximal_name_scanning_with_parser_consumers();
     it_rejects_spacing_near_compact_accesses_and_separated_operators();
     it_checks_region_comment_indentation_and_distinguishes_comment_prefix_spaces();
     it_preserves_literal_payloads_after_exact_multiword_labels_and_storage_suffixes();

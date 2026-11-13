@@ -5,14 +5,14 @@ The [specification](../../spec/README.md) defines current behavior; this
 component description does not certify the open work in [TODO](../../TODO.md).
 
 Boundary: `src/parser/module/sections.*`, retaining section/activation structure
-for SYN-03/04/05; integration with the T022 region/token boundary remains T023.
+for SYN-03/04/05; shared lexical classification and declaration-region integration are completed in T023.
 Section views borrow the immutable layout. Recognition allocates nothing and
 publishes output only on success. Global UTF-8/TAB/line-ending checks must already have passed layout reading.
 
 A first pass activates only exact zero-indent `@=`, `@!` or `@C` code lines, with
 the classified trailing comment suffix. Literal/comment text and indented markers
 never activate a draft. A nonactivated file remains a draft without parsing its
-unfinished declarations. Remaining active region/token validation is part of T023 integration.
+unfinished declarations. The shared classifier validates lexical joins even when declarations remain unfinished.
 
 The second pass assigns increasing section ranks: constants, parameters, results,
 implementation. Duplicate/decreasing/unknown/indented annotations fail at their
@@ -36,7 +36,7 @@ does not claim that declaration/body grammar has been validated.
 
 
 T146 adds Doxygen contracts for the local rank pass and borrowed section intervals.
-Global encoding, TAB and line-ending checks now run in the T022 physical reader
-before activation. Unfinished draft grammar remains excluded; active region/token
-attachment and complete section grammar remain T023. No alternate TAB policy
-exists for drafts, literal payloads or comments.
+Global encoding, TAB and line-ending checks run in the physical reader. T023
+then applies common tokens before activation and checks declaration regions;
+see [the composition contract](declaration-parsing.md). Unfinished draft grammar
+remains excluded without an alternate lexical spacing or TAB policy.

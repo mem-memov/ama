@@ -24,7 +24,7 @@ static const ScaffoldType *toolchain_native_fixture(void) {
  */
 static void it_uses_the_required_profile_in_real_compilation_and_the_compilation_database(void) {
     weak_toolchain_options = true;
-    execute_project("@!\nfirst\n.worker\nfirst!\n", "7:1:0\n", true);
+    execute_project("@!\nfirst\n.worker\nfirst !\n", "7:1:0\n", true);
     weak_toolchain_options = false;
     pid_t process = fork();
     assert(process >= 0);
@@ -53,7 +53,7 @@ static void it_uses_the_required_profile_in_real_compilation_and_the_compilation
  */
 static void it_rejects_native_warnings_despite_weaker_user_options(void) {
     weak_toolchain_options = true;
-    prepare_project("@!\nfirst\n.worker\nfirst!\n");
+    prepare_project("@!\nfirst\n.worker\nfirst !\n");
     weak_toolchain_options = false;
     FILE *body = fopen(toolchain_native_fixture()->body_path, "ab");
     assert(body != NULL);
@@ -79,7 +79,7 @@ static void it_rejects_native_warnings_despite_weaker_user_options(void) {
  * establishes that the forbidden function did not cross the publication boundary.
  */
 static void it_rejects_an_ama_control_function_before_linking_or_publication(void) {
-    prepare_project("@!\nfirst\n.worker\nfirst!\n");
+    prepare_project("@!\nfirst\n.worker\nfirst !\n");
     FILE *body = fopen(toolchain_native_fixture()->body_path, "ab");
     assert(body != NULL);
     int written = fprintf(body, "\n__attribute__((noinline,noipa)) void ama_label_%zu(void) {}\n",

@@ -9,6 +9,7 @@
 #define AMA_PARSER_INTERNAL_H
 
 #include "ast/ast.h"
+#include "lexer/tokens/tokens.h"
 
 /** Transient cursor borrowing its AST owner and exclusive section end; first failure prevents usable output. */
 typedef struct {
@@ -41,13 +42,12 @@ SourceSpan parser_site(const Parser *parser);
 /** Advance over blank/comment nodes up to an exclusive end; accumulate whether a blank occurred without changing source/layout.
  */
 const LayoutLine *parser_significant(const LayoutLine *line, const LayoutLine *end, bool *blank);
+/** Skip blank lines and only comments at the specified region depth; leave other-depth comments for the enclosing grammar or an error. */
+void parser_skip_region(Parser *, size_t);
 /** Move only the parser cursor to its next significant node within the current section.
  */
 void parser_skip_layout(Parser *parser);
-/** Scan a retained XID word from cursor. Publish name/cursor only after at least one valid scalar; complete multiword names remain T022/T024.
- */
-bool parser_name(SourceSpan text, size_t *cursor, SourceSpan *name);
-/** Test the complete retained single-dot path span without mutation, trimming or registry lookup.
+/** Test a complete Project/Standard root path span without mutation, trimming or registry lookup.
  */
 bool parser_path(SourceSpan text);
 /** Build an iterative access/index shape; publish output only on full suffix/bracket consumption. Failed partial nodes remain arena-owned.

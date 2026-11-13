@@ -74,7 +74,7 @@ released. Case and normalization-distinct physical files retain distinct lookups
 
 T145 documents each catalog scan/resolution/source-publication phase and internal
 view lifetime. T016 completes the catalog’s root-kind/multiword path contract;
-T017 supplies its generated-identity encoding; T022 supplies exact tokens; T023/T024 connect their parser consumers.
+T017 supplies its generated-identity encoding; T022 supplies exact tokens; T023 connects declaration/type paths and T024 completes access sources.
 Native companion
 lookup and invalid UTF-8 diagnostics retain their original loaded bytes even on
 failure, until catalog destruction.
@@ -109,7 +109,7 @@ paths belong to catalog owners. Source/native-companion byte lifetime and failur
 publication rules are unchanged. A NULL nonempty inventory and an unknown kind
 fail explicitly, rather than guessing Project. Existing CLI source/`--root`
 entries are explicitly tagged Project/import; the current-spec CLI standard-root
-configuration remains T068. Parser AST spans remain T023/T024; generated root identity encoding is now provided by T017. Passing catalog cases does not certify
+configuration remains T068. Declaration/type AST spans now use T023; expanded access sources remain T024; generated root identity encoding is now provided by T017. Passing catalog cases does not certify
 those later source/codegen stages.
 
 The mapping is injective after checks: root marker determines kind; each dot

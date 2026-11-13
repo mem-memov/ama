@@ -222,7 +222,7 @@ static void it_rejects_missing_or_duplicate_required_control_sites_before_public
     for (size_t mode = 0; mode < 3; mode++) {
         prepare_assembly();
         file("generated/project/callee", "@<\ninput\n.value\n@>\noutput\n.value\n@!\n");
-        file("generated/project/main", "@!\nvalue\n.value\nworker\n.callee\nworker!\n < value\n > value\n");
+        file("generated/project/main", "@!\nvalue\n.value\nworker\n.callee\nworker !\n < value\n > value\n");
         begin_assembly();
         PlannedType *owner = frontend.plan.entry;
         ControlNode *selected = NULL;

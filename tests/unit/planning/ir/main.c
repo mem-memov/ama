@@ -86,7 +86,7 @@ static void it_constructs_fields_before_payload_and_destroys_payload_before_reve
 static void it_installs_inputs_in_declaration_order_after_source_order_evaluation(void) {
     prepare_types();
     file("generated/program/worker", "@<\nfirst\n.value\nsecond\n.value\n@>\nresult\n.value\n@!\n");
-    PlanStatus status = plan_text("@!\nworker\n.worker\nvalue\n.value\nworker!\n"
+    PlanStatus status = plan_text("@!\nworker\n.worker\nvalue\n.value\nworker !\n"
         " second < value\n first < |literal\n result > value\n");
     assert(status == PLAN_OK);
     ControlNode *node = plan.entry->entry;
@@ -114,7 +114,7 @@ static void it_installs_inputs_in_declaration_order_after_source_order_evaluatio
 static void it_reads_without_reset_and_resumes_without_input_installation(void) {
     prepare_types();
     file("generated/program/worker", "@>\nresult\n.value\n@!\n");
-    PlanStatus status = plan_text("@!\nworker\n.worker\nvalue\n.value\nworker\n >> value\nworker%\n > value\n");
+    PlanStatus status = plan_text("@!\nworker\n.worker\nvalue\n.value\nworker\n >> value\nworker %\n > value\n");
     assert(status == PLAN_OK);
     ControlNode *read = plan.entry->entry;
     assert(read->operation == CONTROL_ACQUIRE_INSTANCE);
@@ -131,7 +131,7 @@ static void it_reads_without_reset_and_resumes_without_input_installation(void) 
 /** Check refusal snapshot/handler edges separately from capture-before-cleanup fatal paths, including empty alternatives. */
 static void it_keeps_refusal_alternatives_distinct_from_technical_failure_even_when_empty(void) {
     prepare_types();
-    PlanStatus status = plan_text("@!\nworker\n.worker\nworker!\n:\n");
+    PlanStatus status = plan_text("@!\nworker\n.worker\nworker !\n:\n");
     assert(status == PLAN_OK);
     ControlNode *acquire = plan.entry->entry;
     assert(acquire->alternative->operation == CONTROL_REFUSAL_SNAPSHOT);
@@ -140,7 +140,7 @@ static void it_keeps_refusal_alternatives_distinct_from_technical_failure_even_w
     assert(plan.entry->failure->operation == CONTROL_CAPTURE_ERROR);
     assert(plan.entry->failure->next->operation == CONTROL_CLEANUP_FAILURE);
     destroy_plan();
-    status = plan_text("@!\nworker\n.worker\nworker!\n");
+    status = plan_text("@!\nworker\n.worker\nworker !\n");
     assert(status == PLAN_OK && plan.entry->entry->alternative == plan.entry->failure);
     destroy_plan();
 }
@@ -179,7 +179,7 @@ static void it_retains_receiver_source_preflight_prepare_commit_order_for_assign
 /** Enumerate each measured plan allocation failure and require safely destructible partial storage/lifecycle/control records. */
 static void it_cleans_partial_lifecycle_storage_and_control_plans_on_every_allocation_failure(void) {
     prepare_types();
-    const char *text = "@!\nworker\n.worker\nvalue\n.value\nworker!\n:\n value\n  value\n%\n";
+    const char *text = "@!\nworker\n.worker\nvalue\n.value\nworker !\n:\n value\n  value\n%\n";
     PlanStatus status = plan_text(text);
     assert(status == PLAN_OK);
     size_t baseline = allocation_count;
@@ -239,7 +239,7 @@ static void it_lowers_deep_branch_nesting_without_recursive_c_activations(void) 
 /** Patch cyclic type-level calls only after entries exist, retaining instance selection and explicit return sites. */
 static void it_links_same_type_reentry_through_instance_selection_and_return_metadata(void) {
     prepare_types();
-    PlanStatus status = plan_text("@!\nother&\n.main\nother&!\n");
+    PlanStatus status = plan_text("@!\nother&\n.main\nother& !\n");
     assert(status == PLAN_OK);
     ControlNode *acquire = plan.entry->entry;
     assert(acquire->operation == CONTROL_ACQUIRE_INSTANCE);

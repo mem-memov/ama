@@ -6,33 +6,16 @@
  */
 #include <string.h>
 #include "internal.h"
-#include "source/unicode/unicode.h"
 /** Immutable spelling/category pair ordered longest first; equal-length alternatives have disjoint spellings. */
 typedef struct { const char *text; LexKind kind; } FixedToken;
 
-/** Scan one XID word, returning the unchanged offset when its first scalar is not a valid start. */
-static size_t word(const unsigned char *bytes, size_t offset, size_t end) {
-    size_t start = offset;
-    while (offset < end) {
-        uint32_t scalar;
-        size_t width;
-        if (!utf8_decode(bytes + offset, end - offset, &scalar, &width)
-            || !(offset == start ? unicode_identifier_start(scalar) : unicode_identifier_continue(scalar))) { break; }
-        offset += width;
-    }
-    return offset;
-}
 bool lex_recognize(LexCursor *cursor, size_t offset, LexToken *token) {
     const unsigned char *bytes = source_bytes(cursor->line->code.source);
     size_t end = cursor->line->code.end;
-    size_t stop = word(bytes, offset, end);
-    if (stop != offset) {
-        while (stop < end && bytes[stop] == ' ') {
-            size_t next = word(bytes, stop + 1, end);
-            if (next == stop + 1) { break; }
-            stop = next;
-        }
-        *token = (LexToken){.kind = LEX_NAME, .text = {cursor->line->code.source, offset, stop}};
+    size_t stop = offset;
+    SourceSpan name;
+    if (lex_name(cursor->line->code, &stop, &name)) {
+        *token = (LexToken){.kind = LEX_NAME, .text = name};
         return true;
     }
     static const FixedToken fixed[] = {

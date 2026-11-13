@@ -23,7 +23,8 @@ static bool constant_source(Parser *parser, SourceSpan text, AstSource *source) 
     while (last_dot > path.start && bytes[last_dot - 1] != '.') {
         last_dot--;
     }
-    if (last_dot <= path.start + 1) {
+    size_t root_width = path.end - path.start >= 2 && bytes[path.start + 1] == '.' ? 2 : 1;
+    if (last_dot <= path.start + root_width) {
         return parser_fail(parser, text, "A constant source needs a module and member", EXPECT_QUALIFIED_CONSTANT);
     }
     source->kind = AST_CONSTANT_SOURCE;
@@ -61,7 +62,14 @@ bool parser_source(Parser *parser, const LayoutLine *line, SourceSpan text,
         source->kind = prefix == '&' ? AST_ACQUIRE_SOURCE
             : prefix == '%' ? AST_CONTINUATION_SOURCE : AST_VALUE_SOURCE;
         SourceSpan operand = text;
-        operand.start += prefix == '&' || prefix == '%';
+        if (prefix == '%') {
+            if (operand.end - operand.start < 2 || source_bytes(text.source)[operand.start + 1] != ' ') {
+                return parser_fail(parser, text, "Continuation copying requires one following space", EXPECT_COPY_SOURCE);
+            }
+            operand.start += 2;
+        } else if (prefix == '&') {
+            operand.start++;
+        }
         if (!parser_access(parser, operand, &source->access)) {
             return false;
         }

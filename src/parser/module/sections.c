@@ -5,34 +5,7 @@
  * [SYN-03](../../../spec/language/source-and-names.md#syn-03)
  * Comments/literals do not activate modules; global byte checks precede activation; complete section/token integration remains T023.
  */
-#include "sections.h"
-
-/** Recognize only genuine complete code-line section markers; literals/comments cannot activate a file.
- */
-static int annotation(const LayoutLine *line) {
-    const char *markers[] = {"@=", "@<", "@>", "@!", "@C"};
-    if (line->kind != LINE_CODE) {
-        return -1;
-    }
-    for (int index = 0; index < 5; index++) {
-        if (layout_text_is(line->code, markers[index])) {
-            return index;
-        }
-    }
-    return -1;
-}
-
-/** Test the finite line sequence for an unindented constants/implementation marker under the retained activation contract.
- */
-static bool active_file(const SourceLayout *layout) {
-    for (const LayoutLine *line = layout->first; line != NULL; line = line->next) {
-        int marker = annotation(line);
-        if (line->indentation == 0 && (marker == 0 || marker >= 3)) {
-            return true;
-        }
-    }
-    return false;
-}
+#include "internal.h"
 
 /** Publish an exact source-mapped section error using the shared parser diagnostic constructor.
  */
@@ -54,6 +27,13 @@ static bool read_sections(SourceLayout *layout, ModuleSections *sections, ParseE
     ParsedSection *current = NULL;
     for (const LayoutLine *line = layout->first; line != NULL; line = line->next) {
         if (line->kind == LINE_BLANK || line->kind == LINE_COMMENT) {
+            if (line->kind == LINE_COMMENT && (current == NULL || sections->kind == MODULE_NATIVE)) {
+                LexCursor cursor;
+                if (!lex_line_begin(&cursor, line, 0)) {
+                    parser_error_from_layout(error, &cursor.error);
+                    return false;
+                }
+            }
             continue;
         }
         bool annotation_line = line->kind == LINE_CODE
@@ -65,7 +45,7 @@ static bool read_sections(SourceLayout *layout, ModuleSections *sections, ParseE
             }
             continue;
         }
-        int marker = annotation(line);
+        int marker = parser_annotation(line);
         int rank = marker == 4 ? 3 : marker;
         if (marker < 0 || line->indentation != 0 || rank <= previous) {
             return fail(error, line->code, "Unknown, repeated, indented or out-of-order annotation",
@@ -89,7 +69,9 @@ static bool read_sections(SourceLayout *layout, ModuleSections *sections, ParseE
 
 bool parser_sections(SourceLayout *layout, ModuleSections *output, ParseError *error) {
     ModuleSections sections = {0};
-    if (!active_file(layout)) {
+    bool active;
+    if (!parser_module_classify(layout, &active, error)) { return false; }
+    if (!active) {
         *output = sections;
         return true;
     }

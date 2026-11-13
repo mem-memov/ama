@@ -29,6 +29,7 @@ bool parser_start_call(Parser *parser, ParseFrame **frame, AstNode *node,
     if (!parser_call_arguments(parser, node, indentation + 1)) {
         return false;
     }
+    parser_skip_region(parser, indentation);
     const LayoutLine *line = parser->line;
     if (line != NULL && line != parser->end && line->indentation == indentation
         && layout_text_is(line->code, ":")) {

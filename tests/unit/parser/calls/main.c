@@ -8,7 +8,7 @@
 /** Verify independent positional direction counters and explicit no-value omission nodes. */
 static void it_counts_skipped_inputs_and_outputs_independently(void) {
     setup_tree();
-    ParseStatus parsed = parse_text("@!\nworker!\n < first\n < # default\n < third\n >\n > selected\n > # skip\n>\n");
+    ParseStatus parsed = parse_text("@!\nworker !\n < first\n < # default\n < third\n >\n > selected\n > # skip\n>\n");
     assert(parsed == PARSE_OK);
     AstNode *call = module.body.first;
     assert(call->as.call.input_count == 3 && call->as.call.output_count == 3);
@@ -28,7 +28,7 @@ static void it_counts_skipped_inputs_and_outputs_independently(void) {
 
 /** Separate scalar resume output omissions from forbidden resume inputs. */
 static void it_permits_output_placeholders_on_scalar_resume(void) {
-    const char *valid[] = {"@!\nworker%\n >\n > selected", "@!\nworker!", "@!\nworker%"};
+    const char *valid[] = {"@!\nworker %\n >\n > selected", "@!\nworker !", "@!\nworker %"};
     for (size_t index = 0; index < sizeof(valid) / sizeof(*valid); index++) {
         setup_tree();
         ParseStatus parsed = parse_text(valid[index]);
@@ -40,8 +40,8 @@ static void it_permits_output_placeholders_on_scalar_resume(void) {
 /** Preserve retained physical payload bytes and distinguish empty literal construction from omitted input. */
 static void it_preserves_typed_literal_inputs_and_distinguishes_empty_values_from_skips(void) {
     setup_tree();
-    ParseStatus parsed = parse_text("@!\nwriter!\n < |Hello # data   \r\n < |\n <\n > result\n"
-        "writer!\n 消息 < |@C | quotes \\\"   ");
+    ParseStatus parsed = parse_text("@!\nwriter !\n < |Hello # data   \r\n < |\n <\n > result\n"
+        "writer !\n 消息 < |@C | quotes \\\"   ");
     assert(parsed == PARSE_OK);
     AstNode *call = module.body.first;
     AstArgument *argument = call->as.call.first;
@@ -64,7 +64,7 @@ static void it_preserves_typed_literal_inputs_and_distinguishes_empty_values_fro
 /** Verify payload length by source offsets instead of NUL-terminated string interpretation. */
 static void it_preserves_embedded_zero_bytes_in_unterminated_input_literals(void) {
     setup_tree();
-    const unsigned char bytes[] = "@!\nwriter!\n < |x\0y#  ";
+    const unsigned char bytes[] = "@!\nwriter !\n < |x\0y#  ";
     const unsigned char payload_bytes[] = "x\0y#  ";
     const SourceText *source;
     SourceStatus added = source_manager_add(&sources, "literal", bytes, sizeof(bytes) - 1, &source);
@@ -80,11 +80,11 @@ static void it_preserves_embedded_zero_bytes_in_unterminated_input_literals(void
 
 /** Reject finite malformed mode/style/operand partitions with a valid structured diagnostic. */
 static void it_rejects_empty_reads_named_placeholders_invalid_literals_and_mixed_styles(void) {
-    const char *invalid[] = {"@!\nworker\n >>", "@!\nworker!\n value <", "@!\nworker!\n value >",
-        "@!\nworker!\n <\n value > destination", "@!\nworker%\n <", "@!\nworker!\n >> value",
-        "@!\nworker\n >", "@!\nworker\n >> value\n > destination", "@!\nworker!\n >\n <",
-        "@!\nworker!\n <|12", "@!\nworker!\n <12", "@!\nworker!\n name< value",
-        "@!\nworker\n > > value", "@!\nworker!\n > &item"};
+    const char *invalid[] = {"@!\nworker\n >>", "@!\nworker !\n value <", "@!\nworker !\n value >",
+        "@!\nworker !\n <\n value > destination", "@!\nworker %\n <", "@!\nworker !\n >> value",
+        "@!\nworker\n >", "@!\nworker\n >> value\n > destination", "@!\nworker !\n >\n <",
+        "@!\nworker !\n <|12", "@!\nworker !\n <12", "@!\nworker !\n name< value",
+        "@!\nworker\n > > value", "@!\nworker !\n > &item"};
     for (size_t index = 0; index < sizeof(invalid) / sizeof(invalid[0]); index++) {
         setup_tree();
         ParseStatus parsed = parse_text(invalid[index]);
@@ -99,7 +99,7 @@ static void it_rejects_empty_reads_named_placeholders_invalid_literals_and_mixed
  */
 static void it_parses_binding_structure_without_a_retired_list_dispatch_contract(void) {
     setup_tree();
-    ParseStatus parsed = parse_text("@!\nitems[]!\n action < value\n");
+    ParseStatus parsed = parse_text("@!\nitems[] !\n action < value\n");
     assert(parsed == PARSE_OK);
     AstNode *call = module.body.first;
     assert(call->as.call.target->whole_list && call->as.call.named && call->as.call.input_count == 1);
@@ -146,7 +146,7 @@ static void it_matches_the_call_mode_language_for_every_short_binding_sequence(v
         {" < |# data \n", 0, false, false}, {" input < |\n", 0, true, false}
     };
     const size_t token_count = sizeof(tokens) / sizeof(tokens[0]);
-    const char *targets[] = {"worker!\n", "worker%\n", "worker\n", ".catalog\n"};
+    const char *targets[] = {"worker !\n", "worker %\n", "worker\n", ".catalog\n"};
     for (size_t mode = 0; mode < 4; mode++) {
         size_t combinations = 1;
         for (size_t count = 0; count <= 3; count++, combinations *= token_count) {

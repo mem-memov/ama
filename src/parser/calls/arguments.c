@@ -8,7 +8,7 @@
 #include "bindings/internal.h"
 
 bool parser_call_arguments(Parser *parser, AstNode *node, size_t indentation) {
-    parser_skip_layout(parser);
+    parser_skip_region(parser, indentation);
     while (parser->line != NULL && parser->line != parser->end
         && parser->line->indentation == indentation) {
         AstArgument *argument = parser_allocate(parser, sizeof(*argument), parser_site(parser));
@@ -23,7 +23,7 @@ bool parser_call_arguments(Parser *parser, AstNode *node, size_t indentation) {
             return false;
         }
         parser->line = parser->line->next;
-        parser_skip_layout(parser);
+        parser_skip_region(parser, indentation);
     }
     if ((node->as.call.mode == AST_RETAINED_READ || node->as.call.mode == AST_CONSTANT_READ)
         && node->as.call.output_count == 0) {
