@@ -737,9 +737,17 @@ Contracts: [source and names](spec/language/source-and-names.md),
   Full strict suite and focused ASan/UBSan leaves pass (leak detection disabled);
   780-input coverage and local links pass. Warning-free Doxygen is byte-identical
   across two generations: 608 maintained files, 2474 interfaces, 288 destinations.
-- [ ] **T020 — Verify rendering and C source mappings.** Needs: T019. Render
+- [x] **T020 — Verify rendering and C source mappings.** Needs: T019. Render
   original names/excerpts and correctly escaped `#line` paths. Compile generated
   mapping probes and test allocation-free fallback reporting.
+  Added compiled filename-byte round trips with trigraphs enabled and every
+  LF/CRLF/EOF coordinate, compiler-allocation-denied fallback/excerpt/mapping
+  output, invalid-input nonpublication and immediate I/O failure checks. GCC
+  cannot safely expand mapped filenames containing CR; SRC-03 unsupported-path
+  checks now reject physical CR roots and standalone mappings without renaming.
+  Full strict suite and focused ASan/UBSan pass (leak detection disabled), along
+  with 782-input coverage and links. Warning-free Doxygen generations are
+  byte-identical: 610 maintained files, 2481 interfaces, 288 destinations.
 - [ ] **T021 — Compose source loading and dependency invalidation.** Needs: T018,
   T020. Track source/configuration/native/generated inputs without duplicate loads.
   Verify changed transitive files and root settings invalidate exactly dependent

@@ -4,6 +4,8 @@
  *
  * [NAME-03](../../../spec/implementation/compiler.md#name-03)
  * Escaping protects C syntax and trigraphs without transliterating source names.
+ * [SRC-03](../../../spec/language/source-and-names.md#src-03) rejects paths
+ * unsupported by the verified target: GCC emits a raw CR when expanding __FILE__.
  */
 #include <stdint.h>
 #include <string.h>
@@ -40,7 +42,8 @@ SourceStatus source_write_line_directive(FILE *output, const SourceText *source,
     }
     const char *path = source_path(source);
     size_t error;
-    if (!utf8_validate((const unsigned char *)path, strlen(path), &error)) {
+    if (strchr(path, '\r') != NULL
+        || !utf8_validate((const unsigned char *)path, strlen(path), &error)) {
         return SOURCE_INVALID_ARGUMENT;
     }
     return fprintf(output, "#line %zu \"", position.line) >= 0

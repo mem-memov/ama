@@ -37,8 +37,8 @@ searches O(selected lines * log line count). Auxiliary storage is constant, asid
 from host stream buffers. No heuristic excerpt truncation discards source context.
 
 C mapping emits `#line` with a positive C11 line <= 2147483647 and the original
-physical UTF-8 path. It validates coordinates/encoding before writing. Quotes and
-backslashes are escaped; controls use fixed three-digit octal escapes to avoid
+physical UTF-8 path supported by the verified target. It validates coordinates/encoding before writing. Quotes and
+backslashes are escaped; supported controls use fixed three-digit octal escapes to avoid
 following-digit ambiguity. Question marks use `\?`, preventing C11 trigraph
 rewriting. Unicode bytes remain unchanged. Callers check final flush/close errors;
 the writer checks immediate failures. Output generation itself remains a later
@@ -69,3 +69,40 @@ Source/rendering tests isolate diagnostic behavior. Current CLI checking and
 closure. The [audit](audit/README.md) distinguishes old-subset acceptance from
 remaining current grammar/draft-validation work. The specification was not
 changed to fit implementation boundaries.
+
+## T020 target round trips and allocation-denied reporting
+
+The exact C mapping proof separates directive spelling from target preprocessing.
+Quotes, backslashes and question marks receive a protective escape; supported
+controls receive exactly three octal digits, so a following digit cannot extend
+the escape. Every input byte is emitted once in its prescribed representation.
+The compiled probe checks the resulting `__FILE__` bytes against an independently
+emitted numeric array, and checks `__LINE__` at every byte boundary in an LF/CRLF
+source including EOF. It enables C11 trigraph processing explicitly and includes
+all non-NUL ASCII bytes supported by the target, control-following digits,
+Unicode and both potentially active trigraph prefixes.
+
+GCC 15.2.0 has one demonstrated exception: a CR in the mapped physical filename
+becomes a raw CR in its `__FILE__` macro expansion, causing invalid C tokens even
+when the directive used the correct octal escape. Under SRC-03's unsupported-path
+rule, physical source roots containing CR now fail catalog construction with
+`MODULE_UNSUPPORTED_PATH`, retaining an owned copy of the original path. Ama
+module components already exclude CR. The mapping writer independently rejects
+such filenames before writing, so standalone consumers cannot accidentally emit
+a mapping unsafe for the verified target. No path is renamed or normalized.
+
+The allocation-denial test constructs source ownership with a counted allocator,
+then forbids all further compiler allocation. A static out-of-memory record, an
+original Unicode excerpt and an EOF mapping still render, with the exact allocation
+request count unchanged. Teardown returns the live allocation count to zero.
+This proves the compiler-side fallback property; host stdio buffering remains a
+separate platform responsibility. Invalid UTF-8 paths, unsupported CR paths and
+out-of-range offsets write no bytes; an unbuffered `/dev/full` reports the mapping
+writer's immediate I/O failure rather than deferring it to the caller's flush.
+
+Evidence: `make -C tests/unit/diagnostics/render`,
+`make -C tests/unit/source/module` and
+`make -C tests/integration/source/diagnostics`. Their additional cases are mapped
+to maintained files in the documentation coverage registry. The existing exact
+human-output expectations, related notes and malformed-byte escaping remain part
+of these independently runnable suites.

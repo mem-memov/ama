@@ -263,6 +263,7 @@ static void it_unwinds_every_catalog_allocation_failure(void) {
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_rejects_cr_roots_unsupported_by_the_verified_c_target();
     it_enumerates_the_same_catalog_independently_of_file_creation_order();
     it_excludes_only_declared_owned_paths_and_slash_delimited_descendants();
     it_validates_exact_project_and_standard_paths_with_multiword_components();

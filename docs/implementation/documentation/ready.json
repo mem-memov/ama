@@ -2986,6 +2986,16 @@
         "case": "it_escapes_source_mapping_paths_without_rewriting_unicode",
         "command": "make -C tests/unit/diagnostics/render",
         "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_renders_fallback_and_source_context_with_all_compiler_allocations_denied",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_mapping_before_output_and_reports_immediate_io_failure",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
       }
     ]
   },
@@ -19316,6 +19326,21 @@
         "case": "it_escapes_source_mapping_paths_without_rewriting_unicode",
         "command": "make -C tests/unit/diagnostics/render",
         "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_renders_fallback_and_source_context_with_all_compiler_allocations_denied",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_mapping_before_output_and_reports_immediate_io_failure",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_compiles_every_ascii_filename_byte_and_physical_line_boundary",
+        "command": "make -C tests/integration/source/diagnostics",
+        "source": "tests/integration/source/diagnostics/main.c"
       }
     ]
   },
@@ -19355,6 +19380,16 @@
       },
       {
         "case": "it_escapes_source_mapping_paths_without_rewriting_unicode",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_renders_fallback_and_source_context_with_all_compiler_allocations_denied",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_mapping_before_output_and_reports_immediate_io_failure",
         "command": "make -C tests/unit/diagnostics/render",
         "source": "tests/unit/diagnostics/render/main.c"
       }
@@ -19874,6 +19909,11 @@
       },
       {
         "case": "it_unwinds_every_catalog_allocation_failure",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_cr_roots_unsupported_by_the_verified_c_target",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
       }
@@ -25151,6 +25191,11 @@
         "case": "it_compiles_line_mappings_with_unicode_quotes_controls_and_backslashes",
         "command": "make -C tests/integration/source/diagnostics",
         "source": "tests/integration/source/diagnostics/main.c"
+      },
+      {
+        "case": "it_compiles_every_ascii_filename_byte_and_physical_line_boundary",
+        "command": "make -C tests/integration/source/diagnostics",
+        "source": "tests/integration/source/diagnostics/main.c"
       }
     ]
   },
@@ -27106,6 +27151,16 @@
       },
       {
         "case": "it_escapes_source_mapping_paths_without_rewriting_unicode",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_renders_fallback_and_source_context_with_all_compiler_allocations_denied",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_mapping_before_output_and_reports_immediate_io_failure",
         "command": "make -C tests/unit/diagnostics/render",
         "source": "tests/unit/diagnostics/render/main.c"
       }
@@ -37398,6 +37453,11 @@
         "case": "it_excludes_only_declared_owned_paths_and_slash_delimited_descendants",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_cr_roots_unsupported_by_the_verified_c_target",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
       }
     ]
   },
@@ -38990,6 +39050,11 @@
         "case": "it_excludes_only_declared_owned_paths_and_slash_delimited_descendants",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_cr_roots_unsupported_by_the_verified_c_target",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
       }
     ]
   },
@@ -39038,6 +39103,33 @@
         "case": "it_composes_a_real_unequal_key_collision_into_both_original_declarations",
         "command": "make -C tests/unit/source/identity",
         "source": "tests/unit/source/identity/main.c"
+      }
+    ]
+  },
+  "tests/unit/diagnostics/render/support/failures.c": {
+    "contract": "docs/implementation/diagnostic-rendering.md",
+    "purpose": "Verify exact C mapping round trips and failure-safe allocation-free diagnostic output.",
+    "tests": [
+      {
+        "case": "it_renders_fallback_and_source_context_with_all_compiler_allocations_denied",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_mapping_before_output_and_reports_immediate_io_failure",
+        "command": "make -C tests/unit/diagnostics/render",
+        "source": "tests/unit/diagnostics/render/main.c"
+      }
+    ]
+  },
+  "tests/integration/source/diagnostics/support/mappings.c": {
+    "contract": "docs/implementation/diagnostic-rendering.md",
+    "purpose": "Verify exact C mapping round trips and failure-safe allocation-free diagnostic output.",
+    "tests": [
+      {
+        "case": "it_compiles_every_ascii_filename_byte_and_physical_line_boundary",
+        "command": "make -C tests/integration/source/diagnostics",
+        "source": "tests/integration/source/diagnostics/main.c"
       }
     ]
   }

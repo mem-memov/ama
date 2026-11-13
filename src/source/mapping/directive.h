@@ -12,7 +12,9 @@
 #include "source/text/source.h"
 
 /* Write #line with the original physical UTF-8 path, C-escaped. Requires a
- * positive line representable by C11. Caller owns final flush/close checks. */
+ * positive line representable by C11. The verified GCC target cannot safely
+ * expand __FILE__ for a path containing CR; reject that path before output.
+ * Caller owns final flush/close checks. */
 /** Write one original-source `#line` directive with a C11-representable line and UTF-8 filename.
  * @param[in,out] output Borrowed stream; caller checks final flush/close. Partial output may precede IO failure.
  * @return Invalid source/path, line limit, IO error or success; no source bytes change.

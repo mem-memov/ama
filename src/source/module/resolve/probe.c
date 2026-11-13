@@ -4,6 +4,8 @@
  *
  * [SRC-02](../../../../spec/language/source-and-names.md#src-02)
  * Path resolution must not silently follow aliases or accept normalized spellings.
+ * [SRC-03](../../../../spec/language/source-and-names.md#src-03) rejects physical
+ * roots whose CR bytes cannot be represented safely by the verified GCC target.
  */
 #include <string.h>
 #include "../internal.h"
@@ -30,6 +32,11 @@ ModuleStatus module_verify_root(ModuleCatalog *catalog, const char *path) {
     const char *parent = path[0] == '/' ? "/" : ".";
     if (copy == NULL) {
         return module_fail(catalog, MODULE_OUT_OF_MEMORY, NULL);
+    }
+    /* GCC expands a mapped filename containing CR into an invalid __FILE__
+     * token. Diagnose the unsupported original path, rather than rewriting it. */
+    if (strchr(copy, '\r') != NULL) {
+        return module_fail(catalog, MODULE_UNSUPPORTED_PATH, copy);
     }
     char *cursor = copy;
     while (*cursor != 0) {

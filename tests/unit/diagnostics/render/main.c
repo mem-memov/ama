@@ -22,6 +22,8 @@ static void read_output(FILE *stream, char *bytes, size_t capacity) {
     bytes[count] = 0;
 }
 
+#include "support/failures.c"
+
 /**
  * Assert that the component renders original names byte coordinates and related declarations.
  * The explicit fixture setup and observations define this regression; assertion failure keeps
@@ -137,6 +139,8 @@ static void it_escapes_source_mapping_paths_without_rewriting_unicode(void) {
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_renders_fallback_and_source_context_with_all_compiler_allocations_denied();
+    it_rejects_invalid_mapping_before_output_and_reports_immediate_io_failure();
     it_renders_original_names_byte_coordinates_and_related_declarations();
     it_handles_multiline_empty_eof_and_malformed_source_excerpts();
     it_rejects_invalid_records_before_output_and_reports_output_failures();

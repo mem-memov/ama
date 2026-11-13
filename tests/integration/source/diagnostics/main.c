@@ -6,6 +6,7 @@
  * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
  */
 #include "../common.c"
+#include "support/mappings.c"
 
 /**
  * Assert that the component composes source lookup identity spans and human diagnostics. The
@@ -117,6 +118,7 @@ static void it_compiles_line_mappings_with_unicode_quotes_controls_and_backslash
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_compiles_every_ascii_filename_byte_and_physical_line_boundary();
     it_composes_source_lookup_identity_spans_and_human_diagnostics();
     it_reports_real_source_ambiguity_with_both_physical_paths();
     it_renders_an_actual_invalid_utf8_input_without_losing_its_bytes();

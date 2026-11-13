@@ -62,3 +62,17 @@ static void it_excludes_only_declared_owned_paths_and_slash_delimited_descendant
     assert(source == unchanged);
     destroy_catalog();
 }
+
+/** A physical root with CR cannot safely reach GCC __FILE__; retain the original path in an explicit unsupported-path diagnostic. */
+static void it_rejects_cr_roots_unsupported_by_the_verified_c_target(void) {
+    directory("generated/root\rname");
+    file("generated/root\rname/item", "@C\n");
+    setup_catalog();
+    char path[] = "generated/root\rname";
+    ModuleRoot root = {path, NULL, 0, MODULE_ROOT_PROJECT};
+    ModuleStatus status = module_catalog_build(&catalog, &root, 1);
+    assert(status == MODULE_UNSUPPORTED_PATH && !catalog.built);
+    path[0] = 'X';
+    assert(strcmp(catalog.issue.path, "generated/root\rname") == 0);
+    destroy_catalog();
+}
