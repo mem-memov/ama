@@ -23,6 +23,8 @@ static bool weak_toolchain_options;
 static bool malformed_native_entry;
 static bool malformed_condition;
 static bool trace_condition_checks;
+/** Test-only metadata fault injection; never enabled for valid native contracts. */
+static bool corrupt_return_link;
 
 /**
  * Create the explicit native interface/body/ABI companion set used by this leaf. The caller
@@ -81,6 +83,10 @@ static void executable_native(const ScaffoldType *type) {
     } else if (type->plan->type->counts[SYMBOL_PARAMETER] != 0) {
         written = fputs("if(parameters->AMA_INPUT(0)->payload->number==500) { puts(\"native-entered\"); *status=ama_status_make(AMA_NATIVE_FAILURE,\"Body failed\",11); return; }\nstate->calls++; results->AMA_OUTPUT(0)->payload->number=parameters->AMA_INPUT(0)->payload->number+state->calls;\n"
             "printf(\"%zu:%zu:%u\\n\",parameters->AMA_INPUT(0)->payload->number,state->calls,(unsigned)services->caller_refusal.code);\n", body);
+        assert(written != EOF);
+    }
+    if (corrupt_return_link && strcmp(type->plan->type->module->source->logical_path, ".worker") == 0) {
+        written = fputs("fault_return_link();\n", body);
         assert(written != EOF);
     }
     written = fputs(malformed_native_entry ? "*status=ama_status_make(AMA_OK,NULL,1); }\n"

@@ -1338,12 +1338,21 @@ Contracts: [generated C](spec/implementation/compiler.md#generated-project-organ
   Existing execution/toolchain suites retain lifecycle and forbidden-entry checks.
   Full strict tests and assembly ASan+UBSan passed; all 1088 maintained inputs
   have coverage. Final Doxygen reproducibility is checked before commit.
-- [ ] **T057 — Execute startup, simple calls and returns.** Needs: T056. Create
+- [x] **T057 — Execute startup, simple calls and returns.** Needs: T056. Create
   one explicit root after constants; dispatch between two module types/multiple
   instances using stable slots and validated return selectors. Begin with calls
   that have no inputs or requested outputs; complete entry bindings in T063–T064.
   Compile and run
   nested same-type calls and early completion without payload save/restore.
+  Evidence: [stable-instance dispatch](docs/implementation/simple-call-dispatch.md).
+  Return dispatch now checks the caller nominal type as well as exact selector
+  membership. Compiled no-binding calls cross two ordinary types and independent
+  instances, preserve native addresses/counters and skip bodies after early return.
+  Host-side fault injection checks unknown and foreign-type return selectors,
+  terminal status and complete pool/borrow cleanup. Existing same-type nesting,
+  pool growth and startup lifecycle cases remain active. Full strict tests and
+  generated-program ASan+UBSan passed; all 1089 maintained inputs have coverage.
+  Final Doxygen reproducibility is checked before commit.
 - [ ] **T058 — Integrate native entry and lifecycle status.** Needs: T057.
   Enforce entry inlining and direct typed access; return normally from native C
   before status handling. Execute all constructor paths and permitted internal

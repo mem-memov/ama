@@ -3,7 +3,7 @@
  * @brief Emit one host execution function with all Ama bodies as IR labels.
  *
  * [STACK-04](../../../spec/implementation/compiler.md#stack-04)
- * Resume dispatch validates saved selector and nominal type; return dispatch uses explicit caller selectors rather than recursive Ama C functions.
+ * Resume dispatch validates saved selector and nominal type; return dispatch validates the caller nominal type before using its explicit selector, rather than calling recursive Ama C functions.
  * The assembly includes its own declarations so it also compiles as a standalone
  * translation unit; launchers may include it to retain the single-unit profile.
  */
@@ -43,7 +43,9 @@ bool codegen_emit_body(NativeScaffold *scaffold, FILE *output, const ScaffoldTyp
     if (fputs("ama_project_return: __attribute__((unused));\nswitch(ama_return) {\n", output) == EOF) { return false; }
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
         for (const ControlNode *node = type->plan->controls; node != NULL; node = node->allocated_next) {
-            if (node->operation == CONTROL_SET_RETURN && fprintf(output, "case UINT64_C(%zu): goto ama_label_%zu;\n", node->resume->selector, node->resume->selector) < 0) { return false; }
+            if (node->operation == CONTROL_SET_RETURN && fprintf(output,
+                    "case UINT64_C(%zu): if(ama_current.type_id!=UINT64_C(%zu)) { ama_status=ama_status_make(AMA_INVALID_STATE,NULL,0); goto ama_project_finish; } goto ama_label_%zu;\n",
+                    node->resume->selector, codegen_type_id(scaffold, type), node->resume->selector) < 0) { return false; }
         }
     }
     if (fputs("default: ama_status=ama_status_make(AMA_INVALID_STATE,NULL,0); goto ama_project_finish;\n}\n", output) == EOF) { return false; }

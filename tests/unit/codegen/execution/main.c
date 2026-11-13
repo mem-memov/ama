@@ -9,6 +9,7 @@
 #include "support/toolchain.c"
 #include "support/protocols.c"
 #include "support/borrows.c"
+#include "support/simple-calls.c"
 
 /** Ordinary self identity is handled after real selection; bad index conversion still fails. */
 static void it_keeps_scalar_list_and_indexed_self_copies_checked_in_generated_execution(void) {
@@ -312,6 +313,8 @@ static void it_preserves_scalar_and_indexed_shared_source_access_in_compiled_tra
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_returns_through_nested_no_binding_calls_without_reinitializing_caller_state();
+    it_rejects_unknown_and_foreign_type_return_selectors_before_dispatch();
     it_preserves_scalar_and_indexed_shared_source_access_in_compiled_transfers();
     it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes();
     it_checks_empty_loops_once_but_repeats_declaration_only_bodies();

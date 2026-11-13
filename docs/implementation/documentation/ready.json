@@ -1908,6 +1908,16 @@
         "case": "it_compiles_the_self_contained_assembly_and_isolated_interfaces_in_either_include_order",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_returns_through_nested_no_binding_calls_without_reinitializing_caller_state",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_and_foreign_type_return_selectors_before_dispatch",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -32671,6 +32681,16 @@
         "case": "it_executes_negative_only_branches_with_the_original_truth_conversion",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_returns_through_nested_no_binding_calls_without_reinitializing_caller_state",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_and_foreign_type_return_selectors_before_dispatch",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -32840,6 +32860,16 @@
       },
       {
         "case": "it_preserves_scalar_and_indexed_shared_source_access_in_compiled_transfers",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_returns_through_nested_no_binding_calls_without_reinitializing_caller_state",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_and_foreign_type_return_selectors_before_dispatch",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
       }
@@ -59831,6 +59861,22 @@
         "case": "it_compiles_the_self_contained_assembly_and_isolated_interfaces_in_either_include_order",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/execution/support/simple-calls.c": {
+    "contract": "docs/implementation/simple-call-dispatch.md",
+    "purpose": "Verify nested stable-instance calls, early completion and unknown/foreign return selector rejection in compiled execution.",
+    "tests": [
+      {
+        "case": "it_returns_through_nested_no_binding_calls_without_reinitializing_caller_state",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_and_foreign_type_return_selectors_before_dispatch",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   }
