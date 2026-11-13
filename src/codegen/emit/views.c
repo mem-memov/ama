@@ -3,6 +3,8 @@
  * @brief Emit typed operation-scoped native views bound to stable runtime storage.
  *
  * [CABI-03](../../../spec/implementation/native-interface.md#cabi-03)
+ * [CABI-02](../../../spec/implementation/native-interface.md#cabi-02) checks
+ * the expected nominal type before applying its C payload layout.
  * Owned layouts follow the checked eager dependency order; references expose declared storage without acquiring their targets.
  * [STACK-04](../../../spec/implementation/compiler.md#stack-04) permits ordinary
  * generated C helpers to use the stack. View binding is not Ama body dispatch;
@@ -43,18 +45,18 @@ static bool codegen_view_type(NativeScaffold *scaffold, FILE *output, const Scaf
 
 /**
  * Emit a binder that validates the local handle and borrows active stable storage. General binds
- * require read eligibility; interface binds skip state fields and use existing invocation
+ * require nominal type and read eligibility; interface binds skip state fields and use the exact running receiver's invocation
  * authority. These ordinary static helpers may be optimized normally; they have
  * no mandatory inline boundary. Unused per-type binders remain harmless when no
  * native body needs that view.
  */
 static bool codegen_view_bind(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type, bool interface) {
     const char *name = type->names[SCAFFOLD_WRITE]->internal_name;
-    if (fprintf(output, "static __attribute__((unused)) AmaStatus %s_%s(AmaProgram *program, AmaHandle handle, %s_Scope *scope) {\n"
-            "AmaPoolCell *cell=NULL; AmaStatus status=ama_program_cell(program, handle, &cell);\n"
+    if (fprintf(output, "static __attribute__((unused)) AmaStatus %s_%s(AmaNativeBorrowScope *borrow, AmaHandle handle, %s_Scope *scope) {\n"
+            "AmaPoolCell *cell=NULL; AmaStatus status=ama_native_borrow_cell(borrow,handle,%s_Type.pool.type_id,%s,&cell);\n"
             "if(status.code!=AMA_OK) return status;\n"
-            "%s_Storage *storage=ama_pool_payload(&%s_Type.pool,cell);\n(void)storage; (void)scope;\n", name, interface ? "BindInterface" : "Bind", name, name, name) < 0) { return false; }
-    if (!interface && fputs("status=ama_instance_access(&cell->metadata,AMA_ACCESS_READ); if(status.code!=AMA_OK) return status;\n",output)==EOF) { return false; }
+            "%s_Storage *storage=ama_pool_payload(&%s_Type.pool,cell);\n(void)storage; (void)scope;\n", name, interface ? "BindInterface" : "Bind", name,
+            name, interface ? "AMA_NATIVE_BORROW_RECEIVER" : "AMA_NATIVE_BORROW_READ", name, name) < 0) { return false; }
     if (type->plan->type->module->syntax.sections.kind == MODULE_NATIVE
         && fputs("scope->read.payload=&storage->payload; scope->write.payload=&storage->payload;\n", output) == EOF) { return false; }
     for (const ScaffoldMember *member = type->members; member != NULL; member = member->next) {
@@ -63,7 +65,7 @@ static bool codegen_view_bind(NativeScaffold *scaffold, FILE *output, const Scaf
         size_t slot = member->field->slot;
         const char *field = member->identity->internal_name;
         if (member->field->form == STORAGE_OWNED) {
-            if (fprintf(output, "status=%s_Bind(program,storage->%s,&scope->field_%zu);\n"
+            if (fprintf(output, "status=%s_Bind(borrow,storage->%s,&scope->field_%zu);\n"
                     "if(status.code!=AMA_OK) return status;\n"
                     "scope->read.%s=&scope->field_%zu.read; scope->write.%s=&scope->field_%zu.write;\n",
                     child->names[SCAFFOLD_WRITE]->internal_name, field, slot, field, slot, field, slot) < 0) { return false; }
@@ -80,7 +82,7 @@ static bool codegen_view_bind(NativeScaffold *scaffold, FILE *output, const Scaf
  * ordinal order. Reference cycles do not recursively expand storage.
  */
 bool codegen_emit_views(NativeScaffold *scaffold, FILE *output) {
-    if (fputs("#include \"runtime/program/calls/call.h\"\n", output) == EOF) { return false; }
+    if (fputs("#include \"runtime/program/native/borrow.h\"\n", output) == EOF) { return false; }
     size_t count = 0;
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
         count++;

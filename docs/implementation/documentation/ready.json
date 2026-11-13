@@ -790,6 +790,11 @@
         "case": "it_rejects_malformed_condition_completion_without_executing_either_body",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_closes_native_borrows_before_normal_or_failed_host_return",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -1343,6 +1348,11 @@
       },
       {
         "case": "it_rejects_native_warnings_despite_weaker_user_options",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_closes_native_borrows_before_normal_or_failed_host_return",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
       }
@@ -5174,6 +5184,11 @@
         "case": "it_unwinds_every_proposed_frontend_allocation_failure",
         "command": "make -C tests/unit/native/scaffold/declarations",
         "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_enforces_native_view_constness_nominal_types_and_opaque_graph_storage",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
       }
     ]
   },
@@ -5356,6 +5371,11 @@
       },
       {
         "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_enforces_native_view_constness_nominal_types_and_opaque_graph_storage",
         "command": "make -C tests/unit/native/scaffold/declarations",
         "source": "tests/unit/native/scaffold/declarations/main.c"
       }
@@ -9367,6 +9387,11 @@
         "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
         "command": "make -C tests/unit/runtime/protocols",
         "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_closes_native_borrows_before_normal_or_failed_host_return",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -25952,6 +25977,11 @@
         "case": "it_rejects_malformed_condition_completion_without_executing_either_body",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_closes_native_borrows_before_normal_or_failed_host_return",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -28969,6 +28999,11 @@
         "case": "it_unwinds_every_proposed_frontend_allocation_failure",
         "command": "make -C tests/unit/native/scaffold/declarations",
         "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_enforces_native_view_constness_nominal_types_and_opaque_graph_storage",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
       }
     ]
   },
@@ -29013,6 +29048,11 @@
       },
       {
         "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_enforces_native_view_constness_nominal_types_and_opaque_graph_storage",
         "command": "make -C tests/unit/native/scaffold/declarations",
         "source": "tests/unit/native/scaffold/declarations/main.c"
       }
@@ -31458,6 +31498,26 @@
         "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
         "command": "make -C tests/unit/runtime/protocols",
         "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_scopes_native_views_to_existing_bound_storage_and_rejects_reentry",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
+      },
+      {
+        "case": "it_checks_reference_identity_type_and_availability_before_view_publication",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_receiver_authority_without_acquiring_a_gate",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
+      },
+      {
+        "case": "it_borrows_cloned_native_state_without_aliasing_original_values",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
       }
     ]
   },
@@ -37479,6 +37539,173 @@
         "case": "it_invalidates_before_native_cleanup_and_preserves_live_owned_children",
         "command": "make -C tests/unit/runtime/objects/lifecycle",
         "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/native/borrow.h": {
+    "contract": "docs/implementation/native-borrows.md",
+    "purpose": "Bound checked native views to one already-running receiver and synchronous operation.",
+    "tests": [
+      {
+        "case": "it_scopes_native_views_to_existing_bound_storage_and_rejects_reentry",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
+      },
+      {
+        "case": "it_checks_reference_identity_type_and_availability_before_view_publication",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_receiver_authority_without_acquiring_a_gate",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
+      },
+      {
+        "case": "it_borrows_cloned_native_state_without_aliasing_original_values",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/runtime/program/native/scope.c": {
+    "contract": "docs/implementation/native-borrows.md",
+    "purpose": "Own a native operation gate for one existing running receiver without executing Ama.",
+    "tests": [
+      {
+        "case": "it_scopes_native_views_to_existing_bound_storage_and_rejects_reentry",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
+      },
+      {
+        "case": "it_checks_reference_identity_type_and_availability_before_view_publication",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_receiver_authority_without_acquiring_a_gate",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
+      },
+      {
+        "case": "it_borrows_cloned_native_state_without_aliasing_original_values",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/native/resolve.c": {
+    "contract": "docs/implementation/native-borrows.md",
+    "purpose": "Check native borrow authority and exact nominal type before exposing a stable cell.",
+    "tests": [
+      {
+        "case": "it_scopes_native_views_to_existing_bound_storage_and_rejects_reentry",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
+      },
+      {
+        "case": "it_checks_reference_identity_type_and_availability_before_view_publication",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_receiver_authority_without_acquiring_a_gate",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
+      },
+      {
+        "case": "it_borrows_cloned_native_state_without_aliasing_original_values",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/native-borrows/Makefile": {
+    "contract": "docs/implementation/native-borrows.md",
+    "purpose": "Compose checked native borrow authority with real stable object pools and resources.",
+    "tests": [
+      {
+        "case": "it_scopes_native_views_to_existing_bound_storage_and_rejects_reentry",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
+      },
+      {
+        "case": "it_checks_reference_identity_type_and_availability_before_view_publication",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_receiver_authority_without_acquiring_a_gate",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
+      },
+      {
+        "case": "it_borrows_cloned_native_state_without_aliasing_original_values",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/native-borrows/main.c": {
+    "contract": "docs/implementation/native-borrows.md",
+    "purpose": "Verify nominal native borrows, operation expiry and failure paths over real declared fields.",
+    "tests": [
+      {
+        "case": "it_scopes_native_views_to_existing_bound_storage_and_rejects_reentry",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
+      },
+      {
+        "case": "it_checks_reference_identity_type_and_availability_before_view_publication",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_receiver_authority_without_acquiring_a_gate",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
+      },
+      {
+        "case": "it_borrows_cloned_native_state_without_aliasing_original_values",
+        "command": "make -C tests/unit/runtime/native-borrows",
+        "source": "tests/unit/runtime/native-borrows/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/scaffold/declarations/support/borrows.c": {
+    "contract": "docs/implementation/native-borrows.md",
+    "purpose": "Independently compile generated native views and reject const, nominal and private-storage violations.",
+    "tests": [
+      {
+        "case": "it_enforces_native_view_constness_nominal_types_and_opaque_graph_storage",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/execution/support/borrows.c": {
+    "contract": "docs/implementation/native-borrows.md",
+    "purpose": "Observe native borrow closure in real generated execution before terminal disposal or host return.",
+    "tests": [
+      {
+        "case": "it_closes_native_borrows_before_normal_or_failed_host_return",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   }

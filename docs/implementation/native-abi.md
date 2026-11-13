@@ -134,3 +134,7 @@ provider registration. T007 adds [checked transport and refusal/index/report bou
 [T009 native protocol completion](native-protocols.md) composes resource credits,
 checked callbacks and the typed host-size fixture; host lifecycle composition
 remains T013. A C struct alone does not establish those consumer contracts.
+
+T012’s [bounded native views](native-borrows.md) add exact receiver authority,
+nominal cell checks and one explicit scope covering generated interface binding
+and native entry; the scope closes before dispatch, reporting or cleanup.

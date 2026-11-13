@@ -4,6 +4,7 @@
  */
 #include "../common.c"
 #include "native/scaffold/internal.h"
+#include "support/borrows.c"
 
 /** Compile each generated interface as the first project include, verify repeated inclusion/macro cleanup and untouched authored skeleton syntax. */
 static void it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds(void) {
@@ -257,6 +258,7 @@ void run(void) {
     it_handles_shared_compatible_hooks_and_reports_incompatible_c_roles();
     it_unwinds_every_proposed_frontend_allocation_failure();
     it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper();
+    it_enforces_native_view_constness_nominal_types_and_opaque_graph_storage();
 }
 
 /**

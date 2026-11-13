@@ -618,10 +618,23 @@ Contracts: [runtime](spec/implementation/runtime.md),
   ASan/UBSan model/object leaves (leak detection disabled), complete coverage
   of 741 maintained inputs, Markdown links and warning-free byte-reproducible
   Doxygen pass: 571 maintained files, 2365 interfaces and 286 destinations.
-- [ ] **T012 — Validate native borrow and resource boundaries.** Needs: T010,
+- [x] **T012 — Validate native borrow and resource boundaries.** Needs: T010,
   T011. Expose narrow generated typed access, separate declared Ama graph state
   from native payloads and bound borrow lifetimes. Exercise native copies and
   access failures without retaining Ama addresses, handles or callback views.
+  Evidence: a linear allocation-free native borrow owner admits only the exact
+  current Running receiver and closes before dispatch, reporting or cleanup.
+  Generated binders check expected nominal type before C layout access and keep
+  failed partial views private. Runtime cases cover empty/stale/foreign/Busy
+  references, unchanged outputs, expiry, reentry and independent graph/native
+  clones. Independent C clients reject input mutation, equal-layout nominal
+  substitution and private reference/list storage access. Real generated host
+  probes observe closed gates on success and malformed native completion.
+  The full strict suite, three focused ASan/UBSan leaves including instrumented
+  generated programs (leak detection disabled), complete 748-input coverage,
+  Markdown links and warning-free reproducible Doxygen pass: 577 maintained
+  files, 2386 interfaces and 287 destinations. Current-source service families
+  remain T055/T058 and the list roadmap; public embedding remains T123 onward.
 - [ ] **T013 — Validate the host/context lifecycle interface.** Needs: T006,
   T007, T011, T012. Define completed/yielded/failed outcomes and startup/resume/
   disposal ownership. Test concurrent/reentrant-entry refusal, failed nonresume,
