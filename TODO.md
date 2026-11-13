@@ -770,12 +770,24 @@ Contracts: [source and names](spec/language/source-and-names.md),
 Contracts: [grammar](spec/grammar.md),
 [source layout](spec/language/source-and-names.md).
 
-- [ ] **T022 — Implement exact layout and token boundaries.** Needs: T015, T019.
+- [x] **T022 — Implement exact layout and token boundaries.** Needs: T015, T019.
   Enforce one-space nesting and separators, compact paths/reference/list markers,
   comment indentation, tabs/trailing-space rejection and literal byte preservation.
   Test every boundary across LF/CRLF and optional final newline.
+  Added allocation-free region-aware token scanning with maximal complete names,
+  longest compound punctuation, compact/separated join checks, exact comment
+  indentation, blank/trailing-space rejection and untouched literal views. Global
+  UTF-8/TAB/lone-CR preflight now precedes activation and payload classification;
+  removed the old post-activation byte-check API. Entry literal labels recognize
+  complete multiword names and compact storage suffixes without lookup. Updated
+  positive fixtures to legal payload bytes and retained explicit negative cases.
+  Full strict suite, focused ASan/UBSan (leak detection disabled), 805-input coverage
+  and links pass. Doxygen is warning-free and byte-reproducible: 631 maintained
+  files, 2564 interfaces, 290 destinations. AST integration of checked regions and
+  tokens proceeds in T023–T028; this step certifies the lexical component.
 - [ ] **T023 — Parse sections, drafts and declarations.** Needs: T022. Build
-  source-mapped AST nodes for executable/constants/native sections, explicit
+  source-mapped AST nodes using T022 checked tokens/regions for executable,
+  constants and native sections, explicit
   declarations, all four storage forms and initialization. Check activation,
   constants-only files, malformed sections and deep nested bodies.
 - [ ] **T024 — Parse accesses, assignments and inferred receivers.** Needs: T023.

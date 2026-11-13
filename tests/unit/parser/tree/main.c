@@ -191,7 +191,7 @@ static void it_parses_deep_control_and_indices_without_recursive_c_activations(v
  * generated evidence.
  */
 static void it_cleans_every_failed_allocation_in_composed_tree_construction(void) {
-    const char *text = "@=\nconstant\n.type\n |x\n@!\nready\n?\n worker!\n  < |# bytes\t  \n  > result\n:\n target\n  %source\n";
+    const char *text = "@=\nconstant\n.type\n |x\n@!\nready\n?\n worker!\n  < |# bytes   \n  > result\n:\n target\n  %source\n";
     setup_tree();
     const SourceText *source;
     SourceStatus added = source_manager_add(&sources, "failure", (const unsigned char *)text, strlen(text), &source);

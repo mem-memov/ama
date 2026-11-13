@@ -40,16 +40,16 @@ static void it_permits_output_placeholders_on_scalar_resume(void) {
 /** Preserve retained physical payload bytes and distinguish empty literal construction from omitted input. */
 static void it_preserves_typed_literal_inputs_and_distinguishes_empty_values_from_skips(void) {
     setup_tree();
-    ParseStatus parsed = parse_text("@!\nwriter!\n < |Hello # data\t  \r\n < |\n <\n > result\n"
-        "writer!\n 消息 < |@C | quotes \\\"\t  ");
+    ParseStatus parsed = parse_text("@!\nwriter!\n < |Hello # data   \r\n < |\n <\n > result\n"
+        "writer!\n 消息 < |@C | quotes \\\"   ");
     assert(parsed == PARSE_OK);
     AstNode *call = module.body.first;
     AstArgument *argument = call->as.call.first;
     assert(call->as.call.input_count == 3 && call->as.call.output_count == 1);
     assert(argument->source->kind == AST_LITERAL_SOURCE);
-    assert(layout_text_is(argument->source->payload, "Hello # data\t  "));
+    assert(layout_text_is(argument->source->payload, "Hello # data   "));
     assert(argument->span.end == argument->source->payload.end);
-    assert(layout_text_is(argument->source->span, "|Hello # data\t  "));
+    assert(layout_text_is(argument->source->span, "|Hello # data   "));
     argument = argument->next;
     assert(!argument->omitted && argument->source->kind == AST_LITERAL_SOURCE);
     assert(argument->source->payload.start == argument->source->payload.end);
@@ -57,15 +57,15 @@ static void it_preserves_typed_literal_inputs_and_distinguishes_empty_values_fro
     call = call->next;
     argument = call->as.call.first;
     assert(call->as.call.named && layout_text_is(argument->label->name, "消息"));
-    assert(layout_text_is(argument->source->payload, "@C | quotes \\\"\t  "));
+    assert(layout_text_is(argument->source->payload, "@C | quotes \\\"   "));
     destroy_tree();
 }
 
 /** Verify payload length by source offsets instead of NUL-terminated string interpretation. */
 static void it_preserves_embedded_zero_bytes_in_unterminated_input_literals(void) {
     setup_tree();
-    const unsigned char bytes[] = "@!\nwriter!\n < |x\0y#\t ";
-    const unsigned char payload_bytes[] = "x\0y#\t ";
+    const unsigned char bytes[] = "@!\nwriter!\n < |x\0y#  ";
+    const unsigned char payload_bytes[] = "x\0y#  ";
     const SourceText *source;
     SourceStatus added = source_manager_add(&sources, "literal", bytes, sizeof(bytes) - 1, &source);
     assert(added == SOURCE_OK);
@@ -143,7 +143,7 @@ static void it_matches_the_call_mode_language_for_every_short_binding_sequence(v
         {" >> value\n", 2, false, false}, {" >>\n", 2, false, true},
         {" input < value\n", 0, true, false}, {" output > value\n", 1, true, false},
         {" output >> value\n", 2, true, false},
-        {" < |# data\t\n", 0, false, false}, {" input < |\n", 0, true, false}
+        {" < |# data \n", 0, false, false}, {" input < |\n", 0, true, false}
     };
     const size_t token_count = sizeof(tokens) / sizeof(tokens[0]);
     const char *targets[] = {"worker!\n", "worker%\n", "worker\n", ".catalog\n"};

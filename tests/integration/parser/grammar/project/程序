@@ -1,7 +1,7 @@
 @=
 版本
 .types.text
- |@C # data	  
+ |@C # data   
 @<
 目标&
 .shop.item
@@ -16,7 +16,7 @@ copy
 .shop.item
  %original
 worker!
- < |原文 # |@!	  
+ < |原文 # |@!   
  <
  >
  > selected

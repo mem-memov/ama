@@ -15,19 +15,17 @@
  */
 static void it_preserves_literal_bytes_trailing_spaces_comments_and_line_endings(void) {
     setup_test();
-    LayoutStatus status = read_layout("@! # body\r\n |@C # data\t  \r\n # comment\n  ");
-    assert(status == LAYOUT_OK);
-    status = layout_validate(&layout, false);
+    LayoutStatus status = read_layout("@! # body\r\n |@C # data  \r\n # comment\n");
     assert(status == LAYOUT_OK);
     LayoutLine *line = layout.first;
     assert(layout_text_is(line->code, "@!") && line->ending == ENDING_CRLF);
     line = line->next;
     assert(line->kind == LINE_LITERAL && line->indentation == 1);
-    assert(layout_text_is(line->payload, "@C # data\t  "));
+    assert(layout_text_is(line->payload, "@C # data  "));
     line = line->next;
     assert(line->kind == LINE_COMMENT && line->ending == ENDING_LF);
     line = line->next;
-    assert(line->kind == LINE_BLANK && line->ending == ENDING_NONE && line->next == NULL);
+    assert(line == NULL);
     destroy_layout();
 }
 
@@ -40,17 +38,13 @@ static void it_preserves_only_exact_input_literal_boundaries(void) {
     for (size_t index = 0; index < sizeof(bindings) / sizeof(bindings[0]); index++) {
         setup_test();
         char text[160];
-        int written = snprintf(text, sizeof(text), "%s# |@!\t  \r\n", bindings[index]);
+        int written = snprintf(text, sizeof(text), "%s# |@!  \r\n", bindings[index]);
         assert(written > 0 && (size_t)written < sizeof(text));
         LayoutStatus status = read_layout(text);
         assert(status == LAYOUT_OK);
-        status = layout_validate(&layout, false);
-        assert(status == LAYOUT_OK);
         assert(layout.first->kind == LINE_INPUT_LITERAL);
-        assert(layout_text_is(layout.first->payload, "# |@!\t  "));
+        assert(layout_text_is(layout.first->payload, "# |@!  "));
         assert(layout.first->ending == ENDING_CRLF);
-        status = layout_validate(&layout, true);
-        assert(status == LAYOUT_INVALID);
         destroy_layout();
     }
     const char *ordinary[] = {" <|text", " name< |text", " name & < |text", " > |text", " # < |text"};
@@ -63,17 +57,15 @@ static void it_preserves_only_exact_input_literal_boundaries(void) {
 }
 
 /**
- * Assert that the component separates lenient draft reading from active whitespace validation.
+ * Assert that global TAB and lone-CR checks precede draft or payload classification.
  * The explicit fixture setup and observations define this regression; assertion failure keeps
  * its generated evidence.
  */
-static void it_separates_lenient_draft_reading_from_active_whitespace_validation(void) {
+static void it_rejects_global_whitespace_before_draft_or_payload_classification(void) {
     const char *invalid[] = {"unfinished\tname", "x\ry", "\t|data"};
     for (size_t index = 0; index < 3; index++) {
         setup_test();
         LayoutStatus status = read_layout(invalid[index]);
-        assert(status == LAYOUT_OK);
-        status = layout_validate(&layout, false);
         assert(status == LAYOUT_INVALID && source_span_valid(layout.diagnostic.primary.span));
         destroy_layout();
     }
@@ -119,7 +111,7 @@ static void it_cleans_partial_line_storage_after_each_allocation_failure(void) {
 void run(void) {
     it_preserves_literal_bytes_trailing_spaces_comments_and_line_endings();
     it_preserves_only_exact_input_literal_boundaries();
-    it_separates_lenient_draft_reading_from_active_whitespace_validation();
+    it_rejects_global_whitespace_before_draft_or_payload_classification();
     it_rejects_malformed_utf8_even_without_active_sections();
     it_cleans_partial_line_storage_after_each_allocation_failure();
 }

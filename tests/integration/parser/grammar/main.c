@@ -42,7 +42,7 @@ static void it_preserves_source_ranges_through_real_file_discovery_and_ast_const
     AstNode *call = module.body.first->next->next;
     assert(call->kind == AST_CALL);
     AstSource *input = call->as.call.first->source;
-    assert(input->kind == AST_LITERAL_SOURCE && layout_text_is(input->payload, "原文 # |@!\t  "));
+    assert(input->kind == AST_LITERAL_SOURCE && layout_text_is(input->payload, "原文 # |@!   "));
     written = fprintf(output, "inputs=%zu outputs=%zu\n", call->as.call.input_count, call->as.call.output_count);
     assert(written >= 0);
     int closed = fclose(output);

@@ -15,7 +15,7 @@
  */
 static void it_reports_all_four_activation_states_without_loading_dependencies(void) {
     directory("generated/project");
-    const char *texts[] = {"unfinished\t body\n", "@=\n", "@!\nfield\n.missing\n", "@C\n"};
+    const char *texts[] = {"unfinished body\n", "@=\n", "@!\nfield\n.missing\n", "@C\n"};
     for (size_t index = 0; index < 4; index++) {
         file("generated/project/main", texts[index]);
         setup_frontend();

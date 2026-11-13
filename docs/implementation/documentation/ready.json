@@ -3933,7 +3933,7 @@
         "source": "tests/unit/lexer/layout/main.c"
       },
       {
-        "case": "it_separates_lenient_draft_reading_from_active_whitespace_validation",
+        "case": "it_rejects_global_whitespace_before_draft_or_payload_classification",
         "command": "make -C tests/unit/lexer/layout",
         "source": "tests/unit/lexer/layout/main.c"
       },
@@ -3946,6 +3946,36 @@
         "case": "it_cleans_partial_line_storage_after_each_allocation_failure",
         "command": "make -C tests/unit/lexer/layout",
         "source": "tests/unit/lexer/layout/main.c"
+      },
+      {
+        "case": "it_preserves_complete_names_compound_tokens_and_all_line_ending_forms",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_recognizes_every_annotation_and_standalone_marker",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_spacing_near_compact_accesses_and_separated_operators",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_checks_region_comment_indentation_and_distinguishes_comment_prefix_spaces",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_preserves_literal_payloads_after_exact_multiword_labels_and_storage_suffixes",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_global_tabs_and_lone_cr_before_any_literal_or_activation_interpretation",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
       }
     ]
   },
@@ -3979,7 +4009,7 @@
         "source": "tests/unit/lexer/layout/main.c"
       },
       {
-        "case": "it_separates_lenient_draft_reading_from_active_whitespace_validation",
+        "case": "it_rejects_global_whitespace_before_draft_or_payload_classification",
         "command": "make -C tests/unit/lexer/layout",
         "source": "tests/unit/lexer/layout/main.c"
       },
@@ -3992,6 +4022,36 @@
         "case": "it_cleans_partial_line_storage_after_each_allocation_failure",
         "command": "make -C tests/unit/lexer/layout",
         "source": "tests/unit/lexer/layout/main.c"
+      },
+      {
+        "case": "it_preserves_complete_names_compound_tokens_and_all_line_ending_forms",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_recognizes_every_annotation_and_standalone_marker",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_spacing_near_compact_accesses_and_separated_operators",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_checks_region_comment_indentation_and_distinguishes_comment_prefix_spaces",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_preserves_literal_payloads_after_exact_multiword_labels_and_storage_suffixes",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_global_tabs_and_lone_cr_before_any_literal_or_activation_interpretation",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
       }
     ]
   },
@@ -4010,7 +4070,7 @@
         "source": "tests/unit/lexer/layout/main.c"
       },
       {
-        "case": "it_separates_lenient_draft_reading_from_active_whitespace_validation",
+        "case": "it_rejects_global_whitespace_before_draft_or_payload_classification",
         "command": "make -C tests/unit/lexer/layout",
         "source": "tests/unit/lexer/layout/main.c"
       },
@@ -4023,6 +4083,36 @@
         "case": "it_cleans_partial_line_storage_after_each_allocation_failure",
         "command": "make -C tests/unit/lexer/layout",
         "source": "tests/unit/lexer/layout/main.c"
+      },
+      {
+        "case": "it_preserves_complete_names_compound_tokens_and_all_line_ending_forms",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_recognizes_every_annotation_and_standalone_marker",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_spacing_near_compact_accesses_and_separated_operators",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_checks_region_comment_indentation_and_distinguishes_comment_prefix_spaces",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_preserves_literal_payloads_after_exact_multiword_labels_and_storage_suffixes",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_global_tabs_and_lone_cr_before_any_literal_or_activation_interpretation",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
       }
     ]
   },
@@ -4041,7 +4131,7 @@
         "source": "tests/unit/lexer/layout/main.c"
       },
       {
-        "case": "it_separates_lenient_draft_reading_from_active_whitespace_validation",
+        "case": "it_rejects_global_whitespace_before_draft_or_payload_classification",
         "command": "make -C tests/unit/lexer/layout",
         "source": "tests/unit/lexer/layout/main.c"
       },
@@ -4054,12 +4144,42 @@
         "case": "it_cleans_partial_line_storage_after_each_allocation_failure",
         "command": "make -C tests/unit/lexer/layout",
         "source": "tests/unit/lexer/layout/main.c"
+      },
+      {
+        "case": "it_preserves_complete_names_compound_tokens_and_all_line_ending_forms",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_recognizes_every_annotation_and_standalone_marker",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_spacing_near_compact_accesses_and_separated_operators",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_checks_region_comment_indentation_and_distinguishes_comment_prefix_spaces",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_preserves_literal_payloads_after_exact_multiword_labels_and_storage_suffixes",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_global_tabs_and_lone_cr_before_any_literal_or_activation_interpretation",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
       }
     ]
   },
   "src/lexer/layout/validate.c": {
     "contract": "docs/implementation/layout.md",
-    "purpose": "Apply the retained active-layout CR/tab checks independently of physical reading.",
+    "purpose": "Reject global malformed UTF-8, TAB and lone CR before activation or line allocation.",
     "tests": [
       {
         "case": "it_preserves_literal_bytes_trailing_spaces_comments_and_line_endings",
@@ -4072,7 +4192,7 @@
         "source": "tests/unit/lexer/layout/main.c"
       },
       {
-        "case": "it_separates_lenient_draft_reading_from_active_whitespace_validation",
+        "case": "it_rejects_global_whitespace_before_draft_or_payload_classification",
         "command": "make -C tests/unit/lexer/layout",
         "source": "tests/unit/lexer/layout/main.c"
       },
@@ -4085,6 +4205,36 @@
         "case": "it_cleans_partial_line_storage_after_each_allocation_failure",
         "command": "make -C tests/unit/lexer/layout",
         "source": "tests/unit/lexer/layout/main.c"
+      },
+      {
+        "case": "it_preserves_complete_names_compound_tokens_and_all_line_ending_forms",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_recognizes_every_annotation_and_standalone_marker",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_spacing_near_compact_accesses_and_separated_operators",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_checks_region_comment_indentation_and_distinguishes_comment_prefix_spaces",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_preserves_literal_payloads_after_exact_multiword_labels_and_storage_suffixes",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_global_tabs_and_lone_cr_before_any_literal_or_activation_interpretation",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
       }
     ]
   },
@@ -4103,7 +4253,7 @@
         "source": "tests/unit/lexer/layout/main.c"
       },
       {
-        "case": "it_separates_lenient_draft_reading_from_active_whitespace_validation",
+        "case": "it_rejects_global_whitespace_before_draft_or_payload_classification",
         "command": "make -C tests/unit/lexer/layout",
         "source": "tests/unit/lexer/layout/main.c"
       },
@@ -4116,6 +4266,36 @@
         "case": "it_cleans_partial_line_storage_after_each_allocation_failure",
         "command": "make -C tests/unit/lexer/layout",
         "source": "tests/unit/lexer/layout/main.c"
+      },
+      {
+        "case": "it_preserves_complete_names_compound_tokens_and_all_line_ending_forms",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_recognizes_every_annotation_and_standalone_marker",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_spacing_near_compact_accesses_and_separated_operators",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_checks_region_comment_indentation_and_distinguishes_comment_prefix_spaces",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_preserves_literal_payloads_after_exact_multiword_labels_and_storage_suffixes",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_global_tabs_and_lone_cr_before_any_literal_or_activation_interpretation",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
       }
     ]
   },
@@ -27514,7 +27694,7 @@
   },
   "tests/unit/lexer/Makefile": {
     "contract": "docs/implementation/library-tests-and-build.md",
-    "purpose": "Dispatch independent child suites: layout.",
+    "purpose": "Dispatch physical-layout and exact-token component suites.",
     "tests": [
       {
         "case": "it_preserves_literal_bytes_trailing_spaces_comments_and_line_endings",
@@ -27527,7 +27707,7 @@
         "source": "tests/unit/lexer/layout/main.c"
       },
       {
-        "case": "it_separates_lenient_draft_reading_from_active_whitespace_validation",
+        "case": "it_rejects_global_whitespace_before_draft_or_payload_classification",
         "command": "make -C tests/unit/lexer/layout",
         "source": "tests/unit/lexer/layout/main.c"
       },
@@ -27540,6 +27720,11 @@
         "case": "it_cleans_partial_line_storage_after_each_allocation_failure",
         "command": "make -C tests/unit/lexer/layout",
         "source": "tests/unit/lexer/layout/main.c"
+      },
+      {
+        "case": "it_preserves_complete_names_compound_tokens_and_all_line_ending_forms",
+        "command": "make -C tests/unit/lexer",
+        "source": "tests/unit/lexer/tokens/main.c"
       }
     ]
   },
@@ -27558,7 +27743,7 @@
         "source": "tests/unit/lexer/layout/main.c"
       },
       {
-        "case": "it_separates_lenient_draft_reading_from_active_whitespace_validation",
+        "case": "it_rejects_global_whitespace_before_draft_or_payload_classification",
         "command": "make -C tests/unit/lexer/layout",
         "source": "tests/unit/lexer/layout/main.c"
       },
@@ -27604,7 +27789,7 @@
         "source": "tests/unit/lexer/layout/main.c"
       },
       {
-        "case": "it_separates_lenient_draft_reading_from_active_whitespace_validation",
+        "case": "it_rejects_global_whitespace_before_draft_or_payload_classification",
         "command": "make -C tests/unit/lexer/layout",
         "source": "tests/unit/lexer/layout/main.c"
       },
@@ -27635,7 +27820,7 @@
         "source": "tests/unit/lexer/layout/main.c"
       },
       {
-        "case": "it_separates_lenient_draft_reading_from_active_whitespace_validation",
+        "case": "it_rejects_global_whitespace_before_draft_or_payload_classification",
         "command": "make -C tests/unit/lexer/layout",
         "source": "tests/unit/lexer/layout/main.c"
       },
@@ -36343,7 +36528,7 @@
         "source": "tests/unit/lexer/layout/main.c"
       },
       {
-        "case": "it_separates_lenient_draft_reading_from_active_whitespace_validation",
+        "case": "it_rejects_global_whitespace_before_draft_or_payload_classification",
         "command": "make -C tests/unit/lexer/layout",
         "source": "tests/unit/lexer/layout/main.c"
       },
@@ -39760,6 +39945,324 @@
         "case": "it_unwinds_every_proposed_frontend_allocation_failure",
         "command": "make -C tests/unit/native/scaffold/declarations",
         "source": "tests/unit/native/scaffold/declarations/main.c"
+      }
+    ]
+  },
+  "src/lexer/tokens/next.c": {
+    "contract": "docs/implementation/lexical-tokens.md",
+    "purpose": "Recognize exact complete names, longest punctuation tokens and original literal payloads with strict region boundaries.",
+    "tests": [
+      {
+        "case": "it_preserves_complete_names_compound_tokens_and_all_line_ending_forms",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_recognizes_every_annotation_and_standalone_marker",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_spacing_near_compact_accesses_and_separated_operators",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_checks_region_comment_indentation_and_distinguishes_comment_prefix_spaces",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_preserves_literal_payloads_after_exact_multiword_labels_and_storage_suffixes",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_global_tabs_and_lone_cr_before_any_literal_or_activation_interpretation",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      }
+    ]
+  },
+  "src/lexer/tokens/recognize.c": {
+    "contract": "docs/implementation/lexical-tokens.md",
+    "purpose": "Recognize exact complete names, longest punctuation tokens and original literal payloads with strict region boundaries.",
+    "tests": [
+      {
+        "case": "it_preserves_complete_names_compound_tokens_and_all_line_ending_forms",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_recognizes_every_annotation_and_standalone_marker",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_spacing_near_compact_accesses_and_separated_operators",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_checks_region_comment_indentation_and_distinguishes_comment_prefix_spaces",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_preserves_literal_payloads_after_exact_multiword_labels_and_storage_suffixes",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_global_tabs_and_lone_cr_before_any_literal_or_activation_interpretation",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      }
+    ]
+  },
+  "src/lexer/tokens/boundary.c": {
+    "contract": "docs/implementation/lexical-tokens.md",
+    "purpose": "Recognize exact complete names, longest punctuation tokens and original literal payloads with strict region boundaries.",
+    "tests": [
+      {
+        "case": "it_preserves_complete_names_compound_tokens_and_all_line_ending_forms",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_recognizes_every_annotation_and_standalone_marker",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_spacing_near_compact_accesses_and_separated_operators",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_checks_region_comment_indentation_and_distinguishes_comment_prefix_spaces",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_preserves_literal_payloads_after_exact_multiword_labels_and_storage_suffixes",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_global_tabs_and_lone_cr_before_any_literal_or_activation_interpretation",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      }
+    ]
+  },
+  "src/lexer/tokens/internal.h": {
+    "contract": "docs/implementation/lexical-tokens.md",
+    "purpose": "Recognize exact complete names, longest punctuation tokens and original literal payloads with strict region boundaries.",
+    "tests": [
+      {
+        "case": "it_preserves_complete_names_compound_tokens_and_all_line_ending_forms",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_recognizes_every_annotation_and_standalone_marker",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_spacing_near_compact_accesses_and_separated_operators",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_checks_region_comment_indentation_and_distinguishes_comment_prefix_spaces",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_preserves_literal_payloads_after_exact_multiword_labels_and_storage_suffixes",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_global_tabs_and_lone_cr_before_any_literal_or_activation_interpretation",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/lexer/tokens/tokens.h": {
+    "contract": "docs/implementation/lexical-tokens.md",
+    "purpose": "Recognize exact complete names, longest punctuation tokens and original literal payloads with strict region boundaries.",
+    "tests": [
+      {
+        "case": "it_preserves_complete_names_compound_tokens_and_all_line_ending_forms",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_recognizes_every_annotation_and_standalone_marker",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_spacing_near_compact_accesses_and_separated_operators",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_checks_region_comment_indentation_and_distinguishes_comment_prefix_spaces",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_preserves_literal_payloads_after_exact_multiword_labels_and_storage_suffixes",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_global_tabs_and_lone_cr_before_any_literal_or_activation_interpretation",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/lexer/tokens/line.c": {
+    "contract": "docs/implementation/lexical-tokens.md",
+    "purpose": "Recognize exact complete names, longest punctuation tokens and original literal payloads with strict region boundaries.",
+    "tests": [
+      {
+        "case": "it_preserves_complete_names_compound_tokens_and_all_line_ending_forms",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_recognizes_every_annotation_and_standalone_marker",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_spacing_near_compact_accesses_and_separated_operators",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_checks_region_comment_indentation_and_distinguishes_comment_prefix_spaces",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_preserves_literal_payloads_after_exact_multiword_labels_and_storage_suffixes",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_global_tabs_and_lone_cr_before_any_literal_or_activation_interpretation",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      }
+    ]
+  },
+  "tests/unit/lexer/tokens/Makefile": {
+    "contract": "docs/implementation/lexical-tokens.md",
+    "purpose": "Recognize exact complete names, longest punctuation tokens and original literal payloads with strict region boundaries.",
+    "tests": [
+      {
+        "case": "it_preserves_complete_names_compound_tokens_and_all_line_ending_forms",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_recognizes_every_annotation_and_standalone_marker",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_spacing_near_compact_accesses_and_separated_operators",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_checks_region_comment_indentation_and_distinguishes_comment_prefix_spaces",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_preserves_literal_payloads_after_exact_multiword_labels_and_storage_suffixes",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_global_tabs_and_lone_cr_before_any_literal_or_activation_interpretation",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      }
+    ]
+  },
+  "tests/unit/lexer/tokens/main.c": {
+    "contract": "docs/implementation/lexical-tokens.md",
+    "purpose": "Recognize exact complete names, longest punctuation tokens and original literal payloads with strict region boundaries.",
+    "tests": [
+      {
+        "case": "it_preserves_complete_names_compound_tokens_and_all_line_ending_forms",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_recognizes_every_annotation_and_standalone_marker",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_spacing_near_compact_accesses_and_separated_operators",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_checks_region_comment_indentation_and_distinguishes_comment_prefix_spaces",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_preserves_literal_payloads_after_exact_multiword_labels_and_storage_suffixes",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "case": "it_rejects_global_tabs_and_lone_cr_before_any_literal_or_activation_interpretation",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
       }
     ]
   }

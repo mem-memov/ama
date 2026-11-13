@@ -21,4 +21,7 @@ size_t layout_input_literal(SourceSpan text);
 LayoutStatus layout_failure(SourceLayout *layout, LayoutStatus status,
     SourceSpan span, const char *message, const char *expected);
 
+/** Validate global encoding/TAB/line-ending rules on layout.source before allocating or classifying any physical line. */
+LayoutStatus layout_validate_source(SourceLayout *);
+
 #endif

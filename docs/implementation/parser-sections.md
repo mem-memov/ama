@@ -5,14 +5,14 @@ The [specification](../../spec/README.md) defines current behavior; this
 component description does not certify the open work in [TODO](../../TODO.md).
 
 Boundary: `src/parser/module/sections.*`, retaining section/activation structure
-for SYN-03/04/05; full current lexical validation remains T022/T023.
+for SYN-03/04/05; integration with the T022 region/token boundary remains T023.
 Section views borrow the immutable layout. Recognition allocates nothing and
-publishes output only on success. UTF-8 must already have passed layout reading.
+publishes output only on success. Global UTF-8/TAB/line-ending checks must already have passed layout reading.
 
 A first pass activates only exact zero-indent `@=`, `@!` or `@C` code lines, with
-permitted trailing spaces/comment. Literal/comment text and indented markers
+the classified trailing comment suffix. Literal/comment text and indented markers
 never activate a draft. A nonactivated file remains a draft without parsing its
-unfinished declarations. An active file receives strict whitespace validation.
+unfinished declarations. Remaining active region/token validation is part of T023 integration.
 
 The second pass assigns increasing section ranks: constants, parameters, results,
 implementation. Duplicate/decreasing/unknown/indented annotations fail at their
@@ -24,7 +24,7 @@ validation separate for the following AST task.
 The rank invariant proves allowed order and uniqueness by induction over markers.
 The current section owns each non-marker line until the next marker, so intervals
 partition section content without interpreting names. Both finite passes advance
-one line each iteration: O(lines + active whitespace bytes) time, constant storage.
+one line each iteration: O(lines) time, constant storage.
 Errors include an exact primary span and a stable ParseError grammar expectation;
 see the [error contract](parser-errors.md).
 
@@ -36,7 +36,7 @@ does not claim that declaration/body grammar has been validated.
 
 
 T146 adds Doxygen contracts for the local rank pass and borrowed section intervals.
-The retained implementation skips active whitespace validation for drafts; the
-current specification requires its global lexical checks independently of
-activation. T022/T023 implement that change. A passing draft test here is not
-permission to accept forbidden TAB/spacing in inactive current-language input.
+Global encoding, TAB and line-ending checks now run in the T022 physical reader
+before activation. Unfinished draft grammar remains excluded; active region/token
+attachment and complete section grammar remain T023. No alternate TAB policy
+exists for drafts, literal payloads or comments.

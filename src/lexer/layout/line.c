@@ -3,7 +3,7 @@
  * @brief Classify physical indentation, comment code and untouched literal payload boundaries.
  *
  * [LIT-01](../../../spec/language/declarations.md#lit-01)
- * Payload spans retain original bytes; exact current spacing/comment placement remains T022 work.
+ * Payload spans retain legal original bytes; token scanning checks exact joins and caller-supplied region indentation.
  */
 #include <string.h>
 #include "internal.h"

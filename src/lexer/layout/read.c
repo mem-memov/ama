@@ -4,9 +4,10 @@
  *
  * [NAME-03](../../../spec/implementation/compiler.md#name-03)
  * Retain original spans and CRLF/LF/no-ending distinctions for diagnostics and literal payloads.
+ * [SYN-01](../../../spec/language/source-and-names.md#syn-01) prohibits TAB and
+ * lone CR before activation checks or literal interpretation.
  */
 #include "internal.h"
-#include "source/unicode/unicode.h"
 
 void layout_init(SourceLayout *layout, SourceAllocator allocator) {
     *layout = (SourceLayout){0};
@@ -61,13 +62,8 @@ static LayoutStatus read_source(SourceLayout *layout, const SourceText *source,
     layout->source = source;
     size_t length = source_length(source);
     const unsigned char *bytes = source_bytes(source);
-    size_t error;
-    if (!utf8_validate(bytes, length, &error)) {
-        LayoutStatus status = layout_failure(layout, LAYOUT_INVALID,
-            (SourceSpan){source, error, error + 1}, "Source is not valid UTF-8", "well-formed UTF-8");
-        layout->diagnostic.code = DIAGNOSTIC_INVALID_UTF8;
-        return status;
-    }
+    LayoutStatus checked = layout_validate_source(layout);
+    if (checked != LAYOUT_OK) { return checked; }
     size_t start = 0;
     while (start < length) {
         size_t end = start;

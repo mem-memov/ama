@@ -3,7 +3,7 @@
  * @brief Recognize genuine activation markers and monotonically ordered section intervals.
  *
  * [SYN-03](../../../spec/language/source-and-names.md#syn-03)
- * Comments/literals do not activate modules; the retained pre-validation draft policy still needs T022/T023.
+ * Comments/literals do not activate modules; global byte checks precede activation; complete section/token integration remains T023.
  */
 #include "sections.h"
 
@@ -92,10 +92,6 @@ bool parser_sections(SourceLayout *layout, ModuleSections *output, ParseError *e
     if (!active_file(layout)) {
         *output = sections;
         return true;
-    }
-    if (layout_validate(layout, false) != LAYOUT_OK) {
-        parser_error_from_layout(error, &layout->diagnostic);
-        return false;
     }
     if (!read_sections(layout, &sections, error)) {
         return false;

@@ -19,9 +19,6 @@ void abi_table_destroy(AbiTable *table) {
 
 ParseStatus parser_abi_parse(AbiTable *table, const SourceText *source) {
     LayoutStatus read = layout_read_abi(&table->layout, source);
-    if (read == LAYOUT_OK) {
-        read = layout_validate(&table->layout, true);
-    }
     if (read != LAYOUT_OK) {
         parser_error_from_layout(&table->error, &table->layout.diagnostic);
         return read == LAYOUT_OUT_OF_MEMORY ? PARSE_OUT_OF_MEMORY : PARSE_INVALID;
