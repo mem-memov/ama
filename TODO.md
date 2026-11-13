@@ -1266,12 +1266,23 @@ Contracts: [references and copying](spec/language/values-and-references.md),
   complete cleanup and successful retry. Strict runtime, semantic constants and
   storage-planning tests plus ASan+UBSan passed; all 1058 maintained inputs have
   coverage. Final Doxygen reproducibility is checked before commit.
-- [ ] **T053 — Compose runtime descriptors with planned C layouts.** Needs:
+- [x] **T053 — Compose runtime descriptors with planned C layouts.** Needs:
   T045, T052. Verify concrete sizes/alignment/offsets and nominal identity without
   raw-word universal casts. Compile descriptor checks and real native borrow/
   lifecycle probes against planned generated declarations. For any implemented
   compact/elided layout, compare observable transitions with the general model
   and measure actual size without demanding identical allocation-attempt counts.
+  Evidence: [C layout composition](docs/implementation/c-layout-composition.md)
+  compiles real planned fields/offsets/identities with 64-byte-aligned native State,
+  address-sensitive resources, all four storage forms, namespace exclusion and
+  pool growth. Verified native entry reads a typed parameter; an independent C
+  probe checks actual sizeof/alignment/offsetof and generated borrowed views,
+  rejecting an equal-layout foreign nominal handle before publishing a view.
+  Four source-form substitutions also fail statically. Measured target sizes are
+  State/plain/worker/root = 64/64/128/192 bytes; general representation remains
+  materialized. Strict codegen parent/dispatch checks and ASan+UBSan for both the
+  parent and standalone compiled probe passed; all 1067 maintained inputs have
+  coverage. Final Doxygen reproducibility is checked before commit.
 - [ ] **T054 — Verify ownership services independently of dispatch.** Needs:
   T053. Exhaust small allocation/acquisition/clone/replacement transition models
   and run sanitizer/failure-injection compositions. Record evidence before using

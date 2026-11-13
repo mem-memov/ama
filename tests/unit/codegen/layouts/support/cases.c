@@ -1,0 +1,61 @@
+/** @file
+ * @brief Compose source-to-plan emission with actual compiled C layouts and reject same-representation nominal substitutions before emission.
+ */
+/** Real generated/native C agrees with the plan's forms/identities and target C offsets/alignment throughout lifecycle, pool growth and borrowed views. */
+static void it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native_borrows(void) {
+    prepare_layout();
+    begin_layout(true);
+    bool built = project_codegen_build(&assembly, (ScaffoldOptions){.directory = "generated/output", .sdk = TEST_SDK});
+    assert(built);
+    for (const ScaffoldType *type = assembly.types; type != NULL; type = type->next) {
+        if (type->plan->type->module->syntax.sections.kind == MODULE_NATIVE) { write_layout_native(type); }
+    }
+    bool compiled = project_codegen_compile(&assembly, stderr);
+    assert(compiled);
+    bool published = native_scaffold_publish(&assembly);
+    assert(published);
+    FILE *output = fopen("generated/layout-probe.c", "wb");
+    assert(output != NULL);
+    int written = fputs("#include <assert.h>\n#include <stdint.h>\n#include <stdio.h>\n#include \"project.h\"\n#include \"project.c\"\n", output);
+    assert(written != EOF);
+    written = fputs("static void check_status(AmaStatus status) { assert(status.code==AMA_OK); (void)status; }\n", output);
+    assert(written != EOF);
+    probe_aliases(output);
+    probe_layout_checks(output);
+    probe_value_checks(output);
+    probe_borrow_checks(output);
+    written = fputs(
+        "int main(void) { AmaProjectHost host={0}; AmaHostResult result=ama_project_execute(&host,AMA_ACCESS_ENTRY);\n"
+        "assert(result.outcome==AMA_HOST_COMPLETED && result.status.code==AMA_OK);\n"
+        "check_layouts(&host); ROOT_STORAGE *root=check_values(&host); check_borrows(&host,root);\n"
+        "printf(\"C layout: State=%zu align=%zu plain=%zu worker=%zu root=%zu\\n\",sizeof(PLAIN_STATE),_Alignof(PLAIN_STATE),sizeof(PLAIN_STORAGE),sizeof(WORKER_STORAGE),sizeof(ROOT_STORAGE));\n"
+        "check_status(ama_project_dispose(&host));\n"
+        "assert(PLAIN_DEFAULTS+PLAIN_LITERALS+PLAIN_CLONES==PLAIN_DESTROYS);\n"
+        "assert(TWIN_DEFAULTS+TWIN_LITERALS+TWIN_CLONES==TWIN_DESTROYS);\n"
+        "assert(WORKER_DEFAULTS+WORKER_LITERALS+WORKER_CLONES==WORKER_DESTROYS);\n"
+        "assert(!host.world.operation_active); return 0; }\n", output);
+    assert(written != EOF);
+    int closed = fclose(output);
+    assert(closed == 0);
+    compile_layout_probe();
+    run_layout_probe();
+    native_scaffold_destroy(&assembly);
+    destroy_frontend();
+}
+/** Equal State size/alignment does not authorize owned/reference/list assignment between different module definitions. */
+static void it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity(void) {
+    const char *forms[] = {"", "&", "[]", "&[]"};
+    for (size_t index = 0; index < 4; index++) {
+        prepare_layout();
+        char source[512];
+        int length = snprintf(source, sizeof(source), "@!\nfirst%s\n.plain\nother%s\n.twin\nfirst%s\n other%s\n",
+            forms[index], forms[index], forms[index], forms[index]);
+        assert(length > 0 && (size_t)length < sizeof(source));
+        file("generated/project/main", source);
+        begin_layout(false);
+        assert(frontend.semantic_initialized && frontend.semantic.native_valid && frontend.semantic.status == SEMANTIC_INVALID);
+        assert(!frontend.plan_initialized && diagnostic_valid(&frontend.error));
+        assert(frontend.error.primary.span.source == frontend.project.entry->source->text);
+        destroy_frontend();
+    }
+}

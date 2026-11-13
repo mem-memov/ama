@@ -1123,6 +1123,16 @@
         "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native_borrows",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
       }
     ]
   },
@@ -1250,6 +1260,16 @@
         "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native_borrows",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
       }
     ]
   },
@@ -1316,6 +1336,16 @@
         "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native_borrows",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
       }
     ]
   },
@@ -1377,6 +1407,16 @@
         "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native_borrows",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
       }
     ]
   },
@@ -1504,6 +1544,16 @@
         "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native_borrows",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
       }
     ]
   },
@@ -1580,6 +1630,16 @@
         "case": "it_closes_native_borrows_before_normal_or_failed_host_return",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native_borrows",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
       }
     ]
   },
@@ -1772,6 +1832,16 @@
         "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native_borrows",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
       }
     ]
   },
@@ -17562,6 +17632,16 @@
         "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
         "command": "make -C tests/unit/runtime/objects/lifecycle",
         "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native_borrows",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
       }
     ]
   },
@@ -31703,6 +31783,16 @@
         "case": "it_keeps_result_first_and_named_inputs_independent_of_textual_order",
         "command": "make -C tests/unit/codegen/library",
         "source": "tests/unit/codegen/library/main.c"
+      },
+      {
+        "case": "it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native_borrows",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
       }
     ]
   },
@@ -45436,6 +45526,16 @@
         "case": "it_borrows_cloned_native_state_without_aliasing_original_values",
         "command": "make -C tests/unit/runtime/native-borrows",
         "source": "tests/unit/runtime/native-borrows/main.c"
+      },
+      {
+        "case": "it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native_borrows",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
       }
     ]
   },
@@ -45462,6 +45562,16 @@
         "case": "it_borrows_cloned_native_state_without_aliasing_original_values",
         "command": "make -C tests/unit/runtime/native-borrows",
         "source": "tests/unit/runtime/native-borrows/main.c"
+      },
+      {
+        "case": "it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native_borrows",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
       }
     ]
   },
@@ -58536,6 +58646,150 @@
         "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
         "command": "make -C tests/unit/runtime/shared-storage",
         "source": "tests/unit/runtime/shared-storage/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/layouts/main.c": {
+    "contract": "docs/implementation/c-layout-composition.md",
+    "purpose": "Compile exact planned descriptors with over-aligned C lifecycle, typed native entry and checked borrow consumers.",
+    "tests": [
+      {
+        "case": "it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native_borrows",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/layouts/Makefile": {
+    "contract": "docs/implementation/c-layout-composition.md",
+    "purpose": "Compile exact planned descriptors with over-aligned C lifecycle, typed native entry and checked borrow consumers.",
+    "tests": [
+      {
+        "case": "it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native_borrows",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/layouts/support/fixture.c": {
+    "contract": "docs/implementation/c-layout-composition.md",
+    "purpose": "Compile exact planned descriptors with over-aligned C lifecycle, typed native entry and checked borrow consumers.",
+    "tests": [
+      {
+        "case": "it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native_borrows",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/layouts/support/cases.c": {
+    "contract": "docs/implementation/c-layout-composition.md",
+    "purpose": "Compile exact planned descriptors with over-aligned C lifecycle, typed native entry and checked borrow consumers.",
+    "tests": [
+      {
+        "case": "it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native_borrows",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/layouts/support/native.c": {
+    "contract": "docs/implementation/c-layout-composition.md",
+    "purpose": "Compile exact planned descriptors with over-aligned C lifecycle, typed native entry and checked borrow consumers.",
+    "tests": [
+      {
+        "case": "it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native_borrows",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/layouts/support/process.c": {
+    "contract": "docs/implementation/c-layout-composition.md",
+    "purpose": "Compile exact planned descriptors with over-aligned C lifecycle, typed native entry and checked borrow consumers.",
+    "tests": [
+      {
+        "case": "it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native_borrows",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/layouts/support/probe/values.c": {
+    "contract": "docs/implementation/c-layout-composition.md",
+    "purpose": "Compile exact planned descriptors with over-aligned C lifecycle, typed native entry and checked borrow consumers.",
+    "tests": [
+      {
+        "case": "it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native_borrows",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/layouts/support/probe/borrows.c": {
+    "contract": "docs/implementation/c-layout-composition.md",
+    "purpose": "Compile exact planned descriptors with over-aligned C lifecycle, typed native entry and checked borrow consumers.",
+    "tests": [
+      {
+        "case": "it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native_borrows",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/layouts/support/probe/layouts.c": {
+    "contract": "docs/implementation/c-layout-composition.md",
+    "purpose": "Compile exact planned descriptors with over-aligned C lifecycle, typed native entry and checked borrow consumers.",
+    "tests": [
+      {
+        "case": "it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native_borrows",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
+        "command": "make -C tests/unit/codegen/layouts",
+        "source": "tests/unit/codegen/layouts/main.c"
       }
     ]
   }
