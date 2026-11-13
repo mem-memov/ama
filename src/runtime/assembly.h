@@ -84,6 +84,7 @@
 #include "runtime/program/values/selection/payload.c"
 #include "runtime/program/values/selection/index.c"
 #include "runtime/program/values/selection/access.c"
+#include "runtime/program/values/self.c"
 #include "runtime/program/values/source.c"
 
 #endif

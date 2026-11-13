@@ -1204,10 +1204,21 @@ Contracts: [references and copying](spec/language/values-and-references.md),
   referents remain outside the boundary. Strict runtime composition and ASan+UBSan
   passed; all 1034 maintained inputs have coverage. Final Doxygen reproducibility
   is checked before commit.
-- [ ] **T049 — Integrate ordered construction and destruction.** Needs: T012,
+- [x] **T049 — Integrate ordered construction and destruction.** Needs: T012,
   T048. Initialize fields once, expose final self-identity only under constructing
   rules and finalize children/native payload in the prescribed order. Inject
   failures and test escaped self-handles never revive after failed construction.
+  Evidence: [ordered self construction](docs/implementation/ordered-construction.md)
+  adds an explicit typed runtime self source, formed without payload access or
+  acquisition. Real program recipes use final private parent/child identities,
+  preserve field/native order, select literals once and publish complete trees.
+  Every native constructor and allocation is failed; issued identities remain
+  stale across retries, exhaustion and sparse reclamation. Public program startup,
+  Running identity formation and invalid-context gates are checked. Runtime C
+  assembly includes the new source unit; verified project execution, full strict
+  tests and ASan+UBSan passed. All 1041 maintained inputs have coverage. Final
+  Doxygen reproducibility is checked before commit; generated self execution
+  awaits the pending clone/replacement/layout adapters.
 - [ ] **T050 — Build exact clone maps.** Needs: T049. Clone independent owned
   trees with injective final-destination mapping and internal-reference fixups;
   preserve external handles and clear ordinary saved positions. Test self/peer

@@ -9,6 +9,11 @@
 #define AMA_VALUE_SELECTION_INTERNAL_H
 #include "runtime/program/program.h"
 
+/** Form a reference to exact current storage without reading a field or acquiring
+ * the target. Private construction authority permits Constructing/Live identities;
+ * public evaluation requires publication. Output changes only on success.
+ */
+AmaStatus ama_program_self(AmaProgram *, AmaHandle, const AmaProgramSource *, bool, AmaProgramValue *);
 /** Select a valid immutable declaration/current constant field; output borrows
  * constant storage and has no mutable pool identity. Invalid field indices fail.
  */

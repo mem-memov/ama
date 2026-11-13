@@ -3,6 +3,8 @@
  * @brief Describe resolved accesses, initializers and explicit native value protocols.
  *
  * [ARCH-03](../../../spec/implementation/compiler.md#arch-03)
+ * [REF-01](../../../spec/language/values-and-references.md#ref-01)
+ * distinguishes current identity from field selection: self has no payload access tree.
  * All descriptors are borrowed immutable generated data; condition/index callbacks do not imply universal truth or integer conversion.
  */
 #ifndef AMA_RUNTIME_PROGRAM_MODEL_H
@@ -10,8 +12,8 @@
 
 #include "runtime/objects/objects.h"
 
-/** Resolved source category; shared immutable storage is distinct from local instance identity and literal bytes. */
-typedef enum { AMA_SOURCE_LOCAL, AMA_SOURCE_SHARED, AMA_SOURCE_LITERAL } AmaProgramSourceKind;
+/** Resolved source category; shared immutable storage and a standalone current-instance reference are distinct from field access and literal bytes. */
+typedef enum { AMA_SOURCE_LOCAL, AMA_SOURCE_SHARED, AMA_SOURCE_LITERAL, AMA_SOURCE_SELF } AmaProgramSourceKind;
 /** Borrowed resolved field selection and optional nested index access. No source-name lookup or heuristic binding occurs at runtime. */
 typedef struct AmaProgramAccess {
     size_t field;

@@ -12567,6 +12567,11 @@
         "case": "it_closes_native_borrows_before_normal_or_failed_host_return",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_builds_and_runs_a_verified_executable_through_the_real_command",
+        "command": "make -C tests/integration/execution",
+        "source": "tests/integration/execution/main.c"
       }
     ]
   },
@@ -15287,6 +15292,31 @@
         "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
         "command": "make -C tests/unit/runtime/protocols",
         "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_constructs_real_self_initializers_once_at_final_private_addresses",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_starts_the_program_with_the_same_typed_self_recipe_path",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_never_revives_self_handles_observed_before_any_failed_constructor",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_releases_every_allocation_prefix_of_self_initialization",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
       }
     ]
   },
@@ -16091,6 +16121,31 @@
         "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
         "command": "make -C tests/unit/runtime/objects/lifecycle",
         "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_constructs_real_self_initializers_once_at_final_private_addresses",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_starts_the_program_with_the_same_typed_self_recipe_path",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_never_revives_self_handles_observed_before_any_failed_constructor",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_releases_every_allocation_prefix_of_self_initialization",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
       }
     ]
   },
@@ -16577,6 +16632,31 @@
         "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
         "command": "make -C tests/unit/runtime/objects/lifecycle",
         "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_constructs_real_self_initializers_once_at_final_private_addresses",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_starts_the_program_with_the_same_typed_self_recipe_path",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_never_revives_self_handles_observed_before_any_failed_constructor",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_releases_every_allocation_prefix_of_self_initialization",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
       }
     ]
   },
@@ -16643,6 +16723,31 @@
         "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
         "command": "make -C tests/unit/runtime/objects/lifecycle",
         "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_constructs_real_self_initializers_once_at_final_private_addresses",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_starts_the_program_with_the_same_typed_self_recipe_path",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_never_revives_self_handles_observed_before_any_failed_constructor",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_releases_every_allocation_prefix_of_self_initialization",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
       }
     ]
   },
@@ -16709,6 +16814,31 @@
         "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
         "command": "make -C tests/unit/runtime/objects/lifecycle",
         "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_constructs_real_self_initializers_once_at_final_private_addresses",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_starts_the_program_with_the_same_typed_self_recipe_path",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_never_revives_self_handles_observed_before_any_failed_constructor",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_releases_every_allocation_prefix_of_self_initialization",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
       }
     ]
   },
@@ -19330,6 +19460,31 @@
         "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
         "command": "make -C tests/unit/runtime/program",
         "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_real_self_initializers_once_at_final_private_addresses",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_starts_the_program_with_the_same_typed_self_recipe_path",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_never_revives_self_handles_observed_before_any_failed_constructor",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_releases_every_allocation_prefix_of_self_initialization",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
       }
     ]
   },
@@ -19570,6 +19725,31 @@
         "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
         "command": "make -C tests/unit/runtime/program",
         "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_constructs_real_self_initializers_once_at_final_private_addresses",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_starts_the_program_with_the_same_typed_self_recipe_path",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_never_revives_self_handles_observed_before_any_failed_constructor",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_releases_every_allocation_prefix_of_self_initialization",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
       }
     ]
   },
@@ -20269,6 +20449,31 @@
         "case": "it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes",
         "command": "make -C tests/unit/runtime/value-selection",
         "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_constructs_real_self_initializers_once_at_final_private_addresses",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_starts_the_program_with_the_same_typed_self_recipe_path",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_never_revives_self_handles_observed_before_any_failed_constructor",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_releases_every_allocation_prefix_of_self_initialization",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
       }
     ]
   },
@@ -20353,6 +20558,31 @@
         "case": "it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes",
         "command": "make -C tests/unit/runtime/value-selection",
         "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_constructs_real_self_initializers_once_at_final_private_addresses",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_starts_the_program_with_the_same_typed_self_recipe_path",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_never_revives_self_handles_observed_before_any_failed_constructor",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_releases_every_allocation_prefix_of_self_initialization",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
       }
     ]
   },
@@ -37918,6 +38148,31 @@
         "case": "it_separates_entry_preparation_from_saved_position_resume",
         "command": "make -C tests/unit/runtime/host-lifecycle",
         "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_constructs_real_self_initializers_once_at_final_private_addresses",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_starts_the_program_with_the_same_typed_self_recipe_path",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_never_revives_self_handles_observed_before_any_failed_constructor",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_releases_every_allocation_prefix_of_self_initialization",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
       }
     ]
   },
@@ -57152,6 +57407,228 @@
         "case": "it_restores_protected_prefixes_when_owned_edges_are_invalid",
         "command": "make -C tests/unit/runtime/objects/preflight",
         "source": "tests/unit/runtime/objects/preflight/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/values/self.c": {
+    "contract": "docs/implementation/ordered-construction.md",
+    "purpose": "Integrate final typed self-reference sources with ordered private construction and failure invalidation.",
+    "tests": [
+      {
+        "case": "it_constructs_real_self_initializers_once_at_final_private_addresses",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_starts_the_program_with_the_same_typed_self_recipe_path",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_never_revives_self_handles_observed_before_any_failed_constructor",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_releases_every_allocation_prefix_of_self_initialization",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_builds_and_runs_a_verified_executable_through_the_real_command",
+        "command": "make -C tests/integration/execution",
+        "source": "tests/integration/execution/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/program-construction/main.c": {
+    "contract": "docs/implementation/ordered-construction.md",
+    "purpose": "Integrate final typed self-reference sources with ordered private construction and failure invalidation.",
+    "tests": [
+      {
+        "case": "it_constructs_real_self_initializers_once_at_final_private_addresses",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_starts_the_program_with_the_same_typed_self_recipe_path",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_never_revives_self_handles_observed_before_any_failed_constructor",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_releases_every_allocation_prefix_of_self_initialization",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/program-construction/Makefile": {
+    "contract": "docs/implementation/ordered-construction.md",
+    "purpose": "Integrate final typed self-reference sources with ordered private construction and failure invalidation.",
+    "tests": [
+      {
+        "case": "it_constructs_real_self_initializers_once_at_final_private_addresses",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_starts_the_program_with_the_same_typed_self_recipe_path",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_never_revives_self_handles_observed_before_any_failed_constructor",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_releases_every_allocation_prefix_of_self_initialization",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/program-construction/support/schema.c": {
+    "contract": "docs/implementation/ordered-construction.md",
+    "purpose": "Integrate final typed self-reference sources with ordered private construction and failure invalidation.",
+    "tests": [
+      {
+        "case": "it_constructs_real_self_initializers_once_at_final_private_addresses",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_starts_the_program_with_the_same_typed_self_recipe_path",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_never_revives_self_handles_observed_before_any_failed_constructor",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_releases_every_allocation_prefix_of_self_initialization",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/program-construction/support/failures.c": {
+    "contract": "docs/implementation/ordered-construction.md",
+    "purpose": "Integrate final typed self-reference sources with ordered private construction and failure invalidation.",
+    "tests": [
+      {
+        "case": "it_constructs_real_self_initializers_once_at_final_private_addresses",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_starts_the_program_with_the_same_typed_self_recipe_path",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_never_revives_self_handles_observed_before_any_failed_constructor",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_releases_every_allocation_prefix_of_self_initialization",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/program-construction/support/success.c": {
+    "contract": "docs/implementation/ordered-construction.md",
+    "purpose": "Integrate final typed self-reference sources with ordered private construction and failure invalidation.",
+    "tests": [
+      {
+        "case": "it_constructs_real_self_initializers_once_at_final_private_addresses",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_starts_the_program_with_the_same_typed_self_recipe_path",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_never_revives_self_handles_observed_before_any_failed_constructor",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_releases_every_allocation_prefix_of_self_initialization",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/program-construction/support/observers.c": {
+    "contract": "docs/implementation/ordered-construction.md",
+    "purpose": "Integrate final typed self-reference sources with ordered private construction and failure invalidation.",
+    "tests": [
+      {
+        "case": "it_constructs_real_self_initializers_once_at_final_private_addresses",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_starts_the_program_with_the_same_typed_self_recipe_path",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_never_revives_self_handles_observed_before_any_failed_constructor",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_releases_every_allocation_prefix_of_self_initialization",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
+        "command": "make -C tests/unit/runtime/program-construction",
+        "source": "tests/unit/runtime/program-construction/main.c"
       }
     ]
   }

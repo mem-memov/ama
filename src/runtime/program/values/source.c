@@ -24,6 +24,10 @@ AmaStatus ama_program_select_shared(AmaProgram *program, const AmaConstantValue 
  */
 AmaStatus ama_program_evaluate(AmaProgram *program, AmaHandle current, const AmaConstantValue *shared,
     const AmaProgramSource *source, bool private_access, AmaProgramValue *output) {
+    if (source->kind == AMA_SOURCE_SELF) {
+        return shared == NULL ? ama_program_self(program, current, source, private_access, output)
+            : ama_status_make(AMA_INVALID_STATE, NULL, 0);
+    }
     if (source->kind == AMA_SOURCE_LITERAL) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
     AmaProgramAccess global = {.field = source->shared, .shared = true};
     const AmaProgramAccess *access = source->kind == AMA_SOURCE_SHARED ? &global : source->access;
