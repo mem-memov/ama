@@ -48,6 +48,7 @@ typedef enum {
 } LifeOperation;
 /** Plan-owned lifecycle step with exact source/type/field/hook and explicit failure edge. */
 typedef struct LifeNode {
+    struct LifeNode *allocated_next;
     struct LifeNode *next;
     struct LifeNode *failure;
     LifeOperation operation;
@@ -109,6 +110,7 @@ struct PlannedType {
     size_t layout_ordinal;
     unsigned service_storage;
     bool requires_pool;
+    LifeNode *lifecycles;
     LifeProcedure create;
     LifeProcedure literal;
     LifeProcedure destroy;
@@ -152,6 +154,11 @@ void program_plan_destroy(ProgramPlan *plan);
  * @return Explicit failure without valid output, or success with one complete typed plan; never parse source or emit C text.
  */
 PlanStatus program_plan_build(ProgramPlan *plan);
+/** Check completed owner-linked IR without allocation; failure revokes publication and retains an original source site.
+ * Ownership inventory chains must be intact; executable edges may contain cycles.
+ * Borrowed semantics must remain complete and immutable. Success does not publish an unbuilt plan.
+ */
+bool program_plan_validate(ProgramPlan *plan);
 /** Find the exact semantic type pointer in already created planned types, or return null; no spelling-based type recreation.
  */
 PlannedType *program_plan_type(const ProgramPlan *plan, const SemanticType *type);

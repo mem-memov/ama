@@ -10561,6 +10561,26 @@
         "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_validates_cyclic_ir_without_allocation_or_changing_published_identity",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_or_foreign_ir_operands_and_revokes_publication",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_unregistered_native_hooks_and_foreign_lifecycle_endpoints",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_shared_and_required_procedure_inventories",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
       }
     ]
   },
@@ -10642,6 +10662,26 @@
         "case": "it_reserves_zero_for_absent_control_and_source_positions",
         "command": "make -C tests/unit/planning/ir",
         "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_validates_cyclic_ir_without_allocation_or_changing_published_identity",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_or_foreign_ir_operands_and_revokes_publication",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_unregistered_native_hooks_and_foreign_lifecycle_endpoints",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_shared_and_required_procedure_inventories",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
       }
     ]
   },
@@ -10723,6 +10763,26 @@
         "case": "it_reports_unsupported_control_trees_without_lowering_an_incomplete_operation",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_validates_cyclic_ir_without_allocation_or_changing_published_identity",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_or_foreign_ir_operands_and_revokes_publication",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_unregistered_native_hooks_and_foreign_lifecycle_endpoints",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_shared_and_required_procedure_inventories",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
       }
     ]
   },
@@ -35338,6 +35398,26 @@
         "case": "it_reserves_zero_for_absent_control_and_source_positions",
         "command": "make -C tests/unit/planning/ir",
         "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_validates_cyclic_ir_without_allocation_or_changing_published_identity",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_or_foreign_ir_operands_and_revokes_publication",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_unregistered_native_hooks_and_foreign_lifecycle_endpoints",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_shared_and_required_procedure_inventories",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
       }
     ]
   },
@@ -52621,6 +52701,203 @@
         "case": "it_unwinds_every_allocation_of_complete_semantic_composition",
         "command": "make -C tests/unit/semantic/composition",
         "source": "tests/unit/semantic/composition/main.c"
+      }
+    ]
+  },
+  "src/planning/validation/ir/control.c": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Validate completed typed IR ownership, resolved operands and publication invariants.",
+    "tests": [
+      {
+        "case": "it_validates_cyclic_ir_without_allocation_or_changing_published_identity",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_or_foreign_ir_operands_and_revokes_publication",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_unregistered_native_hooks_and_foreign_lifecycle_endpoints",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_shared_and_required_procedure_inventories",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      }
+    ]
+  },
+  "src/planning/validation/ir/internal.h": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Validate completed typed IR ownership, resolved operands and publication invariants.",
+    "tests": [
+      {
+        "case": "it_validates_cyclic_ir_without_allocation_or_changing_published_identity",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_or_foreign_ir_operands_and_revokes_publication",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_unregistered_native_hooks_and_foreign_lifecycle_endpoints",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_shared_and_required_procedure_inventories",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/planning/validation/ir/lifecycle.c": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Validate completed typed IR ownership, resolved operands and publication invariants.",
+    "tests": [
+      {
+        "case": "it_validates_cyclic_ir_without_allocation_or_changing_published_identity",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_or_foreign_ir_operands_and_revokes_publication",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_unregistered_native_hooks_and_foreign_lifecycle_endpoints",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_shared_and_required_procedure_inventories",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      }
+    ]
+  },
+  "src/planning/validation/ir/program.c": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Validate completed typed IR ownership, resolved operands and publication invariants.",
+    "tests": [
+      {
+        "case": "it_validates_cyclic_ir_without_allocation_or_changing_published_identity",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_or_foreign_ir_operands_and_revokes_publication",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_unregistered_native_hooks_and_foreign_lifecycle_endpoints",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_shared_and_required_procedure_inventories",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      }
+    ]
+  },
+  "src/planning/validation/ir/storage.c": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Validate completed typed IR ownership, resolved operands and publication invariants.",
+    "tests": [
+      {
+        "case": "it_validates_cyclic_ir_without_allocation_or_changing_published_identity",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_or_foreign_ir_operands_and_revokes_publication",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_unregistered_native_hooks_and_foreign_lifecycle_endpoints",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_shared_and_required_procedure_inventories",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      }
+    ]
+  },
+  "tests/unit/planning/validation/Makefile": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Validate completed typed IR ownership, resolved operands and publication invariants.",
+    "tests": [
+      {
+        "case": "it_validates_cyclic_ir_without_allocation_or_changing_published_identity",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_or_foreign_ir_operands_and_revokes_publication",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_unregistered_native_hooks_and_foreign_lifecycle_endpoints",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_shared_and_required_procedure_inventories",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      }
+    ]
+  },
+  "tests/unit/planning/validation/main.c": {
+    "contract": "docs/implementation/typed-plans.md",
+    "purpose": "Validate completed typed IR ownership, resolved operands and publication invariants.",
+    "tests": [
+      {
+        "case": "it_validates_cyclic_ir_without_allocation_or_changing_published_identity",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_or_foreign_ir_operands_and_revokes_publication",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_unregistered_native_hooks_and_foreign_lifecycle_endpoints",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_shared_and_required_procedure_inventories",
+        "command": "make -C tests/unit/planning/validation",
+        "source": "tests/unit/planning/validation/main.c"
       }
     ]
   }

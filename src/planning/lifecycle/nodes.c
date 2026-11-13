@@ -12,9 +12,10 @@ LifeNode *plan_life_node(ProgramPlan *plan, PlannedType *type, LifeOperation ope
     StorageField *field, const AbiBinding *binding) {
     LifeNode *node = plan_allocate(plan, sizeof(*node));
     if (node != NULL) {
-        *node = (LifeNode){.operation = operation, .type = type, .field = field, .binding = binding,
+        *node = (LifeNode){.allocated_next = type->lifecycles, .operation = operation, .type = type, .field = field, .binding = binding,
             .site = field == NULL ? (SourceSpan){type->type->module->source->text, 0, 0}
                 : field->symbol->site};
+        type->lifecycles = node;
     }
     return node;
 }

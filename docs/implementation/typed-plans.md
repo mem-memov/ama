@@ -159,9 +159,59 @@ exist, so benign call cycles do not recurse during compilation. Graph/AST work
 uses finite explicit records; source nesting does not consume recursive C frames.
 
 Current plan tests prove the retained node families and order. They do not certify
-complete current context/result/foreach/loop semantics: T041–T045 and their runtime
-consumers remain open. In particular an actually empty loop must ultimately have
-both successful condition edges target its continuation after one conversion,
-while parsed declarations/nested controls keep a body nonempty even if lowering
-emits no work. The retained lowerer still needs that FLOW-02 adaptation; this
-receipt does not present its old repeat edge as the language rule.
+complete current context/result/foreach/loop semantics: T042–T045 and their runtime
+consumers remain open. Parsed-empty ordinary loops already leave after one condition conversion;
+header and traversal lowering retain explicit unsupported guards until their fixed
+restart and lexical frame operations exist.
+
+## T041: publication checks for the typed IR
+
+The existing `StorageField`, `SharedStorage`, `LifeNode` and `ControlNode` families
+are the compiler's typed IR. They borrow exact canonical semantic identities;
+source spans remain borrowed views of the loaded immutable source. Logical slots,
+selectors, transfer kinds and native ABI members are operands rather than C text.
+Borrowing typed semantic access/source records does not repeat name resolution.
+The AST identity retained alongside a statement identifies its original source
+construct; it is not an invitation to resolve names during emission.
+
+[Publication validation](../../src/planning/validation/ir/program.c) runs after
+forward entry links and shared startup/cleanup endpoints are complete, immediately
+before `ProgramPlan.valid` is set. It checks:
+
+- One planned nominal record for each resolved type, in exact inventory order.
+- Declared nonconstant fields in order, exact nominal types, storage forms and
+  logical slots; shared storage follows the resolved constant order and has no
+  instance service state.
+- Required lifecycle procedures, registered native hooks, field operands,
+  original source maps, procedure endpoints and same-owner execution/failure edges.
+- Control endpoints, unique nonzero selectors, statement and binding ownership,
+  mandatory operation operands and edges. Ordinary edges remain in their owner;
+  only explicit entry transfers cross to the exact callee entry. Refusal,
+  technical failure and resume edges are checked separately.
+
+Lifecycle instructions now have a separate allocation inventory, like control
+instructions. Validators scan these finite owner lists instead of following
+executable links. Thus recursive calls and loop backedges do not cause recursive
+compiler calls or require reachability guesses. The inventories are trusted
+allocator bookkeeping: this API diagnoses malformed typed edges/operands, not
+arbitrary corruption of allocator memory or owner-list links.
+
+The invariant is that each accepted edge names an instruction in the permitted
+owner inventory, every operand names an already resolved declaration or native
+binding, and each selector has exactly one owner. Enumerating the inventories and
+comparing exact pointers proves membership; pairwise selector comparison proves
+uniqueness. No hashing, spelling equality, C execution or allocation is needed.
+For `N` total records, validation uses at most quadratic time and constant scratch
+space. Existing construction and lowering proofs establish instruction order;
+this structural validator does not attempt to prove arbitrary program termination.
+
+A failure clears publication, retains a structured diagnostic, and leaves every
+partial arena record destructible. Revalidating a published intact plan preserves
+its publication state. A successful check alone cannot publish an unbuilt plan.
+[Mutation tests](../../tests/unit/planning/validation/main.c) independently damage
+storage, control and lifecycle operands/edges, source sites, selectors, hooks and
+shared endpoints, and verify rejection without new allocations. Existing planning
+cases exercise valid instruction families and every construction allocation
+failure. Current selected-result, header-loop, foreach and self-reference runtime
+guards remain: T042 onward adds their storage and execution support without
+silently accepting incomplete lowering.

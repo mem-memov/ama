@@ -60,6 +60,9 @@ PlanStatus program_plan_build(ProgramPlan *plan) {
     }
     plan->constant_startup = plan->semantic->constant_first;
     plan->constant_cleanup = plan->semantic->constant_last;
+    if (!program_plan_validate(plan)) {
+        return plan->status;
+    }
     plan->valid = true;
     return PLAN_OK;
 }

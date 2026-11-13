@@ -1081,10 +1081,20 @@ Contracts: [declarations](spec/language/declarations.md),
 Contracts: [compiler](spec/implementation/compiler.md),
 [runtime](spec/implementation/runtime.md).
 
-- [ ] **T041 — Define current typed IR boundaries.** Needs: T013, T040. Represent
+- [x] **T041 — Define current typed IR boundaries.** Needs: T013, T040. Represent
   resolved type/storage identities, lifecycle, operations, failure edges and source
   maps independently of C text. Validate narrow independently inspectable nodes
   and reject unresolved source-level decisions at the boundary.
+  Evidence: existing typed storage/lifecycle/control node families now pass an
+  allocation-free publication validator with separate lifecycle allocation
+  inventories. Exact nominal/field/shared identities, registered hooks, source
+  maps, selectors, endpoints, mandatory operands and local/callee edges are
+  checked without following executable cycles. Thirty-five deliberate mutations
+  are rejected; valid cyclic calls remain valid without allocations. Full strict
+  tests, final focused IR cases and ASan+UBSan validation passed. All 970 maintained
+  inputs have coverage; final Doxygen reproducibility is checked before commit.
+  T042–T045 retain responsibility for new storage and operation lowering; existing
+  unsupported-feature guards remain explicit.
 - [ ] **T042 — Plan context and instance storage.** Needs: T041. Separate per-context
   constants/runtime from stable-slot fields, interface state and control metadata.
   Include constructing identity, return links, saved positions and fixed lexical
