@@ -978,11 +978,21 @@ Contracts: [declarations](spec/language/declarations.md),
   deep/parallel shapes and each graph allocation failure pass. Strict semantic
   unit/integration suites and ASan+UBSan relation checks passed. Documentation
   covers 904 maintained inputs; final Doxygen generations are byte-identical.
-- [ ] **T034 — Validate constants and initialization plans.** Needs: T033.
+- [x] **T034 — Validate constants and initialization plans.** Needs: T033.
   Resolve qualified members and legal constant sources, then construct actual
   initializer dependencies and reject their forbidden cycles. Derive exact
   startup/reverse cleanup order. Test constants-only modules, constant cycles,
   inferred-field defaults and visibility without forward initializer reads.
+  Evidence: [shared initialization](docs/implementation/shared-initialization.md)
+  explains exact source/read edges, finite fresh-construction closure and linked
+  startup/reverse plans. Nested lexical self now rejects mutable identities in
+  immutable construction; named shared reads no longer duplicate their root edge.
+  Tests cover defaults versus executable inferred sources, scalar/list literals,
+  clones versus fresh descendants, qualified-member/forms/forward errors, exact
+  indexed prerequisites, constants-only namespaces and every allocation in nested
+  closure, cycle diagnostics and publication. Full strict `make -j4 test`, constant
+  ASan+UBSan checks and 906-input documentation coverage passed; final Doxygen
+  generations are byte-identical.
 - [ ] **T035 — Validate normal call/read bindings.** Needs: T032, T034. Resolve
   current named/positional rules, placeholders, exact input/result types, defaults
   and literal capabilities. Test mode-specific rejection and both declaration

@@ -6,6 +6,8 @@
  * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
  */
 #include "../typed-common.c"
+#include "support/construction.c"
+#include "support/failures.c"
 
 /**
  * Write the explicit immutable-value dependency fixture used to inspect construction order and
@@ -107,6 +109,12 @@ static void it_releases_a_partially_built_shared_storage_plan(void) {
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_unwinds_every_nested_shared_graph_cycle_and_plan_allocation();
+    it_rejects_invalid_constant_members_forms_and_forward_reads();
+    it_rejects_self_handles_inside_fresh_shared_descendants();
+    it_constructs_inferred_fields_from_defaults_without_reading_their_body_sources();
+    it_preserves_each_indexed_shared_read_without_duplicate_root_edges();
+    it_follows_fresh_descendants_but_does_not_reconstruct_cloned_values();
     it_plans_shared_initialization_once_and_cleanup_in_exact_reverse_order();
     it_uses_path_order_for_ready_constants_and_excludes_unused_namespaces();
     it_releases_a_partially_built_shared_storage_plan();

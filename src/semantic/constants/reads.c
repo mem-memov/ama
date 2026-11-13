@@ -3,7 +3,9 @@
  * @brief Add concrete shared read edges and reject mutable reference construction.
  *
  * [CONST-01](../../../spec/language/declarations.md#const-01)
- * Immutable shared values cannot acquire mutable instance references; access index reads also contribute prerequisites.
+ * Immutable shared values cannot acquire mutable instance references, including
+ * lexical self in freshly constructed descendants. Access/index reads contribute
+ * each actual prerequisite once rather than repeating a named shared root.
  */
 #include "internal.h"
 
@@ -17,7 +19,7 @@ static bool require_constant(SemanticProgram *program, SemanticSymbol *owner,
 
 bool semantic_constant_reads(SemanticProgram *program, SemanticSymbol *owner,
     const SemanticSource *source) {
-    if (source->constant != NULL && !require_constant(program, owner, source->constant, source->site)) {
+    if (source->constant != NULL && source->access == NULL && !require_constant(program, owner, source->constant, source->site)) {
         return false;
     }
     for (SemanticAccess *access = source->access; access != NULL; access = access->index) {
@@ -26,7 +28,7 @@ bool semantic_constant_reads(SemanticProgram *program, SemanticSymbol *owner,
             return false;
         }
     }
-    if (source->kind == AST_ACQUIRE_SOURCE) {
+    if (source->kind == AST_ACQUIRE_SOURCE || source->kind == AST_SELF_REFERENCE_SOURCE) {
         return semantic_fail(program, source->site,
             "Shared value construction cannot create a mutable-object reference", owner);
     }

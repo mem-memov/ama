@@ -200,6 +200,9 @@ The latter uses real files, the loader, ABI parser and type checker. Release/Wer
 and allocation-injection tests pass; runtime busy behavior is not implemented by
 this compile-time service.
 
+[T034 immutable initialization](shared-initialization.md) records exact shared
+read collection, fresh-construction/self checks and startup-plan evidence.
+
 ## Shared storage/startup plans
 
 `semantic_constants` consumes the successful declaration-level order once and

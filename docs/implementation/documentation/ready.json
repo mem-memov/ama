@@ -19714,6 +19714,36 @@
         "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
         "command": "make -C tests/unit/semantic/relations",
         "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_rejects_self_handles_inside_fresh_shared_descendants",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_constructs_inferred_fields_from_defaults_without_reading_their_body_sources",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_preserves_each_indexed_shared_read_without_duplicate_root_edges",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_follows_fresh_descendants_but_does_not_reconstruct_cloned_values",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_unwinds_every_nested_shared_graph_cycle_and_plan_allocation",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_constant_members_forms_and_forward_reads",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
       }
     ]
   },
@@ -19825,6 +19855,36 @@
         "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_self_handles_inside_fresh_shared_descendants",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_constructs_inferred_fields_from_defaults_without_reading_their_body_sources",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_preserves_each_indexed_shared_read_without_duplicate_root_edges",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_follows_fresh_descendants_but_does_not_reconstruct_cloned_values",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_unwinds_every_nested_shared_graph_cycle_and_plan_allocation",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_constant_members_forms_and_forward_reads",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
       }
     ]
   },
@@ -19896,6 +19956,36 @@
         "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
         "command": "make -C tests/unit/semantic/relations",
         "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_rejects_self_handles_inside_fresh_shared_descendants",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_constructs_inferred_fields_from_defaults_without_reading_their_body_sources",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_preserves_each_indexed_shared_read_without_duplicate_root_edges",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_follows_fresh_descendants_but_does_not_reconstruct_cloned_values",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_unwinds_every_nested_shared_graph_cycle_and_plan_allocation",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_constant_members_forms_and_forward_reads",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
       }
     ]
   },
@@ -19952,6 +20042,16 @@
         "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
         "command": "make -C tests/unit/semantic/relations",
         "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_nested_shared_graph_cycle_and_plan_allocation",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_constant_members_forms_and_forward_reads",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
       }
     ]
   },
@@ -20008,6 +20108,36 @@
         "case": "it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure",
         "command": "make -C tests/unit/semantic/relations",
         "source": "tests/unit/semantic/relations/main.c"
+      },
+      {
+        "case": "it_rejects_self_handles_inside_fresh_shared_descendants",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_constructs_inferred_fields_from_defaults_without_reading_their_body_sources",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_preserves_each_indexed_shared_read_without_duplicate_root_edges",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_follows_fresh_descendants_but_does_not_reconstruct_cloned_values",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_unwinds_every_nested_shared_graph_cycle_and_plan_allocation",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_constant_members_forms_and_forward_reads",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
       }
     ]
   },
@@ -21194,6 +21324,16 @@
         "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_unwinds_every_nested_shared_graph_cycle_and_plan_allocation",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_constant_members_forms_and_forward_reads",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
       }
     ]
   },
@@ -39072,6 +39212,36 @@
         "case": "it_releases_a_partially_built_shared_storage_plan",
         "command": "make -C tests/unit/semantic/constants",
         "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_rejects_self_handles_inside_fresh_shared_descendants",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_constructs_inferred_fields_from_defaults_without_reading_their_body_sources",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_preserves_each_indexed_shared_read_without_duplicate_root_edges",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_follows_fresh_descendants_but_does_not_reconstruct_cloned_values",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_unwinds_every_nested_shared_graph_cycle_and_plan_allocation",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_constant_members_forms_and_forward_reads",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
       }
     ]
   },
@@ -49033,6 +49203,16 @@
         "case": "it_releases_every_partial_resolved_value_binding_and_access",
         "command": "make -C tests/unit/semantic/types",
         "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_unwinds_every_nested_shared_graph_cycle_and_plan_allocation",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_constant_members_forms_and_forward_reads",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
       }
     ]
   },
@@ -49202,6 +49382,48 @@
         "case": "it_handles_empty_deep_parallel_and_allocation_failed_graphs",
         "command": "make -C tests/unit/semantic/relations",
         "source": "tests/unit/semantic/relations/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/constants/support/construction.c": {
+    "contract": "docs/implementation/shared-initialization.md",
+    "purpose": "Verify actual immutable construction reads, lexical-self exclusions and inferred default fields using loaded Ama projects.",
+    "tests": [
+      {
+        "case": "it_rejects_self_handles_inside_fresh_shared_descendants",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_constructs_inferred_fields_from_defaults_without_reading_their_body_sources",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_preserves_each_indexed_shared_read_without_duplicate_root_edges",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_follows_fresh_descendants_but_does_not_reconstruct_cloned_values",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/constants/support/failures.c": {
+    "contract": "docs/implementation/shared-initialization.md",
+    "purpose": "Check constant visibility and every allocation in nested shared construction, cycle diagnostics and startup-plan publication.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_nested_shared_graph_cycle_and_plan_allocation",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_constant_members_forms_and_forward_reads",
+        "command": "make -C tests/unit/semantic/constants",
+        "source": "tests/unit/semantic/constants/main.c"
       }
     ]
   }
