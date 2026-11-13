@@ -3,7 +3,9 @@
  * @brief Select exact fixed ABI markers and diagnose duplicate or malformed records.
  *
  * [PROTO-11](../../../spec/implementation/native-interface.md#proto-11)
- * Retain both marker sites on duplicate bindings; stricter global separators remain T022.
+ * Retain both marker sites on duplicates.
+ * [SYN-06](../../../spec/language/source-and-names.md#syn-06) permits exactly
+ * one separator and no trimming or implicit correction.
  */
 #include "internal.h"
 
@@ -40,8 +42,10 @@ static bool binding_function(AbiTable *table, SourceSpan text, size_t cursor, So
         return abi_fail(table, (SourceSpan){text.source, cursor, cursor},
             "An ABI symbol needs a space before its function", EXPECT_ABI_SPACE);
     }
-    while (cursor < text.end && bytes[cursor] == ' ') {
-        cursor++;
+    cursor++;
+    if (cursor < text.end && bytes[cursor] == ' ') {
+        return abi_fail(table, (SourceSpan){text.source, cursor, cursor + 1},
+            "An ABI symbol requires exactly one separating space", EXPECT_ABI_SPACE);
     }
     size_t start = cursor;
     while (cursor < text.end && bytes[cursor] != ' ') {
@@ -54,9 +58,6 @@ static bool binding_function(AbiTable *table, SourceSpan text, size_t cursor, So
             "Invalid native C function identifier", EXPECT_C_IDENTIFIER);
     }
     if (cursor != text.end) {
-        while (cursor < text.end && bytes[cursor] == ' ') {
-            cursor++;
-        }
         return abi_fail(table, (SourceSpan){text.source, cursor, text.end},
             "Extra tokens after an ABI function identifier", EXPECT_LINE_END);
     }

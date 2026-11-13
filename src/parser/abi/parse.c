@@ -24,6 +24,7 @@ ParseStatus parser_abi_parse(AbiTable *table, const SourceText *source) {
         return read == LAYOUT_OUT_OF_MEMORY ? PARSE_OUT_OF_MEMORY : PARSE_INVALID;
     }
     for (const LayoutLine *line = table->layout.first; line != NULL; line = line->next) {
+        if (!abi_line(table, line)) { return PARSE_INVALID; }
         if (line->kind != LINE_BLANK && line->kind != LINE_COMMENT && !abi_record(table, line)) {
             return PARSE_INVALID;
         }

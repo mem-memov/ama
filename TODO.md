@@ -860,10 +860,23 @@ Contracts: [grammar](spec/grammar.md),
   suite and focused ASan/UBSan pass (leak detection disabled), as do 843-input
   coverage and links. Warning-free Doxygen is byte-reproducible: 664 maintained
   files, 2657 interfaces, 294 destinations.
-- [ ] **T028 — Compose the parser and ABI table reader.** Needs: T009, T021,
+- [x] **T028 — Compose the parser and ABI table reader.** Needs: T009, T021,
   T027. Validate fixed `.abi` records separately from Ama literal classification;
   exhaust malformed/duplicate/missing bindings. Run current documented examples,
   grammar boundary cases, truncations and source-to-AST failure cleanup.
+  ABI records now reject repeated separators, spaces-only lines and trailing code
+  spaces, independently of Ama raw-literal recognition. The finite six-slot oracle
+  exhausts all 1957 ordered subsets; duplicate sites, physical/identifier boundaries,
+  every byte truncation and every source/ABI allocation failure are checked.
+  Composition reads all 63 canonical Ama/ABI text examples in explicit contexts
+  directly from spec, plus 22 composed boundary forms; changed fence counts require
+  review. An independent complete AST traversal checks borrowed spans, block ends,
+  direction ordinals, selected-parent/binding aliases and lexical loop terminals.
+  Every byte prefix and source-to-AST allocation failure of a mixed Unicode program
+  retains valid diagnostics and fully unwinds. Full strict suite and focused
+  ASan/UBSan pass (leak detection disabled), as do 853-input coverage and links.
+  Warning-free Doxygen is byte-reproducible: 673 maintained files, 2681 interfaces,
+  295 destinations. Structural acceptance does not claim pending runtime features.
 
 ## Phase 4. Resolve exact types, visibility and operation contracts
 

@@ -5,6 +5,7 @@
  * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
  * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
  */
+#include <stdio.h>
 #include "../../source/common.c"
 #include "parser/abi/abi.h"
 
@@ -140,11 +141,20 @@ static void it_cleans_every_failed_abi_line_allocation(void) {
     }
 }
 
+#include "support/domain.c"
+#include "support/physical.c"
+#include "support/failures.c"
+
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_exhausts_all_1957_ordered_capability_subsets();
+    it_keeps_abi_pipe_records_separate_from_ama_literal_rules();
+    it_preserves_exact_duplicate_sites_for_every_protocol_slot();
+    it_checks_every_abi_truncation_without_publishing_partial_success();
+    it_unwinds_every_source_and_abi_allocation_failure();
     it_reads_all_six_symbols_in_any_order_with_physical_spans();
     it_accepts_international_native_names_and_c_universal_character_spellings();
     it_rejects_malformed_unknown_indented_and_duplicate_records();

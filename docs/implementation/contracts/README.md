@@ -129,3 +129,5 @@ context, result-tree, membership/foreach and external-boundary consumers remain
 open in TODO. Each future component must add its operation-level argument and
 actual acceptance commands before being marked complete; neither this registry
 nor a planned test-home path certifies implementation of the whole language.
+
+[Parser composition](../parser-composition.md) records the T028 Ama/ABI source boundary, canonical examples and exhaustive failure checks.
