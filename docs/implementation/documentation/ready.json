@@ -4879,6 +4879,21 @@
         "case": "it_unwinds_every_proposed_frontend_allocation_failure",
         "command": "make -C tests/unit/native/scaffold/declarations",
         "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_composes_root_distinct_companions_without_symbol_or_macro_leaks",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_rejects_missing_nested_and_unclean_native_contexts",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_checks_error_context_arguments_and_output_failure",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
       }
     ]
   },
@@ -4950,6 +4965,21 @@
         "case": "it_unwinds_every_proposed_frontend_allocation_failure",
         "command": "make -C tests/unit/native/scaffold/declarations",
         "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_composes_root_distinct_companions_without_symbol_or_macro_leaks",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_rejects_missing_nested_and_unclean_native_contexts",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_checks_error_context_arguments_and_output_failure",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
       }
     ]
   },
@@ -6584,6 +6614,11 @@
         "case": "it_returns_declared_results_and_refusal_data_separately_from_technical_status",
         "command": "make -C tests/unit/native/abi/hooks",
         "source": "tests/unit/native/abi/hooks/main.c"
+      },
+      {
+        "case": "it_constructs_checked_module_errors_without_owning_messages",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
       }
     ]
   },
@@ -22949,7 +22984,7 @@
       }
     ]
   },
-  "tests/integration/parser/grammar/project/\u7a0b\u5e8f": {
+  "tests/integration/parser/grammar/project/程序": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -23035,7 +23070,7 @@
       }
     ]
   },
-  "tests/integration/project/closure/project/\u4e2d\u95f4": {
+  "tests/integration/project/closure/project/中间": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -24334,7 +24369,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u5143": {
+  "tests/integration/semantic/types/project/元": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -24345,7 +24380,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u5143.abi": {
+  "tests/integration/semantic/types/project/元.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -24356,7 +24391,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u5143.c": {
+  "tests/integration/semantic/types/project/元.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the first distinct Unicode nominal type.",
     "tests": [
@@ -24367,7 +24402,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u5143.h": {
+  "tests/integration/semantic/types/project/元.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the first Unicode nominal type.",
     "standalone_header_command": [
@@ -24393,7 +24428,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u7c73": {
+  "tests/integration/semantic/types/project/米": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -24404,7 +24439,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u7c73.abi": {
+  "tests/integration/semantic/types/project/米.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -24415,7 +24450,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u7c73.c": {
+  "tests/integration/semantic/types/project/米.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the incompatible Unicode nominal type.",
     "tests": [
@@ -24426,7 +24461,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u7c73.h": {
+  "tests/integration/semantic/types/project/米.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the incompatible Unicode nominal type.",
     "standalone_header_command": [
@@ -24634,7 +24669,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/other/\u5546\u54c1": {
+  "tests/integration/source/diagnostics/project/other/商品": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -24660,7 +24695,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/\u5546\u5e97/\u5546\u54c1": {
+  "tests/integration/source/diagnostics/project/商店/商品": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -27264,6 +27299,11 @@
         "case": "it_rejects_malformed_or_truncated_records_instead_of_certifying_them",
         "command": "make -C tests/unit/native/toolchain/symbols",
         "source": "tests/unit/native/toolchain/symbols/main.c"
+      },
+      {
+        "case": "it_assigns_namespaces_by_complete_keys_independent_of_discovery_order",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
       }
     ]
   },
@@ -28032,6 +28072,11 @@
         "case": "it_normalizes_malformed_success_and_refusal_with_static_failure_storage",
         "command": "make -C tests/unit/native/abi/status",
         "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_constructs_checked_module_errors_without_owning_messages",
+        "command": "make -C tests/unit/native/abi/status",
+        "source": "tests/unit/native/abi/status/main.c"
       }
     ]
   },
@@ -28500,6 +28545,21 @@
         "case": "it_rejects_non_namespace_identities_and_reports_output_failure",
         "command": "make -C tests/unit/native/namespace",
         "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_composes_root_distinct_companions_without_symbol_or_macro_leaks",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_rejects_missing_nested_and_unclean_native_contexts",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_checks_error_context_arguments_and_output_failure",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
       }
     ]
   },
@@ -28514,6 +28574,21 @@
       },
       {
         "case": "it_rejects_non_namespace_identities_and_reports_output_failure",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_composes_root_distinct_companions_without_symbol_or_macro_leaks",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_rejects_missing_nested_and_unclean_native_contexts",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_checks_error_context_arguments_and_output_failure",
         "command": "make -C tests/unit/native/namespace",
         "source": "tests/unit/native/namespace/main.c"
       }
@@ -36760,6 +36835,473 @@
         "case": "it_regenerates_pinned_tables_and_rejects_invalid_input_and_output",
         "command": "make -C tests/unit/source/unicode",
         "source": "tests/unit/source/unicode/main.c"
+      }
+    ]
+  },
+  "src/native/namespace/status.c": {
+    "contract": "docs/implementation/native-namespaces.md",
+    "purpose": "Emit one preplanned component-local native error namespace in a contained C context.",
+    "tests": [
+      {
+        "case": "it_composes_root_distinct_companions_without_symbol_or_macro_leaks",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_rejects_missing_nested_and_unclean_native_contexts",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_checks_error_context_arguments_and_output_failure",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      }
+    ]
+  },
+  "src/native/status/providers/internal.h": {
+    "contract": "docs/implementation/native-namespaces.md",
+    "purpose": "Separate exact provider key ordering, in-place sorting and bounded ordinal encoding.",
+    "tests": [
+      {
+        "case": "it_assigns_namespaces_by_complete_keys_independent_of_discovery_order",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_rejects_hash_collisions_before_namespace_planning",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_provider_plans_unpublished",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_bounds_provider_capacity_and_rolls_back_allocation_failure",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_sorts_every_small_inventory_permutation_exactly",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/native/status/providers/lookup.c": {
+    "contract": "docs/implementation/native-namespaces.md",
+    "purpose": "Resolve a native provider namespace through exact complete-key binary search.",
+    "tests": [
+      {
+        "case": "it_assigns_namespaces_by_complete_keys_independent_of_discovery_order",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_rejects_hash_collisions_before_namespace_planning",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_provider_plans_unpublished",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_bounds_provider_capacity_and_rolls_back_allocation_failure",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_sorts_every_small_inventory_permutation_exactly",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      }
+    ]
+  },
+  "src/native/status/providers/model.c": {
+    "contract": "docs/implementation/native-namespaces.md",
+    "purpose": "Own one checked native error-provider planning transaction before code emission.",
+    "tests": [
+      {
+        "case": "it_assigns_namespaces_by_complete_keys_independent_of_discovery_order",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_rejects_hash_collisions_before_namespace_planning",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_provider_plans_unpublished",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_bounds_provider_capacity_and_rolls_back_allocation_failure",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_sorts_every_small_inventory_permutation_exactly",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      }
+    ]
+  },
+  "src/native/status/providers/order.c": {
+    "contract": "docs/implementation/native-namespaces.md",
+    "purpose": "Sort complete provider identities exactly with an allocation-free heap algorithm.",
+    "tests": [
+      {
+        "case": "it_assigns_namespaces_by_complete_keys_independent_of_discovery_order",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_rejects_hash_collisions_before_namespace_planning",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_provider_plans_unpublished",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_bounds_provider_capacity_and_rolls_back_allocation_failure",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_sorts_every_small_inventory_permutation_exactly",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      }
+    ]
+  },
+  "src/native/status/providers/ordinal.c": {
+    "contract": "docs/implementation/native-namespaces.md",
+    "purpose": "Encode the complete nonzero 16-bit provider namespace domain without wrap.",
+    "tests": [
+      {
+        "case": "it_assigns_namespaces_by_complete_keys_independent_of_discovery_order",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_rejects_hash_collisions_before_namespace_planning",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_provider_plans_unpublished",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_bounds_provider_capacity_and_rolls_back_allocation_failure",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_sorts_every_small_inventory_permutation_exactly",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      }
+    ]
+  },
+  "src/native/status/providers/providers.h": {
+    "contract": "docs/implementation/native-namespaces.md",
+    "purpose": "Assign component-local native error namespaces from complete collision-checked identities.",
+    "tests": [
+      {
+        "case": "it_assigns_namespaces_by_complete_keys_independent_of_discovery_order",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_rejects_hash_collisions_before_namespace_planning",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_provider_plans_unpublished",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_bounds_provider_capacity_and_rolls_back_allocation_failure",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_sorts_every_small_inventory_permutation_exactly",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/native/namespace/project/project/module.c": {
+    "contract": "docs/implementation/native-namespaces.md",
+    "purpose": "Define project-root companion hooks, helpers and immutable objects under the same prefix as its header.",
+    "tests": [
+      {
+        "case": "it_composes_root_distinct_companions_without_symbol_or_macro_leaks",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_rejects_missing_nested_and_unclean_native_contexts",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_checks_error_context_arguments_and_output_failure",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/namespace/project/project/module.h": {
+    "contract": "docs/implementation/native-namespaces.md",
+    "purpose": "Declare project-root companion types and hooks using only qualified author identifiers.",
+    "tests": [
+      {
+        "case": "it_composes_root_distinct_companions_without_symbol_or_macro_leaks",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_rejects_missing_nested_and_unclean_native_contexts",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_checks_error_context_arguments_and_output_failure",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_documentation_##name",
+      "-"
+    ]
+  },
+  "tests/unit/native/namespace/project/standard/module.c": {
+    "contract": "docs/implementation/native-namespaces.md",
+    "purpose": "Define standard-root companion hooks, helpers and immutable objects under the same prefix as its header.",
+    "tests": [
+      {
+        "case": "it_composes_root_distinct_companions_without_symbol_or_macro_leaks",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_rejects_missing_nested_and_unclean_native_contexts",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_checks_error_context_arguments_and_output_failure",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/namespace/project/standard/module.h": {
+    "contract": "docs/implementation/native-namespaces.md",
+    "purpose": "Declare standard-root companion types and hooks using only qualified author identifiers.",
+    "tests": [
+      {
+        "case": "it_composes_root_distinct_companions_without_symbol_or_macro_leaks",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_rejects_missing_nested_and_unclean_native_contexts",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_checks_error_context_arguments_and_output_failure",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_documentation_##name",
+      "-"
+    ]
+  },
+  "tests/unit/native/namespace/support/composition.c": {
+    "contract": "docs/implementation/native-namespaces.md",
+    "purpose": "Compile unchanged same-basename companions with root-qualified names and planned error namespaces.",
+    "tests": [
+      {
+        "case": "it_composes_root_distinct_companions_without_symbol_or_macro_leaks",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_rejects_missing_nested_and_unclean_native_contexts",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_checks_error_context_arguments_and_output_failure",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/namespace/support/vectors.c": {
+    "contract": "docs/implementation/native-namespaces.md",
+    "purpose": "Freeze complete root-aware multiword Unicode identity vectors independently of the legacy encoder.",
+    "tests": [
+      {
+        "case": "it_composes_root_distinct_companions_without_symbol_or_macro_leaks",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_rejects_missing_nested_and_unclean_native_contexts",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_checks_error_context_arguments_and_output_failure",
+        "command": "make -C tests/unit/native/namespace",
+        "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_assigns_namespaces_by_complete_keys_independent_of_discovery_order",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_rejects_hash_collisions_before_namespace_planning",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/status-providers/Makefile": {
+    "contract": "docs/implementation/native-namespaces.md",
+    "purpose": "Verify exact native error-provider planning independently of project discovery.",
+    "tests": [
+      {
+        "case": "it_assigns_namespaces_by_complete_keys_independent_of_discovery_order",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_rejects_hash_collisions_before_namespace_planning",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_provider_plans_unpublished",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_bounds_provider_capacity_and_rolls_back_allocation_failure",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_sorts_every_small_inventory_permutation_exactly",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/status-providers/main.c": {
+    "contract": "docs/implementation/native-namespaces.md",
+    "purpose": "Exercise exact full-key provider ordering, transaction failure and namespace capacity.",
+    "tests": [
+      {
+        "case": "it_assigns_namespaces_by_complete_keys_independent_of_discovery_order",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_rejects_hash_collisions_before_namespace_planning",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_provider_plans_unpublished",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_bounds_provider_capacity_and_rolls_back_allocation_failure",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_sorts_every_small_inventory_permutation_exactly",
+        "command": "make -C tests/unit/native/status-providers",
+        "source": "tests/unit/native/status-providers/main.c"
       }
     ]
   }

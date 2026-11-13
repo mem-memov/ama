@@ -7,6 +7,7 @@
  */
 #include "../../source/common.c"
 #include "native/namespace/namespace.h"
+#include "support/composition.c"
 
 /**
  * Assert that the component qualifies local names with stable module specific prefixes. The
@@ -98,6 +99,9 @@ static void it_rejects_non_namespace_identities_and_reports_output_failure(void)
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_composes_root_distinct_companions_without_symbol_or_macro_leaks();
+    it_rejects_missing_nested_and_unclean_native_contexts();
+    it_checks_error_context_arguments_and_output_failure();
     it_qualifies_local_names_with_stable_module_specific_prefixes();
     it_rejects_non_namespace_identities_and_reports_output_failure();
 }

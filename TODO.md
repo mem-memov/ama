@@ -583,7 +583,7 @@ Contracts: [runtime](spec/implementation/runtime.md),
   Complete documentation checks 724 inputs, 555 files, 2292 interfaces and all
   286 destinations with zero debt/warnings and byte-identical Doxygen generations.
   Standard-root qualification and actual generated bridge binding remain T017/T055.
-- [ ] **T010 — Validate native symbol namespaces.** Needs: T009. Reuse complete
+- [x] **T010 — Validate native symbol namespaces.** Needs: T009. Reuse complete
   module identity for qualified author names and clean inclusion contexts. Use
   fixed collision-checked prefix vectors in this isolated harness; connect the
   current identity provider after T017 in T055. Include collision-free native
@@ -591,6 +591,17 @@ Contracts: [runtime](spec/implementation/runtime.md),
   core-code separation and explicit namespace exhaustion. Test
   same-basename hooks/types/helpers, macro cleanup and consistent header/body uses
   in one translation unit without parsing or rewriting arbitrary C.
+  Evidence: isolated full-key provider planning, nonzero ordinal capacity and
+  exact lookup are implemented under `src/native/status/providers/`. Frozen
+  root-aware Unicode/multiword prefix vectors pass every discovery order and
+  injected hash collision; heap ordering passes every permutation through size
+  eight. Unchanged root-distinct same-basename companions compile and execute
+  together with reverse header/body order, checked module errors and macro cleanup.
+  Missing/duplicated/unclean contexts require precise compiler diagnostics.
+  The full strict suite, three focused ASan/UBSan leaves (leak detection disabled),
+  739-input complete coverage, Markdown links and warning-free reproducible
+  Doxygen pass: 569 maintained file pages, 2350 interfaces and 286 destinations.
+  Actual current-source identity/dependency emission remains T017/T055.
 - [ ] **T011 — Validate lifecycle state transitions.** Needs: T009. Establish
   fresh/constructing/live/finalized bookkeeping, one selected constructor,
   reverse cleanup and terminal destroy failures. Inject failure at every
@@ -825,6 +836,9 @@ Contracts: [generated C](spec/implementation/compiler.md#generated-project-organ
   handwritten files without an explicit overwrite request. Bind PROTO-03's fixed
   typed `from_size` only for the exact standard-root `..integer` identity; reject
   missing/incompatible header declarations and keep the ABI table at six records.
+  Plan all native error-provider namespaces with T010’s full-key planner before
+  emitting matching header/body AMA_NATIVE_ERROR contexts; replace the frozen
+  harness identities with T017’s checked current-source identities.
 - [ ] **T056 — Emit the single project assembly.** Needs: T045, T054, T055.
   Order declarations/types/constants/native bodies/runtime/labels under one
   context-parameterized execution function. Compile agreement checks with isolated

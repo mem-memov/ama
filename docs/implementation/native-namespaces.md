@@ -12,9 +12,12 @@ symbol uses; it is not a complete project C backend or native dependency loader.
 ## Inputs, ownership and effects
 
 Register a complete logical module identity in an `IdentityRegistry` using
-`IDENTITY_NATIVE_NAMESPACE`, with no member components. Registration uses the
-existing versioned encoding, category byte 7, SHA-256 and full-key collision
-rejection. The registry owns the resulting `ama_n_<64 hexadecimal digits>` prefix.
+`IDENTITY_NATIVE_NAMESPACE`, with no member components. The retained registration entry point uses its existing versioned encoding,
+category byte 7, SHA-256 and full-key collision rejection. Its restricted producer
+is replaced by T017; T010 uses independently frozen complete-key vectors with
+explicit project/standard roots and multiword Unicode components through the
+exact insertion boundary. It copies those keys into the registry arena and checks
+the expected full SHA-256 prefix. This does not certify current source parsing. The registry owns the resulting `ama_n_<64 hexadecimal digits>` prefix.
 Identity source spans and local-function spans borrow their source managers.
 
 `native_namespace_begin` emits a module context defining `AMA_NATIVE(local_name)`
@@ -22,7 +25,7 @@ as that prefix followed by `_` and the local C identifier. A preprocessor error
 rejects an already-active context. The generator brackets each companion inclusion
 and its associated typed uses with begin/end; the same module receives the same
 prefix for its header and implementation. `native_namespace_end` undefines the
-temporary macro. Macro arguments participate directly in token pasting, retaining
+temporary naming and error macros. Macro arguments participate directly in token pasting, retaining
 the local identifier rather than expanding an unrelated object-like macro first.
 
 `native_namespace_symbol` emits the corresponding qualified identifier when no
@@ -79,3 +82,79 @@ Focused lexer/parser, namespace, resource-hook and frontend integration suites
 passed ASan/UBSan with `ASAN_OPTIONS=detect_leaks=0` and non-PIE builds; the
 environment's ptrace restriction still prevents LeakSanitizer certification.
 Affected public headers compile independently, and changed document links pass.
+
+## Deterministic native error providers
+
+T010 adds `src/native/status/providers/`, an isolated compiler planning owner.
+Its inventory borrows native-namespace records from one live collision-checked
+identity registry. That owner and all full key bytes outlive the plan. The plan
+allocates only its private row table; it never changes registry records or caller
+inventory. Build is a one-shot transaction. Invalid keys, duplicate complete keys,
+allocation failure and namespace exhaustion leave `ready` false with no published
+table; destruction releases private scratch even after failure. Duplicate failure
+retains both conflicting records for compiler diagnostics.
+
+Sort the full encodings lexicographically, using unsigned byte order and then
+length. Assign namespace `index + 1` in that exact order. The capacity is 65535;
+an excessive inventory returns LimitExceeded before dereferencing inventory or
+allocating. Empty inventory is valid and allocates nothing. Lookup uses the same
+full-key comparison, changes its output only on a match, and returns TypeMismatch
+for an absent provider. Hashes, pointer addresses, translated display names and
+filesystem discovery order do not determine numeric IDs. IDs are private to one
+compiled component; this is not a stable cross-component/public ABI numbering
+promise. T123 and later tasks own that checked external boundary.
+
+After establishing `AMA_NATIVE`, `native_namespace_status` emits a planned
+nonzero namespace and `AMA_NATIVE_ERROR(reason, message, length)`. The native
+author owns unique nonzero 16-bit local reason IDs and immutable program-lifetime
+message bytes. The macro passes each argument once to `ama_library_status`, which
+checks the pair and structural message view without allocation. For example,
+the unchanged fixture companion writes:
+
+```c
+return AMA_NATIVE_ERROR(AMA_NATIVE(reason), "project", 7);
+```
+
+The generator rejects missing or duplicated error contexts through explicit C
+preprocessor errors. Begin rejects either leaked temporary macro; end removes
+both. Header and body inclusions use the same complete identity and planned ID,
+even when their inclusion orders differ. The generator does not inspect native
+C to infer reason IDs, parse local declarations, or rewrite arbitrary source.
+General current-source integration remains T017/T055; that task must call this
+planner before emitting the dependency closure.
+
+## Ordering argument and additional acceptance
+
+Heap construction establishes that each parent is at least its children. Sift
+follows one strictly descending path, restoring that invariant after replacing a
+root. Removing the maximum grows an ascending fixed suffix by one element; the
+remaining prefix stays a heap. Finite shrinking heap size proves termination.
+`root < count / 2` bounds child arithmetic before multiplication. Sorting costs
+O(N log N * M) byte comparisons for N providers and maximum full key length M,
+with O(1) sorting scratch beyond the O(N) row table. Binary lookup costs
+O(log N * M). No recursive call stack, heuristic sort or hash injectivity is
+assumed. Consecutive ordinals prove injectivity within the nonzero 16-bit domain;
+combining one with a local reason leaves the core-code range disjoint.
+
+`tests/unit/native/status-providers/` checks all six discovery orders of three
+frozen root-aware Unicode/multiword vectors, equivalent full keys at different
+addresses, absent/invalid lookup, duplicates, malformed inventory, allocation
+failure, empty inventory, exact capacity arithmetic and an injected digest
+collision before planning. Its separate sorting case exhausts every permutation
+for sizes zero through eight; the invariant argument above covers arbitrary size.
+
+`tests/unit/native/namespace/` now compiles and executes unchanged project-root
+and standard-root companions with identical paths and local names for types,
+hooks, helpers, constants and reason enumerators. Header order is reversed from
+body order. Both clones preserve independent payloads, both errors retain their
+messages and distinct provider codes, each macro argument is evaluated once, and
+neither temporary macro leaks. Negative compilations require the precise missing,
+duplicated or unclean-context diagnostic. Output validation covers zero IDs,
+NULL streams and an actual failing stream. SDK status tests also cover maximum
+pairs, zero fields and malformed message views.
+
+T010 acceptance passes the full strict `-DNDEBUG -Werror` suite and focused
+ASan/UBSan status, provider and naming leaves (leak detection disabled). Complete
+coverage checks 739 maintained inputs with zero debt. Warning-free Doxygen checks
+569 maintained file pages, 2350 interfaces and 286 required destinations; two
+complete generations produce identical bytes. Counts record this task's evidence.

@@ -118,11 +118,24 @@ static void it_normalizes_malformed_success_and_refusal_with_static_failure_stor
     assert(ama_index_outcome(ama_status_make(AMA_INVALID_INDEX, message, 1)) == AMA_INDEX_REFUSED);
 }
 
+/** Preserve exact static messages and reject zero fields or malformed views without allocation. */
+static void it_constructs_checked_module_errors_without_owning_messages(void) {
+    static const char message[] = {'x','y'};
+    AmaStatus status = ama_library_status(1, 7, message, sizeof(message));
+    assert(status.code == UINT32_C(65543) && status.message == message && status.message_length == 2);
+    assert(ama_library_status(UINT16_MAX, UINT16_MAX, NULL, 0).code == UINT32_MAX);
+    assert(ama_library_status(0, 7, message, sizeof(message)).code == AMA_INVALID_STATE);
+    assert(ama_library_status(1, 0, message, sizeof(message)).code == AMA_INVALID_STATE);
+    status = ama_library_status(1, 7, NULL, 1);
+    assert(status.code == AMA_INVALID_STATE && status.message != NULL && status.message_length != 0);
+}
+
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_constructs_checked_module_errors_without_owning_messages();
     it_represents_success_without_allocating_a_message();
     it_preserves_unterminated_program_lifetime_message_bytes();
     it_classifies_index_results_by_code_and_never_message_text();

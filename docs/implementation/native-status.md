@@ -26,8 +26,9 @@ Library codes have nonzero upper and lower 16-bit fields. Before emission, the
 compiler must sort full error-provider identities and assign unique namespaces
 1 through 65535; exceeding that limit is an explicit compilation error. Each
 provider publishes unique nonzero reason IDs within its namespace. No hashes,
-truncation or duplicate IDs may allocate namespaces. Provider registration is a
-later dependency-registry task, not implemented by the encoding helper.
+truncation or duplicate IDs may allocate namespaces. T010 implements the isolated [complete-key provider planner](native-namespaces.md#deterministic-native-error-providers);
+T017/T055 connect current source identities and dependency emission. The encoding
+helper itself performs no registration.
 
 `ama_library_status_code` accepts 16-bit namespace/reason values and a valid output
 pointer. Zero fields return InvalidState without changing output. Otherwise code
@@ -93,7 +94,8 @@ failure record, proving both allocation independence and absence of borrowed
 malformed-message access. Refusal recording changes exactly one caller record only
 after those checks; all rejection paths return before its assignment.
 
-Evidence: the ABI status leaf has six cases; native metadata adds malformed-refusal
+Evidence: T007 introduced six ABI status cases; T010 adds checked provider-error
+construction with exact borrowed message preservation. native metadata adds malformed-refusal
 and nested-copy preservation, runtime selection exercises dedicated refusal versus
 technical/malformed decoder outcomes with deliberately unusable outputs, and the
 context leaf verifies allocation-free normalization with fallback bytes still valid

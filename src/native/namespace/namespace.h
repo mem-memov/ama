@@ -9,6 +9,7 @@
 #define AMA_NATIVE_NAMESPACE_H
 
 #include <stdio.h>
+#include <stdint.h>
 #include "source/identity/identity.h"
 
 /* Names must be registered IDENTITY_NATIVE_NAMESPACE records and remain owned
@@ -19,7 +20,12 @@
 /** Emit a registered namespace macro with an explicit nested-context guard. Borrow output/identity; invalid category or partial IO failure returns false.
  */
 bool native_namespace_begin(FILE *output, const IdentityName *name);
-/** Undefine the temporary namespace macro on a borrowed stream; caller owns final flush/close and may see partial output on failure.
+/** Emit a nonzero component-local error namespace inside an active naming context.
+ * The caller has planned the exact full provider identity; generated C rejects
+ * missing/nested contexts. AMA_NATIVE_ERROR constructs checked static-message status.
+ */
+bool native_namespace_status(FILE *output, uint16_t namespace_id);
+/** Undefine temporary naming/error macros on a borrowed stream; caller owns final flush/close and may see partial output on failure.
  */
 bool native_namespace_end(FILE *output);
 /** Write exact registered prefix plus original validated identifier span. No input is retained; caller supplies valid source lifetime and checks final stream completion.
