@@ -635,10 +635,23 @@ Contracts: [runtime](spec/implementation/runtime.md),
   Markdown links and warning-free reproducible Doxygen pass: 577 maintained
   files, 2386 interfaces and 287 destinations. Current-source service families
   remain T055/T058 and the list roadmap; public embedding remains T123 onward.
-- [ ] **T013 — Validate the host/context lifecycle interface.** Needs: T006,
+- [x] **T013 — Validate the host/context lifecycle interface.** Needs: T006,
   T007, T011, T012. Define completed/yielded/failed outcomes and startup/resume/
   disposal ownership. Test concurrent/reentrant-entry refusal, failed nonresume,
   disposal states and independence of two sequential contexts before threading.
+  Evidence: checked admission returns separately from accepted preparation/body
+  outcomes; entry prepares interface fields, resume consumes only its saved
+  selector, and finish validates the host-return metadata. Failed execution
+  reports before allocation-free root/constant cleanup, clears descriptor views
+  and retains only a diagnostic record until explicit disposal. Eleven host
+  cases cover exact primary status, every measured preparation allocation,
+  rejected requests, malformed outcomes, native-borrow closure, yielded disposal,
+  independent contexts, concurrent/alternate-root/callback refusal and a real
+  acquire/prepare/connect trace before cleanup. The full strict suite, focused
+  host/context ASan/UBSan leaves (leak detection disabled), complete 757-input
+  coverage, Markdown links and warning-free reproducible Doxygen pass: 585
+  maintained files, 2419 interfaces and 288 destinations. Generated context
+  dispatch remains T061; exported public C transport remains T123 onward.
 
 ## Phase 2. Source storage, Unicode identities and diagnostics
 

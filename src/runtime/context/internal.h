@@ -44,7 +44,9 @@ AmaStatus ama_context_validate(const AmaContextDefinition *definition);
 AmaStatus ama_context_prepare(AmaContext *context, const AmaContextDefinition *definition,
     SourceAllocator allocator);
 /** Terminally clean every top-level owned tree, constants and pool/arena allocations.
- * The caller holds exclusive authority and has already removed any published identity.
+ * The caller holds exclusive authority and either retired registry identity or
+ * made execution terminal, so ordinary references cannot select freed storage.
+ * Clearing descriptor views makes repeated diagnostic-record disposal safe.
  */
 AmaStatus ama_context_cleanup(AmaContext *context, AmaStatus primary);
 /** Lock only registry metadata, rejecting a missing/uninitialized C owner. No hooks run here. */

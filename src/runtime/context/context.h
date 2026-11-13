@@ -135,7 +135,9 @@ AmaStatus ama_context_enter(AmaContextRegistry *registry, uint64_t identity, Ama
  */
 AmaStatus ama_context_leave(AmaContextLease *lease);
 /** Borrow this lease's runtime owners and current first failure. Failed contexts permit this
- * diagnostic inspection but ordinary reference resolution is rejected.
+ * diagnostic inspection but ordinary reference resolution is rejected. After
+ * execution cleanup, descriptor arrays/counts are empty and only status/control
+ * inspection remains; every supplied view expires when its lease is released.
  */
 AmaStatus ama_context_inspect(const AmaContextLease *lease, AmaContextView *view);
 /** Wrap an internal context-local published identity; do not acquire its target or run code.

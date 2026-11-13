@@ -164,3 +164,8 @@ focused context leaf under ASan/UBSan (`detect_leaks=0`; no leak-sanitizer claim
 `make docs-reproducible` rendered 530 maintained file pages and 2207 documented
 interfaces, resolved all 285 canonical/page destinations, emitted no warnings and
 produced byte-identical output across two complete Doxygen generations.
+
+T013 adds the [checked host execution lifecycle](host-lifecycle.md), separating
+admission from accepted entry/resume outcomes and clearing resource descriptors
+when failed execution retains only a diagnostic record. Generated context wiring
+remains T061; the public compiled-component ABI remains T123 onward.

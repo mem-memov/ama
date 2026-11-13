@@ -9504,6 +9504,26 @@
         "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
         "command": "make -C tests/unit/runtime/contexts",
         "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_separates_entry_preparation_from_saved_position_resume",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_failed_execution_and_prevents_resume_before_explicit_context_disposal",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_an_independent_execution_when_another_context_fails",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_refuses_concurrent_and_alternate_root_entry_without_changing_execution",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
       }
     ],
     "standalone_header_command": [
@@ -9631,6 +9651,21 @@
         "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
         "command": "make -C tests/unit/runtime/contexts",
         "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_cleans_failed_execution_and_prevents_resume_before_explicit_context_disposal",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_distinguishes_accepted_preparation_failure_from_admission_rejection",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_reports_the_active_execution_chain_before_releasing_all_context_resources",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
       }
     ],
     "standalone_header_command": [
@@ -9792,6 +9827,21 @@
         "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
         "command": "make -C tests/unit/runtime/contexts",
         "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_cleans_failed_execution_and_prevents_resume_before_explicit_context_disposal",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_distinguishes_accepted_preparation_failure_from_admission_rejection",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_reports_the_active_execution_chain_before_releasing_all_context_resources",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
       }
     ]
   },
@@ -31518,6 +31568,11 @@
         "case": "it_borrows_cloned_native_state_without_aliasing_original_values",
         "command": "make -C tests/unit/runtime/native-borrows",
         "source": "tests/unit/runtime/native-borrows/main.c"
+      },
+      {
+        "case": "it_separates_entry_preparation_from_saved_position_resume",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
       }
     ]
   },
@@ -37706,6 +37761,225 @@
         "case": "it_closes_native_borrows_before_normal_or_failed_host_return",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/runtime/context/execution/execution.h": {
+    "contract": "docs/implementation/host-lifecycle.md",
+    "purpose": "Separate checked host admission from one explicit context execution and its outcome.",
+    "tests": [
+      {
+        "case": "it_separates_entry_preparation_from_saved_position_resume",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_host_admission_without_changing_healthy_context_state",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_failed_execution_and_prevents_resume_before_explicit_context_disposal",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_distinguishes_accepted_preparation_failure_from_admission_rejection",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_refuses_concurrent_and_alternate_root_entry_without_changing_execution",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/runtime/context/execution/begin.c": {
+    "contract": "docs/implementation/host-lifecycle.md",
+    "purpose": "Admit one selected context/root before any fallible entry preparation or Ama execution.",
+    "tests": [
+      {
+        "case": "it_separates_entry_preparation_from_saved_position_resume",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_host_admission_without_changing_healthy_context_state",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_distinguishes_accepted_preparation_failure_from_admission_rejection",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_refuses_concurrent_and_alternate_root_entry_without_changing_execution",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      }
+    ]
+  },
+  "src/runtime/context/execution/finish.c": {
+    "contract": "docs/implementation/host-lifecycle.md",
+    "purpose": "Validate host return metadata or terminally clean one accepted context execution.",
+    "tests": [
+      {
+        "case": "it_cleans_failed_execution_and_prevents_resume_before_explicit_context_disposal",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_fails_incoherent_outcomes_and_malformed_status_after_accepted_execution",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_keeps_execution_owned_until_native_borrows_and_invalid_finish_arguments_are_resolved",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_an_independent_execution_when_another_context_fails",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_reports_the_active_execution_chain_before_releasing_all_context_resources",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/host-lifecycle/Makefile": {
+    "contract": "docs/implementation/host-lifecycle.md",
+    "purpose": "Verify isolated host admission, entry/resume outcomes and accepted-failure cleanup.",
+    "tests": [
+      {
+        "case": "it_separates_entry_preparation_from_saved_position_resume",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_distinguishes_accepted_preparation_failure_from_admission_rejection",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/host-lifecycle/main.c": {
+    "contract": "docs/implementation/host-lifecycle.md",
+    "purpose": "Verify explicit entry/resume outcomes, unchanged admission rejection and terminal context ownership.",
+    "tests": [
+      {
+        "case": "it_separates_entry_preparation_from_saved_position_resume",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_host_admission_without_changing_healthy_context_state",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_failed_execution_and_prevents_resume_before_explicit_context_disposal",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_disposes_yielded_and_empty_contexts_without_running_saved_code",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/host-lifecycle/common.c": {
+    "contract": "docs/implementation/host-lifecycle.md",
+    "purpose": "Bind declared parameter/result defaults and explicit host-root return helpers to isolated contexts.",
+    "tests": [
+      {
+        "case": "it_separates_entry_preparation_from_saved_position_resume",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_distinguishes_accepted_preparation_failure_from_admission_rejection",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_reports_the_active_execution_chain_before_releasing_all_context_resources",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/host-lifecycle/support/failures.c": {
+    "contract": "docs/implementation/host-lifecycle.md",
+    "purpose": "Fail every accepted host preparation allocation and reject incoherent kernel outcomes safely.",
+    "tests": [
+      {
+        "case": "it_fails_incoherent_outcomes_and_malformed_status_after_accepted_execution",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_distinguishes_accepted_preparation_failure_from_admission_rejection",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_keeps_execution_owned_until_native_borrows_and_invalid_finish_arguments_are_resolved",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/host-lifecycle/support/concurrency.c": {
+    "contract": "docs/implementation/host-lifecycle.md",
+    "purpose": "Establish sequential context independence before probing rejected concurrent and callback entry.",
+    "tests": [
+      {
+        "case": "it_preserves_an_independent_execution_when_another_context_fails",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_refuses_concurrent_and_alternate_root_entry_without_changing_execution",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_refuses_report_callback_reentry_until_accepted_failure_cleanup_finishes",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/host-lifecycle/support/diagnostics.c": {
+    "contract": "docs/implementation/host-lifecycle.md",
+    "purpose": "Observe accepted host failure with an intact nested Ama chain before allocation-free context cleanup.",
+    "tests": [
+      {
+        "case": "it_reports_the_active_execution_chain_before_releasing_all_context_resources",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
       }
     ]
   }
