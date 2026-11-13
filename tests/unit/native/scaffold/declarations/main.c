@@ -234,6 +234,8 @@ static void it_unwinds_every_proposed_frontend_allocation_failure(void) {
     ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
     bool checked = compiler_frontend_authoring(&frontend, &root, 1, ".main", contract);
     assert(checked);
+    assert(frontend.inputs.sealed && frontend.inputs.compared);
+    assert(project_inputs_find(&frontend.inputs, PROJECT_INPUT_CONFIGURATION, "native authoring ABI") != NULL);
     size_t count = allocation_count;
     destroy_frontend();
     for (size_t failure = 1; failure <= count; failure++) {

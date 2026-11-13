@@ -72,11 +72,38 @@ static void it_unwinds_every_frontend_allocation_failure(void) {
     }
 }
 
+/** Real frontend snapshots retain exact native bytes and propagate their changes to semantic consumers. */
+static void it_composes_owned_frontend_input_snapshots_without_executing_native_c(void) {
+    prepare_project();
+    setup_frontend();
+    bool valid = check_project();
+    assert(valid && frontend.inputs.sealed && frontend.inputs.compared);
+    assert(project_inputs_find(&frontend.inputs, PROJECT_INPUT_FILE, "generated/project/value.c") != NULL);
+    file("generated/project/value.c", "#error Changed native input still must not execute\n");
+    CompilerFrontend after;
+    compiler_frontend_init(&after, sources.allocator);
+    ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
+    valid = compiler_frontend_check(&after, &root, 1, ".main");
+    assert(valid);
+    SourceStatus status = project_inputs_compare(&after.inputs, &frontend.inputs);
+    assert(status == SOURCE_OK);
+    bool dirty = false;
+    bool found = project_inputs_changed(&after.inputs, PROJECT_INPUT_MODULE, ".main", &dirty);
+    assert(found && dirty);
+    found = project_inputs_changed(&after.inputs, PROJECT_INPUT_MODULE, ".value", &dirty);
+    assert(found && dirty);
+    found = project_inputs_changed(&after.inputs, PROJECT_INPUT_CONFIGURATION, "root inventory", &dirty);
+    assert(found && !dirty);
+    compiler_frontend_destroy(&after);
+    destroy_frontend();
+}
+
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_composes_owned_frontend_input_snapshots_without_executing_native_c();
     it_returns_the_same_typed_graph_that_compilation_will_consume_without_running_c();
     it_preserves_source_semantic_and_relation_diagnostics();
     it_unwinds_every_frontend_allocation_failure();

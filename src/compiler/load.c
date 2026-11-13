@@ -4,6 +4,8 @@
  *
  * [COMP-01](../../spec/implementation/compiler.md#comp-01)
  * Project failure retains source-backed diagnostics until frontend destruction; loading does not publish artifacts.
+ * [DEP-03](../../spec/implementation/compiler.md#dep-03) captures contributing
+ * source/native/configuration inputs before consumers may reuse this frontend.
  */
 #include <assert.h>
 #include "internal.h"
@@ -20,5 +22,15 @@ bool compiler_frontend_load(CompilerFrontend *frontend, const ModuleRoot *roots,
         frontend->error = frontend->project.error;
         return false;
     }
-    return true;
+    SourceStatus captured = project_inputs_capture(&frontend->inputs, &frontend->project, roots, count);
+    if (captured != SOURCE_OK) {
+        frontend->error = (Diagnostic){
+            .code = captured == SOURCE_IO_ERROR ? DIAGNOSTIC_IO_FAILURE : DIAGNOSTIC_OUT_OF_MEMORY,
+            .message = captured == SOURCE_IO_ERROR ? "A contributing native input could not be read"
+                : "Compiler input tracking could not allocate storage",
+            .primary = {.path = frontend->inputs.failed_path}};
+        return false;
+    }
+    unsigned char mode = frontend->authoring ? 1 : 0;
+    return compiler_frontend_input(frontend, "entry policy", &mode, 1);
 }

@@ -9,13 +9,15 @@
 #define AMA_COMPILER_FRONTEND_H
 
 #include "planning/plan.h"
+#include "project/inputs/inputs.h"
 
 /**
- * Own project/source graph, optional authoring ABI, semantic graph and plan. Initialization
+ * Own project/source graph, exact input snapshot, optional authoring ABI, semantic graph and plan. Initialization
  * flags make every failed stage safely destructible; all exported views expire at destruction.
  */
 typedef struct {
     Project project;
+    ProjectInputs inputs;
     SemanticProgram semantic;
     ProgramPlan plan;
     Diagnostic error;

@@ -23,4 +23,7 @@ bool compiler_frontend_load(CompilerFrontend *frontend, const ModuleRoot *roots,
 bool compiler_frontend_finish(CompilerFrontend *frontend,
     const SemanticNativeAuthoring *authoring);
 
+/** Copy one explicit frontend configuration payload and attach it to the loaded entry before sealing; failure retains an allocation-free diagnostic. */
+bool compiler_frontend_input(CompilerFrontend *, const char *, const unsigned char *, size_t);
+
 #endif

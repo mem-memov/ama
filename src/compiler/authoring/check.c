@@ -45,6 +45,9 @@ bool compiler_frontend_authoring(CompilerFrontend *frontend, const ModuleRoot *r
             .message = "Native authoring requires an explicit proposed or existing ABI contract"};
         return false;
     }
+    if (!compiler_frontend_input(frontend, "native authoring ABI", source_bytes(abi), source_length(abi))) {
+        return false;
+    }
     SemanticNativeAuthoring authoring = {module, abi};
     return compiler_frontend_finish(frontend, &authoring);
 }

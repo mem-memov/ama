@@ -15,6 +15,7 @@
 void compiler_frontend_init(CompilerFrontend *frontend, SourceAllocator allocator) {
     *frontend = (CompilerFrontend){.allocator = allocator};
     project_init(&frontend->project, allocator);
+    project_inputs_init(&frontend->inputs, allocator);
     source_manager_init(&frontend->proposed_sources, allocator);
 }
 
@@ -30,6 +31,7 @@ void compiler_frontend_destroy(CompilerFrontend *frontend) {
         semantic_program_destroy(&frontend->semantic);
     }
     source_manager_destroy(&frontend->proposed_sources);
+    project_inputs_destroy(&frontend->inputs);
     project_destroy(&frontend->project);
     *frontend = (CompilerFrontend){0};
 }
@@ -52,6 +54,10 @@ bool compiler_frontend_finish(CompilerFrontend *frontend,
         frontend->error = frontend->plan.error;
         return false;
     }
+    project_inputs_seal(&frontend->inputs);
+    SourceStatus compared = project_inputs_compare(&frontend->inputs, NULL);
+    assert(compared == SOURCE_OK);
+    (void)compared;
     frontend->valid = true;
     return true;
 }

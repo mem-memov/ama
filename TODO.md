@@ -748,11 +748,22 @@ Contracts: [source and names](spec/language/source-and-names.md),
   Full strict suite and focused ASan/UBSan pass (leak detection disabled), along
   with 782-input coverage and links. Warning-free Doxygen generations are
   byte-identical: 610 maintained files, 2481 interfaces, 288 destinations.
-- [ ] **T021 — Compose source loading and dependency invalidation.** Needs: T018,
+- [x] **T021 — Compose source loading and dependency invalidation.** Needs: T018,
   T020. Track source/configuration/native/generated inputs without duplicate loads.
   Verify changed transitive files and root settings invalidate exactly dependent
   consumers. Integrate inactive-to-active semantics in T029 after T023 establishes
   the shared activation recognizer; do not introduce a second draft parser here.
+  Added exact category/key/payload input graphs, counted root configuration,
+  deduplicated edges and allocation-free least-fixed-point invalidation. Closure
+  capture borrows retained Ama/ABI bytes and loads each required native file once;
+  the frontend owns/seals its snapshot and tracks entry/authoring configuration.
+  All 512 three-node graphs with three changed seeds match independent reachability;
+  real source/ABI/C/header changes, root settings, unrelated inputs, generated
+  consumers and every capture/frontend allocation failure are covered. Full strict
+  suite, focused ASan/UBSan (leak detection disabled), 797-input coverage and links
+  pass. Warning-free Doxygen is byte-reproducible: 624 maintained files, 2537
+  interfaces, 289 destinations. Artifact reuse/complete driver and C-preprocessor
+  input wiring remain their later tasks; no stage is skipped by these snapshots.
 
 ## Phase 3. Parse current source forms without semantic guesses
 

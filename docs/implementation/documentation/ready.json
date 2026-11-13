@@ -2442,6 +2442,11 @@
         "case": "it_rejects_invalid_protocols_and_accidental_overwrite_requests",
         "command": "make -C tests/integration/scaffold",
         "source": "tests/integration/scaffold/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
       }
     ]
   },
@@ -2473,6 +2478,16 @@
         "case": "it_releases_every_partial_inspection_allocation",
         "command": "make -C tests/unit/compiler/status",
         "source": "tests/unit/compiler/status/main.c"
+      },
+      {
+        "case": "it_composes_owned_frontend_input_snapshots_without_executing_native_c",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_unwinds_every_frontend_allocation_failure",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -2519,6 +2534,16 @@
         "case": "it_releases_every_partial_inspection_allocation",
         "command": "make -C tests/unit/compiler/status",
         "source": "tests/unit/compiler/status/main.c"
+      },
+      {
+        "case": "it_composes_owned_frontend_input_snapshots_without_executing_native_c",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_unwinds_every_frontend_allocation_failure",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -2652,6 +2677,16 @@
         "case": "it_releases_every_partial_inspection_allocation",
         "command": "make -C tests/unit/compiler/status",
         "source": "tests/unit/compiler/status/main.c"
+      },
+      {
+        "case": "it_composes_owned_frontend_input_snapshots_without_executing_native_c",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_unwinds_every_frontend_allocation_failure",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -2683,6 +2718,16 @@
         "case": "it_releases_every_partial_inspection_allocation",
         "command": "make -C tests/unit/compiler/status",
         "source": "tests/unit/compiler/status/main.c"
+      },
+      {
+        "case": "it_composes_owned_frontend_input_snapshots_without_executing_native_c",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_unwinds_every_frontend_allocation_failure",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -26588,6 +26633,16 @@
         "case": "it_unwinds_every_frontend_allocation_failure",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_composes_owned_frontend_input_snapshots_without_executing_native_c",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_unwinds_every_frontend_allocation_failure",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -26602,6 +26657,16 @@
       },
       {
         "case": "it_preserves_source_semantic_and_relation_diagnostics",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_unwinds_every_frontend_allocation_failure",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_composes_owned_frontend_input_snapshots_without_executing_native_c",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
@@ -29555,6 +29620,11 @@
         "case": "it_enforces_native_view_constness_nominal_types_and_opaque_graph_storage",
         "command": "make -C tests/unit/native/scaffold/declarations",
         "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
       }
     ]
   },
@@ -31112,7 +31182,7 @@
   },
   "tests/unit/project/Makefile": {
     "contract": "docs/implementation/library-tests-and-build.md",
-    "purpose": "Dispatch independent child suites: closure.",
+    "purpose": "Dispatch closure and exact-input graph suites.",
     "tests": [
       {
         "case": "it_shares_diamond_dependencies_and_ignores_unused_syntax",
@@ -31163,6 +31233,11 @@
         "case": "it_walks_deep_blocks_and_dependency_chains_without_c_recursion",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_matches_independent_reachability_for_every_three_node_graph_and_changed_seed",
+        "command": "make -C tests/unit/project",
+        "source": "tests/unit/project/inputs/main.c"
       }
     ]
   },
@@ -39130,6 +39205,561 @@
         "case": "it_compiles_every_ascii_filename_byte_and_physical_line_boundary",
         "command": "make -C tests/integration/source/diagnostics",
         "source": "tests/integration/source/diagnostics/main.c"
+      }
+    ]
+  },
+  "src/project/inputs/dependency.c": {
+    "contract": "docs/implementation/project-inputs.md",
+    "purpose": "Track exact owned or borrowed compiler inputs and verify least-fixed-point consumer invalidation.",
+    "tests": [
+      {
+        "case": "it_matches_independent_reachability_for_every_three_node_graph_and_changed_seed",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_deduplicates_keys_edges_and_rejects_conflicting_or_closed_mutation",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_detects_dependency_membership_and_embedded_zero_payload_changes",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_invalidates_exact_native_consumers_and_complete_root_configuration",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_unwinds_every_capture_allocation_failure_without_sealing_partial_graphs",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_owns_the_failed_native_input_path_after_project_destruction",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      }
+    ]
+  },
+  "src/project/inputs/registry.c": {
+    "contract": "docs/implementation/project-inputs.md",
+    "purpose": "Track exact owned or borrowed compiler inputs and verify least-fixed-point consumer invalidation.",
+    "tests": [
+      {
+        "case": "it_matches_independent_reachability_for_every_three_node_graph_and_changed_seed",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_deduplicates_keys_edges_and_rejects_conflicting_or_closed_mutation",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_detects_dependency_membership_and_embedded_zero_payload_changes",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_invalidates_exact_native_consumers_and_complete_root_configuration",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_unwinds_every_capture_allocation_failure_without_sealing_partial_graphs",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_owns_the_failed_native_input_path_after_project_destruction",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      }
+    ]
+  },
+  "src/project/inputs/lifetime.c": {
+    "contract": "docs/implementation/project-inputs.md",
+    "purpose": "Track exact owned or borrowed compiler inputs and verify least-fixed-point consumer invalidation.",
+    "tests": [
+      {
+        "case": "it_matches_independent_reachability_for_every_three_node_graph_and_changed_seed",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_deduplicates_keys_edges_and_rejects_conflicting_or_closed_mutation",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_detects_dependency_membership_and_embedded_zero_payload_changes",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_invalidates_exact_native_consumers_and_complete_root_configuration",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_unwinds_every_capture_allocation_failure_without_sealing_partial_graphs",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_owns_the_failed_native_input_path_after_project_destruction",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      }
+    ]
+  },
+  "src/project/inputs/compare.c": {
+    "contract": "docs/implementation/project-inputs.md",
+    "purpose": "Track exact owned or borrowed compiler inputs and verify least-fixed-point consumer invalidation.",
+    "tests": [
+      {
+        "case": "it_matches_independent_reachability_for_every_three_node_graph_and_changed_seed",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_deduplicates_keys_edges_and_rejects_conflicting_or_closed_mutation",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_detects_dependency_membership_and_embedded_zero_payload_changes",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_invalidates_exact_native_consumers_and_complete_root_configuration",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_unwinds_every_capture_allocation_failure_without_sealing_partial_graphs",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_owns_the_failed_native_input_path_after_project_destruction",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      }
+    ]
+  },
+  "src/project/inputs/capture/file.c": {
+    "contract": "docs/implementation/project-inputs.md",
+    "purpose": "Track exact owned or borrowed compiler inputs and verify least-fixed-point consumer invalidation.",
+    "tests": [
+      {
+        "case": "it_matches_independent_reachability_for_every_three_node_graph_and_changed_seed",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_deduplicates_keys_edges_and_rejects_conflicting_or_closed_mutation",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_detects_dependency_membership_and_embedded_zero_payload_changes",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_invalidates_exact_native_consumers_and_complete_root_configuration",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_unwinds_every_capture_allocation_failure_without_sealing_partial_graphs",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_owns_the_failed_native_input_path_after_project_destruction",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      }
+    ]
+  },
+  "src/project/inputs/capture/roots.c": {
+    "contract": "docs/implementation/project-inputs.md",
+    "purpose": "Track exact owned or borrowed compiler inputs and verify least-fixed-point consumer invalidation.",
+    "tests": [
+      {
+        "case": "it_matches_independent_reachability_for_every_three_node_graph_and_changed_seed",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_deduplicates_keys_edges_and_rejects_conflicting_or_closed_mutation",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_detects_dependency_membership_and_embedded_zero_payload_changes",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_invalidates_exact_native_consumers_and_complete_root_configuration",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_unwinds_every_capture_allocation_failure_without_sealing_partial_graphs",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_owns_the_failed_native_input_path_after_project_destruction",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      }
+    ]
+  },
+  "src/project/inputs/capture/project.c": {
+    "contract": "docs/implementation/project-inputs.md",
+    "purpose": "Track exact owned or borrowed compiler inputs and verify least-fixed-point consumer invalidation.",
+    "tests": [
+      {
+        "case": "it_matches_independent_reachability_for_every_three_node_graph_and_changed_seed",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_deduplicates_keys_edges_and_rejects_conflicting_or_closed_mutation",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_detects_dependency_membership_and_embedded_zero_payload_changes",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_invalidates_exact_native_consumers_and_complete_root_configuration",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_unwinds_every_capture_allocation_failure_without_sealing_partial_graphs",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_owns_the_failed_native_input_path_after_project_destruction",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      }
+    ]
+  },
+  "src/project/inputs/capture/module.c": {
+    "contract": "docs/implementation/project-inputs.md",
+    "purpose": "Track exact owned or borrowed compiler inputs and verify least-fixed-point consumer invalidation.",
+    "tests": [
+      {
+        "case": "it_matches_independent_reachability_for_every_three_node_graph_and_changed_seed",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_deduplicates_keys_edges_and_rejects_conflicting_or_closed_mutation",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_detects_dependency_membership_and_embedded_zero_payload_changes",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_invalidates_exact_native_consumers_and_complete_root_configuration",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_unwinds_every_capture_allocation_failure_without_sealing_partial_graphs",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_owns_the_failed_native_input_path_after_project_destruction",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      }
+    ]
+  },
+  "src/project/inputs/internal.h": {
+    "contract": "docs/implementation/project-inputs.md",
+    "purpose": "Track exact owned or borrowed compiler inputs and verify least-fixed-point consumer invalidation.",
+    "tests": [
+      {
+        "case": "it_matches_independent_reachability_for_every_three_node_graph_and_changed_seed",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_deduplicates_keys_edges_and_rejects_conflicting_or_closed_mutation",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_detects_dependency_membership_and_embedded_zero_payload_changes",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_invalidates_exact_native_consumers_and_complete_root_configuration",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_unwinds_every_capture_allocation_failure_without_sealing_partial_graphs",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_owns_the_failed_native_input_path_after_project_destruction",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/project/inputs/inputs.h": {
+    "contract": "docs/implementation/project-inputs.md",
+    "purpose": "Track exact owned or borrowed compiler inputs and verify least-fixed-point consumer invalidation.",
+    "tests": [
+      {
+        "case": "it_matches_independent_reachability_for_every_three_node_graph_and_changed_seed",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_deduplicates_keys_edges_and_rejects_conflicting_or_closed_mutation",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_detects_dependency_membership_and_embedded_zero_payload_changes",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_invalidates_exact_native_consumers_and_complete_root_configuration",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_unwinds_every_capture_allocation_failure_without_sealing_partial_graphs",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_owns_the_failed_native_input_path_after_project_destruction",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/project/inputs/main.c": {
+    "contract": "docs/implementation/project-inputs.md",
+    "purpose": "Track exact owned or borrowed compiler inputs and verify least-fixed-point consumer invalidation.",
+    "tests": [
+      {
+        "case": "it_matches_independent_reachability_for_every_three_node_graph_and_changed_seed",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_deduplicates_keys_edges_and_rejects_conflicting_or_closed_mutation",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_detects_dependency_membership_and_embedded_zero_payload_changes",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_invalidates_exact_native_consumers_and_complete_root_configuration",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_unwinds_every_capture_allocation_failure_without_sealing_partial_graphs",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_owns_the_failed_native_input_path_after_project_destruction",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      }
+    ]
+  },
+  "tests/unit/project/inputs/support/graphs.c": {
+    "contract": "docs/implementation/project-inputs.md",
+    "purpose": "Track exact owned or borrowed compiler inputs and verify least-fixed-point consumer invalidation.",
+    "tests": [
+      {
+        "case": "it_matches_independent_reachability_for_every_three_node_graph_and_changed_seed",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_deduplicates_keys_edges_and_rejects_conflicting_or_closed_mutation",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_detects_dependency_membership_and_embedded_zero_payload_changes",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_invalidates_exact_native_consumers_and_complete_root_configuration",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_unwinds_every_capture_allocation_failure_without_sealing_partial_graphs",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_owns_the_failed_native_input_path_after_project_destruction",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      }
+    ]
+  },
+  "tests/unit/project/inputs/support/capture.c": {
+    "contract": "docs/implementation/project-inputs.md",
+    "purpose": "Track exact owned or borrowed compiler inputs and verify least-fixed-point consumer invalidation.",
+    "tests": [
+      {
+        "case": "it_matches_independent_reachability_for_every_three_node_graph_and_changed_seed",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_deduplicates_keys_edges_and_rejects_conflicting_or_closed_mutation",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_detects_dependency_membership_and_embedded_zero_payload_changes",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_invalidates_exact_native_consumers_and_complete_root_configuration",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_unwinds_every_capture_allocation_failure_without_sealing_partial_graphs",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_owns_the_failed_native_input_path_after_project_destruction",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      }
+    ]
+  },
+  "tests/unit/project/inputs/Makefile": {
+    "contract": "docs/implementation/project-inputs.md",
+    "purpose": "Track exact owned or borrowed compiler inputs and verify least-fixed-point consumer invalidation.",
+    "tests": [
+      {
+        "case": "it_matches_independent_reachability_for_every_three_node_graph_and_changed_seed",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_deduplicates_keys_edges_and_rejects_conflicting_or_closed_mutation",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_detects_dependency_membership_and_embedded_zero_payload_changes",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_invalidates_exact_native_consumers_and_complete_root_configuration",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_unwinds_every_capture_allocation_failure_without_sealing_partial_graphs",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_owns_the_failed_native_input_path_after_project_destruction",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
+      }
+    ]
+  },
+  "src/compiler/inputs.c": {
+    "contract": "docs/implementation/project-inputs.md",
+    "purpose": "Attach exact frontend policy and native authoring configuration to entry consumers.",
+    "tests": [
+      {
+        "case": "it_composes_owned_frontend_input_snapshots_without_executing_native_c",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_unwinds_every_frontend_allocation_failure",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
       }
     ]
   }

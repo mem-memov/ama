@@ -194,3 +194,7 @@ cycle and diamond tests cover repeated source-discovered edges. Run
 T018 verifies the existing exact registry algorithm; it adds evidence rather than
 an alternative identity cache or parser. Activation/draft classification remains
 T023 and required-draft semantics T029. New source path syntax remains T022.
+
+T021 captures the completed graph through the [exact input boundary](project-inputs.md).
+Source/ABI text is reused, native files are acquired once per physical path, and
+changes propagate through explicit consumer edges rather than filesystem guesses.
