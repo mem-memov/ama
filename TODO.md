@@ -800,10 +800,21 @@ Contracts: [grammar](spec/grammar.md),
   reviewed explicit negative fragments. Full strict suite, parser/compiler ASan/
   UBSan (leak detection disabled), 812-input coverage and links pass. Warning-free
   Doxygen is byte-reproducible: 637 maintained files, 2577 interfaces, 291 destinations.
-- [ ] **T024 — Parse accesses, assignments and inferred receivers.** Needs: T023.
+- [x] **T024 — Parse accesses, assignments and inferred receivers.** Needs: T023.
   Recognize indexed/qualified/self-reference sources and uniform assignment nodes
   without name lookup. Test suffix/spacing boundaries, legal source modes and
   forbidden literal assignments with exact diagnostics.
+  Added a distinct standalone-self source tag without a synthetic access/name;
+  split qualified/instance source parsing into cohesive operations. Uniform
+  assignment nodes preserve known/first-use receiver syntax and exact child-region
+  containment. Sources cover recursive multiword indices, references, both root
+  families, lists, explicit continuation copies and forbidden source contexts.
+  Literal errors retain exact sites; every composed self-source allocation failure
+  unwinds. Until T032, self typing reports appended unsupported-feature instead
+  of dereferencing a missing access; existing diagnostic codes retain their IDs.
+  Full strict suite, focused ASan/UBSan (leak detection disabled), 817-input
+  coverage and links pass. Warning-free Doxygen is byte-reproducible: 641
+  maintained files, 2588 interfaces, 292 destinations.
 - [ ] **T025 — Parse calls and binding phases.** Needs: T024. Recognize entry,
   resume, retained/constant reads, named/positional bindings, empty placeholders
   and entry literal payloads. Test phase/mode/arity structure and explicit empty

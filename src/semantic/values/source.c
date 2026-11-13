@@ -3,7 +3,9 @@
  * @brief Resolve literal, local and qualified-constant sources into nominal value views.
  *
  * [TYPE-05](../../../spec/language/declarations.md#type-05)
- * Sources preserve original spans and declared storage form; standalone self sources remain T032 work.
+ * Sources preserve original spans and declared storage form.
+ * [REF-01](../../../spec/language/values-and-references.md#ref-01) gives self
+ * sources an enclosing-instance meaning; their typing remains T032, with an explicit unsupported diagnostic until then.
  */
 #include "semantic/internal.h"
 
@@ -44,6 +46,15 @@ SemanticSource *semantic_source(SemanticProgram *program, SemanticType *type,
     }
     if (syntax->kind == AST_CONSTANT_SOURCE) {
         return constant(program, source, initializing) ? source : NULL;
+    }
+    /* T032 supplies lexical-self typing and later plans supply its checked
+     * instance identity. A parsed self source intentionally has no named
+     * access, so reject this unsupported stage before any access resolution. */
+    if (syntax->kind == AST_SELF_REFERENCE_SOURCE) {
+        (void)semantic_fail(program, syntax->span,
+            "Self-reference sources are not supported by this compiler yet", initializing);
+        program->error.code = DIAGNOSTIC_UNSUPPORTED_FEATURE;
+        return NULL;
     }
     source->access = semantic_access(program, type, syntax->access, false, initializing);
     if (source->access == NULL) {

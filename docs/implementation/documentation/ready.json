@@ -181,6 +181,31 @@
         "case": "it_produces_valid_diagnostics_for_every_truncated_byte_prefix",
         "command": "make -C tests/unit/parser/errors",
         "source": "tests/unit/parser/errors/main.c"
+      },
+      {
+        "case": "it_builds_uniform_assignments_without_classifying_first_use_receivers",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_preserves_indexed_qualified_reference_list_and_continuation_source_modes",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_restricts_self_reference_to_source_positions_without_inventing_a_name",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_rejects_literal_assignments_and_parent_comment_reopening_with_exact_sites",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_failure_in_self_reference_assignment_construction",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
       }
     ]
   },
@@ -2897,6 +2922,11 @@
         "case": "it_retains_both_original_names_for_an_identity_collision",
         "command": "make -C tests/unit/diagnostics/record",
         "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_reports_unsupported_self_reference_typing_without_dereferencing_a_missing_access",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -2938,6 +2968,11 @@
         "case": "it_publishes_neither_diagnostic_nor_related_note_on_invalid_adaptation",
         "command": "make -C tests/unit/diagnostics/record",
         "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_reports_unsupported_self_reference_typing_without_dereferencing_a_missing_access",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -7664,6 +7699,31 @@
         "case": "it_cleans_every_failed_allocation_in_composed_tree_construction",
         "command": "make -C tests/unit/parser/tree",
         "source": "tests/unit/parser/tree/main.c"
+      },
+      {
+        "case": "it_builds_uniform_assignments_without_classifying_first_use_receivers",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_preserves_indexed_qualified_reference_list_and_continuation_source_modes",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_restricts_self_reference_to_source_positions_without_inventing_a_name",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_rejects_literal_assignments_and_parent_comment_reopening_with_exact_sites",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_failure_in_self_reference_assignment_construction",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
       }
     ]
   },
@@ -7786,6 +7846,31 @@
         "case": "it_produces_valid_diagnostics_for_every_truncated_byte_prefix",
         "command": "make -C tests/unit/parser/errors",
         "source": "tests/unit/parser/errors/main.c"
+      },
+      {
+        "case": "it_builds_uniform_assignments_without_classifying_first_use_receivers",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_preserves_indexed_qualified_reference_list_and_continuation_source_modes",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_restricts_self_reference_to_source_positions_without_inventing_a_name",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_rejects_literal_assignments_and_parent_comment_reopening_with_exact_sites",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_failure_in_self_reference_assignment_construction",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
       }
     ]
   },
@@ -19185,6 +19270,11 @@
         "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_reports_unsupported_self_reference_typing_without_dereferencing_a_missing_access",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -26994,6 +27084,11 @@
         "case": "it_resolves_multiword_declarations_through_both_root_families",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_reports_unsupported_self_reference_typing_without_dereferencing_a_missing_access",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -30391,7 +30486,7 @@
   },
   "tests/unit/parser/Makefile": {
     "contract": "docs/implementation/library-tests-and-build.md",
-    "purpose": "Dispatch section, declaration, tree, call, ABI, access and error suites.",
+    "purpose": "Dispatch section, declaration, source, tree, call, ABI, access and error suites.",
     "tests": [
       {
         "case": "it_reads_all_six_symbols_in_any_order_with_physical_spans",
@@ -30542,6 +30637,11 @@
         "case": "it_builds_all_storage_forms_with_multiword_names_and_standard_root_types",
         "command": "make -C tests/unit/parser",
         "source": "tests/unit/parser/declarations/main.c"
+      },
+      {
+        "case": "it_builds_uniform_assignments_without_classifying_first_use_receivers",
+        "command": "make -C tests/unit/parser",
+        "source": "tests/unit/parser/sources/main.c"
       }
     ]
   },
@@ -40625,6 +40725,176 @@
         "case": "it_cleans_each_allocation_failure_in_complete_name_declaration_construction",
         "command": "make -C tests/unit/parser/declarations",
         "source": "tests/unit/parser/declarations/main.c"
+      }
+    ]
+  },
+  "src/parser/access/source/constant.c": {
+    "contract": "docs/implementation/source-parsing.md",
+    "purpose": "Preserve exact source modes and uniform receiver shape without name lookup or implicit self-access fabrication.",
+    "tests": [
+      {
+        "case": "it_builds_uniform_assignments_without_classifying_first_use_receivers",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_preserves_indexed_qualified_reference_list_and_continuation_source_modes",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_restricts_self_reference_to_source_positions_without_inventing_a_name",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_rejects_literal_assignments_and_parent_comment_reopening_with_exact_sites",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_failure_in_self_reference_assignment_construction",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      }
+    ]
+  },
+  "src/parser/access/source/instance.c": {
+    "contract": "docs/implementation/source-parsing.md",
+    "purpose": "Preserve exact source modes and uniform receiver shape without name lookup or implicit self-access fabrication.",
+    "tests": [
+      {
+        "case": "it_builds_uniform_assignments_without_classifying_first_use_receivers",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_preserves_indexed_qualified_reference_list_and_continuation_source_modes",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_restricts_self_reference_to_source_positions_without_inventing_a_name",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_rejects_literal_assignments_and_parent_comment_reopening_with_exact_sites",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_failure_in_self_reference_assignment_construction",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      }
+    ]
+  },
+  "src/parser/access/source/internal.h": {
+    "contract": "docs/implementation/source-parsing.md",
+    "purpose": "Preserve exact source modes and uniform receiver shape without name lookup or implicit self-access fabrication.",
+    "tests": [
+      {
+        "case": "it_builds_uniform_assignments_without_classifying_first_use_receivers",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_preserves_indexed_qualified_reference_list_and_continuation_source_modes",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_restricts_self_reference_to_source_positions_without_inventing_a_name",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_rejects_literal_assignments_and_parent_comment_reopening_with_exact_sites",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_failure_in_self_reference_assignment_construction",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/parser/sources/main.c": {
+    "contract": "docs/implementation/source-parsing.md",
+    "purpose": "Preserve exact source modes and uniform receiver shape without name lookup or implicit self-access fabrication.",
+    "tests": [
+      {
+        "case": "it_builds_uniform_assignments_without_classifying_first_use_receivers",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_preserves_indexed_qualified_reference_list_and_continuation_source_modes",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_restricts_self_reference_to_source_positions_without_inventing_a_name",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_rejects_literal_assignments_and_parent_comment_reopening_with_exact_sites",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_failure_in_self_reference_assignment_construction",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      }
+    ]
+  },
+  "tests/unit/parser/sources/Makefile": {
+    "contract": "docs/implementation/source-parsing.md",
+    "purpose": "Preserve exact source modes and uniform receiver shape without name lookup or implicit self-access fabrication.",
+    "tests": [
+      {
+        "case": "it_builds_uniform_assignments_without_classifying_first_use_receivers",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_preserves_indexed_qualified_reference_list_and_continuation_source_modes",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_restricts_self_reference_to_source_positions_without_inventing_a_name",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_rejects_literal_assignments_and_parent_comment_reopening_with_exact_sites",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_failure_in_self_reference_assignment_construction",
+        "command": "make -C tests/unit/parser/sources",
+        "source": "tests/unit/parser/sources/main.c"
       }
     ]
   }

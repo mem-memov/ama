@@ -89,3 +89,9 @@ All views remain valid only while their source/catalog/registry and related-slot
 owners remain live. Expected-form strings describe current originating checks;
 T022/T023 still supply the remaining new grammar and activation behavior. Rendering
 and generated-C mapping verification belong to T020.
+
+T024 appends the `unsupported-feature` category without renumbering earlier
+codes. It distinguishes a recognized source form whose semantic/runtime support
+is still scheduled from a language type mismatch. The guarded self-source
+handoff is documented in [source parsing](source-parsing.md); no invalid access
+node is invented to continue compilation.

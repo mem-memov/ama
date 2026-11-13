@@ -21,10 +21,10 @@ typedef struct AstAccess {
     struct AstAccess *index;
 } AstAccess;
 
-/** Syntactic source modes; native constructor/type selection occurs after parsing. */
+/** Syntactic source modes; native constructor/type selection occurs after parsing. Standalone self carries no named access. */
 typedef enum {
     AST_VALUE_SOURCE, AST_ACQUIRE_SOURCE, AST_CONSTANT_SOURCE,
-    AST_CONTINUATION_SOURCE, AST_LITERAL_SOURCE
+    AST_CONTINUATION_SOURCE, AST_LITERAL_SOURCE, AST_SELF_REFERENCE_SOURCE
 } AstSourceKind;
 /** Tagged borrowed source syntax: access, constant path/member or untouched literal payload. */
 typedef struct AstSource {

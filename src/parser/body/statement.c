@@ -3,13 +3,21 @@
  * @brief Classify supported statement shapes from physical structure without name lookup.
  *
  * [COMP-01](../../../spec/implementation/compiler.md#comp-01)
- * The retained adjacent-marker/compact-call subset is not full current control or spacing conformance.
+ * Receiver assignment shape never depends on prior declarations; expanded control forms remain T027.
  */
 #include "../internal.h"
 
 /** Attach a parsed nonliteral source to a structural receiver and advance exactly past that source line; no first-use declaration inference occurs here.
  */
-static bool assignment(Parser *parser, AstNode *node, AstAccess *receiver, const LayoutLine *source) {
+static bool assignment(Parser *parser, AstNode *node, AstAccess *receiver) {
+    size_t indentation = parser->line->indentation + 1;
+    parser->line = parser->line->next;
+    parser_skip_region(parser, indentation);
+    const LayoutLine *source = parser->line;
+    if (source == NULL || source == parser->end || source->indentation != indentation
+        || source->kind == LINE_COMMENT) {
+        return parser_fail(parser, parser_site(parser), "An assignment source must stay in its receiver's child region", EXPECT_COPY_SOURCE);
+    }
     node->kind = AST_ASSIGNMENT;
     node->as.assignment.receiver = receiver;
     if (!parser_source(parser, source, source->code, false, &node->as.assignment.source)) {
@@ -64,7 +72,7 @@ static bool bare_target(Parser *parser, ParseFrame **frame, AstNode *node) {
             binding |= bytes[offset] == '<' || bytes[offset] == '>';
         }
         return binding ? parser_start_call(parser, frame, node, line->code, AST_RETAINED_READ)
-            : assignment(parser, node, access, next);
+            : assignment(parser, node, access);
     }
     return parser_fail(parser, line->code, "A bare target is not an executable statement",
         EXPECT_STATEMENT_TAIL);

@@ -121,11 +121,26 @@ static void it_resolves_multiword_declarations_through_both_root_families(void) 
     destroy_frontend();
 }
 
+/** A newly recognized source form fails safely until its planned semantic/runtime stages are implemented. */
+static void it_reports_unsupported_self_reference_typing_without_dereferencing_a_missing_access(void) {
+    prepare_project();
+    file("generated/project/main", "@>\nresult&\n.main\n &\n@!\n");
+    setup_frontend();
+    bool valid = check_project();
+    assert(!valid && !frontend.valid && diagnostic_valid(&frontend.error));
+    assert(frontend.error.code == DIAGNOSTIC_UNSUPPORTED_FEATURE);
+    assert(strcmp(diagnostic_code_name(frontend.error.code), "unsupported-feature") == 0);
+    assert(frontend.error.primary.span.end - frontend.error.primary.span.start == 1);
+    assert(source_bytes(frontend.error.primary.span.source)[frontend.error.primary.span.start] == '&');
+    destroy_frontend();
+}
+
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_reports_unsupported_self_reference_typing_without_dereferencing_a_missing_access();
     it_resolves_multiword_declarations_through_both_root_families();
     it_composes_owned_frontend_input_snapshots_without_executing_native_c();
     it_returns_the_same_typed_graph_that_compilation_will_consume_without_running_c();
