@@ -18,7 +18,7 @@ static AmaSymbolCheck check(const char *text) {
     const unsigned char name[] = "native_entry";
     AmaByteView entry = {name, sizeof(name) - 1};
     AmaByteView listing = {(const unsigned char *) text, strlen(text)};
-    return ama_check_native_symbols(listing, &entry, 1);
+    return ama_check_entry_symbols(listing, &entry, 1);
 }
 
 /**
@@ -55,6 +55,26 @@ static void it_rejects_malformed_or_truncated_records_instead_of_certifying_them
     }
 }
 
+/** Check native and Ama control-entry registries without confusing longer unrelated identifiers.
+ * A later forbidden record is still found; malformed evidence still takes precedence.
+ */
+static void it_checks_multiple_entry_kinds_using_complete_registered_names(void) {
+    static const unsigned char native[] = "native_entry", control[] = "ama_label_1";
+    const AmaByteView entries[] = {{native, sizeof(native) - 1}, {control, sizeof(control) - 1}};
+    const char *listings[] = {
+        "native_entry_helper T 0 10\nama_label_10 T 10 10\n",
+        "helper T 0 10\nama_label_1 T 10 10\n",
+        "ama_label_1.constprop.0 t 0 10\n",
+        "ama_label_1 T 0 10\nmalformed\n"
+    };
+    const AmaSymbolCheck expected[] = {AMA_SYMBOLS_CLEAR, AMA_SYMBOLS_ENTRY_REMAINS,
+        AMA_SYMBOLS_ENTRY_REMAINS, AMA_SYMBOLS_MALFORMED};
+    for (size_t index = 0; index < sizeof(listings) / sizeof(*listings); index++) {
+        AmaByteView listing = {(const unsigned char *)listings[index], strlen(listings[index])};
+        assert(ama_check_entry_symbols(listing, entries, 2) == expected[index]);
+    }
+}
+
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
@@ -63,6 +83,7 @@ void run(void) {
     it_accepts_unrelated_helpers_and_complete_empty_objects();
     it_rejects_entry_definitions_references_and_compiler_specializations();
     it_rejects_malformed_or_truncated_records_instead_of_certifying_them();
+    it_checks_multiple_entry_kinds_using_complete_registered_names();
 }
 
 /**

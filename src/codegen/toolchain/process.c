@@ -12,6 +12,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include "internal.h"
+#include "native/toolchain/profile.h"
 
 /**
  * Fork/exec exact argv, optionally capture stdout and redirect diagnostics, then wait through
@@ -55,12 +56,13 @@ static char **codegen_arguments(NativeScaffold *scaffold, size_t extra) {
  * source/include/object paths; borrow error stream through child completion.
  */
 bool codegen_compile_object(NativeScaffold *scaffold, const char *stage, FILE *errors) {
-    char **arguments = codegen_arguments(scaffold, 18);
     const char *source = scaffold_join(scaffold, stage, "/", "launcher.c");
     const char *object = scaffold_join(scaffold, stage, "/", "program.o");
+    const char *flags[] = {AMA_TOOLCHAIN_REQUIRED_FLAGS, "-O2", "-I", stage,
+        "-I", scaffold->sdk, "-c", source, "-o", object, NULL};
+    char **arguments = codegen_arguments(scaffold, 1 + sizeof(flags) / sizeof(flags[0]));
     if (arguments == NULL || source == NULL || object == NULL) { return false; }
     size_t index = 1 + scaffold->options.flag_count;
-    const char *flags[] = {"-std=c11", "-O2", "-Wall", "-Wextra", "-fno-lto", "-fno-whole-program", "-I", stage, "-I", scaffold->sdk, "-c", source, "-o", object, NULL};
     for (size_t flag = 0; flag < sizeof(flags)/sizeof(flags[0]); flag++) { arguments[index++] = (char *)flags[flag]; }
     return codegen_run_tool(scaffold, arguments, NULL, errors);
 }

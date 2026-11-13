@@ -17,6 +17,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include "native/toolchain/symbols.h"
+#include "native/toolchain/profile.h"
 
 /**
  * Run one exact native tool argv under the fixture output/diagnostic policy and return the
@@ -51,8 +52,7 @@ static int run_tool(char *const arguments[], const char *output) {
  */
 static int compile_fixture(const char *source, const char *optimization) {
     char *arguments[] = {
-        TEST_REAL_COMPILER, "-std=c11", "-pedantic-errors", "-Wall", "-Wextra", "-Werror",
-        "-Werror=attributes", "-Werror=inline", "-fno-lto",
+        TEST_REAL_COMPILER, AMA_TOOLCHAIN_REQUIRED_FLAGS,
         "-fno-ipa-cp-clone", "-fno-ipa-sra", "-fno-optimize-sibling-calls",
         "-I" TEST_ROOT "/src", (char *) optimization, "-c", (char *) source,
         "-o", "generated/module.o", NULL
@@ -75,9 +75,11 @@ static AmaSymbolCheck inspect_entry(void) {
     assert(!ferror(file) && length < sizeof(bytes));
     int closed = fclose(file);
     assert(closed == 0);
-    const unsigned char entry_name[] = "ama_fixture_native_entry";
-    AmaByteView entry = {entry_name, sizeof(entry_name) - 1};
-    return ama_check_native_symbols((AmaByteView) {bytes, length}, &entry, 1);
+    static const unsigned char native[] = "ama_fixture_native_entry";
+    static const unsigned char first[] = "ama_label_1", second[] = "ama_label_2", third[] = "ama_label_3";
+    const AmaByteView entries[] = {{native, sizeof(native) - 1}, {first, sizeof(first) - 1},
+        {second, sizeof(second) - 1}, {third, sizeof(third) - 1}};
+    return ama_check_entry_symbols((AmaByteView) {bytes, length}, entries, sizeof(entries) / sizeof(entries[0]));
 }
 
 /**

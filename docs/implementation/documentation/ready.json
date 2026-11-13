@@ -1325,6 +1325,16 @@
         "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_uses_the_required_profile_in_real_compilation_and_the_compilation_database",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_native_warnings_despite_weaker_user_options",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -2061,6 +2071,11 @@
         "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_uses_the_required_profile_in_real_compilation_and_the_compilation_database",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -2178,6 +2193,21 @@
         "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_uses_the_required_profile_in_real_compilation_and_the_compilation_database",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_native_warnings_despite_weaker_user_options",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_an_ama_control_function_before_linking_or_publication",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -2229,6 +2259,42 @@
         "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_uses_the_required_profile_in_real_compilation_and_the_compilation_database",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_native_warnings_despite_weaker_user_options",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_an_ama_control_function_before_linking_or_publication",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "src/codegen/toolchain/verification/entries.c": {
+    "contract": "docs/implementation/native-toolchain.md",
+    "purpose": "Verify exact native and resolved Ama control identities before linking.",
+    "tests": [
+      {
+        "case": "it_rejects_an_ama_control_function_before_linking_or_publication",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_uses_the_required_profile_in_real_compilation_and_the_compilation_database",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_a_surviving_native_entry_before_publishing_any_executable",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -2278,6 +2344,21 @@
       },
       {
         "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_uses_the_required_profile_in_real_compilation_and_the_compilation_database",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_native_warnings_despite_weaker_user_options",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_an_ama_control_function_before_linking_or_publication",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
       }
@@ -6578,6 +6659,16 @@
         "case": "it_rejects_incompatible_native_conversion_signatures",
         "command": "make -C tests/integration/native/toolchain",
         "source": "tests/integration/native/toolchain/main.c"
+      },
+      {
+        "case": "it_rejects_ama_body_dispatch_through_a_c_function",
+        "command": "make -C tests/integration/native/toolchain",
+        "source": "tests/integration/native/toolchain/main.c"
+      },
+      {
+        "case": "it_rejects_unsupported_backend_configuration_with_explicit_diagnostics",
+        "command": "make -C tests/integration/native/toolchain",
+        "source": "tests/integration/native/toolchain/main.c"
       }
     ]
   },
@@ -6635,6 +6726,11 @@
         "case": "it_rejects_malformed_or_truncated_records_instead_of_certifying_them",
         "command": "make -C tests/unit/native/toolchain/symbols",
         "source": "tests/unit/native/toolchain/symbols/main.c"
+      },
+      {
+        "case": "it_checks_multiple_entry_kinds_using_complete_registered_names",
+        "command": "make -C tests/unit/native/toolchain/symbols",
+        "source": "tests/unit/native/toolchain/symbols/main.c"
       }
     ]
   },
@@ -6656,7 +6752,48 @@
         "case": "it_rejects_malformed_or_truncated_records_instead_of_certifying_them",
         "command": "make -C tests/unit/native/toolchain/symbols",
         "source": "tests/unit/native/toolchain/symbols/main.c"
+      },
+      {
+        "case": "it_checks_multiple_entry_kinds_using_complete_registered_names",
+        "command": "make -C tests/unit/native/toolchain/symbols",
+        "source": "tests/unit/native/toolchain/symbols/main.c"
       }
+    ]
+  },
+  "src/native/toolchain/profile.h": {
+    "contract": "docs/implementation/native-toolchain.md",
+    "purpose": "Share mandatory checked compilation options independently of optimization level.",
+    "tests": [
+      {
+        "case": "it_uses_the_required_profile_in_real_compilation_and_the_compilation_database",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_native_warnings_despite_weaker_user_options",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_inlines_native_entries_and_runs_label_returns_with_native_recursion",
+        "command": "make -C tests/integration/native/toolchain",
+        "source": "tests/integration/native/toolchain/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
     ]
   },
   "src/native/toolchain/symbols.c": {
@@ -6677,6 +6814,16 @@
         "case": "it_rejects_malformed_or_truncated_records_instead_of_certifying_them",
         "command": "make -C tests/unit/native/toolchain/symbols",
         "source": "tests/unit/native/toolchain/symbols/main.c"
+      },
+      {
+        "case": "it_checks_multiple_entry_kinds_using_complete_registered_names",
+        "command": "make -C tests/unit/native/toolchain/symbols",
+        "source": "tests/unit/native/toolchain/symbols/main.c"
+      },
+      {
+        "case": "it_rejects_ama_body_dispatch_through_a_c_function",
+        "command": "make -C tests/integration/native/toolchain",
+        "source": "tests/integration/native/toolchain/main.c"
       }
     ]
   },
@@ -6713,6 +6860,16 @@
         "case": "it_rejects_malformed_or_truncated_records_instead_of_certifying_them",
         "command": "make -C tests/unit/native/toolchain/symbols",
         "source": "tests/unit/native/toolchain/symbols/main.c"
+      },
+      {
+        "case": "it_checks_multiple_entry_kinds_using_complete_registered_names",
+        "command": "make -C tests/unit/native/toolchain/symbols",
+        "source": "tests/unit/native/toolchain/symbols/main.c"
+      },
+      {
+        "case": "it_rejects_ama_body_dispatch_through_a_c_function",
+        "command": "make -C tests/integration/native/toolchain",
+        "source": "tests/integration/native/toolchain/main.c"
       }
     ]
   },
@@ -21157,6 +21314,16 @@
         "case": "it_rejects_incompatible_native_conversion_signatures",
         "command": "make -C tests/integration/native/toolchain",
         "source": "tests/integration/native/toolchain/main.c"
+      },
+      {
+        "case": "it_rejects_ama_body_dispatch_through_a_c_function",
+        "command": "make -C tests/integration/native/toolchain",
+        "source": "tests/integration/native/toolchain/main.c"
+      },
+      {
+        "case": "it_rejects_unsupported_backend_configuration_with_explicit_diagnostics",
+        "command": "make -C tests/integration/native/toolchain",
+        "source": "tests/integration/native/toolchain/main.c"
       }
     ]
   },
@@ -21209,6 +21376,27 @@
         "case": "it_rejects_incompatible_native_conversion_signatures",
         "command": "make -C tests/integration/native/toolchain",
         "source": "tests/integration/native/toolchain/main.c"
+      },
+      {
+        "case": "it_rejects_ama_body_dispatch_through_a_c_function",
+        "command": "make -C tests/integration/native/toolchain",
+        "source": "tests/integration/native/toolchain/main.c"
+      },
+      {
+        "case": "it_rejects_unsupported_backend_configuration_with_explicit_diagnostics",
+        "command": "make -C tests/integration/native/toolchain",
+        "source": "tests/integration/native/toolchain/main.c"
+      }
+    ]
+  },
+  "tests/integration/native/toolchain/project/ama-call.c": {
+    "contract": "docs/implementation/native-toolchain.md",
+    "purpose": "Deliberately retain a called Ama-shaped C function for rejection.",
+    "tests": [
+      {
+        "case": "it_rejects_ama_body_dispatch_through_a_c_function",
+        "command": "make -C tests/integration/native/toolchain",
+        "source": "tests/integration/native/toolchain/main.c"
       }
     ]
   },
@@ -21259,6 +21447,17 @@
       },
       {
         "case": "it_rejects_incompatible_native_conversion_signatures",
+        "command": "make -C tests/integration/native/toolchain",
+        "source": "tests/integration/native/toolchain/main.c"
+      }
+    ]
+  },
+  "tests/integration/native/toolchain/project/profile.c": {
+    "contract": "docs/implementation/native-toolchain.md",
+    "purpose": "Verify accepted and explicitly rejected backend compiler target and language profiles.",
+    "tests": [
+      {
+        "case": "it_rejects_unsupported_backend_configuration_with_explicit_diagnostics",
         "command": "make -C tests/integration/native/toolchain",
         "source": "tests/integration/native/toolchain/main.c"
       }
@@ -24780,6 +24979,21 @@
         "case": "it_reports_the_complete_active_chain_before_terminal_disposal",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_uses_the_required_profile_in_real_compilation_and_the_compilation_database",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_native_warnings_despite_weaker_user_options",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_an_ama_control_function_before_linking_or_publication",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -24899,6 +25113,42 @@
       },
       {
         "case": "it_reports_the_complete_active_chain_before_terminal_disposal",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_uses_the_required_profile_in_real_compilation_and_the_compilation_database",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_native_warnings_despite_weaker_user_options",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_an_ama_control_function_before_linking_or_publication",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/execution/support/toolchain.c": {
+    "contract": "docs/implementation/native-toolchain.md",
+    "purpose": "Verify required argv and forbidden Ama functions through actual compile and publication phases.",
+    "tests": [
+      {
+        "case": "it_uses_the_required_profile_in_real_compilation_and_the_compilation_database",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_native_warnings_despite_weaker_user_options",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_an_ama_control_function_before_linking_or_publication",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
       }
@@ -27847,6 +28097,11 @@
       },
       {
         "case": "it_rejects_malformed_or_truncated_records_instead_of_certifying_them",
+        "command": "make -C tests/unit/native/toolchain/symbols",
+        "source": "tests/unit/native/toolchain/symbols/main.c"
+      },
+      {
+        "case": "it_checks_multiple_entry_kinds_using_complete_registered_names",
         "command": "make -C tests/unit/native/toolchain/symbols",
         "source": "tests/unit/native/toolchain/symbols/main.c"
       }

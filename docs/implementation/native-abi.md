@@ -18,13 +18,14 @@ The compiler implementation itself remains ordinary C; this restriction applies
 to the generated native backend and its conformance harness.
 
 Required backend flags are `-std=c11 -pedantic-errors -Wall -Wextra -Werror
--Werror=attributes -Werror=inline -fno-lto`. Verify both `-O0` and `-O2`.
+-Werror=attributes -Werror=inline -fno-lto -fno-whole-program`. Verify both `-O0` and `-O2`.
 LTO is not needed for correctness. Native entries use `AMA_NATIVE_ENTRY`, defined
 as `static inline` plus GCC `always_inline`; all entry uses must be direct and
 entry addresses must not escape. GCC documents a required diagnostic for failed
 direct-call inlining, and explicitly does not provide that guarantee for indirect
 calls: [GCC 15.2 function attributes](https://gcc.gnu.org/onlinedocs/gcc-15.2.0/gcc/Common-Function-Attributes.html).
-The separate inlining task supplies executable positive/negative verification.
+T008 supplies [executable positive/negative verification](native-toolchain.md)
+and shares the required flag profile with the real project compiler.
 This is not a claim that plain inline or optimizer heuristics suffice.
 
 ## Representation and headers

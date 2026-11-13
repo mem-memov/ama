@@ -19,6 +19,7 @@ static bool noninline_entry;
 static bool wrong_entry_result;
 static const char *forced_header;
 static const char *host_launcher;
+static bool weak_toolchain_options;
 
 /**
  * Create the explicit native interface/body/ABI companion set used by this leaf. The caller
@@ -115,7 +116,7 @@ static void prepare_project(const char *main_source) {
     assert(checked);
     native_scaffold_init(&assembly, &frontend, sources.allocator);
     ScaffoldOptions options = {.directory = "generated/output", .sdk = TEST_SDK};
-    static const char *flags[8];
+    static const char *flags[9];
     size_t flag_count = 0;
 #ifdef TEST_SANITIZERS
     flags[flag_count++] = "-fsanitize=address,undefined";
@@ -124,6 +125,11 @@ static void prepare_project(const char *main_source) {
     flags[flag_count++] = "-no-pie";
 #endif
     if (forced_header != NULL) { flags[flag_count++] = "-include"; flags[flag_count++] = forced_header; }
+    if (weak_toolchain_options) {
+        flags[flag_count++] = "-Wno-error";
+        flags[flag_count++] = "-flto";
+        flags[flag_count++] = "-std=c99";
+    }
     options.flags = flags;
     options.flag_count = flag_count;
     bool built = project_codegen_build(&assembly, options);

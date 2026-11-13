@@ -88,10 +88,12 @@ those remain explicit native author obligations.
 
 Compilation stages source files in a private temporary directory. Native commands
 use argv with fork/exec, not a shell; wait retries only EINTR and requires normal
-zero exit. Mandatory supported C11/O2/non-LTO options follow user compilation
-flags. Linking puts user libraries after the verified object. The supported POSIX
+zero exit. The shared supported C11/O2/strict-diagnostic/non-LTO profile follows
+user compilation flags and is also used by the project compilation database. Linking puts user libraries after the verified object. The supported POSIX
 nm record parser requires complete valid unstripped evidence including main and
-rejects every exact registered native entry or supported compiler suffix family.
+rejects every exact registered native entry or IR control-label symbol and its
+supported compiler suffix family. The latter prevents a control body from becoming
+a C function while allowing ordinary native helper functions.
 Only then may linking and executable retention succeed. This check does not
 certify arbitrary flags, stripped/LTO workflows or a different toolchain.
 Temporary cleanup is best effort; failed verification never authorizes publishing

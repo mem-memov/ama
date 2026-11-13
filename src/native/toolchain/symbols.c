@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief Scan every symbol record and reject malformed output or a surviving native entry family.
+ * @brief Scan every symbol record and reject malformed output or a forbidden entry family.
  *
  * [STACK-04](../../../spec/implementation/compiler.md#stack-04)
  * Use exact generated names and the supported compiler suffix family, never a guessed source-name substring.
@@ -10,7 +10,7 @@
 #include <stdbool.h>
 #include "listing/internal.h"
 
-AmaSymbolCheck ama_check_native_symbols(AmaByteView listing,
+AmaSymbolCheck ama_check_entry_symbols(AmaByteView listing,
     const AmaByteView *entry_names, size_t entry_count) {
     size_t position = 0;
     bool remains = false;

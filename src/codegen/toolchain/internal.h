@@ -8,6 +8,7 @@
 #ifndef AMA_PROJECT_TOOLCHAIN_INTERNAL_H
 #define AMA_PROJECT_TOOLCHAIN_INTERNAL_H
 #include "codegen/internal.h"
+#include "native/abi/bytes.h"
 /**
  * Fork/exec exact argv, optionally capture stdout and redirect diagnostics, then wait through
  * EINTR. Spawn/nonzero/signal failures record an IO diagnostic; no shell is invoked.
@@ -24,6 +25,10 @@ bool codegen_compile_object(NativeScaffold *, const char *, FILE *);
  * supported unstripped non-LTO workflow.
  */
 bool codegen_verify_object(NativeScaffold *, const char *, FILE *);
+/** Reject any native entry family or exact IR control-label family remaining as
+ * object symbols. The caller has already validated the complete listing/main.
+ */
+bool codegen_verify_entries(NativeScaffold *, AmaByteView);
 /**
  * Link only the verified private object, placing user link flags after the object. Result
  * remains private until retained and explicitly published.

@@ -1,9 +1,9 @@
 /**
  * @file
- * @brief Reject malformed or stripped symbol evidence and surviving native entry families.
+ * @brief Reject malformed or stripped symbol evidence before exact entry verification.
  *
  * [STACK-04](../../../spec/implementation/compiler.md#stack-04)
- * Require supported POSIX nm records with main and verify every exact module-qualified entry before linking.
+ * Require supported POSIX nm records with main before verifying native and IR control entries.
  */
 #include <string.h>
 #include "internal.h"
@@ -36,14 +36,5 @@ bool codegen_verify_object(NativeScaffold *scaffold, const char *stage, FILE *er
         start = end + 1;
     }
     if (!main_found) { return scaffold_error(scaffold, DIAGNOSTIC_IO_FAILURE, "Native verification requires an unstripped object containing main", object); }
-    for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
-        if (type->plan->type->module->syntax.sections.kind != MODULE_NATIVE) { continue; }
-        const char *name = scaffold_join(scaffold, type->native_prefix->internal_name, "", "_entry");
-        if (name == NULL) { return false; }
-        AmaByteView entry = {(const unsigned char *)name, strlen(name)};
-        if (ama_check_native_symbols(bytes, &entry, 1) != AMA_SYMBOLS_CLEAR) {
-            return scaffold_error(scaffold, DIAGNOSTIC_IO_FAILURE, "A native entry was not inlined; no executable was published", type->body_path);
-        }
-    }
-    return true;
+    return codegen_verify_entries(scaffold, bytes);
 }

@@ -6,6 +6,7 @@
  * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
  */
 #include "common.c"
+#include "support/toolchain.c"
 
 /** Ordinary self identity is handled after real selection; bad index conversion still fails. */
 static void it_keeps_scalar_list_and_indexed_self_copies_checked_in_generated_execution(void) {
@@ -279,6 +280,9 @@ static void it_reports_the_complete_active_chain_before_terminal_disposal(void) 
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_uses_the_required_profile_in_real_compilation_and_the_compilation_database();
+    it_rejects_native_warnings_despite_weaker_user_options();
+    it_rejects_an_ama_control_function_before_linking_or_publication();
     it_keeps_scalar_list_and_indexed_self_copies_checked_in_generated_execution();
     it_executes_literal_default_retained_and_independent_native_states();
     it_does_not_enter_the_body_or_alternative_after_literal_failure();

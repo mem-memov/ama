@@ -549,10 +549,20 @@ Contracts: [runtime](spec/implementation/runtime.md),
   inputs, 531 files, 2216 interfaces and all 285 destinations with zero debt,
   zero warnings and byte-identical complete generations. All-hook native adapters
   remain T009; provider-namespace emission is explicitly covered by T010/T055.
-- [ ] **T008 — Validate the supported C execution contract.** Needs: T007. Record
+- [x] **T008 — Validate the supported C execution contract.** Needs: T007. Record
   toolchain/target settings and exact checks for required native-entry inlining
   and label dispatch. Compile positive internal-helper/recursion probes and reject
   surviving native-entry calls or Ama function-call dispatch.
+  Completed: [toolchain conformance](docs/implementation/native-toolchain.md).
+  Real compilation, the project compilation database and O0/O2 probes share one
+  required profile. Exact native and resolved IR control-entry symbol checks run
+  before linking/publication. Independent JSON execution, weaker user-option
+  rejection, unsupported configuration diagnostics and retained C-call dispatch
+  negatives pass. Ordinary view binders use permitted C helper calls instead of
+  requesting mandatory inlining. The strict full suite and ASan/UBSan symbol/
+  generated-execution leaves pass (leak detection disabled). Documentation checks
+  cover 700 inputs, 536 files, 2229 interfaces and all 285 destinations with zero
+  debt/warnings and byte-identical complete Doxygen generations.
 - [ ] **T009 — Validate all six native protocol adapters.** Needs: T008. Freeze
   typed signatures, byte views, includes, alignment and void-entry service status
   in the ABI harness. Compile and run every hook, wrong-signature rejection,

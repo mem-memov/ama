@@ -51,22 +51,22 @@ int main(void) {
         return EXIT_FAILURE;
     }
     execution.current = 0;
-    goto module_a;
-module_a:
+    goto ama_label_1;
+ama_label_1:
     execution.instances[0].busy = true;
     execution.instances[1].caller = 0;
     execution.instances[1].return_selector = 1;
     execution.instances[1].input = 3;
     execution.current = 1;
-    goto module_b;
-module_a_return:
+    goto ama_label_2;
+ama_label_3:
     if (!execution.instances[0].busy || execution.instances[1].busy ||
         execution.instances[0].output != 6) {
         goto failed;
     }
     free(execution.instances);
     return EXIT_SUCCESS;
-module_b: {
+ama_label_2: {
     Instance *instance = &execution.instances[execution.current];
     instance->busy = true;
     Inputs parameters = {&instance->input};
@@ -83,7 +83,7 @@ module_b: {
     instance->busy = false;
 }
     switch (execution.selector) {
-        case 1: goto module_a_return;
+        case 1: goto ama_label_3;
         default: goto failed;
     }
 failed:

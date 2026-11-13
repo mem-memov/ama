@@ -4,6 +4,9 @@
  *
  * [CABI-03](../../../spec/implementation/native-interface.md#cabi-03)
  * Owned layouts follow the checked eager dependency order; references expose declared storage without acquiring their targets.
+ * [STACK-04](../../../spec/implementation/compiler.md#stack-04) permits ordinary
+ * generated C helpers to use the stack. View binding is not Ama body dispatch;
+ * only the native entry boundary carries mandatory inline authority.
  */
 #include "codegen/internal.h"
 
@@ -41,11 +44,13 @@ static bool codegen_view_type(NativeScaffold *scaffold, FILE *output, const Scaf
 /**
  * Emit a binder that validates the local handle and borrows active stable storage. General binds
  * require read eligibility; interface binds skip state fields and use existing invocation
- * authority.
+ * authority. Ordinary static helpers permit optional compiler inlining without an
+ * inline declaration's diagnostic obligation under the strict profile. Unused
+ * per-type binders remain harmless when no native body needs that view.
  */
 static bool codegen_view_bind(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type, bool interface) {
     const char *name = type->names[SCAFFOLD_WRITE]->internal_name;
-    if (fprintf(output, "static inline AmaStatus %s_%s(AmaProgram *program, AmaHandle handle, %s_Scope *scope) {\n"
+    if (fprintf(output, "static __attribute__((unused)) AmaStatus %s_%s(AmaProgram *program, AmaHandle handle, %s_Scope *scope) {\n"
             "AmaPoolCell *cell=NULL; AmaStatus status=ama_program_cell(program, handle, &cell);\n"
             "if(status.code!=AMA_OK) return status;\n"
             "%s_Storage *storage=ama_pool_payload(&%s_Type.pool,cell);\n(void)storage; (void)scope;\n", name, interface ? "BindInterface" : "Bind", name, name, name) < 0) { return false; }
