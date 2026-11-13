@@ -50,3 +50,42 @@ and renderers remain separate owners/views; declarations explain which storage
 must outlive consumers and when output may be partial. Header compilation and
 actual source/identity-to-diagnostic compositions check those handoffs; file and
 interface reference pages come from Doxygen, not this narrative.
+
+## T019 exact adaptation and composed failure evidence
+
+A parser's broad machine expectation category and its precise diagnostic text have
+separate roles. Layout adaptation preserves the originating check's expected form
+when present: a lone CR expects `LF or CRLF`, and a forbidden code tab expects
+`ASCII spaces`. Replacing either with the general layout category discards useful
+information. A missing expected string alone receives the fixed category default.
+Primary span, message, cause, explicit help and related locations are copied as
+borrowed views; adaptation neither narrows their lifetime nor invents corrections.
+The invalid-path adapter describes both root markers and complete Unicode names,
+including multiword components from T016.
+
+Validation checks each half-open interval against the original byte length, so
+all `0 <= start <= end <= length` spans are accepted, including empty EOF sites.
+Applying this same predicate to every related location gives the complete record
+invariant. Invalid adapter inputs are checked in local temporaries before either
+output is committed; tests snapshot both objects as bytes to verify nonpublication.
+These checks are allocation-free and do not depend on diagnostic rendering.
+
+Additional executable evidence:
+
+- `make -C tests/unit/diagnostics/record`: every primary/related interval for the
+  Unicode fixture, invalid code/required-text domains, unique fixed machine names,
+  and unchanged output/note after invalid adaptation.
+- `make -C tests/unit/parser/module`: actual CR, tab and malformed-UTF-8 layout
+  diagnostics retain narrow expectation text, exact sites and all borrowed context.
+- `make -C tests/unit/project/closure`: real filesystem acquisition and malformed
+  scalar failures retain physical paths/byte offsets; a required module's code-tab
+  error retains both its primary site and the requester's source span.
+- `make -C tests/unit/source/identity`: two real version-two encodings with distinct
+  root kinds are inserted with a deliberately equal digest at the private insertion
+  boundary. The resulting collision adapts to both complete original names and
+  declarations without allocating or changing the rejected insertion output.
+
+All views remain valid only while their source/catalog/registry and related-slot
+owners remain live. Expected-form strings describe current originating checks;
+T022/T023 still supply the remaining new grammar and activation behavior. Rendering
+and generated-C mapping verification belong to T020.

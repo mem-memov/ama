@@ -727,9 +727,16 @@ Contracts: [source and names](spec/language/source-and-names.md),
   Focused strict release and ASan/UBSan leaves pass (leak detection disabled),
   as do 777-input coverage and Markdown links. Doxygen is warning-free and
   byte-reproducible: 605 maintained files, 2467 interfaces, 288 destinations.
-- [ ] **T019 — Verify structured frontend diagnostics.** Needs: T014, T018.
+- [x] **T019 — Verify structured frontend diagnostics.** Needs: T014, T018.
   Preserve primary/cause/related spans and stable expected-construct information.
   Compose filesystem, Unicode and identity failures through user-facing messages.
+  Parser adaptation now preserves precise originating expectation text alongside
+  its broad machine key. Invalid-path prose covers both root families and complete
+  Unicode names. Added exhaustive bounded primary/related interval validation,
+  invalid-adapter nonpublication and real catalog/parser/identity compositions.
+  Full strict suite and focused ASan/UBSan leaves pass (leak detection disabled);
+  780-input coverage and local links pass. Warning-free Doxygen is byte-identical
+  across two generations: 608 maintained files, 2474 interfaces, 288 destinations.
 - [ ] **T020 — Verify rendering and C source mappings.** Needs: T019. Render
   original names/excerpts and correctly escaped `#line` paths. Compile generated
   mapping probes and test allocation-free fallback reporting.

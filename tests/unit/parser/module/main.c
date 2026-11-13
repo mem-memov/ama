@@ -66,11 +66,46 @@ static void it_rejects_active_section_order_duplicates_and_native_content(void) 
     }
 }
 
+/** Preserve actual lexical expectations and all context while assigning a broad parser key. */
+static void it_preserves_precise_layout_expectations_during_parser_adaptation(void) {
+    const char *inputs[] = {"@!\n\titem\n", "@!\nitem\rvalue\n", "@!\n\xff"};
+    const char *expected[] = {"ASCII spaces", "LF or CRLF", "well-formed UTF-8"};
+    for (size_t index = 0; index < 3; index++) {
+        setup_test();
+        LayoutStatus status = read_layout(inputs[index]);
+        if (status == LAYOUT_OK) {
+            status = layout_validate(&layout, false);
+        }
+        assert(status == LAYOUT_INVALID);
+        Diagnostic original = layout.diagnostic;
+        DiagnosticRelated note = {.location = original.primary, .role = "original check"};
+        original.related = &note;
+        original.related_count = 1;
+        original.cause = "exact originating cause";
+        original.help = "explicit originating help";
+        ParseError error;
+        parser_error_from_layout(&error, &original);
+        assert(diagnostic_valid(&error.diagnostic));
+        assert(strcmp(error.diagnostic.expected, expected[index]) == 0);
+        assert(error.diagnostic.expected == original.expected);
+        assert(error.diagnostic.message == original.message);
+        assert(error.diagnostic.cause == original.cause);
+        assert(error.diagnostic.help == original.help);
+        assert(error.diagnostic.related == &note && error.diagnostic.related_count == 1);
+        assert(error.diagnostic.primary.span.source == original.primary.span.source);
+        assert(error.diagnostic.primary.span.start == original.primary.span.start);
+        assert(error.diagnostic.primary.span.end == original.primary.span.end);
+        assert(error.expected == (index == 2 ? EXPECT_UTF8 : EXPECT_LAYOUT));
+        destroy_layout();
+    }
+}
+
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_preserves_precise_layout_expectations_during_parser_adaptation();
     it_keeps_unfinished_files_drafts_without_literal_or_comment_activation();
     it_accepts_empty_constants_and_both_implementation_kinds();
     it_rejects_active_section_order_duplicates_and_native_content();

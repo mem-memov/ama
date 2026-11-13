@@ -7,6 +7,7 @@
  */
 #include "../common.c"
 #include "support/identity.c"
+#include "support/diagnostics.c"
 
 /**
  * Write the explicit diamond dependency fixture so shared module identity and requester edges
@@ -351,6 +352,8 @@ static void it_walks_deep_blocks_and_dependency_chains_without_c_recursion(void)
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_preserves_narrow_expected_constructs_and_both_dependency_locations();
+    it_composes_real_filesystem_and_unicode_failures_without_losing_source_context();
     it_shares_complete_multiword_seeds_across_root_orders();
     it_preserves_exact_missing_seed_identity_without_family_fallback();
     it_unwinds_every_complete_identity_registry_allocation_failure();

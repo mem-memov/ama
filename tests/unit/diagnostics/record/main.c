@@ -7,6 +7,7 @@
  */
 #include "../common.c"
 #include "diagnostics/adapters/adapters.h"
+#include "support/invariants.c"
 
 /**
  * Assert that the component keeps primary cause expected help and multiple related spans
@@ -105,6 +106,9 @@ static void it_retains_both_original_names_for_an_identity_collision(void) {
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_validates_all_primary_and_related_byte_intervals_including_eof();
+    it_rejects_invalid_code_and_required_text_domains();
+    it_publishes_neither_diagnostic_nor_related_note_on_invalid_adaptation();
     it_keeps_primary_cause_expected_help_and_multiple_related_spans_separate();
     it_rejects_invalid_spans_mismatched_paths_and_missing_related_arrays();
     it_adapts_every_source_failure_without_allocating_messages();

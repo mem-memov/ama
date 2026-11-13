@@ -60,8 +60,9 @@ typedef struct {
     ParserExpectation expected;
 } ParseError;
 
-/* Stable grammar expectations for editor/checking consumers. Canonical display
- * text is derived from this key, not guessed from names or diagnostic wording. */
+/* Stable grammar expectations for editor/checking consumers. Parser branches use
+ * fixed display text; adapted diagnostics may retain a narrower originating
+ * expectation alongside the broad layout/UTF-8/allocation key. */
 /** Return fixed expected-form text for an exact grammar key, or null for none/out-of-domain keys. Does not inspect names or guess corrections.
  */
 const char *parser_expected_text(ParserExpectation expectation);
@@ -69,7 +70,7 @@ const char *parser_expected_text(ParserExpectation expectation);
  */
 bool parser_error_set(ParseError *error, SourceSpan span, const char *message,
     ParserExpectation expected);
-/** Copy the borrowed original layout diagnostic and select a fixed UTF-8/layout/allocation grammar key.
+/** Copy the borrowed original layout diagnostic, retaining its precise expected text; select a broad UTF-8/layout/allocation key.
  */
 void parser_error_from_layout(ParseError *error, const Diagnostic *diagnostic);
 

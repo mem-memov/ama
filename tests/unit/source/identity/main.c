@@ -12,6 +12,7 @@
 #include "vectors.inc"
 #include "support/roots.c"
 #include "support/failures.c"
+#include "support/diagnostics.c"
 
 /**
  * Encode all 32 digest bytes as 64 lowercase hexadecimal digits in caller-owned writable storage,
@@ -178,6 +179,7 @@ static void it_releases_every_failed_registration_and_rejects_invalid_identities
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_composes_a_real_unequal_key_collision_into_both_original_declarations();
     it_builds_many_member_displays_with_constant_allocation_count();
     it_matches_frozen_root_aware_vectors_through_the_current_identity_producer();
     it_separates_all_categories_roots_and_complete_component_boundaries();

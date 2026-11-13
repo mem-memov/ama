@@ -55,5 +55,9 @@ void parser_error_from_layout(ParseError *error, const Diagnostic *diagnostic) {
     error->diagnostic = *diagnostic;
     error->expected = diagnostic->code == DIAGNOSTIC_INVALID_UTF8 ? EXPECT_UTF8
         : diagnostic->code == DIAGNOSTIC_OUT_OF_MEMORY ? EXPECT_NONE : EXPECT_LAYOUT;
-    error->diagnostic.expected = parser_expected_text(error->expected);
+    /* Keep the originating check's narrower expectation; the enum is a broad
+     * machine category, not permission to replace its exact explanation. */
+    if (error->diagnostic.expected == NULL) {
+        error->diagnostic.expected = parser_expected_text(error->expected);
+    }
 }

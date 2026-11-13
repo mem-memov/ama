@@ -2750,6 +2750,26 @@
         "case": "it_retains_both_original_names_for_an_identity_collision",
         "command": "make -C tests/unit/diagnostics/record",
         "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_validates_all_primary_and_related_byte_intervals_including_eof",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_code_and_required_text_domains",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_publishes_neither_diagnostic_nor_related_note_on_invalid_adaptation",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_composes_a_real_unequal_key_collision_into_both_original_declarations",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
       }
     ]
   },
@@ -2774,6 +2794,21 @@
       },
       {
         "case": "it_retains_both_original_names_for_an_identity_collision",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_validates_all_primary_and_related_byte_intervals_including_eof",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_code_and_required_text_domains",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_publishes_neither_diagnostic_nor_related_note_on_invalid_adaptation",
         "command": "make -C tests/unit/diagnostics/record",
         "source": "tests/unit/diagnostics/record/main.c"
       }
@@ -2841,6 +2876,21 @@
       },
       {
         "case": "it_retains_both_original_names_for_an_identity_collision",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_validates_all_primary_and_related_byte_intervals_including_eof",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_code_and_required_text_domains",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_publishes_neither_diagnostic_nor_related_note_on_invalid_adaptation",
         "command": "make -C tests/unit/diagnostics/record",
         "source": "tests/unit/diagnostics/record/main.c"
       }
@@ -7839,6 +7889,11 @@
         "case": "it_produces_valid_diagnostics_for_every_truncated_byte_prefix",
         "command": "make -C tests/unit/parser/errors",
         "source": "tests/unit/parser/errors/main.c"
+      },
+      {
+        "case": "it_preserves_precise_layout_expectations_during_parser_adaptation",
+        "command": "make -C tests/unit/parser/module",
+        "source": "tests/unit/parser/module/main.c"
       }
     ]
   },
@@ -7891,6 +7946,11 @@
         "case": "it_produces_valid_diagnostics_for_every_truncated_byte_prefix",
         "command": "make -C tests/unit/parser/errors",
         "source": "tests/unit/parser/errors/main.c"
+      },
+      {
+        "case": "it_preserves_precise_layout_expectations_during_parser_adaptation",
+        "command": "make -C tests/unit/parser/module",
+        "source": "tests/unit/parser/module/main.c"
       }
     ]
   },
@@ -9249,6 +9309,16 @@
       },
       {
         "case": "it_walks_deep_blocks_and_dependency_chains_without_c_recursion",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_preserves_narrow_expected_constructs_and_both_dependency_locations",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_composes_real_filesystem_and_unicode_failures_without_losing_source_context",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
       }
@@ -26971,6 +27041,21 @@
         "case": "it_retains_both_original_names_for_an_identity_collision",
         "command": "make -C tests/unit/diagnostics/record",
         "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_validates_all_primary_and_related_byte_intervals_including_eof",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_code_and_required_text_domains",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_publishes_neither_diagnostic_nor_related_note_on_invalid_adaptation",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
       }
     ]
   },
@@ -30550,6 +30635,11 @@
         "case": "it_rejects_active_section_order_duplicates_and_native_content",
         "command": "make -C tests/unit/parser/module",
         "source": "tests/unit/parser/module/main.c"
+      },
+      {
+        "case": "it_preserves_precise_layout_expectations_during_parser_adaptation",
+        "command": "make -C tests/unit/parser/module",
+        "source": "tests/unit/parser/module/main.c"
       }
     ]
   },
@@ -31143,6 +31233,16 @@
       },
       {
         "case": "it_unwinds_every_complete_identity_registry_allocation_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_preserves_narrow_expected_constructs_and_both_dependency_locations",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_composes_real_filesystem_and_unicode_failures_without_losing_source_context",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
       }
@@ -36967,6 +37067,11 @@
         "case": "it_builds_many_member_displays_with_constant_allocation_count",
         "command": "make -C tests/unit/source/identity",
         "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_composes_a_real_unequal_key_collision_into_both_original_declarations",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
       }
     ]
   },
@@ -37026,6 +37131,11 @@
       },
       {
         "case": "it_builds_many_member_displays_with_constant_allocation_count",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "case": "it_composes_a_real_unequal_key_collision_into_both_original_declarations",
         "command": "make -C tests/unit/source/identity",
         "source": "tests/unit/source/identity/main.c"
       }
@@ -38880,6 +38990,54 @@
         "case": "it_excludes_only_declared_owned_paths_and_slash_delimited_descendants",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      }
+    ]
+  },
+  "tests/unit/diagnostics/record/support/invariants.c": {
+    "contract": "docs/implementation/diagnostics.md",
+    "purpose": "Verify exact diagnostic locations, original causes and atomic checked publication.",
+    "tests": [
+      {
+        "case": "it_validates_all_primary_and_related_byte_intervals_including_eof",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_code_and_required_text_domains",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "case": "it_publishes_neither_diagnostic_nor_related_note_on_invalid_adaptation",
+        "command": "make -C tests/unit/diagnostics/record",
+        "source": "tests/unit/diagnostics/record/main.c"
+      }
+    ]
+  },
+  "tests/unit/project/closure/support/diagnostics.c": {
+    "contract": "docs/implementation/diagnostics.md",
+    "purpose": "Verify exact diagnostic locations, original causes and atomic checked publication.",
+    "tests": [
+      {
+        "case": "it_preserves_narrow_expected_constructs_and_both_dependency_locations",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_composes_real_filesystem_and_unicode_failures_without_losing_source_context",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      }
+    ]
+  },
+  "tests/unit/source/identity/support/diagnostics.c": {
+    "contract": "docs/implementation/diagnostics.md",
+    "purpose": "Verify exact diagnostic locations, original causes and atomic checked publication.",
+    "tests": [
+      {
+        "case": "it_composes_a_real_unequal_key_collision_into_both_original_declarations",
+        "command": "make -C tests/unit/source/identity",
+        "source": "tests/unit/source/identity/main.c"
       }
     ]
   }

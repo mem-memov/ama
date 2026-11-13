@@ -63,11 +63,12 @@ static void it_provides_exact_help_and_never_uses_names_to_reclassify_syntax(voi
 static void it_keeps_layout_and_utf8_failures_in_the_same_structured_error_contract(void) {
     const char *invalid[] = {"@!\n\t", "draft\xff"};
     const ParserExpectation expected[] = {EXPECT_LAYOUT, EXPECT_UTF8};
+    const char *precise[] = {"ASCII spaces", "well-formed UTF-8"};
     for (size_t index = 0; index < 2; index++) {
         setup_tree();
         ParseStatus parsed = parse_text(invalid[index]);
         assert(parsed == PARSE_INVALID && module.error.expected == expected[index]);
-        assert(strcmp(module.error.diagnostic.expected, parser_expected_text(expected[index])) == 0);
+        assert(strcmp(module.error.diagnostic.expected, precise[index]) == 0);
         destroy_tree();
     }
 }
