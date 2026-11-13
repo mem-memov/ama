@@ -1,5 +1,5 @@
 # @file
-# @brief Dispatch independent child suites: names native inference types calls selected lists control continuations relations constants diagnostics.
+# @brief Dispatch independent child suites: names native inference types calls selected lists control continuations composition relations constants diagnostics.
 # Contract: ../../../docs/implementation/library-tests-and-build.md; generated output is never a maintained input.
-SUBDIRECTORIES := names native inference types calls selected lists control continuations relations constants diagnostics
+SUBDIRECTORIES := names native inference types calls selected lists control continuations composition relations constants diagnostics
 include ../../parent.mk

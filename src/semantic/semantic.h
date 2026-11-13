@@ -270,7 +270,7 @@ void semantic_program_init(SemanticProgram *program, const Project *project,
 /** Destroy every ABI/graph/arena allocation before its borrowed project disappears; all resolved views expire.
  */
 void semantic_program_destroy(SemanticProgram *program);
-/** Run ordinary names/native/resolve/relations/constants stages once, returning the first failed status.
+/** Run ordinary names/native/inference/resolve/relations/constants stages once, returning the first failed status.
  */
 SemanticStatus semantic_analyze(SemanticProgram *program);
 /** Compose the same stages with an explicitly supplied native ABI authoring proposal, never guessed from missing files. Proposed ABI source storage outlives this semantic owner.

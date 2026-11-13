@@ -1066,10 +1066,15 @@ Contracts: [declarations](spec/language/declarations.md),
   every success/rejection proof allocation. Full strict tests, final focused cases
   and ASan+UBSan passed; 957 maintained inputs have coverage. Final Doxygen is
   reproducible. Runtime identity/availability/overlap checks remain mandatory.
-- [ ] **T040 — Compose semantic analysis with current diagnostics.** Needs:
+- [x] **T040 — Compose semantic analysis with current diagnostics.** Needs:
   T034–T039. Check valid/invalid full projects, preservation of spans/storage forms,
   deterministic classification and allocation cleanup. Confirm every interpretation
   is resolved before lowering or C emission.
+  Evidence: explicit six-stage composition matches separately owned staged analysis
+  for complete projects, exact typed metadata, source spans and all diagnostic
+  fields. Failed-stage prefixes and every composition allocation are checked.
+  Full strict tests and ASan+UBSan passed; 963 maintained inputs have coverage.
+  Doxygen reproducibility is verified before committing this task.
 
 ## Phase 5. Make resolved behavior explicit in IR and storage plans
 

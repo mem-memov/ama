@@ -160,6 +160,9 @@ header inventories and retains exact restart/lexical-loop/traversal identities.
 [T039 continuation boundaries](continuation-boundaries.md) validates explicit
 copy forms and rejects positive reference-origin identity/ownership violations.
 
+[T040 complete composition](semantic-composition.md) verifies the explicit stage
+sequence, exact typed projections, first-failure diagnostics and allocation cleanup.
+
 ## Separate relation graphs and exact ordering
 
 `semantic_relations` requires resolved values and constructs two independent
@@ -294,8 +297,8 @@ The semantic/planning regressions failed before the correction; actual generated
 scalar/list/indexed self copies and invalid index conversion exercise its consumer.
 
 T030–T037 now provide complete declaration inventories, source-order inference,
-exact transfer/constant plans and typed result trees/list services. T038–T039 complete control/continuation validation; T040 still
-completes semantic composition; T041–T045
+exact transfer/constant plans and typed result trees/list services. T038–T040 complete control/continuation validation and semantic composition;
+T041–T045
 supply the corresponding IR/storage/lowering boundaries. Foreach-local bindings
 and complete body/header contexts are checked, but traversal execution remains guarded. Parsed ordinary empty
 loops already use one-check behavior from T027; new condition-chain/foreach
