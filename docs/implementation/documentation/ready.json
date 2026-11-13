@@ -32696,6 +32696,11 @@
         "case": "it_checks_malformed_lifecycle_statuses_in_actual_generated_execution",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_preserves_primary_failure_when_native_cleanup_also_fails",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -32880,6 +32885,11 @@
       },
       {
         "case": "it_checks_malformed_lifecycle_statuses_in_actual_generated_execution",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_preserves_primary_failure_when_native_cleanup_also_fails",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
       }
@@ -59890,6 +59900,17 @@
       },
       {
         "case": "it_rejects_unknown_and_foreign_type_return_selectors_before_dispatch",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/execution/support/diagnostics.c": {
+    "contract": "docs/implementation/runtime-diagnostics.md",
+    "purpose": "Check compiled primary source diagnostics, secondary cleanup errors and terminal resource release.",
+    "tests": [
+      {
+        "case": "it_preserves_primary_failure_when_native_cleanup_also_fails",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
       }

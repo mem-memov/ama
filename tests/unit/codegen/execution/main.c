@@ -10,6 +10,7 @@
 #include "support/protocols.c"
 #include "support/borrows.c"
 #include "support/simple-calls.c"
+#include "support/diagnostics.c"
 
 /** Ordinary self identity is handled after real selection; bad index conversion still fails. */
 static void it_keeps_scalar_list_and_indexed_self_copies_checked_in_generated_execution(void) {
@@ -313,6 +314,7 @@ static void it_preserves_scalar_and_indexed_shared_source_access_in_compiled_tra
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_preserves_primary_failure_when_native_cleanup_also_fails();
     it_checks_malformed_lifecycle_statuses_in_actual_generated_execution();
     it_returns_through_nested_no_binding_calls_without_reinitializing_caller_state();
     it_rejects_unknown_and_foreign_type_return_selectors_before_dispatch();

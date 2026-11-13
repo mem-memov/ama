@@ -28,6 +28,8 @@ static bool corrupt_return_link;
 /** Inject malformed lifecycle transport only for the explicitly selected native fixture. */
 static int malformed_lifecycle = -1;
 static const char *malformed_lifecycle_module;
+/** Return a coherent secondary cleanup error for the selected worker fixture. */
+static bool fail_native_destroy;
 
 /**
  * Create the explicit native interface/body/ABI companion set used by this leaf. The caller
@@ -120,6 +122,10 @@ static void executable_native(const ScaffoldType *type) {
                 : operation == ABI_LITERAL
                 ? " { (void)literal; *destination=(AMA_NATIVE(State)){.address=destination}; return ama_status_make(AMA_OK,NULL,1); }\n"
                 : " { *destination=*source; destination->address=destination; return ama_status_make(AMA_OK,NULL,1); }\n";
+        }
+        if (fail_native_destroy && operation == ABI_DESTROY
+            && strcmp(type->plan->type->module->source->logical_path, ".worker") == 0) {
+            implementation = " { assert(state->address==state); return ama_status_make(AMA_NATIVE_FAILURE,\"cleanup\",7); }\n";
         }
         written = fputs(implementation, body);
         assert(written != EOF);

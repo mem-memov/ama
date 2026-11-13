@@ -1366,10 +1366,19 @@ Contracts: [generated C](spec/implementation/compiler.md#generated-project-organ
   composition remain covered by T053/T056. Coverage and local links passed;
   final Doxygen reproducibility is checked before commit. No new runtime path
   or permissive fallback was introduced.
-- [ ] **T059 — Integrate runtime refusal and source diagnostics.** Needs: T020,
+- [x] **T059 — Integrate runtime refusal and source diagnostics.** Needs: T020,
   T058. Report active source/caller paths before cleanup and preserve per-caller
   refusal snapshots. Run busy/stale/pre-root/native-failure cases, including
   allocation-free reporting and secondary destruction errors.
+  Evidence: [runtime diagnostic composition](docs/implementation/runtime-diagnostics.md).
+  Added compiled active-chain and pre-root failures with secondary native
+  destruction errors. Host assertions preserve the original code/message through
+  terminal and repeated disposal and verify complete pool/borrow cleanup.
+  Existing Unicode, refusal, absent/stale target and source-role cases remain
+  active. Strict execution, context and host-lifecycle leaves passed, including
+  allocation-disabled reporting with intact links/refusal snapshots. All 1090
+  maintained inputs have coverage; local links passed and final Doxygen
+  reproducibility is checked before commit.
 - [ ] **T060 — Expose check-only and verified compilation commands.** Needs:
   T055, T059. Use one shared frontend and explicit generated-output ownership.
   Test draft reporting, check/compile diagnostic agreement and atomic publication
