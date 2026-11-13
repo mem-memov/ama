@@ -1191,10 +1191,19 @@ Contracts: [references and copying](spec/language/values-and-references.md),
   limits, checking every prefix. Full strict tests and ASan+UBSan passed; all
   1029 maintained inputs have coverage. Final Doxygen reproducibility is checked
   before commit.
-- [ ] **T048 — Verify acquisition and destruction preflight.** Needs: T047.
+- [x] **T048 — Verify acquisition and destruction preflight.** Needs: T047.
   Check whole affected owned subtrees, current-owner authorization and ordinary
   busy/refusal transitions. Test available roots with busy descendants, foreign
   context handles and protection release on every supported failure.
+  Evidence: [acquisition preflight](docs/implementation/acquisition-preflight.md)
+  composes existing nine-node availability, caller refusal/preparation and foreign
+  context checks with a new direct protection leaf. Explicit nested copy authority
+  preserves the outer lease; unrelated/destructive acquisition refuses. Every
+  capability/protection allocation and invalid owner/duplicate/type edge restores
+  the complete service-state prefix without native effects. Non-owning busy
+  referents remain outside the boundary. Strict runtime composition and ASan+UBSan
+  passed; all 1034 maintained inputs have coverage. Final Doxygen reproducibility
+  is checked before commit.
 - [ ] **T049 — Integrate ordered construction and destruction.** Needs: T012,
   T048. Initialize fields once, expose final self-identity only under constructing
   rules and finalize children/native payload in the prescribed order. Inject

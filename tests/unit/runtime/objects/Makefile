@@ -1,5 +1,5 @@
 # @file
-# @brief Dispatch independent child suites: construction lifecycle clone-preparation clone replacement access.
+# @brief Dispatch independent child suites: construction lifecycle clone-preparation clone replacement access preflight.
 # Contract: ../../../../docs/implementation/library-tests-and-build.md; generated output is never a maintained input.
-SUBDIRECTORIES := construction lifecycle clone-preparation clone replacement access
+SUBDIRECTORIES := construction lifecycle clone-preparation clone replacement access preflight
 include ../../../parent.mk

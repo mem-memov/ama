@@ -14874,6 +14874,21 @@
         "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
         "command": "make -C tests/unit/runtime/objects/lifecycle",
         "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_borrows_only_explicit_copy_authority_and_preserves_the_outer_lease",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
+      },
+      {
+        "case": "it_restores_every_service_field_after_each_partial_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
+      },
+      {
+        "case": "it_restores_protected_prefixes_when_owned_edges_are_invalid",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
       }
     ]
   },
@@ -16905,6 +16920,21 @@
         "case": "it_releases_a_retained_root_slot_after_destructive_replacement_failure",
         "command": "make -C tests/unit/runtime/contexts",
         "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_borrows_only_explicit_copy_authority_and_preserves_the_outer_lease",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
+      },
+      {
+        "case": "it_restores_every_service_field_after_each_partial_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
+      },
+      {
+        "case": "it_restores_protected_prefixes_when_owned_edges_are_invalid",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
       }
     ]
   },
@@ -39007,6 +39037,21 @@
         "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
         "command": "make -C tests/unit/runtime/objects/replacement",
         "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_borrows_only_explicit_copy_authority_and_preserves_the_outer_lease",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
+      },
+      {
+        "case": "it_restores_every_service_field_after_each_partial_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
+      },
+      {
+        "case": "it_restores_protected_prefixes_when_owned_edges_are_invalid",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
       }
     ]
   },
@@ -57002,6 +57047,111 @@
         "case": "it_matches_every_small_pool_schedule_against_identity_and_occupancy_invariants",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/objects/preflight/main.c": {
+    "contract": "docs/implementation/acquisition-preflight.md",
+    "purpose": "Verify exact nested protection authority and complete service-state restoration at every failed prefix.",
+    "tests": [
+      {
+        "case": "it_borrows_only_explicit_copy_authority_and_preserves_the_outer_lease",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
+      },
+      {
+        "case": "it_restores_every_service_field_after_each_partial_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
+      },
+      {
+        "case": "it_restores_protected_prefixes_when_owned_edges_are_invalid",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/objects/preflight/Makefile": {
+    "contract": "docs/implementation/acquisition-preflight.md",
+    "purpose": "Verify exact nested protection authority and complete service-state restoration at every failed prefix.",
+    "tests": [
+      {
+        "case": "it_borrows_only_explicit_copy_authority_and_preserves_the_outer_lease",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
+      },
+      {
+        "case": "it_restores_every_service_field_after_each_partial_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
+      },
+      {
+        "case": "it_restores_protected_prefixes_when_owned_edges_are_invalid",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/objects/preflight/support/fixture.c": {
+    "contract": "docs/implementation/acquisition-preflight.md",
+    "purpose": "Verify exact nested protection authority and complete service-state restoration at every failed prefix.",
+    "tests": [
+      {
+        "case": "it_borrows_only_explicit_copy_authority_and_preserves_the_outer_lease",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
+      },
+      {
+        "case": "it_restores_every_service_field_after_each_partial_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
+      },
+      {
+        "case": "it_restores_protected_prefixes_when_owned_edges_are_invalid",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/objects/preflight/support/failures.c": {
+    "contract": "docs/implementation/acquisition-preflight.md",
+    "purpose": "Verify exact nested protection authority and complete service-state restoration at every failed prefix.",
+    "tests": [
+      {
+        "case": "it_borrows_only_explicit_copy_authority_and_preserves_the_outer_lease",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
+      },
+      {
+        "case": "it_restores_every_service_field_after_each_partial_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
+      },
+      {
+        "case": "it_restores_protected_prefixes_when_owned_edges_are_invalid",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/objects/preflight/support/authority.c": {
+    "contract": "docs/implementation/acquisition-preflight.md",
+    "purpose": "Verify exact nested protection authority and complete service-state restoration at every failed prefix.",
+    "tests": [
+      {
+        "case": "it_borrows_only_explicit_copy_authority_and_preserves_the_outer_lease",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
+      },
+      {
+        "case": "it_restores_every_service_field_after_each_partial_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
+      },
+      {
+        "case": "it_restores_protected_prefixes_when_owned_edges_are_invalid",
+        "command": "make -C tests/unit/runtime/objects/preflight",
+        "source": "tests/unit/runtime/objects/preflight/main.c"
       }
     ]
   }
