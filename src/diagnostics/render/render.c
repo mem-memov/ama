@@ -3,6 +3,7 @@
  * @brief Render validated primary/related diagnostics and flush explicit output failures.
  *
  * [COMP-04](../../../spec/implementation/compiler.md#comp-04)
+ * [SYN-01](../../../spec/language/source-and-names.md#syn-01) gives the empty-body code warning severity.
  * Keep message, cause, expected construct, help and related context distinct.
  */
 #include "internal.h"
@@ -18,7 +19,7 @@ static bool write_field(FILE *output, const char *label, const char *text) {
  */
 static bool write_primary(FILE *output, const Diagnostic *diagnostic) {
     return diagnostic_write_location(output, diagnostic->primary)
-        && fprintf(output, ": error[%s]: ", diagnostic_code_name(diagnostic->code)) >= 0
+        && fprintf(output, ": %s[%s]: ", diagnostic->code == DIAGNOSTIC_EMPTY_BODY ? "warning" : "error", diagnostic_code_name(diagnostic->code)) >= 0
         && diagnostic_write_text(output, diagnostic->message)
         && fputc('\n', output) != EOF
         && write_field(output, "    subject: ", diagnostic->subject)

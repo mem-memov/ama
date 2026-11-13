@@ -19,12 +19,13 @@ int driver_check(const DriverOptions *options, FILE *output, FILE *errors) {
     compiler_frontend_init(&frontend, source_system_allocator());
     bool checked = compiler_frontend_check(&frontend, options->roots, options->root_count,
         options->entry);
+    bool warnings = driver_warnings(&frontend.project, errors);
     int result = EXIT_FAILURE;
-    if (checked) {
+    if (checked && warnings) {
         if (fprintf(output, "checked %s\n", options->entry) >= 0 && fflush(output) == 0) {
             result = EXIT_SUCCESS;
         }
-    } else {
+    } else if (!checked) {
         (void)diagnostic_render(errors, &frontend.error);
     }
     compiler_frontend_destroy(&frontend);

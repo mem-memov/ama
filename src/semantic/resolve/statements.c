@@ -3,7 +3,9 @@
  * @brief Resolve retained assignments, calls and condition/control operands.
  *
  * [COMP-02](../../../spec/implementation/compiler.md#comp-02)
- * Keep original syntax identities and loop context; new result/foreach/negative-control forms remain their feature tasks.
+ * [FLOW-04](../../../spec/language/control-flow.md#flow-04) and
+ * [FLOW-05](../../../spec/language/lists.md#flow-05) trees require later typed
+ * execution stages; reject them explicitly rather than silently omitting work.
  */
 #include "semantic/internal.h"
 
@@ -11,6 +13,11 @@
  */
 static bool statement(SemanticProgram *program, SemanticType *type, const AstNode *node, size_t loop_depth, void *context) {
     (void)context;
+    if (node->kind == AST_FOREACH || (node->kind == AST_LOOP && node->as.control.command != NULL)) {
+        semantic_fail(program, node->span, "Traversal and condition-chain execution require their semantic feature tasks", NULL);
+        program->error.code = DIAGNOSTIC_UNSUPPORTED_FEATURE;
+        return false;
+    }
     if (node->kind == AST_BREAK && loop_depth == 0) {
         return semantic_fail(program, node->span, "Loop exit ^ requires an enclosing loop", NULL);
     }

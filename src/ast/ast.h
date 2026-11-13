@@ -7,7 +7,10 @@
  * [CALL-08](../../spec/language/calls-and-results.md#call-08) records output
  * phase independently from ordinary result ordinals.
  * [CALL-09](../../spec/language/calls-and-results.md#call-09) retains ordered
- * result-selection actions and each refusal body's owning operation. Foreach remains later work.
+ * result-selection actions and each refusal body's owning operation. Control headers retain one lexical repeat root under
+ * [FLOW-04](../../spec/language/control-flow.md#flow-04);
+ * [SYN-01](../../spec/language/source-and-names.md#syn-01) retains warnings at written empty markers.
+ * [FLOW-05](../../spec/language/lists.md#flow-05) has distinct reference binders.
  */
 #ifndef AMA_SYNTAX_AST_H
 #define AMA_SYNTAX_AST_H
@@ -63,10 +66,10 @@ typedef struct AstArgument {
 
 /** Explicit call syntax modes, without target acquisition or body execution. */
 typedef enum { AST_ENTRY_CALL, AST_RESUME_CALL, AST_RETAINED_READ, AST_CONSTANT_READ } AstCallMode;
-/** Retained structural statement kinds; expanded result/foreach/control forms remain future work. */
+/** Structural statement kinds; execution support is tracked separately by feature tasks. */
 typedef enum {
     AST_DECLARATION, AST_ASSIGNMENT, AST_CALL, AST_BRANCH,
-    AST_LOOP, AST_BREAK, AST_RETURN, AST_SUSPEND
+    AST_LOOP, AST_BREAK, AST_RETURN, AST_SUSPEND, AST_FOREACH
 } AstNodeKind;
 /**
  * Forward declaration of an arena-owned structural syntax node; its complete tagged body follows
@@ -123,9 +126,32 @@ struct AstNode {
             bool has_alternative;
             AstBlock alternative;
         } call;
-        struct { AstAccess *condition; AstBlock body; AstBlock alternative; } control;
+        struct {
+            AstAccess *condition;
+            AstNode *command;
+            AstNode *condition_owner;
+            SourceSpan body_marker;
+            SourceSpan alternative_marker;
+            SourceSpan closing_marker;
+            AstBlock body;
+            AstBlock alternative;
+        } control;
+        struct {
+            SourceSpan collection;
+            SourceSpan binder;
+            bool reference_elements;
+            SourceSpan body_marker;
+            SourceSpan closing_marker;
+            AstBlock body;
+        } traversal;
     } as;
 };
+
+/** Arena-owned nonfatal diagnostic in deterministic physical-marker order. */
+typedef struct AstWarning {
+    struct AstWarning *next;
+    Diagnostic diagnostic;
+} AstWarning;
 
 /** Module owns layout and AST arenas; textual spans borrow an external source manager, and invalid partial trees are not consumable. */
 typedef struct {
@@ -137,6 +163,7 @@ typedef struct {
     AstBlock results;
     AstBlock body;
     ParseError error;
+    AstWarning *warnings;
     bool valid;
 } AstModule;
 

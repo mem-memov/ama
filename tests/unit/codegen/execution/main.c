@@ -277,11 +277,27 @@ static void it_reports_the_complete_active_chain_before_terminal_disposal(void) 
     expect_diagnostic("generated/project/main:4:1");
 }
 
+/** Empty source bodies check once for either truth value; declarations remain nonempty before lowering. */
+static void it_checks_empty_loops_once_but_repeats_declaration_only_bodies(void) {
+    trace_condition_checks = true;
+    execute_project("@!\ncondition\n.value\n |1\ncondition\n{\n # pending\n}\n", "truth=1\n", true);
+    execute_project("@!\ncondition\n.value\n |0\ncondition\n{\n}\n", "truth=1\n", true);
+    execute_project("@!\ncondition\n.value\n |1\ncondition\n{\n local\n .value\n}\n", "truth=1\ntruth=2\n", true);
+    trace_condition_checks = false;
+}
+
+/** Negative-only branches execute their body on false and perform no positive action. */
+static void it_executes_negative_only_branches_with_the_original_truth_conversion(void) {
+    execute_project("@!\nprobe\n.worker\ncondition\n.value\n |0\ncondition\n:\n probe !\n  < |8\ncondition\n?\ncondition\n:\n probe !\n  < |9\n", "8:1:0\n9:2:0\n", true);
+}
+
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_checks_empty_loops_once_but_repeats_declaration_only_bodies();
+    it_executes_negative_only_branches_with_the_original_truth_conversion();
     it_closes_native_borrows_before_normal_or_failed_host_return();
     it_rejects_malformed_entry_completion_before_processing_call_results();
     it_rejects_malformed_condition_completion_without_executing_either_body();

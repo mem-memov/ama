@@ -3,7 +3,9 @@
  * @brief Classify supported statement shapes from physical structure without name lookup.
  *
  * [COMP-01](../../../spec/implementation/compiler.md#comp-01)
- * Receiver assignment shape never depends on prior declarations; expanded control forms remain T027.
+ * Receiver assignment shape never depends on prior declarations.
+ * [FLOW-01](../../../spec/language/control-flow.md#flow-01) distinguishes
+ * owned conditions from operation refusal handlers by structure.
  */
 #include "../internal.h"
 
@@ -28,24 +30,6 @@ static bool assignment(Parser *parser, AstNode *node, AstAccess *receiver) {
     return true;
 }
 
-/** Attach an adjacent owned-syntax condition to a retained branch/loop frame. Current blank-adjacency restriction is an implementation gap assigned to T027.
- */
-static bool control(Parser *parser, ParseFrame **frame, AstNode *node,
-    AstAccess *condition, const LayoutLine *marker, bool blank) {
-    if (blank || !parser_owned_access(condition)) {
-        return parser_fail(parser, node->span, blank ? "A blank line separates the condition from its marker"
-                : "A condition requires owned-value syntax",
-            EXPECT_CONDITION_ADJACENCY);
-    }
-    bool loop = layout_text_is(marker->code, "{");
-    node->kind = loop ? AST_LOOP : AST_BRANCH;
-    node->as.control.condition = condition;
-    node->span.end = marker->code.end;
-    parser->line = marker->next;
-    return parser_push_frame(parser, frame, &node->as.control.body, node,
-        (*frame)->indentation + 1, loop ? FRAME_LOOP : FRAME_BRANCH);
-}
-
 /** Output bindings and explicit modes start operation actions; an unmarked selection requires its own deeper action region.
  * A copy source has no child region, so this structural distinction never depends on a declared type or name.
  */
@@ -58,6 +42,8 @@ static bool operation_action(const LayoutLine *line, const LayoutLine *end) {
     for (size_t offset = line->code.start; offset < line->code.end; offset++) {
         if (bytes[offset] == '<' || bytes[offset] == '>') { return true; }
     }
+    const LayoutLine *marker = parser_condition_marker(line->next, end, line->indentation);
+    if (marker != NULL && layout_text_is(marker->code, "{")) { return true; }
     bool blank = false;
     const LayoutLine *child = parser_significant(line->next, end, &blank);
     return child != NULL && child != end && child->indentation == line->indentation + 1;
@@ -69,14 +55,26 @@ static bool bare_target(Parser *parser, ParseFrame **frame, AstNode *node) {
     const LayoutLine *line = parser->line;
     bool blank = false;
     const LayoutLine *next = parser_significant(line->next, parser->end, &blank);
+    const LayoutLine *marker = parser_condition_marker(line->next, parser->end, line->indentation);
+    if (marker != NULL && layout_text_is(marker->code, "{")
+        && line->code.end >= line->code.start + 2
+        && source_bytes(line->code.source)[line->code.end - 2] == '&') {
+        return parser_foreach(parser, frame, node, marker);
+    }
     AstAccess *access;
     if (!parser_access(parser, line->code, &access)) {
         return false;
     }
     bool present = next != NULL && next != parser->end;
-    if (present && next->indentation == line->indentation
-        && (layout_text_is(next->code, "?") || layout_text_is(next->code, "{"))) {
-        return control(parser, frame, node, access, next, blank);
+    if (marker == NULL && present && next->indentation == line->indentation
+        && (layout_text_is(next->code, "?") || layout_text_is(next->code, ":")
+            || layout_text_is(next->code, "{"))) {
+        return parser_fail(parser, line->code, "A control marker requires an adjacent condition with only same-depth comments",
+            EXPECT_CONDITION_ADJACENCY);
+    }
+    if (marker != NULL && (layout_text_is(marker->code, "?")
+            || layout_text_is(marker->code, ":") || layout_text_is(marker->code, "{"))) {
+        return parser_control(parser, frame, node, access, marker);
     }
     if (present && next->indentation == line->indentation
         && next->code.start < next->code.end && source_bytes(next->code.source)[next->code.start] == '.') {
@@ -99,6 +97,13 @@ bool parser_statement(Parser *parser, ParseFrame **frame) {
     }
     parser_append((*frame)->block, node);
     if (layout_text_is(text, "^") || layout_text_is(text, ">") || layout_text_is(text, "%")) {
+        if (layout_text_is(text, "^")) {
+            ParseFrame *loop = *frame;
+            while (loop != NULL && loop->kind != FRAME_LOOP) { loop = loop->parent; }
+            if (loop == NULL) {
+                return parser_fail(parser, text, "Loop exit ^ requires an enclosing loop body", EXPECT_STATEMENT_TAIL);
+            }
+        }
         node->kind = layout_text_is(text, "^") ? AST_BREAK
             : layout_text_is(text, ">") ? AST_RETURN : AST_SUSPEND;
         parser->line = parser->line->next;

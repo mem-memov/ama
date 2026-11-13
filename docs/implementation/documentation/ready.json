@@ -271,6 +271,41 @@
         "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
         "command": "make -C tests/unit/parser/results",
         "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_folds_the_complete_condition_path_into_one_lexical_loop",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_owned_indices_from_traversal_reference_binders",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_uses_incoming_loop_context_for_header_handlers",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_rejects_nonadjacent_markers_nonlinear_headers_and_reopened_regions",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_handles_deep_control_frames_and_all_allocation_failures",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_written_positive_negative_and_omitted_bodies",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
       }
     ]
   },
@@ -2992,6 +3027,46 @@
         "case": "it_reports_unsupported_self_reference_typing_without_dereferencing_a_missing_access",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_folds_the_complete_condition_path_into_one_lexical_loop",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_owned_indices_from_traversal_reference_binders",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_uses_incoming_loop_context_for_header_handlers",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_rejects_nonadjacent_markers_nonlinear_headers_and_reopened_regions",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_handles_deep_control_frames_and_all_allocation_failures",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_written_positive_negative_and_omitted_bodies",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_publishes_empty_handler_warnings_and_propagates_warning_output_failures",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
       }
     ]
   },
@@ -3038,6 +3113,46 @@
         "case": "it_reports_unsupported_self_reference_typing_without_dereferencing_a_missing_access",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_folds_the_complete_condition_path_into_one_lexical_loop",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_owned_indices_from_traversal_reference_binders",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_uses_incoming_loop_context_for_header_handlers",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_rejects_nonadjacent_markers_nonlinear_headers_and_reopened_regions",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_handles_deep_control_frames_and_all_allocation_failures",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_written_positive_negative_and_omitted_bodies",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_publishes_empty_handler_warnings_and_propagates_warning_output_failures",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
       }
     ]
   },
@@ -3141,6 +3256,46 @@
         "case": "it_rejects_invalid_mapping_before_output_and_reports_immediate_io_failure",
         "command": "make -C tests/unit/diagnostics/render",
         "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "case": "it_folds_the_complete_condition_path_into_one_lexical_loop",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_owned_indices_from_traversal_reference_binders",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_uses_incoming_loop_context_for_header_handlers",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_rejects_nonadjacent_markers_nonlinear_headers_and_reopened_regions",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_handles_deep_control_frames_and_all_allocation_failures",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_written_positive_negative_and_omitted_bodies",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_publishes_empty_handler_warnings_and_propagates_warning_output_failures",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
       }
     ]
   },
@@ -3254,6 +3409,11 @@
         "case": "it_emits_from_the_same_frontend_without_invoking_the_native_c_compiler",
         "command": "make -C tests/integration/check",
         "source": "tests/integration/check/main.c"
+      },
+      {
+        "case": "it_publishes_empty_handler_warnings_and_propagates_warning_output_failures",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
       }
     ]
   },
@@ -3310,6 +3470,11 @@
         "case": "it_refuses_to_overwrite_an_unowned_program",
         "command": "make -C tests/integration/execution",
         "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_publishes_empty_handler_warnings_and_propagates_warning_output_failures",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
       }
     ]
   },
@@ -3351,6 +3516,11 @@
         "case": "it_refuses_to_overwrite_an_unowned_program",
         "command": "make -C tests/integration/execution",
         "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_publishes_empty_handler_warnings_and_propagates_warning_output_failures",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
       }
     ]
   },
@@ -3392,6 +3562,11 @@
         "case": "it_rejects_invalid_protocols_and_accidental_overwrite_requests",
         "command": "make -C tests/integration/scaffold",
         "source": "tests/integration/scaffold/main.c"
+      },
+      {
+        "case": "it_publishes_empty_handler_warnings_and_propagates_warning_output_failures",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
       }
     ]
   },
@@ -5020,6 +5195,16 @@
         "case": "it_reserves_zero_for_absent_control_and_source_positions",
         "command": "make -C tests/unit/planning/ir",
         "source": "tests/unit/planning/ir/main.c"
+      },
+      {
+        "case": "it_checks_empty_loops_once_but_repeats_declaration_only_bodies",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_executes_negative_only_branches_with_the_original_truth_conversion",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -7885,6 +8070,41 @@
         "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
         "command": "make -C tests/unit/parser/results",
         "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_folds_the_complete_condition_path_into_one_lexical_loop",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_owned_indices_from_traversal_reference_binders",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_uses_incoming_loop_context_for_header_handlers",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_rejects_nonadjacent_markers_nonlinear_headers_and_reopened_regions",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_handles_deep_control_frames_and_all_allocation_failures",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_written_positive_negative_and_omitted_bodies",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
       }
     ]
   },
@@ -8006,6 +8226,41 @@
         "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
         "command": "make -C tests/unit/parser/results",
         "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_folds_the_complete_condition_path_into_one_lexical_loop",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_owned_indices_from_traversal_reference_binders",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_uses_incoming_loop_context_for_header_handlers",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_rejects_nonadjacent_markers_nonlinear_headers_and_reopened_regions",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_handles_deep_control_frames_and_all_allocation_failures",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_written_positive_negative_and_omitted_bodies",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
       }
     ]
   },
@@ -8802,6 +9057,41 @@
         "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
         "command": "make -C tests/unit/parser/results",
         "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_folds_the_complete_condition_path_into_one_lexical_loop",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_owned_indices_from_traversal_reference_binders",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_uses_incoming_loop_context_for_header_handlers",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_rejects_nonadjacent_markers_nonlinear_headers_and_reopened_regions",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_handles_deep_control_frames_and_all_allocation_failures",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_written_positive_negative_and_omitted_bodies",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
       }
     ]
   },
@@ -19381,6 +19671,46 @@
         "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_folds_the_complete_condition_path_into_one_lexical_loop",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_owned_indices_from_traversal_reference_binders",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_uses_incoming_loop_context_for_header_handlers",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_rejects_nonadjacent_markers_nonlinear_headers_and_reopened_regions",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_handles_deep_control_frames_and_all_allocation_failures",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_written_positive_negative_and_omitted_bodies",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_reports_unsupported_control_trees_without_lowering_an_incomplete_operation",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -24329,7 +24659,7 @@
       }
     ]
   },
-  "tests/integration/parser/grammar/project/程序": {
+  "tests/integration/parser/grammar/project/\u7a0b\u5e8f": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -24415,7 +24745,7 @@
       }
     ]
   },
-  "tests/integration/project/closure/project/中间": {
+  "tests/integration/project/closure/project/\u4e2d\u95f4": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -25714,7 +26044,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/元": {
+  "tests/integration/semantic/types/project/\u5143": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -25725,7 +26055,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/元.abi": {
+  "tests/integration/semantic/types/project/\u5143.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -25736,7 +26066,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/元.c": {
+  "tests/integration/semantic/types/project/\u5143.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the first distinct Unicode nominal type.",
     "tests": [
@@ -25747,7 +26077,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/元.h": {
+  "tests/integration/semantic/types/project/\u5143.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the first Unicode nominal type.",
     "standalone_header_command": [
@@ -25773,7 +26103,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/米": {
+  "tests/integration/semantic/types/project/\u7c73": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -25784,7 +26114,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/米.abi": {
+  "tests/integration/semantic/types/project/\u7c73.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -25795,7 +26125,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/米.c": {
+  "tests/integration/semantic/types/project/\u7c73.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the incompatible Unicode nominal type.",
     "tests": [
@@ -25806,7 +26136,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/米.h": {
+  "tests/integration/semantic/types/project/\u7c73.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the incompatible Unicode nominal type.",
     "standalone_header_command": [
@@ -26019,7 +26349,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/other/商品": {
+  "tests/integration/source/diagnostics/project/other/\u5546\u54c1": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -26045,7 +26375,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/商店/商品": {
+  "tests/integration/source/diagnostics/project/\u5546\u5e97/\u5546\u54c1": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -27126,6 +27456,16 @@
         "case": "it_rejects_malformed_condition_completion_without_executing_either_body",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_empty_loops_once_but_repeats_declaration_only_bodies",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_executes_negative_only_branches_with_the_original_truth_conversion",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -27275,6 +27615,16 @@
       },
       {
         "case": "it_closes_native_borrows_before_normal_or_failed_host_return",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_empty_loops_once_but_repeats_declaration_only_bodies",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_executes_negative_only_branches_with_the_original_truth_conversion",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
       }
@@ -27462,6 +27812,46 @@
       },
       {
         "case": "it_reports_unsupported_result_selection_instead_of_dropping_selected_actions",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_folds_the_complete_condition_path_into_one_lexical_loop",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_owned_indices_from_traversal_reference_binders",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_uses_incoming_loop_context_for_header_handlers",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_rejects_nonadjacent_markers_nonlinear_headers_and_reopened_regions",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_handles_deep_control_frames_and_all_allocation_failures",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_written_positive_negative_and_omitted_bodies",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_reports_unsupported_control_trees_without_lowering_an_incomplete_operation",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       }
@@ -28297,6 +28687,11 @@
     "tests": [
       {
         "case": "it_rejects_every_retired_list_configuration_option",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_publishes_empty_handler_warnings_and_propagates_warning_output_failures",
         "command": "make -C tests/unit/driver/run",
         "source": "tests/unit/driver/run/main.c"
       }
@@ -31027,6 +31422,41 @@
         "case": "it_builds_the_short_direct_result_form_without_an_intermediate_receiver",
         "command": "make -C tests/unit/parser",
         "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_folds_the_complete_condition_path_into_one_lexical_loop",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_owned_indices_from_traversal_reference_binders",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_uses_incoming_loop_context_for_header_handlers",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_rejects_nonadjacent_markers_nonlinear_headers_and_reopened_regions",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_handles_deep_control_frames_and_all_allocation_failures",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_written_positive_negative_and_omitted_bodies",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
       }
     ]
   },
@@ -36874,6 +37304,41 @@
         "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_folds_the_complete_condition_path_into_one_lexical_loop",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_owned_indices_from_traversal_reference_binders",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_uses_incoming_loop_context_for_header_handlers",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_rejects_nonadjacent_markers_nonlinear_headers_and_reopened_regions",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_handles_deep_control_frames_and_all_allocation_failures",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_written_positive_negative_and_omitted_bodies",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
       }
     ]
   },
@@ -41465,6 +41930,41 @@
         "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
         "command": "make -C tests/unit/parser/results",
         "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_folds_the_complete_condition_path_into_one_lexical_loop",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_owned_indices_from_traversal_reference_binders",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_uses_incoming_loop_context_for_header_handlers",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_rejects_nonadjacent_markers_nonlinear_headers_and_reopened_regions",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_handles_deep_control_frames_and_all_allocation_failures",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_written_positive_negative_and_omitted_bodies",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
       }
     ]
   },
@@ -41547,6 +42047,41 @@
         "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
         "command": "make -C tests/unit/parser/results",
         "source": "tests/unit/parser/results/main.c"
+      },
+      {
+        "case": "it_folds_the_complete_condition_path_into_one_lexical_loop",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_owned_indices_from_traversal_reference_binders",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_uses_incoming_loop_context_for_header_handlers",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_rejects_nonadjacent_markers_nonlinear_headers_and_reopened_regions",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_handles_deep_control_frames_and_all_allocation_failures",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_written_positive_negative_and_omitted_bodies",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
       }
     ]
   },
@@ -41890,6 +42425,427 @@
         "case": "it_unwinds_every_allocation_failure_in_a_result_tree_and_handler",
         "command": "make -C tests/unit/parser/results",
         "source": "tests/unit/parser/results/main.c"
+      }
+    ]
+  },
+  "src/driver/commands/warnings.c": {
+    "contract": "docs/implementation/control-parsing.md",
+    "purpose": "Retain exact control trees and required empty-body diagnostics.",
+    "tests": [
+      {
+        "case": "it_publishes_empty_handler_warnings_and_propagates_warning_output_failures",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      }
+    ]
+  },
+  "src/parser/control/chain.c": {
+    "contract": "docs/implementation/control-parsing.md",
+    "purpose": "Retain exact control trees and required empty-body diagnostics.",
+    "tests": [
+      {
+        "case": "it_folds_the_complete_condition_path_into_one_lexical_loop",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_owned_indices_from_traversal_reference_binders",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_uses_incoming_loop_context_for_header_handlers",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_rejects_nonadjacent_markers_nonlinear_headers_and_reopened_regions",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_handles_deep_control_frames_and_all_allocation_failures",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_written_positive_negative_and_omitted_bodies",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      }
+    ]
+  },
+  "src/parser/control/foreach.c": {
+    "contract": "docs/implementation/control-parsing.md",
+    "purpose": "Retain exact control trees and required empty-body diagnostics.",
+    "tests": [
+      {
+        "case": "it_folds_the_complete_condition_path_into_one_lexical_loop",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_owned_indices_from_traversal_reference_binders",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_uses_incoming_loop_context_for_header_handlers",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_rejects_nonadjacent_markers_nonlinear_headers_and_reopened_regions",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_handles_deep_control_frames_and_all_allocation_failures",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_written_positive_negative_and_omitted_bodies",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      }
+    ]
+  },
+  "src/parser/control/marker.c": {
+    "contract": "docs/implementation/control-parsing.md",
+    "purpose": "Retain exact control trees and required empty-body diagnostics.",
+    "tests": [
+      {
+        "case": "it_folds_the_complete_condition_path_into_one_lexical_loop",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_owned_indices_from_traversal_reference_binders",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_uses_incoming_loop_context_for_header_handlers",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_rejects_nonadjacent_markers_nonlinear_headers_and_reopened_regions",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_handles_deep_control_frames_and_all_allocation_failures",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_written_positive_negative_and_omitted_bodies",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      }
+    ]
+  },
+  "src/parser/control/start.c": {
+    "contract": "docs/implementation/control-parsing.md",
+    "purpose": "Retain exact control trees and required empty-body diagnostics.",
+    "tests": [
+      {
+        "case": "it_folds_the_complete_condition_path_into_one_lexical_loop",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_owned_indices_from_traversal_reference_binders",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_uses_incoming_loop_context_for_header_handlers",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_rejects_nonadjacent_markers_nonlinear_headers_and_reopened_regions",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_handles_deep_control_frames_and_all_allocation_failures",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_written_positive_negative_and_omitted_bodies",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      }
+    ]
+  },
+  "src/parser/control/warning.c": {
+    "contract": "docs/implementation/control-parsing.md",
+    "purpose": "Retain exact control trees and required empty-body diagnostics.",
+    "tests": [
+      {
+        "case": "it_folds_the_complete_condition_path_into_one_lexical_loop",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_owned_indices_from_traversal_reference_binders",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_uses_incoming_loop_context_for_header_handlers",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_rejects_nonadjacent_markers_nonlinear_headers_and_reopened_regions",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_handles_deep_control_frames_and_all_allocation_failures",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_written_positive_negative_and_omitted_bodies",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      }
+    ]
+  },
+  "tests/unit/parser/control/Makefile": {
+    "contract": "docs/implementation/control-parsing.md",
+    "purpose": "Retain exact control trees and required empty-body diagnostics.",
+    "tests": [
+      {
+        "case": "it_folds_the_complete_condition_path_into_one_lexical_loop",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_owned_indices_from_traversal_reference_binders",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_uses_incoming_loop_context_for_header_handlers",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_rejects_nonadjacent_markers_nonlinear_headers_and_reopened_regions",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_handles_deep_control_frames_and_all_allocation_failures",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_written_positive_negative_and_omitted_bodies",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      }
+    ]
+  },
+  "tests/unit/parser/control/main.c": {
+    "contract": "docs/implementation/control-parsing.md",
+    "purpose": "Retain exact control trees and required empty-body diagnostics.",
+    "tests": [
+      {
+        "case": "it_folds_the_complete_condition_path_into_one_lexical_loop",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_owned_indices_from_traversal_reference_binders",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_uses_incoming_loop_context_for_header_handlers",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_rejects_nonadjacent_markers_nonlinear_headers_and_reopened_regions",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_handles_deep_control_frames_and_all_allocation_failures",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_written_positive_negative_and_omitted_bodies",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      }
+    ]
+  },
+  "tests/unit/parser/control/support/boundaries.c": {
+    "contract": "docs/implementation/control-parsing.md",
+    "purpose": "Retain exact control trees and required empty-body diagnostics.",
+    "tests": [
+      {
+        "case": "it_folds_the_complete_condition_path_into_one_lexical_loop",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_owned_indices_from_traversal_reference_binders",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_uses_incoming_loop_context_for_header_handlers",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_rejects_nonadjacent_markers_nonlinear_headers_and_reopened_regions",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_handles_deep_control_frames_and_all_allocation_failures",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_written_positive_negative_and_omitted_bodies",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      }
+    ]
+  },
+  "tests/unit/parser/control/support/branches.c": {
+    "contract": "docs/implementation/control-parsing.md",
+    "purpose": "Retain exact control trees and required empty-body diagnostics.",
+    "tests": [
+      {
+        "case": "it_folds_the_complete_condition_path_into_one_lexical_loop",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_owned_indices_from_traversal_reference_binders",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_uses_incoming_loop_context_for_header_handlers",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_rejects_nonadjacent_markers_nonlinear_headers_and_reopened_regions",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_handles_deep_control_frames_and_all_allocation_failures",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_written_positive_negative_and_omitted_bodies",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      }
+    ]
+  },
+  "tests/unit/parser/control/support/loops.c": {
+    "contract": "docs/implementation/control-parsing.md",
+    "purpose": "Retain exact control trees and required empty-body diagnostics.",
+    "tests": [
+      {
+        "case": "it_folds_the_complete_condition_path_into_one_lexical_loop",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_owned_indices_from_traversal_reference_binders",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_uses_incoming_loop_context_for_header_handlers",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_rejects_nonadjacent_markers_nonlinear_headers_and_reopened_regions",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_handles_deep_control_frames_and_all_allocation_failures",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_distinguishes_written_positive_negative_and_omitted_bodies",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
+      },
+      {
+        "case": "it_counts_declarations_as_statements_and_keeps_warning_marker_order",
+        "command": "make -C tests/unit/parser/control",
+        "source": "tests/unit/parser/control/main.c"
       }
     ]
   }

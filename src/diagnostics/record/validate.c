@@ -41,7 +41,7 @@ const char *diagnostic_code_name(DiagnosticCode code) {
     static const char *const names[] = {
         "invalid-utf8", "invalid-path", "missing-module", "ambiguous-module",
         "file-alias", "orphan-directory", "unsupported-path", "io-failure",
-        "out-of-memory", "identity-collision", "syntax", "type-mismatch", "unsupported-feature"
+        "out-of-memory", "identity-collision", "syntax", "type-mismatch", "unsupported-feature", "empty-body"
     };
     _Static_assert(sizeof(names) / sizeof(names[0]) == DIAGNOSTIC_CODE_COUNT,
         "Every diagnostic code has one fixed machine name");

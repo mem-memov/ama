@@ -22,6 +22,7 @@ static const char *host_launcher;
 static bool weak_toolchain_options;
 static bool malformed_native_entry;
 static bool malformed_condition;
+static bool trace_condition_checks;
 
 /**
  * Create the explicit native interface/body/ABI companion set used by this leaf. The caller
@@ -95,6 +96,9 @@ static void executable_native(const ScaffoldType *type) {
             : operation == ABI_CLONE ? " { *destination=*source; destination->address=destination; return ama_status_success(); }\n"
             : operation == ABI_CONDITION ? " { *result=state->number!=0; return ama_status_success(); }\n"
             : " { if(state->number==9999) return ama_status_make(AMA_NATIVE_FAILURE,\"Index decoder failed\",20); if(state->number>=1000 && state->number<9999) { printf(\"index=%zu\\n\",state->number); *result=state->number-1000; } else { *result=state->number; } return ama_status_success(); }\n";
+        if (operation == ABI_CONDITION && trace_condition_checks) {
+            implementation = " { static size_t checks; checks++; printf(\"truth=%zu\\n\",checks); *result=state->number!=0 && checks==1; return ama_status_success(); }\n";
+        }
         if (operation == ABI_CONDITION && malformed_condition) {
             implementation = " { (void)state; *result=true; return ama_status_make(AMA_OK,NULL,1); }\n";
         }

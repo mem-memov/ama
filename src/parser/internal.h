@@ -29,6 +29,7 @@ typedef struct ParseFrame {
     size_t indentation;
     ParseFrameKind kind;
     bool call_arguments_done;
+    AstNode *condition_loop;
 } ParseFrame;
 
 /** Record only the first structural failure, mark the parser failed, and return false. Borrow source/message storage through AST lifetime.
@@ -82,6 +83,16 @@ bool parser_body(Parser *parser, ParsedSection section, AstBlock *output);
 /** Classify one retained statement from physical adjacency/mode and append its structural node; failure invalidates the parent AST.
  */
 bool parser_statement(Parser *parser, ParseFrame **frame);
+/** Record exactly one warning for an empty written control body, ordered by marker location. */
+bool parser_empty_warning(Parser *, AstBlock, SourceSpan);
+/** Inspect only same-depth comment gaps; blanks and other-depth comments remain observable. */
+const LayoutLine *parser_condition_marker(const LayoutLine *, const LayoutLine *, size_t);
+/** Recognize exact reference-binding foreach syntax before ordinary access parsing. */
+bool parser_foreach(Parser *, ParseFrame **, AstNode *, const LayoutLine *);
+/** Start a named branch/loop at its explicit marker, retaining marker spans. */
+bool parser_control(Parser *, ParseFrame **, AstNode *, AstAccess *, const LayoutLine *);
+/** Fold a linear operation stack and its terminal into one loop statement. */
+bool parser_condition_chain(Parser *, ParseFrame **, AstAccess *, const LayoutLine *);
 /** Start one ordinary operation frame with exact target/mode; its iterative driver owns bindings and the optional refusal body.
  */
 bool parser_start_call(Parser *parser, ParseFrame **frame, AstNode *node,

@@ -3,6 +3,7 @@
  * @brief Expose allocation-free borrowed compiler diagnostics and related source locations.
  *
  * [COMP-04](../../../spec/implementation/compiler.md#comp-04)
+ * [SYN-01](../../../spec/language/source-and-names.md#syn-01) adds a nonfatal empty-body category.
  * Keep exact primary/related context separate from human rendering and guessed corrections.
  */
 #ifndef AMA_DIAGNOSTIC_RECORD_H
@@ -25,6 +26,7 @@ typedef enum {
     DIAGNOSTIC_SYNTAX,
     DIAGNOSTIC_TYPE_MISMATCH,
     DIAGNOSTIC_UNSUPPORTED_FEATURE,
+    DIAGNOSTIC_EMPTY_BODY,
     DIAGNOSTIC_CODE_COUNT
 } DiagnosticCode;
 

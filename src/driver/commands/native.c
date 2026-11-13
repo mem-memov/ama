@@ -74,10 +74,11 @@ int driver_native(const DriverOptions *options, FILE *output, FILE *errors) {
             .message = "Replacing an existing ABI contract requires --create --overwrite"};
         checked = false;
     }
+    bool warnings = driver_warnings(&frontend.project, errors);
     int status = EXIT_FAILURE;
     if (!checked) {
         (void)diagnostic_render(errors, &frontend.error);
-    } else {
+    } else if (warnings) {
         NativeScaffold scaffold;
         native_scaffold_init(&scaffold, &frontend, source_system_allocator());
         ScaffoldOptions generation = {options->output, options->sdk, options->compiler,

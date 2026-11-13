@@ -3,11 +3,12 @@
  * @brief Lower retained statement/control shapes to explicit successor, break and resume edges.
  *
  * [GEN-02](../../../spec/implementation/compiler.md#gen-02)
- * Current empty-body/repeat-root and expanded control adaptations remain T038/T044/T068, not implied conformance.
+ * [FLOW-02](../../../spec/language/control-flow.md#flow-02) exits after one
+ * successful check for parsed-empty loops. Full header/traversal lowering remains later work.
  */
 #include "internal.h"
 
-/** Build retained branch/loop condition and body tasks with explicit break/continuation links. Full empty-loop/single-repeat-root semantics remain T038/T044/T068, not established by this legacy subset.
+/** Build retained branch/loop condition and body tasks with explicit break/continuation links. Parsed-empty loops exit for both successful outcomes; declaration-only bodies retain their backedge.
  */
 static ControlNode *control(Lowering *lowering, const SemanticStatement *statement,
     ControlNode *after, ControlNode *break_target) {
@@ -18,7 +19,7 @@ static ControlNode *control(Lowering *lowering, const SemanticStatement *stateme
         return NULL;
     }
     condition->alternative = after;
-    if (!lower_block(lowering, node->as.control.body, loop ? condition : after,
+    if (!lower_block(lowering, node->as.control.body, loop && node->as.control.body.first != NULL ? condition : after,
             loop ? after : break_target, &condition->next)
         || (!loop && !lower_block(lowering, node->as.control.alternative, after,
             break_target, &condition->alternative))) {
@@ -31,6 +32,9 @@ ControlNode *lower_statement(Lowering *lowering, const SemanticStatement *statem
     ControlNode *after, ControlNode *break_target) {
     const AstNode *node = statement->syntax;
     switch (node->kind) {
+        case AST_FOREACH:
+            plan_fail(lowering->plan, node->span, "Traversal lowering is not implemented");
+            return NULL;
         case AST_DECLARATION:
             return after;
         case AST_ASSIGNMENT:

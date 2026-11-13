@@ -13,6 +13,9 @@ static void complete(ParseFrame **frame) {
     if (*frame != NULL && (*frame)->kind == FRAME_CALL) {
         (*frame)->owner->span.end = current->owner->span.end;
     }
+    if (current->condition_loop != NULL) {
+        current->condition_loop->span.end = current->owner->span.end;
+    }
 }
 bool parser_call_finish(Parser *parser, ParseFrame **frame) {
     ParseFrame *current = *frame;

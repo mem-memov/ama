@@ -843,10 +843,23 @@ Contracts: [grammar](spec/grammar.md),
   Full strict suite and focused ASan/UBSan pass (leak detection disabled), as do
   832-input coverage and links. Warning-free Doxygen is byte-reproducible: 654
   maintained files, 2630 interfaces, 293 destinations.
-- [ ] **T027 — Parse branches, loops and foreach.** Needs: T026. Represent
+- [x] **T027 — Parse branches, loops and foreach.** Needs: T026. Represent
   positive/negative branches, empty bodies, single-root linear condition loops,
   break/return/yield and reference-binding foreach. Test exact repeat roots,
   comments between markers, deep nesting and malformed near-matches.
+  Added distinct traversal binders, negative-only branches, written marker spans
+  and one folded loop node with an exact root/terminal owner for linear headers.
+  Header handlers use incoming loop context; only body frames permit break.
+  Exact comment gaps and closed-region checks reject misleading near-matches.
+  Every empty written body records a source-ordered warning, including unreachable
+  handlers; the driver renders warnings without failing valid programs and checks
+  warning output failures. Parsed-empty owned loops now convert once and exit;
+  declaration-only bodies retain their backedge, verified by compiled native effects.
+  New header/traversal execution reports unsupported-feature until its typed stages.
+  Tests cover 256-level control nesting and every allocation failure. Full strict
+  suite and focused ASan/UBSan pass (leak detection disabled), as do 843-input
+  coverage and links. Warning-free Doxygen is byte-reproducible: 664 maintained
+  files, 2657 interfaces, 294 destinations.
 - [ ] **T028 — Compose the parser and ABI table reader.** Needs: T009, T021,
   T027. Validate fixed `.abi` records separately from Ama literal classification;
   exhaust malformed/duplicate/missing bindings. Run current documented examples,

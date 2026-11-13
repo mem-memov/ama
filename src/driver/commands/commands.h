@@ -10,6 +10,10 @@
 
 #include <stdio.h>
 #include "driver/options/options.h"
+#include "project/dependencies/project.h"
+
+/** Render every parsed empty-body warning while project source storage is live; propagate output failures. */
+bool driver_warnings(const Project *, FILE *);
 
 /**
  * Complete strict frontend, stage project artifacts and optionally compile/verify before

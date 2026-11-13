@@ -25,6 +25,15 @@ bool parser_call_step(Parser *parser, ParseFrame **frame) {
     if (line->indentation != current->indentation) {
         return parser_fail(parser, parser_site(parser), "Unexpected operation indentation", EXPECT_NESTING);
     }
+    if (current->condition_loop != NULL) {
+        return parser_fail(parser, line->code, "A completed loop header has no sibling actions", EXPECT_NEXT_STATEMENT);
+    }
+    const LayoutLine *marker = parser_condition_marker(line->next, parser->end, line->indentation);
+    if (marker != NULL && layout_text_is(marker->code, "{")) {
+        AstAccess *condition;
+        return parser_access(parser, line->code, &condition)
+            && parser_condition_chain(parser, frame, condition, marker);
+    }
     return binding(line->code) ? parser_call_argument(parser, current->owner)
         : parser_selected_call(parser, frame);
 }

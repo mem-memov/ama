@@ -19,9 +19,11 @@ int driver_emit(const DriverOptions *options, FILE *output, FILE *errors) {
     CompilerFrontend frontend;
     compiler_frontend_init(&frontend, source_system_allocator());
     int result = EXIT_FAILURE;
-    if (!compiler_frontend_check(&frontend, options->roots, options->root_count, options->entry)) {
+    bool checked = compiler_frontend_check(&frontend, options->roots, options->root_count, options->entry);
+    bool warnings = driver_warnings(&frontend.project, errors);
+    if (!checked) {
         (void)diagnostic_render(errors, &frontend.error);
-    } else {
+    } else if (warnings) {
         NativeScaffold assembly;
         native_scaffold_init(&assembly, &frontend, source_system_allocator());
         ScaffoldOptions generation = {.directory = options->output, .sdk = options->sdk, .compiler = options->compiler,

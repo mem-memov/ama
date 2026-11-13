@@ -149,11 +149,30 @@ static void it_reports_unsupported_result_selection_instead_of_dropping_selected
     destroy_frontend();
 }
 
+/** Parsed new control trees must fail explicitly until their typed execution stages exist. */
+static void it_reports_unsupported_control_trees_without_lowering_an_incomplete_operation(void) {
+    const char *cases[] = {
+        "@!\nitems[]\n.value\nitems[item&]\n{\n}\n",
+        "@!\nroot\n.producer\nroot !\n condition\n {\n }\n"
+    };
+    for (size_t index = 0; index < sizeof(cases) / sizeof(cases[0]); index++) {
+        prepare_project();
+        file("generated/project/producer", "@>\ncondition\n.value\n@!\n");
+        file("generated/project/main", cases[index]);
+        setup_frontend();
+        bool valid = check_project();
+        assert(!valid && frontend.error.code == DIAGNOSTIC_UNSUPPORTED_FEATURE);
+        assert(!frontend.plan_initialized && diagnostic_valid(&frontend.error));
+        destroy_frontend();
+    }
+}
+
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_reports_unsupported_control_trees_without_lowering_an_incomplete_operation();
     it_reports_unsupported_result_selection_instead_of_dropping_selected_actions();
     it_reports_unsupported_self_reference_typing_without_dereferencing_a_missing_access();
     it_resolves_multiword_declarations_through_both_root_families();
