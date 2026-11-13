@@ -1175,12 +1175,22 @@ Contracts: [references and copying](spec/language/values-and-references.md),
   no alternative pool was introduced. Strict runtime composition and ASan+UBSan
   passed, with coverage of all 1025 maintained inputs. Final Doxygen reproducibility
   is checked before commit; generation/reclamation policy remains T047.
-- [ ] **T047 — Verify generations and reclamation history.** Needs: T046. Retire
+- [x] **T047 — Verify generations and reclamation history.** Needs: T046. Retire
   exhausted identities and reclaim only entirely free blocks while preserving
   staleness across regrowth. For interior reclamation, validate sparse directory
   holes, retained identity history and free-list removal with live later blocks.
   Exhaust small generation/state models and failure paths; keep capacity, free
   slots and live counts distinct and record the implemented reclamation policy.
+  Evidence: [sparse reclamation](docs/implementation/instance-ownership.md#reclamation)
+  replaces suffix-only release with every entirely free materialized block.
+  Free links exclude reclaimed ranges before release; null historical directory
+  entries retire those ranges permanently, and growth appends fresh identifiers.
+  Tests preserve later live/private addresses through interior holes, both growth
+  failures and repeated cleanup. An independent issued-identity/free-set model
+  exhausts 93,750 length-six schedules at two block sizes and three generation
+  limits, checking every prefix. Full strict tests and ASan+UBSan passed; all
+  1029 maintained inputs have coverage. Final Doxygen reproducibility is checked
+  before commit.
 - [ ] **T048 — Verify acquisition and destruction preflight.** Needs: T047.
   Check whole affected owned subtrees, current-owner authorization and ordinary
   busy/refusal transitions. Test available roots with busy descendants, foreign

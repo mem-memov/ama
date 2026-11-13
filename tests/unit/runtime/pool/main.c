@@ -11,6 +11,10 @@
 #include "support/reuse.c"
 #include "support/publication.c"
 #include "support/failures.c"
+#include "support/reclamation.c"
+#include "support/model/records.c"
+#include "support/model/transitions.c"
+#include "support/model/schedules.c"
 
 /**
  * Assert that the component keeps payload addresses stable through directory growth. The
@@ -108,11 +112,11 @@ static void it_preserves_pool_validity_when_each_growth_allocation_fails(void) {
 }
 
 /**
- * Assert that the component reclaims only free trailing blocks and never revives their
+ * Assert that the component reclaims entirely free blocks and never revives their
  * identities. The explicit fixture setup and observations define this regression; assertion
  * failure keeps its generated evidence.
  */
-static void it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities(void) {
+static void it_reclaims_entirely_free_blocks_and_never_revives_their_identities(void) {
     setup_test();
     AmaPool pool;
     AmaStatus status = ama_pool_init(&pool, sources.allocator, 9, sizeof(size_t), 2, 2);
@@ -165,10 +169,12 @@ static void it_reclaims_only_free_trailing_blocks_and_never_revives_their_identi
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_reclaims_sparse_blocks_without_renumbering_or_reviving_history();
+    it_matches_every_small_pool_schedule_against_identity_and_occupancy_invariants();
     it_reuses_free_slots_without_allocation_or_live_state_changes();
     it_keeps_final_identity_private_until_lifecycle_publication();
     it_preserves_live_instances_through_each_later_growth_failure();
-    it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities();
+    it_reclaims_entirely_free_blocks_and_never_revives_their_identities();
     it_keeps_payload_addresses_stable_through_directory_growth();
     it_never_reissues_an_exhausted_slot_or_accepts_stale_empty_and_wrong_type_handles();
     it_preserves_pool_validity_when_each_growth_allocation_fails();

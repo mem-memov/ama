@@ -84,7 +84,7 @@ AmaStatus ama_pool_publish(AmaPool *, AmaHandle);
 AmaStatus ama_pool_invalidate(AmaPool *, AmaHandle);
 /** Require invalidated, inactive Fresh/Finalized storage. Advance generation before reuse or permanently retire at exhaustion; reject live or active-cleanup release. */
 AmaStatus ama_pool_release(AmaPool *, AmaHandle);
-/** Free only unoccupied trailing blocks and retain null directory history forever. Report released block count; live payload addresses and all old identity exclusions remain unchanged. */
+/** Free every entirely unoccupied block, including before live later blocks, and retain null directory history forever. Report released block count; live payload addresses and all old identity exclusions remain unchanged. */
 AmaStatus ama_pool_reclaim(AmaPool *, size_t *released);
 
 #endif

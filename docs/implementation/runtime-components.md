@@ -35,7 +35,7 @@ before returning a cell. Reserving initializes private storage; lifecycle
 completion and publication are distinct operations.
 
 A released generation strictly increases or retires at its configured limit.
-Reclamation removes only empty trailing payload blocks, rebuilding free links
+Reclamation removes every entirely free payload block, rebuilding free links
 before release. Historical directory entries remain null permanently and new
 blocks append fresh slot IDs. Thus neither generation exhaustion nor physical
 block reclamation can reissue an old triple. Growing the directory copies only
@@ -52,7 +52,7 @@ Destructive failure makes the world terminal and cleanup continues.
 
 Pool lookup/reserve/release are constant-time apart from growth and registry
 lookup. Directory growth is linear in historical blocks; geometric allocation
-amortizes its copying. Reclamation scans retained cells and trailing blocks.
+amortizes its copying. Reclamation scans materialized cells and the historical block directory.
 Memory includes historical directory extent as well as allocated payload blocks;
 no claim of history-free constant memory is made.
 

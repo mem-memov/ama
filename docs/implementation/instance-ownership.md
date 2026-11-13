@@ -89,16 +89,47 @@ header, fixture and build file and preserves standalone header checks.
 
 ## Reclamation
 
-Reclamation finds the last occupied block, rebuilds the free chain using only
-retained blocks, then releases free blocks after that boundary. Empty historical
-directory entries remain null permanently. Growth appends new slot identities;
-it never fills historical directory holes. This permanently retires the released
-identities, including unissued slots, and therefore preserves stale-reference
-rejection without allocating a per-slot tombstone table. The small directory
-history remains O(B) in lifetime block count. Reclamation is O(B*S), allocates
-nothing, and cannot move a live payload or reclaim a partly occupied block.
-Tests repeat reclaim/regrow with reduced generation limits and verify all old
-handles as well as the address of a retained instance.
+Reclamation rebuilds the free chain from nonretired unused slots of blocks
+that still contain an occupied slot. It then releases every entirely free block,
+including blocks before later live or constructing instances. Free links therefore
+exclude all reclaimed storage before the first release; live payloads never move.
+Absent historical directory entries remain null permanently. Growth appends new
+slot identities instead of filling old holes. This permanently retires released
+identities, including unissued spare slots, without a per-slot tombstone table.
+The directory retains O(B) entries for B lifetime blocks. Reclamation takes
+O(B*S) time for S slots per block and constant workspace, with no allocation.
+
+The invariant is that the free chain contains exactly the nonoccupied,
+nonretired slots in materialized blocks, once each. Rebuilding it without empty
+blocks removes all links to soon-absent storage. Each subsequently freed block
+has zero reservations, so it owns no live or constructing cell. Checked lookup
+rejects absent blocks before reading a cell. Permanent retirement of absent slot
+ranges and strictly increasing generations within retained ranges make every
+previously released handle stale after any future growth. Block count is a
+historical identity extent; directory capacity, allocated block count, occupied
+reservations and published live count remain distinct quantities. Upper layers
+retain occupied identities throughout active execution/protection and may not
+release their resources while borrowed.
+
+T047 tests a middle and first block disappearing while later live/private cells
+retain exact addresses and values. A retained partly occupied block reuses its
+free slot before growth. Both directory and payload allocation failures after
+sparse reclamation preserve all live objects and allow retry. Repeated reclamation
+is idempotent. Existing reduced-generation tests verify permanent retirement and
+staleness over repeated reclaim/regrow cycles.
+
+The finite model exhausts all 5^6 length-six schedules for each block size in
+1..2 and generation limit in 1..3: 93,750 schedules, with every prefix checked.
+The five actions are reserve, publish oldest private, release oldest occupied,
+release newest occupied and reclaim. An action with no eligible identity is an
+explicit no-op. An independent issued-identity ledger computes occupancy,
+publication, historical generations, expected sparse holes and the exact free
+set. It checks every previously issued handle and every live address after each
+operation. The free-chain walk checks uniqueness and completeness against that
+set, without assuming an implementation order. This is exhaustive for the stated
+finite domain; the general invariant argument supplies the unbounded reasoning.
+Run `make -C tests/unit/runtime/pool`; the runtime parent adds object/lifecycle,
+list and alignment consumers, with sanitizer runs and counted allocation cleanup.
 
 ## Owned construction and cleanup
 

@@ -17709,7 +17709,7 @@
         "source": "tests/unit/runtime/pool/main.c"
       },
       {
-        "case": "it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities",
+        "case": "it_reclaims_entirely_free_blocks_and_never_revives_their_identities",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
       },
@@ -17735,6 +17735,16 @@
       },
       {
         "case": "it_preserves_live_instances_through_each_later_growth_failure",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_reclaims_sparse_blocks_without_renumbering_or_reviving_history",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_matches_every_small_pool_schedule_against_identity_and_occupancy_invariants",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
       }
@@ -17775,7 +17785,7 @@
         "source": "tests/unit/runtime/pool/main.c"
       },
       {
-        "case": "it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities",
+        "case": "it_reclaims_entirely_free_blocks_and_never_revives_their_identities",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
       },
@@ -17841,7 +17851,7 @@
         "source": "tests/unit/runtime/pool/main.c"
       },
       {
-        "case": "it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities",
+        "case": "it_reclaims_entirely_free_blocks_and_never_revives_their_identities",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
       },
@@ -17899,6 +17909,16 @@
         "case": "it_preserves_live_instances_through_each_later_growth_failure",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_reclaims_sparse_blocks_without_renumbering_or_reviving_history",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_matches_every_small_pool_schedule_against_identity_and_occupancy_invariants",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
       }
     ]
   },
@@ -17922,7 +17942,7 @@
         "source": "tests/unit/runtime/pool/main.c"
       },
       {
-        "case": "it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities",
+        "case": "it_reclaims_entirely_free_blocks_and_never_revives_their_identities",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
       },
@@ -17935,6 +17955,16 @@
         "case": "it_rejects_nonrepresentable_alignment_and_size_arithmetic",
         "command": "make -C tests/unit/runtime/alignment",
         "source": "tests/unit/runtime/alignment/main.c"
+      },
+      {
+        "case": "it_reclaims_sparse_blocks_without_renumbering_or_reviving_history",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_matches_every_small_pool_schedule_against_identity_and_occupancy_invariants",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
       }
     ]
   },
@@ -17958,7 +17988,7 @@
         "source": "tests/unit/runtime/pool/main.c"
       },
       {
-        "case": "it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities",
+        "case": "it_reclaims_entirely_free_blocks_and_never_revives_their_identities",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
       },
@@ -17984,6 +18014,16 @@
       },
       {
         "case": "it_preserves_live_instances_through_each_later_growth_failure",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_reclaims_sparse_blocks_without_renumbering_or_reviving_history",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_matches_every_small_pool_schedule_against_identity_and_occupancy_invariants",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
       }
@@ -18009,7 +18049,7 @@
         "source": "tests/unit/runtime/pool/main.c"
       },
       {
-        "case": "it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities",
+        "case": "it_reclaims_entirely_free_blocks_and_never_revives_their_identities",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
       },
@@ -18035,6 +18075,16 @@
       },
       {
         "case": "it_preserves_live_instances_through_each_later_growth_failure",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_reclaims_sparse_blocks_without_renumbering_or_reviving_history",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_matches_every_small_pool_schedule_against_identity_and_occupancy_invariants",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
       }
@@ -30799,7 +30849,7 @@
         "source": "tests/unit/runtime/pool/main.c"
       },
       {
-        "case": "it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities",
+        "case": "it_reclaims_entirely_free_blocks_and_never_revives_their_identities",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
       }
@@ -37675,7 +37725,7 @@
         "source": "tests/unit/runtime/pool/main.c"
       },
       {
-        "case": "it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities",
+        "case": "it_reclaims_entirely_free_blocks_and_never_revives_their_identities",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
       },
@@ -39863,7 +39913,7 @@
         "source": "tests/unit/runtime/pool/main.c"
       },
       {
-        "case": "it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities",
+        "case": "it_reclaims_entirely_free_blocks_and_never_revives_their_identities",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
       },
@@ -39879,6 +39929,16 @@
       },
       {
         "case": "it_preserves_live_instances_through_each_later_growth_failure",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_reclaims_sparse_blocks_without_renumbering_or_reviving_history",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_matches_every_small_pool_schedule_against_identity_and_occupancy_invariants",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
       }
@@ -39904,7 +39964,7 @@
         "source": "tests/unit/runtime/pool/main.c"
       },
       {
-        "case": "it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities",
+        "case": "it_reclaims_entirely_free_blocks_and_never_revives_their_identities",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
       },
@@ -39920,6 +39980,16 @@
       },
       {
         "case": "it_preserves_live_instances_through_each_later_growth_failure",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_reclaims_sparse_blocks_without_renumbering_or_reviving_history",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_matches_every_small_pool_schedule_against_identity_and_occupancy_invariants",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
       }
@@ -40575,7 +40645,7 @@
         "source": "tests/unit/runtime/pool/main.c"
       },
       {
-        "case": "it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities",
+        "case": "it_reclaims_entirely_free_blocks_and_never_revives_their_identities",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
       },
@@ -43023,7 +43093,7 @@
         "source": "tests/unit/runtime/pool/main.c"
       },
       {
-        "case": "it_reclaims_only_free_trailing_blocks_and_never_revives_their_identities",
+        "case": "it_reclaims_entirely_free_blocks_and_never_revives_their_identities",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
       },
@@ -56866,6 +56936,70 @@
       },
       {
         "case": "it_preserves_live_instances_through_each_later_growth_failure",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/pool/support/reclamation.c": {
+    "contract": "docs/implementation/instance-ownership.md",
+    "purpose": "Verify sparse reclamation and complete bounded identity/free-set models.",
+    "tests": [
+      {
+        "case": "it_reclaims_sparse_blocks_without_renumbering_or_reviving_history",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_matches_every_small_pool_schedule_against_identity_and_occupancy_invariants",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/pool/support/model/transitions.c": {
+    "contract": "docs/implementation/instance-ownership.md",
+    "purpose": "Verify sparse reclamation and complete bounded identity/free-set models.",
+    "tests": [
+      {
+        "case": "it_reclaims_sparse_blocks_without_renumbering_or_reviving_history",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_matches_every_small_pool_schedule_against_identity_and_occupancy_invariants",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/pool/support/model/schedules.c": {
+    "contract": "docs/implementation/instance-ownership.md",
+    "purpose": "Verify sparse reclamation and complete bounded identity/free-set models.",
+    "tests": [
+      {
+        "case": "it_reclaims_sparse_blocks_without_renumbering_or_reviving_history",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_matches_every_small_pool_schedule_against_identity_and_occupancy_invariants",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/pool/support/model/records.c": {
+    "contract": "docs/implementation/instance-ownership.md",
+    "purpose": "Verify sparse reclamation and complete bounded identity/free-set models.",
+    "tests": [
+      {
+        "case": "it_reclaims_sparse_blocks_without_renumbering_or_reviving_history",
+        "command": "make -C tests/unit/runtime/pool",
+        "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_matches_every_small_pool_schedule_against_identity_and_occupancy_invariants",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
       }
