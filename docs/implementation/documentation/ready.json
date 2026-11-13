@@ -32691,6 +32691,11 @@
         "case": "it_rejects_unknown_and_foreign_type_return_selectors_before_dispatch",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_malformed_lifecycle_statuses_in_actual_generated_execution",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -32872,6 +32877,11 @@
         "case": "it_rejects_unknown_and_foreign_type_return_selectors_before_dispatch",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_malformed_lifecycle_statuses_in_actual_generated_execution",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
       }
     ]
   },
@@ -32886,6 +32896,11 @@
       },
       {
         "case": "it_rejects_malformed_condition_completion_without_executing_either_body",
+        "command": "make -C tests/unit/codegen/execution",
+        "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_checks_malformed_lifecycle_statuses_in_actual_generated_execution",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
       }

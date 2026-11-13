@@ -1353,10 +1353,19 @@ Contracts: [generated C](spec/implementation/compiler.md#generated-project-organ
   pool growth and startup lifecycle cases remain active. Full strict tests and
   generated-program ASan+UBSan passed; all 1089 maintained inputs have coverage.
   Final Doxygen reproducibility is checked before commit.
-- [ ] **T058 — Integrate native entry and lifecycle status.** Needs: T057.
+- [x] **T058 — Integrate native entry and lifecycle status.** Needs: T057.
   Enforce entry inlining and direct typed access; return normally from native C
   before status handling. Execute all constructor paths and permitted internal
   helpers; reject unsupported entry implementations with precise diagnostics.
+  Evidence: [native execution boundary](docs/implementation/native-execution.md).
+  Existing typed adapters, synchronous borrow closure and verified always-inline
+  entry already supply the required implementation. Added actual compiled
+  malformed-status checks for default, literal, clone and destroy, complementing
+  entry/condition, native failure, recursive-helper and rejected-entry cases.
+  The full strict execution leaf passed; actual layout/lifecycle and assembly
+  composition remain covered by T053/T056. Coverage and local links passed;
+  final Doxygen reproducibility is checked before commit. No new runtime path
+  or permissive fallback was introduced.
 - [ ] **T059 — Integrate runtime refusal and source diagnostics.** Needs: T020,
   T058. Report active source/caller paths before cleanup and preserve per-caller
   refusal snapshots. Run busy/stale/pre-root/native-failure cases, including

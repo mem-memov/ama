@@ -25,6 +25,9 @@ static bool malformed_condition;
 static bool trace_condition_checks;
 /** Test-only metadata fault injection; never enabled for valid native contracts. */
 static bool corrupt_return_link;
+/** Inject malformed lifecycle transport only for the explicitly selected native fixture. */
+static int malformed_lifecycle = -1;
+static const char *malformed_lifecycle_module;
 
 /**
  * Create the explicit native interface/body/ABI companion set used by this leaf. The caller
@@ -107,6 +110,16 @@ static void executable_native(const ScaffoldType *type) {
         }
         if (operation == ABI_CONDITION && malformed_condition) {
             implementation = " { (void)state; *result=true; return ama_status_make(AMA_OK,NULL,1); }\n";
+        }
+        if ((int)operation == malformed_lifecycle && malformed_lifecycle_module != NULL
+            && strcmp(type->plan->type->module->source->logical_path, malformed_lifecycle_module) == 0) {
+            implementation = operation == ABI_DEFAULT
+                ? " { *destination=(AMA_NATIVE(State)){.address=destination}; return ama_status_make(AMA_OK,NULL,1); }\n"
+                : operation == ABI_DESTROY
+                ? " { assert(state->address==state); return ama_status_make(AMA_OK,NULL,1); }\n"
+                : operation == ABI_LITERAL
+                ? " { (void)literal; *destination=(AMA_NATIVE(State)){.address=destination}; return ama_status_make(AMA_OK,NULL,1); }\n"
+                : " { *destination=*source; destination->address=destination; return ama_status_make(AMA_OK,NULL,1); }\n";
         }
         written = fputs(implementation, body);
         assert(written != EOF);
