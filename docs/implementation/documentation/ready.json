@@ -10780,6 +10780,41 @@
         "case": "it_walks_deep_blocks_and_dependency_chains_without_c_recursion",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_sorts_every_seven_request_permutation_stably_without_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_expanded_discovery_and_native_error_allocation_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_expanded_trees_once_in_exact_physical_request_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_requester_chains_from_expanded_header_and_body_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_selects_native_companions_only_for_required_parsed_native_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reloads_required_drafts_after_activation_without_reusing_an_inactive_record",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ]
   },
@@ -11049,6 +11084,51 @@
         "case": "it_walks_deep_blocks_and_dependency_chains_without_c_recursion",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_sorts_every_seven_request_permutation_stably_without_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_expanded_discovery_and_native_error_allocation_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_expanded_trees_once_in_exact_physical_request_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_requester_chains_from_expanded_header_and_body_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_selects_native_companions_only_for_required_parsed_native_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reloads_required_drafts_after_activation_without_reusing_an_inactive_record",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_keeps_a_native_companion_from_activating_an_unfinished_draft",
+        "command": "make -C tests/integration/parser/grammar",
+        "source": "tests/integration/parser/grammar/main.c"
+      },
+      {
+        "case": "it_isolates_identical_native_names_and_compiles_typed_abi_uses",
+        "command": "make -C tests/integration/parser/grammar",
+        "source": "tests/integration/parser/grammar/main.c"
       }
     ]
   },
@@ -21612,6 +21692,61 @@
         "case": "it_rejects_conflicting_standard_roots_and_cross_family_physical_aliases",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_publishes_native_companions_once_after_explicit_selection",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_every_native_companion_allocation_without_partial_publication",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_sorts_every_seven_request_permutation_stably_without_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_expanded_discovery_and_native_error_allocation_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_expanded_trees_once_in_exact_physical_request_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_requester_chains_from_expanded_header_and_body_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_selects_native_companions_only_for_required_parsed_native_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reloads_required_drafts_after_activation_without_reusing_an_inactive_record",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_keeps_a_native_companion_from_activating_an_unfinished_draft",
+        "command": "make -C tests/integration/parser/grammar",
+        "source": "tests/integration/parser/grammar/main.c"
+      },
+      {
+        "case": "it_isolates_identical_native_names_and_compiles_typed_abi_uses",
+        "command": "make -C tests/integration/parser/grammar",
+        "source": "tests/integration/parser/grammar/main.c"
       }
     ]
   },
@@ -21683,6 +21818,51 @@
         "case": "it_unwinds_each_multiword_standard_catalog_allocation_failure",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_publishes_native_companions_once_after_explicit_selection",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_every_native_companion_allocation_without_partial_publication",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_sorts_every_seven_request_permutation_stably_without_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_expanded_discovery_and_native_error_allocation_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_expanded_trees_once_in_exact_physical_request_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_requester_chains_from_expanded_header_and_body_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_selects_native_companions_only_for_required_parsed_native_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reloads_required_drafts_after_activation_without_reusing_an_inactive_record",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ]
   },
@@ -21862,6 +22042,51 @@
         "case": "it_unwinds_every_catalog_allocation_failure",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_publishes_native_companions_once_after_explicit_selection",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_every_native_companion_allocation_without_partial_publication",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_sorts_every_seven_request_permutation_stably_without_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_expanded_discovery_and_native_error_allocation_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_expanded_trees_once_in_exact_physical_request_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_requester_chains_from_expanded_header_and_body_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_selects_native_companions_only_for_required_parsed_native_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reloads_required_drafts_after_activation_without_reusing_an_inactive_record",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ]
   },
@@ -33420,6 +33645,41 @@
         "case": "it_composes_real_filesystem_and_unicode_failures_without_losing_source_context",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_sorts_every_seven_request_permutation_stably_without_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_expanded_discovery_and_native_error_allocation_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_expanded_trees_once_in_exact_physical_request_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_requester_chains_from_expanded_header_and_body_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_selects_native_companions_only_for_required_parsed_native_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reloads_required_drafts_after_activation_without_reusing_an_inactive_record",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ]
   },
@@ -33675,6 +33935,41 @@
       },
       {
         "case": "it_walks_deep_blocks_and_dependency_chains_without_c_recursion",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_sorts_every_seven_request_permutation_stably_without_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_expanded_discovery_and_native_error_allocation_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_expanded_trees_once_in_exact_physical_request_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_requester_chains_from_expanded_header_and_body_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_selects_native_companions_only_for_required_parsed_native_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reloads_required_drafts_after_activation_without_reusing_an_inactive_record",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
       }
@@ -39527,6 +39822,51 @@
         "case": "it_unwinds_each_multiword_standard_catalog_allocation_failure",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_publishes_native_companions_once_after_explicit_selection",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_every_native_companion_allocation_without_partial_publication",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_sorts_every_seven_request_permutation_stably_without_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_expanded_discovery_and_native_error_allocation_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_expanded_trees_once_in_exact_physical_request_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_requester_chains_from_expanded_header_and_body_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_selects_native_companions_only_for_required_parsed_native_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reloads_required_drafts_after_activation_without_reusing_an_inactive_record",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ]
   },
@@ -39613,6 +39953,51 @@
         "case": "it_rejects_cr_roots_unsupported_by_the_verified_c_target",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_publishes_native_companions_once_after_explicit_selection",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_every_native_companion_allocation_without_partial_publication",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_sorts_every_seven_request_permutation_stably_without_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_expanded_discovery_and_native_error_allocation_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_expanded_trees_once_in_exact_physical_request_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_requester_chains_from_expanded_header_and_body_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_selects_native_companions_only_for_required_parsed_native_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reloads_required_drafts_after_activation_without_reusing_an_inactive_record",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ]
   },
@@ -41037,6 +41422,51 @@
         "case": "it_unwinds_each_multiword_standard_catalog_allocation_failure",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_publishes_native_companions_once_after_explicit_selection",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_every_native_companion_allocation_without_partial_publication",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_sorts_every_seven_request_permutation_stably_without_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_expanded_discovery_and_native_error_allocation_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_expanded_trees_once_in_exact_physical_request_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_requester_chains_from_expanded_header_and_body_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_selects_native_companions_only_for_required_parsed_native_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reloads_required_drafts_after_activation_without_reusing_an_inactive_record",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ]
   },
@@ -44606,6 +45036,420 @@
         "case": "it_parses_documented_forms_with_exact_original_source_views",
         "command": "make -C tests/unit/parser/composition",
         "source": "tests/unit/parser/composition/main.c"
+      }
+    ]
+  },
+  "src/project/dependencies/discover/internal.h": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Collect complete exact dependency closure and select only required native companions.",
+    "tests": [
+      {
+        "case": "it_sorts_every_seven_request_permutation_stably_without_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_expanded_discovery_and_native_error_allocation_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_expanded_trees_once_in_exact_physical_request_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_requester_chains_from_expanded_header_and_body_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_selects_native_companions_only_for_required_parsed_native_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reloads_required_drafts_after_activation_without_reusing_an_inactive_record",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/project/dependencies/discover/paths.c": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Collect complete exact dependency closure and select only required native companions.",
+    "tests": [
+      {
+        "case": "it_sorts_every_seven_request_permutation_stably_without_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_expanded_discovery_and_native_error_allocation_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_expanded_trees_once_in_exact_physical_request_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_requester_chains_from_expanded_header_and_body_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_selects_native_companions_only_for_required_parsed_native_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reloads_required_drafts_after_activation_without_reusing_an_inactive_record",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      }
+    ]
+  },
+  "src/project/dependencies/discover/sort.c": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Collect complete exact dependency closure and select only required native companions.",
+    "tests": [
+      {
+        "case": "it_sorts_every_seven_request_permutation_stably_without_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_expanded_discovery_and_native_error_allocation_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_expanded_trees_once_in_exact_physical_request_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_requester_chains_from_expanded_header_and_body_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_selects_native_companions_only_for_required_parsed_native_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reloads_required_drafts_after_activation_without_reusing_an_inactive_record",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      }
+    ]
+  },
+  "src/source/module/resolve/native.c": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Collect complete exact dependency closure and select only required native companions.",
+    "tests": [
+      {
+        "case": "it_publishes_native_companions_once_after_explicit_selection",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_every_native_companion_allocation_without_partial_publication",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_sorts_every_seven_request_permutation_stably_without_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_expanded_discovery_and_native_error_allocation_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_expanded_trees_once_in_exact_physical_request_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_requester_chains_from_expanded_header_and_body_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_selects_native_companions_only_for_required_parsed_native_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reloads_required_drafts_after_activation_without_reusing_an_inactive_record",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_keeps_a_native_companion_from_activating_an_unfinished_draft",
+        "command": "make -C tests/integration/parser/grammar",
+        "source": "tests/integration/parser/grammar/main.c"
+      },
+      {
+        "case": "it_isolates_identical_native_names_and_compiles_typed_abi_uses",
+        "command": "make -C tests/integration/parser/grammar",
+        "source": "tests/integration/parser/grammar/main.c"
+      }
+    ]
+  },
+  "tests/unit/project/closure/support/activation.c": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Collect complete exact dependency closure and select only required native companions.",
+    "tests": [
+      {
+        "case": "it_sorts_every_seven_request_permutation_stably_without_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_expanded_discovery_and_native_error_allocation_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_expanded_trees_once_in_exact_physical_request_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_requester_chains_from_expanded_header_and_body_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_selects_native_companions_only_for_required_parsed_native_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reloads_required_drafts_after_activation_without_reusing_an_inactive_record",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      }
+    ]
+  },
+  "tests/unit/project/closure/support/expanded.c": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Collect complete exact dependency closure and select only required native companions.",
+    "tests": [
+      {
+        "case": "it_sorts_every_seven_request_permutation_stably_without_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_expanded_discovery_and_native_error_allocation_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_expanded_trees_once_in_exact_physical_request_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_requester_chains_from_expanded_header_and_body_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_selects_native_companions_only_for_required_parsed_native_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reloads_required_drafts_after_activation_without_reusing_an_inactive_record",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      }
+    ]
+  },
+  "tests/unit/project/closure/support/failures.c": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Collect complete exact dependency closure and select only required native companions.",
+    "tests": [
+      {
+        "case": "it_sorts_every_seven_request_permutation_stably_without_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_expanded_discovery_and_native_error_allocation_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_expanded_trees_once_in_exact_physical_request_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_requester_chains_from_expanded_header_and_body_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_selects_native_companions_only_for_required_parsed_native_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reloads_required_drafts_after_activation_without_reusing_an_inactive_record",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      }
+    ]
+  },
+  "tests/unit/project/closure/support/order.c": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Collect complete exact dependency closure and select only required native companions.",
+    "tests": [
+      {
+        "case": "it_sorts_every_seven_request_permutation_stably_without_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_expanded_discovery_and_native_error_allocation_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_expanded_trees_once_in_exact_physical_request_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_requester_chains_from_expanded_header_and_body_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_selects_native_companions_only_for_required_parsed_native_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reloads_required_drafts_after_activation_without_reusing_an_inactive_record",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      }
+    ]
+  },
+  "tests/unit/source/module/support/native.c": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Collect complete exact dependency closure and select only required native companions.",
+    "tests": [
+      {
+        "case": "it_publishes_native_companions_once_after_explicit_selection",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_every_native_companion_allocation_without_partial_publication",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_sorts_every_seven_request_permutation_stably_without_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_expanded_discovery_and_native_error_allocation_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_discovers_expanded_trees_once_in_exact_physical_request_order",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_requester_chains_from_expanded_header_and_body_paths",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_selects_native_companions_only_for_required_parsed_native_modules",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reloads_required_drafts_after_activation_without_reusing_an_inactive_record",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ]
   }

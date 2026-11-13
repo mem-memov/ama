@@ -31,6 +31,7 @@ static void it_maps_nested_multiword_submodules_and_native_companions_in_each_ro
         const ModuleSource *source = NULL;
         assert(module_catalog_find(&catalog, paths[selected], &source) == MODULE_OK);
         assert(strcmp(source_path(source->text), "generated/根 目录/商店 工具/商品 状态+/读取 数据") == 0);
+        assert(module_catalog_load_native(&catalog, source) == MODULE_OK);
         assert(strcmp(source->native_c, "generated/根 目录/商店 工具/商品 状态+/读取 数据.c") == 0);
         assert(strcmp(source->native_header, "generated/根 目录/商店 工具/商品 状态+/读取 数据.h") == 0);
         assert(strcmp(source_path(source->native_abi), "generated/根 目录/商店 工具/商品 状态+/读取 数据.abi") == 0);

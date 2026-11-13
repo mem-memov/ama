@@ -73,7 +73,7 @@ static void it_reports_a_real_parser_error_with_original_source_and_actionable_h
 static void it_keeps_a_native_companion_from_activating_an_unfinished_draft(void) {
     setup_test();
     const ModuleSource *source = find_fixture(".draft");
-    assert(source->native_c != NULL);
+    assert(!source->native_loaded && source->native_c == NULL && source->native_abi == NULL);
     ParseStatus parsed = parser_module_parse(&module, source->text);
     assert(parsed == PARSE_OK && module.sections.kind == MODULE_DRAFT && module.body.first == NULL);
     destroy_test();
@@ -126,6 +126,13 @@ static void write_typed_bindings(FILE *output) {
  * remain separate across modules.
  */
 static void write_module_probe(FILE *output, const ModuleSource *source, const IdentityName *name) {
+    AstModule native;
+    ast_module_init(&native, source_system_allocator());
+    ParseStatus activated = parser_module_parse(&native, source->text);
+    assert(activated == PARSE_OK && native.sections.kind == MODULE_NATIVE);
+    ast_module_destroy(&native);
+    ModuleStatus selected = module_catalog_load_native(&catalog, source);
+    assert(selected == MODULE_OK && source->native_loaded);
     abi_table_destroy(&table);
     abi_table_init(&table, source_system_allocator());
     ParseStatus parsed = parser_abi_parse(&table, source->native_abi);

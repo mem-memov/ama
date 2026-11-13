@@ -67,7 +67,7 @@ ModuleStatus module_read_entries(ModuleWalk *walk, const ModuleDirectory *direct
  */
 ModuleStatus module_visit_entry(ModuleWalk *walk, const ModuleDirectory *directory,
     const char *name);
-/** Check logical/physical uniqueness, load source/companions, then link one complete record. Failed scratch and loaded bytes remain catalog-owned for diagnostics/destruction.
+/** Check logical/physical uniqueness, load source bytes, then link one complete record. Failed scratch and loaded bytes remain catalog-owned for diagnostics/destruction.
  */
 ModuleStatus module_add_source(ModuleCatalog *catalog, const char *physical,
     const char *logical, const struct stat *metadata);

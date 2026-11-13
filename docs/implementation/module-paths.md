@@ -24,10 +24,15 @@ must supply its actual output exclusions.
 A structural directory requires an exact regular sibling file without its final
 ASCII plus. Strip only that plus in logical identity. The parent file's text does
 not decide the child's identity and is not implicitly imported or executed.
-Native companions append `.c`, `.h`, `.abi` to the physical filename. Existing
-companions must be regular files; source and ABI bytes receive strict UTF-8
-validation. C/header contents remain native inputs. Mandatory ABI bindings and
-required-draft diagnostics belong to later parsing/resolution tasks.
+Native companions append `.c`, `.h`, `.abi` to the physical filename. Catalog
+construction loads module sources without selecting those companions. After
+required parsing establishes `@C`, `module_catalog_load_native` probes that
+catalog-owned record's companions. Present companions must be supported regular
+files; ABI bytes receive strict UTF-8 validation. Complete companion views publish
+atomically and repeated successful requests reuse them without allocation. Missing
+companions remain null for explicit authoring; strict native checks enforce them
+later. Ordinary/unused modules and drafts do not acquire stale native inputs.
+See the [closure contract](project-dependencies.md#native-activation-and-invalidation).
 
 The POSIX implementation checks each configured-root prefix and candidate through
 exact directory-entry spelling, rejects symlinks, and retains physical source paths.
@@ -38,7 +43,7 @@ kind. Equal component sequences in different kinds are distinct. A physical
 module exposed under both kinds still fails the device/inode alias check. Lookup is enabled only after the entire build succeeds; no root can
 win by search order. Different case/canonical Unicode spellings remain distinct
 when the filesystem can represent them. Native encoding here is POSIX UTF-8;
-other platform adapters are not certified. Inputs must not mutate during build.
+other platform adapters are not certified. Inputs must remain stable through catalog construction and explicit companion selection.
 
 Traversal uses an explicit FIFO, not recursive C calls. Each directory enumerates
 then sorts names by bytewise strcmp, eliminating readdir order dependence.

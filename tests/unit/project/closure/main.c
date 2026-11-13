@@ -347,11 +347,23 @@ static void it_walks_deep_blocks_and_dependency_chains_without_c_recursion(void)
     destroy_project();
 }
 
+#include "support/expanded.c"
+#include "support/order.c"
+#include "support/activation.c"
+#include "support/failures.c"
+
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_selects_native_companions_only_for_required_parsed_native_modules();
+    it_reloads_required_drafts_after_activation_without_reusing_an_inactive_record();
+    it_invalidates_activation_changes_and_tracks_only_contributing_companions();
+    it_unwinds_every_expanded_discovery_and_native_error_allocation_failure();
+    it_discovers_expanded_trees_once_in_exact_physical_request_order();
+    it_reports_requester_chains_from_expanded_header_and_body_paths();
+    it_sorts_every_seven_request_permutation_stably_without_allocation();
     it_preserves_narrow_expected_constructs_and_both_dependency_locations();
     it_composes_real_filesystem_and_unicode_failures_without_losing_source_context();
     it_shares_complete_multiword_seeds_across_root_orders();

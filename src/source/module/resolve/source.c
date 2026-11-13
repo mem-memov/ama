@@ -1,9 +1,9 @@
 /**
  * @file
- * @brief Load unique source/ABI bytes and associate checked native companions.
+ * @brief Load unique module source bytes without selecting native companions.
  *
  * [SRC-01](../../../../spec/language/source-and-names.md#src-01)
- * Publish a source record only after its checked companions load; all partial storage stays catalog-owned.
+ * Native companion selection follows parsed activation; all source/partial storage stays catalog-owned.
  */
 #include <string.h>
 #include "../internal.h"
@@ -40,34 +40,6 @@ static ModuleStatus check_unique(ModuleCatalog *catalog, const char *physical,
     return MODULE_OK;
 }
 
-/** Probe a named optional C/header/ABI companion with exact bytes; missing is valid, unsupported entries fail, ABI text is loaded/UTF-8 checked.
- */
-static ModuleStatus load_companion(ModuleCatalog *catalog, const char *physical,
-    const char *suffix, const char **output, const SourceText **text) {
-    const char *path = source_arena_join(&catalog->arena, physical, "", suffix);
-    char *parent = source_arena_copy(&catalog->arena, physical);
-    if (path == NULL || parent == NULL) {
-        return module_fail(catalog, MODULE_OUT_OF_MEMORY, physical);
-    }
-    char *slash = strrchr(parent, '/');
-    const char *name = strrchr(path, '/');
-    if (slash != NULL) {
-        *slash = 0;
-    }
-    struct stat metadata;
-    PathProbe probe = path_exact_child(slash == NULL ? "." : (*parent == 0 ? "/" : parent),
-        name == NULL ? path : name + 1, path, &metadata);
-    if (probe == PATH_MISSING) {
-        return MODULE_OK;
-    }
-    if (probe != PATH_FOUND || !S_ISREG(metadata.st_mode)) {
-        return module_fail(catalog, probe == PATH_IO_ERROR ? MODULE_IO_ERROR
-            : MODULE_UNSUPPORTED_PATH, path);
-    }
-    *output = path;
-    return text == NULL ? MODULE_OK : module_load_utf8(catalog, path, text);
-}
-
 ModuleStatus module_add_source(ModuleCatalog *catalog, const char *physical,
     const char *logical, const struct stat *metadata) {
     ModuleStatus status = check_unique(catalog, physical, logical, metadata);
@@ -83,16 +55,6 @@ ModuleStatus module_add_source(ModuleCatalog *catalog, const char *physical,
     source->device = metadata->st_dev;
     source->inode = metadata->st_ino;
     status = module_load_utf8(catalog, physical, &source->text);
-    if (status == MODULE_OK) {
-        status = load_companion(catalog, physical, ".c", &source->native_c, NULL);
-    }
-    if (status == MODULE_OK) {
-        status = load_companion(catalog, physical, ".h", &source->native_header, NULL);
-    }
-    if (status == MODULE_OK) {
-        const char *path = NULL;
-        status = load_companion(catalog, physical, ".abi", &path, &source->native_abi);
-    }
     if (status == MODULE_OK) {
         source->next = catalog->first;
         catalog->first = source;

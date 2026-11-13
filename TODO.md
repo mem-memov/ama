@@ -885,10 +885,25 @@ Contracts: [declarations](spec/language/declarations.md),
 [calls](spec/language/calls-and-results.md),
 [control](spec/language/control-flow.md), [lists](spec/language/lists.md).
 
-- [ ] **T029 — Verify complete project closure.** Needs: T028. Load transitive
+- [x] **T029 — Verify complete project closure.** Needs: T028. Load transitive
   Ama/native dependencies once per identity and retain requester traces. Test
   legal dependency cycles, missing required drafts and companion selection only
   for active native modules, including invalidation when a draft becomes active.
+  Expanded discovery covers selected actions, every handler, folded condition
+  commands and traversal bodies. Requests retain their written spans and are
+  stably sorted by exact byte position before registry admission; aliases never
+  create duplicate visits or imports. The allocation-free merge sort is checked
+  on all 5040 seven-request permutations, with equal-key stability and multiset laws.
+  Native companions are selected atomically only after a required source parses as
+  @C; ordinary, unused and draft sources ignore stale companions. Repeated native
+  selection reuses the same views. Missing companions remain available to explicit
+  authoring; strict native checks still enforce complete contracts. Tests cover
+  expanded requester traces, draft activation, native-to-Ama input invalidation,
+  complete successful/error allocation-failure prefixes and real typed ABI compilation.
+  Existing exhaustive reachability, cycles, roots and deep traversal cases pass.
+  Full strict suite and focused ASan/UBSan pass (leak detection disabled), as do
+  862-input coverage and links. Warning-free Doxygen is byte-reproducible: 682
+  maintained files, 2708 interfaces, 295 destinations.
 - [ ] **T030 — Resolve explicit declaration inventories.** Needs: T029. Enforce
   one base-name namespace across sections and storage spellings; resolve full
   nominal module types. Provide shared exact source/interface-member lookup and

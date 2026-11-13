@@ -100,6 +100,7 @@ static void it_resolves_nested_submodules_and_physical_native_companions(void) {
     status = module_catalog_find(&catalog, ".shop.item.验证", &source);
     assert(status == MODULE_OK);
     assert(strcmp(source_path(source->text), "generated/project/shop/item+/验证") == 0);
+    assert(module_catalog_load_native(&catalog, source) == MODULE_OK);
     assert(strcmp(source->native_c, "generated/project/shop/item+/验证.c") == 0);
     assert(strcmp(source->native_header, "generated/project/shop/item+/验证.h") == 0);
     assert(strcmp(source_path(source->native_abi), "generated/project/shop/item+/验证.abi") == 0);
@@ -218,6 +219,11 @@ static void it_reports_the_exact_invalid_utf8_span_in_sources_and_abi(void) {
     file("generated/invalid/item.abi", "+ good\n\xed\xa0\x80");
     setup_catalog();
     status = module_catalog_build(&catalog, &root, 1);
+    assert(status == MODULE_OK);
+    const ModuleSource *source = NULL;
+    status = module_catalog_find(&catalog, ".item", &source);
+    assert(status == MODULE_OK);
+    status = module_catalog_load_native(&catalog, source);
     assert(status == MODULE_INVALID_UTF8 && catalog.issue.offset == 7);
     assert(strcmp(catalog.issue.path, "generated/invalid/item.abi") == 0);
     destroy_catalog();
@@ -258,11 +264,15 @@ static void it_unwinds_every_catalog_allocation_failure(void) {
     }
 }
 
+#include "support/native.c"
+
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_publishes_native_companions_once_after_explicit_selection();
+    it_unwinds_every_native_companion_allocation_without_partial_publication();
     it_rejects_cr_roots_unsupported_by_the_verified_c_target();
     it_enumerates_the_same_catalog_independently_of_file_creation_order();
     it_excludes_only_declared_owned_paths_and_slash_delimited_descendants();

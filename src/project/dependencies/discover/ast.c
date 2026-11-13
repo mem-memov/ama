@@ -1,11 +1,11 @@
 /**
  * @file
- * @brief Collect dependency paths from retained AST forms using explicit block work.
+ * @brief Collect complete dependency paths and admit them in physical source order.
  *
  * [DEP-03](../../../../spec/implementation/compiler.md#dep-03)
- * Traverse every represented lexical block without C recursion; new result/self/foreach AST consumers remain future work.
+ * Traverse every represented lexical block/header without C recursion; exact byte ordering preserves deterministic requester discovery.
  */
-#include "project/dependencies/internal.h"
+#include "internal.h"
 
 /** Project-arena-owned cursor for a borrowed AST block; explicit work replaces recursive C traversal. */
 typedef struct PendingBlock {
@@ -30,32 +30,32 @@ static bool push_block(Project *project, PendingBlock **pending, AstBlock block)
 
 /** Add only qualified constant module dependencies represented by this source; local values/literals add none.
  */
-static bool source_dependency(Project *project, ProjectModule *module, const AstSource *source) {
+static bool source_dependency(Project *project, DependencyPaths *paths, const AstSource *source) {
     return source == NULL || source->kind != AST_CONSTANT_SOURCE
-        || project_add_dependency(project, module, source->module_path);
+        || project_collect_path(project, paths, source->module_path);
 }
 
 /** Collect declaration type, initializer, constant namespace and bound-source paths for one represented AST node.
  */
-static bool node_dependencies(Project *project, ProjectModule *module, const AstNode *node) {
+static bool node_dependencies(Project *project, DependencyPaths *paths, const AstNode *node) {
     if (node->kind == AST_DECLARATION) {
-        if (!project_add_dependency(project, module, node->as.declaration.type)) {
+        if (!project_collect_path(project, paths, node->as.declaration.type)) {
             return false;
         }
         for (AstInitializer *value = node->as.declaration.first; value != NULL; value = value->next) {
-            if (!source_dependency(project, module, value->source)) {
+            if (!source_dependency(project, paths, value->source)) {
                 return false;
             }
         }
     } else if (node->kind == AST_ASSIGNMENT) {
-        return source_dependency(project, module, node->as.assignment.source);
+        return source_dependency(project, paths, node->as.assignment.source);
     } else if (node->kind == AST_CALL) {
         if (node->as.call.mode == AST_CONSTANT_READ
-            && !project_add_dependency(project, module, node->as.call.namespace_path)) {
+            && !project_collect_path(project, paths, node->as.call.namespace_path)) {
             return false;
         }
         for (AstArgument *argument = node->as.call.first; argument != NULL; argument = argument->next) {
-            if (!source_dependency(project, module, argument->source)) {
+            if (!source_dependency(project, paths, argument->source)) {
                 return false;
             }
         }
@@ -63,20 +63,26 @@ static bool node_dependencies(Project *project, ProjectModule *module, const Ast
     return true;
 }
 
-/** Push retained call alternatives or branch/loop bodies in lexical traversal order; new AST forms require explicit future cases.
- */
+/** Push all structural subtrees once. Collection order is independent of subsequent exact source-position sorting. */
 static bool child_blocks(Project *project, PendingBlock **pending, const AstNode *node) {
     if (node->kind == AST_CALL) {
-        return push_block(project, pending, node->as.call.alternative);
-    }
-    if (node->kind == AST_BRANCH || node->kind == AST_LOOP) {
-        return push_block(project, pending, node->as.control.alternative)
-            && push_block(project, pending, node->as.control.body);
+        if (!push_block(project, pending, node->as.call.alternative)) { return false; }
+        for (const AstOutputAction *action = node->as.call.first_output; action != NULL; action = action->next) {
+            if (action->kind == AST_SELECTED_ACTION
+                && !push_block(project, pending, (AstBlock){action->operation, action->operation})) { return false; }
+        }
+    } else if (node->kind == AST_BRANCH || node->kind == AST_LOOP) {
+        if (!push_block(project, pending, node->as.control.alternative)
+            || !push_block(project, pending, node->as.control.body)) { return false; }
+        if (node->as.control.command != NULL
+            && !push_block(project, pending, (AstBlock){node->as.control.command, node->as.control.command})) { return false; }
+    } else if (node->kind == AST_FOREACH) {
+        return push_block(project, pending, node->as.traversal.body);
     }
     return true;
 }
 
-bool project_discover(Project *project, ProjectModule *module) {
+bool project_collect_paths(Project *project, const ProjectModule *module, DependencyPaths *paths) {
     PendingBlock *pending = NULL;
     if (!push_block(project, &pending, module->syntax.body)
         || !push_block(project, &pending, module->syntax.results)
@@ -90,10 +96,20 @@ bool project_discover(Project *project, ProjectModule *module) {
             pending = pending->next;
         } else {
             pending->node = node->next;
-            if (!node_dependencies(project, module, node) || !child_blocks(project, &pending, node)) {
+            if (!node_dependencies(project, paths, node) || !child_blocks(project, &pending, node)) {
                 return false;
             }
         }
+    }
+    return true;
+}
+
+bool project_discover(Project *project, ProjectModule *module) {
+    DependencyPaths paths = {0};
+    if (!project_collect_paths(project, module, &paths)) { return false; }
+    project_sort_paths(&paths);
+    for (DependencyPath *request = paths.first; request != NULL; request = request->next) {
+        if (!project_add_dependency(project, module, request->path)) { return false; }
     }
     return true;
 }

@@ -39,6 +39,7 @@ typedef struct ModuleSource {
     const SourceText *native_abi;
     dev_t device;
     ino_t inode;
+    bool native_loaded;
 } ModuleSource;
 
 /** Logical namespace family; zero is deliberately invalid until a root is explicitly configured. */
@@ -107,6 +108,13 @@ ModuleStatus module_catalog_build(ModuleCatalog *catalog,
  */
 ModuleStatus module_catalog_find(const ModuleCatalog *catalog,
     const char *logical_path, const ModuleSource **output);
+/** Load optional physical companions for a catalog-owned source after native activation is established.
+ * Missing companions remain null for explicit authoring; strict native validation is a later stage.
+ * Successful repeated requests reuse the same views. Failure publishes no partial companion set;
+ * catalog-owned scratch and original failure locations survive until destruction.
+ * @return MODULE_OK, invalid catalog/member, allocation, exact-path, IO or UTF-8 failure.
+ */
+ModuleStatus module_catalog_load_native(ModuleCatalog *, const ModuleSource *);
 /** Validate an absolute single/double-dot selector and nonempty complete-name components.
  * @return Exact spelling membership with no edge/separator spaces, filesystem parent traversal or normalization.
  */
