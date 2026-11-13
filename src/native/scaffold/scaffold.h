@@ -3,6 +3,8 @@
  * @brief Own validated native declaration models, artifact bytes and explicit publication state.
  *
  * [CABI-06](../../../spec/implementation/native-interface.md#cabi-06)
+ * [ERROR-04](../../../spec/implementation/diagnostics.md#error-04) plans
+ * current full-key native providers before any matching header/body context.
  * Borrow the complete frontend/configuration through build/publication; handwritten source replacement requires explicit options.
  */
 #ifndef AMA_NATIVE_SCAFFOLD_H
@@ -12,6 +14,7 @@
 #include "compiler/frontend.h"
 #include "output/artifact.h"
 #include "source/identity/identity.h"
+#include "native/status/providers/providers.h"
 
 /** Distinct nominal C view/storage/interface roles; shared spelling of a native payload never merges these types. */
 typedef enum {
@@ -34,6 +37,8 @@ typedef struct ScaffoldType {
     const PlannedType *plan;
     const IdentityName *names[SCAFFOLD_ROLE_COUNT];
     const IdentityName *native_prefix;
+    /** Complete-key planned component-local library namespace; zero only for nonnative models. */
+    uint16_t error_provider;
     ScaffoldMember *members;
     const char *ama_path;
     const char *header_path;
@@ -59,6 +64,8 @@ typedef struct {
     const CompilerFrontend *frontend;
     SourceArena arena;
     IdentityRegistry identities;
+    /** Own sorted provider rows while their complete native names remain borrowed from identities. */
+    NativeStatusProviders providers;
     SourceManager texts;
     ScaffoldOptions options;
     ScaffoldType *types;

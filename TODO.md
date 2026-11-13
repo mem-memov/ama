@@ -1305,7 +1305,7 @@ Contracts: [references and copying](spec/language/values-and-references.md),
 Contracts: [generated C](spec/implementation/compiler.md#generated-project-organization),
 [host outcomes](spec/implementation/runtime.md#root-execution-and-host-control).
 
-- [ ] **T055 — Emit reusable native declarations and scaffold contexts.** Needs:
+- [x] **T055 — Emit reusable native declarations and scaffold contexts.** Needs:
   T010, T028, T040. Generate self-contained typed headers, optional untouched
   skeletons and C tooling configuration from validated interfaces. Independently
   check headers as first includes, reference cycles and prefix cleanup; preserve
@@ -1315,6 +1315,17 @@ Contracts: [generated C](spec/implementation/compiler.md#generated-project-organ
   Plan all native error-provider namespaces with T010’s full-key planner before
   emitting matching header/body AMA_NATIVE_ERROR contexts; replace the frozen
   harness identities with T017’s checked current-source identities.
+  Evidence: [native contract composition](docs/implementation/native-contract-composition.md)
+  plans all current-source native error providers from complete root-aware keys
+  before matching header/body contexts, with dependency-ordered owner teardown.
+  Real Unicode/multiword root-distinct modules/reference cycles compile header-first
+  and produce matching distinct codes without macro leaks or repeated arguments.
+  Exact ..integer headers bind a checked typed from_size alias; absent/wrong
+  prototypes and ABI-slot reuse fail, similar identities gain no contract, and
+  explicit new skeletons remain fail-first with six ABI slots. Existing companions
+  are preserved. Every planning/emission allocation and missing SDK dependency is
+  checked. Full strict tests and ASan+UBSan passed; all 1087 maintained inputs have
+  coverage. Final Doxygen reproducibility is checked before commit.
 - [ ] **T056 — Emit the single project assembly.** Needs: T045, T054, T055.
   Order declarations/types/constants/native bodies/runtime/labels under one
   context-parameterized execution function. Compile agreement checks with isolated

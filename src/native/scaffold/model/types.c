@@ -3,6 +3,8 @@
  * @brief Register exact nominal view/member identities and stable native artifact names.
  *
  * [NAME-01](../../../../spec/implementation/compiler.md#name-01)
+ * [ERROR-04](../../../../spec/implementation/diagnostics.md#error-04) requires
+ * all native prefix identities registered before the sorted provider plan is built.
  * Sort the retained supported logical identities explicitly; forward/reference cycles do not recursively expand C layouts.
  * [TYPE-06](../../../../spec/language/declarations.md#type-06) Member identities use exact semantic names for both declaration forms.
  */
@@ -103,7 +105,7 @@ bool scaffold_model(NativeScaffold *scaffold) {
             scaffold->selected = type;
         }
     }
-    return scaffold->selected != NULL;
+    return scaffold->selected != NULL && scaffold_providers(scaffold);
 }
 
 const ScaffoldType *native_scaffold_type(const NativeScaffold *scaffold, const SemanticType *semantic) {

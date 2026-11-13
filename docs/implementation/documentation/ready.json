@@ -6472,6 +6472,36 @@
         "case": "it_unwinds_every_proposed_frontend_allocation_failure",
         "command": "make -C tests/unit/native/scaffold/declarations",
         "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_incompatible_standard_integer_bridge_declarations",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_source_provider_and_scaffold_allocation",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
       }
     ]
   },
@@ -6518,6 +6548,36 @@
         "case": "it_unwinds_every_proposed_frontend_allocation_failure",
         "command": "make -C tests/unit/native/scaffold/declarations",
         "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_incompatible_standard_integer_bridge_declarations",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_source_provider_and_scaffold_allocation",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
       }
     ]
   },
@@ -6763,6 +6823,36 @@
         "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_incompatible_standard_integer_bridge_declarations",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_source_provider_and_scaffold_allocation",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
       }
     ]
   },
@@ -6870,6 +6960,36 @@
         "case": "it_unwinds_every_proposed_frontend_allocation_failure",
         "command": "make -C tests/unit/native/scaffold/declarations",
         "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_incompatible_standard_integer_bridge_declarations",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_source_provider_and_scaffold_allocation",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
       }
     ]
   },
@@ -6916,6 +7036,36 @@
         "case": "it_unwinds_every_proposed_frontend_allocation_failure",
         "command": "make -C tests/unit/native/scaffold/declarations",
         "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_incompatible_standard_integer_bridge_declarations",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_source_provider_and_scaffold_allocation",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
       }
     ]
   },
@@ -6962,6 +7112,36 @@
         "case": "it_unwinds_every_proposed_frontend_allocation_failure",
         "command": "make -C tests/unit/native/scaffold/declarations",
         "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_incompatible_standard_integer_bridge_declarations",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_source_provider_and_scaffold_allocation",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
       }
     ]
   },
@@ -7008,6 +7188,36 @@
         "case": "it_unwinds_every_proposed_frontend_allocation_failure",
         "command": "make -C tests/unit/native/scaffold/declarations",
         "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_incompatible_standard_integer_bridge_declarations",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_source_provider_and_scaffold_allocation",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
       }
     ]
   },
@@ -7059,6 +7269,36 @@
         "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_incompatible_standard_integer_bridge_declarations",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_source_provider_and_scaffold_allocation",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
       }
     ]
   },
@@ -7816,6 +8056,36 @@
         "case": "it_unwinds_every_proposed_frontend_allocation_failure",
         "command": "make -C tests/unit/native/scaffold/declarations",
         "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_incompatible_standard_integer_bridge_declarations",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_source_provider_and_scaffold_allocation",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
       }
     ]
   },
@@ -35592,6 +35862,36 @@
         "case": "it_requires_readiness_and_rejects_a_second_publication_attempt",
         "command": "make -C tests/unit/native/scaffold/publication",
         "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_incompatible_standard_integer_bridge_declarations",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_source_provider_and_scaffold_allocation",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
       }
     ]
   },
@@ -36148,6 +36448,36 @@
         "case": "it_requires_readiness_and_rejects_a_second_publication_attempt",
         "command": "make -C tests/unit/native/scaffold/publication",
         "source": "tests/unit/native/scaffold/publication/main.c"
+      },
+      {
+        "case": "it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_incompatible_standard_integer_bridge_declarations",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_source_provider_and_scaffold_allocation",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
       }
     ]
   },
@@ -45046,6 +45376,36 @@
         "case": "it_checks_error_context_arguments_and_output_failure",
         "command": "make -C tests/unit/native/namespace",
         "source": "tests/unit/native/namespace/main.c"
+      },
+      {
+        "case": "it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_incompatible_standard_integer_bridge_declarations",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_source_provider_and_scaffold_allocation",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
       }
     ]
   },
@@ -45154,6 +45514,36 @@
         "case": "it_sorts_every_small_inventory_permutation_exactly",
         "command": "make -C tests/unit/native/status-providers",
         "source": "tests/unit/native/status-providers/main.c"
+      },
+      {
+        "case": "it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_incompatible_standard_integer_bridge_declarations",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_source_provider_and_scaffold_allocation",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
       }
     ]
   },
@@ -59060,6 +59450,366 @@
         "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
         "command": "make -C tests/unit/runtime/ownership-model",
         "source": "tests/unit/runtime/ownership-model/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/model/providers.c": {
+    "contract": "docs/implementation/native-contract-composition.md",
+    "purpose": "Compose current-source full-key error providers and exact typed standard size bridges without implicit authored-file replacement.",
+    "tests": [
+      {
+        "case": "it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_incompatible_standard_integer_bridge_declarations",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_source_provider_and_scaffold_allocation",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/model/bridge.c": {
+    "contract": "docs/implementation/native-contract-composition.md",
+    "purpose": "Compose current-source full-key error providers and exact typed standard size bridges without implicit authored-file replacement.",
+    "tests": [
+      {
+        "case": "it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_incompatible_standard_integer_bridge_declarations",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_source_provider_and_scaffold_allocation",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/emit/bridge.c": {
+    "contract": "docs/implementation/native-contract-composition.md",
+    "purpose": "Compose current-source full-key error providers and exact typed standard size bridges without implicit authored-file replacement.",
+    "tests": [
+      {
+        "case": "it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_incompatible_standard_integer_bridge_declarations",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_source_provider_and_scaffold_allocation",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/scaffold/contracts/main.c": {
+    "contract": "docs/implementation/native-contract-composition.md",
+    "purpose": "Compose current-source full-key error providers and exact typed standard size bridges without implicit authored-file replacement.",
+    "tests": [
+      {
+        "case": "it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_incompatible_standard_integer_bridge_declarations",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_source_provider_and_scaffold_allocation",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/scaffold/contracts/Makefile": {
+    "contract": "docs/implementation/native-contract-composition.md",
+    "purpose": "Compose current-source full-key error providers and exact typed standard size bridges without implicit authored-file replacement.",
+    "tests": [
+      {
+        "case": "it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_incompatible_standard_integer_bridge_declarations",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_source_provider_and_scaffold_allocation",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/scaffold/contracts/support/fixture.c": {
+    "contract": "docs/implementation/native-contract-composition.md",
+    "purpose": "Compose current-source full-key error providers and exact typed standard size bridges without implicit authored-file replacement.",
+    "tests": [
+      {
+        "case": "it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_incompatible_standard_integer_bridge_declarations",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_source_provider_and_scaffold_allocation",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/scaffold/contracts/support/failures.c": {
+    "contract": "docs/implementation/native-contract-composition.md",
+    "purpose": "Compose current-source full-key error providers and exact typed standard size bridges without implicit authored-file replacement.",
+    "tests": [
+      {
+        "case": "it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_incompatible_standard_integer_bridge_declarations",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_source_provider_and_scaffold_allocation",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/scaffold/contracts/support/bridge.c": {
+    "contract": "docs/implementation/native-contract-composition.md",
+    "purpose": "Compose current-source full-key error providers and exact typed standard size bridges without implicit authored-file replacement.",
+    "tests": [
+      {
+        "case": "it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_incompatible_standard_integer_bridge_declarations",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_source_provider_and_scaffold_allocation",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/scaffold/contracts/support/providers.c": {
+    "contract": "docs/implementation/native-contract-composition.md",
+    "purpose": "Compose current-source full-key error providers and exact typed standard size bridges without implicit authored-file replacement.",
+    "tests": [
+      {
+        "case": "it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_incompatible_standard_integer_bridge_declarations",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_source_provider_and_scaffold_allocation",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/scaffold/contracts/support/process.c": {
+    "contract": "docs/implementation/native-contract-composition.md",
+    "purpose": "Compose current-source full-key error providers and exact typed standard size bridges without implicit authored-file replacement.",
+    "tests": [
+      {
+        "case": "it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_rejects_missing_or_incompatible_standard_integer_bridge_declarations",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_source_provider_and_scaffold_allocation",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
+        "command": "make -C tests/unit/native/scaffold/contracts",
+        "source": "tests/unit/native/scaffold/contracts/main.c"
       }
     ]
   }

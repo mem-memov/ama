@@ -3,6 +3,9 @@
  * @brief Declare native model, C declaration emission and artifact-ownership phase contracts.
  *
  * [CABI-06](../../../spec/implementation/native-interface.md#cabi-06)
+ * [PROTO-03](../../../spec/implementation/native-interface.md#proto-03) binds
+ * only the exact standard integer size bridge; [ERROR-04](../../../spec/implementation/diagnostics.md#error-04)
+ * plans complete native provider keys before emission.
  * Native authoring headers stand alone; publication IO uses its separate narrow frontend-free phase interface.
  */
 #ifndef AMA_NATIVE_SCAFFOLD_INTERNAL_H
@@ -37,6 +40,20 @@ bool scaffold_hook_first(const ScaffoldType *type, AbiOperation operation);
 /** Register all supported nominal views/member names, sort by exact identity and retain the selected entry. Partial records are not published as a ready scaffold.
  */
 bool scaffold_model(NativeScaffold *scaffold);
+/** Plan every native provider from its complete registered identity before any
+ * matching header/body context is emitted; retain failed scratch for teardown.
+ */
+bool scaffold_providers(NativeScaffold *);
+/** Recognize only the exact native standard-root integer contract. */
+bool scaffold_size_bridge(const ScaffoldType *);
+/** Emit an exact C type assertion using the authored from_size declaration;
+ * do not invent a prototype or add an ABI metadata slot.
+ */
+bool scaffold_emit_bridge(FILE *, const ScaffoldType *);
+/** Add the fixed bridge prototype only to a newly requested standard integer header. */
+bool scaffold_emit_bridge_declaration(FILE *, const ScaffoldType *);
+/** Add an unwritten fixed bridge implementation only to an explicitly generated body template. */
+bool scaffold_emit_bridge_body(FILE *, const ScaffoldType *);
 /** Invoke a borrowed synchronous emitter into private scratch, check all stream/size operations, then append a complete immutable artifact. Callback/model/source lifetimes outlive emission.
  */
 bool scaffold_artifact(NativeScaffold *scaffold, const char *path, bool authored,

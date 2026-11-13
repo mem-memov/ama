@@ -120,7 +120,7 @@ preprocessor errors. Begin rejects either leaked temporary macro; end removes
 both. Header and body inclusions use the same complete identity and planned ID,
 even when their inclusion orders differ. The generator does not inspect native
 C to infer reason IDs, parse local declarations, or rewrite arbitrary source.
-General generated provider-emission integration remains T055; that task must call this
+[T055 generated provider emission](native-contract-composition.md) now calls this
 planner before emitting the dependency closure.
 
 ## Ordering argument and additional acceptance

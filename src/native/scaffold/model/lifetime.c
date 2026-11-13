@@ -3,6 +3,8 @@
  * @brief Own scaffold arena, exact identities, source bytes and first-error lifetime.
  *
  * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03)
+ * [ERROR-04](../../../../spec/implementation/diagnostics.md#error-04) provider
+ * rows borrow registered identities and must be destroyed before that registry.
  * The validated frontend remains borrowed; failed model/output storage is released by one explicit owner.
  */
 #include <assert.h>
@@ -15,11 +17,13 @@ void native_scaffold_init(NativeScaffold *scaffold, const CompilerFrontend *fron
     *scaffold = (NativeScaffold){.frontend = frontend};
     source_arena_init(&scaffold->arena, allocator);
     identity_registry_init(&scaffold->identities, allocator);
+    native_status_providers_init(&scaffold->providers, allocator);
     source_manager_init(&scaffold->texts, allocator);
 }
 
 void native_scaffold_destroy(NativeScaffold *scaffold) {
     source_manager_destroy(&scaffold->texts);
+    native_status_providers_destroy(&scaffold->providers);
     identity_registry_destroy(&scaffold->identities);
     source_arena_destroy(&scaffold->arena);
     *scaffold = (NativeScaffold){0};

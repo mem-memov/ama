@@ -5,6 +5,9 @@
  * [CABI-06](../../../../spec/implementation/native-interface.md#cabi-06)
  * All required types precede permitted field access; source locations retain original Ama names without runtime/body inclusion.
  * [TYPE-06](../../../../spec/language/declarations.md#type-06) Semantic spellings cover inferred fields alongside explicit declarations.
+ * [ERROR-04](../../../../spec/implementation/diagnostics.md#error-04) matches
+ * representation-header error providers to their body contexts. [PROTO-03](../../../../spec/implementation/native-interface.md#proto-03)
+ * requires the authored standard size-helper declaration before a typed alias can bind it.
  */
 #include "native/scaffold/internal.h"
 #include "source/mapping/directive.h"
@@ -99,7 +102,9 @@ bool scaffold_emit_types(NativeScaffold *scaffold, FILE *output, const ScaffoldT
     }
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
         if (type->plan->type->module->syntax.sections.kind == MODULE_NATIVE
-            && (!native_namespace_begin(output, type->native_prefix) || !scaffold_include(output, type->header_path)
+            && (!native_namespace_begin(output, type->native_prefix)
+                || !native_namespace_status(output, type->error_provider)
+                || !scaffold_include(output, type->header_path) || !scaffold_emit_bridge(output, type)
                 || !native_namespace_end(output))) {
             return false;
         }

@@ -3,6 +3,8 @@
  * @brief Emit fail-first native skeletons and complete explicit ABI binding records.
  *
  * [CABI-06](../../../../spec/implementation/native-interface.md#cabi-06)
+ * [PROTO-03](../../../../spec/implementation/native-interface.md#proto-03) adds
+ * the standard integer prototype/stub while the ABI record universe remains six.
  * A skeleton includes its own interface; compatible C definition deduplication must not remove mandatory + or - metadata.
  */
 #include "native/scaffold/internal.h"
@@ -43,7 +45,7 @@ bool scaffold_emit_body(NativeScaffold *scaffold, FILE *output, const ScaffoldTy
             return false;
         }
     }
-    return scaffold_include(output, type->end_name);
+    return scaffold_emit_bridge_body(output, type) && scaffold_include(output, type->end_name);
 }
 
 bool scaffold_emit_payload(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type) {
@@ -53,7 +55,8 @@ bool scaffold_emit_payload(NativeScaffold *scaffold, FILE *output, const Scaffol
         "/* Included in this module's generated AMA_NATIVE context. */\n"
         "struct AMA_NATIVE(State) {\n"
         "    /* TODO: declare native-owned data; persistent Ama links belong in Ama fields. */\n"
-        "    unsigned char reserved;\n};\n#endif\n", prefix, prefix) >= 0;
+        "    unsigned char reserved;\n};\n", prefix, prefix) >= 0
+        && scaffold_emit_bridge_declaration(output, type) && fputs("#endif\n", output) != EOF;
 }
 
 bool scaffold_emit_abi(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type) {

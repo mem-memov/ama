@@ -3,6 +3,8 @@
  * @brief Emit scoped field/input/output aliases and their complete cleanup.
  *
  * [NAME-05](../../../../spec/implementation/native-interface.md#name-05)
+ * [ERROR-04](../../../../spec/implementation/diagnostics.md#error-04) supplies
+ * the preplanned exact module provider to match its representation-header context.
  * Ordinal access macros name qualified declarations and never leak into the next module context.
  */
 #include "native/scaffold/internal.h"
@@ -10,6 +12,7 @@
 bool scaffold_emit_context(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type) {
     (void)scaffold;
     if (!native_namespace_begin(output, type->native_prefix)
+        || (type->error_provider != 0 && !native_namespace_status(output, type->error_provider))
         || fputs("#define AMA_FIELD(position) AMA_FIELD_##position\n"
             "#define AMA_INPUT(position) AMA_INPUT_##position\n"
             "#define AMA_OUTPUT(position) AMA_OUTPUT_##position\n", output) == EOF) {

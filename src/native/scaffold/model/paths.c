@@ -64,7 +64,7 @@ bool scaffold_paths(NativeScaffold *scaffold) {
     if (scaffold->directory == NULL || scaffold->sdk == NULL) {
         return false;
     }
-    const char *required[] = {"native/status/status.h", "native/abi/bytes.h",
+    const char *required[] = {"native/status/status.h", "native/status/library.h", "native/abi/bytes.h",
         "native/abi/services.h", "native/toolchain/gcc.h"};
     for (size_t index = 0; index < sizeof(required) / sizeof(required[0]); index++) {
         const char *path = scaffold_join(scaffold, scaffold->sdk, "/", required[index]);

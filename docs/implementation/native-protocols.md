@@ -83,7 +83,7 @@ integer instance belongs to its caller until explicit disposal. List service
 frames will own/protect such results under LIST-04 in their later roadmap tasks.
 
 The runtime consumes compiler-validated nominal descriptors. It does not discover
-the standard integer by payload layout or helper basename. T055 binds the exact
+the standard integer by payload layout or helper basename. [T055](native-contract-composition.md) binds the exact
 standard-root identity to its declared typed `from_size` symbol and rejects a
 missing/incompatible declaration; intrinsic list lowering later supplies the
 recipe. Synthetic runtime descriptors test the constructor mechanics independently
@@ -96,9 +96,9 @@ Its companion header/implementation supply all six explicitly bound protocols
 and the additional typed `from_size(State *, size_t)` helper. The real AST and
 ABI readers check its declaration and exactly six records. An isolated
 `..integer` C namespace is checked against T017’s current full-root registry;
-actual generated bridge binding remains T055.
-The fixture's empty nominal entry views are the C acceptance harness's concrete
-binding, not a claim that the retained frontend already compiles `..integer`.
+[T055 generated bridge binding](native-contract-composition.md) now checks the exact standard header contract.
+These fixtures establish declaration and conversion contracts; generated
+list-method invocation remains a later execution-adapter task.
 The production library surface remains T085.
 
 The native value owns a signed arbitrary-precision magnitude in little-endian
