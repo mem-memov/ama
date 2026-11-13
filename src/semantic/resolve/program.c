@@ -2,6 +2,8 @@
  * @file
  * @brief Compose nominal linking, clone capability and typed initializer/statement resolution.
  *
+ * [COPY-06](../../../spec/language/values-and-references.md#copy-06) requires
+ * positive copy-boundary proofs before validated semantic publication.
  * [COMP-02](../../../spec/implementation/compiler.md#comp-02)
  * Resolve against complete explicit names before graph validation; no partially resolved program is published.
  * [TYPE-06](../../../spec/language/declarations.md#type-06) Inference completes before copy capability and transfer validation.
@@ -21,6 +23,9 @@ SemanticStatus semantic_resolve(SemanticProgram *program) {
         if (!semantic_initializers(program, type) || !semantic_statements(program, type)) {
             return program->status;
         }
+    }
+    for (SemanticType *type = program->first; type != NULL; type = type->next) {
+        if (!semantic_copy_boundaries(program, type)) { return program->status; }
     }
     program->resolved = true;
     return SEMANTIC_OK;

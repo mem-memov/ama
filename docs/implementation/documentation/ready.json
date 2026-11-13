@@ -20594,6 +20594,41 @@
         "case": "it_unwinds_every_allocation_in_complete_control_contexts",
         "command": "make -C tests/unit/semantic/control",
         "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_keeps_ordinary_handle_and_continuation_transfer_kinds_distinct",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_accepts_owned_scalar_continuation_sources_from_owned_and_reference_storage",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_rejects_resume_inputs_whole_list_sources_and_invalid_prefix_forms",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_rejects_positive_direct_reference_aliases_and_current_root_overlap",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_does_not_infer_aliases_across_blocks_calls_yields_or_unknown_reference_stores",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_keeps_external_references_outside_clone_capability_and_ownership_boundaries",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_positive_reference_origin_allocation",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
       }
     ]
   },
@@ -21865,6 +21900,41 @@
         "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_keeps_ordinary_handle_and_continuation_transfer_kinds_distinct",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_accepts_owned_scalar_continuation_sources_from_owned_and_reference_storage",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_rejects_resume_inputs_whole_list_sources_and_invalid_prefix_forms",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_rejects_positive_direct_reference_aliases_and_current_root_overlap",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_does_not_infer_aliases_across_blocks_calls_yields_or_unknown_reference_stores",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_keeps_external_references_outside_clone_capability_and_ownership_boundaries",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_positive_reference_origin_allocation",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
       }
     ]
   },
@@ -22786,6 +22856,41 @@
         "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
+      },
+      {
+        "case": "it_keeps_ordinary_handle_and_continuation_transfer_kinds_distinct",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_accepts_owned_scalar_continuation_sources_from_owned_and_reference_storage",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_rejects_resume_inputs_whole_list_sources_and_invalid_prefix_forms",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_rejects_positive_direct_reference_aliases_and_current_root_overlap",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_does_not_infer_aliases_across_blocks_calls_yields_or_unknown_reference_stores",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_keeps_external_references_outside_clone_capability_and_ownership_boundaries",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_positive_reference_origin_allocation",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
       }
     ]
   },
@@ -39784,6 +39889,41 @@
         "case": "it_unwinds_every_allocation_in_complete_control_contexts",
         "command": "make -C tests/unit/semantic/control",
         "source": "tests/unit/semantic/control/main.c"
+      },
+      {
+        "case": "it_keeps_ordinary_handle_and_continuation_transfer_kinds_distinct",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_accepts_owned_scalar_continuation_sources_from_owned_and_reference_storage",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_rejects_resume_inputs_whole_list_sources_and_invalid_prefix_forms",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_rejects_positive_direct_reference_aliases_and_current_root_overlap",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_does_not_infer_aliases_across_blocks_calls_yields_or_unknown_reference_stores",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_keeps_external_references_outside_clone_capability_and_ownership_boundaries",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_positive_reference_origin_allocation",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
       }
     ]
   },
@@ -45502,6 +45642,41 @@
         "case": "it_parses_documented_forms_with_exact_original_source_views",
         "command": "make -C tests/unit/parser/composition",
         "source": "tests/unit/parser/composition/main.c"
+      },
+      {
+        "case": "it_keeps_ordinary_handle_and_continuation_transfer_kinds_distinct",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_accepts_owned_scalar_continuation_sources_from_owned_and_reference_storage",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_rejects_resume_inputs_whole_list_sources_and_invalid_prefix_forms",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_rejects_positive_direct_reference_aliases_and_current_root_overlap",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_does_not_infer_aliases_across_blocks_calls_yields_or_unknown_reference_stores",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_keeps_external_references_outside_clone_capability_and_ownership_boundaries",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_positive_reference_origin_allocation",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
       }
     ]
   },
@@ -50339,6 +50514,41 @@
         "case": "it_keeps_root_kind_identity_in_the_complete_transfer_matrix",
         "command": "make -C tests/unit/semantic/types",
         "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_ordinary_handle_and_continuation_transfer_kinds_distinct",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_accepts_owned_scalar_continuation_sources_from_owned_and_reference_storage",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_rejects_resume_inputs_whole_list_sources_and_invalid_prefix_forms",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_rejects_positive_direct_reference_aliases_and_current_root_overlap",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_does_not_infer_aliases_across_blocks_calls_yields_or_unknown_reference_stores",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_keeps_external_references_outside_clone_capability_and_ownership_boundaries",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_positive_reference_origin_allocation",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
       }
     ]
   },
@@ -51966,6 +52176,260 @@
         "case": "it_unwinds_every_allocation_in_complete_control_contexts",
         "command": "make -C tests/unit/semantic/control",
         "source": "tests/unit/semantic/control/main.c"
+      }
+    ]
+  },
+  "src/semantic/copy/boundaries/internal.h": {
+    "contract": "docs/implementation/continuation-boundaries.md",
+    "purpose": "Retain positive reference-origin proofs within one effect-free lexical statement segment.",
+    "tests": [
+      {
+        "case": "it_rejects_positive_direct_reference_aliases_and_current_root_overlap",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_does_not_infer_aliases_across_blocks_calls_yields_or_unknown_reference_stores",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_keeps_external_references_outside_clone_capability_and_ownership_boundaries",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_positive_reference_origin_allocation",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/copy/boundaries/origin.c": {
+    "contract": "docs/implementation/continuation-boundaries.md",
+    "purpose": "Propagate exact origins through scalar reference stores without inspecting native values, constructors or runtime handle bits.",
+    "tests": [
+      {
+        "case": "it_rejects_positive_direct_reference_aliases_and_current_root_overlap",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_does_not_infer_aliases_across_blocks_calls_yields_or_unknown_reference_stores",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_keeps_external_references_outside_clone_capability_and_ownership_boundaries",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_positive_reference_origin_allocation",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      }
+    ]
+  },
+  "src/semantic/copy/boundaries/check.c": {
+    "contract": "docs/implementation/continuation-boundaries.md",
+    "purpose": "Reject positive same-instance and current-root/owned-descendant continuation overlap proofs before executable planning.",
+    "tests": [
+      {
+        "case": "it_rejects_positive_direct_reference_aliases_and_current_root_overlap",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_does_not_infer_aliases_across_blocks_calls_yields_or_unknown_reference_stores",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_keeps_external_references_outside_clone_capability_and_ownership_boundaries",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_positive_reference_origin_allocation",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      }
+    ]
+  },
+  "src/semantic/copy/boundaries/analyze.c": {
+    "contract": "docs/implementation/continuation-boundaries.md",
+    "purpose": "Check positive reference-origin proofs on contiguous lexical segments of effect-free handle stores.",
+    "tests": [
+      {
+        "case": "it_rejects_positive_direct_reference_aliases_and_current_root_overlap",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_does_not_infer_aliases_across_blocks_calls_yields_or_unknown_reference_stores",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_keeps_external_references_outside_clone_capability_and_ownership_boundaries",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_positive_reference_origin_allocation",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/continuations/Makefile": {
+    "contract": "docs/implementation/continuation-boundaries.md",
+    "purpose": "Verify explicit continuation transfer forms and positive static identity/ownership proofs.",
+    "tests": [
+      {
+        "case": "it_keeps_ordinary_handle_and_continuation_transfer_kinds_distinct",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_accepts_owned_scalar_continuation_sources_from_owned_and_reference_storage",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_rejects_resume_inputs_whole_list_sources_and_invalid_prefix_forms",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_rejects_positive_direct_reference_aliases_and_current_root_overlap",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_does_not_infer_aliases_across_blocks_calls_yields_or_unknown_reference_stores",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_keeps_external_references_outside_clone_capability_and_ownership_boundaries",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_positive_reference_origin_allocation",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/continuations/main.c": {
+    "contract": "docs/implementation/continuation-boundaries.md",
+    "purpose": "Verify continuation typing and positive copy-boundary proofs without guessing runtime saved positions or aliases.",
+    "tests": [
+      {
+        "case": "it_keeps_ordinary_handle_and_continuation_transfer_kinds_distinct",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_accepts_owned_scalar_continuation_sources_from_owned_and_reference_storage",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_rejects_resume_inputs_whole_list_sources_and_invalid_prefix_forms",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_rejects_positive_direct_reference_aliases_and_current_root_overlap",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_does_not_infer_aliases_across_blocks_calls_yields_or_unknown_reference_stores",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_keeps_external_references_outside_clone_capability_and_ownership_boundaries",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_unwinds_every_positive_reference_origin_allocation",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/continuations/support/forms.c": {
+    "contract": "docs/implementation/continuation-boundaries.md",
+    "purpose": "Distinguish ordinary value/reference transfers from explicit scalar continuation copies and resume syntax.",
+    "tests": [
+      {
+        "case": "it_keeps_ordinary_handle_and_continuation_transfer_kinds_distinct",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_accepts_owned_scalar_continuation_sources_from_owned_and_reference_storage",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_rejects_resume_inputs_whole_list_sources_and_invalid_prefix_forms",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/continuations/support/origins.c": {
+    "contract": "docs/implementation/continuation-boundaries.md",
+    "purpose": "Check exact positive origin proofs and boundaries where reference identity remains runtime state.",
+    "tests": [
+      {
+        "case": "it_rejects_positive_direct_reference_aliases_and_current_root_overlap",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_does_not_infer_aliases_across_blocks_calls_yields_or_unknown_reference_stores",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_keeps_external_references_outside_clone_capability_and_ownership_boundaries",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/continuations/support/failures.c": {
+    "contract": "docs/implementation/continuation-boundaries.md",
+    "purpose": "Fail every semantic allocation for successful and statically rejected positive reference-origin chains.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_positive_reference_origin_allocation",
+        "command": "make -C tests/unit/semantic/continuations",
+        "source": "tests/unit/semantic/continuations/main.c"
       }
     ]
   }

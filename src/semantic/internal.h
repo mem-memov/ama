@@ -2,6 +2,8 @@
  * @file
  * @brief Declare semantic sibling operations over explicit resolved views and owners.
  *
+ * [COPY-06](../../spec/language/values-and-references.md#copy-06) keeps
+ * positive origin/ownership proofs separate from mandatory runtime validation.
  * [ARCH-03](../../spec/implementation/compiler.md#arch-03)
  * Keep name/type resolution, compatibility, graph relations and diagnostics distinct from parsing and emission.
  */
@@ -29,6 +31,9 @@ bool semantic_memory_failure(SemanticProgram *program);
 /** Allocate/zero semantic-owned scratch or return null with an allocation-free failure; partial records survive until destroy.
  */
 void *semantic_allocate(SemanticProgram *program, size_t size);
+
+/** Reject positively proved continuation identity/ownership violations within lexical effect-free reference segments; all partial proof records remain arena-owned. */
+bool semantic_copy_boundaries(SemanticProgram *, SemanticType *);
 
 /** Bind every explicit field to an executable nominal value type; reject reference constants before value resolution.
  */

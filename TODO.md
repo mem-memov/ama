@@ -1051,10 +1051,21 @@ Contracts: [declarations](spec/language/declarations.md),
   errors and every complete-control allocation failure. Full strict tests and
   control/walker ASan+UBSan passed; 948 inputs have explicit coverage. New execution
   stays guarded before storage publication. Final Doxygen is reproducible.
-- [ ] **T039 — Validate continuations and copy boundaries statically.** Needs:
+- [x] **T039 — Validate continuations and copy boundaries statically.** Needs:
   T033, T038. Enforce no resume inputs, exact ordinary/continuation copy forms,
   static copy capability and detectable ownership overlap. Test self-copy,
   noncopyable resources and legal external reference transfers.
+  Evidence: [continuation boundaries](docs/implementation/continuation-boundaries.md)
+  records exact resume/prefix/whole-list restrictions and distinct literal/handle/
+  ordinary/continuation transfers. Positive origin analysis follows exact AST
+  sibling segments of scalar handle stores, propagates real formation sites and
+  rejects proved continuation self-alias/current-root ownership overlap. Calls,
+  scopes, suspension and unknown stores retain runtime validation; declarations
+  are not runtime effects. Tests cover shapes, individual list elements, ordinary
+  outputs, exact origin notes, branch joins/arms, external resource references and
+  every success/rejection proof allocation. Full strict tests, final focused cases
+  and ASan+UBSan passed; 957 maintained inputs have coverage. Final Doxygen is
+  reproducible. Runtime identity/availability/overlap checks remain mandatory.
 - [ ] **T040 — Compose semantic analysis with current diagnostics.** Needs:
   T034–T039. Check valid/invalid full projects, preservation of spans/storage forms,
   deterministic classification and allocation cleanup. Confirm every interpretation
