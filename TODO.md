@@ -1326,10 +1326,18 @@ Contracts: [generated C](spec/implementation/compiler.md#generated-project-organ
   are preserved. Every planning/emission allocation and missing SDK dependency is
   checked. Full strict tests and ASan+UBSan passed; all 1087 maintained inputs have
   coverage. Final Doxygen reproducibility is checked before commit.
-- [ ] **T056 — Emit the single project assembly.** Needs: T045, T054, T055.
+- [x] **T056 — Emit the single project assembly.** Needs: T045, T054, T055.
   Order declarations/types/constants/native bodies/runtime/labels under one
   context-parameterized execution function. Compile agreement checks with isolated
   scaffolds; never emit a C function per ordinary Ama module.
+  Evidence: [single assembly contract](docs/implementation/project-assembly.md).
+  The execution body now includes its own declarations and compiles directly;
+  one context-parameterized function contains all ordinary Ama control labels.
+  Actual GCC C11 checks at O0/O2 cover each native interface first and both
+  interface/assembly include orders, exact host signature and macro cleanup.
+  Existing execution/toolchain suites retain lifecycle and forbidden-entry checks.
+  Full strict tests and assembly ASan+UBSan passed; all 1088 maintained inputs
+  have coverage. Final Doxygen reproducibility is checked before commit.
 - [ ] **T057 — Execute startup, simple calls and returns.** Needs: T056. Create
   one explicit root after constants; dispatch between two module types/multiple
   instances using stable slots and validated return selectors. Begin with calls

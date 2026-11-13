@@ -4,6 +4,8 @@
  *
  * [STACK-04](../../../spec/implementation/compiler.md#stack-04)
  * Resume dispatch validates saved selector and nominal type; return dispatch uses explicit caller selectors rather than recursive Ama C functions.
+ * The assembly includes its own declarations so it also compiles as a standalone
+ * translation unit; launchers may include it to retain the single-unit profile.
  */
 #include "codegen/internal.h"
 
@@ -14,7 +16,8 @@
  */
 bool codegen_emit_body(NativeScaffold *scaffold, FILE *output, const ScaffoldType *unused) {
     (void)unused;
-    if (!codegen_emit_host_begin(scaffold, output)) { return false; }
+    if (fputs("#include \"project.h\"\n", output) == EOF
+        || !codegen_emit_host_begin(scaffold, output)) { return false; }
     if (fprintf(output, "goto ama_label_%zu;\n", scaffold->selected->plan->entry->selector) < 0) { return false; }
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
         for (const ControlNode *node = type->plan->controls; node != NULL; node = node->allocated_next) {

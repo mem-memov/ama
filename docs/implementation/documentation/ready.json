@@ -1903,6 +1903,11 @@
         "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_compiles_the_self_contained_assembly_and_isolated_interfaces_in_either_include_order",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
       }
     ]
   },
@@ -32210,6 +32215,11 @@
         "case": "it_rejects_unimplemented_execution_adapters_after_valid_ir_before_artifact_staging",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_compiles_the_self_contained_assembly_and_isolated_interfaces_in_either_include_order",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
       }
     ]
   },
@@ -59810,6 +59820,17 @@
         "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
         "command": "make -C tests/unit/native/scaffold/contracts",
         "source": "tests/unit/native/scaffold/contracts/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/assembly/support/translation.c": {
+    "contract": "docs/implementation/project-assembly.md",
+    "purpose": "Compile the standalone project body and isolated native interfaces in both include orders under O0 and O2.",
+    "tests": [
+      {
+        "case": "it_compiles_the_self_contained_assembly_and_isolated_interfaces_in_either_include_order",
+        "command": "make -C tests/unit/codegen/assembly",
+        "source": "tests/unit/codegen/assembly/main.c"
       }
     ]
   }
