@@ -4,6 +4,9 @@
  *
  * [LIFE-01](../../../../spec/implementation/native-interface.md#life-01) requires explicit lifecycle ordering.
  * Failure exposes a work record only after its slot is reserved for cleanup.
+ * [LIFE-04](../../../../spec/implementation/native-interface.md#life-04)
+ * gives a prepared replacement root the existing destination identity before
+ * initializers; its private handle still owns cleanup storage.
  * [RT-02](../../../../spec/implementation/runtime.md#rt-02) preserves stable instance storage.
  */
 #include "internal.h"
@@ -35,6 +38,8 @@ AmaStatus ama_construction_reserve(AmaObjectOperation *operation, uint64_t id, c
     }
     AmaStatus status = ama_pool_reserve(&type->pool, &work->handle, &work->cell);
     if (status.code != AMA_OK) { return status; }
+    work->identity = parent == NULL && operation->root_identity.generation != 0
+        ? operation->root_identity : work->handle;
     if (parent != NULL) { work->cell->owner = parent->handle; }
     else if (operation->root_payload != NULL) { work->cell->preparation_payload = operation->root_payload; }
     if (operation->last == NULL) { operation->first = work; }

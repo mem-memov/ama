@@ -5,8 +5,12 @@
  * permits initialization to copy its reserved final identity while forbidding
  * external access to constructing state. Trusted private evaluation supplies
  * that authority; ordinary evaluation still requires a published identity.
+ * [LIFE-04](../../../../spec/implementation/native-interface.md#life-04) makes
+ * scoped replacement construction return the protected final destination ID,
+ * while ordinary field selection continues using private prepared storage.
  */
 #include "selection/internal.h"
+#include "runtime/objects/internal.h"
 
 /** Validate exact reserved/public identity and lifecycle, then publish only a reference value with no payload location or acquired target. */
 AmaStatus ama_program_self(AmaProgram *program, AmaHandle current,
@@ -21,7 +25,20 @@ AmaStatus ama_program_self(AmaProgram *program, AmaHandle current,
     if (phase != AMA_LIFETIME_CONSTRUCTING && phase != AMA_LIFETIME_LIVE) {
         return ama_status_make(AMA_INVALID_STATE, NULL, 0);
     }
+    AmaHandle identity = current;
+    const AmaObjectWork *work = program->world->construction_work;
+    if (private_access && work != NULL && ama_handle_equal(work->handle, current)) {
+        identity = work->identity;
+        if (identity.type_id != current.type_id || identity.generation == 0) {
+            return ama_status_make(AMA_INVALID_STATE, NULL, 0);
+        }
+        if (!ama_handle_equal(identity, current)) {
+            AmaPoolCell *destination = NULL;
+            status = ama_pool_lookup(&type->pool, identity, false, &destination);
+            if (status.code != AMA_OK) { return status; }
+        }
+    }
     *output = (AmaProgramValue){.type_id = current.type_id, .form = AMA_FIELD_REFERENCE,
-        .handle = current, .private_access = private_access};
+        .handle = identity, .private_access = private_access};
     return ama_status_success();
 }

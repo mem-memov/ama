@@ -4,6 +4,9 @@
  *
  * [RT-02](../../../spec/implementation/runtime.md#rt-02)
  * Borrow immutable descriptors and recipes. Native hooks cannot reenter Ama and must clean resources of a failed constructor themselves.
+ * [LIFE-04](../../../spec/implementation/native-interface.md#life-04) keeps
+ * final replacement identity separate from temporary construction storage;
+ * the world borrows construction authority only during a field resolver.
  * [LIFE-05](../../../spec/implementation/native-interface.md#life-05) requires
  * independent roots to retain successful-publication order through replacement.
  * [PROTO-03](../../../spec/implementation/native-interface.md#proto-03) supplies
@@ -96,6 +99,12 @@ struct AmaWorld {
     void *report_context;
     void (*report)(void *, AmaStatus);
     uint64_t construction_operation;
+    /** Borrow the exact work record only during its synchronous field resolver;
+     * [LIFE-04](../../../spec/implementation/native-interface.md#life-04) keeps
+     * replacement storage separate from its final language-visible identity.
+     * No callback may retain this pointer or reenter field resolution.
+     */
+    const struct AmaObjectWork *construction_work;
     bool operation_active;
     bool failed;
     AmaPoolCell *first_root;

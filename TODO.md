@@ -1235,10 +1235,22 @@ Contracts: [references and copying](spec/language/values-and-references.md),
   phase tests compose with the new leaf. Strict runtime tests and ASan+UBSan passed;
   all 1047 maintained inputs have coverage. Final Doxygen reproducibility is
   checked before commit.
-- [ ] **T051 — Integrate staged replacement and overlap checks.** Needs: T050.
+- [x] **T051 — Integrate staged replacement and overlap checks.** Needs: T050.
   Validate capability/identity/ancestry/source availability before replacement;
   preserve destinations on preparation failure. Test ordinary self no-op only
   after static capability validation and terminal cleanup failure after commit.
+  Evidence: [staged replacement](docs/implementation/staged-replacement.md)
+  distinguishes private preparation handles from final destination self identity.
+  A synchronous scoped work borrow directs only matching self evaluation; ordinary
+  field reads use prepared storage, every callback clears authority, and live
+  pool slots gain no extra metadata. Real default/literal recipes retain root
+  identity across repeated bank swaps, correct child owners and invalidate old
+  children. Every preparation allocation/native failure preserves old values and
+  service state; each destructive-hook failure finishes old/prepared cleanup and
+  leaves the world terminal. Existing static self-copy, dynamic overlap and clone
+  replacement checks compose with these cases. Full strict tests and ASan+UBSan
+  passed; all 1052 maintained inputs have coverage. Final Doxygen reproducibility
+  is checked before commit.
 - [ ] **T052 — Separate shared constants from pools.** Needs: T034, T051.
   Initialize immutable module storage per context in dependency order and clean it
   in reverse order. Test no constants-only instance pool, two independent contexts

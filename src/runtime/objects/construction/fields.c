@@ -4,6 +4,9 @@
  *
  * [LIFE-01](../../../../spec/implementation/native-interface.md#life-01) requires explicit lifecycle ordering.
  * Earlier fields remain available to exact generated defaults; checked counts bound buffers/ledgers.
+ * [LIFE-04](../../../../spec/implementation/native-interface.md#life-04)
+ * exposes exact final self identity only within this synchronous resolver scope;
+ * every callback outcome clears that borrowed authority before later work.
  * [RT-02](../../../../spec/implementation/runtime.md#rt-02) preserves stable instance storage.
  */
 #include <stdint.h>
@@ -18,8 +21,11 @@ AmaStatus ama_construction_prepare_field(AmaObjectOperation *operation, AmaObjec
     if (explicit_fields) { recipe = work->recipe->fields[field]; }
     else if (type->defaults != NULL) { recipe = type->defaults[field]; }
     if (type->resolve_field != NULL && (!explicit_fields || !recipe.supplied)) {
+        if (operation->world->construction_work != NULL) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
+        operation->world->construction_work = work;
         AmaStatus status = type->resolve_field(operation->world, &operation->arena,
             work->handle, field, &recipe, type->field_context);
+        operation->world->construction_work = NULL;
         if (status.code != AMA_OK) { return status; }
     }
     const AmaObjectField *descriptor = &type->fields[field];

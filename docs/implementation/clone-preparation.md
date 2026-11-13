@@ -129,7 +129,8 @@ remain Running. A resolver counter proves that clone construction does not rerun
 declaration initializers. Each native clone failure and every allocation prefix
 preserves output and source/external state while cleaning private work. Existing
 phase tests continue to check separate boundaries copying the same source and
-explicit final-root substitution; replacement commit remains T051.
+explicit final-root substitution; [T051 replacement commit](staged-replacement.md)
+now also covers default/literal final self identities.
 
 The finite test is exhaustive for its stated scalar-tree reference domain, not
 for arbitrary ownership shapes. The injective-map/projection argument above

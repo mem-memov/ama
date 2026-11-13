@@ -16474,6 +16474,26 @@
         "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
         "command": "make -C tests/unit/runtime/objects/lifecycle",
         "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_keeps_final_self_identity_and_native_addresses_through_default_and_literal_commit",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_when_each_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_at_every_reconstruction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_finishes_old_and_prepared_cleanup_when_each_destructive_commit_hook_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
       }
     ]
   },
@@ -16853,6 +16873,26 @@
         "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
         "command": "make -C tests/unit/runtime/program-construction",
         "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_keeps_final_self_identity_and_native_addresses_through_default_and_literal_commit",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_when_each_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_at_every_reconstruction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_finishes_old_and_prepared_cleanup_when_each_destructive_commit_hook_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
       }
     ]
   },
@@ -17170,6 +17210,26 @@
         "case": "it_restores_protected_prefixes_when_owned_edges_are_invalid",
         "command": "make -C tests/unit/runtime/objects/preflight",
         "source": "tests/unit/runtime/objects/preflight/main.c"
+      },
+      {
+        "case": "it_keeps_final_self_identity_and_native_addresses_through_default_and_literal_commit",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_when_each_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_at_every_reconstruction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_finishes_old_and_prepared_cleanup_when_each_destructive_commit_hook_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
       }
     ]
   },
@@ -17703,6 +17763,26 @@
         "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
         "command": "make -C tests/unit/runtime/protocols",
         "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_keeps_final_self_identity_and_native_addresses_through_default_and_literal_commit",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_when_each_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_at_every_reconstruction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_finishes_old_and_prepared_cleanup_when_each_destructive_commit_hook_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
       }
     ]
   },
@@ -17809,6 +17889,26 @@
         "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
         "command": "make -C tests/unit/runtime/objects/lifecycle",
         "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_keeps_final_self_identity_and_native_addresses_through_default_and_literal_commit",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_when_each_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_at_every_reconstruction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_finishes_old_and_prepared_cleanup_when_each_destructive_commit_hook_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
       }
     ]
   },
@@ -39427,6 +39527,26 @@
         "case": "it_unwinds_every_scalar_clone_allocation_without_publishing_or_reinitializing",
         "command": "make -C tests/unit/runtime/objects/clone-map",
         "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_keeps_final_self_identity_and_native_addresses_through_default_and_literal_commit",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_when_each_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_at_every_reconstruction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_finishes_old_and_prepared_cleanup_when_each_destructive_commit_hook_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
       }
     ]
   },
@@ -57563,6 +57683,26 @@
         "case": "it_builds_and_runs_a_verified_executable_through_the_real_command",
         "command": "make -C tests/integration/execution",
         "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_keeps_final_self_identity_and_native_addresses_through_default_and_literal_commit",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_when_each_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_at_every_reconstruction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_finishes_old_and_prepared_cleanup_when_each_destructive_commit_hook_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
       }
     ]
   },
@@ -57671,6 +57811,26 @@
         "case": "it_unwinds_every_scalar_clone_allocation_without_publishing_or_reinitializing",
         "command": "make -C tests/unit/runtime/objects/clone-map",
         "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_keeps_final_self_identity_and_native_addresses_through_default_and_literal_commit",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_when_each_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_at_every_reconstruction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_finishes_old_and_prepared_cleanup_when_each_destructive_commit_hook_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
       }
     ]
   },
@@ -57890,6 +58050,136 @@
         "case": "it_unwinds_every_scalar_clone_allocation_without_publishing_or_reinitializing",
         "command": "make -C tests/unit/runtime/objects/clone-map",
         "source": "tests/unit/runtime/objects/clone-map/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/objects/reconstruction/main.c": {
+    "contract": "docs/implementation/staged-replacement.md",
+    "purpose": "Verify final destination self identity and complete preparation/destruction failure boundaries.",
+    "tests": [
+      {
+        "case": "it_keeps_final_self_identity_and_native_addresses_through_default_and_literal_commit",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_when_each_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_at_every_reconstruction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_finishes_old_and_prepared_cleanup_when_each_destructive_commit_hook_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/objects/reconstruction/Makefile": {
+    "contract": "docs/implementation/staged-replacement.md",
+    "purpose": "Verify final destination self identity and complete preparation/destruction failure boundaries.",
+    "tests": [
+      {
+        "case": "it_keeps_final_self_identity_and_native_addresses_through_default_and_literal_commit",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_when_each_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_at_every_reconstruction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_finishes_old_and_prepared_cleanup_when_each_destructive_commit_hook_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/objects/reconstruction/support/fixture.c": {
+    "contract": "docs/implementation/staged-replacement.md",
+    "purpose": "Verify final destination self identity and complete preparation/destruction failure boundaries.",
+    "tests": [
+      {
+        "case": "it_keeps_final_self_identity_and_native_addresses_through_default_and_literal_commit",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_when_each_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_at_every_reconstruction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_finishes_old_and_prepared_cleanup_when_each_destructive_commit_hook_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/objects/reconstruction/support/failures.c": {
+    "contract": "docs/implementation/staged-replacement.md",
+    "purpose": "Verify final destination self identity and complete preparation/destruction failure boundaries.",
+    "tests": [
+      {
+        "case": "it_keeps_final_self_identity_and_native_addresses_through_default_and_literal_commit",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_when_each_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_at_every_reconstruction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_finishes_old_and_prepared_cleanup_when_each_destructive_commit_hook_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/objects/reconstruction/support/success.c": {
+    "contract": "docs/implementation/staged-replacement.md",
+    "purpose": "Verify final destination self identity and complete preparation/destruction failure boundaries.",
+    "tests": [
+      {
+        "case": "it_keeps_final_self_identity_and_native_addresses_through_default_and_literal_commit",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_when_each_prepared_native_constructor_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_preserves_the_old_tree_at_every_reconstruction_allocation_failure",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_finishes_old_and_prepared_cleanup_when_each_destructive_commit_hook_fails",
+        "command": "make -C tests/unit/runtime/objects/reconstruction",
+        "source": "tests/unit/runtime/objects/reconstruction/main.c"
       }
     ]
   }

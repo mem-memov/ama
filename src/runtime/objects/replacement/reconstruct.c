@@ -3,7 +3,7 @@
  * @brief Prepare the selected constructor in the destination spare bank before cleanup.
  *
  * [LIFE-04](../../../../spec/implementation/native-interface.md#life-04)
- * Preparation failure preserves the old value; destructive failure terminates the world. Final self-reference construction remains T050.
+ * Preparation failure preserves the old value; destructive failure terminates the world. Final self references name the retained destination rather than scratch storage.
  */
 #include <string.h>
 #include "runtime/objects/internal.h"
@@ -19,6 +19,7 @@ AmaStatus ama_object_reconstruct_in(AmaObjectOperation *operation, AmaHandle des
     if (status.code != AMA_OK) { return status; }
     status = ama_object_preflight(operation, destination, false, false);
     if (status.code != AMA_OK) { return status; }
+    operation->root_identity = destination;
     operation->root_payload = ama_pool_spare_payload(&type->pool, cell);
     memset(operation->root_payload, 0, type->pool.payload_size);
     AmaHandle prepared = {0};

@@ -82,8 +82,8 @@ Running identity formation, wrong nominal type, shared initialization, stale
 identity and unbegun reservation cases check the source boundary independently.
 Counted resource ownership and address/undefined-behavior sanitizers verify cleanup.
 
-T050/T051 retain clone-map and staged replacement integration, including final
-replacement destinations. T053 and later emission tasks connect concrete planned
+[Exact clone maps](clone-preparation.md) and [staged replacement](staged-replacement.md)
+now verify final replacement destinations as well as fresh construction. T053 and later emission tasks connect concrete planned
 layouts to generated execution. The C-generation guard for standalone self stays
 in place until those adapters can preserve the complete contract; this task does
 not claim compiled Ama self execution or change the specification. The

@@ -3,6 +3,8 @@
  * @brief Declare private construction, protection, copy and cleanup phase ownership.
  *
  * [ARCH-03](../../../spec/implementation/compiler.md#arch-03)
+ * [LIFE-04](../../../spec/implementation/native-interface.md#life-04) separates
+ * private preparation handles from the retained destination identity before commit.
  * Operation arenas own scratch; work and protection records borrow stable slots. Callers must release protections before destroying scratch.
  */
 #ifndef AMA_RUNTIME_OBJECTS_INTERNAL_H
@@ -18,6 +20,10 @@ typedef struct AmaObjectWork {
     AmaObjectType *type;
     AmaPoolCell *cell;
     AmaHandle handle;
+    /** Final language-visible self; replacement roots retain the destination ID,
+     * while handle identifies private construction storage until commit.
+     */
+    AmaHandle identity;
     AmaHandle source;
     const AmaRecipe *recipe;
     uint64_t operation;
@@ -49,6 +55,10 @@ typedef struct {
     size_t protection_epoch;
     const AmaObjectProtection *source_authority;
     void *root_payload;
+    /** Existing protected destination identity for a noncopy replacement root;
+     * empty means a fresh root whose reserved handle is already final.
+     */
+    AmaHandle root_identity;
 } AmaObjectOperation;
 
 /** Validate empty/type/slot identity before exposing a cell. Private lookup is for trusted construction phases; type output may be selected before a later slot failure. */
