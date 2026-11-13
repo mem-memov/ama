@@ -9,20 +9,20 @@
 /** Match a fixed intrinsic result whose interface has no source declaration node. */
 static bool intrinsic(Inference *inference, const InferenceOperation *operation,
     const AstAccess *label, size_t position, SourceSpan site, InferenceValue *value) {
-    bool element = operation->method == INFER_APPEND || operation->method == INFER_INSERT;
-    bool length = operation->method == INFER_LENGTH;
-    if ((!element && !length) || (label == NULL ? position != 0
-            : !layout_text_is(label->name, element ? "element" : "value"))) {
-        return semantic_fail(inference->program, site, "No intrinsic result matches this binding", NULL);
-    }
-    SemanticType *type = element ? operation->value.type : semantic_find_type(inference->program, "..integer");
+    size_t ordinal = position;
+    const SemanticListField *field = label == NULL
+        ? semantic_list_position(operation->method, true, ordinal)
+        : semantic_list_name(operation->method, true, label->name, &ordinal);
+    if (field == NULL) { return semantic_fail(inference->program, site, "No intrinsic result matches this binding", NULL); }
+    SemanticType *type = field->element_reference ? operation->value.type
+        : semantic_find_type(inference->program, "..integer");
     if (type == NULL || !type->executable) {
         return semantic_fail(inference->program, site, "The typed list interface requires the ..integer module", NULL);
     }
-    if (label != NULL && (label->reference != element || label->whole_list)) {
+    if (label != NULL && (label->reference != field->element_reference || label->whole_list)) {
         return semantic_fail(inference->program, label->span, "Binding label storage form differs from its field", NULL);
     }
-    *value = (InferenceValue){.type = type, .reference = element};
+    *value = (InferenceValue){.type = type, .reference = field->element_reference};
     return true;
 }
 bool inference_result(Inference *inference, const InferenceOperation *operation,

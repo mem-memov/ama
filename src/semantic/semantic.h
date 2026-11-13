@@ -3,6 +3,8 @@
  * @brief Own resolved nominal types, sources, bindings and separate dependency relations.
  *
  * [COMP-02](../../spec/implementation/compiler.md#comp-02)
+ * [LIST-04](../../spec/language/lists.md#list-04) represents intrinsic interfaces
+ * without fabricated module types, declarations or method instances.
  * [CALL-09](../../spec/language/calls-and-results.md#call-09) retains checked
  * parent-result identities and ordered output actions without copying targets.
  * [NAME-04](../../spec/language/declarations.md#name-04) shares one exact base
@@ -19,6 +21,7 @@
 #include "project/dependencies/project.h"
 #include "parser/abi/abi.h"
 #include "semantic/relations/graph/graph.h"
+#include "semantic/lists/interface.h"
 
 /** Semantic stage status; successful valid flags gate consumption of owned partial records. */
 typedef enum { SEMANTIC_OK, SEMANTIC_INVALID, SEMANTIC_OUT_OF_MEMORY } SemanticStatus;
@@ -111,6 +114,8 @@ struct SemanticType {
     AbiTable abi;
     bool executable;
     bool cloneable;
+    /** Native emission must check the fixed qualified from_size declaration against the actual payload type. */
+    bool requires_size_bridge;
     SemanticType *clone_seed;
     SemanticSymbol *clone_cause;
     SemanticStatement *statements;
@@ -144,11 +149,15 @@ struct SemanticSource {
     bool reference;
     bool list;
 };
-/** Resolved callee field plus caller-side source/receiver, exact interface ordinal and transfer kind. */
+/** Resolved source-declared or intrinsic field plus caller-side transfer metadata.
+ * Exactly one field/intrinsic descriptor is present. Intrinsics have no invented
+ * source declaration; diagnostics use real operands and nominal type contracts.
+ */
 struct SemanticBinding {
     SemanticBinding *next;
     const AstArgument *syntax;
     SemanticSymbol *field;
+    const SemanticListField *intrinsic;
     SemanticType *type;
     size_t position;
     bool reference;
@@ -166,11 +175,29 @@ typedef struct SemanticOutputAction {
     SemanticBinding *binding;
     SemanticStatement *operation;
 } SemanticOutputAction;
-/** Semantic-owned typed statement borrowing one exact AST identity and its ordered bindings. */
+/** An intrinsic service/method has no executable module identity of its own. */
+typedef enum { SEMANTIC_INSTANCE_OPERATION, SEMANTIC_CONSTANT_OPERATION,
+    SEMANTIC_LIST_SERVICE_OPERATION, SEMANTIC_LIST_METHOD_OPERATION } SemanticOperationKind;
+/** Exact specialization of one list interface, independent of current contents or reference liveness. */
+typedef struct { SemanticType *element; SemanticType *integer; bool reference; } SemanticListInterface;
+/** Semantic-owned statement borrowing exact syntax, parent identity and ordered actions.
+ * Call kind distinguishes module instances/namespaces from intrinsic services.
+ * Ordinary module calls retain namespace_type; services/methods instead retain
+ * list_interface/list_service and have no synthetic namespace or method access.
+ * An instance selected from an intrinsic output has intrinsic_target/result and
+ * target_reference, with no fake field access. Its type is namespace_type.
+ */
 struct SemanticStatement {
     SemanticStatement *next;
     const AstNode *syntax;
     SemanticStatement *enclosing_operation;
+    SemanticOperationKind operation_kind;
+    SemanticListMethod list_method;
+    SemanticListInterface list_interface;
+    SemanticStatement *list_service;
+    bool intrinsic_target;
+    bool target_reference;
+    size_t intrinsic_result;
     SemanticOutputAction *actions;
     SemanticOutputAction *last_action;
     SemanticAccess *access;
@@ -200,6 +227,7 @@ typedef struct {
     bool names_valid;
     bool native_attempted;
     bool native_valid;
+    SemanticType *list_integer;
     bool inference_attempted;
     bool inference_valid;
     bool resolve_attempted;

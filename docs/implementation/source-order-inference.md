@@ -124,9 +124,10 @@ records are arena-owned and never constitute a successful stage.
 
 Ordinary inferred assignment/call/read fields execute through existing checked
 storage and transfer machinery. Direct-result tree execution, intrinsic service
-execution, foreach runtime and lexical-self transfer lowering retain their explicit
-unsupported guards until the corresponding semantic/IR/runtime tasks. Successful
-inference is not a claim that those later operations execute yet.
+execution and lexical-self transfer lowering retain explicit pre-storage planning
+guards. T036–T037 now complete direct-tree/intrinsic static typing; foreach still
+requires T038's complete control-context checking and later runtime support.
+Successful inference is not a claim that those operations execute yet.
 
 ## Invariants, termination and bounds
 

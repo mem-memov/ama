@@ -19500,6 +19500,36 @@
         "case": "it_unwinds_each_allocation_in_complete_ordinary_binding_resolution",
         "command": "make -C tests/unit/semantic/calls",
         "source": "tests/unit/semantic/calls/main.c"
+      },
+      {
+        "case": "it_specializes_all_six_method_interfaces_without_fabricated_declarations",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_ephemeral_results_and_services_selected_from_module_results",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_rejects_irrelevant_arguments_invalid_method_modes_and_retired_interfaces",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_element_copy_only_for_explicit_owning_append_insert_sources",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
       }
     ]
   },
@@ -19646,7 +19676,7 @@
   },
   "src/semantic/calls/resolve.c": {
     "contract": "docs/implementation/semantic-analysis.md",
-    "purpose": "Resolve scalar call bindings and reject unsupported whole-list services.",
+    "purpose": "Resolve ordinary and intrinsic typed bindings without hidden method instances.",
     "tests": [
       {
         "case": "it_requires_owned_copy_capability_even_for_statically_identical_storage",
@@ -19772,6 +19802,36 @@
         "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
         "command": "make -C tests/unit/semantic/selected",
         "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_specializes_all_six_method_interfaces_without_fabricated_declarations",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_ephemeral_results_and_services_selected_from_module_results",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_rejects_irrelevant_arguments_invalid_method_modes_and_retired_interfaces",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_element_copy_only_for_explicit_owning_append_insert_sources",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
       }
     ]
   },
@@ -22183,6 +22243,36 @@
         "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
         "command": "make -C tests/unit/semantic/selected",
         "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_specializes_all_six_method_interfaces_without_fabricated_declarations",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_ephemeral_results_and_services_selected_from_module_results",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_rejects_irrelevant_arguments_invalid_method_modes_and_retired_interfaces",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_element_copy_only_for_explicit_owning_append_insert_sources",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
       }
     ]
   },
@@ -30487,6 +30577,11 @@
       },
       {
         "case": "it_reports_unsupported_control_trees_without_lowering_an_incomplete_operation",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       }
@@ -39364,6 +39459,36 @@
         "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
         "command": "make -C tests/unit/semantic/selected",
         "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_specializes_all_six_method_interfaces_without_fabricated_declarations",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_ephemeral_results_and_services_selected_from_module_results",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_rejects_irrelevant_arguments_invalid_method_modes_and_retired_interfaces",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_element_copy_only_for_explicit_owning_append_insert_sources",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
       }
     ]
   },
@@ -48271,6 +48396,36 @@
         "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_specializes_all_six_method_interfaces_without_fabricated_declarations",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_ephemeral_results_and_services_selected_from_module_results",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_rejects_irrelevant_arguments_invalid_method_modes_and_retired_interfaces",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_element_copy_only_for_explicit_owning_append_insert_sources",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
       }
     ],
     "standalone_header_command": [
@@ -48774,6 +48929,36 @@
         "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_specializes_all_six_method_interfaces_without_fabricated_declarations",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_ephemeral_results_and_services_selected_from_module_results",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_rejects_irrelevant_arguments_invalid_method_modes_and_retired_interfaces",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_element_copy_only_for_explicit_owning_append_insert_sources",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
       }
     ]
   },
@@ -48896,6 +49081,36 @@
         "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_specializes_all_six_method_interfaces_without_fabricated_declarations",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_ephemeral_results_and_services_selected_from_module_results",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_rejects_irrelevant_arguments_invalid_method_modes_and_retired_interfaces",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_element_copy_only_for_explicit_owning_append_insert_sources",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
       }
     ]
   },
@@ -50062,6 +50277,36 @@
         "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
         "command": "make -C tests/unit/semantic/selected",
         "source": "tests/unit/semantic/selected/main.c"
+      },
+      {
+        "case": "it_specializes_all_six_method_interfaces_without_fabricated_declarations",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_ephemeral_results_and_services_selected_from_module_results",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_rejects_irrelevant_arguments_invalid_method_modes_and_retired_interfaces",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_element_copy_only_for_explicit_owning_append_insert_sources",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
       }
     ]
   },
@@ -50107,6 +50352,11 @@
     "tests": [
       {
         "case": "it_reports_unsupported_result_selection_instead_of_dropping_selected_actions",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       }
@@ -50265,6 +50515,479 @@
         "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
         "command": "make -C tests/unit/semantic/selected",
         "source": "tests/unit/semantic/selected/main.c"
+      }
+    ]
+  },
+  "src/semantic/lists/interface.h": {
+    "contract": "docs/implementation/list-interfaces.md",
+    "purpose": "Describe the six intrinsic list interfaces independently of Ama module instances and source declarations.",
+    "tests": [
+      {
+        "case": "it_specializes_all_six_method_interfaces_without_fabricated_declarations",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_ephemeral_results_and_services_selected_from_module_results",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_rejects_irrelevant_arguments_invalid_method_modes_and_retired_interfaces",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_element_copy_only_for_explicit_owning_append_insert_sources",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/lists/interface.c": {
+    "contract": "docs/implementation/list-interfaces.md",
+    "purpose": "Share exact immutable method/field descriptors between receiver inference and full list binding validation.",
+    "tests": [
+      {
+        "case": "it_specializes_all_six_method_interfaces_without_fabricated_declarations",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_ephemeral_results_and_services_selected_from_module_results",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_rejects_irrelevant_arguments_invalid_method_modes_and_retired_interfaces",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_element_copy_only_for_explicit_owning_append_insert_sources",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      }
+    ]
+  },
+  "src/semantic/lists/internal.h": {
+    "contract": "docs/implementation/list-interfaces.md",
+    "purpose": "Specialize intrinsic interfaces to exact element and standard integer types without creating method storage.",
+    "tests": [
+      {
+        "case": "it_specializes_all_six_method_interfaces_without_fabricated_declarations",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_ephemeral_results_and_services_selected_from_module_results",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_rejects_irrelevant_arguments_invalid_method_modes_and_retired_interfaces",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_element_copy_only_for_explicit_owning_append_insert_sources",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/lists/integer.c": {
+    "contract": "docs/implementation/list-interfaces.md",
+    "purpose": "Validate the exact standard integer interface and retain its typed native size-construction obligation.",
+    "tests": [
+      {
+        "case": "it_requires_element_copy_only_for_explicit_owning_append_insert_sources",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      }
+    ]
+  },
+  "src/semantic/lists/service.c": {
+    "contract": "docs/implementation/list-interfaces.md",
+    "purpose": "Classify whole-list parents as intrinsic service scopes with no ordinary instance bindings.",
+    "tests": [
+      {
+        "case": "it_specializes_all_six_method_interfaces_without_fabricated_declarations",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_ephemeral_results_and_services_selected_from_module_results",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_rejects_irrelevant_arguments_invalid_method_modes_and_retired_interfaces",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_element_copy_only_for_explicit_owning_append_insert_sources",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      }
+    ]
+  },
+  "src/semantic/lists/target.c": {
+    "contract": "docs/implementation/list-interfaces.md",
+    "purpose": "Resolve fixed intrinsic method selectors and further calls on their ephemeral typed results.",
+    "tests": [
+      {
+        "case": "it_specializes_all_six_method_interfaces_without_fabricated_declarations",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_ephemeral_results_and_services_selected_from_module_results",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_rejects_irrelevant_arguments_invalid_method_modes_and_retired_interfaces",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_element_copy_only_for_explicit_owning_append_insert_sources",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      }
+    ]
+  },
+  "src/semantic/lists/binding.c": {
+    "contract": "docs/implementation/list-interfaces.md",
+    "purpose": "Specialize intrinsic input/result field descriptors and apply supplied-source owning-copy requirements.",
+    "tests": [
+      {
+        "case": "it_specializes_all_six_method_interfaces_without_fabricated_declarations",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_ephemeral_results_and_services_selected_from_module_results",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_rejects_irrelevant_arguments_invalid_method_modes_and_retired_interfaces",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_element_copy_only_for_explicit_owning_append_insert_sources",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/lists/Makefile": {
+    "contract": "docs/implementation/list-interfaces.md",
+    "purpose": "Verify fixed intrinsic list interfaces, nominal integer contracts and explicit-copy requirements.",
+    "tests": [
+      {
+        "case": "it_specializes_all_six_method_interfaces_without_fabricated_declarations",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_ephemeral_results_and_services_selected_from_module_results",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_rejects_irrelevant_arguments_invalid_method_modes_and_retired_interfaces",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_element_copy_only_for_explicit_owning_append_insert_sources",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/lists/main.c": {
+    "contract": "docs/implementation/list-interfaces.md",
+    "purpose": "Verify typed list service scopes and ephemeral results without hidden module instances or action constants.",
+    "tests": [
+      {
+        "case": "it_specializes_all_six_method_interfaces_without_fabricated_declarations",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_ephemeral_results_and_services_selected_from_module_results",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_rejects_irrelevant_arguments_invalid_method_modes_and_retired_interfaces",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_element_copy_only_for_explicit_owning_append_insert_sources",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/lists/support/fixture.c": {
+    "contract": "docs/implementation/list-interfaces.md",
+    "purpose": "Supply distinct project and standard roots and load intrinsic list projects without executing authored native C.",
+    "tests": [
+      {
+        "case": "it_specializes_all_six_method_interfaces_without_fabricated_declarations",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_ephemeral_results_and_services_selected_from_module_results",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_rejects_irrelevant_arguments_invalid_method_modes_and_retired_interfaces",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_element_copy_only_for_explicit_owning_append_insert_sources",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/lists/support/methods.c": {
+    "contract": "docs/implementation/list-interfaces.md",
+    "purpose": "Inspect all intrinsic argument/result descriptors, ephemeral scalar selectors and invalid retired service forms.",
+    "tests": [
+      {
+        "case": "it_specializes_all_six_method_interfaces_without_fabricated_declarations",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_types_ephemeral_results_and_services_selected_from_module_results",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_rejects_irrelevant_arguments_invalid_method_modes_and_retired_interfaces",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/lists/support/capabilities.c": {
+    "contract": "docs/implementation/list-interfaces.md",
+    "purpose": "Distinguish omitted and explicit owning sources and verify the exact standard integer capability profile.",
+    "tests": [
+      {
+        "case": "it_requires_element_copy_only_for_explicit_owning_append_insert_sources",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      },
+      {
+        "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/lists/support/failures.c": {
+    "contract": "docs/implementation/list-interfaces.md",
+    "purpose": "Fail every semantic allocation while specializing all fixed list interfaces and linking ephemeral output actions.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
+        "command": "make -C tests/unit/semantic/lists",
+        "source": "tests/unit/semantic/lists/main.c"
       }
     ]
   }

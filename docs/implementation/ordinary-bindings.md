@@ -5,8 +5,8 @@ under [CALL-01](../../spec/language/calls-and-results.md#call-01),
 [CALL-06](../../spec/language/calls-and-results.md#call-06),
 [CALL-07](../../spec/language/calls-and-results.md#call-07) and
 [CALL-08](../../spec/language/calls-and-results.md#call-08).
-[Direct selected-result trees](selected-operations.md) are typed by T036; intrinsic
-services remain T037.
+[Direct selected-result trees](selected-operations.md) are typed by T036.
+[Intrinsic services](list-interfaces.md) are specialized by T037.
 
 ## Resolve the interface, then the caller operand
 

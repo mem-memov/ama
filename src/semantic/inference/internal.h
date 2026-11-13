@@ -27,8 +27,6 @@ typedef struct EncounteredName { struct EncounteredName *next; SourceSpan name; 
 typedef struct { SemanticType *type; SemanticSymbol *symbol; bool reference; bool list; } InferenceValue;
 /** Compiler-provided list interface metadata is distinct from ordinary module-valued results. */
 typedef enum { INFER_INSTANCE, INFER_NAMESPACE, INFER_LIST_SERVICE, INFER_LIST_METHOD } InferenceOperationKind;
-/** The fixed service entry names select typed interfaces, never action constants. */
-typedef enum { INFER_APPEND, INFER_INSERT, INFER_REMOVE, INFER_CLEAR, INFER_SWAP, INFER_LENGTH } InferenceListMethod;
 /** Receiver classification precedes its adjacent source; fresh fields have no fabricated declaration syntax. */
 typedef struct { const AstAccess *syntax; InferenceValue value; bool fresh; } InferenceReceiver;
 /** One typed operation prefix, cached by exact AST identity after its written target is reached. */
@@ -36,7 +34,7 @@ typedef struct InferenceOperation {
     struct InferenceOperation *next;
     const AstNode *syntax;
     InferenceOperationKind kind;
-    InferenceListMethod method;
+    SemanticListMethod method;
     InferenceValue value;
 } InferenceOperation;
 /** Semantic-owned event/encounter/operation work, borrowing its program and module type. */

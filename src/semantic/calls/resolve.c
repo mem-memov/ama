@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief Resolve scalar call bindings and reject unsupported whole-list services.
+ * @brief Resolve ordinary and intrinsic typed bindings without hidden method instances.
  *
  * [LIST-02](../../../spec/language/lists.md#list-02) forbids whole-list execution.
  * [LIST-04](../../../spec/language/lists.md#list-04) gives each intrinsic method
@@ -9,15 +9,11 @@
  * operation-tree resolution: selectors retain parent fields while ordinary operands remain caller-side.
  */
 #include "internal.h"
+#include "semantic/lists/internal.h"
 
 bool semantic_call(SemanticProgram *program, SemanticType *type, SemanticStatement *statement) {
     if (!semantic_call_target(program, type, statement)) {
         return false;
-    }
-    bool list = statement->access != NULL && statement->access->list;
-    if (list) {
-        return semantic_fail(program, statement->syntax->span,
-            "A whole list cannot execute or expose retained results; typed list services are not implemented", NULL);
     }
     for (const AstArgument *argument = statement->syntax->as.call.first;
         argument != NULL; argument = argument->next) {
@@ -27,7 +23,8 @@ bool semantic_call(SemanticProgram *program, SemanticType *type, SemanticStateme
         }
         binding->syntax = argument;
         if (!semantic_call_field(program, statement, argument, binding)
-            || !semantic_binding_value(program, type, statement, binding)) {
+            || !semantic_binding_value(program, type, statement, binding)
+            || !semantic_list_copy_requirement(program, statement, binding)) {
             return false;
         }
         if (statement->last_binding == NULL) {

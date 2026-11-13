@@ -1021,10 +1021,21 @@ Contracts: [declarations](spec/language/declarations.md),
   ASan+UBSan selected checks and 922-input coverage passed. Planning explicitly
   guards execution before storage publication until IR/lifetime action lowering;
   intrinsic service semantics remain T037. Final Doxygen is reproducible.
-- [ ] **T037 — Validate intrinsic typed list services.** Needs: T009, T033, T036.
+- [x] **T037 — Validate intrinsic typed list services.** Needs: T009, T033, T036.
   Model six fixed method interfaces and the required `..integer` capabilities;
   enforce service-parent modes, typed receivers and omitted-source versus explicit
   owning-copy capability. Reject obsolete action-dispatch and retained-state APIs.
+  Evidence: [list interfaces](docs/implementation/list-interfaces.md) shares one
+  immutable six-entry descriptor table between inference and full validation.
+  Service/method kinds have no fabricated nominal types, declarations or method
+  instances; further calls retain explicit ephemeral result identities. Tests
+  inspect all interfaces, positions and output forms, owning/reference omission
+  versus explicit-source copy requirements, all eight native integer capability
+  profiles, exact project/standard identity, invalid retired modes and every
+  semantic allocation failure. Full strict `make -j4 test` and list ASan+UBSan
+  passed. Frontend checking retains the later typed `from_size` build obligation
+  without inspecting C; execution remains guarded before storage publication.
+  Documentation checks 935 inputs; final Doxygen generations are byte-identical.
 - [ ] **T038 — Validate control-flow contexts.** Needs: T031, T036, T037. Check
   owned truth/index capabilities, branch forms, empty-body warnings, exact linear
   loop roots and handler break context. Ensure foreach has distinct binding and

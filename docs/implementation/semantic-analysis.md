@@ -117,12 +117,11 @@ Stored-result reads expose results; namespace reads expose constants; neither
 makes body/private fields public. Synthetic output values are typed records,
 not fabricated parser nodes or C text.
 
-Whole-list execution and retained-result bindings are rejected before lowering.
-The current semantic API accepts no configurable list role types. The target
-[LIST-04 interface](../../spec/language/lists.md#list-04) gives each intrinsic
-method its own typed inputs/results; T075–T084 implement those interfaces,
-method-specific capabilities and service-frame lifetimes. Existing indexed
-scalar access and whole-list value transfers remain separate boundaries.
+Whole-list entry/resume and ordinary retained-result bindings are rejected.
+Unmarked service parents instead expose the fixed
+[T037 interfaces](list-interfaces.md), without configurable role types or hidden
+method instances. T044/T075–T084 still supply execution and service-frame lifetimes.
+Existing indexed scalar access and whole-list value transfers remain separate.
 Opaque native constant purity/resource restrictions remain native-library
 obligations, never guessed from C helper names or payloads.
 
@@ -151,6 +150,9 @@ fixed-point proof, admission-order tests and finite failure checks.
 
 [T036 selected operations](selected-operations.md) retains exact parent fields
 and ordered typed actions, with an explicit pre-storage execution guard.
+
+[T037 intrinsic list interfaces](list-interfaces.md) shares fixed descriptors
+between inference/full checking and separates services from nominal modules.
 
 ## Separate relation graphs and exact ordering
 
@@ -285,9 +287,11 @@ its checked-identity ordinary no-op, which neither clones nor clears positions.
 The semantic/planning regressions failed before the correction; actual generated
 scalar/list/indexed self copies and invalid index conversion exercise its consumer.
 
-This does not close T030–T040 or T041–T045. Source-order inferred fields, lexical
-foreach bindings, current result trees/list services and complete control contexts
-still require their own work. In particular the retained empty-loop control graph
-still needs FLOW-02's one-check behavior in T044/T068; a body containing only a
-declaration is syntactically nonempty under that rule. No runtime emptiness or
-emission-size heuristic may choose the future repeat edge.
+T030–T037 now provide complete declaration inventories, source-order inference,
+exact transfer/constant plans and typed result trees/list services. T038–T040 still
+complete control/continuation validation and semantic composition; T041–T045
+supply the corresponding IR/storage/lowering boundaries. Foreach-local bindings
+are classified, but traversal execution remains guarded. Parsed ordinary empty
+loops already use one-check behavior from T027; new condition-chain/foreach
+execution remains later work. A declaration-only body is syntactically nonempty;
+no runtime emptiness or emission-size heuristic chooses that repeat edge.

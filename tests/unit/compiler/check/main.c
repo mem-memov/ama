@@ -161,6 +161,26 @@ static void it_reports_unsupported_result_selection_instead_of_dropping_selected
     destroy_frontend();
 }
 
+/** Intrinsic interface typing retains a bridge obligation but neither executes C nor emits incomplete service frames. */
+static void it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c(void) {
+    prepare_project();
+    directory("generated/standard");
+    file("generated/standard/integer", "@C\n");
+    file("generated/standard/integer.h", "#error Semantic checking must not inspect the from_size declaration\n");
+    file("generated/standard/integer.c", "#error Semantic checking must not invoke the C compiler\n");
+    file("generated/standard/integer.abi", "+ initialize\n- destroy\n= clone\n| literal\n[] index\n");
+    file("generated/project/main", "@!\nitems[]\n.value\nitems[]\n length !\n  > count\n");
+    setup_frontend();
+    ModuleRoot roots[] = {{"generated/project", NULL, 0, MODULE_ROOT_PROJECT},
+        {"generated/standard", NULL, 0, MODULE_ROOT_STANDARD}};
+    bool valid = compiler_frontend_check(&frontend, roots, 2, ".main");
+    assert(!valid && frontend.semantic.resolved && frontend.semantic.constants_valid);
+    assert(frontend.semantic.list_integer != NULL && frontend.semantic.list_integer->requires_size_bridge);
+    assert(frontend.plan_initialized && !frontend.plan.valid && frontend.plan.first == NULL);
+    assert(frontend.error.code == DIAGNOSTIC_UNSUPPORTED_FEATURE && diagnostic_valid(&frontend.error));
+    destroy_frontend();
+}
+
 /** Parsed new control trees must fail explicitly until their typed execution stages exist. */
 static void it_reports_unsupported_control_trees_without_lowering_an_incomplete_operation(void) {
     const char *cases[] = {
@@ -184,6 +204,7 @@ static void it_reports_unsupported_control_trees_without_lowering_an_incomplete_
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_types_list_interfaces_before_guarding_execution_without_inspecting_native_c();
     it_reports_unsupported_control_trees_without_lowering_an_incomplete_operation();
     it_reports_unsupported_result_selection_instead_of_dropping_selected_actions();
     it_reports_unsupported_self_reference_execution_after_successful_static_typing();

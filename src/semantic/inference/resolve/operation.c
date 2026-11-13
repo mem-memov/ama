@@ -16,20 +16,16 @@ InferenceOperation *inference_find_operation(const Inference *inference, const A
 static bool method(Inference *inference, const AstNode *node,
     const InferenceOperation *parent, InferenceOperation *operation) {
     const AstAccess *target = node->as.call.target;
-    static const char *const names[] = {"append", "insert", "remove", "clear", "swap", "length"};
-    for (size_t index = 0; index < sizeof(names) / sizeof(names[0]); index++) {
-        if (layout_text_is(target->name, names[index])) {
-            if (target->reference || target->whole_list || target->index != NULL || node->as.call.mode != AST_ENTRY_CALL) {
-                return semantic_fail(inference->program, target->span, "A list method requires its plain declared name and entry mode", NULL);
-            }
-            operation->kind = INFER_LIST_METHOD;
-            operation->method = (InferenceListMethod)index;
-            operation->value = parent->value;
-            operation->value.list = false;
-            return true;
-        }
+    if (!semantic_list_method(target->name, &operation->method)) {
+        return semantic_fail(inference->program, target->name, "The list service has no such method", NULL);
     }
-    return semantic_fail(inference->program, target->name, "The list service has no such method", NULL);
+    if (target->reference || target->whole_list || target->index != NULL || node->as.call.mode != AST_ENTRY_CALL) {
+        return semantic_fail(inference->program, target->span, "A list method requires its plain declared name and entry mode", NULL);
+    }
+    operation->kind = INFER_LIST_METHOD;
+    operation->value = parent->value;
+    operation->value.list = false;
+    return true;
 }
 bool inference_operation(Inference *inference, const AstNode *node) {
     InferenceOperation *operation = semantic_allocate(inference->program, sizeof(*operation));
