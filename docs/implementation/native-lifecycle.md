@@ -65,12 +65,14 @@ ledger stores counts only, not payload pointers or a hidden control stack.
 ## Executable evidence
 
 Run `make -C tests/unit/native/lifecycle/model`. The model uses a root plus up to
-three separately declared children, all with real malloc/free resources. It checks:
+three separately declared children, all with real malloc/free resources through
+a counted fail-at-N allocator. Every completed scenario asserts zero live
+allocations, including the clone path’s temporary source. It checks:
 
-- All three root constructor paths for child counts zero through three.
+- All four root constructor paths for child counts zero through three.
 - Every child/root failure ordinal for each constructor path, including failure
   after acquiring resources, with no runtime destroy call for the failed payload.
-- All 16 combinations of four cleanup-error flags, continuing every release.
+- All 16 combinations of four cleanup-error flags for each constructor, continuing every release.
 - Reverse cleanup and preservation of construction failure over secondary errors.
 - Repeated cleanup rejection, invalid ordering/transitions and Ama-only storage.
 
@@ -83,3 +85,54 @@ The model and the six-binding resource harness also pass ASan/UBSan with
 this environment). LeakSanitizer itself fails under the environment's ptrace
 supervision and was not certified; its failure is not presented as a successful
 leak check. Address/undefined-behavior instrumentation remained enabled.
+
+## T011 transition and real-pool composition evidence
+
+The ledger requires no additional execution state: Fresh admits one constructor
+selection; Constructing credits exactly the completed child prefix; Live admits
+cleanup; Finalized never becomes live again. Cleanup-active distinguishes an
+in-progress finalization from a completely consumed one. Publication and pool
+access are separate state, so a temporarily Live private constructor result is
+not automatically externally accessible. The generated owner supplies valid
+exclusive ledger access, without allowing native authors to alter this metadata.
+
+T011 extends the finite model to Default, Literal, Clone and Size. The fixture's
+bounded size constructor is its own path; the full arbitrary-precision production
+integer behavior remains the [T009 protocol contract](native-protocols.md) and
+T085. Each path covers every child/root construction failure boundary for zero
+through three children, successful cleanup, all 16 destructor-failure subsets for
+four payloads and repeated cleanup rejection. Different failing destructor codes
+are observed in actual cleanup order; an earlier construction code, immutable
+message pointer and explicit length survive them unchanged. Failed constructors
+self-clean and receive no runtime destructor credit. Each successful path
+asserts its exact allocation count, excluding default-then-overwrite. A separate
+case fails every actual allocation for every constructor and child count,
+including clone-source creation, and proves no counted allocation remains.
+
+The transition case checks rejected construction, publication, child completion
+and cleanup operations in Fresh, Constructing, Live, active Finalized and consumed
+Finalized states. Every rejection preserves all logical fields; the test does not
+compare unspecified C padding. The SIZE_MAX case instantiates a valid reachable
+prefix at SIZE_MAX-1 rather than iterating that many times: one credit reaches
+capacity, the next is refused before overflow, and reverse selection returns
+SIZE_MAX-1. It owns no actual children. For arbitrary capacity C the invariant
+`0 <= k <= C` makes the accepted increment `k+1 <= C <= SIZE_MAX`, proving the
+complete numeric domain independently of finite resource tests.
+
+`tests/unit/runtime/objects/lifecycle/` composes the ledger with actual pool slots,
+address-sensitive resources and generated-style hooks. A new observer checks
+that public identity is invalid and native credit consumed before each destroy
+callback. During parent cleanup its declared child payloads remain Live with
+resources intact. The world operation gate refuses a nested destroy; callbacks
+cannot start duplicate cleanup. Every destructor-failure position still releases
+the whole tree in parent/native then reverse-child order; a later destroy sees
+a stale reference and invokes no hook. Existing allocation-failure and nested-list
+cases exercise all measured allocation ordinals and assert zero counted resources.
+These are internal component/composition tests; current source integration and
+public C embedding remain later tasks.
+
+T011 acceptance passes the full strict `-DNDEBUG -Werror` tree, focused model and
+real-object ASan/UBSan leaves (leak detection disabled), complete documentation
+coverage of 741 maintained inputs and all Markdown links. Warning-free Doxygen
+checks 571 maintained files, 2365 interfaces and 286 canonical/page destinations;
+two complete generations produce byte-identical output.

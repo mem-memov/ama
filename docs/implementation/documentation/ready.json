@@ -9996,6 +9996,21 @@
         "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
         "command": "make -C tests/unit/runtime/protocols",
         "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_rejects_lifecycle_reentry_without_mutating_resource_credits",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_bounds_child_credit_arithmetic_at_size_max",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_preserves_exact_primary_status_through_distinct_cleanup_failures",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
       }
     ]
   },
@@ -10208,6 +10223,21 @@
         "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
         "command": "make -C tests/unit/runtime/protocols",
         "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_rejects_lifecycle_reentry_without_mutating_resource_credits",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_bounds_child_credit_arithmetic_at_size_max",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_preserves_exact_primary_status_through_distinct_cleanup_failures",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
       }
     ]
   },
@@ -28139,6 +28169,11 @@
         "case": "it_finalizes_ama_only_storage_without_a_native_destroy_request",
         "command": "make -C tests/unit/native/lifecycle/model",
         "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_actual_constructor_allocation_without_losing_resources",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
       }
     ]
   },
@@ -28168,6 +28203,11 @@
       },
       {
         "case": "it_finalizes_ama_only_storage_without_a_native_destroy_request",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_actual_constructor_allocation_without_losing_resources",
         "command": "make -C tests/unit/native/lifecycle/model",
         "source": "tests/unit/native/lifecycle/model/main.c"
       }
@@ -28201,6 +28241,26 @@
         "case": "it_finalizes_ama_only_storage_without_a_native_destroy_request",
         "command": "make -C tests/unit/native/lifecycle/model",
         "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_rejects_lifecycle_reentry_without_mutating_resource_credits",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_bounds_child_credit_arithmetic_at_size_max",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_preserves_exact_primary_status_through_distinct_cleanup_failures",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_actual_constructor_allocation_without_losing_resources",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
       }
     ]
   },
@@ -28230,6 +28290,26 @@
       },
       {
         "case": "it_finalizes_ama_only_storage_without_a_native_destroy_request",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_rejects_lifecycle_reentry_without_mutating_resource_credits",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_bounds_child_credit_arithmetic_at_size_max",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_preserves_exact_primary_status_through_distinct_cleanup_failures",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_actual_constructor_allocation_without_losing_resources",
         "command": "make -C tests/unit/native/lifecycle/model",
         "source": "tests/unit/native/lifecycle/model/main.c"
       }
@@ -28276,6 +28356,26 @@
       },
       {
         "case": "it_finalizes_ama_only_storage_without_a_native_destroy_request",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_rejects_lifecycle_reentry_without_mutating_resource_credits",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_bounds_child_credit_arithmetic_at_size_max",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_preserves_exact_primary_status_through_distinct_cleanup_failures",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_actual_constructor_allocation_without_losing_resources",
         "command": "make -C tests/unit/native/lifecycle/model",
         "source": "tests/unit/native/lifecycle/model/main.c"
       }
@@ -28338,6 +28438,26 @@
       },
       {
         "case": "it_finalizes_ama_only_storage_without_a_native_destroy_request",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_rejects_lifecycle_reentry_without_mutating_resource_credits",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_bounds_child_credit_arithmetic_at_size_max",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_preserves_exact_primary_status_through_distinct_cleanup_failures",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_actual_constructor_allocation_without_losing_resources",
         "command": "make -C tests/unit/native/lifecycle/model",
         "source": "tests/unit/native/lifecycle/model/main.c"
       }
@@ -33283,6 +33403,11 @@
         "case": "it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_failure",
         "command": "make -C tests/unit/runtime/objects/lifecycle",
         "source": "tests/unit/runtime/objects/lifecycle/main.c"
+      },
+      {
+        "case": "it_invalidates_before_native_cleanup_and_preserves_live_owned_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
       }
     ]
   },
@@ -37302,6 +37427,58 @@
         "case": "it_sorts_every_small_inventory_permutation_exactly",
         "command": "make -C tests/unit/native/status-providers",
         "source": "tests/unit/native/status-providers/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/lifecycle/support/transitions.c": {
+    "contract": "docs/implementation/native-lifecycle.md",
+    "purpose": "Verify forbidden lifecycle transitions, full-width child counters and exact first-error retention.",
+    "tests": [
+      {
+        "case": "it_rejects_lifecycle_reentry_without_mutating_resource_credits",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_bounds_child_credit_arithmetic_at_size_max",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_preserves_exact_primary_status_through_distinct_cleanup_failures",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_selects_exactly_one_constructor_and_destroys_native_before_reverse_children",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_cleans_every_constructed_prefix_without_destroying_failed_payloads",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_continues_cleanup_after_every_combination_of_native_errors",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_actual_constructor_allocation_without_losing_resources",
+        "command": "make -C tests/unit/native/lifecycle/model",
+        "source": "tests/unit/native/lifecycle/model/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/objects/lifecycle/observations.c": {
+    "contract": "docs/implementation/native-lifecycle.md",
+    "purpose": "Observe real pool invalidation, child lifetime and blocked destruction reentry from native cleanup.",
+    "tests": [
+      {
+        "case": "it_invalidates_before_native_cleanup_and_preserves_live_owned_children",
+        "command": "make -C tests/unit/runtime/objects/lifecycle",
+        "source": "tests/unit/runtime/objects/lifecycle/main.c"
       }
     ]
   }

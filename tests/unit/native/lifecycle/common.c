@@ -8,6 +8,7 @@
 #ifndef AMA_TEST_LIFECYCLE_COMMON_C
 #define AMA_TEST_LIFECYCLE_COMMON_C
 
+#include "../../source/common.c"
 #include <assert.h>
 #include <stdlib.h>
 #include <string.h>
@@ -47,6 +48,7 @@ static void expect_finalized(const Model *model) {
     for (size_t index = 0; index < 3; index++) {
         assert(model->children[index].resource == NULL);
     }
+    destroy_test();
 }
 
 #endif

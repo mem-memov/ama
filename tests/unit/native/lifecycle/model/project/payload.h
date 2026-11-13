@@ -9,6 +9,7 @@
 #define FIXTURE_PAYLOAD_H
 
 #include "native/abi/bytes.h"
+#include "source/memory/allocator.h"
 #include "runtime/lifecycle/lifetime.h"
 
 /** Own one allocated native byte, its selected constructor identity and an explicit post-cleanup failure switch. */
@@ -16,7 +17,13 @@ typedef struct {
     unsigned char *resource;
     AmaConstructorKind constructed_by;
     bool fail_destroy;
+    uint32_t destroy_code;
 } Payload;
+
+/** Configure one counted fixture allocator before construction; no resources may remain from the previous case. */
+void payload_configure_allocator(SourceAllocator allocator);
+/** Self-clean a deliberately failed native acquisition without granting a runtime destructor credit. */
+void payload_release_failed(Payload *payload);
 
 /**
  * Construct one default native fixture resource; allocation failure creates no destructor
@@ -33,6 +40,8 @@ AmaStatus payload_literal(Payload *destination, AmaByteView literal);
  * constructor identity.
  */
 AmaStatus payload_clone(Payload *destination, const Payload *source);
+/** Construct directly from bounded host metadata without calling the default or literal hook. */
+AmaStatus payload_from_size(Payload *destination, size_t value);
 /**
  * Deliberately construct then release its own partial resource and return allocation failure,
  * proving failed constructors must not be destroyed again.

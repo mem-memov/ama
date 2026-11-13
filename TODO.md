@@ -602,10 +602,22 @@ Contracts: [runtime](spec/implementation/runtime.md),
   739-input complete coverage, Markdown links and warning-free reproducible
   Doxygen pass: 569 maintained file pages, 2350 interfaces and 286 destinations.
   Actual current-source identity/dependency emission remains T017/T055.
-- [ ] **T011 — Validate lifecycle state transitions.** Needs: T009. Establish
+- [x] **T011 — Validate lifecycle state transitions.** Needs: T009. Establish
   fresh/constructing/live/finalized bookkeeping, one selected constructor,
   reverse cleanup and terminal destroy failures. Inject failure at every
   construction/cleanup boundary and prove at-most-once finalization.
+  Evidence: the counted lifecycle model covers all four constructor paths,
+  zero through three children, every constructor failure boundary and actual
+  allocation ordinal, all 16 cleanup-error subsets per constructor, distinct
+  secondary codes and exact primary message preservation. Illegal transitions
+  preserve credits; SIZE_MAX prefix arithmetic is checked without overflow.
+  Real pool hooks observe prior invalidation, live owned children, consumed
+  native credit and refused reentry; every destructor failure position finishes
+  cleanup without retry. Existing core transitions remain sufficient; their
+  documented invariants are strengthened. The full strict suite, focused
+  ASan/UBSan model/object leaves (leak detection disabled), complete coverage
+  of 741 maintained inputs, Markdown links and warning-free byte-reproducible
+  Doxygen pass: 571 maintained files, 2365 interfaces and 286 destinations.
 - [ ] **T012 — Validate native borrow and resource boundaries.** Needs: T010,
   T011. Expose narrow generated typed access, separate declared Ama graph state
   from native payloads and bound borrow lifetimes. Exercise native copies and

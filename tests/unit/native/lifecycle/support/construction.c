@@ -9,7 +9,7 @@
 #define AMA_TEST_LIFECYCLE_CONSTRUCTION_C
 
 /**
- * Invoke exactly the scenario-selected default/literal/clone constructor; a clone source has its
+ * Invoke exactly the scenario-selected default/literal/clone/size constructor; a clone source has its
  * own explicit cleanup and cannot replace the primary failure.
  */
 static AmaStatus construct_native(Payload *destination, AmaConstructorKind kind) {
@@ -20,6 +20,7 @@ static AmaStatus construct_native(Payload *destination, AmaConstructorKind kind)
     if (kind == AMA_CONSTRUCT_LITERAL) {
         return payload_literal(destination, (AmaByteView) {literal, 1});
     }
+    if (kind == AMA_CONSTRUCT_SIZE) { return payload_from_size(destination, 7); }
     Payload source;
     AmaStatus status = payload_initialize(&source);
     if (!ama_status_is_success(status)) {
@@ -56,8 +57,7 @@ static AmaStatus construct_children(Model *model, Scenario scenario) {
 static AmaStatus construct_root(Model *model, Scenario scenario) {
     AmaStatus status = construct_native(&model->native, scenario.constructor);
     if (ama_status_is_success(status) && scenario.failure_ordinal == scenario.children) {
-        free(model->native.resource);
-        model->native.resource = NULL;
+        payload_release_failed(&model->native);
         return ama_status_make(AMA_OUT_OF_MEMORY, NULL, 0);
     }
     return status;
@@ -67,7 +67,10 @@ static AmaStatus construct_root(Model *model, Scenario scenario) {
  * Initialize a bounded lifecycle model, construct the selected child/root prefix and unwind it
  * through the same ledger on any failure.
  */
-static AmaStatus model_construct(Model *model, Scenario scenario) {
+static AmaStatus model_construct_with_failure(Model *model, Scenario scenario, size_t failed_allocation) {
+    setup_test();
+    failure_at = failed_allocation;
+    payload_configure_allocator(sources.allocator);
     assert(scenario.children <= 3);
     memset(model, 0, sizeof(*model));
     AmaStatus status = ama_lifetime_begin(&model->lifetime, scenario.children, scenario.constructor);
@@ -81,6 +84,11 @@ static AmaStatus model_construct(Model *model, Scenario scenario) {
     }
     model->native.fail_destroy = (scenario.cleanup_failures & (1u << scenario.children)) != 0;
     return ama_lifetime_finish(&model->lifetime, true);
+}
+
+/** Construct normally with no allocator failure; each case owns a fresh counted fixture. */
+static AmaStatus model_construct(Model *model, Scenario scenario) {
+    return model_construct_with_failure(model, scenario, 0);
 }
 
 #endif

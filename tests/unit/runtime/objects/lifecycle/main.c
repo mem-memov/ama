@@ -6,6 +6,7 @@
  * @see [Fixture and coverage contract](../../../../../docs/implementation/library-tests-and-build.md)
  */
 #include "../common.c"
+#include "observations.c"
 
 /**
  * Assert that the component constructs children before payload and finalizes parent before
@@ -153,6 +154,7 @@ static void it_unwinds_list_buffers_and_nested_ownership_on_each_allocation_fail
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_invalidates_before_native_cleanup_and_preserves_live_owned_children();
     it_constructs_children_before_payload_and_finalizes_parent_before_reverse_children();
     it_uses_one_selected_constructor_without_default_then_overwrite();
     it_cleans_every_failed_prefix_without_destroying_the_failed_native_payload();

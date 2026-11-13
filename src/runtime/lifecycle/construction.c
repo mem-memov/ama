@@ -22,6 +22,8 @@ AmaStatus ama_lifetime_begin(AmaLifetime *lifetime, size_t children, AmaConstruc
 
 /** Credit one successfully initialized child in declaration order. Require constructing state and unused prefix capacity; never credit a failed child. */
 AmaStatus ama_lifetime_child_ready(AmaLifetime *lifetime) {
+    /* LIFE-02's completed-prefix invariant gives live_children <= capacity.
+     * Reject equality before increment, even when capacity is SIZE_MAX. */
     if (lifetime->phase != AMA_LIFETIME_CONSTRUCTING ||
         lifetime->live_children == lifetime->child_capacity) {
         return ama_status_make(AMA_INVALID_STATE, NULL, 0);

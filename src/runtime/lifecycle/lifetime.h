@@ -33,7 +33,13 @@ typedef enum {
 /* Runtime-owned ledger, never part of an opaque native payload.
  * live_children is a constructed declaration-order prefix; cleanup consumes it.
  */
-/** Runtime-owned resource ledger: live_children is a declaration-order completed prefix, native_live is one destructor credit, cleanup_active prevents duplicate cleanup. */
+/** Runtime-owned resource ledger, accessible only through the runtime owner.
+ * Every reachable state satisfies live_children <= child_capacity. Constructing
+ * owns no native credit; finish records one only after all children are ready.
+ * Cleanup implies Finalized and consumes credits before callbacks, so destructor
+ * failure cannot restore ownership or authorize another attempt. Reuse requires
+ * a newly reserved identity and fresh ledger, never restarting a finalized value.
+ */
 typedef struct {
     AmaLifetimePhase phase;
     AmaConstructorKind constructor;

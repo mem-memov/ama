@@ -6,6 +6,7 @@
  * @see [Fixture and coverage contract](../../../../../docs/implementation/library-tests-and-build.md)
  */
 #include "../common.c"
+#include "../support/transitions.c"
 
 /**
  * Assert that the component selects exactly one constructor and destroys native before reverse
@@ -14,12 +15,13 @@
  */
 static void it_selects_exactly_one_constructor_and_destroys_native_before_reverse_children(void) {
     for (size_t children = 0; children <= 3; children++) {
-        for (int kind = AMA_CONSTRUCT_DEFAULT; kind <= AMA_CONSTRUCT_CLONE; kind++) {
+        for (int kind = AMA_CONSTRUCT_DEFAULT; kind <= AMA_CONSTRUCT_SIZE; kind++) {
             Model model;
             Scenario scenario = {children, (AmaConstructorKind) kind, SIZE_MAX, 0};
             AmaStatus status = model_construct(&model, scenario);
             assert(ama_status_is_success(status));
             assert(model.native.constructed_by == scenario.constructor);
+            assert(allocation_count == children + 1 + (kind == AMA_CONSTRUCT_CLONE ? 1 : 0));
             assert(model.lifetime.phase == AMA_LIFETIME_LIVE);
             status = model_cleanup(&model, ama_status_success());
             assert(ama_status_is_success(status));
@@ -57,7 +59,7 @@ static void expect_failed_prefix(size_t children, size_t failed, AmaConstructorK
 static void it_cleans_every_constructed_prefix_without_destroying_failed_payloads(void) {
     for (size_t children = 0; children <= 3; children++) {
         for (size_t failed = 0; failed <= children; failed++) {
-            for (int kind = AMA_CONSTRUCT_DEFAULT; kind <= AMA_CONSTRUCT_CLONE; kind++) {
+            for (int kind = AMA_CONSTRUCT_DEFAULT; kind <= AMA_CONSTRUCT_SIZE; kind++) {
                 expect_failed_prefix(children, failed, (AmaConstructorKind) kind);
             }
         }
@@ -70,17 +72,19 @@ static void it_cleans_every_constructed_prefix_without_destroying_failed_payload
  * generated evidence.
  */
 static void it_continues_cleanup_after_every_combination_of_native_errors(void) {
-    for (unsigned failures = 0; failures < 16; failures++) {
-        Model model;
-        Scenario scenario = {3, AMA_CONSTRUCT_LITERAL, SIZE_MAX, failures};
-        AmaStatus status = model_construct(&model, scenario);
-        assert(ama_status_is_success(status));
-        status = model_cleanup(&model, ama_status_success());
-        assert(status.code == (failures == 0 ? AMA_OK : AMA_NATIVE_FAILURE));
-        assert(model.destruction_count == 4);
-        expect_finalized(&model);
-        status = model_cleanup(&model, ama_status_success());
-        assert(status.code == AMA_INVALID_STATE && model.destruction_count == 4);
+    for (int kind = AMA_CONSTRUCT_DEFAULT; kind <= AMA_CONSTRUCT_SIZE; kind++) {
+        for (unsigned failures = 0; failures < 16; failures++) {
+            Model model;
+            Scenario scenario = {3, (AmaConstructorKind)kind, SIZE_MAX, failures};
+            AmaStatus status = model_construct(&model, scenario);
+            assert(ama_status_is_success(status));
+            status = model_cleanup(&model, ama_status_success());
+            assert(status.code == (failures == 0 ? AMA_OK : AMA_NATIVE_FAILURE));
+            assert(model.destruction_count == 4);
+            expect_finalized(&model);
+            status = model_cleanup(&model, ama_status_success());
+            assert(status.code == AMA_INVALID_STATE && model.destruction_count == 4);
+        }
     }
 }
 
@@ -140,6 +144,10 @@ static void it_finalizes_ama_only_storage_without_a_native_destroy_request(void)
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_unwinds_every_actual_constructor_allocation_without_losing_resources();
+    it_rejects_lifecycle_reentry_without_mutating_resource_credits();
+    it_bounds_child_credit_arithmetic_at_size_max();
+    it_preserves_exact_primary_status_through_distinct_cleanup_failures();
     it_selects_exactly_one_constructor_and_destroys_native_before_reverse_children();
     it_cleans_every_constructed_prefix_without_destroying_failed_payloads();
     it_continues_cleanup_after_every_combination_of_native_errors();
