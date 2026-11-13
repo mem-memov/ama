@@ -658,9 +658,20 @@ Contracts: [runtime](spec/implementation/runtime.md),
 Contracts: [source and names](spec/language/source-and-names.md),
 [compiler identity/dependencies](spec/implementation/compiler.md).
 
-- [ ] **T014 — Verify original-byte source storage.** Needs: T134. Preserve spans,
+- [x] **T014 — Verify original-byte source storage.** Needs: T134. Preserve spans,
   physical line endings, optional final newline and byte-based diagnostic columns.
   Test EOF, empty files, CRLF and allocation failure without fabricated bytes.
+  Evidence: original byte/path ownership and every position through EOF pass a
+  direct physical-line model for all 55,987 inputs through length six over six
+  representative byte classes. Empty/unterminated/CRLF/Unicode loads, unchanged
+  failure outputs and borrowed-input mutation are covered. Source length SIZE_MAX
+  rejects before allocation. The read buffer now separates exact bounded planning
+  from alias-safe commit, saturating its last geometric growth instead of entering
+  an exact-size tail; proofs cover full-domain bounds and linear total copying.
+  Every measured multichunk allocation failure preserves prior published sources.
+  The full strict suite, source/diagnostic ASan/UBSan leaves (leak detection
+  disabled), complete 763-input coverage, Markdown links and warning-free
+  reproducible Doxygen pass: 591 maintained files, 2432 interfaces and 288 destinations.
 - [ ] **T015 — Verify strict Unicode recognition.** Needs: T014. Pin Unicode XID
   data and strict UTF-8 decoding; preserve byte identity without normalization.
   Test malformed encodings, boundary scalars and multiword international names.

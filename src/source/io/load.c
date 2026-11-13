@@ -5,45 +5,8 @@
  * [SRC-01](../../../spec/language/source-and-names.md#src-01)
  * Load physical sources without changing bytes or guessing logical module identity.
  */
-#include <stdint.h>
 #include <stdio.h>
-#include <string.h>
-#include "source/text/source.h"
-
-/** Private growable binary read buffer; caller releases it even after failed read/close. */
-typedef struct {
-    unsigned char *bytes;
-    size_t length;
-    size_t capacity;
-} SourceBuffer;
-
-/** Grow private temporary bytes geometrically after checked addition. Allocate/copy before releasing old storage; failure preserves the old buffer.
- */
-static SourceStatus append_chunk(SourceAllocator allocator, SourceBuffer *buffer,
-    const unsigned char *chunk, size_t length) {
-    if (length > SIZE_MAX - buffer->length) {
-        return SOURCE_LIMIT;
-    }
-    size_t needed = buffer->length + length;
-    if (needed > buffer->capacity) {
-        size_t capacity = needed > SIZE_MAX / 2 ? needed : needed * 2;
-        unsigned char *replacement = allocator.allocate(allocator.context, capacity);
-        if (replacement == NULL) {
-            return SOURCE_OUT_OF_MEMORY;
-        }
-        if (buffer->length != 0) {
-            memcpy(replacement, buffer->bytes, buffer->length);
-        }
-        allocator.release(allocator.context, buffer->bytes);
-        buffer->bytes = replacement;
-        buffer->capacity = capacity;
-    }
-    if (length != 0) {
-        memcpy(buffer->bytes + buffer->length, chunk, length);
-    }
-    buffer->length = needed;
-    return SOURCE_OK;
-}
+#include "buffer/buffer.h"
 
 /** Read finite binary chunks without interpreting bytes. Caller retains buffer ownership and stream closure on every status.
  */
@@ -52,7 +15,7 @@ static SourceStatus read_stream(FILE *stream, SourceAllocator allocator,
     unsigned char chunk[4096];
     size_t length;
     while ((length = fread(chunk, 1, sizeof(chunk), stream)) != 0) {
-        SourceStatus status = append_chunk(allocator, buffer, chunk, length);
+        SourceStatus status = source_buffer_append(allocator, buffer, chunk, length);
         if (status != SOURCE_OK) {
             return status;
         }

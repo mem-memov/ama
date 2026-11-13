@@ -59,6 +59,9 @@ SourceStatus source_manager_add(SourceManager *manager, const char *path,
     if (path == NULL || output == NULL || (bytes == NULL && length != 0)) {
         return SOURCE_INVALID_ARGUMENT;
     }
+    /* A convenience terminator must fit independently of allocator availability.
+     * Reject this bound before any input-byte access or private allocation. */
+    if (length == SIZE_MAX) { return SOURCE_LIMIT; }
     SourceAllocator allocator = manager->allocator;
     SourceText *source = allocator.allocate(allocator.context, sizeof(*source));
     if (source == NULL) {

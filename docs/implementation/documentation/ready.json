@@ -19125,6 +19125,16 @@
         "case": "it_loads_original_file_bytes_and_reports_io_failures",
         "command": "make -C tests/unit/source/text",
         "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_loads_empty_and_unterminated_files_as_exact_original_bytes",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_unwinds_every_multichunk_load_allocation_preserving_existing_sources",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
       }
     ]
   },
@@ -19904,6 +19914,16 @@
         "case": "it_loads_original_file_bytes_and_reports_io_failures",
         "command": "make -C tests/unit/source/text",
         "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_preserves_eof_and_every_small_physical_line_boundary_without_fabricated_bytes",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_loads_empty_and_unterminated_files_as_exact_original_bytes",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
       }
     ]
   },
@@ -19928,6 +19948,21 @@
       },
       {
         "case": "it_loads_original_file_bytes_and_reports_io_failures",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_preserves_eof_and_every_small_physical_line_boundary_without_fabricated_bytes",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_copies_borrowed_input_and_rejects_unrepresentable_length_before_allocation",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_unwinds_every_multichunk_load_allocation_preserving_existing_sources",
         "command": "make -C tests/unit/source/text",
         "source": "tests/unit/source/text/main.c"
       }
@@ -36889,6 +36924,21 @@
         "case": "it_loads_original_file_bytes_and_reports_io_failures",
         "command": "make -C tests/unit/source/text",
         "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_bounds_source_buffer_growth_and_saturates_without_an_exact_growth_tail",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_loads_empty_and_unterminated_files_as_exact_original_bytes",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_unwinds_every_multichunk_load_allocation_preserving_existing_sources",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
       }
     ]
   },
@@ -36913,6 +36963,26 @@
       },
       {
         "case": "it_loads_original_file_bytes_and_reports_io_failures",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_bounds_source_buffer_growth_and_saturates_without_an_exact_growth_tail",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_preserves_eof_and_every_small_physical_line_boundary_without_fabricated_bytes",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_loads_empty_and_unterminated_files_as_exact_original_bytes",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_unwinds_every_multichunk_load_allocation_preserving_existing_sources",
         "command": "make -C tests/unit/source/text",
         "source": "tests/unit/source/text/main.c"
       }
@@ -37980,6 +38050,122 @@
         "case": "it_reports_the_active_execution_chain_before_releasing_all_context_resources",
         "command": "make -C tests/unit/runtime/host-lifecycle",
         "source": "tests/unit/runtime/host-lifecycle/main.c"
+      }
+    ]
+  },
+  "src/source/io/buffer/buffer.h": {
+    "contract": "docs/implementation/source-storage.md",
+    "purpose": "Plan and append exact binary source chunks before immutable source publication.",
+    "tests": [
+      {
+        "case": "it_bounds_source_buffer_growth_and_saturates_without_an_exact_growth_tail",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_appends_aliasing_chunks_without_use_after_free_or_partial_commit",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_unwinds_every_multichunk_load_allocation_preserving_existing_sources",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/io/buffer/plan.c": {
+    "contract": "docs/implementation/source-storage.md",
+    "purpose": "Bound binary source growth and saturate the final geometric allocation without overflow.",
+    "tests": [
+      {
+        "case": "it_bounds_source_buffer_growth_and_saturates_without_an_exact_growth_tail",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_appends_aliasing_chunks_without_use_after_free_or_partial_commit",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      }
+    ]
+  },
+  "src/source/io/buffer/append.c": {
+    "contract": "docs/implementation/source-storage.md",
+    "purpose": "Allocate and commit one exact source chunk without losing prior storage on failure.",
+    "tests": [
+      {
+        "case": "it_appends_aliasing_chunks_without_use_after_free_or_partial_commit",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_unwinds_every_multichunk_load_allocation_preserving_existing_sources",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      }
+    ]
+  },
+  "tests/unit/source/text/support/buffer.c": {
+    "contract": "docs/implementation/source-storage.md",
+    "purpose": "Check complete numeric read-buffer bounds, final saturation and alias-safe transactional appends.",
+    "tests": [
+      {
+        "case": "it_bounds_source_buffer_growth_and_saturates_without_an_exact_growth_tail",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_appends_aliasing_chunks_without_use_after_free_or_partial_commit",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      }
+    ]
+  },
+  "tests/unit/source/text/support/positions.c": {
+    "contract": "docs/implementation/source-storage.md",
+    "purpose": "Validate physical source coordinates and EOF against original bytes, including all small CR/LF combinations.",
+    "tests": [
+      {
+        "case": "it_preserves_eof_and_every_small_physical_line_boundary_without_fabricated_bytes",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_copies_borrowed_input_and_rejects_unrepresentable_length_before_allocation",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      }
+    ]
+  },
+  "tests/unit/source/text/support/loading.c": {
+    "contract": "docs/implementation/source-storage.md",
+    "purpose": "Exercise empty and multichunk binary loads, every measured allocation failure and real I/O refusal.",
+    "tests": [
+      {
+        "case": "it_loads_empty_and_unterminated_files_as_exact_original_bytes",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
+      },
+      {
+        "case": "it_unwinds_every_multichunk_load_allocation_preserving_existing_sources",
+        "command": "make -C tests/unit/source/text",
+        "source": "tests/unit/source/text/main.c"
       }
     ]
   }

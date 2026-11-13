@@ -4,5 +4,5 @@
 ROOT := $(abspath ../../../../..)
 include $(ROOT)/tests/unit/parser/frontend.mk
 SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/source/identity))
-SOURCES += source/io/load.c source/module/resolve/logical.c
+SOURCES += source/io/load.c source/io/buffer/plan.c source/io/buffer/append.c source/module/resolve/logical.c
 include $(ROOT)/tests/leaf.mk

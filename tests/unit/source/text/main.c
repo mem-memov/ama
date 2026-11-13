@@ -7,6 +7,9 @@
  */
 #include <stdio.h>
 #include "../common.c"
+#include "support/buffer.c"
+#include "support/positions.c"
+#include "support/loading.c"
 
 /**
  * Assert that the component preserves bytes and spans across additions. The explicit fixture
@@ -114,6 +117,12 @@ static void it_loads_original_file_bytes_and_reports_io_failures(void) {
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_bounds_source_buffer_growth_and_saturates_without_an_exact_growth_tail();
+    it_appends_aliasing_chunks_without_use_after_free_or_partial_commit();
+    it_preserves_eof_and_every_small_physical_line_boundary_without_fabricated_bytes();
+    it_copies_borrowed_input_and_rejects_unrepresentable_length_before_allocation();
+    it_loads_empty_and_unterminated_files_as_exact_original_bytes();
+    it_unwinds_every_multichunk_load_allocation_preserving_existing_sources();
     it_preserves_bytes_and_spans_across_additions();
     it_matches_every_offset_against_a_linear_line_model();
     it_unwinds_each_failed_allocation_without_publishing();

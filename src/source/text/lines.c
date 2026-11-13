@@ -4,6 +4,8 @@
  *
  * [NAME-03](../../../spec/implementation/compiler.md#name-03)
  * Report physical source lines and byte columns without rewriting Unicode.
+ * [COMP-04](../../../spec/implementation/compiler.md#comp-04) makes EOF a
+ * valid original-byte position; only actual LF bytes introduce another line start.
  */
 #include <stdint.h>
 #include "internal.h"
