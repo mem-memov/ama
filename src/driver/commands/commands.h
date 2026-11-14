@@ -38,4 +38,7 @@ int driver_status(const DriverOptions *options, FILE *output, FILE *errors);
  */
 int driver_check(const DriverOptions *options, FILE *output, FILE *errors);
 
+/** Resolve explicit library exports and write checked metadata without creating a launcher or artifact. */
+int driver_library_check(const DriverOptions *, FILE *, FILE *);
+
 #endif

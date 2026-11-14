@@ -1,0 +1,16 @@
+# Explicit checked library inputs; this is a build configuration, not Ama source.
+ama-library | 1
+component | example.component
+abi | ama-c-1
+target | x86_64-linux-gnu
+calling-convention | c
+schema | amount | integer | ..integer
+schema | message | text | ..text
+schema | outcome | failure | ..failure
+schema | enabled | condition | ..std.condition
+schema | messages | list | message
+export | run | .main | entry,resume,read
+export | observe | .other | read
+input | run | amount | amount
+input | run | message text | message
+output | run | failure | outcome

@@ -4202,6 +4202,36 @@
         "case": "it_unwinds_every_frontend_allocation_failure",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_incompatible_explicit_contracts",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_dependency_changes_and_preserves_handwritten_inputs",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_link_inputs_and_preserves_native_companions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_names_complete_abi_contracts_and_rejects_identity_collisions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
       }
     ]
   },
@@ -4243,6 +4273,36 @@
         "case": "it_unwinds_every_frontend_allocation_failure",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_incompatible_explicit_contracts",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_dependency_changes_and_preserves_handwritten_inputs",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_link_inputs_and_preserves_native_companions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_names_complete_abi_contracts_and_rejects_identity_collisions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
       }
     ]
   },
@@ -4865,6 +4925,21 @@
         "case": "it_publishes_empty_handler_warnings_and_propagates_warning_output_failures",
         "command": "make -C tests/unit/driver/run",
         "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_checks_explicit_exports_with_repeatable_abi_metadata",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_rejects_bad_mappings_and_missing_configuration",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_rejects_launcher_flags_for_library_checking",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
       }
     ]
   },
@@ -5172,6 +5247,11 @@
         "case": "it_cleans_every_partial_allocation_and_rejects_unrepresentable_storage",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_keeps_library_configuration_separate_from_executable_options",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
       }
     ]
   },
@@ -5201,6 +5281,11 @@
       },
       {
         "case": "it_cleans_every_partial_allocation_and_rejects_unrepresentable_storage",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_keeps_library_configuration_separate_from_executable_options",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
       }
@@ -5270,6 +5355,11 @@
         "case": "it_compiles_and_executes_real_integer_list_results",
         "command": "make -C tests/integration/standard-integer",
         "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_keeps_library_configuration_separate_from_executable_options",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
       }
     ]
   },
@@ -5347,6 +5437,11 @@
       },
       {
         "case": "it_assembles_native_creation_and_check_defaults",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_keeps_library_configuration_separate_from_executable_options",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
       }
@@ -5482,6 +5577,21 @@
         "case": "it_compiles_and_executes_real_integer_list_results",
         "command": "make -C tests/integration/standard-integer",
         "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_checks_explicit_exports_with_repeatable_abi_metadata",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_rejects_bad_mappings_and_missing_configuration",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_rejects_launcher_flags_for_library_checking",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
       }
     ]
   },
@@ -5528,6 +5638,11 @@
         "case": "it_rejects_every_retired_list_configuration_option",
         "command": "make -C tests/unit/driver/run",
         "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_recognizes_only_the_explicit_library_check_command",
+        "command": "make -C tests/unit/driver/request",
+        "source": "tests/unit/driver/request/main.c"
       }
     ]
   },
@@ -5589,6 +5704,11 @@
         "case": "it_rejects_every_retired_list_configuration_option",
         "command": "make -C tests/unit/driver/run",
         "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_recognizes_only_the_explicit_library_check_command",
+        "command": "make -C tests/unit/driver/request",
+        "source": "tests/unit/driver/request/main.c"
       }
     ]
   },
@@ -5625,6 +5745,21 @@
         "case": "it_rejects_ambiguous_project_commands",
         "command": "make -C tests/integration/launcher",
         "source": "tests/integration/launcher/main.c"
+      },
+      {
+        "case": "it_checks_explicit_exports_with_repeatable_abi_metadata",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_rejects_bad_mappings_and_missing_configuration",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_rejects_launcher_flags_for_library_checking",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
       }
     ]
   },
@@ -39109,6 +39244,11 @@
         "case": "it_selects_standard_root_authority_only_by_an_explicit_option",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_keeps_library_configuration_separate_from_executable_options",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
       }
     ]
   },
@@ -39159,6 +39299,11 @@
       },
       {
         "case": "it_refuses_all_unimplemented_operations",
+        "command": "make -C tests/unit/driver/request",
+        "source": "tests/unit/driver/request/main.c"
+      },
+      {
+        "case": "it_recognizes_only_the_explicit_library_check_command",
         "command": "make -C tests/unit/driver/request",
         "source": "tests/unit/driver/request/main.c"
       }
@@ -78546,6 +78691,1149 @@
         "case": "it_explains_the_transitive_copy_failure_with_source_navigation",
         "command": "make -C tests/integration/examples",
         "source": "tests/integration/examples/main.c"
+      }
+    ]
+  },
+  "src/library/model.h": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_preserves_explicit_exports_schemas_and_settings",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_rejects_the_complete_record_error_partitions",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_bytes_and_unsupported_metadata",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_unwinds_every_configuration_allocation",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_incompatible_explicit_contracts",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_dependency_changes_and_preserves_handwritten_inputs",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_link_inputs_and_preserves_native_companions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_names_complete_abi_contracts_and_rejects_identity_collisions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/library/internal.h": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_preserves_explicit_exports_schemas_and_settings",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_rejects_the_complete_record_error_partitions",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_bytes_and_unsupported_metadata",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_unwinds_every_configuration_allocation",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_incompatible_explicit_contracts",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_dependency_changes_and_preserves_handwritten_inputs",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_link_inputs_and_preserves_native_companions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_names_complete_abi_contracts_and_rejects_identity_collisions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/library/model.c": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_preserves_explicit_exports_schemas_and_settings",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_rejects_the_complete_record_error_partitions",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_bytes_and_unsupported_metadata",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_unwinds_every_configuration_allocation",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_incompatible_explicit_contracts",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_dependency_changes_and_preserves_handwritten_inputs",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_link_inputs_and_preserves_native_companions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_names_complete_abi_contracts_and_rejects_identity_collisions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      }
+    ]
+  },
+  "src/library/configuration/read.c": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_preserves_explicit_exports_schemas_and_settings",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_rejects_the_complete_record_error_partitions",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_bytes_and_unsupported_metadata",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_unwinds_every_configuration_allocation",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      }
+    ]
+  },
+  "src/library/configuration/records.c": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_preserves_explicit_exports_schemas_and_settings",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_rejects_the_complete_record_error_partitions",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_bytes_and_unsupported_metadata",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_unwinds_every_configuration_allocation",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      }
+    ]
+  },
+  "src/library/report/manifest.c": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_incompatible_explicit_contracts",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_dependency_changes_and_preserves_handwritten_inputs",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_link_inputs_and_preserves_native_companions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_names_complete_abi_contracts_and_rejects_identity_collisions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      }
+    ]
+  },
+  "src/library/resolve/schemas.c": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_incompatible_explicit_contracts",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_dependency_changes_and_preserves_handwritten_inputs",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_link_inputs_and_preserves_native_companions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_names_complete_abi_contracts_and_rejects_identity_collisions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_requires_native_profile_capabilities_and_failure_shape",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      }
+    ]
+  },
+  "src/library/resolve/exports.c": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_incompatible_explicit_contracts",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_dependency_changes_and_preserves_handwritten_inputs",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_link_inputs_and_preserves_native_companions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_names_complete_abi_contracts_and_rejects_identity_collisions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      }
+    ]
+  },
+  "src/library/resolve/bindings.c": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_incompatible_explicit_contracts",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_dependency_changes_and_preserves_handwritten_inputs",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_link_inputs_and_preserves_native_companions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_names_complete_abi_contracts_and_rejects_identity_collisions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      }
+    ]
+  },
+  "src/library/resolve/identity-parts.c": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_incompatible_explicit_contracts",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_dependency_changes_and_preserves_handwritten_inputs",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_link_inputs_and_preserves_native_companions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_names_complete_abi_contracts_and_rejects_identity_collisions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      }
+    ]
+  },
+  "src/library/resolve/identities.c": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_incompatible_explicit_contracts",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_dependency_changes_and_preserves_handwritten_inputs",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_link_inputs_and_preserves_native_companions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_names_complete_abi_contracts_and_rejects_identity_collisions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/common.c": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_preserves_explicit_exports_schemas_and_settings",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_rejects_the_complete_record_error_partitions",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_bytes_and_unsupported_metadata",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_unwinds_every_configuration_allocation",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_incompatible_explicit_contracts",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_dependency_changes_and_preserves_handwritten_inputs",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_link_inputs_and_preserves_native_companions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_names_complete_abi_contracts_and_rejects_identity_collisions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/Makefile": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_preserves_explicit_exports_schemas_and_settings",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_rejects_the_complete_record_error_partitions",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_bytes_and_unsupported_metadata",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_unwinds_every_configuration_allocation",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_incompatible_explicit_contracts",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_dependency_changes_and_preserves_handwritten_inputs",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_link_inputs_and_preserves_native_companions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_names_complete_abi_contracts_and_rejects_identity_collisions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/resolution/main.c": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_incompatible_explicit_contracts",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_dependency_changes_and_preserves_handwritten_inputs",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_link_inputs_and_preserves_native_companions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_names_complete_abi_contracts_and_rejects_identity_collisions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_requires_native_profile_capabilities_and_failure_shape",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/resolution/common.c": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_incompatible_explicit_contracts",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_dependency_changes_and_preserves_handwritten_inputs",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_link_inputs_and_preserves_native_companions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_names_complete_abi_contracts_and_rejects_identity_collisions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/resolution/Makefile": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_incompatible_explicit_contracts",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_dependency_changes_and_preserves_handwritten_inputs",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_link_inputs_and_preserves_native_companions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_names_complete_abi_contracts_and_rejects_identity_collisions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/configuration/main.c": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_preserves_explicit_exports_schemas_and_settings",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_rejects_the_complete_record_error_partitions",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_bytes_and_unsupported_metadata",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_unwinds_every_configuration_allocation",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/configuration/Makefile": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_preserves_explicit_exports_schemas_and_settings",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_rejects_the_complete_record_error_partitions",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_bytes_and_unsupported_metadata",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_unwinds_every_configuration_allocation",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/resolution/support/inputs.c": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_incompatible_explicit_contracts",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_dependency_changes_and_preserves_handwritten_inputs",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_link_inputs_and_preserves_native_companions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_names_complete_abi_contracts_and_rejects_identity_collisions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/resolution/support/failures.c": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_incompatible_explicit_contracts",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_dependency_changes_and_preserves_handwritten_inputs",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_link_inputs_and_preserves_native_companions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_names_complete_abi_contracts_and_rejects_identity_collisions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/resolution/support/contracts.c": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_incompatible_explicit_contracts",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_dependency_changes_and_preserves_handwritten_inputs",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_link_inputs_and_preserves_native_companions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_names_complete_abi_contracts_and_rejects_identity_collisions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/resolution/support/identities.c": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_incompatible_explicit_contracts",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_dependency_changes_and_preserves_handwritten_inputs",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_link_inputs_and_preserves_native_companions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_names_complete_abi_contracts_and_rejects_identity_collisions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      }
+    ]
+  },
+  "tests/integration/library-exports/main.c": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_checks_explicit_exports_with_repeatable_abi_metadata",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_rejects_bad_mappings_and_missing_configuration",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_rejects_launcher_flags_for_library_checking",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      }
+    ]
+  },
+  "tests/integration/library-exports/bad.exports": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_checks_explicit_exports_with_repeatable_abi_metadata",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_rejects_bad_mappings_and_missing_configuration",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_rejects_launcher_flags_for_library_checking",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      }
+    ]
+  },
+  "tests/integration/library-exports/Makefile": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_checks_explicit_exports_with_repeatable_abi_metadata",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_rejects_bad_mappings_and_missing_configuration",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_rejects_launcher_flags_for_library_checking",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      }
+    ]
+  },
+  "tests/integration/library-exports/component.exports": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_checks_explicit_exports_with_repeatable_abi_metadata",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_rejects_bad_mappings_and_missing_configuration",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_rejects_launcher_flags_for_library_checking",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      }
+    ]
+  },
+  "tests/integration/library-exports/project/unselected": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_checks_explicit_exports_with_repeatable_abi_metadata",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_rejects_bad_mappings_and_missing_configuration",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_rejects_launcher_flags_for_library_checking",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      }
+    ]
+  },
+  "tests/integration/library-exports/project/main": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_checks_explicit_exports_with_repeatable_abi_metadata",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_rejects_bad_mappings_and_missing_configuration",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_rejects_launcher_flags_for_library_checking",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      }
+    ]
+  },
+  "tests/integration/library-exports/project/other": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_checks_explicit_exports_with_repeatable_abi_metadata",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_rejects_bad_mappings_and_missing_configuration",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_rejects_launcher_flags_for_library_checking",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      }
+    ]
+  },
+  "src/driver/commands/library.c": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Check an explicit library configuration and report resolved metadata without choosing an executable launcher.",
+    "tests": [
+      {
+        "case": "it_checks_explicit_exports_with_repeatable_abi_metadata",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_rejects_bad_mappings_and_missing_configuration",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_rejects_launcher_flags_for_library_checking",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      }
+    ]
+  },
+  "src/library/project/inputs.c": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_incompatible_explicit_contracts",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_dependency_changes_and_preserves_handwritten_inputs",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_link_inputs_and_preserves_native_companions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_names_complete_abi_contracts_and_rejects_identity_collisions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      }
+    ]
+  },
+  "src/library/project/load.c": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Resolve explicit library exports, complete value schemas, collision-checked ABI identities and exact build dependencies without executing Ama.",
+    "tests": [
+      {
+        "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_missing_and_incompatible_explicit_contracts",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_dependency_changes_and_preserves_handwritten_inputs",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_tracks_link_inputs_and_preserves_native_companions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_names_complete_abi_contracts_and_rejects_identity_collisions",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/resolution/support/native-profiles.c": {
+    "contract": "docs/implementation/c-library-exports.md",
+    "purpose": "Reject nominally matching native wire profiles whose capabilities or failure-field ownership do not satisfy the declared contract.",
+    "tests": [
+      {
+        "case": "it_requires_native_profile_capabilities_and_failure_shape",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
       }
     ]
   }

@@ -16,6 +16,11 @@
  */
 bool compiler_frontend_load(CompilerFrontend *frontend, const ModuleRoot *roots,
     size_t count, const char *entry);
+/** Load one entry and explicit additional modules into a shared registry before
+ * configuration tracking and semantic completion; never execute an export.
+ */
+bool compiler_frontend_load_required(CompilerFrontend *, const ModuleRoot *, size_t,
+    const char *, const char *const *, size_t);
 /**
  * Analyze the loaded closure using an optional explicit authoring contract, then build resolved
  * plans. Record initialization before fallible work and retain the first stage diagnostic.

@@ -59,11 +59,22 @@ static void it_refuses_all_unimplemented_operations(void) {
     assert(request == DRIVER_REQUEST_CHECK);
 }
 
+/** The library request is exact and does not select executable emission. */
+static void it_recognizes_only_the_explicit_library_check_command(void) {
+    char *arguments[] = {"ama", "--library-check"};
+    DriverRequest request = driver_parse_request(2, arguments);
+    assert(request == DRIVER_REQUEST_LIBRARY_CHECK);
+    arguments[1] = "--library";
+    request = driver_parse_request(2, arguments);
+    assert(request == DRIVER_REQUEST_UNAVAILABLE);
+}
+
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_recognizes_only_the_explicit_library_check_command();
     it_handles_an_empty_vector_without_reading_arguments();
     it_accepts_only_a_standalone_help_request();
     it_does_not_guess_help_from_a_prefix_or_extra_arguments();

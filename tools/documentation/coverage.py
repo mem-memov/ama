@@ -29,7 +29,7 @@ def inventory(root):
         path = Path(relative)
         if {'generated', 'build', '__pycache__'}.intersection(path.parts):
             continue
-        is_code = path.suffix in ('.c', '.h', '.inc', '.py', '.sh', '.mk', '.abi') or path.name in ('Makefile', 'Doxyfile')
+        is_code = path.suffix in ('.c', '.h', '.inc', '.py', '.sh', '.mk', '.abi', '.exports') or path.name in ('Makefile', 'Doxyfile')
         is_fixture = (relative.startswith('tests/') and '/project/' in relative) or (relative.startswith('stdlib/modules/') and path.suffix != '.md')
         is_observation = (relative.startswith('tests/') and path.name in (
             'expected.txt', 'expected-error.txt', 'expected-abi-error.txt',

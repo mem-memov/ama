@@ -20,6 +20,22 @@ static void invalid_arguments(int count, char *const arguments[], const char *me
     destroy_test();
 }
 
+/** A library configuration is a physical input path, with no implicit entry or launcher flags. */
+static void it_keeps_library_configuration_separate_from_executable_options(void) {
+    setup_test();
+    DriverOptions options;
+    driver_options_init(&options, sources.allocator);
+    char *arguments[] = {"ama", "--library-check", "project", "config with spaces.exports", "--standard-root", "standard"};
+    bool valid = driver_options_parse(&options, 6, arguments);
+    assert(valid && options.entry == NULL && !options.compile);
+    assert(strcmp(options.library_configuration, "config with spaces.exports") == 0);
+    assert(options.root_count == 2 && options.roots[1].kind == MODULE_ROOT_STANDARD);
+    assert(driver_option_recognize(DRIVER_REQUEST_LIBRARY_CHECK, "--compile") == NULL);
+    assert(driver_option_recognize(DRIVER_REQUEST_LIBRARY_CHECK, "--out") == NULL);
+    driver_options_destroy(&options);
+    destroy_test();
+}
+
 /** Compare the complete fixed spelling/request/arity relation independently. */
 static void it_recognizes_only_exact_applicable_options(void) {
     const char *names[] = {"--root", "--exclude", "--out", "--sdk", "--cc", "--protocols",
@@ -171,6 +187,7 @@ static void it_cleans_every_partial_allocation_and_rejects_unrepresentable_stora
 
 /** Exercise independent recognition/storage and their real request assembly. */
 void run(void) {
+    it_keeps_library_configuration_separate_from_executable_options();
     it_recognizes_only_exact_applicable_options();
     it_preserves_repeated_values_flags_and_shared_root_exclusions();
     it_selects_standard_root_authority_only_by_an_explicit_option();

@@ -19,6 +19,7 @@ typedef struct {
     ModuleRoot *roots;
     size_t root_count;
     const char *entry;
+    const char *library_configuration;
     const char *output;
     const char *compiler;
     const char *sdk;

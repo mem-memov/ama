@@ -218,14 +218,16 @@ def coverage_scenario():
     library_contract = root / 'stdlib/README.md'
     library_contract.parent.mkdir(parents=True)
     library_contract.write_text('# Retained library contract\n')
+    configuration = root / 'component.exports'
+    configuration.write_text('ama-library | 1\n')
     def inventory_listing(command, cwd):
         require(command[0] == 'git' and cwd == root, 'unexpected inventory source')
-        return b'sample.h\0case.c\0tests/fixture/expected-error.txt\0stdlib/README.md\0'
+        return b'sample.h\0case.c\0tests/fixture/expected-error.txt\0stdlib/README.md\0component.exports\0'
     try:
         (home / 'debt.json').write_text('{}')
         subprocess.check_output = inventory_listing
         maintained = original_inventory(root)
-        require({'tests/fixture/expected-error.txt', 'stdlib/README.md'} <= maintained,
+        require({'tests/fixture/expected-error.txt', 'stdlib/README.md', 'component.exports'} <= maintained,
                 'closed non-C inputs vanished with historical debt')
     finally:
         subprocess.check_output = original_listing

@@ -157,3 +157,6 @@ continuation workflows, their lifetime arguments and exact integration evidence.
 
 [Example usability](../example-usability.md) records T089 allocation-free copy
 capability witnesses, exact source navigation and current implementation guidance.
+
+[Explicit C-library exports](../c-library-exports.md) records T123 configuration,
+checked transport profiles, complete ABI keys and exact input invalidation.

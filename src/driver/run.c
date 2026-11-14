@@ -22,7 +22,7 @@
 int driver_run(int argument_count, char *const arguments[],
     FILE *output, FILE *errors) {
     DriverRequest request = driver_parse_request(argument_count, arguments);
-    if (request == DRIVER_REQUEST_CHECK || request == DRIVER_REQUEST_STATUS || request == DRIVER_REQUEST_NATIVE || request == DRIVER_REQUEST_EMIT) {
+    if (request == DRIVER_REQUEST_CHECK || request == DRIVER_REQUEST_STATUS || request == DRIVER_REQUEST_NATIVE || request == DRIVER_REQUEST_EMIT || request == DRIVER_REQUEST_LIBRARY_CHECK) {
         DriverOptions options;
         driver_options_init(&options, source_system_allocator());
         bool parsed = driver_options_parse(&options, argument_count, arguments);
@@ -31,7 +31,8 @@ int driver_run(int argument_count, char *const arguments[],
             status = request == DRIVER_REQUEST_CHECK ? driver_check(&options, output, errors)
                 : request == DRIVER_REQUEST_STATUS ? driver_status(&options, output, errors)
                 : request == DRIVER_REQUEST_NATIVE ? driver_native(&options, output, errors)
-                : driver_emit(&options, output, errors);
+                : request == DRIVER_REQUEST_EMIT ? driver_emit(&options, output, errors)
+                : driver_library_check(&options, output, errors);
         } else {
             (void)diagnostic_render(errors, &options.error);
         }

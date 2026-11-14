@@ -1957,13 +1957,27 @@ Contracts: [EMBED-01–EMBED-08](spec/implementation/c-library.md),
 [native boundary](spec/implementation/native-interface.md),
 [host control](spec/implementation/runtime.md#rt-14).
 
-- [ ] **T123 — Resolve explicit C-library exports and build inputs.** Needs:
+- [x] **T123 — Resolve explicit C-library exports and build inputs.** Needs:
   T040, T061, T087. Implement the documented export manifest, explicit component
   identity and target/ABI metadata without scanning module names or exporting all
   internals. Resolve exported entries and supported value schemas through the
   existing typed project. Test missing/duplicate exports, identity collisions,
   unsupported schemas, dependency invalidation and preservation of handwritten
   inputs. Keep the executable launcher and library target separate.
+  Evidence: [explicit library exports](docs/implementation/c-library-exports.md),
+  `src/library/` and the real `--library-check` command. The explicit editioned
+  configuration selects module/operation exports, complete field mappings,
+  supported owned wire profiles, target/ABI/convention and C/link/dependency
+  inputs. One typed closure includes only exports and explicit schema needs;
+  a separate component consumer tracks exact source/configuration/file changes.
+  Full framed ABI keys include field ordinals and build settings, with tested
+  unequal-key digest collision rejection. Native protocol/ownership negatives,
+  missing/duplicate/unsupported records, every parse/resolve allocation failure,
+  stream failure, dependency invalidation and handwritten-source preservation
+  have component and real-CLI evidence. Strict whole tests, library ASan/UBSan,
+  all 1408 input coverage, standalone headers, links and reproducible Doxygen
+  are checked before commit. Metadata explicitly reports resolved stage; public
+  headers, execution and target-verified artifacts follow in T124–T128.
 - [ ] **T124 — Generate the public C consumer header.** Needs: T055, T085,
   T086, T123. Emit self-contained namespaced declarations, opaque host identities,
   documented ownership and exact ABI/version checks from one export schema. Keep

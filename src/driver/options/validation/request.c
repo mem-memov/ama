@@ -14,6 +14,10 @@ bool driver_options_invalid(DriverOptions *options, const char *message) {
 }
 
 bool driver_options_operands(DriverOptions *options, int count, char *const arguments[]) {
+    if (options->request == DRIVER_REQUEST_LIBRARY_CHECK) {
+        return count >= 4 && arguments[3][0] != '\0'
+            ? true : driver_options_invalid(options, "Expected a source root and a library configuration path");
+    }
     if (options->request == DRIVER_REQUEST_UNAVAILABLE || count < 4 || !module_path_valid(arguments[3])) {
         return driver_options_invalid(options, "Expected a source root and an exact logical module path");
     }

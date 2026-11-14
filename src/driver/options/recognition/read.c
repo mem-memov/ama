@@ -14,7 +14,8 @@
 #define STATUS_REQUEST (1u << DRIVER_REQUEST_STATUS)
 #define NATIVE_REQUEST (1u << DRIVER_REQUEST_NATIVE)
 #define EMIT_REQUEST (1u << DRIVER_REQUEST_EMIT)
-#define ALL_REQUESTS (CHECK_REQUEST | STATUS_REQUEST | NATIVE_REQUEST | EMIT_REQUEST)
+#define LIBRARY_CHECK_REQUEST (1u << DRIVER_REQUEST_LIBRARY_CHECK)
+#define ALL_REQUESTS (CHECK_REQUEST | STATUS_REQUEST | NATIVE_REQUEST | EMIT_REQUEST | LIBRARY_CHECK_REQUEST)
 #define GENERATING_REQUESTS (NATIVE_REQUEST | EMIT_REQUEST)
 
 /** Every exact spelling occurs once; request masks encode the existing CLI. */
@@ -33,7 +34,7 @@ static const DriverOption options[] = {
 };
 
 const DriverOption *driver_option_recognize(DriverRequest request, const char *name) {
-    if (request < DRIVER_REQUEST_CHECK || request > DRIVER_REQUEST_EMIT) {
+    if (request < DRIVER_REQUEST_CHECK || request > DRIVER_REQUEST_LIBRARY_CHECK) {
         return NULL;
     }
     unsigned selected = 1u << request;

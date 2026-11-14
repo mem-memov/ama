@@ -31,7 +31,7 @@ claimed behavioral coverage. A successful bootstrap check prints outstanding
 debt explicitly. It does not certify the incomplete implementation.
 
 The registry partitions the VCS's tracked and unignored maintained inputs. It
-covers C, headers, include fragments, Python/shell, Make inputs, native ABI and
+covers C, headers, include fragments, Python/shell, Make inputs, native ABI, `.exports` library-build configurations and
 project fixtures, plus the original audit's interface/expectation inputs. Build,
 `generated/` and Python cache trees are excluded. Deleted, new or changed debt
 entries require explicit review; the checker never blesses files automatically.
