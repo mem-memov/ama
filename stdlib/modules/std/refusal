@@ -1,4 +1,5 @@
+# Standard-root refusal value; see stdlib/README.md.
 @>
 status
-.std.status
+..std.status
 @C

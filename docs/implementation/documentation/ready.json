@@ -31655,7 +31655,7 @@
     ]
   },
   "stdlib/modules/std/refusal": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/failure-values.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
       {
@@ -31677,11 +31677,16 @@
         "case": "it_reads_last_refusal_through_an_ordinary_read_only_library_module",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
       }
     ]
   },
   "stdlib/modules/std/refusal.abi": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/failure-values.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
       {
@@ -31703,11 +31708,16 @@
         "case": "it_reads_last_refusal_through_an_ordinary_read_only_library_module",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
       }
     ]
   },
   "stdlib/modules/std/refusal.c": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/failure-values.md",
     "purpose": "Expose the immediate caller refusal snapshot as an ordinary returned status value.",
     "tests": [
       {
@@ -31729,11 +31739,16 @@
         "case": "it_reads_last_refusal_through_an_ordinary_read_only_library_module",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
       }
     ]
   },
   "stdlib/modules/std/refusal.h": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/failure-values.md",
     "purpose": "Expose the immediate caller refusal snapshot as an ordinary returned status value in the native State layout.",
     "standalone_header_command": [
       "cc",
@@ -31773,11 +31788,16 @@
         "case": "it_reads_last_refusal_through_an_ordinary_read_only_library_module",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
       }
     ]
   },
   "stdlib/modules/std/status": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/failure-values.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
       {
@@ -31799,11 +31819,16 @@
         "case": "it_reads_last_refusal_through_an_ordinary_read_only_library_module",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
       }
     ]
   },
   "stdlib/modules/std/status.abi": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/failure-values.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
       {
@@ -31825,11 +31850,16 @@
         "case": "it_reads_last_refusal_through_an_ordinary_read_only_library_module",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
       }
     ]
   },
   "stdlib/modules/std/status.c": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/failure-values.md",
     "purpose": "Own a retained immutable native status view with success default and value cloning.",
     "tests": [
       {
@@ -31851,11 +31881,16 @@
         "case": "it_reads_last_refusal_through_an_ordinary_read_only_library_module",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
       }
     ]
   },
   "stdlib/modules/std/status.h": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/failure-values.md",
     "purpose": "Own a retained immutable native status view with success default and value cloning in the native State layout.",
     "standalone_header_command": [
       "cc",
@@ -31895,6 +31930,11 @@
         "case": "it_reads_last_refusal_through_an_ordinary_read_only_library_module",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
       }
     ]
   },
@@ -32007,6 +32047,11 @@
         "case": "it_compiles_and_executes_real_integer_list_results",
         "command": "make -C tests/integration/standard-integer",
         "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
       }
     ]
   },
@@ -36642,6 +36687,41 @@
         "case": "it_keeps_project_integer_names_and_standard_integer_types_distinct",
         "command": "make -C tests/unit/codegen/scalar-library",
         "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_reads_and_copies_failure_descriptions_without_stale_success_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_preserves_outcomes_during_reads_and_clears_on_explicit_entry",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_same_name_results_in_distinct_modules_independent",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_uses_the_declared_discriminator_instead_of_message_text",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_constructs_failure_values_through_the_actual_standard_module",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_propagates_description_allocation_failure_as_a_technical_error",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
       }
     ]
   },
@@ -37390,6 +37470,41 @@
         "case": "it_keeps_project_integer_names_and_standard_integer_types_distinct",
         "command": "make -C tests/unit/codegen/scalar-library",
         "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_reads_and_copies_failure_descriptions_without_stale_success_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_preserves_outcomes_during_reads_and_clears_on_explicit_entry",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_same_name_results_in_distinct_modules_independent",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_uses_the_declared_discriminator_instead_of_message_text",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_constructs_failure_values_through_the_actual_standard_module",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_propagates_description_allocation_failure_as_a_technical_error",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
       }
     ]
   },
@@ -44127,6 +44242,41 @@
         "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
         "command": "make -C tests/unit/runtime/traversal-copy",
         "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_shares_immutable_bytes_and_preserves_both_destruction_orders",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_replaces_values_independently_including_aliased_source_bytes",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_preserves_old_values_after_allocation_and_utf8_replacement_failure",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_refuses_nonwrapping_share_exhaustion_without_publishing_a_destination",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_accepts_utf8_scalar_boundaries_and_rejects_malformed_encodings",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_constructs_and_clears_empty_text_without_allocating",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_rolls_back_earlier_shares_after_a_later_owned_child_clone_fails",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
       }
     ]
   },
@@ -75126,6 +75276,1425 @@
         "case": "it_rejects_implicit_conversions_between_standard_scalar_types",
         "command": "make -C tests/unit/codegen/scalar-library",
         "source": "tests/unit/codegen/scalar-library/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/failure": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_reads_and_copies_failure_descriptions_without_stale_success_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_preserves_outcomes_during_reads_and_clears_on_explicit_entry",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_same_name_results_in_distinct_modules_independent",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_uses_the_declared_discriminator_instead_of_message_text",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_constructs_failure_values_through_the_actual_standard_module",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_propagates_description_allocation_failure_as_a_technical_error",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/failure+/make": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_reads_and_copies_failure_descriptions_without_stale_success_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_preserves_outcomes_during_reads_and_clears_on_explicit_entry",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_same_name_results_in_distinct_modules_independent",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_uses_the_declared_discriminator_instead_of_message_text",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_constructs_failure_values_through_the_actual_standard_module",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_propagates_description_allocation_failure_as_a_technical_error",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/failure+/make.abi": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_reads_and_copies_failure_descriptions_without_stale_success_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_preserves_outcomes_during_reads_and_clears_on_explicit_entry",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_same_name_results_in_distinct_modules_independent",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_uses_the_declared_discriminator_instead_of_message_text",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_constructs_failure_values_through_the_actual_standard_module",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_propagates_description_allocation_failure_as_a_technical_error",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/failure+/make.c": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_reads_and_copies_failure_descriptions_without_stale_success_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_preserves_outcomes_during_reads_and_clears_on_explicit_entry",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_same_name_results_in_distinct_modules_independent",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_uses_the_declared_discriminator_instead_of_message_text",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_constructs_failure_values_through_the_actual_standard_module",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_propagates_description_allocation_failure_as_a_technical_error",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/failure+/make.h": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_reads_and_copies_failure_descriptions_without_stale_success_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_preserves_outcomes_during_reads_and_clears_on_explicit_entry",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_same_name_results_in_distinct_modules_independent",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_uses_the_declared_discriminator_instead_of_message_text",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_constructs_failure_values_through_the_actual_standard_module",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_propagates_description_allocation_failure_as_a_technical_error",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_resource_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/failure.abi": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_reads_and_copies_failure_descriptions_without_stale_success_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_preserves_outcomes_during_reads_and_clears_on_explicit_entry",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_same_name_results_in_distinct_modules_independent",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_uses_the_declared_discriminator_instead_of_message_text",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_constructs_failure_values_through_the_actual_standard_module",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_propagates_description_allocation_failure_as_a_technical_error",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/failure.c": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_reads_and_copies_failure_descriptions_without_stale_success_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_preserves_outcomes_during_reads_and_clears_on_explicit_entry",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_same_name_results_in_distinct_modules_independent",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_uses_the_declared_discriminator_instead_of_message_text",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_constructs_failure_values_through_the_actual_standard_module",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_propagates_description_allocation_failure_as_a_technical_error",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/failure.h": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_reads_and_copies_failure_descriptions_without_stale_success_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_preserves_outcomes_during_reads_and_clears_on_explicit_entry",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_same_name_results_in_distinct_modules_independent",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_uses_the_declared_discriminator_instead_of_message_text",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_constructs_failure_values_through_the_actual_standard_module",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_propagates_description_allocation_failure_as_a_technical_error",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_resource_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/text": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_shares_immutable_bytes_and_preserves_both_destruction_orders",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_replaces_values_independently_including_aliased_source_bytes",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_preserves_old_values_after_allocation_and_utf8_replacement_failure",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_refuses_nonwrapping_share_exhaustion_without_publishing_a_destination",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_accepts_utf8_scalar_boundaries_and_rejects_malformed_encodings",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_constructs_and_clears_empty_text_without_allocating",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_rolls_back_earlier_shares_after_a_later_owned_child_clone_fails",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_reads_and_copies_failure_descriptions_without_stale_success_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_preserves_outcomes_during_reads_and_clears_on_explicit_entry",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_same_name_results_in_distinct_modules_independent",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_uses_the_declared_discriminator_instead_of_message_text",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_constructs_failure_values_through_the_actual_standard_module",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_propagates_description_allocation_failure_as_a_technical_error",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/text+/native/internal.h": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_shares_immutable_bytes_and_preserves_both_destruction_orders",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_replaces_values_independently_including_aliased_source_bytes",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_preserves_old_values_after_allocation_and_utf8_replacement_failure",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_refuses_nonwrapping_share_exhaustion_without_publishing_a_destination",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_accepts_utf8_scalar_boundaries_and_rejects_malformed_encodings",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_constructs_and_clears_empty_text_without_allocating",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_rolls_back_earlier_shares_after_a_later_owned_child_clone_fails",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_reads_and_copies_failure_descriptions_without_stale_success_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_preserves_outcomes_during_reads_and_clears_on_explicit_entry",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_same_name_results_in_distinct_modules_independent",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_uses_the_declared_discriminator_instead_of_message_text",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_constructs_failure_values_through_the_actual_standard_module",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_propagates_description_allocation_failure_as_a_technical_error",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_resource_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/text+/native/storage.c": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_shares_immutable_bytes_and_preserves_both_destruction_orders",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_replaces_values_independently_including_aliased_source_bytes",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_preserves_old_values_after_allocation_and_utf8_replacement_failure",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_refuses_nonwrapping_share_exhaustion_without_publishing_a_destination",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_accepts_utf8_scalar_boundaries_and_rejects_malformed_encodings",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_constructs_and_clears_empty_text_without_allocating",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_rolls_back_earlier_shares_after_a_later_owned_child_clone_fails",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_reads_and_copies_failure_descriptions_without_stale_success_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_preserves_outcomes_during_reads_and_clears_on_explicit_entry",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_same_name_results_in_distinct_modules_independent",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_uses_the_declared_discriminator_instead_of_message_text",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_constructs_failure_values_through_the_actual_standard_module",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_propagates_description_allocation_failure_as_a_technical_error",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/text+/native/unicode.c": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_shares_immutable_bytes_and_preserves_both_destruction_orders",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_replaces_values_independently_including_aliased_source_bytes",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_preserves_old_values_after_allocation_and_utf8_replacement_failure",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_refuses_nonwrapping_share_exhaustion_without_publishing_a_destination",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_accepts_utf8_scalar_boundaries_and_rejects_malformed_encodings",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_constructs_and_clears_empty_text_without_allocating",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_rolls_back_earlier_shares_after_a_later_owned_child_clone_fails",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_reads_and_copies_failure_descriptions_without_stale_success_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_preserves_outcomes_during_reads_and_clears_on_explicit_entry",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_same_name_results_in_distinct_modules_independent",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_uses_the_declared_discriminator_instead_of_message_text",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_constructs_failure_values_through_the_actual_standard_module",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_propagates_description_allocation_failure_as_a_technical_error",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/text+/native/values.c": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_shares_immutable_bytes_and_preserves_both_destruction_orders",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_replaces_values_independently_including_aliased_source_bytes",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_preserves_old_values_after_allocation_and_utf8_replacement_failure",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_refuses_nonwrapping_share_exhaustion_without_publishing_a_destination",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_accepts_utf8_scalar_boundaries_and_rejects_malformed_encodings",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_constructs_and_clears_empty_text_without_allocating",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_rolls_back_earlier_shares_after_a_later_owned_child_clone_fails",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_reads_and_copies_failure_descriptions_without_stale_success_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_preserves_outcomes_during_reads_and_clears_on_explicit_entry",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_same_name_results_in_distinct_modules_independent",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_uses_the_declared_discriminator_instead_of_message_text",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_constructs_failure_values_through_the_actual_standard_module",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_propagates_description_allocation_failure_as_a_technical_error",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/text.abi": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_shares_immutable_bytes_and_preserves_both_destruction_orders",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_replaces_values_independently_including_aliased_source_bytes",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_preserves_old_values_after_allocation_and_utf8_replacement_failure",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_refuses_nonwrapping_share_exhaustion_without_publishing_a_destination",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_accepts_utf8_scalar_boundaries_and_rejects_malformed_encodings",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_constructs_and_clears_empty_text_without_allocating",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_rolls_back_earlier_shares_after_a_later_owned_child_clone_fails",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_reads_and_copies_failure_descriptions_without_stale_success_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_preserves_outcomes_during_reads_and_clears_on_explicit_entry",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_same_name_results_in_distinct_modules_independent",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_uses_the_declared_discriminator_instead_of_message_text",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_constructs_failure_values_through_the_actual_standard_module",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_propagates_description_allocation_failure_as_a_technical_error",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/text.c": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_shares_immutable_bytes_and_preserves_both_destruction_orders",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_replaces_values_independently_including_aliased_source_bytes",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_preserves_old_values_after_allocation_and_utf8_replacement_failure",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_refuses_nonwrapping_share_exhaustion_without_publishing_a_destination",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_accepts_utf8_scalar_boundaries_and_rejects_malformed_encodings",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_constructs_and_clears_empty_text_without_allocating",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_rolls_back_earlier_shares_after_a_later_owned_child_clone_fails",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_reads_and_copies_failure_descriptions_without_stale_success_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_preserves_outcomes_during_reads_and_clears_on_explicit_entry",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_same_name_results_in_distinct_modules_independent",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_uses_the_declared_discriminator_instead_of_message_text",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_constructs_failure_values_through_the_actual_standard_module",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_propagates_description_allocation_failure_as_a_technical_error",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/text.h": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_shares_immutable_bytes_and_preserves_both_destruction_orders",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_replaces_values_independently_including_aliased_source_bytes",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_preserves_old_values_after_allocation_and_utf8_replacement_failure",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_refuses_nonwrapping_share_exhaustion_without_publishing_a_destination",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_accepts_utf8_scalar_boundaries_and_rejects_malformed_encodings",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_constructs_and_clears_empty_text_without_allocating",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_rolls_back_earlier_shares_after_a_later_owned_child_clone_fails",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_reads_and_copies_failure_descriptions_without_stale_success_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_preserves_outcomes_during_reads_and_clears_on_explicit_entry",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_same_name_results_in_distinct_modules_independent",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_uses_the_declared_discriminator_instead_of_message_text",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_constructs_failure_values_through_the_actual_standard_module",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_propagates_description_allocation_failure_as_a_technical_error",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_resource_probe_##name",
+      "-"
+    ]
+  },
+  "tests/integration/failure-values/Makefile": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
+      }
+    ]
+  },
+  "tests/integration/failure-values/main.c": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
+      }
+    ]
+  },
+  "tests/integration/failure-values/project/main": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
+      }
+    ]
+  },
+  "tests/integration/failure-values/project/report": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
+      }
+    ]
+  },
+  "tests/integration/failure-values/project/report.abi": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
+      }
+    ]
+  },
+  "tests/integration/failure-values/project/report.c": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
+      }
+    ]
+  },
+  "tests/integration/failure-values/project/report.h": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_executes_the_real_owned_failure_value_through_the_cli",
+        "command": "make -C tests/integration/failure-values",
+        "source": "tests/integration/failure-values/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_resource_probe_##name",
+      "-"
+    ]
+  },
+  "tests/unit/codegen/failure-values/Makefile": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_reads_and_copies_failure_descriptions_without_stale_success_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_preserves_outcomes_during_reads_and_clears_on_explicit_entry",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_same_name_results_in_distinct_modules_independent",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_uses_the_declared_discriminator_instead_of_message_text",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_constructs_failure_values_through_the_actual_standard_module",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_propagates_description_allocation_failure_as_a_technical_error",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/failure-values/main.c": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_reads_and_copies_failure_descriptions_without_stale_success_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_preserves_outcomes_during_reads_and_clears_on_explicit_entry",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_same_name_results_in_distinct_modules_independent",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_uses_the_declared_discriminator_instead_of_message_text",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_constructs_failure_values_through_the_actual_standard_module",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_keeps_application_failure_values_separate_from_last_refusal_data",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_propagates_description_allocation_failure_as_a_technical_error",
+        "command": "make -C tests/unit/codegen/failure-values",
+        "source": "tests/unit/codegen/failure-values/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/text-values/Makefile": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_shares_immutable_bytes_and_preserves_both_destruction_orders",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_replaces_values_independently_including_aliased_source_bytes",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_preserves_old_values_after_allocation_and_utf8_replacement_failure",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_refuses_nonwrapping_share_exhaustion_without_publishing_a_destination",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_accepts_utf8_scalar_boundaries_and_rejects_malformed_encodings",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_constructs_and_clears_empty_text_without_allocating",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_rolls_back_earlier_shares_after_a_later_owned_child_clone_fails",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/text-values/common.c": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_shares_immutable_bytes_and_preserves_both_destruction_orders",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_replaces_values_independently_including_aliased_source_bytes",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_preserves_old_values_after_allocation_and_utf8_replacement_failure",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_refuses_nonwrapping_share_exhaustion_without_publishing_a_destination",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_accepts_utf8_scalar_boundaries_and_rejects_malformed_encodings",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_constructs_and_clears_empty_text_without_allocating",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_rolls_back_earlier_shares_after_a_later_owned_child_clone_fails",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/text-values/forest.c": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_shares_immutable_bytes_and_preserves_both_destruction_orders",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_replaces_values_independently_including_aliased_source_bytes",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_preserves_old_values_after_allocation_and_utf8_replacement_failure",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_refuses_nonwrapping_share_exhaustion_without_publishing_a_destination",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_accepts_utf8_scalar_boundaries_and_rejects_malformed_encodings",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_constructs_and_clears_empty_text_without_allocating",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_rolls_back_earlier_shares_after_a_later_owned_child_clone_fails",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/text-values/main.c": {
+    "contract": "docs/implementation/failure-values.md",
+    "purpose": "Provide or verify coherent owned failure outcomes, immutable UTF-8 text shares and technical-failure rollback.",
+    "tests": [
+      {
+        "case": "it_shares_immutable_bytes_and_preserves_both_destruction_orders",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_replaces_values_independently_including_aliased_source_bytes",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_preserves_old_values_after_allocation_and_utf8_replacement_failure",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_refuses_nonwrapping_share_exhaustion_without_publishing_a_destination",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_accepts_utf8_scalar_boundaries_and_rejects_malformed_encodings",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_constructs_and_clears_empty_text_without_allocating",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_rolls_back_earlier_shares_after_a_later_owned_child_clone_fails",
+        "command": "make -C tests/unit/runtime/text-values",
+        "source": "tests/unit/runtime/text-values/main.c"
       }
     ]
   }

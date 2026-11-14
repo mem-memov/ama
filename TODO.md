@@ -1863,7 +1863,7 @@ Contracts: [library](spec/language/library.md),
   three/zero. Native/generated ASan/UBSan, full strict tests, all 1305 input
   coverage, standalone headers, links and reproducible Doxygen are checked before
   commit. Expected-failure/resource and arithmetic-result alignment remain T086–T087.
-- [ ] **T086 — Validate refusal and resource library interfaces.** Needs: T085.
+- [x] **T086 — Validate refusal and resource library interfaces.** Needs: T085.
   Provide ERROR-01's one copyable failure-module result: it supports `?` and owns
   a publicly readable description, with false/empty success and true/current
   failure states. Use this value instead of separate success/failure Booleans
@@ -1875,6 +1875,25 @@ Contracts: [library](spec/language/library.md),
   application failures separately from context-ending technical failures. For native
   text/byte types using immutable shared backing, verify independent Ama values,
   both destruction orders, replacement isolation, share overflow and rollback.
+  Evidence: [failure/resource contract](docs/implementation/failure-values.md).
+  `..failure` owns its public `description` text result and a native presence
+  discriminator; defaults and explicit reentry are false/empty, condition/read
+  preserve the value, and owned copies retain the complete outcome. Ordinary
+  `..failure.make` lets Ama code construct a present failure from one message.
+  Typed native set/clear helpers prepare the description before publishing the
+  discriminator and propagate technical failures unchanged. `..text` provides
+  counted scalar-valid UTF-8, allocation-free empty values, immutable shared
+  backing, checked share acquisition and preparation-before-release replacement.
+  Seven resource cases cover both destruction orders, aliasing, allocation and
+  UTF-8 rollback, reduced-limit exhaustion and real owned-tree prefix rollback.
+  Seven generated-project cases cover state transitions, retained descriptions,
+  independent/same-name results, UTF-8, empty descriptions, the real constructor,
+  last-refusal separation and description OOM bypassing `:`. Status/refusal
+  providers and their existing consumer now use actual standard-root identities;
+  a maintained CLI project verifies construction, positive check, retained read
+  and clearing. Native/generated ASan/UBSan, full strict tests, all 1334 input
+  coverage, standalone headers, local links and reproducible Doxygen are checked
+  before commit. Arithmetic expected-failure result alignment remains T087.
 - [ ] **T087 — Standardize and test library compositions.** Needs: T084, T086.
   Keep parameter/result ordering predictable without list action APIs.
   Apply the single condition-capable failure-value convention to operations

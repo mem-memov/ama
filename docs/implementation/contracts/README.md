@@ -143,3 +143,7 @@ candidate-potential argument and runtime/generated-project failure evidence.
 [Canonical scalar library](../scalar-library.md) records T085 arbitrary-precision
 construction/conversion invariants, explicit CLI root authority, full host-size
 bridge, real native compilation and constructor-failure evidence.
+
+[Failure values and text resources](../failure-values.md) records T086 coherent
+condition/description publication, native share-credit algebra, UTF-8 validation,
+rollback through real owned-tree cloning and separate last-refusal snapshots.

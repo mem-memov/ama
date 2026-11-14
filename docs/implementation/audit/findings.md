@@ -130,7 +130,8 @@ Do not turn technical decoder/allocation failures into ordinary failure values.
 
 T085 resolves the scalar/size-bridge portion through the
 [canonical integer and standard-root scalar library](../scalar-library.md).
-T086 remains responsible for the condition-capable owned failure value.
+[T086](../failure-values.md) supplies the condition-capable owned failure value
+and separate read-only refusal data.
 
 ## F08. Retained code lacks file documentation and complete boundary evidence
 

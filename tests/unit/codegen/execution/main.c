@@ -87,8 +87,8 @@ static void it_copies_lists_during_nested_calls_without_relocating_live_native_s
  */
 static void it_reads_last_refusal_through_an_ordinary_read_only_library_module(void) {
     directory("generated/project");
-    native_fixture("inspect", "@<\nstatus\n.std.status\n@C\n");
-    execute_project("@!\nabsent&\n.worker\nreader\n.std.refusal\ninspect\n.inspect\nstatus\n.std.status\nabsent& !\n:\n reader !\n  > status\n inspect !\n  < status\nreader !\n > status\ninspect !\n < status\n", "status=7\nstatus=7\n", true);
+    native_fixture("inspect", "@<\nstatus\n..std.status\n@C\n");
+    execute_project("@!\nabsent&\n.worker\nreader\n..std.refusal\ninspect\n.inspect\nstatus\n..std.status\nabsent& !\n:\n reader !\n  > status\n inspect !\n  < status\nreader !\n > status\ninspect !\n < status\n", "status=7\nstatus=7\n", true);
 }
 
 /**

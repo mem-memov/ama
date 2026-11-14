@@ -54,11 +54,28 @@ mutable traversal. [Execution and continuation copying](../docs/implementation/l
 are implemented and independently tested. Intrinsic methods use typed inputs,
 not constants selecting an action or persistent completion fields.
 
-T086–T087 align the remaining failure/resource/arithmetic result APIs. They do
-not replace the canonical integer contract. Expected application failures
-use one condition-capable value with its own description under
-[ERROR-01](../spec/implementation/diagnostics.md#error-01), implemented in T086.
-Technical native status and acquisition refusal remain separate outcomes.
+## Application failures and text resources
+
+[`..failure`](modules/failure) is one copyable condition-capable value with a
+public owned `description` result of type `..text`. Default construction is
+false/empty. Condition conversion reads its discriminator and retained reads
+preserve its description. `..failure.make` accepts one text `message` and returns
+one present `failure`; it has no separate success flag. Calling a failure value
+with `!` explicitly clears it to false/empty.
+
+[`..text`](modules/text) owns counted UTF-8, including embedded NUL. Native
+cloning acquires one nonwrapping share of immutable backing; replacement prepares
+new bytes before releasing old storage. Different values retain distinct Ama
+identities. Empty text allocates no backing, and read-only truth means nonempty.
+Allocation/share exhaustion remains a technical error, never application data.
+
+`..std.refusal` returns its immediate caller's last refusal as `..std.status`.
+This is read-only ordinary data with the common C status representation; a
+nonzero copied status does not make the reader fail. These immutable diagnostic
+message views remain separate from the failure value's owned description.
+The [failure/resource implementation contract](../docs/implementation/failure-values.md)
+explains states, native producer helpers, sharing invariants and failure evidence.
+T087 aligns arithmetic/composition results with this outcome convention.
 
 ## Native construction and ownership
 
@@ -86,7 +103,10 @@ exception and compiled-library embedding remain open implementation tasks.
 Run `make -C tests/unit/native/abi/integer` for native integer invariants,
 `make -C tests/unit/codegen/scalar-library` and `make -C tests/unit/codegen/library`
 for actual standard-root scalar execution,
-`make -C tests/integration/standard-integer` for the CLI, and
+`make -C tests/integration/standard-integer` for integer CLI behavior,
+`make -C tests/unit/runtime/text-values` for text ownership,
+`make -C tests/unit/codegen/failure-values` for complete outcomes,
+`make -C tests/integration/failure-values` for their CLI example, and
 `make test` for the recursive component/integration tree. Follow
 [CONTRIBUTORS.md](../CONTRIBUTORS.md) for decomposition, Doxygen rule links,
 per-file tests and failure/lifecycle checks. Use `make docs` for generated file

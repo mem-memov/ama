@@ -1,0 +1,5 @@
+# Display a borrowed text value without retaining native views.
+@<
+message
+..text
+@C

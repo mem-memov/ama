@@ -2,11 +2,13 @@
  * @file
  * @brief Expose the immediate caller refusal snapshot as an ordinary returned status value.
  *
- * All inputs/views are operation-scoped; generated interfaces establish the native naming context. See the retained library contract and pending scalar roadmap.
+ * All inputs/views are operation-scoped; generated interfaces establish the native naming context. See the failure/resource library contract for the explicit standard-root binding.
  * @see [Fixture and coverage contract](../../../docs/implementation/library-tests-and-build.md)
+ * [ERROR-06](../../../spec/implementation/diagnostics.md#error-06)
+ * preserves the last-refusal snapshot as read-only ordinary value data.
  */
-#include "ama_n_9cebd2822390cfe700b4b1749cf4cb389714be242fb7fcc3e63512378fd0e1f5.interface.h"
-#include "ama_n_9cebd2822390cfe700b4b1749cf4cb389714be242fb7fcc3e63512378fd0e1f5.begin.h"
+#include "ama_n_689872bd03618cf7e34cd8df67e542c0fc66610fcd957dfed79ea164fc9bfd11.interface.h"
+#include "ama_n_689872bd03618cf7e34cd8df67e542c0fc66610fcd957dfed79ea164fc9bfd11.begin.h"
 
 /**
  * Execute this explicit native body synchronously over borrowed parameter/result views. Set
@@ -14,7 +16,7 @@
  * module fixture.
  */
 AMA_NATIVE_ENTRY void AMA_NATIVE(entry)(AMA_NATIVE(State) *state,
-    const ama_t_d1fb170f0c461b467f87e3db60ea6ce49ca92656bbdcab799c3b2188d1a22608 *parameters, ama_t_1251eb8f0a105c6bf76a3ffc38cf89afed7aaa869d52be5dfb17a9c638bf0680 *results,
+    const ama_t_5e9d9a39482165aa76a1d7d56ae0814b0299c1c62edff9c258d064d677324f7a *parameters, ama_t_eb7262d6dab75b221998b7ba2f28a470504fcfd9ad504caa877dc8293f71113d *results,
     const AmaNativeServices *services, AmaStatus *status) {
     (void)state;
     (void)parameters;
@@ -49,4 +51,4 @@ AmaStatus AMA_NATIVE(clone)(AMA_NATIVE(State) *destination, const AMA_NATIVE(Sta
     return ama_status_success();
 }
 
-#include "ama_n_9cebd2822390cfe700b4b1749cf4cb389714be242fb7fcc3e63512378fd0e1f5.end.h"
+#include "ama_n_689872bd03618cf7e34cd8df67e542c0fc66610fcd957dfed79ea164fc9bfd11.end.h"
