@@ -77,3 +77,9 @@ Typed list services and [live traversal](list-traversal-execution.md) execute;
 a whole list itself has no executable body or retained results. Whole-list value copying and indexed
 result routing use the retained lifecycle runtime. Context-local assembly and
 current result/control trees remain separate open work in TODO.
+
+The private `ama_project_dispatch` function owns all Ama control labels. The
+launcher wrapper and [checked component exports](c-library-execution.md) invoke
+it only after root preparation, retaining exclusive context access through
+finalization and independent result construction. This does not create a C
+function per Ama module or preserve a C activation across yield.

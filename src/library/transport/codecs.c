@@ -5,6 +5,7 @@
  */
 #include <assert.h>
 #include "codecs.h"
+#include "library/execution/internal.h"
 const ScaffoldType *library_codec_type(const LibraryCodecs *codecs, const SemanticType *type) {
     for (const ScaffoldType *candidate=codecs->assembly->types; candidate!=NULL; candidate=candidate->next) {
         if (candidate->plan->type==type) { return candidate; }
@@ -41,10 +42,12 @@ bool library_codecs_write(const LibraryBuild *build, const NativeScaffold *assem
         else { library_codec_scalar(&codecs,schema); }
         library_codec_recipes(&codecs,schema);
     }
+    library_execution_runner(&codecs);
     size_t export_identity=1;
     for (const LibraryExport *exported=build->exports; exported!=NULL; exported=exported->next,export_identity++) {
         if ((exported->operations & LIBRARY_ENTRY)!=0) { library_codec_inputs(&codecs,exported); }
-        if ((exported->operations & LIBRARY_READ)!=0) { library_codec_read(&codecs,exported,export_identity); }
+        library_codec_read(&codecs,exported,export_identity);
+        library_execution_export(&codecs,exported,export_identity);
     }
     return codecs.output.good && fflush(output)==0;
 }

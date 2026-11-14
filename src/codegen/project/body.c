@@ -17,8 +17,7 @@
 bool codegen_emit_body(NativeScaffold *scaffold, FILE *output, const ScaffoldType *unused) {
     (void)unused;
     if (fputs("#include \"project.h\"\n", output) == EOF
-        || !codegen_emit_host_begin(scaffold, output)) { return false; }
-    if (fprintf(output, "goto ama_label_%zu;\n", scaffold->selected->plan->entry->selector) < 0) { return false; }
+        || !codegen_emit_dispatch_begin(scaffold, output)) { return false; }
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
         for (const ControlNode *node = type->plan->controls; node != NULL; node = node->allocated_next) {
             if (!codegen_emit_control(scaffold, output, type, node)) { return false; }
@@ -49,5 +48,11 @@ bool codegen_emit_body(NativeScaffold *scaffold, FILE *output, const ScaffoldTyp
         }
     }
     if (fputs("default: ama_status=ama_status_make(AMA_INVALID_STATE,NULL,0); goto ama_project_finish;\n}\n", output) == EOF) { return false; }
-    return codegen_emit_host_finish(output);
+    return codegen_emit_dispatch_finish(output)
+        && codegen_emit_host_begin(scaffold,output)
+        && fputs("ama_project_resume:;\n"
+            "{ AmaHostResult dispatched=ama_project_dispatch(view,ama_return);\n"
+            "ama_status=dispatched.status; ama_outcome=dispatched.outcome; }\n"
+            "goto ama_project_finish;\n",output)!=EOF
+        && codegen_emit_host_finish(output);
 }

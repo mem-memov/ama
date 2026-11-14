@@ -6,7 +6,8 @@ snapshots and their ownership operations. It also generates the actual primitive
 ABI receiver used to check a consumer before any structure-based C call.
 The [lifecycle implementations](c-library-lifecycle.md) provide explicit factories
 and disposal. [Typed transport](c-library-transport.md) supplies independent snapshots and
-retained reads; execution and artifact packaging follow in T127/T128.
+retained reads. [Entry/resume execution](c-library-execution.md) uses the same
+checked boundary; artifact packaging follows in T128.
 The header alone is not a compiled Ama component.
 
 ```sh

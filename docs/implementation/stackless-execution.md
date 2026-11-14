@@ -66,3 +66,8 @@ position. The [continuation contract](continuations.md) covers recursive copying
 and explicit host outcomes. Whole-list execution and retained results are
 rejected by semantic checking. Typed list services and [live traversal](list-traversal-execution.md) also use
 explicit stable frames and label transfers.
+
+The launcher and [checked C entry/resume operations](c-library-execution.md) now
+share the private `ama_project_dispatch` label function. Host wrappers prepare an
+explicit root and retain its context lease; ordinary Ama calls remain jumps
+inside that dispatcher. Root yield returns normally to the invoking C host.

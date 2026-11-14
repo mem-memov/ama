@@ -3,7 +3,8 @@
 The checked C boundary can now prepare every declared input profile and read
 retained results into independently owned public snapshots. Context and instance
 [factories](c-library-lifecycle.md) still construct declared state without entering
-a body. Public entry/resume execution is the next boundary, T127; static/shared
+a body. [Public entry/resume execution](c-library-execution.md) consumes these
+prepared recipes and snapshots under the same executor lease. Static/shared
 artifact packaging follows in T128. These internal generators do not introduce a
 library-build CLI command or claim that a header alone is a compiled component.
 

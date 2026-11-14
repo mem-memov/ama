@@ -19,12 +19,16 @@ static const char transport_records[] =
     "output | run | enabled result | enabled\noutput | run | problem result | failure\n"
     "output | run | messages result | texts\noutput | run | message copy | text\n";
 /** Resolve declaration defaults that copy every supplied parameter without executing the body. */
-static void transport_model(LibraryBuild *build) {
+static void transport_model_body(LibraryBuild *build, const char *body, const char *extra_records) {
     file("generated/project/main",
         "@<\nmessage\n..text\nnumber\n..integer\nenabled\n..std.condition\nproblem\n..failure\nmessages[]\n..text\n"
         "@>\nmessage result\n..text\n message\nnumber result\n..integer\n number\nenabled result\n..std.condition\n enabled\n"
         "problem result\n..failure\n problem\nmessages result[]\n..text\nmessage copy\n..text\n message\n@!\nnumbers[]\n..integer\nconditions[]\n..std.condition\nfailures[]\n..failure\n");
-    const SourceText *source=configuration(transport_records);
+    FILE *module=fopen("generated/project/main","ab"); assert(module!=NULL);
+    int appended=fputs(body,module); int closed=fclose(module); assert(appended!=EOF && closed==0);
+    char records[16384]; int length=snprintf(records,sizeof(records),"%s%s",transport_records,extra_records);
+    assert(length>0 && (size_t)length<sizeof(records));
+    const SourceText *source=configuration(records);
     library_build_init(build,sources.allocator);
     bool valid=library_configuration_parse(build,source); assert(valid);
     ModuleRoot roots[]={{.path="generated/project",.kind=MODULE_ROOT_PROJECT},
@@ -33,6 +37,8 @@ static void transport_model(LibraryBuild *build) {
     if (!valid) { fprintf(stderr,"%s\n",build->error.message); }
     assert(valid);
 }
+/** Use the all-profile facade without extra body statements or exports. */
+static inline void transport_model(LibraryBuild *build) { transport_model_body(build,"",""); }
 /** Find an explicitly named schema only in this already checked model. */
 static const char *schema_name(const LibraryBuild *build, const char *name) {
     for (const LibrarySchema *schema=build->schemas; schema!=NULL; schema=schema->next) {
@@ -53,19 +59,32 @@ static void aliases(FILE *output, const LibraryBuild *build) {
     assert(written>0);
 }
 /** Compile private project/native code with explicit generated-header and SDK paths. */
-static void link_component(void) {
+static void link_component_source_configuration(const char *consumer_source, bool release) {
     pid_t child=fork(); assert(child>=0);
     if (child==0) {
-        char *arguments[]={TEST_C_COMPILER,"-std=c11","-O1","-g","-Wall","-Wextra","-Werror","-pedantic-errors",
+        char *arguments[28]={TEST_C_COMPILER,"-std=c11","-O1","-g","-Wall","-Wextra","-Werror","-pedantic-errors"};
+        size_t count=8;
 #ifdef TEST_SANITIZERS
-            "-fsanitize=address,undefined","-fno-omit-frame-pointer","-fno-pie","-no-pie",
+        arguments[count++]="-fsanitize=address,undefined";
+        arguments[count++]="-fno-omit-frame-pointer";
+        arguments[count++]="-fno-pie";
+        arguments[count++]="-no-pie";
 #endif
-            "-I" TEST_SDK,"-Igenerated/output","-Igenerated","project/consumer.c","generated/component.c","-o","generated/consumer",NULL};
-        execvp(TEST_C_COMPILER,arguments);
-        _exit(127);
+        if (release) { arguments[count++]="-DNDEBUG"; }
+        arguments[count++]="-I" TEST_SDK; arguments[count++]="-Igenerated/output";
+        arguments[count++]="-Igenerated"; arguments[count++]=(char *)consumer_source;
+        arguments[count++]="generated/component.c"; arguments[count++]="-o";
+        arguments[count++]="generated/consumer"; arguments[count]=NULL;
+        execvp(TEST_C_COMPILER,arguments); _exit(127);
     }
     int status; pid_t waited;
     do { waited=waitpid(child,&status,0); } while (waited<0 && errno==EINTR);
     assert(waited==child && WIFEXITED(status) && WEXITSTATUS(status)==0);
 }
+/** Keep ordinary fixture compilation assertions enabled while checking release components explicitly. */
+static inline void link_component_source(const char *consumer_source) {
+    link_component_source_configuration(consumer_source,false);
+}
+/** Compile the standard public consumer fixture through the same private component boundary. */
+static inline void link_component(void) { link_component_source("project/consumer.c"); }
 #endif

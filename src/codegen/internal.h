@@ -101,6 +101,10 @@ bool codegen_emit_header(NativeScaffold *, FILE *, const ScaffoldType *);
  * share only immutable schemas and each accepted execution holds a context lease.
  */
 bool codegen_emit_host_context(FILE *);
+/** Emit the private label dispatcher over an already admitted, prepared root and borrowed view. */
+bool codegen_emit_dispatch_begin(NativeScaffold *, FILE *);
+/** Return a private execution outcome while the caller retains its exclusive context lease. */
+bool codegen_emit_dispatch_finish(FILE *);
 /**
  * Write explicit first-root execution and existing-root entry/resume admission; fresh
  * interfaces initialize once, and accepted failures retain the lease through cleanup.

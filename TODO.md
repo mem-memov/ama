@@ -2051,13 +2051,32 @@ Contracts: [EMBED-01–EMBED-08](spec/implementation/c-library.md),
   maintained input coverage, standalone headers, links and Doxygen generation
   pass; final reproducibility is checked before commit. Public entry/resume
   execution and component artifacts remain T127/T128.
-- [ ] **T127 — Implement exported entry, resume and refusal outcomes.** Needs:
+- [x] **T127 — Implement exported entry, resume and refusal outcomes.** Needs:
   T067, T074, T126. Preserve the three Ama execution outcomes and report invalid
   C requests or operation refusals through the separate API result. Test restart
   versus resume, output-only resume, busy/absent/stale selections, independent
   application-failure values and context-ending technical failure. Reject foreign
   owners and invalid requests before entering Ama or changing execution state;
   do not introduce a fourth Ama outcome or an implicit scheduling loop.
+  Evidence: [checked C execution](docs/implementation/c-library-execution.md).
+  Launcher/library hosts share one private label dispatcher with exact root-type
+  and saved-selector checks. Linear lease moves and retained finalization keep
+  one executor owner through argument preparation, dispatch, cleanup and atomic
+  snapshots; prepared C borrows/trace arrays end before body execution. Generated
+  selected entry/resume implementations distinguish effect-free API refusal from
+  API OK with completed/yielded/failed, preserve native/declared body state and
+  forget invalidated root mappings before releasing access. Real public-only C
+  consumers exercise actual percent yield/resume/restart, multiple root types,
+  read-only aliases, missing resume, stale/foreign/wrong-export controls,
+  empty and overlapping destinations (including partial outcome/owner overlap),
+  normal application-failure values, native callback exclusion and primary cause
+  preservation despite Busy cleanup failure. Every measured entry/resume
+  allocation failure leaves unpublished outputs empty and releases all resources.
+  Both assertion-enabled and NDEBUG components, zero-schema interfaces and
+  selected-mode C compilation rejection are checked. Full strict tests,
+  generator/generated-C ASan/UBSan (leak detection disabled), all 1489 input
+  coverage, standalone headers, links and Doxygen generation pass; final
+  reproducibility is checked before commit. Artifact packaging remains T128.
 - [ ] **T128 — Build static and shared components with pinned code lifetime.**
   Needs: T008, T010, T017, T123, T124, T127. Compile the complete Ama closure as
   one C translation unit and package its object as a static or supported shared

@@ -21,6 +21,10 @@ void library_codec_recipes(LibraryCodecs *, const LibrarySchema *);
 void library_codec_list(LibraryCodecs *, const LibrarySchema *);
 /** Emit export-specific shape validation and synchronous typed input recipe preparation. */
 void library_codec_inputs(LibraryCodecs *, const LibraryExport *);
+/** Emit typed result parameter declarations or invocation names, including leading commas. */
+void library_codec_result_arguments(LibraryCodecs *, const LibraryExport *, bool);
+/** Emit pure output destination admission shared by retained reads and accepted executions. */
+void library_codec_result_shape(LibraryCodecs *, const LibraryExport *);
 /** Emit optional retained reads with checked ownership and atomic snapshot publication. */
 void library_codec_read(LibraryCodecs *, const LibraryExport *, size_t);
 #endif

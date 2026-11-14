@@ -10,8 +10,9 @@ This implements [EMBED-02](../../spec/implementation/c-library.md#embed-02),
 [EMBED-03](../../spec/implementation/c-library.md#embed-03) and the lifecycle
 portion of [EMBED-04](../../spec/implementation/c-library.md#embed-04).
 [Typed transport](c-library-transport.md) provides input recipes and retained
-reads; exported execution remains T127, while artifact packaging
-and code lifetime management remain T128. The lifecycle generator is an internal
+reads; [entry/resume execution](c-library-execution.md) preserves the same
+checked root/context ownership. Artifact packaging and code lifetime management
+remain T128. The lifecycle generator is an internal
 composition interface, not an additional CLI build target.
 
 ## Component setup and explicit ownership

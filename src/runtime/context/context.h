@@ -144,6 +144,10 @@ AmaStatus ama_context_dispose_admitted(AmaContextRegistry *, uint64_t, bool *);
  * without effects; stale identities are rejected without dereferencing freed context storage.
  */
 AmaStatus ama_context_dispose(AmaContextRegistry *registry, uint64_t identity);
+/** Move one live linear lease into empty C storage without releasing its executor gate.
+ * Source becomes empty on success; rejection leaves both owners unchanged.
+ */
+AmaStatus ama_context_lease_move(AmaContextLease *, AmaContextLease *);
 /** Acquire one nonreentrant context gate into an empty linear lease. Registry membership is
  * validated before touching context state. Different contexts can hold leases simultaneously.
  */

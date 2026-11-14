@@ -10,6 +10,7 @@
 #include "support/diagnostics.c"
 #include "support/callbacks.c"
 #include "support/concurrency.c"
+#include "support/leased-execution.c"
 
 /** Prove factory ownership is per context and pool capacity does not imply a default instance. */
 static void it_owns_constants_pools_and_diagnostics_without_an_implicit_root(void) {
@@ -360,6 +361,9 @@ static void it_rejects_a_simultaneous_executor_but_allows_an_independent_context
 
 /** Run the context ownership, checked-identity, failure-prefix and concurrency contracts. */
 void run(void) {
+    it_moves_linear_context_access_without_an_admission_gap();
+    it_finishes_completed_and_yielded_execution_without_releasing_result_access();
+    it_retains_exclusive_diagnostic_access_after_execution_cleanup();
     it_owns_constants_pools_and_diagnostics_without_an_implicit_root();
     it_rejects_foreign_origin_before_touching_colliding_local_handles();
     it_destroys_all_explicit_roots_and_invalidates_the_context_before_reuse();

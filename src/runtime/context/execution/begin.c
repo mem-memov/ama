@@ -13,9 +13,9 @@
 #include "../internal.h"
 
 /** Validate host-side owner/mode shape without consulting mutable context state. */
-static bool execution_request_valid(const AmaProgramInvocation *invocation, const AmaContextExecution *execution) {
-    return invocation != NULL && execution != NULL && execution->lease.context == NULL
-        && execution->lease.registry == NULL && execution->lease.identity == 0
+static bool execution_request_valid(const AmaProgramInvocation *invocation, const AmaContextExecution *execution, bool leased) {
+    return invocation != NULL && execution != NULL && (leased ? ama_context_leased(&execution->lease) != NULL
+            : execution->lease.context == NULL && execution->lease.registry == NULL && execution->lease.identity == 0)
         && execution->root.context == 0 && ama_handle_is_empty(execution->root.local)
         && execution->selector == 0 && execution->status.code == AMA_OK
         && execution->status.message == NULL && execution->status.message_length == 0
@@ -41,11 +41,10 @@ static AmaStatus execution_prepare(AmaContext *context, AmaPoolCell *cell,
 }
 
 /** Own the checked context lease through preparation and later generated label dispatch. */
-AmaStatus ama_context_execution_begin(AmaContextRegistry *registry, uint64_t identity,
-    AmaContextReference root, const AmaProgramInvocation *invocation, AmaContextExecution *execution) {
-    if (!execution_request_valid(invocation, execution)) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
-    AmaStatus status = ama_context_enter(registry, identity, &execution->lease);
-    if (status.code != AMA_OK) { return status; }
+AmaStatus ama_context_execution_begin_leased(AmaContextExecution *execution,
+    AmaContextReference root, const AmaProgramInvocation *invocation) {
+    if (!execution_request_valid(invocation, execution, true)) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
+    AmaStatus status = ama_status_success();
     AmaContext *context = ama_context_leased(&execution->lease);
     AmaObjectType *type = NULL;
     AmaPoolCell *cell = NULL;
@@ -53,10 +52,7 @@ AmaStatus ama_context_execution_begin(AmaContextRegistry *registry, uint64_t ide
     if (status.code == AMA_OK && (context->control.phase != AMA_RUNTIME_IDLE || context->world.operation_active)) {
         status = ama_status_make(AMA_INVALID_STATE, NULL, 0);
     }
-    if (status.code != AMA_OK) {
-        (void)ama_context_leave(&execution->lease);
-        return status;
-    }
+    if (status.code != AMA_OK) { return status; }
     /* Admission is complete: all later failures belong to this execution. */
     execution->root = root;
     execution->selector = invocation->mode == AMA_ACCESS_RESUME ? cell->metadata.service.resume.selector : 0;
@@ -75,7 +71,7 @@ AmaStatus ama_context_execution_begin(AmaContextRegistry *registry, uint64_t ide
 AmaStatus ama_context_execution_start(AmaContextRegistry *registry, uint64_t identity,
     uint64_t root_type, AmaContextExecution *execution) {
     const AmaProgramInvocation entry = {.mode = AMA_ACCESS_ENTRY};
-    if (!execution_request_valid(&entry, execution)) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
+    if (!execution_request_valid(&entry, execution, false)) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
     AmaStatus status = ama_context_enter(registry, identity, &execution->lease);
     if (status.code != AMA_OK) { return status; }
     AmaContext *context = ama_context_leased(&execution->lease);
@@ -107,4 +103,16 @@ AmaStatus ama_context_execution_start(AmaContextRegistry *registry, uint64_t ide
         }
     }
     return ama_status_success();
+}
+
+/** Preserve the ordinary owner-acquiring API through the same already-leased preparation path. */
+AmaStatus ama_context_execution_begin(AmaContextRegistry *registry, uint64_t identity,
+    AmaContextReference root, const AmaProgramInvocation *invocation, AmaContextExecution *execution) {
+    if (!execution_request_valid(invocation, execution, false)) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
+    AmaStatus status = ama_context_enter(registry, identity, &execution->lease);
+    if (status.code == AMA_OK) {
+        status = ama_context_execution_begin_leased(execution, root, invocation);
+        if (status.code != AMA_OK) { (void)ama_context_leave(&execution->lease); }
+    }
+    return status;
 }

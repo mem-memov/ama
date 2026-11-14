@@ -62,3 +62,15 @@ AmaStatus ama_context_inspect(const AmaContextLease *lease, AmaContextView *view
         .control = &context->control, .status = context->status};
     return ama_status_success();
 }
+
+/** Transfer the sole C owner without exposing an admission gap or retaining a shallow copy. */
+AmaStatus ama_context_lease_move(AmaContextLease *destination, AmaContextLease *source) {
+    if (destination == NULL || source == NULL || destination == source
+        || destination->context != NULL || destination->registry != NULL || destination->identity != 0
+        || ama_context_leased(source) == NULL) {
+        return ama_status_make(AMA_INVALID_STATE, NULL, 0);
+    }
+    *destination = *source;
+    *source = (AmaContextLease){0};
+    return ama_status_success();
+}

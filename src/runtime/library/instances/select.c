@@ -20,6 +20,8 @@ AmaLibraryResult ama_library_select(AmaLibraryService *service, AmaLibraryContex
         result=ama_library_result(AMA_LIBRARY_INVALID_REQUEST,ama_status_make(AMA_INVALID_STATE,NULL,0));
     } else if (access->view.status.code!=AMA_OK) {
         result=ama_library_result(AMA_LIBRARY_REFUSED,access->view.status);
+    } else if (access->view.control->phase!=AMA_RUNTIME_IDLE) {
+        result=ama_library_result(AMA_LIBRARY_REFUSED,ama_status_make(AMA_INVALID_STATE,NULL,0));
     } else if (access->view.world->operation_active) {
         result=ama_library_result(AMA_LIBRARY_BUSY,ama_status_make(AMA_BUSY,NULL,0));
     } else {

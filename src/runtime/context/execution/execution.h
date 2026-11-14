@@ -53,6 +53,17 @@ AmaStatus ama_context_execution_start(AmaContextRegistry *, uint64_t, uint64_t,
  */
 AmaStatus ama_context_execution_begin(AmaContextRegistry *, uint64_t, AmaContextReference,
     const AmaProgramInvocation *, AmaContextExecution *);
+/** Begin using the execution owner's already-held lease. Rejection preserves that lease
+ * and all Ama state; accepted preparation retains it through dispatch/finalization.
+ */
+AmaStatus ama_context_execution_begin_leased(AmaContextExecution *, AmaContextReference,
+    const AmaProgramInvocation *);
+/** Validate/finish execution while retaining its lease for result construction and host-map
+ * cleanup. Success clears execution state but leaves exclusive context access live.
+ * A failed outcome has already consumed native/Ama resources; diagnostic storage remains.
+ */
+AmaStatus ama_context_execution_finish_retained(AmaContextExecution *, AmaHostOutcome,
+    AmaStatus, AmaContextOutcome *);
 /** Finish an admitted operation after all native borrows/world operations close.
  * Generated code has already returned/yielded to the host sentinel using ordinary
  * explicit return helpers. Valid healthy outcomes return Idle; inconsistent

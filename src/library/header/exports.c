@@ -38,7 +38,7 @@ static void operation(LibraryHeader *h, const LibraryExport *exported, unsigned 
         " * Failed snapshot construction after admission is technical context failure. No scheduler or implicit resume. */\n",
         mode == LIBRARY_ENTRY ? "Reset the interface and execute entry" : mode == LIBRARY_RESUME ? "Resume without resetting or supplying inputs" : "Read retained results without execution");
     if (mode != LIBRARY_READ) {
-        library_header_print(h, "/** Accepted execution writes COMPLETED/YIELDED/FAILED; rejection preserves outcome. */\n");
+        library_header_print(h, "/** Accepted execution writes COMPLETED/YIELDED/FAILED; rejection preserves outcome. Outcome storage must not overlap any result owner slot. */\n");
     }
     library_header_print(h, "%s_ApiResult %s_%s_implementation(", p, e, name);
     arguments(h, exported, mode, false);

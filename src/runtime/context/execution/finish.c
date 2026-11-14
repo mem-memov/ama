@@ -26,8 +26,8 @@ static AmaStatus execution_return_status(AmaContext *context, AmaHostOutcome out
         ? ama_status_success() : ama_status_make(AMA_INVALID_STATE, NULL, 0);
 }
 
-/** Consume only a valid execution owner after native views close; publish no live root on failure. */
-AmaStatus ama_context_execution_finish(AmaContextExecution *execution, AmaHostOutcome outcome,
+/** Finalize valid execution state after native views close, retaining its lease for host results. */
+AmaStatus ama_context_execution_finish_retained(AmaContextExecution *execution, AmaHostOutcome outcome,
     AmaStatus status, AmaContextOutcome *output) {
     if (execution == NULL || output == NULL) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
     AmaContext *context = ama_context_leased(&execution->lease);
@@ -48,6 +48,17 @@ AmaStatus ama_context_execution_finish(AmaContextExecution *execution, AmaHostOu
     execution->root = (AmaContextReference){0};
     execution->selector = 0;
     execution->status = ama_status_success();
+    *output = result;
+    return ama_status_success();
+}
+
+/** Preserve the consuming API while allowing library hosts to retain exclusive result access. */
+AmaStatus ama_context_execution_finish(AmaContextExecution *execution, AmaHostOutcome outcome,
+    AmaStatus status, AmaContextOutcome *output) {
+    if (output == NULL) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
+    AmaContextOutcome result = {0};
+    AmaStatus finished = ama_context_execution_finish_retained(execution, outcome, status, &result);
+    if (finished.code != AMA_OK) { return finished; }
     AmaStatus released = ama_context_leave(&execution->lease);
     if (released.code == AMA_OK) { *output = result; }
     return released;
