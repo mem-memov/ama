@@ -94,3 +94,7 @@ suite includes this leaf explicitly.
 [T064 compiled binding acceptance](compiled-bindings.md) observes raw literal
 bytes, constructor selection, inferred receiver forms, positional holes and
 sequential output progress through actual native code.
+
+[T065 retained-read acceptance](retained-reads.md) observes copied value state,
+cleared ordinary positions, unchanged reference targets, immutable namespaces and
+receiver preservation on Busy/stale refusal through compiled programs.

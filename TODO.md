@@ -1472,10 +1472,21 @@ their parsed and typed plans are already available from Phases 3–5.
   ASan+UBSan passed; all 1110 maintained inputs have coverage. Local links passed;
   final Doxygen reproducibility is checked before commit. No duplicate binding
   executor or new source syntax was introduced.
-- [ ] **T065 — Complete retained and constant result reads.** Needs: T064.
+- [x] **T065 — Complete retained and constant result reads.** Needs: T064.
   Copy the complete permitted value state without executing/resetting the target;
   preserve ordinary copy clearing. Test qualified constants, inferred receivers,
   partial output progress and busy/stale refusal before receiver changes.
+  Evidence: [retained/constant read composition](docs/implementation/retained-reads.md).
+  Compiled reads preserve native module state without reset/body execution;
+  ordinary owned copies clear saved positions while reference results leave the
+  original resumable. Namespace/qualified/imported constants expose exact values
+  and an alarm constructor detects any hidden default instance. Busy/stale targets
+  preserve existing receivers. Destructor effects prove a body-mutated result and
+  earlier committed output remain after a later conversion error, with no handler
+  or body reexecution. Strict recursive read-leaf tests and generated-program
+  ASan+UBSan passed. All 1116 maintained inputs have coverage; local links passed
+  and final Doxygen reproducibility is checked before commit. Existing typed
+  transfer paths already supply the implementation; no duplicate executor added.
 - [ ] **T066 — Execute direct-result operation trees.** Needs: T065. Act on
   actual retained result storage, follow returned references, sequence sibling
   methods depth-first and keep parent protections until all actions finish.

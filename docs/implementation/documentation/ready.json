@@ -32423,6 +32423,31 @@
         "case": "it_retains_an_earlier_output_when_a_later_receiver_conversion_fails",
         "command": "make -C tests/unit/codegen bindings",
         "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_copies_retained_module_state_without_executing_resetting_or_copying_saved_positions",
+        "command": "make -C tests/unit/codegen reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_reads_qualified_and_namespace_constants_without_constructing_or_executing_their_modules",
+        "command": "make -C tests/unit/codegen reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_refuses_a_busy_retained_target_before_changing_its_receiver",
+        "command": "make -C tests/unit/codegen reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_refuses_a_stale_retained_target_before_changing_its_receiver",
+        "command": "make -C tests/unit/codegen reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_keeps_retained_results_and_the_successful_prefix_when_a_later_output_fails",
+        "command": "make -C tests/unit/codegen reads",
+        "source": "tests/unit/codegen/reads/main.c"
       }
     ]
   },
@@ -60771,6 +60796,192 @@
         "case": "it_retains_an_earlier_output_when_a_later_receiver_conversion_fails",
         "command": "make -C tests/unit/codegen/bindings",
         "source": "tests/unit/codegen/bindings/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/reads/main.c": {
+    "contract": "docs/implementation/retained-reads.md",
+    "purpose": "Run compiled retained/constant read, continuation-copy, refusal and partial-progress cases.",
+    "tests": [
+      {
+        "case": "it_copies_retained_module_state_without_executing_resetting_or_copying_saved_positions",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_reads_qualified_and_namespace_constants_without_constructing_or_executing_their_modules",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_refuses_a_busy_retained_target_before_changing_its_receiver",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_refuses_a_stale_retained_target_before_changing_its_receiver",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_keeps_retained_results_and_the_successful_prefix_when_a_later_output_fails",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/reads/Makefile": {
+    "contract": "docs/implementation/retained-reads.md",
+    "purpose": "Build and execute the independently selectable retained-read composition leaf.",
+    "tests": [
+      {
+        "case": "it_copies_retained_module_state_without_executing_resetting_or_copying_saved_positions",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_reads_qualified_and_namespace_constants_without_constructing_or_executing_their_modules",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_refuses_a_busy_retained_target_before_changing_its_receiver",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_refuses_a_stale_retained_target_before_changing_its_receiver",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_keeps_retained_results_and_the_successful_prefix_when_a_later_output_fails",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/reads/support/state.c": {
+    "contract": "docs/implementation/retained-reads.md",
+    "purpose": "Observe copied native state and separate owned/reference continuation behavior through actual label execution.",
+    "tests": [
+      {
+        "case": "it_copies_retained_module_state_without_executing_resetting_or_copying_saved_positions",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_reads_qualified_and_namespace_constants_without_constructing_or_executing_their_modules",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_refuses_a_busy_retained_target_before_changing_its_receiver",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_refuses_a_stale_retained_target_before_changing_its_receiver",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_keeps_retained_results_and_the_successful_prefix_when_a_later_output_fails",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/reads/support/constants.c": {
+    "contract": "docs/implementation/retained-reads.md",
+    "purpose": "Observe namespace dependency values and detect accidental default instance construction.",
+    "tests": [
+      {
+        "case": "it_copies_retained_module_state_without_executing_resetting_or_copying_saved_positions",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_reads_qualified_and_namespace_constants_without_constructing_or_executing_their_modules",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_refuses_a_busy_retained_target_before_changing_its_receiver",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_refuses_a_stale_retained_target_before_changing_its_receiver",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_keeps_retained_results_and_the_successful_prefix_when_a_later_output_fails",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/reads/support/refusals.c": {
+    "contract": "docs/implementation/retained-reads.md",
+    "purpose": "Check unchanged receivers on busy and stale retained targets.",
+    "tests": [
+      {
+        "case": "it_copies_retained_module_state_without_executing_resetting_or_copying_saved_positions",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_reads_qualified_and_namespace_constants_without_constructing_or_executing_their_modules",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_refuses_a_busy_retained_target_before_changing_its_receiver",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_refuses_a_stale_retained_target_before_changing_its_receiver",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_keeps_retained_results_and_the_successful_prefix_when_a_later_output_fails",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/reads/support/progress.c": {
+    "contract": "docs/implementation/retained-reads.md",
+    "purpose": "Expose retained body-mutated values and committed output prefixes through native destruction effects.",
+    "tests": [
+      {
+        "case": "it_copies_retained_module_state_without_executing_resetting_or_copying_saved_positions",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_reads_qualified_and_namespace_constants_without_constructing_or_executing_their_modules",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_refuses_a_busy_retained_target_before_changing_its_receiver",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_refuses_a_stale_retained_target_before_changing_its_receiver",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_keeps_retained_results_and_the_successful_prefix_when_a_later_output_fails",
+        "command": "make -C tests/unit/codegen/reads",
+        "source": "tests/unit/codegen/reads/main.c"
       }
     ]
   }
