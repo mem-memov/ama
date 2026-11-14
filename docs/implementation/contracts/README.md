@@ -154,3 +154,6 @@ constant-list initialization, cloning and partial-cleanup evidence.
 
 [Executable examples](../examples.md) records T088 reproducible synchronous and
 continuation workflows, their lifetime arguments and exact integration evidence.
+
+[Example usability](../example-usability.md) records T089 allocation-free copy
+capability witnesses, exact source navigation and current implementation guidance.

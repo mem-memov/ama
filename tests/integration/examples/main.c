@@ -30,8 +30,26 @@ static void it_checks_empty_inputs_and_cleared_copy_positions(void) {
     compile_and_run_object(".empty path", "description=Invalid file path\n", NULL, false);
     compile_and_run_object(".ordinary copy", "", "Ama runtime failure: 10", false);
 }
+/** The real CLI exposes exact operation, ownership witness and native ABI locations. */
+static void it_explains_the_transitive_copy_failure_with_source_navigation(void) {
+    setup_test();
+    char *arguments[] = {AMA_EXECUTABLE, "--check", "project", ".copy failure",
+        "--standard-root", TEST_STANDARD_ROOT, NULL};
+    int result = run_compiler_arguments(arguments);
+    char diagnostic[8192], actual[128];
+    read_stream(errors, diagnostic, sizeof(diagnostic));
+    read_stream(output, actual, sizeof(actual));
+    assert(result != EXIT_SUCCESS && actual[0] == '\0');
+    assert(strstr(diagnostic, "project/copy failure:6:2: error[type-mismatch]") != NULL);
+    assert(strstr(diagnostic, "project/uncopyable simulation:3:1: note: owned field requiring independent copying") != NULL);
+    assert(strstr(diagnostic, "project/open.abi:3:1: note: type capability contract") != NULL);
+    assert(strstr(diagnostic, "cause: An owned native type has no declared = copy capability") != NULL);
+    assert(strstr(diagnostic, "help: Independent copying requires =") != NULL);
+    destroy_test();
+}
 /** Register every complete example explicitly. */
 void run(void) {
+    it_explains_the_transitive_copy_failure_with_source_navigation();
     it_runs_independent_simulations();
     it_mutates_a_live_traversal_and_skips_the_empty_list();
     it_executes_a_returned_self_reference();

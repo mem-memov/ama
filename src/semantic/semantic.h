@@ -241,7 +241,8 @@ typedef struct {
     SemanticType *last;
     SemanticStatus status;
     Diagnostic error;
-    DiagnosticRelated related[2];
+    /** Bounded diagnostic storage: destination, first owned copy witness, native contract. */
+    DiagnosticRelated related[3];
     bool names_attempted;
     bool names_valid;
     bool native_attempted;

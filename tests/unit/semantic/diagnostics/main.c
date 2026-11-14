@@ -52,8 +52,10 @@ static void it_identifies_a_noncopyable_native_seed_inside_a_composed_type(void)
     file("generated/program/worker", "@!\nchildren[]\n.worker\nresource\n.resource\n");
     SemanticStatus status = resolve_text("@!\nsource\n.worker\ndestination\n.worker\ndestination\n source\n");
     assert(status == SEMANTIC_INVALID && strcmp(semantic.error.subject, ".worker") == 0);
-    assert(semantic.error.related_count == 2);
-    assert(strcmp(semantic.error.related[1].name, ".resource") == 0);
+    assert(semantic.error.related_count == 3);
+    assert(layout_text_is(semantic.error.related[1].location.span, "resource\n.resource"));
+    assert(strcmp(semantic.error.related[1].role, "owned field requiring independent copying") == 0);
+    assert(strcmp(semantic.error.related[2].name, ".resource") == 0);
     SemanticType *type = semantic_find_type(&semantic, ".worker");
     assert(type->clone_seed == semantic_find_type(&semantic, ".resource"));
     assert(type->clone_cause != NULL);

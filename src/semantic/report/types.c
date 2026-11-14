@@ -53,6 +53,20 @@ bool semantic_capability_error(SemanticProgram *program, SemanticType *type,
     SourceSpan contract_site = abi == NULL ? (SourceSpan){contract->module->source->text, 0, 0}
         : (SourceSpan){abi, source_length(abi), source_length(abi)};
     size_t index = program->error.related_count;
+    if (operation == ABI_CLONE) {
+        program->error.cause = "An owned native type has no declared = copy capability";
+        program->error.help = "Independent copying requires = on every owned native descendant; references do not copy their targets";
+        /* The fixed-point witness is an actual declared ownership edge, including
+         * empty lists. Follow no guessed name or payload and allocate nothing.
+         * [PROTO-07](../../../spec/implementation/native-interface.md#proto-07)
+         * makes this edge sufficient to reject the enclosing independent copy.
+         */
+        if (type->clone_cause != NULL) {
+            const SemanticSymbol *field = type->clone_cause;
+            program->related[index++] = (DiagnosticRelated){{.span = field->site},
+                "owned field requiring independent copying", field->owner->module->source->logical_path};
+        }
+    }
     program->related[index] = (DiagnosticRelated){{.span = contract_site},
         "type capability contract", contract->module->source->logical_path};
     program->error.related = program->related;

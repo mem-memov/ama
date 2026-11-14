@@ -1,0 +1,6 @@
+# Checking must explain the transitive native copy-capability failure.
+@!
+source
+.uncopyable simulation
+copy
+ % source

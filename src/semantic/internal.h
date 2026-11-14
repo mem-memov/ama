@@ -102,7 +102,8 @@ GraphVertex *semantic_constant_vertex(DependencyGraph *graph, SemanticSymbol *sy
  */
 bool semantic_incompatible(SemanticProgram *program, SemanticType *type, bool reference,
     bool list, const SemanticSource *source, const SemanticSymbol *destination);
-/** Retain a selected native capability contract, including a transitive noncopyable seed, without allocating a message.
+/** Retain a selected native capability contract, including the first owned field and transitive noncopyable seed, without allocating a message.
+ * Borrow exact source spans from the existing capability witness; never suggest an inferred codec or copy implementation.
  */
 bool semantic_capability_error(SemanticProgram *program, SemanticType *type,
     AbiOperation operation, SourceSpan site, const SemanticSymbol *declaration, const char *message);

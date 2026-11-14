@@ -26998,6 +26998,11 @@
         "case": "it_unwinds_every_positive_reference_origin_allocation",
         "command": "make -C tests/unit/semantic/continuations",
         "source": "tests/unit/semantic/continuations/main.c"
+      },
+      {
+        "case": "it_retains_the_owned_copy_witness_and_native_seed",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
       }
     ]
   },
@@ -28027,6 +28032,11 @@
         "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_retains_the_owned_copy_witness_and_native_seed",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
       }
     ]
   },
@@ -28917,6 +28927,11 @@
         "case": "it_unwinds_every_allocation_of_complete_semantic_composition",
         "command": "make -C tests/unit/semantic/composition",
         "source": "tests/unit/semantic/composition/main.c"
+      },
+      {
+        "case": "it_retains_the_owned_copy_witness_and_native_seed",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
       }
     ]
   },
@@ -49196,6 +49211,11 @@
       },
       {
         "case": "it_keeps_root_kind_identity_in_the_complete_transfer_matrix",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_retains_the_owned_copy_witness_and_native_seed",
         "command": "make -C tests/unit/semantic/types",
         "source": "tests/unit/semantic/types/main.c"
       }
@@ -78021,6 +78041,11 @@
         "case": "it_checks_empty_inputs_and_cleared_copy_positions",
         "command": "make -C tests/integration/examples",
         "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_explains_the_transitive_copy_failure_with_source_navigation",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
       }
     ]
   },
@@ -78486,6 +78511,39 @@
       },
       {
         "case": "it_runs_examples_with_target_sanitizers",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/types/support/capabilities.c": {
+    "contract": "docs/implementation/example-usability.md",
+    "purpose": "Verify exact source navigation through owned copy-capability witnesses without inferring capabilities.",
+    "tests": [
+      {
+        "case": "it_retains_the_owned_copy_witness_and_native_seed",
+        "command": "make -C tests/unit/semantic/types",
+        "source": "tests/unit/semantic/types/main.c"
+      }
+    ]
+  },
+  "tests/integration/examples/project/copy failure": {
+    "contract": "docs/implementation/example-usability.md",
+    "purpose": "Retain a concrete transitive copy failure for exact CLI diagnostic and source-navigation tests.",
+    "tests": [
+      {
+        "case": "it_explains_the_transitive_copy_failure_with_source_navigation",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/examples/project/uncopyable simulation": {
+    "contract": "docs/implementation/example-usability.md",
+    "purpose": "Retain a concrete transitive copy failure for exact CLI diagnostic and source-navigation tests.",
+    "tests": [
+      {
+        "case": "it_explains_the_transitive_copy_failure_with_source_navigation",
         "command": "make -C tests/integration/examples",
         "source": "tests/integration/examples/main.c"
       }

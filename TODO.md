@@ -1935,10 +1935,21 @@ Contracts: [library](spec/language/library.md),
   strict whole tests, all 1372 maintained-input coverage, standalone headers,
   local links and reproducible Doxygen are checked before commit. Native file
   resources stay within one synchronous activation; no new language rules.
-- [ ] **T089 — Review usability through the examples.** Needs: T088. Improve
+- [x] **T089 — Review usability through the examples.** Needs: T088. Improve
   diagnostics, source navigation metadata and Doxygen explanations using concrete
   failures and repeated workflows. Record proposed language changes as questions;
   do not alter `spec/` or infer new semantics while improving implementation.
+
+  Evidence: [example usability review](docs/implementation/example-usability.md).
+  Transitive copy errors now retain the first real owned-field witness alongside
+  the operation, receiver and exact native ABI seed, with allocation-free cause
+  and capability guidance. Direct capability failures and unrelated diagnostics
+  preserve their source partitions. Tests cover scalar/list/deep ownership,
+  reference exclusion, recursive ownership and exact CLI positions. The README
+  directs readers to current examples/task evidence rather than the original
+  audit's historical limits. Strict semantic subtree and real CLI examples,
+  semantic ASan/UBSan, all 1375 input coverage, standalone headers, local links
+  and reproducible Doxygen are checked before commit. No language change proposed.
 
 ## Phase 12. Compiled Ama libraries and C-module embedding
 

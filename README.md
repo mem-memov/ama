@@ -6,9 +6,11 @@ references identify instances without owning them. Domain capabilities belong in
 libraries rather than an expanding collection of language primitives.
 
 [The product specification](spec/README.md) is the source of truth.
-The implementation is being adapted to this specification. The passing tests
-cover the older source subset recorded in the [audit](docs/implementation/audit/README.md),
-and leave current grammar, scope and result-tree acceptance incomplete.
+The implementation is being built against this specification.
+[Executable examples](docs/implementation/examples.md) show supported workflows;
+[TODO.md](TODO.md) records acceptance evidence and remaining work. The
+[audit](docs/implementation/audit/README.md) describes the original implementation
+before its replacement and is historical evidence.
 `./ama --check ROOT .module` validates dependencies, syntax, types and typed plans without emitting or
 compiling C. `./ama --status ROOT .module` reports source activation without
 validating a project. `./ama --emit ROOT .module --out DIR --sdk /path/to/ama/src --compile`
@@ -37,8 +39,8 @@ C/assert tests. Check-only success does not validate handwritten C bodies.
 
 ## Language outline
 
-This outline describes the target language; consult the audit before expecting
-the current frontend to accept an example. Files are modules. Their qualified
+This outline describes the language; use the executable examples and task evidence
+for the currently verified implementation boundary. Files are modules. Their qualified
 paths determine type identity. A module file
 `shop/item` may have submodules in `shop/item+/`; the directory marker is omitted
 from logical paths such as `.shop.item.validate`. Names support Unicode.
