@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief Compose native integer construction, literal decoding and read-only conversion helpers.
+ * @brief Compile maintained native integer components under counted test instrumentation.
  *
  * Test allocator/observer macros are optional fixture instrumentation. Normal
  * companion compilation uses malloc/free and no observers. No size constructor
@@ -21,6 +21,6 @@
 #define AMA_INTEGER_OBSERVE_SIZE() ((void)0)
 #endif
 
-#include "../support/integer/storage.c"
-#include "../support/integer/literal.c"
-#include "../support/integer/conversion.c"
+#include "../../../../../../../stdlib/modules/integer+/native/storage.c"
+#include "../../../../../../../stdlib/modules/integer+/native/literal.c"
+#include "../../../../../../../stdlib/modules/integer+/native/conversion.c"

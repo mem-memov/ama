@@ -75,6 +75,28 @@ static void it_preserves_repeated_values_flags_and_shared_root_exclusions(void) 
     destroy_test();
 }
 
+/** Explicit standard roots retain argv order and share the request exclusions. */
+static void it_selects_standard_root_authority_only_by_an_explicit_option(void) {
+    setup_test();
+    DriverOptions options;
+    driver_options_init(&options, sources.allocator);
+    char *arguments[] = {"ama", "--check", "project", ".main", "--standard-root", "library",
+        "--root", "imports", "--exclude", "generated"};
+    bool valid = driver_options_parse(&options, 10, arguments);
+    assert(valid && options.valid && options.root_count == 3);
+    assert(options.roots[0].kind == MODULE_ROOT_PROJECT && options.roots[1].kind == MODULE_ROOT_STANDARD
+        && options.roots[2].kind == MODULE_ROOT_PROJECT && options.roots[1].path == arguments[5]);
+    assert(options.roots[1].excluded_count == 1 && options.roots[1].excluded[0] == arguments[9]);
+    driver_options_destroy(&options);
+    destroy_test();
+    for (DriverRequest request = DRIVER_REQUEST_CHECK; request <= DRIVER_REQUEST_EMIT; request++) {
+        const DriverOption *option = driver_option_recognize(request, "--standard-root");
+        assert(option != NULL && option->takes_value && option->kind == DRIVER_OPTION_STANDARD_ROOT);
+    }
+    char *missing[] = {"ama", "--check", "project", ".main", "--standard-root"};
+    invalid_arguments(5, missing, "Command option needs a value");
+}
+
 /** All operand/missing-value/unknown partitions preserve existing diagnostics. */
 static void it_rejects_invalid_missing_and_wrong_request_options(void) {
     const char *operands = "Expected a source root and an exact logical module path";
@@ -151,6 +173,7 @@ static void it_cleans_every_partial_allocation_and_rejects_unrepresentable_stora
 void run(void) {
     it_recognizes_only_exact_applicable_options();
     it_preserves_repeated_values_flags_and_shared_root_exclusions();
+    it_selects_standard_root_authority_only_by_an_explicit_option();
     it_rejects_invalid_missing_and_wrong_request_options();
     it_assembles_native_creation_and_check_defaults();
     it_cleans_every_partial_allocation_and_rejects_unrepresentable_storage();

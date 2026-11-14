@@ -139,3 +139,7 @@ nor a planned test-home path certifies implementation of the whole language.
 [Live traversal execution and copying](../list-traversal-execution.md) records T084
 control-label integration, exact membership translation, ordinary-copy exclusions,
 candidate-potential argument and runtime/generated-project failure evidence.
+
+[Canonical scalar library](../scalar-library.md) records T085 arbitrary-precision
+construction/conversion invariants, explicit CLI root authority, full host-size
+bridge, real native compilation and constructor-failure evidence.

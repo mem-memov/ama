@@ -2,11 +2,13 @@
  * @file
  * @brief Represent retained bounded size_t index payloads with checked decimal conversion.
  *
- * All inputs/views are operation-scoped; generated interfaces establish the native naming context. See the retained library contract and pending scalar roadmap.
+ * All inputs/views are operation-scoped; generated interfaces establish the native naming context. See the scalar library contract for the explicit standard-root binding.
  * @see [Fixture and coverage contract](../../../docs/implementation/library-tests-and-build.md)
+ * [LIB-01](../../../spec/language/library.md#lib-01)
+ * binds this native scalar by its explicit standard-root nominal identity.
  */
-#include "ama_n_44774707e6d43ca4816f1e9421b39ff7cdcb107ef8bbbe868268bff9c531b272.interface.h"
-#include "ama_n_44774707e6d43ca4816f1e9421b39ff7cdcb107ef8bbbe868268bff9c531b272.begin.h"
+#include "ama_n_11ed38831778193d6b8d6716738351485dc0bd3813fc41ed3c4a3c5bb54a77d5.interface.h"
+#include "ama_n_11ed38831778193d6b8d6716738351485dc0bd3813fc41ed3c4a3c5bb54a77d5.begin.h"
 
 /**
  * Execute this explicit native body synchronously over borrowed parameter/result views. Set
@@ -14,7 +16,7 @@
  * module fixture.
  */
 AMA_NATIVE_ENTRY void AMA_NATIVE(entry)(AMA_NATIVE(State) *state,
-    const ama_t_0e25b922b3bc7d38d21722f4ab8016b6d406f6023fcfe168096e3544a5beb8b1 *parameters, ama_t_3cb590e1026704fb08acd283130cf9dcabed65154eb9270b8af4f94a436996fe *results,
+    const ama_t_d5d6ee4729fede2ad3610308f2cd36990c76dfc25bcf5a9db3e3e370a44c8c8c *parameters, ama_t_70b07b1e0214eb699adcac15b588f83b62081a7694ba263445b1b7f4fa0f5763 *results,
     const AmaNativeServices *services, AmaStatus *status) {
     (void)state; (void)parameters; (void)results; (void)services;
     *status = ama_status_success();
@@ -77,4 +79,4 @@ AmaStatus AMA_NATIVE(index)(const AMA_NATIVE(State) *state, size_t *result) {
     return ama_status_success();
 }
 
-#include "ama_n_44774707e6d43ca4816f1e9421b39ff7cdcb107ef8bbbe868268bff9c531b272.end.h"
+#include "ama_n_11ed38831778193d6b8d6716738351485dc0bd3813fc41ed3c4a3c5bb54a77d5.end.h"

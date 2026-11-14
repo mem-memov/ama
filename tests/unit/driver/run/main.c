@@ -18,6 +18,7 @@ static void it_documents_verified_project_compilation(void) {
     read_stream(output, message, sizeof(message));
     assert(result == EXIT_SUCCESS);
     assert(strstr(message, "--compile") != NULL);
+    assert(strstr(message, "--standard-root DIR") != NULL);
     read_stream(errors, message, sizeof(message));
     assert(message[0] == '\0');
     destroy_test();

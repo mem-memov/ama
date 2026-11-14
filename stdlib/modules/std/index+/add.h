@@ -2,8 +2,10 @@
  * @file
  * @brief Add two retained index values after an exact overflow precheck in the native State layout.
  *
- * All inputs/views are operation-scoped; generated interfaces establish the native naming context. See the retained library contract and pending scalar roadmap.
+ * All inputs/views are operation-scoped; generated interfaces establish the native naming context. See the scalar library contract for the explicit standard-root binding.
  * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ * [LIB-01](../../../../spec/language/library.md#lib-01)
+ * binds this native scalar by its explicit standard-root nominal identity.
  */
 /**
  * Module-qualified native payload only; generated interface supplies AMA_NATIVE and required SDK

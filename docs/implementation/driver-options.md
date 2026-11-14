@@ -31,14 +31,19 @@ arena for one ordinary destruction. No output/filesystem effects occur here.
 ## Preserved option behavior
 
 The recognizer contains one row per exact spelling, with explicit command
-membership and arity. `--root` and `--exclude` apply to check/status/native/emit;
+membership and arity. `--root`, `--standard-root` and `--exclude` apply to
+check/status/native/emit;
 output, SDK, compiler and C flags apply to native/emit. Protocols and creation
 apply only to native, compilation only to emit, and overwrite to native/emit.
 Neither prefixes nor `--name=value` are inferred. Values are exactly the next
 argument, even when beginning with `-`; this parser does not reinterpret shell
 quoting or infer a missing value from its spelling.
 
-Repeated roots, exclusions and C flags append in argument order, including
+`--root` records project/import authority; `--standard-root` records standard
+library authority, as demonstrated by the [canonical integer CLI](scalar-library.md).
+No physical path spelling selects a root kind.
+
+Repeated roots of either kind, exclusions and C flags append in argument order, including
 duplicates. Repeated output/SDK/compiler/protocol values keep the last value.
 Boolean flags are idempotent. These are the existing behavior preserved by the
 refactoring, not a newly selected duplicate-option policy. Native overwrite or

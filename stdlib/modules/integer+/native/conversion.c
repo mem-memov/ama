@@ -1,6 +1,8 @@
 /**
  * @file
- * @brief Inspect integer fixture state through explicit condition and checked index protocols.
+ * @brief Inspect integer state through explicit condition and checked index protocols.
+ * [PROTO-03](../../../../spec/implementation/native-interface.md#proto-03)
+ * defines fresh construction, full host-size roundtrips and checked conversions.
  */
 
 /** Read mathematical nonzero state without entering the module or changing its payload. */

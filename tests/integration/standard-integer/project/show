@@ -1,0 +1,5 @@
+# Typed native observer for the canonical standard integer.
+@<
+input
+..integer
+@C

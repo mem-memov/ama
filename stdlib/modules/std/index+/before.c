@@ -2,11 +2,13 @@
  * @file
  * @brief Compare two retained index values and produce a binary condition result.
  *
- * All inputs/views are operation-scoped; generated interfaces establish the native naming context. See the retained library contract and pending scalar roadmap.
+ * All inputs/views are operation-scoped; generated interfaces establish the native naming context. See the scalar library contract for the explicit standard-root binding.
  * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
+ * [LIB-01](../../../../spec/language/library.md#lib-01)
+ * binds this native scalar by its explicit standard-root nominal identity.
  */
-#include "ama_n_fa5fc8080167d3522b7026ef0e769931784daaba468d86cde051a23e6be0218b.interface.h"
-#include "ama_n_fa5fc8080167d3522b7026ef0e769931784daaba468d86cde051a23e6be0218b.begin.h"
+#include "ama_n_88ac7c436c4104b856a6eb014d9c462a640142cfda712c5ae13b2c2f0f5f0619.interface.h"
+#include "ama_n_88ac7c436c4104b856a6eb014d9c462a640142cfda712c5ae13b2c2f0f5f0619.begin.h"
 
 /**
  * Execute this explicit native body synchronously over borrowed parameter/result views. Set
@@ -14,7 +16,7 @@
  * module fixture.
  */
 AMA_NATIVE_ENTRY void AMA_NATIVE(entry)(AMA_NATIVE(State) *state,
-    const ama_t_70846f4335593d2dca55b07f4f5996fa26970eaee131109f6074d1f6d4ff136d *parameters, ama_t_2c170170deb7e3e68ba3b241c09ca4950fa8db4cdcb2414c4dc1c6c190b5704f *results,
+    const ama_t_f31e4a30c3e837c8d50c54ed853ba164c9445b7f2f2ec7d96e3346175fe637f1 *parameters, ama_t_468716a115a0d9f2da797bfa1a49cc8e3b0a933362c80804e8a7f6f3b6e9bd79 *results,
     const AmaNativeServices *services, AmaStatus *status) {
     (void)state; (void)parameters; (void)results; (void)services;
     results->AMA_OUTPUT(0)->payload->value = parameters->AMA_INPUT(0)->payload->value < parameters->AMA_INPUT(1)->payload->value;
@@ -46,4 +48,4 @@ AmaStatus AMA_NATIVE(clone)(AMA_NATIVE(State) *destination, const AMA_NATIVE(Sta
     return ama_status_success();
 }
 
-#include "ama_n_fa5fc8080167d3522b7026ef0e769931784daaba468d86cde051a23e6be0218b.end.h"
+#include "ama_n_88ac7c436c4104b856a6eb014d9c462a640142cfda712c5ae13b2c2f0f5f0619.end.h"

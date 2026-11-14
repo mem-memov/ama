@@ -1,9 +1,10 @@
+# Declare ordered bounded-index comparison inputs and its condition result. See stdlib/README.md.
 @<
 left
-.std.index
+..std.index
 right
-.std.index
+..std.index
 @>
 result
-.std.condition
+..std.condition
 @C

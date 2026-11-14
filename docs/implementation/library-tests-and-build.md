@@ -9,10 +9,10 @@ specification. The [roadmap](../../TODO.md) and
 
 ## Retained scalar library
 
-The physical `stdlib/modules/std/` sources still use the audited older root and
-source forms. Their acceptance does not implement the canonical `..integer`,
-condition-capable failure module, current standard-root resolution or typed list
-services. Those remain T016, T085, T086 and the list tasks.
+The scalar providers under `stdlib/modules/std/` now use explicit standard-root
+identities alongside the [canonical integer](scalar-library.md). Their generated
+composition tests use actual current standard roots. Condition-capable
+failure/resource interfaces remain T086 work; arithmetic result alignment is T087.
 
 The retained index owns one size_t value. Decimal literal parsing checks the next
 multiply/add bound before mutation, rejecting empty/nondigit/overflow input.
@@ -108,19 +108,19 @@ accepted older-source fixtures, not current-language conformance claims.
 
 | Exact path | Purpose and consuming observation |
 |---|---|
-| `stdlib/modules/std/condition` | Ordered constants/interface declarations of the retained scalar native module; generated library tests consume its original source form. |
+| `stdlib/modules/std/condition` | Ordered scalar constants/interfaces; generated library tests consume the explicit standard-root identities. |
 | `stdlib/modules/std/condition.abi` | Exact explicit lifecycle/conversion binding records for the paired retained native module. |
-| `stdlib/modules/std/index` | Ordered constants/interface declarations of the retained scalar native module; generated library tests consume its original source form. |
-| `stdlib/modules/std/index+/add` | Ordered constants/interface declarations of the retained scalar native module; generated library tests consume its original source form. |
+| `stdlib/modules/std/index` | Ordered scalar constants/interfaces; generated library tests consume the explicit standard-root identities. |
+| `stdlib/modules/std/index+/add` | Ordered scalar constants/interfaces; generated library tests consume the explicit standard-root identities. |
 | `stdlib/modules/std/index+/add.abi` | Exact explicit lifecycle/conversion binding records for the paired retained native module. |
-| `stdlib/modules/std/index+/before` | Ordered constants/interface declarations of the retained scalar native module; generated library tests consume its original source form. |
+| `stdlib/modules/std/index+/before` | Ordered scalar constants/interfaces; generated library tests consume the explicit standard-root identities. |
 | `stdlib/modules/std/index+/before.abi` | Exact explicit lifecycle/conversion binding records for the paired retained native module. |
-| `stdlib/modules/std/index+/next` | Ordered constants/interface declarations of the retained scalar native module; generated library tests consume its original source form. |
+| `stdlib/modules/std/index+/next` | Ordered scalar constants/interfaces; generated library tests consume the explicit standard-root identities. |
 | `stdlib/modules/std/index+/next.abi` | Exact explicit lifecycle/conversion binding records for the paired retained native module. |
 | `stdlib/modules/std/index.abi` | Exact explicit lifecycle/conversion binding records for the paired retained native module. |
-| `stdlib/modules/std/refusal` | Ordered constants/interface declarations of the retained scalar native module; generated library tests consume its original source form. |
+| `stdlib/modules/std/refusal` | Ordered scalar constants/interfaces; generated library tests consume the explicit standard-root identities. |
 | `stdlib/modules/std/refusal.abi` | Exact explicit lifecycle/conversion binding records for the paired retained native module. |
-| `stdlib/modules/std/status` | Ordered constants/interface declarations of the retained scalar native module; generated library tests consume its original source form. |
+| `stdlib/modules/std/status` | Ordered scalar constants/interfaces; generated library tests consume the explicit standard-root identities. |
 | `stdlib/modules/std/status.abi` | Exact explicit lifecycle/conversion binding records for the paired retained native module. |
 | `tests/integration/check/project/draft` | Deliberately inactive draft; companion files or embedded selector-looking data must not activate it. |
 | `tests/integration/check/project/main` | Explicit root declarations/body selected by this leaf; diagnostic line/byte positions remain fixed. |

@@ -21,6 +21,7 @@ int driver_write_response(DriverRequest request, FILE *output) {
             "       ama --status ROOT .module [--root DIR] [--exclude PATH]\n"
             "       ama --native ROOT .module --out DIR --sdk DIR [--create]\n"
             "       ama --emit ROOT .module --out DIR --sdk DIR [--compile]\n"
+            "Use --standard-root DIR to resolve double-dot library paths.\n"
             "Checking validates source and typed plans without running C.\n"
             "Use --emit --compile to build a verified executable.\n"
         : "ama: expected an explicit command.\n"

@@ -128,6 +128,10 @@ then adapt it through T085–T089. Test the full supported size range, one selec
 constructor and false/true/false failure transitions with description lifetime.
 Do not turn technical decoder/allocation failures into ordinary failure values.
 
+T085 resolves the scalar/size-bridge portion through the
+[canonical integer and standard-root scalar library](../scalar-library.md).
+T086 remains responsible for the condition-capable owned failure value.
+
 ## F08. Retained code lacks file documentation and complete boundary evidence
 
 [ARCH-01–ARCH-06](../../../spec/implementation/compiler.md#arch-01) and

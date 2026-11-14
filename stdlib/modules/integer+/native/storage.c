@@ -1,6 +1,8 @@
 /**
  * @file
  * @brief Own fresh integer limb allocation, direct size construction, cloning and destruction.
+ * [PROTO-03](../../../../spec/implementation/native-interface.md#proto-03)
+ * defines fresh construction, full host-size roundtrips and checked conversions.
  */
 
 /** Allocate zeroed private magnitude storage, without selecting any native constructor.

@@ -1,7 +1,8 @@
+# Declare checked bounded-index successor input and result. See stdlib/README.md.
 @<
 value
-.std.index
+..std.index
 @>
 result
-.std.index
+..std.index
 @C

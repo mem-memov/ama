@@ -1558,6 +1558,36 @@
         "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
         "command": "make -C tests/unit/runtime/traversal-origin",
         "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_executes_real_integer_positions_and_length_results",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_copies_shared_integer_constants_and_preserves_scalar_entry_state",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_above_host_indices_without_technical_failure",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_checks_mathematical_truth_without_machine_integer_assumptions",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_reports_malformed_integer_literals_with_the_standard_identity",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_keeps_project_integer_names_and_standard_integer_types_distinct",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
       }
     ]
   },
@@ -5045,6 +5075,21 @@
         "case": "it_assembles_native_creation_and_check_defaults",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_selects_standard_root_authority_only_by_an_explicit_option",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_requires_an_explicit_standard_root_to_resolve_integer",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_compiles_and_executes_real_integer_list_results",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
       }
     ]
   },
@@ -5184,6 +5229,21 @@
         "case": "it_recognizes_only_exact_applicable_options",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_selects_standard_root_authority_only_by_an_explicit_option",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_requires_an_explicit_standard_root_to_resolve_integer",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_compiles_and_executes_real_integer_list_results",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
       }
     ]
   },
@@ -5195,6 +5255,21 @@
         "case": "it_recognizes_only_exact_applicable_options",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_selects_standard_root_authority_only_by_an_explicit_option",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_requires_an_explicit_standard_root_to_resolve_integer",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_compiles_and_executes_real_integer_list_results",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
       }
     ]
   },
@@ -5392,6 +5467,21 @@
         "case": "it_rejects_ambiguous_project_commands",
         "command": "make -C tests/integration/launcher",
         "source": "tests/integration/launcher/main.c"
+      },
+      {
+        "case": "it_selects_standard_root_authority_only_by_an_explicit_option",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_requires_an_explicit_standard_root_to_resolve_integer",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_compiles_and_executes_real_integer_list_results",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
       }
     ]
   },
@@ -30955,8 +31045,8 @@
     ]
   },
   "stdlib/modules/std/condition": {
-    "contract": "docs/implementation/library-tests-and-build.md",
-    "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Declare the standard Boolean condition and its typed false/true constants.",
     "tests": [
       {
         "case": "it_composes_scalar_operations_with_consistent_positional_interfaces",
@@ -30981,8 +31071,8 @@
     ]
   },
   "stdlib/modules/std/condition.abi": {
-    "contract": "docs/implementation/library-tests-and-build.md",
-    "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Bind the explicit native lifecycle and declared scalar protocols for stdlib/modules/std/condition.",
     "tests": [
       {
         "case": "it_composes_scalar_operations_with_consistent_positional_interfaces",
@@ -31007,7 +31097,7 @@
     ]
   },
   "stdlib/modules/std/condition.c": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/scalar-library.md",
     "purpose": "Represent retained binary condition payloads with checked decimal literal conversion.",
     "tests": [
       {
@@ -31033,7 +31123,7 @@
     ]
   },
   "stdlib/modules/std/condition.h": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/scalar-library.md",
     "purpose": "Represent retained binary condition payloads with checked decimal literal conversion in the native State layout.",
     "standalone_header_command": [
       "cc",
@@ -31077,8 +31167,8 @@
     ]
   },
   "stdlib/modules/std/index": {
-    "contract": "docs/implementation/library-tests-and-build.md",
-    "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Declare the bounded standard index and its typed shared zero/one constants.",
     "tests": [
       {
         "case": "it_composes_scalar_operations_with_consistent_positional_interfaces",
@@ -31103,8 +31193,8 @@
     ]
   },
   "stdlib/modules/std/index+/add": {
-    "contract": "docs/implementation/library-tests-and-build.md",
-    "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Declare ordered bounded-index addition inputs and its single result.",
     "tests": [
       {
         "case": "it_composes_scalar_operations_with_consistent_positional_interfaces",
@@ -31129,8 +31219,8 @@
     ]
   },
   "stdlib/modules/std/index+/add.abi": {
-    "contract": "docs/implementation/library-tests-and-build.md",
-    "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Bind the explicit native lifecycle and declared scalar protocols for stdlib/modules/std/index+/add.",
     "tests": [
       {
         "case": "it_composes_scalar_operations_with_consistent_positional_interfaces",
@@ -31155,7 +31245,7 @@
     ]
   },
   "stdlib/modules/std/index+/add.c": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/scalar-library.md",
     "purpose": "Add two retained index values after an exact overflow precheck.",
     "tests": [
       {
@@ -31181,7 +31271,7 @@
     ]
   },
   "stdlib/modules/std/index+/add.h": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/scalar-library.md",
     "purpose": "Add two retained index values after an exact overflow precheck in the native State layout.",
     "standalone_header_command": [
       "cc",
@@ -31225,8 +31315,8 @@
     ]
   },
   "stdlib/modules/std/index+/before": {
-    "contract": "docs/implementation/library-tests-and-build.md",
-    "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Declare ordered bounded-index comparison inputs and its condition result.",
     "tests": [
       {
         "case": "it_composes_scalar_operations_with_consistent_positional_interfaces",
@@ -31251,8 +31341,8 @@
     ]
   },
   "stdlib/modules/std/index+/before.abi": {
-    "contract": "docs/implementation/library-tests-and-build.md",
-    "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Bind the explicit native lifecycle and declared scalar protocols for stdlib/modules/std/index+/before.",
     "tests": [
       {
         "case": "it_composes_scalar_operations_with_consistent_positional_interfaces",
@@ -31277,7 +31367,7 @@
     ]
   },
   "stdlib/modules/std/index+/before.c": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/scalar-library.md",
     "purpose": "Compare two retained index values and produce a binary condition result.",
     "tests": [
       {
@@ -31303,7 +31393,7 @@
     ]
   },
   "stdlib/modules/std/index+/before.h": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/scalar-library.md",
     "purpose": "Compare two retained index values and produce a binary condition result in the native State layout.",
     "standalone_header_command": [
       "cc",
@@ -31347,8 +31437,8 @@
     ]
   },
   "stdlib/modules/std/index+/next": {
-    "contract": "docs/implementation/library-tests-and-build.md",
-    "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Declare checked bounded-index successor input and result.",
     "tests": [
       {
         "case": "it_composes_scalar_operations_with_consistent_positional_interfaces",
@@ -31373,8 +31463,8 @@
     ]
   },
   "stdlib/modules/std/index+/next.abi": {
-    "contract": "docs/implementation/library-tests-and-build.md",
-    "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Bind the explicit native lifecycle and declared scalar protocols for stdlib/modules/std/index+/next.",
     "tests": [
       {
         "case": "it_composes_scalar_operations_with_consistent_positional_interfaces",
@@ -31399,7 +31489,7 @@
     ]
   },
   "stdlib/modules/std/index+/next.c": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/scalar-library.md",
     "purpose": "Increment one retained index value after checking the maximum.",
     "tests": [
       {
@@ -31425,7 +31515,7 @@
     ]
   },
   "stdlib/modules/std/index+/next.h": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/scalar-library.md",
     "purpose": "Increment one retained index value after checking the maximum in the native State layout.",
     "standalone_header_command": [
       "cc",
@@ -31469,8 +31559,8 @@
     ]
   },
   "stdlib/modules/std/index.abi": {
-    "contract": "docs/implementation/library-tests-and-build.md",
-    "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Bind the explicit native lifecycle and declared scalar protocols for stdlib/modules/std/index.",
     "tests": [
       {
         "case": "it_composes_scalar_operations_with_consistent_positional_interfaces",
@@ -31495,7 +31585,7 @@
     ]
   },
   "stdlib/modules/std/index.c": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/scalar-library.md",
     "purpose": "Represent retained bounded size_t index payloads with checked decimal conversion.",
     "tests": [
       {
@@ -31521,7 +31611,7 @@
     ]
   },
   "stdlib/modules/std/index.h": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/scalar-library.md",
     "purpose": "Represent retained bounded size_t index payloads with checked decimal conversion in the native State layout.",
     "standalone_header_command": [
       "cc",
@@ -31907,6 +31997,16 @@
         "case": "it_runs_independent_captured_methods_and_complete_resource_cleanup",
         "command": "make -C tests/integration objects",
         "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_requires_an_explicit_standard_root_to_resolve_integer",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_compiles_and_executes_real_integer_list_results",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
       }
     ]
   },
@@ -36512,6 +36612,36 @@
         "case": "it_rejects_resume_after_ordinary_copy",
         "command": "make -C tests/unit/codegen/traversal",
         "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_executes_real_integer_positions_and_length_results",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_copies_shared_integer_constants_and_preserves_scalar_entry_state",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_above_host_indices_without_technical_failure",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_checks_mathematical_truth_without_machine_integer_assumptions",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_reports_malformed_integer_literals_with_the_standard_identity",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_keeps_project_integer_names_and_standard_integer_types_distinct",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
       }
     ]
   },
@@ -37230,6 +37360,36 @@
         "case": "it_rejects_resume_after_ordinary_copy",
         "command": "make -C tests/unit/codegen/traversal",
         "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_executes_real_integer_positions_and_length_results",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_copies_shared_integer_constants_and_preserves_scalar_entry_state",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_above_host_indices_without_technical_failure",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_checks_mathematical_truth_without_machine_integer_assumptions",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_reports_malformed_integer_literals_with_the_standard_identity",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_keeps_project_integer_names_and_standard_integer_types_distinct",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
       }
     ]
   },
@@ -37467,7 +37627,7 @@
     ]
   },
   "tests/unit/codegen/library/Makefile": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/scalar-library.md",
     "purpose": "Build and run this leaf against its explicit production and fixture sources.",
     "tests": [
       {
@@ -37488,7 +37648,7 @@
     ]
   },
   "tests/unit/codegen/library/main.c": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/scalar-library.md",
     "purpose": "Compose retained scalar standard-library modules through real generated execution.",
     "tests": [
       {
@@ -38429,6 +38589,11 @@
         "case": "it_cleans_every_partial_allocation_and_rejects_unrepresentable_storage",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_selects_standard_root_authority_only_by_an_explicit_option",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
       }
     ]
   },
@@ -39011,7 +39176,7 @@
         "source": "tests/unit/native/abi/status/main.c"
       },
       {
-        "case": "it_binds_the_integer_fixture_module_and_six_protocols_without_a_seventh_record",
+        "case": "it_binds_the_maintained_integer_module_and_six_protocols_without_a_seventh_record",
         "command": "make -C tests/unit/native/abi/integer",
         "source": "tests/unit/native/abi/integer/main.c"
       },
@@ -39291,7 +39456,7 @@
     "purpose": "Build native integer ABI, source declaration and namespace checks.",
     "tests": [
       {
-        "case": "it_binds_the_integer_fixture_module_and_six_protocols_without_a_seventh_record",
+        "case": "it_binds_the_maintained_integer_module_and_six_protocols_without_a_seventh_record",
         "command": "make -C tests/unit/native/abi/integer",
         "source": "tests/unit/native/abi/integer/main.c"
       },
@@ -39323,11 +39488,11 @@
     ]
   },
   "tests/unit/native/abi/integer/common.c": {
-    "contract": "docs/implementation/native-protocols.md",
+    "contract": "docs/implementation/scalar-library.md",
     "purpose": "Bind counted native resources and exact fixture namespace to the integer contract.",
     "tests": [
       {
-        "case": "it_binds_the_integer_fixture_module_and_six_protocols_without_a_seventh_record",
+        "case": "it_binds_the_maintained_integer_module_and_six_protocols_without_a_seventh_record",
         "command": "make -C tests/unit/native/abi/integer",
         "source": "tests/unit/native/abi/integer/main.c"
       },
@@ -39353,17 +39518,22 @@
       },
       {
         "case": "it_cleans_integer_constructor_failures_and_preserves_clone_sources",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_counted_literals_without_live_partial_payloads",
         "command": "make -C tests/unit/native/abi/integer",
         "source": "tests/unit/native/abi/integer/main.c"
       }
     ]
   },
   "tests/unit/native/abi/integer/main.c": {
-    "contract": "docs/implementation/native-protocols.md",
+    "contract": "docs/implementation/scalar-library.md",
     "purpose": "Verify integer protocols, direct size construction and allocation-failure cleanup.",
     "tests": [
       {
-        "case": "it_binds_the_integer_fixture_module_and_six_protocols_without_a_seventh_record",
+        "case": "it_binds_the_maintained_integer_module_and_six_protocols_without_a_seventh_record",
         "command": "make -C tests/unit/native/abi/integer",
         "source": "tests/unit/native/abi/integer/main.c"
       },
@@ -39391,37 +39561,20 @@
         "case": "it_cleans_integer_constructor_failures_and_preserves_clone_sources",
         "command": "make -C tests/unit/native/abi/integer",
         "source": "tests/unit/native/abi/integer/main.c"
-      }
-    ]
-  },
-  "tests/unit/native/abi/integer/project/stdlib/integer": {
-    "contract": "docs/implementation/native-protocols.md",
-    "purpose": "Declare the test standard-library integer module.",
-    "tests": [
+      },
       {
-        "case": "it_binds_the_integer_fixture_module_and_six_protocols_without_a_seventh_record",
-        "command": "make -C tests/unit/native/abi/integer",
-        "source": "tests/unit/native/abi/integer/main.c"
-      }
-    ]
-  },
-  "tests/unit/native/abi/integer/project/stdlib/integer.abi": {
-    "contract": "docs/implementation/native-protocols.md",
-    "purpose": "Bind exactly six explicit integer protocols without a size pseudo-record.",
-    "tests": [
-      {
-        "case": "it_binds_the_integer_fixture_module_and_six_protocols_without_a_seventh_record",
+        "case": "it_rejects_malformed_counted_literals_without_live_partial_payloads",
         "command": "make -C tests/unit/native/abi/integer",
         "source": "tests/unit/native/abi/integer/main.c"
       }
     ]
   },
   "tests/unit/native/abi/integer/project/stdlib/integer.c": {
-    "contract": "docs/implementation/native-protocols.md",
+    "contract": "docs/implementation/scalar-library.md",
     "purpose": "Compose independent integer native constructor and read-only protocol implementations.",
     "tests": [
       {
-        "case": "it_binds_the_integer_fixture_module_and_six_protocols_without_a_seventh_record",
+        "case": "it_binds_the_maintained_integer_module_and_six_protocols_without_a_seventh_record",
         "command": "make -C tests/unit/native/abi/integer",
         "source": "tests/unit/native/abi/integer/main.c"
       },
@@ -39447,17 +39600,22 @@
       },
       {
         "case": "it_cleans_integer_constructor_failures_and_preserves_clone_sources",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_counted_literals_without_live_partial_payloads",
         "command": "make -C tests/unit/native/abi/integer",
         "source": "tests/unit/native/abi/integer/main.c"
       }
     ]
   },
   "tests/unit/native/abi/integer/project/stdlib/integer.h": {
-    "contract": "docs/implementation/native-protocols.md",
+    "contract": "docs/implementation/scalar-library.md",
     "purpose": "Declare typed integer state, bounded protocols and the fixed full-width size bridge.",
     "tests": [
       {
-        "case": "it_binds_the_integer_fixture_module_and_six_protocols_without_a_seventh_record",
+        "case": "it_binds_the_maintained_integer_module_and_six_protocols_without_a_seventh_record",
         "command": "make -C tests/unit/native/abi/integer",
         "source": "tests/unit/native/abi/integer/main.c"
       },
@@ -39483,6 +39641,11 @@
       },
       {
         "case": "it_cleans_integer_constructor_failures_and_preserves_clone_sources",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_counted_literals_without_live_partial_payloads",
         "command": "make -C tests/unit/native/abi/integer",
         "source": "tests/unit/native/abi/integer/main.c"
       }
@@ -39502,79 +39665,6 @@
       "-fsyntax-only",
       "-DAMA_NATIVE(name)=ama_documentation_##name",
       "-"
-    ]
-  },
-  "tests/unit/native/abi/integer/project/support/integer/conversion.c": {
-    "contract": "docs/implementation/native-protocols.md",
-    "purpose": "Inspect integer truth and reject negative or overflowing indices without output changes.",
-    "tests": [
-      {
-        "case": "it_roundtrips_sizes_at_all_limb_boundaries_without_decimal_or_default_construction",
-        "command": "make -C tests/unit/native/abi/integer",
-        "source": "tests/unit/native/abi/integer/main.c"
-      },
-      {
-        "case": "it_clones_literal_magnitudes_and_reads_conditions_without_changing_state",
-        "command": "make -C tests/unit/native/abi/integer",
-        "source": "tests/unit/native/abi/integer/main.c"
-      },
-      {
-        "case": "it_refuses_negative_and_host_overflow_indices_without_consuming_outputs",
-        "command": "make -C tests/unit/native/abi/integer",
-        "source": "tests/unit/native/abi/integer/main.c"
-      }
-    ]
-  },
-  "tests/unit/native/abi/integer/project/support/integer/literal.c": {
-    "contract": "docs/implementation/native-protocols.md",
-    "purpose": "Decode signed arbitrary-precision fixture literals with exact checked ownership.",
-    "tests": [
-      {
-        "case": "it_clones_literal_magnitudes_and_reads_conditions_without_changing_state",
-        "command": "make -C tests/unit/native/abi/integer",
-        "source": "tests/unit/native/abi/integer/main.c"
-      },
-      {
-        "case": "it_refuses_negative_and_host_overflow_indices_without_consuming_outputs",
-        "command": "make -C tests/unit/native/abi/integer",
-        "source": "tests/unit/native/abi/integer/main.c"
-      },
-      {
-        "case": "it_cleans_integer_constructor_failures_and_preserves_clone_sources",
-        "command": "make -C tests/unit/native/abi/integer",
-        "source": "tests/unit/native/abi/integer/main.c"
-      }
-    ]
-  },
-  "tests/unit/native/abi/integer/project/support/integer/storage.c": {
-    "contract": "docs/implementation/native-protocols.md",
-    "purpose": "Own fresh integer limbs, exact size decomposition, independent clone and finalization.",
-    "tests": [
-      {
-        "case": "it_checks_integer_protocol_and_fixed_bridge_signatures",
-        "command": "make -C tests/unit/native/abi/integer",
-        "source": "tests/unit/native/abi/integer/main.c"
-      },
-      {
-        "case": "it_roundtrips_sizes_at_all_limb_boundaries_without_decimal_or_default_construction",
-        "command": "make -C tests/unit/native/abi/integer",
-        "source": "tests/unit/native/abi/integer/main.c"
-      },
-      {
-        "case": "it_clones_literal_magnitudes_and_reads_conditions_without_changing_state",
-        "command": "make -C tests/unit/native/abi/integer",
-        "source": "tests/unit/native/abi/integer/main.c"
-      },
-      {
-        "case": "it_refuses_negative_and_host_overflow_indices_without_consuming_outputs",
-        "command": "make -C tests/unit/native/abi/integer",
-        "source": "tests/unit/native/abi/integer/main.c"
-      },
-      {
-        "case": "it_cleans_integer_constructor_failures_and_preserves_clone_sources",
-        "command": "make -C tests/unit/native/abi/integer",
-        "source": "tests/unit/native/abi/integer/main.c"
-      }
     ]
   },
   "tests/unit/native/abi/layout/Makefile": {
@@ -64631,6 +64721,36 @@
         "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
         "command": "make -C tests/unit/native/scaffold/contracts",
         "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_executes_real_integer_positions_and_length_results",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_copies_shared_integer_constants_and_preserves_scalar_entry_state",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_above_host_indices_without_technical_failure",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_checks_mathematical_truth_without_machine_integer_assumptions",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_reports_malformed_integer_literals_with_the_standard_identity",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_keeps_project_integer_names_and_standard_integer_types_distinct",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
       }
     ]
   },
@@ -74178,6 +74298,834 @@
         "case": "it_maps_control_references_after_separately_prepared_forest_roots",
         "command": "make -C tests/unit/runtime/traversal-copy",
         "source": "tests/unit/runtime/traversal-copy/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/integer": {
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Provide or verify the canonical integer protocols, explicit standard roots and exact list-size bridge.",
+    "tests": [
+      {
+        "case": "it_binds_the_maintained_integer_module_and_six_protocols_without_a_seventh_record",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_checks_integer_protocol_and_fixed_bridge_signatures",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_roundtrips_sizes_at_all_limb_boundaries_without_decimal_or_default_construction",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_clones_literal_magnitudes_and_reads_conditions_without_changing_state",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_host_overflow_indices_without_consuming_outputs",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_cleans_integer_constructor_failures_and_preserves_clone_sources",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_counted_literals_without_live_partial_payloads",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_executes_real_integer_positions_and_length_results",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_copies_shared_integer_constants_and_preserves_scalar_entry_state",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_above_host_indices_without_technical_failure",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_checks_mathematical_truth_without_machine_integer_assumptions",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_reports_malformed_integer_literals_with_the_standard_identity",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_keeps_project_integer_names_and_standard_integer_types_distinct",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_requires_an_explicit_standard_root_to_resolve_integer",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_compiles_and_executes_real_integer_list_results",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_rejects_implicit_conversions_between_standard_scalar_types",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/integer+/native/conversion.c": {
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Provide or verify the canonical integer protocols, explicit standard roots and exact list-size bridge.",
+    "tests": [
+      {
+        "case": "it_binds_the_maintained_integer_module_and_six_protocols_without_a_seventh_record",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_checks_integer_protocol_and_fixed_bridge_signatures",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_roundtrips_sizes_at_all_limb_boundaries_without_decimal_or_default_construction",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_clones_literal_magnitudes_and_reads_conditions_without_changing_state",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_host_overflow_indices_without_consuming_outputs",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_cleans_integer_constructor_failures_and_preserves_clone_sources",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_counted_literals_without_live_partial_payloads",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_executes_real_integer_positions_and_length_results",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_copies_shared_integer_constants_and_preserves_scalar_entry_state",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_above_host_indices_without_technical_failure",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_checks_mathematical_truth_without_machine_integer_assumptions",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_reports_malformed_integer_literals_with_the_standard_identity",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_keeps_project_integer_names_and_standard_integer_types_distinct",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_requires_an_explicit_standard_root_to_resolve_integer",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_compiles_and_executes_real_integer_list_results",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_rejects_implicit_conversions_between_standard_scalar_types",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/integer+/native/literal.c": {
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Provide or verify the canonical integer protocols, explicit standard roots and exact list-size bridge.",
+    "tests": [
+      {
+        "case": "it_binds_the_maintained_integer_module_and_six_protocols_without_a_seventh_record",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_checks_integer_protocol_and_fixed_bridge_signatures",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_roundtrips_sizes_at_all_limb_boundaries_without_decimal_or_default_construction",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_clones_literal_magnitudes_and_reads_conditions_without_changing_state",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_host_overflow_indices_without_consuming_outputs",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_cleans_integer_constructor_failures_and_preserves_clone_sources",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_counted_literals_without_live_partial_payloads",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_executes_real_integer_positions_and_length_results",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_copies_shared_integer_constants_and_preserves_scalar_entry_state",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_above_host_indices_without_technical_failure",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_checks_mathematical_truth_without_machine_integer_assumptions",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_reports_malformed_integer_literals_with_the_standard_identity",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_keeps_project_integer_names_and_standard_integer_types_distinct",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_requires_an_explicit_standard_root_to_resolve_integer",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_compiles_and_executes_real_integer_list_results",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_rejects_implicit_conversions_between_standard_scalar_types",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/integer+/native/storage.c": {
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Provide or verify the canonical integer protocols, explicit standard roots and exact list-size bridge.",
+    "tests": [
+      {
+        "case": "it_binds_the_maintained_integer_module_and_six_protocols_without_a_seventh_record",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_checks_integer_protocol_and_fixed_bridge_signatures",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_roundtrips_sizes_at_all_limb_boundaries_without_decimal_or_default_construction",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_clones_literal_magnitudes_and_reads_conditions_without_changing_state",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_host_overflow_indices_without_consuming_outputs",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_cleans_integer_constructor_failures_and_preserves_clone_sources",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_counted_literals_without_live_partial_payloads",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_executes_real_integer_positions_and_length_results",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_copies_shared_integer_constants_and_preserves_scalar_entry_state",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_above_host_indices_without_technical_failure",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_checks_mathematical_truth_without_machine_integer_assumptions",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_reports_malformed_integer_literals_with_the_standard_identity",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_keeps_project_integer_names_and_standard_integer_types_distinct",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_requires_an_explicit_standard_root_to_resolve_integer",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_compiles_and_executes_real_integer_list_results",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_rejects_implicit_conversions_between_standard_scalar_types",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/integer.abi": {
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Provide or verify the canonical integer protocols, explicit standard roots and exact list-size bridge.",
+    "tests": [
+      {
+        "case": "it_binds_the_maintained_integer_module_and_six_protocols_without_a_seventh_record",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_checks_integer_protocol_and_fixed_bridge_signatures",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_roundtrips_sizes_at_all_limb_boundaries_without_decimal_or_default_construction",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_clones_literal_magnitudes_and_reads_conditions_without_changing_state",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_host_overflow_indices_without_consuming_outputs",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_cleans_integer_constructor_failures_and_preserves_clone_sources",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_counted_literals_without_live_partial_payloads",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_executes_real_integer_positions_and_length_results",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_copies_shared_integer_constants_and_preserves_scalar_entry_state",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_above_host_indices_without_technical_failure",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_checks_mathematical_truth_without_machine_integer_assumptions",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_reports_malformed_integer_literals_with_the_standard_identity",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_keeps_project_integer_names_and_standard_integer_types_distinct",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_requires_an_explicit_standard_root_to_resolve_integer",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_compiles_and_executes_real_integer_list_results",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_rejects_implicit_conversions_between_standard_scalar_types",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/integer.c": {
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Provide or verify the canonical integer protocols, explicit standard roots and exact list-size bridge.",
+    "tests": [
+      {
+        "case": "it_binds_the_maintained_integer_module_and_six_protocols_without_a_seventh_record",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_checks_integer_protocol_and_fixed_bridge_signatures",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_roundtrips_sizes_at_all_limb_boundaries_without_decimal_or_default_construction",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_clones_literal_magnitudes_and_reads_conditions_without_changing_state",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_host_overflow_indices_without_consuming_outputs",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_cleans_integer_constructor_failures_and_preserves_clone_sources",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_counted_literals_without_live_partial_payloads",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_executes_real_integer_positions_and_length_results",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_copies_shared_integer_constants_and_preserves_scalar_entry_state",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_above_host_indices_without_technical_failure",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_checks_mathematical_truth_without_machine_integer_assumptions",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_reports_malformed_integer_literals_with_the_standard_identity",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_keeps_project_integer_names_and_standard_integer_types_distinct",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_requires_an_explicit_standard_root_to_resolve_integer",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_compiles_and_executes_real_integer_list_results",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_rejects_implicit_conversions_between_standard_scalar_types",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/integer.h": {
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Provide or verify the canonical integer protocols, explicit standard roots and exact list-size bridge.",
+    "tests": [
+      {
+        "case": "it_binds_the_maintained_integer_module_and_six_protocols_without_a_seventh_record",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_checks_integer_protocol_and_fixed_bridge_signatures",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_roundtrips_sizes_at_all_limb_boundaries_without_decimal_or_default_construction",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_clones_literal_magnitudes_and_reads_conditions_without_changing_state",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_host_overflow_indices_without_consuming_outputs",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_cleans_integer_constructor_failures_and_preserves_clone_sources",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_counted_literals_without_live_partial_payloads",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_executes_real_integer_positions_and_length_results",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_copies_shared_integer_constants_and_preserves_scalar_entry_state",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_above_host_indices_without_technical_failure",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_checks_mathematical_truth_without_machine_integer_assumptions",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_reports_malformed_integer_literals_with_the_standard_identity",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_keeps_project_integer_names_and_standard_integer_types_distinct",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_requires_an_explicit_standard_root_to_resolve_integer",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_compiles_and_executes_real_integer_list_results",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_rejects_implicit_conversions_between_standard_scalar_types",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_integer_probe_##name",
+      "-"
+    ]
+  },
+  "tests/integration/standard-integer/Makefile": {
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Provide or verify the canonical integer protocols, explicit standard roots and exact list-size bridge.",
+    "tests": [
+      {
+        "case": "it_requires_an_explicit_standard_root_to_resolve_integer",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_compiles_and_executes_real_integer_list_results",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      }
+    ]
+  },
+  "tests/integration/standard-integer/main.c": {
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Provide or verify the canonical integer protocols, explicit standard roots and exact list-size bridge.",
+    "tests": [
+      {
+        "case": "it_requires_an_explicit_standard_root_to_resolve_integer",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_compiles_and_executes_real_integer_list_results",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      }
+    ]
+  },
+  "tests/integration/standard-integer/project/main": {
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Provide or verify the canonical integer protocols, explicit standard roots and exact list-size bridge.",
+    "tests": [
+      {
+        "case": "it_requires_an_explicit_standard_root_to_resolve_integer",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_compiles_and_executes_real_integer_list_results",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      }
+    ]
+  },
+  "tests/integration/standard-integer/project/show": {
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Provide or verify the canonical integer protocols, explicit standard roots and exact list-size bridge.",
+    "tests": [
+      {
+        "case": "it_requires_an_explicit_standard_root_to_resolve_integer",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_compiles_and_executes_real_integer_list_results",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      }
+    ]
+  },
+  "tests/integration/standard-integer/project/show.abi": {
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Provide or verify the canonical integer protocols, explicit standard roots and exact list-size bridge.",
+    "tests": [
+      {
+        "case": "it_requires_an_explicit_standard_root_to_resolve_integer",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_compiles_and_executes_real_integer_list_results",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      }
+    ]
+  },
+  "tests/integration/standard-integer/project/show.c": {
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Provide or verify the canonical integer protocols, explicit standard roots and exact list-size bridge.",
+    "tests": [
+      {
+        "case": "it_requires_an_explicit_standard_root_to_resolve_integer",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_compiles_and_executes_real_integer_list_results",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      }
+    ]
+  },
+  "tests/integration/standard-integer/project/show.h": {
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Provide or verify the canonical integer protocols, explicit standard roots and exact list-size bridge.",
+    "tests": [
+      {
+        "case": "it_requires_an_explicit_standard_root_to_resolve_integer",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_compiles_and_executes_real_integer_list_results",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_integer_probe_##name",
+      "-"
+    ]
+  },
+  "tests/unit/codegen/scalar-library/Makefile": {
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Provide or verify the canonical integer protocols, explicit standard roots and exact list-size bridge.",
+    "tests": [
+      {
+        "case": "it_executes_real_integer_positions_and_length_results",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_copies_shared_integer_constants_and_preserves_scalar_entry_state",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_above_host_indices_without_technical_failure",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_checks_mathematical_truth_without_machine_integer_assumptions",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_reports_malformed_integer_literals_with_the_standard_identity",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_keeps_project_integer_names_and_standard_integer_types_distinct",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_rejects_implicit_conversions_between_standard_scalar_types",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scalar-library/main.c": {
+    "contract": "docs/implementation/scalar-library.md",
+    "purpose": "Provide or verify the canonical integer protocols, explicit standard roots and exact list-size bridge.",
+    "tests": [
+      {
+        "case": "it_executes_real_integer_positions_and_length_results",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_copies_shared_integer_constants_and_preserves_scalar_entry_state",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_refuses_negative_and_above_host_indices_without_technical_failure",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_checks_mathematical_truth_without_machine_integer_assumptions",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_reports_malformed_integer_literals_with_the_standard_identity",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_keeps_project_integer_names_and_standard_integer_types_distinct",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_rejects_implicit_conversions_between_standard_scalar_types",
+        "command": "make -C tests/unit/codegen/scalar-library",
+        "source": "tests/unit/codegen/scalar-library/main.c"
       }
     ]
   }

@@ -1839,11 +1839,30 @@ Contracts: [lists](spec/language/lists.md),
 Contracts: [library](spec/language/library.md),
 [acceptance](spec/implementation/tools-and-conformance.md#acceptance-matrix).
 
-- [ ] **T085 — Validate the scalar and canonical integer library.** Needs:
+- [x] **T085 — Validate the scalar and canonical integer library.** Needs:
   T069, T080. Publish actual paths/interfaces and literal/clone/truth/index
   capabilities and the fixed host-size bridge, including the full supported
   length range for `..integer`. Test malformed data and nominal typing without
   automatic numeric assumptions.
+  Evidence: [scalar library contract](docs/implementation/scalar-library.md).
+  The maintained `..integer` owns signed arbitrary-precision base-256 magnitudes,
+  explicit six-protocol ABI, typed shared zero/one constants and a header-declared
+  `from_size` bridge for every `size_t`, without default/decimal construction.
+  Native protocol tests now compile the actual library components instead of
+  duplicated algorithms. They cover every limb boundary, `SIZE_MAX`, independent
+  clones, malformed counted bytes, negative/overflow index refusal and allocation
+  failure in default/literal/clone/size constructors. Seven generated-project
+  cases check actual length/position helpers, constants, truth, retained values,
+  nominal project-name separation and all six directed standard-scalar type
+  mismatches. Bounded `..std.index`/`..std.condition` and their checked consumers
+  now use actual standard-root declarations/native names; their compiled suite
+  verifies ordering, malformed values and bounded arithmetic. CLI
+  `--standard-root DIR` explicitly supplies standard authority to every source
+  command, preserving argument order/exclusions without path-name inference.
+  The maintained CLI project checks missing configuration and verified lengths
+  three/zero. Native/generated ASan/UBSan, full strict tests, all 1305 input
+  coverage, standalone headers, links and reproducible Doxygen are checked before
+  commit. Expected-failure/resource and arithmetic-result alignment remain T086–T087.
 - [ ] **T086 — Validate refusal and resource library interfaces.** Needs: T085.
   Provide ERROR-01's one copyable failure-module result: it supports `?` and owns
   a publicly readable description, with false/empty success and true/current

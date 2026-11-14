@@ -98,8 +98,8 @@ exclusive ledger access, without allowing native authors to alter this metadata.
 
 T011 extends the finite model to Default, Literal, Clone and Size. The fixture's
 bounded size constructor is its own path; the full arbitrary-precision production
-integer behavior remains the [T009 protocol contract](native-protocols.md) and
-T085. Each path covers every child/root construction failure boundary for zero
+integer behavior is covered by the [native protocol contract](native-protocols.md)
+and [T085 production library](scalar-library.md). Each path covers every child/root construction failure boundary for zero
 through three children, successful cleanup, all 16 destructor-failure subsets for
 four payloads and repeated cleanup rejection. Different failing destructor codes
 are observed in actual cleanup order; an earlier construction code, immutable

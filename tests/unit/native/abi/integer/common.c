@@ -1,9 +1,9 @@
 /**
  * @file
- * @brief Bind the integer ABI fixture to counted allocation and isolated native names.
+ * @brief Bind maintained integer protocols to counted allocation and isolated native names.
  *
  * The fixed ..integer namespace is checked against the current root-aware
- * identity producer. Actual generated bridge/frontend binding remains T055.
+ * identity producer. Generated standard-root bridge binding is checked by the scalar-library suite.
  */
 #ifndef AMA_INTEGER_ABI_TEST_COMMON_C
 #define AMA_INTEGER_ABI_TEST_COMMON_C

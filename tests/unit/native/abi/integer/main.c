@@ -5,16 +5,16 @@
 #include "common.c"
 
 /** Read the maintained module and six-record ABI table with the real structural readers. */
-static void it_binds_the_integer_fixture_module_and_six_protocols_without_a_seventh_record(void) {
+static void it_binds_the_maintained_integer_module_and_six_protocols_without_a_seventh_record(void) {
     setup_integer();
     const SourceText *source = NULL;
-    SourceStatus loaded = source_manager_load(&sources, "project/stdlib/integer", &source);
+    SourceStatus loaded = source_manager_load(&sources, "../../../../../stdlib/modules/integer", &source);
     assert(loaded == SOURCE_OK);
     AstModule module;
     ast_module_init(&module, sources.allocator);
     ParseStatus parsed = parser_module_parse(&module, source);
     assert(parsed == PARSE_OK && module.valid && module.sections.kind == MODULE_NATIVE);
-    loaded = source_manager_load(&sources, "project/stdlib/integer.abi", &source);
+    loaded = source_manager_load(&sources, "../../../../../stdlib/modules/integer.abi", &source);
     assert(loaded == SOURCE_OK);
     AbiTable table;
     abi_table_init(&table, sources.allocator);
@@ -128,7 +128,13 @@ static void it_cleans_integer_constructor_failures_and_preserves_clone_sources(v
     setup_integer();
     AMA_NATIVE(State) failed;
     failure_at = allocation_count + 1;
-    AmaStatus status = AMA_NATIVE(from_size)(&failed, SIZE_MAX);
+    AmaStatus status = AMA_NATIVE(initialize)(&failed);
+    assert(status.code == AMA_OUT_OF_MEMORY && !failed.live && failed.limbs == NULL && live_allocations == 0);
+    failure_at = allocation_count + 1;
+    status = AMA_NATIVE(from_size)(&failed, SIZE_MAX);
+    assert(status.code == AMA_OUT_OF_MEMORY && !failed.live && failed.limbs == NULL && live_allocations == 0);
+    failure_at = allocation_count + 1;
+    status = AMA_NATIVE(from_literal)(&failed, (AmaByteView){(const unsigned char *)"256", 3});
     assert(status.code == AMA_OUT_OF_MEMORY && !failed.live && failed.limbs == NULL && live_allocations == 0);
     failure_at = 0;
     AMA_NATIVE(State) source;
@@ -145,14 +151,33 @@ static void it_cleans_integer_constructor_failures_and_preserves_clone_sources(v
     destroy_test();
 }
 
+/** Literal bytes are counted data: whitespace, signs without digits, nondecimal
+ * bytes and embedded zero never become a silently shortened valid integer.
+ */
+static void it_rejects_malformed_counted_literals_without_live_partial_payloads(void) {
+    setup_integer();
+    static const unsigned char embedded_zero[] = {'1', 0, '2'};
+    const AmaByteView malformed[] = {{NULL, 0}, {(const unsigned char *)"-", 1},
+        {(const unsigned char *)"+1", 2}, {(const unsigned char *)" 1", 2},
+        {(const unsigned char *)"1 ", 2}, {embedded_zero, sizeof(embedded_zero)}};
+    for (size_t index = 0; index < sizeof(malformed) / sizeof(*malformed); index++) {
+        AMA_NATIVE(State) state;
+        AmaStatus status = AMA_NATIVE(from_literal)(&state, malformed[index]);
+        assert(status.code == AMA_INVALID_LITERAL && !state.live && state.limbs == NULL
+            && live_allocations == 0);
+    }
+    destroy_test();
+}
+
 /** Run the integer protocol/bridge contract independently of future list lowering. */
 void run(void) {
-    it_binds_the_integer_fixture_module_and_six_protocols_without_a_seventh_record();
+    it_binds_the_maintained_integer_module_and_six_protocols_without_a_seventh_record();
     it_checks_integer_protocol_and_fixed_bridge_signatures();
     it_roundtrips_sizes_at_all_limb_boundaries_without_decimal_or_default_construction();
     it_clones_literal_magnitudes_and_reads_conditions_without_changing_state();
     it_refuses_negative_and_host_overflow_indices_without_consuming_outputs();
     it_cleans_integer_constructor_failures_and_preserves_clone_sources();
+    it_rejects_malformed_counted_literals_without_live_partial_payloads();
 }
 
 /** Return success after every explicit assertion and counted resource teardown. */

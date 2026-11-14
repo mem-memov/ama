@@ -20,6 +20,7 @@
 /** Every exact spelling occurs once; request masks encode the existing CLI. */
 static const DriverOption options[] = {
     {"--root", DRIVER_OPTION_ROOT, true, ALL_REQUESTS},
+    {"--standard-root", DRIVER_OPTION_STANDARD_ROOT, true, ALL_REQUESTS},
     {"--exclude", DRIVER_OPTION_EXCLUDE, true, ALL_REQUESTS},
     {"--out", DRIVER_OPTION_OUTPUT, true, GENERATING_REQUESTS},
     {"--sdk", DRIVER_OPTION_SDK, true, GENERATING_REQUESTS},

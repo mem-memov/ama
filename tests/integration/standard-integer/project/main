@@ -1,0 +1,21 @@
+# Exercise real standard integer positions, length values and cleanup through CLI.
+@!
+items[]
+..integer
+ |7
+show
+.show
+items[]
+ append !
+ insert !
+  < |1
+ length !
+  > count
+show !
+ < count
+items[]
+ clear !
+ length !
+  > count
+show !
+ < count

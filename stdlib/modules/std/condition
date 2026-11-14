@@ -1,8 +1,9 @@
+# Declare the standard Boolean condition and its typed false/true constants. See stdlib/README.md.
 @=
 false
-.std.condition
+..std.condition
  |0
 true
-.std.condition
+..std.condition
  |1
 @C

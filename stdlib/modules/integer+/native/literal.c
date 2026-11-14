@@ -1,6 +1,8 @@
 /**
  * @file
- * @brief Decode signed decimal literals into arbitrary-precision fixture magnitudes.
+ * @brief Decode signed decimal literals into arbitrary-precision integer magnitudes.
+ * [PROTO-03](../../../../spec/implementation/native-interface.md#proto-03)
+ * defines fresh construction, full host-size roundtrips and checked conversions.
  */
 
 /** Decode exact bounded ASCII digits without a host-size range restriction.

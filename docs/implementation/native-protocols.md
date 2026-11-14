@@ -85,21 +85,19 @@ frames will own/protect such results under LIST-04 in their later roadmap tasks.
 The runtime consumes compiler-validated nominal descriptors. It does not discover
 the standard integer by payload layout or helper basename. [T055](native-contract-composition.md) binds the exact
 standard-root identity to its declared typed `from_size` symbol and rejects a
-missing/incompatible declaration; intrinsic list lowering later supplies the
-recipe. Synthetic runtime descriptors test the constructor mechanics independently
-of that future frontend consumer.
+missing/incompatible declaration. Typed list lowering supplies the recipe;
+[the canonical scalar library](scalar-library.md) now validates its real native
+implementation alongside independent runtime constructor tests.
 
-## Integer ABI fixture
+## Maintained integer and native protocol tests
 
-`tests/unit/native/abi/integer/project/stdlib/integer` declares a native module.
-Its companion header/implementation supply all six explicitly bound protocols
-and the additional typed `from_size(State *, size_t)` helper. The real AST and
-ABI readers check its declaration and exactly six records. An isolated
-`..integer` C namespace is checked against T017’s current full-root registry;
-[T055 generated bridge binding](native-contract-composition.md) now checks the exact standard header contract.
-These fixtures establish declaration and conversion contracts; generated
-list-method invocation remains a later execution-adapter task.
-The production library surface remains T085.
+[The maintained integer](../../stdlib/modules/integer) supplies all six explicitly
+bound protocols and the typed `from_size(State *, size_t)` helper. Real AST/ABI
+readers check its declaration and exactly six records. Counted native tests
+compile the actual library components; the full-root identity registry checks
+their exact `..integer` namespace. [T055 bridge binding](native-contract-composition.md)
+checks header signatures, and [T085](scalar-library.md) compiles and executes
+actual standard-root/list-method consumers through the frontend and CLI.
 
 The native value owns a signed arbitrary-precision magnitude in little-endian
 base-256 limbs. Literal parsing accepts optional minus and decimal digits;
@@ -118,9 +116,9 @@ the fold reconstructs that input exactly. No signed narrowing, out-of-range shif
 decimal formatter or literal parser is involved.
 
 For N decimal input digits, N base-256 limbs suffice because 10^N < 256^N. The
-simple fixture parser costs O(N squared), with O(N) allocated native bytes; each
-multiply/add is at most 2559 and fits unsigned arithmetic. This is a protocol
-fixture rather than a performance claim for the production integer library.
+maintained parser costs O(N squared), with O(N) allocated native bytes; each
+multiply/add is at most 2559 and fits unsigned arithmetic. The production library
+uses this explicit complete fold; no faster parsing complexity is claimed.
 Direct size construction/conversion take O(sizeof(size_t)) work and storage.
 Allocation or literal failure releases every private limb allocation and leaves
 no live destination credit. Observer macros independently show that size

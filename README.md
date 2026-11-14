@@ -17,7 +17,8 @@ reads, assignments, branches, loops, suspension and continuation copying execute
 typed list services and live traversal execute with checked origins and copied
 continuation boundaries ([implementation](docs/implementation/list-traversal-execution.md)).
 Custom C hosts can explicitly resume or dispose of yielded roots; the standard launcher rejects
-unhandled root yield. `./ama --help` describes commands. [Checking](docs/implementation/checking.md),
+unhandled root yield. Use `--standard-root stdlib/modules` for
+[the canonical integer library](docs/implementation/scalar-library.md). `./ama --help` describes commands. [Checking](docs/implementation/checking.md),
 [semantic analysis](docs/implementation/semantic-analysis.md) and
 [typed plans](docs/implementation/typed-plans.md) have independent and composed
 C/assert tests. Check-only success does not validate handwritten C bodies.

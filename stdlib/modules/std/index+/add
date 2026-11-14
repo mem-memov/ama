@@ -1,9 +1,10 @@
+# Declare ordered bounded-index addition inputs and its single result. See stdlib/README.md.
 @<
 left
-.std.index
+..std.index
 right
-.std.index
+..std.index
 @>
 result
-.std.index
+..std.index
 @C

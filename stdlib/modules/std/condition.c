@@ -2,11 +2,13 @@
  * @file
  * @brief Represent retained binary condition payloads with checked decimal literal conversion.
  *
- * All inputs/views are operation-scoped; generated interfaces establish the native naming context. See the retained library contract and pending scalar roadmap.
+ * All inputs/views are operation-scoped; generated interfaces establish the native naming context. See the scalar library contract for the explicit standard-root binding.
  * @see [Fixture and coverage contract](../../../docs/implementation/library-tests-and-build.md)
+ * [LIB-01](../../../spec/language/library.md#lib-01)
+ * binds this native scalar by its explicit standard-root nominal identity.
  */
-#include "ama_n_32e46f3e4df34bff062fc3fc87737294ebfaa344168ad7cac0eaac152a38913a.interface.h"
-#include "ama_n_32e46f3e4df34bff062fc3fc87737294ebfaa344168ad7cac0eaac152a38913a.begin.h"
+#include "ama_n_0d83535743d147ae021af952a8f696ab4c0b3b1a4ed7b6e081f902fd8a585a84.interface.h"
+#include "ama_n_0d83535743d147ae021af952a8f696ab4c0b3b1a4ed7b6e081f902fd8a585a84.begin.h"
 
 /**
  * Execute this explicit native body synchronously over borrowed parameter/result views. Set
@@ -14,7 +16,7 @@
  * module fixture.
  */
 AMA_NATIVE_ENTRY void AMA_NATIVE(entry)(AMA_NATIVE(State) *state,
-    const ama_t_319ee73a92bd570a21eb8d47c7e7072f1c47e1c7649b06379f49fc9c91a20562 *parameters, ama_t_b2639cd4f6be1753732ae383f5b533814e78b2dd2fb50eabb0b71e8bf4daf12a *results,
+    const ama_t_cf7b1b1357dfa40154486ce1e2b69bd63a3b869ced5ede34ae2d460f742ffa6f *parameters, ama_t_845ec51f37c4fe684c3aed28ce43d52e4e1db7510ff7e92c7480226a263c793f *results,
     const AmaNativeServices *services, AmaStatus *status) {
     (void)state; (void)parameters; (void)results; (void)services;
     *status = ama_status_success();
@@ -78,4 +80,4 @@ AmaStatus AMA_NATIVE(index)(const AMA_NATIVE(State) *state, size_t *result) {
     return ama_status_success();
 }
 
-#include "ama_n_32e46f3e4df34bff062fc3fc87737294ebfaa344168ad7cac0eaac152a38913a.end.h"
+#include "ama_n_0d83535743d147ae021af952a8f696ab4c0b3b1a4ed7b6e081f902fd8a585a84.end.h"
