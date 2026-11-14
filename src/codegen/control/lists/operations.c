@@ -1,5 +1,5 @@
 /** @file
- * @brief Emit service admission and typed append/insert helpers before outputs.
+ * @brief Emit service admission and supported typed method helpers before outputs.
  * [LIST-10](../../../../spec/language/lists.md#list-10) distinguishes explicit
  * preflight refusal from technical errors; [LIST-09](../../../../spec/language/lists.md#list-09)
  * gives append/insert separate fixed construction/copy signatures.
@@ -19,7 +19,9 @@ bool codegen_list_operation(NativeScaffold *scaffold, FILE *output,
                 field->field->slot) < 0) { return false; }
     } else {
         const char *function = statement->list_method == SEMANTIC_LIST_APPEND ? "ama_program_list_append"
-            : statement->list_method == SEMANTIC_LIST_INSERT ? "ama_program_list_insert" : NULL;
+            : statement->list_method == SEMANTIC_LIST_INSERT ? "ama_program_list_insert"
+            : statement->list_method == SEMANTIC_LIST_REMOVE ? "ama_program_list_remove"
+            : statement->list_method == SEMANTIC_LIST_CLEAR ? "ama_program_list_clear" : NULL;
         if (function == NULL || !codegen_list_frame(output, type, node->frame, true, "list_method")
             || !codegen_list_frame(output, type, node->frame->operation_parent, false, "list_parent")
             || fprintf(output, "ama_status=%s(list_parent,list_method,&%s_List,&refused);\n", function, name) < 0) { return false; }

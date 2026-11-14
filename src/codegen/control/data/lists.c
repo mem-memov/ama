@@ -44,18 +44,24 @@ bool codegen_control_list_inputs(NativeScaffold *scaffold, FILE *output,
         }
         if (fputs("};\n", output) == EOF) { return false; }
     }
-    if (fprintf(output, "static const uint64_t %s_Install[] = {", name) < 0) { return false; }
-    for (size_t position = 0; semantic_list_position(statement->list_method, false, position) != NULL; position++) {
-        const ControlNode *site = method_input(owner->plan->controls, statement, position);
-        if (site == NULL) {
-            return scaffold_error(scaffold, DIAGNOSTIC_TYPE_MISMATCH, "A list parameter has no unique resolved staging site", NULL);
+    size_t arity = 0;
+    while (semantic_list_position(statement->list_method, false, arity) != NULL) { arity++; }
+    if (arity != 0) {
+        if (fprintf(output, "static const uint64_t %s_Install[] = {", name) < 0) { return false; }
+        for (size_t position = 0; position < arity; position++) {
+            const ControlNode *site = method_input(owner->plan->controls, statement, position);
+            if (site == NULL) {
+                return scaffold_error(scaffold, DIAGNOSTIC_TYPE_MISMATCH, "A list parameter has no unique resolved staging site", NULL);
+            }
+            if (fprintf(output, "UINT64_C(%zu),", site->selector) < 0) { return false; }
         }
-        if (fprintf(output, "UINT64_C(%zu),", site->selector) < 0) { return false; }
+        if (fputs("};\n", output) == EOF) { return false; }
     }
     const ScaffoldType *integer = native_scaffold_type(scaffold, statement->list_interface.integer);
-    if (integer == NULL || fprintf(output, "};\nstatic const AmaProgramListInputs %s_List = {"
-            ".integer_type=UINT64_C(%zu),.operation=UINT64_C(%zu),.count=%zu,.installations=%s_Install",
-            name, codegen_type_id(scaffold, integer), node->selector, count, name) < 0) { return false; }
+    if (integer == NULL || fprintf(output, "static const AmaProgramListInputs %s_List = {"
+            ".integer_type=UINT64_C(%zu),.operation=UINT64_C(%zu),.count=%zu",
+            name, codegen_type_id(scaffold, integer), node->selector, count) < 0) { return false; }
+    if (arity != 0 && fprintf(output, ",.installations=%s_Install", name) < 0) { return false; }
     if (count != 0 && fprintf(output, ",.inputs=%s_Inputs", name) < 0) { return false; }
     return fputs("};\n", output) != EOF;
 }

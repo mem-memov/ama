@@ -45,4 +45,9 @@ AmaStatus ama_list_storage_insert_checked(AmaListStorage *, size_t, AmaHandle,
  * acquired or destroyed. Zero count is valid at the end of the vector.
  */
 AmaStatus ama_list_storage_remove(AmaListStorage *, size_t position, size_t count);
+/** Remove with explicit bounds/subtree availability provenance. All owning trees
+ * are protected before the first destructor; later destruction errors never set
+ * refused and cleanup consumes every selected credit without rollback.
+ */
+AmaStatus ama_list_storage_remove_checked(AmaListStorage *, size_t position, size_t count, bool *refused);
 #endif

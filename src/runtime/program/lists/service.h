@@ -40,6 +40,7 @@ struct AmaProgramListMethod {
     AmaHandle inputs[2];
     size_t input_count;
     unsigned owned_inputs;
+    unsigned supplied_inputs;
     bool active;
     bool has_result;
     bool owns_result;

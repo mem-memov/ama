@@ -1720,10 +1720,21 @@ Contracts: [lists](spec/language/lists.md),
   have component evidence. Actual generated-program and component ASan/UBSan
   passed; full strict tests, all 1231 input coverage, links and reproducible Doxygen
   are checked before commit. Remaining methods and foreach stay guarded.
-- [ ] **T079 — Implement remove and clear.** Needs: T078. Preflight full affected
+- [x] **T079 — Implement remove and clear.** Needs: T078. Preflight full affected
   owned subtrees, retire memberships and release resources in specified order.
   Test busy descendants, reference removal without destroying external targets,
   atomic no-partial clear and terminal destruction failure.
+  Evidence: [typed remove/clear execution](docs/implementation/list-deletion.md).
+  Shared parameter preparation evaluates sources once before declaration-order
+  installation; zero-argument clear creates no integer or conversion work.
+  Checked removal separates bounds/availability refusals from technical destructor
+  failure. Complete owning forests are protected before any destruction; reference
+  removal only retires occurrences. Five runtime cases and four compiled projects
+  cover busy descendants, survivor identity/order, running external targets,
+  noncopyable elements, empty clear, reverse terminal cleanup and every preflight
+  allocation prefix. Insertion regressions, component/generated ASan/UBSan, full
+  strict tests, all 1244 input coverage, links and reproducible Doxygen are checked
+  before commit. Swap, length and foreach retain explicit execution guards.
 - [ ] **T080 — Implement swap and length.** Needs: T079. Preserve membership
   identity through swap and construct length via the fixed `..integer` contract.
   Use PROTO-03's typed `from_size` bridge exactly once, without decimal text or

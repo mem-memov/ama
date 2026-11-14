@@ -13527,6 +13527,51 @@
         "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
         "command": "make -C tests/unit/codegen/list-insertion",
         "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
       }
     ]
   },
@@ -14750,6 +14795,51 @@
         "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
         "command": "make -C tests/unit/runtime/list-insertion",
         "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
       }
     ]
   },
@@ -14989,6 +15079,51 @@
         "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
         "command": "make -C tests/unit/runtime/list-insertion",
         "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
       }
     ]
   },
@@ -33512,6 +33647,51 @@
         "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
         "command": "make -C tests/unit/codegen/list-insertion",
         "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
       }
     ]
   },
@@ -40687,6 +40867,51 @@
         "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
         "command": "make -C tests/unit/runtime/list-insertion",
         "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
       }
     ]
   },
@@ -58739,6 +58964,51 @@
         "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
         "command": "make -C tests/unit/codegen/list-insertion",
         "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
       }
     ]
   },
@@ -64666,6 +64936,51 @@
         "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
         "command": "make -C tests/unit/runtime/list-insertion",
         "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
       }
     ],
     "standalone_header_command": [
@@ -65164,6 +65479,51 @@
         "case": "it_propagates_unwritable_streams_for_each_operation_family",
         "command": "make -C tests/unit/codegen/control",
         "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
       }
     ]
   },
@@ -65313,6 +65673,51 @@
         "case": "it_propagates_unwritable_streams_for_each_operation_family",
         "command": "make -C tests/unit/codegen/control",
         "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
       }
     ]
   },
@@ -65354,72 +65759,6 @@
         "case": "it_propagates_unwritable_streams_for_each_operation_family",
         "command": "make -C tests/unit/codegen/control",
         "source": "tests/unit/codegen/control/main.c"
-      }
-    ]
-  },
-  "src/runtime/program/lists/insertion/inputs.c": {
-    "contract": "docs/implementation/list-insertion.md",
-    "purpose": "Prepare and publish typed list insertions with exact source order, ownership, refusal provenance and frame cleanup.",
-    "tests": [
-      {
-        "case": "it_appends_defaults_and_independent_owned_clones",
-        "command": "make -C tests/unit/runtime/list-insertion",
-        "source": "tests/unit/runtime/list-insertion/main.c"
-      },
-      {
-        "case": "it_appends_complete_reference_handles_without_cloning_targets",
-        "command": "make -C tests/unit/runtime/list-insertion",
-        "source": "tests/unit/runtime/list-insertion/main.c"
-      },
-      {
-        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
-        "command": "make -C tests/unit/runtime/list-insertion",
-        "source": "tests/unit/runtime/list-insertion/main.c"
-      },
-      {
-        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
-        "command": "make -C tests/unit/runtime/list-insertion",
-        "source": "tests/unit/runtime/list-insertion/main.c"
-      },
-      {
-        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
-        "command": "make -C tests/unit/runtime/list-insertion",
-        "source": "tests/unit/runtime/list-insertion/main.c"
-      },
-      {
-        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
-        "command": "make -C tests/unit/runtime/list-insertion",
-        "source": "tests/unit/runtime/list-insertion/main.c"
-      },
-      {
-        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
-        "command": "make -C tests/unit/codegen/list-insertion",
-        "source": "tests/unit/codegen/list-insertion/main.c"
-      },
-      {
-        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
-        "command": "make -C tests/unit/codegen/list-insertion",
-        "source": "tests/unit/codegen/list-insertion/main.c"
-      },
-      {
-        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
-        "command": "make -C tests/unit/codegen/list-insertion",
-        "source": "tests/unit/codegen/list-insertion/main.c"
-      },
-      {
-        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
-        "command": "make -C tests/unit/codegen/list-insertion",
-        "source": "tests/unit/codegen/list-insertion/main.c"
-      },
-      {
-        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
-        "command": "make -C tests/unit/codegen/list-insertion",
-        "source": "tests/unit/codegen/list-insertion/main.c"
-      },
-      {
-        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
-        "command": "make -C tests/unit/codegen/list-insertion",
-        "source": "tests/unit/codegen/list-insertion/main.c"
       }
     ]
   },
@@ -65486,6 +65825,51 @@
         "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
         "command": "make -C tests/unit/codegen/list-insertion",
         "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
       }
     ],
     "standalone_header_command": [
@@ -65567,6 +65951,51 @@
         "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
         "command": "make -C tests/unit/codegen/list-insertion",
         "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
       }
     ]
   },
@@ -65633,6 +66062,51 @@
         "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
         "command": "make -C tests/unit/codegen/list-insertion",
         "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
       }
     ]
   },
@@ -65699,6 +66173,51 @@
         "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
         "command": "make -C tests/unit/codegen/list-insertion",
         "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
       }
     ],
     "standalone_header_command": [
@@ -65945,6 +66464,1125 @@
         "case": "it_propagates_unwritable_streams_for_each_operation_family",
         "command": "make -C tests/unit/codegen/control",
         "source": "tests/unit/codegen/control/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/deletion/deletion.h": {
+    "contract": "docs/implementation/list-deletion.md",
+    "purpose": "Prepare typed list inputs and remove exact occurrences with whole-forest preflight and linear cleanup.",
+    "tests": [
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/runtime/program/lists/deletion/methods.c": {
+    "contract": "docs/implementation/list-deletion.md",
+    "purpose": "Prepare typed list inputs and remove exact occurrences with whole-forest preflight and linear cleanup.",
+    "tests": [
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/inputs/construct.c": {
+    "contract": "docs/implementation/list-deletion.md",
+    "purpose": "Prepare typed list inputs and remove exact occurrences with whole-forest preflight and linear cleanup.",
+    "tests": [
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_appends_defaults_and_independent_owned_clones",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_appends_complete_reference_handles_without_cloning_targets",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/inputs/inputs.h": {
+    "contract": "docs/implementation/list-deletion.md",
+    "purpose": "Prepare typed list inputs and remove exact occurrences with whole-forest preflight and linear cleanup.",
+    "tests": [
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_appends_defaults_and_independent_owned_clones",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_appends_complete_reference_handles_without_cloning_targets",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/runtime/program/lists/inputs/internal.h": {
+    "contract": "docs/implementation/list-deletion.md",
+    "purpose": "Prepare typed list inputs and remove exact occurrences with whole-forest preflight and linear cleanup.",
+    "tests": [
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_appends_defaults_and_independent_owned_clones",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_appends_complete_reference_handles_without_cloning_targets",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/runtime/program/lists/inputs/prepare.c": {
+    "contract": "docs/implementation/list-deletion.md",
+    "purpose": "Prepare typed list inputs and remove exact occurrences with whole-forest preflight and linear cleanup.",
+    "tests": [
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_appends_defaults_and_independent_owned_clones",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_appends_complete_reference_handles_without_cloning_targets",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/inputs/sources.c": {
+    "contract": "docs/implementation/list-deletion.md",
+    "purpose": "Prepare typed list inputs and remove exact occurrences with whole-forest preflight and linear cleanup.",
+    "tests": [
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_appends_defaults_and_independent_owned_clones",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_appends_complete_reference_handles_without_cloning_targets",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/method/preflight.c": {
+    "contract": "docs/implementation/list-deletion.md",
+    "purpose": "Prepare typed list inputs and remove exact occurrences with whole-forest preflight and linear cleanup.",
+    "tests": [
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_appends_defaults_and_independent_owned_clones",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_appends_complete_reference_handles_without_cloning_targets",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/list-deletion/Makefile": {
+    "contract": "docs/implementation/list-deletion.md",
+    "purpose": "Prepare typed list inputs and remove exact occurrences with whole-forest preflight and linear cleanup.",
+    "tests": [
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/list-deletion/main.c": {
+    "contract": "docs/implementation/list-deletion.md",
+    "purpose": "Prepare typed list inputs and remove exact occurrences with whole-forest preflight and linear cleanup.",
+    "tests": [
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/list-deletion/support/native.c": {
+    "contract": "docs/implementation/list-deletion.md",
+    "purpose": "Prepare typed list inputs and remove exact occurrences with whole-forest preflight and linear cleanup.",
+    "tests": [
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/list-deletion/Makefile": {
+    "contract": "docs/implementation/list-deletion.md",
+    "purpose": "Prepare typed list inputs and remove exact occurrences with whole-forest preflight and linear cleanup.",
+    "tests": [
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/list-deletion/common.c": {
+    "contract": "docs/implementation/list-deletion.md",
+    "purpose": "Prepare typed list inputs and remove exact occurrences with whole-forest preflight and linear cleanup.",
+    "tests": [
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/list-deletion/main.c": {
+    "contract": "docs/implementation/list-deletion.md",
+    "purpose": "Prepare typed list inputs and remove exact occurrences with whole-forest preflight and linear cleanup.",
+    "tests": [
+      {
+        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-deletion",
+        "source": "tests/unit/runtime/list-deletion/main.c"
+      },
+      {
+        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_deletes_noncopyable_default_elements_without_cloning",
+        "command": "make -C tests/unit/codegen/list-deletion",
+        "source": "tests/unit/codegen/list-deletion/main.c"
       }
     ]
   }

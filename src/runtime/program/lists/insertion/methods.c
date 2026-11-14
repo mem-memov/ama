@@ -14,10 +14,11 @@ static AmaStatus ama_list_insertion(AmaProgramListService *service, AmaProgramLi
     *refused = false;
     AmaStatus status = ama_program_list_method_begin(service, method);
     if (status.code != AMA_OK) { return status; }
-    AmaListInsertionInputs inputs = {.positioned = positioned, .arity = positioned ? 2 : 1,
-        .source_position = positioned ? 1 : 0};
-    status = ama_list_insertion_inputs(method, plan, &inputs);
-    return status.code == AMA_OK ? ama_list_insertion_commit(method, plan, &inputs, refused) : status;
+    static const AmaFieldKind append_inputs[] = {AMA_FIELD_REFERENCE};
+    static const AmaFieldKind insert_inputs[] = {AMA_FIELD_OWNED, AMA_FIELD_REFERENCE};
+    status = ama_program_list_prepare_inputs(method, plan,
+        positioned ? insert_inputs : append_inputs, positioned ? 2 : 1);
+    return status.code == AMA_OK ? ama_list_insertion_commit(method, plan, positioned, refused) : status;
 }
 
 AmaStatus ama_program_list_append(AmaProgramListService *service, AmaProgramListMethod *method,

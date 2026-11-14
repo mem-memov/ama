@@ -10,6 +10,13 @@
  */
 #include "internal.h"
 
+/** Classify only callback-free identity/availability preflight's exact core
+ * codomain. Native constructor/destructor results never enter this predicate.
+ */
+static bool ama_list_preflight_unavailable(AmaStatus status) {
+    return status.code == AMA_BUSY || status.code == AMA_STALE_REFERENCE || status.code == AMA_EMPTY_REFERENCE;
+}
+
 /** Borrow owner storage and establish the world's nonreentrant operation guard.
  * Failure leaves no arena/guard to release. Success requires exactly one finish.
  */
@@ -57,8 +64,7 @@ AmaStatus ama_list_storage_insert_checked(AmaListStorage *storage, size_t positi
         /* This callback-free checker produces these codes only at exact identity
          * or availability checks. Later allocator/native stages never set this
          * flag, so equal numeric native failures cannot become refusals. */
-        *refused = status.code == AMA_BUSY || status.code == AMA_STALE_REFERENCE
-            || status.code == AMA_EMPTY_REFERENCE;
+        *refused = ama_list_preflight_unavailable(status);
     }
     if (status.code == AMA_OK) {
         status = ama_list_insert(&mutation, position, source);
@@ -72,8 +78,10 @@ AmaStatus ama_list_storage_insert(AmaListStorage *storage, size_t position, AmaH
     return ama_list_storage_insert_checked(storage, position, source, false, &refused);
 }
 
-AmaStatus ama_list_storage_remove(AmaListStorage *storage, size_t position, size_t count) {
+AmaStatus ama_list_storage_remove_checked(AmaListStorage *storage, size_t position, size_t count, bool *refused) {
+    *refused = false;
     if (position > storage->list->count || count > storage->list->count - position) {
+        *refused = true;
         return ama_status_make(AMA_INDEX_BOUNDS, NULL, 0);
     }
     AmaListMutation mutation;
@@ -85,6 +93,7 @@ AmaStatus ama_list_storage_remove(AmaListStorage *storage, size_t position, size
         for (size_t index = 0; index < count; index++) {
             status = ama_object_preflight(&mutation.objects, *ama_handle_list_element(storage->list, position + index), false, false);
             if (status.code != AMA_OK) {
+                *refused = ama_list_preflight_unavailable(status);
                 break;
             }
         }
@@ -94,4 +103,9 @@ AmaStatus ama_list_storage_remove(AmaListStorage *storage, size_t position, size
     }
     ama_list_storage_finish(&mutation);
     return status;
+}
+
+AmaStatus ama_list_storage_remove(AmaListStorage *storage, size_t position, size_t count) {
+    bool refused;
+    return ama_list_storage_remove_checked(storage, position, count, &refused);
 }
