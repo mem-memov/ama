@@ -17,6 +17,7 @@ AmaStatus ama_object_clone_prepare(AmaObjectOperation *operation, AmaHandle sour
     AmaObjectWork *work = NULL;
     AmaStatus status = ama_clone_reserve(operation, source, NULL, root_payload, final_root, &work);
     AmaObjectWork *root = work;
+    if (root != NULL) { root->continuation = continuation; }
     while (status.code == AMA_OK) {
         if (work->next_child < work->cell->metadata.lifetime.child_capacity) {
             status = ama_clone_descend(operation, &work);
@@ -36,7 +37,11 @@ AmaStatus ama_object_clone_prepare(AmaObjectOperation *operation, AmaHandle sour
         }
         return status;
     }
-    ama_object_fix_references(operation, root, final_root);
+    status = ama_object_fix_references(operation, root, final_root, continuation);
+    if (status.code != AMA_OK) {
+        ama_object_report(operation->world, status);
+        return ama_object_cleanup(operation->world, root->handle, status);
+    }
     *output = root->handle;
     return ama_status_success();
 }

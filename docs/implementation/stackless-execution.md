@@ -64,4 +64,5 @@ The build verifies native entry disappearance in the unstripped project object.
 Suspension releases the active caller link and preserves only an explicit saved
 position. The [continuation contract](continuations.md) covers recursive copying
 and explicit host outcomes. Whole-list execution and retained results are
-rejected by semantic checking. Typed list services/traversal remain T075–T084.
+rejected by semantic checking. Typed list services and [live traversal](list-traversal-execution.md) also use
+explicit stable frames and label transfers.

@@ -88,7 +88,8 @@ static void it_fixes_one_complete_private_forest_before_consuming_staging_at_com
     RootValue *one = ama_pool_payload(&root_type.pool, first);
     RootValue *two = ama_pool_payload(&root_type.pool, second);
     assert(ama_handle_equal(one->self, (*ama_handle_list_element(source_value.list, 1))));
-    ama_transfer_list_fixup(&operation, true);
+    status = ama_transfer_list_fixup(&operation, true);
+    assert(status.code == AMA_OK);
     assert(ama_handle_equal(one->self, (*ama_handle_list_element(&prepared, 1))) && ama_handle_equal(two->self, (*ama_handle_list_element(&prepared, 0))));
     assert(ama_handle_equal(one->selected, two->left));
     status = ama_transfer_list_commit(&program, &destination_value, &operation, &prepared);
@@ -118,7 +119,8 @@ static void it_retains_staging_for_cleanup_on_parent_failure_and_destructive_fai
         AmaHandleList prepared = {0};
         status = ama_transfer_list_prepare(&program, &destination_value, &source_value, NULL, &operation, &prepared);
         assert(status.code == AMA_OK && prepared.count == 2);
-        ama_transfer_list_fixup(&operation, true);
+        status = ama_transfer_list_fixup(&operation, true);
+        assert(status.code == AMA_OK);
         size_t before = destroyed;
         AmaProgramValue invalid = destination_value;
         if (destructive) { failed_destructor = before + 1; }

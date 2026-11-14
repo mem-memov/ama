@@ -20,6 +20,7 @@ AmaStatus ama_construction_reserve(AmaObjectOperation *operation, uint64_t id, c
     AmaObjectWork *work = source_arena_allocate(&operation->arena, sizeof(*work));
     if (work == NULL) { return ama_status_make(AMA_OUT_OF_MEMORY, NULL, 0); }
     *work = (AmaObjectWork){.parent = parent, .type = type, .recipe = recipe, .source = source,
+        .continuation = recipe != NULL && recipe->continuation,
         .operation = parent == NULL ? type->source_operation : parent->source.generation != 0
             ? parent->operation : parent->field_recipe.operation};
     if (recipe != NULL && recipe->constructor == AMA_CONSTRUCT_CLONE) { work->source = recipe->source; }
@@ -27,7 +28,8 @@ AmaStatus ama_construction_reserve(AmaObjectOperation *operation, uint64_t id, c
         if (work->source.type_id != id) { return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0); }
         work->clone_root = parent != NULL && parent->source.generation != 0 ? parent->clone_root : work;
         if (work->clone_root == work) {
-            AmaStatus protected = ama_object_preflight(operation, work->source, true, false);
+            AmaStatus protected = ama_object_preflight(operation, work->source, true,
+                recipe != NULL && recipe->continuation);
             if (protected.code != AMA_OK) { return protected; }
         }
     } else if (recipe != NULL && recipe->constructor == AMA_CONSTRUCT_CLONE && recipe->native_source == NULL) {

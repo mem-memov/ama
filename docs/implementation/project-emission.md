@@ -73,7 +73,7 @@ published binary and protect previous/unowned files on failure. [Check-only test
 prove that `--check` and emission without `--compile` never invoke native C.
 
 [Suspension and resume](continuations.md) execute in the tested old-source subset.
-Typed list services and traversal remain T075–T084; whole-list execution and
-retained results fail before emission. Whole-list value copying and indexed
+Typed list services and [live traversal](list-traversal-execution.md) execute;
+a whole list itself has no executable body or retained results. Whole-list value copying and indexed
 result routing use the retained lifecycle runtime. Context-local assembly and
 current result/control trees remain separate open work in TODO.

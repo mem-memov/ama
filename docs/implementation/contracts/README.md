@@ -135,3 +135,7 @@ nor a planned test-home path certifies implementation of the whole language.
 [Explicit declaration inventories](../declaration-inventories.md) records complete source-ordered names, nominal linking, shared interface metadata and T030 evidence.
 
 [Source-order inference](../source-order-inference.md) records T031 receiver classification, exact typed interfaces, foreach cells, normal field construction and compiled execution evidence.
+
+[Live traversal execution and copying](../list-traversal-execution.md) records T084
+control-label integration, exact membership translation, ordinary-copy exclusions,
+candidate-potential argument and runtime/generated-project failure evidence.

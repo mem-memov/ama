@@ -7,9 +7,10 @@
  */
 #include "internal.h"
 
-void ama_transfer_list_fixup(AmaObjectOperation *operation, bool copied_source) {
+AmaStatus ama_transfer_list_fixup(AmaObjectOperation *operation, bool copied_source) {
     if (operation->first != NULL && copied_source) {
         for (AmaObjectWork *work = operation->first; work != NULL; work = work->next) { work->clone_root = operation->first; }
-        ama_object_fix_references(operation, operation->first, (AmaHandle){0});
+        return ama_object_fix_references(operation, operation->first, (AmaHandle){0}, false);
     }
+    return ama_status_success();
 }

@@ -84,9 +84,8 @@ all borrowed metadata. The algorithm has no depth timeout, inferred private-fiel
 fallback or guessed target identity.
 
 T044 now lowers the full tree to [explicit frame/action continuations](structured-lowering.md).
-The [execution-capability guard](../../src/codegen/project/capabilities.c) rejects
-C generation for intrinsic list methods and traversals until their
-corresponding runtime adapters are implemented. T066 implements
+[Typed list services](list-service-frames.md) and
+[traversals](list-traversal-execution.md) now have executable adapters. T066 implements
 [ordinary direct-result execution](direct-result-execution.md), and T068 implements
 [ordinary condition headers](condition-loop-execution.md). Static
 checking publishes a complete typed plan and never drops selected actions or
@@ -108,7 +107,7 @@ no partial program becomes resolved and every owner unwinds.
 
 `make -C tests/unit/compiler/check` proves that a valid tree completes semantic and
 constant analysis and a complete validated plan before executable storage is
-published. The remaining backend capability guards apply only to unsupported forms. Existing
+published. Backend emission rejects invalid control operations. Existing
 ordinary-call, source-order inference, parser and full-project suites remain part
 of the composed verification. These checks certify static selection, not runtime
 state changes, protected lifetimes or refusal dispatch of the new trees.

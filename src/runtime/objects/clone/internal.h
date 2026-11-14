@@ -10,6 +10,18 @@
 #ifndef AMA_OBJECT_CLONE_INTERNAL_H
 #define AMA_OBJECT_CLONE_INTERNAL_H
 #include "runtime/objects/internal.h"
+/** Borrow one complete selected ownership-boundary map during synchronous fixups. */
+typedef struct {
+    const AmaObjectOperation *operation;
+    const AmaObjectWork *boundary;
+    AmaHandle final_root;
+} AmaCloneMap;
+/** Map one full reference identity; external/empty handles remain unchanged. */
+AmaHandle ama_clone_reference_map(const void *, AmaHandle);
+/** Copy continuation controls only when requested, then remap their reference
+ * values with the same exact map as declared fields. No native body is executed.
+ */
+AmaStatus ama_clone_control_map(AmaObjectOperation *, AmaObjectWork *, const AmaCloneMap *, bool);
 
 /** Reserve under a previously checked/protected source; parent and root_payload
  * are borrowed. A nonnull returned work owns a reserved slot even on field failure.

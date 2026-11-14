@@ -76,9 +76,9 @@ References between elements follow their corresponding new identities. Empty
 handles never participate in that map. Reference lists copy handles only. Parent
 lifetime counts change with the committed list shape; failed staging cleans its
 completed prefix, while failed destruction cleans both old and prepared values
-and leaves terminal state for final disposal. Typed list methods and their
-result-frame lifetimes remain T075–T084; these data transfers are not executable
-list services.
+and leaves terminal state for final disposal. Typed list methods use separate
+[service/result frames](list-service-frames.md);
+[live traversal](list-traversal-execution.md) adds checked cursor control.
 
 ## One self descriptor, explicit runtime owner
 

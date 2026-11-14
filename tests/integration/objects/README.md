@@ -89,12 +89,11 @@ runs. Both constructed resources still clean up in reverse field order.
 Its native literal constructor fails before allocating, with no body execution,
 default fallback or destructor for an uninitialized payload.
 
-[unsupported](project/unsupported) is a valid checked foreach project. The current
-backend explicitly rejects its unavailable traversal adapter before publishing an
-executable. This example records the present implementation boundary rather than
-claiming that checking alone guarantees executable support.
+[traversal](project/traversal) executes each owned counter through its local
+foreach reference. The exact trace demonstrates that iteration uses the original
+resource-owning element and that teardown destroys both element and shared seed.
 
 The automated tests verify each active closure, exact successful output, original
-failure diagnostics, no fallback effects and no publication of the unsupported
-entry. They instrument actual runtime/native code with ASan/UBSan; the explicit
-constructor/destructor trace complements those checks.
+failure diagnostics and no fallback effects. They instrument actual runtime/native
+code with ASan/UBSan; the explicit constructor/destructor trace complements those
+checks.

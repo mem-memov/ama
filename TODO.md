@@ -1812,11 +1812,27 @@ Contracts: [lists](spec/language/lists.md),
   Runtime/generator ASan/UBSan passed; full strict tests, all 1277 input coverage,
   links and reproducible Doxygen are checked before commit. Complete source
   controller integration and continuation/ordinary-copy acceptance remain T084.
-- [ ] **T084 — Copy and accept live traversal state.** Needs: T083. Map full
+- [x] **T084 — Copy and accept live traversal state.** Needs: T083. Map full
   collection/membership/origin identities in `%` clones, preserve boundary values
   and discard ordinary-copy control state. Verify removed-origin nonrevival,
   membership/clone failure paths, candidate-potential bounds and complete compiled
   mutation/traversal examples without snapshot arrays or hidden visited sets.
+  Evidence: [executable traversal and copy contract](docs/implementation/list-traversal-execution.md).
+  Generated foreach entry/selection/exit/reset/resume now execute through checked
+  helpers and labels; the obsolete execution barrier is removed. Continuation
+  preflight validates protected owned trees, then maps live membership identities,
+  dead origins, boundaries and local/installed/current handles after destination
+  lists exist. Ordinary copies clear controls. Stable replacements preserve final
+  identity; separate forest roots receive a final control-reference remap.
+  Eleven runtime copy cases cover removed-record nonrevival, exited-inner origins,
+  owned-child continuation, mixed initializer modes, every allocation-failure
+  prefix and later native failure. Seven compiled scenarios cover original
+  targets, past/future insertion, origin refusal/detachment, independent resume,
+  sibling references and ordinary-copy NoResume. The CLI resource fixture runs
+  foreach and verifies exact cleanup. An independent candidate-budget test
+  complements exhaustive mutation correction. Runtime/generated ASan/UBSan,
+  full strict tests, all 1294 input coverage, standalone headers, local links and
+  reproducible Doxygen are checked before commit.
 
 ## Phase 11. Coherent library contracts and explanatory examples
 

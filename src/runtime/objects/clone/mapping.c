@@ -11,12 +11,13 @@
 /** Apply the selected boundary's injective source map, or preserve an external
  * handle byte-for-byte. final_root substitutes only the boundary root identity.
  */
-static AmaHandle ama_clone_mapped(const AmaObjectOperation *operation, const AmaObjectWork *boundary,
-    AmaHandle source, AmaHandle final_root) {
+AmaHandle ama_clone_reference_map(const void *context, AmaHandle source) {
+    const AmaCloneMap *map = context;
+    const AmaObjectOperation *operation = map->operation;
     if (source.generation == 0) { return source; }
     for (const AmaObjectWork *work = operation->first; work != NULL; work = work->next) {
-        if (work->clone_root == boundary && ama_same_handle(work->source, source)) {
-            return work == boundary && final_root.generation != 0 ? final_root : work->handle;
+        if (work->clone_root == map->boundary && ama_same_handle(work->source, source)) {
+            return work == map->boundary && map->final_root.generation != 0 ? map->final_root : work->identity;
         }
     }
     return source;
@@ -26,7 +27,9 @@ static AmaHandle ama_clone_mapped(const AmaObjectOperation *operation, const Ama
  * allocation/native execution occurs; all destination identities must exist.
  * Other boundaries in the same operation and the source tree remain unchanged.
  */
-void ama_object_fix_references(AmaObjectOperation *operation, AmaObjectWork *boundary, AmaHandle final_root) {
+AmaStatus ama_object_fix_references(AmaObjectOperation *operation, AmaObjectWork *boundary,
+    AmaHandle final_root, bool copy_continuation) {
+    const AmaCloneMap map = {operation, boundary, final_root};
     for (AmaObjectWork *work = operation->first; work != NULL; work = work->next) {
         if (work->clone_root != boundary) { continue; }
         void *storage = ama_pool_payload(&work->type->pool, work->cell);
@@ -35,8 +38,11 @@ void ama_object_fix_references(AmaObjectOperation *operation, AmaObjectWork *bou
             size_t count = ama_object_field_count(work->type, storage, field);
             for (size_t index = 0; index < count; index++) {
                 AmaHandle *handle = ama_object_field_handle(work->type, storage, field, index);
-                *handle = ama_clone_mapped(operation, boundary, *handle, final_root);
+                *handle = ama_clone_reference_map(&map, *handle);
             }
         }
+        AmaStatus status = ama_clone_control_map(operation, work, &map, copy_continuation);
+        if (status.code != AMA_OK) { return status; }
     }
+    return ama_status_success();
 }

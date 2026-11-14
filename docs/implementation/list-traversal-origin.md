@@ -4,8 +4,8 @@ T083 connects [FLOW-05](../../spec/language/lists.md#flow-05)'s origin rules to
 ordinary target acquisition, retained payload reads, structural clone preflight
 and saved-scope validation. It builds on [selection](list-traversal-selection.md)
 and [mutation correction](list-traversal-mutation.md).
-The complete foreach source adapter and mapped continuation/ordinary-copy
-acceptance remain T084; the execution guard is still explicit.
+The [complete source adapter and copy integration](list-traversal-execution.md)
+connect these checks to executable foreach and continuation operations.
 
 ## A binding is more than its copied handle
 
@@ -16,13 +16,13 @@ calling through the associated binding must fail rather than execute that
 surviving target as though the entry still existed.
 
 This informative Ama fragment assumes a reference list `targets&[]` and a
-compatible declared `saved&`. Final source execution is enabled in T084:
+compatible declared `saved&`. Its compiled execution is covered by T084:
 
 ```text
 targets&[target&]
 {
  saved&
- target&
+  target&
  targets&[]
   clear !
  target& !
@@ -110,8 +110,8 @@ a removed inner membership: a later read through that binding still refuses.
 
 The reset helper discards roles in reverse preorder without target destruction
 or list reacquisition. It is idempotent for inactive slots and works after
-collection replacement. Integration with generated fresh-entry/exit dispatch
-and continuation mapping is the remaining T084 controller work.
+collection replacement. Generated fresh-entry/exit dispatch and continuation mapping use these helpers;
+see [execution and copy integration](list-traversal-execution.md).
 
 ## Invariants and evidence
 

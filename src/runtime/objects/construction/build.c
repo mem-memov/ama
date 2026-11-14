@@ -38,7 +38,11 @@ AmaStatus ama_object_build(AmaObjectOperation *operation, uint64_t id, const Ama
         return ama_construction_unwind(operation, work, status);
     }
     for (AmaObjectWork *record = operation->first; record != NULL; record = record->next) {
-        if (record->clone_root == record) { ama_object_fix_references(operation, record, (AmaHandle){0}); }
+        if (record->clone_root == record) {
+            status = ama_object_fix_references(operation, record, (AmaHandle){0},
+                record->continuation);
+            if (status.code != AMA_OK) { return ama_construction_unwind(operation, root, status); }
+        }
     }
     *output = root->handle;
     return ama_status_success();

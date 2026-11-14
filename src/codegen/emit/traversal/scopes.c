@@ -7,28 +7,12 @@
  */
 #include "codegen/internal.h"
 
-const PlannedLoop *codegen_foreach_binding(const ScaffoldType *type, const SemanticSymbol *symbol, size_t *output) {
-    size_t index = 0;
-    for (const PlannedLoop *loop = type->plan->loops; loop != NULL; loop = loop->next) {
-        if (loop->statement->syntax->kind != AST_FOREACH) { continue; }
-        if (loop->statement->traversal->binding == symbol) { *output = index; return loop; }
-        index++;
-    }
-    return NULL;
-}
-
 /** Require an actual known loop identity; SIZE_MAX denotes an absent root parent. */
 static bool codegen_foreach_parent(const ScaffoldType *type, const PlannedLoop *loop, size_t *output) {
     const PlannedLoop *parent = loop->parent;
     while (parent != NULL && parent->statement->syntax->kind != AST_FOREACH) { parent = parent->parent; }
     if (parent == NULL) { *output = SIZE_MAX; return true; }
-    size_t index = 0;
-    for (const PlannedLoop *site = type->plan->loops; site != NULL; site = site->next) {
-        if (site->statement->syntax->kind != AST_FOREACH) { continue; }
-        if (site == parent) { *output = index; return true; }
-        index++;
-    }
-    return false;
+    return codegen_foreach_scope_index(type, parent, output);
 }
 
 /** Emit one typed plan; nominal member identity, not user spelling, selects offsets. */

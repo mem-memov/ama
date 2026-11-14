@@ -66,10 +66,10 @@ native-build obligations rather than guessed source meaning.
 [Frontend completion](../../src/compiler/frontend.c) consumes complete semantic
 success before initializing the plan owner. T041–T044 now preserve current source
 forms through [complete structured IR](structured-lowering.md). The frontend
-publishes only a validated full plan. Execution adapter availability is checked
-separately at [C generation](../../src/codegen/project/capabilities.c), before any
-artifact is staged. This boundary accepts typed self/results/loop metadata without
-pretending that their pending runtime adapters already exist or discarding actions.
+publishes only a validated full plan. [C generation](../../src/codegen/project/generate.c) consumes this plan and emits
+complete adapters, including [live traversal](list-traversal-execution.md).
+Handwritten native bodies require the subsequent C compilation/verification;
+static semantic success alone does not validate native implementations.
 
 Failed semantic programs remain safely destructible, with valid source-backed
 diagnostics, until the caller destroys the semantic owner before its project.

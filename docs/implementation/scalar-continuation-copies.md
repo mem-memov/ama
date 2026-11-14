@@ -86,6 +86,6 @@ generated programs. The independent `runtime/objects/clone` and
 alias/overlap rules and failed preparation boundaries.
 
 No new snapshot allocator, native-stack capture or alternate copy executor is
-introduced. Membership-aware list/cursor snapshots remain T084. Native resource
+introduced. T084 adds [membership-aware live cursor copying](list-traversal-execution.md). Native resource
 clone failures and mixed completed/yielded scalar trees receive broader composed
 acceptance in T073.

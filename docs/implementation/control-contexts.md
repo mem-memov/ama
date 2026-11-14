@@ -121,11 +121,11 @@ foreach roles. No source nesting uses the C call stack and no depth threshold,
 previous-line heuristic or dynamic caller-chain lookup chooses a root or exit.
 
 T044 supplies [fixed loop labels and explicit release/scope paths](structured-lowering.md)
-for all these typed forms. The [execution-capability guard](../../src/codegen/project/capabilities.c)
-rejects unsupported runtime adapters before C artifact staging. Ordinary branch
-and named-loop execution remains supported, including the parsed-empty one-check
-rule. A successful frontend now acknowledges the complete control IR, while C
-execution support remains an independently checked boundary.
+for all these typed forms. [Executable traversal](list-traversal-execution.md)
+now connects the resolved cursor operations and saved-scope paths to runtime
+helpers and labels. Ordinary branch and named-loop execution includes the
+parsed-empty one-check rule. Handwritten native bodies still require C compilation
+and toolchain verification after frontend checking.
 
 ## Evidence
 

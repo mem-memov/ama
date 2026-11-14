@@ -260,7 +260,7 @@ static void it_rejects_missing_or_duplicate_required_control_sites_before_public
  * leaf generated output for diagnosis.
  */
 void run(void) {
-    it_rejects_unimplemented_execution_adapters_after_valid_ir_before_artifact_staging();
+    it_builds_complete_traversal_adapters_after_valid_ir();
     it_compiles_the_self_contained_assembly_and_isolated_interfaces_in_either_include_order();
     it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit();
     it_runs_constant_and_root_lifetimes_from_the_emitted_heap_layout();

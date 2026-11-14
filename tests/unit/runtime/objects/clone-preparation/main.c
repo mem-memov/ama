@@ -114,9 +114,11 @@ static void it_scopes_reference_fixups_and_final_root_redirection_to_one_copy_bo
     assert(status.code == AMA_OK);
     LeafValue *left = ama_pool_payload(&leaf_type.pool, first->cell);
     LeafValue *right = ama_pool_payload(&leaf_type.pool, second->cell);
-    ama_object_fix_references(&operation, first, final);
+    status = ama_object_fix_references(&operation, first, final, false);
+    assert(status.code == AMA_OK);
     assert(ama_handle_equal(left->peer, final) && ama_handle_equal(right->peer, source));
-    ama_object_fix_references(&operation, second, (AmaHandle){0});
+    status = ama_object_fix_references(&operation, second, (AmaHandle){0}, false);
+    assert(status.code == AMA_OK);
     assert(ama_handle_equal(right->peer, second->handle) && !ama_handle_equal(first->handle, second->handle));
     assert(ama_handle_equal(((LeafValue *)object_payload(source))->peer, source));
     status = ama_object_cleanup(&world, second->handle, ama_status_success());

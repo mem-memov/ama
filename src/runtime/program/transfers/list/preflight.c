@@ -8,9 +8,9 @@
 #include "internal.h"
 
 /** Protect each owned root in order; caller restores any successful prefix. */
-static AmaStatus ama_transfer_list_preflight(AmaObjectOperation *operation, const AmaHandleList *list, bool copy) {
+static AmaStatus ama_transfer_list_preflight(AmaObjectOperation *operation, const AmaHandleList *list, bool copy, bool continuation) {
     for (size_t index = 0; index < list->count; index++) {
-        AmaStatus status = ama_object_preflight(operation, *ama_handle_list_element(list, index), copy, false);
+        AmaStatus status = ama_object_preflight(operation, *ama_handle_list_element(list, index), copy, continuation);
         if (status.code != AMA_OK) { return status; }
     }
     return ama_status_success();
@@ -34,8 +34,8 @@ AmaStatus ama_transfer_list_validate(AmaProgramValue *destination, const AmaProg
     AmaStatus status = ama_status_success();
     if (owning && source != NULL) {
         status = ama_object_copy_capability(operation, destination->type_id);
-        if (status.code == AMA_OK && source->list != NULL) { status = ama_transfer_list_preflight(operation, source->list, true); }
+        if (status.code == AMA_OK && source->list != NULL) { status = ama_transfer_list_preflight(operation, source->list, true, source->continuation); }
     }
-    if (status.code == AMA_OK && owning) { status = ama_transfer_list_preflight(operation, destination->list, false); }
+    if (status.code == AMA_OK && owning) { status = ama_transfer_list_preflight(operation, destination->list, false, false); }
     return status;
 }

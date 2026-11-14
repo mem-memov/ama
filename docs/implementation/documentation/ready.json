@@ -1209,6 +1209,41 @@
         "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
         "command": "make -C tests/unit/codegen/list-insertion",
         "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_local_and_persistent_bindings",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_visits_new_future_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_skips_new_past_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_guards_removed_origins_and_allows_explicit_detachment",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_resumes_independent_copied_traversals",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_maps_active_bindings_across_a_copied_forest",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_resume_after_ordinary_copy",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
       }
     ]
   },
@@ -2488,7 +2523,7 @@
         "source": "tests/unit/planning/structured/main.c"
       },
       {
-        "case": "it_rejects_unimplemented_execution_adapters_after_valid_ir_before_artifact_staging",
+        "case": "it_builds_complete_traversal_adapters_after_valid_ir",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
       },
@@ -2666,6 +2701,41 @@
         "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
         "command": "make -C tests/unit/runtime/traversal-origin",
         "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_executes_local_and_persistent_bindings",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_visits_new_future_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_skips_new_past_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_guards_removed_origins_and_allows_explicit_detachment",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_resumes_independent_copied_traversals",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_maps_active_bindings_across_a_copied_forest",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_resume_after_ordinary_copy",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
       }
     ]
   },
@@ -2926,9 +2996,44 @@
         "source": "tests/unit/planning/structured/main.c"
       },
       {
-        "case": "it_rejects_unimplemented_execution_adapters_after_valid_ir_before_artifact_staging",
+        "case": "it_builds_complete_traversal_adapters_after_valid_ir",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_executes_local_and_persistent_bindings",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_visits_new_future_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_skips_new_past_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_guards_removed_origins_and_allows_explicit_detachment",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_resumes_independent_copied_traversals",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_maps_active_bindings_across_a_copied_forest",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_resume_after_ordinary_copy",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
       }
     ]
   },
@@ -14262,6 +14367,56 @@
         "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
         "command": "make -C tests/unit/runtime/traversal-origin",
         "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
       }
     ]
   },
@@ -15053,6 +15208,56 @@
         "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
         "command": "make -C tests/unit/runtime/traversal-origin",
         "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
       }
     ]
   },
@@ -17373,6 +17578,56 @@
         "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
         "command": "make -C tests/unit/runtime/ownership-model",
         "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
       }
     ]
   },
@@ -18235,6 +18490,56 @@
         "case": "it_preserves_destination_when_the_prepared_native_constructor_fails",
         "command": "make -C tests/unit/runtime/objects/replacement",
         "source": "tests/unit/runtime/objects/replacement/main.c"
+      },
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
       }
     ]
   },
@@ -18331,6 +18636,56 @@
         "case": "it_unwinds_every_scalar_clone_allocation_without_publishing_or_reinitializing",
         "command": "make -C tests/unit/runtime/objects/clone-map",
         "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
       }
     ]
   },
@@ -18573,6 +18928,56 @@
         "case": "it_unwinds_every_scalar_clone_allocation_without_publishing_or_reinitializing",
         "command": "make -C tests/unit/runtime/objects/clone-map",
         "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
       }
     ]
   },
@@ -18770,6 +19175,56 @@
         "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
         "command": "make -C tests/unit/runtime/program-construction",
         "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
       }
     ]
   },
@@ -19220,6 +19675,56 @@
         "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
         "command": "make -C tests/unit/runtime/protocols",
         "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
       }
     ]
   },
@@ -19422,6 +19927,56 @@
         "case": "it_finishes_old_and_prepared_cleanup_when_each_destructive_commit_hook_fails",
         "command": "make -C tests/unit/runtime/objects/reconstruction",
         "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
       }
     ]
   },
@@ -19759,6 +20314,56 @@
         "case": "it_finishes_old_and_prepared_cleanup_when_each_destructive_commit_hook_fails",
         "command": "make -C tests/unit/runtime/objects/reconstruction",
         "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
       }
     ]
   },
@@ -20397,6 +21002,56 @@
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
         "command": "make -C tests/unit/codegen/traversal-layout",
         "source": "tests/unit/codegen/traversal-layout/main.c"
+      },
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
       }
     ]
   },
@@ -23374,6 +24029,61 @@
         "case": "it_copies_continuations_through_one_owned_list_forest",
         "command": "make -C tests/unit/runtime/transfers",
         "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_control_references_after_separately_prepared_forest_roots",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
       }
     ]
   },
@@ -23430,6 +24140,56 @@
         "case": "it_copies_continuations_through_one_owned_list_forest",
         "command": "make -C tests/unit/runtime/transfers",
         "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
       }
     ]
   },
@@ -23471,6 +24231,61 @@
         "case": "it_copies_continuations_through_one_owned_list_forest",
         "command": "make -C tests/unit/runtime/transfers",
         "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_control_references_after_separately_prepared_forest_roots",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
       }
     ]
   },
@@ -23563,6 +24378,61 @@
         "case": "it_copies_continuations_through_one_owned_list_forest",
         "command": "make -C tests/unit/runtime/transfers",
         "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_control_references_after_separately_prepared_forest_roots",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
       }
     ]
   },
@@ -35607,6 +36477,41 @@
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
         "command": "make -C tests/unit/codegen/traversal-layout",
         "source": "tests/unit/codegen/traversal-layout/main.c"
+      },
+      {
+        "case": "it_executes_local_and_persistent_bindings",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_visits_new_future_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_skips_new_past_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_guards_removed_origins_and_allows_explicit_detachment",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_resumes_independent_copied_traversals",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_maps_active_bindings_across_a_copied_forest",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_resume_after_ordinary_copy",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
       }
     ]
   },
@@ -35671,7 +36576,7 @@
         "source": "tests/unit/codegen/assembly/main.c"
       },
       {
-        "case": "it_rejects_unimplemented_execution_adapters_after_valid_ir_before_artifact_staging",
+        "case": "it_builds_complete_traversal_adapters_after_valid_ir",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
       },
@@ -35679,6 +36584,41 @@
         "case": "it_compiles_the_self_contained_assembly_and_isolated_interfaces_in_either_include_order",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_executes_local_and_persistent_bindings",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_visits_new_future_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_skips_new_past_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_guards_removed_origins_and_allows_explicit_detachment",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_resumes_independent_copied_traversals",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_maps_active_bindings_across_a_copied_forest",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_resume_after_ordinary_copy",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
       }
     ]
   },
@@ -36255,6 +37195,41 @@
         "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
         "command": "make -C tests/unit/codegen/list-insertion",
         "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_local_and_persistent_bindings",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_visits_new_future_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_skips_new_past_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_guards_removed_origins_and_allows_explicit_detachment",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_resumes_independent_copied_traversals",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_maps_active_bindings_across_a_copied_forest",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_resume_after_ordinary_copy",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
       }
     ]
   },
@@ -43012,6 +43987,56 @@
         "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
         "command": "make -C tests/unit/runtime/traversal-origin",
         "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
       }
     ]
   },
@@ -60946,212 +61971,6 @@
       }
     ]
   },
-  "src/codegen/project/capabilities.c": {
-    "contract": "docs/implementation/structured-lowering.md",
-    "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
-    "tests": [
-      {
-        "case": "it_rejects_unimplemented_execution_adapters_after_valid_ir_before_artifact_staging",
-        "command": "make -C tests/unit/codegen/assembly",
-        "source": "tests/unit/codegen/assembly/main.c"
-      },
-      {
-        "case": "it_installs_parameters_then_results_in_declaration_order_with_omitted_defaults",
-        "command": "make -C tests/unit/codegen/preparation",
-        "source": "tests/unit/codegen/preparation/main.c"
-      },
-      {
-        "case": "it_distinguishes_caller_self_inputs_from_callee_self_defaults",
-        "command": "make -C tests/unit/codegen/preparation",
-        "source": "tests/unit/codegen/preparation/main.c"
-      },
-      {
-        "case": "it_remaps_compiled_self_results_when_copying_an_instance_before_retained_read",
-        "command": "make -C tests/unit/codegen/preparation",
-        "source": "tests/unit/codegen/preparation/main.c"
-      },
-      {
-        "case": "it_stops_before_body_and_refusal_handler_when_a_later_parameter_constructor_fails",
-        "command": "make -C tests/unit/codegen/preparation",
-        "source": "tests/unit/codegen/preparation/main.c"
-      },
-      {
-        "case": "it_executes_retained_owned_methods_depth_first_without_cloning",
-        "command": "make -C tests/unit/codegen/trees",
-        "source": "tests/unit/codegen/trees/main.c"
-      },
-      {
-        "case": "it_protects_the_parent_until_a_refused_link_abandons_the_chain",
-        "command": "make -C tests/unit/codegen/trees",
-        "source": "tests/unit/codegen/trees/main.c"
-      },
-      {
-        "case": "it_keeps_each_ancestor_acquired_and_restores_it_without_allocating",
-        "command": "make -C tests/unit/runtime/result-calls",
-        "source": "tests/unit/runtime/result-calls/main.c"
-      },
-      {
-        "case": "it_refuses_before_parking_and_checks_frame_storage",
-        "command": "make -C tests/unit/runtime/result-calls",
-        "source": "tests/unit/runtime/result-calls/main.c"
-      },
-      {
-        "case": "it_repeats_the_complete_header_and_releases_before_body_and_exit",
-        "command": "make -C tests/unit/codegen/loops",
-        "source": "tests/unit/codegen/loops/main.c"
-      },
-      {
-        "case": "it_keeps_nested_loop_and_branch_repeat_boundaries_independent",
-        "command": "make -C tests/unit/codegen/loops",
-        "source": "tests/unit/codegen/loops/main.c"
-      },
-      {
-        "case": "it_checks_empty_named_and_header_loops_once_for_both_truth_values",
-        "command": "make -C tests/unit/codegen/loops",
-        "source": "tests/unit/codegen/loops/main.c"
-      },
-      {
-        "case": "it_handles_refusal_at_each_header_depth_without_running_the_loop",
-        "command": "make -C tests/unit/codegen/loops",
-        "source": "tests/unit/codegen/loops/main.c"
-      },
-      {
-        "case": "it_keeps_terminal_conversion_failure_outside_refusal_handlers",
-        "command": "make -C tests/unit/codegen/loops",
-        "source": "tests/unit/codegen/loops/main.c"
-      },
-      {
-        "case": "it_exits_nested_loops_and_returns_from_header_bodies",
-        "command": "make -C tests/unit/codegen/loops",
-        "source": "tests/unit/codegen/loops/main.c"
-      },
-      {
-        "case": "it_resumes_inside_the_body_before_repeating_the_header",
-        "command": "make -C tests/unit/codegen/loops",
-        "source": "tests/unit/codegen/loops/main.c"
-      },
-      {
-        "case": "it_selects_an_indexed_terminal_condition_using_the_caller_index_once",
-        "command": "make -C tests/unit/codegen/loops",
-        "source": "tests/unit/codegen/loops/main.c"
-      },
-      {
-        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
-        "command": "make -C tests/unit/codegen/list-insertion",
-        "source": "tests/unit/codegen/list-insertion/main.c"
-      },
-      {
-        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
-        "command": "make -C tests/unit/codegen/list-insertion",
-        "source": "tests/unit/codegen/list-insertion/main.c"
-      },
-      {
-        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
-        "command": "make -C tests/unit/codegen/list-insertion",
-        "source": "tests/unit/codegen/list-insertion/main.c"
-      },
-      {
-        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
-        "command": "make -C tests/unit/codegen/list-insertion",
-        "source": "tests/unit/codegen/list-insertion/main.c"
-      },
-      {
-        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
-        "command": "make -C tests/unit/codegen/list-insertion",
-        "source": "tests/unit/codegen/list-insertion/main.c"
-      },
-      {
-        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
-        "command": "make -C tests/unit/codegen/list-insertion",
-        "source": "tests/unit/codegen/list-insertion/main.c"
-      },
-      {
-        "case": "it_refuses_clear_before_any_effect_when_a_later_owned_descendant_is_busy",
-        "command": "make -C tests/unit/runtime/list-deletion",
-        "source": "tests/unit/runtime/list-deletion/main.c"
-      },
-      {
-        "case": "it_removes_only_the_selected_tree_and_retires_exact_memberships",
-        "command": "make -C tests/unit/runtime/list-deletion",
-        "source": "tests/unit/runtime/list-deletion/main.c"
-      },
-      {
-        "case": "it_clears_reference_occurrences_without_acquiring_or_destroying_targets",
-        "command": "make -C tests/unit/runtime/list-deletion",
-        "source": "tests/unit/runtime/list-deletion/main.c"
-      },
-      {
-        "case": "it_finishes_terminal_clear_cleanup_without_reclassifying_or_repeating_destruction",
-        "command": "make -C tests/unit/runtime/list-deletion",
-        "source": "tests/unit/runtime/list-deletion/main.c"
-      },
-      {
-        "case": "it_preserves_the_full_forest_after_each_clear_preflight_allocation_failure",
-        "command": "make -C tests/unit/runtime/list-deletion",
-        "source": "tests/unit/runtime/list-deletion/main.c"
-      },
-      {
-        "case": "it_removes_exact_owned_entries_and_clears_the_remaining_order",
-        "command": "make -C tests/unit/codegen/list-deletion",
-        "source": "tests/unit/codegen/list-deletion/main.c"
-      },
-      {
-        "case": "it_retires_reference_occurrences_without_touching_the_running_target",
-        "command": "make -C tests/unit/codegen/list-deletion",
-        "source": "tests/unit/codegen/list-deletion/main.c"
-      },
-      {
-        "case": "it_keeps_native_destruction_busy_technical_and_continues_terminal_cleanup",
-        "command": "make -C tests/unit/codegen/list-deletion",
-        "source": "tests/unit/codegen/list-deletion/main.c"
-      },
-      {
-        "case": "it_deletes_noncopyable_default_elements_without_cloning",
-        "command": "make -C tests/unit/codegen/list-deletion",
-        "source": "tests/unit/codegen/list-deletion/main.c"
-      },
-      {
-        "case": "it_swaps_memberships_without_touching_targets_and_preserves_self_swap",
-        "command": "make -C tests/unit/runtime/list-ordering",
-        "source": "tests/unit/runtime/list-ordering/main.c"
-      },
-      {
-        "case": "it_rejects_either_swap_position_before_publication",
-        "command": "make -C tests/unit/runtime/list-ordering",
-        "source": "tests/unit/runtime/list-ordering/main.c"
-      },
-      {
-        "case": "it_constructs_length_once_and_retires_its_owned_result",
-        "command": "make -C tests/unit/runtime/list-ordering",
-        "source": "tests/unit/runtime/list-ordering/main.c"
-      },
-      {
-        "case": "it_constructs_full_host_size_boundaries_without_literal_round_trips",
-        "command": "make -C tests/unit/runtime/list-ordering",
-        "source": "tests/unit/runtime/list-ordering/main.c"
-      },
-      {
-        "case": "it_executes_swap_and_length_siblings_with_owned_result_cleanup",
-        "command": "make -C tests/unit/codegen/list-ordering",
-        "source": "tests/unit/codegen/list-ordering/main.c"
-      },
-      {
-        "case": "it_rejects_both_swap_positions_without_changing_length",
-        "command": "make -C tests/unit/codegen/list-ordering",
-        "source": "tests/unit/codegen/list-ordering/main.c"
-      },
-      {
-        "case": "it_keeps_length_bridge_failure_technical",
-        "command": "make -C tests/unit/codegen/list-ordering",
-        "source": "tests/unit/codegen/list-ordering/main.c"
-      },
-      {
-        "case": "it_cleans_length_result_after_selected_body_failure",
-        "command": "make -C tests/unit/codegen/list-ordering",
-        "source": "tests/unit/codegen/list-ordering/main.c"
-      }
-    ]
-  },
   "src/lowering/calls/tree/actions.c": {
     "contract": "docs/implementation/structured-lowering.md",
     "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
@@ -61784,9 +62603,44 @@
     "purpose": "Lower and validate complete lexical control/result trees with fixed frames and explicit refusal/scope continuations.",
     "tests": [
       {
-        "case": "it_rejects_unimplemented_execution_adapters_after_valid_ir_before_artifact_staging",
+        "case": "it_builds_complete_traversal_adapters_after_valid_ir",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_executes_local_and_persistent_bindings",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_visits_new_future_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_skips_new_past_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_guards_removed_origins_and_allows_explicit_detachment",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_resumes_independent_copied_traversals",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_maps_active_bindings_across_a_copied_forest",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_resume_after_ordinary_copy",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
       }
     ]
   },
@@ -65544,7 +66398,7 @@
         "source": "tests/integration/objects/main.c"
       },
       {
-        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "case": "it_executes_live_traversal_with_complete_resource_cleanup",
         "command": "make -C tests/integration/objects",
         "source": "tests/integration/objects/main.c"
       }
@@ -65580,7 +66434,7 @@
         "source": "tests/integration/objects/main.c"
       },
       {
-        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "case": "it_executes_live_traversal_with_complete_resource_cleanup",
         "command": "make -C tests/integration/objects",
         "source": "tests/integration/objects/main.c"
       }
@@ -65616,7 +66470,7 @@
         "source": "tests/integration/objects/main.c"
       },
       {
-        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "case": "it_executes_live_traversal_with_complete_resource_cleanup",
         "command": "make -C tests/integration/objects",
         "source": "tests/integration/objects/main.c"
       }
@@ -65652,7 +66506,7 @@
         "source": "tests/integration/objects/main.c"
       },
       {
-        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "case": "it_executes_live_traversal_with_complete_resource_cleanup",
         "command": "make -C tests/integration/objects",
         "source": "tests/integration/objects/main.c"
       }
@@ -65688,7 +66542,7 @@
         "source": "tests/integration/objects/main.c"
       },
       {
-        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "case": "it_executes_live_traversal_with_complete_resource_cleanup",
         "command": "make -C tests/integration/objects",
         "source": "tests/integration/objects/main.c"
       }
@@ -65724,7 +66578,7 @@
         "source": "tests/integration/objects/main.c"
       },
       {
-        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "case": "it_executes_live_traversal_with_complete_resource_cleanup",
         "command": "make -C tests/integration/objects",
         "source": "tests/integration/objects/main.c"
       }
@@ -65760,7 +66614,7 @@
         "source": "tests/integration/objects/main.c"
       },
       {
-        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "case": "it_executes_live_traversal_with_complete_resource_cleanup",
         "command": "make -C tests/integration/objects",
         "source": "tests/integration/objects/main.c"
       }
@@ -65796,7 +66650,7 @@
         "source": "tests/integration/objects/main.c"
       },
       {
-        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "case": "it_executes_live_traversal_with_complete_resource_cleanup",
         "command": "make -C tests/integration/objects",
         "source": "tests/integration/objects/main.c"
       }
@@ -65832,7 +66686,7 @@
         "source": "tests/integration/objects/main.c"
       },
       {
-        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "case": "it_executes_live_traversal_with_complete_resource_cleanup",
         "command": "make -C tests/integration/objects",
         "source": "tests/integration/objects/main.c"
       }
@@ -65886,7 +66740,7 @@
         "source": "tests/integration/objects/main.c"
       },
       {
-        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "case": "it_executes_live_traversal_with_complete_resource_cleanup",
         "command": "make -C tests/integration/objects",
         "source": "tests/integration/objects/main.c"
       }
@@ -65954,7 +66808,7 @@
         "source": "tests/integration/objects/main.c"
       },
       {
-        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "case": "it_executes_live_traversal_with_complete_resource_cleanup",
         "command": "make -C tests/integration/objects",
         "source": "tests/integration/objects/main.c"
       }
@@ -65990,13 +66844,13 @@
         "source": "tests/integration/objects/main.c"
       },
       {
-        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "case": "it_executes_live_traversal_with_complete_resource_cleanup",
         "command": "make -C tests/integration/objects",
         "source": "tests/integration/objects/main.c"
       }
     ]
   },
-  "tests/integration/objects/project/unsupported": {
+  "tests/integration/objects/project/traversal": {
     "contract": "docs/implementation/synchronous-slice.md",
     "purpose": "Accept captured method state, explicit continuations, native resource ownership and real CLI failure boundaries.",
     "tests": [
@@ -66006,7 +66860,7 @@
         "source": "tests/integration/objects/main.c"
       },
       {
-        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "case": "it_executes_live_traversal_with_complete_resource_cleanup",
         "command": "make -C tests/integration/objects",
         "source": "tests/integration/objects/main.c"
       }
@@ -66054,7 +66908,7 @@
         "source": "tests/integration/objects/main.c"
       },
       {
-        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "case": "it_executes_live_traversal_with_complete_resource_cleanup",
         "command": "make -C tests/integration/objects",
         "source": "tests/integration/objects/main.c"
       }
@@ -68804,6 +69658,41 @@
         "case": "it_propagates_unwritable_streams_for_each_operation_family",
         "command": "make -C tests/unit/codegen/control",
         "source": "tests/unit/codegen/control/main.c"
+      },
+      {
+        "case": "it_executes_local_and_persistent_bindings",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_visits_new_future_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_skips_new_past_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_guards_removed_origins_and_allows_explicit_detachment",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_resumes_independent_copied_traversals",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_maps_active_bindings_across_a_copied_forest",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_resume_after_ordinary_copy",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
       }
     ]
   },
@@ -71546,6 +72435,11 @@
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
         "command": "make -C tests/unit/codegen/traversal-layout",
         "source": "tests/unit/codegen/traversal-layout/main.c"
+      },
+      {
+        "case": "it_bounds_candidate_work_by_initial_potential_and_future_insertions",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
       }
     ]
   },
@@ -71607,6 +72501,11 @@
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
         "command": "make -C tests/unit/codegen/traversal-layout",
         "source": "tests/unit/codegen/traversal-layout/main.c"
+      },
+      {
+        "case": "it_bounds_candidate_work_by_initial_potential_and_future_insertions",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
       }
     ]
   },
@@ -71729,6 +72628,11 @@
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
         "command": "make -C tests/unit/codegen/traversal-layout",
         "source": "tests/unit/codegen/traversal-layout/main.c"
+      },
+      {
+        "case": "it_bounds_candidate_work_by_initial_potential_and_future_insertions",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
       }
     ]
   },
@@ -71795,6 +72699,41 @@
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
         "command": "make -C tests/unit/codegen/traversal-layout",
         "source": "tests/unit/codegen/traversal-layout/main.c"
+      },
+      {
+        "case": "it_executes_local_and_persistent_bindings",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_visits_new_future_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_skips_new_past_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_guards_removed_origins_and_allows_explicit_detachment",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_resumes_independent_copied_traversals",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_maps_active_bindings_across_a_copied_forest",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_resume_after_ordinary_copy",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
       }
     ]
   },
@@ -72191,6 +73130,1054 @@
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
         "command": "make -C tests/unit/codegen/traversal-layout",
         "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ]
+  },
+  "src/codegen/control/traversal.c": {
+    "contract": "docs/implementation/list-traversal-execution.md",
+    "purpose": "Execute or verify live traversal state and exact continuation-copy identity mapping.",
+    "tests": [
+      {
+        "case": "it_executes_local_and_persistent_bindings",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_visits_new_future_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_skips_new_past_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_guards_removed_origins_and_allows_explicit_detachment",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_resumes_independent_copied_traversals",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_maps_active_bindings_across_a_copied_forest",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_resume_after_ordinary_copy",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      }
+    ]
+  },
+  "src/codegen/model/traversal.c": {
+    "contract": "docs/implementation/list-traversal-execution.md",
+    "purpose": "Execute or verify live traversal state and exact continuation-copy identity mapping.",
+    "tests": [
+      {
+        "case": "it_executes_local_and_persistent_bindings",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_visits_new_future_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_skips_new_past_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_guards_removed_origins_and_allows_explicit_detachment",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_resumes_independent_copied_traversals",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_maps_active_bindings_across_a_copied_forest",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_resume_after_ordinary_copy",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/access/controls.c": {
+    "contract": "docs/implementation/list-traversal-execution.md",
+    "purpose": "Execute or verify live traversal state and exact continuation-copy identity mapping.",
+    "tests": [
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      }
+    ]
+  },
+  "src/runtime/objects/clone/controls.c": {
+    "contract": "docs/implementation/list-traversal-execution.md",
+    "purpose": "Execute or verify live traversal state and exact continuation-copy identity mapping.",
+    "tests": [
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_control_references_after_separately_prepared_forest_roots",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/traversal/copy/copy.h": {
+    "contract": "docs/implementation/list-traversal-execution.md",
+    "purpose": "Execute or verify live traversal state and exact continuation-copy identity mapping.",
+    "tests": [
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_control_references_after_separately_prepared_forest_roots",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/runtime/program/lists/traversal/copy/hooks.c": {
+    "contract": "docs/implementation/list-traversal-execution.md",
+    "purpose": "Execute or verify live traversal state and exact continuation-copy identity mapping.",
+    "tests": [
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_control_references_after_separately_prepared_forest_roots",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/traversal/copy/internal.h": {
+    "contract": "docs/implementation/list-traversal-execution.md",
+    "purpose": "Execute or verify live traversal state and exact continuation-copy identity mapping.",
+    "tests": [
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_control_references_after_separately_prepared_forest_roots",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/runtime/program/lists/traversal/copy/membership.c": {
+    "contract": "docs/implementation/list-traversal-execution.md",
+    "purpose": "Execute or verify live traversal state and exact continuation-copy identity mapping.",
+    "tests": [
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_control_references_after_separately_prepared_forest_roots",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/traversal/copy/references.c": {
+    "contract": "docs/implementation/list-traversal-execution.md",
+    "purpose": "Execute or verify live traversal state and exact continuation-copy identity mapping.",
+    "tests": [
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_control_references_after_separately_prepared_forest_roots",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/traversal/copy/schema.c": {
+    "contract": "docs/implementation/list-traversal-execution.md",
+    "purpose": "Execute or verify live traversal state and exact continuation-copy identity mapping.",
+    "tests": [
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_control_references_after_separately_prepared_forest_roots",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/traversal/copy/state.c": {
+    "contract": "docs/implementation/list-traversal-execution.md",
+    "purpose": "Execute or verify live traversal state and exact continuation-copy identity mapping.",
+    "tests": [
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_control_references_after_separately_prepared_forest_roots",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/traversal/copy/validate.c": {
+    "contract": "docs/implementation/list-traversal-execution.md",
+    "purpose": "Execute or verify live traversal state and exact continuation-copy identity mapping.",
+    "tests": [
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_control_references_after_separately_prepared_forest_roots",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/traversal/Makefile": {
+    "contract": "docs/implementation/list-traversal-execution.md",
+    "purpose": "Execute or verify live traversal state and exact continuation-copy identity mapping.",
+    "tests": [
+      {
+        "case": "it_executes_local_and_persistent_bindings",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_visits_new_future_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_skips_new_past_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_guards_removed_origins_and_allows_explicit_detachment",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_resumes_independent_copied_traversals",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_maps_active_bindings_across_a_copied_forest",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_resume_after_ordinary_copy",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/traversal/main.c": {
+    "contract": "docs/implementation/list-traversal-execution.md",
+    "purpose": "Execute or verify live traversal state and exact continuation-copy identity mapping.",
+    "tests": [
+      {
+        "case": "it_executes_local_and_persistent_bindings",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_visits_new_future_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_skips_new_past_memberships",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_guards_removed_origins_and_allows_explicit_detachment",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_resumes_independent_copied_traversals",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_maps_active_bindings_across_a_copied_forest",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_resume_after_ordinary_copy",
+        "command": "make -C tests/unit/codegen/traversal",
+        "source": "tests/unit/codegen/traversal/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/traversal-copy/Makefile": {
+    "contract": "docs/implementation/list-traversal-execution.md",
+    "purpose": "Execute or verify live traversal state and exact continuation-copy identity mapping.",
+    "tests": [
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_control_references_after_separately_prepared_forest_roots",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/traversal-copy/common.c": {
+    "contract": "docs/implementation/list-traversal-execution.md",
+    "purpose": "Execute or verify live traversal state and exact continuation-copy identity mapping.",
+    "tests": [
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_control_references_after_separately_prepared_forest_roots",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/traversal-copy/main.c": {
+    "contract": "docs/implementation/list-traversal-execution.md",
+    "purpose": "Execute or verify live traversal state and exact continuation-copy identity mapping.",
+    "tests": [
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_control_references_after_separately_prepared_forest_roots",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/traversal-copy/native.c": {
+    "contract": "docs/implementation/list-traversal-execution.md",
+    "purpose": "Execute or verify live traversal state and exact continuation-copy identity mapping.",
+    "tests": [
+      {
+        "case": "it_copies_live_boundaries_into_independent_namespaces_and_control_cells",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_never_revives_removed_origins_when_source_and_copy_record_slots_coincide",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_obsolete_origins_from_an_already_exited_inner_scope",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_discards_control_state_in_ordinary_clones_and_stable_root_replacement",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_active_collections_before_preparing_a_continuation",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_active_local_handles_to_cloned_owned_targets",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_controls_after_every_copy_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_source_and_destination_after_a_later_native_clone_fails",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_copies_resumable_owned_children_beneath_a_root_without_a_position",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_maps_control_references_after_separately_prepared_forest_roots",
+        "command": "make -C tests/unit/runtime/traversal-copy",
+        "source": "tests/unit/runtime/traversal-copy/main.c"
       }
     ]
   }

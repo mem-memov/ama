@@ -5,9 +5,9 @@ storage layout. The contracts are
 [FLOW-05](../../spec/language/lists.md#flow-05),
 [LIST-13](../../spec/language/lists.md#list-13) and
 [RT-02](../../spec/implementation/runtime.md#rt-02).
-The complete source execution adapter remains guarded while T082–T084 connect
-[mutation correction](list-traversal-mutation.md), missing-origin/resume checks and continuation copying.
-This layer does not claim those later behaviors or publish incomplete execution.
+The [complete execution adapter](list-traversal-execution.md) connects this layer
+to [mutation correction](list-traversal-mutation.md), origin checks and
+continuation copying.
 
 ## One cursor per source site, shared cells for reused bindings
 
@@ -77,7 +77,8 @@ role remains. Ending the last role discards origin metadata and a local handle;
 the separate persistent handle remains unchanged. Abandonment is idempotent for
 an inactive cursor and requires no source-list reacquisition, including after
 collection replacement. [Missing-membership access and resume order](list-traversal-origin.md) are
-implemented by T083; complete controller/continuation integration remains T084.
+implemented by T083; [T084](list-traversal-execution.md) supplies controller
+and continuation integration.
 
 The key invariant is that the role count equals the number of installed active
 cursors sharing that cell. Entry contributes zero, first selection adds one,
@@ -99,4 +100,5 @@ binding cells for two nested sites sharing a local plus a site reusing a declare
 reference. Existing semantic scope tests cover compatible reuse and rejection
 of incompatible shadowing. Strict component/composition tests, runtime ASan/UBSan,
 the full strict suite, per-file coverage, standalone headers and reproducible
-Doxygen validate this boundary without claiming completed foreach execution.
+Doxygen validate this selection boundary. [T084](list-traversal-execution.md)
+adds complete foreach execution and mapped continuation acceptance.

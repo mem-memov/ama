@@ -6,6 +6,8 @@
  * [LIFE-04](../../../spec/implementation/native-interface.md#life-04) separates
  * private preparation handles from the retained destination identity before commit.
  * Operation arenas own scratch; work and protection records borrow stable slots. Callers must release protections before destroying scratch.
+ * [CONT-04](../../../spec/language/continuations.md#cont-04) validates and maps retained compiler control cells
+ * separately from native payload hooks; ordinary copies leave them inactive.
  */
 #ifndef AMA_RUNTIME_OBJECTS_INTERNAL_H
 #define AMA_RUNTIME_OBJECTS_INTERNAL_H
@@ -26,6 +28,8 @@ typedef struct AmaObjectWork {
     AmaHandle identity;
     AmaHandle source;
     const AmaRecipe *recipe;
+    /** Selected clone mode survives the caller's temporary recipe object. */
+    bool continuation;
     uint64_t operation;
     size_t next_child;
     size_t next_field;
@@ -43,6 +47,10 @@ typedef struct AmaObjectProtection {
     size_t epoch;
     bool copy;
     bool restore;
+    /** Operation-local stackless validation state; never mutates source data. */
+    struct AmaObjectProtection *control_parent;
+    size_t control_child;
+    bool controls_validated;
 } AmaObjectProtection;
 /** One guarded synchronous lifecycle operation. Own arena/protection/work lists; borrow source_authority only while its outer operation remains alive. */
 typedef struct {
@@ -82,7 +90,12 @@ bool ama_field_list(AmaFieldKind);
 /** Invoke the selected native clone hook into private stable storage and credit native ownership only after success; source remains protected. */
 AmaStatus ama_object_clone_payload(AmaObjectOperation *, AmaObjectWork *, bool);
 /** Rewrite internal declared references through the exact operation copy map and final-root identity; preserve external targets without acquiring them. */
-void ama_object_fix_references(AmaObjectOperation *, AmaObjectWork *, AmaHandle);
+AmaStatus ama_object_fix_references(AmaObjectOperation *, AmaObjectWork *, AmaHandle, bool copy_continuation);
+/** Validate compiler continuation controls across an already protected complete
+ * owned tree. Reuse operation records as a stackless traversal/cache; allocate
+ * no snapshots or additional native/Ama objects.
+ */
+AmaStatus ama_object_control_preflight(AmaObjectOperation *, AmaHandle);
 /** Prepare private field storage and child counts from validated source descriptors; partial buffers remain registered for operation cleanup. */
 AmaStatus ama_object_clone_fields(AmaWorld *, AmaObjectWork *);
 /** Resolve normal public storage first; only a stale public lookup may match exact completed private work owned by this operation. Never expose unrelated reserved storage. */

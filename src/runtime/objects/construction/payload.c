@@ -16,8 +16,7 @@
 
 AmaStatus ama_construction_payload(AmaObjectOperation *operation, AmaObjectWork *work) {
     operation->world->construction_operation = work->operation;
-    if (work->source.generation != 0) { return ama_object_clone_payload(operation, work, work->clone_root->recipe != NULL
-        && work->clone_root->recipe->continuation); }
+    if (work->source.generation != 0) { return ama_object_clone_payload(operation, work, work->clone_root->continuation); }
     AmaObjectType *type = work->type;
     void *payload = (unsigned char *)ama_pool_payload(&type->pool, work->cell) + type->native_offset;
     AmaConstructorKind kind = work->recipe == NULL ? AMA_CONSTRUCT_DEFAULT : work->recipe->constructor;

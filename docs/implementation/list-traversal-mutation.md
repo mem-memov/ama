@@ -5,8 +5,8 @@ boundary rules with every committed insertion and range removal, including
 clear. It chooses [LIST-13](../../spec/language/lists.md#list-13)'s **fixed scan**
 strategy. Selection and binding storage come from
 [T081](list-traversal-selection.md); [missing-origin/resume checks](list-traversal-origin.md) are T083, and complete
-controller/continuation integration remains T084. The complete foreach source adapter stays guarded
-while those layers are unfinished.
+controller/continuation integration is documented in
+[T084](list-traversal-execution.md).
 
 ## The boundary marks a gap
 
@@ -125,4 +125,5 @@ The compiled C layout probe checks every generated per-field cursor count and
 offset against actual members, then runs the real schema validator. Runtime and
 generator ASan/UBSan, full strict tests, per-file coverage, standalone headers,
 links and reproducible Doxygen validate this staged boundary. Complete source
-mutation/traversal examples and mapped continuation acceptance remain T084.
+mutation/traversal examples and mapped continuation acceptance are covered by
+[T084](list-traversal-execution.md).

@@ -14,6 +14,8 @@
  * exact compiler identity, never exposed as an Ama machine-value source or cast.
  * [LIST-13](../../../spec/language/lists.md#list-13) supplies immutable lexical
  * cursor catalogs so mutations correct only matching active collection identities.
+ * [CONT-04](../../../spec/language/continuations.md#cont-04) validates and maps retained compiler control cells
+ * separately from native payload hooks; ordinary copies leave them inactive.
  */
 #ifndef AMA_RUNTIME_OBJECTS_H
 #define AMA_RUNTIME_OBJECTS_H
@@ -83,6 +85,30 @@ typedef struct {
  * authority; complete ownership is defined below.
  */
 typedef struct AmaWorld AmaWorld;
+/** Exact selected ownership-boundary map; external/empty handles are preserved.
+ * The borrowed context is valid only during a synchronous compiler callback.
+ */
+typedef AmaHandle (*AmaObjectReferenceMap)(const void *, AmaHandle);
+/** Borrow complete protected source and private destination control storage only
+ * after their declared fields/native payloads are ready. No pointer is retained.
+ */
+typedef struct {
+    AmaWorld *world;
+    AmaHandle source, destination;
+    const void *source_storage;
+    void *destination_storage;
+    AmaObjectReferenceMap map;
+    const void *map_context;
+} AmaObjectControlCopy;
+/** Compiler-owned control metadata phases, not native resource/ABI protocols.
+ * Validation precedes continuation preparation; copy/map never execute Ama,
+ * acquire targets or retain borrowed map/storage pointers.
+ */
+typedef struct {
+    AmaStatus (*validate_continuation)(AmaWorld *, AmaHandle, const void *, const AmaServiceState *, void *);
+    AmaStatus (*copy_continuation)(const AmaObjectControlCopy *, void *);
+    AmaStatus (*map_references)(AmaWorld *, uint64_t, void *, AmaObjectReferenceMap, const void *, void *);
+} AmaObjectControlHooks;
 /** One nominal pool plus borrowed field/default/hook descriptors and recipe callback context. Registry/type storage must outlive all instances. */
 typedef struct {
     AmaPool pool;
@@ -96,6 +122,8 @@ typedef struct {
     uint64_t source_operation;
     AmaStatus (*resolve_field)(AmaWorld *, SourceArena *, AmaHandle, size_t, AmaFieldRecipe *, void *);
     void *field_context;
+    const AmaObjectControlHooks *controls;
+    void *control_context;
 } AmaObjectType;
 /** Borrowed unique type registry, allocator and synchronous report authority;
  * operation_active rejects reentry, failed marks terminal lifecycle failure.

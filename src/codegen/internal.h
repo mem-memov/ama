@@ -14,8 +14,6 @@
 #include "codegen.h"
 #include "native/scaffold/internal.h"
 
-/** Reject statically valid IR whose execution adapters are not yet implemented, before staging artifacts. */
-bool codegen_validate_execution(NativeScaffold *);
 /** Emit one fixed cursor per foreach site and one binding cell per exact reused
  * semantic symbol. Cells are control storage, never declared Ama owned fields.
  */
@@ -28,6 +26,10 @@ bool codegen_emit_traversal_scopes(NativeScaffold *, FILE *, const ScaffoldType 
  * foreach sites only and is unchanged when no binding role exists.
  */
 const PlannedLoop *codegen_foreach_binding(const ScaffoldType *, const SemanticSymbol *, size_t *index);
+/** Resolve one actual foreach loop identity to its immutable scope ordinal. */
+bool codegen_foreach_scope_index(const ScaffoldType *, const PlannedLoop *, size_t *index);
+/** Emit complete foreach/reset/resume transfers using the explicit IR successors. */
+bool codegen_emit_traversal_control(NativeScaffold *, FILE *, const ScaffoldType *, const ControlNode *);
 /**
  * Return the exact descriptor pointer ordinal starting at one, or zero if absent. This is an
  * assembly-local registry key, not a stable external type identity.

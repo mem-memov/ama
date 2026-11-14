@@ -63,12 +63,10 @@ retain their existing finite lookup/access bounds.
 
 ## Executable boundary
 
-Self sources now survive complete typed storage/control planning. The
-[execution-capability guard](../../src/codegen/project/capabilities.c) checks every
-initializer, assignment and binding before staging any C artifact. It reports
-`unsupported-feature` at the original `&` until T049–T050 supply final runtime
-construction and clone identity support. The plan retains a typed self source,
-without a fabricated named access or a temporary replacement identity.
+Self sources survive complete typed storage/control planning and resolve to the
+final owner identity during [entry preparation](entry-preparation.md), copying
+and replacement. The plan retains a typed self source without fabricating a
+named access or publishing a temporary replacement identity.
 
 ## Evidence
 

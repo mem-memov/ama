@@ -54,14 +54,13 @@ static AmaStatus ama_tree_protect(AmaObjectOperation *operation, AmaHandle handl
 
 /** Protect the complete initialized owned tree before hooks or destruction. Follow ownership only, check declared copy capability and nonwrapping epochs; caller unprotects partial records on failure. */
 AmaStatus ama_object_preflight(AmaObjectOperation *operation, AmaHandle root, bool copy, bool continuation) {
-    (void)continuation;
     AmaObjectType *type;
     AmaPoolCell *cell;
     AmaStatus identity = ama_object_source_lookup(operation, root, &type, &cell);
     if (identity.code != AMA_OK) { return identity; }
     for (AmaObjectProtection *record = operation->protected_first; record != NULL; record = record->next) {
         if (record->copy && copy && ama_same_handle(record->handle, root)) {
-            return ama_status_success();
+            return continuation ? ama_object_control_preflight(operation, root) : ama_status_success();
         }
     }
     if (copy) {
@@ -86,7 +85,7 @@ AmaStatus ama_object_preflight(AmaObjectOperation *operation, AmaHandle root, bo
             if (status.code != AMA_OK) { return status; }
         }
     }
-    return ama_status_success();
+    return copy && continuation ? ama_object_control_preflight(operation, root) : ama_status_success();
 }
 
 /** Restore only records that own restoration authority and still identify the same occupied generation; never resurrect released or replaced identities. */

@@ -56,7 +56,11 @@ bool codegen_emit_control(NativeScaffold *scaffold, FILE *output, const Scaffold
         case CONTROL_SAVE_POSITION: written = codegen_control_save(output, node->resume->selector); break;
         case CONTROL_YIELD: return codegen_control_yield(output);
         case CONTROL_RESUME_INSTANCE: return codegen_control_resume(output);
+        case CONTROL_RESUME_SAVED: return codegen_control_resume(output);
         case CONTROL_ENTER_INSTANCE: written = codegen_control_restart(output); break;
+        case CONTROL_FOREACH_ENTER: case CONTROL_FOREACH_NEXT: case CONTROL_FOREACH_LEAVE: case CONTROL_FOREACH_EMPTY:
+        case CONTROL_CLEANUP_SCOPES: case CONTROL_RESET_SCOPES: case CONTROL_VALIDATE_TRAVERSALS:
+            return codegen_emit_traversal_control(scaffold, output, type, node);
         /* The current backend executes the contiguous preparation prefix in
          * ama_program_prepare at acquisition and each replacement in its lead
          * runtime helper. These explicit audit phases must not repeat effects.

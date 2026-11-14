@@ -105,6 +105,37 @@ static void it_preserves_swap_boundaries_and_permits_positional_repeats_and_skip
     assert(!selected);
     finish_correction();
 }
+
+/** Charge future insertions to a finite candidate budget; past insertion costs
+ * no candidates and future deletion cancels exactly one unexamined candidate.
+ */
+static void it_bounds_candidate_work_by_initial_potential_and_future_insertions(void) {
+    setup_correction(4);
+    AmaProgramForeachPlan plan = advance_correction(0, 0);
+    AmaListStorage storage = correction_storage();
+    size_t budget = 4, visits = 0;
+    for (;;) {
+        bool selected = false;
+        checked(ama_program_foreach_next(&program, owners[0], &plan, &selected));
+        if (!selected) { break; }
+        visits++;
+        assert(visits <= budget);
+        if (visits <= 3) {
+            size_t potential = storage.list->count - owner_value(0)->cursors[0].boundary;
+            checked(ama_list_storage_insert(&storage, 0, owners[1]));
+            assert(storage.list->count - owner_value(0)->cursors[0].boundary == potential);
+            checked(ama_list_storage_insert(&storage, storage.list->count, owners[1]));
+            budget++;
+            assert(storage.list->count - owner_value(0)->cursors[0].boundary == potential + 1);
+        }
+        if (visits == 3) {
+            checked(ama_list_storage_remove(&storage, storage.list->count - 1, 1));
+            budget--;
+        }
+    }
+    assert(visits == 6 && visits == budget);
+    finish_correction();
+}
 /** Old incarnations and inactive sites are never corrected; malformed duplicate
  * catalogs or invalid active boundaries fail before the first structural effect.
  */
@@ -295,6 +326,7 @@ void run(void) {
     it_corrects_both_nested_boundaries_for_every_removed_range();
     it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans();
     it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips();
+    it_bounds_candidate_work_by_initial_potential_and_future_insertions();
     it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation();
     it_preserves_all_boundaries_when_owning_deletion_preflight_refuses();
     it_preserves_boundaries_after_insertion_preparation_allocation_failure();

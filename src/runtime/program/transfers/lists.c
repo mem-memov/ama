@@ -19,7 +19,7 @@ AmaStatus ama_program_store_list(AmaProgram *program, AmaProgramValue *destinati
     if (status.code != AMA_OK || no_op) { return status; }
     AmaHandleList prepared = {0};
     status = ama_transfer_list_prepare(program, destination, source, initializers, operation, &prepared);
-    if (status.code == AMA_OK && owning) { ama_transfer_list_fixup(operation, source != NULL); }
+    if (status.code == AMA_OK && owning) { status = ama_transfer_list_fixup(operation, source != NULL); }
     if (status.code == AMA_OK) { status = ama_transfer_list_commit(program, destination, operation, &prepared); }
     return status.code == AMA_OK ? status : ama_transfer_list_discard(program, &prepared, owning, status);
 }

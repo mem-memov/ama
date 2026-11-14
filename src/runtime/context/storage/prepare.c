@@ -10,9 +10,12 @@
  * [LIST-13](../../../../spec/language/lists.md#list-13) binds immutable fixed
  * cursor catalogs to context-local pools without sharing mutable cursor storage.
  * [FLOW-05](../../../../spec/language/lists.md#flow-05) Context-local program descriptors borrow immutable foreach scope ancestry, never another context's active roles.
+ * [CONT-04](../../../../spec/language/continuations.md#cont-04) validates and maps retained compiler control cells
+ * separately from native payload hooks; ordinary copies leave them inactive.
  */
 #include <string.h>
 #include "../internal.h"
+#include "runtime/program/lists/traversal/copy/copy.h"
 
 /** Record the first context-local failure before synchronous reporting. Other contexts own
  * different status/program records. The callback receives no implicit execution authority.
@@ -92,6 +95,10 @@ static AmaStatus context_types(AmaContext *context, const AmaContextDefinition *
         type->field_context = &context->program;
         type->source_operation = source->operation;
         type->list_cursors = source->list_cursors;
+        if (source->foreach_count != 0) {
+            type->controls = &ama_program_foreach_controls;
+            type->control_context = &context->program;
+        }
         AmaProgramType *program = &program_types[index];
         *program = (AmaProgramType){.object = type, .operation = source->operation,
             .fields = source->declarations, .field_count = source->field_count,

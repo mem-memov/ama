@@ -22,7 +22,7 @@ AmaStatus ama_transfer_list_prepare(AmaProgram *, AmaProgramValue *, const AmaPr
 /** Join completed owned roots into one map and fix references. All operation work
  * belongs to this transfer; copied_source distinguishes copy from independent defaults.
  */
-void ama_transfer_list_fixup(AmaObjectOperation *, bool copied_source);
+AmaStatus ama_transfer_list_fixup(AmaObjectOperation *, bool copied_source);
 /** Check parent/counts, destroy old storage and publish staging. Success consumes
  * prepared; failure leaves its ownership with caller for discard. Earlier old-value
  * destruction cannot be rolled back; primary cleanup errors remain unchanged.
