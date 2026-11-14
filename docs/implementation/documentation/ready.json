@@ -1067,7 +1067,7 @@
   },
   "src/codegen/emit/descriptors.c": {
     "contract": "docs/implementation/compiler-and-emission.md",
-    "purpose": "Emit exact nominal field offsets and the retained pool registry.",
+    "purpose": "Emit immutable nominal field descriptors without an assembly-global mutable pool registry.",
     "tests": [
       {
         "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
@@ -1133,6 +1133,16 @@
         "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
         "command": "make -C tests/unit/codegen/layouts",
         "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_interleaves_independent_generated_contexts_with_private_constants_and_pools",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
       }
     ]
   },
@@ -1275,7 +1285,7 @@
   },
   "src/codegen/emit/program.c": {
     "contract": "docs/implementation/compiler-and-emission.md",
-    "purpose": "Emit ordered source descriptors and program type/shared declaration tables.",
+    "purpose": "Emit ordered field/source declarations and immutable per-context shared schemas.",
     "tests": [
       {
         "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
@@ -1346,12 +1356,22 @@
         "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
         "command": "make -C tests/unit/codegen/layouts",
         "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_interleaves_independent_generated_contexts_with_private_constants_and_pools",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
       }
     ]
   },
   "src/codegen/emit/setup.c": {
     "contract": "docs/implementation/compiler-and-emission.md",
-    "purpose": "Emit checked aligned pool setup and explicitly present lifecycle hooks.",
+    "purpose": "Emit immutable type schemas with actual C layout and typed hooks for isolated runtime context factories.",
     "tests": [
       {
         "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
@@ -1417,6 +1437,16 @@
         "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
         "command": "make -C tests/unit/codegen/layouts",
         "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_interleaves_independent_generated_contexts_with_private_constants_and_pools",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
       }
     ]
   },
@@ -1488,7 +1518,7 @@
   },
   "src/codegen/emit/storage.c": {
     "contract": "docs/implementation/compiler-and-emission.md",
-    "purpose": "Emit declared handle/list fields followed by actual native payload storage.",
+    "purpose": "Emit physical handle/list/native storage types without implicit instances or global mutable descriptors.",
     "tests": [
       {
         "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
@@ -1554,6 +1584,16 @@
         "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
         "command": "make -C tests/unit/codegen/layouts",
         "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_interleaves_independent_generated_contexts_with_private_constants_and_pools",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
       }
     ]
   },
@@ -1640,6 +1680,16 @@
         "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
         "command": "make -C tests/unit/codegen/layouts",
         "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_interleaves_independent_generated_contexts_with_private_constants_and_pools",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
       }
     ]
   },
@@ -1766,6 +1816,16 @@
         "case": "it_rejects_unimplemented_execution_adapters_after_valid_ir_before_artifact_staging",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_interleaves_independent_generated_contexts_with_private_constants_and_pools",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
       }
     ]
   },
@@ -2090,6 +2150,16 @@
         "case": "it_reports_native_body_errors_with_the_active_ama_chain_before_cleanup",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_interleaves_independent_generated_contexts_with_private_constants_and_pools",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
       }
     ]
   },
@@ -2161,12 +2231,22 @@
         "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_interleaves_independent_generated_contexts_with_private_constants_and_pools",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
       }
     ]
   },
   "src/codegen/project/host/context.c": {
     "contract": "docs/implementation/compiler-and-emission.md",
-    "purpose": "Emit retained synchronous host admission and disposal ownership checks.",
+    "purpose": "Emit per-host atomic admission and checked-context registry disposal.",
     "tests": [
       {
         "case": "it_resumes_repeated_yields_and_restarts_at_entry",
@@ -2232,6 +2312,21 @@
         "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_interleaves_independent_generated_contexts_with_private_constants_and_pools",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_distinguishes_busy_native_destruction_from_refused_host_disposal",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
       }
     ]
   },
@@ -2303,12 +2398,22 @@
         "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_interleaves_independent_generated_contexts_with_private_constants_and_pools",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
       }
     ]
   },
   "src/codegen/project/host/initialize.c": {
     "contract": "docs/implementation/compiler-and-emission.md",
-    "purpose": "Emit constants/root startup and explicit entry restart preparation.",
+    "purpose": "Connect explicit first-root construction and existing-root entry/resume to context execution leases.",
     "tests": [
       {
         "case": "it_resumes_repeated_yields_and_restarts_at_entry",
@@ -2374,6 +2479,16 @@
         "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_interleaves_independent_generated_contexts_with_private_constants_and_pools",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
       }
     ]
   },
@@ -2445,6 +2560,16 @@
         "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_interleaves_independent_generated_contexts_with_private_constants_and_pools",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
       }
     ]
   },
@@ -12927,6 +13052,16 @@
         "case": "it_builds_and_runs_a_verified_executable_through_the_real_command",
         "command": "make -C tests/integration/execution",
         "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_interleaves_independent_generated_contexts_with_private_constants_and_pools",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
       }
     ]
   },
@@ -13059,6 +13194,16 @@
         "case": "it_refuses_concurrent_and_alternate_root_entry_without_changing_execution",
         "command": "make -C tests/unit/runtime/host-lifecycle",
         "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_interleaves_independent_generated_contexts_with_private_constants_and_pools",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
       }
     ],
     "standalone_header_command": [
@@ -13284,7 +13429,7 @@
   },
   "src/runtime/context/registry/create.c": {
     "contract": "docs/implementation/execution-contexts.md",
-    "purpose": "Pin registry lifetime during fallible private context factories.",
+    "purpose": "Pin private context factory lifetime and report accepted failures before allocation-free prefix cleanup.",
     "tests": [
       {
         "case": "it_unwinds_every_factory_allocation_failure_without_poisoning_the_registry",
@@ -13320,6 +13465,16 @@
         "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
         "command": "make -C tests/unit/runtime/shared-storage",
         "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_interleaves_independent_generated_contexts_with_private_constants_and_pools",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
       }
     ]
   },
@@ -13468,6 +13623,16 @@
         "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
         "command": "make -C tests/unit/runtime/shared-storage",
         "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_interleaves_independent_generated_contexts_with_private_constants_and_pools",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
       }
     ]
   },
@@ -32163,6 +32328,21 @@
         "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
         "command": "make -C tests/unit/codegen/layouts",
         "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_interleaves_independent_generated_contexts_with_private_constants_and_pools",
+        "command": "make -C tests/unit/codegen contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
+        "command": "make -C tests/unit/codegen contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_distinguishes_busy_native_destruction_from_refused_host_disposal",
+        "command": "make -C tests/unit/codegen contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
       }
     ]
   },
@@ -32706,6 +32886,21 @@
         "case": "it_preserves_primary_failure_when_native_cleanup_also_fails",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_interleaves_independent_generated_contexts_with_private_constants_and_pools",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_distinguishes_busy_native_destruction_from_refused_host_disposal",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
       }
     ]
   },
@@ -46227,6 +46422,26 @@
         "case": "it_refuses_concurrent_and_alternate_root_entry_without_changing_execution",
         "command": "make -C tests/unit/runtime/host-lifecycle",
         "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_interleaves_independent_generated_contexts_with_private_constants_and_pools",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_starts_an_explicit_root_once_under_the_execution_lease",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_first_root_construction_without_publishing_a_root",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
       }
     ],
     "standalone_header_command": [
@@ -46266,6 +46481,26 @@
       },
       {
         "case": "it_refuses_concurrent_and_alternate_root_entry_without_changing_execution",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_interleaves_independent_generated_contexts_with_private_constants_and_pools",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_starts_an_explicit_root_once_under_the_execution_lease",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_first_root_construction_without_publishing_a_root",
         "command": "make -C tests/unit/runtime/host-lifecycle",
         "source": "tests/unit/runtime/host-lifecycle/main.c"
       }
@@ -46339,6 +46574,16 @@
       },
       {
         "case": "it_disposes_yielded_and_empty_contexts_without_running_saved_code",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_starts_an_explicit_root_once_under_the_execution_lease",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_first_root_construction_without_publishing_a_root",
         "command": "make -C tests/unit/runtime/host-lifecycle",
         "source": "tests/unit/runtime/host-lifecycle/main.c"
       }
@@ -59918,6 +60163,85 @@
         "case": "it_preserves_primary_failure_when_native_cleanup_also_fails",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/host-lifecycle/support/start.c": {
+    "contract": "docs/implementation/generated-contexts.md",
+    "purpose": "Verify exactly-once first-root construction and every admitted allocation failure.",
+    "tests": [
+      {
+        "case": "it_starts_an_explicit_root_once_under_the_execution_lease",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_cleans_every_failed_first_root_construction_without_publishing_a_root",
+        "command": "make -C tests/unit/runtime/host-lifecycle",
+        "source": "tests/unit/runtime/host-lifecycle/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/contexts/support/cases.c": {
+    "contract": "docs/implementation/generated-contexts.md",
+    "purpose": "Execute two isolated generated hosts with simultaneous leases and actual parallel execution.",
+    "tests": [
+      {
+        "case": "it_interleaves_independent_generated_contexts_with_private_constants_and_pools",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_distinguishes_busy_native_destruction_from_refused_host_disposal",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/contexts/main.c": {
+    "contract": "docs/implementation/generated-contexts.md",
+    "purpose": "Run explicit generated-host isolation, lease refusal and real parallel composition cases.",
+    "tests": [
+      {
+        "case": "it_interleaves_independent_generated_contexts_with_private_constants_and_pools",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_distinguishes_busy_native_destruction_from_refused_host_disposal",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/contexts/Makefile": {
+    "contract": "docs/implementation/generated-contexts.md",
+    "purpose": "Compile and dispatch the independent generated-context leaf through the recursive harness.",
+    "tests": [
+      {
+        "case": "it_interleaves_independent_generated_contexts_with_private_constants_and_pools",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_distinguishes_busy_native_destruction_from_refused_host_disposal",
+        "command": "make -C tests/unit/codegen/contexts",
+        "source": "tests/unit/codegen/contexts/main.c"
       }
     ]
   }

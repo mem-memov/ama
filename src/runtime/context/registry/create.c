@@ -5,6 +5,9 @@
  * [RT-01](../../../../spec/implementation/runtime.md#rt-01) owns constants per context.
  * [EMBED-02](../../../../spec/implementation/c-library.md#embed-02) requires factory rollback
  * without a partially published handle; full generated export adapters are later work.
+ * [DEBUG-02](../../../../spec/implementation/diagnostics.md#debug-02) reports
+ * accepted creation failures before destroying their diagnostic context, including
+ * allocation-free failure before the context record itself exists.
  */
 #include <string.h>
 #include "../internal.h"
@@ -35,6 +38,23 @@ static void context_factory_end(AmaContextRegistry *registry, AmaContext *contex
     ama_context_registry_unlock(registry);
 }
 
+/** Report one accepted factory failure while its source metadata remains alive.
+ * Before the record exists, borrow immutable definition locations through a
+ * stack-only diagnostic view; no allocation or implicit Ama root is needed.
+ */
+static void context_factory_report(AmaContext *context, const AmaContextDefinition *definition, AmaStatus status) {
+    if (context != NULL) {
+        if (context->status.code == AMA_OK) { context->world.report(context->world.report_context, status); }
+    } else if (definition->report != NULL) { definition->report(definition->report_context, status); }
+    else {
+        AmaWorld world = {0};
+        AmaProgram program = {.world = &world, .locations = definition->locations,
+            .location_count = definition->location_count,
+            .initialization_operation = definition->initialization_operation};
+        ama_program_report(&program, status);
+    }
+}
+
 /** Construct private descriptors/constants and publish an opaque number only after success.
  * Failed attempts may consume identity space, never recycle it. Cleanup runs without metadata
  * locks and never executes an Ama body or creates an implicit root instance.
@@ -58,6 +78,7 @@ AmaStatus ama_context_create(AmaContextRegistry *registry, const AmaContextDefin
             status = ama_context_prepare(context, definition, registry->allocator);
         }
     }
+    if (status.code != AMA_OK) { context_factory_report(context, definition, status); }
     if (status.code != AMA_OK && context != NULL) {
         status = ama_context_cleanup(context, status);
         registry->allocator.release(registry->allocator.context, context);

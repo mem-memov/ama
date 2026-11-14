@@ -9,6 +9,8 @@
  * [STACK-04](../../../spec/implementation/compiler.md#stack-04) permits ordinary
  * generated C helpers to use the stack. View binding is not Ama body dispatch;
  * only the native entry boundary carries mandatory inline authority.
+ * [PAR-01](../../../spec/language/async-and-parallelism.md#par-01) keeps mutable
+ * pool/constant/execution ownership inside independent runtime contexts.
  */
 #include "codegen/internal.h"
 
@@ -53,10 +55,10 @@ static bool codegen_view_type(NativeScaffold *scaffold, FILE *output, const Scaf
 static bool codegen_view_bind(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type, bool interface) {
     const char *name = type->names[SCAFFOLD_WRITE]->internal_name;
     if (fprintf(output, "static __attribute__((unused)) AmaStatus %s_%s(AmaNativeBorrowScope *borrow, AmaHandle handle, %s_Scope *scope) {\n"
-            "AmaPoolCell *cell=NULL; AmaStatus status=ama_native_borrow_cell(borrow,handle,%s_Type.pool.type_id,%s,&cell);\n"
+            "AmaPoolCell *cell=NULL; AmaStatus status=ama_native_borrow_cell(borrow,handle,UINT64_C(%zu),%s,&cell);\n"
             "if(status.code!=AMA_OK) return status;\n"
-            "%s_Storage *storage=ama_pool_payload(&%s_Type.pool,cell);\n(void)storage; (void)scope;\n", name, interface ? "BindInterface" : "Bind", name,
-            name, interface ? "AMA_NATIVE_BORROW_RECEIVER" : "AMA_NATIVE_BORROW_READ", name, name) < 0) { return false; }
+            "AmaObjectType *type=ama_world_type(borrow->program->world,UINT64_C(%zu));\n%s_Storage *storage=ama_pool_payload(&type->pool,cell);\n(void)storage; (void)scope;\n", name, interface ? "BindInterface" : "Bind", name,
+            codegen_type_id(scaffold, type), interface ? "AMA_NATIVE_BORROW_RECEIVER" : "AMA_NATIVE_BORROW_READ", codegen_type_id(scaffold, type), name) < 0) { return false; }
     if (type->plan->type->module->syntax.sections.kind == MODULE_NATIVE
         && fputs("scope->read.payload=&storage->payload; scope->write.payload=&storage->payload;\n", output) == EOF) { return false; }
     for (const ScaffoldMember *member = type->members; member != NULL; member = member->next) {

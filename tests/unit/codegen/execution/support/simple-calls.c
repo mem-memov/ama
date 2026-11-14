@@ -23,7 +23,7 @@ static void it_rejects_unknown_and_foreign_type_return_selectors_before_dispatch
             "#include <assert.h>\n#include \"project.h\"\n"
             "static AmaProjectHost *fault_host;\n"
             "static void fault_return_link(void) {\n"
-            "AmaProgram *program=&fault_host->program; AmaPoolCell *worker=NULL,*inner=NULL,*outer=NULL;\n"
+            "AmaProgram *program=fault_host->active.program; AmaPoolCell *worker=NULL,*inner=NULL,*outer=NULL;\n"
             "AmaStatus status=ama_program_cell(program,program->current,&worker); assert(status.code==AMA_OK);\n"
             "status=ama_program_cell(program,worker->metadata.service.return_link.caller,&inner); assert(status.code==AMA_OK);\n"
             "status=ama_program_cell(program,inner->metadata.service.return_link.caller,&outer); assert(status.code==AMA_OK);\n"
@@ -34,8 +34,8 @@ static void it_rejects_unknown_and_foreign_type_return_selectors_before_dispatch
             "AmaHostResult result=ama_project_execute(&host,AMA_ACCESS_ENTRY);\n"
             "assert(result.outcome==AMA_HOST_FAILED && result.status.code==AMA_INVALID_STATE);\n"
             "AmaStatus status=ama_project_dispose(&host); assert(status.code==AMA_INVALID_STATE);\n"
-            "assert(!host.world.operation_active && host.disposed);\n"
-            "for(size_t index=0;index<host.world.type_count;index++) assert(host.world.types[index]->pool.live_count==0);\n"
+            "assert(host.active.world==NULL && host.disposed);\n"
+            "assert(!host.registry.initialized);\n"
             "return EXIT_FAILURE; }\n",
             mode == 0 ? "UINT64_MAX" : "outer->metadata.service.return_link.continuation");
         assert(length > 0 && (size_t)length < sizeof(launcher));

@@ -53,9 +53,9 @@ come from full qualified category-separated registry keys. Runtime nominal type
 numbers are local ordinals in this assembly's registry, not stable external ABI
 identities. Native State and real C sizeof/_Alignof/offsetof provide truthful
 payload layouts; each declared reference occupies a declared handle location.
-Constants remain outside pools. Current mutable type/shared descriptors are
-assembly globals, a known limitation awaiting the T061 context connection.
-The [independent runtime foundation](execution-contexts.md) is tested separately.
+Constants remain outside pools. Immutable generated schemas feed the existing
+[context factory](execution-contexts.md); [T061 host wiring](generated-contexts.md)
+gives each generated host independent mutable descriptors and constant storage.
 
 Literal arrays preserve every source byte and explicit length, including zero.
 The reserved byte used for an empty C array does not increase the Ama literal

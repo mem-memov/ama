@@ -5,6 +5,9 @@
  * [EMBED-03](../../../../spec/implementation/c-library.md#embed-03) keeps rejected
  * host requests effect-free. [CALL-08](../../../../spec/language/calls-and-results.md#call-08)
  * orders accepted interface initialization; resume bypasses that initialization.
+ * [RT-11](../../../../spec/implementation/runtime.md#rt-11) constructs an
+ * explicitly selected first root after context constants, without resetting its
+ * freshly constructed interface a second time.
  */
 #include "execution.h"
 #include "../internal.h"
@@ -64,6 +67,44 @@ AmaStatus ama_context_execution_begin(AmaContextRegistry *registry, uint64_t ide
         cell->metadata.service.resume = (AmaResumePosition){0};
         cell->metadata.service.activity = AMA_INSTANCE_RUNNING;
         cell->metadata.service.return_link = (AmaReturnLink){.attached = true, .host = true};
+    }
+    return ama_status_success();
+}
+
+/** Select a first root explicitly, retaining one lease from private construction through label execution or accepted-failure cleanup. */
+AmaStatus ama_context_execution_start(AmaContextRegistry *registry, uint64_t identity,
+    uint64_t root_type, AmaContextExecution *execution) {
+    const AmaProgramInvocation entry = {.mode = AMA_ACCESS_ENTRY};
+    if (!execution_request_valid(&entry, execution)) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
+    AmaStatus status = ama_context_enter(registry, identity, &execution->lease);
+    if (status.code != AMA_OK) { return status; }
+    AmaContext *context = ama_context_leased(&execution->lease);
+    if (context->control.phase != AMA_RUNTIME_IDLE || context->world.operation_active
+        || context->world.failed || context->world.first_root != NULL
+        || !ama_handle_is_empty(context->control.root)) {
+        status = ama_status_make(AMA_INVALID_STATE, NULL, 0);
+    } else if (ama_world_type(&context->world, root_type) == NULL) {
+        status = ama_status_make(AMA_TYPE_MISMATCH, NULL, 0);
+    }
+    if (status.code != AMA_OK) {
+        (void)ama_context_leave(&execution->lease);
+        return status;
+    }
+    /* Construction itself initializes parameters/results exactly once. The
+     * accepted owner also represents failed construction with no published root. */
+    execution->root.context = identity;
+    context->control.phase = AMA_RUNTIME_EXECUTING;
+    execution->status = ama_object_create(&context->world, root_type, NULL, &execution->root.local);
+    context->control.root = execution->root.local;
+    context->control.current = execution->root.local;
+    context->program.current = execution->root.local;
+    if (execution->status.code == AMA_OK) {
+        AmaPoolCell *cell = NULL;
+        execution->status = ama_program_cell(&context->program, execution->root.local, &cell);
+        if (execution->status.code == AMA_OK) {
+            cell->metadata.service.activity = AMA_INSTANCE_RUNNING;
+            cell->metadata.service.return_link = (AmaReturnLink){.attached = true, .host = true};
+        }
     }
     return ama_status_success();
 }

@@ -84,7 +84,7 @@ streaming program reporter normalizes before reading optional message bytes.
 This foundation supplies checked transport and the refusal/index/report consumers.
 [T009](native-protocols.md) composes all six native protocol boundaries, their
 resource-credit rules and the fixed integer size bridge; T013 composes the host
-lifecycle, and T061 wires isolated generated contexts.
+lifecycle, and [T061](generated-contexts.md) wires isolated generated contexts.
 The status helper alone is not evidence that every native hook already uses it.
 
 The algorithms use fixed field checks and disjoint numeric domains: allocated

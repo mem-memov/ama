@@ -14,8 +14,8 @@ static void it_preserves_primary_failure_when_native_cleanup_also_fails(void) {
         "assert(result.status.message_length==11 && memcmp(result.status.message,\"Body failed\",11)==0);\n"
         "AmaStatus status=ama_project_dispose(&host);\n"
         "assert(status.code==result.status.code && status.message==result.status.message);\n"
-        "assert(host.disposed && !host.world.operation_active);\n"
-        "for(size_t index=0;index<host.world.type_count;index++) assert(host.world.types[index]->pool.live_count==0);\n"
+        "assert(host.disposed && host.active.world==NULL);\n"
+        "assert(!host.registry.initialized);\n"
         "return EXIT_FAILURE; }\n";
     execute_project("@!\nouter\n.outer\nouter !\n", "native-entered\n", false);
     expect_diagnostic("Ama runtime failure: 4: Body failed");

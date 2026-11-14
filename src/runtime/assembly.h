@@ -4,6 +4,8 @@
  *
  * [STACK-04](../../spec/implementation/compiler.md#stack-04)
  * Include once; these helpers never dispatch Ama bodies. Generated labels and inlined native entry implement body execution.
+ * [PAR-01](../../spec/language/async-and-parallelism.md#par-01) keeps mutable
+ * pool/constant/execution ownership inside independent runtime contexts.
  */
 #ifndef AMA_RUNTIME_ASSEMBLY_H
 #define AMA_RUNTIME_ASSEMBLY_H
@@ -86,5 +88,18 @@
 #include "runtime/program/values/selection/access.c"
 #include "runtime/program/values/self.c"
 #include "runtime/program/values/source.c"
+
+#include "runtime/context/admission.c"
+#include "runtime/context/references.c"
+#include "runtime/context/registry/access.c"
+#include "runtime/context/registry/close.c"
+#include "runtime/context/registry/create.c"
+#include "runtime/context/registry/dispose.c"
+#include "runtime/context/identity/issue.c"
+#include "runtime/context/storage/validate.c"
+#include "runtime/context/storage/cleanup.c"
+#include "runtime/context/storage/prepare.c"
+#include "runtime/context/execution/begin.c"
+#include "runtime/context/execution/finish.c"
 
 #endif

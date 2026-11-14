@@ -6,6 +6,7 @@
 #include "support/failures.c"
 #include "support/concurrency.c"
 #include "support/diagnostics.c"
+#include "support/start.c"
 
 /** Entry resets interface values, resume preserves them, and completion removes resume authority. */
 static void it_separates_entry_preparation_from_saved_position_resume(void) {
@@ -144,6 +145,8 @@ static void it_disposes_yielded_and_empty_contexts_without_running_saved_code(vo
 
 /** Run host-control cases explicitly; generated label dispatch is a later integration boundary. */
 void run(void) {
+    it_starts_an_explicit_root_once_under_the_execution_lease();
+    it_cleans_every_failed_first_root_construction_without_publishing_a_root();
     it_reports_the_active_execution_chain_before_releasing_all_context_resources();
     it_preserves_an_independent_execution_when_another_context_fails();
     it_distinguishes_accepted_preparation_failure_from_admission_rejection();

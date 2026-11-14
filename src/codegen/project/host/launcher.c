@@ -19,7 +19,11 @@ bool codegen_emit_launcher(NativeScaffold *scaffold, FILE *output, const Scaffol
         "    AmaHostResult result=ama_project_execute(&host,AMA_ACCESS_ENTRY);\n"
         "    if(result.outcome==AMA_HOST_YIELDED) {\n"
         "        host.status=ama_status_make(AMA_INVALID_STATE,\"Unhandled root yield\",20);\n"
-        "        ama_program_report(&host.program,host.status);\n"
+        "        AmaContextLease lease={0}; AmaContextView view={0};\n"
+        "        AmaStatus inspected=ama_context_enter(&host.registry,host.identity,&lease);\n"
+        "        if(inspected.code==AMA_OK) { inspected=ama_context_inspect(&lease,&view);\n"
+        "            if(inspected.code==AMA_OK) ama_program_report(view.program,host.status);\n"
+        "            (void)ama_context_leave(&lease); }\n"
         "    }\n"
         "    AmaStatus status=ama_project_dispose(&host);\n"
         "    return status.code==AMA_OK ? EXIT_SUCCESS : EXIT_FAILURE;\n}\n", output) != EOF;

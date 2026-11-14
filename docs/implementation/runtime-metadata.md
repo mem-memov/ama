@@ -108,7 +108,8 @@ The [generated host boundary](continuations.md) implements those transitions
 using `AmaHostResult`, the current program identity and the host root identity. These are local handles;
 structural validation does not authenticate context ownership, and independent
 [context foundation](execution-contexts.md) supplies origin-checked access; generated
-host wiring remains T061 and public embedding tokens remain the embedding tasks.
+host wiring is connected by [T061](generated-contexts.md). Public embedding tokens
+remain the embedding tasks.
 The standalone launcher diagnoses unhandled root yield and disposes the root.
 
 ## Justification, effects and evidence

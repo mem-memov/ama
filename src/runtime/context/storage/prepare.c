@@ -111,6 +111,7 @@ AmaStatus ama_context_prepare(AmaContext *context, const AmaContextDefinition *d
     context->program.world = &context->world;
     context->program.locations = definition->locations;
     context->program.location_count = definition->location_count;
+    context->program.initialization_operation = definition->initialization_operation;
     AmaProgramType *program_types = NULL;
     AmaStatus status = context_arrays(context, definition, &program_types);
     if (status.code == AMA_OK) { status = context_types(context, definition, program_types); }

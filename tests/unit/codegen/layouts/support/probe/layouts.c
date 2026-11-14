@@ -10,8 +10,8 @@ static void probe_aliases(FILE *output) {
         int written = fprintf(output, "#define %s_ID UINT64_C(%zu)\n", aliases[index], codegen_type_id(&assembly, type));
         assert(written > 0);
         if (!type->plan->requires_pool) { assert(index == 4); continue; }
-        written = fprintf(output, "#define %s_STORAGE %s_Storage\n#define %s_TYPE %s_Type\n#define %s_BIND %s_Bind\n#define %s_SCOPE %s_Scope\n",
-            aliases[index], type->names[SCAFFOLD_WRITE]->internal_name, aliases[index], type->names[SCAFFOLD_WRITE]->internal_name,
+        written = fprintf(output, "#define %s_STORAGE %s_Storage\n#define %s_TYPE (*ama_world_type(test_view.world,%s_ID))\n#define %s_BIND %s_Bind\n#define %s_SCOPE %s_Scope\n",
+            aliases[index], type->names[SCAFFOLD_WRITE]->internal_name, aliases[index], aliases[index],
             aliases[index], type->names[SCAFFOLD_WRITE]->internal_name, aliases[index], type->names[SCAFFOLD_WRITE]->internal_name);
         assert(written > 0);
         if (index != 0) {
@@ -45,10 +45,10 @@ static void probe_layout_checks(FILE *output) {
         "_Static_assert(sizeof(((ROOT_STORAGE*)0)->FIELD_reference)==sizeof(AmaHandle),\"reference storage\");\n"
         "_Static_assert(sizeof(((ROOT_STORAGE*)0)->FIELD_items)==sizeof(AmaHandleList),\"owning list storage\");\n"
         "_Static_assert(sizeof(((ROOT_STORAGE*)0)->FIELD_references)==sizeof(AmaHandleList),\"reference list storage\");\n"
-        "static void check_layouts(AmaProjectHost *host) {\n"
-        "assert(host->world.type_count==4 && host->program.type_count==5 && host->program.constant_count==2);\n"
-        "assert(ama_world_type(&host->world,NAMESPACE_ID)==NULL);\n"
-        "assert(host->program.types[NAMESPACE_ID-1].object==NULL);\n"
+        "static void check_layouts(AmaProjectHost *host) { (void)host;\n"
+        "assert((*test_view.world).type_count==4 && (*test_view.program).type_count==4 && (*test_view.program).constant_count==2);\n"
+        "assert(ama_world_type(&(*test_view.world),NAMESPACE_ID)==NULL);\n"
+        "for(size_t index=0;index<test_view.program->type_count;index++) assert(test_view.program->types[index].object->pool.type_id!=NAMESPACE_ID);\n"
         "assert(PLAIN_ID!=TWIN_ID && &PLAIN_TYPE!=&TWIN_TYPE);\n"
         "assert(ROOT_TYPE.pool.payload_size==sizeof(ROOT_STORAGE) && ROOT_TYPE.native_offset==offsetof(ROOT_STORAGE,payload));\n"
         "assert(PLAIN_TYPE.pool.payload_size==sizeof(PLAIN_STORAGE) && PLAIN_TYPE.native_offset==offsetof(PLAIN_STORAGE,payload));\n"

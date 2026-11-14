@@ -50,14 +50,14 @@ static void it_exposes_explicit_host_resume_restart_disposal_and_terminal_failur
         "assert(result.outcome==AMA_HOST_YIELDED); AmaHandle root=host.root;\n"
         "host.executing=true; result=ama_project_execute(&host,AMA_ACCESS_RESUME); assert(result.status.code==AMA_BUSY);\n"
         "AmaStatus busy=ama_project_dispose(&host); assert(busy.code==AMA_BUSY); host.executing=false;\n"
-        "result=ama_project_execute(&other,AMA_ACCESS_ENTRY); assert(result.status.code==AMA_BUSY);\n"
         "result=ama_project_execute(&host,AMA_ACCESS_RESUME); assert(result.outcome==AMA_HOST_YIELDED);\n"
         "assert(ama_handle_equal(root,host.root));\n"
         "result=ama_project_execute(&host,AMA_ACCESS_ENTRY); assert(result.outcome==AMA_HOST_YIELDED);\n"
         "result=ama_project_execute(&host,AMA_ACCESS_RESUME); assert(result.outcome==AMA_HOST_YIELDED);\n"
         "result=ama_project_execute(&host,AMA_ACCESS_RESUME); assert(result.outcome==AMA_HOST_COMPLETED);\n"
         "result=ama_project_execute(&host,AMA_ACCESS_RESUME); assert(result.outcome==AMA_HOST_FAILED && result.status.code==AMA_NO_RESUME);\n"
-        "assert(host.disposed); result=ama_project_execute(&host,AMA_ACCESS_RESUME); assert(result.outcome==AMA_HOST_FAILED);\n"
+        "assert(!host.disposed); AmaStatus disposed=ama_project_dispose(&host); assert(disposed.code==AMA_OK);\n"
+        "result=ama_project_execute(&host,AMA_ACCESS_RESUME); assert(result.outcome==AMA_HOST_FAILED);\n"
         "result=ama_project_execute(&other,AMA_ACCESS_ENTRY); assert(result.outcome==AMA_HOST_YIELDED);\n"
         "AmaStatus status=ama_project_dispose(&other); assert(status.code==AMA_OK);\n"
         "status=ama_project_dispose(&other); assert(status.code==AMA_OK); return 0; }\n";
@@ -100,14 +100,14 @@ static void it_disposes_yielded_owned_states_and_never_resumes_a_failed_executio
         "AmaHostResult result=ama_project_execute(&host,AMA_ACCESS_ENTRY);\n"
         "assert(ama_host_result_is_valid(result) && result.outcome==AMA_HOST_YIELDED);\n"
         "AmaStatus status=ama_project_dispose(&host); assert(status.code==AMA_OK);\n"
-        "for(size_t i=0;i<host.world.type_count;i++) assert(host.world.types[i]->pool.live_count==0);\n"
+        "assert(host.active.world==NULL && !host.registry.initialized);\n"
         "return 0; }\n";
     execute_project("@!\ntask\n.task\ntask !\n%\ntask %\n", "1:1:0\n", true);
     host_launcher = "#include \"project.h\"\n#include \"project.c\"\n#include <assert.h>\n"
         "int main(void) { AmaProjectHost host={0};\n"
         "AmaHostResult result=ama_project_execute(&host,AMA_ACCESS_ENTRY);\n"
         "assert(ama_host_result_is_valid(result) && result.outcome==AMA_HOST_FAILED && host.disposed);\n"
-        "for(size_t i=0;i<host.world.type_count;i++) assert(host.world.types[i]->pool.live_count==0);\n"
+        "assert(host.active.world==NULL && !host.registry.initialized);\n"
         "result=ama_project_execute(&host,AMA_ACCESS_RESUME); assert(result.outcome==AMA_HOST_FAILED);\n"
         "return 0; }\n";
     execute_project("@!\nworker\n.worker\nworker !\n < |500\n%\n", "native-entered\n", true);

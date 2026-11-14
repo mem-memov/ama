@@ -99,7 +99,7 @@ asynchrony or compiled-library embedding.
 | Semantics/plans | Namespace, nominal transfers, separate graph analyses and resolved lifecycle/control plans have passing component/composition tests. New inferred/local scope, chain/service/control models are missing. |
 | Check/native authoring | CLI checking and generated native header/skeleton publication tests pass for the old source subset. They do not validate current syntax, library exports or hand-authored C behavior generally. |
 | Ownership | Stable pools, retirement, clone maps, staged replacement, overlap and tree protection pass. Keep these foundations; extend their context/membership/control boundaries. |
-| Execution | Generated stackless projects execute and native entries are verified. Old generated globals/single-owner host policy prevent the required independent contexts; current result trees/service frames are absent. |
+| Execution | Generated stackless projects execute and native entries are verified. T061 replaces the audited generated globals/single-owner policy with independent runtime contexts. Current result-tree/traversal execution adapters remain pending. |
 | Continuations | Explicit root/nested yields, resume, recursive clearing/preservation and new-caller tracing pass. Foreach cursor/origin copying and async enrollment/resource contracts are absent. |
 | Lists/library | Scalar operations and standalone old list mutations pass. Generated whole-list actions explicitly fail; the old dispatcher and selector types are not a usable current list implementation. |
 | Tools/release | Current export, relocation/editor/debugger, reactor/scheduler and parallel/channel acceptance does not exist. Their TODO tasks remain open. |

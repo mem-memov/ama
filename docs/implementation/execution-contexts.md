@@ -153,9 +153,9 @@ created empty contexts, and a concurrent refused/independent state-access pair.
 
 The recursive runtime parent includes this leaf. The per-file ready registry maps
 all new production/header/fixture inputs to these named cases; headers also compile
-independently. Generated old-source hosts still use their audited global descriptor
-layout and single-owner guard until T061. Their acceptance is not claimed as
-current independent-context execution. No asynchronous reactor, public marshalling
+independently. [T061](generated-contexts.md) connects generated hosts to this
+factory and execution lease rather than retaining global mutable descriptors.
+No asynchronous reactor, public marshalling
 schema, resource-affinity transfer or message transport is added by this foundation.
 
 At T006 completion, acceptance checks passed with `make -j4 test` using `-DNDEBUG -Werror` and the
@@ -167,5 +167,5 @@ produced byte-identical output across two complete Doxygen generations.
 
 T013 adds the [checked host execution lifecycle](host-lifecycle.md), separating
 admission from accepted entry/resume outcomes and clearing resource descriptors
-when failed execution retains only a diagnostic record. Generated context wiring
-remains T061; the public compiled-component ABI remains T123 onward.
+when failed execution retains only a diagnostic record. [T061](generated-contexts.md)
+connects generated context wiring; the public compiled-component ABI remains T123 onward.

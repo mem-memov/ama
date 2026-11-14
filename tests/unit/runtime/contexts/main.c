@@ -220,6 +220,7 @@ static void it_rejects_bad_schema_and_cleans_failed_constants_without_a_publishe
     invalid_types[1].native_offset = invalid_types[1].size + 1;
     status = ama_context_create(&registry, &invalid, &identity);
     assert(status.code == AMA_INVALID_STATE && identity == 0 && constructed == 0 && live_allocations == 0);
+    assert(reports == 1); /* Accepted descriptor preparation reports before cleanup. */
     AmaContextConstant constants[2] = {context_constant, context_constant};
     invalid = definition;
     invalid.constants = constants;
@@ -228,7 +229,7 @@ static void it_rejects_bad_schema_and_cleans_failed_constants_without_a_publishe
     failed_destructor = 1;
     status = ama_context_create(&registry, &invalid, &identity);
     assert(status.code == AMA_INVALID_LITERAL && identity == 0);
-    assert(constructed == 2 && destroyed == 1 && reports == 2 && live_allocations == 0);
+    assert(constructed == 2 && destroyed == 1 && reports == 3 && live_allocations == 0);
     failed_constructor = failed_destructor = 0;
     (void)create_context();
     finish_contexts();

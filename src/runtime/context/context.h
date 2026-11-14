@@ -5,6 +5,8 @@
  * [PAR-01](../../../spec/language/async-and-parallelism.md#par-01) isolates mutable Ama state.
  * [REF-02](../../../spec/language/values-and-references.md#ref-02) requires context validation
  * before a host token can select a local handle. This internal foundation is not an export ABI.
+ * [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02) carries an explicit
+ * initialization operation for allocation-free diagnostics before context storage exists.
  */
 #ifndef AMA_RUNTIME_CONTEXT_H
 #define AMA_RUNTIME_CONTEXT_H
@@ -54,6 +56,8 @@ typedef struct {
     size_t constant_count;
     const AmaProgramLocation *locations;
     size_t location_count;
+    /** Exact generated source operation for failure before a root or descriptor arena exists. */
+    uint64_t initialization_operation;
     void (*report)(void *, AmaStatus);
     void *report_context;
 } AmaContextDefinition;

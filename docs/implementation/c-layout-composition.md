@@ -37,9 +37,9 @@ binding checks the expected nominal ID and handle validity before applying its
 C layout; equality of representations never grants a conversion.
 
 Constants-only namespaces have no storage structure/object pool in the runtime
-registry. The program table retains a zero ordinal placeholder so source type
-ordinals remain consistent; the placeholder is not a default instance. Shared
-values use their actual declared value types outside executable pools.
+registry or context program table. Nominal IDs may have gaps: exact type lookup
+does not require a placeholder for a namespace. Shared values use their actual
+declared value types outside executable pools.
 
 ## Correctness and implementation bounds
 
@@ -102,6 +102,6 @@ storage forms during semantics, before a plan is published.
 undefined-behavior sanitizers; the parent test can be instrumented independently.
 The codegen parent supplies surrounding assembly/execution consumers. Header
 coverage and reproducible Doxygen generation accompany the
-[per-file registry](documentation/ready.json). Independent generated host contexts
-remain T061: this evidence uses the retained single-owner host and does not claim
-that its global descriptors already use the separate context factory.
+[per-file registry](documentation/ready.json). [T061](generated-contexts.md) connects the separate context factory. The actual
+layout probe now holds a context lease for all descriptor/storage observations
+and releases it before disposing its host.

@@ -18,7 +18,7 @@ static void it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native
     assert(output != NULL);
     int written = fputs("#include <assert.h>\n#include <stdint.h>\n#include <stdio.h>\n#include \"project.h\"\n#include \"project.c\"\n", output);
     assert(written != EOF);
-    written = fputs("static void check_status(AmaStatus status) { assert(status.code==AMA_OK); (void)status; }\n", output);
+    written = fputs("static AmaContextView test_view;\nstatic void check_status(AmaStatus status) { assert(status.code==AMA_OK); (void)status; }\n", output);
     assert(written != EOF);
     probe_aliases(output);
     probe_layout_checks(output);
@@ -27,13 +27,16 @@ static void it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native
     written = fputs(
         "int main(void) { AmaProjectHost host={0}; AmaHostResult result=ama_project_execute(&host,AMA_ACCESS_ENTRY);\n"
         "assert(result.outcome==AMA_HOST_COMPLETED && result.status.code==AMA_OK);\n"
+        "AmaContextLease lease={0}; check_status(ama_context_enter(&host.registry,host.identity,&lease));\n"
+        "check_status(ama_context_inspect(&lease,&test_view));\n"
         "check_layouts(&host); ROOT_STORAGE *root=check_values(&host); check_borrows(&host,root);\n"
         "printf(\"C layout: State=%zu align=%zu plain=%zu worker=%zu root=%zu\\n\",sizeof(PLAIN_STATE),_Alignof(PLAIN_STATE),sizeof(PLAIN_STORAGE),sizeof(WORKER_STORAGE),sizeof(ROOT_STORAGE));\n"
+        "check_status(ama_context_leave(&lease)); test_view=(AmaContextView){0};\n"
         "check_status(ama_project_dispose(&host));\n"
         "assert(PLAIN_DEFAULTS+PLAIN_LITERALS+PLAIN_CLONES==PLAIN_DESTROYS);\n"
         "assert(TWIN_DEFAULTS+TWIN_LITERALS+TWIN_CLONES==TWIN_DESTROYS);\n"
         "assert(WORKER_DEFAULTS+WORKER_LITERALS+WORKER_CLONES==WORKER_DESTROYS);\n"
-        "assert(!host.world.operation_active); return 0; }\n", output);
+        "assert(host.active.world==NULL && !host.registry.initialized); return 0; }\n", output);
     assert(written != EOF);
     int closed = fclose(output);
     assert(closed == 0);

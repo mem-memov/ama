@@ -8,8 +8,10 @@ The [context owner](execution-contexts.md) creates independent descriptors and
 shared values without an implicit root. The host explicitly constructs its
 selected root. `src/runtime/context/execution/` then owns one accepted execution
 through a linear context lease. It dispatches no Ama module through a C function;
-actual generated context wiring remains T061, and public transport/exported
-consumer declarations remain T123 onward.
+[T061](generated-contexts.md) connects actual generated context wiring, while
+public transport/exported consumer declarations remain T123 onward. First-root
+startup uses `ama_context_execution_start` so its freshly constructed interface
+is not prepared a second time; later entry/resume uses the original begin API.
 
 ## Admission is separate from execution outcome
 

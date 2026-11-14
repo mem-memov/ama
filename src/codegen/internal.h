@@ -4,6 +4,9 @@
  *
  * [ARCH-03](../../spec/implementation/compiler.md#arch-03)
  * Immutable semantic/IR inputs remain borrowed. Emitters may leave partial stream bytes, which artifact staging never publishes.
+ * [PAR-01](../../spec/language/async-and-parallelism.md#par-01) requires the emitted
+ * schemas to feed separate mutable context owners; host emission must preserve
+ * the execution lease through all label and cleanup phases.
  */
 #ifndef AMA_PROJECT_CODEGEN_INTERNAL_H
 #define AMA_PROJECT_CODEGEN_INTERNAL_H
@@ -59,8 +62,8 @@ bool codegen_source_value(NativeScaffold *, FILE *, const char *, const Semantic
  */
 bool codegen_initializers(NativeScaffold *, FILE *, const char *, const SemanticSymbol *);
 /**
- * Emit nominal program types and constants referring to previously emitted source/storage
- * descriptors. Nonpool types preserve ordinal slots without implicit instances.
+ * Emit immutable shared schemas referring to resolved sources; context factories own
+ * their mutable storage, and nonpool namespaces allocate no placeholder types.
  */
 bool codegen_emit_program(NativeScaffold *, FILE *);
 /**
@@ -69,25 +72,23 @@ bool codegen_emit_program(NativeScaffold *, FILE *);
  */
 bool codegen_emit_sources(NativeScaffold *, FILE *);
 /**
- * Write field kind/type/offsetof descriptors and the exact executable type registry from
+ * Write immutable field kind/type/offsetof descriptors for context-owned pools from
  * validated model members. A false stream result leaves only unpublished partial bytes.
  */
 bool codegen_emit_descriptors(NativeScaffold *, FILE *);
 /**
  * Write runtime/typed storage/native adapters, descriptors, controls and locations into the
- * retained single-TU header. Host declarations are internal and still use global type/shared
- * descriptors.
+ * retained single-TU header. Host declarations are internal and own checked runtime contexts; shared schemas are immutable.
  */
 bool codegen_emit_header(NativeScaffold *, FILE *, const ScaffoldType *);
 /**
- * Write retained owner admission and idempotent disposal with busy checks. Shared static
- * descriptor ownership limits this API to one retained project owner; independent contexts
- * remain T061.
+ * Write per-host atomic admission and idempotent registry disposal; independent hosts
+ * share only immutable schemas and each accepted execution holds a context lease.
  */
 bool codegen_emit_host_context(FILE *);
 /**
- * Write first startup and explicit root entry restart. Mark initialized before fallible setup so
- * terminal disposal can unwind; resume bypasses interface preparation.
+ * Write explicit first-root execution and existing-root entry/resume admission; fresh
+ * interfaces initialize once, and accepted failures retain the lease through cleanup.
  */
 bool codegen_emit_host_initialize(NativeScaffold *, FILE *);
 /**

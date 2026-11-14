@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief Emit exact nominal field offsets and the retained pool registry.
+ * @brief Emit exact nominal field offsets and the immutable field descriptors.
  *
  * [RT-02](../../../spec/implementation/runtime.md#rt-02)
  * C offsetof and real storage types provide layout truth; references retain declared handle locations rather than hidden native edges.
@@ -8,7 +8,7 @@
 #include "codegen/internal.h"
 
 /**
- * Write field kind/type/offsetof descriptors and the exact executable type registry from
+ * Write field kind/type/offsetof descriptors for context-local pool types from
  * validated model members. A false stream result leaves only unpublished partial bytes.
  */
 bool codegen_emit_descriptors(NativeScaffold *scaffold, FILE *output) {
@@ -26,9 +26,5 @@ bool codegen_emit_descriptors(NativeScaffold *scaffold, FILE *output) {
             if (fputs("};\n", output) == EOF) { return false; }
         }
     }
-    if (fputs("static AmaObjectType *ama_project_registry[] = {\n", output) == EOF) { return false; }
-    for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
-        if (type->plan->requires_pool && fprintf(output, "    &%s_Type,\n", type->names[SCAFFOLD_WRITE]->internal_name) < 0) { return false; }
-    }
-    return fputs("};\n", output) != EOF;
+    return true;
 }

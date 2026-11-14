@@ -1392,10 +1392,28 @@ Contracts: [generated C](spec/implementation/compiler.md#generated-project-organ
   unowned output and replacement-prefix rollback. Coverage/local links passed;
   final Doxygen reproducibility is checked before commit. No second frontend or
   additional compatibility path was introduced.
-- [ ] **T061 — Expose initial host completion/failure/disposal.** Needs: T060.
+- [x] **T061 — Expose initial host completion/failure/disposal.** Needs: T060.
   Connect explicit context APIs to generated code and launcher policy. Test
   startup failure, normal completion, prohibited reentry and independent contexts
   with no process-global mutable runtime state.
+  Evidence: [generated isolated contexts](docs/implementation/generated-contexts.md).
+  Generated immutable schemas now feed the existing context factory/execution
+  leases; assembly-global mutable descriptors/constants and the single-owner
+  guard are removed. First-root execution constructs its interface once; later
+  entry/resume uses checked admission. Rejected resume leaves a healthy host
+  available, while accepted failure cleans its context. Pre-record allocation
+  failures report the explicit source operation without allocating. Actual C
+  threads overlap two generated executions and refuse same-host reentry/disposal;
+  simultaneous leases verify independent pools/constants and reject foreign
+  references with equal local triples. Live-lease disposal refusal preserves the
+  host; a Busy destructor error instead consumes it and is never retried. The
+  generated-context cases have their own independently runnable leaf. Every first-root allocation failure is
+  cleaned. Full strict tests, focused contexts, runtime lifecycle ASan+UBSan and
+  generated-program ASan+UBSan passed, including the final independent context
+  leaf and accepted Busy destructor failure. The final complete strict suite
+  passed after the empty-project compiler-warning correction. All 1094 maintained inputs have coverage;
+  final Doxygen reproducibility is checked before commit. Only the existing
+  monotone context-ID issuance frontier is shared identity bookkeeping.
 - [ ] **T062 — Accept the minimal runnable slice.** Needs: T061. Publish a small
   complete transitive Ama/native project with stable-address pool growth, return
   routing and cleanup. Compile/run it under supported flags and relevant sanitizers;

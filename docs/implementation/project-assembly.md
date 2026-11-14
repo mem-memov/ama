@@ -70,6 +70,5 @@ forbidden Ama-function rejection by `make -C tests/unit/codegen/execution`.
 Per-file coverage for the body emitter, assembly harness and included translation
 probe is registered in the documentation coverage inventory. General codegen
 execution guards remain in force. T057 onward supplies additional dispatch and
-binding acceptance; independent generated context storage remains T061. The
-current host parameter does not claim that retained mutable descriptors are
-already context-local.
+binding acceptance. [T061](generated-contexts.md) now connects independent
+generated context storage through the existing runtime context factory.

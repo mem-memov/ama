@@ -34,6 +34,15 @@ typedef struct {
     AmaStatus status;
 } AmaContextOutcome;
 
+/** Admit first execution of an explicitly selected type in a context with no roots.
+ * Construct its root once in final pool storage, including interface defaults;
+ * do not prepare that fresh interface a second time. Admission rejection leaves
+ * this empty owner and context unchanged. After accepted construction, including
+ * failure, always finish the execution; a failed root has an empty local identity.
+ */
+AmaStatus ama_context_execution_start(AmaContextRegistry *, uint64_t, uint64_t,
+    AmaContextExecution *);
+
 /** Admit a checked selected root, then prepare entry or consume its resume selector.
  * Nonzero return rejects admission without changing Ama state or this empty owner.
  * Zero return transfers one lease into execution even when preparation failed;

@@ -35,6 +35,11 @@ static void it_builds_and_runs_a_verified_executable_through_the_real_command(vo
     setup_test();
     char *arguments[] = {AMA_EXECUTABLE,"--emit","project",".main","--out","generated/complete","--sdk",TEST_SDK,"--compile",NULL};
     int result = run_compiler_arguments(arguments);
+    if (result != EXIT_SUCCESS) {
+        char diagnostic[8192];
+        read_stream(errors, diagnostic, sizeof(diagnostic));
+        fprintf(stderr, "Verified CLI compilation failed: %s\n", diagnostic);
+    }
     assert(result == EXIT_SUCCESS);
     struct stat metadata;
     int found = stat("generated/complete/program",&metadata);

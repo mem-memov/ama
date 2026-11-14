@@ -1,9 +1,9 @@
 /**
  * @file
- * @brief Emit checked aligned pool setup and explicitly present lifecycle hooks.
+ * @brief Emit immutable aligned context type schemas and explicitly present lifecycle hooks.
  *
  * [LIFE-01](../../../spec/implementation/native-interface.md#life-01)
- * Derive native offset and alignment from real generated C storage. Initialization stops on the first invalid type setup.
+ * Derive native offset and alignment from real generated C storage. The existing context factory owns and validates mutable pool descriptors.
  */
 #include "codegen/internal.h"
 
@@ -12,11 +12,11 @@
  * for Ama types. Condition/index remain separate protocols.
  */
 static bool hooks(FILE *output, const ScaffoldType *type) {
-    if (type->plan->type->module->syntax.sections.kind != MODULE_NATIVE) { return fputs("(AmaPayloadHooks){0}", output) != EOF; }
+    if (type->plan->type->module->syntax.sections.kind != MODULE_NATIVE) { return fputs("{0}", output) != EOF; }
     const char *name = type->names[SCAFFOLD_WRITE]->internal_name;
     const char *const fields[] = {"initialize", "destroy", "literal", "clone"};
     const char *const roles[] = {"Default", "Destroy", "Literal", "Clone"};
-    if (fputs("(AmaPayloadHooks){", output) == EOF) { return false; }
+    if (fputs("{", output) == EOF) { return false; }
     for (size_t operation = 0; operation < 4; operation++) {
         if (type->plan->type->abi.bindings[operation].present
             && fprintf(output, ".%s = %s_%s,", fields[operation], name, roles[operation]) < 0) { return false; }
@@ -25,29 +25,26 @@ static bool hooks(FILE *output, const ScaffoldType *type) {
 }
 
 /**
- * Emit checked pool initialization with real sizeof, _Alignof and offsetof, explicit
- * slot/generation defaults and typed hooks. Generated startup stops on the first failure.
+ * Emit immutable context schemas with actual C layout, explicit slot/generation limits
+ * and typed hooks. The existing context factory validates and owns each mutable pool.
  */
 bool codegen_emit_type_setup(NativeScaffold *scaffold, FILE *output) {
-    if (fputs("static AmaStatus ama_project_prepare_types(AmaWorld *world) {\n"
-            "    AmaStatus status = ama_status_success();\n    (void)world;\n", output) == EOF) { return false; }
+    if (fputs("static const AmaContextType ama_project_types[] = {\n", output) == EOF) { return false; }
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
         if (!type->plan->requires_pool) { continue; }
         const char *name = type->names[SCAFFOLD_WRITE]->internal_name;
-        if (fprintf(output, "    _Static_assert(offsetof(%s_Storage, payload) <= sizeof(%s_Storage), \"Invalid native payload layout\");\n"
-                "    status = ama_object_type_init_aligned(&%s_Type, world->allocator, UINT64_C(%zu),\n"
-                "        sizeof(%s_Storage), _Alignof(%s_Storage), 8, UINT64_MAX, ",
-                name, name, name, codegen_type_id(scaffold, type), name, name) < 0) { return false; }
-        if (type->members == NULL) {
-            if (fputs("NULL", output) == EOF) { return false; }
-        } else if (fprintf(output, "%s_Fields", name) < 0) { return false; }
-        if (fprintf(output, ", %zu, offsetof(%s_Storage, payload), ", type->plan->field_count, name) < 0
-            || !hooks(output, type) || fputs(");\n    if (status.code != AMA_OK) { return status; }\n", output) == EOF) { return false; }
-        /* Program descriptors retain both optional conversion hooks through typed uses. */
-        for (AbiOperation operation = ABI_CONDITION; operation <= ABI_INDEX; operation++) {
-            if (type->plan->type->abi.bindings[operation].present && fprintf(output, "    (void)%s_%s;\n", name,
-                    operation == ABI_CONDITION ? "Condition" : "Index") < 0) { return false; }
-        }
+        if (fprintf(output, "{.type_id=UINT64_C(%zu), .size=sizeof(%s_Storage), .alignment=_Alignof(%s_Storage),\n"
+                ".slots_per_block=8, .generation_limit=UINT64_MAX, .native_offset=offsetof(%s_Storage,payload),\n"
+                ".operation=UINT64_C(%zu), .field_count=%zu, .hooks=",
+                codegen_type_id(scaffold, type), name, name, name,
+                type->plan->complete->selector, type->plan->field_count) < 0
+            || !hooks(output, type)) { return false; }
+        if (type->members != NULL && fprintf(output, ", .fields=%s_Fields, .declarations=%s_ProgramFields", name, name) < 0) { return false; }
+        if (type->plan->type->abi.bindings[ABI_CONDITION].present
+            && fprintf(output, ", .condition=%s_Condition", name) < 0) { return false; }
+        if (type->plan->type->abi.bindings[ABI_INDEX].present
+            && fprintf(output, ", .index=%s_Index", name) < 0) { return false; }
+        if (fputs("},\n", output) == EOF) { return false; }
     }
-    return fputs("    return status;\n}\n", output) != EOF;
+    return fputs("};\n", output) != EOF;
 }

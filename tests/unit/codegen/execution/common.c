@@ -30,6 +30,10 @@ static int malformed_lifecycle = -1;
 static const char *malformed_lifecycle_module;
 /** Return a coherent secondary cleanup error for the selected worker fixture. */
 static bool fail_native_destroy;
+/** Return Busy as an accepted destructor failure, distinct from admission refusal. */
+static bool busy_native_destroy;
+/** Test-only synchronous host barrier for genuinely overlapping generated contexts. */
+static bool native_execution_gate;
 
 /**
  * Create the explicit native interface/body/ABI companion set used by this leaf. The caller
@@ -94,6 +98,10 @@ static void executable_native(const ScaffoldType *type) {
         written = fputs("fault_return_link();\n", body);
         assert(written != EOF);
     }
+    if (native_execution_gate && strcmp(type->plan->type->module->source->logical_path, ".gate") == 0) {
+        written = fputs("test_execution_gate();\n", body);
+        assert(written != EOF);
+    }
     written = fputs(malformed_native_entry ? "*status=ama_status_make(AMA_OK,NULL,1); }\n"
         : "*status=ama_status_success(); }\n", body);
     assert(written != EOF);
@@ -125,7 +133,9 @@ static void executable_native(const ScaffoldType *type) {
         }
         if (fail_native_destroy && operation == ABI_DESTROY
             && strcmp(type->plan->type->module->source->logical_path, ".worker") == 0) {
-            implementation = " { assert(state->address==state); return ama_status_make(AMA_NATIVE_FAILURE,\"cleanup\",7); }\n";
+            implementation = busy_native_destroy
+                ? " { assert(state->address==state); return ama_status_make(AMA_BUSY,\"cleanup\",7); }\n"
+                : " { assert(state->address==state); return ama_status_make(AMA_NATIVE_FAILURE,\"cleanup\",7); }\n";
         }
         written = fputs(implementation, body);
         assert(written != EOF);
@@ -217,6 +227,15 @@ static void execute_project(const char *main_source, const char *expected, bool 
     while ((received = read(channel[0], bytes + count, sizeof(bytes) - count - 1)) > 0) { count += (size_t)received; }
     close(channel[0]);
     waited = waitpid(process, &status, 0);
+    if (waited == process && !WIFEXITED(status)) {
+        FILE *diagnostics = fopen("generated/errors.txt", "rb");
+        if (diagnostics != NULL) {
+            char chunk[1024];
+            size_t length;
+            while ((length = fread(chunk, 1, sizeof(chunk), diagnostics)) != 0) { (void)fwrite(chunk, 1, length, stderr); }
+            (void)fclose(diagnostics);
+        }
+    }
     assert(waited == process && WIFEXITED(status));
     assert((WEXITSTATUS(status) == 0) == success);
     if (strcmp(bytes, expected) != 0) { fprintf(stderr, "Unexpected output: %s\n", bytes); }

@@ -3,7 +3,7 @@
  * @brief Emit declared handle/list fields followed by actual native payload storage.
  *
  * [RT-02](../../../spec/implementation/runtime.md#rt-02)
- * Types without pools allocate no instance storage. Current type descriptors remain assembly globals until the T061 context migration.
+ * Types without pools allocate no instance storage. Mutable type descriptors belong to the owning runtime context.
  */
 #include "codegen/internal.h"
 
@@ -23,7 +23,7 @@ bool codegen_emit_storage(NativeScaffold *scaffold, FILE *output) {
         if (type->plan->type->module->syntax.sections.kind == MODULE_NATIVE) {
             if (fprintf(output, "    %s_State payload;\n", type->native_prefix->internal_name) < 0) { return false; }
         } else if (fputs("    unsigned char payload;\n", output) == EOF) { return false; }
-        if (fprintf(output, "} %s_Storage;\nstatic AmaObjectType %s_Type;\n", name, name) < 0) { return false; }
+        if (fprintf(output, "} %s_Storage;\n", name) < 0) { return false; }
     }
     return true;
 }
