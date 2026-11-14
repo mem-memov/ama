@@ -15,6 +15,7 @@
 #define AMA_INTEGER_OBSERVE_LITERAL() ((void)0)
 #define AMA_INTEGER_OBSERVE_SIZE() ((void)0)
 #include "integer+/native/storage.c"
+#include "integer+/native/transport.c"
 #include "integer+/native/literal.c"
 #include "integer+/native/conversion.c"
 #include "integer+/native/arithmetic.c"

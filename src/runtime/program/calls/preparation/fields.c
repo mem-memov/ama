@@ -19,7 +19,7 @@ AmaStatus ama_call_check_fields(AmaProgram *program, AmaHandle target, const Ama
         status = ama_program_select(program, target, &access, false, &value);
         if (status.code != AMA_OK) { break; }
         for (size_t index = 0; index < input_count; index++) {
-            if (inputs[index].input->source.kind == AMA_SOURCE_LITERAL) { continue; }
+            if (inputs[index].input->source.kind == AMA_SOURCE_LITERAL || inputs[index].input->source.kind == AMA_SOURCE_PREPARED) { continue; }
             if (value.list != NULL && inputs[index].value.list == value.list) { status = ama_status_make(AMA_BUSY, NULL, 0); break; }
         }
         if (status.code != AMA_OK) { break; }

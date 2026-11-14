@@ -30,6 +30,9 @@ AmaStatus ama_construction_payload(AmaObjectOperation *operation, AmaObjectWork 
         if (type->hooks.clone != NULL) { status = type->hooks.clone(payload, work->recipe->native_source); }
     } else if (kind == AMA_CONSTRUCT_SIZE && type->hooks.initialize != NULL && work->recipe->from_size != NULL) {
         status = work->recipe->from_size(payload, work->recipe->size_value);
+    } else if (kind == AMA_CONSTRUCT_TRANSPORT && type->hooks.initialize != NULL
+        && work->recipe->from_transport != NULL && work->recipe->transport_input != NULL) {
+        status = work->recipe->from_transport(payload, work->recipe->transport_input);
     } else { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
     if (status.code == AMA_OK) { work->cell->metadata.service.activity = AMA_INSTANCE_READY; }
     return ama_lifetime_finish_native(&work->cell->metadata.lifetime,

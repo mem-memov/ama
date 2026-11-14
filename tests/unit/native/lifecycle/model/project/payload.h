@@ -42,6 +42,8 @@ AmaStatus payload_literal(Payload *destination, AmaByteView literal);
 AmaStatus payload_clone(Payload *destination, const Payload *source);
 /** Construct directly from bounded host metadata without calling the default or literal hook. */
 AmaStatus payload_from_size(Payload *destination, size_t value);
+/** Construct the compiler-owned transport fixture without another registered native hook. */
+AmaStatus payload_from_transport(Payload *destination);
 /**
  * Deliberately construct then release its own partial resource and return allocation failure,
  * proving failed constructors must not be destroyed again.

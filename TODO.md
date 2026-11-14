@@ -2023,7 +2023,7 @@ Contracts: [EMBED-01–EMBED-08](spec/implementation/c-library.md),
   headers, prose links and Doxygen generation pass. Final reproducibility is
   checked before commit. Typed snapshots/entry and artifact packaging remain
   T126–T128; no compiled library artifact is claimed by this lifecycle generator.
-- [ ] **T126 — Implement typed inputs and independent result snapshots.** Needs:
+- [x] **T126 — Implement typed inputs and independent result snapshots.** Needs:
   T069, T084, T086, T125. Generate checked factories, argument preparation and
   public value reads using the documented supported schemas; publish outputs
   only after successful preparation. No consumer receives internal Ama addresses,
@@ -2031,6 +2031,26 @@ Contracts: [EMBED-01–EMBED-08](spec/implementation/c-library.md),
   malformed/schema-mismatched data, overflow/allocation rollback, repeated retained
   reads and snapshots that remain usable after instance/context disposal. Verify
   a failure snapshot contains both its condition value and owned description.
+  Evidence: [typed C transport](docs/implementation/c-library-transport.md).
+  Exact scaffold/schema mappings generate private typed codecs, input-shape
+  predicates and synchronous prepared recipes without default-then-overwrite
+  construction. Public retained reads check export-bound controls, result
+  availability and distinct empty destinations, prepare independent snapshots
+  privately and publish only the complete set. All scalar profiles and every
+  supported scalar-list product have explicit view/clone/release ownership;
+  canonical binary arbitrary precision never narrows or uses decimal conversion.
+  Real generated C consumers check overwritten input buffers, snapshots after
+  instance/context disposal, failure condition/description transitions, empty and
+  embedded-NUL values, schema declarations before dependencies, incompatible C
+  schema arguments, busy/skipped outputs, output aliases and retained positions.
+  Every measured list-clone/read allocation is failed with exact ownership and
+  unpublished-output assertions. Native construction tests cover all magnitude
+  lengths through 257 octets and malformed-success cleanup credits; lifecycle
+  reference scenarios include the transport constructor. Full strict tests,
+  ASan/UBSan of generators and generated C (leak detection disabled), all 1475
+  maintained input coverage, standalone headers, links and Doxygen generation
+  pass; final reproducibility is checked before commit. Public entry/resume
+  execution and component artifacts remain T127/T128.
 - [ ] **T127 — Implement exported entry, resume and refusal outcomes.** Needs:
   T067, T074, T126. Preserve the three Ama execution outcomes and report invalid
   C requests or operation refusals through the separate API result. Test restart

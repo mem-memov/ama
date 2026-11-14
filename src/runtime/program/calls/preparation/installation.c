@@ -26,6 +26,10 @@ static AmaStatus ama_call_install(AmaProgram *program, AmaHandle target, size_t 
     } else if (input != NULL && input->input->source.kind == AMA_SOURCE_LITERAL) {
         literal = (AmaRecipe){.constructor = AMA_CONSTRUCT_LITERAL, .literal = input->input->source.literal};
         recipe.children = &literal;
+    } else if (input != NULL && input->input->source.kind == AMA_SOURCE_PREPARED) {
+        if (input->input->source.prepared == NULL || input->input->source.type_id != destination.type_id) {
+            status = ama_status_make(AMA_TYPE_MISMATCH, NULL, 0);
+        } else { recipe = *input->input->source.prepared; }
     } else if (input != NULL) { source = &input->value; }
     if (status.code == AMA_OK) { status = ama_program_store(program, &destination, source, &recipe, &operation); }
     ama_object_unprotect(&operation);

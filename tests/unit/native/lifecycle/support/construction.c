@@ -9,7 +9,7 @@
 #define AMA_TEST_LIFECYCLE_CONSTRUCTION_C
 
 /**
- * Invoke exactly the scenario-selected default/literal/clone/size constructor; a clone source has its
+ * Invoke exactly the scenario-selected default/literal/clone/size/transport constructor; a clone source has its
  * own explicit cleanup and cannot replace the primary failure.
  */
 static AmaStatus construct_native(Payload *destination, AmaConstructorKind kind) {
@@ -21,6 +21,7 @@ static AmaStatus construct_native(Payload *destination, AmaConstructorKind kind)
         return payload_literal(destination, (AmaByteView) {literal, 1});
     }
     if (kind == AMA_CONSTRUCT_SIZE) { return payload_from_size(destination, 7); }
+    if (kind == AMA_CONSTRUCT_TRANSPORT) { return payload_from_transport(destination); }
     Payload source;
     AmaStatus status = payload_initialize(&source);
     if (!ama_status_is_success(status)) {

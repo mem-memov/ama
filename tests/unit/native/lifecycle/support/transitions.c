@@ -22,7 +22,7 @@ static void expect_no_reconstruction(AmaLifetime *lifetime) {
 static void it_rejects_lifecycle_reentry_without_mutating_resource_credits(void) {
     AmaLifetime lifetime = {0};
     AmaLifetime before = lifetime;
-    const AmaConstructorKind invalid[] = {(AmaConstructorKind)-1, (AmaConstructorKind)(AMA_CONSTRUCT_SIZE + 1)};
+    const AmaConstructorKind invalid[] = {(AmaConstructorKind)-1, (AmaConstructorKind)(AMA_CONSTRUCT_TRANSPORT + 1)};
     for (size_t index = 0; index < 2; index++) {
         assert(ama_lifetime_begin(&lifetime, 1, invalid[index]).code == AMA_INVALID_STATE);
         expect_same_lifetime(lifetime, before);
@@ -112,7 +112,7 @@ static void it_preserves_exact_primary_status_through_distinct_cleanup_failures(
 
 /** Fail every real allocation in every constructor path, including the clone's temporary source. */
 static void it_unwinds_every_actual_constructor_allocation_without_losing_resources(void) {
-    for (int kind = AMA_CONSTRUCT_DEFAULT; kind <= AMA_CONSTRUCT_SIZE; kind++) {
+    for (int kind = AMA_CONSTRUCT_DEFAULT; kind <= AMA_CONSTRUCT_TRANSPORT; kind++) {
         for (size_t children = 0; children <= 3; children++) {
             Model model;
             Scenario scenario = {children, (AmaConstructorKind)kind, SIZE_MAX, 0};

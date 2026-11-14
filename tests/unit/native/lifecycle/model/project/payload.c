@@ -90,3 +90,8 @@ AmaStatus payload_destroy(Payload *payload) {
     payload_release_failed(payload);
     return ama_status_make(code, NULL, 0);
 }
+
+/** Construct one native resource through the explicitly selected transport fixture. */
+AmaStatus payload_from_transport(Payload *destination) {
+    return allocate_payload(destination, 7, AMA_CONSTRUCT_TRANSPORT);
+}

@@ -14742,6 +14742,11 @@
         "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
         "command": "make -C tests/unit/runtime/library",
         "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
       }
     ]
   },
@@ -16181,6 +16186,21 @@
         "case": "it_preserves_exact_primary_status_through_distinct_cleanup_failures",
         "command": "make -C tests/unit/native/lifecycle/model",
         "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_constructs_prepared_transport_scalars_and_lists_without_default_overwrite",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_preserves_old_field_when_a_prepared_transport_decoder_fails",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
       }
     ]
   },
@@ -16408,6 +16428,21 @@
         "case": "it_preserves_exact_primary_status_through_distinct_cleanup_failures",
         "command": "make -C tests/unit/native/lifecycle/model",
         "source": "tests/unit/native/lifecycle/model/main.c"
+      },
+      {
+        "case": "it_constructs_prepared_transport_scalars_and_lists_without_default_overwrite",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_preserves_old_field_when_a_prepared_transport_decoder_fails",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
       }
     ]
   },
@@ -20385,6 +20420,21 @@
         "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
         "command": "make -C tests/unit/runtime/traversal-copy",
         "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_constructs_prepared_transport_scalars_and_lists_without_default_overwrite",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_preserves_old_field_when_a_prepared_transport_decoder_fails",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
       }
     ]
   },
@@ -21772,6 +21822,21 @@
         "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
         "command": "make -C tests/unit/runtime/library",
         "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_prepared_transport_scalars_and_lists_without_default_overwrite",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_preserves_old_field_when_a_prepared_transport_decoder_fails",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
       }
     ]
   },
@@ -22964,6 +23029,21 @@
         "case": "it_returns_yielded_targets_without_copying_the_active_caller_chain",
         "command": "make -C tests/unit/runtime/calls",
         "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_constructs_prepared_transport_scalars_and_lists_without_default_overwrite",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_preserves_old_field_when_a_prepared_transport_decoder_fails",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
       }
     ]
   },
@@ -23035,6 +23115,21 @@
         "case": "it_returns_yielded_targets_without_copying_the_active_caller_chain",
         "command": "make -C tests/unit/runtime/calls",
         "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_constructs_prepared_transport_scalars_and_lists_without_default_overwrite",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_preserves_old_field_when_a_prepared_transport_decoder_fails",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
       }
     ]
   },
@@ -23192,6 +23287,21 @@
         "case": "it_returns_yielded_targets_without_copying_the_active_caller_chain",
         "command": "make -C tests/unit/runtime/calls",
         "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_constructs_prepared_transport_scalars_and_lists_without_default_overwrite",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_preserves_old_field_when_a_prepared_transport_decoder_fails",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
       }
     ]
   },
@@ -23263,6 +23373,21 @@
         "case": "it_returns_yielded_targets_without_copying_the_active_caller_chain",
         "command": "make -C tests/unit/runtime/calls",
         "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_constructs_prepared_transport_scalars_and_lists_without_default_overwrite",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_preserves_old_field_when_a_prepared_transport_decoder_fails",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
       }
     ]
   },
@@ -24494,6 +24619,21 @@
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
         "command": "make -C tests/unit/codegen/traversal-layout",
         "source": "tests/unit/codegen/traversal-layout/main.c"
+      },
+      {
+        "case": "it_constructs_prepared_transport_scalars_and_lists_without_default_overwrite",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_preserves_old_field_when_a_prepared_transport_decoder_fails",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
       }
     ]
   },
@@ -26257,6 +26397,21 @@
         "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
         "command": "make -C tests/unit/runtime/list-insertion",
         "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_constructs_prepared_transport_scalars_and_lists_without_default_overwrite",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_preserves_old_field_when_a_prepared_transport_decoder_fails",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
       }
     ]
   },
@@ -40726,6 +40881,16 @@
         "case": "it_rejects_malformed_counted_literals_without_live_partial_payloads",
         "command": "make -C tests/unit/native/abi/integer",
         "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_constructs_canonical_binary_magnitudes_without_narrowing_or_borrowing",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
       }
     ]
   },
@@ -40787,6 +40952,16 @@
         "case": "it_preserves_sources_and_the_old_result_after_preparation_failure",
         "command": "make -C tests/unit/native/abi/integer-arithmetic",
         "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_constructs_canonical_binary_magnitudes_without_narrowing_or_borrowing",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
       }
     ]
   },
@@ -45576,6 +45751,21 @@
         "case": "it_returns_yielded_targets_without_copying_the_active_caller_chain",
         "command": "make -C tests/unit/runtime/calls",
         "source": "tests/unit/runtime/calls/main.c"
+      },
+      {
+        "case": "it_constructs_prepared_transport_scalars_and_lists_without_default_overwrite",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_preserves_old_field_when_a_prepared_transport_decoder_fails",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
       }
     ]
   },
@@ -76209,6 +76399,16 @@
         "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
         "command": "make -C tests/unit/codegen/library-compositions",
         "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_constructs_canonical_binary_magnitudes_without_narrowing_or_borrowing",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
       }
     ]
   },
@@ -76350,6 +76550,16 @@
         "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
         "command": "make -C tests/unit/codegen/library-compositions",
         "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_constructs_canonical_binary_magnitudes_without_narrowing_or_borrowing",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
       }
     ],
     "standalone_header_command": [
@@ -79357,6 +79567,11 @@
         "case": "it_links_public_lifecycle_to_real_generated_contexts",
         "command": "make -C tests/unit/library/lifecycle",
         "source": "tests/unit/library/lifecycle/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
       }
     ],
     "standalone_header_command": [
@@ -79969,6 +80184,11 @@
         "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
         "command": "make -C tests/unit/runtime/library",
         "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
       }
     ]
   },
@@ -80925,6 +81145,16 @@
         "case": "it_rejects_unsupported_targets_before_header_publication",
         "command": "make -C tests/unit/library/header",
         "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_owns_independent_wire_snapshots_and_unwinds_every_clone_allocation",
+        "command": "make -C tests/unit/library/snapshots",
+        "source": "tests/unit/library/snapshots/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
       }
     ]
   },
@@ -81259,6 +81489,11 @@
         "case": "it_checks_destination_shapes_before_lifecycle_effects",
         "command": "make -C tests/unit/runtime/library",
         "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
       }
     ]
   },
@@ -81325,6 +81560,11 @@
         "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
         "command": "make -C tests/unit/runtime/library",
         "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
       }
     ],
     "standalone_header_command": [
@@ -81604,6 +81844,11 @@
         "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
         "command": "make -C tests/unit/runtime/library",
         "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
       }
     ]
   },
@@ -82451,6 +82696,371 @@
         "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
         "command": "make -C tests/unit/runtime/library",
         "source": "tests/unit/runtime/library/main.c"
+      }
+    ]
+  },
+  "src/library/transport/codec.h": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Generate checked native transport recipes, independent wire owners and atomic retained reads from explicit nominal schemas.",
+    "tests": [
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/library/transport/codecs.c": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Generate checked native transport recipes, independent wire owners and atomic retained reads from explicit nominal schemas.",
+    "tests": [
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
+      }
+    ]
+  },
+  "src/library/transport/codecs.h": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Generate checked native transport recipes, independent wire owners and atomic retained reads from explicit nominal schemas.",
+    "tests": [
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/library/transport/encode-list.c": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Generate checked native transport recipes, independent wire owners and atomic retained reads from explicit nominal schemas.",
+    "tests": [
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
+      }
+    ]
+  },
+  "src/library/transport/inputs.c": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Generate checked native transport recipes, independent wire owners and atomic retained reads from explicit nominal schemas.",
+    "tests": [
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
+      }
+    ]
+  },
+  "src/library/transport/internal.h": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Generate checked native transport recipes, independent wire owners and atomic retained reads from explicit nominal schemas.",
+    "tests": [
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
+      },
+      {
+        "case": "it_owns_independent_wire_snapshots_and_unwinds_every_clone_allocation",
+        "command": "make -C tests/unit/library/snapshots",
+        "source": "tests/unit/library/snapshots/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/library/transport/list.c": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Generate checked native transport recipes, independent wire owners and atomic retained reads from explicit nominal schemas.",
+    "tests": [
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
+      },
+      {
+        "case": "it_owns_independent_wire_snapshots_and_unwinds_every_clone_allocation",
+        "command": "make -C tests/unit/library/snapshots",
+        "source": "tests/unit/library/snapshots/main.c"
+      }
+    ]
+  },
+  "src/library/transport/native.c": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Generate checked native transport recipes, independent wire owners and atomic retained reads from explicit nominal schemas.",
+    "tests": [
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
+      }
+    ]
+  },
+  "src/library/transport/operations.c": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Generate checked native transport recipes, independent wire owners and atomic retained reads from explicit nominal schemas.",
+    "tests": [
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
+      },
+      {
+        "case": "it_owns_independent_wire_snapshots_and_unwinds_every_clone_allocation",
+        "command": "make -C tests/unit/library/snapshots",
+        "source": "tests/unit/library/snapshots/main.c"
+      }
+    ]
+  },
+  "src/library/transport/read.c": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Generate checked native transport recipes, independent wire owners and atomic retained reads from explicit nominal schemas.",
+    "tests": [
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
+      }
+    ]
+  },
+  "src/library/transport/recipes.c": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Generate checked native transport recipes, independent wire owners and atomic retained reads from explicit nominal schemas.",
+    "tests": [
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
+      }
+    ]
+  },
+  "src/library/transport/scalar.c": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Generate checked native transport recipes, independent wire owners and atomic retained reads from explicit nominal schemas.",
+    "tests": [
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
+      },
+      {
+        "case": "it_owns_independent_wire_snapshots_and_unwinds_every_clone_allocation",
+        "command": "make -C tests/unit/library/snapshots",
+        "source": "tests/unit/library/snapshots/main.c"
+      }
+    ]
+  },
+  "src/library/transport/shapes.c": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Generate checked native transport recipes, independent wire owners and atomic retained reads from explicit nominal schemas.",
+    "tests": [
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
+      },
+      {
+        "case": "it_owns_independent_wire_snapshots_and_unwinds_every_clone_allocation",
+        "command": "make -C tests/unit/library/snapshots",
+        "source": "tests/unit/library/snapshots/main.c"
+      }
+    ]
+  },
+  "src/library/transport/write.c": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Generate checked native transport recipes, independent wire owners and atomic retained reads from explicit nominal schemas.",
+    "tests": [
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
+      },
+      {
+        "case": "it_owns_independent_wire_snapshots_and_unwinds_every_clone_allocation",
+        "command": "make -C tests/unit/library/snapshots",
+        "source": "tests/unit/library/snapshots/main.c"
+      }
+    ]
+  },
+  "src/runtime/library/instances/select.c": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Compose real typed standard-native codecs, C shape admission and independent retained snapshots with complete failure cleanup.",
+    "tests": [
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/integer+/native/transport.c": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Construct canonical arbitrary-precision C magnitudes with one fresh allocation and no narrowing or retained input borrow.",
+    "tests": [
+      {
+        "case": "it_constructs_canonical_binary_magnitudes_without_narrowing_or_borrowing",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/snapshots/Makefile": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Compile public-only C consumers and verify independent snapshot ownership and every partial-clone allocation failure.",
+    "tests": [
+      {
+        "case": "it_owns_independent_wire_snapshots_and_unwinds_every_clone_allocation",
+        "command": "make -C tests/unit/library/snapshots",
+        "source": "tests/unit/library/snapshots/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/snapshots/main.c": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Compile public-only C consumers and verify independent snapshot ownership and every partial-clone allocation failure.",
+    "tests": [
+      {
+        "case": "it_owns_independent_wire_snapshots_and_unwinds_every_clone_allocation",
+        "command": "make -C tests/unit/library/snapshots",
+        "source": "tests/unit/library/snapshots/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/transport/Makefile": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Compose real typed standard-native codecs, C shape admission and independent retained snapshots with complete failure cleanup.",
+    "tests": [
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/transport/bridge.c": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Compose real typed standard-native codecs, C shape admission and independent retained snapshots with complete failure cleanup.",
+    "tests": [
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/transport/common.c": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Compose real typed standard-native codecs, C shape admission and independent retained snapshots with complete failure cleanup.",
+    "tests": [
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/transport/main.c": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Compose real typed standard-native codecs, C shape admission and independent retained snapshots with complete failure cleanup.",
+    "tests": [
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/transport/project/consumer.c": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Compose real typed standard-native codecs, C shape admission and independent retained snapshots with complete failure cleanup.",
+    "tests": [
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/abi/integer/transport.c": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Construct canonical arbitrary-precision C magnitudes with one fresh allocation and no narrowing or retained input borrow.",
+    "tests": [
+      {
+        "case": "it_constructs_canonical_binary_magnitudes_without_narrowing_or_borrowing",
+        "command": "make -C tests/unit/native/abi/integer",
+        "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
+        "command": "make -C tests/unit/library/transport",
+        "source": "tests/unit/library/transport/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/call-preparation/transport.c": {
+    "contract": "docs/implementation/c-library-transport.md",
+    "purpose": "Verify direct transport construction, ordered defaults, list recipes and cleanup credits before field replacement.",
+    "tests": [
+      {
+        "case": "it_constructs_prepared_transport_scalars_and_lists_without_default_overwrite",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_preserves_old_field_when_a_prepared_transport_decoder_fails",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
       }
     ]
   }

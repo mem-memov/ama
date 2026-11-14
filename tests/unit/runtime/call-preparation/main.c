@@ -173,11 +173,15 @@ static void it_installs_one_constructor_per_field_and_retains_the_successful_pre
  * Execute every named assertion case selected by this leaf; the recursive harness owns process
  * status and success-only cleanup.
  */
+#include "transport.c"
+
 void run(void) {
     it_selects_indexed_sources_once_in_text_order_before_acquisition();
     it_keeps_repeated_sources_protected_across_distinct_field_commits();
     it_rejects_same_list_and_empty_nested_list_container_overlap_before_construction();
     it_installs_one_constructor_per_field_and_retains_the_successful_prefix();
+    it_constructs_prepared_transport_scalars_and_lists_without_default_overwrite();
+    it_preserves_old_field_when_a_prepared_transport_decoder_fails();
 }
 
 /**

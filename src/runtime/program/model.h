@@ -5,6 +5,9 @@
  * [ARCH-03](../../../spec/implementation/compiler.md#arch-03)
  * [REF-01](../../../spec/language/values-and-references.md#ref-01)
  * distinguishes current identity from field selection: self has no payload access tree.
+ * [EMBED-03](../../../spec/implementation/c-library.md#embed-03) carries
+ * prepared host inputs only through synchronous admitted entry construction,
+ * separately from ordinary Ama field/shared sources and continuation storage.
  * All descriptors are borrowed immutable generated data; condition/index callbacks do not imply universal truth or integer conversion.
  * [FLOW-05](../../../spec/language/lists.md#flow-05) Resolved binding descriptors and scope preorder retain lexical identity independently of user spelling.
  */
@@ -16,7 +19,7 @@ struct AmaProgramForeachPlan;
 struct AmaProgramForeachScope;
 
 /** Resolved source category; shared immutable storage and a standalone current-instance reference are distinct from field access and literal bytes. */
-typedef enum { AMA_SOURCE_LOCAL, AMA_SOURCE_SHARED, AMA_SOURCE_LITERAL, AMA_SOURCE_SELF } AmaProgramSourceKind;
+typedef enum { AMA_SOURCE_LOCAL, AMA_SOURCE_SHARED, AMA_SOURCE_LITERAL, AMA_SOURCE_SELF, AMA_SOURCE_PREPARED } AmaProgramSourceKind;
 /** Borrowed resolved field selection and optional nested index access. No source-name lookup or heuristic binding occurs at runtime. */
 typedef struct AmaProgramAccess {
     size_t field;
@@ -34,6 +37,11 @@ typedef struct {
     AmaByteView literal;
     bool acquire;
     bool continuation;
+    /** Compiler-owned C-boundary recipe, borrowed only through synchronous entry preparation.
+     * [EMBED-03](../../../spec/implementation/c-library.md#embed-03) separates
+     * admission from later typed construction; this is never an Ama source form.
+     */
+    const AmaFieldRecipe *prepared;
 } AmaProgramSource;
 /** Declared field role drives entry preparation order independently of physical C layout. */
 typedef enum { AMA_PROGRAM_PARAMETER, AMA_PROGRAM_RESULT, AMA_PROGRAM_STATE } AmaProgramRole;

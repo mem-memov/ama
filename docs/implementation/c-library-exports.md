@@ -110,8 +110,9 @@ not permission to cast arbitrary native State storage. Profile implementations
 must use their typed standard-library contracts.
 
 The JSON manifest names each profile's representation, namespaced encoder,
-decoder, release and clone declarations. The public header declares their ownership operations; the private
-transport bodies follow in T126. Metadata-only checking does not claim a compiled
+decoder, release and clone declarations. The public header declares their ownership operations; the
+[typed transport implementation](c-library-transport.md) generates private codecs
+and independent wire owners. Metadata-only checking does not claim a compiled
 codec or library artifact. Byte lengths and array lengths use the
 selected target's checked bounded-size contract. Construction must publish only
 complete independent values and release a prepared prefix on failure. Returned

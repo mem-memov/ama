@@ -48,3 +48,12 @@ AmaLibraryResult ama_library_fail(AmaLibraryService *service, AmaLibraryAccess *
     ama_library_forget_roots(service, access->record);
     return ama_library_result(AMA_LIBRARY_TECHNICAL_FAILURE, failed);
 }
+
+AmaLibraryResult ama_library_fail_at(AmaLibraryService *service, AmaLibraryAccess *access,
+    AmaStatus status, AmaHandle target, uint64_t operation) {
+    access->view.control->current=target;
+    AmaPoolCell *cell=NULL;
+    AmaStatus found=ama_program_cell(access->view.program,target,&cell);
+    if (found.code==AMA_OK) { cell->metadata.service.current_operation=operation; }
+    return ama_library_fail(service,access,status);
+}

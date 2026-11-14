@@ -54,8 +54,16 @@ static bool compile(const char *source, const char *peer, const char *output, bo
     assert(child >= 0);
     if (child == 0) {
         if (dup2(fileno(errors), STDERR_FILENO) < 0) { _exit(126); }
-        char *arguments[16] = {TEST_C_COMPILER, "-std=c11", "-Wall", "-Wextra", "-Werror", "-pedantic-errors"};
+        char *arguments[24] = {TEST_C_COMPILER, "-std=c11", "-Wall", "-Wextra", "-Werror", "-pedantic-errors"};
         size_t count = 6;
+#ifdef TEST_SANITIZERS
+        if (link) {
+            arguments[count++] = "-fsanitize=address,undefined";
+            arguments[count++] = "-fno-omit-frame-pointer";
+            arguments[count++] = "-fno-pie";
+            arguments[count++] = "-no-pie";
+        }
+#endif
         if (extra != NULL) { arguments[count++] = (char *)extra; }
         if (!link) { arguments[count++] = "-c"; }
         arguments[count++] = (char *)source;

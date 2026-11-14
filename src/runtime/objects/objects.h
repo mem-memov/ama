@@ -14,6 +14,9 @@
  * exact compiler identity, never exposed as an Ama machine-value source or cast.
  * [LIST-13](../../../spec/language/lists.md#list-13) supplies immutable lexical
  * cursor catalogs so mutations correct only matching active collection identities.
+ * [EMBED-04](../../../spec/implementation/c-library.md#embed-04) selects one
+ * compiler-owned transport constructor in fresh native storage; its C input
+ * borrow ends before body execution and never enters persistent state.
  * [CONT-04](../../../spec/language/continuations.md#cont-04) validates and maps retained compiler control cells
  * separately from native payload hooks; ordinary copies leave them inactive.
  */
@@ -54,6 +57,12 @@ struct AmaRecipe {
     const void *native_source;
     AmaStatus (*from_size)(void *, size_t);
     size_t size_value;
+    /** Compiler-owned decoder of one declared schema, borrowing C input only during construction.
+     * [EMBED-04](../../../spec/implementation/c-library.md#embed-04) constructs
+     * fresh typed payloads without first running the default constructor.
+     */
+    AmaStatus (*from_transport)(void *, const void *);
+    const void *transport_input;
     const AmaFieldRecipe *fields;
     size_t field_count;
 };

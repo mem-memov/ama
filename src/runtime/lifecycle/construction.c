@@ -11,7 +11,7 @@
 AmaStatus ama_lifetime_begin(AmaLifetime *lifetime, size_t children, AmaConstructorKind kind) {
     if (lifetime->phase != AMA_LIFETIME_FRESH || lifetime->native_live ||
         lifetime->live_children != 0 || lifetime->cleanup_active ||
-        kind < AMA_CONSTRUCT_DEFAULT || kind > AMA_CONSTRUCT_SIZE) {
+        kind < AMA_CONSTRUCT_DEFAULT || kind > AMA_CONSTRUCT_TRANSPORT) {
         return ama_status_make(AMA_INVALID_STATE, NULL, 0);
     }
     lifetime->phase = AMA_LIFETIME_CONSTRUCTING;

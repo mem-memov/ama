@@ -4,6 +4,7 @@
 #include "../header/common.c"
 #include "codegen/internal.h"
 #include "codegen/codegen.h"
+#include "library/transport/codec.h"
 /** Emit the private bridge using exact scaffold descriptor ordinals, never source-name guesses. */
 static void private_bridge(const LibraryBuild *build, NativeScaffold *assembly) {
     uint64_t types[2];
@@ -24,6 +25,9 @@ static void private_bridge(const LibraryBuild *build, NativeScaffold *assembly) 
     bool good = library_abi_write(build,out);
     assert(good);
     good = library_lifecycle_write(build,types,count,out);
+    assert(good);
+    good = library_snapshots_write(build,out); assert(good);
+    good = library_codecs_write(build,assembly,out);
     int closed = fclose(out);
     assert(good && closed == 0);
 }
@@ -33,7 +37,7 @@ static void consumer(const LibraryBuild *build) {
     assert(out != NULL);
     int written = fprintf(out,
         "#include \"public.h\"\n#include <assert.h>\n#include <string.h>\n"
-        "#define API(name) %s_ ## name\n#define CREATE %s_create\n"
+        "#define API(name) %s_ ## name\n#define CREATE %s_create\n#define READ %s_read\n#define FAILURE(name) %s_ ## name\n"
         "extern void fail_next_allocation(void);\n"
         "static void ok(API(ApiResult) result) { assert(result.code==0); assert(API(result_release)(&result)==0); }\n"
         "int main(void) {\n"
@@ -43,6 +47,9 @@ static void consumer(const LibraryBuild *build) {
         " assert(API(result_release)(&failed)==0);\n"
         " ok(API(context_create)(&a)); ok(API(context_create)(&b));\n"
         " ok(CREATE(a,&x)); ok(CREATE(b,&y));\n"
+        " FAILURE(Value) *snapshot=NULL, *second=NULL; FAILURE(Borrowed) view={0};\n"
+        " ok(READ(a,x,&snapshot)); ok(READ(a,x,&second)); assert(snapshot!=second);\n"
+        " ok(FAILURE(view)(snapshot,&view)); assert(view.failed==0 && view.description.length==0);\n"
         " API(Instance) old=x; API(Context) stale=a;\n"
         " API(ApiResult) result=API(instance_dispose)(b,&x); assert(result.code==1);\n"
         " assert(memcmp(&x,&old,sizeof(x))==0); ok((API(ApiResult)){0});\n"
@@ -52,6 +59,8 @@ static void consumer(const LibraryBuild *build) {
         " ok(API(instance_dispose)(a,&x)); assert(x.opaque[0]==0 && x.opaque[1]==0 && x.opaque[2]==0);\n"
         " result=API(instance_dispose)(a,&old); assert(result.code==1); assert(API(result_release)(&result)==0);\n"
         " ok(API(context_dispose)(&a)); assert(a.opaque[0]==0 && a.opaque[1]==0);\n"
+        " ok(FAILURE(view)(snapshot,&view)); assert(view.failed==0 && view.description.length==0);\n"
+        " ok(FAILURE(release)(&snapshot)); ok(FAILURE(release)(&second));\n"
         " result=CREATE(stale,&x); assert(result.code==1); assert(API(result_release)(&result)==0);\n"
         " ok(API(context_create)(&a)); assert(a.opaque[1]!=stale.opaque[1]);\n"
         " ok(API(context_dispose)(&a)); ok(API(context_dispose)(&b));\n"
@@ -64,7 +73,8 @@ static void consumer(const LibraryBuild *build) {
         " assert(memcmp(diagnostic.message,failed.diagnostic.message,diagnostic.length)==0);\n"
         " assert(API(result_release)(&failed)==0 && API(result_release)(&cleanup)==0 && API(diagnostic_release)(&diagnostic)==0);\n"
         " assert(API(diagnostic_release)(NULL)==1); assert(API(result_release)(NULL)==1); return 0;\n}\n",
-        build->identity->internal_name,build->exports->identity->internal_name);
+        build->identity->internal_name,build->exports->identity->internal_name,
+        build->exports->identity->internal_name,build->schemas->next->next->next->identity->internal_name);
     int closed = fclose(out);
     assert(written > 0 && closed == 0);
 }

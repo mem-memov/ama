@@ -4,6 +4,11 @@
  * construction from entry and makes admitted construction failures context-terminal.
  */
 #include "../internal.h"
+/** A fresh-root failure has no active Ama caller; preserve its construction site. */
+static AmaLibraryResult creation_failed(AmaLibraryService *service, AmaLibraryAccess *access, AmaStatus status) {
+    access->view.control->current=(AmaHandle){0};
+    return ama_library_fail(service,access,status);
+}
 AmaLibraryResult ama_library_instance_create(AmaLibraryService *service, AmaLibraryContext context,
     uint64_t exported, AmaLibraryInstance *output) {
     if (service == NULL || !service->initialized || output == NULL
@@ -22,11 +27,16 @@ AmaLibraryResult ama_library_instance_create(AmaLibraryService *service, AmaLibr
         result = ama_library_result(AMA_LIBRARY_REFUSED, access.view.status);
     } else if (ama_world_type(access.view.world, selected->type) == NULL) {
         result = ama_library_result(AMA_LIBRARY_INVALID_REQUEST, ama_status_make(AMA_TYPE_MISMATCH, NULL, 0));
-    } else if (access.record->exhausted) {
-        result = ama_library_fail(service, &access, ama_status_make(AMA_LIMIT_EXCEEDED, NULL, 0));
     } else {
+        AmaHandle previous_current=access.view.program->current;
+        access.view.program->current=(AmaHandle){0};
+        access.view.world->construction_operation=ama_world_type(access.view.world,selected->type)->source_operation;
+        if (access.record->exhausted) {
+            result=creation_failed(service,&access,ama_status_make(AMA_LIMIT_EXCEEDED,NULL,0));
+            ama_library_leave(&access); return result;
+        }
         AmaLibraryRoot *root = service->allocator.allocate(service->allocator.context, sizeof(*root));
-        if (root == NULL) { result = ama_library_fail(service, &access, ama_status_make(AMA_OUT_OF_MEMORY, NULL, 0)); }
+        if (root == NULL) { result = creation_failed(service, &access, ama_status_make(AMA_OUT_OF_MEMORY, NULL, 0)); }
         else {
             *root = (AmaLibraryRoot){.identity=access.record->next_instance,.exported=exported};
             if (access.record->next_instance == UINT64_MAX) { access.record->exhausted = true; }
@@ -34,11 +44,12 @@ AmaLibraryResult ama_library_instance_create(AmaLibraryService *service, AmaLibr
             AmaStatus status = ama_object_create(access.view.world, selected->type, NULL, &root->handle);
             if (status.code != AMA_OK) {
                 service->allocator.release(service->allocator.context, root);
-                result = ama_library_fail(service, &access, status);
+                result = creation_failed(service, &access, status);
             } else {
                 root->next = access.record->roots;
                 access.record->roots = root;
                 *output = (AmaLibraryInstance){(uintptr_t)service,context.identity,root->identity};
+                access.view.program->current=previous_current;
                 result = ama_library_result(AMA_LIBRARY_OK, ama_status_success());
             }
         }

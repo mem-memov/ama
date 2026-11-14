@@ -13,7 +13,8 @@ AmaStatus ama_call_protect_sources(AmaObjectOperation *protection, const AmaPrep
      * must observe the same pre-reset state and cannot encounter our own lease. */
     for (size_t index = 0; index < input_count; index++) {
         const AmaProgramValue *value = &inputs[index].value;
-        if (inputs[index].input->source.kind == AMA_SOURCE_LITERAL || value->constant != NULL || value->shared_list != NULL) { continue; }
+        if (inputs[index].input->source.kind == AMA_SOURCE_LITERAL
+            || inputs[index].input->source.kind == AMA_SOURCE_PREPARED || value->constant != NULL || value->shared_list != NULL) { continue; }
         if (value->form == AMA_FIELD_OWNED) { status = ama_object_preflight(protection, value->handle, true, false); }
         else if (value->form == AMA_FIELD_OWNING_LIST) {
             for (size_t element = 0; element < value->list->count && status.code == AMA_OK; element++) {

@@ -30,7 +30,7 @@ AmaStatus ama_program_evaluate_authorized(AmaProgram *program, AmaHandle current
         return shared == NULL ? ama_program_self(program, current, source, private_access, output)
             : ama_status_make(AMA_INVALID_STATE, NULL, 0);
     }
-    if (source->kind == AMA_SOURCE_LITERAL) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
+    if (source->kind == AMA_SOURCE_LITERAL || source->kind == AMA_SOURCE_PREPARED) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
     AmaProgramAccess global = {.field = source->shared, .shared = true};
     const AmaProgramAccess *access = source->kind == AMA_SOURCE_SHARED ? &global : source->access;
     AmaStatus status = ama_program_access_authorized(program, current, current, shared,

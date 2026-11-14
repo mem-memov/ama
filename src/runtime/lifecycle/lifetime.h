@@ -27,7 +27,9 @@ typedef enum {
     AMA_CONSTRUCT_DEFAULT,
     AMA_CONSTRUCT_LITERAL,
     AMA_CONSTRUCT_CLONE,
-    AMA_CONSTRUCT_SIZE
+    AMA_CONSTRUCT_SIZE,
+    /** Compiler-owned typed C transport decoder; never a new native .abi binding. */
+    AMA_CONSTRUCT_TRANSPORT
 } AmaConstructorKind;
 
 /* Runtime-owned ledger, never part of an opaque native payload.

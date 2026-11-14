@@ -15,7 +15,7 @@
  */
 static void it_selects_exactly_one_constructor_and_destroys_native_before_reverse_children(void) {
     for (size_t children = 0; children <= 3; children++) {
-        for (int kind = AMA_CONSTRUCT_DEFAULT; kind <= AMA_CONSTRUCT_SIZE; kind++) {
+        for (int kind = AMA_CONSTRUCT_DEFAULT; kind <= AMA_CONSTRUCT_TRANSPORT; kind++) {
             Model model;
             Scenario scenario = {children, (AmaConstructorKind) kind, SIZE_MAX, 0};
             AmaStatus status = model_construct(&model, scenario);
@@ -59,7 +59,7 @@ static void expect_failed_prefix(size_t children, size_t failed, AmaConstructorK
 static void it_cleans_every_constructed_prefix_without_destroying_failed_payloads(void) {
     for (size_t children = 0; children <= 3; children++) {
         for (size_t failed = 0; failed <= children; failed++) {
-            for (int kind = AMA_CONSTRUCT_DEFAULT; kind <= AMA_CONSTRUCT_SIZE; kind++) {
+            for (int kind = AMA_CONSTRUCT_DEFAULT; kind <= AMA_CONSTRUCT_TRANSPORT; kind++) {
                 expect_failed_prefix(children, failed, (AmaConstructorKind) kind);
             }
         }
@@ -72,7 +72,7 @@ static void it_cleans_every_constructed_prefix_without_destroying_failed_payload
  * generated evidence.
  */
 static void it_continues_cleanup_after_every_combination_of_native_errors(void) {
-    for (int kind = AMA_CONSTRUCT_DEFAULT; kind <= AMA_CONSTRUCT_SIZE; kind++) {
+    for (int kind = AMA_CONSTRUCT_DEFAULT; kind <= AMA_CONSTRUCT_TRANSPORT; kind++) {
         for (unsigned failures = 0; failures < 16; failures++) {
             Model model;
             Scenario scenario = {3, (AmaConstructorKind)kind, SIZE_MAX, failures};

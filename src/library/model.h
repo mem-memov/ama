@@ -117,4 +117,9 @@ bool library_abi_write(const LibraryBuild *, FILE *);
  */
 bool library_lifecycle_write(const LibraryBuild *, const uint64_t *types, size_t count, FILE *);
 
+/** Emit immutable wire-owner definitions after the matching public header and lifecycle result helpers.
+ * No context/native payload is retained; output failure propagates without publication policy.
+ */
+bool library_snapshots_write(const LibraryBuild *, FILE *);
+
 #endif

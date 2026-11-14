@@ -146,6 +146,7 @@
 #include "runtime/library/contexts/create.c"
 #include "runtime/library/contexts/dispose.c"
 #include "runtime/library/instances/create.c"
+#include "runtime/library/instances/select.c"
 #include "runtime/library/instances/dispose.c"
 
 #endif

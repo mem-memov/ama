@@ -170,6 +170,8 @@ static void it_rejects_malformed_counted_literals_without_live_partial_payloads(
 }
 
 /** Run the integer protocol/bridge contract independently of future list lowering. */
+#include "transport.c"
+
 void run(void) {
     it_binds_the_maintained_integer_module_and_six_protocols_without_a_seventh_record();
     it_checks_integer_protocol_and_fixed_bridge_signatures();
@@ -178,6 +180,7 @@ void run(void) {
     it_refuses_negative_and_host_overflow_indices_without_consuming_outputs();
     it_cleans_integer_constructor_failures_and_preserves_clone_sources();
     it_rejects_malformed_counted_literals_without_live_partial_payloads();
+    it_constructs_canonical_binary_magnitudes_without_narrowing_or_borrowing();
 }
 
 /** Return success after every explicit assertion and counted resource teardown. */
