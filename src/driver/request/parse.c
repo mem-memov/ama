@@ -32,5 +32,8 @@ DriverRequest driver_parse_request(int argument_count, char *const arguments[]) 
     if (argument_count >= 2 && strcmp(arguments[1], "--library-check") == 0) {
         return DRIVER_REQUEST_LIBRARY_CHECK;
     }
+    if (argument_count >= 2 && strcmp(arguments[1], "--library-header") == 0) {
+        return DRIVER_REQUEST_LIBRARY_HEADER;
+    }
     return DRIVER_REQUEST_UNAVAILABLE;
 }

@@ -61,8 +61,49 @@ static void it_rejects_launcher_flags_for_library_checking(void) {
     assert(result != EXIT_SUCCESS && actual[0] == '\0' && diagnostic[0] != '\0');
     destroy_test();
 }
+/** The actual CLI emits a standalone C11 header, with no SDK include path or executable emission. */
+static void it_emits_a_public_header_that_compiles_without_the_compiler_sdk(void) {
+    setup_test();
+    char *arguments[] = {AMA_EXECUTABLE, "--library-header", "project", "component.exports",
+        "--standard-root", TEST_STANDARD_ROOT, NULL};
+    int result = run_compiler_arguments(arguments);
+    char diagnostic[8192];
+    read_stream(errors, diagnostic, sizeof(diagnostic));
+    if (result != EXIT_SUCCESS) { fprintf(stderr, "%s", diagnostic); }
+    assert(result == EXIT_SUCCESS && diagnostic[0] == 0);
+    int seek = fseek(output, 0, SEEK_SET); assert(seek == 0);
+    FILE *header = fopen("generated/public.h", "wb"); assert(header != NULL);
+    for (;;) {
+        unsigned char bytes[4096];
+        size_t length = fread(bytes, 1, sizeof(bytes), output);
+        assert(!ferror(output));
+        size_t written = fwrite(bytes, 1, length, header); assert(written == length);
+        if (length == 0) { break; }
+    }
+    int closed = fclose(header); assert(closed == 0);
+    FILE *consumer = fopen("generated/consumer.c", "wb"); assert(consumer != NULL);
+    int written = fputs("/** @file Independent C11 consumer of the actual CLI header. */\n#include \"public.h\"\nint main(void){return 0;}\n", consumer);
+    closed = fclose(consumer); assert(written != EOF && closed == 0);
+    destroy_test();
+    setup_test();
+    pid_t child = fork(); assert(child >= 0);
+    if (child == 0) {
+        if (dup2(fileno(errors), STDERR_FILENO) < 0) { _exit(126); }
+        execlp(TEST_C_COMPILER, TEST_C_COMPILER, "-std=c11", "-Wall", "-Wextra", "-Werror", "-pedantic-errors", "-c", "generated/consumer.c", "-o", "generated/consumer.o", (char *)NULL);
+        _exit(127);
+    }
+    int status;
+    pid_t waited;
+    do { waited = waitpid(child, &status, 0); } while (waited < 0 && errno == EINTR);
+    read_stream(errors, diagnostic, sizeof(diagnostic));
+    if (diagnostic[0] != 0) { fprintf(stderr, "%s", diagnostic); }
+    assert(waited == child && WIFEXITED(status) && WEXITSTATUS(status) == 0 && diagnostic[0] == 0);
+    destroy_test();
+}
+
 /** Explicitly register repeated success, source-backed rejection and target separation. */
 void run(void) {
+    it_emits_a_public_header_that_compiles_without_the_compiler_sdk();
     it_checks_explicit_exports_with_repeatable_abi_metadata();
     it_rejects_bad_mappings_and_missing_configuration();
     it_rejects_launcher_flags_for_library_checking();

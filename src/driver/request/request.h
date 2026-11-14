@@ -19,11 +19,12 @@ typedef enum {
     DRIVER_REQUEST_NATIVE,
     DRIVER_REQUEST_EMIT,
     DRIVER_REQUEST_LIBRARY_CHECK,
+    DRIVER_REQUEST_LIBRARY_HEADER,
     DRIVER_REQUEST_UNAVAILABLE
 } DriverRequest;
 
 /* Borrow arguments; count is nonnegative, and a zero count permits NULL.
- * Recognize standalone --help or one of --check/--status/--native/--emit before operand validation.
+ * Recognize standalone --help or an exact checking, authoring, emission or library command before operand validation.
  * Full option validation belongs to driver/options.
  * See docs/implementation/contracts/driver.md for the complete contract.
  */

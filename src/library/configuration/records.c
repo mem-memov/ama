@@ -117,7 +117,11 @@ bool library_configuration_record(LibraryBuild *build, SourceSpan site) {
     if (!build->format_seen) { return library_fail(build, site, "The first noncomment record must be 'ama-library | 1'"); }
     if (strcmp(key, "component") == 0) { return scalar(build, site, &build->component, v[1]); }
     if (strcmp(key, "abi") == 0) { return scalar(build, site, &build->abi, v[1]); }
-    if (strcmp(key, "target") == 0) { return scalar(build, site, &build->target, v[1]); }
+    if (strcmp(key, "target") == 0) {
+        bool valid = scalar(build, site, &build->target, v[1]);
+        if (valid) { build->target_site = site; }
+        return valid;
+    }
     if (strcmp(key, "calling-convention") == 0) { return scalar(build, site, &build->calling_convention, v[1]); }
     if (strcmp(key, "schema") == 0) { return schema_record(build, site, v); }
     if (strcmp(key, "export") == 0) { return export_record(build, site, v); }

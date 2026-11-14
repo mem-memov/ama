@@ -65,6 +65,7 @@ typedef struct {
     const char *component;
     const char *abi;
     const char *target;
+    SourceSpan target_site;
     const char *calling_convention;
     const IdentityName *identity;
     const char **identity_parts;
@@ -100,4 +101,13 @@ bool library_build_check(LibraryBuild *, const ModuleRoot *, size_t, const char 
  * Propagate partial-write/flush failure. The caller owns publication policy.
  */
 bool library_manifest_write(const LibraryBuild *, FILE *);
+/** Require a valid resolved model and validate its explicit consumer C-ABI profile; failure optionally supplies a source-backed diagnostic. */
+bool library_header_target(const LibraryBuild *, Diagnostic *);
+
+/** Write a self-contained C11 consumer header from one checked export model; no private headers or runtime addresses escape. */
+bool library_header_write(const LibraryBuild *, FILE *);
+
+/** Write the allocation-free ABI bootstrap definition after its public header has been included; no Ama context is accessed. */
+bool library_abi_write(const LibraryBuild *, FILE *);
+
 #endif

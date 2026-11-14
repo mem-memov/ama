@@ -22,6 +22,7 @@ int driver_write_response(DriverRequest request, FILE *output) {
             "       ama --native ROOT .module --out DIR --sdk DIR [--create]\n"
             "       ama --emit ROOT .module --out DIR --sdk DIR [--compile]\n"
             "       ama --library-check ROOT CONFIG [--root DIR] [--exclude PATH]\n"
+            "       ama --library-header ROOT CONFIG [--root DIR] [--exclude PATH]\n"
             "Use --standard-root DIR to resolve double-dot library paths.\n"
             "Checking validates source and typed plans without running C.\n"
             "Use --emit --compile to build a verified executable.\n"

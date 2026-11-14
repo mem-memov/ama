@@ -64,6 +64,9 @@ static void it_recognizes_only_the_explicit_library_check_command(void) {
     char *arguments[] = {"ama", "--library-check"};
     DriverRequest request = driver_parse_request(2, arguments);
     assert(request == DRIVER_REQUEST_LIBRARY_CHECK);
+    arguments[1] = "--library-header";
+    request = driver_parse_request(2, arguments);
+    assert(request == DRIVER_REQUEST_LIBRARY_HEADER);
     arguments[1] = "--library";
     request = driver_parse_request(2, arguments);
     assert(request == DRIVER_REQUEST_UNAVAILABLE);

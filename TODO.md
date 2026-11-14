@@ -1978,13 +1978,27 @@ Contracts: [EMBED-01–EMBED-08](spec/implementation/c-library.md),
   all 1408 input coverage, standalone headers, links and reproducible Doxygen
   are checked before commit. Metadata explicitly reports resolved stage; public
   headers, execution and target-verified artifacts follow in T124–T128.
-- [ ] **T124 — Generate the public C consumer header.** Needs: T055, T085,
+- [x] **T124 — Generate the public C consumer header.** Needs: T055, T085,
   T086, T123. Emit self-contained namespaced declarations, opaque host identities,
   documented ownership and exact ABI/version checks from one export schema. Keep
   native-authoring headers and private runtime layouts outside this public
   boundary. Compile multiple independent C consumers and incompatible-header
   negatives; cover ERROR-01's single condition-capable failure value through its
   independent C snapshot rather than separate Boolean and reason results.
+  Evidence: [public C header](docs/implementation/c-library-header.md),
+  `src/library/header/` and real `--library-header` output. One model emits
+  namespaced control identities, readonly typed borrows, opaque independent
+  snapshot owners, coherent failure views, selected operations and ownership
+  comments without private SDK includes. C11/edition/explicit Linux ELF LP64
+  System V guards reject unsupported targets and default calling conventions.
+  The generated primitive ABI receiver compares identity, counts, every public
+  size/alignment/field offset before structure-based calls. Real independent
+  C translation units exercise matching/mutated/packed receivers, forced
+  cross-component hash collisions with unequal complete keys, foreign
+  headers, unavailable/private interfaces, exact Unicode/quote/trigraph bytes,
+  repeatability and stream failure. Strict whole tests, generator ASan/UBSan,
+  all 1426 input coverage, standalone headers, links and reproducible Doxygen
+  are checked before commit. Runtime/snapshot bodies remain T125–T128 work.
 - [ ] **T125 — Implement exported context and instance lifecycle.** Needs:
   T013, T074, T124. Create independent contexts, initialize their constants and
   explicitly construct exported instances without executing their bodies.

@@ -4940,6 +4940,11 @@
         "case": "it_rejects_launcher_flags_for_library_checking",
         "command": "make -C tests/integration/library-exports",
         "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_emits_a_public_header_that_compiles_without_the_compiler_sdk",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
       }
     ]
   },
@@ -5288,6 +5293,11 @@
         "case": "it_keeps_library_configuration_separate_from_executable_options",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_emits_a_public_header_that_compiles_without_the_compiler_sdk",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
       }
     ]
   },
@@ -5360,6 +5370,11 @@
         "case": "it_keeps_library_configuration_separate_from_executable_options",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_emits_a_public_header_that_compiles_without_the_compiler_sdk",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
       }
     ]
   },
@@ -5444,6 +5459,11 @@
         "case": "it_keeps_library_configuration_separate_from_executable_options",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_emits_a_public_header_that_compiles_without_the_compiler_sdk",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
       }
     ]
   },
@@ -5592,6 +5612,11 @@
         "case": "it_rejects_launcher_flags_for_library_checking",
         "command": "make -C tests/integration/library-exports",
         "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_emits_a_public_header_that_compiles_without_the_compiler_sdk",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
       }
     ]
   },
@@ -5643,6 +5668,11 @@
         "case": "it_recognizes_only_the_explicit_library_check_command",
         "command": "make -C tests/unit/driver/request",
         "source": "tests/unit/driver/request/main.c"
+      },
+      {
+        "case": "it_emits_a_public_header_that_compiles_without_the_compiler_sdk",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
       }
     ]
   },
@@ -5709,6 +5739,11 @@
         "case": "it_recognizes_only_the_explicit_library_check_command",
         "command": "make -C tests/unit/driver/request",
         "source": "tests/unit/driver/request/main.c"
+      },
+      {
+        "case": "it_emits_a_public_header_that_compiles_without_the_compiler_sdk",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
       }
     ]
   },
@@ -5758,6 +5793,11 @@
       },
       {
         "case": "it_rejects_launcher_flags_for_library_checking",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_emits_a_public_header_that_compiles_without_the_compiler_sdk",
         "command": "make -C tests/integration/library-exports",
         "source": "tests/integration/library-exports/main.c"
       }
@@ -78747,6 +78787,31 @@
         "case": "it_unwinds_every_library_resolution_allocation",
         "command": "make -C tests/unit/library/resolution",
         "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_compiles_independent_consumers_and_two_component_headers",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_headers_and_private_type_dependencies",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_checks_abi_before_calling_structure_based_implementations",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_preserves_metadata_octets_without_injecting_c_source",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_unsupported_targets_before_header_publication",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
       }
     ],
     "standalone_header_command": [
@@ -78941,6 +79006,31 @@
         "case": "it_unwinds_every_configuration_allocation",
         "command": "make -C tests/unit/library/configuration",
         "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_compiles_independent_consumers_and_two_component_headers",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_headers_and_private_type_dependencies",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_checks_abi_before_calling_structure_based_implementations",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_preserves_metadata_octets_without_injecting_c_source",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_unsupported_targets_before_header_publication",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
       }
     ]
   },
@@ -79604,6 +79694,11 @@
         "case": "it_rejects_launcher_flags_for_library_checking",
         "command": "make -C tests/integration/library-exports",
         "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_emits_a_public_header_that_compiles_without_the_compiler_sdk",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
       }
     ]
   },
@@ -79644,6 +79739,11 @@
       },
       {
         "case": "it_rejects_launcher_flags_for_library_checking",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_emits_a_public_header_that_compiles_without_the_compiler_sdk",
         "command": "make -C tests/integration/library-exports",
         "source": "tests/integration/library-exports/main.c"
       }
@@ -79751,6 +79851,11 @@
         "case": "it_rejects_launcher_flags_for_library_checking",
         "command": "make -C tests/integration/library-exports",
         "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_emits_a_public_header_that_compiles_without_the_compiler_sdk",
+        "command": "make -C tests/integration/library-exports",
+        "source": "tests/integration/library-exports/main.c"
       }
     ]
   },
@@ -79834,6 +79939,559 @@
         "case": "it_requires_native_profile_capabilities_and_failure_shape",
         "command": "make -C tests/unit/library/resolution",
         "source": "tests/unit/library/resolution/main.c"
+      }
+    ]
+  },
+  "src/library/header/values.c": {
+    "contract": "docs/implementation/c-library-header.md",
+    "purpose": "Generate and verify independent C consumer declarations, exact target/version/layout guards and explicit snapshot ownership without compiler-private layouts.",
+    "tests": [
+      {
+        "case": "it_compiles_independent_consumers_and_two_component_headers",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_headers_and_private_type_dependencies",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_checks_abi_before_calling_structure_based_implementations",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_preserves_metadata_octets_without_injecting_c_source",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_unsupported_targets_before_header_publication",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      }
+    ]
+  },
+  "src/library/header/lifecycle.c": {
+    "contract": "docs/implementation/c-library-header.md",
+    "purpose": "Generate and verify independent C consumer declarations, exact target/version/layout guards and explicit snapshot ownership without compiler-private layouts.",
+    "tests": [
+      {
+        "case": "it_compiles_independent_consumers_and_two_component_headers",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_headers_and_private_type_dependencies",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_checks_abi_before_calling_structure_based_implementations",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_preserves_metadata_octets_without_injecting_c_source",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_unsupported_targets_before_header_publication",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      }
+    ]
+  },
+  "src/library/header/preamble.c": {
+    "contract": "docs/implementation/c-library-header.md",
+    "purpose": "Generate and verify independent C consumer declarations, exact target/version/layout guards and explicit snapshot ownership without compiler-private layouts.",
+    "tests": [
+      {
+        "case": "it_compiles_independent_consumers_and_two_component_headers",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_headers_and_private_type_dependencies",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_checks_abi_before_calling_structure_based_implementations",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_preserves_metadata_octets_without_injecting_c_source",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_unsupported_targets_before_header_publication",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_cross_component_hash_collisions_in_headers_and_bootstrap",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      }
+    ]
+  },
+  "src/library/header/exports.c": {
+    "contract": "docs/implementation/c-library-header.md",
+    "purpose": "Generate and verify independent C consumer declarations, exact target/version/layout guards and explicit snapshot ownership without compiler-private layouts.",
+    "tests": [
+      {
+        "case": "it_compiles_independent_consumers_and_two_component_headers",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_headers_and_private_type_dependencies",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_checks_abi_before_calling_structure_based_implementations",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_preserves_metadata_octets_without_injecting_c_source",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_unsupported_targets_before_header_publication",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      }
+    ]
+  },
+  "src/library/header/target.c": {
+    "contract": "docs/implementation/c-library-header.md",
+    "purpose": "Generate and verify independent C consumer declarations, exact target/version/layout guards and explicit snapshot ownership without compiler-private layouts.",
+    "tests": [
+      {
+        "case": "it_compiles_independent_consumers_and_two_component_headers",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_headers_and_private_type_dependencies",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_checks_abi_before_calling_structure_based_implementations",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_preserves_metadata_octets_without_injecting_c_source",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_unsupported_targets_before_header_publication",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      }
+    ]
+  },
+  "src/library/header/abi.c": {
+    "contract": "docs/implementation/c-library-header.md",
+    "purpose": "Generate and verify independent C consumer declarations, exact target/version/layout guards and explicit snapshot ownership without compiler-private layouts.",
+    "tests": [
+      {
+        "case": "it_compiles_independent_consumers_and_two_component_headers",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_headers_and_private_type_dependencies",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_checks_abi_before_calling_structure_based_implementations",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_preserves_metadata_octets_without_injecting_c_source",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_unsupported_targets_before_header_publication",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_cross_component_hash_collisions_in_headers_and_bootstrap",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      }
+    ]
+  },
+  "src/library/header/internal.h": {
+    "contract": "docs/implementation/c-library-header.md",
+    "purpose": "Generate and verify independent C consumer declarations, exact target/version/layout guards and explicit snapshot ownership without compiler-private layouts.",
+    "tests": [
+      {
+        "case": "it_compiles_independent_consumers_and_two_component_headers",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_headers_and_private_type_dependencies",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_checks_abi_before_calling_structure_based_implementations",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_preserves_metadata_octets_without_injecting_c_source",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_unsupported_targets_before_header_publication",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_cross_component_hash_collisions_in_headers_and_bootstrap",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/library/header/snapshots.c": {
+    "contract": "docs/implementation/c-library-header.md",
+    "purpose": "Generate and verify independent C consumer declarations, exact target/version/layout guards and explicit snapshot ownership without compiler-private layouts.",
+    "tests": [
+      {
+        "case": "it_compiles_independent_consumers_and_two_component_headers",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_headers_and_private_type_dependencies",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_checks_abi_before_calling_structure_based_implementations",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_preserves_metadata_octets_without_injecting_c_source",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_unsupported_targets_before_header_publication",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      }
+    ]
+  },
+  "src/library/header/write.c": {
+    "contract": "docs/implementation/c-library-header.md",
+    "purpose": "Generate and verify independent C consumer declarations, exact target/version/layout guards and explicit snapshot ownership without compiler-private layouts.",
+    "tests": [
+      {
+        "case": "it_compiles_independent_consumers_and_two_component_headers",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_headers_and_private_type_dependencies",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_checks_abi_before_calling_structure_based_implementations",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_preserves_metadata_octets_without_injecting_c_source",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_unsupported_targets_before_header_publication",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/header/main.c": {
+    "contract": "docs/implementation/c-library-header.md",
+    "purpose": "Generate and verify independent C consumer declarations, exact target/version/layout guards and explicit snapshot ownership without compiler-private layouts.",
+    "tests": [
+      {
+        "case": "it_compiles_independent_consumers_and_two_component_headers",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_headers_and_private_type_dependencies",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_checks_abi_before_calling_structure_based_implementations",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_preserves_metadata_octets_without_injecting_c_source",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_unsupported_targets_before_header_publication",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_cross_component_hash_collisions_in_headers_and_bootstrap",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/header/common.c": {
+    "contract": "docs/implementation/c-library-header.md",
+    "purpose": "Generate and verify independent C consumer declarations, exact target/version/layout guards and explicit snapshot ownership without compiler-private layouts.",
+    "tests": [
+      {
+        "case": "it_compiles_independent_consumers_and_two_component_headers",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_headers_and_private_type_dependencies",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_checks_abi_before_calling_structure_based_implementations",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_preserves_metadata_octets_without_injecting_c_source",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_unsupported_targets_before_header_publication",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/header/Makefile": {
+    "contract": "docs/implementation/c-library-header.md",
+    "purpose": "Generate and verify independent C consumer declarations, exact target/version/layout guards and explicit snapshot ownership without compiler-private layouts.",
+    "tests": [
+      {
+        "case": "it_compiles_independent_consumers_and_two_component_headers",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_headers_and_private_type_dependencies",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_checks_abi_before_calling_structure_based_implementations",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_preserves_metadata_octets_without_injecting_c_source",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_unsupported_targets_before_header_publication",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/header/support/literals.c": {
+    "contract": "docs/implementation/c-library-header.md",
+    "purpose": "Generate and verify independent C consumer declarations, exact target/version/layout guards and explicit snapshot ownership without compiler-private layouts.",
+    "tests": [
+      {
+        "case": "it_compiles_independent_consumers_and_two_component_headers",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_headers_and_private_type_dependencies",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_checks_abi_before_calling_structure_based_implementations",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_preserves_metadata_octets_without_injecting_c_source",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_unsupported_targets_before_header_publication",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/header/support/rejections.c": {
+    "contract": "docs/implementation/c-library-header.md",
+    "purpose": "Generate and verify independent C consumer declarations, exact target/version/layout guards and explicit snapshot ownership without compiler-private layouts.",
+    "tests": [
+      {
+        "case": "it_compiles_independent_consumers_and_two_component_headers",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_headers_and_private_type_dependencies",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_checks_abi_before_calling_structure_based_implementations",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_preserves_metadata_octets_without_injecting_c_source",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_unsupported_targets_before_header_publication",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/header/support/consumers.c": {
+    "contract": "docs/implementation/c-library-header.md",
+    "purpose": "Generate and verify independent C consumer declarations, exact target/version/layout guards and explicit snapshot ownership without compiler-private layouts.",
+    "tests": [
+      {
+        "case": "it_compiles_independent_consumers_and_two_component_headers",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_headers_and_private_type_dependencies",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_checks_abi_before_calling_structure_based_implementations",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_preserves_metadata_octets_without_injecting_c_source",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_unsupported_targets_before_header_publication",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/header/support/gate.c": {
+    "contract": "docs/implementation/c-library-header.md",
+    "purpose": "Generate and verify independent C consumer declarations, exact target/version/layout guards and explicit snapshot ownership without compiler-private layouts.",
+    "tests": [
+      {
+        "case": "it_compiles_independent_consumers_and_two_component_headers",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_incompatible_headers_and_private_type_dependencies",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_checks_abi_before_calling_structure_based_implementations",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_preserves_metadata_octets_without_injecting_c_source",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_rejects_unsupported_targets_before_header_publication",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      }
+    ]
+  },
+  "src/library/header/identity.c": {
+    "contract": "docs/implementation/c-library-header.md",
+    "purpose": "Reject unequal complete ABI keys across independent headers and primitive bootstraps even when candidate hashes/names coincide.",
+    "tests": [
+      {
+        "case": "it_rejects_cross_component_hash_collisions_in_headers_and_bootstrap",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/header/support/collisions.c": {
+    "contract": "docs/implementation/c-library-header.md",
+    "purpose": "Reject unequal complete ABI keys across independent headers and primitive bootstraps even when candidate hashes/names coincide.",
+    "tests": [
+      {
+        "case": "it_rejects_cross_component_hash_collisions_in_headers_and_bootstrap",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
       }
     ]
   }

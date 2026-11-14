@@ -3,9 +3,9 @@
 T123 adds an independently checked library-build model. It selects exported
 module types, operations and transport schemas explicitly, validates them through
 the ordinary typed project, and reports deterministic machine-readable metadata.
-It does not compile a library, emit a public consumer header, create a runtime
-context, execute Ama or create an executable launcher. Those generators and
-runtime boundaries are the subsequent T124–T128 tasks.
+It does not compile a library, create a runtime context, execute Ama or create an
+executable launcher. The separate [consumer-header generator](c-library-header.md)
+now supplies public declarations; runtime bodies and packaging follow in T125–T128.
 
 ```sh
 make
@@ -83,8 +83,8 @@ still governs later admission and execution outcomes.
 [EMBED-04](../../spec/implementation/c-library.md#embed-04) forbids serializing
 private payload bytes or moving Ama references across contexts. Edition 1's
 checked model supports the following explicit profiles. These representations
-are value schemas; the subsequent consumer-header generator supplies their exact
-C declarations and the transport implementation supplies the declared codecs.
+are value schemas; the consumer-header generator supplies their exact C
+declarations and the transport implementation supplies the declared codecs.
 
 | Configuration profile | Exact argument | Representation contract |
 |---|---|---|
@@ -110,9 +110,9 @@ not permission to cast arbitrary native State storage. Profile implementations
 must use their typed standard-library contracts.
 
 The JSON manifest names each profile's representation, namespaced encoder,
-decoder, release and clone declarations. These names reserve the checked schema's
-codec interface for T124/T126; the resolution command does not claim these C
-functions have already been generated. Byte lengths and array lengths use the
+decoder, release and clone declarations. The public header declares their ownership operations; the private
+transport bodies follow in T126. Metadata-only checking does not claim a compiled
+codec or library artifact. Byte lengths and array lengths use the
 selected target's checked bounded-size contract. Construction must publish only
 complete independent values and release a prepared prefix on failure. Returned
 snapshots remain readable after instance/context disposal; live Ama addresses,

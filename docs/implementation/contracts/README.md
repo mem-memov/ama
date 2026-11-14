@@ -160,3 +160,6 @@ capability witnesses, exact source navigation and current implementation guidanc
 
 [Explicit C-library exports](../c-library-exports.md) records T123 configuration,
 checked transport profiles, complete ABI keys and exact input invalidation.
+
+[Public C header](../c-library-header.md) records T124 typed consumer declarations,
+fixed calling-convention validation and exact cross-translation-unit ABI guards.

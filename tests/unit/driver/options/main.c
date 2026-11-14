@@ -32,6 +32,8 @@ static void it_keeps_library_configuration_separate_from_executable_options(void
     assert(options.root_count == 2 && options.roots[1].kind == MODULE_ROOT_STANDARD);
     assert(driver_option_recognize(DRIVER_REQUEST_LIBRARY_CHECK, "--compile") == NULL);
     assert(driver_option_recognize(DRIVER_REQUEST_LIBRARY_CHECK, "--out") == NULL);
+    assert(driver_option_recognize(DRIVER_REQUEST_LIBRARY_HEADER, "--root") != NULL);
+    assert(driver_option_recognize(DRIVER_REQUEST_LIBRARY_HEADER, "--compile") == NULL);
     driver_options_destroy(&options);
     destroy_test();
 }

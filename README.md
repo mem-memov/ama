@@ -33,6 +33,8 @@ C/assert tests. Check-only success does not validate handwritten C bodies.
 - [Native value ABI](VALUE_ABI.md): values, capabilities, lifetimes and errors.
 - [C-library export checking](docs/implementation/c-library-exports.md): explicit
   exports, transport profiles and resolved ABI metadata.
+- [Public C header](docs/implementation/c-library-header.md): independent consumer
+  types, ownership operations and checked target/version/layout boundaries.
 - [Contributor guide](CONTRIBUTORS.md): readable components, formatting and tests.
 - [Standard library](stdlib/README.md): library boundaries and native companions.
 - [Executable examples](docs/implementation/examples.md): stateful methods, self-reference,
