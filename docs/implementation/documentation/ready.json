@@ -32838,6 +32838,11 @@
         "case": "it_restarts_entry_defaults_without_resetting_body_fields_or_resume_inputs",
         "command": "make -C tests/unit/codegen restart",
         "source": "tests/unit/codegen/restart/main.c"
+      },
+      {
+        "case": "it_copies_owned_tree_positions_explicitly_and_clears_ordinary_positions_and_histories",
+        "command": "make -C tests/unit/codegen snapshots",
+        "source": "tests/unit/codegen/snapshots/main.c"
       }
     ]
   },
@@ -62842,6 +62847,122 @@
         "case": "it_keeps_admitted_execution_failure_terminal_and_never_resumes_it",
         "command": "make -C tests/unit/codegen/restart",
         "source": "tests/unit/codegen/restart/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/snapshots/main.c": {
+    "contract": "docs/implementation/scalar-continuation-copies.md",
+    "purpose": "Verify explicit whole-owned-tree positions, independent service projection and pre-mutation identity/availability checks.",
+    "tests": [
+      {
+        "case": "it_copies_owned_tree_positions_explicitly_and_clears_ordinary_positions_and_histories",
+        "command": "make -C tests/unit/codegen/snapshots",
+        "source": "tests/unit/codegen/snapshots/main.c"
+      },
+      {
+        "case": "it_snapshots_available_owned_sources_with_busy_external_reference_targets",
+        "command": "make -C tests/unit/codegen/snapshots",
+        "source": "tests/unit/codegen/snapshots/main.c"
+      },
+      {
+        "case": "it_rejects_a_waiting_owned_descendant_before_any_clone_callback",
+        "command": "make -C tests/unit/codegen/snapshots",
+        "source": "tests/unit/codegen/snapshots/main.c"
+      },
+      {
+        "case": "it_rejects_continuation_copy_to_the_same_actual_identity_through_an_alias",
+        "command": "make -C tests/unit/codegen/snapshots",
+        "source": "tests/unit/codegen/snapshots/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/snapshots/common.c": {
+    "contract": "docs/implementation/scalar-continuation-copies.md",
+    "purpose": "Verify explicit whole-owned-tree positions, independent service projection and pre-mutation identity/availability checks.",
+    "tests": [
+      {
+        "case": "it_copies_owned_tree_positions_explicitly_and_clears_ordinary_positions_and_histories",
+        "command": "make -C tests/unit/codegen/snapshots",
+        "source": "tests/unit/codegen/snapshots/main.c"
+      },
+      {
+        "case": "it_snapshots_available_owned_sources_with_busy_external_reference_targets",
+        "command": "make -C tests/unit/codegen/snapshots",
+        "source": "tests/unit/codegen/snapshots/main.c"
+      },
+      {
+        "case": "it_rejects_a_waiting_owned_descendant_before_any_clone_callback",
+        "command": "make -C tests/unit/codegen/snapshots",
+        "source": "tests/unit/codegen/snapshots/main.c"
+      },
+      {
+        "case": "it_rejects_continuation_copy_to_the_same_actual_identity_through_an_alias",
+        "command": "make -C tests/unit/codegen/snapshots",
+        "source": "tests/unit/codegen/snapshots/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/snapshots/Makefile": {
+    "contract": "docs/implementation/scalar-continuation-copies.md",
+    "purpose": "Verify explicit whole-owned-tree positions, independent service projection and pre-mutation identity/availability checks.",
+    "tests": [
+      {
+        "case": "it_copies_owned_tree_positions_explicitly_and_clears_ordinary_positions_and_histories",
+        "command": "make -C tests/unit/codegen/snapshots",
+        "source": "tests/unit/codegen/snapshots/main.c"
+      },
+      {
+        "case": "it_snapshots_available_owned_sources_with_busy_external_reference_targets",
+        "command": "make -C tests/unit/codegen/snapshots",
+        "source": "tests/unit/codegen/snapshots/main.c"
+      },
+      {
+        "case": "it_rejects_a_waiting_owned_descendant_before_any_clone_callback",
+        "command": "make -C tests/unit/codegen/snapshots",
+        "source": "tests/unit/codegen/snapshots/main.c"
+      },
+      {
+        "case": "it_rejects_continuation_copy_to_the_same_actual_identity_through_an_alias",
+        "command": "make -C tests/unit/codegen/snapshots",
+        "source": "tests/unit/codegen/snapshots/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/snapshots/support/availability.c": {
+    "contract": "docs/implementation/scalar-continuation-copies.md",
+    "purpose": "Verify explicit whole-owned-tree positions, independent service projection and pre-mutation identity/availability checks.",
+    "tests": [
+      {
+        "case": "it_snapshots_available_owned_sources_with_busy_external_reference_targets",
+        "command": "make -C tests/unit/codegen/snapshots",
+        "source": "tests/unit/codegen/snapshots/main.c"
+      },
+      {
+        "case": "it_rejects_a_waiting_owned_descendant_before_any_clone_callback",
+        "command": "make -C tests/unit/codegen/snapshots",
+        "source": "tests/unit/codegen/snapshots/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/snapshots/support/trees.c": {
+    "contract": "docs/implementation/scalar-continuation-copies.md",
+    "purpose": "Verify explicit whole-owned-tree positions, independent service projection and pre-mutation identity/availability checks.",
+    "tests": [
+      {
+        "case": "it_copies_owned_tree_positions_explicitly_and_clears_ordinary_positions_and_histories",
+        "command": "make -C tests/unit/codegen/snapshots",
+        "source": "tests/unit/codegen/snapshots/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/snapshots/support/identity.c": {
+    "contract": "docs/implementation/scalar-continuation-copies.md",
+    "purpose": "Verify explicit whole-owned-tree positions, independent service projection and pre-mutation identity/availability checks.",
+    "tests": [
+      {
+        "case": "it_rejects_continuation_copy_to_the_same_actual_identity_through_an_alias",
+        "command": "make -C tests/unit/codegen/snapshots",
+        "source": "tests/unit/codegen/snapshots/main.c"
       }
     ]
   }

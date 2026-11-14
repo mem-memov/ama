@@ -1597,12 +1597,23 @@ Contracts: [continuations](spec/language/continuations.md),
   passed. All 1173 maintained inputs have coverage; links passed and final Doxygen
   reproducibility is checked before commit. Checked foreign-component ABI and
   scheduler acceptance remain their separate tasks.
-- [ ] **T072 — Copy continuation control state explicitly.** Needs: T050,
+- [x] **T072 — Copy continuation control state explicitly.** Needs: T050,
   T071. Preserve allowed owned descendant positions for `%` copies and clear all
   positions for ordinary copies. Test distinct identity requirements, whole-source
   availability and absence of copied busy state, callers or refusal history in
   scalar-owned trees. Membership-aware list/cursor continuation copies complete
   in T084 after their storage and live traversal contracts are implemented.
+  Evidence: [scalar continuation copies](docs/implementation/scalar-continuation-copies.md).
+  Four compiled cases distinguish ordinary root/child position clearing from
+  explicit independent preservation, retain native values and reset both source
+  levels' refusal histories in the copy. A running external reference target does
+  not extend the copied boundary; a Waiting owned descendant rejects before the
+  first native clone. A reference alias to the destination rejects by actual
+  identity with no clone callback, and cleanup observes the untouched payload.
+  Existing preflight/mapping/service projection supplies the implementation.
+  Strict parent snapshot tests, independent object clone/access tests and actual
+  generated-program ASan+UBSan passed. All 1179 maintained inputs have coverage;
+  links passed and final Doxygen reproducibility is checked before commit.
 - [ ] **T073 — Integrate continuation failure and cleanup paths.** Needs: T072.
   Reject native-stack capture, ensure failed contexts cannot resume and destroy
   yielded state without executing its continuation. Exercise native resource
