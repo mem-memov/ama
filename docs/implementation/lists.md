@@ -60,3 +60,5 @@ reentry. `make -C tests/unit/runtime/membership` tests identity bookkeeping
 independently. The object, transfer and generated-project suites compose these
 components through their actual boundaries. No action dispatcher or fallback
 handle-vector representation remains.
+
+[Typed swap and length](list-ordering.md) complete the six method adapters in T080.

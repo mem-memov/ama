@@ -6,7 +6,7 @@ T079 implements the two destructive list methods under the existing
 [LIST-08](../../spec/language/lists.md#list-08),
 [LIST-10](../../spec/language/lists.md#list-10) and
 [LIFE-05](../../spec/implementation/native-interface.md#life-05).
-The remaining `swap`/`length` methods and foreach retain explicit execution guards.
+[Swap and length](list-ordering.md) complete the methods; foreach retains its execution guard.
 
 ## Their source forms
 

@@ -3,6 +3,8 @@
  * [LIST-04](../../../../../spec/language/lists.md#list-04) fixes scalar input
  * arity/types; [CALL-08](../../../../../spec/language/calls-and-results.md#call-08)
  * separates textual source evaluation from declaration-order construction.
+ * [PROTO-03](../../../../../spec/implementation/native-interface.md#proto-03)
+ * provides length's sole trusted typed constructor callback.
  */
 #ifndef AMA_PROGRAM_LIST_INPUTS_H
 #define AMA_PROGRAM_LIST_INPUTS_H
@@ -16,6 +18,8 @@ typedef struct {
     uint64_t integer_type;
     uint64_t operation;
     const uint64_t *installations;
+    /** Fixed standard integer bridge, present only for length construction. */
+    AmaStatus (*from_size)(void *, size_t);
 } AmaProgramListInputs;
 
 /** Evaluate supplied sources once, then construct owned integer/reference inputs

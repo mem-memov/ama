@@ -3,6 +3,8 @@
  * [LIST-04](../../../../spec/language/lists.md#list-04) fixes intrinsic input
  * ordinals; [ARCH-05](../../../../spec/implementation/compiler.md#arch-05)
  * requires each real staging/evaluation site to exist uniquely in validated IR.
+ * [PROTO-03](../../../../spec/implementation/native-interface.md#proto-03) binds
+ * length's sole native constructor to the exact standard integer identity.
  */
 #include "data.h"
 #include "../resolution/site.h"
@@ -62,6 +64,13 @@ bool codegen_control_list_inputs(NativeScaffold *scaffold, FILE *output,
             ".integer_type=UINT64_C(%zu),.operation=UINT64_C(%zu),.count=%zu",
             name, codegen_type_id(scaffold, integer), node->selector, count) < 0) { return false; }
     if (arity != 0 && fprintf(output, ",.installations=%s_Install", name) < 0) { return false; }
+    if (statement->list_method == SEMANTIC_LIST_LENGTH) {
+        if (!scaffold_size_bridge(integer)) {
+            return scaffold_error(scaffold, DIAGNOSTIC_TYPE_MISMATCH,
+                "Length requires the fixed standard integer size bridge", NULL);
+        }
+        if (fprintf(output, ",.from_size=%s_FromSizeValue", integer->names[SCAFFOLD_WRITE]->internal_name) < 0) { return false; }
+    }
     if (count != 0 && fprintf(output, ",.inputs=%s_Inputs", name) < 0) { return false; }
     return fputs("};\n", output) != EOF;
 }

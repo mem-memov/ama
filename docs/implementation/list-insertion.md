@@ -8,9 +8,8 @@ runtime action constants. The contracts are
 [LIST-10](../../spec/language/lists.md#list-10),
 [CALL-08](../../spec/language/calls-and-results.md#call-08) and
 [CALL-09](../../spec/language/calls-and-results.md#call-09).
-`remove`/`clear` now use [typed deletion](list-deletion.md). The remaining
-`swap`/`length` methods and foreach stay explicitly guarded until their adapters
-are implemented; statically checking their IR does not execute a placeholder.
+`remove`/`clear` use [typed deletion](list-deletion.md), and
+[swap/length](list-ordering.md) complete the six methods. Foreach remains guarded.
 
 ## Useful source forms
 

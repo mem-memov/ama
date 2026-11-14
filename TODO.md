@@ -1735,12 +1735,25 @@ Contracts: [lists](spec/language/lists.md),
   allocation prefix. Insertion regressions, component/generated ASan/UBSan, full
   strict tests, all 1244 input coverage, links and reproducible Doxygen are checked
   before commit. Swap, length and foreach retain explicit execution guards.
-- [ ] **T080 — Implement swap and length.** Needs: T079. Preserve membership
+- [x] **T080 — Implement swap and length.** Needs: T079. Preserve membership
   identity through swap and construct length via the fixed `..integer` contract.
   Use PROTO-03's typed `from_size` bridge exactly once, without decimal text or
   double construction; test the full supported host-size conversion boundary.
   Test both method positions, representability, sequential service actions and
   selected-result failures without obsolete retained outcome state.
+  Evidence: [typed swap/length execution](docs/implementation/list-ordering.md).
+  Swap installs two ordinary integer inputs and publishes one membership
+  transposition without target acquisition or lifecycle work. Length binds the
+  exact standard integer's header-declared bridge through a typed payload adapter
+  and selects one fresh size constructor after normal Ama field initialization.
+  Four runtime cases cover membership/target preservation, self-swap, either bad
+  position, technical conversion failure, ephemeral result retirement, bridge
+  failure and full-host-size round trips through SIZE_MAX. Four compiled projects
+  verify swapped order, copied versus current length, empty length, sequential
+  methods and technical failures in construction/selected result execution.
+  Component and actual generated-program ASan/UBSan passed; full strict tests,
+  all 1251 input coverage, links and reproducible Doxygen are checked before
+  commit. Foreach remains explicitly guarded for its cursor tasks.
 - [ ] **T081 — Implement live foreach selection and bindings.** Needs: T031,
   T074, T080. Store one fixed lexical cursor/cell per instance, validate source
   incarnation and use short acquisitions. Test empty bodies/lists, absent referents,

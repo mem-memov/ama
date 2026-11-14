@@ -6,11 +6,9 @@ The contracts are [LIST-10](../../spec/language/lists.md#list-10),
 [CALL-09](../../spec/language/calls-and-results.md#call-09).
 The public implementation boundary is
 [`runtime/program/lists/service.h`](../../src/runtime/program/lists/service.h).
-Method effects and their generated dispatch remain separate roadmap tasks; the
-compiler now supports [append/insert](list-insertion.md) and
-[remove/clear](list-deletion.md); remaining method and
-traversal adapters retain explicit execution guards. No no-op method substitute
-is published.
+The compiler supports [append/insert](list-insertion.md),
+[remove/clear](list-deletion.md) and [swap/length](list-ordering.md).
+Traversal adapters retain an explicit execution guard.
 
 ## One exact grant for the whole service parent
 

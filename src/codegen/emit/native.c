@@ -4,6 +4,8 @@
  *
  * [CABI-03](../../../spec/implementation/native-interface.md#cabi-03)
  * An exact entry signature declaration precedes the body. Read-only protocols receive const payloads and remain distinct from body dispatch.
+ * [PROTO-03](../../../spec/implementation/native-interface.md#proto-03) binds
+ * the exact standard integer's header-declared size bridge through a typed cast.
  */
 #include "codegen/internal.h"
 
@@ -41,5 +43,10 @@ bool codegen_emit_native(NativeScaffold *scaffold, FILE *output, const ScaffoldT
     for (AbiOperation operation = ABI_DEFAULT; operation < ABI_BINDING_COUNT; operation++) {
         if (!hook(output, type, operation)) { return false; }
     }
+    if (scaffold_size_bridge(type)
+        && fprintf(output, "static inline AmaStatus %s_FromSizeValue(void *payload,size_t value) {\n"
+            "return %s_from_size((%s_State *)payload,value);\n}\n",
+            type->names[SCAFFOLD_WRITE]->internal_name, type->native_prefix->internal_name,
+            type->native_prefix->internal_name) < 0) { return false; }
     return true;
 }

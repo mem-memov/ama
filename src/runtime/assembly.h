@@ -72,6 +72,8 @@
 #include "runtime/program/lists/insertion/commit.c"
 #include "runtime/program/lists/insertion/methods.c"
 #include "runtime/program/lists/deletion/methods.c"
+#include "runtime/program/lists/ordering/swap.c"
+#include "runtime/program/lists/ordering/length.c"
 #include "runtime/program/calls/acquire.c"
 #include "runtime/program/calls/frames.c"
 #include "runtime/program/native/scope.c"

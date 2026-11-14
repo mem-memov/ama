@@ -1550,6 +1550,46 @@
         "case": "it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_identity",
         "command": "make -C tests/unit/codegen/layouts",
         "source": "tests/unit/codegen/layouts/main.c"
+      },
+      {
+        "case": "it_swaps_memberships_without_touching_targets_and_preserves_self_swap",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_either_swap_position_before_publication",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_length_once_and_retires_its_owned_result",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_full_host_size_boundaries_without_literal_round_trips",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_executes_swap_and_length_siblings_with_owned_result_cleanup",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_both_swap_positions_without_changing_length",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_keeps_length_bridge_failure_technical",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_cleans_length_result_after_selected_body_failure",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
       }
     ]
   },
@@ -13572,6 +13612,46 @@
         "case": "it_deletes_noncopyable_default_elements_without_cloning",
         "command": "make -C tests/unit/codegen/list-deletion",
         "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_swaps_memberships_without_touching_targets_and_preserves_self_swap",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_either_swap_position_before_publication",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_length_once_and_retires_its_owned_result",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_full_host_size_boundaries_without_literal_round_trips",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_executes_swap_and_length_siblings_with_owned_result_cleanup",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_both_swap_positions_without_changing_length",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_keeps_length_bridge_failure_technical",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_cleans_length_result_after_selected_body_failure",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
       }
     ]
   },
@@ -33692,6 +33772,46 @@
         "case": "it_deletes_noncopyable_default_elements_without_cloning",
         "command": "make -C tests/unit/codegen/list-deletion",
         "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_swaps_memberships_without_touching_targets_and_preserves_self_swap",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_either_swap_position_before_publication",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_length_once_and_retires_its_owned_result",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_full_host_size_boundaries_without_literal_round_trips",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_executes_swap_and_length_siblings_with_owned_result_cleanup",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_both_swap_positions_without_changing_length",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_keeps_length_bridge_failure_technical",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_cleans_length_result_after_selected_body_failure",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
       }
     ]
   },
@@ -40912,6 +41032,46 @@
         "case": "it_deletes_noncopyable_default_elements_without_cloning",
         "command": "make -C tests/unit/codegen/list-deletion",
         "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_swaps_memberships_without_touching_targets_and_preserves_self_swap",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_either_swap_position_before_publication",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_length_once_and_retires_its_owned_result",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_full_host_size_boundaries_without_literal_round_trips",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_executes_swap_and_length_siblings_with_owned_result_cleanup",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_both_swap_positions_without_changing_length",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_keeps_length_bridge_failure_technical",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_cleans_length_result_after_selected_body_failure",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
       }
     ]
   },
@@ -59009,6 +59169,46 @@
         "case": "it_deletes_noncopyable_default_elements_without_cloning",
         "command": "make -C tests/unit/codegen/list-deletion",
         "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_swaps_memberships_without_touching_targets_and_preserves_self_swap",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_either_swap_position_before_publication",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_length_once_and_retires_its_owned_result",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_full_host_size_boundaries_without_literal_round_trips",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_executes_swap_and_length_siblings_with_owned_result_cleanup",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_both_swap_positions_without_changing_length",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_keeps_length_bridge_failure_technical",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_cleans_length_result_after_selected_body_failure",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
       }
     ]
   },
@@ -65524,6 +65724,46 @@
         "case": "it_deletes_noncopyable_default_elements_without_cloning",
         "command": "make -C tests/unit/codegen/list-deletion",
         "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_swaps_memberships_without_touching_targets_and_preserves_self_swap",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_either_swap_position_before_publication",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_length_once_and_retires_its_owned_result",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_full_host_size_boundaries_without_literal_round_trips",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_executes_swap_and_length_siblings_with_owned_result_cleanup",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_both_swap_positions_without_changing_length",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_keeps_length_bridge_failure_technical",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_cleans_length_result_after_selected_body_failure",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
       }
     ]
   },
@@ -65718,6 +65958,46 @@
         "case": "it_deletes_noncopyable_default_elements_without_cloning",
         "command": "make -C tests/unit/codegen/list-deletion",
         "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_swaps_memberships_without_touching_targets_and_preserves_self_swap",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_either_swap_position_before_publication",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_length_once_and_retires_its_owned_result",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_full_host_size_boundaries_without_literal_round_trips",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_executes_swap_and_length_siblings_with_owned_result_cleanup",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_both_swap_positions_without_changing_length",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_keeps_length_bridge_failure_technical",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_cleans_length_result_after_selected_body_failure",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
       }
     ]
   },
@@ -66803,6 +67083,46 @@
         "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
         "command": "make -C tests/unit/codegen/list-insertion",
         "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_swaps_memberships_without_touching_targets_and_preserves_self_swap",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_either_swap_position_before_publication",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_length_once_and_retires_its_owned_result",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_full_host_size_boundaries_without_literal_round_trips",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_executes_swap_and_length_siblings_with_owned_result_cleanup",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_both_swap_positions_without_changing_length",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_keeps_length_bridge_failure_technical",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_cleans_length_result_after_selected_body_failure",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
       }
     ],
     "standalone_header_command": [
@@ -67583,6 +67903,343 @@
         "case": "it_deletes_noncopyable_default_elements_without_cloning",
         "command": "make -C tests/unit/codegen/list-deletion",
         "source": "tests/unit/codegen/list-deletion/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/ordering/length.c": {
+    "contract": "docs/implementation/list-ordering.md",
+    "purpose": "Execute identity-preserving swap and construct one fresh integer length through the fixed typed size bridge.",
+    "tests": [
+      {
+        "case": "it_swaps_memberships_without_touching_targets_and_preserves_self_swap",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_either_swap_position_before_publication",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_length_once_and_retires_its_owned_result",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_full_host_size_boundaries_without_literal_round_trips",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_executes_swap_and_length_siblings_with_owned_result_cleanup",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_both_swap_positions_without_changing_length",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_keeps_length_bridge_failure_technical",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_cleans_length_result_after_selected_body_failure",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/ordering/ordering.h": {
+    "contract": "docs/implementation/list-ordering.md",
+    "purpose": "Execute identity-preserving swap and construct one fresh integer length through the fixed typed size bridge.",
+    "tests": [
+      {
+        "case": "it_swaps_memberships_without_touching_targets_and_preserves_self_swap",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_either_swap_position_before_publication",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_length_once_and_retires_its_owned_result",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_full_host_size_boundaries_without_literal_round_trips",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_executes_swap_and_length_siblings_with_owned_result_cleanup",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_both_swap_positions_without_changing_length",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_keeps_length_bridge_failure_technical",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_cleans_length_result_after_selected_body_failure",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/runtime/program/lists/ordering/swap.c": {
+    "contract": "docs/implementation/list-ordering.md",
+    "purpose": "Execute identity-preserving swap and construct one fresh integer length through the fixed typed size bridge.",
+    "tests": [
+      {
+        "case": "it_swaps_memberships_without_touching_targets_and_preserves_self_swap",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_either_swap_position_before_publication",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_length_once_and_retires_its_owned_result",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_full_host_size_boundaries_without_literal_round_trips",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_executes_swap_and_length_siblings_with_owned_result_cleanup",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_both_swap_positions_without_changing_length",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_keeps_length_bridge_failure_technical",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_cleans_length_result_after_selected_body_failure",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/list-ordering/Makefile": {
+    "contract": "docs/implementation/list-ordering.md",
+    "purpose": "Execute identity-preserving swap and construct one fresh integer length through the fixed typed size bridge.",
+    "tests": [
+      {
+        "case": "it_swaps_memberships_without_touching_targets_and_preserves_self_swap",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_either_swap_position_before_publication",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_length_once_and_retires_its_owned_result",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_full_host_size_boundaries_without_literal_round_trips",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_executes_swap_and_length_siblings_with_owned_result_cleanup",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_both_swap_positions_without_changing_length",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_keeps_length_bridge_failure_technical",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_cleans_length_result_after_selected_body_failure",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/list-ordering/main.c": {
+    "contract": "docs/implementation/list-ordering.md",
+    "purpose": "Execute identity-preserving swap and construct one fresh integer length through the fixed typed size bridge.",
+    "tests": [
+      {
+        "case": "it_swaps_memberships_without_touching_targets_and_preserves_self_swap",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_either_swap_position_before_publication",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_length_once_and_retires_its_owned_result",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_full_host_size_boundaries_without_literal_round_trips",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_executes_swap_and_length_siblings_with_owned_result_cleanup",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_both_swap_positions_without_changing_length",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_keeps_length_bridge_failure_technical",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_cleans_length_result_after_selected_body_failure",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/list-ordering/Makefile": {
+    "contract": "docs/implementation/list-ordering.md",
+    "purpose": "Execute identity-preserving swap and construct one fresh integer length through the fixed typed size bridge.",
+    "tests": [
+      {
+        "case": "it_swaps_memberships_without_touching_targets_and_preserves_self_swap",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_either_swap_position_before_publication",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_length_once_and_retires_its_owned_result",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_full_host_size_boundaries_without_literal_round_trips",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_executes_swap_and_length_siblings_with_owned_result_cleanup",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_both_swap_positions_without_changing_length",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_keeps_length_bridge_failure_technical",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_cleans_length_result_after_selected_body_failure",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/list-ordering/main.c": {
+    "contract": "docs/implementation/list-ordering.md",
+    "purpose": "Execute identity-preserving swap and construct one fresh integer length through the fixed typed size bridge.",
+    "tests": [
+      {
+        "case": "it_swaps_memberships_without_touching_targets_and_preserves_self_swap",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_either_swap_position_before_publication",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_length_once_and_retires_its_owned_result",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_constructs_full_host_size_boundaries_without_literal_round_trips",
+        "command": "make -C tests/unit/runtime/list-ordering",
+        "source": "tests/unit/runtime/list-ordering/main.c"
+      },
+      {
+        "case": "it_executes_swap_and_length_siblings_with_owned_result_cleanup",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_rejects_both_swap_positions_without_changing_length",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_keeps_length_bridge_failure_technical",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_cleans_length_result_after_selected_body_failure",
+        "command": "make -C tests/unit/codegen/list-ordering",
+        "source": "tests/unit/codegen/list-ordering/main.c"
       }
     ]
   }
