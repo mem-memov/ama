@@ -8,6 +8,8 @@
  * [CALL-08](../../../spec/language/calls-and-results.md#call-08) permits the
  * contiguous helper implementation only with the same source/install/output order
  * and no interior entry into a validated replacement group.
+ * [FLOW-04](../../../spec/language/control-flow.md#flow-04) retains exact
+ * header roots and releases all header targets before either truth successor.
  */
 #include "codegen/internal.h"
 #include "emission/emission.h"
@@ -35,10 +37,14 @@ bool codegen_emit_control(NativeScaffold *scaffold, FILE *output, const Scaffold
             written = node->statement->enclosing_operation != NULL
                 ? codegen_emit_tree_control(output, type, node, name) : codegen_control_release(output); break;
         case CONTROL_ABANDON_CHAIN: written = codegen_emit_tree_control(output, type, node, name); break;
+        case CONTROL_RELEASE_CHAIN: written = codegen_emit_tree_control(output, type, node, name); break;
         case CONTROL_TRANSFER_OUTPUT:
             written = codegen_control_output(output, name, node->statement->syntax->as.call.mode == AST_CONSTANT_READ); break;
         case CONTROL_SELECT_RECEIVER: written = codegen_control_assignment(output, name); break;
-        case CONTROL_CONDITION: return codegen_control_condition(output, name, node->next->selector, node->alternative->selector);
+        case CONTROL_CONDITION:
+            return node->chain != NULL && node->chain->header != NULL
+                ? codegen_control_condition_result(output, name, node->next->selector, node->alternative->selector)
+                : codegen_control_condition(output, name, node->next->selector, node->alternative->selector);
         case CONTROL_CAPTURE_ERROR: case CONTROL_CLEANUP_FAILURE: case CONTROL_FAILURE:
             return codegen_control_failure(output);
         case CONTROL_SAVE_POSITION: written = codegen_control_save(output, node->resume->selector); break;
@@ -53,7 +59,7 @@ bool codegen_emit_control(NativeScaffold *scaffold, FILE *output, const Scaffold
         case CONTROL_RETIRE_RETURN:
         /* The contiguous selected acquisition helper performs selection once;
          * the explicit action/selection labels introduce no second evaluation. */
-        case CONTROL_SELECT_RESULT: case CONTROL_ACTION_NEXT:
+        case CONTROL_SELECT_RESULT: case CONTROL_ACTION_NEXT: case CONTROL_HEADER_ENTER:
         case CONTROL_PREFLIGHT_INPUTS:
         case CONTROL_EVALUATE_INPUT: case CONTROL_INSTALL_PARAMETER: case CONTROL_INITIALIZE_RESULT:
         case CONTROL_SELECT_SOURCE: case CONTROL_PREFLIGHT_REPLACEMENT: case CONTROL_PREPARE_REPLACEMENT:

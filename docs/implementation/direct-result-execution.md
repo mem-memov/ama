@@ -72,9 +72,11 @@ cleanup and never enter a refusal handler. T067 supplies
 unwind, independent dynamic callers and handler suspension.
 
 For finite source nesting depth `D`, service storage is bounded by the planned
-lexical frame count. Push/pop work is constant except for target/index selection;
-abandonment is `O(d)` for the unfinished source path. These transitions allocate
-no memory and use no recursive C dispatch. Output continuations are explicit IR
+lexical frame count. Each push/pop makes a constant number of exact registry/pool
+lookups in addition to selection. With the current linear registry of `T` nominal
+types, its service work is `O(T)` and abandonment is `O(d * T)` for the unfinished
+source path, excluding index/native-protocol costs. These transitions allocate no
+memory and use no recursive C dispatch. Output continuations are explicit IR
 labels, so completed subtrees cannot resume a discarded sibling traversal.
 
 ## Evidence and limits
@@ -94,6 +96,6 @@ counter values and output ordering distinguish actual retained identities from
 copies or incorrect sibling sequencing. Sanitizer flags instrument the generated
 programs as well as the test runner.
 
-Intrinsic list services, foreach cursors and condition-header operation trees
-remain guarded pending their specific runtime adapters. This implementation does
+T068 separately accepts [ordinary condition headers](condition-loop-execution.md).
+Intrinsic list services and foreach cursors remain guarded pending their adapters. This implementation does
 not turn static acceptance of those plans into a claim of executable support.

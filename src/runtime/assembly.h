@@ -65,6 +65,7 @@
 #include "runtime/program/calls/preparation/installation.c"
 #include "runtime/program/calls/prepare.c"
 #include "runtime/program/calls/return.c"
+#include "runtime/program/conditions/evaluate.c"
 #include "runtime/program/constants/begin.c"
 #include "runtime/program/constants/build.c"
 #include "runtime/program/constants/cleanup.c"

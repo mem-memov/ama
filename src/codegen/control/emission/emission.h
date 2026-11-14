@@ -5,6 +5,8 @@
  * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03) keeps writers
  * independent of frontend/model ownership. [STACK-01](../../../../spec/implementation/compiler.md#stack-01)
  * uses labels instead of C calls for Ama control transfer.
+ * [FLOW-04](../../../../spec/language/control-flow.md#flow-04) routes a
+ * converted header condition through its explicit release successors.
  */
 #ifndef AMA_CONTROL_EMISSION_H
 #define AMA_CONTROL_EMISSION_H
@@ -29,6 +31,10 @@ bool codegen_control_output(FILE *, const char *name, bool shared);
 bool codegen_control_assignment(FILE *, const char *name);
 /** Branch to the explicit true/false successors after condition conversion. */
 bool codegen_control_condition(FILE *, const char *name, size_t yes, size_t no);
+/** Convert the terminal result in its still-protected header owner, keeping
+ * indices caller-local and routing success to explicit release-chain labels.
+ */
+bool codegen_control_condition_result(FILE *, const char *name, size_t yes, size_t no);
 /** Reset the temporary status after the runtime has recorded a handled refusal. */
 bool codegen_control_refusal(FILE *);
 /** Enter the common terminal-failure path. */

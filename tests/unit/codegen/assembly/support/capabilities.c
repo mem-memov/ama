@@ -1,15 +1,13 @@
 /** @file
  * @brief Require complete static IR but reject missing execution adapters before allocating artifact/model state.
  */
-/** Loop/cursor frames remain statically checkable before their runtime adapters. */
+/** Foreach cursor frames remain statically checkable before their runtime adapter. */
 static void it_rejects_unimplemented_execution_adapters_after_valid_ir_before_artifact_staging(void) {
     const char *cases[] = {
-        "@!\nitems[]\n.value\nitems[item&]\n{\n}\n",
-        "@!\nproducer\n.producer\nproducer !\n condition\n {\n }\n"
+        "@!\nitems[]\n.value\nitems[item&]\n{\n}\n"
     };
     for (size_t index = 0; index < sizeof(cases) / sizeof(*cases); index++) {
         prepare_assembly();
-        file("generated/project/producer", "@>\ncondition\n.value\n@!\n");
         file("generated/project/main", cases[index]);
         begin_assembly();
         assert(frontend.valid && frontend.plan.valid && frontend.plan.storage_ready);

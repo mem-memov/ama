@@ -6,6 +6,8 @@
  * Invocation records borrow resolved accesses and sources. Result storage remains acquired until the caller explicitly releases it.
  * [CALL-09](../../../../spec/language/calls-and-results.md#call-09) retains
  * enclosing acquisitions in fixed caller-owned transient slots.
+ * [FLOW-04](../../../../spec/language/control-flow.md#flow-04) converts a
+ * terminal result while its header owner remains protected.
  */
 #ifndef AMA_PROGRAM_CALL_H
 #define AMA_PROGRAM_CALL_H
@@ -70,4 +72,9 @@ AmaStatus ama_program_transfer(AmaProgram *, AmaHandle, const AmaProgramAccess *
  * without altering caller output or refusal history. No universal truth conversion exists.
  */
 AmaStatus ama_program_condition(AmaProgram *, AmaHandle, const AmaProgramAccess *, bool *);
+/** Convert an owned result of the current protected target. The leading base
+ * belongs to outgoing; index operands belong to caller. Do not acquire/execute
+ * the result or release header grants; output changes only after checked success.
+ */
+AmaStatus ama_program_condition_result(AmaProgram *, AmaHandle caller, const AmaProgramAccess *, bool *);
 #endif

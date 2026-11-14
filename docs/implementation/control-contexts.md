@@ -6,8 +6,9 @@ T038 completes static control metadata under
 [FLOW-03](../../spec/language/control-flow.md#flow-03),
 [FLOW-04](../../spec/language/control-flow.md#flow-04) and
 [FLOW-05](../../spec/language/lists.md#flow-05).
-New command-header loops and foreach execution still require later IR/runtime
-frames. They are explicitly rejected in planning after successful static analysis.
+T044 supplies complete structured IR. T068 supplies
+[ordinary command-header execution](condition-loop-execution.md); foreach
+execution remains guarded at C generation after complete static planning.
 
 ## Carry the actual lexical loop
 
@@ -139,6 +140,7 @@ and reject bad names/types even inside initially empty/default-zero paths.
 Every semantic allocation in a complete nested header/handler/traversal project is
 failed independently. The walker tests independently verify its carried loop
 identity/depth through stable sorting and callback early stop. Frontend tests
-require successful semantic/constant analysis followed by rejection before storage
-publication. Full strict and sanitizer suites cover composition; these checks do
-not certify the pending execution of header loops or changing-list traversals.
+require successful semantic/constant analysis and complete validated planning.
+Full strict and sanitizer suites cover composition; semantic evidence alone does
+not certify runtime behavior. T068 separately accepts ordinary header execution;
+changing-list traversal remains a later adapter.

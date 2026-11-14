@@ -4,6 +4,8 @@
  * ancestors, depth-first children and whole-chain release before a local handler.
  * The validated IR supplies ancestry and successors; this writer never rebuilds
  * source structure or keeps a C activation across an Ama label transfer.
+ * [FLOW-04](../../../spec/language/control-flow.md#flow-04) uses the same exact
+ * ancestry to release a successful condition header before either successor.
  */
 #include "codegen/internal.h"
 #include "emission/emission.h"
@@ -35,12 +37,16 @@ bool codegen_emit_tree_control(FILE *output, const ScaffoldType *type, const Con
         return fputs("ama_status=", output) != EOF && release_frame(output, type, node->frame, false)
             && fputs("; if(ama_status.code!=AMA_OK) goto ama_project_finish;\n", output) != EOF;
     }
-    if (node->operation != CONTROL_ABANDON_CHAIN || fputs("{ AmaStatus abandoned=ama_status_success();\n", output) == EOF) { return false; }
-    for (const StorageFrame *frame = node->frame; frame != NULL && frame->operation_parent != NULL; frame = frame->operation_parent) {
-        if (fputs("abandoned=", output) == EOF || !release_frame(output, type, frame, true)
-            || fputs("; if(abandoned.code!=AMA_OK) { ama_status=abandoned; goto ama_project_finish; }\n", output) == EOF) { return false; }
+    bool abandoning = node->operation == CONTROL_ABANDON_CHAIN;
+    if ((!abandoning && node->operation != CONTROL_RELEASE_CHAIN)
+        || fputs("{ AmaStatus released=ama_status_success();\n", output) == EOF) { return false; }
+    const StorageFrame *last = abandoning ? node->frame : node->loop->test->frame;
+    for (const StorageFrame *frame = last; frame != NULL && frame->operation_parent != NULL; frame = frame->operation_parent) {
+        if (fputs("released=", output) == EOF || !release_frame(output, type, frame, abandoning)
+            || fputs("; if(released.code!=AMA_OK) { ama_status=released; goto ama_project_finish; }\n", output) == EOF) { return false; }
     }
-    return fputs("if(!ama_handle_is_empty(ama_cell->metadata.service.outgoing)) {\n"
-        "abandoned=ama_program_release(&ama_program,ama_current);\n"
-        "if(abandoned.code!=AMA_OK) { ama_status=abandoned; goto ama_project_finish; } } }\n", output) != EOF;
+    if (abandoning && fputs("if(!ama_handle_is_empty(ama_cell->metadata.service.outgoing)) {\n", output) == EOF) { return false; }
+    return fputs("released=ama_program_release(&ama_program,ama_current);\n"
+        "if(released.code!=AMA_OK) { ama_status=released; goto ama_project_finish; }\n", output) != EOF
+        && (!abandoning || fputs("}\n", output) != EOF) && fputs("}\n", output) != EOF;
 }

@@ -699,6 +699,46 @@
         "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_repeats_the_complete_header_and_releases_before_body_and_exit",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_keeps_nested_loop_and_branch_repeat_boundaries_independent",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_checks_empty_named_and_header_loops_once_for_both_truth_values",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_handles_refusal_at_each_header_depth_without_running_the_loop",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_keeps_terminal_conversion_failure_outside_refusal_handlers",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_exits_nested_loops_and_returns_from_header_bodies",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_resumes_inside_the_body_before_repeating_the_header",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_selects_an_indexed_terminal_condition_using_the_caller_index_once",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
       }
     ]
   },
@@ -740,6 +780,46 @@
         "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_repeats_the_complete_header_and_releases_before_body_and_exit",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_keeps_nested_loop_and_branch_repeat_boundaries_independent",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_checks_empty_named_and_header_loops_once_for_both_truth_values",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_handles_refusal_at_each_header_depth_without_running_the_loop",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_keeps_terminal_conversion_failure_outside_refusal_handlers",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_exits_nested_loops_and_returns_from_header_bodies",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_resumes_inside_the_body_before_repeating_the_header",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_selects_an_indexed_terminal_condition_using_the_caller_index_once",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
       }
     ]
   },
@@ -969,6 +1049,46 @@
         "case": "it_refuses_before_parking_and_checks_frame_storage",
         "command": "make -C tests/unit/runtime/result-calls",
         "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_repeats_the_complete_header_and_releases_before_body_and_exit",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_keeps_nested_loop_and_branch_repeat_boundaries_independent",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_checks_empty_named_and_header_loops_once_for_both_truth_values",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_handles_refusal_at_each_header_depth_without_running_the_loop",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_keeps_terminal_conversion_failure_outside_refusal_handlers",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_exits_nested_loops_and_returns_from_header_bodies",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_resumes_inside_the_body_before_repeating_the_header",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_selects_an_indexed_terminal_condition_using_the_caller_index_once",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
       }
     ]
   },
@@ -13162,6 +13282,46 @@
         "case": "it_refuses_before_parking_and_checks_frame_storage",
         "command": "make -C tests/unit/runtime/result-calls",
         "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_repeats_the_complete_header_and_releases_before_body_and_exit",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_keeps_nested_loop_and_branch_repeat_boundaries_independent",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_checks_empty_named_and_header_loops_once_for_both_truth_values",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_handles_refusal_at_each_header_depth_without_running_the_loop",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_keeps_terminal_conversion_failure_outside_refusal_handlers",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_exits_nested_loops_and_returns_from_header_bodies",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_resumes_inside_the_body_before_repeating_the_header",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_selects_an_indexed_terminal_condition_using_the_caller_index_once",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
       }
     ]
   },
@@ -19464,6 +19624,46 @@
         "case": "it_refuses_before_parking_and_checks_frame_storage",
         "command": "make -C tests/unit/runtime/result-calls",
         "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_repeats_the_complete_header_and_releases_before_body_and_exit",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_keeps_nested_loop_and_branch_repeat_boundaries_independent",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_checks_empty_named_and_header_loops_once_for_both_truth_values",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_handles_refusal_at_each_header_depth_without_running_the_loop",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_keeps_terminal_conversion_failure_outside_refusal_handlers",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_exits_nested_loops_and_returns_from_header_bodies",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_resumes_inside_the_body_before_repeating_the_header",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_selects_an_indexed_terminal_condition_using_the_caller_index_once",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
       }
     ]
   },
@@ -32618,6 +32818,11 @@
         "case": "it_unwinds_deep_handlers_in_caller_scope_and_preserves_prior_progress",
         "command": "make -C tests/unit/codegen handlers",
         "source": "tests/unit/codegen/handlers/main.c"
+      },
+      {
+        "case": "it_repeats_the_complete_header_and_releases_before_body_and_exit",
+        "command": "make -C tests/unit/codegen loops",
+        "source": "tests/unit/codegen/loops/main.c"
       }
     ]
   },
@@ -57590,6 +57795,46 @@
         "case": "it_refuses_before_parking_and_checks_frame_storage",
         "command": "make -C tests/unit/runtime/result-calls",
         "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_repeats_the_complete_header_and_releases_before_body_and_exit",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_keeps_nested_loop_and_branch_repeat_boundaries_independent",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_checks_empty_named_and_header_loops_once_for_both_truth_values",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_handles_refusal_at_each_header_depth_without_running_the_loop",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_keeps_terminal_conversion_failure_outside_refusal_handlers",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_exits_nested_loops_and_returns_from_header_bodies",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_resumes_inside_the_body_before_repeating_the_header",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_selects_an_indexed_terminal_condition_using_the_caller_index_once",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
       }
     ]
   },
@@ -61203,6 +61448,46 @@
         "case": "it_refuses_before_parking_and_checks_frame_storage",
         "command": "make -C tests/unit/runtime/result-calls",
         "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_repeats_the_complete_header_and_releases_before_body_and_exit",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_keeps_nested_loop_and_branch_repeat_boundaries_independent",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_checks_empty_named_and_header_loops_once_for_both_truth_values",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_handles_refusal_at_each_header_depth_without_running_the_loop",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_keeps_terminal_conversion_failure_outside_refusal_handlers",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_exits_nested_loops_and_returns_from_header_bodies",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_resumes_inside_the_body_before_repeating_the_header",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_selects_an_indexed_terminal_condition_using_the_caller_index_once",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
       }
     ]
   },
@@ -61566,6 +61851,277 @@
         "case": "it_resumes_a_yielded_handler_without_restoring_abandoned_actions",
         "command": "make -C tests/unit/codegen/handlers",
         "source": "tests/unit/codegen/handlers/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/loops/main.c": {
+    "contract": "docs/implementation/condition-loop-execution.md",
+    "purpose": "Verify exact lexical condition roots, protected selection, released successors and structured control exits.",
+    "tests": [
+      {
+        "case": "it_repeats_the_complete_header_and_releases_before_body_and_exit",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_keeps_nested_loop_and_branch_repeat_boundaries_independent",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_checks_empty_named_and_header_loops_once_for_both_truth_values",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_handles_refusal_at_each_header_depth_without_running_the_loop",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_keeps_terminal_conversion_failure_outside_refusal_handlers",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_exits_nested_loops_and_returns_from_header_bodies",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_resumes_inside_the_body_before_repeating_the_header",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_selects_an_indexed_terminal_condition_using_the_caller_index_once",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/loops/common.c": {
+    "contract": "docs/implementation/condition-loop-execution.md",
+    "purpose": "Verify exact lexical condition roots, protected selection, released successors and structured control exits.",
+    "tests": [
+      {
+        "case": "it_repeats_the_complete_header_and_releases_before_body_and_exit",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_keeps_nested_loop_and_branch_repeat_boundaries_independent",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_checks_empty_named_and_header_loops_once_for_both_truth_values",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_handles_refusal_at_each_header_depth_without_running_the_loop",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_keeps_terminal_conversion_failure_outside_refusal_handlers",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_exits_nested_loops_and_returns_from_header_bodies",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_resumes_inside_the_body_before_repeating_the_header",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_selects_an_indexed_terminal_condition_using_the_caller_index_once",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/loops/Makefile": {
+    "contract": "docs/implementation/condition-loop-execution.md",
+    "purpose": "Verify exact lexical condition roots, protected selection, released successors and structured control exits.",
+    "tests": [
+      {
+        "case": "it_repeats_the_complete_header_and_releases_before_body_and_exit",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_keeps_nested_loop_and_branch_repeat_boundaries_independent",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_checks_empty_named_and_header_loops_once_for_both_truth_values",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_handles_refusal_at_each_header_depth_without_running_the_loop",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_keeps_terminal_conversion_failure_outside_refusal_handlers",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_exits_nested_loops_and_returns_from_header_bodies",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_resumes_inside_the_body_before_repeating_the_header",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_selects_an_indexed_terminal_condition_using_the_caller_index_once",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/loops/support/exits.c": {
+    "contract": "docs/implementation/condition-loop-execution.md",
+    "purpose": "Verify exact lexical condition roots, protected selection, released successors and structured control exits.",
+    "tests": [
+      {
+        "case": "it_exits_nested_loops_and_returns_from_header_bodies",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/loops/support/selection.c": {
+    "contract": "docs/implementation/condition-loop-execution.md",
+    "purpose": "Verify exact lexical condition roots, protected selection, released successors and structured control exits.",
+    "tests": [
+      {
+        "case": "it_selects_an_indexed_terminal_condition_using_the_caller_index_once",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/loops/support/empty.c": {
+    "contract": "docs/implementation/condition-loop-execution.md",
+    "purpose": "Verify exact lexical condition roots, protected selection, released successors and structured control exits.",
+    "tests": [
+      {
+        "case": "it_checks_empty_named_and_header_loops_once_for_both_truth_values",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/loops/support/repeat.c": {
+    "contract": "docs/implementation/condition-loop-execution.md",
+    "purpose": "Verify exact lexical condition roots, protected selection, released successors and structured control exits.",
+    "tests": [
+      {
+        "case": "it_repeats_the_complete_header_and_releases_before_body_and_exit",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_keeps_nested_loop_and_branch_repeat_boundaries_independent",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/loops/support/refusals.c": {
+    "contract": "docs/implementation/condition-loop-execution.md",
+    "purpose": "Verify exact lexical condition roots, protected selection, released successors and structured control exits.",
+    "tests": [
+      {
+        "case": "it_handles_refusal_at_each_header_depth_without_running_the_loop",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/loops/support/failure.c": {
+    "contract": "docs/implementation/condition-loop-execution.md",
+    "purpose": "Verify exact lexical condition roots, protected selection, released successors and structured control exits.",
+    "tests": [
+      {
+        "case": "it_keeps_terminal_conversion_failure_outside_refusal_handlers",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/loops/support/suspension.c": {
+    "contract": "docs/implementation/condition-loop-execution.md",
+    "purpose": "Verify exact lexical condition roots, protected selection, released successors and structured control exits.",
+    "tests": [
+      {
+        "case": "it_resumes_inside_the_body_before_repeating_the_header",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/conditions/evaluate.c": {
+    "contract": "docs/implementation/condition-loop-execution.md",
+    "purpose": "Convert caller-local or protected-result truth under one guard without publishing failed protocol output.",
+    "tests": [
+      {
+        "case": "it_keeps_condition_outputs_and_refusal_history_unchanged_after_protocol_failure",
+        "command": "make -C tests/unit/runtime/protocols",
+        "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_repeats_the_complete_header_and_releases_before_body_and_exit",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_keeps_nested_loop_and_branch_repeat_boundaries_independent",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_checks_empty_named_and_header_loops_once_for_both_truth_values",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_handles_refusal_at_each_header_depth_without_running_the_loop",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_keeps_terminal_conversion_failure_outside_refusal_handlers",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_exits_nested_loops_and_returns_from_header_bodies",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_resumes_inside_the_body_before_repeating_the_header",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_selects_an_indexed_terminal_condition_using_the_caller_index_once",
+        "command": "make -C tests/unit/codegen/loops",
+        "source": "tests/unit/codegen/loops/main.c"
       }
     ]
   }

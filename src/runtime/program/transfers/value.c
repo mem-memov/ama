@@ -3,9 +3,7 @@
  * @brief Select receivers before sources and install typed values under one operation guard.
  *
  * [REF-03](../../../../spec/language/values-and-references.md#ref-03)
- * Reference assignment copies handles without acquiring targets; owned replacement stages construction and explicit condition protocols may fail technically.
- * [PROTO-04](../../../../spec/implementation/native-interface.md#proto-04)
- * reads current state; checked condition failure never publishes a callback output.
+ * Reference assignment copies handles without acquiring targets; owned replacement stages construction before destructive commit.
  */
 #include "internal.h"
 
@@ -72,28 +70,6 @@ AmaStatus ama_program_assign(AmaProgram *program, AmaHandle current, const AmaPr
     } else { status = ama_program_store(program, &destination, &value, NULL, &operation); }
     ama_object_unprotect(&operation);
     source_arena_destroy(&operation.arena);
-    program->world->operation_active = false;
-    return status;
-}
-
-/** Select a readable scalar and call its condition protocol under one guard.
- * Check transport before publishing the local output. Every failure preserves
- * caller output and releases the guard; no numeric code becomes implicit truth.
- */
-AmaStatus ama_program_condition(AmaProgram *program, AmaHandle current, const AmaProgramAccess *access, bool *result) {
-    if (program->world->operation_active || program->world->failed) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
-    program->world->operation_active = true;
-    AmaProgramValue value = {0};
-    AmaStatus status = ama_program_select(program, current, access, false, &value);
-    const void *payload = NULL;
-    if (status.code == AMA_OK) { status = ama_program_payload(program, &value, &payload); }
-    const AmaProgramType *type = ama_program_type(program, value.type_id);
-    if (status.code == AMA_OK) {
-        bool condition = false;
-        status = type == NULL || type->condition == NULL ? ama_status_make(AMA_TYPE_MISMATCH, NULL, 0)
-            : ama_status_checked(type->condition(payload, &condition));
-        if (status.code == AMA_OK) { *result = condition; }
-    }
     program->world->operation_active = false;
     return status;
 }

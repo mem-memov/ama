@@ -1522,10 +1522,23 @@ their parsed and typed plans are already available from Phases 3–5.
   Strict recursive handler tests and generated-program ASan+UBSan passed. All
   1135 maintained inputs have coverage; local links passed and final Doxygen
   reproducibility is checked before commit. Loop/header exits follow in T068.
-- [ ] **T068 — Complete branches, loops and exact repeat boundaries.** Needs:
+- [x] **T068 — Complete branches, loops and exact repeat boundaries.** Needs:
   T067. Execute standalone negative branches, empty-body single checks, fixed-root
   linear condition commands and nested break/return. Test conversion errors,
   per-link refusal paths and protection release before loop bodies.
+  Evidence: [condition-loop execution](docs/implementation/condition-loop-execution.md).
+  Header entry follows the exact planned root; terminal truth uses its protected
+  result owner and caller-local indices. Both truth paths release the complete
+  checked frame ancestry before body/exit. The isolated condition component keeps
+  ordinary named/negative branches and checked failure-output preservation.
+  Eight explicit cases execute fifteen compiled programs: full/nested roots,
+  true/false parsed-empty named/header bodies, body reacquisition, indexed terminal
+  decoding once, root/intermediate/resume refusal, incoming outer-loop handler
+  break, failed conversion, nested body break/return and body yield/resume without
+  header replay. Full strict tests and generated-program ASan+UBSan passed.
+  Coverage includes all 1146 maintained inputs; local links passed and final
+  Doxygen reproducibility is checked before commit. Foreach and intrinsic-list
+  adapters remain guarded; no new syntax, implicit truth or cached target added.
 - [ ] **T069 — Accept the synchronous language slice.** Needs: T068. Run
   multi-instance state/method/control examples and source-to-generated-program
   failure compositions. Check constant/default initialization order, no hidden

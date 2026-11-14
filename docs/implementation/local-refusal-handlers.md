@@ -86,6 +86,6 @@ the original failure. T066 separately checks technical selected-index failure.
 
 `make -C tests/unit/codegen/handlers` runs all six cases; the parent exposes the
 independent `handlers` target. Sanitizer flags instrument generated runtime/native
-programs as well as their assertion runner. Handler exits associated with the
-expanded loop/header acceptance remain T068; this chapter does not claim pending
+programs as well as their assertion runner. T068 separately accepts
+[loop/header exits](condition-loop-execution.md); this chapter does not claim pending
 foreach, intrinsic-list or compiled-component ABI conformance.
