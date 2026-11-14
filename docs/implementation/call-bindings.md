@@ -75,3 +75,7 @@ independent direction positions and every allocation in a named call. The existi
 5856-form mode/style/order oracle and compiled execution cases remain acceptance
 evidence. Source acquisition, source protection, actual interface arity and ordered
 runtime transfers remain their semantic/planning tasks.
+
+[T064 compiled binding acceptance](compiled-bindings.md) observes raw literal
+bytes, constructor selection, inferred receiver forms, positional holes and
+sequential output progress through actual native code.

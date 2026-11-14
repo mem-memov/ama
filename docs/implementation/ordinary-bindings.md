@@ -90,3 +90,7 @@ entry, resume and retained read is independently failed and all owners must
 unwind. Existing semantic diagnostic tests additionally check nominal mismatch
 and missing literal/clone protocol declaration sites. The recursive semantic
 suite includes this leaf explicitly.
+
+[T064 compiled binding acceptance](compiled-bindings.md) observes raw literal
+bytes, constructor selection, inferred receiver forms, positional holes and
+sequential output progress through actual native code.

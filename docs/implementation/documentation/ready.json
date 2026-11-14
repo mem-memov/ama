@@ -32398,6 +32398,31 @@
         "case": "it_stops_before_body_and_refusal_handler_when_a_later_parameter_constructor_fails",
         "command": "make -C tests/unit/codegen preparation",
         "source": "tests/unit/codegen/preparation/main.c"
+      },
+      {
+        "case": "it_preserves_literal_bytes_and_selects_one_constructor_with_lf_crlf_and_empty_payloads",
+        "command": "make -C tests/unit/codegen bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_literal_constructor_failure_before_body_entry_and_result_publication",
+        "command": "make -C tests/unit/codegen bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_executes_inferred_owned_reference_receivers_and_output_placeholders",
+        "command": "make -C tests/unit/codegen bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_resolves_each_output_receiver_after_the_previous_transfer_commits",
+        "command": "make -C tests/unit/codegen bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_retains_an_earlier_output_when_a_later_receiver_conversion_fails",
+        "command": "make -C tests/unit/codegen bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
       }
     ]
   },
@@ -32956,6 +32981,31 @@
         "case": "it_distinguishes_busy_native_destruction_from_refused_host_disposal",
         "command": "make -C tests/unit/codegen/contexts",
         "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_literal_bytes_and_selects_one_constructor_with_lf_crlf_and_empty_payloads",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_literal_constructor_failure_before_body_entry_and_result_publication",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_executes_inferred_owned_reference_receivers_and_output_placeholders",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_resolves_each_output_receiver_after_the_previous_transfer_commits",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_retains_an_earlier_output_when_a_later_receiver_conversion_fails",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
       }
     ]
   },
@@ -60597,6 +60647,130 @@
         "case": "it_stops_before_body_and_refusal_handler_when_a_later_parameter_constructor_fails",
         "command": "make -C tests/unit/codegen/preparation",
         "source": "tests/unit/codegen/preparation/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/bindings/main.c": {
+    "contract": "docs/implementation/compiled-bindings.md",
+    "purpose": "Run exact literal byte, inference/placeholder and ordered/partial output composition cases.",
+    "tests": [
+      {
+        "case": "it_preserves_literal_bytes_and_selects_one_constructor_with_lf_crlf_and_empty_payloads",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_literal_constructor_failure_before_body_entry_and_result_publication",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_executes_inferred_owned_reference_receivers_and_output_placeholders",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_resolves_each_output_receiver_after_the_previous_transfer_commits",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_retains_an_earlier_output_when_a_later_receiver_conversion_fails",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/bindings/Makefile": {
+    "contract": "docs/implementation/compiled-bindings.md",
+    "purpose": "Build the independent generated binding leaf with optional target sanitizer instrumentation.",
+    "tests": [
+      {
+        "case": "it_preserves_literal_bytes_and_selects_one_constructor_with_lf_crlf_and_empty_payloads",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_literal_constructor_failure_before_body_entry_and_result_publication",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_executes_inferred_owned_reference_receivers_and_output_placeholders",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_resolves_each_output_receiver_after_the_previous_transfer_commits",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_retains_an_earlier_output_when_a_later_receiver_conversion_fails",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/bindings/support/bytes.c": {
+    "contract": "docs/implementation/compiled-bindings.md",
+    "purpose": "Observe raw byte payloads and constructor choice through typed native fields and actual output effects.",
+    "tests": [
+      {
+        "case": "it_preserves_literal_bytes_and_selects_one_constructor_with_lf_crlf_and_empty_payloads",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_literal_constructor_failure_before_body_entry_and_result_publication",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_executes_inferred_owned_reference_receivers_and_output_placeholders",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_resolves_each_output_receiver_after_the_previous_transfer_commits",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_retains_an_earlier_output_when_a_later_receiver_conversion_fails",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/bindings/support/receivers.c": {
+    "contract": "docs/implementation/compiled-bindings.md",
+    "purpose": "Observe identity transfer, placeholder positions, updated indices and committed output prefixes through native effects.",
+    "tests": [
+      {
+        "case": "it_preserves_literal_bytes_and_selects_one_constructor_with_lf_crlf_and_empty_payloads",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_literal_constructor_failure_before_body_entry_and_result_publication",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_executes_inferred_owned_reference_receivers_and_output_placeholders",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_resolves_each_output_receiver_after_the_previous_transfer_commits",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_retains_an_earlier_output_when_a_later_receiver_conversion_fails",
+        "command": "make -C tests/unit/codegen/bindings",
+        "source": "tests/unit/codegen/bindings/main.c"
       }
     ]
   }

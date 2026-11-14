@@ -35,6 +35,18 @@ static bool busy_native_destroy;
 /** Test-only synchronous host barrier for genuinely overlapping generated contexts. */
 static bool native_execution_gate;
 
+/** Optional test-only entry fragment writer. A true result owns the complete
+ * entry effects before common status completion; model and stream are borrowed
+ * only during emission. Production compilation still checks the resulting ABI.
+ */
+typedef bool (*TestNativeEntryEmitter)(FILE *, const ScaffoldType *);
+/** Optional test-only payload-hook body selector; return a static C fragment or
+ * null for the ordinary address-sensitive fixture. Never retain model pointers.
+ */
+typedef const char *(*TestNativeHookEmitter)(const ScaffoldType *, AbiOperation);
+static TestNativeEntryEmitter native_entry_override;
+static TestNativeHookEmitter native_hook_override;
+
 /**
  * Create the explicit native interface/body/ABI companion set used by this leaf. The caller
  * supplies its known contract; no native capability is inferred from a C name.
@@ -74,25 +86,27 @@ static void executable_native(const ScaffoldType *type) {
         "assert(state->address==state); (void)parameters; (void)results; (void)services;\n", noninline_entry ? "__attribute__((noinline))" : "AMA_NATIVE_ENTRY", wrong_entry_result ? "AmaStatus" : "void", type->names[SCAFFOLD_PARAMETERS]->internal_name,
         type->names[SCAFFOLD_RESULTS]->internal_name);
     assert(written >= 0);
-    if (strcmp(type->plan->type->module->source->logical_path,".showindex")==0) {
-        written = fputs("printf(\"value=%zu\\n\",parameters->AMA_INPUT(0)->payload->value);\n",body);
-        assert(written != EOF);
-    } else if (strcmp(type->plan->type->module->source->logical_path,".recursive")==0) {
-        written = fputs("size_t total=AMA_NATIVE(sum)(parameters->AMA_INPUT(0)->payload->number); results->AMA_OUTPUT(0)->payload->number=total; printf(\"sum=%zu\\n\",total);\n",body);
-        assert(written != EOF);
-    } else if (strcmp(type->plan->type->module->source->logical_path,".decrement")==0) {
-        written = fputs("size_t number=parameters->AMA_INPUT(0)->payload->number; results->AMA_OUTPUT(0)->payload->number=number==0 ? 0 : number-1; printf(\"count=%zu\\n\",number);\n",body);
-        assert(written != EOF);
-    } else if (type->plan->type->counts[SYMBOL_PARAMETER] == 2) {
-        written = fputs("printf(\"ordered=%zu,%zu,%zu\\n\",parameters->AMA_INPUT(0)->payload->number,parameters->AMA_INPUT(1)->payload->number,results->AMA_OUTPUT(0)->payload->number);\n",body);
-        assert(written != EOF);
-    } else if (type->plan->type->counts[SYMBOL_PARAMETER] != 0 && type->plan->type->counts[SYMBOL_RESULT] == 0) {
-        written = fputs("printf(\"status=%u\\n\",(unsigned)parameters->AMA_INPUT(0)->payload->value.code);\n", body);
-        assert(written != EOF);
-    } else if (type->plan->type->counts[SYMBOL_PARAMETER] != 0) {
-        written = fputs("if(parameters->AMA_INPUT(0)->payload->number==500) { puts(\"native-entered\"); *status=ama_status_make(AMA_NATIVE_FAILURE,\"Body failed\",11); return; }\nstate->calls++; results->AMA_OUTPUT(0)->payload->number=parameters->AMA_INPUT(0)->payload->number+state->calls;\n"
-            "printf(\"%zu:%zu:%u\\n\",parameters->AMA_INPUT(0)->payload->number,state->calls,(unsigned)services->caller_refusal.code);\n", body);
-        assert(written != EOF);
+    if (native_entry_override == NULL || !native_entry_override(body, type)) {
+        if (strcmp(type->plan->type->module->source->logical_path,".showindex")==0) {
+            written = fputs("printf(\"value=%zu\\n\",parameters->AMA_INPUT(0)->payload->value);\n",body);
+            assert(written != EOF);
+        } else if (strcmp(type->plan->type->module->source->logical_path,".recursive")==0) {
+            written = fputs("size_t total=AMA_NATIVE(sum)(parameters->AMA_INPUT(0)->payload->number); results->AMA_OUTPUT(0)->payload->number=total; printf(\"sum=%zu\\n\",total);\n",body);
+            assert(written != EOF);
+        } else if (strcmp(type->plan->type->module->source->logical_path,".decrement")==0) {
+            written = fputs("size_t number=parameters->AMA_INPUT(0)->payload->number; results->AMA_OUTPUT(0)->payload->number=number==0 ? 0 : number-1; printf(\"count=%zu\\n\",number);\n",body);
+            assert(written != EOF);
+        } else if (type->plan->type->counts[SYMBOL_PARAMETER] == 2) {
+            written = fputs("printf(\"ordered=%zu,%zu,%zu\\n\",parameters->AMA_INPUT(0)->payload->number,parameters->AMA_INPUT(1)->payload->number,results->AMA_OUTPUT(0)->payload->number);\n",body);
+            assert(written != EOF);
+        } else if (type->plan->type->counts[SYMBOL_PARAMETER] != 0 && type->plan->type->counts[SYMBOL_RESULT] == 0) {
+            written = fputs("printf(\"status=%u\\n\",(unsigned)parameters->AMA_INPUT(0)->payload->value.code);\n", body);
+            assert(written != EOF);
+        } else if (type->plan->type->counts[SYMBOL_PARAMETER] != 0) {
+            written = fputs("if(parameters->AMA_INPUT(0)->payload->number==500) { puts(\"native-entered\"); *status=ama_status_make(AMA_NATIVE_FAILURE,\"Body failed\",11); return; }\nstate->calls++; results->AMA_OUTPUT(0)->payload->number=parameters->AMA_INPUT(0)->payload->number+state->calls;\n"
+                "printf(\"%zu:%zu:%u\\n\",parameters->AMA_INPUT(0)->payload->number,state->calls,(unsigned)services->caller_refusal.code);\n", body);
+            assert(written != EOF);
+        }
     }
     if (corrupt_return_link && strcmp(type->plan->type->module->source->logical_path, ".worker") == 0) {
         written = fputs("fault_return_link();\n", body);
@@ -115,6 +129,10 @@ static void executable_native(const ScaffoldType *type) {
             : operation == ABI_CLONE ? " { *destination=*source; destination->address=destination; return ama_status_success(); }\n"
             : operation == ABI_CONDITION ? " { *result=state->number!=0; return ama_status_success(); }\n"
             : " { if(state->number==9999) return ama_status_make(AMA_NATIVE_FAILURE,\"Index decoder failed\",20); if(state->number>=1000 && state->number<9999) { printf(\"index=%zu\\n\",state->number); *result=state->number-1000; } else { *result=state->number; } return ama_status_success(); }\n";
+        if (native_hook_override != NULL) {
+            const char *selected = native_hook_override(type, operation);
+            if (selected != NULL) { implementation = selected; }
+        }
         if (operation == ABI_CONDITION && trace_condition_checks) {
             implementation = " { static size_t checks; checks++; printf(\"truth=%zu\\n\",checks); *result=state->number!=0 && checks==1; return ama_status_success(); }\n";
         }

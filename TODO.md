@@ -1455,11 +1455,23 @@ their parsed and typed plans are already available from Phases 3–5.
   tests and generated-program ASan+UBSan passed. All 1106 maintained inputs have
   coverage; local links passed and final Doxygen reproducibility is checked
   before commit. Other unfinished execution adapters remain explicitly guarded.
-- [ ] **T064 — Complete literal inputs and ordered result receivers.** Needs:
+- [x] **T064 — Complete literal inputs and ordered result receivers.** Needs:
   T063. Select literal construction once, preserve payload bytes and resolve
   output receivers/indices in written order. Execute inferred scalar/reference
   receivers, placeholders and failures before body entry or result publication;
   integrate planned list receivers with their concrete storage in T076.
+  Evidence: [compiled literal/output bindings](docs/implementation/compiled-bindings.md).
+  Existing emitter/runtime paths now have independent native-byte and lifecycle
+  effect observations. LF/CRLF/no-final-newline payloads preserve repeated spaces,
+  `#`, `|` and UTF-8; repeated/empty literals select one constructor each. A later
+  ordinary input reads the inferred receiver's stored bytes. Cases check owned/
+  reference inference, placeholders, an output-updated index and an earlier
+  committed receiver after a later conversion failure. Constructor/destructor
+  effects prove no default-before-literal or whole-output rollback. Native
+  literal failure enters neither body nor `:`. Full strict tests and target
+  ASan+UBSan passed; all 1110 maintained inputs have coverage. Local links passed;
+  final Doxygen reproducibility is checked before commit. No duplicate binding
+  executor or new source syntax was introduced.
 - [ ] **T065 — Complete retained and constant result reads.** Needs: T064.
   Copy the complete permitted value state without executing/resetting the target;
   preserve ordinary copy clearing. Test qualified constants, inferred receivers,
