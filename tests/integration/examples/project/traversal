@@ -1,0 +1,39 @@
+# Append once beyond the frontier, then remove the current first element.
+@!
+items[]
+..text
+ |first
+ |second
+extra
+..text
+ |appended
+once
+..std.condition
+ |1
+off
+..std.condition
+ |0
+report
+.report
+items[item&]
+{
+ value
+  % item&
+ report !
+  < value
+ once
+ ?
+  items[]
+   append !
+    < &extra
+  once
+   off
+ items[]
+  remove !
+   < |0
+}
+items[unused&]
+{
+ report !
+  < |unexpected visit
+}

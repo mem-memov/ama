@@ -1,0 +1,10 @@
+# Return the current instance without creating another owned instance.
+@>
+self&
+.self
+ &
+@!
+report
+.report
+report !
+ < |self entry

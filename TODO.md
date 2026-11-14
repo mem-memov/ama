@@ -1920,12 +1920,21 @@ Contracts: [library](spec/language/library.md),
   Native/generated ASan/UBSan, full strict tests, all 1351 input coverage,
   standalone headers, local links and reproducible Doxygen are checked before
   commit. No domain-operation parser syntax or implicit numeric conversion added.
-- [ ] **T088 — Publish complete synchronous and continuation examples.** Needs:
+- [x] **T088 — Publish complete synchronous and continuation examples.** Needs:
   T087. Supply reproducible modules for persistent state, self-reference,
   constructor-owned methods, mutable list traversal and independent simulations.
   Include file-operation failure handling with a returned failure module, a
   positive `?` and a retained read of its description, with no separate flag.
   Execute expected outputs/state changes and explain the governing contracts.
+  Evidence: [executable examples](docs/implementation/examples.md), maintained
+  `tests/integration/examples/project/` and the constructor/resource project.
+  Real CLI scenarios check returned self-reference, independent copied traversal
+  continuations that consume their own lists, future append/current removal,
+  empty traversal, ordinary-copy resume rejection and owned file failures with
+  repeated retained descriptions followed by success. Target ASan/UBSan,
+  strict whole tests, all 1372 maintained-input coverage, standalone headers,
+  local links and reproducible Doxygen are checked before commit. Native file
+  resources stay within one synchronous activation; no new language rules.
 - [ ] **T089 — Review usability through the examples.** Needs: T088. Improve
   diagnostics, source navigation metadata and Doxygen explanations using concrete
   failures and repeated workflows. Record proposed language changes as questions;

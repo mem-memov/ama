@@ -1,0 +1,8 @@
+# Ordinary copying clears saved control positions and cannot be resumed.
+@!
+simulation
+.simulation
+simulation !
+copy
+ simulation
+copy %

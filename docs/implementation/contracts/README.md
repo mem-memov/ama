@@ -151,3 +151,6 @@ rollback through real owned-tree cloning and separate last-refusal snapshots.
 [Arithmetic and list compositions](../library-compositions.md) records T087
 signed carry/borrow invariants, complete failure outcomes and real context-local
 constant-list initialization, cloning and partial-cleanup evidence.
+
+[Executable examples](../examples.md) records T088 reproducible synchronous and
+continuation workflows, their lifetime arguments and exact integration evidence.

@@ -31,6 +31,8 @@ C/assert tests. Check-only success does not validate handwritten C bodies.
 - [Native value ABI](VALUE_ABI.md): values, capabilities, lifetimes and errors.
 - [Contributor guide](CONTRIBUTORS.md): readable components, formatting and tests.
 - [Standard library](stdlib/README.md): library boundaries and native companions.
+- [Executable examples](docs/implementation/examples.md): stateful methods, self-reference,
+  live list mutation, independent continuations and owned file-operation failures.
 - [Implementation backlog](TODO.md): remaining engineering and verification work.
 
 ## Language outline

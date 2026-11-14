@@ -1,0 +1,15 @@
+# Invalid empty path is an expected application failure rather than native failure.
+@!
+open
+.open
+report
+.report
+open !
+ < |
+ > failure
+failure
+?
+ failure
+  description >> message
+ report !
+  < message

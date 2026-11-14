@@ -77987,5 +77987,508 @@
         "source": "tests/unit/native/abi/integer-arithmetic/main.c"
       }
     ]
+  },
+  "tests/integration/examples/main.c": {
+    "contract": "docs/implementation/examples.md",
+    "purpose": "Demonstrate and verify explicit continuation copying, self-reference, live traversal and owned file-operation failures.",
+    "tests": [
+      {
+        "case": "it_runs_independent_simulations",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_mutates_a_live_traversal_and_skips_the_empty_list",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_executes_a_returned_self_reference",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_handles_file_failure_and_later_success",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_runs_examples_with_target_sanitizers",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_checks_empty_inputs_and_cleared_copy_positions",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/examples/common.c": {
+    "contract": "docs/implementation/examples.md",
+    "purpose": "Demonstrate and verify explicit continuation copying, self-reference, live traversal and owned file-operation failures.",
+    "tests": [
+      {
+        "case": "it_runs_independent_simulations",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_mutates_a_live_traversal_and_skips_the_empty_list",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_executes_a_returned_self_reference",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_handles_file_failure_and_later_success",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_runs_examples_with_target_sanitizers",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_checks_empty_inputs_and_cleared_copy_positions",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/examples/Makefile": {
+    "contract": "docs/implementation/examples.md",
+    "purpose": "Demonstrate and verify explicit continuation copying, self-reference, live traversal and owned file-operation failures.",
+    "tests": [
+      {
+        "case": "it_runs_independent_simulations",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_mutates_a_live_traversal_and_skips_the_empty_list",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_executes_a_returned_self_reference",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_handles_file_failure_and_later_success",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_runs_examples_with_target_sanitizers",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_checks_empty_inputs_and_cleared_copy_positions",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/examples/project/simulation": {
+    "contract": "docs/implementation/examples.md",
+    "purpose": "Demonstrate and verify explicit continuation copying, self-reference, live traversal and owned file-operation failures.",
+    "tests": [
+      {
+        "case": "it_runs_independent_simulations",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_runs_examples_with_target_sanitizers",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_checks_empty_inputs_and_cleared_copy_positions",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/examples/project/empty": {
+    "contract": "docs/implementation/examples.md",
+    "purpose": "Demonstrate and verify explicit continuation copying, self-reference, live traversal and owned file-operation failures.",
+    "tests": [
+      {
+        "case": "it_checks_empty_inputs_and_cleared_copy_positions",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/examples/project/report.h": {
+    "contract": "docs/implementation/examples.md",
+    "purpose": "Demonstrate and verify explicit continuation copying, self-reference, live traversal and owned file-operation failures.",
+    "tests": [
+      {
+        "case": "it_runs_independent_simulations",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_mutates_a_live_traversal_and_skips_the_empty_list",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_executes_a_returned_self_reference",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_handles_file_failure_and_later_success",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_runs_examples_with_target_sanitizers",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_checks_empty_inputs_and_cleared_copy_positions",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_resource_probe_##name",
+      "-"
+    ]
+  },
+  "tests/integration/examples/project/empty path": {
+    "contract": "docs/implementation/examples.md",
+    "purpose": "Demonstrate and verify explicit continuation copying, self-reference, live traversal and owned file-operation failures.",
+    "tests": [
+      {
+        "case": "it_checks_empty_inputs_and_cleared_copy_positions",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/examples/project/open.h": {
+    "contract": "docs/implementation/examples.md",
+    "purpose": "Demonstrate and verify explicit continuation copying, self-reference, live traversal and owned file-operation failures.",
+    "tests": [
+      {
+        "case": "it_handles_file_failure_and_later_success",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_runs_examples_with_target_sanitizers",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_checks_empty_inputs_and_cleared_copy_positions",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_resource_probe_##name",
+      "-"
+    ]
+  },
+  "tests/integration/examples/project/report.abi": {
+    "contract": "docs/implementation/examples.md",
+    "purpose": "Demonstrate and verify explicit continuation copying, self-reference, live traversal and owned file-operation failures.",
+    "tests": [
+      {
+        "case": "it_runs_independent_simulations",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_mutates_a_live_traversal_and_skips_the_empty_list",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_executes_a_returned_self_reference",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_handles_file_failure_and_later_success",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_runs_examples_with_target_sanitizers",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_checks_empty_inputs_and_cleared_copy_positions",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/examples/project/open": {
+    "contract": "docs/implementation/examples.md",
+    "purpose": "Demonstrate and verify explicit continuation copying, self-reference, live traversal and owned file-operation failures.",
+    "tests": [
+      {
+        "case": "it_handles_file_failure_and_later_success",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_runs_examples_with_target_sanitizers",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_checks_empty_inputs_and_cleared_copy_positions",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/examples/project/simulations": {
+    "contract": "docs/implementation/examples.md",
+    "purpose": "Demonstrate and verify explicit continuation copying, self-reference, live traversal and owned file-operation failures.",
+    "tests": [
+      {
+        "case": "it_runs_independent_simulations",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_runs_examples_with_target_sanitizers",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/examples/project/self example": {
+    "contract": "docs/implementation/examples.md",
+    "purpose": "Demonstrate and verify explicit continuation copying, self-reference, live traversal and owned file-operation failures.",
+    "tests": [
+      {
+        "case": "it_executes_a_returned_self_reference",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/examples/project/ordinary copy": {
+    "contract": "docs/implementation/examples.md",
+    "purpose": "Demonstrate and verify explicit continuation copying, self-reference, live traversal and owned file-operation failures.",
+    "tests": [
+      {
+        "case": "it_checks_empty_inputs_and_cleared_copy_positions",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/examples/project/files": {
+    "contract": "docs/implementation/examples.md",
+    "purpose": "Demonstrate and verify explicit continuation copying, self-reference, live traversal and owned file-operation failures.",
+    "tests": [
+      {
+        "case": "it_handles_file_failure_and_later_success",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_runs_examples_with_target_sanitizers",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/examples/project/report.c": {
+    "contract": "docs/implementation/examples.md",
+    "purpose": "Demonstrate and verify explicit continuation copying, self-reference, live traversal and owned file-operation failures.",
+    "tests": [
+      {
+        "case": "it_runs_independent_simulations",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_mutates_a_live_traversal_and_skips_the_empty_list",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_executes_a_returned_self_reference",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_handles_file_failure_and_later_success",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_runs_examples_with_target_sanitizers",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_checks_empty_inputs_and_cleared_copy_positions",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/examples/project/empty simulation": {
+    "contract": "docs/implementation/examples.md",
+    "purpose": "Demonstrate and verify explicit continuation copying, self-reference, live traversal and owned file-operation failures.",
+    "tests": [
+      {
+        "case": "it_checks_empty_inputs_and_cleared_copy_positions",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/examples/project/open.c": {
+    "contract": "docs/implementation/examples.md",
+    "purpose": "Demonstrate and verify explicit continuation copying, self-reference, live traversal and owned file-operation failures.",
+    "tests": [
+      {
+        "case": "it_handles_file_failure_and_later_success",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_runs_examples_with_target_sanitizers",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_checks_empty_inputs_and_cleared_copy_positions",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/examples/project/open.abi": {
+    "contract": "docs/implementation/examples.md",
+    "purpose": "Demonstrate and verify explicit continuation copying, self-reference, live traversal and owned file-operation failures.",
+    "tests": [
+      {
+        "case": "it_handles_file_failure_and_later_success",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_runs_examples_with_target_sanitizers",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_checks_empty_inputs_and_cleared_copy_positions",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/examples/project/report": {
+    "contract": "docs/implementation/examples.md",
+    "purpose": "Demonstrate and verify explicit continuation copying, self-reference, live traversal and owned file-operation failures.",
+    "tests": [
+      {
+        "case": "it_runs_independent_simulations",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_mutates_a_live_traversal_and_skips_the_empty_list",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_executes_a_returned_self_reference",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_handles_file_failure_and_later_success",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_runs_examples_with_target_sanitizers",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_checks_empty_inputs_and_cleared_copy_positions",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/examples/project/self": {
+    "contract": "docs/implementation/examples.md",
+    "purpose": "Demonstrate and verify explicit continuation copying, self-reference, live traversal and owned file-operation failures.",
+    "tests": [
+      {
+        "case": "it_executes_a_returned_self_reference",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/examples/project/traversal": {
+    "contract": "docs/implementation/examples.md",
+    "purpose": "Demonstrate and verify explicit continuation copying, self-reference, live traversal and owned file-operation failures.",
+    "tests": [
+      {
+        "case": "it_mutates_a_live_traversal_and_skips_the_empty_list",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      },
+      {
+        "case": "it_runs_examples_with_target_sanitizers",
+        "command": "make -C tests/integration/examples",
+        "source": "tests/integration/examples/main.c"
+      }
+    ]
   }
 }
