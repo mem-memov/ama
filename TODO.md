@@ -1894,7 +1894,7 @@ Contracts: [library](spec/language/library.md),
   and clearing. Native/generated ASan/UBSan, full strict tests, all 1334 input
   coverage, standalone headers, local links and reproducible Doxygen are checked
   before commit. Arithmetic expected-failure result alignment remains T087.
-- [ ] **T087 — Standardize and test library compositions.** Needs: T084, T086.
+- [x] **T087 — Standardize and test library compositions.** Needs: T084, T086.
   Keep parameter/result ordering predictable without list action APIs.
   Apply the single condition-capable failure-value convention to operations
   reporting expected failures; keep intrinsic list refusals and ordinary false
@@ -1902,6 +1902,24 @@ Contracts: [library](spec/language/library.md),
   Integrate list-valued constant startup/cleanup with T052's context-local scalar
   foundation. Compile real ownership/list/native combinations and document actual
   capability limitations without parser-level domain operation names.
+  Evidence: [arithmetic/list composition contract](docs/implementation/library-compositions.md).
+  Bounded next/add now return result then one owned failure value; range overflow
+  is expected data, later success clears the outcome, and predicates remain
+  ordinary Boolean values. Canonical `..integer.add`/`next`/`before` expose exact
+  signed arbitrary-precision arithmetic through normal typed module interfaces.
+  Native magnitude ordering, unsigned carry/borrow and prepare-before-replace
+  helpers avoid host narrowing and preserve aliased operands on allocation failure.
+  Four native cases use complete bounded sign/order combinations, actual limb
+  boundaries, independent decimal expectations beyond C ranges, destination
+  aliases and injected preparation failure. Seven generated-project cases verify
+  bounded outcomes, refusal preserving prior receivers, unbounded arithmetic,
+  false predicates, mutable copies of text-list constants, two live contexts,
+  nested owned lists in constants and startup failure cleaning the completed
+  prefix before root publication. This connects the existing context-local
+  constant builder, recipe graph and cleanup path without a new representation.
+  Native/generated ASan/UBSan, full strict tests, all 1351 input coverage,
+  standalone headers, local links and reproducible Doxygen are checked before
+  commit. No domain-operation parser syntax or implicit numeric conversion added.
 - [ ] **T088 — Publish complete synchronous and continuation examples.** Needs:
   T087. Supply reproducible modules for persistent state, self-reference,
   constructor-owned methods, mutable list traversal and independent simulations.

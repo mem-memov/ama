@@ -1,0 +1,8 @@
+# Exact signed integer next; no bounded arithmetic action selector.
+@<
+value
+..integer
+@>
+result
+..integer
+@C

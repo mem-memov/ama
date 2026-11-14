@@ -1,0 +1,10 @@
+# Exact signed integer add; no bounded arithmetic action selector.
+@<
+left
+..integer
+right
+..integer
+@>
+result
+..integer
+@C

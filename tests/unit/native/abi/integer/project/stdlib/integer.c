@@ -24,3 +24,4 @@
 #include "../../../../../../../stdlib/modules/integer+/native/storage.c"
 #include "../../../../../../../stdlib/modules/integer+/native/literal.c"
 #include "../../../../../../../stdlib/modules/integer+/native/conversion.c"
+#include "../../../../../../../stdlib/modules/integer+/native/arithmetic.c"

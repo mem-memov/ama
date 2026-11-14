@@ -1,0 +1,10 @@
+# Exact signed integer before; no bounded arithmetic action selector.
+@<
+left
+..integer
+right
+..integer
+@>
+result
+..std.condition
+@C

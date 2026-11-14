@@ -17,6 +17,7 @@
 #include "integer+/native/storage.c"
 #include "integer+/native/literal.c"
 #include "integer+/native/conversion.c"
+#include "integer+/native/arithmetic.c"
 #undef AMA_INTEGER_ALLOCATE
 #undef AMA_INTEGER_RELEASE
 #undef AMA_INTEGER_OBSERVE_DEFAULT

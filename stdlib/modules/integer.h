@@ -30,4 +30,10 @@ AmaStatus AMA_NATIVE(to_condition)(const struct AMA_NATIVE(State) *, bool *);
 AmaStatus AMA_NATIVE(to_index)(const struct AMA_NATIVE(State) *, size_t *);
 /** Construct exactly 0..SIZE_MAX directly, without decimal/default conversion. */
 AmaStatus AMA_NATIVE(from_size)(struct AMA_NATIVE(State) *, size_t);
+/** Compare two live mathematical integers, publishing -1/0/1 only on success. */
+AmaStatus AMA_NATIVE(compare)(const struct AMA_NATIVE(State) *, const struct AMA_NATIVE(State) *, int *);
+/** Prepare an arbitrary-precision signed sum before replacing the live result.
+ * Sources may alias the destination; preparation failure preserves all values.
+ */
+AmaStatus AMA_NATIVE(add)(struct AMA_NATIVE(State) *, const struct AMA_NATIVE(State) *, const struct AMA_NATIVE(State) *);
 #endif

@@ -63,8 +63,9 @@ use their own full standard identities. Neither type implicitly converts to
 The checked `..std.index.next`, `..std.index.add` and `..std.index.before`
 consumers have matching requalified native contexts and declaration paths.
 Their arithmetic/comparison observations, defaults, named input ordering and
-technical overflow checks run in the standard-root library composition suite.
-T087 aligns expected-failure results after the failure-module foundation.
+bounded overflow checks run in the standard-root library composition suite.
+[T087](library-compositions.md) aligns bounded expected failures and adds exact
+canonical arithmetic without changing normal false predicates.
 
 ## Representation, ownership and exact algorithms
 
@@ -140,5 +141,6 @@ named tests, including standalone representation-header compilation.
 
 Native component and generated-program ASan/UBSan, the full strict suite,
 coverage/header checks, local links and reproducible Doxygen complete acceptance.
-Arithmetic/failure/resource compositions are subsequent roadmap work, not extra
-protocols or parser-level numeric assumptions introduced here.
+Arithmetic and failure/resource compositions now have their own
+[complete acceptance](library-compositions.md), without extra native protocol
+slots or parser-level numeric assumptions.

@@ -43,9 +43,9 @@ There is no implicit numeric payload or conversion for unrelated modules.
 The bounded types also own shared `zero`/`one` or `false`/`true` constants and
 independent scalar clones. They are distinct nominal types. The modules
 `..std.index.next`, `..std.index.add` and `..std.index.before` provide checked
-successor/addition/comparison probes with ordinary typed interfaces. Their
-expected-failure result convention is aligned in T087 after the failure-value
-foundation; current overflow remains a technical status in these probes.
+successor/addition/comparison probes with ordinary typed interfaces. Bounded
+next/add return `result` then one `failure` value; overflow is an expected
+application failure, while before returns only its ordinary predicate result.
 
 ## Collections and remaining library work
 
@@ -75,7 +75,10 @@ nonzero copied status does not make the reader fail. These immutable diagnostic
 message views remain separate from the failure value's owned description.
 The [failure/resource implementation contract](../docs/implementation/failure-values.md)
 explains states, native producer helpers, sharing invariants and failure evidence.
-T087 aligns arithmetic/composition results with this outcome convention.
+[Arithmetic and list compositions](../docs/implementation/library-compositions.md)
+apply this outcome convention. `..integer.add`, `..integer.next` and
+`..integer.before` provide exact signed arbitrary-precision operations. They
+return ordinary values/predicates; native resource failures remain technical.
 
 ## Native construction and ownership
 
@@ -106,7 +109,9 @@ for actual standard-root scalar execution,
 `make -C tests/integration/standard-integer` for integer CLI behavior,
 `make -C tests/unit/runtime/text-values` for text ownership,
 `make -C tests/unit/codegen/failure-values` for complete outcomes,
-`make -C tests/integration/failure-values` for their CLI example, and
+`make -C tests/integration/failure-values` for their CLI example,
+`make -C tests/unit/native/abi/integer-arithmetic` for exact arithmetic,
+`make -C tests/unit/codegen/library-compositions` for lists/outcomes/constants, and
 `make test` for the recursive component/integration tree. Follow
 [CONTRIBUTORS.md](../CONTRIBUTORS.md) for decomposition, Doxygen rule links,
 per-file tests and failure/lifecycle checks. Use `make docs` for generated file

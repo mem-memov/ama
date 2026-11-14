@@ -15348,6 +15348,41 @@
         "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
         "command": "make -C tests/unit/runtime/traversal-copy",
         "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
       }
     ]
   },
@@ -22933,6 +22968,41 @@
         "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
         "command": "make -C tests/unit/runtime/shared-storage",
         "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
       }
     ]
   },
@@ -23039,6 +23109,41 @@
         "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
         "command": "make -C tests/unit/runtime/shared-storage",
         "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
       }
     ]
   },
@@ -23095,6 +23200,41 @@
         "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
         "command": "make -C tests/unit/runtime/shared-storage",
         "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
       }
     ]
   },
@@ -23338,6 +23478,41 @@
         "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
         "command": "make -C tests/unit/runtime/program",
         "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
       }
     ]
   },
@@ -31215,6 +31390,41 @@
         "case": "it_reads_last_refusal_through_an_ordinary_read_only_library_module",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
       }
     ]
   },
@@ -31267,6 +31477,41 @@
         "case": "it_reads_last_refusal_through_an_ordinary_read_only_library_module",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
       }
     ]
   },
@@ -31459,6 +31704,41 @@
         "case": "it_reads_last_refusal_through_an_ordinary_read_only_library_module",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
       }
     ]
   },
@@ -31511,6 +31791,41 @@
         "case": "it_reads_last_refusal_through_an_ordinary_read_only_library_module",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
       }
     ]
   },
@@ -36722,6 +37037,41 @@
         "case": "it_propagates_description_allocation_failure_as_a_technical_error",
         "command": "make -C tests/unit/codegen/failure-values",
         "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
       }
     ]
   },
@@ -37505,6 +37855,41 @@
         "case": "it_propagates_description_allocation_failure_as_a_technical_error",
         "command": "make -C tests/unit/codegen/failure-values",
         "source": "tests/unit/codegen/failure-values/main.c"
+      },
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
       }
     ]
   },
@@ -39329,6 +39714,26 @@
         "case": "it_rejects_wrong_protocol_entry_and_host_size_signatures",
         "command": "make -C tests/unit/native/abi/signatures",
         "source": "tests/unit/native/abi/signatures/main.c"
+      },
+      {
+        "case": "it_matches_bounded_signed_sums_and_order_at_every_selected_limb_boundary",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_handles_unbounded_carries_negative_sums_and_exact_cancellation",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_supports_left_right_and_both_source_aliases",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_preserves_sources_and_the_old_result_after_preparation_failure",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
       }
     ]
   },
@@ -39640,6 +40045,26 @@
         "case": "it_rejects_malformed_counted_literals_without_live_partial_payloads",
         "command": "make -C tests/unit/native/abi/integer",
         "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_matches_bounded_signed_sums_and_order_at_every_selected_limb_boundary",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_handles_unbounded_carries_negative_sums_and_exact_cancellation",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_supports_left_right_and_both_source_aliases",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_preserves_sources_and_the_old_result_after_preparation_failure",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
       }
     ]
   },
@@ -39722,6 +40147,26 @@
         "case": "it_rejects_malformed_counted_literals_without_live_partial_payloads",
         "command": "make -C tests/unit/native/abi/integer",
         "source": "tests/unit/native/abi/integer/main.c"
+      },
+      {
+        "case": "it_matches_bounded_signed_sums_and_order_at_every_selected_limb_boundary",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_handles_unbounded_carries_negative_sums_and_exact_cancellation",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_supports_left_right_and_both_source_aliases",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_preserves_sources_and_the_old_result_after_preparation_failure",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
       }
     ]
   },
@@ -74964,6 +75409,61 @@
         "case": "it_rejects_implicit_conversions_between_standard_scalar_types",
         "command": "make -C tests/unit/codegen/scalar-library",
         "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_matches_bounded_signed_sums_and_order_at_every_selected_limb_boundary",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_handles_unbounded_carries_negative_sums_and_exact_cancellation",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_supports_left_right_and_both_source_aliases",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_preserves_sources_and_the_old_result_after_preparation_failure",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
       }
     ]
   },
@@ -75050,6 +75550,61 @@
         "case": "it_rejects_implicit_conversions_between_standard_scalar_types",
         "command": "make -C tests/unit/codegen/scalar-library",
         "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_matches_bounded_signed_sums_and_order_at_every_selected_limb_boundary",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_handles_unbounded_carries_negative_sums_and_exact_cancellation",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_supports_left_right_and_both_source_aliases",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_preserves_sources_and_the_old_result_after_preparation_failure",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
       }
     ],
     "standalone_header_command": [
@@ -76695,6 +77250,741 @@
         "case": "it_rolls_back_earlier_shares_after_a_later_owned_child_clone_fails",
         "command": "make -C tests/unit/runtime/text-values",
         "source": "tests/unit/runtime/text-values/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/integer+/add": {
+    "contract": "docs/implementation/library-compositions.md",
+    "purpose": "Provide or verify exact signed arithmetic, coherent bounded outcomes and context-local list-constant/resource composition.",
+    "tests": [
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/integer+/add.abi": {
+    "contract": "docs/implementation/library-compositions.md",
+    "purpose": "Provide or verify exact signed arithmetic, coherent bounded outcomes and context-local list-constant/resource composition.",
+    "tests": [
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/integer+/add.c": {
+    "contract": "docs/implementation/library-compositions.md",
+    "purpose": "Provide or verify exact signed arithmetic, coherent bounded outcomes and context-local list-constant/resource composition.",
+    "tests": [
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/integer+/add.h": {
+    "contract": "docs/implementation/library-compositions.md",
+    "purpose": "Provide or verify exact signed arithmetic, coherent bounded outcomes and context-local list-constant/resource composition.",
+    "tests": [
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_arithmetic_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/integer+/before": {
+    "contract": "docs/implementation/library-compositions.md",
+    "purpose": "Provide or verify exact signed arithmetic, coherent bounded outcomes and context-local list-constant/resource composition.",
+    "tests": [
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/integer+/before.abi": {
+    "contract": "docs/implementation/library-compositions.md",
+    "purpose": "Provide or verify exact signed arithmetic, coherent bounded outcomes and context-local list-constant/resource composition.",
+    "tests": [
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/integer+/before.c": {
+    "contract": "docs/implementation/library-compositions.md",
+    "purpose": "Provide or verify exact signed arithmetic, coherent bounded outcomes and context-local list-constant/resource composition.",
+    "tests": [
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/integer+/before.h": {
+    "contract": "docs/implementation/library-compositions.md",
+    "purpose": "Provide or verify exact signed arithmetic, coherent bounded outcomes and context-local list-constant/resource composition.",
+    "tests": [
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_arithmetic_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/integer+/native/arithmetic.c": {
+    "contract": "docs/implementation/library-compositions.md",
+    "purpose": "Provide or verify exact signed arithmetic, coherent bounded outcomes and context-local list-constant/resource composition.",
+    "tests": [
+      {
+        "case": "it_matches_bounded_signed_sums_and_order_at_every_selected_limb_boundary",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_handles_unbounded_carries_negative_sums_and_exact_cancellation",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_supports_left_right_and_both_source_aliases",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_preserves_sources_and_the_old_result_after_preparation_failure",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/integer+/next": {
+    "contract": "docs/implementation/library-compositions.md",
+    "purpose": "Provide or verify exact signed arithmetic, coherent bounded outcomes and context-local list-constant/resource composition.",
+    "tests": [
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/integer+/next.abi": {
+    "contract": "docs/implementation/library-compositions.md",
+    "purpose": "Provide or verify exact signed arithmetic, coherent bounded outcomes and context-local list-constant/resource composition.",
+    "tests": [
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/integer+/next.c": {
+    "contract": "docs/implementation/library-compositions.md",
+    "purpose": "Provide or verify exact signed arithmetic, coherent bounded outcomes and context-local list-constant/resource composition.",
+    "tests": [
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/integer+/next.h": {
+    "contract": "docs/implementation/library-compositions.md",
+    "purpose": "Provide or verify exact signed arithmetic, coherent bounded outcomes and context-local list-constant/resource composition.",
+    "tests": [
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_arithmetic_probe_##name",
+      "-"
+    ]
+  },
+  "tests/unit/codegen/library-compositions/Makefile": {
+    "contract": "docs/implementation/library-compositions.md",
+    "purpose": "Provide or verify exact signed arithmetic, coherent bounded outcomes and context-local list-constant/resource composition.",
+    "tests": [
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/library-compositions/main.c": {
+    "contract": "docs/implementation/library-compositions.md",
+    "purpose": "Provide or verify exact signed arithmetic, coherent bounded outcomes and context-local list-constant/resource composition.",
+    "tests": [
+      {
+        "case": "it_returns_owned_overflow_failures_and_clears_them_on_later_success",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_executes_unbounded_integer_arithmetic_and_normal_false_predicates",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_copies_and_mutates_owned_text_lists_without_changing_shared_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_isolates_list_constants_and_native_backing_between_generated_contexts",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_cleans_the_initialized_constant_list_prefix_before_root_publication",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
+        "command": "make -C tests/unit/codegen/library-compositions",
+        "source": "tests/unit/codegen/library-compositions/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/abi/integer-arithmetic/Makefile": {
+    "contract": "docs/implementation/library-compositions.md",
+    "purpose": "Provide or verify exact signed arithmetic, coherent bounded outcomes and context-local list-constant/resource composition.",
+    "tests": [
+      {
+        "case": "it_matches_bounded_signed_sums_and_order_at_every_selected_limb_boundary",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_handles_unbounded_carries_negative_sums_and_exact_cancellation",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_supports_left_right_and_both_source_aliases",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_preserves_sources_and_the_old_result_after_preparation_failure",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      }
+    ]
+  },
+  "tests/unit/native/abi/integer-arithmetic/main.c": {
+    "contract": "docs/implementation/library-compositions.md",
+    "purpose": "Provide or verify exact signed arithmetic, coherent bounded outcomes and context-local list-constant/resource composition.",
+    "tests": [
+      {
+        "case": "it_matches_bounded_signed_sums_and_order_at_every_selected_limb_boundary",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_handles_unbounded_carries_negative_sums_and_exact_cancellation",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_supports_left_right_and_both_source_aliases",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
+      },
+      {
+        "case": "it_preserves_sources_and_the_old_result_after_preparation_failure",
+        "command": "make -C tests/unit/native/abi/integer-arithmetic",
+        "source": "tests/unit/native/abi/integer-arithmetic/main.c"
       }
     ]
   }

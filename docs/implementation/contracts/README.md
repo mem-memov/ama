@@ -147,3 +147,7 @@ bridge, real native compilation and constructor-failure evidence.
 [Failure values and text resources](../failure-values.md) records T086 coherent
 condition/description publication, native share-credit algebra, UTF-8 validation,
 rollback through real owned-tree cloning and separate last-refusal snapshots.
+
+[Arithmetic and list compositions](../library-compositions.md) records T087
+signed carry/borrow invariants, complete failure outcomes and real context-local
+constant-list initialization, cloning and partial-cleanup evidence.

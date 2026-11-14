@@ -6,6 +6,8 @@
  * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
  * [LIB-01](../../../../spec/language/library.md#lib-01)
  * binds this native scalar by its explicit standard-root nominal identity.
+ * [ERROR-01](../../../../spec/implementation/diagnostics.md#error-01)
+ * returns range overflow as one owned failure value, while native errors propagate.
  */
 #include "ama_n_ea2cd332e0582b42404bf7b9b788ce10b617de1f4fe93839f9246c0f143e1b38.interface.h"
 #include "ama_n_ea2cd332e0582b42404bf7b9b788ce10b617de1f4fe93839f9246c0f143e1b38.begin.h"
@@ -20,9 +22,14 @@ AMA_NATIVE_ENTRY void AMA_NATIVE(entry)(AMA_NATIVE(State) *state,
     const AmaNativeServices *services, AmaStatus *status) {
     (void)state; (void)parameters; (void)results; (void)services;
     size_t value = parameters->AMA_INPUT(0)->payload->value;
-    if (value == SIZE_MAX) { *status = ama_status_make(AMA_LIMIT_EXCEEDED, NULL, 0); return; }
+    if (value == SIZE_MAX) {
+        static const unsigned char description[] = "Index successor exceeds the supported range";
+        *status = ama_n_edcb3e348eb3d3a06b885e12e77fcb6bd0b86d265d2077a038d757a4f799f515_set(results->AMA_OUTPUT(1),
+            (AmaByteView){description, sizeof(description) - 1});
+        return;
+    }
     results->AMA_OUTPUT(0)->payload->value = value + 1;
-    *status = ama_status_success();
+    *status = ama_n_edcb3e348eb3d3a06b885e12e77fcb6bd0b86d265d2077a038d757a4f799f515_clear(results->AMA_OUTPUT(1));
 }
 
 /**

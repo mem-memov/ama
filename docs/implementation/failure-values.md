@@ -158,6 +158,6 @@ interface, ABI record, fixture and Makefile to named executable evidence.
   the maintained constructor/positive-check/retained-description/clear project.
 
 Native/generated ASan/UBSan, whole-project strict tests, standalone headers,
-coverage, local links and reproducible Doxygen complete acceptance. Arithmetic
-expected-failure result alignment remains T087; file/I/O examples remain later
-roadmap work.
+coverage, local links and reproducible Doxygen complete acceptance. [T087](library-compositions.md) applies the outcome convention to bounded
+arithmetic and accepts list-valued constant/resource compositions. File/I/O
+examples remain later roadmap work.
