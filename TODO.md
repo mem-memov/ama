@@ -1792,11 +1792,26 @@ Contracts: [lists](spec/language/lists.md),
   links and reproducible Doxygen are checked before commit. The O(K) fixed scan
   needs no active registration or copy/restart links. Foreach source execution
   remains guarded pending T083/T084 origin/resume and continuation integration.
-- [ ] **T083 — Enforce missing-membership guards and resume behavior.** Needs:
+- [x] **T083 — Enforce missing-membership guards and resume behavior.** Needs:
   T082. Preserve origin associations, detach only as specified and validate active
   loops outermost first after resume. Test removed current entries with live
   external referents, nested reused bindings and collection replacement failure
   before any resumed user statement.
+  Evidence: [iteration origins and resume decisions](docs/implementation/list-traversal-origin.md).
+  Resolved accesses select exact local/reused cells, and borrowed value views keep
+  origins out of ordinary handle copies. Guards precede target acquisition and
+  decoder effects; different explicit assignments detach while same-handle writes
+  preserve association. Owning-copy inputs retain one fixed origin tuple for
+  documented preflight. Immutable checked scope preorder drives outer-first
+  validation, technical header errors, descendant cleanup and corrected repeat
+  selection without restoring overwritten shared origins. Eleven runtime cases
+  cover all target modes, decoder suppression, independent references, busy-list
+  authority, missing entries/referents, nested reuse, collection replacement,
+  valid saved dispatch and target-free scope reset. The actual C probe checks
+  generated scope ancestry, shared locations and local/persistent access bindings.
+  Runtime/generator ASan/UBSan passed; full strict tests, all 1277 input coverage,
+  links and reproducible Doxygen are checked before commit. Complete source
+  controller integration and continuation/ordinary-copy acceptance remain T084.
 - [ ] **T084 — Copy and accept live traversal state.** Needs: T083. Map full
   collection/membership/origin identities in `%` clones, preserve boundary values
   and discard ordinary-copy control state. Verify removed-origin nonrevival,

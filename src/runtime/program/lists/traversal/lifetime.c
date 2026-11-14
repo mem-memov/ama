@@ -62,6 +62,7 @@ AmaStatus ama_program_foreach_value(AmaProgram *program, AmaHandle owner,
     if (status.code != AMA_OK) { return status; }
     if (plan->local && slots.binding->roles == 0) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
     *output = (AmaProgramValue){.type_id = plan->element_type, .form = AMA_FIELD_REFERENCE,
-        .container = owner, .location = slots.value, .handle = *slots.value};
+        .container = owner, .location = slots.value, .handle = *slots.value,
+        .foreach_binding = slots.binding};
     return ama_status_success();
 }

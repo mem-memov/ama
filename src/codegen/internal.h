@@ -7,6 +7,7 @@
  * [PAR-01](../../spec/language/async-and-parallelism.md#par-01) requires the emitted
  * schemas to feed separate mutable context owners; host emission must preserve
  * the execution lease through all label and cleanup phases.
+ * [FLOW-05](../../spec/language/lists.md#flow-05) Scope emission and binding lookup use exact lexical identities and validated ancestry.
  */
 #ifndef AMA_PROJECT_CODEGEN_INTERNAL_H
 #define AMA_PROJECT_CODEGEN_INTERNAL_H
@@ -21,6 +22,12 @@ bool codegen_validate_execution(NativeScaffold *);
 bool codegen_emit_traversal_storage(FILE *, const ScaffoldType *);
 /** Emit each declared field's immutable exact lexical cursor offset catalog. */
 bool codegen_emit_traversal_descriptors(FILE *, const ScaffoldType *);
+/** Emit checked scope preorder and exact local/reused binding locations. */
+bool codegen_emit_traversal_scopes(NativeScaffold *, FILE *, const ScaffoldType *);
+/** Find the first lexical site sharing this exact binding symbol; index counts
+ * foreach sites only and is unchanged when no binding role exists.
+ */
+const PlannedLoop *codegen_foreach_binding(const ScaffoldType *, const SemanticSymbol *, size_t *index);
 /**
  * Return the exact descriptor pointer ordinal starting at one, or zero if absent. This is an
  * assembly-local registry key, not a stable external type identity.

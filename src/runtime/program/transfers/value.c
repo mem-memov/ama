@@ -6,9 +6,11 @@
  * [LIST-10](../../../../spec/language/lists.md#list-10) grants busy-list receiver access only to a method-direct structural transfer.
  * [REF-03](../../../../spec/language/values-and-references.md#ref-03)
  * Reference assignment copies handles without acquiring targets; owned replacement stages construction before destructive commit.
+ * [FLOW-05](../../../../spec/language/lists.md#flow-05) Only a different explicit handle assignment detaches a binding origin; plain reference copies acquire no association.
  */
 #include "internal.h"
 #include "runtime/program/values/selection/internal.h"
+#include "runtime/program/lists/traversal/traversal.h"
 
 /** Require an owned scalar source; produce an immutable-constant recipe or exact handle clone recipe with explicit continuation mode. Arena/source lifetimes cover construction. */
 AmaStatus ama_program_value_recipe(AmaProgram *program, SourceArena *arena, const AmaProgramValue *value,
@@ -39,6 +41,7 @@ AmaStatus ama_program_store(AmaProgram *program, AmaProgramValue *destination, c
             AmaMembership identity;
             return ama_membership_replace(destination->membership_list, record->position, target, &identity);
         }
+        ama_program_foreach_detach(destination, target);
         *destination->location = target;
         return ama_status_success();
     }

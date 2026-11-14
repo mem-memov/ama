@@ -6,6 +6,7 @@
  * C offsetof and real storage types provide layout truth; references retain declared handle locations rather than hidden native edges.
  * [LIST-13](../../../spec/language/lists.md#list-13) enumerates exact lexical
  * cursor offsets by their resolved source field for fixed-scan correction.
+ * [FLOW-05](../../../spec/language/lists.md#flow-05) Exact foreach scope ancestry and binding offsets precede all generated access descriptors.
  */
 #include "codegen/internal.h"
 
@@ -27,7 +28,8 @@ bool codegen_emit_descriptors(NativeScaffold *scaffold, FILE *output) {
             }
             if (fputs("};\n", output) == EOF) { return false; }
         }
-        if (!codegen_emit_traversal_descriptors(output, type)) { return false; }
+        if (!codegen_emit_traversal_descriptors(output, type)
+            || !codegen_emit_traversal_scopes(scaffold, output, type)) { return false; }
     }
     return true;
 }

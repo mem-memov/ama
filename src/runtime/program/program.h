@@ -4,6 +4,7 @@
  *
  * [RT-05](../../../spec/implementation/runtime.md#rt-05)
  * Operate directly on stable world storage. The runtime/context owner supplies isolated descriptors; generated assembly wiring remains T061.
+ * [FLOW-05](../../../spec/language/lists.md#flow-05) Selected binding views borrow origin metadata without copying that association into ordinary references.
  */
 #ifndef AMA_RUNTIME_PROGRAM_H
 #define AMA_RUNTIME_PROGRAM_H
@@ -48,6 +49,8 @@ typedef struct {
     /** Indexed reference receivers retain exact occurrence identity through source evaluation. */
     AmaHandleList *membership_list;
     AmaMembership membership;
+    /** Borrowed origin cell only for this selected binding view, never copied data. */
+    struct AmaProgramForeachBinding *foreach_binding;
 } AmaProgramValue;
 
 /** Resolve the exact generated nominal descriptor in a borrowed program registry, or null; no allocation or type-name inference. */

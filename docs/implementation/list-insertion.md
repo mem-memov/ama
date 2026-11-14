@@ -176,3 +176,5 @@ companions. Sanitizer flags instrument the actual generated executables.
 writer stream failures. The ready registry maps each maintained file to these
 named component/composition cases; headers compile standalone. The full strict
 suite and reproducible Doxygen check the complete supported slice.
+
+[Associated iteration sources](list-traversal-origin.md) are validated during owning-copy preflight after inputs are ready; reference-list handle copies remain independent.

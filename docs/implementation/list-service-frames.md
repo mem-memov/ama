@@ -115,3 +115,5 @@ all three typed cells. It does not bypass the executable intrinsic guard or clai
 that their mutation adapters are complete. Runtime ASan/UBSan, standalone header
 checks, per-file coverage, the full strict suite and reproducible Doxygen validate
 the layer at its actual boundaries.
+
+[Iteration origin checks](list-traversal-origin.md) add one staged origin tuple for the single owning-clone source in append/insert. Plain reference copies carry no association.

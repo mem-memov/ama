@@ -66,3 +66,5 @@ handle-vector representation remains.
 [Live foreach selection](list-traversal-selection.md) provides fixed cursors and lexical binding cells in T081; source execution remains guarded pending traversal integration.
 
 [Traversal mutation correction](list-traversal-mutation.md) connects exact fixed cursor scans to insert/remove/clear publication in T082.
+
+[Traversal origin and resume checks](list-traversal-origin.md) connect missing-membership guards and exact retained-scope decisions in T083.

@@ -4,8 +4,8 @@ T082 integrates [FLOW-05](../../spec/language/lists.md#flow-05)'s numerical
 boundary rules with every committed insertion and range removal, including
 clear. It chooses [LIST-13](../../spec/language/lists.md#list-13)'s **fixed scan**
 strategy. Selection and binding storage come from
-[T081](list-traversal-selection.md); missing-origin/resume checks and continuation
-copying remain T083/T084. The complete foreach source adapter stays guarded
+[T081](list-traversal-selection.md); [missing-origin/resume checks](list-traversal-origin.md) are T083, and complete
+controller/continuation integration remains T084. The complete foreach source adapter stays guarded
 while those layers are unfinished.
 
 ## The boundary marks a gap

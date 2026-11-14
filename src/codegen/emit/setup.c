@@ -6,6 +6,7 @@
  * Derive native offset and alignment from real generated C storage. The existing context factory owns and validates mutable pool descriptors.
  * [LIST-13](../../../spec/language/lists.md#list-13) attaches immutable per-field
  * lexical cursor catalogs to each context-local object descriptor.
+ * [FLOW-05](../../../spec/language/lists.md#flow-05) Each context schema installs its immutable lexical scope table for origin checks and resume validation.
  */
 #include "codegen/internal.h"
 
@@ -44,6 +45,13 @@ bool codegen_emit_type_setup(NativeScaffold *scaffold, FILE *output) {
         if (type->members != NULL && fprintf(output, ", .fields=%s_Fields, .declarations=%s_ProgramFields", name, name) < 0) { return false; }
         if (type->plan->type->foreach_bindings != NULL
             && fprintf(output, ", .list_cursors=%s_ListCursors", name) < 0) { return false; }
+        if (type->plan->type->foreach_bindings != NULL) {
+            size_t scopes = 0;
+            for (const PlannedLoop *loop = type->plan->loops; loop != NULL; loop = loop->next) {
+                if (loop->statement->syntax->kind == AST_FOREACH) { scopes++; }
+            }
+            if (fprintf(output, ", .foreach_scopes=%s_ForeachScopes,.foreach_count=%zu", name, scopes) < 0) { return false; }
+        }
         if (type->plan->type->abi.bindings[ABI_CONDITION].present
             && fprintf(output, ", .condition=%s_Condition", name) < 0) { return false; }
         if (type->plan->type->abi.bindings[ABI_INDEX].present

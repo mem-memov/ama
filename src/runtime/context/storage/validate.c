@@ -6,8 +6,10 @@
  * context storage. Reject malformed counts/keys before native construction; no type is inferred.
  * [LIST-13](../../../../spec/language/lists.md#list-13) requires exact lexical
  * cursor catalogs; validate bounds, alignment and unique ordered extents first.
+ * [FLOW-05](../../../../spec/language/lists.md#flow-05) Scope parents and exact typed binding offsets are checked before context construction.
  */
 #include "../internal.h"
+#include "runtime/program/lists/traversal/traversal.h"
 
 /** Find one complete nominal key in a finite schema; no basename or hash substitutes for equality. */
 static bool context_has_type(const AmaContextType *types, size_t count, uint64_t identity) {
@@ -45,6 +47,9 @@ AmaStatus ama_context_validate(const AmaContextDefinition *definition) {
         }
         AmaStatus cursors = ama_list_cursor_schema(type->size, type->field_count, type->list_cursors);
         if (cursors.code != AMA_OK) { return cursors; }
+        AmaStatus scopes = ama_program_foreach_schema(type->size, type->fields, type->field_count,
+            type->foreach_scopes, type->foreach_count);
+        if (scopes.code != AMA_OK) { return scopes; }
         for (size_t previous = 0; previous < index; previous++) {
             if (definition->types[previous].type_id == type->type_id) {
                 return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0);

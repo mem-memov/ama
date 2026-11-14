@@ -1468,6 +1468,61 @@
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
         "command": "make -C tests/unit/codegen/traversal-layout",
         "source": "tests/unit/codegen/traversal-layout/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
       }
     ]
   },
@@ -1867,6 +1922,61 @@
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
         "command": "make -C tests/unit/codegen/traversal-layout",
         "source": "tests/unit/codegen/traversal-layout/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
       }
     ]
   },
@@ -1953,6 +2063,66 @@
         "case": "it_stops_before_body_and_refusal_handler_when_a_later_parameter_constructor_fails",
         "command": "make -C tests/unit/codegen/preparation",
         "source": "tests/unit/codegen/preparation/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -2441,6 +2611,61 @@
         "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
         "command": "make -C tests/unit/runtime/traversal-mutation",
         "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
       }
     ]
   },
@@ -13982,6 +14207,61 @@
         "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
         "command": "make -C tests/unit/runtime/traversal-mutation",
         "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
       }
     ]
   },
@@ -14179,6 +14459,61 @@
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
         "command": "make -C tests/unit/codegen/traversal-layout",
         "source": "tests/unit/codegen/traversal-layout/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
       }
     ],
     "standalone_header_command": [
@@ -14663,6 +14998,61 @@
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
         "command": "make -C tests/unit/codegen/traversal-layout",
         "source": "tests/unit/codegen/traversal-layout/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
       }
     ]
   },
@@ -14734,6 +15124,61 @@
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
         "command": "make -C tests/unit/codegen/traversal-layout",
         "source": "tests/unit/codegen/traversal-layout/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
       }
     ]
   },
@@ -20787,6 +21232,66 @@
         "case": "it_acquires_materialized_values_with_empty_or_retained_outer_contexts",
         "command": "make -C tests/unit/runtime/result-calls",
         "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -22414,6 +22919,66 @@
         "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
         "command": "make -C tests/unit/runtime/program-construction",
         "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -22510,6 +23075,66 @@
         "case": "it_retires_only_changed_indexed_reference_occurrences",
         "command": "make -C tests/unit/runtime/value-selection",
         "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -23099,6 +23724,66 @@
         "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
         "command": "make -C tests/unit/codegen/list-insertion",
         "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -23175,6 +23860,66 @@
         "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
         "command": "make -C tests/unit/runtime/list-service",
         "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -23262,6 +24007,66 @@
         "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
         "command": "make -C tests/unit/runtime/list-service",
         "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -23403,6 +24208,66 @@
         "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
         "command": "make -C tests/unit/runtime/list-insertion",
         "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -23424,6 +24289,66 @@
         "case": "it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes",
         "command": "make -C tests/unit/runtime/value-selection",
         "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -23445,6 +24370,66 @@
         "case": "it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes",
         "command": "make -C tests/unit/runtime/value-selection",
         "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -41972,6 +42957,61 @@
         "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
         "command": "make -C tests/unit/runtime/traversal-mutation",
         "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
       }
     ]
   },
@@ -66081,6 +67121,66 @@
         "case": "it_deletes_noncopyable_default_elements_without_cloning",
         "command": "make -C tests/unit/codegen/list-deletion",
         "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ],
     "standalone_header_command": [
@@ -67287,6 +68387,66 @@
         "case": "it_deletes_noncopyable_default_elements_without_cloning",
         "command": "make -C tests/unit/codegen/list-deletion",
         "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -68275,6 +69435,66 @@
         "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
         "command": "make -C tests/unit/codegen/list-insertion",
         "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -69343,6 +70563,61 @@
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
         "command": "make -C tests/unit/codegen/traversal-layout",
         "source": "tests/unit/codegen/traversal-layout/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
       }
     ]
   },
@@ -69531,6 +70806,61 @@
         "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
         "command": "make -C tests/unit/runtime/traversal-mutation",
         "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
       }
     ],
     "standalone_header_command": [
@@ -69688,6 +71018,61 @@
         "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
         "command": "make -C tests/unit/runtime/traversal-mutation",
         "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
       }
     ]
   },
@@ -70339,6 +71724,468 @@
         "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
         "command": "make -C tests/unit/runtime/traversal-mutation",
         "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ]
+  },
+  "src/codegen/emit/traversal/scopes.c": {
+    "contract": "docs/implementation/list-traversal-origin.md",
+    "purpose": "Preserve exact iteration origins, detach only different explicit assignments and validate retained scopes before selecting resumed body execution.",
+    "tests": [
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/traversal/origin.c": {
+    "contract": "docs/implementation/list-traversal-origin.md",
+    "purpose": "Preserve exact iteration origins, detach only different explicit assignments and validate retained scopes before selecting resumed body execution.",
+    "tests": [
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/traversal/resume.c": {
+    "contract": "docs/implementation/list-traversal-origin.md",
+    "purpose": "Preserve exact iteration origins, detach only different explicit assignments and validate retained scopes before selecting resumed body execution.",
+    "tests": [
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/traversal/schema.c": {
+    "contract": "docs/implementation/list-traversal-origin.md",
+    "purpose": "Preserve exact iteration origins, detach only different explicit assignments and validate retained scopes before selecting resumed body execution.",
+    "tests": [
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/traversal-origin/Makefile": {
+    "contract": "docs/implementation/list-traversal-origin.md",
+    "purpose": "Preserve exact iteration origins, detach only different explicit assignments and validate retained scopes before selecting resumed body execution.",
+    "tests": [
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/traversal-origin/common.c": {
+    "contract": "docs/implementation/list-traversal-origin.md",
+    "purpose": "Preserve exact iteration origins, detach only different explicit assignments and validate retained scopes before selecting resumed body execution.",
+    "tests": [
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/traversal-origin/main.c": {
+    "contract": "docs/implementation/list-traversal-origin.md",
+    "purpose": "Preserve exact iteration origins, detach only different explicit assignments and validate retained scopes before selecting resumed body execution.",
+    "tests": [
+      {
+        "case": "it_guards_removed_bindings_before_target_access_and_decoder_effects",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_detaches_only_different_explicit_assignments_without_moving_boundaries",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_busy_origins_with_only_exact_method_direct_authority",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_checks_owning_clone_origins_without_restricting_plain_handle_copies",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_abandons_nested_scopes_before_advancing_a_missing_outer_iteration",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_last_nested_origin_without_restoring_an_outer_binding",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_reports_replaced_collections_at_the_correct_outermost_header",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_advances_after_a_current_referent_is_deleted_and_its_slot_reused",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_existing_grants_when_resume_cannot_acquire_a_collection",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_scope_preorder_and_incompatible_binding_storage",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
+        "command": "make -C tests/unit/runtime/traversal-origin",
+        "source": "tests/unit/runtime/traversal-origin/main.c"
       },
       {
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",

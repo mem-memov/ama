@@ -9,6 +9,7 @@
  * checked transport before publishing a context diagnostic or invoking its reporter.
  * [LIST-13](../../../../spec/language/lists.md#list-13) binds immutable fixed
  * cursor catalogs to context-local pools without sharing mutable cursor storage.
+ * [FLOW-05](../../../../spec/language/lists.md#flow-05) Context-local program descriptors borrow immutable foreach scope ancestry, never another context's active roles.
  */
 #include <string.h>
 #include "../internal.h"
@@ -94,7 +95,8 @@ static AmaStatus context_types(AmaContext *context, const AmaContextDefinition *
         AmaProgramType *program = &program_types[index];
         *program = (AmaProgramType){.object = type, .operation = source->operation,
             .fields = source->declarations, .field_count = source->field_count,
-            .condition = source->condition, .index = source->index};
+            .condition = source->condition, .index = source->index,
+            .foreach_scopes = source->foreach_scopes, .foreach_count = source->foreach_count};
     }
     return ama_status_success();
 }

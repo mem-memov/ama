@@ -2,8 +2,10 @@
  * @brief Install fixed scalar parameter forms in declaration order after selection.
  * [LIST-04](../../../../../spec/language/lists.md#list-04) gives each method an
  * exact signature, never irrelevant parameters selected by a runtime action value.
+ * [FLOW-05](../../../../../spec/language/lists.md#flow-05) Staged owning-copy operands retain exact origin identities for preflight without restricting plain handle copies.
  */
 #include "internal.h"
+#include "runtime/program/lists/traversal/traversal.h"
 
 AmaStatus ama_program_list_prepare_inputs(AmaProgramListMethod *method,
     const AmaProgramListInputs *plan, const AmaFieldKind *forms, size_t count) {
@@ -36,6 +38,12 @@ AmaStatus ama_program_list_prepare_inputs(AmaProgramListMethod *method,
                 return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0);
             }
             method->inputs[position] = value->handle;
+            if (owner->fields[service->field].kind == AMA_FIELD_OWNING_LIST
+                && value->foreach_binding != NULL && value->foreach_binding->associated) {
+                if (method->has_copy_origin) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
+                method->copy_origin = value->foreach_binding->origin;
+                method->has_copy_origin = true;
+            }
         }
     }
     return ama_status_success();

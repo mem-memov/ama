@@ -3,6 +3,7 @@
  * [LIST-10](../../../../spec/language/lists.md#list-10) holds one exact grant
  * through all sibling methods; [LIST-04](../../../../spec/language/lists.md#list-04)
  * gives typed results their own explicit temporary lifetime, never a method instance.
+ * [FLOW-05](../../../../spec/language/lists.md#flow-05) Owning-clone inputs preserve staged origins only until preflight; reference-handle copies remain independent.
  */
 #ifndef AMA_PROGRAM_LIST_SERVICE_H
 #define AMA_PROGRAM_LIST_SERVICE_H
@@ -41,6 +42,9 @@ struct AmaProgramListMethod {
     size_t input_count;
     unsigned owned_inputs;
     unsigned supplied_inputs;
+    /** The fixed signatures have at most one reference source to clone. */
+    AmaMembership copy_origin;
+    bool has_copy_origin;
     bool active;
     bool has_result;
     bool owns_result;

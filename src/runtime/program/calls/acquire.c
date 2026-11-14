@@ -7,8 +7,10 @@
  * [LIST-04](../../../../spec/language/lists.md#list-04) admits materialized intrinsic values without synthetic owners.
  * [CALL-09](../../../../spec/language/calls-and-results.md#call-09) selects
  * children within protected parents without changing the caller operand domain.
+ * [FLOW-05](../../../../spec/language/lists.md#flow-05) Associated origins are checked before target acquisition, input preparation or interface reset.
  */
 #include "call.h"
+#include "runtime/program/lists/traversal/traversal.h"
 #include "runtime/program/values/selection/internal.h"
 
 /** Resolve a local handle through the exact world type and public pool lookup; borrowed cell output is valid only after success. */
@@ -30,6 +32,9 @@ static AmaStatus ama_call_refusal(AmaPoolCell *caller, AmaStatus status, bool *r
 static AmaStatus ama_call_target(AmaProgram *program, AmaPoolCell *context,
     const AmaProgramValue *target, AmaAccessMode mode, AmaPoolCell **cell, bool *refused) {
     if (target->form != AMA_FIELD_OWNED && target->form != AMA_FIELD_REFERENCE) { return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0); }
+    bool origin_refused = false;
+    AmaStatus origin = ama_program_foreach_guard(program, target, NULL, &origin_refused);
+    if (origin.code != AMA_OK) { return origin_refused ? ama_call_refusal(context, origin, refused) : origin; }
     if (target->handle.generation == 0) { return ama_call_refusal(context, ama_status_make(AMA_EMPTY_REFERENCE, NULL, 0), refused); }
     AmaStatus status = ama_program_cell(program, target->handle, cell);
     if (status.code == AMA_OK) { status = ama_instance_access(&(*cell)->metadata, mode); }

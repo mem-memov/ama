@@ -9,6 +9,7 @@
  * malformed transport and other decoder failures never consume the output.
  * [CALL-09](../../../../../spec/language/calls-and-results.md#call-09) separates
  * the selected result owner's base from caller-local nested index operands.
+ * [FLOW-05](../../../../../spec/language/lists.md#flow-05) A missing associated index operand is checked before decoder effects and retains explicit origin-refusal provenance.
  */
 #include "internal.h"
 
@@ -45,7 +46,9 @@ AmaStatus ama_program_access_authorized(AmaProgram *program, AmaHandle current, 
         if (depth == 0) { *output = value; return ama_status_success(); }
         const AmaProgramType *type = ama_program_type(program, value.type_id);
         const void *payload;
-        status = ama_program_payload(program, &value, &payload);
+        bool origin_refused = false;
+        status = ama_program_payload_authorized(program, &value, authority, &payload, &origin_refused);
+        if (origin_refused && selection_refusal != NULL) { *selection_refusal = true; }
         if (status.code != AMA_OK) { return status; }
         if (type == NULL || type->index == NULL) { return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0); }
         status = ama_status_checked(type->index(payload, &selected));

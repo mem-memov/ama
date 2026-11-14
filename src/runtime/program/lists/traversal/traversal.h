@@ -13,7 +13,7 @@
  * local_value is used only for a lexical local. roles counts active installations;
  * nested reuse replaces the current origin without restoring the outer value.
  */
-typedef struct {
+typedef struct AmaProgramForeachBinding {
     AmaHandle local_value;
     AmaMembership origin;
     AmaHandle installed;
@@ -23,7 +23,7 @@ typedef struct {
 /** Immutable offsets into one generated owner representation. value_offset names
  * either a declared reference or this binding's local_value, never foreign data.
  */
-typedef struct {
+typedef struct AmaProgramForeachPlan {
     size_t field, cursor_offset, binding_offset, value_offset;
     uint64_t element_type;
     bool local;
@@ -32,6 +32,14 @@ typedef struct {
  * retained identities are values; no acquisition or entry-buffer pointer survives.
  */
 typedef AmaListCursor AmaProgramForeachCursor;
+/** Immutable preorder inventory. parent is an earlier foreach scope or SIZE_MAX;
+ * header identifies diagnostics and repeat identifies the next selection label.
+ */
+typedef struct AmaProgramForeachScope {
+    AmaProgramForeachPlan plan;
+    size_t parent;
+    uint64_t header, repeat;
+} AmaProgramForeachScope;
 /** Acquire/validate an empty parsed body's collection once; touch no cursor/cell. */
 AmaStatus ama_program_foreach_empty(AmaProgram *, AmaHandle, const AmaProgramForeachPlan *);
 /** Establish boundary zero without installing a binding or acquiring a target. */
@@ -46,4 +54,25 @@ AmaStatus ama_program_foreach_next(AmaProgram *, AmaHandle, const AmaProgramFore
 AmaStatus ama_program_foreach_leave(AmaProgram *, AmaHandle, const AmaProgramForeachPlan *, bool abandoning);
 /** Select a typed binding cell; an unactivated lexical local is unavailable. */
 AmaStatus ama_program_foreach_value(AmaProgram *, AmaHandle, const AmaProgramForeachPlan *, AmaProgramValue *);
+/** Validate exact scope/binding extents and parent preorder before context creation. */
+AmaStatus ama_program_foreach_schema(size_t, const AmaObjectField *, size_t,
+    const AmaProgramForeachScope *, size_t);
+/** Check one associated binding before target access; pure missing/busy checks
+ * set refused, while invalid metadata remains technical. Plain handle copies do
+ * not call this helper and never inherit an origin association.
+ */
+AmaStatus ama_program_foreach_guard(AmaProgram *, const AmaProgramValue *,
+    const AmaProgramListService *, bool *refused);
+/** Validate a staged owning-copy source's exact origin after inputs are ready. */
+AmaStatus ama_program_foreach_origin(AmaProgram *, AmaMembership, AmaHandle,
+    const AmaProgramListService *, bool *refused);
+/** Detach only when explicit assignment replaces the actual stored handle. */
+void ama_program_foreach_detach(AmaProgramValue *, AmaHandle);
+/** Discard all installed scopes innermost first, preserving ordinary reference values. */
+AmaStatus ama_program_foreach_reset(AmaProgram *, AmaHandle);
+/** Validate active collections outermost first. A missing current entry abandons
+ * descendants and returns that loop's repeat selector; zero preserves saved body
+ * dispatch. Collection/acquisition errors remain technical at the header.
+ */
+AmaStatus ama_program_foreach_resume(AmaProgram *, AmaHandle, uint64_t *repeat);
 #endif

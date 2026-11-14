@@ -76,8 +76,8 @@ outer value. Ending an inner role leaves the metadata installed while another
 role remains. Ending the last role discards origin metadata and a local handle;
 the separate persistent handle remains unchanged. Abandonment is idempotent for
 an inactive cursor and requires no source-list reacquisition, including after
-collection replacement. Missing-membership access enforcement and resume order
-remain the explicit T083 responsibility.
+collection replacement. [Missing-membership access and resume order](list-traversal-origin.md) are
+implemented by T083; complete controller/continuation integration remains T084.
 
 The key invariant is that the role count equals the number of installed active
 cursors sharing that cell. Entry contributes zero, first selection adds one,

@@ -67,10 +67,33 @@ static void it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding(void) 
     }
     bool emitted = codegen_emit_storage(&scaffold, output) && codegen_emit_descriptors(&scaffold, output);
     assert(emitted);
-    written = fputs("#include \"runtime/lists/cursors/schema.c\"\n", output);
-    assert(written != EOF);
     const ScaffoldType *root = scaffold.selected;
+    const char *root_name = root->names[SCAFFOLD_WRITE]->internal_name;
+    size_t accesses = 0;
+    for (const SemanticStatement *statement = root->plan->type->statements; statement != NULL; statement = statement->next) {
+        if (statement->access == NULL) { continue; }
+        size_t binding = 0;
+        if (codegen_foreach_binding(root, statement->access->symbol, &binding) == NULL) { continue; }
+        char name[64];
+        int length = snprintf(name, sizeof(name), "ForeachAccess_%zu", accesses++);
+        assert(length > 0 && (size_t)length < sizeof(name));
+        emitted = codegen_access_definition(&scaffold, output, name, statement->access);
+        assert(emitted);
+    }
+    assert(accesses == 2);
+    written = fputs("#include \"runtime/lists/cursors/schema.c\"\n"
+        "#include \"runtime/program/lists/traversal/schema.c\"\n", output);
+    assert(written != EOF);
     written = fprintf(output, "int main(void) { %s_Storage value={0};\n", root->names[SCAFFOLD_WRITE]->internal_name);
+    assert(written > 0);
+    written = fprintf(output, "assert(ForeachAccess_0_Access_0.binding==&%s_ForeachScopes[0].plan);\n"
+        "assert(ForeachAccess_1_Access_0.binding==&%s_ForeachScopes[2].plan);\n"
+        "assert(ForeachAccess_0_Access_0.binding->local && !ForeachAccess_1_Access_0.binding->local);\n", root_name, root_name);
+    assert(written > 0);
+    written = fprintf(output, "assert(ama_program_foreach_schema(sizeof(value),%s_Fields,%zu,%s_ForeachScopes,3).code==AMA_OK);\n"
+        "assert(%s_ForeachScopes[0].parent==SIZE_MAX && %s_ForeachScopes[1].parent==0 && %s_ForeachScopes[2].parent==SIZE_MAX);\n"
+        "assert(%s_ForeachScopes[0].plan.binding_offset==%s_ForeachScopes[1].plan.binding_offset);\n",
+        root_name, root->plan->field_count, root_name, root_name, root_name, root_name, root_name, root_name);
     assert(written > 0);
     size_t cursors = 0, bindings = 0;
     for (const PlannedLoop *loop = root->plan->loops; loop != NULL; loop = loop->next) {
@@ -90,7 +113,6 @@ static void it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding(void) 
         assert(written > 0);
     }
     assert(cursors == 3 && bindings == 2);
-    const char *root_name = root->names[SCAFFOLD_WRITE]->internal_name;
     written = fprintf(output, "assert(ama_list_cursor_schema(sizeof(value),%zu,%s_ListCursors).code==AMA_OK);\n"
         "assert(sizeof(%s_Fields)/sizeof(%s_Fields[0])==%zu);\n",
         root->plan->field_count, root_name, root_name, root_name, root->plan->field_count);

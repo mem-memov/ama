@@ -6,11 +6,17 @@
  * requires exact resolved access trees rather than spelling or status heuristics.
  * [CALL-09](../../../../../spec/language/calls-and-results.md#call-09) keeps
  * result selection and index operand lookup in their explicit distinct domains.
+ * [FLOW-05](../../../../../spec/language/lists.md#flow-05) Retained origin checks preserve explicit structural authority and separate refusal provenance from native errors.
  */
 #ifndef AMA_VALUE_SELECTION_INTERNAL_H
 #define AMA_VALUE_SELECTION_INTERNAL_H
 #include "runtime/program/program.h"
 struct AmaProgramListService;
+/** Borrow payload with an exact structural origin grant, retaining separate
+ * checked-origin refusal provenance before any native decoder can execute.
+ */
+AmaStatus ama_program_payload_authorized(AmaProgram *, const AmaProgramValue *,
+    const struct AmaProgramListService *, const void **, bool *origin_refused);
 
 /** Form a reference to exact current storage without reading a field or acquiring
  * the target. Private construction authority permits Constructing/Live identities;

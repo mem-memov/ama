@@ -10,6 +10,7 @@
  * standalone self in the explicit caller/default-owner context. Emit its resolved
  * nominal ID and dedicated source kind without inventing an access descriptor.
  * Do not recover names at runtime. Inner index descriptors precede users; literal length is independent of terminators.
+ * [FLOW-05](../../../spec/language/lists.md#flow-05) Exact resolved binding symbols select compiler-visible local or reused reference cells without runtime name lookup.
  */
 #include "codegen/internal.h"
 
@@ -40,13 +41,18 @@ bool codegen_access_definition(NativeScaffold *scaffold, FILE *output, const cha
         for (size_t index = 0; index < depth; index++) { node = node->index; }
         const char *name = codegen_indexed_name(scaffold, base, "Access", depth);
         bool shared = node->symbol->role == SYMBOL_CONSTANT;
-        size_t slot;
+        size_t slot = 0, binding_index = 0;
+        const ScaffoldType *owner = shared ? NULL : native_scaffold_type(scaffold, node->symbol->owner);
+        const PlannedLoop *binding = shared ? NULL : codegen_foreach_binding(owner, node->symbol, &binding_index);
         if (shared) { slot = node->symbol->shared->ordinal; }
-        else {
-            const ScaffoldType *owner = native_scaffold_type(scaffold, node->symbol->owner);
+        else if (!node->symbol->local) {
             slot = codegen_member(owner, node->symbol)->field->slot;
+        } else if (binding == NULL) {
+            return scaffold_error(scaffold, DIAGNOSTIC_TYPE_MISMATCH, "A local reference has no exact foreach binding role", NULL);
         }
         if (name == NULL || fprintf(output, "static const AmaProgramAccess %s = {.field=%zu, .shared=%s", name, slot, shared ? "true" : "false") < 0) { return false; }
+        if (binding != NULL && fprintf(output, ",.binding=&%s_ForeachScopes[%zu].plan",
+            owner->names[SCAFFOLD_WRITE]->internal_name, binding_index) < 0) { return false; }
         if (node->index != NULL) {
             const char *index = codegen_indexed_name(scaffold, base, "Access", depth + 1);
             if (index == NULL || fprintf(output, ", .index=&%s", index) < 0) { return false; }

@@ -9,6 +9,7 @@
  * initialization operation for allocation-free diagnostics before context storage exists.
  * [LIST-13](../../../spec/language/lists.md#list-13) shares only immutable lexical
  * cursor catalogs; each context owns its actual active/suspended cursor slots.
+ * [FLOW-05](../../../spec/language/lists.md#flow-05) Immutable scope descriptors preserve exact lexical ancestry while each context owns its binding cells.
  */
 #ifndef AMA_RUNTIME_CONTEXT_H
 #define AMA_RUNTIME_CONTEXT_H
@@ -38,6 +39,9 @@ typedef struct {
     AmaStatus (*index)(const void *, size_t *);
     /** Borrowed lexical cursor catalog, with one entry per declared field. */
     const AmaListCursorSet *list_cursors;
+    /** Borrowed exact scope ancestry and binding locations, checked before creation. */
+    const struct AmaProgramForeachScope *foreach_scopes;
+    size_t foreach_count;
 } AmaContextType;
 
 /** Immutable shared declaration; each context allocates its own storage and lifecycle ledger. */
