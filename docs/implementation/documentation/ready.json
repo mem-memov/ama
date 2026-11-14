@@ -509,6 +509,36 @@
         "case": "it_reads_shared_namespaces_and_qualified_values_without_default_instances",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
       }
     ]
   },
@@ -550,6 +580,36 @@
         "case": "it_reads_shared_namespaces_and_qualified_values_without_default_instances",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
       }
     ]
   },
@@ -576,6 +636,36 @@
         "case": "it_reads_shared_namespaces_and_qualified_values_without_default_instances",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
       }
     ]
   },
@@ -1089,6 +1179,36 @@
         "case": "it_selects_an_indexed_terminal_condition_using_the_caller_index_once",
         "command": "make -C tests/unit/codegen/loops",
         "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
       }
     ]
   },
@@ -1166,6 +1286,11 @@
         "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_resolves_intrinsic_literal_staging_without_module_field_fallback",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
       }
     ]
   },
@@ -1202,6 +1327,11 @@
         "case": "it_rejects_missing_or_duplicate_required_control_sites_before_publication",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_resolves_intrinsic_literal_staging_without_module_field_fallback",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
       }
     ]
   },
@@ -13367,6 +13497,36 @@
         "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
         "command": "make -C tests/unit/runtime/list-service",
         "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
       }
     ]
   },
@@ -14560,6 +14720,36 @@
         "case": "it_rejects_reentrant_storage_work_without_mutating_or_allocating",
         "command": "make -C tests/unit/runtime/lists",
         "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_appends_defaults_and_independent_owned_clones",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_appends_complete_reference_handles_without_cloning_targets",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
       }
     ]
   },
@@ -14601,6 +14791,36 @@
         "case": "it_rejects_reentrant_storage_work_without_mutating_or_allocating",
         "command": "make -C tests/unit/runtime/lists",
         "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_appends_defaults_and_independent_owned_clones",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_appends_complete_reference_handles_without_cloning_targets",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
       }
     ]
   },
@@ -14739,6 +14959,36 @@
         "case": "it_rejects_reentrant_storage_work_without_mutating_or_allocating",
         "command": "make -C tests/unit/runtime/lists",
         "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_appends_defaults_and_independent_owned_clones",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_appends_complete_reference_handles_without_cloning_targets",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
       }
     ]
   },
@@ -19517,6 +19767,41 @@
         "case": "it_refuses_before_parking_and_checks_frame_storage",
         "command": "make -C tests/unit/runtime/result-calls",
         "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_acquires_materialized_values_with_empty_or_retained_outer_contexts",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
       }
     ]
   },
@@ -19708,6 +19993,41 @@
         "case": "it_selects_an_indexed_terminal_condition_using_the_caller_index_once",
         "command": "make -C tests/unit/codegen/loops",
         "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_acquires_materialized_values_with_empty_or_retained_outer_contexts",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
       }
     ]
   },
@@ -21291,6 +21611,36 @@
         "case": "it_reports_the_new_caller_after_a_yield_releases_the_original_link",
         "command": "make -C tests/unit/codegen/continuations",
         "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
       }
     ]
   },
@@ -21734,6 +22084,36 @@
         "case": "it_retires_only_changed_indexed_reference_occurrences",
         "command": "make -C tests/unit/runtime/value-selection",
         "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
       }
     ]
   },
@@ -22008,6 +22388,36 @@
         "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
         "command": "make -C tests/unit/runtime/list-service",
         "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_appends_defaults_and_independent_owned_clones",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_appends_complete_reference_handles_without_cloning_targets",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
       }
     ]
   },
@@ -22117,6 +22527,36 @@
         "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
         "command": "make -C tests/unit/runtime/program-construction",
         "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_appends_defaults_and_independent_owned_clones",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_appends_complete_reference_handles_without_cloning_targets",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
       }
     ]
   },
@@ -33042,6 +33482,36 @@
         "case": "it_compiles_typed_lexical_list_service_and_method_storage",
         "command": "make -C tests/unit/codegen/list-frame-layout",
         "source": "tests/unit/codegen/list-frame-layout/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
       }
     ]
   },
@@ -33267,6 +33737,11 @@
         "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_resolves_intrinsic_literal_staging_without_module_field_fallback",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
       }
     ]
   },
@@ -33308,6 +33783,11 @@
         "case": "it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_resolves_intrinsic_literal_staging_without_module_field_fallback",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
       }
     ]
   },
@@ -33650,6 +34130,36 @@
         "case": "it_unwinds_native_clone_prefixes_preserves_old_values_and_disposes_failed_contexts",
         "command": "make -C tests/unit/codegen/continuation-cleanup",
         "source": "tests/unit/codegen/continuation-cleanup/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
       }
     ]
   },
@@ -40147,6 +40657,36 @@
         "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
         "command": "make -C tests/unit/runtime/list-service",
         "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_appends_defaults_and_independent_owned_clones",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_appends_complete_reference_handles_without_cloning_targets",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
       }
     ]
   },
@@ -58169,6 +58709,36 @@
         "case": "it_selects_an_indexed_terminal_condition_using_the_caller_index_once",
         "command": "make -C tests/unit/codegen/loops",
         "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
       }
     ]
   },
@@ -61822,6 +62392,36 @@
         "case": "it_selects_an_indexed_terminal_condition_using_the_caller_index_once",
         "command": "make -C tests/unit/codegen/loops",
         "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
       }
     ]
   },
@@ -61846,6 +62446,41 @@
       },
       {
         "case": "it_refuses_before_parking_and_checks_frame_storage",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_acquires_materialized_values_with_empty_or_retained_outer_contexts",
         "command": "make -C tests/unit/runtime/result-calls",
         "source": "tests/unit/runtime/result-calls/main.c"
       }
@@ -61975,6 +62610,11 @@
         "case": "it_refuses_before_parking_and_checks_frame_storage",
         "command": "make -C tests/unit/runtime/result-calls",
         "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_acquires_materialized_values_with_empty_or_retained_outer_contexts",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
       }
     ]
   },
@@ -62005,6 +62645,11 @@
       },
       {
         "case": "it_refuses_before_parking_and_checks_frame_storage",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_acquires_materialized_values_with_empty_or_retained_outer_contexts",
         "command": "make -C tests/unit/runtime/result-calls",
         "source": "tests/unit/runtime/result-calls/main.c"
       }
@@ -63991,6 +64636,36 @@
         "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
         "command": "make -C tests/unit/runtime/list-service",
         "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_appends_defaults_and_independent_owned_clones",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_appends_complete_reference_handles_without_cloning_targets",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
       }
     ],
     "standalone_header_command": [
@@ -64042,6 +64717,36 @@
         "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
         "command": "make -C tests/unit/runtime/list-service",
         "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
       }
     ]
   },
@@ -64186,6 +64891,36 @@
         "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
         "command": "make -C tests/unit/runtime/list-service",
         "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_appends_defaults_and_independent_owned_clones",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_appends_complete_reference_handles_without_cloning_targets",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
       }
     ]
   },
@@ -64300,6 +65035,36 @@
         "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
         "command": "make -C tests/unit/runtime/list-service",
         "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_appends_defaults_and_independent_owned_clones",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_appends_complete_reference_handles_without_cloning_targets",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
       }
     ]
   },
@@ -64358,6 +65123,828 @@
         "case": "it_compiles_typed_lexical_list_service_and_method_storage",
         "command": "make -C tests/unit/codegen/list-frame-layout",
         "source": "tests/unit/codegen/list-frame-layout/main.c"
+      }
+    ]
+  },
+  "src/codegen/control/data/lists.c": {
+    "contract": "docs/implementation/list-insertion.md",
+    "purpose": "Prepare and publish typed list insertions with exact source order, ownership, refusal provenance and frame cleanup.",
+    "tests": [
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_propagates_unwritable_streams_for_each_operation_family",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/result-calls/support/materialized.c": {
+    "contract": "docs/implementation/list-insertion.md",
+    "purpose": "Prepare and publish typed list insertions with exact source order, ownership, refusal provenance and frame cleanup.",
+    "tests": [
+      {
+        "case": "it_acquires_materialized_values_with_empty_or_retained_outer_contexts",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
+      }
+    ]
+  },
+  "src/codegen/control/lists/values.c": {
+    "contract": "docs/implementation/list-insertion.md",
+    "purpose": "Prepare and publish typed list insertions with exact source order, ownership, refusal provenance and frame cleanup.",
+    "tests": [
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_propagates_unwritable_streams_for_each_operation_family",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      }
+    ]
+  },
+  "src/codegen/control/lists/lists.h": {
+    "contract": "docs/implementation/list-insertion.md",
+    "purpose": "Prepare and publish typed list insertions with exact source order, ownership, refusal provenance and frame cleanup.",
+    "tests": [
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_propagates_unwritable_streams_for_each_operation_family",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/codegen/control/lists/operations.c": {
+    "contract": "docs/implementation/list-insertion.md",
+    "purpose": "Prepare and publish typed list insertions with exact source order, ownership, refusal provenance and frame cleanup.",
+    "tests": [
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_propagates_unwritable_streams_for_each_operation_family",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      }
+    ]
+  },
+  "src/codegen/control/lists/frames.c": {
+    "contract": "docs/implementation/list-insertion.md",
+    "purpose": "Prepare and publish typed list insertions with exact source order, ownership, refusal provenance and frame cleanup.",
+    "tests": [
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_propagates_unwritable_streams_for_each_operation_family",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/insertion/inputs.c": {
+    "contract": "docs/implementation/list-insertion.md",
+    "purpose": "Prepare and publish typed list insertions with exact source order, ownership, refusal provenance and frame cleanup.",
+    "tests": [
+      {
+        "case": "it_appends_defaults_and_independent_owned_clones",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_appends_complete_reference_handles_without_cloning_targets",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/insertion/insertion.h": {
+    "contract": "docs/implementation/list-insertion.md",
+    "purpose": "Prepare and publish typed list insertions with exact source order, ownership, refusal provenance and frame cleanup.",
+    "tests": [
+      {
+        "case": "it_appends_defaults_and_independent_owned_clones",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_appends_complete_reference_handles_without_cloning_targets",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/runtime/program/lists/insertion/methods.c": {
+    "contract": "docs/implementation/list-insertion.md",
+    "purpose": "Prepare and publish typed list insertions with exact source order, ownership, refusal provenance and frame cleanup.",
+    "tests": [
+      {
+        "case": "it_appends_defaults_and_independent_owned_clones",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_appends_complete_reference_handles_without_cloning_targets",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/insertion/commit.c": {
+    "contract": "docs/implementation/list-insertion.md",
+    "purpose": "Prepare and publish typed list insertions with exact source order, ownership, refusal provenance and frame cleanup.",
+    "tests": [
+      {
+        "case": "it_appends_defaults_and_independent_owned_clones",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_appends_complete_reference_handles_without_cloning_targets",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/insertion/internal.h": {
+    "contract": "docs/implementation/list-insertion.md",
+    "purpose": "Prepare and publish typed list insertions with exact source order, ownership, refusal provenance and frame cleanup.",
+    "tests": [
+      {
+        "case": "it_appends_defaults_and_independent_owned_clones",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_appends_complete_reference_handles_without_cloning_targets",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/runtime/list-insertion/main.c": {
+    "contract": "docs/implementation/list-insertion.md",
+    "purpose": "Prepare and publish typed list insertions with exact source order, ownership, refusal provenance and frame cleanup.",
+    "tests": [
+      {
+        "case": "it_appends_defaults_and_independent_owned_clones",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_appends_complete_reference_handles_without_cloning_targets",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/list-insertion/common.c": {
+    "contract": "docs/implementation/list-insertion.md",
+    "purpose": "Prepare and publish typed list insertions with exact source order, ownership, refusal provenance and frame cleanup.",
+    "tests": [
+      {
+        "case": "it_appends_defaults_and_independent_owned_clones",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_appends_complete_reference_handles_without_cloning_targets",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/list-insertion/Makefile": {
+    "contract": "docs/implementation/list-insertion.md",
+    "purpose": "Prepare and publish typed list insertions with exact source order, ownership, refusal provenance and frame cleanup.",
+    "tests": [
+      {
+        "case": "it_appends_defaults_and_independent_owned_clones",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_appends_complete_reference_handles_without_cloning_targets",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_inserts_with_exact_position_conversion_and_preflight_provenance",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_copies_supplied_integer_inputs_and_inserts_at_the_end",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_distinguishes_source_unavailability_from_native_constructor_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/list-insertion",
+        "source": "tests/unit/runtime/list-insertion/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/list-insertion/main.c": {
+    "contract": "docs/implementation/list-insertion.md",
+    "purpose": "Prepare and publish typed list insertions with exact source order, ownership, refusal provenance and frame cleanup.",
+    "tests": [
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_propagates_unwritable_streams_for_each_operation_family",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/list-insertion/Makefile": {
+    "contract": "docs/implementation/list-insertion.md",
+    "purpose": "Prepare and publish typed list insertions with exact source order, ownership, refusal provenance and frame cleanup.",
+    "tests": [
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_propagates_unwritable_streams_for_each_operation_family",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/list-insertion/support/integer.c": {
+    "contract": "docs/implementation/list-insertion.md",
+    "purpose": "Prepare and publish typed list insertions with exact source order, ownership, refusal provenance and frame cleanup.",
+    "tests": [
+      {
+        "case": "it_executes_sibling_append_insert_and_direct_structural_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_executes_and_resumes_actual_new_elements_through_method_results",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_clears_cloned_positions_and_releases_the_service_before_a_local_handler",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_preserves_receivers_on_position_refusal_and_skips_pending_siblings",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_does_not_catch_native_constructor_busy_as_a_method_refusal",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_accepts_noncopyable_default_elements_and_rejects_explicit_empty_copy_sources",
+        "command": "make -C tests/unit/codegen/list-insertion",
+        "source": "tests/unit/codegen/list-insertion/main.c"
+      },
+      {
+        "case": "it_propagates_unwritable_streams_for_each_operation_family",
+        "command": "make -C tests/unit/codegen/control",
+        "source": "tests/unit/codegen/control/main.c"
       }
     ]
   }

@@ -12,7 +12,7 @@
 bool codegen_control_invocation(NativeScaffold *scaffold, FILE *output, const ScaffoldType *owner, const ControlNode *node, const char *name) {
     const SemanticStatement *statement = node->statement;
     const ScaffoldType *callee = native_scaffold_type(scaffold, statement->namespace_type);
-    if (!codegen_access_definition(scaffold, output, name, statement->access)) { return false; }
+    if (!statement->intrinsic_target && !codegen_access_definition(scaffold, output, name, statement->access)) { return false; }
     size_t count = 0;
     for (const SemanticBinding *binding = statement->bindings; binding != NULL; binding = binding->next) {
         if (binding->syntax->kind != AST_INPUT || binding->syntax->omitted) { continue; }
@@ -56,7 +56,11 @@ bool codegen_control_invocation(NativeScaffold *scaffold, FILE *output, const Sc
         }
         if (fputs("};\n", output) == EOF) { return false; }
     }
-    if (fprintf(output, "static const AmaProgramInvocation %s_Call = {.target=&%s_Access_0,.mode=%s,.input_count=%zu", name, name,
+    if (fprintf(output, "static const AmaProgramInvocation %s_Call = {.target=", name) < 0) { return false; }
+    if (statement->intrinsic_target) {
+        if (fputs("NULL", output) == EOF) { return false; }
+    } else if (fprintf(output, "&%s_Access_0", name) < 0) { return false; }
+    if (fprintf(output, ",.mode=%s,.input_count=%zu",
             statement->syntax->as.call.mode == AST_ENTRY_CALL ? "AMA_ACCESS_ENTRY" : statement->syntax->as.call.mode == AST_RESUME_CALL ? "AMA_ACCESS_RESUME" : "AMA_ACCESS_READ", count) < 0) { return false; }
     if (count != 0 && fprintf(output, ",.inputs=%s_Inputs", name) < 0) { return false; }
     if (callee->members != NULL && fprintf(output, ",.installation_operations=%s_Install", name) < 0) { return false; }

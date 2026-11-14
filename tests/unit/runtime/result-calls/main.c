@@ -4,9 +4,11 @@
 #include "common.c"
 #include "support/protection.c"
 #include "support/refusal.c"
+#include "support/materialized.c"
 
 /** Run each explicit frame/authority component contract. */
 void run(void) {
+    it_acquires_materialized_values_with_empty_or_retained_outer_contexts();
     it_keeps_each_ancestor_acquired_and_restores_it_without_allocating();
     it_refuses_before_parking_and_checks_frame_storage();
 }

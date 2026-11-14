@@ -2,8 +2,9 @@
  * @file
  * @brief Prepare one owned value or reference before inserting its handle.
  *
+ * [LIST-10](../../../../spec/language/lists.md#list-10) reserves membership metadata before native construction so publication cannot allocate.
  * [LIFE-04](../../../../spec/implementation/native-interface.md#life-04)
- * The storage guard supplies validated bounds and protected sources. Commit shifts handles, not native payloads.
+ * The storage guard supplies validated bounds and protected sources. Commit shifts membership indices, not native payloads.
  */
 #include <stdint.h>
 #include <string.h>

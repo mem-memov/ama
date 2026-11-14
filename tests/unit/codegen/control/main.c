@@ -9,6 +9,7 @@
 #include "../../source/common.c"
 #include "codegen/control/emission/emission.h"
 #include "codegen/control/resolution/site.h"
+#include "codegen/control/lists/lists.h"
 #include "codegen/internal.h"
 
 /** IR queries are independent of allocation order and unrelated operation kinds. */
@@ -62,6 +63,26 @@ static void it_rejects_missing_and_duplicate_required_sites(void) {
     assert(status == CONTROL_SITE_DUPLICATE && found == NULL);
 }
 
+/** Intrinsic literals select their own staging nodes and never borrow a fake
+ * module installation, even if unrelated nodes have the same binding identity.
+ */
+static void it_resolves_intrinsic_literal_staging_without_module_field_fallback(void) {
+    SemanticStatement statement = {.operation_kind = SEMANTIC_LIST_METHOD_OPERATION};
+    SemanticBinding binding = {.transfer = TRANSFER_LITERAL};
+    ControlNode module = {.operation = CONTROL_INSTALL_PARAMETER, .statement = &statement, .binding = &binding};
+    ControlNode stage = {.operation = CONTROL_STAGE_METHOD_INPUT, .statement = &statement,
+        .binding = &binding, .allocated_next = &module};
+    const ControlNode *found = NULL;
+    ControlSiteStatus status = codegen_control_binding_site(&stage, &statement, &binding, &found);
+    assert(status == CONTROL_SITE_FOUND && found == &stage);
+    status = codegen_control_binding_site(&module, &statement, &binding, &found);
+    assert(status == CONTROL_SITE_MISSING && found == NULL);
+    ControlNode duplicate = stage;
+    duplicate.allocated_next = &stage;
+    status = codegen_control_binding_site(&duplicate, &statement, &binding, &found);
+    assert(status == CONTROL_SITE_DUPLICATE && found == NULL);
+}
+
 /** Every writer propagates a real immediate stream failure to its caller. */
 static void it_propagates_unwritable_streams_for_each_operation_family(void) {
     FILE *output = fopen("main.c", "r");
@@ -90,6 +111,10 @@ static void it_propagates_unwritable_streams_for_each_operation_family(void) {
     type.names[SCAFFOLD_WRITE] = &write;
     type.names[SCAFFOLD_PARAMETERS] = &parameters;
     type.names[SCAFFOLD_RESULTS] = &results;
+    SemanticStatement list_statement = {.operation_kind = SEMANTIC_LIST_METHOD_OPERATION};
+    StorageFrame list_frame = {.statement = &list_statement};
+    assert(!codegen_list_offset(output, &type, &list_frame));
+    assert(!codegen_list_frame(output, &type, &list_frame, true, "method"));
     assert(!codegen_emit_native_entry(output, &type));
     int closed = fclose(output);
     assert(closed == 0);
@@ -192,6 +217,7 @@ static void it_executes_emitted_control_fragments_with_real_c_types(void) {
 void run(void) {
     it_resolves_unique_binding_and_interface_sites_without_a_frontend();
     it_rejects_missing_and_duplicate_required_sites();
+    it_resolves_intrinsic_literal_staging_without_module_field_fallback();
     it_propagates_unwritable_streams_for_each_operation_family();
     it_keeps_original_source_lines_and_preserves_explicit_trace_locations();
     it_executes_emitted_control_fragments_with_real_c_types();

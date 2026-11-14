@@ -45,6 +45,12 @@ AmaStatus ama_program_frame(AmaProgram *, AmaHandle, size_t offset, AmaProgramFr
  * parent in a previously empty caller frame; refusal leaves the parent intact.
  */
 AmaStatus ama_program_acquire_result(AmaProgram *, AmaHandle, const AmaProgramInvocation *, size_t offset, bool *);
+/** Acquire one already materialized intrinsic result with a fresh return context.
+ * Park outgoing, which may be empty for a root list service, in the checked
+ * caller frame. No synthetic method owner or result field is constructed.
+ */
+AmaStatus ama_program_acquire_value(AmaProgram *, AmaHandle, const AmaProgramValue *,
+    AmaAccessMode, size_t offset, bool *refused);
 /** Release a selected target and restore its still-protected parent. Inactive
  * slots are accepted only during explicit chain abandonment.
  */

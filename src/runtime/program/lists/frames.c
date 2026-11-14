@@ -40,3 +40,19 @@ AmaStatus ama_program_list_method_frame(AmaProgram *program, AmaHandle caller,
     if (status.code == AMA_OK) { *output = frame; }
     return status;
 }
+
+AmaStatus ama_program_list_end_frame(AmaProgram *program, AmaHandle caller, size_t offset, bool abandoning) {
+    AmaProgramListMethod *frame = NULL;
+    AmaStatus status = ama_program_list_method_frame(program, caller, offset, &frame);
+    if (status.code != AMA_OK) { return status; }
+    if (!frame->active) { return abandoning ? ama_status_success() : ama_status_make(AMA_INVALID_STATE, NULL, 0); }
+    return ama_program_list_method_end(frame);
+}
+
+AmaStatus ama_program_list_close_frame(AmaProgram *program, AmaHandle caller, size_t offset, bool abandoning) {
+    AmaProgramListService *frame = NULL;
+    AmaStatus status = ama_program_list_service_frame(program, caller, offset, &frame);
+    if (status.code != AMA_OK) { return status; }
+    if (!frame->active) { return abandoning ? ama_status_success() : ama_status_make(AMA_INVALID_STATE, NULL, 0); }
+    return ama_program_list_close(frame);
+}

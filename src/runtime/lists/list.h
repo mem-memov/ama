@@ -31,6 +31,14 @@ typedef struct {
  */
 AmaStatus ama_list_storage_insert(AmaListStorage *, size_t position, AmaHandle source);
 
+/** Insert with explicit preflight provenance for typed methods. require_copy
+ * distinguishes a supplied owning source, including empty, from omission.
+ * Only bounds/checked source unavailability set refused; allocation, capability
+ * and native construction errors remain technical even if their code coincides.
+ */
+AmaStatus ama_list_storage_insert_checked(AmaListStorage *, size_t, AmaHandle,
+    bool require_copy, bool *refused);
+
 /** Remove an ordered range after preflighting every owned tree before cleanup.
  * Bounds are checked without overflowing. Owning destructor failure is terminal;
  * cleanup continues and preserves the primary failure. Reference targets are not

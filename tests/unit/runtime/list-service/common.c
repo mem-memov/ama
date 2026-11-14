@@ -14,6 +14,7 @@ typedef struct {
     AmaHandleList items;
     AmaHandleList other;
     AmaHandle parent;
+    AmaHandle source;
     unsigned char payload;
     AmaProgramListService services[2];
     AmaProgramListMethod methods[2];
@@ -100,10 +101,11 @@ static void setup_service(void) {
     static const AmaObjectField fields[] = {
         {AMA_FIELD_REFERENCE_LIST, 1, offsetof(ServiceOwner, items)},
         {AMA_FIELD_OWNING_LIST, 1, offsetof(ServiceOwner, other)},
-        {AMA_FIELD_REFERENCE, 2, offsetof(ServiceOwner, parent)}
+        {AMA_FIELD_REFERENCE, 2, offsetof(ServiceOwner, parent)},
+        {AMA_FIELD_REFERENCE, 1, offsetof(ServiceOwner, source)}
     };
     status = ama_object_type_init(&owner_type, sources.allocator, 2, sizeof(ServiceOwner),
-        2, UINT64_MAX, fields, 3, offsetof(ServiceOwner, payload), (AmaPayloadHooks){0});
+        2, UINT64_MAX, fields, 4, offsetof(ServiceOwner, payload), (AmaPayloadHooks){0});
     assert(status.code == AMA_OK);
     world = (AmaWorld){.types = service_types, .type_count = 2, .allocator = sources.allocator};
     program = (AmaProgram){.world = &world};

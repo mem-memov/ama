@@ -1701,10 +1701,25 @@ Contracts: [lists](spec/language/lists.md),
   enabling unfinished intrinsic dispatch. Component ASan/UBSan passed; full strict
   tests, all 1214 input coverage, links and reproducible Doxygen are checked before
   commit. Mutation adapters remain guarded until their following method tasks.
-- [ ] **T078 — Implement append and insert.** Needs: T077. Support omitted default
+- [x] **T078 — Implement append and insert.** Needs: T077. Support omitted default
   creation versus explicit owning clone or reference-handle copy. Reserve counters
   and prepare before publication; test invalid positions, clone capability, busy
   sources, allocation overflow/failure and unchanged destinations on refusal.
+  Evidence: [typed append/insert execution](docs/implementation/list-insertion.md).
+  Resolved descriptors retain source order, exact parameter ordinals and unique
+  staging sites. Typed helpers construct integer inputs once, validate the declared
+  index protocol, distinguish pure preflight refusal from later native failures,
+  and publish reserved membership/ownership state before direct result actions.
+  Selected intrinsic values use actual stored targets and may park an empty root
+  service context; exact frame ancestry releases method/input credits and service
+  grants before a local handler. Six runtime cases and six compiled projects cover
+  independent clones, direct structural indices, stored task entry/resume, cleared
+  ordinary copy positions, skipped siblings, receiver preservation, noncopyable
+  default/placeholder elements and technical Busy. Explicit empty copy sources
+  fail statically; full-host-size/negative positions and every allocation prefix
+  have component evidence. Actual generated-program and component ASan/UBSan
+  passed; full strict tests, all 1231 input coverage, links and reproducible Doxygen
+  are checked before commit. Remaining methods and foreach stay guarded.
 - [ ] **T079 — Implement remove and clear.** Needs: T078. Preflight full affected
   owned subtrees, retire memberships and release resources in specified order.
   Test busy descendants, reference removal without destroying external targets,

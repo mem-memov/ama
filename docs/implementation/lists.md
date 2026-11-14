@@ -4,8 +4,9 @@ The [list specification](../../spec/language/lists.md) separates checked order
 storage from typed service authority and live traversal. T075 supplies
 [exact memberships](list-membership.md); T076 connects them to declared fields,
 indexed values, construction, copying and replacement under
-[list value integration](list-values.md). Typed services and cursor corrections
-remain separate tasks. Whole-list execution and retained whole-list reads remain
+[list value integration](list-values.md). T077 adds [service authority](list-service-frames.md)
+and T078 adds [append/insert execution](list-insertion.md). Remaining methods and
+cursor corrections keep their roadmap tasks. Whole-list execution and retained whole-list reads remain
 invalid language operations, rather than dispatcher actions.
 
 ## Direct storage operations

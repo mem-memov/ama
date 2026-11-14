@@ -1,11 +1,12 @@
 /**
  * @file
- * @brief Run checked vector edits with one scoped lifecycle operation.
+ * @brief Run checked membership edits with one scoped lifecycle operation.
  *
  * [LIST-04](../../../../spec/language/lists.md#list-04) forbids action selectors
  * and retained results. Direct C entry points return their status to the caller.
  * [LIST-10](../../../../spec/language/lists.md#list-10) requires preflight before
- * destructive effects; typed service acquisition and cursor correction remain separate work.
+ * destructive effects. Typed method wrappers provide exact service authority;
+ * cursor correction remains separate work.
  */
 #include "internal.h"
 
@@ -36,8 +37,11 @@ static void ama_list_storage_finish(AmaListMutation *mutation) {
     mutation->objects.world->operation_active = false;
 }
 
-AmaStatus ama_list_storage_insert(AmaListStorage *storage, size_t position, AmaHandle source) {
+AmaStatus ama_list_storage_insert_checked(AmaListStorage *storage, size_t position,
+    AmaHandle source, bool require_copy, bool *refused) {
+    *refused = false;
     if (position > storage->list->count) {
+        *refused = true;
         return ama_status_make(AMA_INDEX_BOUNDS, NULL, 0);
     }
     AmaListMutation mutation;
@@ -45,14 +49,27 @@ AmaStatus ama_list_storage_insert(AmaListStorage *storage, size_t position, AmaH
     if (status.code != AMA_OK) {
         return status;
     }
-    if (storage->owning && source.generation != 0) {
+    if (storage->owning && require_copy) {
+        status = ama_object_copy_capability(&mutation.objects, storage->element_type);
+    }
+    if (status.code == AMA_OK && storage->owning && source.generation != 0) {
         status = ama_object_preflight(&mutation.objects, source, true, false);
+        /* This callback-free checker produces these codes only at exact identity
+         * or availability checks. Later allocator/native stages never set this
+         * flag, so equal numeric native failures cannot become refusals. */
+        *refused = status.code == AMA_BUSY || status.code == AMA_STALE_REFERENCE
+            || status.code == AMA_EMPTY_REFERENCE;
     }
     if (status.code == AMA_OK) {
         status = ama_list_insert(&mutation, position, source);
     }
     ama_list_storage_finish(&mutation);
     return status;
+}
+
+AmaStatus ama_list_storage_insert(AmaListStorage *storage, size_t position, AmaHandle source) {
+    bool refused;
+    return ama_list_storage_insert_checked(storage, position, source, false, &refused);
 }
 
 AmaStatus ama_list_storage_remove(AmaListStorage *storage, size_t position, size_t count) {

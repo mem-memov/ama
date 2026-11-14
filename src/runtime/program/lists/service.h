@@ -36,6 +36,10 @@ struct AmaProgramListService {
 struct AmaProgramListMethod {
     AmaProgramListService *service;
     AmaProgramValue value;
+    /** Fixed LIST-04 arity bound: owned integer inputs or nonowning element handles. */
+    AmaHandle inputs[2];
+    size_t input_count;
+    unsigned owned_inputs;
     bool active;
     bool has_result;
     bool owns_result;
@@ -69,9 +73,14 @@ AmaStatus ama_program_list_reference_result(AmaProgramListMethod *, AmaHandle);
  */
 AmaStatus ama_program_list_owned_result(AmaProgramListMethod *, uint64_t type_id, const AmaRecipe *);
 /** Consume the result credit before cleanup; destroy an owned result exactly once
- * while the list remains busy. Escaped nonowning handles then become stale.
+ * while the list remains busy, then release owned inputs in reverse declaration
+ * order. Escaped nonowning handles to the result then become stale.
  */
 AmaStatus ama_program_list_method_end(AmaProgramListMethod *);
+/** End one checked lexical method slot; abandonment alone tolerates unentered slots. */
+AmaStatus ama_program_list_end_frame(AmaProgram *, AmaHandle, size_t, bool abandoning);
+/** Close one checked lexical parent slot after all its methods have ended. */
+AmaStatus ama_program_list_close_frame(AmaProgram *, AmaHandle, size_t, bool abandoning);
 /** Borrow aligned generated lexical frames only after checking caller/bounds. */
 AmaStatus ama_program_list_service_frame(AmaProgram *, AmaHandle, size_t, AmaProgramListService **);
 /** Borrow one generated method slot; creation does not initialize a result. */

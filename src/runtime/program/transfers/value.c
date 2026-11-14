@@ -3,10 +3,12 @@
  * @brief Select receivers before sources and install typed values under one operation guard.
  * [LIST-13](../../../../spec/language/lists.md#list-13) requires exact occurrence retirement and replacement namespaces.
  *
+ * [LIST-10](../../../../spec/language/lists.md#list-10) grants busy-list receiver access only to a method-direct structural transfer.
  * [REF-03](../../../../spec/language/values-and-references.md#ref-03)
  * Reference assignment copies handles without acquiring targets; owned replacement stages construction before destructive commit.
  */
 #include "internal.h"
+#include "runtime/program/values/selection/internal.h"
 
 /** Require an owned scalar source; produce an immutable-constant recipe or exact handle clone recipe with explicit continuation mode. Arena/source lifetimes cover construction. */
 AmaStatus ama_program_value_recipe(AmaProgram *program, SourceArena *arena, const AmaProgramValue *value,
@@ -48,19 +50,26 @@ AmaStatus ama_program_store(AmaProgram *program, AmaProgramValue *destination, c
 }
 
 /** Own guard, arena and protections for selection plus store of an already selected source; release temporary authority on every return. */
-AmaStatus ama_program_transfer(AmaProgram *program, AmaHandle current, const AmaProgramAccess *receiver,
-    const AmaProgramValue *source) {
+AmaStatus ama_program_transfer_authorized(AmaProgram *program, AmaHandle current, const AmaProgramAccess *receiver,
+    const AmaProgramValue *source, const struct AmaProgramListService *authority) {
     if (program->world->operation_active || program->world->failed) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
     program->world->operation_active = true;
     AmaObjectOperation operation = {.world = program->world};
     source_arena_init(&operation.arena, program->world->allocator);
     AmaProgramValue destination = {0};
-    AmaStatus status = ama_program_select(program, current, receiver, false, &destination);
+    AmaStatus status = ama_program_access_authorized(program, current, current, NULL,
+        receiver, false, authority, &destination, NULL);
     if (status.code == AMA_OK) { status = ama_program_store(program, &destination, source, NULL, &operation); }
     ama_object_unprotect(&operation);
     source_arena_destroy(&operation.arena);
     program->world->operation_active = false;
     return status;
+}
+
+/** Executed module bodies cannot inherit a list grant through ordinary transfers. */
+AmaStatus ama_program_transfer(AmaProgram *program, AmaHandle current, const AmaProgramAccess *receiver,
+    const AmaProgramValue *source) {
+    return ama_program_transfer_authorized(program, current, receiver, source, NULL);
 }
 
 /** Select receiver first and source once, then install under one guard. Explicit owned continuation copy uses continuation replacement; release protections/scratch on every path. */

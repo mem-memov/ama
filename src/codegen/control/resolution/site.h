@@ -11,7 +11,7 @@
 
 /** A unique operation is required; zero/two matches are distinct invalid IR states. */
 typedef enum { CONTROL_SITE_FOUND, CONTROL_SITE_MISSING, CONTROL_SITE_DUPLICATE } ControlSiteStatus;
-/** Find evaluation for a nonliteral input, installation for a literal input. */
+/** Find nonliteral evaluation or the exact module/intrinsic literal staging kind. */
 ControlSiteStatus codegen_control_binding_site(const ControlNode *, const SemanticStatement *,
     const SemanticBinding *, const ControlNode **);
 /** Find declared parameter/result construction; no other field role has a site. */

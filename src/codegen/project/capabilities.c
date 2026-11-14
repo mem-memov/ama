@@ -6,7 +6,8 @@
  * [FLOW-05](../../../spec/language/lists.md#flow-05) forbid
  * publishing C that drops selected actions or cursor state. Ordinary selected
  * instance trees, ordinary condition headers and self sources have complete
- * runtime/C adapters; intrinsic list operations and traversals retain guards.
+ * runtime/C adapters; append/insert have typed adapters, while remaining list
+ * methods and traversals retain explicit guards.
  */
 #include "codegen/internal.h"
 /** Retain the exact original site and report unsupported execution before creating any artifact. */
@@ -22,9 +23,9 @@ bool codegen_validate_execution(NativeScaffold *scaffold) {
             if (node->kind == AST_FOREACH) {
                 return unsupported(scaffold, node->span, "Traversal IR requires its execution adapter");
             }
-            if (node->kind == AST_CALL && (statement->operation_kind == SEMANTIC_LIST_SERVICE_OPERATION
-                    || statement->operation_kind == SEMANTIC_LIST_METHOD_OPERATION)) {
-                return unsupported(scaffold, node->span, "Intrinsic list operation IR requires its execution adapter");
+            if (node->kind == AST_CALL && statement->operation_kind == SEMANTIC_LIST_METHOD_OPERATION
+                && statement->list_method != SEMANTIC_LIST_APPEND && statement->list_method != SEMANTIC_LIST_INSERT) {
+                return unsupported(scaffold, node->span, "This intrinsic list method requires its execution adapter");
             }
         }
     }

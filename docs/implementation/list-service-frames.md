@@ -7,8 +7,9 @@ The contracts are [LIST-10](../../spec/language/lists.md#list-10),
 The public implementation boundary is
 [`runtime/program/lists/service.h`](../../src/runtime/program/lists/service.h).
 Method effects and their generated dispatch remain separate roadmap tasks; the
-compiler retains its execution guard for intrinsic calls until their adapters
-exist. This task does not publish executable no-op list methods.
+compiler now supports [append/insert](list-insertion.md); remaining method and
+traversal adapters retain explicit execution guards. No no-op method substitute
+is published.
 
 ## One exact grant for the whole service parent
 

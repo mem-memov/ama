@@ -4,6 +4,7 @@
  *
  * [CALL-04](../../../../spec/language/calls-and-results.md#call-04)
  * Record only supported target acquisition refusals; protocol/technical failures cannot be guessed from their numeric code alone.
+ * [LIST-04](../../../../spec/language/lists.md#list-04) admits materialized intrinsic values without synthetic owners.
  * [CALL-09](../../../../spec/language/calls-and-results.md#call-09) selects
  * children within protected parents without changing the caller operand domain.
  */
@@ -87,6 +88,33 @@ AmaStatus ama_program_acquire_result(AmaProgram *program, AmaHandle caller,
     context->metadata.service.outgoing = target.handle;
     context->metadata.service.outgoing_previous = cell->metadata.service.activity;
     cell->metadata.service.activity = AMA_INSTANCE_ACQUIRED;
+    return ama_status_success();
+}
+
+/** Intrinsic results already have their exact typed storage and need no module
+ * selector. Park an optional outer module acquisition while this value executes.
+ * [LIST-04](../../../../spec/language/lists.md#list-04) forbids fake method instances.
+ */
+AmaStatus ama_program_acquire_value(AmaProgram *program, AmaHandle caller,
+    const AmaProgramValue *value, AmaAccessMode mode, size_t offset, bool *refused) {
+    *refused = false;
+    if (program->world->operation_active || program->world->failed) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
+    AmaProgramFrame *frame = NULL;
+    AmaPoolCell *context = NULL, *target = NULL;
+    AmaStatus status = ama_program_frame(program, caller, offset, &frame);
+    if (status.code == AMA_OK) { status = ama_program_cell(program, caller, &context); }
+    if (status.code != AMA_OK) { return status; }
+    if (frame->active || value->constant != NULL || value->shared_list != NULL ||
+        (value->handle.generation != 0 && value->type_id != value->handle.type_id)) {
+        return ama_status_make(AMA_INVALID_STATE, NULL, 0);
+    }
+    status = ama_call_target(program, context, value, mode, &target, refused);
+    if (status.code != AMA_OK) { return status; }
+    *frame = (AmaProgramFrame){.active = true, .parent = context->metadata.service.outgoing,
+        .previous = context->metadata.service.outgoing_previous};
+    context->metadata.service.outgoing = value->handle;
+    context->metadata.service.outgoing_previous = target->metadata.service.activity;
+    target->metadata.service.activity = AMA_INSTANCE_ACQUIRED;
     return ama_status_success();
 }
 

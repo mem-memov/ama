@@ -2,6 +2,7 @@
  * @file
  * @brief Resolve unique binding/field operation sites by explicit typed-IR identity.
  *
+ * [LIST-04](../../../../spec/language/lists.md#list-04) stages intrinsic literals at their own typed input sites, never module fields.
  * [ARCH-05](../../../../spec/implementation/compiler.md#arch-05) requires exact
  * algorithms: list order, similar names and acquisition-site fallbacks cannot
  * repair missing or duplicate required operations.
@@ -34,7 +35,9 @@ static ControlSiteStatus find(const ControlNode *nodes, const SiteQuery *query, 
 ControlSiteStatus codegen_control_binding_site(const ControlNode *nodes, const SemanticStatement *statement,
     const SemanticBinding *binding, const ControlNode **result) {
     if (binding == NULL) { *result = NULL; return CONTROL_SITE_MISSING; }
-    SiteQuery query = {.operation = binding->transfer == TRANSFER_LITERAL ? CONTROL_INSTALL_PARAMETER : CONTROL_EVALUATE_INPUT,
+    ControlOperation literal = statement->operation_kind == SEMANTIC_LIST_METHOD_OPERATION
+        ? CONTROL_STAGE_METHOD_INPUT : CONTROL_INSTALL_PARAMETER;
+    SiteQuery query = {.operation = binding->transfer == TRANSFER_LITERAL ? literal : CONTROL_EVALUATE_INPUT,
         .statement = statement, .binding = binding};
     return find(nodes, &query, result);
 }

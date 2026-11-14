@@ -24,12 +24,14 @@ bool codegen_emit_controls(NativeScaffold *scaffold, FILE *output) {
             if (name == NULL) { return false; }
             if (node->operation == CONTROL_ACQUIRE_INSTANCE) {
                 if (!codegen_control_invocation(scaffold, output, type, node, name)) { return false; }
+            } else if (node->operation == CONTROL_LIST_METHOD_PREFLIGHT) {
+                if (!codegen_control_list_inputs(scaffold, output, type, node, name)) { return false; }
             } else if (node->operation == CONTROL_SELECT_RECEIVER || node->operation == CONTROL_CONDITION || node->operation == CONTROL_TRANSFER_OUTPUT) {
                 const SemanticAccess *access = node->operation == CONTROL_TRANSFER_OUTPUT ? node->binding->receiver : node->statement->access;
                 if (!codegen_access_definition(scaffold, output, name, access)) { return false; }
                 if (node->operation == CONTROL_SELECT_RECEIVER
                     && !codegen_control_assignment_data(scaffold, output, node, name)) { return false; }
-                if (node->operation == CONTROL_TRANSFER_OUTPUT
+                if (node->operation == CONTROL_TRANSFER_OUTPUT && node->binding->intrinsic == NULL
                     && !codegen_control_output_data(scaffold, output, node->binding->field, name)) { return false; }
             }
         }

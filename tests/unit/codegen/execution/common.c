@@ -46,6 +46,13 @@ typedef bool (*TestNativeEntryEmitter)(FILE *, const ScaffoldType *);
 typedef const char *(*TestNativeHookEmitter)(const ScaffoldType *, AbiOperation);
 static TestNativeEntryEmitter native_entry_override;
 static TestNativeHookEmitter native_hook_override;
+/** Optional completion of explicitly test-owned native companions after model
+ * qualification. The callback must never write maintained library sources.
+ */
+static void (*native_fixture_completion)(NativeScaffold *);
+#ifndef TEST_STDLIB_KIND
+#define TEST_STDLIB_KIND MODULE_ROOT_PROJECT
+#endif
 
 /**
  * Create the explicit native interface/body/ABI companion set used by this leaf. The caller
@@ -121,6 +128,7 @@ static void executable_native(const ScaffoldType *type) {
     assert(written != EOF);
     for (AbiOperation operation = ABI_DEFAULT; operation < ABI_BINDING_COUNT; operation++) {
         const AbiBinding *binding = &type->plan->type->abi.bindings[operation];
+        if (!binding->present) { continue; }
         emitted = scaffold_emit_signature(body, operation, binding->function);
         assert(emitted);
         const char *implementation = operation == ABI_DEFAULT ? " { *destination=(AMA_NATIVE(State)){.address=destination}; return ama_status_success(); }\n"
@@ -173,7 +181,7 @@ static void prepare_project(const char *main_source) {
     native_fixture("value", "@C\n");
     native_fixture("worker", "@<\ninput\n.value\n |7\n@>\noutput\n.value\n input\nother\n.value\n |99\n@C\n");
     setup_frontend();
-    ModuleRoot roots[] = {{"generated/project", NULL, 0, MODULE_ROOT_PROJECT}, {TEST_STDLIB, NULL, 0, MODULE_ROOT_PROJECT}};
+    ModuleRoot roots[] = {{"generated/project", NULL, 0, MODULE_ROOT_PROJECT}, {TEST_STDLIB, NULL, 0, TEST_STDLIB_KIND}};
     bool checked = compiler_frontend_check(&frontend, roots, 2, ".main");
     if (!checked) { fprintf(stderr, "Frontend failed: %s\n", frontend.error.message); }
     assert(checked);
@@ -210,6 +218,7 @@ static void prepare_project(const char *main_source) {
             && strncmp(source_path(type->plan->type->module->source->text),
                 "generated/project/", sizeof("generated/project/") - 1) == 0) { executable_native(type); }
     }
+    if (native_fixture_completion != NULL) { native_fixture_completion(&assembly); }
 }
 
 /**

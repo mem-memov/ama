@@ -1,5 +1,6 @@
 /** @file
  * @brief Borrow fixed caller operation slots and restore enclosing acquisitions.
+ * [LIST-04](../../../../spec/language/lists.md#list-04) permits a root intrinsic value to park an empty outgoing parent.
  * [CALL-09](../../../../spec/language/calls-and-results.md#call-09) bounds these
  * transient slots by syntax, excludes them from copies, and releases selected
  * children before restoring their still-acquired parent. No C activation survives
@@ -27,9 +28,13 @@ AmaStatus ama_program_release_result(AmaProgram *program, AmaHandle caller, size
     if (!frame->active) { return abandoning ? ama_status_success() : ama_status_make(AMA_INVALID_STATE, NULL, 0); }
     AmaPoolCell *context = NULL, *parent = NULL;
     status = ama_program_cell(program, caller, &context);
-    if (status.code == AMA_OK) { status = ama_program_cell(program, frame->parent, &parent); }
+    if (status.code == AMA_OK && !ama_handle_is_empty(frame->parent)) {
+        status = ama_program_cell(program, frame->parent, &parent);
+    }
     if (status.code != AMA_OK) { return status; }
-    if (parent->metadata.service.activity != AMA_INSTANCE_ACQUIRED) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
+    if (parent != NULL && parent->metadata.service.activity != AMA_INSTANCE_ACQUIRED) {
+        return ama_status_make(AMA_INVALID_STATE, NULL, 0);
+    }
     status = ama_program_release(program, caller);
     if (status.code != AMA_OK) { return status; }
     context->metadata.service.outgoing = frame->parent;

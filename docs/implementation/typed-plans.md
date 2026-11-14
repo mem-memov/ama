@@ -215,8 +215,8 @@ cases exercise valid instruction families and every construction allocation
 failure. Runtime capability guards belong to C generation rather than static
 planning. T063 accepts self sources, T066 accepts ordinary selected results and
 T068 accepts [ordinary condition headers](condition-loop-execution.md). Foreach
-and intrinsic-list adapters remain guarded; static checking preserves their full
-typed IR without silently acknowledging unavailable execution.
+and the remaining intrinsic list methods stay guarded; static checking preserves
+their full typed IR without silently acknowledging unavailable execution.
 
 T042 adds independently validated [context, instance and fixed lexical storage](storage-planning.md).
 The full-plan publication gate also checks this complete storage description.

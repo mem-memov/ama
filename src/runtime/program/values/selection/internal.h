@@ -36,6 +36,11 @@ AmaStatus ama_program_instance_authorized(AmaProgram *, AmaHandle, const AmaProg
 AmaStatus ama_program_access_authorized(AmaProgram *, AmaHandle caller, AmaHandle owner,
     const AmaConstantValue *, const AmaProgramAccess *, bool,
     const struct AmaProgramListService *, AmaProgramValue *, bool *);
+/** Evaluate one method-direct source with an explicit structural grant. Literal
+ * recipes remain a separate constructor path; ordinary evaluation passes null.
+ */
+AmaStatus ama_program_evaluate_authorized(AmaProgram *, AmaHandle, const AmaConstantValue *,
+    const AmaProgramSource *, bool, const struct AmaProgramListService *, AmaProgramValue *);
 /** Narrow a valid list view to its indexed scalar element without running code.
  * Bounds/type failure leaves caller-owned list storage unchanged.
  */

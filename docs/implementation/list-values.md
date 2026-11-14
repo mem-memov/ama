@@ -104,6 +104,5 @@ the actual emitted executables.
 The ready registry maps every maintained changed file to its leaf scenarios;
 headers retain standalone compilation. The authored generated-layout probe reads
 record targets through the same declared-list accessor. The full strict suite checks composition
-with the compiler, generated C assembly and native views. This slice does not
-enable intrinsic list service dispatch, result-frame borrowing or foreach
-cursors; their execution guards remain until the corresponding roadmap tasks.
+with the compiler, generated C assembly and native views. Typed [append/insert execution](list-insertion.md) adds service/result-frame
+integration. Remaining method and foreach adapters retain their roadmap guards.

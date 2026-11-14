@@ -175,7 +175,7 @@ allocation remains owned by the plan arena until destruction.
 
 Static frontend checking now publishes a complete validated plan for these forms,
 including typed self sources. [C generation](../../src/codegen/project/capabilities.c)
-rejects unavailable traversal and intrinsic-list execution adapters
+rejects unavailable traversal and remaining intrinsic-list method adapters
 before allocating its model or staging any artifact. T063 supplies final-self
 sources; T066 supplies [ordinary direct-result execution](direct-result-execution.md),
 and T068 supplies [ordinary condition headers](condition-loop-execution.md). This replaces the

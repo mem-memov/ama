@@ -11,6 +11,8 @@
 
 /** Emit a call descriptor using validated type/member identities and exact IR sites. */
 bool codegen_control_invocation(NativeScaffold *, FILE *, const ScaffoldType *, const ControlNode *, const char *);
+/** Emit fixed method input ordinals and exact typed preparation operation sites. */
+bool codegen_control_list_inputs(NativeScaffold *, FILE *, const ScaffoldType *, const ControlNode *, const char *);
 /** Emit the resolved assignment source and destination descriptors. */
 bool codegen_control_assignment_data(NativeScaffold *, FILE *, const ControlNode *, const char *);
 /** Emit the resolved output field/shared-constant descriptor. */

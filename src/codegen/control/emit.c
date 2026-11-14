@@ -8,11 +8,13 @@
  * [CALL-08](../../../spec/language/calls-and-results.md#call-08) permits the
  * contiguous helper implementation only with the same source/install/output order
  * and no interior entry into a validated replacement group.
+ * [LIST-09](../../../spec/language/lists.md#list-09) executes append/insert input/preflight/commit prefixes once before ordered outputs.
  * [FLOW-04](../../../spec/language/control-flow.md#flow-04) retains exact
  * header roots and releases all header targets before either truth successor.
  */
 #include "codegen/internal.h"
 #include "emission/emission.h"
+#include "lists/lists.h"
 
 /** Emit one validated node and its explicit successor; terminal writers own transfer.
  * Borrow the model/type/IR through the call. Stream or model failure returns false;
@@ -30,16 +32,20 @@ bool codegen_emit_control(NativeScaffold *scaffold, FILE *output, const Scaffold
                 ? codegen_emit_tree_control(output, type, node, name)
                 : codegen_control_acquire(output, name, node->alternative->selector,
                     node->statement->syntax->as.call.mode == AST_ENTRY_CALL); break;
+        case CONTROL_ACQUIRE_LIST: case CONTROL_LIST_METHOD_PREFLIGHT:
+            written = codegen_list_operation(scaffold, output, type, node, name); break;
         case CONTROL_SET_RETURN: written = codegen_control_connect(output, node->resume->selector, node->selector); break;
         case CONTROL_NATIVE_ENTRY: written = codegen_emit_native_entry(output, type); break;
         case CONTROL_REFUSAL_SNAPSHOT: written = codegen_control_refusal(output); break;
         case CONTROL_RELEASE_TARGET:
             written = node->statement->enclosing_operation != NULL
+                    || node->statement->operation_kind != SEMANTIC_INSTANCE_OPERATION
                 ? codegen_emit_tree_control(output, type, node, name) : codegen_control_release(output); break;
         case CONTROL_ABANDON_CHAIN: written = codegen_emit_tree_control(output, type, node, name); break;
         case CONTROL_RELEASE_CHAIN: written = codegen_emit_tree_control(output, type, node, name); break;
         case CONTROL_TRANSFER_OUTPUT:
-            written = codegen_control_output(output, name, node->statement->syntax->as.call.mode == AST_CONSTANT_READ); break;
+            written = node->binding->intrinsic != NULL ? codegen_list_output(output, type, node, name)
+                : codegen_control_output(output, name, node->statement->syntax->as.call.mode == AST_CONSTANT_READ); break;
         case CONTROL_SELECT_RECEIVER: written = codegen_control_assignment(output, name); break;
         case CONTROL_CONDITION:
             return node->chain != NULL && node->chain->header != NULL
@@ -60,6 +66,9 @@ bool codegen_emit_control(NativeScaffold *scaffold, FILE *output, const Scaffold
         /* The contiguous selected acquisition helper performs selection once;
          * the explicit action/selection labels introduce no second evaluation. */
         case CONTROL_SELECT_RESULT: case CONTROL_ACTION_NEXT: case CONTROL_HEADER_ENTER:
+        /* The method preflight label owns its entire contiguous typed prefix;
+         * these audit stages introduce no second source/constructor/mutation. */
+        case CONTROL_STAGE_METHOD_INPUT: case CONTROL_LIST_METHOD_PREPARE: case CONTROL_LIST_METHOD_COMMIT:
         case CONTROL_PREFLIGHT_INPUTS:
         case CONTROL_EVALUATE_INPUT: case CONTROL_INSTALL_PARAMETER: case CONTROL_INITIALIZE_RESULT:
         case CONTROL_SELECT_SOURCE: case CONTROL_PREFLIGHT_REPLACEMENT: case CONTROL_PREPARE_REPLACEMENT:

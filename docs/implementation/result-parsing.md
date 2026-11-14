@@ -99,5 +99,5 @@ dependency traversal; T027 supplies condition-chain loops and foreach syntax.
 Parser/static success remains separate from runtime adapter support.
 
 T066 now accepts ordinary selected instance trees in generated C; only the
-specific remaining loop/cursor/intrinsic-list adapters retain execution guards.
+the remaining traversal and intrinsic list method adapters retain execution guards.
 See [direct-result execution](direct-result-execution.md) for runtime evidence.

@@ -10,6 +10,12 @@
 #include "runtime/program/internal.h"
 #include "runtime/objects/internal.h"
 #include "runtime/program/calls/call.h"
+struct AmaProgramListService;
+/** Transfer a method-direct result to a caller receiver with the exact structural
+ * grant. Ordinary transfers always pass null and inherit no list authority.
+ */
+AmaStatus ama_program_transfer_authorized(AmaProgram *, AmaHandle, const AmaProgramAccess *,
+    const AmaProgramValue *, const struct AmaProgramListService *);
 /** Install one typed scalar or delegate whole-list transfer. Reference assignment copies handles without target acquisition; owning values use staged reconstruction in the caller operation. */
 AmaStatus ama_program_store(AmaProgram *, AmaProgramValue *, const AmaProgramValue *,
     const AmaFieldRecipe *, AmaObjectOperation *);
