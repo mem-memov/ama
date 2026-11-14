@@ -31,15 +31,7 @@ typedef struct {
 /** One lexical scan's checked collection and numerical future boundary. All
  * retained identities are values; no acquisition or entry-buffer pointer survives.
  */
-typedef struct {
-    AmaHandle owner;
-    size_t field;
-    uint64_t incarnation;
-    size_t boundary;
-    AmaMembership current;
-    AmaHandle target;
-    bool active, role_active;
-} AmaProgramForeachCursor;
+typedef AmaListCursor AmaProgramForeachCursor;
 /** Acquire/validate an empty parsed body's collection once; touch no cursor/cell. */
 AmaStatus ama_program_foreach_empty(AmaProgram *, AmaHandle, const AmaProgramForeachPlan *);
 /** Establish boundary zero without installing a binding or acquiring a target. */

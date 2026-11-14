@@ -64,3 +64,5 @@ handle-vector representation remains.
 [Typed swap and length](list-ordering.md) complete the six method adapters in T080.
 
 [Live foreach selection](list-traversal-selection.md) provides fixed cursors and lexical binding cells in T081; source execution remains guarded pending traversal integration.
+
+[Traversal mutation correction](list-traversal-mutation.md) connects exact fixed cursor scans to insert/remove/clear publication in T082.

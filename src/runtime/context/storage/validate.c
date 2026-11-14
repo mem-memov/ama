@@ -4,6 +4,8 @@
  *
  * [RT-01](../../../../spec/implementation/runtime.md#rt-01) separates descriptors from owned
  * context storage. Reject malformed counts/keys before native construction; no type is inferred.
+ * [LIST-13](../../../../spec/language/lists.md#list-13) requires exact lexical
+ * cursor catalogs; validate bounds, alignment and unique ordered extents first.
  */
 #include "../internal.h"
 
@@ -41,12 +43,19 @@ AmaStatus ama_context_validate(const AmaContextDefinition *definition) {
             || type->field_count > SIZE_MAX / sizeof(AmaProgramField)) {
             return ama_status_make(AMA_LIMIT_EXCEEDED, NULL, 0);
         }
+        AmaStatus cursors = ama_list_cursor_schema(type->size, type->field_count, type->list_cursors);
+        if (cursors.code != AMA_OK) { return cursors; }
         for (size_t previous = 0; previous < index; previous++) {
             if (definition->types[previous].type_id == type->type_id) {
                 return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0);
             }
         }
         for (size_t field = 0; field < type->field_count; field++) {
+            if (type->list_cursors != NULL && type->list_cursors[field].count != 0
+                && type->fields[field].kind != AMA_FIELD_OWNING_LIST
+                && type->fields[field].kind != AMA_FIELD_REFERENCE_LIST) {
+                return ama_status_make(AMA_INVALID_STATE, NULL, 0);
+            }
             const AmaProgramField *declaration = &type->declarations[field];
             if (!context_has_type(definition->types, definition->type_count, type->fields[field].type_id)) {
                 return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0);

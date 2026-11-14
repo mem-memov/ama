@@ -19,6 +19,8 @@
 #include "runtime/lists/membership/order/edit.c"
 #include "runtime/lists/membership/order/replace.c"
 #include "runtime/lists/storage.c"
+#include "runtime/lists/cursors/schema.c"
+#include "runtime/lists/cursors/correction.c"
 #include "runtime/lists/mutation/storage.c"
 #include "runtime/lists/mutation/insert.c"
 #include "runtime/lists/mutation/remove.c"

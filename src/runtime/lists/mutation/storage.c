@@ -6,7 +6,8 @@
  * and retained results. Direct C entry points return their status to the caller.
  * [LIST-10](../../../../spec/language/lists.md#list-10) requires preflight before
  * destructive effects. Typed method wrappers provide exact service authority;
- * cursor correction remains separate work.
+ * [LIST-13](../../../../spec/language/lists.md#list-13) preflights the fixed
+ * lexical catalog before native work, then corrects every matching boundary.
  */
 #include "internal.h"
 
@@ -32,6 +33,9 @@ static AmaStatus ama_list_storage_begin(AmaListStorage *storage, AmaListMutation
     if (status.code != AMA_OK) {
         return status;
     }
+    status = ama_list_cursors_prepare(parent_type, mutation->parent, storage->owner,
+        storage->list, &mutation->cursors);
+    if (status.code != AMA_OK) { return status; }
     source_arena_init(&mutation->objects.arena, world->allocator);
     world->operation_active = true;
     return ama_status_success();

@@ -65,8 +65,10 @@ static void it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding(void) 
             header, type->native_prefix->internal_name, type->native_prefix->internal_name);
         assert(written > 0);
     }
-    bool emitted = codegen_emit_storage(&scaffold, output);
+    bool emitted = codegen_emit_storage(&scaffold, output) && codegen_emit_descriptors(&scaffold, output);
     assert(emitted);
+    written = fputs("#include \"runtime/lists/cursors/schema.c\"\n", output);
+    assert(written != EOF);
     const ScaffoldType *root = scaffold.selected;
     written = fprintf(output, "int main(void) { %s_Storage value={0};\n", root->names[SCAFFOLD_WRITE]->internal_name);
     assert(written > 0);
@@ -88,6 +90,22 @@ static void it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding(void) 
         assert(written > 0);
     }
     assert(cursors == 3 && bindings == 2);
+    const char *root_name = root->names[SCAFFOLD_WRITE]->internal_name;
+    written = fprintf(output, "assert(ama_list_cursor_schema(sizeof(value),%zu,%s_ListCursors).code==AMA_OK);\n"
+        "assert(sizeof(%s_Fields)/sizeof(%s_Fields[0])==%zu);\n",
+        root->plan->field_count, root_name, root_name, root_name, root->plan->field_count);
+    assert(written > 0);
+    for (const ScaffoldMember *member = root->members; member != NULL; member = member->next) {
+        size_t count = 0;
+        for (const PlannedLoop *loop = root->plan->loops; loop != NULL; loop = loop->next) {
+            if (loop->statement->traversal->collection != member->field->symbol) { continue; }
+            written = fprintf(output, "assert(%s_ListCursors[%zu].offsets[%zu]==offsetof(%s_Storage,foreach_cursor_%zu));\n",
+                root_name, member->field->slot, count++, root_name, loop->entry->selector);
+            assert(written > 0);
+        }
+        written = fprintf(output, "assert(%s_ListCursors[%zu].count==%zu);\n", root_name, member->field->slot, count);
+        assert(written > 0);
+    }
     written = fputs("return 0; }\n", output);
     assert(written != EOF);
     int closed = fclose(output);

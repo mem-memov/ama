@@ -7,6 +7,8 @@
  * initializes shared values before any explicit instance/body can be requested.
  * [ERROR-03](../../../../spec/implementation/diagnostics.md#error-03) requires
  * checked transport before publishing a context diagnostic or invoking its reporter.
+ * [LIST-13](../../../../spec/language/lists.md#list-13) binds immutable fixed
+ * cursor catalogs to context-local pools without sharing mutable cursor storage.
  */
 #include <string.h>
 #include "../internal.h"
@@ -88,6 +90,7 @@ static AmaStatus context_types(AmaContext *context, const AmaContextDefinition *
         type->resolve_field = ama_program_field_recipe;
         type->field_context = &context->program;
         type->source_operation = source->operation;
+        type->list_cursors = source->list_cursors;
         AmaProgramType *program = &program_types[index];
         *program = (AmaProgramType){.object = type, .operation = source->operation,
             .fields = source->declarations, .field_count = source->field_count,

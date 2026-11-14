@@ -4,6 +4,8 @@
  *
  * [REF-08](../../../../spec/language/values-and-references.md#ref-08)
  * Preflight the entire affected owned forest before destructive work. Reference removal never destroys its target.
+ * [FLOW-05](../../../../spec/language/lists.md#flow-05) subtracts precisely the
+ * removed past entries from every matching cursor, even after terminal cleanup failure.
  */
 #include <string.h>
 #include "internal.h"
@@ -22,5 +24,6 @@ AmaStatus ama_list_remove(AmaListMutation *mutation, size_t position, size_t cou
         mutation->parent->metadata.lifetime.child_capacity -= count;
     }
     (void)ama_membership_remove(list, position, count);
+    ama_list_cursors_remove(&mutation->cursors, position, count);
     return status;
 }

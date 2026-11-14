@@ -1413,6 +1413,61 @@
         "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
         "command": "make -C tests/unit/codegen/contexts",
         "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -1757,6 +1812,61 @@
         "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
         "command": "make -C tests/unit/codegen/contexts",
         "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -2281,6 +2391,56 @@
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
         "command": "make -C tests/unit/codegen/traversal-layout",
         "source": "tests/unit/codegen/traversal-layout/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
       }
     ]
   },
@@ -13772,6 +13932,56 @@
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
         "command": "make -C tests/unit/codegen/traversal-layout",
         "source": "tests/unit/codegen/traversal-layout/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
       }
     ]
   },
@@ -13914,6 +14124,61 @@
         "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
         "command": "make -C tests/unit/codegen/contexts",
         "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ],
     "standalone_header_command": [
@@ -14343,6 +14608,61 @@
         "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
         "command": "make -C tests/unit/codegen/contexts",
         "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -14359,6 +14679,61 @@
         "case": "it_owns_constants_pools_and_diagnostics_without_an_implicit_root",
         "command": "make -C tests/unit/runtime/contexts",
         "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -15111,6 +15486,61 @@
         "case": "it_preserves_public_state_after_each_insertion_allocation_failure",
         "command": "make -C tests/unit/runtime/list-insertion",
         "source": "tests/unit/runtime/list-insertion/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -15167,6 +15597,61 @@
         "case": "it_rejects_reentrant_storage_work_without_mutating_or_allocating",
         "command": "make -C tests/unit/runtime/lists",
         "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -15208,6 +15693,61 @@
         "case": "it_rejects_reentrant_storage_work_without_mutating_or_allocating",
         "command": "make -C tests/unit/runtime/lists",
         "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -15324,6 +15864,61 @@
         "case": "it_deletes_noncopyable_default_elements_without_cloning",
         "command": "make -C tests/unit/codegen/list-deletion",
         "source": "tests/unit/codegen/list-deletion/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -19302,6 +19897,61 @@
         "case": "it_retires_only_changed_indexed_reference_occurrences",
         "command": "make -C tests/unit/runtime/value-selection",
         "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -41272,6 +41922,56 @@
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
         "command": "make -C tests/unit/codegen/traversal-layout",
         "source": "tests/unit/codegen/traversal-layout/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
       }
     ]
   },
@@ -68486,6 +69186,56 @@
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
         "command": "make -C tests/unit/codegen/traversal-layout",
         "source": "tests/unit/codegen/traversal-layout/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
       }
     ]
   },
@@ -68731,6 +69481,56 @@
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
         "command": "make -C tests/unit/codegen/traversal-layout",
         "source": "tests/unit/codegen/traversal-layout/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
       }
     ],
     "standalone_header_command": [
@@ -68838,6 +69638,56 @@
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
         "command": "make -C tests/unit/codegen/traversal-layout",
         "source": "tests/unit/codegen/traversal-layout/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
       }
     ]
   },
@@ -68971,6 +69821,524 @@
         "case": "it_rejects_invalid_lexical_slot_extents_before_touching_collection_state",
         "command": "make -C tests/unit/runtime/traversal",
         "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ]
+  },
+  "src/runtime/lists/cursors/correction.c": {
+    "contract": "docs/implementation/list-traversal-mutation.md",
+    "purpose": "Validate fixed lexical cursor catalogs and correct all exact active or suspended boundaries in complete mutation publication.",
+    "tests": [
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ]
+  },
+  "src/runtime/lists/cursors/correction.h": {
+    "contract": "docs/implementation/list-traversal-mutation.md",
+    "purpose": "Validate fixed lexical cursor catalogs and correct all exact active or suspended boundaries in complete mutation publication.",
+    "tests": [
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/runtime/lists/cursors/model.h": {
+    "contract": "docs/implementation/list-traversal-mutation.md",
+    "purpose": "Validate fixed lexical cursor catalogs and correct all exact active or suspended boundaries in complete mutation publication.",
+    "tests": [
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/runtime/lists/cursors/schema.c": {
+    "contract": "docs/implementation/list-traversal-mutation.md",
+    "purpose": "Validate fixed lexical cursor catalogs and correct all exact active or suspended boundaries in complete mutation publication.",
+    "tests": [
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/traversal-mutation/Makefile": {
+    "contract": "docs/implementation/list-traversal-mutation.md",
+    "purpose": "Validate fixed lexical cursor catalogs and correct all exact active or suspended boundaries in complete mutation publication.",
+    "tests": [
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/traversal-mutation/common.c": {
+    "contract": "docs/implementation/list-traversal-mutation.md",
+    "purpose": "Validate fixed lexical cursor catalogs and correct all exact active or suspended boundaries in complete mutation publication.",
+    "tests": [
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/traversal-mutation/destruction.c": {
+    "contract": "docs/implementation/list-traversal-mutation.md",
+    "purpose": "Validate fixed lexical cursor catalogs and correct all exact active or suspended boundaries in complete mutation publication.",
+    "tests": [
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/traversal-mutation/main.c": {
+    "contract": "docs/implementation/list-traversal-mutation.md",
+    "purpose": "Validate fixed lexical cursor catalogs and correct all exact active or suspended boundaries in complete mutation publication.",
+    "tests": [
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_insertion_position",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_both_nested_boundaries_for_every_removed_range",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_visits_new_memberships_at_the_corrected_gap_and_never_reopens_closed_scans",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_swap_boundaries_and_permits_positional_repeats_and_skips",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_ignores_unrelated_slots_and_rejects_invalid_catalogs_before_mutation",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_all_boundaries_when_owning_deletion_preflight_refuses",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_preserves_boundaries_after_insertion_preparation_allocation_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_validates_and_installs_catalogs_in_independent_contexts",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_every_boundary_after_terminal_native_clear_failure",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
+      },
+      {
+        "case": "it_corrects_suspended_boundaries_through_another_callers_list_service",
+        "command": "make -C tests/unit/runtime/traversal-mutation",
+        "source": "tests/unit/runtime/traversal-mutation/main.c"
       },
       {
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",

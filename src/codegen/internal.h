@@ -19,6 +19,8 @@ bool codegen_validate_execution(NativeScaffold *);
  * semantic symbol. Cells are control storage, never declared Ama owned fields.
  */
 bool codegen_emit_traversal_storage(FILE *, const ScaffoldType *);
+/** Emit each declared field's immutable exact lexical cursor offset catalog. */
+bool codegen_emit_traversal_descriptors(FILE *, const ScaffoldType *);
 /**
  * Return the exact descriptor pointer ordinal starting at one, or zero if absent. This is an
  * assembly-local registry key, not a stable external type identity.

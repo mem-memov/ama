@@ -5,6 +5,8 @@
  * [LIST-10](../../../../spec/language/lists.md#list-10) reserves membership metadata before native construction so publication cannot allocate.
  * [LIFE-04](../../../../spec/implementation/native-interface.md#life-04)
  * The storage guard supplies validated bounds and protected sources. Commit shifts membership indices, not native payloads.
+ * [FLOW-05](../../../../spec/language/lists.md#flow-05) corrects all matching
+ * cursor boundaries in the same callback-free publication after membership insertion.
  */
 #include <stdint.h>
 #include <string.h>
@@ -37,5 +39,6 @@ AmaStatus ama_list_insert(AmaListMutation *mutation, size_t position, AmaHandle 
     /* Preparation reserved the exact slot and order extent before native work;
      * this publication cannot allocate, refuse, or call application code. */
     (void)ama_membership_insert(list, position, element, &identity);
+    ama_list_cursors_insert(&mutation->cursors, position);
     return ama_status_success();
 }

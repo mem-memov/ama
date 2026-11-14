@@ -6,7 +6,7 @@ storage layout. The contracts are
 [LIST-13](../../spec/language/lists.md#list-13) and
 [RT-02](../../spec/implementation/runtime.md#rt-02).
 The complete source execution adapter remains guarded while T082–T084 connect
-mutation correction, missing-origin/resume checks and continuation copying.
+[mutation correction](list-traversal-mutation.md), missing-origin/resume checks and continuation copying.
 This layer does not claim those later behaviors or publish incomplete execution.
 
 ## One cursor per source site, shared cells for reused bindings
@@ -58,7 +58,8 @@ skipping multiple absent entries takes proportional candidate work, not a
 snapshot allocation.
 
 The source list's original membership order is never copied. Mutation-boundary
-adjustments belong to T082; this is why the executable adapter remains guarded.
+adjustments are connected by [T082](list-traversal-mutation.md); origin/resume and
+continuation integration still keep the executable adapter guarded.
 Whole-list incarnation replacement already fails before installing a new value,
 rather than restarting at another collection or retaining an obsolete pointer.
 

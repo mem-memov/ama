@@ -7,6 +7,8 @@
  * before a host token can select a local handle. This internal foundation is not an export ABI.
  * [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02) carries an explicit
  * initialization operation for allocation-free diagnostics before context storage exists.
+ * [LIST-13](../../../spec/language/lists.md#list-13) shares only immutable lexical
+ * cursor catalogs; each context owns its actual active/suspended cursor slots.
  */
 #ifndef AMA_RUNTIME_CONTEXT_H
 #define AMA_RUNTIME_CONTEXT_H
@@ -34,6 +36,8 @@ typedef struct {
     uint64_t operation;
     AmaStatus (*condition)(const void *, bool *);
     AmaStatus (*index)(const void *, size_t *);
+    /** Borrowed lexical cursor catalog, with one entry per declared field. */
+    const AmaListCursorSet *list_cursors;
 } AmaContextType;
 
 /** Immutable shared declaration; each context allocates its own storage and lifecycle ledger. */

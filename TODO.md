@@ -1771,12 +1771,27 @@ Contracts: [lists](spec/language/lists.md),
   Runtime ASan/UBSan passed; full strict tests, all 1262 input coverage, links and
   reproducible Doxygen are checked before commit. Complete source execution stays
   guarded until T082–T084 integrate mutation, origin/resume and continuation state.
-- [ ] **T082 — Correct every active or suspended boundary on mutation.** Needs:
+- [x] **T082 — Correct every active or suspended boundary on mutation.** Needs:
   T081. Apply exact insert/remove/clear adjustments and unchanged swap boundaries
   in each complete publication. Test nested same-list scans, insert at the gap,
   append, remove/reinsert, clear/append and swap repeats/skips. Record either the
   exact O(K) lexical scan or O(A) active/suspended registration strategy; compare
   corrected states and cover registration cleanup/copy/restart if implemented.
+  Evidence: [fixed-scan mutation correction](docs/implementation/list-traversal-mutation.md).
+  Immutable per-field catalogs use actual generated cursor offsets; context/schema
+  checks reject invalid extents and duplicate slots before allocation/effects.
+  Each mutation validates matching boundaries before native work and applies all
+  corrections in callback-free publication. Range removal counts removed past
+  positions without overflowing sums; irreversible destructor failure still
+  publishes complete correction. Ten runtime cases exhaust small real list/range
+  states against an independent oracle and cover gap insertion, clear/append,
+  repeats/skips, inactive/old incarnations, allocation/busy refusal, terminal
+  native cleanup, independent contexts and real yielded-owner mutation through
+  another caller's service. The C layout probe validates actual emitted catalogs.
+  Runtime/generator ASan/UBSan passed; full strict tests, all 1270 input coverage,
+  links and reproducible Doxygen are checked before commit. The O(K) fixed scan
+  needs no active registration or copy/restart links. Foreach source execution
+  remains guarded pending T083/T084 origin/resume and continuation integration.
 - [ ] **T083 — Enforce missing-membership guards and resume behavior.** Needs:
   T082. Preserve origin associations, detach only as specified and validate active
   loops outermost first after resume. Test removed current entries with live

@@ -4,6 +4,8 @@
  *
  * [LIFE-01](../../../spec/implementation/native-interface.md#life-01)
  * Derive native offset and alignment from real generated C storage. The existing context factory owns and validates mutable pool descriptors.
+ * [LIST-13](../../../spec/language/lists.md#list-13) attaches immutable per-field
+ * lexical cursor catalogs to each context-local object descriptor.
  */
 #include "codegen/internal.h"
 
@@ -40,6 +42,8 @@ bool codegen_emit_type_setup(NativeScaffold *scaffold, FILE *output) {
                 type->plan->complete->selector, type->plan->field_count) < 0
             || !hooks(output, type)) { return false; }
         if (type->members != NULL && fprintf(output, ", .fields=%s_Fields, .declarations=%s_ProgramFields", name, name) < 0) { return false; }
+        if (type->plan->type->foreach_bindings != NULL
+            && fprintf(output, ", .list_cursors=%s_ListCursors", name) < 0) { return false; }
         if (type->plan->type->abi.bindings[ABI_CONDITION].present
             && fprintf(output, ", .condition=%s_Condition", name) < 0) { return false; }
         if (type->plan->type->abi.bindings[ABI_INDEX].present

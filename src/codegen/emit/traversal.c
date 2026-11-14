@@ -21,3 +21,35 @@ bool codegen_emit_traversal_storage(FILE *output, const ScaffoldType *type) {
     }
     return true;
 }
+
+/** Select cursor sites by exact resolved collection-symbol identity. */
+static bool codegen_cursor_field(const PlannedLoop *loop, const ScaffoldMember *member) {
+    return loop->statement->syntax->kind == AST_FOREACH
+        && loop->statement->traversal->collection == member->field->symbol;
+}
+
+bool codegen_emit_traversal_descriptors(FILE *output, const ScaffoldType *type) {
+    if (type->plan->type->foreach_bindings == NULL) { return true; }
+    const char *name = type->names[SCAFFOLD_WRITE]->internal_name;
+    for (const ScaffoldMember *member = type->members; member != NULL; member = member->next) {
+        bool opened = false;
+        for (const PlannedLoop *loop = type->plan->loops; loop != NULL; loop = loop->next) {
+            if (!codegen_cursor_field(loop, member)) { continue; }
+            if (!opened && fprintf(output, "static const size_t %s_Cursors_%zu[] = {\n", name, member->field->slot) < 0) { return false; }
+            opened = true;
+            if (fprintf(output, "offsetof(%s_Storage,foreach_cursor_%zu),\n", name, loop->entry->selector) < 0) { return false; }
+        }
+        if (opened && fputs("};\n", output) == EOF) { return false; }
+    }
+    if (fprintf(output, "static const AmaListCursorSet %s_ListCursors[] = {\n", name) < 0) { return false; }
+    for (const ScaffoldMember *member = type->members; member != NULL; member = member->next) {
+        size_t count = 0;
+        for (const PlannedLoop *loop = type->plan->loops; loop != NULL; loop = loop->next) {
+            if (codegen_cursor_field(loop, member)) { count++; }
+        }
+        if (count == 0) {
+            if (fputs("{0},\n", output) == EOF) { return false; }
+        } else if (fprintf(output, "{.offsets=%s_Cursors_%zu,.count=%zu},\n", name, member->field->slot, count) < 0) { return false; }
+    }
+    return fputs("};\n", output) != EOF;
+}

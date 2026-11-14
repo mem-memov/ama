@@ -12,12 +12,15 @@
  * [PROTO-03](../../../spec/implementation/native-interface.md#proto-03) supplies
  * the fixed integer host-size constructor; its internal recipe is selected by
  * exact compiler identity, never exposed as an Ama machine-value source or cast.
+ * [LIST-13](../../../spec/language/lists.md#list-13) supplies immutable lexical
+ * cursor catalogs so mutations correct only matching active collection identities.
  */
 #ifndef AMA_RUNTIME_OBJECTS_H
 #define AMA_RUNTIME_OBJECTS_H
 
 #include "runtime/pool/pool.h"
 #include "runtime/lists/membership/membership.h"
+#include "runtime/lists/cursors/model.h"
 #include "native/abi/bytes.h"
 #include "source/memory/arena.h"
 
@@ -85,6 +88,8 @@ typedef struct {
     AmaPool pool;
     const AmaObjectField *fields;
     size_t field_count;
+    /** Immutable fixed lexical cursor catalog, indexed by declared field. */
+    const AmaListCursorSet *list_cursors;
     const AmaFieldRecipe *defaults;
     size_t native_offset;
     AmaPayloadHooks hooks;

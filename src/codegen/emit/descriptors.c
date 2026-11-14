@@ -4,6 +4,8 @@
  *
  * [RT-02](../../../spec/implementation/runtime.md#rt-02)
  * C offsetof and real storage types provide layout truth; references retain declared handle locations rather than hidden native edges.
+ * [LIST-13](../../../spec/language/lists.md#list-13) enumerates exact lexical
+ * cursor offsets by their resolved source field for fixed-scan correction.
  */
 #include "codegen/internal.h"
 
@@ -25,6 +27,7 @@ bool codegen_emit_descriptors(NativeScaffold *scaffold, FILE *output) {
             }
             if (fputs("};\n", output) == EOF) { return false; }
         }
+        if (!codegen_emit_traversal_descriptors(output, type)) { return false; }
     }
     return true;
 }

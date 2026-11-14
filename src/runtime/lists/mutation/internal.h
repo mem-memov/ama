@@ -9,6 +9,7 @@
 #define AMA_RUNTIME_LIST_MUTATION_INTERNAL_H
 #include "runtime/lists/list.h"
 #include "runtime/objects/internal.h"
+#include "runtime/lists/cursors/correction.h"
 /** Borrowed guarded mutation inputs including validated owner/list/element type. objects owns scratch/protections; parent ledger is updated only for owned membership changes. */
 typedef struct {
     AmaObjectOperation objects;
@@ -17,6 +18,7 @@ typedef struct {
     uint64_t type;
     bool owning;
     AmaPoolCell *parent;
+    AmaListCursorView cursors;
 } AmaListMutation;
 /** Require validated position and guarded mutation inputs. Prepare/publish one value before shifting handles; failure before commit preserves contents, though capacity may grow. */
 AmaStatus ama_list_insert(AmaListMutation *, size_t, AmaHandle);
