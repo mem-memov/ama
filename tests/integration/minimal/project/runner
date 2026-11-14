@@ -1,0 +1,31 @@
+# Nine nodes force growth of both the node pool and the native counter pool.
+@!
+first
+.node
+second
+.node
+ first
+third
+.node
+ first
+fourth
+.node
+ first
+fifth
+.node
+ first
+sixth
+.node
+ first
+seventh
+.node
+ first
+eighth
+.node
+ first
+ninth
+.node
+ first
+first !
+second !
+first !

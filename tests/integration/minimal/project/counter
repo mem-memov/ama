@@ -1,0 +1,2 @@
+# A synchronous native body with explicit resource construction, cloning and cleanup.
+@C

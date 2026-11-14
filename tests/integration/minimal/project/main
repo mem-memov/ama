@@ -1,0 +1,6 @@
+# Run the same retained runner twice; calls do not reconstruct its body state.
+@!
+runner
+.runner
+runner !
+runner !

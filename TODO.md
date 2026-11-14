@@ -1414,10 +1414,21 @@ Contracts: [generated C](spec/implementation/compiler.md#generated-project-organ
   passed after the empty-project compiler-warning correction. All 1094 maintained inputs have coverage;
   final Doxygen reproducibility is checked before commit. Only the existing
   monotone context-ID issuance frontier is shared identity bookkeeping.
-- [ ] **T062 — Accept the minimal runnable slice.** Needs: T061. Publish a small
+- [x] **T062 — Accept the minimal runnable slice.** Needs: T061. Publish a small
   complete transitive Ama/native project with stable-address pool growth, return
   routing and cleanup. Compile/run it under supported flags and relevant sanitizers;
   record exactly which later features remain unsupported.
+  Evidence: [minimal runnable acceptance](docs/implementation/minimal-runnable-slice.md)
+  and the complete maintained `tests/integration/minimal/project` with a runnable
+  local guide. Nine owned nodes force node/counter pool growth; one default and
+  eight native clones own independent resources. Nested same-type calls preserve
+  counts `1,1,2,3,2,4`; exact reverse cleanup releases all nine resources. Native
+  callbacks validate final addresses and allocation markers. Real check/verified
+  compilation and target ASan+UBSan passed through the recursive integration
+  entry. No leak-sanitizer claim is made; lifecycle credits independently verify
+  release. Pending result-tree/condition-chain/foreach/list-service/async/export
+  execution is documented. All 1104 maintained inputs have coverage; local links
+  passed and final Doxygen reproducibility is checked before commit.
 
 ## Phase 8. Complete calls, result chains and ordinary control flow
 

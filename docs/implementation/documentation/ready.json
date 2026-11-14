@@ -28048,6 +28048,21 @@
         "case": "it_refuses_to_overwrite_an_unowned_program",
         "command": "make -C tests/integration/execution",
         "source": "tests/integration/execution/main.c"
+      },
+      {
+        "case": "it_checks_the_complete_minimal_project",
+        "command": "make -C tests/integration minimal",
+        "source": "tests/integration/minimal/main.c"
+      },
+      {
+        "case": "it_runs_the_minimal_project_with_stable_growth_returns_and_complete_cleanup",
+        "command": "make -C tests/integration minimal",
+        "source": "tests/integration/minimal/main.c"
+      },
+      {
+        "case": "it_runs_the_minimal_project_under_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration minimal",
+        "source": "tests/integration/minimal/main.c"
       }
     ]
   },
@@ -60242,6 +60257,234 @@
         "case": "it_distinguishes_busy_native_destruction_from_refused_host_disposal",
         "command": "make -C tests/unit/codegen/contexts",
         "source": "tests/unit/codegen/contexts/main.c"
+      }
+    ]
+  },
+  "tests/integration/minimal/Makefile": {
+    "contract": "docs/implementation/minimal-runnable-slice.md",
+    "purpose": "Compile and run the minimal maintained project through the recursive leaf harness.",
+    "tests": [
+      {
+        "case": "it_checks_the_complete_minimal_project",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      },
+      {
+        "case": "it_runs_the_minimal_project_with_stable_growth_returns_and_complete_cleanup",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      },
+      {
+        "case": "it_runs_the_minimal_project_under_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      }
+    ]
+  },
+  "tests/integration/minimal/main.c": {
+    "contract": "docs/implementation/minimal-runnable-slice.md",
+    "purpose": "Check, compile, execute and compare the complete transitive project with normal and target-sanitized profiles.",
+    "tests": [
+      {
+        "case": "it_checks_the_complete_minimal_project",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      },
+      {
+        "case": "it_runs_the_minimal_project_with_stable_growth_returns_and_complete_cleanup",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      },
+      {
+        "case": "it_runs_the_minimal_project_under_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      }
+    ]
+  },
+  "tests/integration/minimal/expected.txt": {
+    "contract": "docs/implementation/minimal-runnable-slice.md",
+    "purpose": "Define exact retained-counter and reverse-cleanup effects independently of generated output.",
+    "tests": [
+      {
+        "case": "it_checks_the_complete_minimal_project",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      },
+      {
+        "case": "it_runs_the_minimal_project_with_stable_growth_returns_and_complete_cleanup",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      },
+      {
+        "case": "it_runs_the_minimal_project_under_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      }
+    ]
+  },
+  "tests/integration/minimal/project/main": {
+    "contract": "docs/implementation/minimal-runnable-slice.md",
+    "purpose": "Own one explicit runner and execute it twice.",
+    "tests": [
+      {
+        "case": "it_checks_the_complete_minimal_project",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      },
+      {
+        "case": "it_runs_the_minimal_project_with_stable_growth_returns_and_complete_cleanup",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      },
+      {
+        "case": "it_runs_the_minimal_project_under_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      }
+    ]
+  },
+  "tests/integration/minimal/project/runner": {
+    "contract": "docs/implementation/minimal-runnable-slice.md",
+    "purpose": "Construct nine independent nodes and exercise nested same-type calls after pool growth.",
+    "tests": [
+      {
+        "case": "it_checks_the_complete_minimal_project",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      },
+      {
+        "case": "it_runs_the_minimal_project_with_stable_growth_returns_and_complete_cleanup",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      },
+      {
+        "case": "it_runs_the_minimal_project_under_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      }
+    ]
+  },
+  "tests/integration/minimal/project/node": {
+    "contract": "docs/implementation/minimal-runnable-slice.md",
+    "purpose": "Own and invoke a retained native counter without explicit call bindings.",
+    "tests": [
+      {
+        "case": "it_checks_the_complete_minimal_project",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      },
+      {
+        "case": "it_runs_the_minimal_project_with_stable_growth_returns_and_complete_cleanup",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      },
+      {
+        "case": "it_runs_the_minimal_project_under_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      }
+    ]
+  },
+  "tests/integration/minimal/project/counter": {
+    "contract": "docs/implementation/minimal-runnable-slice.md",
+    "purpose": "Declare the synchronous native counter interface.",
+    "tests": [
+      {
+        "case": "it_checks_the_complete_minimal_project",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      },
+      {
+        "case": "it_runs_the_minimal_project_with_stable_growth_returns_and_complete_cleanup",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      },
+      {
+        "case": "it_runs_the_minimal_project_under_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      }
+    ]
+  },
+  "tests/integration/minimal/project/counter.h": {
+    "contract": "docs/implementation/minimal-runnable-slice.md",
+    "purpose": "Declare address-sensitive native State with one independent allocation and logical count.",
+    "tests": [
+      {
+        "case": "it_checks_the_complete_minimal_project",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      },
+      {
+        "case": "it_runs_the_minimal_project_with_stable_growth_returns_and_complete_cleanup",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      },
+      {
+        "case": "it_runs_the_minimal_project_under_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-include",
+      "stddef.h",
+      "-DAMA_NATIVE(name)=ama_documentation_##name",
+      "-"
+    ]
+  },
+  "tests/integration/minimal/project/counter.c": {
+    "contract": "docs/implementation/minimal-runnable-slice.md",
+    "purpose": "Implement default/clone construction, direct entry effects and exactly-once native resource destruction.",
+    "tests": [
+      {
+        "case": "it_checks_the_complete_minimal_project",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      },
+      {
+        "case": "it_runs_the_minimal_project_with_stable_growth_returns_and_complete_cleanup",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      },
+      {
+        "case": "it_runs_the_minimal_project_under_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      }
+    ]
+  },
+  "tests/integration/minimal/project/counter.abi": {
+    "contract": "docs/implementation/minimal-runnable-slice.md",
+    "purpose": "Select the exact default, destruction and clone native protocols.",
+    "tests": [
+      {
+        "case": "it_checks_the_complete_minimal_project",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      },
+      {
+        "case": "it_runs_the_minimal_project_with_stable_growth_returns_and_complete_cleanup",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
+      },
+      {
+        "case": "it_runs_the_minimal_project_under_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration/minimal",
+        "source": "tests/integration/minimal/main.c"
       }
     ]
   }
