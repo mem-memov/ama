@@ -9,10 +9,10 @@
 
 AmaStatus ama_transfer_list_discard(AmaProgram *program, AmaHandleList *list, bool owning, AmaStatus primary) {
     while (list->count != 0) {
-        AmaHandle handle = list->items[--list->count];
+        AmaHandle handle = *ama_handle_list_element(list, list->count - 1);
+        (void)ama_membership_remove(list, list->count - 1, 1);
         if (owning) { primary = ama_object_cleanup(program->world, handle, primary); }
     }
-    program->world->allocator.release(program->world->allocator.context, list->items);
-    *list = (AmaHandleList){0};
+    ama_membership_dispose(list);
     return primary;
 }

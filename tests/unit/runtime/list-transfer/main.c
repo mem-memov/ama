@@ -81,18 +81,18 @@ static void it_fixes_one_complete_private_forest_before_consuming_staging_at_com
     status = ama_transfer_list_prepare(&program, &destination_value, &source_value, NULL, &operation, &prepared);
     assert(status.code == AMA_OK && prepared.count == 2 && destination_value.list->count == 0);
     AmaPoolCell *first = NULL, *second = NULL;
-    status = ama_pool_lookup(&root_type.pool, prepared.items[0], true, &first);
+    status = ama_pool_lookup(&root_type.pool, (*ama_handle_list_element(&prepared, 0)), true, &first);
     assert(status.code == AMA_OK && !first->metadata.identity.live);
-    status = ama_pool_lookup(&root_type.pool, prepared.items[1], true, &second);
+    status = ama_pool_lookup(&root_type.pool, (*ama_handle_list_element(&prepared, 1)), true, &second);
     assert(status.code == AMA_OK && !second->metadata.identity.live);
     RootValue *one = ama_pool_payload(&root_type.pool, first);
     RootValue *two = ama_pool_payload(&root_type.pool, second);
-    assert(ama_handle_equal(one->self, source_value.list->items[1]));
+    assert(ama_handle_equal(one->self, (*ama_handle_list_element(source_value.list, 1))));
     ama_transfer_list_fixup(&operation, true);
-    assert(ama_handle_equal(one->self, prepared.items[1]) && ama_handle_equal(two->self, prepared.items[0]));
+    assert(ama_handle_equal(one->self, (*ama_handle_list_element(&prepared, 1))) && ama_handle_equal(two->self, (*ama_handle_list_element(&prepared, 0))));
     assert(ama_handle_equal(one->selected, two->left));
     status = ama_transfer_list_commit(&program, &destination_value, &operation, &prepared);
-    assert(status.code == AMA_OK && prepared.items == NULL && prepared.count == 0);
+    assert(status.code == AMA_OK && prepared.order == NULL && prepared.count == 0);
     assert(destination_value.list->count == 2 && first->metadata.identity.live && second->metadata.identity.live);
     assert(ama_handle_equal(first->owner, destination) && ama_handle_equal(second->owner, destination));
     AmaPoolCell *parent = NULL;
@@ -125,11 +125,11 @@ static void it_retains_staging_for_cleanup_on_parent_failure_and_destructive_fai
         else { invalid.container.generation = 99; }
         status = ama_transfer_list_commit(&program, &invalid, &operation, &prepared);
         assert(status.code == (destructive ? AMA_IO_FAILURE : AMA_STALE_REFERENCE));
-        assert(prepared.count == 2 && prepared.items != NULL && destination_value.list->count == 0);
+        assert(prepared.count == 2 && prepared.order != NULL && destination_value.list->count == 0);
         assert(destroyed == before + (destructive ? 6 : 0));
         status = ama_transfer_list_discard(&program, &prepared, true, status);
         assert(status.code == (destructive ? AMA_IO_FAILURE : AMA_STALE_REFERENCE));
-        assert(prepared.count == 0 && prepared.items == NULL && destroyed == before + (destructive ? 12 : 6));
+        assert(prepared.count == 0 && prepared.order == NULL && destroyed == before + (destructive ? 12 : 6));
         assert(world.failed == (destructive != 0));
         end_transfer();
         finish_transfer();
@@ -140,12 +140,14 @@ static void it_retains_staging_for_cleanup_on_parent_failure_and_destructive_fai
 static void it_copies_reference_handles_including_busy_stale_and_empty_targets(void) {
     setup_transfer();
     RootValue *owner = object_payload(source);
-    owner->references.items = test_allocate(NULL, 3 * sizeof(AmaHandle));
-    assert(owner->references.items != NULL);
-    owner->references.count = owner->references.capacity = 3;
-    owner->references.items[0] = owner->left;
-    owner->references.items[1] = (AmaHandle){.type_id = 1, .slot_id = 999, .generation = 1};
-    owner->references.items[2] = (AmaHandle){0};
+    for (size_t index = 0; index < 3; index++) {
+        AmaMembership identity;
+        AmaStatus inserted = ama_membership_insert(&owner->references, index, (AmaHandle){0}, &identity);
+        assert(inserted.code == AMA_OK);
+    }
+    (*ama_handle_list_element(&owner->references, 0)) = owner->left;
+    (*ama_handle_list_element(&owner->references, 1)) = (AmaHandle){.type_id = 1, .slot_id = 999, .generation = 1};
+    (*ama_handle_list_element(&owner->references, 2)) = (AmaHandle){0};
     AmaPoolCell *busy = NULL;
     AmaStatus status = ama_pool_lookup(&leaf_type.pool, owner->left, false, &busy);
     assert(status.code == AMA_OK);
@@ -163,9 +165,9 @@ static void it_copies_reference_handles_including_busy_stale_and_empty_targets(v
     status = ama_transfer_list_prepare(&program, &destination_value, &source_value, NULL, &operation, &prepared);
     assert(status.code == AMA_OK && operation.first == NULL && cloned == 0);
     status = ama_transfer_list_commit(&program, &destination_value, &operation, &prepared);
-    assert(status.code == AMA_OK && prepared.items == NULL && destination_value.list->count == 3);
+    assert(status.code == AMA_OK && prepared.order == NULL && destination_value.list->count == 3);
     for (size_t index = 0; index < 3; index++) {
-        assert(ama_handle_equal(destination_value.list->items[index], source_value.list->items[index]));
+        assert(ama_handle_equal((*ama_handle_list_element(destination_value.list, index)), (*ama_handle_list_element(source_value.list, index))));
     }
     assert(busy->metadata.service.activity == AMA_INSTANCE_RUNNING && destroyed == 0);
     end_transfer();
@@ -173,11 +175,14 @@ static void it_copies_reference_handles_including_busy_stale_and_empty_targets(v
     finish_transfer();
 }
 
+#include "support/memberships.c"
+
 /**
  * Execute every named assertion case selected by this leaf; the recursive harness owns process
  * status and success-only cleanup.
  */
 void run(void) {
+    it_publishes_fresh_copy_memberships_and_invalidates_replaced_incarnations();
     it_checks_aliases_shapes_and_continuation_self_copy_before_allocation();
     it_fixes_one_complete_private_forest_before_consuming_staging_at_commit();
     it_retains_staging_for_cleanup_on_parent_failure_and_destructive_failure();

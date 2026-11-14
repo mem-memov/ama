@@ -15,7 +15,7 @@
 AmaStatus ama_object_clone_prepare(AmaObjectOperation *operation, AmaHandle source, AmaHandle final_root,
     bool continuation, void *root_payload, AmaHandle *output) {
     AmaObjectWork *work = NULL;
-    AmaStatus status = ama_clone_reserve(operation, source, NULL, root_payload, &work);
+    AmaStatus status = ama_clone_reserve(operation, source, NULL, root_payload, final_root, &work);
     AmaObjectWork *root = work;
     while (status.code == AMA_OK) {
         if (work->next_child < work->cell->metadata.lifetime.child_capacity) {

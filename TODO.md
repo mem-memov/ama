@@ -1667,12 +1667,24 @@ Contracts: [lists](spec/language/lists.md),
   full strict tests, all 1197 input coverage, links and reproducible Doxygen are
   checked before commit. Generated list storage integration belongs to T076;
   list acquisition and cursor publication are not claimed by this component.
-- [ ] **T076 — Implement indexed selection and complete list copies.** Needs:
+- [x] **T076 — Implement indexed selection and complete list copies.** Needs:
   T065, T075. Check conversion/bounds/membership before target effects and preserve
   exact owned/reference transfer rules. Integrate inferred list receivers and
   list-owned clone boundaries deferred by the scalar execution slice. Test
   stale/empty indices, fresh copied memberships, whole-list self no-op and
   replacement invalidation.
+  Evidence: [list value integration](docs/implementation/list-values.md).
+  Declared fields now use compact membership order and stable record targets;
+  the obsolete handle-vector capacity implementation is removed. Construction,
+  cloning, forest fixups, calls, cleanup and generated assembly use the same
+  representation. Indexed reference stores revalidate their saved occurrence;
+  whole-list and stable-root replacements reserve fresh incarnations before
+  destruction. Tests cover independent inferred owned results, duplicate inferred
+  reference results, actual continuation aliasing, stale/empty targets and index
+  operands, unchanged failure outputs, exact self no-op and counter exhaustion.
+  Strict component runs, real generated-program and component ASan/UBSan passed;
+  the full strict suite, all 1201 input coverage, links and reproducible Doxygen
+  are checked before commit. Intrinsic services and foreach keep their guards.
 - [ ] **T077 — Implement list service acquisition and method frames.** Needs:
   T066, T076. Hold owner/list protection across sibling methods/results, permit
   only exact direct structural helper token borrowing and finalize ephemeral

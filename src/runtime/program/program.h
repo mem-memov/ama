@@ -45,6 +45,9 @@ typedef struct {
     AmaHandle container;
     bool private_access;
     bool continuation;
+    /** Indexed reference receivers retain exact occurrence identity through source evaluation. */
+    AmaHandleList *membership_list;
+    AmaMembership membership;
 } AmaProgramValue;
 
 /** Resolve the exact generated nominal descriptor in a borrowed program registry, or null; no allocation or type-name inference. */

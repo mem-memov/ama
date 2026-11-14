@@ -17,6 +17,7 @@ AmaStatus ama_membership_init(AmaMembershipList *list, SourceAllocator allocator
 }
 
 void ama_membership_dispose(AmaMembershipList *list) {
+    if (list->allocator.release == NULL) { *list = (AmaMembershipList){0}; return; }
     for (size_t index = 0; index < list->block_count; index++) {
         list->allocator.release(list->allocator.context, list->blocks[index]);
     }

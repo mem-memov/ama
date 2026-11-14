@@ -32,10 +32,10 @@ void ama_object_fix_references(AmaObjectOperation *operation, AmaObjectWork *bou
         void *storage = ama_pool_payload(&work->type->pool, work->cell);
         for (size_t field = 0; field < work->type->field_count; field++) {
             if (ama_field_owns(work->type->fields[field].kind)) { continue; }
-            size_t count;
-            AmaHandle *handles = ama_object_handles(work->type, storage, field, &count);
+            size_t count = ama_object_field_count(work->type, storage, field);
             for (size_t index = 0; index < count; index++) {
-                handles[index] = ama_clone_mapped(operation, boundary, handles[index], final_root);
+                AmaHandle *handle = ama_object_field_handle(work->type, storage, field, index);
+                *handle = ama_clone_mapped(operation, boundary, *handle, final_root);
             }
         }
     }

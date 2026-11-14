@@ -5,7 +5,7 @@
  * [LIST-04](../../../../spec/language/lists.md#list-04) forbids action selectors
  * and retained results. Direct C entry points return their status to the caller.
  * [LIST-10](../../../../spec/language/lists.md#list-10) requires preflight before
- * destructive effects; typed list acquisitions/memberships remain separate work.
+ * destructive effects; typed service acquisition and cursor correction remain separate work.
  */
 #include "internal.h"
 
@@ -66,7 +66,7 @@ AmaStatus ama_list_storage_remove(AmaListStorage *storage, size_t position, size
     }
     if (storage->owning) {
         for (size_t index = 0; index < count; index++) {
-            status = ama_object_preflight(&mutation.objects, storage->list->items[position + index], false, false);
+            status = ama_object_preflight(&mutation.objects, *ama_handle_list_element(storage->list, position + index), false, false);
             if (status.code != AMA_OK) {
                 break;
             }

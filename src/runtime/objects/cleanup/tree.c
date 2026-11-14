@@ -10,14 +10,14 @@
  */
 #include "runtime/objects/internal.h"
 
-/** Release every owned/reference list handle buffer after child cleanup; referenced targets are never destroyed by releasing their array. */
+/** Release membership order/record storage after child cleanup; metadata disposal never destroys reference targets. */
 static void ama_cleanup_buffers(AmaWorld *world, AmaObjectType *type, AmaPoolCell *cell) {
+    (void)world;
     unsigned char *payload = ama_pool_payload(&type->pool, cell);
     for (size_t field = 0; field < type->field_count; field++) {
         if (ama_field_list(type->fields[field].kind)) {
             AmaHandleList *list = (void *)(payload + type->fields[field].offset);
-            world->allocator.release(world->allocator.context, list->items);
-            *list = (AmaHandleList){0};
+            ama_membership_dispose(list);
         }
     }
 }

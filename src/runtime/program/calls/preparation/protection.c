@@ -17,7 +17,7 @@ AmaStatus ama_call_protect_sources(AmaObjectOperation *protection, const AmaPrep
         if (value->form == AMA_FIELD_OWNED) { status = ama_object_preflight(protection, value->handle, true, false); }
         else if (value->form == AMA_FIELD_OWNING_LIST) {
             for (size_t element = 0; element < value->list->count && status.code == AMA_OK; element++) {
-                status = ama_object_preflight(protection, value->list->items[element], true, false);
+                status = ama_object_preflight(protection, *ama_handle_list_element(value->list, element), true, false);
             }
         }
         if (status.code != AMA_OK) { return status; }

@@ -39,7 +39,7 @@ static void it_exposes_registered_work_on_late_field_failure_and_releases_each_p
         size_t start = allocation_count;
         failure_at = failure == 0 ? 0 : start + failure;
         AmaObjectWork *work = NULL;
-        status = ama_clone_reserve(&operation, source, NULL, NULL, &work);
+        status = ama_clone_reserve(&operation, source, NULL, NULL, (AmaHandle){0}, &work);
         if (failure == 0) {
             assert(status.code == AMA_OK && work != NULL);
             count = allocation_count - start;
@@ -72,7 +72,7 @@ static void it_installs_the_child_identity_before_crediting_success(void) {
     assert(status.code == AMA_OK);
     begin_operation(source);
     AmaObjectWork *root = NULL;
-    status = ama_clone_reserve(&operation, source, NULL, NULL, &root);
+    status = ama_clone_reserve(&operation, source, NULL, NULL, (AmaHandle){0}, &root);
     assert(status.code == AMA_OK);
     AmaObjectWork *cursor = root;
     status = ama_clone_descend(&operation, &cursor);
@@ -104,9 +104,9 @@ static void it_scopes_reference_fixups_and_final_root_redirection_to_one_copy_bo
     ((LeafValue *)object_payload(source))->peer = source;
     begin_operation(source);
     AmaObjectWork *first = NULL, *second = NULL;
-    status = ama_clone_reserve(&operation, source, NULL, NULL, &first);
+    status = ama_clone_reserve(&operation, source, NULL, NULL, (AmaHandle){0}, &first);
     assert(status.code == AMA_OK);
-    status = ama_clone_reserve(&operation, source, NULL, NULL, &second);
+    status = ama_clone_reserve(&operation, source, NULL, NULL, (AmaHandle){0}, &second);
     assert(status.code == AMA_OK && first->clone_root != second->clone_root);
     status = ama_object_clone_payload(&operation, first, false);
     assert(status.code == AMA_OK);

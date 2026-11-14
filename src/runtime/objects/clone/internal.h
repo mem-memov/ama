@@ -16,7 +16,7 @@
  * Arena and pool failure before registration do not change the caller's output.
  */
 AmaStatus ama_clone_reserve(AmaObjectOperation *, AmaHandle source, AmaObjectWork *parent,
-    void *root_payload, AmaObjectWork **);
+    void *root_payload, AmaHandle final_identity, AmaObjectWork **);
 /** Descend one protected owned edge; install any reserved child in its parent and
  * update cursor even on a later failure, allowing exact child-first unwinding.
  */

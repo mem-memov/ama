@@ -13,7 +13,12 @@
 /* Include once in the project translation unit. Runtime helpers do not dispatch
  * Ama bodies; generated labels and direct native-entry uses provide execution. */
 #include "source/memory/arena.c"
-#include "runtime/lists/capacity.c"
+#include "runtime/lists/membership/lifetime.c"
+#include "runtime/lists/membership/pool/storage.c"
+#include "runtime/lists/membership/selection.c"
+#include "runtime/lists/membership/order/edit.c"
+#include "runtime/lists/membership/order/replace.c"
+#include "runtime/lists/storage.c"
 #include "runtime/lists/mutation/storage.c"
 #include "runtime/lists/mutation/insert.c"
 #include "runtime/lists/mutation/remove.c"

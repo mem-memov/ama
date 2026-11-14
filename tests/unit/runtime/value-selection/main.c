@@ -104,10 +104,12 @@ static AmaStatus decode_index(const void *payload, size_t *index) {
 static void it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes(void) {
     setup_selection();
     RootValue *storage = object_payload(root);
-    storage->references.items = test_allocate(NULL, sizeof(AmaHandle));
-    assert(storage->references.items != NULL);
-    storage->references.items[0] = storage->right;
-    storage->references.count = storage->references.capacity = 1;
+    for (size_t index = 0; index < 1; index++) {
+        AmaMembership identity;
+        AmaStatus inserted = ama_membership_insert(&storage->references, index, (AmaHandle){0}, &identity);
+        assert(inserted.code == AMA_OK);
+    }
+    (*ama_handle_list_element(&storage->references, 0)) = storage->right;
     LeafValue *index = object_payload(storage->left);
     index->native.number = 0;
     program_types[0].index = decode_index;
@@ -156,10 +158,12 @@ static AmaStatus controlled_decode_index(const void *payload, size_t *index) {
 static void it_records_only_valid_index_refusal_and_ignores_failed_conversion_outputs(void) {
     setup_selection();
     RootValue *storage = object_payload(root);
-    storage->references.items = test_allocate(NULL, sizeof(AmaHandle));
-    assert(storage->references.items != NULL);
-    storage->references.items[0] = storage->right;
-    storage->references.count = storage->references.capacity = 1;
+    for (size_t index = 0; index < 1; index++) {
+        AmaMembership identity;
+        AmaStatus inserted = ama_membership_insert(&storage->references, index, (AmaHandle){0}, &identity);
+        assert(inserted.code == AMA_OK);
+    }
+    (*ama_handle_list_element(&storage->references, 0)) = storage->right;
     program_types[0].index = controlled_decode_index;
     const AmaProgramAccess reader = {.field = 0};
     const AmaProgramAccess access = {.field = 5, .index = &reader};
@@ -199,11 +203,15 @@ static void it_records_only_valid_index_refusal_and_ignores_failed_conversion_ou
     finish_selection();
 }
 
+#include "support/memberships.c"
+
 /**
  * Execute every named assertion case selected by this leaf; the recursive harness owns process
  * status and success-only cleanup.
  */
 void run(void) {
+    it_rejects_absent_index_operands_without_decoding_or_changing_outputs();
+    it_retires_only_changed_indexed_reference_occurrences();
     it_selects_declared_instance_storage_without_acquiring_reference_targets();
     it_keeps_shared_values_outside_mutable_pool_identity_and_checks_shape();
     it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes();

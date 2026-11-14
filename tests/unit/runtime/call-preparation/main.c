@@ -37,11 +37,13 @@ static void it_selects_indexed_sources_once_in_text_order_before_acquisition(voi
     RootValue *value = object_payload(caller);
     ((LeafValue *)object_payload(value->left))->native.number = 0;
     ((LeafValue *)object_payload(value->right))->native.number = 1;
-    value->references.items = test_allocate(NULL, 2 * sizeof(AmaHandle));
-    assert(value->references.items != NULL);
-    value->references.count = value->references.capacity = 2;
-    value->references.items[0] = value->left;
-    value->references.items[1] = value->right;
+    for (size_t index = 0; index < 2; index++) {
+        AmaMembership identity;
+        AmaStatus inserted = ama_membership_insert(&value->references, index, (AmaHandle){0}, &identity);
+        assert(inserted.code == AMA_OK);
+    }
+    (*ama_handle_list_element(&value->references, 0)) = value->left;
+    (*ama_handle_list_element(&value->references, 1)) = value->right;
     program_types[0].index = read_index;
     const AmaProgramAccess first = {.field = 0}, second = {.field = 1};
     const AmaProgramAccess one = {.field = 5, .index = &second};
@@ -122,7 +124,7 @@ static void it_rejects_same_list_and_empty_nested_list_container_overlap_before_
         }
         root_fields[2].role = AMA_PROGRAM_PARAMETER;
         RootValue *value = object_payload(target);
-        AmaHandle container = nested ? value->branches.items[0] : target;
+        AmaHandle container = nested ? (*ama_handle_list_element(&value->branches, 0)) : target;
         RootValue *owner = object_payload(container);
         AmaPreparedInput input = {.input = &supplied,
             .value = {.form = AMA_FIELD_OWNING_LIST, .type_id = 2, .container = container, .list = &owner->branches}};

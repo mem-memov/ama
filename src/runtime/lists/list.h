@@ -4,17 +4,17 @@
  *
  * [LIST-04](../../../spec/language/lists.md#list-04) requires typed services,
  * not an action selector or retained completion state. These C primitives keep
- * reusable construction/removal machinery; service acquisition, memberships,
- * cursors and typed method frames are implemented in their dedicated tasks.
+ * reusable construction/removal machinery and declared membership storage.
+ * Service acquisition, cursors and typed method frames have dedicated tasks.
  */
 #ifndef AMA_RUNTIME_LIST_H
 #define AMA_RUNTIME_LIST_H
 #include "runtime/objects/objects.h"
 
-/** Borrow a live owner's exact declared handle-vector field for one operation.
+/** Borrow a live owner's exact declared membership-backed field for one operation.
  * The caller guarantees exclusive field authority, matching element type and
- * ownership, and no cursor/membership representation. This foundation does not
- * expose a language-level service interface and retains no argument/result.
+ * ownership; live cursor corrections remain a separate integration. This does
+ * not expose a language-level service interface or retain any argument/result.
  */
 typedef struct {
     AmaWorld *world;

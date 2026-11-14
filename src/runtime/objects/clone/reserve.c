@@ -9,7 +9,7 @@
 #include "internal.h"
 
 AmaStatus ama_clone_reserve(AmaObjectOperation *operation, AmaHandle source,
-    AmaObjectWork *parent, void *root_payload, AmaObjectWork **output) {
+    AmaObjectWork *parent, void *root_payload, AmaHandle final_identity, AmaObjectWork **output) {
     AmaObjectType *type = ama_world_type(operation->world, source.type_id);
     AmaObjectWork *work = source_arena_allocate(&operation->arena, sizeof(*work));
     if (work == NULL) { return ama_status_make(AMA_OUT_OF_MEMORY, NULL, 0); }
@@ -17,6 +17,7 @@ AmaStatus ama_clone_reserve(AmaObjectOperation *operation, AmaHandle source,
     work->clone_root = parent == NULL ? work : parent->clone_root;
     AmaStatus status = ama_pool_reserve(&type->pool, &work->handle, &work->cell);
     if (status.code != AMA_OK) { return status; }
+    work->identity = final_identity.generation == 0 ? work->handle : final_identity;
     if (parent != NULL) { work->cell->owner = parent->handle; }
     if (root_payload != NULL) { work->cell->preparation_payload = root_payload; }
     if (operation->last == NULL) { operation->first = work; }

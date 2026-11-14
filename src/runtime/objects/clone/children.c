@@ -18,7 +18,7 @@ AmaStatus ama_clone_descend(AmaObjectOperation *operation, AmaObjectWork **curso
     AmaObjectWork source_work = {.type = work->type, .cell = original};
     AmaHandle child = *ama_object_child(&source_work, work->next_child, &type_id, &recipe);
     AmaObjectWork *child_work = NULL;
-    AmaStatus status = ama_clone_reserve(operation, child, work, NULL, &child_work);
+    AmaStatus status = ama_clone_reserve(operation, child, work, NULL, (AmaHandle){0}, &child_work);
     if (child_work != NULL) {
         *destination = child_work->handle;
         *cursor = child_work;

@@ -67,8 +67,14 @@ AmaStatus ama_object_lookup(AmaWorld *, AmaHandle, bool private_slot, AmaObjectT
 void ama_object_report(AmaWorld *, AmaStatus);
 /** Compare complete local handle triples without implying availability or liveness. */
 bool ama_same_handle(AmaHandle, AmaHandle);
-/** Borrow one validated scalar field location or list array and count. The descriptor index/layout must be valid and returned storage expires with its owner or array mutation. */
-AmaHandle *ama_object_handles(const AmaObjectType *, void *payload, size_t field, size_t *count);
+/** Read a validated scalar/list field shape; no target is acquired. */
+size_t ama_object_field_count(const AmaObjectType *, void *payload, size_t field);
+/** Borrow one validated field element; list records stay stable across growth. */
+AmaHandle *ama_object_field_handle(const AmaObjectType *, void *payload, size_t field, size_t index);
+/** Prepare an empty/private list at the final owner namespace, advancing the
+ * old field incarnation for root replacement before any destructive commit.
+ */
+AmaStatus ama_object_list_prepare(AmaWorld *, AmaObjectWork *, size_t field, size_t count);
 /** Recognize only declared scalar/list ownership forms; references never imply lifecycle ownership. */
 bool ama_field_owns(AmaFieldKind);
 /** Recognize the two list storage forms independently of whether they own their targets. */

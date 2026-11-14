@@ -10,7 +10,7 @@
 /** Protect each owned root in order; caller restores any successful prefix. */
 static AmaStatus ama_transfer_list_preflight(AmaObjectOperation *operation, const AmaHandleList *list, bool copy) {
     for (size_t index = 0; index < list->count; index++) {
-        AmaStatus status = ama_object_preflight(operation, list->items[index], copy, false);
+        AmaStatus status = ama_object_preflight(operation, *ama_handle_list_element(list, index), copy, false);
         if (status.code != AMA_OK) { return status; }
     }
     return ama_status_success();

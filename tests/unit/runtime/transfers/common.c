@@ -20,10 +20,10 @@ static void make_source(AmaHandle *source, AmaHandle *destination) {
     status = ama_object_create(&world, 2, NULL, destination);
     assert(status.code == AMA_OK);
     RootValue *owner = object_payload(*source);
-    RootValue *first = object_payload(owner->branches.items[0]);
-    RootValue *second = object_payload(owner->branches.items[1]);
-    first->self = owner->branches.items[1];
-    second->self = owner->branches.items[0];
+    RootValue *first = object_payload((*ama_handle_list_element(&owner->branches, 0)));
+    RootValue *second = object_payload((*ama_handle_list_element(&owner->branches, 1)));
+    first->self = (*ama_handle_list_element(&owner->branches, 1));
+    second->self = (*ama_handle_list_element(&owner->branches, 0));
     first->selected = second->left;
 }
 

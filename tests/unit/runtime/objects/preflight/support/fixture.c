@@ -32,10 +32,10 @@ static void setup_preflight(void) {
     AmaStatus status = ama_object_create(&world, 2, &recipe, &protected_nodes[0]);
     assert(status.code == AMA_OK);
     RootValue *root = object_payload(protected_nodes[0]);
-    RootValue *first = object_payload(root->branches.items[0]);
-    RootValue *second = object_payload(root->branches.items[1]);
-    AmaHandle nodes[] = {protected_nodes[0], root->left, root->right, root->branches.items[0],
-        first->left, first->right, root->branches.items[1], second->left, second->right};
+    RootValue *first = object_payload((*ama_handle_list_element(&root->branches, 0)));
+    RootValue *second = object_payload((*ama_handle_list_element(&root->branches, 1)));
+    AmaHandle nodes[] = {protected_nodes[0], root->left, root->right, (*ama_handle_list_element(&root->branches, 0)),
+        first->left, first->right, (*ama_handle_list_element(&root->branches, 1)), second->left, second->right};
     memcpy(protected_nodes, nodes, sizeof(nodes));
     status = ama_object_create(&world, 1, NULL, &unrelated);
     assert(status.code == AMA_OK && constructed == 10);

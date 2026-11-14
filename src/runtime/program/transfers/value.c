@@ -1,6 +1,7 @@
 /**
  * @file
  * @brief Select receivers before sources and install typed values under one operation guard.
+ * [LIST-13](../../../../spec/language/lists.md#list-13) requires exact occurrence retirement and replacement namespaces.
  *
  * [REF-03](../../../../spec/language/values-and-references.md#ref-03)
  * Reference assignment copies handles without acquiring targets; owned replacement stages construction before destructive commit.
@@ -27,8 +28,16 @@ AmaStatus ama_program_store(AmaProgram *program, AmaProgramValue *destination, c
     }
     if (destination->form == AMA_FIELD_REFERENCE) {
         if (source != NULL && source->form != AMA_FIELD_REFERENCE) { return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0); }
-        *destination->location = source != NULL ? source->handle
+        AmaHandle target = source != NULL ? source->handle
             : initializers != NULL && initializers->references != NULL ? initializers->references[0] : (AmaHandle){0};
+        if (destination->membership_list != NULL) {
+            const AmaMembershipRecord *record = NULL;
+            AmaStatus status = ama_membership_lookup(destination->membership_list, destination->membership, &record);
+            if (status.code != AMA_OK) { return status; }
+            AmaMembership identity;
+            return ama_membership_replace(destination->membership_list, record->position, target, &identity);
+        }
+        *destination->location = target;
         return ama_status_success();
     }
     AmaRecipe recipe = {0};

@@ -1,6 +1,7 @@
 /**
  * @file
  * @brief Initialize clone field buffers and copy reference handles before identity fixups.
+ * [LIST-13](../../../../spec/language/lists.md#list-13) requires exact occurrence retirement and replacement namespaces.
  *
  * [COPY-05](../../../../spec/language/values-and-references.md#copy-05)
  * requires fresh owning child slots and complete reference fixups before publication.
@@ -25,23 +26,16 @@ AmaStatus ama_object_clone_fields(AmaWorld *world, AmaObjectWork *work) {
     void *original = ama_pool_payload(&work->type->pool, source);
     void *payload = ama_pool_payload(&work->type->pool, work->cell);
     for (size_t field = 0; field < work->type->field_count; field++) {
-        size_t count;
-        AmaHandle *handles = ama_object_handles(work->type, original, field, &count);
+        size_t count = ama_object_field_count(work->type, original, field);
         if (ama_field_list(work->type->fields[field].kind)) {
-            AmaHandleList *list = (void *)((unsigned char *)payload + work->type->fields[field].offset);
-            if (count > SIZE_MAX / sizeof(AmaHandle)) { return ama_status_make(AMA_LIMIT_EXCEEDED, NULL, 0); }
-            if (count != 0) {
-                list->items = world->allocator.allocate(world->allocator.context, count * sizeof(AmaHandle));
-                if (list->items == NULL) { return ama_status_make(AMA_OUT_OF_MEMORY, NULL, 0); }
-                memset(list->items, 0, count * sizeof(AmaHandle));
-            }
-            list->count = count;
-            list->capacity = count;
+            status = ama_object_list_prepare(world, work, field, count);
+            if (status.code != AMA_OK) { return status; }
         }
         if (!ama_field_owns(work->type->fields[field].kind) && count != 0) {
-            size_t destination_count;
-            AmaHandle *destination = ama_object_handles(work->type, payload, field, &destination_count);
-            memcpy(destination, handles, count * sizeof(AmaHandle));
+            for (size_t index = 0; index < count; index++) {
+                *ama_object_field_handle(work->type, payload, field, index) =
+                    *ama_object_field_handle(work->type, original, field, index);
+            }
         }
     }
     return ama_status_success();

@@ -17,6 +17,7 @@
 #define AMA_RUNTIME_OBJECTS_H
 
 #include "runtime/pool/pool.h"
+#include "runtime/lists/membership/membership.h"
 #include "native/abi/bytes.h"
 #include "source/memory/arena.h"
 
@@ -51,15 +52,20 @@ struct AmaRecipe {
     const AmaFieldRecipe *fields;
     size_t field_count;
 };
-/** Owned handle buffer with logical count/capacity and storage busy flag; element payloads remain in stable pools. Membership identities/cursors remain pending. */
-typedef struct {
-    AmaHandle *items;
-    size_t count;
-    size_t capacity;
-    bool acquired;
-} AmaHandleList;
-/** Require a consistent handle array and allocator. Checked geometric growth allocates/copies before releasing old storage; failure preserves count, capacity and items. */
-AmaStatus ama_handle_list_reserve(SourceAllocator, AmaHandleList *, size_t);
+/** Declared list storage uses exact occurrence records under
+ * [LIST-03](../../../spec/language/lists.md#list-03); targets remain stable pool handles.
+ */
+typedef AmaMembershipList AmaHandleList;
+/** Borrow one current protected target cell by validated position. Private
+ * construction/fixup may populate it; public reference replacement must retire
+ * the occurrence through ama_membership_replace rather than writing this cell.
+ */
+AmaHandle *ama_handle_list_element(const AmaHandleList *, size_t);
+/** Prepare a new private list shape at its final exact namespace/incarnation.
+ * Own partial metadata on failure; no target constructors or bodies run.
+ */
+AmaStatus ama_handle_list_prepare(AmaHandleList *, SourceAllocator, AmaHandle owner,
+    size_t field, uint64_t incarnation, uint64_t counter_limit, size_t count);
 /** Validated nominal field descriptor with exact C payload offset; C layout truth is a generated-descriptor precondition. */
 typedef struct { AmaFieldKind kind; uint64_t type_id; size_t offset; } AmaObjectField;
 /** Synchronous native lifecycle hooks; successful constructors create one destroy credit, failed constructors clean their own partial resources and cannot reenter Ama. */

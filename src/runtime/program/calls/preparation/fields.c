@@ -28,7 +28,7 @@ AmaStatus ama_call_check_fields(AmaProgram *program, AmaHandle target, const Ama
             if (source->list == NULL || source->container.generation == 0) { continue; }
             size_t count = value.form == AMA_FIELD_OWNED ? 1 : value.form == AMA_FIELD_OWNING_LIST ? value.list->count : 0;
             for (size_t element = 0; element < count && status.code == AMA_OK; element++) {
-                AmaHandle root = value.form == AMA_FIELD_OWNED ? value.handle : value.list->items[element];
+                AmaHandle root = value.form == AMA_FIELD_OWNED ? value.handle : *ama_handle_list_element(value.list, element);
                 bool overlaps = false;
                 status = ama_object_contains(program->world, root, source->container, &overlaps);
                 if (status.code == AMA_OK && overlaps) { status = ama_status_make(AMA_BUSY, NULL, 0); }
@@ -38,7 +38,7 @@ AmaStatus ama_call_check_fields(AmaProgram *program, AmaHandle target, const Ama
         if (value.form == AMA_FIELD_OWNED) { status = ama_object_preflight(&check, value.handle, false, false); }
         else if (value.form == AMA_FIELD_OWNING_LIST) {
             for (size_t element = 0; element < value.list->count && status.code == AMA_OK; element++) {
-                status = ama_object_preflight(&check, value.list->items[element], false, false);
+                status = ama_object_preflight(&check, *ama_handle_list_element(value.list, element), false, false);
             }
         }
     }

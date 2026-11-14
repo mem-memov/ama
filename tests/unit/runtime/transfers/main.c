@@ -18,10 +18,10 @@ static void it_clones_one_forest_and_remaps_references_between_sibling_elements(
     assert(status.code == AMA_OK);
     RootValue *owner = object_payload(destination);
     assert(owner->branches.count == 2);
-    RootValue *first = object_payload(owner->branches.items[0]);
-    RootValue *second = object_payload(owner->branches.items[1]);
-    assert(first->self.slot_id == owner->branches.items[1].slot_id);
-    assert(second->self.slot_id == owner->branches.items[0].slot_id);
+    RootValue *first = object_payload((*ama_handle_list_element(&owner->branches, 0)));
+    RootValue *second = object_payload((*ama_handle_list_element(&owner->branches, 1)));
+    assert(first->self.slot_id == (*ama_handle_list_element(&owner->branches, 1)).slot_id);
+    assert(second->self.slot_id == (*ama_handle_list_element(&owner->branches, 0)).slot_id);
     assert(first->selected.slot_id == second->left.slot_id);
     size_t allocations = allocation_count;
     status = ama_program_select(&program, destination, &access, false, &value);
@@ -72,7 +72,7 @@ static void it_copies_continuations_through_one_owned_list_forest(void) {
         AmaHandle source, destination;
         make_source(&source, &destination);
         RootValue *original = object_payload(source);
-        AmaHandle branch = original->branches.items[0];
+        AmaHandle branch = (*ama_handle_list_element(&original->branches, 0));
         RootValue *child = object_payload(branch);
         AmaPoolCell *nested = NULL;
         AmaStatus status = ama_pool_lookup(&root_type.pool, branch, false, &nested);
@@ -92,9 +92,9 @@ static void it_copies_continuations_through_one_owned_list_forest(void) {
         status = ama_program_transfer(&program, destination, &access, &value);
         assert(status.code == AMA_OK);
         RootValue *owner = object_payload(destination);
-        RootValue *first = object_payload(owner->branches.items[0]);
-        assert(first->self.slot_id == owner->branches.items[1].slot_id);
-        status = ama_pool_lookup(&root_type.pool, owner->branches.items[0], false, &nested);
+        RootValue *first = object_payload((*ama_handle_list_element(&owner->branches, 0)));
+        assert(first->self.slot_id == (*ama_handle_list_element(&owner->branches, 1)).slot_id);
+        status = ama_pool_lookup(&root_type.pool, (*ama_handle_list_element(&owner->branches, 0)), false, &nested);
         assert(status.code == AMA_OK && nested->metadata.service.resume.selector == (continuation ? 51 : 0));
         status = ama_pool_lookup(&leaf_type.pool, first->left, false, &nested);
         assert(status.code == AMA_OK && nested->metadata.service.resume.selector == (continuation ? 52 : 0));

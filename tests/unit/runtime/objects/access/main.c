@@ -62,18 +62,18 @@ static void it_rejects_ancestor_descendant_copy_in_both_directions_before_native
     assert(status.code == AMA_OK);
     RootValue *value = object_payload(root);
     for (size_t continuation = 0; continuation < 2; continuation++) {
-        status = ama_object_replace(&world, root, value->branches.items[0], continuation != 0);
+        status = ama_object_replace(&world, root, (*ama_handle_list_element(&value->branches, 0)), continuation != 0);
         assert(status.code == AMA_INVALID_STATE && cloned == 0 && destroyed == 0);
-        status = ama_object_replace(&world, value->branches.items[0], root, continuation != 0);
+        status = ama_object_replace(&world, (*ama_handle_list_element(&value->branches, 0)), root, continuation != 0);
         assert(status.code == AMA_INVALID_STATE && cloned == 0 && destroyed == 0);
     }
     lookup(root)->metadata.service.activity = AMA_INSTANCE_RUNNING;
-    RootValue *first = object_payload(value->branches.items[0]);
-    first->self = value->branches.items[1];
-    status = ama_object_replace(&world, value->branches.items[1], value->branches.items[0], false);
+    RootValue *first = object_payload((*ama_handle_list_element(&value->branches, 0)));
+    first->self = (*ama_handle_list_element(&value->branches, 1));
+    status = ama_object_replace(&world, (*ama_handle_list_element(&value->branches, 1)), (*ama_handle_list_element(&value->branches, 0)), false);
     assert(status.code == AMA_OK && cloned == 3);
-    RootValue *second = object_payload(value->branches.items[1]);
-    assert(second->self.slot_id == value->branches.items[1].slot_id);
+    RootValue *second = object_payload((*ama_handle_list_element(&value->branches, 1)));
+    assert(second->self.slot_id == (*ama_handle_list_element(&value->branches, 1)).slot_id);
     assert(lookup(root)->metadata.service.activity == AMA_INSTANCE_RUNNING);
     lookup(root)->metadata.service.activity = AMA_INSTANCE_READY;
     status = ama_object_destroy(&world, root);
@@ -102,10 +102,10 @@ static void it_preflights_every_source_and_destination_node_before_hooks_or_dest
                 assert(status.code == AMA_OK);
                 AmaHandle selected = side == 0 ? source : destination;
                 RootValue *root = object_payload(selected);
-                RootValue *first = object_payload(root->branches.items[0]);
-                RootValue *second = object_payload(root->branches.items[1]);
-                AmaHandle nodes[] = {selected, root->left, root->right, root->branches.items[0],
-                    first->left, first->right, root->branches.items[1], second->left, second->right};
+                RootValue *first = object_payload((*ama_handle_list_element(&root->branches, 0)));
+                RootValue *second = object_payload((*ama_handle_list_element(&root->branches, 1)));
+                AmaHandle nodes[] = {selected, root->left, root->right, (*ama_handle_list_element(&root->branches, 0)),
+                    first->left, first->right, (*ama_handle_list_element(&root->branches, 1)), second->left, second->right};
                 lookup(nodes[node])->metadata.service.activity = (AmaInstanceActivity)activity;
                 status = ama_object_replace(&world, destination, source, false);
                 assert(status.code == AMA_BUSY && cloned == 0 && destroyed == 0);
@@ -139,7 +139,7 @@ static void it_finalizes_a_failed_nested_replacement_and_active_links_without_em
     status = ama_object_create(&world, 2, NULL, &source);
     assert(status.code == AMA_OK);
     RootValue *root = object_payload(parent);
-    AmaHandle destination = root->branches.items[0];
+    AmaHandle destination = (*ama_handle_list_element(&root->branches, 0));
     failed_destructor = 1;
     status = ama_object_replace(&world, destination, source, false);
     assert(status.code == AMA_IO_FAILURE && world.failed && destroyed == 6);
@@ -219,7 +219,7 @@ static void it_reuses_its_own_authorized_source_protection_across_nested_initial
     assert(status.code == AMA_OK);
     RootValue *root = object_payload(source);
     AmaRecipe children[2] = {
-        {.constructor = AMA_CONSTRUCT_CLONE, .source = root->branches.items[0]},
+        {.constructor = AMA_CONSTRUCT_CLONE, .source = (*ama_handle_list_element(&root->branches, 0))},
         {.constructor = AMA_CONSTRUCT_CLONE, .source = source}
     };
     AmaFieldRecipe fields[6] = {0};

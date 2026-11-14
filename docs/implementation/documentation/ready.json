@@ -13322,6 +13322,16 @@
         "case": "it_selects_an_indexed_terminal_condition_using_the_caller_index_once",
         "command": "make -C tests/unit/codegen/loops",
         "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_copies_inferred_lists_and_preserves_duplicate_reference_targets",
+        "command": "make -C tests/unit/codegen/list-values",
+        "source": "tests/unit/codegen/list-values/main.c"
+      },
+      {
+        "case": "it_checks_list_targets_and_index_conversion_before_execution",
+        "command": "make -C tests/unit/codegen/list-values",
+        "source": "tests/unit/codegen/list-values/main.c"
       }
     ]
   },
@@ -14461,47 +14471,6 @@
       "c",
       "-fsyntax-only",
       "-"
-    ]
-  },
-  "src/runtime/lists/capacity.c": {
-    "contract": "docs/implementation/runtime-components.md",
-    "purpose": "Grow contiguous handle storage without relocating instance payloads.",
-    "tests": [
-      {
-        "case": "it_grows_geometrically_without_moving_states_and_preserves_data_on_failure",
-        "command": "make -C tests/unit/runtime/lists",
-        "source": "tests/unit/runtime/lists/main.c"
-      },
-      {
-        "case": "it_preserves_order_and_identity_and_invalidates_only_removed_owners",
-        "command": "make -C tests/unit/runtime/lists",
-        "source": "tests/unit/runtime/lists/main.c"
-      },
-      {
-        "case": "it_preflights_all_clear_descendants_and_does_not_acquire_reference_targets",
-        "command": "make -C tests/unit/runtime/lists",
-        "source": "tests/unit/runtime/lists/main.c"
-      },
-      {
-        "case": "it_preserves_contents_after_every_default_insertion_allocation_failure",
-        "command": "make -C tests/unit/runtime/lists",
-        "source": "tests/unit/runtime/lists/main.c"
-      },
-      {
-        "case": "it_treats_destructor_failure_as_terminal_and_completes_clear_cleanup",
-        "command": "make -C tests/unit/runtime/lists",
-        "source": "tests/unit/runtime/lists/main.c"
-      },
-      {
-        "case": "it_clones_inserted_owned_state_and_remaps_internal_references",
-        "command": "make -C tests/unit/runtime/lists",
-        "source": "tests/unit/runtime/lists/main.c"
-      },
-      {
-        "case": "it_rejects_reentrant_storage_work_without_mutating_or_allocating",
-        "command": "make -C tests/unit/runtime/lists",
-        "source": "tests/unit/runtime/lists/main.c"
-      }
     ]
   },
   "src/runtime/lists/list.h": {
@@ -16500,6 +16469,16 @@
         "case": "it_unwinds_every_scalar_clone_allocation_without_publishing_or_reinitializing",
         "command": "make -C tests/unit/runtime/objects/clone-map",
         "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_publishes_fresh_copy_memberships_and_invalidates_replaced_incarnations",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_retires_only_changed_indexed_reference_occurrences",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
       }
     ]
   },
@@ -17030,6 +17009,16 @@
         "case": "it_unwinds_every_scalar_clone_allocation_without_publishing_or_reinitializing",
         "command": "make -C tests/unit/runtime/objects/clone-map",
         "source": "tests/unit/runtime/objects/clone-map/main.c"
+      },
+      {
+        "case": "it_publishes_fresh_copy_memberships_and_invalidates_replaced_incarnations",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_retires_only_changed_indexed_reference_occurrences",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
       }
     ]
   },
@@ -18276,6 +18265,16 @@
         "case": "it_refuses_every_busy_descendant_before_continuation_clone_hooks",
         "command": "make -C tests/unit/runtime/objects/clone",
         "source": "tests/unit/runtime/objects/clone/main.c"
+      },
+      {
+        "case": "it_publishes_fresh_copy_memberships_and_invalidates_replaced_incarnations",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_retires_only_changed_indexed_reference_occurrences",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
       }
     ]
   },
@@ -18673,6 +18672,16 @@
         "case": "it_finishes_old_and_prepared_cleanup_when_each_destructive_commit_hook_fails",
         "command": "make -C tests/unit/runtime/objects/reconstruction",
         "source": "tests/unit/runtime/objects/reconstruction/main.c"
+      },
+      {
+        "case": "it_publishes_fresh_copy_memberships_and_invalidates_replaced_incarnations",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_retires_only_changed_indexed_reference_occurrences",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
       }
     ]
   },
@@ -21151,6 +21160,16 @@
         "case": "it_reports_the_new_caller_after_a_yield_releases_the_original_link",
         "command": "make -C tests/unit/codegen/continuations",
         "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_publishes_fresh_copy_memberships_and_invalidates_replaced_incarnations",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_retires_only_changed_indexed_reference_occurrences",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
       }
     ]
   },
@@ -21498,6 +21517,16 @@
         "case": "it_copies_continuations_through_one_owned_list_forest",
         "command": "make -C tests/unit/runtime/transfers",
         "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_publishes_fresh_copy_memberships_and_invalidates_replaced_incarnations",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_retires_only_changed_indexed_reference_occurrences",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
       }
     ]
   },
@@ -21660,6 +21689,16 @@
         "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
         "command": "make -C tests/unit/runtime/protocols",
         "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_publishes_fresh_copy_memberships_and_invalidates_replaced_incarnations",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_retires_only_changed_indexed_reference_occurrences",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
       }
     ]
   },
@@ -21725,6 +21764,21 @@
       },
       {
         "case": "it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_publishes_fresh_copy_memberships_and_invalidates_replaced_incarnations",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_retires_only_changed_indexed_reference_occurrences",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_rejects_absent_index_operands_without_decoding_or_changing_outputs",
         "command": "make -C tests/unit/runtime/value-selection",
         "source": "tests/unit/runtime/value-selection/main.c"
       }
@@ -32848,6 +32902,16 @@
         "case": "it_unwinds_native_clone_prefixes_preserves_old_values_and_disposes_failed_contexts",
         "command": "make -C tests/unit/codegen continuation-cleanup",
         "source": "tests/unit/codegen/continuation-cleanup/main.c"
+      },
+      {
+        "case": "it_copies_inferred_lists_and_preserves_duplicate_reference_targets",
+        "command": "make -C tests/unit/codegen/list-values",
+        "source": "tests/unit/codegen/list-values/main.c"
+      },
+      {
+        "case": "it_checks_list_targets_and_index_conversion_before_execution",
+        "command": "make -C tests/unit/codegen/list-values",
+        "source": "tests/unit/codegen/list-values/main.c"
       }
     ]
   },
@@ -40753,6 +40817,11 @@
         "case": "it_copies_continuations_through_one_owned_list_forest",
         "command": "make -C tests/unit/runtime/transfers",
         "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_publishes_fresh_copy_memberships_and_invalidates_replaced_incarnations",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
       }
     ]
   },
@@ -40794,6 +40863,11 @@
         "case": "it_copies_continuations_through_one_owned_list_forest",
         "command": "make -C tests/unit/runtime/transfers",
         "source": "tests/unit/runtime/transfers/main.c"
+      },
+      {
+        "case": "it_publishes_fresh_copy_memberships_and_invalidates_replaced_incarnations",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
       }
     ]
   },
@@ -42937,6 +43011,16 @@
         "case": "it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes",
         "command": "make -C tests/unit/runtime/value-selection",
         "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_retires_only_changed_indexed_reference_occurrences",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_rejects_absent_index_operands_without_decoding_or_changing_outputs",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
       }
     ]
   },
@@ -42961,6 +43045,16 @@
       },
       {
         "case": "it_records_only_valid_index_refusal_and_ignores_failed_conversion_outputs",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_retires_only_changed_indexed_reference_occurrences",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_rejects_absent_index_operands_without_decoding_or_changing_outputs",
         "command": "make -C tests/unit/runtime/value-selection",
         "source": "tests/unit/runtime/value-selection/main.c"
       }
@@ -63561,6 +63655,116 @@
         "case": "it_replaces_reference_memberships_atomically_and_resets_incarnations",
         "command": "make -C tests/unit/runtime/membership",
         "source": "tests/unit/runtime/membership/main.c"
+      }
+    ]
+  },
+  "src/runtime/lists/storage.c": {
+    "contract": "docs/implementation/list-values.md",
+    "purpose": "Prepare membership-backed declared list shapes at exact final namespaces.",
+    "tests": [
+      {
+        "case": "it_grows_geometrically_without_moving_states_and_preserves_data_on_failure",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preserves_order_and_identity_and_invalidates_only_removed_owners",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preflights_all_clear_descendants_and_does_not_acquire_reference_targets",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_preserves_contents_after_every_default_insertion_allocation_failure",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_treats_destructor_failure_as_terminal_and_completes_clear_cleanup",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_clones_inserted_owned_state_and_remaps_internal_references",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_rejects_reentrant_storage_work_without_mutating_or_allocating",
+        "command": "make -C tests/unit/runtime/lists",
+        "source": "tests/unit/runtime/lists/main.c"
+      },
+      {
+        "case": "it_publishes_fresh_copy_memberships_and_invalidates_replaced_incarnations",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      },
+      {
+        "case": "it_retires_only_changed_indexed_reference_occurrences",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/list-transfer/support/memberships.c": {
+    "contract": "docs/implementation/list-values.md",
+    "purpose": "Verify exact replacement identities through integrated list selection and copy boundaries.",
+    "tests": [
+      {
+        "case": "it_publishes_fresh_copy_memberships_and_invalidates_replaced_incarnations",
+        "command": "make -C tests/unit/runtime/list-transfer",
+        "source": "tests/unit/runtime/list-transfer/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/value-selection/support/memberships.c": {
+    "contract": "docs/implementation/list-values.md",
+    "purpose": "Verify exact replacement identities through integrated list selection and copy boundaries.",
+    "tests": [
+      {
+        "case": "it_retires_only_changed_indexed_reference_occurrences",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_rejects_absent_index_operands_without_decoding_or_changing_outputs",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/list-values/main.c": {
+    "contract": "docs/implementation/list-values.md",
+    "purpose": "Compile inferred list receivers, independent values, duplicate references and guarded selection failures.",
+    "tests": [
+      {
+        "case": "it_copies_inferred_lists_and_preserves_duplicate_reference_targets",
+        "command": "make -C tests/unit/codegen/list-values",
+        "source": "tests/unit/codegen/list-values/main.c"
+      },
+      {
+        "case": "it_checks_list_targets_and_index_conversion_before_execution",
+        "command": "make -C tests/unit/codegen/list-values",
+        "source": "tests/unit/codegen/list-values/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/list-values/Makefile": {
+    "contract": "docs/implementation/list-values.md",
+    "purpose": "Compile inferred list receivers, independent values, duplicate references and guarded selection failures.",
+    "tests": [
+      {
+        "case": "it_copies_inferred_lists_and_preserves_duplicate_reference_targets",
+        "command": "make -C tests/unit/codegen/list-values",
+        "source": "tests/unit/codegen/list-values/main.c"
+      },
+      {
+        "case": "it_checks_list_targets_and_index_conversion_before_execution",
+        "command": "make -C tests/unit/codegen/list-values",
+        "source": "tests/unit/codegen/list-values/main.c"
       }
     ]
   }

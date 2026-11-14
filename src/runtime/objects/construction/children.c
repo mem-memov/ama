@@ -17,8 +17,8 @@ AmaStatus ama_construction_prepare_next(AmaObjectOperation *operation, AmaObject
     }
     if (!clone_source && work->next_field < work->type->field_count) {
         const AmaObjectField *field = &work->type->fields[work->next_field];
-        size_t count;
-        (void)ama_object_handles(work->type, ama_pool_payload(&work->type->pool, work->cell), work->next_field, &count);
+        size_t count = ama_object_field_count(work->type,
+            ama_pool_payload(&work->type->pool, work->cell), work->next_field);
         if (!ama_field_owns(field->kind) || work->next_element == count) {
             work->next_field++;
             work->field_ready = false;
@@ -36,9 +36,8 @@ AmaStatus ama_construction_descend(AmaObjectOperation *operation, AmaObjectWork 
     if (work->source.generation != 0) {
         location = ama_object_child(work, work->next_child, &child_type, &child_recipe);
     } else {
-        size_t count;
-        AmaHandle *handles = ama_object_handles(work->type, ama_pool_payload(&work->type->pool, work->cell), work->next_field, &count);
-        location = &handles[work->next_element];
+        location = ama_object_field_handle(work->type, ama_pool_payload(&work->type->pool, work->cell),
+            work->next_field, work->next_element);
         child_type = work->type->fields[work->next_field].type_id;
         child_recipe = work->field_recipe.children == NULL ? NULL : &work->field_recipe.children[work->next_element];
     }

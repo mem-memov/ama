@@ -90,7 +90,7 @@ the Makefile runs and cleans this independently executable leaf.
 The ready registry maps all component source/header files to these named cases,
 with standalone header compilation. Strict and ASan/UBSan runs cover the same real
 component; the whole strict suite checks composition with runtime consumers.
-T076 connects the representation to generated list selection/copying. List service
-authority, method result frames and live cursor corrections remain their own
-roadmap tasks. The old handle-vector foundation is not yet claimed to provide
-membership semantics to compiled Ama programs.
+T076 connects this representation through [list value integration](list-values.md).
+List service authority, method result frames and live cursor corrections remain
+their own roadmap tasks. The reserved acquisition flag belongs to those higher
+layers; membership edits themselves do not acquire or release a list.

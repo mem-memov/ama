@@ -16,15 +16,11 @@ AmaStatus ama_list_remove(AmaListMutation *mutation, size_t position, size_t cou
         /* Preflight has covered every affected tree before the first destructor. */
         for (size_t index = count; index != 0;) {
             status = ama_cleanup_primary(status, ama_object_cleanup(mutation->objects.world,
-                list->items[position + --index], ama_status_success()));
+                *ama_handle_list_element(list, position + --index), ama_status_success()));
         }
         mutation->parent->metadata.lifetime.live_children -= count;
         mutation->parent->metadata.lifetime.child_capacity -= count;
     }
-    if (count != 0) {
-        memmove(list->items + position, list->items + position + count,
-            (list->count - position - count) * sizeof(*list->items));
-        list->count -= count;
-    }
+    (void)ama_membership_remove(list, position, count);
     return status;
 }

@@ -14,22 +14,30 @@
  */
 static void it_grows_geometrically_without_moving_states_and_preserves_data_on_failure(void) {
     setup_objects();
-    AmaHandleList list = {0};
+    AmaHandleList list;
+    AmaStatus status = ama_handle_list_prepare(&list, world.allocator, (AmaHandle){2, 0, 1}, 0, 1, UINT64_MAX, 0);
+    assert(status.code == AMA_OK);
     for (size_t index = 0; index < 100; index++) {
-        AmaStatus status = ama_handle_list_reserve(world.allocator, &list, index + 1);
+        AmaMembership identity;
+        status = ama_membership_insert(&list, index, (AmaHandle){1, index, 1}, &identity);
         assert(status.code == AMA_OK && list.capacity >= index + 1);
-        list.items[list.count++] = (AmaHandle){1, index, 1};
-        for (size_t previous = 0; previous <= index; previous++) { assert(list.items[previous].slot_id == previous); }
+        for (size_t previous = 0; previous <= index; previous++) {
+            assert(ama_handle_list_element(&list, previous)->slot_id == previous);
+        }
     }
-    AmaHandle *previous = list.items;
+    while (list.count < list.capacity) {
+        AmaMembership identity;
+        status = ama_membership_insert(&list, list.count, (AmaHandle){0}, &identity);
+        assert(status.code == AMA_OK);
+    }
+    size_t *previous = list.order;
     size_t capacity = list.capacity;
     failure_at = allocation_count + 1;
-    AmaStatus status = ama_handle_list_reserve(world.allocator, &list, capacity + 1);
-    assert(status.code == AMA_OUT_OF_MEMORY && list.items == previous && list.capacity == capacity && list.count == 100);
+    AmaMembership identity;
+    status = ama_membership_insert(&list, list.count, (AmaHandle){0}, &identity);
+    assert(status.code == AMA_OUT_OF_MEMORY && list.order == previous && list.capacity == capacity && list.count == capacity);
     failure_at = 0;
-    status = ama_handle_list_reserve(world.allocator, &list, SIZE_MAX);
-    assert(status.code == AMA_LIMIT_EXCEEDED && list.items == previous);
-    world.allocator.release(world.allocator.context, list.items);
+    ama_membership_dispose(&list);
     destroy_objects();
 }
 /**
@@ -47,10 +55,10 @@ static void it_preserves_order_and_identity_and_invalidates_only_removed_owners(
         status = ama_list_storage_insert(&storage, root->branches.count, (AmaHandle){0});
         assert(status.code == AMA_OK);
     }
-    AmaHandle removed = root->branches.items[0], survivor = root->branches.items[1];
+    AmaHandle removed = (*ama_handle_list_element(&root->branches, 0)), survivor = (*ama_handle_list_element(&root->branches, 1));
     status = ama_list_storage_remove(&storage, 0, 1);
     assert(status.code == AMA_OK && root->branches.count == 11);
-    assert(ama_handle_equal(root->branches.items[0], survivor));
+    assert(ama_handle_equal((*ama_handle_list_element(&root->branches, 0)), survivor));
     AmaPoolCell *cell = NULL;
     status = ama_pool_lookup(&root_type.pool, removed, false, &cell);
     assert(status.code == AMA_STALE_REFERENCE);
@@ -90,7 +98,7 @@ static void it_preflights_all_clear_descendants_and_does_not_acquire_reference_t
         status = ama_list_storage_insert(&storage, root->branches.count, (AmaHandle){0});
         assert(status.code == AMA_OK);
     }
-    RootValue *nested = object_payload(root->branches.items[1]);
+    RootValue *nested = object_payload((*ama_handle_list_element(&root->branches, 1)));
     AmaPoolCell *busy = NULL;
     status = ama_pool_lookup(&leaf_type.pool, nested->left, false, &busy);
     assert(status.code == AMA_OK);
@@ -103,7 +111,7 @@ static void it_preflights_all_clear_descendants_and_does_not_acquire_reference_t
     status = ama_list_storage_insert(&references, 0, nested->left);
     assert(status.code == AMA_OK && root->references.count == 1);
     status = ama_list_storage_insert(&references, 1, (AmaHandle){0});
-    assert(status.code == AMA_OK && root->references.items[1].generation == 0);
+    assert(status.code == AMA_OK && (*ama_handle_list_element(&root->references, 1)).generation == 0);
     status = ama_list_storage_remove(&references, 0, root->references.count);
     assert(status.code == AMA_OK && destroyed == before && busy->metadata.service.activity == AMA_INSTANCE_WAITING);
     busy->metadata.service.activity = AMA_INSTANCE_READY;
@@ -186,7 +194,7 @@ static void it_clones_inserted_owned_state_and_remaps_internal_references(void) 
     AmaListStorage storage = {&world, owner, &root->branches, 2, true};
     status = ama_list_storage_insert(&storage, 0, source);
     assert(status.code == AMA_OK && root->branches.count == 1);
-    AmaHandle handle = root->branches.items[0];
+    AmaHandle handle = (*ama_handle_list_element(&root->branches, 0));
     RootValue *copy = object_payload(handle);
     assert(!ama_handle_equal(handle, source));
     assert(ama_handle_equal(copy->self, handle));
