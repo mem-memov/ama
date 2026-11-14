@@ -1631,10 +1631,18 @@ Contracts: [continuations](spec/language/continuations.md),
   generated-program ASan+UBSan passed; all 1184 maintained inputs have coverage.
   Links passed and final Doxygen reproducibility is checked before commit. The
   existing ledger/context machinery required no alternate cleanup executor.
-- [ ] **T074 — Accept resumable generated programs.** Needs: T073. Compile/run
+- [x] **T074 — Accept resumable generated programs.** Needs: T073. Compile/run
   custom-host and nested same-type continuation examples, including ordinary and
   explicit independent copies. Verify source traces use the new active caller
   rather than historical copied return connections.
+  Evidence: [resumable acceptance](docs/implementation/resumable-acceptance.md).
+  Two additional compiled cases combine same-type nested yields, explicit C-host
+  resume, independent continuation advancement, ordinary-copy NoResume and a
+  copied continuation's new-caller failure trace. Ten explicit leaf cases cover
+  the resulting scalar slice without an alternate executor. Strict compilation,
+  actual generated-program ASan/UBSan, coverage of all 1185 maintained inputs,
+  local links and reproducible Doxygen are checked before the task commit.
+  Checked foreign ABI and membership-aware cursor copies remain separate tasks.
 
 ## Phase 10. Membership-aware typed lists and live traversal
 

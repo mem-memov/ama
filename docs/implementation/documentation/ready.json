@@ -32966,6 +32966,16 @@
         "case": "it_reports_the_new_caller_after_a_yield_releases_the_original_link",
         "command": "make -C tests/unit/codegen/continuations",
         "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_runs_same_type_nested_copies_under_an_explicit_resuming_host",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_reports_only_the_current_caller_after_copying_a_continuation",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
       }
     ]
   },
@@ -33010,6 +33020,16 @@
       },
       {
         "case": "it_reports_the_new_caller_after_a_yield_releases_the_original_link",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_runs_same_type_nested_copies_under_an_explicit_resuming_host",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_reports_only_the_current_caller_after_copying_a_continuation",
         "command": "make -C tests/unit/codegen/continuations",
         "source": "tests/unit/codegen/continuations/main.c"
       }
@@ -63063,6 +63083,22 @@
         "case": "it_preserves_mixed_completed_and_yielded_owned_positions",
         "command": "make -C tests/unit/codegen/continuation-cleanup",
         "source": "tests/unit/codegen/continuation-cleanup/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/continuations/support/acceptance.c": {
+    "contract": "docs/implementation/resumable-acceptance.md",
+    "purpose": "Accept same-type suspension, independent copies and current-caller traces.",
+    "tests": [
+      {
+        "case": "it_runs_same_type_nested_copies_under_an_explicit_resuming_host",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
+      },
+      {
+        "case": "it_reports_only_the_current_caller_after_copying_a_continuation",
+        "command": "make -C tests/unit/codegen/continuations",
+        "source": "tests/unit/codegen/continuations/main.c"
       }
     ]
   }

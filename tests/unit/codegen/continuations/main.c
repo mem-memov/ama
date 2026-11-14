@@ -6,6 +6,7 @@
  * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
  */
 #include "../execution/common.c"
+#include "support/acceptance.c"
 
 /**
  * Assert that the component resumes repeated yields and restarts at entry. The explicit fixture
@@ -141,6 +142,8 @@ static void it_reports_the_new_caller_after_a_yield_releases_the_original_link(v
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_runs_same_type_nested_copies_under_an_explicit_resuming_host();
+    it_reports_only_the_current_caller_after_copying_a_continuation();
     it_resumes_repeated_yields_and_restarts_at_entry();
     it_resumes_inside_a_loop_without_preserving_c_activations();
     it_rejects_unhandled_root_yield_after_cleanup();
