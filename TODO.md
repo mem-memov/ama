@@ -1685,10 +1685,22 @@ Contracts: [lists](spec/language/lists.md),
   Strict component runs, real generated-program and component ASan/UBSan passed;
   the full strict suite, all 1201 input coverage, links and reproducible Doxygen
   are checked before commit. Intrinsic services and foreach keep their guards.
-- [ ] **T077 — Implement list service acquisition and method frames.** Needs:
+- [x] **T077 — Implement list service acquisition and method frames.** Needs:
   T066, T076. Hold owner/list protection across sibling methods/results, permit
   only exact direct structural helper token borrowing and finalize ephemeral
   result storage once. Test alias/callback reentry refusal and escaped stale views.
+  Evidence: [list service frames](docs/implementation/list-service-frames.md).
+  Linear caller-owned grants borrow exact current/outgoing owner protection;
+  collection identity and original frame address validate every structural borrow.
+  Ordinary selection refuses busy lists without inheriting a grant through caller
+  identity. Typed method frames retain the parent busy interval across siblings
+  and result cleanup, consume owned result credits once and expire escaped handles.
+  Six component cases cover aliases, copied/wrong-field grants, callback reentry,
+  selected owner protection, constructor/destructor failure and bounded frame slots.
+  A source-to-plan-to-compiled-C probe accepts actual lexical frame layouts without
+  enabling unfinished intrinsic dispatch. Component ASan/UBSan passed; full strict
+  tests, all 1214 input coverage, links and reproducible Doxygen are checked before
+  commit. Mutation adapters remain guarded until their following method tasks.
 - [ ] **T078 — Implement append and insert.** Needs: T077. Support omitted default
   creation versus explicit owning clone or reference-handle copy. Reserve counters
   and prepare before publication; test invalid positions, clone capability, busy

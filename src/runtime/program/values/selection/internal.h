@@ -10,6 +10,7 @@
 #ifndef AMA_VALUE_SELECTION_INTERNAL_H
 #define AMA_VALUE_SELECTION_INTERNAL_H
 #include "runtime/program/program.h"
+struct AmaProgramListService;
 
 /** Form a reference to exact current storage without reading a field or acquiring
  * the target. Private construction authority permits Constructing/Live identities;
@@ -24,6 +25,17 @@ AmaStatus ama_program_shared_base(AmaProgram *, const AmaProgramAccess *, const 
  * this selects reference storage without acquiring its referent.
  */
 AmaStatus ama_program_instance_base(AmaProgram *, AmaHandle, const AmaProgramAccess *, bool, AmaProgramValue *);
+/** Resolve under an optional exact service grant. Only an actual busy-list check
+ * sets list_refusal; unrelated errors never inherit its numeric classification.
+ */
+AmaStatus ama_program_instance_authorized(AmaProgram *, AmaHandle, const AmaProgramAccess *,
+    bool, const struct AmaProgramListService *, bool *list_refusal, AmaProgramValue *);
+/** Evaluate structural operands with the exact parent grant; ordinary body calls
+ * use the existing null-authority entry point. No token is stored on program.
+ */
+AmaStatus ama_program_access_authorized(AmaProgram *, AmaHandle caller, AmaHandle owner,
+    const AmaConstantValue *, const AmaProgramAccess *, bool,
+    const struct AmaProgramListService *, AmaProgramValue *, bool *);
 /** Narrow a valid list view to its indexed scalar element without running code.
  * Bounds/type failure leaves caller-owned list storage unchanged.
  */

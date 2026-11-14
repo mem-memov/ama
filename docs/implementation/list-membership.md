@@ -92,5 +92,5 @@ with standalone header compilation. Strict and ASan/UBSan runs cover the same re
 component; the whole strict suite checks composition with runtime consumers.
 T076 connects this representation through [list value integration](list-values.md).
 List service authority, method result frames and live cursor corrections remain
-their own roadmap tasks. The reserved acquisition flag belongs to those higher
-layers; membership edits themselves do not acquire or release a list.
+their own roadmap tasks. The exact acquisition-frame address belongs to those higher layers; membership
+edits themselves do not acquire or release a list.

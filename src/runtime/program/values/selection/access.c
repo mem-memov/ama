@@ -17,9 +17,13 @@
  * [CALL-09](../../../../../spec/language/calls-and-results.md#call-09).
  * Ordinary selection passes the same identity for both domains.
  */
-AmaStatus ama_program_access_from(AmaProgram *program, AmaHandle current, AmaHandle owner, const AmaConstantValue *shared,
-    const AmaProgramAccess *access, bool private_access, AmaProgramValue *output, bool *selection_refusal) {
+AmaStatus ama_program_access_authorized(AmaProgram *program, AmaHandle current, AmaHandle owner, const AmaConstantValue *shared,
+    const AmaProgramAccess *access, bool private_access, const struct AmaProgramListService *authority,
+    AmaProgramValue *output, bool *selection_refusal) {
     if (selection_refusal != NULL) { *selection_refusal = false; }
+    if (authority != NULL && !ama_handle_equal(current, program->current)) {
+        return ama_status_make(AMA_INVALID_STATE, NULL, 0);
+    }
     size_t depth = 0;
     for (const AmaProgramAccess *node = access; node != NULL; node = node->index) { depth++; }
     size_t selected = 0;
@@ -28,8 +32,11 @@ AmaStatus ama_program_access_from(AmaProgram *program, AmaHandle current, AmaHan
         const AmaProgramAccess *node = access;
         for (size_t index = 0; index < depth; index++) { node = node->index; }
         AmaProgramValue value = {0};
+        bool list_refusal = false;
         AmaStatus status = node->shared || shared != NULL ? ama_program_shared_base(program, node, shared, &value)
-            : ama_program_instance_base(program, depth == 0 ? owner : current, node, private_access, &value);
+            : ama_program_instance_authorized(program, depth == 0 ? owner : current, node,
+                private_access, authority, &list_refusal, &value);
+        if (list_refusal && selection_refusal != NULL) { *selection_refusal = true; }
         if (status.code == AMA_OK && node->index != NULL) {
             status = ama_program_index(&value, selected);
             if (status.code == AMA_INDEX_BOUNDS && selection_refusal != NULL) { *selection_refusal = true; }
@@ -48,6 +55,12 @@ AmaStatus ama_program_access_from(AmaProgram *program, AmaHandle current, AmaHan
         if (status.code != AMA_OK) { return status; }
     }
     return ama_status_make(AMA_INVALID_STATE, NULL, 0);
+}
+
+AmaStatus ama_program_access_from(AmaProgram *program, AmaHandle current, AmaHandle owner,
+    const AmaConstantValue *shared, const AmaProgramAccess *access, bool private_access,
+    AmaProgramValue *output, bool *selection_refusal) {
+    return ama_program_access_authorized(program, current, owner, shared, access, private_access, NULL, output, selection_refusal);
 }
 
 AmaStatus ama_program_access(AmaProgram *program, AmaHandle current, const AmaConstantValue *shared,

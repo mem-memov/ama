@@ -1774,6 +1774,11 @@
         "case": "it_refuses_before_parking_and_checks_frame_storage",
         "command": "make -C tests/unit/runtime/result-calls",
         "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_compiles_typed_lexical_list_service_and_method_storage",
+        "command": "make -C tests/unit/codegen/list-frame-layout",
+        "source": "tests/unit/codegen/list-frame-layout/main.c"
       }
     ]
   },
@@ -13332,6 +13337,36 @@
         "case": "it_checks_list_targets_and_index_conversion_before_execution",
         "command": "make -C tests/unit/codegen/list-values",
         "source": "tests/unit/codegen/list-values/main.c"
+      },
+      {
+        "case": "it_keeps_siblings_busy_and_borrows_only_the_exact_parent_grant",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_retains_selected_owner_protection_and_rejects_alias_reentry",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_finalizes_owned_results_once_and_expires_escaped_handles",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_keeps_reference_results_nonowning_and_preserves_target_activity",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_cleans_failed_results_without_repeating_destruction_or_leaking_grants",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
       }
     ]
   },
@@ -21745,6 +21780,36 @@
         "case": "it_refuses_before_parking_and_checks_frame_storage",
         "command": "make -C tests/unit/runtime/result-calls",
         "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_keeps_siblings_busy_and_borrows_only_the_exact_parent_grant",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_retains_selected_owner_protection_and_rejects_alias_reentry",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_finalizes_owned_results_once_and_expires_escaped_handles",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_keeps_reference_results_nonowning_and_preserves_target_activity",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_cleans_failed_results_without_repeating_destruction_or_leaking_grants",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
       }
     ]
   },
@@ -21802,6 +21867,36 @@
         "case": "it_decodes_each_index_once_and_never_guesses_refusal_from_status_codes",
         "command": "make -C tests/unit/runtime/value-selection",
         "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_keeps_siblings_busy_and_borrows_only_the_exact_parent_grant",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_retains_selected_owner_protection_and_rejects_alias_reentry",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_finalizes_owned_results_once_and_expires_escaped_handles",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_keeps_reference_results_nonowning_and_preserves_target_activity",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_cleans_failed_results_without_repeating_destruction_or_leaking_grants",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
       }
     ]
   },
@@ -21883,6 +21978,36 @@
         "case": "it_refuses_before_parking_and_checks_frame_storage",
         "command": "make -C tests/unit/runtime/result-calls",
         "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_keeps_siblings_busy_and_borrows_only_the_exact_parent_grant",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_retains_selected_owner_protection_and_rejects_alias_reentry",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_finalizes_owned_results_once_and_expires_escaped_handles",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_keeps_reference_results_nonowning_and_preserves_target_activity",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_cleans_failed_results_without_repeating_destruction_or_leaking_grants",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
       }
     ]
   },
@@ -32912,6 +33037,11 @@
         "case": "it_checks_list_targets_and_index_conversion_before_execution",
         "command": "make -C tests/unit/codegen/list-values",
         "source": "tests/unit/codegen/list-values/main.c"
+      },
+      {
+        "case": "it_compiles_typed_lexical_list_service_and_method_storage",
+        "command": "make -C tests/unit/codegen/list-frame-layout",
+        "source": "tests/unit/codegen/list-frame-layout/main.c"
       }
     ]
   },
@@ -39987,6 +40117,36 @@
         "case": "it_preserves_live_occurrences_on_failed_replacement_and_invalid_bounds",
         "command": "make -C tests/unit/runtime/membership",
         "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_keeps_siblings_busy_and_borrows_only_the_exact_parent_grant",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_retains_selected_owner_protection_and_rejects_alias_reentry",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_finalizes_owned_results_once_and_expires_escaped_handles",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_keeps_reference_results_nonowning_and_preserves_target_activity",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_cleans_failed_results_without_repeating_destruction_or_leaking_grants",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
       }
     ]
   },
@@ -63346,6 +63506,36 @@
         "case": "it_preserves_live_occurrences_on_failed_replacement_and_invalid_bounds",
         "command": "make -C tests/unit/runtime/membership",
         "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_keeps_siblings_busy_and_borrows_only_the_exact_parent_grant",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_retains_selected_owner_protection_and_rejects_alias_reentry",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_finalizes_owned_results_once_and_expires_escaped_handles",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_keeps_reference_results_nonowning_and_preserves_target_activity",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_cleans_failed_results_without_repeating_destruction_or_leaking_grants",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
       }
     ],
     "standalone_header_command": [
@@ -63765,6 +63955,409 @@
         "case": "it_checks_list_targets_and_index_conversion_before_execution",
         "command": "make -C tests/unit/codegen/list-values",
         "source": "tests/unit/codegen/list-values/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/service.h": {
+    "contract": "docs/implementation/list-service-frames.md",
+    "purpose": "Maintain exact caller-owned list authority and one temporary typed result lifetime.",
+    "tests": [
+      {
+        "case": "it_keeps_siblings_busy_and_borrows_only_the_exact_parent_grant",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_retains_selected_owner_protection_and_rejects_alias_reentry",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_finalizes_owned_results_once_and_expires_escaped_handles",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_keeps_reference_results_nonowning_and_preserves_target_activity",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_cleans_failed_results_without_repeating_destruction_or_leaking_grants",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/runtime/program/lists/frames.c": {
+    "contract": "docs/implementation/list-service-frames.md",
+    "purpose": "Maintain exact caller-owned list authority and one temporary typed result lifetime.",
+    "tests": [
+      {
+        "case": "it_keeps_siblings_busy_and_borrows_only_the_exact_parent_grant",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_retains_selected_owner_protection_and_rejects_alias_reentry",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_finalizes_owned_results_once_and_expires_escaped_handles",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_keeps_reference_results_nonowning_and_preserves_target_activity",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_cleans_failed_results_without_repeating_destruction_or_leaking_grants",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/service/authority.c": {
+    "contract": "docs/implementation/list-service-frames.md",
+    "purpose": "Maintain exact caller-owned list authority and one temporary typed result lifetime.",
+    "tests": [
+      {
+        "case": "it_keeps_siblings_busy_and_borrows_only_the_exact_parent_grant",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_retains_selected_owner_protection_and_rejects_alias_reentry",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_finalizes_owned_results_once_and_expires_escaped_handles",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_keeps_reference_results_nonowning_and_preserves_target_activity",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_cleans_failed_results_without_repeating_destruction_or_leaking_grants",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/service/lifetime.c": {
+    "contract": "docs/implementation/list-service-frames.md",
+    "purpose": "Maintain exact caller-owned list authority and one temporary typed result lifetime.",
+    "tests": [
+      {
+        "case": "it_keeps_siblings_busy_and_borrows_only_the_exact_parent_grant",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_retains_selected_owner_protection_and_rejects_alias_reentry",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_finalizes_owned_results_once_and_expires_escaped_handles",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_keeps_reference_results_nonowning_and_preserves_target_activity",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_cleans_failed_results_without_repeating_destruction_or_leaking_grants",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/method/results.c": {
+    "contract": "docs/implementation/list-service-frames.md",
+    "purpose": "Maintain exact caller-owned list authority and one temporary typed result lifetime.",
+    "tests": [
+      {
+        "case": "it_keeps_siblings_busy_and_borrows_only_the_exact_parent_grant",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_retains_selected_owner_protection_and_rejects_alias_reentry",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_finalizes_owned_results_once_and_expires_escaped_handles",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_keeps_reference_results_nonowning_and_preserves_target_activity",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_cleans_failed_results_without_repeating_destruction_or_leaking_grants",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/method/lifetime.c": {
+    "contract": "docs/implementation/list-service-frames.md",
+    "purpose": "Maintain exact caller-owned list authority and one temporary typed result lifetime.",
+    "tests": [
+      {
+        "case": "it_keeps_siblings_busy_and_borrows_only_the_exact_parent_grant",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_retains_selected_owner_protection_and_rejects_alias_reentry",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_finalizes_owned_results_once_and_expires_escaped_handles",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_keeps_reference_results_nonowning_and_preserves_target_activity",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_cleans_failed_results_without_repeating_destruction_or_leaking_grants",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/list-service/main.c": {
+    "contract": "docs/implementation/list-service-frames.md",
+    "purpose": "Maintain exact caller-owned list authority and one temporary typed result lifetime.",
+    "tests": [
+      {
+        "case": "it_keeps_siblings_busy_and_borrows_only_the_exact_parent_grant",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_retains_selected_owner_protection_and_rejects_alias_reentry",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_finalizes_owned_results_once_and_expires_escaped_handles",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_keeps_reference_results_nonowning_and_preserves_target_activity",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_cleans_failed_results_without_repeating_destruction_or_leaking_grants",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/list-service/results.c": {
+    "contract": "docs/implementation/list-service-frames.md",
+    "purpose": "Maintain exact caller-owned list authority and one temporary typed result lifetime.",
+    "tests": [
+      {
+        "case": "it_finalizes_owned_results_once_and_expires_escaped_handles",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_keeps_reference_results_nonowning_and_preserves_target_activity",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_cleans_failed_results_without_repeating_destruction_or_leaking_grants",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/list-service/authority.c": {
+    "contract": "docs/implementation/list-service-frames.md",
+    "purpose": "Maintain exact caller-owned list authority and one temporary typed result lifetime.",
+    "tests": [
+      {
+        "case": "it_keeps_siblings_busy_and_borrows_only_the_exact_parent_grant",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_retains_selected_owner_protection_and_rejects_alias_reentry",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/list-service/common.c": {
+    "contract": "docs/implementation/list-service-frames.md",
+    "purpose": "Maintain exact caller-owned list authority and one temporary typed result lifetime.",
+    "tests": [
+      {
+        "case": "it_keeps_siblings_busy_and_borrows_only_the_exact_parent_grant",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_retains_selected_owner_protection_and_rejects_alias_reentry",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_finalizes_owned_results_once_and_expires_escaped_handles",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_keeps_reference_results_nonowning_and_preserves_target_activity",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_cleans_failed_results_without_repeating_destruction_or_leaking_grants",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/list-service/Makefile": {
+    "contract": "docs/implementation/list-service-frames.md",
+    "purpose": "Maintain exact caller-owned list authority and one temporary typed result lifetime.",
+    "tests": [
+      {
+        "case": "it_keeps_siblings_busy_and_borrows_only_the_exact_parent_grant",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_retains_selected_owner_protection_and_rejects_alias_reentry",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_finalizes_owned_results_once_and_expires_escaped_handles",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_keeps_reference_results_nonowning_and_preserves_target_activity",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_cleans_failed_results_without_repeating_destruction_or_leaking_grants",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      },
+      {
+        "case": "it_borrows_only_aligned_bounded_lexical_frame_slots",
+        "command": "make -C tests/unit/runtime/list-service",
+        "source": "tests/unit/runtime/list-service/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/list-frame-layout/main.c": {
+    "contract": "docs/implementation/list-service-frames.md",
+    "purpose": "Compile actual typed lexical service and method storage from resolved source plans.",
+    "tests": [
+      {
+        "case": "it_compiles_typed_lexical_list_service_and_method_storage",
+        "command": "make -C tests/unit/codegen/list-frame-layout",
+        "source": "tests/unit/codegen/list-frame-layout/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/list-frame-layout/Makefile": {
+    "contract": "docs/implementation/list-service-frames.md",
+    "purpose": "Compile actual typed lexical service and method storage from resolved source plans.",
+    "tests": [
+      {
+        "case": "it_compiles_typed_lexical_list_service_and_method_storage",
+        "command": "make -C tests/unit/codegen/list-frame-layout",
+        "source": "tests/unit/codegen/list-frame-layout/main.c"
       }
     ]
   }

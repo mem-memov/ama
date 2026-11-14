@@ -44,8 +44,8 @@ typedef struct {
     size_t block_count;
     size_t directory_capacity;
     size_t free_head;
-    /** Higher-layer list authority flag; membership edits never acquire/release it. */
-    bool acquired;
+    /** Exact higher-layer linear frame address; membership edits never grant authority. */
+    const void *acquisition;
 } AmaMembershipList;
 
 /** Initialize a new owner/field lifetime, with nonzero testable counter limit.
