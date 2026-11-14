@@ -39893,6 +39893,36 @@
         "case": "it_keeps_each_ancestor_acquired_and_restores_it_without_allocating",
         "command": "make -C tests/unit/runtime result-calls",
         "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_distinguishes_duplicate_targets_and_rejects_reused_occurrences",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_record_addresses_and_bijections_through_growth_and_edits",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_replaces_reference_memberships_atomically_and_resets_incarnations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_permanently_retires_exhausted_record_generations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_empty_state_and_output_on_every_initial_allocation_failure",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_live_occurrences_on_failed_replacement_and_invalid_bounds",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
       }
     ]
   },
@@ -63099,6 +63129,438 @@
         "case": "it_reports_only_the_current_caller_after_copying_a_continuation",
         "command": "make -C tests/unit/codegen/continuations",
         "source": "tests/unit/codegen/continuations/main.c"
+      }
+    ]
+  },
+  "src/runtime/lists/membership/selection.c": {
+    "contract": "docs/implementation/list-membership.md",
+    "purpose": "Maintain and verify exact collection occurrences, stable record positions, monotone identity history and prepared publication.",
+    "tests": [
+      {
+        "case": "it_distinguishes_duplicate_targets_and_rejects_reused_occurrences",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_record_addresses_and_bijections_through_growth_and_edits",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_replaces_reference_memberships_atomically_and_resets_incarnations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_permanently_retires_exhausted_record_generations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_empty_state_and_output_on_every_initial_allocation_failure",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_live_occurrences_on_failed_replacement_and_invalid_bounds",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      }
+    ]
+  },
+  "src/runtime/lists/membership/internal.h": {
+    "contract": "docs/implementation/list-membership.md",
+    "purpose": "Maintain and verify exact collection occurrences, stable record positions, monotone identity history and prepared publication.",
+    "tests": [
+      {
+        "case": "it_distinguishes_duplicate_targets_and_rejects_reused_occurrences",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_record_addresses_and_bijections_through_growth_and_edits",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_replaces_reference_memberships_atomically_and_resets_incarnations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_permanently_retires_exhausted_record_generations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_empty_state_and_output_on_every_initial_allocation_failure",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_live_occurrences_on_failed_replacement_and_invalid_bounds",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/runtime/lists/membership/membership.h": {
+    "contract": "docs/implementation/list-membership.md",
+    "purpose": "Maintain and verify exact collection occurrences, stable record positions, monotone identity history and prepared publication.",
+    "tests": [
+      {
+        "case": "it_distinguishes_duplicate_targets_and_rejects_reused_occurrences",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_record_addresses_and_bijections_through_growth_and_edits",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_replaces_reference_memberships_atomically_and_resets_incarnations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_permanently_retires_exhausted_record_generations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_empty_state_and_output_on_every_initial_allocation_failure",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_live_occurrences_on_failed_replacement_and_invalid_bounds",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/runtime/lists/membership/lifetime.c": {
+    "contract": "docs/implementation/list-membership.md",
+    "purpose": "Maintain and verify exact collection occurrences, stable record positions, monotone identity history and prepared publication.",
+    "tests": [
+      {
+        "case": "it_distinguishes_duplicate_targets_and_rejects_reused_occurrences",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_record_addresses_and_bijections_through_growth_and_edits",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_replaces_reference_memberships_atomically_and_resets_incarnations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_permanently_retires_exhausted_record_generations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_empty_state_and_output_on_every_initial_allocation_failure",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_live_occurrences_on_failed_replacement_and_invalid_bounds",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      }
+    ]
+  },
+  "src/runtime/lists/membership/order/replace.c": {
+    "contract": "docs/implementation/list-membership.md",
+    "purpose": "Maintain and verify exact collection occurrences, stable record positions, monotone identity history and prepared publication.",
+    "tests": [
+      {
+        "case": "it_distinguishes_duplicate_targets_and_rejects_reused_occurrences",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_record_addresses_and_bijections_through_growth_and_edits",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_replaces_reference_memberships_atomically_and_resets_incarnations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_permanently_retires_exhausted_record_generations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_empty_state_and_output_on_every_initial_allocation_failure",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_live_occurrences_on_failed_replacement_and_invalid_bounds",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      }
+    ]
+  },
+  "src/runtime/lists/membership/order/edit.c": {
+    "contract": "docs/implementation/list-membership.md",
+    "purpose": "Maintain and verify exact collection occurrences, stable record positions, monotone identity history and prepared publication.",
+    "tests": [
+      {
+        "case": "it_distinguishes_duplicate_targets_and_rejects_reused_occurrences",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_record_addresses_and_bijections_through_growth_and_edits",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_replaces_reference_memberships_atomically_and_resets_incarnations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_permanently_retires_exhausted_record_generations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_empty_state_and_output_on_every_initial_allocation_failure",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_live_occurrences_on_failed_replacement_and_invalid_bounds",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      }
+    ]
+  },
+  "src/runtime/lists/membership/pool/storage.c": {
+    "contract": "docs/implementation/list-membership.md",
+    "purpose": "Maintain and verify exact collection occurrences, stable record positions, monotone identity history and prepared publication.",
+    "tests": [
+      {
+        "case": "it_distinguishes_duplicate_targets_and_rejects_reused_occurrences",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_record_addresses_and_bijections_through_growth_and_edits",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_replaces_reference_memberships_atomically_and_resets_incarnations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_permanently_retires_exhausted_record_generations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_empty_state_and_output_on_every_initial_allocation_failure",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_live_occurrences_on_failed_replacement_and_invalid_bounds",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/membership/main.c": {
+    "contract": "docs/implementation/list-membership.md",
+    "purpose": "Maintain and verify exact collection occurrences, stable record positions, monotone identity history and prepared publication.",
+    "tests": [
+      {
+        "case": "it_distinguishes_duplicate_targets_and_rejects_reused_occurrences",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_record_addresses_and_bijections_through_growth_and_edits",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_replaces_reference_memberships_atomically_and_resets_incarnations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_permanently_retires_exhausted_record_generations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_empty_state_and_output_on_every_initial_allocation_failure",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_live_occurrences_on_failed_replacement_and_invalid_bounds",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/membership/failures.c": {
+    "contract": "docs/implementation/list-membership.md",
+    "purpose": "Maintain and verify exact collection occurrences, stable record positions, monotone identity history and prepared publication.",
+    "tests": [
+      {
+        "case": "it_permanently_retires_exhausted_record_generations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_empty_state_and_output_on_every_initial_allocation_failure",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_live_occurrences_on_failed_replacement_and_invalid_bounds",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/membership/common.c": {
+    "contract": "docs/implementation/list-membership.md",
+    "purpose": "Maintain and verify exact collection occurrences, stable record positions, monotone identity history and prepared publication.",
+    "tests": [
+      {
+        "case": "it_distinguishes_duplicate_targets_and_rejects_reused_occurrences",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_record_addresses_and_bijections_through_growth_and_edits",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_replaces_reference_memberships_atomically_and_resets_incarnations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_permanently_retires_exhausted_record_generations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_empty_state_and_output_on_every_initial_allocation_failure",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_live_occurrences_on_failed_replacement_and_invalid_bounds",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/membership/Makefile": {
+    "contract": "docs/implementation/list-membership.md",
+    "purpose": "Maintain and verify exact collection occurrences, stable record positions, monotone identity history and prepared publication.",
+    "tests": [
+      {
+        "case": "it_distinguishes_duplicate_targets_and_rejects_reused_occurrences",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_record_addresses_and_bijections_through_growth_and_edits",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_replaces_reference_memberships_atomically_and_resets_incarnations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_permanently_retires_exhausted_record_generations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_empty_state_and_output_on_every_initial_allocation_failure",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_live_occurrences_on_failed_replacement_and_invalid_bounds",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/membership/identity.c": {
+    "contract": "docs/implementation/list-membership.md",
+    "purpose": "Maintain and verify exact collection occurrences, stable record positions, monotone identity history and prepared publication.",
+    "tests": [
+      {
+        "case": "it_distinguishes_duplicate_targets_and_rejects_reused_occurrences",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_preserves_record_addresses_and_bijections_through_growth_and_edits",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
+      },
+      {
+        "case": "it_replaces_reference_memberships_atomically_and_resets_incarnations",
+        "command": "make -C tests/unit/runtime/membership",
+        "source": "tests/unit/runtime/membership/main.c"
       }
     ]
   }

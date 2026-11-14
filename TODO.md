@@ -1649,12 +1649,24 @@ Contracts: [continuations](spec/language/continuations.md),
 Contracts: [lists](spec/language/lists.md),
 [foreach scope](spec/language/declarations.md#name-06).
 
-- [ ] **T075 — Implement checked list membership records.** Needs: T037, T054.
+- [x] **T075 — Implement checked list membership records.** Needs: T037, T054.
   Replace or adapt reusable order storage to contiguous membership identifiers
   and stable record pools with current positions. Test duplicate reference
   targets as distinct entries, membership generations and collection incarnations.
   Permit compact local order indices with exact identity reconstruction; saved
   membership/origin references retain every required generation and incarnation.
+  Evidence: [checked list memberships](docs/implementation/list-membership.md).
+  A new metadata component supplies contiguous size_t order indices, stable
+  block-pooled records and full saved owner/field/incarnation/index/generation
+  identities. Prepared insertion and reference replacement publish atomically;
+  shifts/swaps preserve occurrence identity, removal advances generations or
+  permanently retires exhausted slots, reset checks incarnation before effects.
+  Six independent cases exercise duplicates, record-address stability, exact
+  inverse positions, complete namespace checks, counter exhaustion and allocation
+  failure with counted resources. Strict and ASan/UBSan component runs passed;
+  full strict tests, all 1197 input coverage, links and reproducible Doxygen are
+  checked before commit. Generated list storage integration belongs to T076;
+  list acquisition and cursor publication are not claimed by this component.
 - [ ] **T076 — Implement indexed selection and complete list copies.** Needs:
   T065, T075. Check conversion/bounds/membership before target effects and preserve
   exact owned/reference transfer rules. Integrate inferred list receivers and
