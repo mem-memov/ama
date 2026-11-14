@@ -1539,10 +1539,24 @@ their parsed and typed plans are already available from Phases 3–5.
   Coverage includes all 1146 maintained inputs; local links passed and final
   Doxygen reproducibility is checked before commit. Foreach and intrinsic-list
   adapters remain guarded; no new syntax, implicit truth or cached target added.
-- [ ] **T069 — Accept the synchronous language slice.** Needs: T068. Run
+- [x] **T069 — Accept the synchronous language slice.** Needs: T068. Run
   multi-instance state/method/control examples and source-to-generated-program
   failure compositions. Check constant/default initialization order, no hidden
   retries and no unaccepted syntax introduced by implementation shortcuts.
+  Evidence: [synchronous slice](docs/implementation/synchronous-slice.md) and the
+  [constructor project acceptance](tests/integration/objects/main.c).
+  The real CLI checks four active entries and verifies/publishes six normal or
+  target-sanitized executables. Two objects capture independent owned method
+  states and resume their actual retained results; original/shared seeds remain
+  independent. Exact effects account for eighteen native resource credits,
+  interface/default replacement order and reverse cleanup. Body failure bypasses
+  its acquisition handler; invalid literal construction executes no body/default
+  fallback. Complete foreach IR remains explicitly rejected before publication.
+  Spaced module/variable names and output paths preserve exact argument identity.
+  Strict independent and parent integration targets passed, including actual
+  ASan+UBSan programs. All 1164 maintained inputs have coverage and the native
+  header has a standalone probe; links passed and final Doxygen reproducibility
+  is checked before commit. No additional executor or language syntax was added.
 
 ## Phase 9. Saved execution positions and independent continuation copies
 

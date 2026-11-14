@@ -1,0 +1,6 @@
+# Default, literal and clone construction each grant exactly one destruction credit.
++ initialize
+- destroy
+| literal
+= clone
+? active

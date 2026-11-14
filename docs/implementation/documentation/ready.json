@@ -28443,6 +28443,11 @@
         "case": "it_runs_the_minimal_project_under_address_and_undefined_behavior_sanitizers",
         "command": "make -C tests/integration minimal",
         "source": "tests/integration/minimal/main.c"
+      },
+      {
+        "case": "it_runs_independent_captured_methods_and_complete_resource_cleanup",
+        "command": "make -C tests/integration objects",
+        "source": "tests/integration/objects/main.c"
       }
     ]
   },
@@ -62122,6 +62127,552 @@
         "case": "it_selects_an_indexed_terminal_condition_using_the_caller_index_once",
         "command": "make -C tests/unit/codegen/loops",
         "source": "tests/unit/codegen/loops/main.c"
+      }
+    ]
+  },
+  "tests/integration/objects/Makefile": {
+    "contract": "docs/implementation/synchronous-slice.md",
+    "purpose": "Accept captured method state, explicit continuations, native resource ownership and real CLI failure boundaries.",
+    "tests": [
+      {
+        "case": "it_checks_the_constructor_project_and_complete_failure_entries",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_independent_captured_methods_and_complete_resource_cleanup",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_captured_methods_under_target_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_reports_body_failure_without_running_an_acquisition_handler",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_does_not_retry_failed_literal_construction",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      }
+    ]
+  },
+  "tests/integration/objects/common.c": {
+    "contract": "docs/implementation/synchronous-slice.md",
+    "purpose": "Accept captured method state, explicit continuations, native resource ownership and real CLI failure boundaries.",
+    "tests": [
+      {
+        "case": "it_checks_the_constructor_project_and_complete_failure_entries",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_independent_captured_methods_and_complete_resource_cleanup",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_captured_methods_under_target_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_reports_body_failure_without_running_an_acquisition_handler",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_does_not_retry_failed_literal_construction",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      }
+    ]
+  },
+  "tests/integration/objects/expected.txt": {
+    "contract": "docs/implementation/synchronous-slice.md",
+    "purpose": "Accept captured method state, explicit continuations, native resource ownership and real CLI failure boundaries.",
+    "tests": [
+      {
+        "case": "it_checks_the_constructor_project_and_complete_failure_entries",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_independent_captured_methods_and_complete_resource_cleanup",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_captured_methods_under_target_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_reports_body_failure_without_running_an_acquisition_handler",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_does_not_retry_failed_literal_construction",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      }
+    ]
+  },
+  "tests/integration/objects/main.c": {
+    "contract": "docs/implementation/synchronous-slice.md",
+    "purpose": "Accept captured method state, explicit continuations, native resource ownership and real CLI failure boundaries.",
+    "tests": [
+      {
+        "case": "it_checks_the_constructor_project_and_complete_failure_entries",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_independent_captured_methods_and_complete_resource_cleanup",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_captured_methods_under_target_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_reports_body_failure_without_running_an_acquisition_handler",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_does_not_retry_failed_literal_construction",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      }
+    ]
+  },
+  "tests/integration/objects/project/constants": {
+    "contract": "docs/implementation/synchronous-slice.md",
+    "purpose": "Accept captured method state, explicit continuations, native resource ownership and real CLI failure boundaries.",
+    "tests": [
+      {
+        "case": "it_checks_the_constructor_project_and_complete_failure_entries",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_independent_captured_methods_and_complete_resource_cleanup",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_captured_methods_under_target_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_reports_body_failure_without_running_an_acquisition_handler",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_does_not_retry_failed_literal_construction",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      }
+    ]
+  },
+  "tests/integration/objects/project/counter": {
+    "contract": "docs/implementation/synchronous-slice.md",
+    "purpose": "Accept captured method state, explicit continuations, native resource ownership and real CLI failure boundaries.",
+    "tests": [
+      {
+        "case": "it_checks_the_constructor_project_and_complete_failure_entries",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_independent_captured_methods_and_complete_resource_cleanup",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_captured_methods_under_target_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_reports_body_failure_without_running_an_acquisition_handler",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_does_not_retry_failed_literal_construction",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      }
+    ]
+  },
+  "tests/integration/objects/project/counter.abi": {
+    "contract": "docs/implementation/synchronous-slice.md",
+    "purpose": "Accept captured method state, explicit continuations, native resource ownership and real CLI failure boundaries.",
+    "tests": [
+      {
+        "case": "it_checks_the_constructor_project_and_complete_failure_entries",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_independent_captured_methods_and_complete_resource_cleanup",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_captured_methods_under_target_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_reports_body_failure_without_running_an_acquisition_handler",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_does_not_retry_failed_literal_construction",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      }
+    ]
+  },
+  "tests/integration/objects/project/counter.c": {
+    "contract": "docs/implementation/synchronous-slice.md",
+    "purpose": "Accept captured method state, explicit continuations, native resource ownership and real CLI failure boundaries.",
+    "tests": [
+      {
+        "case": "it_checks_the_constructor_project_and_complete_failure_entries",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_independent_captured_methods_and_complete_resource_cleanup",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_captured_methods_under_target_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_reports_body_failure_without_running_an_acquisition_handler",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_does_not_retry_failed_literal_construction",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      }
+    ]
+  },
+  "tests/integration/objects/project/counter.h": {
+    "contract": "docs/implementation/synchronous-slice.md",
+    "purpose": "Accept captured method state, explicit continuations, native resource ownership and real CLI failure boundaries.",
+    "tests": [
+      {
+        "case": "it_checks_the_constructor_project_and_complete_failure_entries",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_independent_captured_methods_and_complete_resource_cleanup",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_captured_methods_under_target_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_reports_body_failure_without_running_an_acquisition_handler",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_does_not_retry_failed_literal_construction",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-include",
+      "stddef.h",
+      "-DAMA_NATIVE(name)=ama_documentation_##name",
+      "-"
+    ]
+  },
+  "tests/integration/objects/project/factory": {
+    "contract": "docs/implementation/synchronous-slice.md",
+    "purpose": "Accept captured method state, explicit continuations, native resource ownership and real CLI failure boundaries.",
+    "tests": [
+      {
+        "case": "it_checks_the_constructor_project_and_complete_failure_entries",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_independent_captured_methods_and_complete_resource_cleanup",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_captured_methods_under_target_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_reports_body_failure_without_running_an_acquisition_handler",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_does_not_retry_failed_literal_construction",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      }
+    ]
+  },
+  "tests/integration/objects/project/failure body": {
+    "contract": "docs/implementation/synchronous-slice.md",
+    "purpose": "Accept captured method state, explicit continuations, native resource ownership and real CLI failure boundaries.",
+    "tests": [
+      {
+        "case": "it_checks_the_constructor_project_and_complete_failure_entries",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_reports_body_failure_without_running_an_acquisition_handler",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      }
+    ]
+  },
+  "tests/integration/objects/project/failure construction": {
+    "contract": "docs/implementation/synchronous-slice.md",
+    "purpose": "Accept captured method state, explicit continuations, native resource ownership and real CLI failure boundaries.",
+    "tests": [
+      {
+        "case": "it_checks_the_constructor_project_and_complete_failure_entries",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_does_not_retry_failed_literal_construction",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      }
+    ]
+  },
+  "tests/integration/objects/project/main": {
+    "contract": "docs/implementation/synchronous-slice.md",
+    "purpose": "Accept captured method state, explicit continuations, native resource ownership and real CLI failure boundaries.",
+    "tests": [
+      {
+        "case": "it_checks_the_constructor_project_and_complete_failure_entries",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_independent_captured_methods_and_complete_resource_cleanup",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_captured_methods_under_target_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_reports_body_failure_without_running_an_acquisition_handler",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_does_not_retry_failed_literal_construction",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      }
+    ]
+  },
+  "tests/integration/objects/project/method": {
+    "contract": "docs/implementation/synchronous-slice.md",
+    "purpose": "Accept captured method state, explicit continuations, native resource ownership and real CLI failure boundaries.",
+    "tests": [
+      {
+        "case": "it_checks_the_constructor_project_and_complete_failure_entries",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_independent_captured_methods_and_complete_resource_cleanup",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_captured_methods_under_target_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_reports_body_failure_without_running_an_acquisition_handler",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_does_not_retry_failed_literal_construction",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      }
+    ]
+  },
+  "tests/integration/objects/project/unsupported": {
+    "contract": "docs/implementation/synchronous-slice.md",
+    "purpose": "Accept captured method state, explicit continuations, native resource ownership and real CLI failure boundaries.",
+    "tests": [
+      {
+        "case": "it_checks_the_constructor_project_and_complete_failure_entries",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      }
+    ]
+  },
+  "tests/integration/objects/support/execution.c": {
+    "contract": "docs/implementation/synchronous-slice.md",
+    "purpose": "Accept captured method state, explicit continuations, native resource ownership and real CLI failure boundaries.",
+    "tests": [
+      {
+        "case": "it_runs_independent_captured_methods_and_complete_resource_cleanup",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_runs_captured_methods_under_target_address_and_undefined_behavior_sanitizers",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      }
+    ]
+  },
+  "tests/integration/objects/support/failures.c": {
+    "contract": "docs/implementation/synchronous-slice.md",
+    "purpose": "Accept captured method state, explicit continuations, native resource ownership and real CLI failure boundaries.",
+    "tests": [
+      {
+        "case": "it_reports_body_failure_without_running_an_acquisition_handler",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_does_not_retry_failed_literal_construction",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      }
+    ]
+  },
+  "tests/integration/objects/support/verification.c": {
+    "contract": "docs/implementation/synchronous-slice.md",
+    "purpose": "Accept captured method state, explicit continuations, native resource ownership and real CLI failure boundaries.",
+    "tests": [
+      {
+        "case": "it_checks_the_constructor_project_and_complete_failure_entries",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
+      },
+      {
+        "case": "it_rejects_unavailable_traversal_execution_before_publication",
+        "command": "make -C tests/integration/objects",
+        "source": "tests/integration/objects/main.c"
       }
     ]
   }

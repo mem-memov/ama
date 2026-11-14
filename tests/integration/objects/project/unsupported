@@ -1,0 +1,9 @@
+# Complete static traversal IR must not be published through a missing runtime adapter.
+@!
+items[]
+.counter
+ .constants.seed
+items[item&]
+{
+ item& !
+}

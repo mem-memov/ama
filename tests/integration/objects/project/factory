@@ -1,0 +1,14 @@
+# The constructor owns its seed and two independently captured method states.
+@<
+seed
+.counter
+@>
+first
+.method
+second
+.method
+@!
+first !
+ < seed
+second !
+ < seed

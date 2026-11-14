@@ -1,0 +1,5 @@
+# Shared values initialize before executable instances; they never execute a body.
+@=
+seed
+.counter
+ |0
