@@ -135,3 +135,8 @@ loops, native intrinsic outputs, 128-deep selected chains and traversals,
 independent plan determinism, deliberately damaged layouts and every storage
 allocation failure. Existing frontend/IR/execution suites verify that adding this
 schema does not bypass guards or alter already supported behavior.
+
+T066 materializes fixed operation slots for
+[ordinary direct-result execution](direct-result-execution.md). These transient
+slots are outside declared field/native value cloning; traversal cursor/cell
+materialization remains a separate execution task.

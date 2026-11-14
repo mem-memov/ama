@@ -85,10 +85,11 @@ fallback or guessed target identity.
 
 T044 now lowers the full tree to [explicit frame/action continuations](structured-lowering.md).
 The [execution-capability guard](../../src/codegen/project/capabilities.c) rejects
-C generation until the corresponding runtime adapters are implemented. Static
+C generation for intrinsic list methods, header loops and traversals until their
+corresponding runtime adapters are implemented. T066 implements
+[ordinary direct-result execution](direct-result-execution.md). Static
 checking publishes a complete typed plan and never drops selected actions or
-turns a selected field into a caller-local access. Self execution retains its
-separate final-identity capability check at that same artifact boundary.
+turns a selected field into a caller-local access. T063 separately connects self sources to final runtime identity.
 
 ## Evidence
 
@@ -105,7 +106,8 @@ literal inputs, indices, sibling actions and a handler is failed independently;
 no partial program becomes resolved and every owner unwinds.
 
 `make -C tests/unit/compiler/check` proves that a valid tree completes semantic and
-constant analysis but fails planning before publishing executable storage. Existing
+constant analysis and a complete validated plan before executable storage is
+published. The remaining backend capability guards apply only to unsupported forms. Existing
 ordinary-call, source-order inference, parser and full-project suites remain part
 of the composed verification. These checks certify static selection, not runtime
 state changes, protected lifetimes or refusal dispatch of the new trees.

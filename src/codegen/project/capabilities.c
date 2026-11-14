@@ -4,8 +4,9 @@
  * resolved IR without executing it. [CALL-09](../../../spec/language/calls-and-results.md#call-09),
  * [FLOW-04](../../../spec/language/control-flow.md#flow-04),
  * [FLOW-05](../../../spec/language/lists.md#flow-05) forbid
- * publishing C that drops selected actions or cursor state. Self sources already
- * have a complete runtime and C descriptor adapter.
+ * publishing C that drops selected actions or cursor state. Ordinary selected
+ * instance trees and self sources have complete runtime/C adapters; intrinsic
+ * list operations, header loops and traversals retain their explicit guards.
  */
 #include "codegen/internal.h"
 /** Retain the exact original site and report unsupported execution before creating any artifact. */
@@ -21,8 +22,9 @@ bool codegen_validate_execution(NativeScaffold *scaffold) {
             if (node->kind == AST_FOREACH || (node->kind == AST_LOOP && node->as.control.command != NULL)) {
                 return unsupported(scaffold, node->span, "Traversal and condition-chain IR require their execution adapters");
             }
-            if (node->kind == AST_CALL && node->as.call.has_selected) {
-                return unsupported(scaffold, node->span, "Direct result-selection IR requires its execution adapter");
+            if (node->kind == AST_CALL && (statement->operation_kind == SEMANTIC_LIST_SERVICE_OPERATION
+                    || statement->operation_kind == SEMANTIC_LIST_METHOD_OPERATION)) {
+                return unsupported(scaffold, node->span, "Intrinsic list operation IR requires its execution adapter");
             }
         }
     }

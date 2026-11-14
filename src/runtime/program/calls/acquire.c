@@ -4,8 +4,11 @@
  *
  * [CALL-04](../../../../spec/language/calls-and-results.md#call-04)
  * Record only supported target acquisition refusals; protocol/technical failures cannot be guessed from their numeric code alone.
+ * [CALL-09](../../../../spec/language/calls-and-results.md#call-09) selects
+ * children within protected parents without changing the caller operand domain.
  */
 #include "call.h"
+#include "runtime/program/values/selection/internal.h"
 
 /** Resolve a local handle through the exact world type and public pool lookup; borrowed cell output is valid only after success. */
 AmaStatus ama_program_cell(AmaProgram *program, AmaHandle handle, AmaPoolCell **cell) {
@@ -18,6 +21,18 @@ static AmaStatus ama_call_refusal(AmaPoolCell *caller, AmaStatus status, bool *r
     AmaStatus recorded = ama_service_record_refusal(&caller->metadata.service, status);
     *refused = recorded.code == AMA_OK;
     return *refused ? status : recorded;
+}
+
+/** Validate selected identity/availability before changing the caller or target.
+ * Parent protection does not authorize reentry through an ancestor reference.
+ */
+static AmaStatus ama_call_target(AmaProgram *program, AmaPoolCell *context,
+    const AmaProgramValue *target, AmaAccessMode mode, AmaPoolCell **cell, bool *refused) {
+    if (target->form != AMA_FIELD_OWNED && target->form != AMA_FIELD_REFERENCE) { return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0); }
+    if (target->handle.generation == 0) { return ama_call_refusal(context, ama_status_make(AMA_EMPTY_REFERENCE, NULL, 0), refused); }
+    AmaStatus status = ama_program_cell(program, target->handle, cell);
+    if (status.code == AMA_OK) { status = ama_instance_access(&(*cell)->metadata, mode); }
+    return status.code == AMA_OK ? status : ama_call_refusal(context, status, refused);
 }
 
 /** Select the target once under the world guard, preserve explicit refusal provenance and acquire only a valid scalar available instance. Store outgoing identity and previous activity on the caller. */
@@ -34,12 +49,41 @@ AmaStatus ama_program_acquire(AmaProgram *program, AmaHandle caller, const AmaPr
     status = ama_program_select_target(program, caller, invocation->target, &target, refused);
     program->world->operation_active = false;
     if (status.code != AMA_OK) { return *refused ? ama_call_refusal(context,status,refused) : status; }
-    if (target.form != AMA_FIELD_OWNED && target.form != AMA_FIELD_REFERENCE) { return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0); }
-    if (target.handle.generation == 0) { return ama_call_refusal(context,ama_status_make(AMA_EMPTY_REFERENCE, NULL, 0),refused); }
     AmaPoolCell *cell = NULL;
-    status = ama_program_cell(program, target.handle, &cell);
-    if (status.code == AMA_OK) { status = ama_instance_access(&cell->metadata, invocation->mode); }
-    if (status.code != AMA_OK) { return ama_call_refusal(context,status,refused); }
+    status = ama_call_target(program, context, &target, invocation->mode, &cell, refused);
+    if (status.code != AMA_OK) { return status; }
+    context->metadata.service.outgoing = target.handle;
+    context->metadata.service.outgoing_previous = cell->metadata.service.activity;
+    cell->metadata.service.activity = AMA_INSTANCE_ACQUIRED;
+    return ama_status_success();
+}
+
+/** Select once while the parent remains protected. Only accepted acquisition
+ * activates the fixed caller slot; a refused child leaves no partial frame.
+ * [CALL-09](../../../../spec/language/calls-and-results.md#call-09) keeps indices
+ * and later argument/receiver evaluation in the initiating caller.
+ */
+AmaStatus ama_program_acquire_result(AmaProgram *program, AmaHandle caller,
+    const AmaProgramInvocation *invocation, size_t offset, bool *refused) {
+    *refused = false;
+    if (program->world->operation_active || program->world->failed) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
+    AmaProgramFrame *frame = NULL;
+    AmaPoolCell *context = NULL, *cell = NULL;
+    AmaStatus status = ama_program_frame(program, caller, offset, &frame);
+    if (status.code != AMA_OK) { return status; }
+    status = ama_program_cell(program, caller, &context);
+    if (status.code != AMA_OK) { return status; }
+    if (frame->active || ama_handle_is_empty(context->metadata.service.outgoing)) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
+    AmaProgramValue target = {0};
+    program->world->operation_active = true;
+    status = ama_program_access_from(program, caller, context->metadata.service.outgoing,
+        NULL, invocation->target, false, &target, refused);
+    program->world->operation_active = false;
+    if (status.code != AMA_OK) { return *refused ? ama_call_refusal(context, status, refused) : status; }
+    status = ama_call_target(program, context, &target, invocation->mode, &cell, refused);
+    if (status.code != AMA_OK) { return status; }
+    *frame = (AmaProgramFrame){.active = true, .parent = context->metadata.service.outgoing,
+        .previous = context->metadata.service.outgoing_previous};
     context->metadata.service.outgoing = target.handle;
     context->metadata.service.outgoing_previous = cell->metadata.service.activity;
     cell->metadata.service.activity = AMA_INSTANCE_ACQUIRED;

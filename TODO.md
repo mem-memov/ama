@@ -1487,10 +1487,25 @@ their parsed and typed plans are already available from Phases 3–5.
   ASan+UBSan passed. All 1116 maintained inputs have coverage; local links passed
   and final Doxygen reproducibility is checked before commit. Existing typed
   transfer paths already supply the implementation; no duplicate executor added.
-- [ ] **T066 — Execute direct-result operation trees.** Needs: T065. Act on
+- [x] **T066 — Execute direct-result operation trees.** Needs: T065. Act on
   actual retained result storage, follow returned references, sequence sibling
   methods depth-first and keep parent protections until all actions finish.
   Test stateful constructor/method examples with no intermediate clone.
+  Evidence: [direct-result execution](docs/implementation/direct-result-execution.md).
+  Generated fixed caller slots retain enclosing acquisitions while selected
+  owned/reference/indexed targets execute in place. Result bases use the parent;
+  all nested index operands, arguments and receivers retain the initiating caller.
+  Actual returns/yields retire body connections before depth-first output actions;
+  selected release restores the enclosing target and clears its transient slot.
+  Slots are excluded from native/declared value cloning. Independent component
+  tests verify every retained ancestor, exact restoration, pre-mutation refusal,
+  invalid frame offsets and allocation-free transitions. Five compiled cases
+  verify persistent method state, a failing clone sentinel, caller indices,
+  referenced/owned resume, technical decoder failure and ancestor Busy release.
+  Full strict tests and generated-program/runtime ASan+UBSan passed. Coverage
+  includes all 1129 maintained inputs; local links passed and final Doxygen
+  reproducibility is checked before commit. Intrinsic list/cursor/header adapters
+  remain explicitly guarded; broader handler acceptance follows in T067.
 - [ ] **T067 — Complete local refusal-handler unwinding.** Needs: T066. Release
   only the initiating operation tree before its failing link's handler, skip
   unfinished siblings and retain prior committed effects. Test empty handlers,

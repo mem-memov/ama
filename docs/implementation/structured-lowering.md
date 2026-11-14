@@ -175,8 +175,9 @@ allocation remains owned by the plan arena until destruction.
 
 Static frontend checking now publishes a complete validated plan for these forms,
 including typed self sources. [C generation](../../src/codegen/project/capabilities.c)
-rejects unavailable result-tree, header-loop, traversal or final-self execution
-adapters before allocating its model or staging any artifact. This replaces the
+rejects unavailable header-loop, traversal and intrinsic-list execution adapters
+before allocating its model or staging any artifact. T063 supplies final-self
+sources; T066 supplies [ordinary direct-result execution](direct-result-execution.md). This replaces the
 old planning-phase execution barriers; it preserves strict artifact correctness
 without discarding valid source IR. Existing scalar-call C helpers retain their
 supported semantics, including their completed-return retirement marker.
@@ -202,4 +203,5 @@ handler breaks, foreach reuse/exits/resume, 128-deep trees/traversals, damaged
 metadata and every lowering allocation failure. [Frontend tests](../../tests/unit/compiler/check/main.c)
 accept complete IR with intentionally uncompilable native headers. [Assembly tests](../../tests/unit/codegen/assembly/main.c)
 prove execution-capability rejection preserves the original source site and
-allocates no model/artifacts. Runtime conformance remains the later execution tasks.
+allocates no model/artifacts for the remaining guarded forms. T066 adds compiled
+ordinary-tree conformance; loop/cursor and wider handler acceptance remain later tasks.

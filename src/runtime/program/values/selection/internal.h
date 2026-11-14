@@ -4,6 +4,8 @@
  *
  * [CALL-08](../../../../../spec/language/calls-and-results.md#call-08)
  * requires exact resolved access trees rather than spelling or status heuristics.
+ * [CALL-09](../../../../../spec/language/calls-and-results.md#call-09) keeps
+ * result selection and index operand lookup in their explicit distinct domains.
  */
 #ifndef AMA_VALUE_SELECTION_INTERNAL_H
 #define AMA_VALUE_SELECTION_INTERNAL_H
@@ -32,4 +34,9 @@ AmaStatus ama_program_index(AmaProgramValue *, size_t);
  */
 AmaStatus ama_program_access(AmaProgram *, AmaHandle, const AmaConstantValue *,
     const AmaProgramAccess *, bool, AmaProgramValue *, bool *selection_refusal);
+/** Use a protected result owner for the outer base only; nested index operands
+ * retain the caller domain. Other effects/output/refusal contracts match access.
+ */
+AmaStatus ama_program_access_from(AmaProgram *, AmaHandle caller, AmaHandle owner,
+    const AmaConstantValue *, const AmaProgramAccess *, bool, AmaProgramValue *, bool *);
 #endif

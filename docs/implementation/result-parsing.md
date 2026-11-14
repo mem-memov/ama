@@ -4,7 +4,8 @@ T026 implements the structural tree in
 [CALL-09](../../spec/language/calls-and-results.md#call-09). A selected result is
 an operation target, not an ordinary output binding or a new caller variable.
 Parsing records selector paths, exact modes, sibling order and handler ownership;
-[T036](selected-operations.md) supplies result-interface typing; later tasks implement execution.
+[T036](selected-operations.md) supplies result-interface typing;
+[T066](direct-result-execution.md) executes ordinary result trees.
 
 For example:
 
@@ -96,3 +97,7 @@ adapters before staging artifacts. `make -C tests/unit/compiler/check` and
 `make -C tests/unit/codegen/assembly` verify both boundaries. T029 supplies full
 dependency traversal; T027 supplies condition-chain loops and foreach syntax.
 Parser/static success remains separate from runtime adapter support.
+
+T066 now accepts ordinary selected instance trees in generated C; only the
+specific remaining loop/cursor/intrinsic-list adapters retain execution guards.
+See [direct-result execution](direct-result-execution.md) for runtime evidence.

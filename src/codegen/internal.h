@@ -147,6 +147,10 @@ bool codegen_emit_controls(NativeScaffold *, FILE *);
  * is generated labels, not runtime helper dispatch.
  */
 bool codegen_emit_control(NativeScaffold *, FILE *, const ScaffoldType *, const ControlNode *);
+/** Emit a selected acquisition/release or bounded chain abandonment from exact
+ * planned frame ancestry; no source resolution or C-stack activation is used.
+ */
+bool codegen_emit_tree_control(FILE *, const ScaffoldType *, const ControlNode *, const char *name);
 /**
  * Write the exact typed native entry use inside the generated execution function; supported
  * compilation and symbol verification enforce inlining.

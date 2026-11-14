@@ -949,6 +949,26 @@
         "case": "it_unwinds_every_complete_structured_lowering_allocation",
         "command": "make -C tests/unit/planning/structured",
         "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "case": "it_executes_retained_owned_methods_depth_first_without_cloning",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_protects_the_parent_until_a_refused_link_abandons_the_chain",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_keeps_each_ancestor_acquired_and_restores_it_without_allocating",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_refuses_before_parking_and_checks_frame_storage",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
       }
     ]
   },
@@ -1614,6 +1634,26 @@
         "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
         "command": "make -C tests/unit/codegen/contexts",
         "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_retained_owned_methods_depth_first_without_cloning",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_protects_the_parent_until_a_refused_link_abandons_the_chain",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_keeps_each_ancestor_acquired_and_restores_it_without_allocating",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_refuses_before_parking_and_checks_frame_storage",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
       }
     ]
   },
@@ -1846,6 +1886,26 @@
         "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
         "command": "make -C tests/unit/codegen/contexts",
         "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_retained_owned_methods_depth_first_without_cloning",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_protects_the_parent_until_a_refused_link_abandons_the_chain",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_keeps_each_ancestor_acquired_and_restores_it_without_allocating",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_refuses_before_parking_and_checks_frame_storage",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
       }
     ]
   },
@@ -13082,6 +13142,26 @@
         "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
         "command": "make -C tests/unit/codegen/contexts",
         "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_executes_retained_owned_methods_depth_first_without_cloning",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_protects_the_parent_until_a_refused_link_abandons_the_chain",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_keeps_each_ancestor_acquired_and_restores_it_without_allocating",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_refuses_before_parking_and_checks_frame_storage",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
       }
     ]
   },
@@ -19213,6 +19293,26 @@
         "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
         "command": "make -C tests/unit/runtime/ownership-model",
         "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_executes_retained_owned_methods_depth_first_without_cloning",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_protects_the_parent_until_a_refused_link_abandons_the_chain",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_keeps_each_ancestor_acquired_and_restores_it_without_allocating",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_refuses_before_parking_and_checks_frame_storage",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
       }
     ]
   },
@@ -19344,6 +19444,26 @@
         "case": "it_never_destroys_a_failed_native_constructor_with_malformed_transport",
         "command": "make -C tests/unit/runtime/protocols",
         "source": "tests/unit/runtime/protocols/main.c"
+      },
+      {
+        "case": "it_executes_retained_owned_methods_depth_first_without_cloning",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_protects_the_parent_until_a_refused_link_abandons_the_chain",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_keeps_each_ancestor_acquired_and_restores_it_without_allocating",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_refuses_before_parking_and_checks_frame_storage",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
       }
     ]
   },
@@ -21366,6 +21486,26 @@
         "case": "it_records_only_valid_index_refusal_and_ignores_failed_conversion_outputs",
         "command": "make -C tests/unit/runtime/value-selection",
         "source": "tests/unit/runtime/value-selection/main.c"
+      },
+      {
+        "case": "it_executes_retained_owned_methods_depth_first_without_cloning",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_protects_the_parent_until_a_refused_link_abandons_the_chain",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_keeps_each_ancestor_acquired_and_restores_it_without_allocating",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_refuses_before_parking_and_checks_frame_storage",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
       }
     ]
   },
@@ -21469,6 +21609,26 @@
         "case": "it_forms_self_without_acquiring_running_state_and_rejects_invalid_identity",
         "command": "make -C tests/unit/runtime/program-construction",
         "source": "tests/unit/runtime/program-construction/main.c"
+      },
+      {
+        "case": "it_executes_retained_owned_methods_depth_first_without_cloning",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_protects_the_parent_until_a_refused_link_abandons_the_chain",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_keeps_each_ancestor_acquired_and_restores_it_without_allocating",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_refuses_before_parking_and_checks_frame_storage",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
       }
     ]
   },
@@ -32448,6 +32608,11 @@
         "case": "it_keeps_retained_results_and_the_successful_prefix_when_a_later_output_fails",
         "command": "make -C tests/unit/codegen reads",
         "source": "tests/unit/codegen/reads/main.c"
+      },
+      {
+        "case": "it_executes_retained_owned_methods_depth_first_without_cloning",
+        "command": "make -C tests/unit/codegen trees",
+        "source": "tests/unit/codegen/trees/main.c"
       }
     ]
   },
@@ -39463,6 +39628,11 @@
         "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
         "command": "make -C tests/unit/runtime/ownership-model",
         "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_keeps_each_ancestor_acquired_and_restores_it_without_allocating",
+        "command": "make -C tests/unit/runtime result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
       }
     ]
   },
@@ -57395,6 +57565,26 @@
         "case": "it_stops_before_body_and_refusal_handler_when_a_later_parameter_constructor_fails",
         "command": "make -C tests/unit/codegen/preparation",
         "source": "tests/unit/codegen/preparation/main.c"
+      },
+      {
+        "case": "it_executes_retained_owned_methods_depth_first_without_cloning",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_protects_the_parent_until_a_refused_link_abandons_the_chain",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_keeps_each_ancestor_acquired_and_restores_it_without_allocating",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_refuses_before_parking_and_checks_frame_storage",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
       }
     ]
   },
@@ -60982,6 +61172,239 @@
         "case": "it_keeps_retained_results_and_the_successful_prefix_when_a_later_output_fails",
         "command": "make -C tests/unit/codegen/reads",
         "source": "tests/unit/codegen/reads/main.c"
+      }
+    ]
+  },
+  "src/codegen/control/tree.c": {
+    "contract": "docs/implementation/direct-result-execution.md",
+    "purpose": "Retain bounded caller-owned operation frames and release actual selected result targets.",
+    "tests": [
+      {
+        "case": "it_executes_retained_owned_methods_depth_first_without_cloning",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_protects_the_parent_until_a_refused_link_abandons_the_chain",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_keeps_each_ancestor_acquired_and_restores_it_without_allocating",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_refuses_before_parking_and_checks_frame_storage",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/calls/frames.c": {
+    "contract": "docs/implementation/direct-result-execution.md",
+    "purpose": "Retain bounded caller-owned operation frames and release actual selected result targets.",
+    "tests": [
+      {
+        "case": "it_executes_retained_owned_methods_depth_first_without_cloning",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_protects_the_parent_until_a_refused_link_abandons_the_chain",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_keeps_each_ancestor_acquired_and_restores_it_without_allocating",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_refuses_before_parking_and_checks_frame_storage",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/trees/Makefile": {
+    "contract": "docs/implementation/direct-result-execution.md",
+    "purpose": "Verify direct result identity, retained ancestor authority and exact bounded frame transitions.",
+    "tests": [
+      {
+        "case": "it_executes_retained_owned_methods_depth_first_without_cloning",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_follows_returned_references_and_uses_caller_indices",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_keeps_selected_index_protocol_failures_technical",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_resumes_returned_continuations_without_suspending_the_chain",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_protects_the_parent_until_a_refused_link_abandons_the_chain",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/trees/main.c": {
+    "contract": "docs/implementation/direct-result-execution.md",
+    "purpose": "Verify direct result identity, retained ancestor authority and exact bounded frame transitions.",
+    "tests": [
+      {
+        "case": "it_executes_retained_owned_methods_depth_first_without_cloning",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_follows_returned_references_and_uses_caller_indices",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_keeps_selected_index_protocol_failures_technical",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_resumes_returned_continuations_without_suspending_the_chain",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_protects_the_parent_until_a_refused_link_abandons_the_chain",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/trees/support/protection.c": {
+    "contract": "docs/implementation/direct-result-execution.md",
+    "purpose": "Verify direct result identity, retained ancestor authority and exact bounded frame transitions.",
+    "tests": [
+      {
+        "case": "it_protects_the_parent_until_a_refused_link_abandons_the_chain",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/trees/support/resume.c": {
+    "contract": "docs/implementation/direct-result-execution.md",
+    "purpose": "Verify direct result identity, retained ancestor authority and exact bounded frame transitions.",
+    "tests": [
+      {
+        "case": "it_resumes_returned_continuations_without_suspending_the_chain",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/trees/support/selection.c": {
+    "contract": "docs/implementation/direct-result-execution.md",
+    "purpose": "Verify direct result identity, retained ancestor authority and exact bounded frame transitions.",
+    "tests": [
+      {
+        "case": "it_follows_returned_references_and_uses_caller_indices",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_keeps_selected_index_protocol_failures_technical",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/trees/support/state.c": {
+    "contract": "docs/implementation/direct-result-execution.md",
+    "purpose": "Verify direct result identity, retained ancestor authority and exact bounded frame transitions.",
+    "tests": [
+      {
+        "case": "it_executes_retained_owned_methods_depth_first_without_cloning",
+        "command": "make -C tests/unit/codegen/trees",
+        "source": "tests/unit/codegen/trees/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/result-calls/Makefile": {
+    "contract": "docs/implementation/direct-result-execution.md",
+    "purpose": "Verify direct result identity, retained ancestor authority and exact bounded frame transitions.",
+    "tests": [
+      {
+        "case": "it_keeps_each_ancestor_acquired_and_restores_it_without_allocating",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_refuses_before_parking_and_checks_frame_storage",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/result-calls/common.c": {
+    "contract": "docs/implementation/direct-result-execution.md",
+    "purpose": "Verify direct result identity, retained ancestor authority and exact bounded frame transitions.",
+    "tests": [
+      {
+        "case": "it_keeps_each_ancestor_acquired_and_restores_it_without_allocating",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_refuses_before_parking_and_checks_frame_storage",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/result-calls/main.c": {
+    "contract": "docs/implementation/direct-result-execution.md",
+    "purpose": "Verify direct result identity, retained ancestor authority and exact bounded frame transitions.",
+    "tests": [
+      {
+        "case": "it_keeps_each_ancestor_acquired_and_restores_it_without_allocating",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_refuses_before_parking_and_checks_frame_storage",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/result-calls/support/protection.c": {
+    "contract": "docs/implementation/direct-result-execution.md",
+    "purpose": "Verify direct result identity, retained ancestor authority and exact bounded frame transitions.",
+    "tests": [
+      {
+        "case": "it_keeps_each_ancestor_acquired_and_restores_it_without_allocating",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/result-calls/support/refusal.c": {
+    "contract": "docs/implementation/direct-result-execution.md",
+    "purpose": "Verify direct result identity, retained ancestor authority and exact bounded frame transitions.",
+    "tests": [
+      {
+        "case": "it_refuses_before_parking_and_checks_frame_storage",
+        "command": "make -C tests/unit/runtime/result-calls",
+        "source": "tests/unit/runtime/result-calls/main.c"
       }
     ]
   }

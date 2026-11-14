@@ -4,6 +4,8 @@
  *
  * [CALL-08](../../../../spec/language/calls-and-results.md#call-08)
  * Invocation records borrow resolved accesses and sources. Result storage remains acquired until the caller explicitly releases it.
+ * [CALL-09](../../../../spec/language/calls-and-results.md#call-09) retains
+ * enclosing acquisitions in fixed caller-owned transient slots.
  */
 #ifndef AMA_PROGRAM_CALL_H
 #define AMA_PROGRAM_CALL_H
@@ -23,6 +25,28 @@ typedef struct {
     size_t input_count;
     const uint64_t *installation_operations;
 } AmaProgramInvocation;
+/** Caller-owned transient chain slot. A selected link parks its enclosing
+ * acquisition here while its own acquisition occupies outgoing. Pool allocation
+ * and replacement zero this service-only area; value/continuation clones never
+ * copy it. The parent remains acquired throughout the selected subtree.
+ */
+typedef struct {
+    bool active;
+    AmaHandle parent;
+    AmaInstanceActivity previous;
+} AmaProgramFrame;
+/** Borrow a generated, aligned frame within the caller's stable storage.
+ * Bounds/alignment and caller identity are checked before publishing the pointer.
+ */
+AmaStatus ama_program_frame(AmaProgram *, AmaHandle, size_t offset, AmaProgramFrame **);
+/** Acquire a result of outgoing, with caller-local indices. On success park the
+ * parent in a previously empty caller frame; refusal leaves the parent intact.
+ */
+AmaStatus ama_program_acquire_result(AmaProgram *, AmaHandle, const AmaProgramInvocation *, size_t offset, bool *);
+/** Release a selected target and restore its still-protected parent. Inactive
+ * slots are accepted only during explicit chain abandonment.
+ */
+AmaStatus ama_program_release_result(AmaProgram *, AmaHandle, size_t offset, bool abandoning);
 /** Select the target once under the world guard, preserve explicit refusal provenance and acquire only a valid scalar available instance. Store outgoing identity and previous activity on the caller. */
 AmaStatus ama_program_acquire(AmaProgram *, AmaHandle, const AmaProgramInvocation *, bool *);
 /** Prepare entry inputs/results in defined order under the existing target acquisition; read/resume acquisitions skip interface reinitialization. Caller releases acquisition even after failure. */

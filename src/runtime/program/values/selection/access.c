@@ -7,10 +7,17 @@
  * [ERROR-05](../../../../../spec/implementation/diagnostics.md#error-05)
  * makes only a valid dedicated invalid-index result a conversion refusal;
  * malformed transport and other decoder failures never consume the output.
+ * [CALL-09](../../../../../spec/language/calls-and-results.md#call-09) separates
+ * the selected result owner's base from caller-local nested index operands.
  */
 #include "internal.h"
 
-AmaStatus ama_program_access(AmaProgram *program, AmaHandle current, const AmaConstantValue *shared,
+/** Resolve the selected base in its protected owner while evaluating every index
+ * operand in the initiating caller, as required by
+ * [CALL-09](../../../../../spec/language/calls-and-results.md#call-09).
+ * Ordinary selection passes the same identity for both domains.
+ */
+AmaStatus ama_program_access_from(AmaProgram *program, AmaHandle current, AmaHandle owner, const AmaConstantValue *shared,
     const AmaProgramAccess *access, bool private_access, AmaProgramValue *output, bool *selection_refusal) {
     if (selection_refusal != NULL) { *selection_refusal = false; }
     size_t depth = 0;
@@ -22,7 +29,7 @@ AmaStatus ama_program_access(AmaProgram *program, AmaHandle current, const AmaCo
         for (size_t index = 0; index < depth; index++) { node = node->index; }
         AmaProgramValue value = {0};
         AmaStatus status = node->shared || shared != NULL ? ama_program_shared_base(program, node, shared, &value)
-            : ama_program_instance_base(program, current, node, private_access, &value);
+            : ama_program_instance_base(program, depth == 0 ? owner : current, node, private_access, &value);
         if (status.code == AMA_OK && node->index != NULL) {
             status = ama_program_index(&value, selected);
             if (status.code == AMA_INDEX_BOUNDS && selection_refusal != NULL) { *selection_refusal = true; }
@@ -41,4 +48,9 @@ AmaStatus ama_program_access(AmaProgram *program, AmaHandle current, const AmaCo
         if (status.code != AMA_OK) { return status; }
     }
     return ama_status_make(AMA_INVALID_STATE, NULL, 0);
+}
+
+AmaStatus ama_program_access(AmaProgram *program, AmaHandle current, const AmaConstantValue *shared,
+    const AmaProgramAccess *access, bool private_access, AmaProgramValue *output, bool *selection_refusal) {
+    return ama_program_access_from(program, current, current, shared, access, private_access, output, selection_refusal);
 }

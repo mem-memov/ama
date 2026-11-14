@@ -56,6 +56,7 @@
 #include "runtime/pool/slots.c"
 #include "runtime/pool/storage.c"
 #include "runtime/program/calls/acquire.c"
+#include "runtime/program/calls/frames.c"
 #include "runtime/program/native/scope.c"
 #include "runtime/program/native/resolve.c"
 #include "runtime/program/calls/preparation/sources.c"
