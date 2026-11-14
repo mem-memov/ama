@@ -32613,6 +32613,11 @@
         "case": "it_executes_retained_owned_methods_depth_first_without_cloning",
         "command": "make -C tests/unit/codegen trees",
         "source": "tests/unit/codegen/trees/main.c"
+      },
+      {
+        "case": "it_unwinds_deep_handlers_in_caller_scope_and_preserves_prior_progress",
+        "command": "make -C tests/unit/codegen handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
       }
     ]
   },
@@ -61405,6 +61410,162 @@
         "case": "it_refuses_before_parking_and_checks_frame_storage",
         "command": "make -C tests/unit/runtime/result-calls",
         "source": "tests/unit/runtime/result-calls/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/handlers/main.c": {
+    "contract": "docs/implementation/local-refusal-handlers.md",
+    "purpose": "Verify exact local refusal unwinding, committed progress, caller boundaries and handler suspension.",
+    "tests": [
+      {
+        "case": "it_unwinds_deep_handlers_in_caller_scope_and_preserves_prior_progress",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
+      },
+      {
+        "case": "it_accepts_empty_handlers_after_releasing_the_complete_tree",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
+      },
+      {
+        "case": "it_does_not_offer_a_descendant_refusal_to_ancestor_handlers",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
+      },
+      {
+        "case": "it_keeps_unrelated_outer_callers_when_a_method_handles_its_own_refusal",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
+      },
+      {
+        "case": "it_keeps_selected_body_failures_technical_at_every_handler_level",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
+      },
+      {
+        "case": "it_resumes_a_yielded_handler_without_restoring_abandoned_actions",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/handlers/common.c": {
+    "contract": "docs/implementation/local-refusal-handlers.md",
+    "purpose": "Verify exact local refusal unwinding, committed progress, caller boundaries and handler suspension.",
+    "tests": [
+      {
+        "case": "it_unwinds_deep_handlers_in_caller_scope_and_preserves_prior_progress",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
+      },
+      {
+        "case": "it_accepts_empty_handlers_after_releasing_the_complete_tree",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
+      },
+      {
+        "case": "it_does_not_offer_a_descendant_refusal_to_ancestor_handlers",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
+      },
+      {
+        "case": "it_keeps_unrelated_outer_callers_when_a_method_handles_its_own_refusal",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
+      },
+      {
+        "case": "it_keeps_selected_body_failures_technical_at_every_handler_level",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
+      },
+      {
+        "case": "it_resumes_a_yielded_handler_without_restoring_abandoned_actions",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/handlers/Makefile": {
+    "contract": "docs/implementation/local-refusal-handlers.md",
+    "purpose": "Verify exact local refusal unwinding, committed progress, caller boundaries and handler suspension.",
+    "tests": [
+      {
+        "case": "it_unwinds_deep_handlers_in_caller_scope_and_preserves_prior_progress",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
+      },
+      {
+        "case": "it_accepts_empty_handlers_after_releasing_the_complete_tree",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
+      },
+      {
+        "case": "it_does_not_offer_a_descendant_refusal_to_ancestor_handlers",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
+      },
+      {
+        "case": "it_keeps_unrelated_outer_callers_when_a_method_handles_its_own_refusal",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
+      },
+      {
+        "case": "it_keeps_selected_body_failures_technical_at_every_handler_level",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
+      },
+      {
+        "case": "it_resumes_a_yielded_handler_without_restoring_abandoned_actions",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/handlers/support/progress.c": {
+    "contract": "docs/implementation/local-refusal-handlers.md",
+    "purpose": "Verify exact local refusal unwinding, committed progress, caller boundaries and handler suspension.",
+    "tests": [
+      {
+        "case": "it_unwinds_deep_handlers_in_caller_scope_and_preserves_prior_progress",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
+      },
+      {
+        "case": "it_accepts_empty_handlers_after_releasing_the_complete_tree",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/handlers/support/boundaries.c": {
+    "contract": "docs/implementation/local-refusal-handlers.md",
+    "purpose": "Verify exact local refusal unwinding, committed progress, caller boundaries and handler suspension.",
+    "tests": [
+      {
+        "case": "it_does_not_offer_a_descendant_refusal_to_ancestor_handlers",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
+      },
+      {
+        "case": "it_keeps_unrelated_outer_callers_when_a_method_handles_its_own_refusal",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
+      },
+      {
+        "case": "it_keeps_selected_body_failures_technical_at_every_handler_level",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/handlers/support/suspension.c": {
+    "contract": "docs/implementation/local-refusal-handlers.md",
+    "purpose": "Verify exact local refusal unwinding, committed progress, caller boundaries and handler suspension.",
+    "tests": [
+      {
+        "case": "it_resumes_a_yielded_handler_without_restoring_abandoned_actions",
+        "command": "make -C tests/unit/codegen/handlers",
+        "source": "tests/unit/codegen/handlers/main.c"
       }
     ]
   }

@@ -67,8 +67,9 @@ reverse order, tolerates its unentered slot, releases active children and finall
 the root. Only then can its own handler start a new root operation. The original
 refusal status remains available for its snapshot; a cleanup protocol failure
 stays technical. Fatal preparation/output errors use existing terminal context
-cleanup and never enter a refusal handler. T067 supplies broader handler-control
-acceptance beyond T066's ancestor-Busy/release composition.
+cleanup and never enter a refusal handler. T067 supplies
+[broader local handler acceptance](local-refusal-handlers.md), including deep
+unwind, independent dynamic callers and handler suspension.
 
 For finite source nesting depth `D`, service storage is bounded by the planned
 lexical frame count. Push/pop work is constant except for target/index selection;

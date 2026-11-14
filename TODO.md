@@ -1506,10 +1506,22 @@ their parsed and typed plans are already available from Phases 3–5.
   includes all 1129 maintained inputs; local links passed and final Doxygen
   reproducibility is checked before commit. Intrinsic list/cursor/header adapters
   remain explicitly guarded; broader handler acceptance follows in T067.
-- [ ] **T067 — Complete local refusal-handler unwinding.** Needs: T066. Release
+- [x] **T067 — Complete local refusal-handler unwinding.** Needs: T066. Release
   only the initiating operation tree before its failing link's handler, skip
   unfinished siblings and retain prior committed effects. Test empty handlers,
   ancestor boundaries and caller lexical scope throughout nested result actions.
+  Evidence: [local refusal handlers](docs/implementation/local-refusal-handlers.md).
+  Six independently observable compiled compositions accept deep release before
+  handler entry, retained output/method prefixes, skipped siblings at every
+  ancestor, caller-name collisions, empty handlers and ancestor alternatives that
+  cannot catch a descendant. A selected method handles its own deep tree refusal
+  while preserving the unrelated dynamic caller's held chain/results. A yielded
+  handler resumes its next statement without restoring abandoned actions; body
+  failures bypass alternatives at every level. The existing typed refusal graph
+  and T066 frames already supply the behavior, so no duplicate executor was added.
+  Strict recursive handler tests and generated-program ASan+UBSan passed. All
+  1135 maintained inputs have coverage; local links passed and final Doxygen
+  reproducibility is checked before commit. Loop/header exits follow in T068.
 - [ ] **T068 — Complete branches, loops and exact repeat boundaries.** Needs:
   T067. Execute standalone negative branches, empty-body single checks, fixed-root
   linear condition commands and nested break/return. Test conversion errors,
