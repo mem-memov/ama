@@ -26,8 +26,8 @@ Construction chooses exactly one path:
 
 The source context identifies where values are selected; a native constructor
 still constructs its actual destination value under the lifecycle contract.
-Standalone self references retain their existing explicit runtime guard pending
-final construction/clone identity work. No source is silently rewritten into a
+[T063](entry-preparation.md) connects standalone self references to the explicit
+caller/default-owner context with final construction/clone identity support. No source is silently rewritten into a
 snapshot to make an invalid overlap succeed. Native reference handles remain
 nonowning handles and do not acquire their referents merely by being copied.
 Literal payloads, including apparent operators/comments and trailing spaces,

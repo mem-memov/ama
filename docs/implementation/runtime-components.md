@@ -130,8 +130,8 @@ ownership, registries and origin validation; [T061](generated-contexts.md) conne
 generated hosts, and the embedding tasks provide their public component boundary. The existing storage layer has no per-membership IDs, live-boundary
 foreach cursor or typed intrinsic method frames; T075 onward provide those.
 Current continuation records therefore do not certify foreach/async cursor copies.
-Construction-time final self identity is covered by T049–T051; its remaining
-source/execution adapters remain explicitly guarded until connected. Neither metadata declarations
+Construction-time final self identity is covered by T049–T051, and
+[T063](entry-preparation.md) connects its C source descriptor. Neither metadata declarations
 nor passing synchronous tests imply asynchronous scheduling, parallel execution
 or thread-safe access to one mutable world.
 

@@ -6,6 +6,9 @@
  * [CONST-01](../../../spec/language/declarations.md#const-01) keeps indexed
  * shared sources on their full access chain; a direct namespace read alone uses
  * the shared-ordinal shortcut.
+ * [CALL-08](../../../spec/language/calls-and-results.md#call-08) evaluates
+ * standalone self in the explicit caller/default-owner context. Emit its resolved
+ * nominal ID and dedicated source kind without inventing an access descriptor.
  * Do not recover names at runtime. Inner index descriptors precede users; literal length is independent of terminators.
  */
 #include "codegen/internal.h"
@@ -71,11 +74,12 @@ bool codegen_source_definition(NativeScaffold *scaffold, FILE *output, const cha
 }
 
 /**
- * Write one resolved literal/local/shared descriptor with explicit acquisition/continuation
+ * Write one resolved literal/local/shared/self descriptor with explicit acquisition/continuation
  * flags and exact nominal type ordinal; names and sources remain borrowed during emission.
  */
 bool codegen_source_value(NativeScaffold *scaffold, FILE *output, const char *name, const SemanticSource *source) {
-    const char *kind = source->kind == AST_LITERAL_SOURCE ? "AMA_SOURCE_LITERAL"
+    const char *kind = source->kind == AST_SELF_REFERENCE_SOURCE ? "AMA_SOURCE_SELF"
+        : source->kind == AST_LITERAL_SOURCE ? "AMA_SOURCE_LITERAL"
         : source->constant != NULL && source->access == NULL ? "AMA_SOURCE_SHARED" : "AMA_SOURCE_LOCAL";
     if (fprintf(output, "{.kind=%s, .acquire=%s, .continuation=%s", kind,
             source->kind == AST_ACQUIRE_SOURCE ? "true" : "false", source->kind == AST_CONTINUATION_SOURCE ? "true" : "false") < 0) { return false; }
@@ -88,7 +92,7 @@ bool codegen_source_value(NativeScaffold *scaffold, FILE *output, const char *na
         if (fprintf(output, ", .literal={%s_Bytes,%zu}", name, payload.end - payload.start) < 0) { return false; }
     } else if (source->constant != NULL && source->access == NULL) {
         if (fprintf(output, ", .shared=%zu", source->constant->shared->ordinal) < 0) { return false; }
-    } else {
+    } else if (source->kind != AST_SELF_REFERENCE_SOURCE) {
         const char *access = codegen_indexed_name(scaffold, name, "Access", 0);
         if (access == NULL || fprintf(output, ", .access=&%s", access) < 0) { return false; }
     }

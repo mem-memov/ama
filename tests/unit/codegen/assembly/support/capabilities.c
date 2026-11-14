@@ -1,10 +1,9 @@
 /** @file
  * @brief Require complete static IR but reject missing execution adapters before allocating artifact/model state.
  */
-/** Self, result trees and loop frames are checkable independently of their later runtime/C adapters. */
+/** Result trees and loop frames are checkable independently of their later execution adapters. */
 static void it_rejects_unimplemented_execution_adapters_after_valid_ir_before_artifact_staging(void) {
     const char *cases[] = {
-        "@>\nself&\n.main\n &\n@!\n",
         "@!\nconstructor\n.constructor\nconstructor\n method !\n",
         "@!\nitems[]\n.value\nitems[item&]\n{\n}\n",
         "@!\nproducer\n.producer\nproducer !\n condition\n {\n }\n"

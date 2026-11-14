@@ -1,8 +1,9 @@
 # Entry preparation and typed transfers
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
+The [specification](../../spec/README.md) defines current behavior. This component
+implements entry preparation and typed transfers; T063 connects the compiled
+caller/default-owner self source to the T049–T051 final-identity foundation.
+Other execution slices remain tracked in [TODO](../../TODO.md).
 
 `runtime/program/calls/` connects the resolved invocation tables to stable pool
 instances. Target selection occurs once. Bounds failure, empty/stale identities,
@@ -52,7 +53,7 @@ outer owner's acquisitions. The driver releases those acquisitions once all
 installation or failure cleanup is complete. Read/resume modes return before
 these entry phases. This is the retained implementation boundary of
 [CALL-08](../../spec/language/calls-and-results.md#call-08), not certification of
-still-planned result trees, self references or intrinsic list services.
+still-planned result trees or intrinsic list services.
 
 ## Source authority and lifetime
 
@@ -78,6 +79,26 @@ completed prefix, while failed destruction cleans both old and prepared values
 and leaves terminal state for final disposal. Typed list methods and their
 result-frame lifetimes remain T075–T084; these data transfers are not executable
 list services.
+
+## One self descriptor, explicit runtime owner
+
+The [source emitter](../../src/codegen/emit/source.c) maps a typed standalone
+`&` to `AMA_SOURCE_SELF` plus its exact nominal type ID. It emits no local access
+chain, hidden variable, source snapshot or instance. The descriptor is immutable
+and contains no concrete context/slot identity.
+
+Evaluation already receives an explicit instance owner. A supplied input uses
+the initiating caller; a declared default uses the callee/field owner. The
+existing getter validates that owner and forms its checked reference without
+acquiring it. Fresh construction uses its reserved final identity; reconstruction
+uses the protected destination's final identity rather than temporary storage.
+Stored references in an ordinary clone are remapped by the existing complete-key
+clone map instead of rerunning default initializers.
+
+The former C-generation self guard is removed because construction, replacement,
+clone identity and the descriptor adapter are now connected. Unsupported selected
+result trees, condition-command loops and foreach retain their own explicit
+execution guards. No grammar or language requirement changes.
 
 ## Argument for correctness
 
@@ -120,3 +141,38 @@ inspect diagnostic operation IDs and verify the target's persistent native
 resource stays unchanged. Existing call cases enumerate each measured allocation
 failure and generated execution exercises real nested calls. Doxygen, rather
 than this contract, produces file/function reference documentation.
+
+## Compiled preparation and self evidence
+
+`make -C tests/unit/codegen/preparation` checks named bindings in reverse text
+order, omitted/default parameters, a positional placeholder, and result defaults.
+A later default observes a newly supplied earlier parameter, and the result
+observes the completed interface.
+
+A reference-only relay accepts the caller's `&`, tries to call that waiting
+caller and handles its Busy refusal. Its default `&` returns the relay itself;
+calling the returned reference increments the same retained probe again. This
+checks both caller/callee environments and reference formation without acquiring
+a busy referent.
+
+Another case clones the relay after execution and reads its stored self result
+without executing/resetting the copy. Calling that reference and the original
+separately yields independent retained counters. This exposes clone remapping
+before a new entry can conceal an error by recomputing the self default.
+
+A later invalid literal constructor prevents the native body and the `:` handler
+and reports the binding/type context. The same leaf instruments actual generated
+programs under ASan/UBSan when its compiler flags request those sanitizers.
+
+`make -C tests/unit/runtime/call-preparation` independently checks indexed source
+order before source protection, shared authority for repeated copy sources,
+preflight rejection of same/overlapping containers, and
+`it_installs_one_constructor_per_field_and_retains_the_successful_prefix`.
+The latter counts exactly one constructor per field, observes earlier commits,
+and keeps the later old field intact when preparation fails. Existing T049–T051
+construction/clone/replacement tests supply the final-identity foundation.
+
+Per-file coverage maps source emission, capability validation, the adjusted
+assembly guard case and the new independently runnable leaf to explicit cases.
+The complete strict suite supplies surrounding frontend/control/runtime and CLI
+composition; target sanitizer checks supplement the lifecycle proof.

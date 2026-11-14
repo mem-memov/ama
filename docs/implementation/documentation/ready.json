@@ -1513,6 +1513,26 @@
         "case": "it_preserves_scalar_and_indexed_shared_source_access_in_compiled_transfers",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_installs_parameters_then_results_in_declaration_order_with_omitted_defaults",
+        "command": "make -C tests/unit/codegen/preparation",
+        "source": "tests/unit/codegen/preparation/main.c"
+      },
+      {
+        "case": "it_distinguishes_caller_self_inputs_from_callee_self_defaults",
+        "command": "make -C tests/unit/codegen/preparation",
+        "source": "tests/unit/codegen/preparation/main.c"
+      },
+      {
+        "case": "it_remaps_compiled_self_results_when_copying_an_instance_before_retained_read",
+        "command": "make -C tests/unit/codegen/preparation",
+        "source": "tests/unit/codegen/preparation/main.c"
+      },
+      {
+        "case": "it_stops_before_body_and_refusal_handler_when_a_later_parameter_constructor_fails",
+        "command": "make -C tests/unit/codegen/preparation",
+        "source": "tests/unit/codegen/preparation/main.c"
       }
     ]
   },
@@ -32358,6 +32378,26 @@
         "case": "it_distinguishes_busy_native_destruction_from_refused_host_disposal",
         "command": "make -C tests/unit/codegen contexts",
         "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_installs_parameters_then_results_in_declaration_order_with_omitted_defaults",
+        "command": "make -C tests/unit/codegen preparation",
+        "source": "tests/unit/codegen/preparation/main.c"
+      },
+      {
+        "case": "it_distinguishes_caller_self_inputs_from_callee_self_defaults",
+        "command": "make -C tests/unit/codegen preparation",
+        "source": "tests/unit/codegen/preparation/main.c"
+      },
+      {
+        "case": "it_remaps_compiled_self_results_when_copying_an_instance_before_retained_read",
+        "command": "make -C tests/unit/codegen preparation",
+        "source": "tests/unit/codegen/preparation/main.c"
+      },
+      {
+        "case": "it_stops_before_body_and_refusal_handler_when_a_later_parameter_constructor_fails",
+        "command": "make -C tests/unit/codegen preparation",
+        "source": "tests/unit/codegen/preparation/main.c"
       }
     ]
   },
@@ -57260,6 +57300,26 @@
         "case": "it_rejects_unimplemented_execution_adapters_after_valid_ir_before_artifact_staging",
         "command": "make -C tests/unit/codegen/assembly",
         "source": "tests/unit/codegen/assembly/main.c"
+      },
+      {
+        "case": "it_installs_parameters_then_results_in_declaration_order_with_omitted_defaults",
+        "command": "make -C tests/unit/codegen/preparation",
+        "source": "tests/unit/codegen/preparation/main.c"
+      },
+      {
+        "case": "it_distinguishes_caller_self_inputs_from_callee_self_defaults",
+        "command": "make -C tests/unit/codegen/preparation",
+        "source": "tests/unit/codegen/preparation/main.c"
+      },
+      {
+        "case": "it_remaps_compiled_self_results_when_copying_an_instance_before_retained_read",
+        "command": "make -C tests/unit/codegen/preparation",
+        "source": "tests/unit/codegen/preparation/main.c"
+      },
+      {
+        "case": "it_stops_before_body_and_refusal_handler_when_a_later_parameter_constructor_fails",
+        "command": "make -C tests/unit/codegen/preparation",
+        "source": "tests/unit/codegen/preparation/main.c"
       }
     ]
   },
@@ -60485,6 +60545,58 @@
         "case": "it_runs_the_minimal_project_under_address_and_undefined_behavior_sanitizers",
         "command": "make -C tests/integration/minimal",
         "source": "tests/integration/minimal/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/preparation/Makefile": {
+    "contract": "docs/implementation/entry-preparation.md",
+    "purpose": "Run the independently selectable generated call-preparation composition leaf.",
+    "tests": [
+      {
+        "case": "it_installs_parameters_then_results_in_declaration_order_with_omitted_defaults",
+        "command": "make -C tests/unit/codegen/preparation",
+        "source": "tests/unit/codegen/preparation/main.c"
+      },
+      {
+        "case": "it_distinguishes_caller_self_inputs_from_callee_self_defaults",
+        "command": "make -C tests/unit/codegen/preparation",
+        "source": "tests/unit/codegen/preparation/main.c"
+      },
+      {
+        "case": "it_remaps_compiled_self_results_when_copying_an_instance_before_retained_read",
+        "command": "make -C tests/unit/codegen/preparation",
+        "source": "tests/unit/codegen/preparation/main.c"
+      },
+      {
+        "case": "it_stops_before_body_and_refusal_handler_when_a_later_parameter_constructor_fails",
+        "command": "make -C tests/unit/codegen/preparation",
+        "source": "tests/unit/codegen/preparation/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/preparation/main.c": {
+    "contract": "docs/implementation/entry-preparation.md",
+    "purpose": "Compile declaration-order defaults, caller/callee self references, stored-self clone remapping and technical preparation failures.",
+    "tests": [
+      {
+        "case": "it_installs_parameters_then_results_in_declaration_order_with_omitted_defaults",
+        "command": "make -C tests/unit/codegen/preparation",
+        "source": "tests/unit/codegen/preparation/main.c"
+      },
+      {
+        "case": "it_distinguishes_caller_self_inputs_from_callee_self_defaults",
+        "command": "make -C tests/unit/codegen/preparation",
+        "source": "tests/unit/codegen/preparation/main.c"
+      },
+      {
+        "case": "it_remaps_compiled_self_results_when_copying_an_instance_before_retained_read",
+        "command": "make -C tests/unit/codegen/preparation",
+        "source": "tests/unit/codegen/preparation/main.c"
+      },
+      {
+        "case": "it_stops_before_body_and_refusal_handler_when_a_later_parameter_constructor_fails",
+        "command": "make -C tests/unit/codegen/preparation",
+        "source": "tests/unit/codegen/preparation/main.c"
       }
     ]
   }

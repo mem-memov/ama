@@ -84,8 +84,7 @@ Counted resource ownership and address/undefined-behavior sanitizers verify clea
 
 [Exact clone maps](clone-preparation.md) and [staged replacement](staged-replacement.md)
 now verify final replacement destinations as well as fresh construction. T053 and later emission tasks connect concrete planned
-layouts to generated execution. The C-generation guard for standalone self stays
-in place until those adapters can preserve the complete contract; this task does
-not claim compiled Ama self execution or change the specification. The
+layouts to generated execution. [T063](entry-preparation.md) connects standalone self to generated execution,
+including caller/default-owner distinction and stored-self clone remapping. The
 [coverage registry](documentation/ready.json) maps each affected source/header and
 test/build input to named cases and standalone header commands.

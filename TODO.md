@@ -1439,10 +1439,22 @@ This execution slice covers scalar/reference targets and their control flow.
 Concrete whole-list/indexed operands and list-service results complete in Phase 10;
 their parsed and typed plans are already available from Phases 3–5.
 
-- [ ] **T063 — Complete entry preparation and defaults.** Needs: T062. Acquire
+- [x] **T063 — Complete entry preparation and defaults.** Needs: T062. Acquire
   target and protect sources before reset; construct supplied/default parameters
   in declaration order and then results. Test self-dependent inputs, omitted
   bindings and failures preserving only the effects promised by CALL-08.
+  Evidence: [entry preparation composition](docs/implementation/entry-preparation.md).
+  Existing preparation phases select/protect sources before declaration-ordered
+  parameters/results, with individual replacement commits. The missing C self
+  descriptor now emits exact nominal `AMA_SOURCE_SELF` without an access chain;
+  its previous blanket execution guard is removed. Compiled cases distinguish
+  caller self inputs from callee self defaults, exercise omitted/default/named
+  inputs and expose stored-self clone remapping through a retained read before
+  reset. A later constructor failure executes neither body nor refusal handler.
+  Full strict tests, the final four-case preparation leaf, phase-level runtime
+  tests and generated-program ASan+UBSan passed. All 1106 maintained inputs have
+  coverage; local links passed and final Doxygen reproducibility is checked
+  before commit. Other unfinished execution adapters remain explicitly guarded.
 - [ ] **T064 — Complete literal inputs and ordered result receivers.** Needs:
   T063. Select literal construction once, preserve payload bytes and resolve
   output receivers/indices in written order. Execute inferred scalar/reference
