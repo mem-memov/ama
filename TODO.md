@@ -1614,10 +1614,23 @@ Contracts: [continuations](spec/language/continuations.md),
   Strict parent snapshot tests, independent object clone/access tests and actual
   generated-program ASan+UBSan passed. All 1179 maintained inputs have coverage;
   links passed and final Doxygen reproducibility is checked before commit.
-- [ ] **T073 — Integrate continuation failure and cleanup paths.** Needs: T072.
+- [x] **T073 — Integrate continuation failure and cleanup paths.** Needs: T072.
   Reject native-stack capture, ensure failed contexts cannot resume and destroy
   yielded state without executing its continuation. Exercise native resource
   clone failures and mixed completed/yielded ownership trees.
+  Evidence: [continuation cleanup](docs/implementation/continuation-cleanup.md).
+  A later native clone frees its own partial allocation and fails after an earlier
+  clone completed. Exact native traces prove private-prefix cleanup precedes
+  unchanged old destination/source cleanup, consumes only completed credits and
+  preserves the primary failure. Explicit host checks prohibit resuming the failed
+  context or executing its saved source continuation during disposal. Two compiled
+  mixed-state trees preserve only each node's own position. Native declarations
+  reject Ama yield syntax, and a nonzero native NoResume status remains admitted
+  technical failure rather than native yield. The shared fixture explicitly
+  includes its C allocation/string dependencies. Full strict tests and actual
+  generated-program ASan+UBSan passed; all 1184 maintained inputs have coverage.
+  Links passed and final Doxygen reproducibility is checked before commit. The
+  existing ledger/context machinery required no alternate cleanup executor.
 - [ ] **T074 — Accept resumable generated programs.** Needs: T073. Compile/run
   custom-host and nested same-type continuation examples, including ordinary and
   explicit independent copies. Verify source traces use the new active caller

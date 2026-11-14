@@ -76,7 +76,7 @@ static void executable_native(const ScaffoldType *type) {
     assert(body != NULL);
     bool emitted = scaffold_include(body, type->interface_name) && scaffold_include(body, type->begin_name);
     assert(emitted);
-    int written = fputs("#include <assert.h>\n#include <stdio.h>\n", body);
+    int written = fputs("#include <assert.h>\n#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n", body);
     assert(written != EOF);
     if (strcmp(type->plan->type->module->source->logical_path,".recursive")==0) {
         written = fputs("static __attribute__((noinline)) size_t AMA_NATIVE(sum)(size_t number) { return number==0 ? 0 : number+AMA_NATIVE(sum)(number-1); }\n",body);

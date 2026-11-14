@@ -32843,6 +32843,11 @@
         "case": "it_copies_owned_tree_positions_explicitly_and_clears_ordinary_positions_and_histories",
         "command": "make -C tests/unit/codegen snapshots",
         "source": "tests/unit/codegen/snapshots/main.c"
+      },
+      {
+        "case": "it_unwinds_native_clone_prefixes_preserves_old_values_and_disposes_failed_contexts",
+        "command": "make -C tests/unit/codegen continuation-cleanup",
+        "source": "tests/unit/codegen/continuation-cleanup/main.c"
       }
     ]
   },
@@ -33426,6 +33431,11 @@
         "case": "it_retains_an_earlier_output_when_a_later_receiver_conversion_fails",
         "command": "make -C tests/unit/codegen/bindings",
         "source": "tests/unit/codegen/bindings/main.c"
+      },
+      {
+        "case": "it_unwinds_native_clone_prefixes_preserves_old_values_and_disposes_failed_contexts",
+        "command": "make -C tests/unit/codegen/continuation-cleanup",
+        "source": "tests/unit/codegen/continuation-cleanup/main.c"
       }
     ]
   },
@@ -62963,6 +62973,96 @@
         "case": "it_rejects_continuation_copy_to_the_same_actual_identity_through_an_alias",
         "command": "make -C tests/unit/codegen/snapshots",
         "source": "tests/unit/codegen/snapshots/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/continuation-cleanup/main.c": {
+    "contract": "docs/implementation/continuation-cleanup.md",
+    "purpose": "Verify private native clone credits, unchanged public state, terminal failure and exact mixed continuation positions.",
+    "tests": [
+      {
+        "case": "it_unwinds_native_clone_prefixes_preserves_old_values_and_disposes_failed_contexts",
+        "command": "make -C tests/unit/codegen/continuation-cleanup",
+        "source": "tests/unit/codegen/continuation-cleanup/main.c"
+      },
+      {
+        "case": "it_preserves_mixed_completed_and_yielded_owned_positions",
+        "command": "make -C tests/unit/codegen/continuation-cleanup",
+        "source": "tests/unit/codegen/continuation-cleanup/main.c"
+      },
+      {
+        "case": "it_rejects_ama_yield_inside_a_native_declaration",
+        "command": "make -C tests/unit/codegen/continuation-cleanup",
+        "source": "tests/unit/codegen/continuation-cleanup/main.c"
+      },
+      {
+        "case": "it_keeps_native_status_failure_distinct_from_yield_and_admission",
+        "command": "make -C tests/unit/codegen/continuation-cleanup",
+        "source": "tests/unit/codegen/continuation-cleanup/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/continuation-cleanup/Makefile": {
+    "contract": "docs/implementation/continuation-cleanup.md",
+    "purpose": "Verify private native clone credits, unchanged public state, terminal failure and exact mixed continuation positions.",
+    "tests": [
+      {
+        "case": "it_unwinds_native_clone_prefixes_preserves_old_values_and_disposes_failed_contexts",
+        "command": "make -C tests/unit/codegen/continuation-cleanup",
+        "source": "tests/unit/codegen/continuation-cleanup/main.c"
+      },
+      {
+        "case": "it_preserves_mixed_completed_and_yielded_owned_positions",
+        "command": "make -C tests/unit/codegen/continuation-cleanup",
+        "source": "tests/unit/codegen/continuation-cleanup/main.c"
+      },
+      {
+        "case": "it_rejects_ama_yield_inside_a_native_declaration",
+        "command": "make -C tests/unit/codegen/continuation-cleanup",
+        "source": "tests/unit/codegen/continuation-cleanup/main.c"
+      },
+      {
+        "case": "it_keeps_native_status_failure_distinct_from_yield_and_admission",
+        "command": "make -C tests/unit/codegen/continuation-cleanup",
+        "source": "tests/unit/codegen/continuation-cleanup/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/continuation-cleanup/support/resources.c": {
+    "contract": "docs/implementation/continuation-cleanup.md",
+    "purpose": "Verify private native clone credits, unchanged public state, terminal failure and exact mixed continuation positions.",
+    "tests": [
+      {
+        "case": "it_unwinds_native_clone_prefixes_preserves_old_values_and_disposes_failed_contexts",
+        "command": "make -C tests/unit/codegen/continuation-cleanup",
+        "source": "tests/unit/codegen/continuation-cleanup/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/continuation-cleanup/support/native.c": {
+    "contract": "docs/implementation/continuation-cleanup.md",
+    "purpose": "Verify private native clone credits, unchanged public state, terminal failure and exact mixed continuation positions.",
+    "tests": [
+      {
+        "case": "it_rejects_ama_yield_inside_a_native_declaration",
+        "command": "make -C tests/unit/codegen/continuation-cleanup",
+        "source": "tests/unit/codegen/continuation-cleanup/main.c"
+      },
+      {
+        "case": "it_keeps_native_status_failure_distinct_from_yield_and_admission",
+        "command": "make -C tests/unit/codegen/continuation-cleanup",
+        "source": "tests/unit/codegen/continuation-cleanup/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/continuation-cleanup/support/mixed.c": {
+    "contract": "docs/implementation/continuation-cleanup.md",
+    "purpose": "Verify private native clone credits, unchanged public state, terminal failure and exact mixed continuation positions.",
+    "tests": [
+      {
+        "case": "it_preserves_mixed_completed_and_yielded_owned_positions",
+        "command": "make -C tests/unit/codegen/continuation-cleanup",
+        "source": "tests/unit/codegen/continuation-cleanup/main.c"
       }
     ]
   }
