@@ -1563,10 +1563,23 @@ their parsed and typed plans are already available from Phases 3–5.
 Contracts: [continuations](spec/language/continuations.md),
 [return links](spec/implementation/runtime.md#return-links-and-resumption-positions).
 
-- [ ] **T070 — Execute statement-boundary yield/resume.** Needs: T069. Save
+- [x] **T070 — Execute statement-boundary yield/resume.** Needs: T069. Save
   exact structured positions separately from active return links and make yielded
   instances available. Test repeated yields, nested immediate-caller return and
   the distinction between busy Waiting and available Yielded.
+  Evidence: [saved statement positions](docs/implementation/saved-statement-positions.md).
+  Three compiled cases observe two repeated yields to the immediate outer caller,
+  three Busy refusals against that Waiting caller, preserved independent refusal
+  snapshots, correct final return to the root and NoResume after completion.
+  A yielded module exposes its native predicate through a declared reference;
+  changing it false before resume does not recheck or replay its already chosen
+  branch. Exact following-statement execution preserves persistent probe counts.
+  Existing return/selector helpers already supply this behavior; no second
+  coroutine executor was introduced. Strict parent position tests, independent
+  runtime-call metadata tests and generated-program ASan+UBSan passed. All 1168
+  maintained inputs have coverage; links passed and final Doxygen reproducibility
+  is checked before commit. Foreach restoration and continuation-copy acceptance
+  remain their later tasks.
 - [ ] **T071 — Complete restart and host yield policy.** Needs: T070. Restart
   entry without resetting persistent body fields; resume without inputs/interface
   reset. Test root completed/yielded/failed outcomes, explicit host resume/disposal

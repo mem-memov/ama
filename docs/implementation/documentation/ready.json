@@ -32828,6 +32828,11 @@
         "case": "it_repeats_the_complete_header_and_releases_before_body_and_exit",
         "command": "make -C tests/unit/codegen loops",
         "source": "tests/unit/codegen/loops/main.c"
+      },
+      {
+        "case": "it_returns_yields_to_waiting_callers_and_releases_callees_for_resume",
+        "command": "make -C tests/unit/codegen positions",
+        "source": "tests/unit/codegen/positions/main.c"
       }
     ]
   },
@@ -62673,6 +62678,75 @@
         "case": "it_rejects_unavailable_traversal_execution_before_publication",
         "command": "make -C tests/integration/objects",
         "source": "tests/integration/objects/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/positions/main.c": {
+    "contract": "docs/implementation/saved-statement-positions.md",
+    "purpose": "Verify exact saved statements, immediate-caller returns and distinct Waiting/Yielded availability.",
+    "tests": [
+      {
+        "case": "it_returns_yields_to_waiting_callers_and_releases_callees_for_resume",
+        "command": "make -C tests/unit/codegen/positions",
+        "source": "tests/unit/codegen/positions/main.c"
+      },
+      {
+        "case": "it_refuses_resume_after_the_last_saved_segment_completes",
+        "command": "make -C tests/unit/codegen/positions",
+        "source": "tests/unit/codegen/positions/main.c"
+      },
+      {
+        "case": "it_resumes_the_saved_branch_statement_after_external_condition_change",
+        "command": "make -C tests/unit/codegen/positions",
+        "source": "tests/unit/codegen/positions/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/positions/Makefile": {
+    "contract": "docs/implementation/saved-statement-positions.md",
+    "purpose": "Verify exact saved statements, immediate-caller returns and distinct Waiting/Yielded availability.",
+    "tests": [
+      {
+        "case": "it_returns_yields_to_waiting_callers_and_releases_callees_for_resume",
+        "command": "make -C tests/unit/codegen/positions",
+        "source": "tests/unit/codegen/positions/main.c"
+      },
+      {
+        "case": "it_refuses_resume_after_the_last_saved_segment_completes",
+        "command": "make -C tests/unit/codegen/positions",
+        "source": "tests/unit/codegen/positions/main.c"
+      },
+      {
+        "case": "it_resumes_the_saved_branch_statement_after_external_condition_change",
+        "command": "make -C tests/unit/codegen/positions",
+        "source": "tests/unit/codegen/positions/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/positions/support/callers.c": {
+    "contract": "docs/implementation/saved-statement-positions.md",
+    "purpose": "Verify exact saved statements, immediate-caller returns and distinct Waiting/Yielded availability.",
+    "tests": [
+      {
+        "case": "it_returns_yields_to_waiting_callers_and_releases_callees_for_resume",
+        "command": "make -C tests/unit/codegen/positions",
+        "source": "tests/unit/codegen/positions/main.c"
+      },
+      {
+        "case": "it_refuses_resume_after_the_last_saved_segment_completes",
+        "command": "make -C tests/unit/codegen/positions",
+        "source": "tests/unit/codegen/positions/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/positions/support/branch.c": {
+    "contract": "docs/implementation/saved-statement-positions.md",
+    "purpose": "Verify exact saved statements, immediate-caller returns and distinct Waiting/Yielded availability.",
+    "tests": [
+      {
+        "case": "it_resumes_the_saved_branch_statement_after_external_condition_change",
+        "command": "make -C tests/unit/codegen/positions",
+        "source": "tests/unit/codegen/positions/main.c"
       }
     ]
   }
