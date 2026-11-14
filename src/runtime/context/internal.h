@@ -25,6 +25,8 @@ struct AmaContext {
     AmaStatus status;
     void (*report)(void *, AmaStatus);
     void *report_context;
+    /** Optional immutable compiled-component label, retained through synchronous trace reporting. */
+    const char *component;
 };
 
 /** Issue one nonzero identity from a monotone atomic clock with an immutable positive limit.

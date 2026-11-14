@@ -35,6 +35,8 @@ C/assert tests. Check-only success does not validate handwritten C bodies.
   exports, transport profiles and resolved ABI metadata.
 - [Public C header](docs/implementation/c-library-header.md): independent consumer
   types, ownership operations and checked target/version/layout boundaries.
+- [C-library lifecycle](docs/implementation/c-library-lifecycle.md): explicit contexts,
+  exported roots, checked disposal and independent immutable diagnostics.
 - [Contributor guide](CONTRIBUTORS.md): readable components, formatting and tests.
 - [Standard library](stdlib/README.md): library boundaries and native companions.
 - [Executable examples](docs/implementation/examples.md): stateful methods, self-reference,

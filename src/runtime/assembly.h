@@ -127,6 +127,7 @@
 #include "runtime/program/values/source.c"
 
 #include "runtime/context/admission.c"
+#include "runtime/context/failure.c"
 #include "runtime/context/references.c"
 #include "runtime/context/registry/access.c"
 #include "runtime/context/registry/close.c"
@@ -138,5 +139,13 @@
 #include "runtime/context/storage/prepare.c"
 #include "runtime/context/execution/begin.c"
 #include "runtime/context/execution/finish.c"
+
+#include "runtime/library/service.c"
+#include "runtime/library/access.c"
+#include "runtime/library/diagnostic.c"
+#include "runtime/library/contexts/create.c"
+#include "runtime/library/contexts/dispose.c"
+#include "runtime/library/instances/create.c"
+#include "runtime/library/instances/dispose.c"
 
 #endif

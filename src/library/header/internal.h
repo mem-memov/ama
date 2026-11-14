@@ -15,6 +15,9 @@ typedef struct {
     bool good;
 } LibraryHeader;
 /** Write formatted public declarations, remembering an earlier failure. */
+#if defined(__GNUC__)
+__attribute__((format(printf, 2, 3)))
+#endif
 void library_header_print(LibraryHeader *, const char *, ...);
 /** Encode exact UTF-8 bytes as one safe C string literal, including trigraph-sensitive bytes. */
 void library_header_literal(LibraryHeader *, const char *);

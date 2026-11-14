@@ -11,7 +11,8 @@
 /** Retire one identity under membership protection, then clean native resources without
  * holding the metadata gate. A pending credit pins registry lifetime through callbacks.
  */
-AmaStatus ama_context_dispose(AmaContextRegistry *registry, uint64_t identity) {
+AmaStatus ama_context_dispose_admitted(AmaContextRegistry *registry, uint64_t identity, bool *admitted) {
+    *admitted = false;
     AmaStatus status = ama_context_registry_lock(registry);
     if (status.code != AMA_OK) { return status; }
     AmaContext **link = &registry->first;
@@ -26,6 +27,7 @@ AmaStatus ama_context_dispose(AmaContextRegistry *registry, uint64_t identity) {
     else if (!atomic_compare_exchange_strong_explicit(&context->active, &available, true,
             memory_order_acquire, memory_order_relaxed)) { status = ama_status_make(AMA_BUSY, NULL, 0); }
     if (status.code != AMA_OK) { ama_context_registry_unlock(registry); return status; }
+    *admitted = true;
     *link = context->next;
     registry->pending++;
     SourceAllocator allocator = registry->allocator;
@@ -36,4 +38,10 @@ AmaStatus ama_context_dispose(AmaContextRegistry *registry, uint64_t identity) {
     registry->pending--;
     ama_context_registry_unlock(registry);
     return status;
+}
+
+/** Preserve status-only disposal through the same explicit admission path. */
+AmaStatus ama_context_dispose(AmaContextRegistry *registry, uint64_t identity) {
+    bool admitted;
+    return ama_context_dispose_admitted(registry, identity, &admitted);
 }

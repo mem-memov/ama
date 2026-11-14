@@ -28,7 +28,10 @@ static void context_report(void *owner, AmaStatus status) {
     context->control.phase = AMA_RUNTIME_TERMINATED;
     context->status = ama_cleanup_primary(context->status, status);
     if (context->report != NULL) { context->report(context->report_context, status); }
-    else { ama_program_report(&context->program, status); }
+    else {
+        if (context->component != NULL) { fprintf(stderr, "Component %s\n", context->component); }
+        ama_program_report(&context->program, status);
+    }
 }
 
 /** Allocate one checked zero-initialized arena array. Existing scratch remains owned on failure;
@@ -117,6 +120,7 @@ AmaStatus ama_context_prepare(AmaContext *context, const AmaContextDefinition *d
     source_arena_init(&context->arena, allocator);
     context->report = definition->report;
     context->report_context = definition->report_context;
+    context->component = definition->component;
     context->world.allocator = allocator;
     context->world.report = context_report;
     context->world.report_context = context;

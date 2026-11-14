@@ -14682,6 +14682,66 @@
         "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
         "command": "make -C tests/unit/runtime/traversal-copy",
         "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
       }
     ]
   },
@@ -14934,6 +14994,66 @@
         "case": "it_preserves_valid_resume_dispatch_and_discards_scopes_without_target_cleanup",
         "command": "make -C tests/unit/runtime/traversal-origin",
         "source": "tests/unit/runtime/traversal-origin/main.c"
+      },
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
       }
     ],
     "standalone_header_command": [
@@ -15076,6 +15196,66 @@
         "case": "it_reports_the_active_execution_chain_before_releasing_all_context_resources",
         "command": "make -C tests/unit/runtime/host-lifecycle",
         "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
       }
     ],
     "standalone_header_command": [
@@ -15226,6 +15406,66 @@
         "case": "it_refuses_reentry_and_rolls_back_busy_registry_close_admission",
         "command": "make -C tests/unit/runtime/contexts",
         "source": "tests/unit/runtime/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
       }
     ]
   },
@@ -15558,6 +15798,66 @@
         "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
         "command": "make -C tests/unit/codegen/library-compositions",
         "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
       }
     ]
   },
@@ -18044,6 +18344,66 @@
         "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
         "command": "make -C tests/unit/runtime/ownership-model",
         "source": "tests/unit/runtime/ownership-model/main.c"
+      },
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
       }
     ]
   },
@@ -21352,6 +21712,66 @@
         "case": "it_keeps_mixed_initializer_copy_modes_independent_of_temporary_recipe_storage",
         "command": "make -C tests/unit/runtime/traversal-copy",
         "source": "tests/unit/runtime/traversal-copy/main.c"
+      },
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
       }
     ]
   },
@@ -34533,7 +34953,7 @@
       }
     ]
   },
-  "tests/integration/parser/grammar/project/\u7a0b\u5e8f": {
+  "tests/integration/parser/grammar/project/程序": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -34619,7 +35039,7 @@
       }
     ]
   },
-  "tests/integration/project/closure/project/\u4e2d\u95f4": {
+  "tests/integration/project/closure/project/中间": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -35918,7 +36338,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u5143": {
+  "tests/integration/semantic/types/project/元": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -35929,7 +36349,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u5143.abi": {
+  "tests/integration/semantic/types/project/元.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -35940,7 +36360,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u5143.c": {
+  "tests/integration/semantic/types/project/元.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the first distinct Unicode nominal type.",
     "tests": [
@@ -35951,7 +36371,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u5143.h": {
+  "tests/integration/semantic/types/project/元.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the first Unicode nominal type.",
     "standalone_header_command": [
@@ -35977,7 +36397,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u7c73": {
+  "tests/integration/semantic/types/project/米": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -35988,7 +36408,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u7c73.abi": {
+  "tests/integration/semantic/types/project/米.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -35999,7 +36419,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u7c73.c": {
+  "tests/integration/semantic/types/project/米.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the incompatible Unicode nominal type.",
     "tests": [
@@ -36010,7 +36430,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u7c73.h": {
+  "tests/integration/semantic/types/project/米.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the incompatible Unicode nominal type.",
     "standalone_header_command": [
@@ -36223,7 +36643,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/other/\u5546\u54c1": {
+  "tests/integration/source/diagnostics/project/other/商品": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -36249,7 +36669,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/\u5546\u5e97/\u5546\u54c1": {
+  "tests/integration/source/diagnostics/project/商店/商品": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -44922,6 +45342,66 @@
         "case": "it_rolls_back_earlier_shares_after_a_later_owned_child_clone_fails",
         "command": "make -C tests/unit/runtime/text-values",
         "source": "tests/unit/runtime/text-values/main.c"
+      },
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
       }
     ]
   },
@@ -52158,6 +52638,66 @@
         "case": "it_reports_the_active_execution_chain_before_releasing_all_context_resources",
         "command": "make -C tests/unit/runtime/host-lifecycle",
         "source": "tests/unit/runtime/host-lifecycle/main.c"
+      },
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
       }
     ]
   },
@@ -78812,6 +79352,11 @@
         "case": "it_rejects_unsupported_targets_before_header_publication",
         "command": "make -C tests/unit/library/header",
         "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_links_public_lifecycle_to_real_generated_contexts",
+        "command": "make -C tests/unit/library/lifecycle",
+        "source": "tests/unit/library/lifecycle/main.c"
       }
     ],
     "standalone_header_command": [
@@ -79364,6 +79909,66 @@
         "case": "it_unwinds_every_library_resolution_allocation",
         "command": "make -C tests/unit/library/resolution",
         "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
       }
     ]
   },
@@ -80171,6 +80776,11 @@
         "case": "it_rejects_cross_component_hash_collisions_in_headers_and_bootstrap",
         "command": "make -C tests/unit/library/header",
         "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_links_public_lifecycle_to_real_generated_contexts",
+        "command": "make -C tests/unit/library/lifecycle",
+        "source": "tests/unit/library/lifecycle/main.c"
       }
     ],
     "standalone_header_command": [
@@ -80492,6 +81102,1355 @@
         "case": "it_rejects_cross_component_hash_collisions_in_headers_and_bootstrap",
         "command": "make -C tests/unit/library/header",
         "source": "tests/unit/library/header/main.c"
+      }
+    ]
+  },
+  "src/runtime/library/lifecycle.h": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Own and verify explicit checked component context/instance lifecycle, admission provenance and exactly-once terminal cleanup.",
+    "tests": [
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_checks_destination_shapes_before_lifecycle_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/runtime/library/service.c": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Own and verify explicit checked component context/instance lifecycle, admission provenance and exactly-once terminal cleanup.",
+    "tests": [
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_checks_destination_shapes_before_lifecycle_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      }
+    ]
+  },
+  "src/runtime/library/internal.h": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Own and verify explicit checked component context/instance lifecycle, admission provenance and exactly-once terminal cleanup.",
+    "tests": [
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/runtime/library/diagnostic.c": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Own and verify explicit checked component context/instance lifecycle, admission provenance and exactly-once terminal cleanup.",
+    "tests": [
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      }
+    ]
+  },
+  "src/runtime/library/access.c": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Own and verify explicit checked component context/instance lifecycle, admission provenance and exactly-once terminal cleanup.",
+    "tests": [
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      }
+    ]
+  },
+  "src/runtime/library/instances/dispose.c": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Own and verify explicit checked component context/instance lifecycle, admission provenance and exactly-once terminal cleanup.",
+    "tests": [
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      }
+    ]
+  },
+  "src/runtime/library/instances/create.c": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Own and verify explicit checked component context/instance lifecycle, admission provenance and exactly-once terminal cleanup.",
+    "tests": [
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      }
+    ]
+  },
+  "src/runtime/library/contexts/dispose.c": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Own and verify explicit checked component context/instance lifecycle, admission provenance and exactly-once terminal cleanup.",
+    "tests": [
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      }
+    ]
+  },
+  "src/runtime/library/contexts/create.c": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Own and verify explicit checked component context/instance lifecycle, admission provenance and exactly-once terminal cleanup.",
+    "tests": [
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/library/main.c": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Own and verify explicit checked component context/instance lifecycle, admission provenance and exactly-once terminal cleanup.",
+    "tests": [
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_checks_destination_shapes_before_lifecycle_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/library/common.c": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Own and verify explicit checked component context/instance lifecycle, admission provenance and exactly-once terminal cleanup.",
+    "tests": [
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/library/Makefile": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Own and verify explicit checked component context/instance lifecycle, admission provenance and exactly-once terminal cleanup.",
+    "tests": [
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/library/support/admission.c": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Own and verify explicit checked component context/instance lifecycle, admission provenance and exactly-once terminal cleanup.",
+    "tests": [
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/library/support/failures.c": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Own and verify explicit checked component context/instance lifecycle, admission provenance and exactly-once terminal cleanup.",
+    "tests": [
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/library/support/allocation.c": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Own and verify explicit checked component context/instance lifecycle, admission provenance and exactly-once terminal cleanup.",
+    "tests": [
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/library/support/lifetime.c": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Own and verify explicit checked component context/instance lifecycle, admission provenance and exactly-once terminal cleanup.",
+    "tests": [
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_checks_destination_shapes_before_lifecycle_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/library/support/identity.c": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Own and verify explicit checked component context/instance lifecycle, admission provenance and exactly-once terminal cleanup.",
+    "tests": [
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      }
+    ]
+  },
+  "src/library/lifecycle/internal.h": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Generate private lifecycle adapters and link an independent C consumer to real generated Ama context descriptors.",
+    "tests": [
+      {
+        "case": "it_links_public_lifecycle_to_real_generated_contexts",
+        "command": "make -C tests/unit/library/lifecycle",
+        "source": "tests/unit/library/lifecycle/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_lifecycle_type_maps",
+        "command": "make -C tests/unit/library/lifecycle",
+        "source": "tests/unit/library/lifecycle/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/library/lifecycle/operations.c": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Generate private lifecycle adapters and link an independent C consumer to real generated Ama context descriptors.",
+    "tests": [
+      {
+        "case": "it_links_public_lifecycle_to_real_generated_contexts",
+        "command": "make -C tests/unit/library/lifecycle",
+        "source": "tests/unit/library/lifecycle/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_lifecycle_type_maps",
+        "command": "make -C tests/unit/library/lifecycle",
+        "source": "tests/unit/library/lifecycle/main.c"
+      }
+    ]
+  },
+  "src/library/lifecycle/diagnostics.c": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Generate private lifecycle adapters and link an independent C consumer to real generated Ama context descriptors.",
+    "tests": [
+      {
+        "case": "it_links_public_lifecycle_to_real_generated_contexts",
+        "command": "make -C tests/unit/library/lifecycle",
+        "source": "tests/unit/library/lifecycle/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_lifecycle_type_maps",
+        "command": "make -C tests/unit/library/lifecycle",
+        "source": "tests/unit/library/lifecycle/main.c"
+      }
+    ]
+  },
+  "src/library/lifecycle/write.c": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Generate private lifecycle adapters and link an independent C consumer to real generated Ama context descriptors.",
+    "tests": [
+      {
+        "case": "it_links_public_lifecycle_to_real_generated_contexts",
+        "command": "make -C tests/unit/library/lifecycle",
+        "source": "tests/unit/library/lifecycle/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_lifecycle_type_maps",
+        "command": "make -C tests/unit/library/lifecycle",
+        "source": "tests/unit/library/lifecycle/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/lifecycle/main.c": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Generate private lifecycle adapters and link an independent C consumer to real generated Ama context descriptors.",
+    "tests": [
+      {
+        "case": "it_links_public_lifecycle_to_real_generated_contexts",
+        "command": "make -C tests/unit/library/lifecycle",
+        "source": "tests/unit/library/lifecycle/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_lifecycle_type_maps",
+        "command": "make -C tests/unit/library/lifecycle",
+        "source": "tests/unit/library/lifecycle/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/lifecycle/Makefile": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Generate private lifecycle adapters and link an independent C consumer to real generated Ama context descriptors.",
+    "tests": [
+      {
+        "case": "it_links_public_lifecycle_to_real_generated_contexts",
+        "command": "make -C tests/unit/library/lifecycle",
+        "source": "tests/unit/library/lifecycle/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_lifecycle_type_maps",
+        "command": "make -C tests/unit/library/lifecycle",
+        "source": "tests/unit/library/lifecycle/main.c"
+      }
+    ]
+  },
+  "src/runtime/context/failure.c": {
+    "contract": "docs/implementation/c-library-lifecycle.md",
+    "purpose": "Terminate admitted context lifecycle failures and preserve explicit core destruction admission provenance.",
+    "tests": [
+      {
+        "case": "it_preserves_admission_provenance_during_native_callbacks",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_a_simultaneous_context_executor",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_preserves_context_when_retirement_is_not_admitted",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_returns_startup_failure_before_context_publication",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_fails_only_the_admitted_context_and_unwinds_all_live_roots",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_consumes_admitted_destructor_failure_exactly_once",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lifecycle_allocation_failure",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_never_wraps_instance_control_generation",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_refuses_busy_and_invalid_factory_requests_without_effects",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_keeps_kernel_references_and_component_controls_distinct",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
       }
     ]
   }

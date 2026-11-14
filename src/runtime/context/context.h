@@ -68,6 +68,8 @@ typedef struct {
     uint64_t initialization_operation;
     void (*report)(void *, AmaStatus);
     void *report_context;
+    /** Optional immutable compiled-component label, retained through synchronous trace reporting. */
+    const char *component;
 } AmaContextDefinition;
 
 /** Opaque registry-owned context. A host token never contains its C address. */
@@ -134,6 +136,10 @@ AmaStatus ama_context_registry_destroy(AmaContextRegistry *registry);
  */
 AmaStatus ama_context_create(AmaContextRegistry *registry, const AmaContextDefinition *definition,
     uint64_t *identity);
+/** Report whether retirement occurred, independently of a native cleanup status code.
+ * The nonnull admission output is false on rejection and true before any cleanup hook.
+ */
+AmaStatus ama_context_dispose_admitted(AmaContextRegistry *, uint64_t, bool *);
 /** Invalidate one checked context before cleaning its resources. A held lease refuses busy
  * without effects; stale identities are rejected without dereferencing freed context storage.
  */
@@ -162,5 +168,11 @@ AmaStatus ama_context_reference(const AmaContextLease *lease, AmaHandle local,
  */
 AmaStatus ama_context_resolve(const AmaContextLease *lease, AmaContextReference reference,
     AmaAccessMode mode, AmaObjectType **type, AmaPoolCell **cell);
+
+/** Fail an admitted operation under its exclusive lease, report before terminal cleanup,
+ * and retain the primary diagnostic record. An active world operation rejects without effects.
+ * Success status is not a failure request; the caller keeps and must release its lease.
+ */
+AmaStatus ama_context_fail(const AmaContextLease *, AmaStatus);
 
 #endif

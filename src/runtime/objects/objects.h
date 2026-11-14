@@ -166,6 +166,10 @@ AmaStatus ama_object_type_init_aligned(AmaObjectType *, SourceAllocator, uint64_
 AmaObjectType *ama_world_type(const AmaWorld *, uint64_t);
 /** Own guarded private construction and publish output only after complete success. Failure unwinds the initialized prefix; native module bodies are not executed. */
 AmaStatus ama_object_create(AmaWorld *, uint64_t, const AmaRecipe *, AmaHandle *);
+/** Return explicit destructive-admission provenance independently of native hook status.
+ * *admitted starts false and becomes true only after successful access preflight.
+ */
+AmaStatus ama_object_destroy_admitted(AmaWorld *, AmaHandle, bool *admitted);
 /** Acquire one world operation guard, preflight normal destruction or clear terminal active links, then clean the tree. Always release protections and scratch, preserving the primary failure. */
 AmaStatus ama_object_destroy(AmaWorld *, AmaHandle);
 /** Own guarded whole-tree copy and exact reference fixups, then publish fresh identities. Ordinary mode clears positions, explicit continuation mode retains eligible saved positions. */

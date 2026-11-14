@@ -4,8 +4,9 @@ The checked export model now generates a self-contained C11 header. It declares
 opaque host control identities, typed readonly input views, opaque owned result
 snapshots and their ownership operations. It also generates the actual primitive
 ABI receiver used to check a consumer before any structure-based C call.
-This is T124's boundary; context execution and snapshot bodies follow in
-T125–T128. The header alone is not a compiled Ama component.
+The [lifecycle implementations](c-library-lifecycle.md) provide explicit factories
+and disposal. Execution, snapshots and artifact packaging follow in T126–T128.
+The header alone is not a compiled Ama component.
 
 ```sh
 make

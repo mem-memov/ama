@@ -26,15 +26,6 @@ static AmaStatus execution_return_status(AmaContext *context, AmaHostOutcome out
         ? ama_status_success() : ama_status_make(AMA_INVALID_STATE, NULL, 0);
 }
 
-/** Report the primary execution failure once before invalidating any active ownership tree. */
-static AmaStatus execution_fail(AmaContext *context, AmaStatus primary) {
-    if (context->status.code == AMA_OK) {
-        context->world.report(context->world.report_context, primary);
-    }
-    context->status = ama_context_cleanup(context, primary);
-    return context->status;
-}
-
 /** Consume only a valid execution owner after native views close; publish no live root on failure. */
 AmaStatus ama_context_execution_finish(AmaContextExecution *execution, AmaHostOutcome outcome,
     AmaStatus status, AmaContextOutcome *output) {
@@ -52,7 +43,7 @@ AmaStatus ama_context_execution_finish(AmaContextExecution *execution, AmaHostOu
     if (primary.code != AMA_OK) {
         result.outcome = AMA_HOST_FAILED;
         result.root = (AmaContextReference){0};
-        result.status = execution_fail(context, primary);
+        result.status = ama_context_fail(&execution->lease, primary);
     } else { context->control.phase = AMA_RUNTIME_IDLE; }
     execution->root = (AmaContextReference){0};
     execution->selector = 0;

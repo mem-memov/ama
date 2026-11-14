@@ -6,6 +6,7 @@
 #ifndef AMA_LIBRARY_MODEL_H
 #define AMA_LIBRARY_MODEL_H
 #include <stdio.h>
+#include <stdint.h>
 #include "compiler/frontend.h"
 #include "source/identity/identity.h"
 /** Supported independently owned wire values; references require another explicit policy. */
@@ -109,5 +110,11 @@ bool library_header_write(const LibraryBuild *, FILE *);
 
 /** Write the allocation-free ABI bootstrap definition after its public header has been included; no Ama context is accessed. */
 bool library_abi_write(const LibraryBuild *, FILE *);
+
+/** Emit private lifecycle definitions after the matching public header and generated project assembly.
+ * types supplies the exact nonzero project descriptor ordinal for each export in declaration order.
+ * Count/profile validation precedes output; no body, context or instance is executed by generation.
+ */
+bool library_lifecycle_write(const LibraryBuild *, const uint64_t *types, size_t count, FILE *);
 
 #endif

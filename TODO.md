@@ -1999,13 +1999,30 @@ Contracts: [EMBED-01–EMBED-08](spec/implementation/c-library.md),
   repeatability and stream failure. Strict whole tests, generator ASan/UBSan,
   all 1426 input coverage, standalone headers, links and reproducible Doxygen
   are checked before commit. Runtime/snapshot bodies remain T125–T128 work.
-- [ ] **T125 — Implement exported context and instance lifecycle.** Needs:
+- [x] **T125 — Implement exported context and instance lifecycle.** Needs:
   T013, T074, T124. Create independent contexts, initialize their constants and
   explicitly construct exported instances without executing their bodies.
   Implement quiescent release/disposal with checked owner, generation and ABI
   identities. Test partial startup, retained completed/yielded state, cross-context
   access with equal local numbers, nonreentrant execution, failure cleanup and
   exactly-once disposal without automatically running saved continuations.
+  Evidence: [explicit C lifecycle](docs/implementation/c-library-lifecycle.md).
+  Generated ABI-checked public thunks use real project descriptors, independent
+  context registries and explicit stable-slot roots; factory construction never
+  enters an Ama body. Exact service/context/root identities, nonwrapping IDs,
+  executor leases and explicit destruction-admission provenance separate refusals
+  from admitted native failures (including native Busy). Terminal failure cleans
+  roots/constants once, preserves the primary cause and leaves only diagnostic
+  access/cleanup. An independent public-header C consumer links to a real Ama
+  assembly and checks stale/cross-context controls, factories, disposal and
+  immutable diagnostic lifetime after cleanup. Address-sensitive kernel composition
+  checks yielded-state retention, native reentry, overlapping threads, exhausted
+  IDs, null/nonempty destinations, pre-retirement refusal and every measured
+  allocation failure in startup, root creation and deletion. Full strict tests,
+  focused ASan/UBSan (leak detection disabled), all 1450 input coverage, standalone
+  headers, prose links and Doxygen generation pass. Final reproducibility is
+  checked before commit. Typed snapshots/entry and artifact packaging remain
+  T126–T128; no compiled library artifact is claimed by this lifecycle generator.
 - [ ] **T126 — Implement typed inputs and independent result snapshots.** Needs:
   T069, T084, T086, T125. Generate checked factories, argument preparation and
   public value reads using the documented supported schemas; publish outputs
