@@ -32833,6 +32833,11 @@
         "case": "it_returns_yields_to_waiting_callers_and_releases_callees_for_resume",
         "command": "make -C tests/unit/codegen positions",
         "source": "tests/unit/codegen/positions/main.c"
+      },
+      {
+        "case": "it_restarts_entry_defaults_without_resetting_body_fields_or_resume_inputs",
+        "command": "make -C tests/unit/codegen restart",
+        "source": "tests/unit/codegen/restart/main.c"
       }
     ]
   },
@@ -62747,6 +62752,96 @@
         "case": "it_resumes_the_saved_branch_statement_after_external_condition_change",
         "command": "make -C tests/unit/codegen/positions",
         "source": "tests/unit/codegen/positions/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/restart/main.c": {
+    "contract": "docs/implementation/restart-and-root-policy.md",
+    "purpose": "Verify entry interface resets, persistent body data, explicit root outcomes and nonexecuting disposal.",
+    "tests": [
+      {
+        "case": "it_restarts_entry_defaults_without_resetting_body_fields_or_resume_inputs",
+        "command": "make -C tests/unit/codegen/restart",
+        "source": "tests/unit/codegen/restart/main.c"
+      },
+      {
+        "case": "it_preserves_healthy_hosts_across_resume_rejection_and_explicit_lifecycle",
+        "command": "make -C tests/unit/codegen/restart",
+        "source": "tests/unit/codegen/restart/main.c"
+      },
+      {
+        "case": "it_keeps_admitted_execution_failure_terminal_and_never_resumes_it",
+        "command": "make -C tests/unit/codegen/restart",
+        "source": "tests/unit/codegen/restart/main.c"
+      },
+      {
+        "case": "it_rejects_unhandled_standard_root_yield_after_nonexecuting_cleanup",
+        "command": "make -C tests/unit/codegen/restart",
+        "source": "tests/unit/codegen/restart/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/restart/Makefile": {
+    "contract": "docs/implementation/restart-and-root-policy.md",
+    "purpose": "Verify entry interface resets, persistent body data, explicit root outcomes and nonexecuting disposal.",
+    "tests": [
+      {
+        "case": "it_restarts_entry_defaults_without_resetting_body_fields_or_resume_inputs",
+        "command": "make -C tests/unit/codegen/restart",
+        "source": "tests/unit/codegen/restart/main.c"
+      },
+      {
+        "case": "it_preserves_healthy_hosts_across_resume_rejection_and_explicit_lifecycle",
+        "command": "make -C tests/unit/codegen/restart",
+        "source": "tests/unit/codegen/restart/main.c"
+      },
+      {
+        "case": "it_keeps_admitted_execution_failure_terminal_and_never_resumes_it",
+        "command": "make -C tests/unit/codegen/restart",
+        "source": "tests/unit/codegen/restart/main.c"
+      },
+      {
+        "case": "it_rejects_unhandled_standard_root_yield_after_nonexecuting_cleanup",
+        "command": "make -C tests/unit/codegen/restart",
+        "source": "tests/unit/codegen/restart/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/restart/support/entry.c": {
+    "contract": "docs/implementation/restart-and-root-policy.md",
+    "purpose": "Verify entry interface resets, persistent body data, explicit root outcomes and nonexecuting disposal.",
+    "tests": [
+      {
+        "case": "it_restarts_entry_defaults_without_resetting_body_fields_or_resume_inputs",
+        "command": "make -C tests/unit/codegen/restart",
+        "source": "tests/unit/codegen/restart/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/restart/support/launcher.c": {
+    "contract": "docs/implementation/restart-and-root-policy.md",
+    "purpose": "Verify entry interface resets, persistent body data, explicit root outcomes and nonexecuting disposal.",
+    "tests": [
+      {
+        "case": "it_rejects_unhandled_standard_root_yield_after_nonexecuting_cleanup",
+        "command": "make -C tests/unit/codegen/restart",
+        "source": "tests/unit/codegen/restart/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/restart/support/host.c": {
+    "contract": "docs/implementation/restart-and-root-policy.md",
+    "purpose": "Verify entry interface resets, persistent body data, explicit root outcomes and nonexecuting disposal.",
+    "tests": [
+      {
+        "case": "it_preserves_healthy_hosts_across_resume_rejection_and_explicit_lifecycle",
+        "command": "make -C tests/unit/codegen/restart",
+        "source": "tests/unit/codegen/restart/main.c"
+      },
+      {
+        "case": "it_keeps_admitted_execution_failure_terminal_and_never_resumes_it",
+        "command": "make -C tests/unit/codegen/restart",
+        "source": "tests/unit/codegen/restart/main.c"
       }
     ]
   }

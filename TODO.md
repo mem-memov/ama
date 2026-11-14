@@ -1580,10 +1580,23 @@ Contracts: [continuations](spec/language/continuations.md),
   maintained inputs have coverage; links passed and final Doxygen reproducibility
   is checked before commit. Foreach restoration and continuation-copy acceptance
   remain their later tasks.
-- [ ] **T071 — Complete restart and host yield policy.** Needs: T070. Restart
+- [x] **T071 — Complete restart and host yield policy.** Needs: T070. Restart
   entry without resetting persistent body fields; resume without inputs/interface
   reset. Test root completed/yielded/failed outcomes, explicit host resume/disposal
   and diagnosed standard-launcher rejection of unhandled root yield.
+  Evidence: [restart and root policy](docs/implementation/restart-and-root-policy.md).
+  Four compiled cases distinguish supplied/default interface values from retained
+  body counters across entry and resume, including restart from a yielded state.
+  Explicit generated-host checks preserve healthy roots across admission rejection,
+  observe yielded/completed outcomes at stable identities and dispose without
+  resuming. Accepted body failure remains terminal across later entry/resume and
+  idempotent cleanup. The standard launcher reports unhandled root yield and
+  consumes one native cleanup credit without executing the following statement.
+  Existing preparation/context/launcher paths supply the behavior. Strict parent
+  restart tests, independent host-lifecycle tests and generated-program ASan+UBSan
+  passed. All 1173 maintained inputs have coverage; links passed and final Doxygen
+  reproducibility is checked before commit. Checked foreign-component ABI and
+  scheduler acceptance remain their separate tasks.
 - [ ] **T072 — Copy continuation control state explicitly.** Needs: T050,
   T071. Preserve allowed owned descendant positions for `%` copies and clear all
   positions for ordinary copies. Test distinct identity requirements, whole-source
