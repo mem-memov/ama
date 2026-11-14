@@ -15,6 +15,10 @@
 
 /** Reject statically valid IR whose execution adapters are not yet implemented, before staging artifacts. */
 bool codegen_validate_execution(NativeScaffold *);
+/** Emit one fixed cursor per foreach site and one binding cell per exact reused
+ * semantic symbol. Cells are control storage, never declared Ama owned fields.
+ */
+bool codegen_emit_traversal_storage(FILE *, const ScaffoldType *);
 /**
  * Return the exact descriptor pointer ordinal starting at one, or zero if absent. This is an
  * assembly-local registry key, not a stable external type identity.

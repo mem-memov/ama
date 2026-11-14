@@ -1949,6 +1949,46 @@
         "case": "it_compiles_typed_lexical_list_service_and_method_storage",
         "command": "make -C tests/unit/codegen/list-frame-layout",
         "source": "tests/unit/codegen/list-frame-layout/main.c"
+      },
+      {
+        "case": "it_validates_empty_bodies_without_activating_or_visiting_bindings",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_preserves_unactivated_bindings_for_empty_and_absent_only_lists",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_busy_live_duplicates_without_acquiring_targets_or_allocating",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_reuses_nested_binding_cells_without_shadowing_or_restoring_old_values",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_collections_and_still_releases_the_lexical_role",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_actual_owned_children_without_acquiring_or_copying_them",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_lexical_slot_extents_before_touching_collection_state",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -2201,6 +2241,46 @@
         "case": "it_refuses_before_parking_and_checks_frame_storage",
         "command": "make -C tests/unit/runtime/result-calls",
         "source": "tests/unit/runtime/result-calls/main.c"
+      },
+      {
+        "case": "it_validates_empty_bodies_without_activating_or_visiting_bindings",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_preserves_unactivated_bindings_for_empty_and_absent_only_lists",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_busy_live_duplicates_without_acquiring_targets_or_allocating",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_reuses_nested_binding_cells_without_shadowing_or_restoring_old_values",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_collections_and_still_releases_the_lexical_role",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_actual_owned_children_without_acquiring_or_copying_them",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_lexical_slot_extents_before_touching_collection_state",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -13652,6 +13732,46 @@
         "case": "it_cleans_length_result_after_selected_body_failure",
         "command": "make -C tests/unit/codegen/list-ordering",
         "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_validates_empty_bodies_without_activating_or_visiting_bindings",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_preserves_unactivated_bindings_for_empty_and_absent_only_lists",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_busy_live_duplicates_without_acquiring_targets_or_allocating",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_reuses_nested_binding_cells_without_shadowing_or_restoring_old_values",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_collections_and_still_releases_the_lexical_role",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_actual_owned_children_without_acquiring_or_copying_them",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_lexical_slot_extents_before_touching_collection_state",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -33812,6 +33932,46 @@
         "case": "it_cleans_length_result_after_selected_body_failure",
         "command": "make -C tests/unit/codegen/list-ordering",
         "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_validates_empty_bodies_without_activating_or_visiting_bindings",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_preserves_unactivated_bindings_for_empty_and_absent_only_lists",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_busy_live_duplicates_without_acquiring_targets_or_allocating",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_reuses_nested_binding_cells_without_shadowing_or_restoring_old_values",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_collections_and_still_releases_the_lexical_role",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_actual_owned_children_without_acquiring_or_copying_them",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_lexical_slot_extents_before_touching_collection_state",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -41072,6 +41232,46 @@
         "case": "it_cleans_length_result_after_selected_body_failure",
         "command": "make -C tests/unit/codegen/list-ordering",
         "source": "tests/unit/codegen/list-ordering/main.c"
+      },
+      {
+        "case": "it_validates_empty_bodies_without_activating_or_visiting_bindings",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_preserves_unactivated_bindings_for_empty_and_absent_only_lists",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_busy_live_duplicates_without_acquiring_targets_or_allocating",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_reuses_nested_binding_cells_without_shadowing_or_restoring_old_values",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_collections_and_still_releases_the_lexical_role",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_actual_owned_children_without_acquiring_or_copying_them",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_lexical_slot_extents_before_touching_collection_state",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   },
@@ -68240,6 +68440,542 @@
         "case": "it_cleans_length_result_after_selected_body_failure",
         "command": "make -C tests/unit/codegen/list-ordering",
         "source": "tests/unit/codegen/list-ordering/main.c"
+      }
+    ]
+  },
+  "src/codegen/emit/traversal.c": {
+    "contract": "docs/implementation/list-traversal-selection.md",
+    "purpose": "Select live list occurrences under short acquisitions using fixed lexical cursors and exact shared binding cells.",
+    "tests": [
+      {
+        "case": "it_validates_empty_bodies_without_activating_or_visiting_bindings",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_preserves_unactivated_bindings_for_empty_and_absent_only_lists",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_busy_live_duplicates_without_acquiring_targets_or_allocating",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_reuses_nested_binding_cells_without_shadowing_or_restoring_old_values",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_collections_and_still_releases_the_lexical_role",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_actual_owned_children_without_acquiring_or_copying_them",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_lexical_slot_extents_before_touching_collection_state",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/traversal/internal.h": {
+    "contract": "docs/implementation/list-traversal-selection.md",
+    "purpose": "Select live list occurrences under short acquisitions using fixed lexical cursors and exact shared binding cells.",
+    "tests": [
+      {
+        "case": "it_validates_empty_bodies_without_activating_or_visiting_bindings",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_preserves_unactivated_bindings_for_empty_and_absent_only_lists",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_busy_live_duplicates_without_acquiring_targets_or_allocating",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_reuses_nested_binding_cells_without_shadowing_or_restoring_old_values",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_collections_and_still_releases_the_lexical_role",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_actual_owned_children_without_acquiring_or_copying_them",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_lexical_slot_extents_before_touching_collection_state",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/runtime/program/lists/traversal/lifetime.c": {
+    "contract": "docs/implementation/list-traversal-selection.md",
+    "purpose": "Select live list occurrences under short acquisitions using fixed lexical cursors and exact shared binding cells.",
+    "tests": [
+      {
+        "case": "it_validates_empty_bodies_without_activating_or_visiting_bindings",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_preserves_unactivated_bindings_for_empty_and_absent_only_lists",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_busy_live_duplicates_without_acquiring_targets_or_allocating",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_reuses_nested_binding_cells_without_shadowing_or_restoring_old_values",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_collections_and_still_releases_the_lexical_role",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_actual_owned_children_without_acquiring_or_copying_them",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_lexical_slot_extents_before_touching_collection_state",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/traversal/next.c": {
+    "contract": "docs/implementation/list-traversal-selection.md",
+    "purpose": "Select live list occurrences under short acquisitions using fixed lexical cursors and exact shared binding cells.",
+    "tests": [
+      {
+        "case": "it_validates_empty_bodies_without_activating_or_visiting_bindings",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_preserves_unactivated_bindings_for_empty_and_absent_only_lists",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_busy_live_duplicates_without_acquiring_targets_or_allocating",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_reuses_nested_binding_cells_without_shadowing_or_restoring_old_values",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_collections_and_still_releases_the_lexical_role",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_actual_owned_children_without_acquiring_or_copying_them",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_lexical_slot_extents_before_touching_collection_state",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/traversal/slots.c": {
+    "contract": "docs/implementation/list-traversal-selection.md",
+    "purpose": "Select live list occurrences under short acquisitions using fixed lexical cursors and exact shared binding cells.",
+    "tests": [
+      {
+        "case": "it_validates_empty_bodies_without_activating_or_visiting_bindings",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_preserves_unactivated_bindings_for_empty_and_absent_only_lists",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_busy_live_duplicates_without_acquiring_targets_or_allocating",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_reuses_nested_binding_cells_without_shadowing_or_restoring_old_values",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_collections_and_still_releases_the_lexical_role",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_actual_owned_children_without_acquiring_or_copying_them",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_lexical_slot_extents_before_touching_collection_state",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ]
+  },
+  "src/runtime/program/lists/traversal/traversal.h": {
+    "contract": "docs/implementation/list-traversal-selection.md",
+    "purpose": "Select live list occurrences under short acquisitions using fixed lexical cursors and exact shared binding cells.",
+    "tests": [
+      {
+        "case": "it_validates_empty_bodies_without_activating_or_visiting_bindings",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_preserves_unactivated_bindings_for_empty_and_absent_only_lists",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_busy_live_duplicates_without_acquiring_targets_or_allocating",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_reuses_nested_binding_cells_without_shadowing_or_restoring_old_values",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_collections_and_still_releases_the_lexical_role",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_actual_owned_children_without_acquiring_or_copying_them",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_lexical_slot_extents_before_touching_collection_state",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/codegen/traversal-layout/Makefile": {
+    "contract": "docs/implementation/list-traversal-selection.md",
+    "purpose": "Select live list occurrences under short acquisitions using fixed lexical cursors and exact shared binding cells.",
+    "tests": [
+      {
+        "case": "it_validates_empty_bodies_without_activating_or_visiting_bindings",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_preserves_unactivated_bindings_for_empty_and_absent_only_lists",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_busy_live_duplicates_without_acquiring_targets_or_allocating",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_reuses_nested_binding_cells_without_shadowing_or_restoring_old_values",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_collections_and_still_releases_the_lexical_role",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_actual_owned_children_without_acquiring_or_copying_them",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_lexical_slot_extents_before_touching_collection_state",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/traversal-layout/main.c": {
+    "contract": "docs/implementation/list-traversal-selection.md",
+    "purpose": "Select live list occurrences under short acquisitions using fixed lexical cursors and exact shared binding cells.",
+    "tests": [
+      {
+        "case": "it_validates_empty_bodies_without_activating_or_visiting_bindings",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_preserves_unactivated_bindings_for_empty_and_absent_only_lists",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_busy_live_duplicates_without_acquiring_targets_or_allocating",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_reuses_nested_binding_cells_without_shadowing_or_restoring_old_values",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_collections_and_still_releases_the_lexical_role",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_actual_owned_children_without_acquiring_or_copying_them",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_lexical_slot_extents_before_touching_collection_state",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/traversal/Makefile": {
+    "contract": "docs/implementation/list-traversal-selection.md",
+    "purpose": "Select live list occurrences under short acquisitions using fixed lexical cursors and exact shared binding cells.",
+    "tests": [
+      {
+        "case": "it_validates_empty_bodies_without_activating_or_visiting_bindings",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_preserves_unactivated_bindings_for_empty_and_absent_only_lists",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_busy_live_duplicates_without_acquiring_targets_or_allocating",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_reuses_nested_binding_cells_without_shadowing_or_restoring_old_values",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_collections_and_still_releases_the_lexical_role",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_actual_owned_children_without_acquiring_or_copying_them",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_lexical_slot_extents_before_touching_collection_state",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/traversal/common.c": {
+    "contract": "docs/implementation/list-traversal-selection.md",
+    "purpose": "Select live list occurrences under short acquisitions using fixed lexical cursors and exact shared binding cells.",
+    "tests": [
+      {
+        "case": "it_validates_empty_bodies_without_activating_or_visiting_bindings",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_preserves_unactivated_bindings_for_empty_and_absent_only_lists",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_busy_live_duplicates_without_acquiring_targets_or_allocating",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_reuses_nested_binding_cells_without_shadowing_or_restoring_old_values",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_collections_and_still_releases_the_lexical_role",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_actual_owned_children_without_acquiring_or_copying_them",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_lexical_slot_extents_before_touching_collection_state",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/traversal/main.c": {
+    "contract": "docs/implementation/list-traversal-selection.md",
+    "purpose": "Select live list occurrences under short acquisitions using fixed lexical cursors and exact shared binding cells.",
+    "tests": [
+      {
+        "case": "it_validates_empty_bodies_without_activating_or_visiting_bindings",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_preserves_unactivated_bindings_for_empty_and_absent_only_lists",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_busy_live_duplicates_without_acquiring_targets_or_allocating",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_reuses_nested_binding_cells_without_shadowing_or_restoring_old_values",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_replaced_collections_and_still_releases_the_lexical_role",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_selects_actual_owned_children_without_acquiring_or_copying_them",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_lexical_slot_extents_before_touching_collection_state",
+        "command": "make -C tests/unit/runtime/traversal",
+        "source": "tests/unit/runtime/traversal/main.c"
+      },
+      {
+        "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
+        "command": "make -C tests/unit/codegen/traversal-layout",
+        "source": "tests/unit/codegen/traversal-layout/main.c"
       }
     ]
   }

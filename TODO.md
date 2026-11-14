@@ -1754,10 +1754,23 @@ Contracts: [lists](spec/language/lists.md),
   Component and actual generated-program ASan/UBSan passed; full strict tests,
   all 1251 input coverage, links and reproducible Doxygen are checked before
   commit. Foreach remains explicitly guarded for its cursor tasks.
-- [ ] **T081 — Implement live foreach selection and bindings.** Needs: T031,
+- [x] **T081 — Implement live foreach selection and bindings.** Needs: T031,
   T074, T080. Store one fixed lexical cursor/cell per instance, validate source
   incarnation and use short acquisitions. Test empty bodies/lists, absent referents,
   compatible reuse, no-shadow errors and busy live targets not silently skipped.
+  Evidence: [live traversal selection](docs/implementation/list-traversal-selection.md).
+  Stable generated cursor slots retain exact collection identities and scalar
+  boundaries; binding cells are shared by exact semantic symbol identity. Short
+  acquisitions end before each body, with no index/condition protocol, allocation
+  or target acquisition. Only eligible entries activate locals; nested reuse
+  replaces the shared handle/origin without restoring an outer value. Seven
+  runtime cases cover absent-only scans, empty bodies/lists, busy duplicates,
+  actual owned children, reused references, replacement invalidation and checked
+  lexical offsets. A compiled C layout probe verifies three independent cursors
+  and two binding cells; existing semantic suites cover incompatible shadowing.
+  Runtime ASan/UBSan passed; full strict tests, all 1262 input coverage, links and
+  reproducible Doxygen are checked before commit. Complete source execution stays
+  guarded until T082–T084 integrate mutation, origin/resume and continuation state.
 - [ ] **T082 — Correct every active or suspended boundary on mutation.** Needs:
   T081. Apply exact insert/remove/clear adjustments and unchanged swap boundaries
   in each complete publication. Test nested same-list scans, insert at the gap,
