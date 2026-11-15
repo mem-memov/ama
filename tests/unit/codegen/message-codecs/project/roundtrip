@@ -1,0 +1,26 @@
+# Replacing the envelope before inspection must not invalidate decoded values.
+@!
+encode
+.encode
+decode
+.decode
+inspect
+.inspect
+empty wire
+..bytes
+encode !
+ < |1
+ < |Hello, Ама
+ < |-18446744073709551617
+ > wire
+decode !
+ < wire
+ < |0
+ > result
+ > failure
+wire
+ empty wire
+failure
+:
+ inspect !
+  < result

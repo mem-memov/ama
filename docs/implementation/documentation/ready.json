@@ -38402,6 +38402,21 @@
         "case": "it_keeps_a_thread_affine_native_resource_on_its_required_executor",
         "command": "make -C tests/unit/codegen/executor-transfer",
         "source": "tests/unit/codegen/executor-transfer/main.c"
+      },
+      {
+        "case": "it_constructs_independent_typed_ama_fields_before_publishing_a_message",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_reports_malformed_messages_as_ordinary_failure_values",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
       }
     ]
   },
@@ -86106,6 +86121,41 @@
         "case": "it_rejects_invalid_transitions_without_changing_the_destination",
         "command": "make -C tests/unit/async/outcome",
         "source": "tests/unit/async/outcome/main.c"
+      },
+      {
+        "case": "it_round_trips_typed_data_without_borrowing_the_sender_or_schema",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_truncation_trailing_data_versions_and_declared_limits",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_prefix_and_preserves_output_on_technical_failure",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_matches_fixed_wire_vectors_and_rejects_shape_substitution",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_validates_utf8_boundaries_without_locale_or_terminators",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_noncanonical_values_and_enforces_exact_field_bounds",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_configuration_and_nonempty_outputs_without_effects",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
       }
     ]
   },
@@ -94471,6 +94521,1142 @@
         "case": "it_keeps_a_thread_affine_native_resource_on_its_required_executor",
         "command": "make -C tests/unit/codegen/executor-transfer",
         "source": "tests/unit/codegen/executor-transfer/main.c"
+      }
+    ]
+  },
+  "src/native/messages/message.h": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_round_trips_typed_data_without_borrowing_the_sender_or_schema",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_truncation_trailing_data_versions_and_declared_limits",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_prefix_and_preserves_output_on_technical_failure",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_matches_fixed_wire_vectors_and_rejects_shape_substitution",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_validates_utf8_boundaries_without_locale_or_terminators",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_noncanonical_values_and_enforces_exact_field_bounds",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_configuration_and_nonempty_outputs_without_effects",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_constructs_independent_typed_ama_fields_before_publishing_a_message",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_reports_malformed_messages_as_ordinary_failure_values",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/native/messages/internal.h": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_round_trips_typed_data_without_borrowing_the_sender_or_schema",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_truncation_trailing_data_versions_and_declared_limits",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_prefix_and_preserves_output_on_technical_failure",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_matches_fixed_wire_vectors_and_rejects_shape_substitution",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_validates_utf8_boundaries_without_locale_or_terminators",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_noncanonical_values_and_enforces_exact_field_bounds",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_configuration_and_nonempty_outputs_without_effects",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_constructs_independent_typed_ama_fields_before_publishing_a_message",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_reports_malformed_messages_as_ordinary_failure_values",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/native/messages/assembly.h": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_round_trips_typed_data_without_borrowing_the_sender_or_schema",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_truncation_trailing_data_versions_and_declared_limits",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_prefix_and_preserves_output_on_technical_failure",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_matches_fixed_wire_vectors_and_rejects_shape_substitution",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_validates_utf8_boundaries_without_locale_or_terminators",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_noncanonical_values_and_enforces_exact_field_bounds",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_configuration_and_nonempty_outputs_without_effects",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_constructs_independent_typed_ama_fields_before_publishing_a_message",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_reports_malformed_messages_as_ordinary_failure_values",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/native/messages/schema/scalar.c": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_round_trips_typed_data_without_borrowing_the_sender_or_schema",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_truncation_trailing_data_versions_and_declared_limits",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_prefix_and_preserves_output_on_technical_failure",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_matches_fixed_wire_vectors_and_rejects_shape_substitution",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_validates_utf8_boundaries_without_locale_or_terminators",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_noncanonical_values_and_enforces_exact_field_bounds",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_configuration_and_nonempty_outputs_without_effects",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_constructs_independent_typed_ama_fields_before_publishing_a_message",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_reports_malformed_messages_as_ordinary_failure_values",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      }
+    ]
+  },
+  "src/native/messages/schema/check.c": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_round_trips_typed_data_without_borrowing_the_sender_or_schema",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_truncation_trailing_data_versions_and_declared_limits",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_prefix_and_preserves_output_on_technical_failure",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_matches_fixed_wire_vectors_and_rejects_shape_substitution",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_validates_utf8_boundaries_without_locale_or_terminators",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_noncanonical_values_and_enforces_exact_field_bounds",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_configuration_and_nonempty_outputs_without_effects",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_constructs_independent_typed_ama_fields_before_publishing_a_message",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_reports_malformed_messages_as_ordinary_failure_values",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      }
+    ]
+  },
+  "src/native/messages/schema/utf8.c": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_round_trips_typed_data_without_borrowing_the_sender_or_schema",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_truncation_trailing_data_versions_and_declared_limits",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_prefix_and_preserves_output_on_technical_failure",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_matches_fixed_wire_vectors_and_rejects_shape_substitution",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_validates_utf8_boundaries_without_locale_or_terminators",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_noncanonical_values_and_enforces_exact_field_bounds",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_configuration_and_nonempty_outputs_without_effects",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_constructs_independent_typed_ama_fields_before_publishing_a_message",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_reports_malformed_messages_as_ordinary_failure_values",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      }
+    ]
+  },
+  "src/native/messages/encode/encode.c": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_round_trips_typed_data_without_borrowing_the_sender_or_schema",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_truncation_trailing_data_versions_and_declared_limits",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_prefix_and_preserves_output_on_technical_failure",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_matches_fixed_wire_vectors_and_rejects_shape_substitution",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_validates_utf8_boundaries_without_locale_or_terminators",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_noncanonical_values_and_enforces_exact_field_bounds",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_configuration_and_nonempty_outputs_without_effects",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_constructs_independent_typed_ama_fields_before_publishing_a_message",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_reports_malformed_messages_as_ordinary_failure_values",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      }
+    ]
+  },
+  "src/native/messages/wire/scan.c": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_round_trips_typed_data_without_borrowing_the_sender_or_schema",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_truncation_trailing_data_versions_and_declared_limits",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_prefix_and_preserves_output_on_technical_failure",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_matches_fixed_wire_vectors_and_rejects_shape_substitution",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_validates_utf8_boundaries_without_locale_or_terminators",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_noncanonical_values_and_enforces_exact_field_bounds",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_configuration_and_nonempty_outputs_without_effects",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_constructs_independent_typed_ama_fields_before_publishing_a_message",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_reports_malformed_messages_as_ordinary_failure_values",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      }
+    ]
+  },
+  "src/native/messages/wire/cursor.c": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_round_trips_typed_data_without_borrowing_the_sender_or_schema",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_truncation_trailing_data_versions_and_declared_limits",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_prefix_and_preserves_output_on_technical_failure",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_matches_fixed_wire_vectors_and_rejects_shape_substitution",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_validates_utf8_boundaries_without_locale_or_terminators",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_noncanonical_values_and_enforces_exact_field_bounds",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_configuration_and_nonempty_outputs_without_effects",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_constructs_independent_typed_ama_fields_before_publishing_a_message",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_reports_malformed_messages_as_ordinary_failure_values",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_preserves_cursor_outputs_when_fixed_width_reads_or_writes_do_not_fit",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      }
+    ]
+  },
+  "src/native/messages/wire/emit.c": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_round_trips_typed_data_without_borrowing_the_sender_or_schema",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_truncation_trailing_data_versions_and_declared_limits",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_prefix_and_preserves_output_on_technical_failure",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_matches_fixed_wire_vectors_and_rejects_shape_substitution",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_validates_utf8_boundaries_without_locale_or_terminators",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_noncanonical_values_and_enforces_exact_field_bounds",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_configuration_and_nonempty_outputs_without_effects",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_constructs_independent_typed_ama_fields_before_publishing_a_message",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_reports_malformed_messages_as_ordinary_failure_values",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      }
+    ]
+  },
+  "src/native/messages/decode/validate.c": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_round_trips_typed_data_without_borrowing_the_sender_or_schema",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_truncation_trailing_data_versions_and_declared_limits",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_prefix_and_preserves_output_on_technical_failure",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_matches_fixed_wire_vectors_and_rejects_shape_substitution",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_validates_utf8_boundaries_without_locale_or_terminators",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_noncanonical_values_and_enforces_exact_field_bounds",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_configuration_and_nonempty_outputs_without_effects",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_constructs_independent_typed_ama_fields_before_publishing_a_message",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_reports_malformed_messages_as_ordinary_failure_values",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      }
+    ]
+  },
+  "src/native/messages/decode/decode.c": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_round_trips_typed_data_without_borrowing_the_sender_or_schema",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_truncation_trailing_data_versions_and_declared_limits",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_prefix_and_preserves_output_on_technical_failure",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_matches_fixed_wire_vectors_and_rejects_shape_substitution",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_validates_utf8_boundaries_without_locale_or_terminators",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_noncanonical_values_and_enforces_exact_field_bounds",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_configuration_and_nonempty_outputs_without_effects",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_constructs_independent_typed_ama_fields_before_publishing_a_message",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_reports_malformed_messages_as_ordinary_failure_values",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/messages/main.c": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_round_trips_typed_data_without_borrowing_the_sender_or_schema",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_truncation_trailing_data_versions_and_declared_limits",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_prefix_and_preserves_output_on_technical_failure",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_matches_fixed_wire_vectors_and_rejects_shape_substitution",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_validates_utf8_boundaries_without_locale_or_terminators",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_noncanonical_values_and_enforces_exact_field_bounds",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_configuration_and_nonempty_outputs_without_effects",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/messages/common.c": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_round_trips_typed_data_without_borrowing_the_sender_or_schema",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_truncation_trailing_data_versions_and_declared_limits",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_prefix_and_preserves_output_on_technical_failure",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_matches_fixed_wire_vectors_and_rejects_shape_substitution",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_validates_utf8_boundaries_without_locale_or_terminators",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_noncanonical_values_and_enforces_exact_field_bounds",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_configuration_and_nonempty_outputs_without_effects",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/messages/Makefile": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_round_trips_typed_data_without_borrowing_the_sender_or_schema",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_truncation_trailing_data_versions_and_declared_limits",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_prefix_and_preserves_output_on_technical_failure",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_matches_fixed_wire_vectors_and_rejects_shape_substitution",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_validates_utf8_boundaries_without_locale_or_terminators",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_noncanonical_values_and_enforces_exact_field_bounds",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_configuration_and_nonempty_outputs_without_effects",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/messages/support/wire.c": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_round_trips_typed_data_without_borrowing_the_sender_or_schema",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_truncation_trailing_data_versions_and_declared_limits",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_prefix_and_preserves_output_on_technical_failure",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_matches_fixed_wire_vectors_and_rejects_shape_substitution",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_validates_utf8_boundaries_without_locale_or_terminators",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_noncanonical_values_and_enforces_exact_field_bounds",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_configuration_and_nonempty_outputs_without_effects",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_preserves_cursor_outputs_when_fixed_width_reads_or_writes_do_not_fit",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/messages/support/scalars.c": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_round_trips_typed_data_without_borrowing_the_sender_or_schema",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_truncation_trailing_data_versions_and_declared_limits",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_cleans_every_allocation_prefix_and_preserves_output_on_technical_failure",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_matches_fixed_wire_vectors_and_rejects_shape_substitution",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_validates_utf8_boundaries_without_locale_or_terminators",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_noncanonical_values_and_enforces_exact_field_bounds",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_configuration_and_nonempty_outputs_without_effects",
+        "command": "make -C tests/unit/async/messages",
+        "source": "tests/unit/async/messages/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/message-codecs/main.c": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_constructs_independent_typed_ama_fields_before_publishing_a_message",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_reports_malformed_messages_as_ordinary_failure_values",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/message-codecs/Makefile": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_constructs_independent_typed_ama_fields_before_publishing_a_message",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_reports_malformed_messages_as_ordinary_failure_values",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/message-codecs/project/message": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_constructs_independent_typed_ama_fields_before_publishing_a_message",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_reports_malformed_messages_as_ordinary_failure_values",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/message-codecs/project/reject": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_constructs_independent_typed_ama_fields_before_publishing_a_message",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_reports_malformed_messages_as_ordinary_failure_values",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/message-codecs/project/technical": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_constructs_independent_typed_ama_fields_before_publishing_a_message",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_reports_malformed_messages_as_ordinary_failure_values",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/message-codecs/project/roundtrip": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_constructs_independent_typed_ama_fields_before_publishing_a_message",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_reports_malformed_messages_as_ordinary_failure_values",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/message-codecs/project/schema.h": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_constructs_independent_typed_ama_fields_before_publishing_a_message",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_reports_malformed_messages_as_ordinary_failure_values",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/codegen/message-codecs/support/consumer.c": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_constructs_independent_typed_ama_fields_before_publishing_a_message",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_reports_malformed_messages_as_ordinary_failure_values",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/message-codecs/support/entries.c": {
+    "contract": "docs/implementation/typed-messages.md",
+    "purpose": "Validate explicit data-only schema/version/bounds before independent native or typed Ama publication and clean every failed construction prefix.",
+    "tests": [
+      {
+        "case": "it_constructs_independent_typed_ama_fields_before_publishing_a_message",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_reports_malformed_messages_as_ordinary_failure_values",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
+        "command": "make -C tests/unit/codegen/message-codecs",
+        "source": "tests/unit/codegen/message-codecs/main.c"
       }
     ]
   }

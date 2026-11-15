@@ -1,0 +1,9 @@
+# Data-only receiver schema. Native codecs construct these owned fields independently.
+@>
+flag
+..std.condition
+text
+..text
+number
+..integer
+@!

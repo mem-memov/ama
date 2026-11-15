@@ -37,6 +37,10 @@ The [executor transfer contract](../executor-transfer.md) separates core
 admission, synchronized host publication and native affinity, with compiled
 permanent-thread handoff and pinned-resource evidence.
 
+The [typed message contract](../typed-messages.md) defines the explicit data-only
+wire profile, allocation-free validation, independent native ownership and typed
+Ama publication/failure evidence.
+
 ## Before implementation
 
 Identify one responsibility and its smallest meaningful public boundary. Link the

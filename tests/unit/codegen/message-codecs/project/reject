@@ -1,0 +1,15 @@
+# Malformed format is ordinary application data in the failure result.
+@!
+decode
+.decode
+inspect
+.inspectfailure
+decode !
+ < |not a message
+ < |0
+ > result
+ > failure
+failure
+?
+ inspect !
+  < failure

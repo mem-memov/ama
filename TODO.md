@@ -2389,10 +2389,21 @@ Contracts: [PAR-01–PAR-08](spec/language/async-and-parallelism.md#parallelism-
   pass. Per-file coverage and standalone headers check 1922 inputs without debt;
   prose/rule links and final Doxygen reproducibility are checked before commit.
   See `docs/implementation/executor-transfer.md`.
-- [ ] **T103 — Implement typed message encoding and decoding.** Needs: T086,
-  T101. Validate version/schema/size before publishing independent received
-  values, excluding Ama identities/control state/native pointers. Test malformed
-  data, partial construction cleanup and technical decode failure.
+- [x] **T103 — Implement typed message encoding and decoding.** Needs: T086,
+  T101. Added an explicit native record profile for bounded scalar/list condition,
+  canonical arbitrary-precision integer, UTF-8 text and binary fields. Fixed wire
+  format, exact schema name/version, complete size/shape/content validation and
+  allocation-free admission precede independent receiver storage. Message owners
+  retain native creator-code credits, contain no Ama identity/control/resource
+  serialization, and clean every allocation prefix. Actual typed Ama bindings
+  construct owned receiver fields, expose malformed data as an ordinary failure,
+  and prove exact cleanup after a technical error following child construction.
+  Independent wire vectors, all truncated prefixes, every one-byte substitution
+  of the one-condition grammar, canonical/limit/empty cases and allocation-failure
+  injection pass. Strict full `NDEBUG`, native/generated ASan/UBSan and exact
+  generated allocation counters pass. Per-file coverage/standalone headers check
+  1948 inputs without debt; Doxygen/prose/rule links pass and final reproducibility
+  is checked before commit. See `docs/implementation/typed-messages.md`.
 - [ ] **T104 — Implement bounded single-sender/single-receiver channels.** Needs:
   T103. Enforce atomic whole-message acceptance, count/byte limits, FIFO and
   explicit ownership transfer. Test full/rejected sends, capacity release on take
