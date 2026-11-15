@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include "internal.h"
 bool driver_library_retain(NativeScaffold *scaffold, const char *stage) {
-    static const char *const names[]={"public.h","component.c","component.json","library.a","library.so"};
+    static const char *const names[]={"public.h","component.c","component.json","symbols.txt","library.a","library.so"};
     for (size_t index=0;index<sizeof(names)/sizeof(*names);index++) {
         const char *source=scaffold_join(scaffold,stage,"/",names[index]);
         const char *destination=scaffold_join(scaffold,scaffold->directory,"/",names[index]);

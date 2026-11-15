@@ -27,7 +27,7 @@ def generate(root, destination, doxygen):
     view.mkdir(parents=True)
     inputs = []
     expected = {}
-    maintained = sorted(path for base in ['src', 'stdlib/modules', 'tools', 'tests', 'spec']
+    maintained = sorted(path for base in ['src', 'stdlib/modules', 'tools', 'tests', 'spec', 'examples']
                         for path in (root / base).rglob('*')
                         if path.is_file() and path.suffix in ('.c', '.h', '.inc', '.py', '.md')
                         and not {'generated', 'build', '__pycache__'}.intersection(path.relative_to(root).parts))

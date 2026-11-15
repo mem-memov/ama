@@ -16,7 +16,7 @@ cc -std=c11 host.c path/to/component-output/library.a -o host
 
 The command builds both `library.a` and `library.so` for the supported GNU
 x86-64 Linux ELF LP64 System V profile. It also publishes `public.h`,
-`component.json`, `component.c`, the private project assembly and its native
+`component.json`, `component.c`, `symbols.txt`, `native-model.json`, the private project assembly and its native
 declarations. Include `public.h` from the C host; it needs no compiler SDK.
 Do not compile all the published C files together: `component.c` already includes
 `project.c`. No executable `launcher.c` is published.
@@ -37,6 +37,11 @@ linking have all succeeded. The existing owned-artifact publisher then commits
 the complete output set. A failing rebuild preserves the previously usable set.
 `--out` and `--sdk` are mandatory; `--cc` selects the explicit compiler program.
 `--library-check` and `--library-header` remain read-only requests.
+
+The [C host examples](c-library-examples.md) provide a complete CLI-driven
+static/shared build with exact argument records and explicit C dependencies.
+`symbols.txt` publishes the same exact symbol set used by the packaging verifier;
+`native-model.json` maps generated native authoring identities and filenames.
 
 ## Symbol isolation is an exact set operation
 

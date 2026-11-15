@@ -3,7 +3,7 @@
 PROJECT_NAME           = Ama
 PROJECT_BRIEF          = "Maintained C components and their specification contracts"
 OUTPUT_DIRECTORY       = docs/technical
-INPUT                  = docs/documentation.md src stdlib/modules tools tests spec docs/implementation/library-tests-and-build.md
+INPUT                  = docs/documentation.md src stdlib/modules tools tests spec examples docs/implementation/library-tests-and-build.md
 USE_MDFILE_AS_MAINPAGE  = docs/documentation.md
 RECURSIVE              = YES
 FILE_PATTERNS          = *.c *.h *.inc *.py *.md

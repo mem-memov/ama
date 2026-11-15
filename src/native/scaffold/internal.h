@@ -91,6 +91,10 @@ bool scaffold_emit_test(NativeScaffold *, FILE *, const ScaffoldType *);
 /** Emit a compilation database from supported UTF-8 configuration and exact argv elements, with explicit cwd/includes/flags and no shell interpretation.
  */
 bool scaffold_emit_tooling(NativeScaffold *, FILE *, const ScaffoldType *);
+/** Emit exact native SDK role names/full keys for authoring tools. The resolved
+ * model and prepared filenames are borrowed; this is not a runtime value ABI.
+ */
+bool scaffold_emit_model(NativeScaffold *, FILE *, const ScaffoldType *);
 /** Write one valid AbiOperation signature using validated local function bytes. No type model is needed. Partial output remains unpublished on false.
  */
 bool scaffold_emit_signature(FILE *output, AbiOperation operation, SourceSpan function);

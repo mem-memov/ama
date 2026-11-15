@@ -16,7 +16,7 @@ from linking.markdown import compact_heading_levels, links
 from linking.registry import Registry
 from linking.source import comments
 from linking.view import transform
-from rendered import Page, interfaces, validate
+from rendered import Page, file_pages, interfaces, validate
 from build import generate
 import coverage
 
@@ -131,13 +131,18 @@ def rendered():
     original.write_text(code)
     included = nested / 'ranges.inc'
     included.write_text(code.replace('int fixture(void) { return 0; }', 'static const int fixture_ranges[] = {0};'))
+    example = root / 'examples/host.c'
+    example.parent.mkdir()
+    example.write_text('/** @file\n * @brief Demonstrate an independently rendered C host.\n */\n'
+                       '/** Provide a documented example entry. */\nint example(void) { return 0; }\n')
     hashes = {path: hashlib.sha256(path.read_bytes()).hexdigest() for path in root.rglob('*') if path.is_file()}
     output = root / 'html'
     generate(root, output, shutil.which('doxygen'))
+    require('examples/host.c' in file_pages(output), 'published C example has no file page')
     require(all(hashlib.sha256(path.read_bytes()).hexdigest() == value for path, value in hashes.items()), 'maintained bytes changed')
     registry = Registry(root)
     anchor = registry.identity('rule', 'spec/runtime.md', 'RT-13')
-    file_page = next(path for path in output.glob('*.html') if path.name.endswith('_8c.html'))
+    file_page = output / file_pages(output)['src/a/b/c/fixture.c']
     require(any('#' + anchor in href for href in Page(file_page.read_text()).hrefs), 'file purpose has no rendered rule link')
     validate(output, {'src/a/b/c/ranges.inc': [anchor]})
     contract_page = registry.identity('page', 'docs/implementation/library-tests-and-build.md')

@@ -8304,6 +8304,11 @@
         "case": "it_unwinds_every_proposed_frontend_allocation_failure",
         "command": "make -C tests/unit/native/scaffold/declarations",
         "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_exports_native_authoring_names_and_complete_role_keys",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
       }
     ]
   },
@@ -8395,6 +8400,11 @@
         "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
         "command": "make -C tests/unit/native/scaffold/contracts",
         "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_exports_native_authoring_names_and_complete_role_keys",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
       }
     ]
   },
@@ -33242,6 +33252,11 @@
         "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
         "command": "make -C tests/integration library-build",
         "source": "tests/integration/library-build/main.c"
+      },
+      {
+        "case": "it_builds_and_runs_static_and_shared_multifile_consumers",
+        "command": "make -C tests/integration/c-library-examples",
+        "source": "tests/integration/c-library-examples/main.c"
       }
     ]
   },
@@ -42227,6 +42242,11 @@
       },
       {
         "case": "it_unwinds_every_proposed_frontend_allocation_failure",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_exports_native_authoring_names_and_complete_role_keys",
         "command": "make -C tests/unit/native/scaffold/declarations",
         "source": "tests/unit/native/scaffold/declarations/main.c"
       }
@@ -83829,6 +83849,11 @@
         "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
         "command": "make -C tests/integration/library-build",
         "source": "tests/integration/library-build/main.c"
+      },
+      {
+        "case": "it_builds_and_runs_static_and_shared_multifile_consumers",
+        "command": "make -C tests/integration/c-library-examples",
+        "source": "tests/integration/c-library-examples/main.c"
       }
     ]
   },
@@ -84934,6 +84959,145 @@
         "case": "it_supervises_nested_suspension_without_retaining_c_activations",
         "command": "make -C tests/unit/library/supervision",
         "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "examples/c-library/host/standalone.c": {
+    "contract": "docs/implementation/c-library-examples.md",
+    "purpose": "Build and check independent C hosts, exact metadata and explicit nested component lifetimes.",
+    "tests": [
+      {
+        "case": "it_builds_and_runs_static_and_shared_multifile_consumers",
+        "command": "make -C tests/integration/c-library-examples",
+        "source": "tests/integration/c-library-examples/main.c"
+      }
+    ]
+  },
+  "examples/c-library/host/observer.c": {
+    "contract": "docs/implementation/c-library-examples.md",
+    "purpose": "Build and check independent C hosts, exact metadata and explicit nested component lifetimes.",
+    "tests": [
+      {
+        "case": "it_builds_and_runs_static_and_shared_multifile_consumers",
+        "command": "make -C tests/integration/c-library-examples",
+        "source": "tests/integration/c-library-examples/main.c"
+      }
+    ]
+  },
+  "examples/c-library/host/observer.h": {
+    "contract": "docs/implementation/c-library-examples.md",
+    "purpose": "Build and check independent C hosts, exact metadata and explicit nested component lifetimes.",
+    "tests": [
+      {
+        "case": "it_builds_and_runs_static_and_shared_multifile_consumers",
+        "command": "make -C tests/integration/c-library-examples",
+        "source": "tests/integration/c-library-examples/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "examples/c-library/host/nested.c": {
+    "contract": "docs/implementation/c-library-examples.md",
+    "purpose": "Build and check independent C hosts, exact metadata and explicit nested component lifetimes.",
+    "tests": [
+      {
+        "case": "it_builds_and_runs_static_and_shared_multifile_consumers",
+        "command": "make -C tests/integration/c-library-examples",
+        "source": "tests/integration/c-library-examples/main.c"
+      }
+    ]
+  },
+  "tools/examples/c_library/model.py": {
+    "contract": "docs/implementation/c-library-examples.md",
+    "purpose": "Build and check independent C hosts, exact metadata and explicit nested component lifetimes.",
+    "tests": [
+      {
+        "case": "it_builds_and_runs_static_and_shared_multifile_consumers",
+        "command": "make -C tests/integration/c-library-examples",
+        "source": "tests/integration/c-library-examples/main.c"
+      }
+    ]
+  },
+  "tools/examples/c_library/build.py": {
+    "contract": "docs/implementation/c-library-examples.md",
+    "purpose": "Build and check independent C hosts, exact metadata and explicit nested component lifetimes.",
+    "tests": [
+      {
+        "case": "it_builds_and_runs_static_and_shared_multifile_consumers",
+        "command": "make -C tests/integration/c-library-examples",
+        "source": "tests/integration/c-library-examples/main.c"
+      }
+    ]
+  },
+  "tools/examples/c_library/run.py": {
+    "contract": "docs/implementation/c-library-examples.md",
+    "purpose": "Build and check independent C hosts, exact metadata and explicit nested component lifetimes.",
+    "tests": [
+      {
+        "case": "it_builds_and_runs_static_and_shared_multifile_consumers",
+        "command": "make -C tests/integration/c-library-examples",
+        "source": "tests/integration/c-library-examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/c-library-examples/main.c": {
+    "contract": "docs/implementation/c-library-examples.md",
+    "purpose": "Build and check independent C hosts, exact metadata and explicit nested component lifetimes.",
+    "tests": [
+      {
+        "case": "it_builds_and_runs_static_and_shared_multifile_consumers",
+        "command": "make -C tests/integration/c-library-examples",
+        "source": "tests/integration/c-library-examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/c-library-examples/Makefile": {
+    "contract": "docs/implementation/c-library-examples.md",
+    "purpose": "Build and check independent C hosts, exact metadata and explicit nested component lifetimes.",
+    "tests": [
+      {
+        "case": "it_builds_and_runs_static_and_shared_multifile_consumers",
+        "command": "make -C tests/integration/c-library-examples",
+        "source": "tests/integration/c-library-examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/c-library-examples/verify.py": {
+    "contract": "docs/implementation/c-library-examples.md",
+    "purpose": "Build and check independent C hosts, exact metadata and explicit nested component lifetimes.",
+    "tests": [
+      {
+        "case": "it_builds_and_runs_static_and_shared_multifile_consumers",
+        "command": "make -C tests/integration/c-library-examples",
+        "source": "tests/integration/c-library-examples/main.c"
+      }
+    ]
+  },
+  "src/native/scaffold/emit/model.c": {
+    "contract": "docs/implementation/native-scaffolding.md",
+    "purpose": "Serialize exact registered native role identities and SDK filenames for authoring tools.",
+    "tests": [
+      {
+        "case": "it_exports_native_authoring_names_and_complete_role_keys",
+        "command": "make -C tests/unit/native/scaffold/declarations",
+        "source": "tests/unit/native/scaffold/declarations/main.c"
+      },
+      {
+        "case": "it_builds_and_runs_static_and_shared_multifile_consumers",
+        "command": "make -C tests/integration/c-library-examples",
+        "source": "tests/integration/c-library-examples/main.c"
       }
     ]
   }

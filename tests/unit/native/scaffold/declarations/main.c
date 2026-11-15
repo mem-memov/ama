@@ -3,6 +3,7 @@
  * @brief Verify standalone typed native declarations, authoring models and complete ABI round trips.
  */
 #include "../common.c"
+#include <errno.h>
 #include "native/scaffold/internal.h"
 #include "support/borrows.c"
 
@@ -48,6 +49,29 @@ static void it_exports_a_database_that_an_independent_json_consumer_can_execute(
     }
     int status;
     pid_t waited = waitpid(process, &status, 0);
+    assert(waited == process && WIFEXITED(status) && WEXITSTATUS(status) == 0);
+}
+/** An independent JSON consumer uses exact SDK role names as real C types, without filename/hash inference. */
+static void it_exports_native_authoring_names_and_complete_role_keys(void) {
+    pid_t process = fork();
+    assert(process >= 0);
+    if (process == 0) {
+        execlp("python3", "python3", "-c",
+            "import json,subprocess,sys\n"
+            "model=json.load(open('generated/native/native-model.json',encoding='utf-8'))\n"
+            "assert model['format']=='ama-native-model-1'\n"
+            "assert {r['module'] for r in model['modules']}=={'.main','.value'}\n"
+            "for row in model['modules']:\n"
+            " keys=[row[r]['key_hex'] for r in ('namespace','parameters','results')]\n"
+            " assert len(set(keys))==3 and all(bytes.fromhex(k) for k in keys)\n"
+            " source='#include \"'+row['interface']+'\"\\nvoid use_model(const '+row['parameters']['name']+' *p, '+row['results']['name']+' *r) {(void)p;(void)r;}\\n'\n"
+            " subprocess.run(['gcc','-std=c11','-pedantic-errors','-Wall','-Wextra','-Werror','-I'+sys.argv[1],'-Igenerated/native','-x','c','-fsyntax-only','-'],input=source,text=True,check=True)\n",
+            TEST_SDK, (char *)NULL);
+        _exit(127);
+    }
+    int status;
+    pid_t waited;
+    do { waited = waitpid(process, &status, 0); } while (waited < 0 && errno == EINTR);
     assert(waited == process && WIFEXITED(status) && WEXITSTATUS(status) == 0);
 }
 
@@ -254,6 +278,7 @@ static void it_unwinds_every_proposed_frontend_allocation_failure(void) {
 void run(void) {
     it_generates_complete_cycle_safe_headers_and_standalone_native_scaffolds();
     it_exports_a_database_that_an_independent_json_consumer_can_execute();
+    it_exports_native_authoring_names_and_complete_role_keys();
     it_unwinds_each_scaffold_model_allocation_failure();
     it_composes_typed_views_and_identically_named_native_helpers_in_one_c_unit();
     it_uses_the_same_strict_frontend_for_checking_and_generation();

@@ -206,3 +206,17 @@ actual isolated/composed C compilation. Those checks cannot prove arbitrary nati
 ownership, pointer lifetime or callback purity: trusted authored C must satisfy
 its bounded-borrow/resource contracts. Compiled-component exports and cross-context
 ABI/configuration compatibility remain their own TODO work.
+
+## Machine-readable authoring identities
+
+Declaration generation also emits `native-model.json` (`ama-native-model-1`).
+It maps each native logical module to its exact namespace, parameter/result C
+names and full framed identity keys, together with interface/context header
+basenames. The emitter traverses the same deterministic scaffold list and uses
+the same registered identities as the declarations, so every record has one
+exact declaration counterpart; no filename/hash inference is needed. Emission
+is linear in the serialized identity bytes and propagates output failures through
+the ordinary owned-artifact publisher. Empty native sets produce an empty array.
+The [CLI examples](c-library-examples.md#native-authoring-without-guessing-generated-names)
+exercise bootstrap/final-record equality and explain the format. The declaration
+test independently compiles the mapped interface and typed views.

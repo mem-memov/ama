@@ -27,7 +27,7 @@ bool scaffold_emit_declarations(NativeScaffold *scaffold) {
             return false;
         }
     }
-    return true;
+    return generated(scaffold, "native-model.json", scaffold_emit_model, NULL);
 }
 
 bool scaffold_emit_all(NativeScaffold *scaffold) {

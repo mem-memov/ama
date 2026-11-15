@@ -2147,7 +2147,7 @@ Contracts: [EMBED-01–EMBED-08](spec/implementation/c-library.md),
   the SDK; generated code and the shared lifecycle regressions pass ASan/UBSan.
   Strict full `NDEBUG`, 1573 per-file coverage/header checks and reproducible
   Doxygen pass. See `docs/implementation/c-library-supervision.md`.
-- [ ] **T131 — Accept standalone and nested C-library consumption.** Needs:
+- [x] **T131 — Accept standalone and nested C-library consumption.** Needs:
   T089, T128, T130. Publish reproducible static/shared-library host and nested
   Ama/native/Ama examples with generated headers, manifest and exact build/link
   commands. Run independent-header, multi-C-file, two-component, ownership,
@@ -2155,6 +2155,17 @@ Contracts: [EMBED-01–EMBED-08](spec/implementation/c-library.md),
   EMBED-01–EMBED-08 rule to current component and composed evidence. Explain the
   difference between same-context Ama calls and a separately compiled child
   component, and document actual supported targets and loader limitations.
+  **Completed:** the CLI example builder publishes exact native authoring maps,
+  public headers/manifests/symbol inventories, explicit configurations and ordered
+  command records. Four no-SDK multi-file C executables cover standalone/nested
+  static/shared linkage, two yields, independent snapshots, copied primary failure,
+  child reset and balanced native retirement. Bootstrap/final SDK records compare
+  complete identity keys; malformed models, existing outputs and failed tools are
+  rejected. Strict full `NDEBUG`, generated-code ASan/UBSan and 1584 per-file
+  coverage/header checks pass. Doxygen includes the published C hosts and validates
+  every rule destination; reproducibility is checked before commit. Actual target,
+  loader boundaries and EMBED-01–EMBED-08 evidence are documented in
+  `docs/implementation/c-library-examples.md`.
 
 ## Phase 13. Explicit cooperative tasks and native events
 
