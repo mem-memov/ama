@@ -2517,10 +2517,24 @@ Contracts: [tools](spec/implementation/tools-and-conformance.md),
   pass, with final reproducibility checked before commit. This is the inspection
   core; user-facing integration remains T115.
   See `docs/implementation/debugger-inspection.md`.
-- [ ] **T110 — Build complete relocation discovery and preview.** Needs: T018,
-  T040, T107. Enumerate all configured active sources, including external importers
-  and unused modules, while keeping drafts opaque. Test exact destination, carried
-  roots, cross-root kind changes, collisions and orphan `name+/` preflight.
+- [x] **T110 — Build complete relocation discovery and preview.** Needs: T018,
+  T040, T107. The read-only core owns exact endpoint/root settings, the complete
+  selected physical tree, every original source and a projected final registry.
+  It includes unused/external importers, opaque draft bodies, existing destination
+  sources and companions/assets without requiring an executable entry. The
+  filesystem view redirects D to S, removes S and inserts D without staging files.
+  Exact Unicode candidate checks, original inode identities and final SRC-05
+  anchors reject aliases, collisions, uncovered sources and orphan plus storage.
+  Tests cover carried root containers, ordinary/standard family changes, explicit
+  new roots, empty/constants-only domains, Unicode/multiword paths, long cwd,
+  shared prefixes, parent write permission, draft anchors and opaque link cycles.
+  Every measured allocation ordinal preserves originals and releases its prefix;
+  failure reporting itself allocates nothing and preserves original IO causes.
+  Strict compiler/preview and source/project/editor regressions plus preview
+  ASan/UBSan pass. All 2094 maintained inputs have named coverage without debt;
+  standalone headers and final reproducible Doxygen are checked before commit.
+  Reference edits, graph proof, staged configuration and recoverable publication
+  remain T111–T115. See `docs/implementation/relocation-preview.md`.
 - [ ] **T111 — Derive relocation identity and reference maps.** Needs: T110.
   Compute complete physical/root/module mappings and resolved path-span edits.
   Test injectivity and graph preservation across cycles, qualified constants,

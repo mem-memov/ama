@@ -26,7 +26,7 @@ static int compare_names(const void *left, const void *right) {
 
 /** Copy each non-dot readdir entry before the next readdir call. Checked count/allocation/read failure leaves scratch in catalog arena.
  */
-static ModuleStatus remember_names(ModuleWalk *walk, DIR *stream,
+static ModuleStatus remember_names(ModuleCatalog *catalog, DIR *stream,
     EntryName **first, size_t *count) {
     struct dirent *entry;
     errno = 0;
@@ -34,8 +34,8 @@ static ModuleStatus remember_names(ModuleWalk *walk, DIR *stream,
         if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) {
             continue;
         }
-        EntryName *name = source_arena_allocate(&walk->catalog->arena, sizeof(*name));
-        const char *copy = source_arena_copy(&walk->catalog->arena, entry->d_name);
+        EntryName *name = source_arena_allocate(&catalog->arena, sizeof(*name));
+        const char *copy = source_arena_copy(&catalog->arena, entry->d_name);
         if (name == NULL || copy == NULL || *count == SIZE_MAX / sizeof(char *)) {
             return MODULE_OUT_OF_MEMORY;
         }
@@ -47,23 +47,23 @@ static ModuleStatus remember_names(ModuleWalk *walk, DIR *stream,
     return errno == 0 ? MODULE_OK : MODULE_IO_ERROR;
 }
 
-ModuleStatus module_read_entries(ModuleWalk *walk, const ModuleDirectory *directory,
+ModuleStatus module_catalog_entries(ModuleCatalog *catalog, const char *physical,
     const char ***names, size_t *count) {
-    DIR *stream = opendir(directory->physical);
+    DIR *stream = opendir(physical);
     if (stream == NULL) {
-        return module_fail(walk->catalog, MODULE_IO_ERROR, directory->physical);
+        return module_fail(catalog, MODULE_IO_ERROR, physical);
     }
     EntryName *first = NULL;
     *count = 0;
-    ModuleStatus status = remember_names(walk, stream, &first, count);
+    ModuleStatus status = remember_names(catalog, stream, &first, count);
     int closed = closedir(stream);
     if (status != MODULE_OK || closed != 0) {
-        return module_fail(walk->catalog, status != MODULE_OK ? status : MODULE_IO_ERROR,
-            directory->physical);
+        return module_fail(catalog, status != MODULE_OK ? status : MODULE_IO_ERROR,
+            physical);
     }
-    const char **sorted = source_arena_allocate(&walk->catalog->arena, *count * sizeof(*sorted));
+    const char **sorted = source_arena_allocate(&catalog->arena, *count * sizeof(*sorted));
     if (sorted == NULL) {
-        return module_fail(walk->catalog, MODULE_OUT_OF_MEMORY, directory->physical);
+        return module_fail(catalog, MODULE_OUT_OF_MEMORY, physical);
     }
     for (size_t index = 0; first != NULL; first = first->next) {
         sorted[index++] = first->name;

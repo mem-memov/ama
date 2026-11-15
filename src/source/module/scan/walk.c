@@ -51,7 +51,7 @@ ModuleStatus module_walk_root(ModuleCatalog *catalog, const ModuleRoot *root) {
         }
         const char **names;
         size_t count;
-        status = module_read_entries(&walk, directory, &names, &count);
+        status = module_catalog_entries(catalog, directory->physical, &names, &count);
         for (size_t index = 0; status == MODULE_OK && index < count; index++) {
             status = module_visit_entry(&walk, directory, names[index]);
         }

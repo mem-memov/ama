@@ -32321,6 +32321,56 @@
         "case": "it_unwinds_every_candidate_source_override_allocation",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
       }
     ]
   },
@@ -32437,6 +32487,56 @@
         "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
       }
     ]
   },
@@ -32712,6 +32812,56 @@
         "case": "it_excludes_only_declared_owned_paths_and_slash_delimited_descendants",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
       }
     ]
   },
@@ -32854,6 +33004,56 @@
         "case": "it_excludes_only_declared_owned_paths_and_slash_delimited_descendants",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
       }
     ]
   },
@@ -38551,6 +38751,56 @@
         "case": "it_keeps_invalid_code_distinct_from_checked_semantic_metadata",
         "command": "make -C tests/unit/editor/lexical",
         "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
       }
     ]
   },
@@ -104589,6 +104839,1451 @@
         "case": "it_rejects_inspection_after_generated_host_failure_cleanup",
         "command": "make -C tests/unit/codegen/debugger",
         "source": "tests/unit/codegen/debugger/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/relocation.h": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/tools/relocation/internal.h": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/tools/relocation/roots/configuration.c": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/paths/resolve.c": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/paths/projection.c": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/paths/endpoints.c": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/preview/build.c": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/preview/lifetime.c": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/discovery/sources.c": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/discovery/internal.h": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/tools/relocation/discovery/queue.c": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/discovery/inventory.c": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/discovery/build.c": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/discovery/view.c": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/discovery/catalog.c": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/discovery/visit.c": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/Makefile": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/common.c": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/Makefile": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/preview/main.c": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/preview/Makefile": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/preview/support/roots.c": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/preview/support/failures.c": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/preview/support/scope.c": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/preview/support/paths.c": {
+    "contract": "docs/implementation/relocation-preview.md",
+    "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
+    "tests": [
+      {
+        "case": "it_rejects_collisions_aliases_and_orphan_plus_directories",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_preparation_prefix_without_touching_files",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_uses_exact_destination_and_rejects_unsafe_endpoints",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_resolves_long_working_directories_and_checks_required_parent_permissions",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_projects_carried_roots_and_explicit_destination_root_kinds",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_moves_between_existing_root_kinds_and_includes_destination_sources",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_discovers_all_sources_and_preserves_opaque_accompanying_bytes",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_previews_constants_only_and_empty_source_domains_without_an_entry",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
+        "command": "make -C tests/unit/tools/relocation/preview",
+        "source": "tests/unit/tools/relocation/preview/main.c"
       }
     ]
   }

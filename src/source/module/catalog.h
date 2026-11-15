@@ -120,6 +120,12 @@ ModuleStatus module_catalog_load_native(ModuleCatalog *, const ModuleSource *);
  * selected source unchanged and retains diagnostic context. Other records stay unchanged.
  */
 ModuleStatus module_catalog_override(ModuleCatalog *, const ModuleSource *, const unsigned char *, size_t);
+/** Read exact sorted non-dot directory entry names into catalog-owned scratch without
+ * classifying them or following links. Usable before/after build; existing records stay stable.
+ * physical is borrowed and must outlive any retained failure issue. On failure names is
+ * unchanged, count may describe a copied prefix; all scratch survives until destroy.
+ */
+ModuleStatus module_catalog_entries(ModuleCatalog *, const char *physical, const char ***names, size_t *count);
 /** Validate an absolute single/double-dot selector and nonempty complete-name components.
  * @return Exact spelling membership with no edge/separator spaces, filesystem parent traversal or normalization.
  */

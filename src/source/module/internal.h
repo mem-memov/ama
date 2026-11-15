@@ -55,14 +55,6 @@ ModuleStatus module_verify_root(ModuleCatalog *catalog, const char *path);
 /** Borrow one stable root/exclusion set for an iterative sorted scan. Every queued physical identity is unique; no recursive C directory walk is used.
  */
 ModuleStatus module_walk_root(ModuleCatalog *catalog, const ModuleRoot *root);
-/** Read/copy/sort actual entry names in exact byte order, excluding dot entries. Always close the stream.
- * @param[out] names Published only on success; catalog arena owns all copied names/partial scratch.
- * @param[out] count May describe a copied prefix on failure; never use it with absent names.
- * @param[in,out] walk Mutable catalog scan owner retaining copied entry names and first issue.
- * @param[in] directory Borrowed already verified directory selected by the finite scan queue.
- */
-ModuleStatus module_read_entries(ModuleWalk *walk, const ModuleDirectory *directory,
-    const char ***names, size_t *count);
 /** Apply exact explicit exclusions, validate candidate spelling and queue a directory or load a regular source. Invalid noncandidate names are ignored under the explicit discovery contract.
  */
 ModuleStatus module_visit_entry(ModuleWalk *walk, const ModuleDirectory *directory,
