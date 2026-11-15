@@ -7,8 +7,10 @@
 #include "support/gate.c"
 #include "support/literals.c"
 #include "support/collisions.c"
+#include "support/symbols.c"
 /** Register each independently meaningful consumer/header contract. */
 void run(void) {
+    it_enumerates_only_declared_public_component_definitions();
     it_rejects_cross_component_hash_collisions_in_headers_and_bootstrap();
     it_rejects_unsupported_targets_before_header_publication();
     it_preserves_metadata_octets_without_injecting_c_source();

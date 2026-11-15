@@ -48,7 +48,7 @@ AmaLibraryResult ama_library_instance_create(AmaLibraryService *service, AmaLibr
             } else {
                 root->next = access.record->roots;
                 access.record->roots = root;
-                *output = (AmaLibraryInstance){(uintptr_t)service,context.identity,root->identity};
+                *output = (AmaLibraryInstance){atomic_load_explicit(&service->owner, memory_order_acquire),context.identity,root->identity};
                 access.view.program->current=previous_current;
                 result = ama_library_result(AMA_LIBRARY_OK, ama_status_success());
             }

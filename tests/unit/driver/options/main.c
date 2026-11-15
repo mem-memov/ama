@@ -37,6 +37,22 @@ static void it_keeps_library_configuration_separate_from_executable_options(void
     driver_options_destroy(&options);
     destroy_test();
 }
+/** Artifact building requires explicit output/SDK and keeps ABI-affecting flags in its configuration. */
+static void it_requires_explicit_library_build_destinations_and_manifest_flags(void) {
+    setup_test();
+    DriverOptions options; driver_options_init(&options,sources.allocator);
+    char *arguments[]={"ama","--library-build","project","component.exports","--out","library output",
+        "--sdk","compiler sdk","--cc","chosen-cc"};
+    bool valid=driver_options_parse(&options,10,arguments);
+    assert(valid && options.request==DRIVER_REQUEST_LIBRARY_BUILD && options.entry==NULL);
+    assert(strcmp(options.library_configuration,"component.exports")==0);
+    assert(strcmp(options.output,"library output")==0 && strcmp(options.sdk,"compiler sdk")==0);
+    assert(strcmp(options.compiler,"chosen-cc")==0 && !options.compile && options.c_flag_count==0);
+    assert(driver_option_recognize(DRIVER_REQUEST_LIBRARY_BUILD,"--c-flag")==NULL);
+    assert(driver_option_recognize(DRIVER_REQUEST_LIBRARY_BUILD,"--compile")==NULL);
+    driver_options_destroy(&options); destroy_test();
+    invalid_arguments(4,arguments,"Project emission needs --out and --sdk");
+}
 
 /** Compare the complete fixed spelling/request/arity relation independently. */
 static void it_recognizes_only_exact_applicable_options(void) {
@@ -189,6 +205,7 @@ static void it_cleans_every_partial_allocation_and_rejects_unrepresentable_stora
 
 /** Exercise independent recognition/storage and their real request assembly. */
 void run(void) {
+    it_requires_explicit_library_build_destinations_and_manifest_flags();
     it_keeps_library_configuration_separate_from_executable_options();
     it_recognizes_only_exact_applicable_options();
     it_preserves_repeated_values_flags_and_shared_root_exclusions();

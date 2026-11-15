@@ -27,6 +27,11 @@ typedef struct AmaLibraryContextRecord AmaLibraryContextRecord;
 typedef struct {
     AmaContextRegistry contexts;
     _Atomic bool locked;
+    /** Load-domain identity. Raw services use their stable address; generated
+     * reloadable components bind a permanently retired process receipt before
+     * publishing their first context. Identity is never a dereferenced handle.
+     */
+    _Atomic uintptr_t owner;
     SourceAllocator allocator;
     const AmaContextDefinition *definition;
     const AmaLibraryExport *exports;

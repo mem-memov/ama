@@ -8,4 +8,5 @@ SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/source/ide
 SOURCES += compiler/frontend.c compiler/inputs.c compiler/load.c compiler/authoring/check.c
 SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/library))
 TEST_DEFINES := -DTEST_STANDARD_ROOT=\"$(ROOT)/stdlib/modules\" -DTEST_C_COMPILER='"$(C_COMPILER)"'
+SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/native/toolchain))
 include ../../../leaf.mk

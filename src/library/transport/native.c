@@ -43,7 +43,8 @@ static void integer_encoder(LibraryHeader *writer, const char *name, const char 
         "    if (bytes==NULL) { free(snapshot); return ama_status_make(AMA_OUT_OF_MEMORY,NULL,0); }\n"
         "    for (size_t i=0;i<state->count;i++) { bytes[i]=state->limbs[state->count-i-1]; }\n"
         "    *snapshot=(%s_Value){.data={state->negative ? UINT8_C(1) : UINT8_C(0),{bytes,state->count}}};\n"
-        "    *output=snapshot; return ama_status_success();\n",native,name,name);
+        "    if (!ama_library_code_register(&%s_code,&snapshot->code_owner,&%s_schema)) { %s_free(snapshot); return ama_status_make(AMA_LIMIT_EXCEEDED,NULL,0); }\n"
+        "    *output=snapshot; return ama_status_success();\n",native,name,name,writer->prefix,name,name);
 }
 /** Read one failure's owned text field through its exact generated descriptor and typed text API. */
 static void failure_encoder(LibraryCodecs *codecs, const LibrarySchema *schema) {

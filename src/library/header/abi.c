@@ -21,6 +21,7 @@ static void layout(LibraryHeader *h, const char *name) {
     const char *p = h->prefix;
     library_header_print(h, "    static const size_t %s[] = {\n        sizeof(size_t), _Alignof(size_t), sizeof(uintptr_t), _Alignof(uintptr_t),\n", name);
     member(h, p, "Context", "opaque"); member(h, p, "Instance", "opaque");
+    member(h, p, "CodePin", "opaque");
     member(h, p, "Bytes", "data"); member(h, p, "Bytes", "length");
     member(h, p, "Diagnostic", "code"); member(h, p, "Diagnostic", "message");
     member(h, p, "Diagnostic", "length"); member(h, p, "Diagnostic", "opaque");

@@ -10,4 +10,6 @@
 void library_lifecycle_diagnostics(LibraryHeader *);
 /** Emit exact numeric-control conversions and public lifecycle adapters. */
 void library_lifecycle_operations(LibraryHeader *);
+/** Emit explicit detached pins and a nonallocating host-barrier unload check. */
+void library_lifecycle_code(LibraryHeader *);
 #endif

@@ -29,7 +29,7 @@ AmaLibraryResult ama_library_context_dispose(AmaLibraryService *service, AmaLibr
         record->next = service->first;
         service->first = record;
         ama_library_unlock(service);
-        *context = (AmaLibraryContext){(uintptr_t)service, identity};
+        *context = (AmaLibraryContext){atomic_load_explicit(&service->owner, memory_order_acquire), identity};
         return ama_library_result(status.code == AMA_BUSY ? AMA_LIBRARY_BUSY : AMA_LIBRARY_REFUSED, status);
     }
     ama_library_forget_roots(service, record);

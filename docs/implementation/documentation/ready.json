@@ -5318,6 +5318,11 @@
         "case": "it_emits_a_public_header_that_compiles_without_the_compiler_sdk",
         "command": "make -C tests/integration/library-exports",
         "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
+        "command": "make -C tests/integration/library-build",
+        "source": "tests/integration/library-build/main.c"
       }
     ]
   },
@@ -5395,6 +5400,11 @@
         "case": "it_emits_a_public_header_that_compiles_without_the_compiler_sdk",
         "command": "make -C tests/integration/library-exports",
         "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
+        "command": "make -C tests/integration/library-build",
+        "source": "tests/integration/library-build/main.c"
       }
     ]
   },
@@ -5484,6 +5494,11 @@
         "case": "it_emits_a_public_header_that_compiles_without_the_compiler_sdk",
         "command": "make -C tests/integration/library-exports",
         "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
+        "command": "make -C tests/integration/library-build",
+        "source": "tests/integration/library-build/main.c"
       }
     ]
   },
@@ -5637,6 +5652,11 @@
         "case": "it_emits_a_public_header_that_compiles_without_the_compiler_sdk",
         "command": "make -C tests/integration/library-exports",
         "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
+        "command": "make -C tests/integration/library-build",
+        "source": "tests/integration/library-build/main.c"
       }
     ]
   },
@@ -5693,6 +5713,11 @@
         "case": "it_emits_a_public_header_that_compiles_without_the_compiler_sdk",
         "command": "make -C tests/integration/library-exports",
         "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
+        "command": "make -C tests/integration/library-build",
+        "source": "tests/integration/library-build/main.c"
       }
     ]
   },
@@ -5764,6 +5789,11 @@
         "case": "it_emits_a_public_header_that_compiles_without_the_compiler_sdk",
         "command": "make -C tests/integration/library-exports",
         "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
+        "command": "make -C tests/integration/library-build",
+        "source": "tests/integration/library-build/main.c"
       }
     ]
   },
@@ -5820,6 +5850,11 @@
         "case": "it_emits_a_public_header_that_compiles_without_the_compiler_sdk",
         "command": "make -C tests/integration/library-exports",
         "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
+        "command": "make -C tests/integration/library-build",
+        "source": "tests/integration/library-build/main.c"
       }
     ]
   },
@@ -14767,6 +14802,16 @@
         "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
         "command": "make -C tests/unit/library/transport",
         "source": "tests/unit/library/transport/main.c"
+      },
+      {
+        "case": "it_tracks_code_pins_and_snapshot_owners_without_counter_wrap",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ]
   },
@@ -79707,6 +79752,11 @@
         "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
         "command": "make -C tests/unit/library/transport",
         "source": "tests/unit/library/transport/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ],
     "standalone_header_command": [
@@ -80826,6 +80876,11 @@
         "case": "it_emits_a_public_header_that_compiles_without_the_compiler_sdk",
         "command": "make -C tests/integration/library-exports",
         "source": "tests/integration/library-exports/main.c"
+      },
+      {
+        "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
+        "command": "make -C tests/integration/library-build",
+        "source": "tests/integration/library-build/main.c"
       }
     ]
   },
@@ -80971,6 +81026,11 @@
         "case": "it_rejects_unsupported_targets_before_header_publication",
         "command": "make -C tests/unit/library/header",
         "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ]
   },
@@ -81007,6 +81067,11 @@
         "case": "it_rejects_cross_component_hash_collisions_in_headers_and_bootstrap",
         "command": "make -C tests/unit/library/header",
         "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ]
   },
@@ -81115,6 +81180,11 @@
         "case": "it_rejects_cross_component_hash_collisions_in_headers_and_bootstrap",
         "command": "make -C tests/unit/library/header",
         "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ]
   },
@@ -81267,6 +81337,11 @@
       },
       {
         "case": "it_rejects_cross_component_hash_collisions_in_headers_and_bootstrap",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_enumerates_only_declared_public_component_definitions",
         "command": "make -C tests/unit/library/header",
         "source": "tests/unit/library/header/main.c"
       }
@@ -81558,6 +81633,16 @@
         "case": "it_checks_destination_shapes_before_lifecycle_effects",
         "command": "make -C tests/unit/runtime/library",
         "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_tracks_code_pins_and_snapshot_owners_without_counter_wrap",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ],
     "standalone_header_command": [
@@ -81649,6 +81734,16 @@
         "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
         "command": "make -C tests/unit/library/transport",
         "source": "tests/unit/library/transport/main.c"
+      },
+      {
+        "case": "it_tracks_code_pins_and_snapshot_owners_without_counter_wrap",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ]
   },
@@ -81867,6 +81962,16 @@
         "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
         "command": "make -C tests/unit/runtime/library",
         "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_tracks_code_pins_and_snapshot_owners_without_counter_wrap",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ]
   },
@@ -81933,6 +82038,16 @@
         "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
         "command": "make -C tests/unit/runtime/library",
         "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_tracks_code_pins_and_snapshot_owners_without_counter_wrap",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ]
   },
@@ -82004,6 +82119,16 @@
         "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
         "command": "make -C tests/unit/library/transport",
         "source": "tests/unit/library/transport/main.c"
+      },
+      {
+        "case": "it_tracks_code_pins_and_snapshot_owners_without_counter_wrap",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ]
   },
@@ -82070,6 +82195,16 @@
         "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
         "command": "make -C tests/unit/runtime/library",
         "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_tracks_code_pins_and_snapshot_owners_without_counter_wrap",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ]
   },
@@ -82136,6 +82271,16 @@
         "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
         "command": "make -C tests/unit/runtime/library",
         "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_tracks_code_pins_and_snapshot_owners_without_counter_wrap",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ]
   },
@@ -82690,6 +82835,11 @@
         "case": "it_rejects_incomplete_lifecycle_type_maps",
         "command": "make -C tests/unit/library/lifecycle",
         "source": "tests/unit/library/lifecycle/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ],
     "standalone_header_command": [
@@ -82721,6 +82871,11 @@
         "case": "it_rejects_incomplete_lifecycle_type_maps",
         "command": "make -C tests/unit/library/lifecycle",
         "source": "tests/unit/library/lifecycle/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ]
   },
@@ -82737,6 +82892,11 @@
         "case": "it_rejects_incomplete_lifecycle_type_maps",
         "command": "make -C tests/unit/library/lifecycle",
         "source": "tests/unit/library/lifecycle/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ]
   },
@@ -82753,6 +82913,11 @@
         "case": "it_rejects_incomplete_lifecycle_type_maps",
         "command": "make -C tests/unit/library/lifecycle",
         "source": "tests/unit/library/lifecycle/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ]
   },
@@ -82945,6 +83110,11 @@
         "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
         "command": "make -C tests/unit/library/transport",
         "source": "tests/unit/library/transport/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ]
   },
@@ -83003,6 +83173,11 @@
         "case": "it_owns_independent_wire_snapshots_and_unwinds_every_clone_allocation",
         "command": "make -C tests/unit/library/snapshots",
         "source": "tests/unit/library/snapshots/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ]
   },
@@ -83014,6 +83189,11 @@
         "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
         "command": "make -C tests/unit/library/transport",
         "source": "tests/unit/library/transport/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ]
   },
@@ -83030,6 +83210,11 @@
         "case": "it_owns_independent_wire_snapshots_and_unwinds_every_clone_allocation",
         "command": "make -C tests/unit/library/snapshots",
         "source": "tests/unit/library/snapshots/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ]
   },
@@ -83078,6 +83263,11 @@
         "case": "it_owns_independent_wire_snapshots_and_unwinds_every_clone_allocation",
         "command": "make -C tests/unit/library/snapshots",
         "source": "tests/unit/library/snapshots/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ]
   },
@@ -83110,6 +83300,11 @@
         "case": "it_owns_independent_wire_snapshots_and_unwinds_every_clone_allocation",
         "command": "make -C tests/unit/library/snapshots",
         "source": "tests/unit/library/snapshots/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ]
   },
@@ -83131,6 +83326,16 @@
         "case": "it_generates_entry_resume_and_read_for_a_zero_schema_interface",
         "command": "make -C tests/unit/library/execution",
         "source": "tests/unit/library/execution/main.c"
+      },
+      {
+        "case": "it_tracks_code_pins_and_snapshot_owners_without_counter_wrap",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ]
   },
@@ -83510,6 +83715,467 @@
         "case": "it_retains_exclusive_diagnostic_access_after_execution_cleanup",
         "command": "make -C tests/unit/runtime/contexts",
         "source": "tests/unit/runtime/contexts/main.c"
+      }
+    ]
+  },
+  "src/driver/commands/library-build/build.c": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
+        "command": "make -C tests/integration/library-build",
+        "source": "tests/integration/library-build/main.c"
+      }
+    ]
+  },
+  "src/driver/commands/library-build/build.h": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
+        "command": "make -C tests/integration/library-build",
+        "source": "tests/integration/library-build/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/driver/commands/library-build/internal.h": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
+        "command": "make -C tests/integration/library-build",
+        "source": "tests/integration/library-build/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/driver/commands/library-build/retain.c": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
+        "command": "make -C tests/integration/library-build",
+        "source": "tests/integration/library-build/main.c"
+      }
+    ]
+  },
+  "src/driver/commands/library-build/stage.c": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
+        "command": "make -C tests/integration/library-build",
+        "source": "tests/integration/library-build/main.c"
+      }
+    ]
+  },
+  "src/library/artifact/assembly.c": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
+      }
+    ]
+  },
+  "src/library/artifact/assembly.h": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/library/artifact/commands.c": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
+      }
+    ]
+  },
+  "src/library/artifact/commands.h": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/library/artifact/package.c": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
+      }
+    ]
+  },
+  "src/library/artifact/package.h": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/library/artifact/process.c": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
+      }
+    ]
+  },
+  "src/library/artifact/process.h": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/library/artifact/symbols.c": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_enumerates_only_declared_public_component_definitions",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      }
+    ]
+  },
+  "src/library/artifact/verify.c": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
+      }
+    ]
+  },
+  "src/library/artifact/verify.h": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/library/lifecycle/code.c": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
+      }
+    ]
+  },
+  "src/runtime/library/code.c": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_tracks_code_pins_and_snapshot_owners_without_counter_wrap",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      }
+    ]
+  },
+  "src/runtime/library/code.h": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_tracks_code_pins_and_snapshot_owners_without_counter_wrap",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/integration/library-build/Makefile": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
+        "command": "make -C tests/integration/library-build",
+        "source": "tests/integration/library-build/main.c"
+      }
+    ]
+  },
+  "tests/integration/library-build/component.exports": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
+        "command": "make -C tests/integration/library-build",
+        "source": "tests/integration/library-build/main.c"
+      }
+    ]
+  },
+  "tests/integration/library-build/main.c": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
+        "command": "make -C tests/integration/library-build",
+        "source": "tests/integration/library-build/main.c"
+      }
+    ]
+  },
+  "tests/integration/library-build/project/main": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
+        "command": "make -C tests/integration/library-build",
+        "source": "tests/integration/library-build/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/header/support/symbols.c": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_enumerates_only_declared_public_component_definitions",
+        "command": "make -C tests/unit/library/header",
+        "source": "tests/unit/library/header/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/package/Makefile": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/package/common.c": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/package/failures.c": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/package/host.c": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/package/main.c": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/library/support/code.c": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_tracks_code_pins_and_snapshot_owners_without_counter_wrap",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/package/combined.c": {
+    "contract": "docs/implementation/c-library-packaging.md",
+    "purpose": "Build isolated compiled components and retain code through exact context, snapshot, diagnostic and detached-callback ownership.",
+    "tests": [
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
       }
     ]
   }

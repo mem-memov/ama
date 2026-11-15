@@ -6,7 +6,7 @@
 #include "../internal.h"
 AmaLibraryResult ama_library_instance_dispose(AmaLibraryService *service, AmaLibraryContext context,
     AmaLibraryInstance *instance) {
-    if (instance == NULL || service == NULL || instance->owner != (uintptr_t)service
+    if (instance == NULL || service == NULL || instance->owner != atomic_load_explicit(&service->owner, memory_order_acquire)
         || instance->context != context.identity || instance->identity == 0) {
         return ama_library_result(AMA_LIBRARY_INVALID_REQUEST, ama_status_make(AMA_INVALID_STATE, NULL, 0));
     }

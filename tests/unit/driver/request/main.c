@@ -71,12 +71,20 @@ static void it_recognizes_only_the_explicit_library_check_command(void) {
     request = driver_parse_request(2, arguments);
     assert(request == DRIVER_REQUEST_UNAVAILABLE);
 }
+/** Building is an exact separate request; prefixes never select tool execution. */
+static void it_recognizes_only_the_explicit_library_build_command(void) {
+    char *arguments[]={"ama","--library-build"};
+    assert(driver_parse_request(2,arguments)==DRIVER_REQUEST_LIBRARY_BUILD);
+    arguments[1]="--library-buil";
+    assert(driver_parse_request(2,arguments)==DRIVER_REQUEST_UNAVAILABLE);
+}
 
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_recognizes_only_the_explicit_library_build_command();
     it_recognizes_only_the_explicit_library_check_command();
     it_handles_an_empty_vector_without_reading_arguments();
     it_accepts_only_a_standalone_help_request();

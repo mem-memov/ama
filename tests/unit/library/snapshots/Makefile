@@ -11,4 +11,5 @@ TEST_DEFINES := -DTEST_STANDARD_ROOT=\"$(ROOT)/stdlib/modules\" -DTEST_SDK=\"$(R
 ifneq ($(findstring -fsanitize=,$(C_COMPILER_FLAGS)),)
 TEST_DEFINES += -DTEST_SANITIZERS
 endif
+SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/native/toolchain))
 include ../../../leaf.mk

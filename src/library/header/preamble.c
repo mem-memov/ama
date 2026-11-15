@@ -43,6 +43,8 @@ void library_header_preamble(LibraryHeader *h) {
         "typedef struct { uint64_t opaque[2]; } %s_Context;\n"
         "/** Copyable export-bound instance identity. A handle does not keep its context alive. */\n"
         "typedef struct { uint64_t opaque[3]; } %s_Instance;\n"
+        "/** Sole owned detached code pin; all-zero is empty and shallow copying is not retention. */\n"
+        "typedef struct { uint64_t opaque[2]; } %s_CodePin;\n"
         "/** Readonly counted bytes; no terminator, normalization or ownership transfer. */\n"
         "typedef struct { const uint8_t *data; size_t length; } %s_Bytes;\n"
         "/** One owned or component-pinned immutable diagnostic. Initialize empty and release once.\n"
@@ -53,5 +55,5 @@ void library_header_preamble(LibraryHeader *h) {
         " * API OK with execution FAILED is a technical Ama failure, not API rejection.\n"
         " * A context factory failure returns its diagnostic here without a context handle.\n */\n"
         "typedef struct { uint32_t code; %s_Diagnostic diagnostic; } %s_ApiResult;\n",
-        m, m, m, p, p, p, p, p, p);
+        m, m, m, p, p, p, p, p, p, p);
 }

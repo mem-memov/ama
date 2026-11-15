@@ -16,10 +16,13 @@ void library_lifecycle_operations(LibraryHeader *h) {
         "    call_once(&%s_once,%s_setup);\n"
         "    if (%s_setup_status.code != AMA_OK) { return %s_result((AmaLibraryResult){AMA_LIBRARY_TECHNICAL_FAILURE,%s_setup_status}); }\n"
         "    AmaLibraryContext context = output == NULL ? (AmaLibraryContext){0} : %s_context(*output);\n"
+        "    if (output != NULL && context.owner == 0 && context.identity == 0) {\n"
+        "        AmaStatus domain=%s_domain();\n"
+        "        if (domain.code != AMA_OK) { return %s_result((AmaLibraryResult){AMA_LIBRARY_TECHNICAL_FAILURE,domain}); }\n    }\n"
         "    AmaLibraryResult result = ama_library_context_create(&%s_service,output == NULL ? NULL : &context);\n"
         "    if (output != NULL) { *output = (%s_Context){{context.owner,context.identity}}; }\n"
         "    return %s_result(result);\n}\n",
-        p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p);
+        p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p);
     library_header_print(h,
         "%s_ApiResult %s_context_dispose_implementation(%s_Context *output) {\n"
         "    call_once(&%s_once,%s_setup);\n"

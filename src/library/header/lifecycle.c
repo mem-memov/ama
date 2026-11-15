@@ -39,4 +39,25 @@ void library_header_lifecycle(LibraryHeader *h) {
             "    return abi != UINT32_C(0) ? abi : %s_%s_implementation(value);\n}\n",
             p, names[index], p, types[index], p, names[index], p, types[index], p, p, names[index]);
     }
+    static const char *const pins[] = {"code_pin", "code_unpin"};
+    for (size_t index = 0; index < 2; index++) {
+        library_header_print(h,
+            "/** %s A token has one releasing owner; release only after the detached callback\n"
+            " * and every operation needing this image have returned, under the host loader barrier. */\n"
+            "uint32_t %s_%s_implementation(%s_CodePin *token);\n"
+            "static inline uint32_t %s_%s(%s_CodePin *token) {\n"
+            "    uint32_t abi=%s_abi_check();\n"
+            "    return abi != 0 ? abi : %s_%s_implementation(token);\n}\n",
+            index == 0 ? "Create a detached code pin in initialized zero storage." : "Consume a detached code pin and leave zero.",
+            p,pins[index],p,p,pins[index],p,p,p,pins[index]);
+    }
+    library_header_print(h,
+        "/** Return OK only with no contexts, snapshots, diagnostics or detached pins.\n"
+        " * The host must exclude every concurrent/in-flight API call, keep its loader\n"
+        " * ticket through this function's return, then unload without any further calls.\n"
+        " * This query creates no diagnostic owner and never performs dlclose itself. */\n"
+        "uint32_t %s_code_can_unload_implementation(void);\n"
+        "static inline uint32_t %s_code_can_unload(void) {\n"
+        "    uint32_t abi=%s_abi_check();\n"
+        "    return abi != 0 ? abi : %s_code_can_unload_implementation();\n}\n",p,p,p,p);
 }

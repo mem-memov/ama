@@ -24,7 +24,8 @@ int driver_run(int argument_count, char *const arguments[],
     DriverRequest request = driver_parse_request(argument_count, arguments);
     if (request == DRIVER_REQUEST_CHECK || request == DRIVER_REQUEST_STATUS
         || request == DRIVER_REQUEST_NATIVE || request == DRIVER_REQUEST_EMIT
-        || request == DRIVER_REQUEST_LIBRARY_CHECK || request == DRIVER_REQUEST_LIBRARY_HEADER) {
+        || request == DRIVER_REQUEST_LIBRARY_CHECK || request == DRIVER_REQUEST_LIBRARY_HEADER
+        || request == DRIVER_REQUEST_LIBRARY_BUILD) {
         DriverOptions options;
         driver_options_init(&options, source_system_allocator());
         bool parsed = driver_options_parse(&options, argument_count, arguments);

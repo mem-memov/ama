@@ -22,7 +22,8 @@ bool driver_options_parse(DriverOptions *options, int count, char *const argumen
     if (!driver_options_allocate(options, (size_t)count, &storage)) {
         return false;
     }
-    if (options->request == DRIVER_REQUEST_LIBRARY_CHECK || options->request == DRIVER_REQUEST_LIBRARY_HEADER) { options->library_configuration = arguments[3]; }
+    if (options->request == DRIVER_REQUEST_LIBRARY_CHECK || options->request == DRIVER_REQUEST_LIBRARY_HEADER
+        || options->request == DRIVER_REQUEST_LIBRARY_BUILD) { options->library_configuration = arguments[3]; }
     else { options->entry = arguments[3]; }
     options->roots[options->root_count++] = (ModuleRoot){
         .path = arguments[2], .kind = MODULE_ROOT_PROJECT};

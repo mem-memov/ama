@@ -13,7 +13,7 @@ void ama_library_unlock(AmaLibraryService *service) {
 }
 AmaLibraryResult ama_library_enter(AmaLibraryService *service, AmaLibraryContext context, AmaLibraryAccess *access) {
     if (service == NULL || !service->initialized || access == NULL
-        || context.owner != (uintptr_t)service || context.identity == 0) {
+        || context.owner != atomic_load_explicit(&service->owner, memory_order_acquire) || context.identity == 0) {
         return ama_library_result(AMA_LIBRARY_INVALID_REQUEST, ama_status_make(AMA_INVALID_STATE, NULL, 0));
     }
     ama_library_lock(service);

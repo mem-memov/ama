@@ -8,6 +8,7 @@ static void allocator(FILE *output) {
     int written=fputs(
         "#include \"public.h\"\n#include <stdlib.h>\n#include <assert.h>\n"
         "#include \"runtime/library/lifecycle.h\"\n"
+        "#include \"runtime/library/code.c\"\n"
         "static size_t calls, fail, live;\n"
         "void select_failure(size_t offset) { calls=0; fail=offset; }\n"
         "size_t allocation_calls(void) { return calls; }\nsize_t live_allocations(void) { return live; }\n"

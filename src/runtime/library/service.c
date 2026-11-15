@@ -19,6 +19,7 @@ AmaStatus ama_library_service_init(AmaLibraryService *service, SourceAllocator a
     }
     *service = (AmaLibraryService){.allocator=allocator, .definition=definition, .exports=exports, .export_count=count};
     atomic_init(&service->locked, false);
+    atomic_init(&service->owner, (uintptr_t)service);
     AmaStatus status = ama_context_registry_init(&service->contexts, allocator);
     service->initialized = status.code == AMA_OK;
     return status;

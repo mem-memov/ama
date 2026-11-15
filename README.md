@@ -41,6 +41,8 @@ C/assert tests. Check-only success does not validate handwritten C bodies.
   atomic retained reads and independent scalar/list snapshots.
 - [C-library execution](docs/implementation/c-library-execution.md): explicit
   entry/resume outcomes, stackless dispatch and native callback exclusion.
+- [C-library artifacts](docs/implementation/c-library-packaging.md): static/shared
+  components, exact symbol isolation, reload identities and code lifetime pins.
 - [Contributor guide](CONTRIBUTORS.md): readable components, formatting and tests.
 - [Standard library](stdlib/README.md): library boundaries and native companions.
 - [Executable examples](docs/implementation/examples.md): stateful methods, self-reference,

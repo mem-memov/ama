@@ -2077,7 +2077,7 @@ Contracts: [EMBED-01–EMBED-08](spec/implementation/c-library.md),
   generator/generated-C ASan/UBSan (leak detection disabled), all 1489 input
   coverage, standalone headers, links and Doxygen generation pass; final
   reproducibility is checked before commit. Artifact packaging remains T128.
-- [ ] **T128 — Build static and shared components with pinned code lifetime.**
+- [x] **T128 — Build static and shared components with pinned code lifetime.**
   Needs: T008, T010, T017, T123, T124, T127. Compile the complete Ama closure as
   one C translation unit and package its object as a static or supported shared
   library. Apply the component namespace to every externally linked symbol and
@@ -2087,6 +2087,20 @@ Contracts: [EMBED-01–EMBED-08](spec/implementation/c-library.md),
   code while contexts, callbacks or component-owned values still require it.
   Exercise lifetime pins with a minimal native probe here; the full asynchronous
   and concurrent component compositions follow in T099 and T106.
+  Evidence: `--library-build` stages one complete closure, checks raw native/control
+  entry families and the exact isolated public definition set, then publishes
+  deterministic static and supported ELF shared artifacts through the owned
+  publisher. Declared compiler/link settings reach tools as exact arguments.
+  Two overlapping Ama/native closures execute through separate C translation
+  units and a combined-header consumer under static/shared linking and real
+  repeated `dlopen`/`dlclose`. Exact snapshot/diagnostic/callback pins reject
+  premature unload; foreign owners and stale reload controls are rejected before
+  dereference. Receipt/pin allocation failures permit effect-free retry; retired
+  load identity history and the external loader call barrier are documented in
+  `docs/implementation/c-library-packaging.md`. Strict full `NDEBUG` tests pass;
+  package/execution/snapshot/runtime suites pass ASan/UBSan, including generated
+  debug/release libraries. All 1520 maintained inputs have named test coverage
+  and standalone header checks; Doxygen and its reproducibility checks pass.
 - [ ] **T129 — Own a foreign Ama component inside a native Ama module.** Needs:
   T012, T073, T128. Implement an example native adapter that owns an opaque child
   context as a native resource in another compiled component. Configure child

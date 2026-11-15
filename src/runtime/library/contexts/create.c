@@ -16,7 +16,7 @@ AmaLibraryResult ama_library_context_create(AmaLibraryService *service, AmaLibra
         service->allocator.release(service->allocator.context, record);
         return ama_library_result(AMA_LIBRARY_TECHNICAL_FAILURE, status);
     }
-    AmaLibraryContext published = {(uintptr_t)service, record->identity};
+    AmaLibraryContext published = {atomic_load_explicit(&service->owner, memory_order_acquire), record->identity};
     ama_library_lock(service);
     record->next = service->first;
     service->first = record;

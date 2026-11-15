@@ -7,7 +7,7 @@
 AmaLibraryResult ama_library_select(AmaLibraryService *service, AmaLibraryContext context,
     AmaLibraryInstance instance, uint64_t exported, AmaAccessMode mode,
     AmaLibraryAccess *access, AmaHandle *output) {
-    if (service==NULL || instance.owner!=(uintptr_t)service || instance.context!=context.identity
+    if (service==NULL || instance.owner!=atomic_load_explicit(&service->owner, memory_order_acquire) || instance.context!=context.identity
         || instance.identity==0 || access==NULL || output==NULL
         || mode<AMA_ACCESS_ENTRY || mode>AMA_ACCESS_READ) {
         return ama_library_result(AMA_LIBRARY_INVALID_REQUEST,ama_status_make(AMA_INVALID_STATE,NULL,0));

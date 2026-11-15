@@ -25,6 +25,7 @@ void library_codec_list(LibraryCodecs *codecs, const LibrarySchema *schema) {
         "            if (status.code!=AMA_OK) { %s_free(snapshot); return status; }\n"
         "            items[i]=snapshot->owners[i]->data; snapshot->data.length++;\n"
         "        }\n    }\n"
+        "    if (!ama_library_code_register(&%s_code,&snapshot->code_owner,&%s_schema)) { %s_free(snapshot); return ama_status_make(AMA_LIMIT_EXCEEDED,NULL,0); }\n"
         "    *output=snapshot; return ama_status_success();\n}\n",
-        name,name,library_codec_type_id(codecs,schema->type),element,element,name,name,element,name,element,name);
+        name,name,library_codec_type_id(codecs,schema->type),element,element,name,name,element,name,element,name,writer->prefix,name,name);
 }

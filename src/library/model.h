@@ -122,4 +122,10 @@ bool library_lifecycle_write(const LibraryBuild *, const uint64_t *types, size_t
  */
 bool library_snapshots_write(const LibraryBuild *, FILE *);
 
+/** Write the exact externally visible definition inventory for ELF object isolation.
+ * One symbol per line, in declaration order. Undefined C dependencies are not
+ * definitions and must remain unresolved for the final host linker.
+ */
+bool library_symbols_write(const LibraryBuild *, FILE *);
+
 #endif

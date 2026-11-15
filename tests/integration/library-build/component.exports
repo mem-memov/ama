@@ -1,0 +1,8 @@
+ama-library | 1
+component | command.component
+abi | ama-c-1
+target | x86_64-linux-gnu
+calling-convention | c
+export | run | .main | entry,resume,read
+c-flag | -fvisibility=hidden
+c-flag | -DAMA_COMPONENT_MARKER=7

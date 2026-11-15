@@ -9,6 +9,7 @@ void library_transport_scalar(LibraryHeader *header, const LibrarySchema *schema
     const char *bytes=schema->kind==LIBRARY_INTEGER ? "magnitude." : schema->kind==LIBRARY_FAILURE ? "description." : "";
     library_header_print(header,"static void %s_free(%s_Value *value) {\n"
         "    if (value == NULL) { return; }\n",name,name);
+    library_header_print(header,"    ama_library_code_unregister(&%s_code,&value->code_owner);\n",header->prefix);
     if (schema->kind!=LIBRARY_CONDITION) {
         library_header_print(header,"    free((void *)value->data.%sdata);\n",bytes);
     }
@@ -26,5 +27,6 @@ void library_transport_scalar(LibraryHeader *header, const LibrarySchema *schema
             "        memcpy(bytes,source->%sdata,source->%slength); value->data.%sdata=bytes;\n    }\n",
             bytes,bytes,bytes,name,bytes,bytes,bytes);
     }
-    library_header_print(header,"    *output=value; return ama_status_success();\n}\n");
+    library_header_print(header,"    if (!ama_library_code_register(&%s_code,&value->code_owner,&%s_schema)) { %s_free(value); return ama_status_make(AMA_LIMIT_EXCEEDED,NULL,0); }\n"
+        "    *output=value; return ama_status_success();\n}\n",header->prefix,name,name);
 }

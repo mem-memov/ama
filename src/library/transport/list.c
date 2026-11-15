@@ -10,6 +10,7 @@ void library_transport_list(LibraryHeader *header, const LibrarySchema *schema) 
     library_header_print(header,
         "static void %s_free(%s_Value *value) {\n"
         "    if (value == NULL) { return; }\n"
+        "    ama_library_code_unregister(&%s_code,&value->code_owner);\n"
         "    while (value->data.length != 0) { %s_free(value->owners[--value->data.length]); }\n"
         "    free(value->owners); free((void *)value->data.items); free(value);\n}\n"
         "static AmaStatus %s_copy(const %s_Borrowed *source, %s_Value **output) {\n"
@@ -27,6 +28,7 @@ void library_transport_list(LibraryHeader *header, const LibrarySchema *schema) 
         "            if (status.code != AMA_OK) { %s_free(value); return status; }\n"
         "            items[i]=value->owners[i]->data; value->data.length++;\n"
         "        }\n    }\n"
+        "    if (!ama_library_code_register(&%s_code,&value->code_owner,&%s_schema)) { %s_free(value); return ama_status_make(AMA_LIMIT_EXCEEDED,NULL,0); }\n"
         "    *output=value; return ama_status_success();\n}\n",
-        name,name,element,name,name,name,name,name,name,element,name,element,name);
+        name,name,header->prefix,element,name,name,name,name,name,name,element,name,element,name,header->prefix,name,name);
 }

@@ -23,7 +23,7 @@ bool library_snapshots_write(const LibraryBuild *build, FILE *output) {
 void library_transport_owners(LibraryHeader *header) {
     for (const LibrarySchema *schema=header->build->schemas; schema!=NULL; schema=schema->next) {
         const char *name=schema->identity->internal_name;
-        library_header_print(header,"struct %s_Value { %s_Borrowed data;",name,name);
+        library_header_print(header,"static const char %s_schema;\nstruct %s_Value { AmaLibraryCodeOwner code_owner; %s_Borrowed data;",name,name,name);
         if (schema->kind==LIBRARY_LIST) {
             library_header_print(header," %s_Value **owners;",schema->element->identity->internal_name);
         }

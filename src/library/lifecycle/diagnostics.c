@@ -7,6 +7,7 @@
 #include "internal.h"
 void library_lifecycle_diagnostics(LibraryHeader *h) {
     const char *p = h->prefix;
+    library_header_print(h,"#include \"runtime/library/code.h\"\nstatic AmaLibraryCodePins %s_code;\n",p);
     library_header_print(h,
         "/* Diagnostics borrow immutable component code, never context storage. The host\n"
         " * must keep this component loaded until every diagnostic has been released. */\n"
@@ -16,16 +17,23 @@ void library_lifecycle_diagnostics(LibraryHeader *h) {
     library_header_print(h,
         ";\n    status = ama_status_checked(status);\n"
         "    if (status.code == AMA_OK) { return (%s_Diagnostic){0}; }\n"
+        "    if (!ama_library_code_retain(&%s_code)) { return (%s_Diagnostic){0}; }\n"
         "    return (%s_Diagnostic){.code=status.code,\n"
         "        .message=status.message == NULL ? fallback : (const uint8_t *)status.message,\n"
-        "        .length=status.message == NULL ? sizeof(fallback)-1 : status.message_length};\n}\n"
+        "        .length=status.message == NULL ? sizeof(fallback)-1 : status.message_length,\n"
+        "        .opaque={(uintptr_t)&%s_code,UINT64_C(1),0,0}};\n}\n"
         "static %s_ApiResult %s_result(AmaLibraryResult result) {\n"
         "    return (%s_ApiResult){.code=(uint32_t)result.code,.diagnostic=%s_cause(result.status)};\n}\n"
         "uint32_t %s_diagnostic_release_implementation(%s_Diagnostic *value) {\n"
         "    if (value == NULL) { return UINT32_C(1); }\n"
+        "    if (value->opaque[0] != 0) {\n"
+        "        if (value->opaque[0] != (uintptr_t)&%s_code || value->opaque[1] != UINT64_C(1)\n"
+        "            || !ama_library_code_release(&%s_code)) { return UINT32_C(1); }\n    }\n"
         "    *value = (%s_Diagnostic){0}; return UINT32_C(0);\n}\n"
         "uint32_t %s_result_release_implementation(%s_ApiResult *value) {\n"
         "    if (value == NULL) { return UINT32_C(1); }\n"
+        "    uint32_t released=%s_diagnostic_release_implementation(&value->diagnostic);\n"
+        "    if (released != 0) { return released; }\n"
         "    *value = (%s_ApiResult){0}; return UINT32_C(0);\n}\n",
-        p,p,p,p,p,p,p,p,p,p,p,p);
+        p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p);
 }
