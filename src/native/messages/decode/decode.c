@@ -11,7 +11,7 @@
  */
 AmaNativeMessageResult ama_native_message_decode(const AmaNativeMessageSchema *schema, AmaByteView bytes,
     const AmaNativeCodeProvider *provider, AmaNativeMessageDecoded *output) {
-    if (!ama_message_schema_valid(schema) || provider == NULL || output == NULL
+    if (ama_native_message_schema_check(schema).code != AMA_OK || provider == NULL || output == NULL
         || output->fields != NULL || output->values != NULL || output->wire != NULL
         || output->field_count != 0 || output->code.resource != NULL || output->code.release != NULL) {
         return ama_message_failure(ama_status_make(AMA_INVALID_STATE, NULL, 0));

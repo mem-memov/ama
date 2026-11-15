@@ -38,6 +38,12 @@ typedef struct {
     size_t field_count, maximum_wire_bytes;
 } AmaNativeMessageSchema;
 
+/** Check immutable native schema configuration without allocation or wire data.
+ * Channels use this before privately copying the declaration; success grants no
+ * ownership or longer borrow. Invalid declarations return technical InvalidState.
+ */
+AmaStatus ama_native_message_schema_check(const AmaNativeMessageSchema *);
+
 /** Borrowed scalar. Condition flag is 0/1 with empty bytes. Integer flag is
  * sign 0/1 and bytes is canonical nonempty big-endian magnitude (no negative zero).
  * Text/bytes use flag zero. No borrow survives encoding or decoded-owner disposal.
@@ -56,7 +62,10 @@ typedef enum {
 /** A non-OK status is technical failure; reason is meaningful only for OK status. */
 typedef struct { AmaStatus status; AmaNativeMessageReason reason; } AmaNativeMessageResult;
 
-/** Move-only native envelope. Code credit outlives every queued byte/release dependency. */
+/** Move-only native envelope. Nonnull data owns malloc/free-compatible storage,
+ * never a borrowed view cast into an owner. Code credit outlives every queued
+ * byte/release dependency; ownership moves require ending prior data borrows.
+ */
 typedef struct { unsigned char *data; size_t length; AmaNativeCodeLease code; } AmaNativeMessageBytes;
 
 /** Move-only decoded native data, independent of the input envelope and its schema storage.

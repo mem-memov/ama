@@ -2404,10 +2404,22 @@ Contracts: [PAR-01–PAR-08](spec/language/async-and-parallelism.md#parallelism-
   generated allocation counters pass. Per-file coverage/standalone headers check
   1948 inputs without debt; Doxygen/prose/rule links pass and final reproducibility
   is checked before commit. See `docs/implementation/typed-messages.md`.
-- [ ] **T104 — Implement bounded single-sender/single-receiver channels.** Needs:
-  T103. Enforce atomic whole-message acceptance, count/byte limits, FIFO and
-  explicit ownership transfer. Test full/rejected sends, capacity release on take
-  and no implied cross-channel order or application acknowledgment.
+- [x] **T104 — Implement bounded single-sender/single-receiver channels.** Needs:
+  T103. Native move-only creator-dispatch endpoints own a copied typed schema,
+  fixed ring and independent code credit. Send validates whole envelopes before
+  atomic count/byte admission and preserves every rejected owner; take moves only
+  the FIFO head and refunds its exact encoded length before decoding. Sender drop
+  closes and preserves accepted data; receiver drop aborts and retires detached
+  owners outside the gate. Taken data outlives both ports. Added explicit public
+  schema configuration checking, without inferring it from dummy wire data.
+  Count/byte/variable-length limits, ring reuse, schema independence, allocation
+  prefixes, independent channels, 4096 real native SPSC messages and 128 abort/send
+  races pass. Actual isolated Ama contexts expose Full as an ordinary failure and
+  decode queued values after sender-context disposal. Release accounting covers
+  compiler-folded calloc as well as malloc/free. Strict full `NDEBUG`, optimized
+  native, native/generated ASan/UBSan and native TSan checks pass. Per-file/header
+  coverage checks 1971 inputs without debt; Doxygen/prose/rule links pass and final
+  reproducibility is checked before commit. See `docs/implementation/bounded-channels.md`.
 - [ ] **T105 — Integrate channel waits and endpoint shutdown.** Needs: T097,
   T104. Provide backpressure without withholding ready tasks; drain on sender
   close and abort on receiver disposal. Test cancellation, pending events,

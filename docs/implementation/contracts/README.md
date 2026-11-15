@@ -41,6 +41,10 @@ The [typed message contract](../typed-messages.md) defines the explicit data-onl
 wire profile, allocation-free validation, independent native ownership and typed
 Ama publication/failure evidence.
 
+The [bounded channel contract](../bounded-channels.md) proves whole-message FIFO
+ownership, simultaneous count/byte limits, native endpoint shutdown and independent
+receiver lifetime, including real concurrent and typed Ama acceptance.
+
 ## Before implementation
 
 Identify one responsibility and its smallest meaningful public boundary. Link the

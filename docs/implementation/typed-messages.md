@@ -135,5 +135,5 @@ following both completed and failed context disposal. ASan/UBSan supplements the
 exact ownership counters; it does not replace them.
 
 Per-file named cases, standalone headers and commands are registered in
-[ready.json](documentation/ready.json). Message-count/byte-capacity ownership,
-FIFO and sender/receiver closure remain T104–T105.
+[ready.json](documentation/ready.json). [Bounded channels](bounded-channels.md) add simultaneous count/byte capacities,
+FIFO and sender/receiver lifetime. Task waits and cancellation remain T105.

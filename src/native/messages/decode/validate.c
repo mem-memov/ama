@@ -8,7 +8,8 @@
 
 /** Schema errors are native configuration failures; unsupported wire is ordinary data. */
 AmaNativeMessageResult ama_native_message_validate(const AmaNativeMessageSchema *schema, AmaByteView bytes) {
-    if (!ama_message_schema_valid(schema)) { return ama_message_failure(ama_status_make(AMA_INVALID_STATE, NULL, 0)); }
+    AmaStatus status = ama_native_message_schema_check(schema);
+    if (status.code != AMA_OK) { return ama_message_failure(status); }
     size_t count = 0;
     return ama_message_result(ama_message_scan(schema, bytes, &count, NULL));
 }

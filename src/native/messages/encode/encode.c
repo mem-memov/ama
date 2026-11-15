@@ -11,7 +11,7 @@
  */
 AmaNativeMessageResult ama_native_message_encode(const AmaNativeMessageSchema *schema,
     const AmaNativeMessageFieldValue *fields, const AmaNativeCodeProvider *provider, AmaNativeMessageBytes *output) {
-    if (!ama_message_schema_valid(schema) || provider == NULL || output == NULL
+    if (ama_native_message_schema_check(schema).code != AMA_OK || provider == NULL || output == NULL
         || output->data != NULL || output->length != 0 || output->code.resource != NULL || output->code.release != NULL
         || (schema->field_count != 0 && fields == NULL)) {
         return ama_message_failure(ama_status_make(AMA_INVALID_STATE, NULL, 0));

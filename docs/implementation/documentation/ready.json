@@ -38417,6 +38417,11 @@
         "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
         "command": "make -C tests/unit/codegen/message-codecs",
         "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
+        "command": "make -C tests/unit/codegen/channels",
+        "source": "tests/unit/codegen/channels/main.c"
       }
     ]
   },
@@ -86156,6 +86161,61 @@
         "case": "it_rejects_invalid_configuration_and_nonempty_outputs_without_effects",
         "command": "make -C tests/unit/async/messages",
         "source": "tests/unit/async/messages/main.c"
+      },
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_enforces_exact_byte_capacity_and_individual_message_size",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_reuses_ring_slots_without_moving_or_merging_received_owners",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_refunds_exact_variable_message_lengths_at_take",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_drains_after_sender_disposal_and_retains_taken_data_after_service_retirement",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_aborts_delivery_and_preserves_rejected_sender_data",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_copies_schema_and_preserves_rejected_inputs_and_receiver_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_keeps_independent_channel_order_and_ownership_separate",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_transfers_fifo_messages_between_actual_native_producer_and_consumer_threads",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_linearizes_abort_against_send_without_losing_or_double_releasing_an_owner",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
       }
     ]
   },
@@ -94577,6 +94637,16 @@
         "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
         "command": "make -C tests/unit/codegen/message-codecs",
         "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
       }
     ],
     "standalone_header_command": [
@@ -94648,6 +94718,16 @@
         "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
         "command": "make -C tests/unit/codegen/message-codecs",
         "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
       }
     ],
     "standalone_header_command": [
@@ -94846,6 +94926,16 @@
         "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
         "command": "make -C tests/unit/codegen/message-codecs",
         "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
       }
     ]
   },
@@ -94958,6 +95048,16 @@
         "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
         "command": "make -C tests/unit/codegen/message-codecs",
         "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
       }
     ]
   },
@@ -95187,6 +95287,16 @@
         "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
         "command": "make -C tests/unit/codegen/message-codecs",
         "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
       }
     ]
   },
@@ -95243,6 +95353,16 @@
         "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
         "command": "make -C tests/unit/codegen/message-codecs",
         "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
       }
     ]
   },
@@ -95657,6 +95777,1259 @@
         "case": "it_unwinds_partial_typed_receive_construction_on_technical_failure",
         "command": "make -C tests/unit/codegen/message-codecs",
         "source": "tests/unit/codegen/message-codecs/main.c"
+      },
+      {
+        "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
+        "command": "make -C tests/unit/codegen/channels",
+        "source": "tests/unit/codegen/channels/main.c"
+      }
+    ]
+  },
+  "src/native/channels/internal.h": {
+    "contract": "docs/implementation/bounded-channels.md",
+    "purpose": "Preserve whole-message FIFO ownership under independent count/byte bounds, endpoint shutdown, native concurrency and isolated Ama decoding.",
+    "tests": [
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_enforces_exact_byte_capacity_and_individual_message_size",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_reuses_ring_slots_without_moving_or_merging_received_owners",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_refunds_exact_variable_message_lengths_at_take",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_drains_after_sender_disposal_and_retains_taken_data_after_service_retirement",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_aborts_delivery_and_preserves_rejected_sender_data",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_copies_schema_and_preserves_rejected_inputs_and_receiver_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_keeps_independent_channel_order_and_ownership_separate",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_transfers_fifo_messages_between_actual_native_producer_and_consumer_threads",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_linearizes_abort_against_send_without_losing_or_double_releasing_an_owner",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
+        "command": "make -C tests/unit/codegen/channels",
+        "source": "tests/unit/codegen/channels/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/native/channels/channel.h": {
+    "contract": "docs/implementation/bounded-channels.md",
+    "purpose": "Preserve whole-message FIFO ownership under independent count/byte bounds, endpoint shutdown, native concurrency and isolated Ama decoding.",
+    "tests": [
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_enforces_exact_byte_capacity_and_individual_message_size",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_reuses_ring_slots_without_moving_or_merging_received_owners",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_refunds_exact_variable_message_lengths_at_take",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_drains_after_sender_disposal_and_retains_taken_data_after_service_retirement",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_aborts_delivery_and_preserves_rejected_sender_data",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_copies_schema_and_preserves_rejected_inputs_and_receiver_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_keeps_independent_channel_order_and_ownership_separate",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_transfers_fifo_messages_between_actual_native_producer_and_consumer_threads",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_linearizes_abort_against_send_without_losing_or_double_releasing_an_owner",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
+        "command": "make -C tests/unit/codegen/channels",
+        "source": "tests/unit/codegen/channels/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/native/channels/assembly.h": {
+    "contract": "docs/implementation/bounded-channels.md",
+    "purpose": "Preserve whole-message FIFO ownership under independent count/byte bounds, endpoint shutdown, native concurrency and isolated Ama decoding.",
+    "tests": [
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_enforces_exact_byte_capacity_and_individual_message_size",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_reuses_ring_slots_without_moving_or_merging_received_owners",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_refunds_exact_variable_message_lengths_at_take",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_drains_after_sender_disposal_and_retains_taken_data_after_service_retirement",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_aborts_delivery_and_preserves_rejected_sender_data",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_copies_schema_and_preserves_rejected_inputs_and_receiver_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_keeps_independent_channel_order_and_ownership_separate",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_transfers_fifo_messages_between_actual_native_producer_and_consumer_threads",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_linearizes_abort_against_send_without_losing_or_double_releasing_an_owner",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
+        "command": "make -C tests/unit/codegen/channels",
+        "source": "tests/unit/codegen/channels/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/native/channels/queue/send.c": {
+    "contract": "docs/implementation/bounded-channels.md",
+    "purpose": "Preserve whole-message FIFO ownership under independent count/byte bounds, endpoint shutdown, native concurrency and isolated Ama decoding.",
+    "tests": [
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_enforces_exact_byte_capacity_and_individual_message_size",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_reuses_ring_slots_without_moving_or_merging_received_owners",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_refunds_exact_variable_message_lengths_at_take",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_drains_after_sender_disposal_and_retains_taken_data_after_service_retirement",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_aborts_delivery_and_preserves_rejected_sender_data",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_copies_schema_and_preserves_rejected_inputs_and_receiver_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_keeps_independent_channel_order_and_ownership_separate",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_transfers_fifo_messages_between_actual_native_producer_and_consumer_threads",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_linearizes_abort_against_send_without_losing_or_double_releasing_an_owner",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
+        "command": "make -C tests/unit/codegen/channels",
+        "source": "tests/unit/codegen/channels/main.c"
+      }
+    ]
+  },
+  "src/native/channels/queue/take.c": {
+    "contract": "docs/implementation/bounded-channels.md",
+    "purpose": "Preserve whole-message FIFO ownership under independent count/byte bounds, endpoint shutdown, native concurrency and isolated Ama decoding.",
+    "tests": [
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_enforces_exact_byte_capacity_and_individual_message_size",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_reuses_ring_slots_without_moving_or_merging_received_owners",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_refunds_exact_variable_message_lengths_at_take",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_drains_after_sender_disposal_and_retains_taken_data_after_service_retirement",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_aborts_delivery_and_preserves_rejected_sender_data",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_copies_schema_and_preserves_rejected_inputs_and_receiver_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_keeps_independent_channel_order_and_ownership_separate",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_transfers_fifo_messages_between_actual_native_producer_and_consumer_threads",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_linearizes_abort_against_send_without_losing_or_double_releasing_an_owner",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
+        "command": "make -C tests/unit/codegen/channels",
+        "source": "tests/unit/codegen/channels/main.c"
+      }
+    ]
+  },
+  "src/native/channels/service/create.c": {
+    "contract": "docs/implementation/bounded-channels.md",
+    "purpose": "Preserve whole-message FIFO ownership under independent count/byte bounds, endpoint shutdown, native concurrency and isolated Ama decoding.",
+    "tests": [
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_enforces_exact_byte_capacity_and_individual_message_size",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_reuses_ring_slots_without_moving_or_merging_received_owners",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_refunds_exact_variable_message_lengths_at_take",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_drains_after_sender_disposal_and_retains_taken_data_after_service_retirement",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_aborts_delivery_and_preserves_rejected_sender_data",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_copies_schema_and_preserves_rejected_inputs_and_receiver_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_keeps_independent_channel_order_and_ownership_separate",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_transfers_fifo_messages_between_actual_native_producer_and_consumer_threads",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_linearizes_abort_against_send_without_losing_or_double_releasing_an_owner",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
+        "command": "make -C tests/unit/codegen/channels",
+        "source": "tests/unit/codegen/channels/main.c"
+      }
+    ]
+  },
+  "src/native/channels/service/lifetime.c": {
+    "contract": "docs/implementation/bounded-channels.md",
+    "purpose": "Preserve whole-message FIFO ownership under independent count/byte bounds, endpoint shutdown, native concurrency and isolated Ama decoding.",
+    "tests": [
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_enforces_exact_byte_capacity_and_individual_message_size",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_reuses_ring_slots_without_moving_or_merging_received_owners",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_refunds_exact_variable_message_lengths_at_take",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_drains_after_sender_disposal_and_retains_taken_data_after_service_retirement",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_aborts_delivery_and_preserves_rejected_sender_data",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_copies_schema_and_preserves_rejected_inputs_and_receiver_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_keeps_independent_channel_order_and_ownership_separate",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_transfers_fifo_messages_between_actual_native_producer_and_consumer_threads",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_linearizes_abort_against_send_without_losing_or_double_releasing_an_owner",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
+        "command": "make -C tests/unit/codegen/channels",
+        "source": "tests/unit/codegen/channels/main.c"
+      }
+    ]
+  },
+  "src/native/channels/service/gate.c": {
+    "contract": "docs/implementation/bounded-channels.md",
+    "purpose": "Preserve whole-message FIFO ownership under independent count/byte bounds, endpoint shutdown, native concurrency and isolated Ama decoding.",
+    "tests": [
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_enforces_exact_byte_capacity_and_individual_message_size",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_reuses_ring_slots_without_moving_or_merging_received_owners",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_refunds_exact_variable_message_lengths_at_take",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_drains_after_sender_disposal_and_retains_taken_data_after_service_retirement",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_aborts_delivery_and_preserves_rejected_sender_data",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_copies_schema_and_preserves_rejected_inputs_and_receiver_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_keeps_independent_channel_order_and_ownership_separate",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_transfers_fifo_messages_between_actual_native_producer_and_consumer_threads",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_linearizes_abort_against_send_without_losing_or_double_releasing_an_owner",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
+        "command": "make -C tests/unit/codegen/channels",
+        "source": "tests/unit/codegen/channels/main.c"
+      }
+    ]
+  },
+  "src/native/channels/endpoints/close.c": {
+    "contract": "docs/implementation/bounded-channels.md",
+    "purpose": "Preserve whole-message FIFO ownership under independent count/byte bounds, endpoint shutdown, native concurrency and isolated Ama decoding.",
+    "tests": [
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_enforces_exact_byte_capacity_and_individual_message_size",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_reuses_ring_slots_without_moving_or_merging_received_owners",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_refunds_exact_variable_message_lengths_at_take",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_drains_after_sender_disposal_and_retains_taken_data_after_service_retirement",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_aborts_delivery_and_preserves_rejected_sender_data",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_copies_schema_and_preserves_rejected_inputs_and_receiver_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_keeps_independent_channel_order_and_ownership_separate",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_transfers_fifo_messages_between_actual_native_producer_and_consumer_threads",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_linearizes_abort_against_send_without_losing_or_double_releasing_an_owner",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
+        "command": "make -C tests/unit/codegen/channels",
+        "source": "tests/unit/codegen/channels/main.c"
+      }
+    ]
+  },
+  "src/native/channels/endpoints/access.c": {
+    "contract": "docs/implementation/bounded-channels.md",
+    "purpose": "Preserve whole-message FIFO ownership under independent count/byte bounds, endpoint shutdown, native concurrency and isolated Ama decoding.",
+    "tests": [
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_enforces_exact_byte_capacity_and_individual_message_size",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_reuses_ring_slots_without_moving_or_merging_received_owners",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_refunds_exact_variable_message_lengths_at_take",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_drains_after_sender_disposal_and_retains_taken_data_after_service_retirement",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_aborts_delivery_and_preserves_rejected_sender_data",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_copies_schema_and_preserves_rejected_inputs_and_receiver_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_keeps_independent_channel_order_and_ownership_separate",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_transfers_fifo_messages_between_actual_native_producer_and_consumer_threads",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_linearizes_abort_against_send_without_losing_or_double_releasing_an_owner",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
+        "command": "make -C tests/unit/codegen/channels",
+        "source": "tests/unit/codegen/channels/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/channels/main.c": {
+    "contract": "docs/implementation/bounded-channels.md",
+    "purpose": "Preserve whole-message FIFO ownership under independent count/byte bounds, endpoint shutdown, native concurrency and isolated Ama decoding.",
+    "tests": [
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_enforces_exact_byte_capacity_and_individual_message_size",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_reuses_ring_slots_without_moving_or_merging_received_owners",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_refunds_exact_variable_message_lengths_at_take",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_drains_after_sender_disposal_and_retains_taken_data_after_service_retirement",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_aborts_delivery_and_preserves_rejected_sender_data",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_copies_schema_and_preserves_rejected_inputs_and_receiver_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_keeps_independent_channel_order_and_ownership_separate",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_transfers_fifo_messages_between_actual_native_producer_and_consumer_threads",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_linearizes_abort_against_send_without_losing_or_double_releasing_an_owner",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/channels/common.c": {
+    "contract": "docs/implementation/bounded-channels.md",
+    "purpose": "Preserve whole-message FIFO ownership under independent count/byte bounds, endpoint shutdown, native concurrency and isolated Ama decoding.",
+    "tests": [
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_enforces_exact_byte_capacity_and_individual_message_size",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_reuses_ring_slots_without_moving_or_merging_received_owners",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_refunds_exact_variable_message_lengths_at_take",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_drains_after_sender_disposal_and_retains_taken_data_after_service_retirement",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_aborts_delivery_and_preserves_rejected_sender_data",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_copies_schema_and_preserves_rejected_inputs_and_receiver_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_keeps_independent_channel_order_and_ownership_separate",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_transfers_fifo_messages_between_actual_native_producer_and_consumer_threads",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_linearizes_abort_against_send_without_losing_or_double_releasing_an_owner",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/channels/Makefile": {
+    "contract": "docs/implementation/bounded-channels.md",
+    "purpose": "Preserve whole-message FIFO ownership under independent count/byte bounds, endpoint shutdown, native concurrency and isolated Ama decoding.",
+    "tests": [
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_enforces_exact_byte_capacity_and_individual_message_size",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_reuses_ring_slots_without_moving_or_merging_received_owners",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_refunds_exact_variable_message_lengths_at_take",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_drains_after_sender_disposal_and_retains_taken_data_after_service_retirement",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_aborts_delivery_and_preserves_rejected_sender_data",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_copies_schema_and_preserves_rejected_inputs_and_receiver_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_keeps_independent_channel_order_and_ownership_separate",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_transfers_fifo_messages_between_actual_native_producer_and_consumer_threads",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_linearizes_abort_against_send_without_losing_or_double_releasing_an_owner",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/channels/support/failures.c": {
+    "contract": "docs/implementation/bounded-channels.md",
+    "purpose": "Preserve whole-message FIFO ownership under independent count/byte bounds, endpoint shutdown, native concurrency and isolated Ama decoding.",
+    "tests": [
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_enforces_exact_byte_capacity_and_individual_message_size",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_reuses_ring_slots_without_moving_or_merging_received_owners",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_refunds_exact_variable_message_lengths_at_take",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_drains_after_sender_disposal_and_retains_taken_data_after_service_retirement",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_aborts_delivery_and_preserves_rejected_sender_data",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_copies_schema_and_preserves_rejected_inputs_and_receiver_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_keeps_independent_channel_order_and_ownership_separate",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_transfers_fifo_messages_between_actual_native_producer_and_consumer_threads",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_linearizes_abort_against_send_without_losing_or_double_releasing_an_owner",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/channels/support/rejection.c": {
+    "contract": "docs/implementation/bounded-channels.md",
+    "purpose": "Preserve whole-message FIFO ownership under independent count/byte bounds, endpoint shutdown, native concurrency and isolated Ama decoding.",
+    "tests": [
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_enforces_exact_byte_capacity_and_individual_message_size",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_reuses_ring_slots_without_moving_or_merging_received_owners",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_refunds_exact_variable_message_lengths_at_take",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_drains_after_sender_disposal_and_retains_taken_data_after_service_retirement",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_aborts_delivery_and_preserves_rejected_sender_data",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_copies_schema_and_preserves_rejected_inputs_and_receiver_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_keeps_independent_channel_order_and_ownership_separate",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_transfers_fifo_messages_between_actual_native_producer_and_consumer_threads",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_linearizes_abort_against_send_without_losing_or_double_releasing_an_owner",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/channels/support/capacity.c": {
+    "contract": "docs/implementation/bounded-channels.md",
+    "purpose": "Preserve whole-message FIFO ownership under independent count/byte bounds, endpoint shutdown, native concurrency and isolated Ama decoding.",
+    "tests": [
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_enforces_exact_byte_capacity_and_individual_message_size",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_reuses_ring_slots_without_moving_or_merging_received_owners",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_refunds_exact_variable_message_lengths_at_take",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_drains_after_sender_disposal_and_retains_taken_data_after_service_retirement",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_aborts_delivery_and_preserves_rejected_sender_data",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_copies_schema_and_preserves_rejected_inputs_and_receiver_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_keeps_independent_channel_order_and_ownership_separate",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_transfers_fifo_messages_between_actual_native_producer_and_consumer_threads",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_linearizes_abort_against_send_without_losing_or_double_releasing_an_owner",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/channels/support/lifetime.c": {
+    "contract": "docs/implementation/bounded-channels.md",
+    "purpose": "Preserve whole-message FIFO ownership under independent count/byte bounds, endpoint shutdown, native concurrency and isolated Ama decoding.",
+    "tests": [
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_enforces_exact_byte_capacity_and_individual_message_size",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_reuses_ring_slots_without_moving_or_merging_received_owners",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_refunds_exact_variable_message_lengths_at_take",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_drains_after_sender_disposal_and_retains_taken_data_after_service_retirement",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_aborts_delivery_and_preserves_rejected_sender_data",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_copies_schema_and_preserves_rejected_inputs_and_receiver_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_keeps_independent_channel_order_and_ownership_separate",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_transfers_fifo_messages_between_actual_native_producer_and_consumer_threads",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_linearizes_abort_against_send_without_losing_or_double_releasing_an_owner",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/channels/support/concurrency.c": {
+    "contract": "docs/implementation/bounded-channels.md",
+    "purpose": "Preserve whole-message FIFO ownership under independent count/byte bounds, endpoint shutdown, native concurrency and isolated Ama decoding.",
+    "tests": [
+      {
+        "case": "it_transfers_whole_fifo_messages_and_releases_capacity_before_processing",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_enforces_exact_byte_capacity_and_individual_message_size",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_reuses_ring_slots_without_moving_or_merging_received_owners",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_refunds_exact_variable_message_lengths_at_take",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_drains_after_sender_disposal_and_retains_taken_data_after_service_retirement",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_aborts_delivery_and_preserves_rejected_sender_data",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_copies_schema_and_preserves_rejected_inputs_and_receiver_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_keeps_independent_channel_order_and_ownership_separate",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_cleans_every_creation_prefix_and_rejects_invalid_capacities_and_outputs",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_transfers_fifo_messages_between_actual_native_producer_and_consumer_threads",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      },
+      {
+        "case": "it_linearizes_abort_against_send_without_losing_or_double_releasing_an_owner",
+        "command": "make -C tests/unit/async/channels",
+        "source": "tests/unit/async/channels/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/channels/main.c": {
+    "contract": "docs/implementation/bounded-channels.md",
+    "purpose": "Preserve whole-message FIFO ownership under independent count/byte bounds, endpoint shutdown, native concurrency and isolated Ama decoding.",
+    "tests": [
+      {
+        "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
+        "command": "make -C tests/unit/codegen/channels",
+        "source": "tests/unit/codegen/channels/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/channels/Makefile": {
+    "contract": "docs/implementation/bounded-channels.md",
+    "purpose": "Preserve whole-message FIFO ownership under independent count/byte bounds, endpoint shutdown, native concurrency and isolated Ama decoding.",
+    "tests": [
+      {
+        "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
+        "command": "make -C tests/unit/codegen/channels",
+        "source": "tests/unit/codegen/channels/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/channels/project/main": {
+    "contract": "docs/implementation/bounded-channels.md",
+    "purpose": "Preserve whole-message FIFO ownership under independent count/byte bounds, endpoint shutdown, native concurrency and isolated Ama decoding.",
+    "tests": [
+      {
+        "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
+        "command": "make -C tests/unit/codegen/channels",
+        "source": "tests/unit/codegen/channels/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/channels/support/ports.c": {
+    "contract": "docs/implementation/bounded-channels.md",
+    "purpose": "Preserve whole-message FIFO ownership under independent count/byte bounds, endpoint shutdown, native concurrency and isolated Ama decoding.",
+    "tests": [
+      {
+        "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
+        "command": "make -C tests/unit/codegen/channels",
+        "source": "tests/unit/codegen/channels/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/channels/support/consumer.c": {
+    "contract": "docs/implementation/bounded-channels.md",
+    "purpose": "Preserve whole-message FIFO ownership under independent count/byte bounds, endpoint shutdown, native concurrency and isolated Ama decoding.",
+    "tests": [
+      {
+        "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
+        "command": "make -C tests/unit/codegen/channels",
+        "source": "tests/unit/codegen/channels/main.c"
       }
     ]
   }

@@ -1,0 +1,58 @@
+# Different host contexts receive different native port resources; no Ama storage crosses.
+@!
+role
+.role
+role !
+ > sending
+sender
+.sender
+receiver
+.receiver
+encode
+.encode
+decode
+.decode
+inspect
+.inspect
+check
+.check
+check full
+.checkfull
+sending
+?
+ encode !
+  < |1
+  < |Hello, Ама
+  < |-18446744073709551617
+  > wire
+ sender !
+  < wire
+  > failure
+ check !
+  < failure
+ sender !
+  < wire
+  > failure
+ check full !
+  < failure
+ %
+ sender !
+  < wire
+  > failure
+ check !
+  < failure
+:
+ receiver !
+  > wire
+  > failure
+ check !
+  < failure
+ decode !
+  < wire
+  < |0
+  > value
+  > failure
+ check !
+  < failure
+ inspect !
+  < value

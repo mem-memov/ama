@@ -21,8 +21,6 @@ static inline AmaNativeMessageResult ama_message_result(AmaNativeMessageReason r
 static inline AmaNativeMessageResult ama_message_failure(AmaStatus status) {
     return (AmaNativeMessageResult){status, AMA_MESSAGE_ACCEPTED};
 }
-/** Reject malformed immutable declarations before reading fields or allocating. */
-bool ama_message_schema_valid(const AmaNativeMessageSchema *);
 /** Check one complete scalar's canonical data grammar and declared byte bound. */
 AmaNativeMessageReason ama_message_scalar(const AmaNativeMessageField *, AmaNativeMessageValue);
 /** Validate Unicode scalar UTF-8 including embedded NUL, independently of locale. */
