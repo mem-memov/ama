@@ -48,6 +48,8 @@ typedef struct {
     int64_t code;
     AmaNativeEventBuffer buffer;
 } AmaNativeEventCompletion;
+/** A native snapshot, not a task phase: queued data and armed producers may coexist. */
+typedef struct { bool ready, pending; } AmaNativeEventReadiness;
 /** Optional native code/resource lease transferred on successful service creation.
  * Its resource must outlive all callbacks/buffers and must not contain borrowed Ama state.
  * Its release is infallible native retirement and must not enter Ama.
@@ -89,6 +91,17 @@ AmaStatus ama_native_event_service_discard(AmaNativeEventService *, AmaNativeEve
  * occurs. Empty queues report available=false; only the owner performs consumer operations.
  */
 AmaStatus ama_native_event_service_take(AmaNativeEventService *, AmaNativeEventCompletion *, bool *available);
+/** Observe queued data and armed producers without consuming or blocking. Closed/invalid
+ * services preserve the output. An observation may become stale; wait closes that race.
+ */
+AmaStatus ama_native_event_service_poll(AmaNativeEventService *, AmaNativeEventReadiness *);
+/** Wait on the sole executor until a completion is retained, without consuming it.
+ * Success reports ready=false immediately when no armed producer remains. Prepared-only
+ * reservations cannot complete and do not justify sleeping. EINTR retries internally;
+ * other errors preserve the output. The caller retains the service and serializes
+ * wait with other owner operations, including disposal. Callbacks only post native data.
+ */
+AmaStatus ama_native_event_service_wait(AmaNativeEventService *, bool *ready);
 /** Close before dropping the unique owner. Queued buffers/cells retire immediately; callback
  * and byte owners retain the native service/code lease until their own acknowledgments/releases.
  */

@@ -1,0 +1,7 @@
+# Observe retained native events on the sole scheduler executor.
+@>
+ready
+..std.condition
+pending
+..std.condition
+@C

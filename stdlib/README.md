@@ -120,7 +120,7 @@ proof and real execution tests.
 ## Native event values and explicit waits
 
 [`..task.events`](modules/task/events) owns a fixed-capacity native completion
-service. Its actual `prepare`, `arm`, `post`, `ready` and `take` result modules
+service. Its actual `prepare`, `arm`, `post`, `ready`, `take`, `poll` and `wait` result modules
 are invoked directly with selected-result calls; the service and methods cannot
 be copied. The current source supports explicit manual notification. Native C
 providers separately support synchronous or worker-thread completion.
@@ -133,8 +133,11 @@ provides owned immutable binary values, including zero and non-UTF-8 bytes.
 The [registration/import contract](../docs/implementation/task-registration.md)
 shows how to publish a typed wait before arm, recheck readiness before Awaiting,
 import through generated borrows and reconcile retained readiness. Callbacks do
-not update Ama fields or resume tasks. FIFO membership, bounded reactor rounds
-and cancellation remain subsequent roadmap tasks.
+not update Ama fields or resume tasks. [Typed FIFO membership](../docs/implementation/ready-queues.md) and
+[bounded rounds/reactor wait](../docs/implementation/scheduling-rounds.md) are
+explicitly composed in Ama. `..task.budget.check` validates positive supported
+quotas; `..task.require` rejects broken scheduling predicates. Complete detachment,
+cancellation and the final asynchronous host API remain subsequent tasks.
 
 ## Native construction and ownership
 

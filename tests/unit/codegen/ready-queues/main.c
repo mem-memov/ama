@@ -4,6 +4,8 @@
  * requires visible membership and deterministic dispatch for a fixed observed stream.
  */
 #include "../execution/common.c"
+#include "support/instantiate.c"
+#include "support/trace.c"
 
 /** Read maintained Ama templates exactly; generated outputs are never interpreted as source fixtures. */
 static void fixture(const char *name, char source[16384]) {
@@ -39,39 +41,10 @@ static void install_domain(const char *domain) {
         assert(length > 0 && (size_t)length < sizeof(destination));
         FILE *output = fopen(destination, "wb");
         assert(output != NULL);
-        const char *cursor = source;
-        while (*cursor != 0) {
-            const char *end = strchr(cursor, '\n');
-            assert(end != NULL);
-            size_t count = (size_t)(end - cursor);
-            const char *replacement = NULL;
-            for (size_t module = 0; module < sizeof(modules) / sizeof(*modules); module++) {
-                char original[128];
-                length = snprintf(original, sizeof(original), ".kind.%s", modules[module]);
-                assert(length > 0 && (size_t)length < sizeof(original));
-                if (count == (size_t)length && memcmp(cursor, original, count) == 0) { replacement = modules[module]; break; }
-            }
-            if (replacement != NULL) {
-                int written = fprintf(output, ".%s.%s\n", domain, replacement);
-                assert(written > 0);
-            } else {
-                size_t written = fwrite(cursor, 1, count + 1, output);
-                assert(written == count + 1);
-            }
-            cursor = end + 1;
-        }
+        typed_schema_render(output, domain, source, modules, sizeof(modules) / sizeof(*modules));
         int closed = fclose(output);
         assert(closed == 0);
     }
-}
-
-/** A task observes membership after pop and before its body; stale queued=true is a technical test failure. */
-static bool trace_step(FILE *output, const ScaffoldType *type) {
-    if (strcmp(type->plan->type->module->source->logical_path, ".trace") != 0) { return false; }
-    int written = fputs("if(parameters->AMA_INPUT(1)->payload->value) { *status=ama_status_make(AMA_NATIVE_FAILURE,\"Task still queued\",17); return; }\n"
-        "printf(\"%zu:%zu\\n\",parameters->AMA_INPUT(0)->payload->value,++state->calls);\n", output);
-    assert(written != EOF);
-    return true;
 }
 
 /** Compile the actual task graph and compare every dispatched identity and per-task step count. */
@@ -80,7 +53,7 @@ static void scenario(const char *name, const char *expected, bool success) {
     install_domain("red");
     install_domain("blue");
     native_fixture("trace", "@<\nid\n..std.index\nqueued\n..task.flag\n@C\n");
-    native_entry_override = trace_step;
+    native_entry_override = typed_schema_trace;
     char source[16384];
     fixture(name, source);
     execute_project(source, expected, success);

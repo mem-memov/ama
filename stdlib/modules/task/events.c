@@ -21,5 +21,7 @@ AMA_NATIVE_ENTRY void AMA_NATIVE(entry)(AMA_NATIVE(State) *state, const ama_t_b1
     if (status->code == AMA_OK) { *status = ama_native_event_service_lease(state->service, &results->AMA_OUTPUT(2)->payload->lease); }
     if (status->code == AMA_OK) { *status = ama_native_event_service_lease(state->service, &results->AMA_OUTPUT(3)->payload->lease); }
     if (status->code == AMA_OK) { *status = ama_native_event_service_lease(state->service, &results->AMA_OUTPUT(4)->payload->lease); }
+    if (status->code == AMA_OK) { *status = ama_native_event_service_lease(state->service, &results->AMA_OUTPUT(5)->payload->lease); }
+    if (status->code == AMA_OK) { *status = ama_native_event_service_lease(state->service, &results->AMA_OUTPUT(6)->payload->lease); }
 }
 #include "ama_n_f97a1197920dc93c3ab22e9454f4d908be2f20f308025795aed207c8c5f8fd28.end.h"

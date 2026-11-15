@@ -1,0 +1,87 @@
+# Construct explicit typed domains around one native hub; no implicit task registration occurs.
+@!
+source
+.source
+red registry
+.red.registry
+blue registry
+.blue.registry
+red queue
+.red.queue
+blue queue
+.blue.queue
+red enqueue
+.red.enqueue
+blue enqueue
+.blue.enqueue
+round
+.round
+summary
+.summary
+require
+..task.require
+source !
+red registry
+ records[]
+  append !
+   > red&
+red& !
+ < |1
+red enqueue !
+ < &red queue
+ < red&
+source
+ prepare !
+  > token
+blue registry
+ records[]
+  append !
+   > blue&
+blue& !
+ < |2
+ < token
+ < &source
+blue enqueue !
+ < &blue queue
+ < blue&
+keep running
+..std.condition
+ |1
+keep running
+{
+ round !
+  < &red registry
+  < &blue registry
+  < &red queue
+  < &blue queue
+  < &source
+  < |1
+  < |1
+  > ready
+  > waiting
+  > quiescent
+  > steps
+  > imports
+  > decisions
+ summary !
+  < steps
+  < imports
+  < decisions
+  < ready
+  < waiting
+  < quiescent
+ blue&
+  task& >> blue task&
+ blue task&
+  phase >> blue phase
+ blue phase
+  completed >> completed
+ completed
+ ?
+  red&
+   stop !
+    < |1
+ quiescent
+ ?
+  >
+}

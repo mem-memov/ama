@@ -1,0 +1,23 @@
+# Construct explicit typed domains around one native hub; no implicit task registration occurs.
+@!
+source
+.source
+red registry
+.red.registry
+blue registry
+.blue.registry
+red queue
+.red.queue
+blue queue
+.blue.queue
+red enqueue
+.red.enqueue
+blue enqueue
+.blue.enqueue
+round
+.round
+summary
+.summary
+require
+..task.require
+source !

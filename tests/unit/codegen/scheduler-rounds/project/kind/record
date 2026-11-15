@@ -1,0 +1,83 @@
+# Publish a final native token, both stamps and an owned mailbox before a task arms its operation.
+@<
+identifier
+..std.index
+operation
+..task.token
+hub&
+.source
+deferred
+..std.condition
+@>
+self&
+.kind.record
+ &
+task&
+.kind.task
+id
+..std.index
+epoch
+..task.generation
+generation
+..task.generation
+wait epoch
+..task.generation
+wait generation
+..task.generation
+enrolled
+..task.flag
+ready
+..task.flag
+queued
+..task.flag
+started
+..task.flag
+waiting
+..task.flag
+stop
+..task.flag
+token
+..task.token
+source&
+.source
+defer
+..std.condition
+mailbox&
+.mailbox
+@!
+run sequence
+..task.sequence
+wait sequence
+..task.sequence
+owned task
+.kind.task
+owned mailbox
+.mailbox
+id
+ identifier
+run sequence !
+ > epoch
+wait sequence !
+ > generation
+wait epoch
+ epoch
+wait generation
+ generation
+enrolled !
+ < |1
+ready !
+ < |1
+task&
+ &owned task
+token
+ operation
+source&
+ hub&
+defer
+ deferred
+owned mailbox !
+owned mailbox
+ ready !
+ delivered !
+mailbox&
+ &owned mailbox

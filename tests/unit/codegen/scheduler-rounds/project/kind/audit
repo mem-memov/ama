@@ -1,0 +1,94 @@
+# At an idle boundary, every enrolled task is Completed or Awaiting a fully valid live wait.
+@<
+registry&
+.kind.registry
+@>
+valid
+..std.condition
+waiting
+..std.condition
+@!
+zero
+..integer
+ |0
+true
+..std.condition
+ |1
+index
+..integer
+before
+..integer.before
+next
+..integer.next
+validate
+.kind.validate
+index
+ zero
+registry&
+ records[]
+  length !
+   > count
+:
+ >
+before !
+ < index
+ < count
+ > more
+more
+{
+ registry&
+  records[index]
+   self& >> item&
+   enrolled >> enrolled
+   started >> started
+   ready >> ready
+   queued >> queued
+   waiting >> declared wait
+   task& >> task&
+ :
+  >
+ enrolled
+ ?
+  started
+  :
+   >
+  task&
+   phase >> phase
+  :
+   >
+  phase
+   completed >> completed
+   awaiting >> awaiting
+  ready
+  ?
+   >
+  queued
+  ?
+   >
+  completed
+  ?
+   declared wait
+   ?
+    >
+  :
+   awaiting
+   :
+    >
+   validate !
+    < item&
+    > live
+   live
+   :
+    >
+   waiting
+    true
+ next !
+  < index
+  > index
+ before !
+  < index
+  < count
+  > more
+}
+valid
+ true

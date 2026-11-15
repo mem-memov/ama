@@ -37992,6 +37992,11 @@
         "case": "it_coalesces_readiness_and_requeues_ready_yields_at_the_tail",
         "command": "make -C tests/unit/codegen",
         "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
       }
     ]
   },
@@ -86257,6 +86262,11 @@
         "case": "it_binds_native_methods_without_allocating_or_reviving_tokens",
         "command": "make -C tests/unit/async/events/identity",
         "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_retains_a_post_in_the_check_to_sleep_gap_and_retries_interruptions",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
       }
     ],
     "standalone_header_command": [
@@ -86303,6 +86313,11 @@
         "case": "it_executes_the_public_native_provider_assembly_once",
         "command": "make -C tests/unit/async/events/assembly",
         "source": "tests/unit/async/events/assembly/main.c"
+      },
+      {
+        "case": "it_retains_a_post_in_the_check_to_sleep_gap_and_retries_interruptions",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
       }
     ],
     "standalone_header_command": [
@@ -86329,6 +86344,11 @@
         "case": "it_executes_the_public_native_provider_assembly_once",
         "command": "make -C tests/unit/async/events/assembly",
         "source": "tests/unit/async/events/assembly/main.c"
+      },
+      {
+        "case": "it_retains_a_post_in_the_check_to_sleep_gap_and_retries_interruptions",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
       }
     ],
     "standalone_header_command": [
@@ -86459,6 +86479,11 @@
         "case": "it_queues_concurrent_workers_without_executing_an_ama_context",
         "command": "make -C tests/unit/async/events/callbacks",
         "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_retains_a_post_in_the_check_to_sleep_gap_and_retries_interruptions",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
       }
     ]
   },
@@ -86511,6 +86536,11 @@
         "case": "it_rejects_late_completion_after_close_and_retires_only_after_acknowledgment",
         "command": "make -C tests/unit/async/events/callbacks",
         "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_retains_a_post_in_the_check_to_sleep_gap_and_retries_interruptions",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
       }
     ]
   },
@@ -86542,6 +86572,11 @@
         "case": "it_binds_native_methods_without_allocating_or_reviving_tokens",
         "command": "make -C tests/unit/async/events/identity",
         "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_retains_a_post_in_the_check_to_sleep_gap_and_retries_interruptions",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
       }
     ]
   },
@@ -86707,6 +86742,11 @@
         "case": "it_rejects_late_completion_after_close_and_retires_only_after_acknowledgment",
         "command": "make -C tests/unit/async/events/callbacks",
         "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_retains_a_post_in_the_check_to_sleep_gap_and_retries_interruptions",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
       }
     ]
   },
@@ -86831,6 +86871,11 @@
         "case": "it_executes_the_public_native_provider_assembly_once",
         "command": "make -C tests/unit/async/events/assembly",
         "source": "tests/unit/async/events/assembly/main.c"
+      },
+      {
+        "case": "it_retains_a_post_in_the_check_to_sleep_gap_and_retries_interruptions",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
       }
     ]
   },
@@ -87202,6 +87247,11 @@
         "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
         "command": "make -C tests/unit/codegen/event-bridge",
         "source": "tests/unit/codegen/event-bridge/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
       }
     ]
   },
@@ -87519,6 +87569,11 @@
         "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
         "command": "make -C tests/unit/codegen/event-bridge",
         "source": "tests/unit/codegen/event-bridge/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
       }
     ]
   },
@@ -88307,6 +88362,1647 @@
         "command": "make -C tests/unit/codegen/ready-queues",
         "source": "tests/unit/codegen/ready-queues/main.c"
       }
+    ]
+  },
+  "src/native/events/wake/poll.c": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_unwinds_wake_initialization_before_publishing_identity",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_reports_native_idleness_without_waiting_or_reviving_closed_owners",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_retains_a_post_in_the_check_to_sleep_gap_and_retries_interruptions",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_coalesces_polled_notifications_and_drains_one_stale_credit",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_reports_wait_errors_without_consuming_the_pending_operation",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      }
+    ]
+  },
+  "src/native/events/wake/resource.c": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_unwinds_wake_initialization_before_publishing_identity",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_reports_native_idleness_without_waiting_or_reviving_closed_owners",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_retains_a_post_in_the_check_to_sleep_gap_and_retries_interruptions",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_coalesces_polled_notifications_and_drains_one_stale_credit",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_reports_wait_errors_without_consuming_the_pending_operation",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      }
+    ]
+  },
+  "src/native/events/wake/signal.c": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_unwinds_wake_initialization_before_publishing_identity",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_reports_native_idleness_without_waiting_or_reviving_closed_owners",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_retains_a_post_in_the_check_to_sleep_gap_and_retries_interruptions",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_coalesces_polled_notifications_and_drains_one_stale_credit",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_reports_wait_errors_without_consuming_the_pending_operation",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      }
+    ]
+  },
+  "src/native/events/wake/wait.c": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_unwinds_wake_initialization_before_publishing_identity",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_reports_native_idleness_without_waiting_or_reviving_closed_owners",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_retains_a_post_in_the_check_to_sleep_gap_and_retries_interruptions",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_coalesces_polled_notifications_and_drains_one_stale_credit",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_reports_wait_errors_without_consuming_the_pending_operation",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/budget/check": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/budget/check.abi": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/budget/check.c": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/budget/check.h": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_round_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/task/events+/poll": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events+/poll.abi": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events+/poll.c": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events+/poll.h": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_round_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/task/events+/wait": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events+/wait.abi": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events+/wait.c": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events+/wait.h": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_round_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/task/require": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/require.abi": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/require.c": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/require.h": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_round_probe_##name",
+      "-"
+    ]
+  },
+  "tests/unit/async/events/wake/Makefile": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_unwinds_wake_initialization_before_publishing_identity",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_reports_native_idleness_without_waiting_or_reviving_closed_owners",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_retains_a_post_in_the_check_to_sleep_gap_and_retries_interruptions",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_coalesces_polled_notifications_and_drains_one_stale_credit",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_reports_wait_errors_without_consuming_the_pending_operation",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/events/wake/main.c": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_unwinds_wake_initialization_before_publishing_identity",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_reports_native_idleness_without_waiting_or_reviving_closed_owners",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_retains_a_post_in_the_check_to_sleep_gap_and_retries_interruptions",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_coalesces_polled_notifications_and_drains_one_stale_credit",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_reports_wait_errors_without_consuming_the_pending_operation",
+        "command": "make -C tests/unit/async/events/wake",
+        "source": "tests/unit/async/events/wake/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/ready-queues/support/instantiate.c": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_coalesces_across_queues_and_executes_two_distinct_nominal_task_domains",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/ready-queues/support/trace.c": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_coalesces_across_queues_and_executes_two_distinct_nominal_task_domains",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/Makefile": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/main.c": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/backlog": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/blocking": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/broken-wait": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/fairness": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/kind/audit": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/kind/loop-task": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/kind/observe": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/kind/record": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/kind/validate": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/kind/wait-task": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/later": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/later.abi": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/later.c": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/later.h": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_round_probe_##name",
+      "-"
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/mailbox": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/missing-ready": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/quiescent": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/round": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/round-call": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/setup": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/source": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/source.abi": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/source.c": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/source.h": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_round_probe_##name",
+      "-"
+    ]
+  },
+  "tests/unit/codegen/scheduler-rounds/project/wait-hook.h": {
+    "contract": "docs/implementation/scheduling-rounds.md",
+    "purpose": "Bound task/import service and preserve native notification credits through explicit typed wait and readiness reconciliation.",
+    "tests": [
+      {
+        "case": "it_reports_quiescence_without_executing_or_blocking",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_replenished_ready_work_and_arbitrates_both_typed_queues",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_bounds_native_collection_before_the_next_round",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_waits_without_losing_a_racing_native_completion",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_broken_live_task_states_before_blocking_or_quiescence",
+        "command": "make -C tests/unit/codegen/scheduler-rounds",
+        "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_round_probe_##name",
+      "-"
     ]
   }
 }

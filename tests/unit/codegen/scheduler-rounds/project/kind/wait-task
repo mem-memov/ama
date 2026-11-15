@@ -1,0 +1,89 @@
+# Native callbacks only queue data; this task resumes only through its caller and declared mailbox.
+@<
+owner&
+.kind.record
+@>
+self&
+.kind.task
+ &
+phase
+..task.phase
+@!
+trace
+.trace
+ready phase
+..task.phase.ready
+awaiting phase
+..task.phase.awaiting
+completed phase
+..task.phase.completed
+keep waiting
+..std.condition
+ |1
+owner&
+ id >> id
+ queued >> queued
+ source& >> source&
+ token >> operation
+ mailbox& >> mailbox&
+ defer >> deferred
+trace !
+ < id
+ < queued
+owner&
+ waiting !
+  < |1
+source&
+ arm !
+  < operation
+deferred
+?
+ source&
+  later !
+   < operation
+:
+ source&
+  post !
+   < operation
+   < |0
+   < |
+source&
+ ready !
+  < operation
+  > native ready
+native ready
+?
+ ready phase !
+  > phase
+:
+ awaiting phase !
+  > phase
+%
+keep waiting
+{
+ mailbox&
+  delivered >> delivered
+ delivered
+ ?
+  owner&
+   waiting !
+   queued >> queued
+  trace !
+   < id
+   < queued
+  completed phase !
+   > phase
+  >
+ source&
+  ready !
+   < operation
+   > native ready
+ native ready
+ ?
+  ready phase !
+   > phase
+ :
+  awaiting phase !
+   > phase
+ %
+}

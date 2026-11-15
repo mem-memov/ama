@@ -25,6 +25,7 @@ void ama_native_event_release(void *state) {
     if (final) {
         assert(service->closed && service->cells == NULL);
         AmaNativeEventKeepalive keepalive = service->keepalive;
+        ama_native_event_wake_destroy(service);
         free(service);
         if (keepalive.release != NULL) { keepalive.release(keepalive.resource); }
     }
@@ -35,6 +36,7 @@ void ama_native_event_service_dispose(AmaNativeEventService **owner) {
     *owner = NULL;
     ama_native_event_lock(service);
     service->closed = true;
+    service->armed = 0;
     AmaNativeEventCell *cells = service->cells;
     service->cells = NULL;
     service->free = service->first = service->last = AMA_NATIVE_EVENT_NONE;

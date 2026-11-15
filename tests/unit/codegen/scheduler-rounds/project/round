@@ -1,0 +1,234 @@
+# One round bounds queue decisions and native imports, with a persistent two-domain round-robin cursor.
+@<
+red registry&
+.red.registry
+blue registry&
+.blue.registry
+red queue&
+.red.queue
+blue queue&
+.blue.queue
+source&
+.source
+task budget
+..integer
+ |2
+import budget
+..integer
+ |2
+@>
+ready
+..task.flag
+waiting
+..task.flag
+quiescent
+..task.flag
+steps
+..integer
+imports
+..integer
+decisions
+..integer
+@!
+check budget
+..task.budget.check
+require
+..task.require
+before
+..integer.before
+next
+..integer.next
+red dispatch
+.red.dispatch
+blue dispatch
+.blue.dispatch
+red import
+.red.import
+blue import
+.blue.import
+red audit
+.red.audit
+blue audit
+.blue.audit
+next blue
+..task.flag
+zero
+..integer
+ |0
+check budget !
+ < task budget
+check budget !
+ < import budget
+# Validate owners before taking any step, even when one queue happens to be empty.
+red queue&
+ entries[]
+  length !
+   > red count
+:
+ require !
+blue queue&
+ entries[]
+  length !
+   > blue count
+:
+ require !
+source&
+ poll !
+  > native ready
+  > native pending
+:
+ require !
+before !
+ < decisions
+ < task budget
+ > more
+more
+{
+ red queue&
+  entries[]
+   length !
+    > red count
+ :
+  require !
+ blue queue&
+  entries[]
+   length !
+    > blue count
+ :
+  require !
+ red count
+ :
+  blue count
+  :
+   ^
+ next blue
+ ?
+  blue count
+  ?
+   blue dispatch !
+    < blue queue&
+    > executed
+  :
+   red dispatch !
+    < red queue&
+    > executed
+  next blue !
+ :
+  red count
+  ?
+   red dispatch !
+    < red queue&
+    > executed
+  :
+   blue dispatch !
+    < blue queue&
+    > executed
+  next blue !
+   < |1
+ executed
+ ?
+  next !
+   < steps
+   > steps
+ next !
+  < decisions
+  > decisions
+ before !
+  < decisions
+  < task budget
+  > more
+}
+before !
+ < imports
+ < import budget
+ > more
+more
+{
+ source&
+  take !
+   > packet
+ :
+  require !
+ packet
+ :
+  ^
+ red import !
+  < red queue&
+  < red registry&
+  < packet
+ blue import !
+  < blue queue&
+  < blue registry&
+  < packet
+ next !
+  < imports
+  > imports
+ before !
+  < imports
+  < import budget
+  > more
+}
+red queue&
+ entries[]
+  length !
+   > red count
+:
+ require !
+blue queue&
+ entries[]
+  length !
+   > blue count
+:
+ require !
+source&
+ poll !
+  > native ready
+  > native pending
+:
+ require !
+red count
+?
+ ready !
+  < |1
+blue count
+?
+ ready !
+  < |1
+native ready
+?
+ ready !
+  < |1
+ready
+?
+ >
+red audit !
+ < red registry&
+ > red valid
+ > red waiting
+require !
+ < red valid
+blue audit !
+ < blue registry&
+ > blue valid
+ > blue waiting
+require !
+ < blue valid
+red waiting
+?
+ waiting !
+  < |1
+blue waiting
+?
+ waiting !
+  < |1
+waiting
+?
+ require !
+  < native pending
+ >
+# Native producers without visible waits violate this scheduler's one-hub contract.
+native pending
+?
+ require !
+quiescent !
+ < |1

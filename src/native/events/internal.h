@@ -6,6 +6,7 @@
 #ifndef AMA_NATIVE_EVENTS_INTERNAL_H
 #define AMA_NATIVE_EVENTS_INTERNAL_H
 #include <stdatomic.h>
+#include <semaphore.h>
 #include "native/events/event.h"
 #define AMA_NATIVE_EVENT_NONE SIZE_MAX
 #define AMA_NATIVE_EVENT_ERROR(code, text) ama_status_make((code), (text), sizeof(text) - 1)
@@ -24,13 +25,20 @@ typedef struct {
  */
 struct AmaNativeEventService {
     _Atomic bool locked;
-    bool closed;
-    size_t references, capacity, free, first, last;
+    bool closed, notified;
+    sem_t wake;
+    size_t references, capacity, free, first, last, armed;
     uint64_t generation;
     AmaNativeEventToken identity;
     AmaNativeEventCell *cells;
     AmaNativeEventKeepalive keepalive;
 };
+/** Initialize one process-private binary notification resource before service publication. */
+AmaStatus ama_native_event_wake_initialize(AmaNativeEventService *);
+/** Retire the initialized wake resource after the final lease and serialized waiter have left. */
+void ama_native_event_wake_destroy(AmaNativeEventService *);
+/** Publish a reserved binary wake credit outside the metadata gate, retaining no Ama state. */
+void ama_native_event_notify(AmaNativeEventService *);
 /** Prepare an exact uint64 successor with an inclusive bound, preserving output on failure. */
 bool ama_native_event_sequence(uint64_t, uint64_t, uint64_t *);
 /** Issue a fresh process-lifetime domain/service pair; no native record address is its identity. */

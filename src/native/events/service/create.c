@@ -28,8 +28,10 @@ AmaStatus ama_native_event_service_create(size_t capacity, AmaNativeEventKeepali
     *service = (AmaNativeEventService){.references = 1, .capacity = capacity, .free = 0,
         .first = AMA_NATIVE_EVENT_NONE, .last = AMA_NATIVE_EVENT_NONE, .cells = cells};
     atomic_init(&service->locked, false);
-    AmaStatus status = ama_native_event_identity(&service->identity);
+    AmaStatus status = ama_native_event_wake_initialize(service);
     if (status.code != AMA_OK) { free(cells); free(service); return status; }
+    status = ama_native_event_identity(&service->identity);
+    if (status.code != AMA_OK) { ama_native_event_wake_destroy(service); free(cells); free(service); return status; }
     if (keepalive != NULL) {
         service->keepalive = *keepalive;
         *keepalive = (AmaNativeEventKeepalive){0};

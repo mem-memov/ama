@@ -12,7 +12,7 @@ membership and cancellation are separate roadmap tasks.
 ## The native methods have explicit owners
 
 `..task.events !` constructs a positive-capacity native service (default 64).
-Its returned `prepare`, `arm`, `post`, `ready` and `take` modules are actual
+Its returned `prepare`, `arm`, `post`, `ready`, `take`, `poll` and `wait` modules are actual
 instances, invoked with selected-result calls. Neither the constructor nor a
 method supports copying. Each method owns a native resource lease, never a
 pointer into its parent's Ama payload. A default, unbound method reports a
@@ -47,6 +47,9 @@ service
   < operation
   > completed
 ```
+
+[Bounded rounds and native wait](scheduling-rounds.md) describe `poll` and `wait`,
+including their single-consumer lifetime contract.
 
 The current `arm` method supports an explicit manual notification source. It marks
 the native reservation armed without starting an external operation. `post` accepts

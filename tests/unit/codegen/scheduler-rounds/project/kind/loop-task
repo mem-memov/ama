@@ -1,0 +1,39 @@
+# Deliberately replenish Ready work; a round must return without exhausting this live source.
+@<
+owner&
+.kind.record
+@>
+self&
+.kind.task
+ &
+phase
+..task.phase
+@!
+trace
+.trace
+ready phase
+..task.phase.ready
+completed phase
+..task.phase.completed
+keep running
+..std.condition
+ |1
+keep running
+{
+ owner&
+  stop >> stop
+ stop
+ ?
+  completed phase !
+   > phase
+  >
+ owner&
+  id >> id
+  queued >> queued
+ trace !
+  < id
+  < queued
+ ready phase !
+  > phase
+ %
+}

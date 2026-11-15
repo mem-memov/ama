@@ -2258,10 +2258,25 @@ Contracts: [ASYNC-01–ASYNC-12](spec/language/async-and-parallelism.md).
   coverage/header checks and Doxygen rule links pass; reproducibility is checked
   before commit. See `docs/implementation/ready-queues.md`. Bounded rounds, reactor
   waits, detachment and copy/failure boundaries remain subsequent tasks.
-- [ ] **T095 — Implement bounded scheduling rounds and reactor waits.** Needs:
+- [x] **T095 — Implement bounded scheduling rounds and reactor waits.** Needs:
   T094. Enforce finite positive step/import budgets and queue service bounds;
   import before blocking and report quiescence. Test continuously replenished
   work, wakeup races and event fairness without treating live foreach as a budget.
+  **Completed:** the actual typed Ama round validates `1..SIZE_MAX` quotas, bounds
+  queue decisions/task steps and native imports, and alternates two nominal domains
+  with a persistent cursor. Backlog gets another bounded round; an idle audit checks
+  task phases, liveness and both wait stamps before Waiting/Quiescent. Standard
+  `..task.budget.check` and `..task.require` reject invalid states. `..task.events`
+  exposes actual poll/wait methods backed by an exact armed-cell partition and one
+  retained POSIX wake credit. Native tests force the check-to-sleep gap, retry EINTR,
+  inject initialization/wait errors and prove finite stale-credit drainage and final
+  retirement. Generated execution covers perpetual Ready replenishment, event/queue
+  fairness, finite backlog, actual gated worker wake, zero/negative/overflow quotas,
+  empty maximum quotas and broken live-task teardown without continuation execution.
+  Strict full `NDEBUG`, native/generated ASan/UBSan, native ThreadSanitizer, 1788
+  per-file coverage/header checks and Doxygen rule links pass; reproducibility is
+  checked before commit. See `docs/implementation/scheduling-rounds.md`. Complete
+  detachment/cancellation and loadable-provider host acceptance remain T096–T099.
 - [ ] **T096 — Implement registration detachment and native record retirement.**
   Needs: T095. Invalidate visible waits before release and retain native callback
   state until callback completion/acknowledgment. Test task/context disposal,

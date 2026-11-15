@@ -1,0 +1,92 @@
+# Import only a live matching registration into its explicitly owned mailbox; never execute the task here.
+@<
+registry&
+.kind.registry
+packet
+..task.packet
+@>
+found
+..std.condition
+record&
+.kind.record
+@!
+true
+..std.condition
+ |1
+zero
+..integer
+ |0
+index
+..integer
+before
+..integer.before
+next
+..integer.next
+same
+..task.token.same
+validate
+.kind.validate
+packet
+:
+ >
+packet
+ token >> actual
+ data >> data
+ code >> code
+actual
+:
+ >
+index
+ zero
+registry&
+ records[]
+  length !
+   > count
+:
+ >
+before !
+ < index
+ < count
+ > more
+more
+{
+ registry&
+  records[index]
+   token >> expected
+   self& >> item&
+ :
+  >
+ expected
+ ?
+  same !
+   < expected
+   < actual
+   > equal
+  equal
+  ?
+   validate !
+    < item&
+    > valid
+   valid
+   ?
+    item&
+     mailbox& >> mailbox&
+    mailbox& !
+     < data
+     < code
+    item&
+     ready !
+      < |1
+    record&
+     item&
+    found
+     true
+    >
+ next !
+  < index
+  > index
+ before !
+  < index
+  < count
+  > more
+}

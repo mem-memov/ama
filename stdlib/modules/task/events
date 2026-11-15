@@ -14,4 +14,8 @@ post
 ..task.events.post
 take
 ..task.events.take
+wait
+..task.events.wait
+poll
+..task.events.poll
 @C

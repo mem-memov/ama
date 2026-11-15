@@ -56,8 +56,9 @@ allocate. Queue publication itself allocates nothing.
 
 Preparing an unarmed reservation and abandoning it uses `service_discard`.
 Discard accepts Prepared only. Per-operation detachment of already armed work,
-cancellation, reactor blocking and final native acknowledgment protocols are
-subsequent components; closing the entire native service is implemented here.
+cancellation and final native acknowledgment protocols are subsequent components.
+[Bounded rounds and reactor blocking](scheduling-rounds.md) now provide poll/wait;
+closing the entire native service is implemented here.
 
 ## Authenticate the token, not an address
 

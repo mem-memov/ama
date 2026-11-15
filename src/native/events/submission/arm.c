@@ -4,6 +4,7 @@
  * requires retained completion across the submit/recheck interval; this routine
  * invokes foreign C only after releasing the native metadata gate.
  */
+#include <assert.h>
 #include "native/events/internal.h"
 AmaStatus ama_native_event_service_arm(AmaNativeEventService *service, const AmaNativeEventSubmission *submission,
     AmaNativeEventStart start, void *native_resource) {
@@ -14,7 +15,12 @@ AmaStatus ama_native_event_service_arm(AmaNativeEventService *service, const Ama
     ama_native_event_lock(service);
     AmaNativeEventCell *cell = ama_native_event_cell(service, submission->token);
     bool armed = cell != NULL && cell->state == AMA_EVENT_PREPARED;
-    if (armed) { cell->state = AMA_EVENT_ARMED; }
+    if (armed) {
+        /* The prepared cell is outside the armed partition, so this increment cannot wrap. */
+        assert(service->armed < service->capacity);
+        service->armed++;
+        cell->state = AMA_EVENT_ARMED;
+    }
     ama_native_event_unlock(service);
     if (!armed) { return AMA_NATIVE_EVENT_ERROR(AMA_INVALID_STATE, "Native submission cannot be armed"); }
     start(submission, native_resource);
