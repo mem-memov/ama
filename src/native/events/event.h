@@ -87,6 +87,13 @@ AmaStatus ama_native_event_service_prepare(AmaNativeEventService *, AmaNativeEve
 AmaStatus ama_native_event_service_arm(AmaNativeEventService *, const AmaNativeEventSubmission *, AmaNativeEventStart, void *);
 /** Retire only a never-armed reservation; reject other states without changing them. */
 AmaStatus ama_native_event_service_discard(AmaNativeEventService *, AmaNativeEventToken);
+/** Retire one exact native reservation after visible invalidation, without waiting for callbacks.
+ * Prepared/armed/completed cells are reclaimed; queued bytes retire outside the gate.
+ * Success reports whether a live cell was retired. Stale/closed identities are harmless
+ * repeated detachment. Endpoint/byte leases remain valid until their own acknowledgment.
+ * The owner serializes this operation with arm/take/wait/dispose.
+ */
+AmaStatus ama_native_event_service_detach(AmaNativeEventService *, AmaNativeEventToken, bool *retired);
 /** Move the oldest accepted completion into an empty output and recycle its locator. No allocation
  * occurs. Empty queues report available=false; only the owner performs consumer operations.
  */

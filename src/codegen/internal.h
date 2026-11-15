@@ -141,6 +141,8 @@ bool codegen_emit_tooling(NativeScaffold *, FILE *, const ScaffoldType *);
  * authored body, then emit present lifecycle/conversion adapters.
  */
 bool codegen_emit_native(NativeScaffold *, FILE *, const ScaffoldType *);
+/** Emit nominal reference visitor declarations or checked callback-scoped read adapters. */
+bool codegen_emit_reference_visitors(NativeScaffold *, FILE *, bool);
 /**
  * Emit opaque declared reference/list locations, then scopes/binders in exact eager-layout
  * ordinal order. Reference cycles do not recursively expand storage.

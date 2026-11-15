@@ -1,0 +1,37 @@
+# Restart an operation while a previous callback token remains usable as a stale value.
+@!
+source
+..task.events
+operation
+..task.operation
+require
+..task.require
+source !
+ < |1
+operation !
+ < &source
+ > old
+source
+ arm !
+  < old
+operation !
+ < &source
+ > current
+source
+ arm !
+  < current
+ post !
+  < old
+ take !
+  > absent
+absent
+?
+ require !
+source
+ post !
+  < current
+ take !
+  > delivered
+delivered
+:
+ require !

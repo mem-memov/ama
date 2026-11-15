@@ -1,0 +1,53 @@
+# Remove a queued operation and reuse capacity without accepting its old callback token.
+@!
+source
+..task.events
+operations[]
+..task.operation
+require
+..task.require
+source !
+ < |1
+operations[]
+ append !
+  > first&
+first& !
+ < &source
+ > old
+source
+ arm !
+  < old
+ post !
+  < old
+operations[]
+ remove !
+source
+ take !
+  > absent
+absent
+?
+ require !
+operations[]
+ append !
+  > second&
+second& !
+ < &source
+ > current
+source
+ arm !
+  < current
+ post !
+  < old
+ take !
+  > still absent
+still absent
+?
+ require !
+source
+ post !
+  < current
+ take !
+  > delivered
+delivered
+:
+ require !

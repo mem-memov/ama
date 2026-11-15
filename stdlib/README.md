@@ -136,8 +136,14 @@ import through generated borrows and reconcile retained readiness. Callbacks do
 not update Ama fields or resume tasks. [Typed FIFO membership](../docs/implementation/ready-queues.md) and
 [bounded rounds/reactor wait](../docs/implementation/scheduling-rounds.md) are
 explicitly composed in Ama. `..task.budget.check` validates positive supported
-quotas; `..task.require` rejects broken scheduling predicates. Complete detachment,
-cancellation and the final asynchronous host API remain subsequent tasks.
+quotas; `..task.require` rejects broken scheduling predicates.
+
+[`..task.operation`](modules/task/operation) owns one native registration acquired
+through an explicit `source&`. Its token result is ordinary data; restarting or
+destroying the operation retires its previous token before releasing native rights.
+It is noncopyable and can be a private owned field of a suspended task. See
+[detachment and callback lifetime](../docs/implementation/task-detachment.md).
+Cancellation and the final asynchronous host API remain subsequent tasks.
 
 ## Native construction and ownership
 

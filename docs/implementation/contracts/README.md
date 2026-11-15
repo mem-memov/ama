@@ -163,3 +163,6 @@ checked transport profiles, complete ABI keys and exact input invalidation.
 
 [Public C header](../c-library-header.md) records T124 typed consumer declarations,
 fixed calling-convention validation and exact cross-translation-unit ABI guards.
+
+[Task detachment](../task-detachment.md) records exact native cell retirement,
+checked reference visitors and owned registration cleanup without continuation execution.

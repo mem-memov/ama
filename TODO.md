@@ -2277,10 +2277,23 @@ Contracts: [ASYNC-01–ASYNC-12](spec/language/async-and-parallelism.md).
   per-file coverage/header checks and Doxygen rule links pass; reproducibility is
   checked before commit. See `docs/implementation/scheduling-rounds.md`. Complete
   detachment/cancellation and loadable-provider host acceptance remain T096–T099.
-- [ ] **T096 — Implement registration detachment and native record retirement.**
-  Needs: T095. Invalidate visible waits before release and retain native callback
-  state until callback completion/acknowledgment. Test task/context disposal,
-  restart and slot reuse while late callbacks remain possible.
+- [x] **T096 — Implement registration detachment and native record retirement.**
+  Needs: T095. Exact full-token detachment unlinks prepared, armed and completed
+  native cells without changing survivor FIFO order or notification credits;
+  queued bytes retire outside the gate and callback rights remain independently
+  owned until acknowledgment. Checked synchronous reference visitors let the
+  noncopyable `..task.operation` acquire native rights from an explicit source
+  without retaining Ama views. Restart and lifecycle cleanup retire its old token.
+  Tests cover each FIFO position, stale/foreign/closed identities, exact native
+  resource counters, a real late worker after immediate cell reuse, source
+  reconstruction, queued-result removal, suspended task removal and context
+  teardown with source-first destruction. Existing checked identity/stamp
+  validators exclude stale visible registrations before delivery. Strict full
+  `NDEBUG`, native/generated ASan/UBSan, native ThreadSanitizer, 1805 per-file
+  coverage/header checks, Doxygen rule links and prose checks pass; final
+  documentation reproducibility is checked before commit. See
+  `docs/implementation/task-detachment.md`. Cancellation and loadable-provider
+  acceptance remain T097–T099.
 - [ ] **T097 — Implement cooperative cancellation terminal outcomes.** Needs:
   T096. Wake awaiting tasks and commit exactly one cancellation/completion outcome
   at the declared linearization point. Test races and late-result cleanup through

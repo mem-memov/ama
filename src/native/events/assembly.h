@@ -17,6 +17,7 @@
 #include "native/events/submission/cell.c"
 #include "native/events/submission/prepare.c"
 #include "native/events/submission/arm.c"
+#include "native/events/submission/detach.c"
 #include "native/events/buffer/create.c"
 #include "native/events/buffer/release.c"
 #include "native/events/callback/port.c"

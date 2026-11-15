@@ -2430,6 +2430,16 @@
         "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
         "command": "make -C tests/unit/codegen/contexts",
         "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_visits_live_references_and_refuses_empty_ones",
+        "command": "make -C tests/unit/codegen/reference-visitors",
+        "source": "tests/unit/codegen/reference-visitors/main.c"
+      },
+      {
+        "case": "it_refuses_retired_children_and_visits_the_fresh_child",
+        "command": "make -C tests/unit/codegen/reference-visitors",
+        "source": "tests/unit/codegen/reference-visitors/main.c"
       }
     ]
   },
@@ -2776,6 +2786,16 @@
         "case": "it_generates_entry_resume_and_read_for_a_zero_schema_interface",
         "command": "make -C tests/unit/library/execution",
         "source": "tests/unit/library/execution/main.c"
+      },
+      {
+        "case": "it_visits_live_references_and_refuses_empty_ones",
+        "command": "make -C tests/unit/codegen/reference-visitors",
+        "source": "tests/unit/codegen/reference-visitors/main.c"
+      },
+      {
+        "case": "it_refuses_retired_children_and_visits_the_fresh_child",
+        "command": "make -C tests/unit/codegen/reference-visitors",
+        "source": "tests/unit/codegen/reference-visitors/main.c"
       }
     ]
   },
@@ -8258,6 +8278,16 @@
         "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
         "command": "make -C tests/unit/native/scaffold/contracts",
         "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "case": "it_visits_live_references_and_refuses_empty_ones",
+        "command": "make -C tests/unit/codegen/reference-visitors",
+        "source": "tests/unit/codegen/reference-visitors/main.c"
+      },
+      {
+        "case": "it_refuses_retired_children_and_visits_the_fresh_child",
+        "command": "make -C tests/unit/codegen/reference-visitors",
+        "source": "tests/unit/codegen/reference-visitors/main.c"
       }
     ]
   },
@@ -37997,6 +38027,36 @@
         "case": "it_waits_without_losing_a_racing_native_completion",
         "command": "make -C tests/unit/codegen",
         "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_detaches_the_previous_operation_before_restarting",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_owned_operations_before_reusing_list_storage",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_operations_after_their_source_was_reconstructed",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_suspended_tasks_without_executing_their_continuations",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_visits_live_references_and_refuses_empty_ones",
+        "command": "make -C tests/unit/codegen/reference-visitors",
+        "source": "tests/unit/codegen/reference-visitors/main.c"
+      },
+      {
+        "case": "it_refuses_retired_children_and_visits_the_fresh_child",
+        "command": "make -C tests/unit/codegen/reference-visitors",
+        "source": "tests/unit/codegen/reference-visitors/main.c"
       }
     ]
   },
@@ -86267,6 +86327,21 @@
         "case": "it_retains_a_post_in_the_check_to_sleep_gap_and_retries_interruptions",
         "command": "make -C tests/unit/async/events/wake",
         "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_unlinks_each_completed_position_without_reordering_survivors",
+        "command": "make -C tests/unit/async/events/detach",
+        "source": "tests/unit/async/events/detach/main.c"
+      },
+      {
+        "case": "it_detaches_before_and_after_arm_while_old_callbacks_retain_native_storage",
+        "command": "make -C tests/unit/async/events/detach",
+        "source": "tests/unit/async/events/detach/main.c"
+      },
+      {
+        "case": "it_preserves_other_services_and_failed_detachment_outputs",
+        "command": "make -C tests/unit/async/events/detach",
+        "source": "tests/unit/async/events/detach/main.c"
       }
     ],
     "standalone_header_command": [
@@ -86349,6 +86424,21 @@
         "case": "it_retains_a_post_in_the_check_to_sleep_gap_and_retries_interruptions",
         "command": "make -C tests/unit/async/events/wake",
         "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_unlinks_each_completed_position_without_reordering_survivors",
+        "command": "make -C tests/unit/async/events/detach",
+        "source": "tests/unit/async/events/detach/main.c"
+      },
+      {
+        "case": "it_detaches_before_and_after_arm_while_old_callbacks_retain_native_storage",
+        "command": "make -C tests/unit/async/events/detach",
+        "source": "tests/unit/async/events/detach/main.c"
+      },
+      {
+        "case": "it_preserves_other_services_and_failed_detachment_outputs",
+        "command": "make -C tests/unit/async/events/detach",
+        "source": "tests/unit/async/events/detach/main.c"
       }
     ],
     "standalone_header_command": [
@@ -86876,6 +86966,21 @@
         "case": "it_retains_a_post_in_the_check_to_sleep_gap_and_retries_interruptions",
         "command": "make -C tests/unit/async/events/wake",
         "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_unlinks_each_completed_position_without_reordering_survivors",
+        "command": "make -C tests/unit/async/events/detach",
+        "source": "tests/unit/async/events/detach/main.c"
+      },
+      {
+        "case": "it_detaches_before_and_after_arm_while_old_callbacks_retain_native_storage",
+        "command": "make -C tests/unit/async/events/detach",
+        "source": "tests/unit/async/events/detach/main.c"
+      },
+      {
+        "case": "it_preserves_other_services_and_failed_detachment_outputs",
+        "command": "make -C tests/unit/async/events/detach",
+        "source": "tests/unit/async/events/detach/main.c"
       }
     ]
   },
@@ -87050,12 +87155,12 @@
     "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
     "tests": [
       {
-        "case": "it_queues_concurrent_workers_without_executing_an_ama_context",
+        "case": "it_issues_unique_services_during_concurrent_first_domain_initialization",
         "command": "make -C tests/unit/async/events/callbacks",
         "source": "tests/unit/async/events/callbacks/main.c"
       },
       {
-        "case": "it_rejects_late_completion_after_close_and_retires_only_after_acknowledgment",
+        "case": "it_queues_concurrent_workers_without_executing_an_ama_context",
         "command": "make -C tests/unit/async/events/callbacks",
         "source": "tests/unit/async/events/callbacks/main.c"
       },
@@ -87065,7 +87170,17 @@
         "source": "tests/unit/async/events/callbacks/main.c"
       },
       {
-        "case": "it_issues_unique_services_during_concurrent_first_domain_initialization",
+        "case": "it_rejects_late_completion_after_close_and_retires_only_after_acknowledgment",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_retains_worker_completion_before_the_submit_routine_returns",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_rejects_a_detached_worker_after_immediate_cell_reuse",
         "command": "make -C tests/unit/async/events/callbacks",
         "source": "tests/unit/async/events/callbacks/main.c"
       }
@@ -90003,6 +90118,418 @@
       "-fsyntax-only",
       "-DAMA_NATIVE(name)=ama_round_probe_##name",
       "-"
+    ]
+  },
+  "src/native/events/submission/detach.c": {
+    "contract": "docs/implementation/task-detachment.md",
+    "purpose": "Retire exact native registrations and validate checked access without extending Ama task lifetime.",
+    "tests": [
+      {
+        "case": "it_unlinks_each_completed_position_without_reordering_survivors",
+        "command": "make -C tests/unit/async/events/detach",
+        "source": "tests/unit/async/events/detach/main.c"
+      },
+      {
+        "case": "it_detaches_before_and_after_arm_while_old_callbacks_retain_native_storage",
+        "command": "make -C tests/unit/async/events/detach",
+        "source": "tests/unit/async/events/detach/main.c"
+      },
+      {
+        "case": "it_preserves_other_services_and_failed_detachment_outputs",
+        "command": "make -C tests/unit/async/events/detach",
+        "source": "tests/unit/async/events/detach/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/events/detach/main.c": {
+    "contract": "docs/implementation/task-detachment.md",
+    "purpose": "Retire exact native registrations and validate checked access without extending Ama task lifetime.",
+    "tests": [
+      {
+        "case": "it_unlinks_each_completed_position_without_reordering_survivors",
+        "command": "make -C tests/unit/async/events/detach",
+        "source": "tests/unit/async/events/detach/main.c"
+      },
+      {
+        "case": "it_detaches_before_and_after_arm_while_old_callbacks_retain_native_storage",
+        "command": "make -C tests/unit/async/events/detach",
+        "source": "tests/unit/async/events/detach/main.c"
+      },
+      {
+        "case": "it_preserves_other_services_and_failed_detachment_outputs",
+        "command": "make -C tests/unit/async/events/detach",
+        "source": "tests/unit/async/events/detach/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/events/detach/Makefile": {
+    "contract": "docs/implementation/task-detachment.md",
+    "purpose": "Retire exact native registrations and validate checked access without extending Ama task lifetime.",
+    "tests": [
+      {
+        "case": "it_unlinks_each_completed_position_without_reordering_survivors",
+        "command": "make -C tests/unit/async/events/detach",
+        "source": "tests/unit/async/events/detach/main.c"
+      },
+      {
+        "case": "it_detaches_before_and_after_arm_while_old_callbacks_retain_native_storage",
+        "command": "make -C tests/unit/async/events/detach",
+        "source": "tests/unit/async/events/detach/main.c"
+      },
+      {
+        "case": "it_preserves_other_services_and_failed_detachment_outputs",
+        "command": "make -C tests/unit/async/events/detach",
+        "source": "tests/unit/async/events/detach/main.c"
+      }
+    ]
+  },
+  "src/codegen/emit/views/reference.c": {
+    "contract": "docs/implementation/task-detachment.md",
+    "purpose": "Retire exact native registrations and validate checked access without extending Ama task lifetime.",
+    "tests": [
+      {
+        "case": "it_visits_live_references_and_refuses_empty_ones",
+        "command": "make -C tests/unit/codegen/reference-visitors",
+        "source": "tests/unit/codegen/reference-visitors/main.c"
+      },
+      {
+        "case": "it_refuses_retired_children_and_visits_the_fresh_child",
+        "command": "make -C tests/unit/codegen/reference-visitors",
+        "source": "tests/unit/codegen/reference-visitors/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/reference-visitors/main.c": {
+    "contract": "docs/implementation/task-detachment.md",
+    "purpose": "Retire exact native registrations and validate checked access without extending Ama task lifetime.",
+    "tests": [
+      {
+        "case": "it_visits_live_references_and_refuses_empty_ones",
+        "command": "make -C tests/unit/codegen/reference-visitors",
+        "source": "tests/unit/codegen/reference-visitors/main.c"
+      },
+      {
+        "case": "it_refuses_retired_children_and_visits_the_fresh_child",
+        "command": "make -C tests/unit/codegen/reference-visitors",
+        "source": "tests/unit/codegen/reference-visitors/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/reference-visitors/Makefile": {
+    "contract": "docs/implementation/task-detachment.md",
+    "purpose": "Retire exact native registrations and validate checked access without extending Ama task lifetime.",
+    "tests": [
+      {
+        "case": "it_visits_live_references_and_refuses_empty_ones",
+        "command": "make -C tests/unit/codegen/reference-visitors",
+        "source": "tests/unit/codegen/reference-visitors/main.c"
+      },
+      {
+        "case": "it_refuses_retired_children_and_visits_the_fresh_child",
+        "command": "make -C tests/unit/codegen/reference-visitors",
+        "source": "tests/unit/codegen/reference-visitors/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/operation": {
+    "contract": "docs/implementation/task-detachment.md",
+    "purpose": "Retire exact native registrations and validate checked access without extending Ama task lifetime.",
+    "tests": [
+      {
+        "case": "it_detaches_the_previous_operation_before_restarting",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_owned_operations_before_reusing_list_storage",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_operations_after_their_source_was_reconstructed",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_suspended_tasks_without_executing_their_continuations",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/operation.c": {
+    "contract": "docs/implementation/task-detachment.md",
+    "purpose": "Retire exact native registrations and validate checked access without extending Ama task lifetime.",
+    "tests": [
+      {
+        "case": "it_detaches_the_previous_operation_before_restarting",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_owned_operations_before_reusing_list_storage",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_operations_after_their_source_was_reconstructed",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_suspended_tasks_without_executing_their_continuations",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/operation.h": {
+    "contract": "docs/implementation/task-detachment.md",
+    "purpose": "Retire exact native registrations and validate checked access without extending Ama task lifetime.",
+    "tests": [
+      {
+        "case": "it_detaches_the_previous_operation_before_restarting",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_owned_operations_before_reusing_list_storage",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_operations_after_their_source_was_reconstructed",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_suspended_tasks_without_executing_their_continuations",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_registration_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/task/operation.abi": {
+    "contract": "docs/implementation/task-detachment.md",
+    "purpose": "Retire exact native registrations and validate checked access without extending Ama task lifetime.",
+    "tests": [
+      {
+        "case": "it_detaches_the_previous_operation_before_restarting",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_owned_operations_before_reusing_list_storage",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_operations_after_their_source_was_reconstructed",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_suspended_tasks_without_executing_their_continuations",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-detachment/main.c": {
+    "contract": "docs/implementation/task-detachment.md",
+    "purpose": "Retire exact native registrations and validate checked access without extending Ama task lifetime.",
+    "tests": [
+      {
+        "case": "it_detaches_the_previous_operation_before_restarting",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_owned_operations_before_reusing_list_storage",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_operations_after_their_source_was_reconstructed",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_suspended_tasks_without_executing_their_continuations",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-detachment/Makefile": {
+    "contract": "docs/implementation/task-detachment.md",
+    "purpose": "Retire exact native registrations and validate checked access without extending Ama task lifetime.",
+    "tests": [
+      {
+        "case": "it_detaches_the_previous_operation_before_restarting",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_owned_operations_before_reusing_list_storage",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_operations_after_their_source_was_reconstructed",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_suspended_tasks_without_executing_their_continuations",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-detachment/project/task": {
+    "contract": "docs/implementation/task-detachment.md",
+    "purpose": "Retire exact native registrations and validate checked access without extending Ama task lifetime.",
+    "tests": [
+      {
+        "case": "it_detaches_the_previous_operation_before_restarting",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_owned_operations_before_reusing_list_storage",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_operations_after_their_source_was_reconstructed",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_suspended_tasks_without_executing_their_continuations",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-detachment/project/restart": {
+    "contract": "docs/implementation/task-detachment.md",
+    "purpose": "Retire exact native registrations and validate checked access without extending Ama task lifetime.",
+    "tests": [
+      {
+        "case": "it_detaches_the_previous_operation_before_restarting",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_owned_operations_before_reusing_list_storage",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_operations_after_their_source_was_reconstructed",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_suspended_tasks_without_executing_their_continuations",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-detachment/project/retire": {
+    "contract": "docs/implementation/task-detachment.md",
+    "purpose": "Retire exact native registrations and validate checked access without extending Ama task lifetime.",
+    "tests": [
+      {
+        "case": "it_detaches_the_previous_operation_before_restarting",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_owned_operations_before_reusing_list_storage",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_operations_after_their_source_was_reconstructed",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_suspended_tasks_without_executing_their_continuations",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-detachment/project/source-restart": {
+    "contract": "docs/implementation/task-detachment.md",
+    "purpose": "Retire exact native registrations and validate checked access without extending Ama task lifetime.",
+    "tests": [
+      {
+        "case": "it_detaches_the_previous_operation_before_restarting",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_owned_operations_before_reusing_list_storage",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_operations_after_their_source_was_reconstructed",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_suspended_tasks_without_executing_their_continuations",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-detachment/project/suspended": {
+    "contract": "docs/implementation/task-detachment.md",
+    "purpose": "Retire exact native registrations and validate checked access without extending Ama task lifetime.",
+    "tests": [
+      {
+        "case": "it_detaches_the_previous_operation_before_restarting",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_owned_operations_before_reusing_list_storage",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_operations_after_their_source_was_reconstructed",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      },
+      {
+        "case": "it_retires_suspended_tasks_without_executing_their_continuations",
+        "command": "make -C tests/unit/codegen/task-detachment",
+        "source": "tests/unit/codegen/task-detachment/main.c"
+      }
     ]
   }
 }

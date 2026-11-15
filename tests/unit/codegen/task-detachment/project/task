@@ -1,0 +1,20 @@
+# The private native registration must retire even if this continuation never resumes.
+@<
+source&
+..task.events
+@>
+token
+..task.token
+@!
+operation
+..task.operation
+operation !
+ < source&
+ > token
+source&
+ arm !
+  < token
+%
+probe
+.worker
+probe !

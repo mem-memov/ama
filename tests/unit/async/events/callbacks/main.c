@@ -183,6 +183,38 @@ static void it_retains_worker_completion_before_the_submit_routine_returns(void)
     ama_native_event_submission_drop(&submission);
     assert(atomic_load(&retirements) == 1 && atomic_load(&event_test_live) == live);
 }
+/** Detach an armed operation while its worker holds bytes, then reuse the cell before late publication. */
+static void it_rejects_a_detached_worker_after_immediate_cell_reuse(void) {
+    size_t live = baseline();
+    _Atomic unsigned retirements = 0;
+    AmaNativeEventService *owner = service(1, &retirements);
+    AmaNativeEventSubmission old = prepare(owner);
+    Worker worker = {.code = 17, .pause = true};
+    ok(ama_native_event_service_arm(owner, &old, launch, &worker));
+    while (!atomic_load_explicit(&worker.prepared, memory_order_acquire)) { thrd_yield(); }
+    bool retired = false;
+    ok(ama_native_event_service_detach(owner, old.token, &retired));
+    assert(retired);
+    AmaNativeEventSubmission current = prepare(owner);
+    assert(current.token.slot == old.token.slot && current.token.generation != old.token.generation);
+    ok(ama_native_event_service_arm(owner, &current, pending, NULL));
+    atomic_store_explicit(&worker.proceed, true, memory_order_release);
+    join_worker(&worker);
+    assert(worker.posted == AMA_EVENT_STALE);
+    bool ready = true;
+    ok(ama_native_event_ready(&current, &ready));
+    assert(!ready);
+    assert(ama_native_event_post(&current, 23, NULL) == AMA_EVENT_QUEUED);
+    AmaNativeEventCompletion completion = {0};
+    bool available = false;
+    ok(ama_native_event_service_take(owner, &completion, &available));
+    assert(available && completion.code == 23);
+    ama_native_event_completion_drop(&completion);
+    ama_native_event_service_dispose(&owner);
+    ama_native_event_submission_drop(&current);
+    ama_native_event_submission_drop(&old);
+    assert(atomic_load(&retirements) == 1 && atomic_load(&event_test_live) == live);
+}
 /** Run startup identity, parallel publication and ordered close/acknowledgment boundaries explicitly. */
 void run(void) {
     it_issues_unique_services_during_concurrent_first_domain_initialization();
@@ -190,6 +222,7 @@ void run(void) {
     it_commits_exactly_one_of_concurrent_duplicate_callbacks();
     it_rejects_late_completion_after_close_and_retires_only_after_acknowledgment();
     it_retains_worker_completion_before_the_submit_routine_returns();
+    it_rejects_a_detached_worker_after_immediate_cell_reuse();
 }
 /** Return after real worker threads have acknowledged every retained native resource. */
 int main(void) { run(); return 0; }

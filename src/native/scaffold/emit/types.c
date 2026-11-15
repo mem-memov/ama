@@ -66,7 +66,13 @@ static bool views(NativeScaffold *scaffold, FILE *output, const ScaffoldType *ty
     for (size_t index = 0; index < 3; index++) {
         size_t read = reads[index];
         const char *storage = type->names[read - 1]->internal_name;
-        if (fprintf(output, "struct %s { const %s *storage; };\nstruct %s { %s *storage; };\n",
+        if (read == SCAFFOLD_REFERENCE_READ) {
+            if (fprintf(output, "struct %s { const %s *storage;\n"
+                    "    AmaStatus (*with_read)(const %s *, AmaStatus (*)(const %s *, void *), void *); };\n"
+                    "struct %s { %s *storage; };\n", type->names[read]->internal_name, storage,
+                    storage, type->names[SCAFFOLD_READ]->internal_name,
+                    type->names[read + 1]->internal_name, storage) < 0) { return false; }
+        } else if (fprintf(output, "struct %s { const %s *storage; };\nstruct %s { %s *storage; };\n",
                 type->names[read]->internal_name, storage, type->names[read + 1]->internal_name, storage) < 0) {
             return false;
         }

@@ -5,7 +5,7 @@
  * [CABI-03](../../../spec/implementation/native-interface.md#cabi-03)
  * [CABI-02](../../../spec/implementation/native-interface.md#cabi-02) checks
  * the expected nominal type before applying its C payload layout.
- * Owned layouts follow the checked eager dependency order; references expose declared storage without acquiring their targets.
+ * Owned layouts follow the checked eager dependency order; references expose declared storage and an explicit checked synchronous read visitor.
  * [STACK-04](../../../spec/implementation/compiler.md#stack-04) permits ordinary
  * generated C helpers to use the stack. View binding is not Ama body dispatch;
  * only the native entry boundary carries mandatory inline authority.
@@ -75,6 +75,9 @@ static bool codegen_view_bind(NativeScaffold *scaffold, FILE *output, const Scaf
                 "scope->field_%zu_read.storage=&scope->field_%zu_storage; scope->field_%zu_write.storage=&scope->field_%zu_storage;\n"
                 "scope->read.%s=&scope->field_%zu_read; scope->write.%s=&scope->field_%zu_write;\n",
                 slot, field, slot, slot, slot, slot, field, slot, field, slot) < 0) { return false; }
+        if (member->field->form == STORAGE_REFERENCE
+            && fprintf(output, "scope->field_%zu_storage.borrow=borrow; scope->field_%zu_read.with_read=%s_Visit;\n",
+                slot, slot, child->names[SCAFFOLD_REFERENCE_READ]->internal_name) < 0) { return false; }
     }
     return fputs("return status;\n}\n", output) != EOF;
 }
@@ -89,10 +92,12 @@ bool codegen_emit_views(NativeScaffold *scaffold, FILE *output) {
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
         count++;
         for (ScaffoldTypeRole role = SCAFFOLD_REFERENCE_STORAGE; role <= SCAFFOLD_REFERENCE_LIST_STORAGE; role += 3) {
-            if (fprintf(output, "struct %s { %s *location; };\n", type->names[role]->internal_name,
-                    role == SCAFFOLD_REFERENCE_STORAGE ? "AmaHandle" : "AmaHandleList") < 0) { return false; }
+            if (fprintf(output, "struct %s { %s *location; %s};\n", type->names[role]->internal_name,
+                    role == SCAFFOLD_REFERENCE_STORAGE ? "AmaHandle" : "AmaHandleList",
+                    role == SCAFFOLD_REFERENCE_STORAGE ? "AmaNativeBorrowScope *borrow; " : "") < 0) { return false; }
         }
     }
+    if (!codegen_emit_reference_visitors(scaffold, output, true)) { return false; }
     for (size_t ordinal = 0; ordinal < count; ordinal++) {
         for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
             if (type->plan->requires_pool && type->plan->layout_ordinal == ordinal
@@ -100,5 +105,5 @@ bool codegen_emit_views(NativeScaffold *scaffold, FILE *output) {
                     || (type->plan->type->module->syntax.sections.kind == MODULE_NATIVE && !codegen_view_bind(scaffold, output, type, true)))) { return false; }
         }
     }
-    return true;
+    return codegen_emit_reference_visitors(scaffold, output, false);
 }

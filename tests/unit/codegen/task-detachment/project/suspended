@@ -1,0 +1,43 @@
+# Destroy a suspended task without executing its continuation or reviving a stale reference.
+@!
+tasks[]
+.task
+source
+..task.events
+require
+..task.require
+source !
+ < |1
+tasks[]
+ append !
+  > old task&
+old task& !
+ < &source
+ > old token
+tasks[]
+ remove !
+tasks[]
+ append !
+  > current task&
+current task& !
+ < &source
+ > current token
+source
+ post !
+  < old token
+ take !
+  > absent
+absent
+?
+ require !
+# The former continuation is gone and cannot execute the worker after its yield.
+old task& %
+:
+ source
+  post !
+   < current token
+  take !
+   > delivered
+ delivered
+ :
+  require !

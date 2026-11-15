@@ -1,0 +1,39 @@
+# Reconstruct the native source before retiring its former operation endpoint.
+@!
+source
+..task.events
+operation
+..task.operation
+require
+..task.require
+source !
+ < |1
+operation !
+ < &source
+ > old
+source
+ arm !
+  < old
+source !
+ < |1
+operation !
+ < &source
+ > current
+source
+ arm !
+  < current
+ post !
+  < old
+ take !
+  > absent
+absent
+?
+ require !
+source
+ post !
+  < current
+ take !
+  > delivered
+delivered
+:
+ require !
