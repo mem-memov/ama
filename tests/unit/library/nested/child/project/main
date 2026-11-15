@@ -1,0 +1,26 @@
+@=
+greeting
+..text
+ |child factory
+enabled
+..std.condition
+ |1
+@<
+request
+..text
+ greeting
+@>
+response
+..text
+ request
+previous
+..std.condition
+@!
+seen
+..std.condition
+ |0
+previous
+ seen
+seen
+ enabled
+%

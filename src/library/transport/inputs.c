@@ -42,7 +42,7 @@ void library_codec_inputs(LibraryCodecs *codecs, const LibraryExport *exported) 
             "        bindings[(*count)++]=(AmaProgramInput){.field=%zu,\n"
             "            .source={.kind=AMA_SOURCE_PREPARED,.type_id=UINT64_C(%zu),.prepared=recipe}};\n    }\n",
             field->role_ordinal,binding->schema->identity->internal_name,field->role_ordinal,
-            field->ordinal,library_codec_type_id(codecs,field->type));
+            library_codec_field_slot(codecs,field),library_codec_type_id(codecs,field->type));
     }
     library_header_print(writer,"    return ama_status_success();\n}\n");
 }

@@ -1,5 +1,5 @@
 # @file
-# @brief Dispatch independent configuration and typed library resolution suites.
+# @brief Dispatch checked library models, transport, execution, packaging and native nesting.
 # Contract: ../../../docs/implementation/c-library-exports.md.
-SUBDIRECTORIES := execution transport snapshots lifecycle header configuration resolution
+SUBDIRECTORIES := nested package execution transport snapshots lifecycle header configuration resolution
 include ../../parent.mk

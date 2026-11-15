@@ -43,6 +43,8 @@ C/assert tests. Check-only success does not validate handwritten C bodies.
   entry/resume outcomes, stackless dispatch and native callback exclusion.
 - [C-library artifacts](docs/implementation/c-library-packaging.md): static/shared
   components, exact symbol isolation, reload identities and code lifetime pins.
+- [Native parent and Ama child](docs/implementation/c-library-nested.md): exclusive
+  foreign context ownership, typed value transfer and partial-construction cleanup.
 - [Contributor guide](CONTRIBUTORS.md): readable components, formatting and tests.
 - [Standard library](stdlib/README.md): library boundaries and native companions.
 - [Executable examples](docs/implementation/examples.md): stateful methods, self-reference,

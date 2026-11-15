@@ -68,7 +68,7 @@ static void failure_encoder(LibraryCodecs *codecs, const LibrarySchema *schema) 
         "    if (!failed && bytes.length!=0) { return ama_status_make(AMA_INVALID_STATE,NULL,0); }\n"
         "    %s_Borrowed borrow={failed ? UINT8_C(1) : UINT8_C(0),{bytes.data,bytes.length}};\n"
         "    return %s_copy(&borrow,output);\n",
-        library_codec_type(codecs,schema->type)->names[SCAFFOLD_WRITE]->internal_name,schema->type->first->ordinal,
+        library_codec_type(codecs,schema->type)->names[SCAFFOLD_WRITE]->internal_name,library_codec_field_slot(codecs,schema->type->first),
         text_native,text_native,name,name);
 }
 void library_codec_scalar(LibraryCodecs *codecs, const LibrarySchema *schema) {

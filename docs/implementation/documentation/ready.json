@@ -33237,6 +33237,11 @@
         "case": "it_executes_the_real_owned_failure_value_through_the_cli",
         "command": "make -C tests/integration/failure-values",
         "source": "tests/integration/failure-values/main.c"
+      },
+      {
+        "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
+        "command": "make -C tests/integration library-build",
+        "source": "tests/integration/library-build/main.c"
       }
     ]
   },
@@ -80384,6 +80389,11 @@
         "case": "it_generates_entry_resume_and_read_for_a_zero_schema_interface",
         "command": "make -C tests/unit/library/execution",
         "source": "tests/unit/library/execution/main.c"
+      },
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library",
+        "source": "tests/unit/library/nested/main.c"
       }
     ]
   },
@@ -83063,6 +83073,11 @@
         "case": "it_generates_entry_resume_and_read_for_a_zero_schema_interface",
         "command": "make -C tests/unit/library/execution",
         "source": "tests/unit/library/execution/main.c"
+      },
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
       }
     ]
   },
@@ -83084,6 +83099,11 @@
         "case": "it_generates_entry_resume_and_read_for_a_zero_schema_interface",
         "command": "make -C tests/unit/library/execution",
         "source": "tests/unit/library/execution/main.c"
+      },
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
       }
     ],
     "standalone_header_command": [
@@ -83126,6 +83146,11 @@
         "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
         "command": "make -C tests/unit/library/transport",
         "source": "tests/unit/library/transport/main.c"
+      },
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
       }
     ]
   },
@@ -83194,6 +83219,11 @@
         "case": "it_packages_two_components_with_overlapping_module_names",
         "command": "make -C tests/unit/library/package",
         "source": "tests/unit/library/package/main.c"
+      },
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
       }
     ]
   },
@@ -83236,6 +83266,11 @@
         "case": "it_generates_entry_resume_and_read_for_a_zero_schema_interface",
         "command": "make -C tests/unit/library/execution",
         "source": "tests/unit/library/execution/main.c"
+      },
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
       }
     ]
   },
@@ -84176,6 +84211,295 @@
         "case": "it_packages_two_components_with_overlapping_module_names",
         "command": "make -C tests/unit/library/package",
         "source": "tests/unit/library/package/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/nested/Makefile": {
+    "contract": "docs/implementation/c-library-nested.md",
+    "purpose": "Own a separately compiled child context exclusively, transfer independent values and unwind every partial construction without retaining Ama borrows.",
+    "tests": [
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/nested/child.c": {
+    "contract": "docs/implementation/c-library-nested.md",
+    "purpose": "Own a separately compiled child context exclusively, transfer independent values and unwind every partial construction without retaining Ama borrows.",
+    "tests": [
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/nested/common.c": {
+    "contract": "docs/implementation/c-library-nested.md",
+    "purpose": "Own a separately compiled child context exclusively, transfer independent values and unwind every partial construction without retaining Ama borrows.",
+    "tests": [
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/nested/consumer/common.c": {
+    "contract": "docs/implementation/c-library-nested.md",
+    "purpose": "Own a separately compiled child context exclusively, transfer independent values and unwind every partial construction without retaining Ama borrows.",
+    "tests": [
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/nested/consumer/failures.c": {
+    "contract": "docs/implementation/c-library-nested.md",
+    "purpose": "Own a separately compiled child context exclusively, transfer independent values and unwind every partial construction without retaining Ama borrows.",
+    "tests": [
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/nested/consumer/main.c": {
+    "contract": "docs/implementation/c-library-nested.md",
+    "purpose": "Own a separately compiled child context exclusively, transfer independent values and unwind every partial construction without retaining Ama borrows.",
+    "tests": [
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/nested/consumer/ownership.c": {
+    "contract": "docs/implementation/c-library-nested.md",
+    "purpose": "Own a separately compiled child context exclusively, transfer independent values and unwind every partial construction without retaining Ama borrows.",
+    "tests": [
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/nested/copy.c": {
+    "contract": "docs/implementation/c-library-nested.md",
+    "purpose": "Own a separately compiled child context exclusively, transfer independent values and unwind every partial construction without retaining Ama borrows.",
+    "tests": [
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      },
+      {
+        "case": "it_rejects_ordinary_and_continuation_copy_of_the_child_owner",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      },
+      {
+        "case": "it_rejects_reference_transport_across_the_component_boundary",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/nested/main.c": {
+    "contract": "docs/implementation/c-library-nested.md",
+    "purpose": "Own a separately compiled child context exclusively, transfer independent values and unwind every partial construction without retaining Ama borrows.",
+    "tests": [
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      },
+      {
+        "case": "it_rejects_reference_transport_across_the_component_boundary",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/nested/parent.c": {
+    "contract": "docs/implementation/c-library-nested.md",
+    "purpose": "Own a separately compiled child context exclusively, transfer independent values and unwind every partial construction without retaining Ama borrows.",
+    "tests": [
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/nested/project/adapter": {
+    "contract": "docs/implementation/c-library-nested.md",
+    "purpose": "Own a separately compiled child context exclusively, transfer independent values and unwind every partial construction without retaining Ama borrows.",
+    "tests": [
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/nested/project/adapter+/native/entry.c": {
+    "contract": "docs/implementation/c-library-nested.md",
+    "purpose": "Own a separately compiled child context exclusively, transfer independent values and unwind every partial construction without retaining Ama borrows.",
+    "tests": [
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/nested/project/adapter+/native/lifetime.c": {
+    "contract": "docs/implementation/c-library-nested.md",
+    "purpose": "Own a separately compiled child context exclusively, transfer independent values and unwind every partial construction without retaining Ama borrows.",
+    "tests": [
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/nested/project/adapter+/native/transport.c": {
+    "contract": "docs/implementation/c-library-nested.md",
+    "purpose": "Own a separately compiled child context exclusively, transfer independent values and unwind every partial construction without retaining Ama borrows.",
+    "tests": [
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/nested/project/adapter.abi": {
+    "contract": "docs/implementation/c-library-nested.md",
+    "purpose": "Own a separately compiled child context exclusively, transfer independent values and unwind every partial construction without retaining Ama borrows.",
+    "tests": [
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/nested/project/adapter.c": {
+    "contract": "docs/implementation/c-library-nested.md",
+    "purpose": "Own a separately compiled child context exclusively, transfer independent values and unwind every partial construction without retaining Ama borrows.",
+    "tests": [
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/nested/project/adapter.h": {
+    "contract": "docs/implementation/c-library-nested.md",
+    "purpose": "Own a separately compiled child context exclusively, transfer independent values and unwind every partial construction without retaining Ama borrows.",
+    "tests": [
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_resource_probe_##name",
+      "-"
+    ]
+  },
+  "tests/unit/library/nested/child/project/broken": {
+    "contract": "docs/implementation/c-library-nested.md",
+    "purpose": "Own a separately compiled child context exclusively, transfer independent values and unwind every partial construction without retaining Ama borrows.",
+    "tests": [
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/nested/child/project/broken.abi": {
+    "contract": "docs/implementation/c-library-nested.md",
+    "purpose": "Own a separately compiled child context exclusively, transfer independent values and unwind every partial construction without retaining Ama borrows.",
+    "tests": [
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/nested/child/project/broken.c": {
+    "contract": "docs/implementation/c-library-nested.md",
+    "purpose": "Own a separately compiled child context exclusively, transfer independent values and unwind every partial construction without retaining Ama borrows.",
+    "tests": [
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/nested/child/project/broken.h": {
+    "contract": "docs/implementation/c-library-nested.md",
+    "purpose": "Own a separately compiled child context exclusively, transfer independent values and unwind every partial construction without retaining Ama borrows.",
+    "tests": [
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_resource_probe_##name",
+      "-"
+    ]
+  },
+  "tests/unit/library/nested/child/project/main": {
+    "contract": "docs/implementation/c-library-nested.md",
+    "purpose": "Own a separately compiled child context exclusively, transfer independent values and unwind every partial construction without retaining Ama borrows.",
+    "tests": [
+      {
+        "case": "it_embeds_independent_child_resources_through_checked_public_apis",
+        "command": "make -C tests/unit/library/nested",
+        "source": "tests/unit/library/nested/main.c"
       }
     ]
   }

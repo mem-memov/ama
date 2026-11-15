@@ -2101,7 +2101,7 @@ Contracts: [EMBED-01–EMBED-08](spec/implementation/c-library.md),
   package/execution/snapshot/runtime suites pass ASan/UBSan, including generated
   debug/release libraries. All 1520 maintained inputs have named test coverage
   and standalone header checks; Doxygen and its reproducibility checks pass.
-- [ ] **T129 — Own a foreign Ama component inside a native Ama module.** Needs:
+- [x] **T129 — Own a foreign Ama component inside a native Ama module.** Needs:
   T012, T073, T128. Implement an example native adapter that owns an opaque child
   context as a native resource in another compiled component. Configure child
   constants/instances explicitly, transfer only supported independent C values
@@ -2109,6 +2109,21 @@ Contracts: [EMBED-01–EMBED-08](spec/implementation/c-library.md),
   support unless a genuine independent resource clone is supplied; do not copy
   an opaque pointer as value cloning. Test that the parent and child cannot
   exchange checked Ama references or use each other's instance identities.
+  Evidence: `tests/unit/library/nested` compiles a real isolated child archive
+  and a native parent holding only an exclusive foreign resource. Factories run
+  no bodies, initialize child constants/defaults, and unwind rejected/failed
+  construction before native destructor credit exists. Two children retain
+  independent state; counted UTF-8/zero-byte values cross through owned C
+  snapshots, all released on success/failure. Child yield completes the native
+  parent call, explicit later steps resume the child, and abandonment never
+  resumes it. Public gates reject active-parent and foreign/stale controls;
+  ordinary/continuation copies and reference transport are rejected statically.
+  Every measured parent constructor/step allocation failure releases children.
+  The composed constant-bearing export exposed and now regresses the exact
+  semantic-symbol-to-planned-storage-slot mapping used by C inputs/outputs.
+  Packaging/nesting and CLI build leaves are connected to common test dispatch.
+  Strict full `NDEBUG`, generated-code ASan/UBSan, 1542 per-file coverage/header
+  checks and reproducible Doxygen pass. See `docs/implementation/c-library-nested.md`.
 - [ ] **T130 — Exercise nested suspension and failure supervision.** Needs:
   T074, T086, T129. Execute the exact chain parent Ama entry → native C adapter →
   child component context without reentering either active context. Have child

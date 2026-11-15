@@ -12,7 +12,8 @@ static const LibrarySchema *result_schema(LibraryHeader *writer, const LibraryEx
 /** Preflight each requested owned result, then release protections before pure typed codecs run.
  * The executor lease excludes intervening Ama execution; no C borrow survives this operation.
  */
-static void preflight(LibraryHeader *writer, const LibraryExport *exported) {
+static void preflight(LibraryCodecs *codecs, const LibraryExport *exported) {
+    LibraryHeader *writer=&codecs->output;
     library_header_print(writer,
         "    AmaObjectOperation check={.world=access->view.world}; source_arena_init(&check.arena,check.world->allocator);\n"
         "    check.world->operation_active=true;\n");
@@ -24,7 +25,7 @@ static void preflight(LibraryHeader *writer, const LibraryExport *exported) {
             "        AmaProgramAccess field={.field=%zu};\n"
             "        status=ama_program_select(access->view.program,target,&field,false,&value_%zu);\n"
             "        if (status.code==AMA_OK) {\n",
-            field->role_ordinal,field->ordinal,field->ordinal,field->role_ordinal);
+            field->role_ordinal,library_codec_field_slot(codecs,field),library_codec_field_slot(codecs,field),field->role_ordinal);
         if (field->list) {
             library_header_print(writer,
                 "            for (size_t i=0; i<value_%zu.list->count && status.code==AMA_OK; i++) {\n"
@@ -55,7 +56,7 @@ void library_codec_read(LibraryCodecs *codecs, const LibraryExport *exported, si
             library_header_print(writer,"    AmaProgramValue value_%zu={0}; %s_Value *snapshot_%zu=NULL;\n",
                 field->role_ordinal,result_schema(writer,exported,field)->identity->internal_name,field->role_ordinal);
         }
-        preflight(writer,exported);
+        preflight(codecs,exported);
         library_header_print(writer,
             "    if (status.code==AMA_BUSY) { return (AmaLibraryResult){AMA_LIBRARY_BUSY,status}; }\n");
         for (const SemanticSymbol *field=exported->type->first; field!=NULL; field=field->next) {
@@ -64,7 +65,7 @@ void library_codec_read(LibraryCodecs *codecs, const LibraryExport *exported, si
                 "    if (status.code==AMA_OK && result_%zu!=NULL) {\n"
                 "        operation=ama_program_type(access->view.program,target.type_id)->fields[%zu].operation;\n"
                 "        status=%s_encode(access->view.program,&value_%zu,&snapshot_%zu);\n    }\n",
-                field->role_ordinal,field->ordinal,result_schema(writer,exported,field)->identity->internal_name,
+                field->role_ordinal,library_codec_field_slot(codecs,field),result_schema(writer,exported,field)->identity->internal_name,
                 field->role_ordinal,field->role_ordinal);
         }
         library_header_print(writer,"    if (status.code!=AMA_OK) {\n");

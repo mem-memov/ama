@@ -13,6 +13,11 @@ typedef struct { LibraryHeader output; const NativeScaffold *assembly; } Library
 const ScaffoldType *library_codec_type(const LibraryCodecs *, const SemanticType *);
 /** Return the exact assembly descriptor ordinal of one registered nominal type. */
 size_t library_codec_type_id(const LibraryCodecs *, const SemanticType *);
+/** Map an exact semantic declaration to its planned physical instance slot.
+ * Constants are not instance fields; declaration ordinals are not layout slots.
+ * Return SIZE_MAX when this checked assembly contains no such physical field.
+ */
+size_t library_codec_field_slot(const LibraryCodecs *, const SemanticSymbol *);
 /** Emit one scalar's fresh native decoder and independently owned encoder. */
 void library_codec_scalar(LibraryCodecs *, const LibrarySchema *);
 /** Emit the scalar/list recipe builder with synchronous C input lifetime. */

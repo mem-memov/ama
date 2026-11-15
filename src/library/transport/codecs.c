@@ -19,13 +19,27 @@ size_t library_codec_type_id(const LibraryCodecs *codecs, const SemanticType *ty
     }
     return 0;
 }
+size_t library_codec_field_slot(const LibraryCodecs *codecs, const SemanticSymbol *symbol) {
+    const ScaffoldType *owner=library_codec_type(codecs,symbol->owner);
+    if (owner==NULL) { return SIZE_MAX; }
+    for (const ScaffoldMember *member=owner->members; member!=NULL; member=member->next) {
+        if (member->field->symbol==symbol) { return member->field->slot; }
+    }
+    return SIZE_MAX;
+}
 bool library_codecs_write(const LibraryBuild *build, const NativeScaffold *assembly, FILE *output) {
     assert(build->valid);
     if (!library_header_target(build,NULL) || assembly==NULL || assembly->frontend!=&build->frontend || !assembly->ready) { return false; }
     LibraryCodecs codecs={.output={.build=build,.output=output,.prefix=build->identity->internal_name,.good=true},.assembly=assembly};
+    /* Shared declarations retain source ordinals but occupy no instance slots.
+     * EMBED-04 transport must use the same exact StorageField map as dispatch. */
+    for (const LibraryBinding *binding=build->bindings; binding!=NULL; binding=binding->next) {
+        if (library_codec_field_slot(&codecs,binding->field)==SIZE_MAX) { return false; }
+    }
     for (const LibrarySchema *schema=build->schemas; schema!=NULL; schema=schema->next) {
         if (library_codec_type(&codecs,schema->type)==NULL) { return false; }
-        if (schema->kind==LIBRARY_FAILURE && library_codec_type(&codecs,schema->type->first->type)==NULL) { return false; }
+        if (schema->kind==LIBRARY_FAILURE && (library_codec_type(&codecs,schema->type->first->type)==NULL
+            || library_codec_field_slot(&codecs,schema->type->first)==SIZE_MAX)) { return false; }
     }
     for (const LibrarySchema *schema=build->schemas; schema!=NULL; schema=schema->next) {
         const char *name=schema->identity->internal_name;
