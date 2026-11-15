@@ -1,0 +1,104 @@
+# Ordinary calls do not enroll a task or update its scheduler's declared counters.
+@!
+record
+.record
+registration
+.registration
+validate
+.validate
+same
+..task.generation.same
+probe
+.worker
+record !
+record
+ task& >> task&
+ epoch >> epoch
+ generation >> generation
+registration !
+ < task&
+ < epoch
+ < generation
+task& !
+ < &record
+ < &registration
+validate !
+ < registration
+ > valid
+valid
+:
+ probe !
+  < |10
+task& !
+ < &record
+ < &registration
+record
+ epoch >> epoch
+ generation >> generation
+ enrolled >> enrolled
+same !
+ < epoch
+ < |0
+ > equal
+equal
+?
+ probe !
+  < |20
+same !
+ < generation
+ < |0
+ > equal
+equal
+?
+ probe !
+  < |30
+enrolled
+:
+ probe !
+  < |40
+record
+ epoch !
+ generation !
+ enrolled !
+  < |1
+ waiting !
+  < |1
+record
+ epoch >> epoch
+ generation >> generation
+registration !
+ < task&
+ < epoch
+ < generation
+task& !
+ < &record
+ < &registration
+record
+ epoch >> epoch
+same !
+ < epoch
+ < |1
+ > equal
+equal
+?
+ probe !
+  < |50
+validate !
+ < registration
+ > valid
+valid
+?
+ probe !
+  < |60
+task& %
+record
+ waiting !
+ epoch >> epoch
+same !
+ < epoch
+ < |1
+ > equal
+equal
+?
+ probe !
+  < |70

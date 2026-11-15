@@ -1,0 +1,10 @@
+# Compare two ordinary nominal generation values. See stdlib/README.md.
+@<
+left
+..task.generation
+right
+..task.generation
+@>
+result
+..std.condition
+@C

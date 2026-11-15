@@ -1,0 +1,119 @@
+# Replacing a wait and restarting the same owned task invalidate different parts of its key.
+@!
+records[]
+.record
+first
+.registration
+second
+.registration
+third
+.registration
+validate
+.validate
+probe
+.worker
+records[]
+ append !
+  > record&
+record& !
+record&
+ epoch !
+ generation !
+ enrolled !
+  < |1
+ waiting !
+  < |1
+record&
+ task& >> task&
+ epoch >> epoch
+ generation >> generation
+first !
+ < task&
+ < epoch
+ < generation
+task& !
+ < record&
+ < &first
+validate !
+ < first
+ > valid
+valid
+?
+ probe !
+  < |10
+old first
+ first
+record&
+ generation !
+first
+ live !
+record&
+ generation >> generation
+second !
+ < task&
+ < epoch
+ < generation
+validate !
+ < old first
+ > valid
+valid
+:
+ probe !
+  < |20
+validate !
+ < second
+ > valid
+valid
+?
+ probe !
+  < |30
+old second
+ second
+record&
+ epoch !
+second
+ live !
+record&
+ waiting !
+validate !
+ < old second
+ > valid
+valid
+:
+ probe !
+  < |40
+record&
+ generation !
+ waiting !
+  < |1
+record&
+ epoch >> epoch
+ generation >> generation
+third !
+ < task&
+ < epoch
+ < generation
+task& !
+ < record&
+ < &third
+validate !
+ < third
+ > valid
+valid
+?
+ probe !
+  < |50
+old third
+ third
+task& %
+record&
+ waiting !
+third
+ live !
+validate !
+ < old third
+ > valid
+valid
+:
+ probe !
+  < |60

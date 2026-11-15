@@ -1,0 +1,30 @@
+# Replacing an exhausted wait generation cannot detach the prior wait or step the task.
+@!
+record
+.record
+registration
+.registration
+record !
+ < |1
+ < |18446744073709551615
+record
+ enrolled !
+  < |1
+ waiting !
+  < |1
+record
+ task& >> task&
+ epoch >> epoch
+ generation >> generation
+registration !
+ < task&
+ < epoch
+ < generation
+task& !
+ < &record
+ < &registration
+record
+ generation !
+registration
+ live !
+task& %

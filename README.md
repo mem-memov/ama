@@ -51,6 +51,8 @@ C/assert tests. Check-only success does not validate handwritten C bodies.
   static/shared consumers and native-owned compiled children through the CLI.
 - [Ordinary task phases](docs/implementation/task-phases.md): typed Ready/Awaiting/Completed
   values, explicit nested waiting and terminal application outcomes.
+- [Visible task enrollment](docs/implementation/task-enrollment.md): declared owners,
+  checked task references and nonwrapping epoch/wait generations.
 - [Contributor guide](CONTRIBUTORS.md): readable components, formatting and tests.
 - [Standard library](stdlib/README.md): library boundaries and native companions.
 - [Executable examples](docs/implementation/examples.md): stateful methods, self-reference,

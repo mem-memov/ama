@@ -1,0 +1,2 @@
+# Own one nonwrapping scheduler generation; entry advances it once. See stdlib/README.md.
+@C

@@ -1,0 +1,132 @@
+# Reenrollment changes the run; deleting the owner invalidates the checked task reference itself.
+@!
+records[]
+.record
+first
+.registration
+second
+.registration
+third
+.registration
+validate
+.validate
+probe
+.worker
+records[]
+ append !
+  > record&
+record& !
+record&
+ epoch !
+ generation !
+ enrolled !
+  < |1
+ waiting !
+  < |1
+record&
+ task& >> task&
+ epoch >> epoch
+ generation >> generation
+first !
+ < task&
+ < epoch
+ < generation
+task& !
+ < record&
+ < &first
+old first
+ first
+record&
+ enrolled !
+ waiting !
+validate !
+ < old first
+ > valid
+valid
+:
+ probe !
+  < |10
+record&
+ epoch !
+ generation !
+ enrolled !
+  < |1
+ waiting !
+  < |1
+record&
+ epoch >> epoch
+ generation >> generation
+second !
+ < task&
+ < epoch
+ < generation
+task& !
+ < record&
+ < &second
+validate !
+ < old first
+ > valid
+valid
+:
+ probe !
+  < |20
+validate !
+ < second
+ > valid
+valid
+?
+ probe !
+  < |30
+old second
+ second
+old task&
+ task&
+records[]
+ remove !
+  < |0
+ append !
+  > record&
+record& !
+record&
+ epoch !
+ generation !
+ enrolled !
+  < |1
+ waiting !
+  < |1
+record&
+ task& >> task&
+ epoch >> epoch
+ generation >> generation
+third !
+ < task&
+ < epoch
+ < generation
+task& !
+ < record&
+ < &third
+validate !
+ < old first
+ > valid
+valid
+:
+ probe !
+  < |40
+validate !
+ < old second
+ > valid
+valid
+:
+ probe !
+  < |50
+validate !
+ < third
+ > valid
+valid
+?
+ probe !
+  < |60
+old task& %
+:
+ probe !
+  < |70

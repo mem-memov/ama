@@ -96,6 +96,24 @@ mean completion. [The phase contract](../docs/implementation/task-phases.md)
 explains actual yields, restart, nested propagation, representation and tests.
 Enrollment and event services remain subsequent roadmap tasks.
 
+## Explicit enrollment values
+
+`..task.generation` is an owned nonwrapping native scalar. It defaults to zero;
+`!` advances it after checking `SIZE_MAX`. Unsigned decimal literals and independent
+copies support initial values and registration snapshots. Truth means nonzero;
+zero is reserved for an unissued epoch or wait generation.
+`..task.generation.same` compares its typed `left` and `right` inputs and returns
+one ordinary condition. `..task.flag` owns a Boolean membership/waiting value;
+`!` sets it from the ordinary `next` condition input (false when omitted), and
+truth reads its retained value.
+
+A scheduler declares these values alongside its typed task owners and references.
+It preserves counter history throughout the task's lifetime and explicitly
+invalidates old registrations on replacement, restart and removal. An ordinary
+`!` or `%` does not discover a scheduler. [The enrollment contract](../docs/implementation/task-enrollment.md)
+provides the concrete typed ownership graph, complete matching key, exhaustion
+proof and real execution tests. Native events remain the following component.
+
 ## Native construction and ownership
 
 An extensionless Ama interface may select `@C` and have `.h`, `.c` and `.abi`

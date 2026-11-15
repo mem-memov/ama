@@ -1,0 +1,5 @@
++ initialize
+- destroy
+= clone
+| literal
+? condition

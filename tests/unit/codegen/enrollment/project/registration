@@ -1,0 +1,26 @@
+# The checked task reference and both scalar stamps are declared Ama fields.
+@<
+target&
+.task
+run epoch
+..task.generation
+wait generation
+..task.generation
+@>
+task&
+.task
+epoch
+..task.generation
+generation
+..task.generation
+live
+..task.flag
+@!
+task&
+ target&
+epoch
+ run epoch
+generation
+ wait generation
+live !
+ < |1

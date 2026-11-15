@@ -1,0 +1,31 @@
+# The supported LP64 profile reaches its final epoch before restart attempts another task step.
+@!
+record
+.record
+registration
+.registration
+record !
+ < |18446744073709551615
+ < |1
+record
+ enrolled !
+  < |1
+ waiting !
+  < |1
+record
+ task& >> task&
+ epoch >> epoch
+ generation >> generation
+registration !
+ < task&
+ < epoch
+ < generation
+task& !
+ < &record
+ < &registration
+record
+ epoch !
+ waiting !
+task& !
+ < &record
+ < &registration

@@ -32101,6 +32101,11 @@
         "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
         "command": "make -C tests/unit/codegen/task-phases",
         "source": "tests/unit/codegen/task-phases/main.c"
+      },
+      {
+        "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
       }
     ]
   },
@@ -37977,6 +37982,11 @@
         "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
         "command": "make -C tests/unit/codegen/task-phases",
         "source": "tests/unit/codegen/task-phases/main.c"
+      },
+      {
+        "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
       }
     ]
   },
@@ -85501,6 +85511,11 @@
         "case": "it_publishes_predicates_through_the_actual_native_write_view",
         "command": "make -C tests/unit/async/phase",
         "source": "tests/unit/async/phase/main.c"
+      },
+      {
+        "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
       }
     ]
   },
@@ -85575,6 +85590,622 @@
         "case": "it_propagates_nested_waiting_only_through_explicit_parent_yield",
         "command": "make -C tests/unit/codegen/task-phases",
         "source": "tests/unit/codegen/task-phases/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/generation.abi": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_checks_actual_native_generation_lifecycle_and_exhaustion",
+        "command": "make -C tests/unit/async/generation",
+        "source": "tests/unit/async/generation/main.c"
+      },
+      {
+        "case": "it_reports_generation_exhaustion_before_further_task_execution",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/generation.h": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_checks_actual_native_generation_lifecycle_and_exhaustion",
+        "command": "make -C tests/unit/async/generation",
+        "source": "tests/unit/async/generation/main.c"
+      },
+      {
+        "case": "it_reports_generation_exhaustion_before_further_task_execution",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_enrollment_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/task/generation.c": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_checks_actual_native_generation_lifecycle_and_exhaustion",
+        "command": "make -C tests/unit/async/generation",
+        "source": "tests/unit/async/generation/main.c"
+      },
+      {
+        "case": "it_reports_generation_exhaustion_before_further_task_execution",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/generation": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_checks_actual_native_generation_lifecycle_and_exhaustion",
+        "command": "make -C tests/unit/async/generation",
+        "source": "tests/unit/async/generation/main.c"
+      },
+      {
+        "case": "it_reports_generation_exhaustion_before_further_task_execution",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/flag.abi": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_keeps_ordinary_calls_independent_of_scheduler_enrollment",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_native_flag_inputs",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/flag.h": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_keeps_ordinary_calls_independent_of_scheduler_enrollment",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_native_flag_inputs",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_enrollment_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/task/flag.c": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_keeps_ordinary_calls_independent_of_scheduler_enrollment",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_native_flag_inputs",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/flag": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_keeps_ordinary_calls_independent_of_scheduler_enrollment",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_native_flag_inputs",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/generation+/same": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_rejects_old_registrations_after_reenrollment_and_owner_reuse",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_keeps_ordinary_calls_independent_of_scheduler_enrollment",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/generation+/same.c": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_rejects_old_registrations_after_reenrollment_and_owner_reuse",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_keeps_ordinary_calls_independent_of_scheduler_enrollment",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/generation+/same.abi": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_rejects_old_registrations_after_reenrollment_and_owner_reuse",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_keeps_ordinary_calls_independent_of_scheduler_enrollment",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/generation+/same.h": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_rejects_old_registrations_after_reenrollment_and_owner_reuse",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_keeps_ordinary_calls_independent_of_scheduler_enrollment",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_enrollment_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/task/generation+/native/advance.h": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_reserves_fresh_successors_and_preserves_output_on_exhaustion",
+        "command": "make -C tests/unit/async/generation",
+        "source": "tests/unit/async/generation/main.c"
+      },
+      {
+        "case": "it_parses_bounded_generation_literals_without_partial_replacement",
+        "command": "make -C tests/unit/async/generation",
+        "source": "tests/unit/async/generation/main.c"
+      },
+      {
+        "case": "it_checks_actual_native_generation_lifecycle_and_exhaustion",
+        "command": "make -C tests/unit/async/generation",
+        "source": "tests/unit/async/generation/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_enrollment_probe_##name",
+      "-"
+    ]
+  },
+  "tests/unit/async/generation/main.c": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_reserves_fresh_successors_and_preserves_output_on_exhaustion",
+        "command": "make -C tests/unit/async/generation",
+        "source": "tests/unit/async/generation/main.c"
+      },
+      {
+        "case": "it_parses_bounded_generation_literals_without_partial_replacement",
+        "command": "make -C tests/unit/async/generation",
+        "source": "tests/unit/async/generation/main.c"
+      },
+      {
+        "case": "it_checks_actual_native_generation_lifecycle_and_exhaustion",
+        "command": "make -C tests/unit/async/generation",
+        "source": "tests/unit/async/generation/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/generation/Makefile": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_reserves_fresh_successors_and_preserves_output_on_exhaustion",
+        "command": "make -C tests/unit/async/generation",
+        "source": "tests/unit/async/generation/main.c"
+      },
+      {
+        "case": "it_parses_bounded_generation_literals_without_partial_replacement",
+        "command": "make -C tests/unit/async/generation",
+        "source": "tests/unit/async/generation/main.c"
+      },
+      {
+        "case": "it_checks_actual_native_generation_lifecycle_and_exhaustion",
+        "command": "make -C tests/unit/async/generation",
+        "source": "tests/unit/async/generation/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/enrollment/main.c": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_rejects_old_registrations_after_reenrollment_and_owner_reuse",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_keeps_ordinary_calls_independent_of_scheduler_enrollment",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_reports_generation_exhaustion_before_further_task_execution",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_native_flag_inputs",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/enrollment/Makefile": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_rejects_old_registrations_after_reenrollment_and_owner_reuse",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_keeps_ordinary_calls_independent_of_scheduler_enrollment",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_reports_generation_exhaustion_before_further_task_execution",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_native_flag_inputs",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/enrollment/project/exhaust epoch": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_reports_generation_exhaustion_before_further_task_execution",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/enrollment/project/ordinary": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_keeps_ordinary_calls_independent_of_scheduler_enrollment",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/enrollment/project/removal": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_rejects_old_registrations_after_reenrollment_and_owner_reuse",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/enrollment/project/registration": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_rejects_old_registrations_after_reenrollment_and_owner_reuse",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_keeps_ordinary_calls_independent_of_scheduler_enrollment",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_reports_generation_exhaustion_before_further_task_execution",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_native_flag_inputs",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/enrollment/project/validate": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_rejects_old_registrations_after_reenrollment_and_owner_reuse",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_keeps_ordinary_calls_independent_of_scheduler_enrollment",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_reports_generation_exhaustion_before_further_task_execution",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_native_flag_inputs",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/enrollment/project/task": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_rejects_old_registrations_after_reenrollment_and_owner_reuse",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_keeps_ordinary_calls_independent_of_scheduler_enrollment",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_reports_generation_exhaustion_before_further_task_execution",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_native_flag_inputs",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/enrollment/project/exhaust wait": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_reports_generation_exhaustion_before_further_task_execution",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/enrollment/project/restart": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/enrollment/project/record": {
+    "contract": "docs/implementation/task-enrollment.md",
+    "purpose": "Keep typed task ownership and epoch/wait validity in declared Ama state, with exact scalar publication checks.",
+    "tests": [
+      {
+        "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_rejects_old_registrations_after_reenrollment_and_owner_reuse",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_keeps_ordinary_calls_independent_of_scheduler_enrollment",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_reports_generation_exhaustion_before_further_task_execution",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_native_flag_inputs",
+        "command": "make -C tests/unit/codegen/enrollment",
+        "source": "tests/unit/codegen/enrollment/main.c"
       }
     ]
   }

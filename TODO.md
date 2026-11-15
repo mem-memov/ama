@@ -2188,10 +2188,22 @@ Contracts: [ASYNC-01–ASYNC-12](spec/language/async-and-parallelism.md).
   strict full `NDEBUG` and 1606 per-file coverage/header checks pass. Doxygen rule
   links and reproducibility are checked before commit. See
   `docs/implementation/task-phases.md`; enrollment and native events remain T091+.
-- [ ] **T091 — Implement visible scheduler ownership and enrollment.** Needs:
+- [x] **T091 — Implement visible scheduler ownership and enrollment.** Needs:
   T090. Store task references/owners, run epochs and registration generations in
   declared Ama state. Test restart/removal invalidation, nonwrapping exhaustion
   and rejection of stale enrollments without hidden hooks on ordinary calls.
+  **Completed:** declared scalar `..task.generation`, its typed equality module
+  and `..task.flag` support an executable typed Ama owner/registration graph.
+  Owners retain tasks in persistent local storage; registrations hold only checked
+  references and scalar snapshots. Replacement, restart, removal and reenrollment
+  reject old generations/epochs; recreating an owner with matching numbers does
+  not revive its old task reference. Ordinary entry/resume leaves protocol counters
+  unchanged. Small-bound exhaustion, counted literals, actual native lifecycle,
+  both exhausted identity counters and malformed native flags are covered.
+  ASan/UBSan at component/composition scales, strict full `NDEBUG`, 1632 per-file
+  coverage/header checks and Doxygen rule links pass; reproducibility is checked
+  before commit. See `docs/implementation/task-enrollment.md`; native tokens and
+  event reconciliation follow in T092–T093.
 - [ ] **T092 — Implement native submission and completion storage.** Needs:
   T012, T091. Keep native buffers/resources and service/submission tokens separate
   from Ama identities. Test synchronous completion during submission, token reuse

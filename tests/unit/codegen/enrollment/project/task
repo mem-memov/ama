@@ -1,0 +1,35 @@
+# A task consumes an already published wait; entry preserves its owned worker state.
+@<
+record&
+.record
+wait&
+.registration
+@>
+owner record&
+.record
+phase
+..task.phase
+@!
+probe
+.worker
+awaiting
+..task.phase.awaiting
+completed
+..task.phase.completed
+owner record&
+ record&
+wait&
+ live >> live
+live
+?
+ awaiting !
+  > phase
+ probe !
+  < |1
+ %
+ probe !
+  < |2
+ wait&
+  live !
+completed !
+ > phase

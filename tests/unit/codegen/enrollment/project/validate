@@ -1,0 +1,52 @@
+# Import requires a live task reference, active enrollment, live wait and both exact stamps.
+@<
+stamp
+.registration
+@>
+valid
+..std.condition
+@!
+same
+..task.generation.same
+stamp
+ task& >> task&
+ epoch >> stamp epoch
+ generation >> stamp generation
+ live >> live
+live
+:
+ >
+task&
+ owner record& >> record&
+:
+ >
+record&
+ epoch >> current epoch
+ generation >> current generation
+ enrolled >> enrolled
+ waiting >> waiting
+:
+ >
+enrolled
+:
+ >
+waiting
+:
+ >
+current epoch
+:
+ >
+current generation
+:
+ >
+same !
+ < current epoch
+ < stamp epoch
+ > equal
+equal
+:
+ >
+same !
+ < current generation
+ < stamp generation
+ > valid
