@@ -9,6 +9,7 @@
 #include "internal.h"
 
 void layout_classify(LayoutLine *line, bool literal_payloads) {
+    line->comment = (SourceSpan){0};
     const unsigned char *bytes = source_bytes(line->physical.source);
     size_t start = line->physical.start;
     size_t end = line->physical.end;
@@ -32,10 +33,14 @@ void layout_classify(LayoutLine *line, bool literal_payloads) {
     while (code_end < end && bytes[code_end] != '#') {
         code_end++;
     }
+    bool commented = code_end < end;
     while (code_end > start && bytes[code_end - 1] == ' ') {
         code_end--;
     }
     line->code = (SourceSpan){line->physical.source, start, code_end};
+    if (commented) {
+        line->comment = (SourceSpan){line->physical.source, line->kind == LINE_COMMENT ? line->physical.start : code_end, end};
+    }
 }
 
 bool layout_text_is(SourceSpan span, const char *text) {

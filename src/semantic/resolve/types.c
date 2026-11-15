@@ -40,13 +40,11 @@ bool semantic_link_types(SemanticProgram *program) {
 
 bool semantic_visible(SemanticProgram *program, const SemanticSymbol *symbol,
     const SemanticSymbol *initializing, SourceSpan site) {
-    if (initializing == NULL) {
-        return true;
-    }
-    if (initializing->role == SYMBOL_CONSTANT && symbol->role != SYMBOL_CONSTANT) {
+    SemanticVisibility visibility = semantic_initializer_visibility(symbol, initializing);
+    if (visibility == SEMANTIC_CONSTANT_ONLY) {
         return semantic_fail(program, site, "A constant initializer can read only constants", symbol);
     }
-    if (symbol->owner == initializing->owner && symbol->ordinal >= initializing->ordinal) {
+    if (visibility == SEMANTIC_NOT_INITIALIZED) {
         return semantic_fail(program, site, "The initializer source is not initialized yet", symbol);
     }
     return true;

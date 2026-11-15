@@ -202,3 +202,6 @@ shutdown wakeups and native lifetime composed with isolated Ama tasks.
 
 [Parallel supervision](../parallel-supervision.md) records real overlapping actor
 execution, explicit failure policies and the component/native dependency matrix.
+
+[Editor analysis](../editor-analysis.md) records immutable original-source snapshots,
+exact declaration identities, lexical availability and checked interface metadata.

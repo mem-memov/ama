@@ -23,6 +23,8 @@ typedef struct LayoutLine {
     SourceSpan physical;
     SourceSpan code;
     SourceSpan payload;
+    /** Exact comment including its leading separator/indentation; absent for literal payloads and uncommented code. */
+    SourceSpan comment;
     size_t indentation;
     LayoutKind kind;
     LayoutEnding ending;

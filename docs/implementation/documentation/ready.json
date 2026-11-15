@@ -6082,6 +6082,16 @@
         "case": "it_parses_documented_forms_with_exact_original_source_views",
         "command": "make -C tests/unit/parser/composition",
         "source": "tests/unit/parser/composition/main.c"
+      },
+      {
+        "case": "it_highlights_drafts_with_production_multiword_literal_and_comment_boundaries",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_code_distinct_from_checked_semantic_metadata",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
       }
     ]
   },
@@ -6163,6 +6173,16 @@
         "case": "it_parses_documented_forms_with_exact_original_source_views",
         "command": "make -C tests/unit/parser/composition",
         "source": "tests/unit/parser/composition/main.c"
+      },
+      {
+        "case": "it_highlights_drafts_with_production_multiword_literal_and_comment_boundaries",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_code_distinct_from_checked_semantic_metadata",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
       }
     ]
   },
@@ -29786,6 +29806,26 @@
         "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_resolves_definitions_and_signatures_without_crossing_caller_callee_namespaces",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_completes_exact_foreach_scopes_and_source_ordered_inferred_fields",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_excludes_uninitialized_constructor_fields_without_mutating_semantic_diagnostics",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_exposes_checked_list_method_signatures_without_fabricated_module_types",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
       }
     ]
   },
@@ -30077,6 +30117,26 @@
         "case": "it_retains_the_owned_copy_witness_and_native_seed",
         "command": "make -C tests/unit/semantic/types",
         "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_resolves_definitions_and_signatures_without_crossing_caller_callee_namespaces",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_completes_exact_foreach_scopes_and_source_ordered_inferred_fields",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_excludes_uninitialized_constructor_fields_without_mutating_semantic_diagnostics",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_exposes_checked_list_method_signatures_without_fabricated_module_types",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
       }
     ]
   },
@@ -37611,6 +37671,16 @@
         "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
         "command": "make -C tests/unit/codegen/task-phases",
         "source": "tests/unit/codegen/task-phases/main.c"
+      },
+      {
+        "case": "it_highlights_drafts_with_production_multiword_literal_and_comment_boundaries",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_code_distinct_from_checked_semantic_metadata",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
       }
     ]
   },
@@ -40732,6 +40802,16 @@
         "case": "it_cleans_partial_line_storage_after_each_allocation_failure",
         "command": "make -C tests/unit/lexer/layout",
         "source": "tests/unit/lexer/layout/main.c"
+      },
+      {
+        "case": "it_highlights_drafts_with_production_multiword_literal_and_comment_boundaries",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_code_distinct_from_checked_semantic_metadata",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
       }
     ]
   },
@@ -98788,6 +98868,1097 @@
         "case": "it_supervises_parallel_channel_actors_with_explicit_continue_and_cancel_policies",
         "command": "make -C tests/unit/codegen/parallel-supervision",
         "source": "tests/unit/codegen/parallel-supervision/main.c"
+      }
+    ]
+  },
+  "src/editor/query/operation.c": {
+    "contract": "docs/implementation/editor-analysis.md",
+    "purpose": "Expose immutable original-source lexer views, checked identities, exact lexical availability and signatures without a second grammar or partial semantic guesses.",
+    "tests": [
+      {
+        "case": "it_highlights_drafts_with_production_multiword_literal_and_comment_boundaries",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_code_distinct_from_checked_semantic_metadata",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_resolves_definitions_and_signatures_without_crossing_caller_callee_namespaces",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_completes_exact_foreach_scopes_and_source_ordered_inferred_fields",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_excludes_uninitialized_constructor_fields_without_mutating_semantic_diagnostics",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_exposes_checked_list_method_signatures_without_fabricated_module_types",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_old_definitions_valid_while_analyzing_changed_unicode_source",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_temporary_highlight_failure_and_preserves_the_checked_snapshot",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_occurrence_index_construction_prefix",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_reports_missing_selected_sources_without_partial_semantic_queries",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_exposes_structured_empty_block_warnings_without_turning_them_into_errors",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/query/highlight.c": {
+    "contract": "docs/implementation/editor-analysis.md",
+    "purpose": "Expose immutable original-source lexer views, checked identities, exact lexical availability and signatures without a second grammar or partial semantic guesses.",
+    "tests": [
+      {
+        "case": "it_highlights_drafts_with_production_multiword_literal_and_comment_boundaries",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_code_distinct_from_checked_semantic_metadata",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_resolves_definitions_and_signatures_without_crossing_caller_callee_namespaces",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_completes_exact_foreach_scopes_and_source_ordered_inferred_fields",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_excludes_uninitialized_constructor_fields_without_mutating_semantic_diagnostics",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_exposes_checked_list_method_signatures_without_fabricated_module_types",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_old_definitions_valid_while_analyzing_changed_unicode_source",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_temporary_highlight_failure_and_preserves_the_checked_snapshot",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_occurrence_index_construction_prefix",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_reports_missing_selected_sources_without_partial_semantic_queries",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_exposes_structured_empty_block_warnings_without_turning_them_into_errors",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/query/completion.c": {
+    "contract": "docs/implementation/editor-analysis.md",
+    "purpose": "Expose immutable original-source lexer views, checked identities, exact lexical availability and signatures without a second grammar or partial semantic guesses.",
+    "tests": [
+      {
+        "case": "it_highlights_drafts_with_production_multiword_literal_and_comment_boundaries",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_code_distinct_from_checked_semantic_metadata",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_resolves_definitions_and_signatures_without_crossing_caller_callee_namespaces",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_completes_exact_foreach_scopes_and_source_ordered_inferred_fields",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_excludes_uninitialized_constructor_fields_without_mutating_semantic_diagnostics",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_exposes_checked_list_method_signatures_without_fabricated_module_types",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_old_definitions_valid_while_analyzing_changed_unicode_source",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_temporary_highlight_failure_and_preserves_the_checked_snapshot",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_occurrence_index_construction_prefix",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_reports_missing_selected_sources_without_partial_semantic_queries",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_exposes_structured_empty_block_warnings_without_turning_them_into_errors",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/query/diagnostics.c": {
+    "contract": "docs/implementation/editor-analysis.md",
+    "purpose": "Expose immutable original-source lexer views, checked identities, exact lexical availability and signatures without a second grammar or partial semantic guesses.",
+    "tests": [
+      {
+        "case": "it_highlights_drafts_with_production_multiword_literal_and_comment_boundaries",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_code_distinct_from_checked_semantic_metadata",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_resolves_definitions_and_signatures_without_crossing_caller_callee_namespaces",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_completes_exact_foreach_scopes_and_source_ordered_inferred_fields",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_excludes_uninitialized_constructor_fields_without_mutating_semantic_diagnostics",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_exposes_checked_list_method_signatures_without_fabricated_module_types",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_old_definitions_valid_while_analyzing_changed_unicode_source",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_temporary_highlight_failure_and_preserves_the_checked_snapshot",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_occurrence_index_construction_prefix",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_reports_missing_selected_sources_without_partial_semantic_queries",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_exposes_structured_empty_block_warnings_without_turning_them_into_errors",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/query/definition.c": {
+    "contract": "docs/implementation/editor-analysis.md",
+    "purpose": "Expose immutable original-source lexer views, checked identities, exact lexical availability and signatures without a second grammar or partial semantic guesses.",
+    "tests": [
+      {
+        "case": "it_highlights_drafts_with_production_multiword_literal_and_comment_boundaries",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_code_distinct_from_checked_semantic_metadata",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_resolves_definitions_and_signatures_without_crossing_caller_callee_namespaces",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_completes_exact_foreach_scopes_and_source_ordered_inferred_fields",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_excludes_uninitialized_constructor_fields_without_mutating_semantic_diagnostics",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_exposes_checked_list_method_signatures_without_fabricated_module_types",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_old_definitions_valid_while_analyzing_changed_unicode_source",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_temporary_highlight_failure_and_preserves_the_checked_snapshot",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_occurrence_index_construction_prefix",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_reports_missing_selected_sources_without_partial_semantic_queries",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_exposes_structured_empty_block_warnings_without_turning_them_into_errors",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/analysis/internal.h": {
+    "contract": "docs/implementation/editor-analysis.md",
+    "purpose": "Expose immutable original-source lexer views, checked identities, exact lexical availability and signatures without a second grammar or partial semantic guesses.",
+    "tests": [
+      {
+        "case": "it_highlights_drafts_with_production_multiword_literal_and_comment_boundaries",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_code_distinct_from_checked_semantic_metadata",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_resolves_definitions_and_signatures_without_crossing_caller_callee_namespaces",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_completes_exact_foreach_scopes_and_source_ordered_inferred_fields",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_excludes_uninitialized_constructor_fields_without_mutating_semantic_diagnostics",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_exposes_checked_list_method_signatures_without_fabricated_module_types",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_old_definitions_valid_while_analyzing_changed_unicode_source",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_temporary_highlight_failure_and_preserves_the_checked_snapshot",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_occurrence_index_construction_prefix",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_reports_missing_selected_sources_without_partial_semantic_queries",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_exposes_structured_empty_block_warnings_without_turning_them_into_errors",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/editor/analysis/build.c": {
+    "contract": "docs/implementation/editor-analysis.md",
+    "purpose": "Expose immutable original-source lexer views, checked identities, exact lexical availability and signatures without a second grammar or partial semantic guesses.",
+    "tests": [
+      {
+        "case": "it_highlights_drafts_with_production_multiword_literal_and_comment_boundaries",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_code_distinct_from_checked_semantic_metadata",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_resolves_definitions_and_signatures_without_crossing_caller_callee_namespaces",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_completes_exact_foreach_scopes_and_source_ordered_inferred_fields",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_excludes_uninitialized_constructor_fields_without_mutating_semantic_diagnostics",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_exposes_checked_list_method_signatures_without_fabricated_module_types",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_old_definitions_valid_while_analyzing_changed_unicode_source",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_temporary_highlight_failure_and_preserves_the_checked_snapshot",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_occurrence_index_construction_prefix",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_reports_missing_selected_sources_without_partial_semantic_queries",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_exposes_structured_empty_block_warnings_without_turning_them_into_errors",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/analysis/analysis.h": {
+    "contract": "docs/implementation/editor-analysis.md",
+    "purpose": "Expose immutable original-source lexer views, checked identities, exact lexical availability and signatures without a second grammar or partial semantic guesses.",
+    "tests": [
+      {
+        "case": "it_highlights_drafts_with_production_multiword_literal_and_comment_boundaries",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_code_distinct_from_checked_semantic_metadata",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_resolves_definitions_and_signatures_without_crossing_caller_callee_namespaces",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_completes_exact_foreach_scopes_and_source_ordered_inferred_fields",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_excludes_uninitialized_constructor_fields_without_mutating_semantic_diagnostics",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_exposes_checked_list_method_signatures_without_fabricated_module_types",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_old_definitions_valid_while_analyzing_changed_unicode_source",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_temporary_highlight_failure_and_preserves_the_checked_snapshot",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_occurrence_index_construction_prefix",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_reports_missing_selected_sources_without_partial_semantic_queries",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_exposes_structured_empty_block_warnings_without_turning_them_into_errors",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/editor/analysis/lifetime.c": {
+    "contract": "docs/implementation/editor-analysis.md",
+    "purpose": "Expose immutable original-source lexer views, checked identities, exact lexical availability and signatures without a second grammar or partial semantic guesses.",
+    "tests": [
+      {
+        "case": "it_highlights_drafts_with_production_multiword_literal_and_comment_boundaries",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_code_distinct_from_checked_semantic_metadata",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_resolves_definitions_and_signatures_without_crossing_caller_callee_namespaces",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_completes_exact_foreach_scopes_and_source_ordered_inferred_fields",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_excludes_uninitialized_constructor_fields_without_mutating_semantic_diagnostics",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_exposes_checked_list_method_signatures_without_fabricated_module_types",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_old_definitions_valid_while_analyzing_changed_unicode_source",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_temporary_highlight_failure_and_preserves_the_checked_snapshot",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_occurrence_index_construction_prefix",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_reports_missing_selected_sources_without_partial_semantic_queries",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_exposes_structured_empty_block_warnings_without_turning_them_into_errors",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/index/operands.c": {
+    "contract": "docs/implementation/editor-analysis.md",
+    "purpose": "Expose immutable original-source lexer views, checked identities, exact lexical availability and signatures without a second grammar or partial semantic guesses.",
+    "tests": [
+      {
+        "case": "it_highlights_drafts_with_production_multiword_literal_and_comment_boundaries",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_code_distinct_from_checked_semantic_metadata",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_resolves_definitions_and_signatures_without_crossing_caller_callee_namespaces",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_completes_exact_foreach_scopes_and_source_ordered_inferred_fields",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_excludes_uninitialized_constructor_fields_without_mutating_semantic_diagnostics",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_exposes_checked_list_method_signatures_without_fabricated_module_types",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_old_definitions_valid_while_analyzing_changed_unicode_source",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_temporary_highlight_failure_and_preserves_the_checked_snapshot",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_occurrence_index_construction_prefix",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_reports_missing_selected_sources_without_partial_semantic_queries",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_exposes_structured_empty_block_warnings_without_turning_them_into_errors",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/index/record.c": {
+    "contract": "docs/implementation/editor-analysis.md",
+    "purpose": "Expose immutable original-source lexer views, checked identities, exact lexical availability and signatures without a second grammar or partial semantic guesses.",
+    "tests": [
+      {
+        "case": "it_highlights_drafts_with_production_multiword_literal_and_comment_boundaries",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_code_distinct_from_checked_semantic_metadata",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_resolves_definitions_and_signatures_without_crossing_caller_callee_namespaces",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_completes_exact_foreach_scopes_and_source_ordered_inferred_fields",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_excludes_uninitialized_constructor_fields_without_mutating_semantic_diagnostics",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_exposes_checked_list_method_signatures_without_fabricated_module_types",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_old_definitions_valid_while_analyzing_changed_unicode_source",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_temporary_highlight_failure_and_preserves_the_checked_snapshot",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_occurrence_index_construction_prefix",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_reports_missing_selected_sources_without_partial_semantic_queries",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_exposes_structured_empty_block_warnings_without_turning_them_into_errors",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/index/build.c": {
+    "contract": "docs/implementation/editor-analysis.md",
+    "purpose": "Expose immutable original-source lexer views, checked identities, exact lexical availability and signatures without a second grammar or partial semantic guesses.",
+    "tests": [
+      {
+        "case": "it_highlights_drafts_with_production_multiword_literal_and_comment_boundaries",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_code_distinct_from_checked_semantic_metadata",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_resolves_definitions_and_signatures_without_crossing_caller_callee_namespaces",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_completes_exact_foreach_scopes_and_source_ordered_inferred_fields",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_excludes_uninitialized_constructor_fields_without_mutating_semantic_diagnostics",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_exposes_checked_list_method_signatures_without_fabricated_module_types",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_old_definitions_valid_while_analyzing_changed_unicode_source",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_temporary_highlight_failure_and_preserves_the_checked_snapshot",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_occurrence_index_construction_prefix",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_reports_missing_selected_sources_without_partial_semantic_queries",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_exposes_structured_empty_block_warnings_without_turning_them_into_errors",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/editor/common.c": {
+    "contract": "docs/implementation/editor-analysis.md",
+    "purpose": "Expose immutable original-source lexer views, checked identities, exact lexical availability and signatures without a second grammar or partial semantic guesses.",
+    "tests": [
+      {
+        "case": "it_highlights_drafts_with_production_multiword_literal_and_comment_boundaries",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_code_distinct_from_checked_semantic_metadata",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_resolves_definitions_and_signatures_without_crossing_caller_callee_namespaces",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_completes_exact_foreach_scopes_and_source_ordered_inferred_fields",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_excludes_uninitialized_constructor_fields_without_mutating_semantic_diagnostics",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_exposes_checked_list_method_signatures_without_fabricated_module_types",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_old_definitions_valid_while_analyzing_changed_unicode_source",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_temporary_highlight_failure_and_preserves_the_checked_snapshot",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_occurrence_index_construction_prefix",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_reports_missing_selected_sources_without_partial_semantic_queries",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_exposes_structured_empty_block_warnings_without_turning_them_into_errors",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/editor/Makefile": {
+    "contract": "docs/implementation/editor-analysis.md",
+    "purpose": "Expose immutable original-source lexer views, checked identities, exact lexical availability and signatures without a second grammar or partial semantic guesses.",
+    "tests": [
+      {
+        "case": "it_highlights_drafts_with_production_multiword_literal_and_comment_boundaries",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_code_distinct_from_checked_semantic_metadata",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_resolves_definitions_and_signatures_without_crossing_caller_callee_namespaces",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_completes_exact_foreach_scopes_and_source_ordered_inferred_fields",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_excludes_uninitialized_constructor_fields_without_mutating_semantic_diagnostics",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_exposes_checked_list_method_signatures_without_fabricated_module_types",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_old_definitions_valid_while_analyzing_changed_unicode_source",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_temporary_highlight_failure_and_preserves_the_checked_snapshot",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_occurrence_index_construction_prefix",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_reports_missing_selected_sources_without_partial_semantic_queries",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_exposes_structured_empty_block_warnings_without_turning_them_into_errors",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/editor/bindings/main.c": {
+    "contract": "docs/implementation/editor-analysis.md",
+    "purpose": "Expose immutable original-source lexer views, checked identities, exact lexical availability and signatures without a second grammar or partial semantic guesses.",
+    "tests": [
+      {
+        "case": "it_resolves_definitions_and_signatures_without_crossing_caller_callee_namespaces",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_completes_exact_foreach_scopes_and_source_ordered_inferred_fields",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_excludes_uninitialized_constructor_fields_without_mutating_semantic_diagnostics",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_exposes_checked_list_method_signatures_without_fabricated_module_types",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      }
+    ]
+  },
+  "tests/unit/editor/bindings/Makefile": {
+    "contract": "docs/implementation/editor-analysis.md",
+    "purpose": "Expose immutable original-source lexer views, checked identities, exact lexical availability and signatures without a second grammar or partial semantic guesses.",
+    "tests": [
+      {
+        "case": "it_resolves_definitions_and_signatures_without_crossing_caller_callee_namespaces",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_completes_exact_foreach_scopes_and_source_ordered_inferred_fields",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_excludes_uninitialized_constructor_fields_without_mutating_semantic_diagnostics",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_exposes_checked_list_method_signatures_without_fabricated_module_types",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      }
+    ]
+  },
+  "tests/unit/editor/composition/main.c": {
+    "contract": "docs/implementation/editor-analysis.md",
+    "purpose": "Expose immutable original-source lexer views, checked identities, exact lexical availability and signatures without a second grammar or partial semantic guesses.",
+    "tests": [
+      {
+        "case": "it_keeps_old_definitions_valid_while_analyzing_changed_unicode_source",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_temporary_highlight_failure_and_preserves_the_checked_snapshot",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_occurrence_index_construction_prefix",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_reports_missing_selected_sources_without_partial_semantic_queries",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_exposes_structured_empty_block_warnings_without_turning_them_into_errors",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/editor/composition/Makefile": {
+    "contract": "docs/implementation/editor-analysis.md",
+    "purpose": "Expose immutable original-source lexer views, checked identities, exact lexical availability and signatures without a second grammar or partial semantic guesses.",
+    "tests": [
+      {
+        "case": "it_keeps_old_definitions_valid_while_analyzing_changed_unicode_source",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_temporary_highlight_failure_and_preserves_the_checked_snapshot",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_occurrence_index_construction_prefix",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_reports_missing_selected_sources_without_partial_semantic_queries",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_exposes_structured_empty_block_warnings_without_turning_them_into_errors",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/editor/lexical/main.c": {
+    "contract": "docs/implementation/editor-analysis.md",
+    "purpose": "Expose immutable original-source lexer views, checked identities, exact lexical availability and signatures without a second grammar or partial semantic guesses.",
+    "tests": [
+      {
+        "case": "it_highlights_drafts_with_production_multiword_literal_and_comment_boundaries",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_code_distinct_from_checked_semantic_metadata",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      }
+    ]
+  },
+  "tests/unit/editor/lexical/Makefile": {
+    "contract": "docs/implementation/editor-analysis.md",
+    "purpose": "Expose immutable original-source lexer views, checked identities, exact lexical availability and signatures without a second grammar or partial semantic guesses.",
+    "tests": [
+      {
+        "case": "it_highlights_drafts_with_production_multiword_literal_and_comment_boundaries",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_code_distinct_from_checked_semantic_metadata",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      }
+    ]
+  },
+  "src/semantic/inference/inventory/visibility.c": {
+    "contract": "docs/implementation/editor-analysis.md",
+    "purpose": "Expose immutable original-source lexer views, checked identities, exact lexical availability and signatures without a second grammar or partial semantic guesses.",
+    "tests": [
+      {
+        "case": "it_highlights_drafts_with_production_multiword_literal_and_comment_boundaries",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_keeps_invalid_code_distinct_from_checked_semantic_metadata",
+        "command": "make -C tests/unit/editor/lexical",
+        "source": "tests/unit/editor/lexical/main.c"
+      },
+      {
+        "case": "it_resolves_definitions_and_signatures_without_crossing_caller_callee_namespaces",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_completes_exact_foreach_scopes_and_source_ordered_inferred_fields",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_excludes_uninitialized_constructor_fields_without_mutating_semantic_diagnostics",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_exposes_checked_list_method_signatures_without_fabricated_module_types",
+        "command": "make -C tests/unit/editor/bindings",
+        "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "case": "it_keeps_old_definitions_valid_while_analyzing_changed_unicode_source",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_temporary_highlight_failure_and_preserves_the_checked_snapshot",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_occurrence_index_construction_prefix",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_reports_missing_selected_sources_without_partial_semantic_queries",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_exposes_structured_empty_block_warnings_without_turning_them_into_errors",
+        "command": "make -C tests/unit/editor/composition",
+        "source": "tests/unit/editor/composition/main.c"
       }
     ]
   }

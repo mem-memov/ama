@@ -2460,10 +2460,24 @@ Contracts: [PAR-01–PAR-08](spec/language/async-and-parallelism.md#parallelism-
 Contracts: [tools](spec/implementation/tools-and-conformance.md),
 [diagnostics](spec/implementation/diagnostics.md).
 
-- [ ] **T107 — Expose reusable editor analysis results.** Needs: T060, T089.
-  Reuse original source spans, parser/resolver and structured diagnostics for
-  highlighting, completion, definitions and type/signature display. Test incomplete
-  drafts and changed files without a second grammar, resolver or type system.
+- [x] **T107 — Expose reusable editor analysis results.** Needs: T060, T089.
+  Added an immutable editor snapshot API over the production frontend, source
+  catalog, lexer and checked semantic graph. Exact original spans support lexical
+  highlighting, definition/type navigation, visible-name completion, declared
+  signatures, intrinsic operation/binding metadata and structured errors/warnings.
+  Draft/invalid input exposes no guessed partial semantic graph. Added exact
+  comment spans and a shared pure constructor/lexical visibility predicate,
+  preserving compiler diagnostics. The nonrecursive O(R log R) occurrence index
+  distinguishes caller receivers, callee labels, selected returned methods,
+  qualified constants, nested indices and separately scoped foreach identities.
+  Synthetic output-transfer metadata creates no invented source occurrence.
+  Tests cover multiword/Unicode names, CRLF/literals/comments, incomplete drafts,
+  changed-file snapshots retaining old definitions, inferred introduction order,
+  constructor availability, virtual list signatures, warnings, missing inputs and
+  every measured allocation-failure prefix. Strict full NDEBUG and all editor
+  ASan/UBSan checks pass; 2019 maintained inputs have registered evidence without
+  debt. Doxygen/prose/standalone-header checks pass, with final reproducibility
+  checked before commit. See `docs/implementation/editor-analysis.md`.
 - [ ] **T108 — Implement identity-aware rename.** Needs: T107. Plan edits from
   resolved declarations/references, including qualified constants and scoped
   foreach locals. Test collisions, preserved unrelated bytes and revalidation

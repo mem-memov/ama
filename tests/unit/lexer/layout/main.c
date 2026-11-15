@@ -19,11 +19,14 @@ static void it_preserves_literal_bytes_trailing_spaces_comments_and_line_endings
     assert(status == LAYOUT_OK);
     LayoutLine *line = layout.first;
     assert(layout_text_is(line->code, "@!") && line->ending == ENDING_CRLF);
+    assert(layout_text_is(line->comment, " # body"));
     line = line->next;
     assert(line->kind == LINE_LITERAL && line->indentation == 1);
     assert(layout_text_is(line->payload, "@C # data  "));
+    assert(line->comment.source == NULL);
     line = line->next;
     assert(line->kind == LINE_COMMENT && line->ending == ENDING_LF);
+    assert(layout_text_is(line->comment, " # comment"));
     line = line->next;
     assert(line == NULL);
     destroy_layout();

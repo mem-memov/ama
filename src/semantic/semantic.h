@@ -321,6 +321,12 @@ SemanticSymbol *semantic_interface_position(const SemanticType *, SymbolRole, si
  * capability and execution validation remains in the subsequent semantic stages.
  */
 SemanticStatus semantic_infer(SemanticProgram *);
+/** Exact pure constructor availability categories shared by diagnostics and editor consumers. */
+typedef enum { SEMANTIC_VISIBLE, SEMANTIC_CONSTANT_ONLY, SEMANTIC_NOT_INITIALIZED } SemanticVisibility;
+/** Inspect constructor ordering/constant-only rules without changing diagnostics or ownership. */
+SemanticVisibility semantic_initializer_visibility(const SemanticSymbol *, const SemanticSymbol *initializing);
+/** Inspect a completed inventory at an original source point, excluding out-of-scope locals and future inferred names. */
+bool semantic_symbol_available(const SemanticType *, const SemanticSymbol *, SourceSpan, const SemanticSymbol *initializing);
 /** Find the innermost introduced foreach-local binding containing this executable source site.
  * Module fields are excluded; no runtime contents or declaration-name guesses participate.
  */
