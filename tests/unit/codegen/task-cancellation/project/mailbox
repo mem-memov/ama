@@ -1,0 +1,10 @@
+# Own a replaceable binary result; default entry clears it through normal generated result initialization.
+@<
+incoming
+..bytes
+@>
+data
+..bytes
+@!
+data
+ incoming

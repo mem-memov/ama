@@ -1,0 +1,53 @@
+# A cancelled run must not leave a private false loop predicate or terminal state in a subsequent run.
+dispatch !
+ < &queue
+record
+ task& >> task&
+task&
+ token >> old
+cancel !
+ < &queue
+ < &record
+dispatch !
+ < &queue
+report !
+ < &record
+ < &queue
+record !
+ < &source
+enqueue !
+ < &queue
+ < &record
+dispatch !
+ < &queue
+record
+ task& >> task&
+task&
+ token >> current
+source
+ post !
+  < old
+ take !
+  > absent
+absent
+?
+ require !
+source
+ post !
+  < current
+  < |0
+  < |new run
+ take !
+  > packet
+deliver !
+ < &queue
+ < &record
+ < packet
+ > accepted
+require !
+ < accepted
+dispatch !
+ < &queue
+report !
+ < &record
+ < &queue

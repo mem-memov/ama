@@ -143,7 +143,12 @@ through an explicit `source&`. Its token result is ordinary data; restarting or
 destroying the operation retires its previous token before releasing native rights.
 It is noncopyable and can be a private owned field of a suspended task. See
 [detachment and callback lifetime](../docs/implementation/task-detachment.md).
-Cancellation and the final asynchronous host API remain subsequent tasks.
+`..task.operation.detach` explicitly retires delivery at a cooperative step
+boundary. `..task.outcome` publishes one Pending/Cancelled/Completed decision;
+its terminal states survive later calls. The
+[cancellation contract](../docs/implementation/task-cancellation.md) explains the
+commit point, wakeup composition and arrival-versus-commit distinction. The final
+asynchronous host API remains a subsequent task.
 
 ## Native construction and ownership
 

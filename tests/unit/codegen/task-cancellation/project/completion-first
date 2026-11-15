@@ -1,0 +1,41 @@
+# A completion committed by the task cannot be replaced by a later cancellation request.
+dispatch !
+ < &queue
+record
+ task& >> task&
+task&
+ token >> token
+source
+ post !
+  < token
+  < |0
+  < |completed bytes
+ take !
+  > packet
+deliver !
+ < &queue
+ < &record
+ < packet
+ > accepted
+require !
+ < accepted
+dispatch !
+ < &queue
+report !
+ < &record
+ < &queue
+cancel !
+ < &queue
+ < &record
+ > accepted
+accepted
+?
+ require !
+record
+ cancel requested >> requested
+requested
+?
+ require !
+report !
+ < &record
+ < &queue

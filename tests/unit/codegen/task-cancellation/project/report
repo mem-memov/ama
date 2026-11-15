@@ -1,0 +1,48 @@
+# Assert no terminal delivery/membership rights remain, then expose the ordinary one-hot outcome.
+@<
+record&
+.kind.record
+queue&
+.kind.queue
+@!
+require
+..task.require
+summary
+.summary
+record&
+ waiting >> waiting
+ queued >> queued
+ delivered >> delivered
+ mailbox& >> mailbox&
+ task& >> task&
+mailbox&
+ data >> bytes
+waiting
+?
+ require !
+queued
+?
+ require !
+delivered
+?
+ require !
+bytes
+?
+ require !
+queue&
+ entries[]
+  length !
+   > count
+count
+?
+ require !
+task&
+ outcome& >> outcome&
+outcome&
+ pending >> pending
+ cancelled >> cancelled
+ completed >> completed
+summary !
+ < pending
+ < cancelled
+ < completed

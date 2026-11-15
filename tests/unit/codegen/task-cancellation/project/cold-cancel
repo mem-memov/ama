@@ -1,0 +1,15 @@
+# A request already present at first entry must not disappear into Awaiting.
+cancel !
+ < &queue
+ < &record
+ > accepted
+require !
+ < accepted
+cancel !
+ < &queue
+ < &record
+dispatch !
+ < &queue
+report !
+ < &record
+ < &queue

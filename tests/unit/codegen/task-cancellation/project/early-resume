@@ -1,0 +1,25 @@
+# A premature queue decision must neither fabricate a terminal result nor lose a subsequent cancellation wake.
+dispatch !
+ < &queue
+record
+ ready !
+  < |1
+enqueue !
+ < &queue
+ < &record
+dispatch !
+ < &queue
+cancel !
+ < &queue
+ < &record
+ > accepted
+require !
+ < accepted
+cancel !
+ < &queue
+ < &record
+dispatch !
+ < &queue
+report !
+ < &record
+ < &queue

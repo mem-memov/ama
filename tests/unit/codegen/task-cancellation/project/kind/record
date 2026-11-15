@@ -1,0 +1,64 @@
+# Own each run, its native wait and cancellation mailbox through explicit typed fields.
+@<
+hub&
+..task.events
+@>
+self&
+.kind.record
+ &
+task&
+.kind.task
+epoch
+..task.generation
+generation
+..task.generation
+wait epoch
+..task.generation
+wait generation
+..task.generation
+enrolled
+..task.flag
+ready
+..task.flag
+queued
+..task.flag
+started
+..task.flag
+waiting
+..task.flag
+cancel requested
+..task.flag
+delivered
+..task.flag
+mailbox&
+.mailbox
+source&
+..task.events
+@!
+run sequence
+..task.sequence
+wait sequence
+..task.sequence
+owned task
+.kind.task
+owned mailbox
+.mailbox
+run sequence !
+ > epoch
+wait sequence !
+ > generation
+wait epoch
+ epoch
+wait generation
+ generation
+enrolled !
+ < |1
+ready !
+ < |1
+task&
+ &owned task
+source&
+ hub&
+owned mailbox !
+mailbox&
+ &owned mailbox

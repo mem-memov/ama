@@ -166,3 +166,6 @@ fixed calling-convention validation and exact cross-translation-unit ABI guards.
 
 [Task detachment](../task-detachment.md) records exact native cell retirement,
 checked reference visitors and owned registration cleanup without continuation execution.
+
+[Cooperative cancellation](../task-cancellation.md) records the terminal transition
+algebra, explicit queue wakeup and late-result cleanup at documented task boundaries.

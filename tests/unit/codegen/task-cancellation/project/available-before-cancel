@@ -1,0 +1,32 @@
+# Arrival/import is not a terminal commit; a cancellation observed at the next boundary wins.
+dispatch !
+ < &queue
+record
+ task& >> task&
+task&
+ token >> token
+source
+ post !
+  < token
+  < |7
+  < |owned bytes
+ take !
+  > packet
+deliver !
+ < &queue
+ < &record
+ < packet
+ > accepted
+require !
+ < accepted
+cancel !
+ < &queue
+ < &record
+ > accepted
+require !
+ < accepted
+dispatch !
+ < &queue
+report !
+ < &record
+ < &queue

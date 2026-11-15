@@ -1,0 +1,27 @@
+# Explicit owner, queue and service shared by each independently compiled cancellation schedule.
+@!
+source
+..task.events
+record
+.kind.record
+queue
+.kind.queue
+enqueue
+.kind.enqueue
+dispatch
+.kind.dispatch
+cancel
+.kind.cancel
+deliver
+.kind.deliver
+report
+.report
+require
+..task.require
+source !
+ < |1
+record !
+ < &source
+enqueue !
+ < &queue
+ < &record

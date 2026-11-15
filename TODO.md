@@ -2294,11 +2294,23 @@ Contracts: [ASYNC-01–ASYNC-12](spec/language/async-and-parallelism.md).
   documentation reproducibility is checked before commit. See
   `docs/implementation/task-detachment.md`. Cancellation and loadable-provider
   acceptance remain T097–T099.
-- [ ] **T097 — Implement cooperative cancellation terminal outcomes.** Needs:
-  T096. Wake awaiting tasks and commit exactly one cancellation/completion outcome
-  at the declared linearization point. Test races and late-result cleanup through
-  safe detachment without interrupting native entries or running continuations
-  during destruction.
+- [x] **T097 — Implement cooperative cancellation terminal outcomes.** Needs:
+  T096. `..task.outcome` commits an absorbing Pending/Cancelled/Completed value at
+  the explicit task step boundary; arrival/import alone does not commit completion.
+  `..task.operation.detach` retires delivery through a checked reference visitor
+  without interrupting workers or consuming their independent callback rights.
+  Ordinary typed cancellation requests wake Awaiting tasks through the existing
+  coalescing FIFO. The maintained Ama composition invalidates its visible wait
+  before native detachment, clears owned mailbox bytes and publishes Completed
+  phase with a separate ordinary outcome. Full transition algebra, cold requests,
+  both commit orderings, available-but-uncommitted bytes, premature resume,
+  idempotent cleanup and fresh enrollment after cancellation pass. The restart
+  case explicitly resets the private loop predicate and rejects old native tokens.
+  Strict full `NDEBUG`, component/generated ASan/UBSan, 1832 per-file coverage and
+  standalone header checks, Doxygen rule links and prose checks pass; final
+  documentation reproducibility is checked before commit. See
+  `docs/implementation/task-cancellation.md`. Destruction remains ownership cleanup
+  and never runs the remaining continuation.
 - [ ] **T098 — Enforce copy and failure boundaries for tasks.** Needs: T072,
   T097. Require fresh enrollment of copied tasks and genuine independent native
   operation clones or noncopyable resources. Test external operation sharing,

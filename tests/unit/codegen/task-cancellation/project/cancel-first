@@ -1,0 +1,43 @@
+# The callback may arrive after the cancel request, but cannot create a second terminal result.
+dispatch !
+ < &queue
+record
+ task& >> task&
+task&
+ token >> token
+cancel !
+ < &queue
+ < &record
+ > accepted
+require !
+ < accepted
+dispatch !
+ < &queue
+source
+ post !
+  < token
+  < |7
+  < |late bytes
+ take !
+  > packet
+deliver !
+ < &queue
+ < &record
+ < packet
+ > accepted
+accepted
+?
+ require !
+report !
+ < &record
+ < &queue
+cancel !
+ < &queue
+ < &record
+ > accepted
+accepted
+?
+ require !
+report !
+ < &record
+ < &queue

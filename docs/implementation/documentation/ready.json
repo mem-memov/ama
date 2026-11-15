@@ -38057,6 +38057,41 @@
         "case": "it_refuses_retired_children_and_visits_the_fresh_child",
         "command": "make -C tests/unit/codegen/reference-visitors",
         "source": "tests/unit/codegen/reference-visitors/main.c"
+      },
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
       }
     ]
   },
@@ -85596,6 +85631,16 @@
         "case": "it_retains_actual_code_pins_through_callback_and_byte_owners",
         "command": "make -C tests/unit/async/events/storage",
         "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_commits_once_and_preserves_every_terminal_decision",
+        "command": "make -C tests/unit/async/outcome",
+        "source": "tests/unit/async/outcome/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_transitions_without_changing_the_destination",
+        "command": "make -C tests/unit/async/outcome",
+        "source": "tests/unit/async/outcome/main.c"
       }
     ]
   },
@@ -90529,6 +90574,1083 @@
         "case": "it_retires_suspended_tasks_without_executing_their_continuations",
         "command": "make -C tests/unit/codegen/task-detachment",
         "source": "tests/unit/codegen/task-detachment/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/outcome+/native/selection.h": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_once_and_preserves_every_terminal_decision",
+        "command": "make -C tests/unit/async/outcome",
+        "source": "tests/unit/async/outcome/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_transitions_without_changing_the_destination",
+        "command": "make -C tests/unit/async/outcome",
+        "source": "tests/unit/async/outcome/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_registration_probe_##name",
+      "-"
+    ]
+  },
+  "tests/unit/async/outcome/main.c": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_once_and_preserves_every_terminal_decision",
+        "command": "make -C tests/unit/async/outcome",
+        "source": "tests/unit/async/outcome/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_transitions_without_changing_the_destination",
+        "command": "make -C tests/unit/async/outcome",
+        "source": "tests/unit/async/outcome/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/outcome/Makefile": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_once_and_preserves_every_terminal_decision",
+        "command": "make -C tests/unit/async/outcome",
+        "source": "tests/unit/async/outcome/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_transitions_without_changing_the_destination",
+        "command": "make -C tests/unit/async/outcome",
+        "source": "tests/unit/async/outcome/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/outcome": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/outcome.abi": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/outcome.c": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/outcome.h": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_registration_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/task/operation+/detach.abi": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/operation+/detach": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/operation+/detach.h": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_registration_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/task/operation+/detach.c": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-cancellation/main.c": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-cancellation/Makefile": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-cancellation/project/available-before-cancel": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-cancellation/project/completion-first": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-cancellation/project/setup": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-cancellation/project/cold-cancel": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-cancellation/project/mailbox": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-cancellation/project/detach-idempotence": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-cancellation/project/report": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-cancellation/project/early-resume": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-cancellation/project/cancel-first": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-cancellation/project/kind/deliver": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-cancellation/project/kind/task": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-cancellation/project/kind/cancel": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-cancellation/project/kind/record": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Commit one cooperative terminal result, wake typed waits and safely detach late native completion delivery.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-cancellation/project/restart": {
+    "contract": "docs/implementation/task-cancellation.md",
+    "purpose": "Reject old native tokens and reset private step state when reenrolling a cancelled task.",
+    "tests": [
+      {
+        "case": "it_commits_cold_cancellation_without_losing_the_initial_wake",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_wakes_once_and_rejects_completion_after_committed_cancellation",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_cancels_an_available_but_uncommitted_completion",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_preserves_completion_when_cancellation_is_requested_after_commit",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_retains_cancellation_after_a_premature_resume",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_detaches_empty_and_armed_operations_idempotently",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
+        "command": "make -C tests/unit/codegen/task-cancellation",
+        "source": "tests/unit/codegen/task-cancellation/main.c"
       }
     ]
   }
