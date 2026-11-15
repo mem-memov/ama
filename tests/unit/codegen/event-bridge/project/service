@@ -1,0 +1,121 @@
+# Actual selected methods retain one native service; completion import produces owned declared data.
+@!
+inspect
+.inspect
+service
+..task.events
+probe
+.worker
+same
+..task.token.same
+service !
+ < |1
+service
+ prepare !
+  > token
+service
+ arm !
+  < token
+service
+ ready !
+  < token
+  > ready
+ready
+:
+ probe !
+  < |1
+service
+ post !
+  < token
+  < |7
+  < |binary
+service
+ post !
+  < token
+  < |8
+  < |duplicate
+service
+ ready !
+  < token
+  > ready
+ready
+?
+ probe !
+  < |2
+service
+ take !
+  > packet
+packet
+?
+ probe !
+  < |3
+saved
+ packet
+packet
+ token >> observed
+same !
+ < token
+ < observed
+ > equal
+equal
+?
+ probe !
+  < |4
+service
+ post !
+  < token
+  < |9
+  < |late
+service
+ take !
+  > absent
+absent
+:
+ probe !
+  < |5
+# Reuse the same cell, reject the old token, and accept only the new one.
+service
+ prepare !
+  > current
+service
+ arm !
+  < current
+same !
+ < token
+ < current
+ > equal
+equal
+:
+ probe !
+  < |6
+service
+ post !
+  < token
+  < |10
+  < |stale
+service
+ ready !
+  < current
+  > ready
+ready
+:
+ probe !
+  < |7
+service
+ post !
+  < current
+  < |11
+  < |fresh
+service
+ take !
+  > packet
+packet
+?
+ probe !
+  < |8
+saved
+ data >> saved data
+ code >> saved code
+inspect !
+ < saved data
+ < saved code

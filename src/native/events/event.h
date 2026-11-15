@@ -66,6 +66,15 @@ typedef void (*AmaNativeEventStart)(const AmaNativeEventSubmission *, void *nati
  * failure preserves it and leaves the initially null output unchanged.
  */
 AmaStatus ama_native_event_service_create(size_t, AmaNativeEventKeepalive *, AmaNativeEventService **);
+/** Retain the native service for a method resource. Output must be empty; failure
+ * preserves it. This lease contains no Ama storage and does not reopen a closed service.
+ */
+AmaStatus ama_native_event_service_lease(AmaNativeEventService *, AmaNativeEventKeepalive *);
+/** Obtain callback rights for an immutable supplied token without reserving another cell.
+ * Token authentication remains the responsibility of post/ready/arm; stale notifications
+ * therefore retain their original identity and are rejected normally. Output must be empty.
+ */
+AmaStatus ama_native_event_service_callback(AmaNativeEventService *, AmaNativeEventToken, AmaNativeEventSubmission *);
 /** Reserve one cell and immutable token before publishing an Ama registration. Busy capacity,
  * exhausted identity/refcounts and closed owners change nothing; the output must be empty.
  */

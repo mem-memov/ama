@@ -45,3 +45,15 @@ void ama_native_event_service_dispose(AmaNativeEventService **owner) {
     free(cells);
     ama_native_event_release(service);
 }
+
+/** Bind an owned native method resource without exposing the service's mutable internals. */
+AmaStatus ama_native_event_service_lease(AmaNativeEventService *service, AmaNativeEventKeepalive *output) {
+    if (service == NULL || output == NULL || output->resource != NULL || output->release != NULL) {
+        return AMA_NATIVE_EVENT_ERROR(AMA_INVALID_STATE, "Invalid native service lease");
+    }
+    if (!ama_native_event_retain(service)) {
+        return AMA_NATIVE_EVENT_ERROR(AMA_LIMIT_EXCEEDED, "Native service references exhausted");
+    }
+    *output = (AmaNativeEventKeepalive){service, ama_native_event_release};
+    return ama_status_success();
+}

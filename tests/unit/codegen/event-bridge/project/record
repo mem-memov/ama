@@ -1,0 +1,39 @@
+# Own the task in persistent local storage; public state changes use selected children.
+@<
+first epoch
+..task.generation
+first generation
+..task.generation
+@>
+self&
+.record
+ &
+task&
+.task
+epoch
+..task.generation
+generation
+..task.generation
+enrolled
+..task.flag
+waiting
+..task.flag
+mailbox&
+.mailbox
+@!
+owned mailbox
+.mailbox
+owned task
+.task
+epoch
+ first epoch
+generation
+ first generation
+task&
+ &owned task
+owned mailbox !
+owned mailbox
+ ready !
+ delivered !
+mailbox&
+ &owned mailbox

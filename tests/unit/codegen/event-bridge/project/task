@@ -1,0 +1,108 @@
+# Publish the complete visible wait before arming and recheck before Awaiting.
+@<
+record&
+.record
+wait&
+.registration
+service&
+..task.events
+operation
+..task.token
+before check
+..std.condition
+before commit
+..std.condition
+after check
+..std.condition
+@>
+self&
+.task
+ &
+owner record&
+.record
+phase
+..task.phase
+@!
+ready phase
+..task.phase.ready
+awaiting phase
+..task.phase.awaiting
+completed phase
+..task.phase.completed
+keep waiting
+..std.condition
+ |1
+owner record&
+ record&
+record&
+ epoch >> epoch
+ generation >> generation
+ mailbox& >> mailbox&
+wait& !
+ < &
+ < epoch
+ < generation
+ < operation
+ < mailbox&
+service&
+ arm !
+  < operation
+before check
+?
+ service&
+  post !
+   < operation
+   < |7
+   < |complete
+service&
+ ready !
+  < operation
+  > ready
+before commit
+?
+ service&
+  post !
+   < operation
+   < |7
+   < |complete
+ready
+?
+ mailbox&
+  ready !
+   < |1
+ ready phase !
+  > phase
+:
+ awaiting phase !
+  > phase
+after check
+?
+ service&
+  post !
+   < operation
+   < |7
+   < |complete
+%
+# Early resumption must yield again until the declared mailbox actually contains data.
+keep waiting
+{
+ mailbox&
+  delivered >> delivered
+ delivered
+ ?
+  completed phase !
+   > phase
+  >
+ service&
+  ready !
+   < operation
+   > ready
+ ready
+ ?
+  ready phase !
+   > phase
+ :
+  awaiting phase !
+   > phase
+ %
+}

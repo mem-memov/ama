@@ -1,0 +1,8 @@
+# Selected operation on the owning native event service.
+@<
+token
+..task.token
+@>
+ready
+..std.condition
+@C

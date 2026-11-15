@@ -35243,7 +35243,7 @@
       }
     ]
   },
-  "tests/integration/parser/grammar/project/程序": {
+  "tests/integration/parser/grammar/project/\u7a0b\u5e8f": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -35329,7 +35329,7 @@
       }
     ]
   },
-  "tests/integration/project/closure/project/中间": {
+  "tests/integration/project/closure/project/\u4e2d\u95f4": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -36628,7 +36628,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/元": {
+  "tests/integration/semantic/types/project/\u5143": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -36639,7 +36639,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/元.abi": {
+  "tests/integration/semantic/types/project/\u5143.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -36650,7 +36650,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/元.c": {
+  "tests/integration/semantic/types/project/\u5143.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the first distinct Unicode nominal type.",
     "tests": [
@@ -36661,7 +36661,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/元.h": {
+  "tests/integration/semantic/types/project/\u5143.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the first Unicode nominal type.",
     "standalone_header_command": [
@@ -36687,7 +36687,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/米": {
+  "tests/integration/semantic/types/project/\u7c73": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -36698,7 +36698,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/米.abi": {
+  "tests/integration/semantic/types/project/\u7c73.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -36709,7 +36709,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/米.c": {
+  "tests/integration/semantic/types/project/\u7c73.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the incompatible Unicode nominal type.",
     "tests": [
@@ -36720,7 +36720,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/米.h": {
+  "tests/integration/semantic/types/project/\u7c73.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the incompatible Unicode nominal type.",
     "standalone_header_command": [
@@ -36933,7 +36933,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/other/商品": {
+  "tests/integration/source/diagnostics/project/other/\u5546\u54c1": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -36959,7 +36959,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/商店/商品": {
+  "tests/integration/source/diagnostics/project/\u5546\u5e97/\u5546\u54c1": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -86247,6 +86247,11 @@
         "case": "it_executes_the_public_native_provider_assembly_once",
         "command": "make -C tests/unit/async/events/assembly",
         "source": "tests/unit/async/events/assembly/main.c"
+      },
+      {
+        "case": "it_binds_native_methods_without_allocating_or_reviving_tokens",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
       }
     ],
     "standalone_header_command": [
@@ -86418,6 +86423,11 @@
         "case": "it_queues_concurrent_workers_without_executing_an_ama_context",
         "command": "make -C tests/unit/async/events/callbacks",
         "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_binds_native_methods_without_allocating_or_reviving_tokens",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
       }
     ]
   },
@@ -86522,6 +86532,11 @@
         "case": "it_rejects_late_completion_after_close_and_retires_only_after_acknowledgment",
         "command": "make -C tests/unit/async/events/callbacks",
         "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_binds_native_methods_without_allocating_or_reviving_tokens",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
       }
     ]
   },
@@ -86842,6 +86857,11 @@
         "case": "it_unwinds_every_first_service_allocation_before_publishing_identity",
         "command": "make -C tests/unit/async/events/identity",
         "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_binds_native_methods_without_allocating_or_reviving_tokens",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
       }
     ]
   },
@@ -86929,6 +86949,11 @@
       },
       {
         "case": "it_rejects_invalid_shapes_and_discards_only_unarmed_reservations",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_preserves_a_completion_at_every_wait_reconciliation_boundary",
         "command": "make -C tests/unit/async/events/storage",
         "source": "tests/unit/async/events/storage/main.c"
       }
@@ -87019,6 +87044,877 @@
         "case": "it_issues_unique_services_during_concurrent_first_domain_initialization",
         "command": "make -C tests/unit/async/events/callbacks",
         "source": "tests/unit/async/events/callbacks/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/bytes": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      },
+      {
+        "case": "it_preserves_binary_values_across_clone_and_failed_replacement",
+        "command": "make -C tests/unit/async/bytes",
+        "source": "tests/unit/async/bytes/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/bytes+/native/internal.h": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      },
+      {
+        "case": "it_preserves_binary_values_across_clone_and_failed_replacement",
+        "command": "make -C tests/unit/async/bytes",
+        "source": "tests/unit/async/bytes/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_registration_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/bytes+/native/storage.c": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      },
+      {
+        "case": "it_preserves_binary_values_across_clone_and_failed_replacement",
+        "command": "make -C tests/unit/async/bytes",
+        "source": "tests/unit/async/bytes/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/bytes+/native/values.c": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      },
+      {
+        "case": "it_preserves_binary_values_across_clone_and_failed_replacement",
+        "command": "make -C tests/unit/async/bytes",
+        "source": "tests/unit/async/bytes/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/bytes.abi": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      },
+      {
+        "case": "it_preserves_binary_values_across_clone_and_failed_replacement",
+        "command": "make -C tests/unit/async/bytes",
+        "source": "tests/unit/async/bytes/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/bytes.c": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      },
+      {
+        "case": "it_preserves_binary_values_across_clone_and_failed_replacement",
+        "command": "make -C tests/unit/async/bytes",
+        "source": "tests/unit/async/bytes/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/bytes.h": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      },
+      {
+        "case": "it_preserves_binary_values_across_clone_and_failed_replacement",
+        "command": "make -C tests/unit/async/bytes",
+        "source": "tests/unit/async/bytes/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_registration_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/task/events": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events+/arm": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events+/arm.abi": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events+/arm.c": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events+/arm.h": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_registration_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/task/events+/post": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events+/post.abi": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events+/post.c": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events+/post.h": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_registration_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/task/events+/prepare": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events+/prepare.abi": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events+/prepare.c": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events+/prepare.h": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_registration_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/task/events+/ready": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events+/ready.abi": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events+/ready.c": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events+/ready.h": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_registration_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/task/events+/take": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events+/take.abi": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events+/take.c": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events+/take.h": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_registration_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/task/events.abi": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events.c": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/events.h": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_registration_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/task/packet": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/packet.abi": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/packet.c": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/packet.h": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_registration_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/task/token": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/token+/same": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/token+/same.abi": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/token+/same.c": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/token+/same.h": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_registration_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/task/token.abi": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/token.c": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/token.h": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_registration_probe_##name",
+      "-"
+    ]
+  },
+  "tests/unit/async/bytes/Makefile": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_preserves_binary_values_across_clone_and_failed_replacement",
+        "command": "make -C tests/unit/async/bytes",
+        "source": "tests/unit/async/bytes/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/bytes/main.c": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_preserves_binary_values_across_clone_and_failed_replacement",
+        "command": "make -C tests/unit/async/bytes",
+        "source": "tests/unit/async/bytes/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/event-bridge/Makefile": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/event-bridge/main.c": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      },
+      {
+        "case": "it_reconciles_completion_before_and_after_the_awaiting_recheck",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      },
+      {
+        "case": "it_rejects_revoked_waits_and_mismatched_import_identities",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_service_lifecycle_operations_without_leaking_owners",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/event-bridge/project/import": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_reconciles_completion_before_and_after_the_awaiting_recheck",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      },
+      {
+        "case": "it_rejects_revoked_waits_and_mismatched_import_identities",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/event-bridge/project/mailbox": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_reconciles_completion_before_and_after_the_awaiting_recheck",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      },
+      {
+        "case": "it_rejects_revoked_waits_and_mismatched_import_identities",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/event-bridge/project/reconcile": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_reconciles_completion_before_and_after_the_awaiting_recheck",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      },
+      {
+        "case": "it_rejects_revoked_waits_and_mismatched_import_identities",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/event-bridge/project/record": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_reconciles_completion_before_and_after_the_awaiting_recheck",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      },
+      {
+        "case": "it_rejects_revoked_waits_and_mismatched_import_identities",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/event-bridge/project/registration": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_reconciles_completion_before_and_after_the_awaiting_recheck",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      },
+      {
+        "case": "it_rejects_revoked_waits_and_mismatched_import_identities",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/event-bridge/project/service": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/event-bridge/project/setup": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_reconciles_completion_before_and_after_the_awaiting_recheck",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      },
+      {
+        "case": "it_rejects_revoked_waits_and_mismatched_import_identities",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/event-bridge/project/task": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_reconciles_completion_before_and_after_the_awaiting_recheck",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      },
+      {
+        "case": "it_rejects_revoked_waits_and_mismatched_import_identities",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/event-bridge/project/validate": {
+    "contract": "docs/implementation/task-registration.md",
+    "purpose": "Publish waits before native arm, import retained binary completions through typed views, and reconcile declared readiness without lost wakeups.",
+    "tests": [
+      {
+        "case": "it_reconciles_completion_before_and_after_the_awaiting_recheck",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
+      },
+      {
+        "case": "it_rejects_revoked_waits_and_mismatched_import_identities",
+        "command": "make -C tests/unit/codegen/event-bridge",
+        "source": "tests/unit/codegen/event-bridge/main.c"
       }
     ]
   }

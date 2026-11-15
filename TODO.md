@@ -2221,10 +2221,26 @@ Contracts: [ASYNC-01–ASYNC-12](spec/language/async-and-parallelism.md).
   pass; reproducibility is checked before commit. See
   `docs/implementation/native-events.md`; the generated Ama access bridge and
   wait/readiness reconciliation remain T093.
-- [ ] **T093 — Implement registration and readiness reconciliation.** Needs:
+- [x] **T093 — Implement registration and readiness reconciliation.** Needs:
   T092. Publish waits before arming, retain completion records, recheck before
   awaiting and match full identities on import. Exhaust small interleavings for
   completion before/after recheck, duplicate/late events and no lost wakeups.
+  **Completed:** noncopyable `..task.events` owns actual selected native methods;
+  its explicit manual notification source returns ordinary `..task.token` and
+  `..task.packet` values with independently owned binary `..bytes` data. Typed Ama
+  task/registration/mailbox composition publishes before arm, checks the live
+  registration and complete identity on import, and reconciles readiness before
+  enqueueing. Revocation overrides earlier readiness; an early resume rechecks
+  and yields until mailbox delivery. Native tests exhaust six callback boundaries,
+  including synchronous arm completion; generated execution covers six schedules,
+  duplicate/stale notifications, revoked waits, stamp/token mismatches, retained
+  packet copies and invalid service/method lifecycle operations. Standalone methods
+  include their native core; the literal-binding suite now registers its standard
+  root distinctly from its project `.bytes` fixture. Strict full `NDEBUG`, native
+  and generated ASan/UBSan, native ThreadSanitizer, 1716 per-file coverage/header
+  checks and Doxygen rule links pass. Documentation reproducibility is checked
+  before commit. See `docs/implementation/task-registration.md`; unique ready
+  membership, bounded reactor rounds and cancellation remain subsequent tasks.
 - [ ] **T094 — Implement unique FIFO ready membership.** Needs: T093. Coalesce
   readiness and append newly ready/yielding tasks at the tail. Test observed
   completion order, stable ordering within unordered batches and multiple typed

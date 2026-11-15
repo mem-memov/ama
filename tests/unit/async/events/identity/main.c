@@ -109,10 +109,60 @@ static void it_preserves_state_when_submission_or_reference_identity_is_exhauste
     ama_native_event_submission_drop(&current);
     assert(atomic_load(&retirements) == 1 && atomic_load(&event_test_live) == live);
 }
+/** Method resources retain only native lifetime; callbacks preserve stale identities after closure. */
+static void it_binds_native_methods_without_allocating_or_reviving_tokens(void) {
+    size_t live = baseline();
+    _Atomic unsigned retirements = 0;
+    AmaNativeEventService *owner = service(1, &retirements);
+    AmaNativeEventSubmission prepared = prepare(owner), callback = {0};
+    AmaNativeEventKeepalive method = {0};
+    size_t allocations = atomic_load(&event_test_allocations);
+    ok(ama_native_event_service_lease(owner, &method));
+    ok(ama_native_event_service_callback(owner, prepared.token, &callback));
+    assert(atomic_load(&event_test_allocations) == allocations);
+    assert(ama_native_event_token_equal(callback.token, prepared.token));
+    ok(ama_native_event_service_arm(owner, &callback, pending, NULL));
+    assert(ama_native_event_post(&callback, 7, NULL) == AMA_EVENT_QUEUED);
+    bool ready = false;
+    ok(ama_native_event_ready(&prepared, &ready));
+    assert(ready);
+    AmaNativeEventCompletion completion = {0};
+    ok(ama_native_event_service_take(owner, &completion, &ready));
+    assert(ready && completion.code == 7);
+    ama_native_event_completion_drop(&completion);
+    assert(ama_native_event_post(&callback, 8, NULL) == AMA_EVENT_STALE);
+    AmaNativeEventKeepalive unchanged = method;
+    AmaStatus status = ama_native_event_service_lease(owner, &method);
+    assert(status.code == AMA_INVALID_STATE && method.resource == unchanged.resource && method.release == unchanged.release);
+    status = ama_native_event_service_callback(owner, prepared.token, &callback);
+    assert(status.code == AMA_INVALID_STATE && ama_native_event_token_equal(callback.token, prepared.token));
+    size_t references = owner->references;
+    owner->references = SIZE_MAX;
+    AmaNativeEventKeepalive empty = {0};
+    AmaNativeEventSubmission empty_callback = {0};
+    status = ama_native_event_service_lease(owner, &empty);
+    assert(status.code == AMA_LIMIT_EXCEEDED && empty.resource == NULL && empty.release == NULL);
+    status = ama_native_event_service_callback(owner, prepared.token, &empty_callback);
+    assert(status.code == AMA_LIMIT_EXCEEDED && empty_callback.state == NULL);
+    owner->references = references;
+    ama_native_event_service_dispose(&owner);
+    assert(atomic_load(&retirements) == 0);
+    assert(ama_native_event_post(&callback, 9, NULL) == AMA_EVENT_CLOSED);
+    /* Closed service leases grant resource lifetime only, never another active cell. */
+    ok(ama_native_event_service_callback(method.resource, prepared.token, &empty_callback));
+    assert(ama_native_event_post(&empty_callback, 10, NULL) == AMA_EVENT_CLOSED);
+    ama_native_event_submission_drop(&empty_callback);
+    ama_native_event_submission_drop(&callback);
+    ama_native_event_submission_drop(&prepared);
+    assert(atomic_load(&retirements) == 0);
+    method.release(method.resource);
+    assert(atomic_load(&retirements) == 1 && atomic_load(&event_test_live) == live);
+}
 /** Run exact arithmetic, reuse and lifetime boundaries independently of an Ama runtime. */
 void run(void) {
     it_exhausts_small_identity_spaces_without_wrap();
     it_unwinds_every_first_service_allocation_before_publishing_identity();
+    it_binds_native_methods_without_allocating_or_reviving_tokens();
     it_rejects_old_tokens_after_reusing_the_exact_native_cell();
     it_never_revives_a_disposed_service_token();
     it_preserves_state_when_submission_or_reference_identity_is_exhausted();

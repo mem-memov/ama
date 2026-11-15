@@ -1,0 +1,32 @@
+# Prepare native identity, then let the task publish its visible registration before arm.
+@!
+record
+.record
+wait
+.registration
+service
+..task.events
+import
+.import
+validate
+.validate
+probe
+.worker
+ready&[]
+.task
+record !
+record
+ epoch !
+ generation !
+ enrolled !
+  < |1
+ waiting !
+  < |1
+record
+ task& >> task&
+ mailbox& >> mailbox&
+service !
+ < |1
+service
+ prepare !
+  > token

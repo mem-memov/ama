@@ -1,0 +1,45 @@
+# Validate task liveness, enrollment stamps, and the complete native token before publishing data.
+@<
+stamp&
+.registration
+packet
+..task.packet
+@>
+accepted
+..std.condition
+@!
+true
+..std.condition
+ |1
+validate
+.validate
+same
+..task.token.same
+packet
+:
+ >
+validate !
+ < stamp&
+ > valid
+valid
+:
+ >
+stamp&
+ token >> expected
+ mailbox& >> mailbox&
+packet
+ token >> actual
+ data >> data
+ code >> code
+same !
+ < expected
+ < actual
+ > equal
+equal
+:
+ >
+mailbox& !
+ < data
+ < code
+accepted
+ true

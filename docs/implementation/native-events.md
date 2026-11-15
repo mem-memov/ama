@@ -4,8 +4,8 @@ This component implements the native resource boundary of
 [ASYNC-05](../../spec/language/async-and-parallelism.md#async-05).
 It supplies storage and submission ordering needed by
 [ASYNC-06](../../spec/language/async-and-parallelism.md#async-06).
-Publishing the corresponding typed Ama registration and importing a completion
-through an ordinary generated access boundary are the next task, T093.
+[Registration and import](task-registration.md) connect this storage to typed Ama
+state through normal generated access boundaries.
 
 ## Two state domains remain separate
 
@@ -34,7 +34,7 @@ The C boundary follows this explicit sequence:
 1. `ama_native_event_service_prepare` reserves a native cell and a final immutable
    token, returning an owning callback lease. It performs no foreign operation.
 2. The executor publishes that token together with its typed task reference and
-   epoch/generation in the Ama registration. T093 provides that bridge.
+   epoch/generation in the Ama registration. The registration/import component provides that bridge.
 3. `ama_native_event_service_arm` authenticates the reservation and marks it Armed
    under the native metadata gate. It then invokes the borrowed C submission
    routine **outside** the gate.
@@ -140,8 +140,8 @@ bytes after service closure and releases them with `buffer_drop` or
 | Closed service | `AMA_EVENT_CLOSED`; no cell access |
 | Borrowed/foreign/mismatched byte owner | `AMA_EVENT_INVALID_BUFFER`; ownership remains with producer |
 
-These C statuses describe the native component. A future typed native wrapper
-maps temporary capacity/backpressure into its declared operation contract;
+These C statuses describe the native component. The current explicit manual-source
+wrapper treats exhausted capacity as a technical failure;
 returning a nonzero native body status remains the ordinary technical-error path.
 Native completion `code` is separate operation-specific data and may be negative.
 Native status message bytes are image-owned; consume them while retaining the
@@ -157,7 +157,7 @@ the destroyed Ama context. A late result is rejected and its producer cleans up
 its own bytes. No callback dereferences former Ama storage.
 
 The native reference count is exactly the unique owner (including its close
-operation), plus owning callback leases and owning byte allocations. Every retain
+operation), plus owning method resource leases, callback leases and byte allocations. Every retain
 checks its finite bound before incrementing. Queue buffers can refer back to their
 service; explicit close breaks that ownership cycle while the unique owner remains
 retained. The last reference can therefore retire only after closure, outside

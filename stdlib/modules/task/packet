@@ -1,0 +1,9 @@
+# Completion presence is separate from its operation-specific signed code.
+@>
+token
+..task.token
+code
+..integer
+data
+..bytes
+@C

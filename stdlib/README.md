@@ -94,7 +94,7 @@ wait; Completed authorizes consuming its terminal results. Its separate
 `..failure` value describes an application outcome. False failure alone does not
 mean completion. [The phase contract](../docs/implementation/task-phases.md)
 explains actual yields, restart, nested propagation, representation and tests.
-Enrollment and event services remain subsequent roadmap tasks.
+Enrollment and native event values are described below.
 
 ## Explicit enrollment values
 
@@ -112,7 +112,26 @@ It preserves counter history throughout the task's lifetime and explicitly
 invalidates old registrations on replacement, restart and removal. An ordinary
 `!` or `%` does not discover a scheduler. [The enrollment contract](../docs/implementation/task-enrollment.md)
 provides the concrete typed ownership graph, complete matching key, exhaustion
-proof and real execution tests. Native events remain the following component.
+proof and real execution tests.
+
+## Native event values and explicit waits
+
+[`..task.events`](modules/task/events) owns a fixed-capacity native completion
+service. Its actual `prepare`, `arm`, `post`, `ready` and `take` result modules
+are invoked directly with selected-result calls; the service and methods cannot
+be copied. The current source supports explicit manual notification. Native C
+providers separately support synchronous or worker-thread completion.
+
+`..task.token` stores complete immutable native identity without callback rights;
+`..task.token.same` compares it. `..task.packet` contains a presence condition and
+declared token, signed integer code and binary data results. [`..bytes`](modules/bytes)
+provides owned immutable binary values, including zero and non-UTF-8 bytes.
+
+The [registration/import contract](../docs/implementation/task-registration.md)
+shows how to publish a typed wait before arm, recheck readiness before Awaiting,
+import through generated borrows and reconcile retained readiness. Callbacks do
+not update Ama fields or resume tasks. FIFO membership, bounded reactor rounds
+and cancellation remain subsequent roadmap tasks.
 
 ## Native construction and ownership
 

@@ -203,8 +203,61 @@ static void it_rejects_invalid_shapes_and_discards_only_unarmed_reservations(voi
     ama_native_event_submission_drop(&job);
     assert(atomic_load(&retirements) == 1 && atomic_load(&event_test_live) == live);
 }
+/** Exhaust callback positions relative to readiness query, Awaiting commit, return and reconciliation.
+ * The abstract phase/flag variables model executor-owned protocol state; actual retained
+ * records and token authentication use the production native queue in every schedule.
+ */
+static void it_preserves_a_completion_at_every_wait_reconciliation_boundary(void) {
+    size_t live = baseline();
+    for (unsigned arrival = 0; arrival < 6; arrival++) {
+        _Atomic unsigned retirements = 0;
+        AmaNativeEventService *owner = service(1, &retirements);
+        AmaNativeEventSubmission job = prepare(owner);
+        /* Publication precedes the arm call, including its synchronous callback. */
+        AmaNativeEventToken published = job.token;
+        bool registration_live = true, recorded_ready = false, awaiting = false;
+        Immediate input = {.code = 17};
+        ok(ama_native_event_service_arm(owner, &job, arrival == 0 ? immediate : pending,
+            arrival == 0 ? &input : NULL));
+        for (unsigned boundary = 1; boundary <= 5; boundary++) {
+            if (arrival == boundary) {
+                assert(registration_live && ama_native_event_token_equal(published, job.token));
+                assert(ama_native_event_post(&job, 17, NULL) == AMA_EVENT_QUEUED);
+            }
+            if (boundary == 1) {
+                bool completed = false;
+                ok(ama_native_event_ready(&job, &completed));
+                recorded_ready = completed;
+            }
+            if (boundary == 2) { awaiting = !recorded_ready; }
+            if (boundary == 4 || boundary == 5) {
+                AmaNativeEventCompletion completion = {0};
+                bool available = false;
+                ok(ama_native_event_service_take(owner, &completion, &available));
+                if (available) {
+                    assert(registration_live && ama_native_event_token_equal(published, completion.token));
+                    assert(completion.code == 17);
+                    recorded_ready = true;
+                    ama_native_event_completion_drop(&completion);
+                }
+                if (recorded_ready) { awaiting = false; }
+            }
+            if (arrival < boundary || (arrival == boundary && boundary != 0)) {
+                bool retained = false;
+                if (!recorded_ready) { ok(ama_native_event_ready(&job, &retained)); }
+                assert(recorded_ready || retained);
+            }
+        }
+        assert(recorded_ready && !awaiting);
+        assert(ama_native_event_post(&job, 18, NULL) == AMA_EVENT_STALE);
+        ama_native_event_service_dispose(&owner);
+        ama_native_event_submission_drop(&job);
+        assert(atomic_load(&retirements) == 1 && atomic_load(&event_test_live) == live);
+    }
+}
 /** Register synchronous, ownership, fault and preflight boundaries explicitly. */
 void run(void) {
+    it_preserves_a_completion_at_every_wait_reconciliation_boundary();
     it_retains_synchronous_completions_and_drains_in_acceptance_order();
     it_preserves_payloads_on_unarmed_duplicate_and_foreign_rejection();
     it_unwinds_allocations_and_preserves_keepalive_on_factory_failure();
