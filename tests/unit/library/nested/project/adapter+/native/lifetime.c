@@ -26,11 +26,9 @@ static AmaStatus AMA_NATIVE(close_child)(struct AMA_NATIVE(Child) *child) {
     return consumed && accepted ? ama_status_success()
         : ama_status_make(AMA_NATIVE_FAILURE,"Child context cleanup failed",sizeof("Child context cleanup failed")-1);
 }
-AmaStatus AMA_NATIVE(initialize)(AMA_NATIVE(State) *state) {
-    state->child=NULL;
-    struct AMA_NATIVE(Child) *child=malloc(sizeof(*child));
-    if (child==NULL) { return ama_status_make(AMA_OUT_OF_MEMORY,NULL,0); }
-    *child=(struct AMA_NATIVE(Child)){0};
+/** Open only an empty holder; explicit reset and initialization share the same exact unwind. */
+static AmaStatus AMA_NATIVE(open_child)(struct AMA_NATIVE(Child) *child) {
+    if (child->context.opaque[0]!=0) { return ama_status_make(AMA_INVALID_STATE,NULL,0); }
     bool created=AMA_NATIVE(accepted)(AMA_EMBED_CONTEXT_CREATE(&child->context));
     if (created) {
         AMA_EMBED_CREATED(child->context);
@@ -40,9 +38,18 @@ AmaStatus AMA_NATIVE(initialize)(AMA_NATIVE(State) *state) {
         /* Native initialization failure receives no destructor credit. Own this unwind,
          * including the context left terminal by an accepted failed child constructor. */
         (void)AMA_NATIVE(close_child)(child);
-        free(child);
         return ama_status_make(AMA_NATIVE_FAILURE,"Child resource construction failed",sizeof("Child resource construction failed")-1);
     }
+    child->outcome=0;
+    return ama_status_success();
+}
+AmaStatus AMA_NATIVE(initialize)(AMA_NATIVE(State) *state) {
+    state->child=NULL;
+    struct AMA_NATIVE(Child) *child=malloc(sizeof(*child));
+    if (child==NULL) { return ama_status_make(AMA_OUT_OF_MEMORY,NULL,0); }
+    *child=(struct AMA_NATIVE(Child)){0};
+    AmaStatus status=AMA_NATIVE(open_child)(child);
+    if (status.code!=AMA_OK) { free(child); return status; }
     state->child=child;
     return ama_status_success();
 }

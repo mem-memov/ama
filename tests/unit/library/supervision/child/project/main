@@ -1,0 +1,35 @@
+@=
+greeting
+..text
+ |child factory
+@<
+request
+..text
+ greeting
+@>
+response
+..text
+previous
+..std.condition
+@!
+probe
+.probe
+worker
+.worker
+probe !
+worker !
+ request < request
+ response > response
+ previous > previous
+%
+probe !
+worker !
+ request < request
+ response > response
+ previous > previous
+%
+probe !
+worker !
+ request < request
+ response > response
+ previous > previous

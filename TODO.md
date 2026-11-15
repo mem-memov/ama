@@ -2124,7 +2124,7 @@ Contracts: [EMBED-01–EMBED-08](spec/implementation/c-library.md),
   Packaging/nesting and CLI build leaves are connected to common test dispatch.
   Strict full `NDEBUG`, generated-code ASan/UBSan, 1542 per-file coverage/header
   checks and reproducible Doxygen pass. See `docs/implementation/c-library-nested.md`.
-- [ ] **T130 — Exercise nested suspension and failure supervision.** Needs:
+- [x] **T130 — Exercise nested suspension and failure supervision.** Needs:
   T074, T086, T129. Execute the exact chain parent Ama entry → native C adapter →
   child component context without reentering either active context. Have child
   yield return normally through C; explicitly return or yield the parent and
@@ -2133,6 +2133,20 @@ Contracts: [EMBED-01–EMBED-08](spec/implementation/c-library.md),
   data surviving child cleanup, independent parent continuation and deliberately
   requested propagation as a parent technical failure. Cover child abandonment/
   disposal without automatically resuming its saved position or retaining borrows.
+  Evidence: `tests/unit/library/supervision` executes the complete outer Ama →
+  native adapter → isolated child Ama chain with two independent child/parent
+  yields, retained native address/state, fresh entry and abandonment. Explicitly
+  uninlined C helper intervals end before every returned yield. A scalar-only
+  foreign C observer verifies both active-context gates, including idle sibling
+  instances, while retaining no Ama borrow. Declared `propagate` selects parent
+  technical failure or a coherent copied `..failure`; secondary child cleanup
+  failure cannot replace its primary report. Supervised children become terminal
+  until explicit reset, which reconstructs fresh context/roots. Own report/input/
+  snapshot allocation failures remain parent technical failures and retire every
+  child resource, including collateral sibling cleanup. Consumers compile without
+  the SDK; generated code and the shared lifecycle regressions pass ASan/UBSan.
+  Strict full `NDEBUG`, 1573 per-file coverage/header checks and reproducible
+  Doxygen pass. See `docs/implementation/c-library-supervision.md`.
 - [ ] **T131 — Accept standalone and nested C-library consumption.** Needs:
   T089, T128, T130. Publish reproducible static/shared-library host and nested
   Ama/native/Ama examples with generated headers, manifest and exact build/link

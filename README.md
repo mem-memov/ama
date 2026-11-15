@@ -45,6 +45,8 @@ C/assert tests. Check-only success does not validate handwritten C bodies.
   components, exact symbol isolation, reload identities and code lifetime pins.
 - [Native parent and Ama child](docs/implementation/c-library-nested.md): exclusive
   foreign context ownership, typed value transfer and partial-construction cleanup.
+- [Nested suspension and supervision](docs/implementation/c-library-supervision.md):
+  independent continuations, copied failure reports and explicit child reset.
 - [Contributor guide](CONTRIBUTORS.md): readable components, formatting and tests.
 - [Standard library](stdlib/README.md): library boundaries and native companions.
 - [Executable examples](docs/implementation/examples.md): stateful methods, self-reference,

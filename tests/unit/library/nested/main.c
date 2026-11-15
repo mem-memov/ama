@@ -3,6 +3,8 @@
  */
 #include "common.c"
 #include "child.c"
+#include "support/probe.c"
+#include "support/link.c"
 #include "parent.c"
 #include "copy.c"
 /** Real compiled C calls exercise the native resource exception without exposing private child storage. */
@@ -11,7 +13,7 @@ static void it_embeds_independent_child_resources_through_checked_public_apis(vo
     LibraryBuild child,parent; NativeScaffold child_assembly,parent_assembly;
     build_child(&child,&child_assembly);
     build_parent(&parent,&parent_assembly);
-    link_nested(); nested_execute("generated/consumer");
+    link_nested(NULL); nested_execute("generated/consumer");
     native_scaffold_destroy(&parent_assembly); library_build_destroy(&parent);
     native_scaffold_destroy(&child_assembly); library_build_destroy(&child);
     destroy_test();

@@ -69,6 +69,12 @@ static void public_aliases(const LibraryBuild *build, const char *tag, const cha
     if(build->exports->next!=NULL) {
         written=fprintf(output,"#define %s_BROKEN(n) %s_ ## n\n",tag,build->exports->next->identity->internal_name); assert(written>0);
     }
+    for(const LibrarySchema *schema=build->schemas;schema!=NULL;schema=schema->next) {
+        if(strcmp(schema->name,"failure")==0) {
+            assert(schema->kind==LIBRARY_FAILURE);
+            written=fprintf(output,"#define %s_FAILURE(n) %s_ ## n\n",tag,schema->identity->internal_name); assert(written>0);
+        }
+    }
     int closed=fclose(output); assert(closed==0);
 }
 /** Execute one independently linked consumer without any shell or compiler SDK borrow. */

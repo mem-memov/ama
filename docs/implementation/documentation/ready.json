@@ -80394,6 +80394,11 @@
         "case": "it_embeds_independent_child_resources_through_checked_public_apis",
         "command": "make -C tests/unit/library",
         "source": "tests/unit/library/nested/main.c"
+      },
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library",
+        "source": "tests/unit/library/supervision/main.c"
       }
     ]
   },
@@ -84244,6 +84249,11 @@
         "case": "it_embeds_independent_child_resources_through_checked_public_apis",
         "command": "make -C tests/unit/library/nested",
         "source": "tests/unit/library/nested/main.c"
+      },
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
       }
     ]
   },
@@ -84325,6 +84335,11 @@
         "case": "it_rejects_reference_transport_across_the_component_boundary",
         "command": "make -C tests/unit/library/nested",
         "source": "tests/unit/library/nested/main.c"
+      },
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
       }
     ]
   },
@@ -84336,6 +84351,11 @@
         "case": "it_embeds_independent_child_resources_through_checked_public_apis",
         "command": "make -C tests/unit/library/nested",
         "source": "tests/unit/library/nested/main.c"
+      },
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
       }
     ]
   },
@@ -84369,6 +84389,11 @@
         "case": "it_embeds_independent_child_resources_through_checked_public_apis",
         "command": "make -C tests/unit/library/nested",
         "source": "tests/unit/library/nested/main.c"
+      },
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
       }
     ]
   },
@@ -84402,6 +84427,11 @@
         "case": "it_embeds_independent_child_resources_through_checked_public_apis",
         "command": "make -C tests/unit/library/nested",
         "source": "tests/unit/library/nested/main.c"
+      },
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
       }
     ]
   },
@@ -84500,6 +84530,410 @@
         "case": "it_embeds_independent_child_resources_through_checked_public_apis",
         "command": "make -C tests/unit/library/nested",
         "source": "tests/unit/library/nested/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/nested/project/adapter+/native/resource.c": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/nested/support/link.c": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/nested/support/probe.c": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/Makefile": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/child.c": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/child/project/main": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/child/project/probe": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/child/project/probe.abi": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/child/project/probe.c": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/child/project/probe.h": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_resource_probe_##name",
+      "-"
+    ]
+  },
+  "tests/unit/library/supervision/child/project/worker": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/child/project/worker.abi": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/child/project/worker.c": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/child/project/worker.h": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_resource_probe_##name",
+      "-"
+    ]
+  },
+  "tests/unit/library/supervision/consumer/common.c": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/consumer/continuations.c": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/consumer/failures.c": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/consumer/main.c": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/consumer/supervision.c": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/main.c": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/parent.c": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/probe.c": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/probe.h": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/library/supervision/project/adapter": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/project/adapter+/native/call.c": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/project/adapter+/native/entry.c": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/project/adapter+/native/transport.c": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/project/adapter.abi": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/project/adapter.c": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/project/adapter.h": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_resource_probe_##name",
+      "-"
+    ]
+  },
+  "tests/unit/library/supervision/project/main": {
+    "contract": "docs/implementation/c-library-supervision.md",
+    "purpose": "Exercise independent Ama/native/Ama saved positions, isolated failure supervision and complete retirement before any outer yield.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "command": "make -C tests/unit/library/supervision",
+        "source": "tests/unit/library/supervision/main.c"
       }
     ]
   }
