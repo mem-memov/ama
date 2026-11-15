@@ -2241,10 +2241,23 @@ Contracts: [ASYNC-01–ASYNC-12](spec/language/async-and-parallelism.md).
   checks and Doxygen rule links pass. Documentation reproducibility is checked
   before commit. See `docs/implementation/task-registration.md`; unique ready
   membership, bounded reactor rounds and cancellation remain subsequent tasks.
-- [ ] **T094 — Implement unique FIFO ready membership.** Needs: T093. Coalesce
+- [x] **T094 — Implement unique FIFO ready membership.** Needs: T093. Coalesce
   readiness and append newly ready/yielding tasks at the tail. Test observed
   completion order, stable ordering within unordered batches and multiple typed
   queues without hidden references or duplicate task steps.
+  **Completed:** the executable typed Ama queue schema owns explicit entries with
+  checked record references and epoch snapshots. Enqueue coalesces shared membership;
+  pop authenticates the head and clears its flag before stepping; Ready yields rejoin
+  at the tail. Ordered native completions enqueue in acceptance order; unordered
+  batches reconcile in stable registry append order. `..task.sequence` publishes
+  nonwrapping snapshots from persistent private history, including initializer
+  reentry after completion. Tests cover two nominal task domains, two matching
+  queues, empty queue references, completed/late readiness, stale epochs and removed
+  then replaced owners. Native instrumentation rejects execution while still queued,
+  including under `NDEBUG`. Strict full tests, generated ASan/UBSan, 1737 per-file
+  coverage/header checks and Doxygen rule links pass; reproducibility is checked
+  before commit. See `docs/implementation/ready-queues.md`. Bounded rounds, reactor
+  waits, detachment and copy/failure boundaries remain subsequent tasks.
 - [ ] **T095 — Implement bounded scheduling rounds and reactor waits.** Needs:
   T094. Enforce finite positive step/import budgets and queue service bounds;
   import before blocking and report quiescence. Test continuously replenished

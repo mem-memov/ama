@@ -1,0 +1,23 @@
+# Ordered streams enqueue immediately after each accepted observed completion.
+@<
+queue&
+.kind.queue
+registry&
+.kind.registry
+packet
+..task.packet
+@!
+observe
+.kind.observe
+enqueue
+.kind.enqueue
+observe !
+ < registry&
+ < packet
+ > found
+ > record&
+found
+?
+ enqueue !
+  < queue&
+  < record&

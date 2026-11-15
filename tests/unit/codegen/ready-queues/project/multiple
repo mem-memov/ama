@@ -1,0 +1,56 @@
+# One record cannot enter two queues; two distinct nominal task domains stay explicit.
+@!
+red registry
+.red.registry
+blue registry
+.blue.registry
+red queue
+.red.queue
+other red queue
+.red.queue
+blue queue
+.blue.queue
+red enqueue
+.red.enqueue
+blue enqueue
+.blue.enqueue
+red dispatch
+.red.dispatch
+blue dispatch
+.blue.dispatch
+red registry
+ records[]
+  append !
+   > red&
+red& !
+ < |1
+blue registry
+ records[]
+  append !
+   > blue&
+blue& !
+ < |4
+red enqueue !
+ < &red queue
+ < red&
+red enqueue !
+ < &other red queue
+ < red&
+blue enqueue !
+ < &blue queue
+ < blue&
+red dispatch !
+ < &other red queue
+red dispatch !
+ < &red queue
+blue dispatch !
+ < &blue queue
+red enqueue !
+ < &other red queue
+ < red&
+red dispatch !
+ < &red queue
+blue dispatch !
+ < &blue queue
+red dispatch !
+ < &other red queue

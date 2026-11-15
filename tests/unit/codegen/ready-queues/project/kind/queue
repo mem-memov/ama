@@ -1,0 +1,5 @@
+# This scheduler-owned FIFO owns entries; entries retain checked references, not tasks.
+@>
+entries[]
+.kind.entry
+@!

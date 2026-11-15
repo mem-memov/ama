@@ -37987,6 +37987,11 @@
         "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
         "command": "make -C tests/unit/codegen/enrollment",
         "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_coalesces_readiness_and_requeues_ready_yields_at_the_tail",
+        "command": "make -C tests/unit/codegen",
+        "source": "tests/unit/codegen/ready-queues/main.c"
       }
     ]
   },
@@ -87915,6 +87920,392 @@
         "case": "it_rejects_revoked_waits_and_mismatched_import_identities",
         "command": "make -C tests/unit/codegen/event-bridge",
         "source": "tests/unit/codegen/event-bridge/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/sequence": {
+    "contract": "docs/implementation/ready-queues.md",
+    "purpose": "Maintain unique declared FIFO membership, exact enrollment epochs and explicit typed dispatch order.",
+    "tests": [
+      {
+        "case": "it_coalesces_readiness_and_requeues_ready_yields_at_the_tail",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_discards_obsolete_epochs_and_dead_owners_without_touching_new_membership",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/ready-queues/Makefile": {
+    "contract": "docs/implementation/ready-queues.md",
+    "purpose": "Maintain unique declared FIFO membership, exact enrollment epochs and explicit typed dispatch order.",
+    "tests": [
+      {
+        "case": "it_coalesces_readiness_and_requeues_ready_yields_at_the_tail",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_preserves_the_observed_native_completion_stream_order",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_orders_unordered_batch_readiness_by_stable_registration_order",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_coalesces_across_queues_and_executes_two_distinct_nominal_task_domains",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_discards_obsolete_epochs_and_dead_owners_without_touching_new_membership",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_detects_a_step_attempt_before_membership_has_been_cleared",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/ready-queues/main.c": {
+    "contract": "docs/implementation/ready-queues.md",
+    "purpose": "Maintain unique declared FIFO membership, exact enrollment epochs and explicit typed dispatch order.",
+    "tests": [
+      {
+        "case": "it_coalesces_readiness_and_requeues_ready_yields_at_the_tail",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_preserves_the_observed_native_completion_stream_order",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_orders_unordered_batch_readiness_by_stable_registration_order",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_coalesces_across_queues_and_executes_two_distinct_nominal_task_domains",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_discards_obsolete_epochs_and_dead_owners_without_touching_new_membership",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_detects_a_step_attempt_before_membership_has_been_cleared",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/ready-queues/project/coalesce": {
+    "contract": "docs/implementation/ready-queues.md",
+    "purpose": "Maintain unique declared FIFO membership, exact enrollment epochs and explicit typed dispatch order.",
+    "tests": [
+      {
+        "case": "it_coalesces_readiness_and_requeues_ready_yields_at_the_tail",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/ready-queues/project/guard": {
+    "contract": "docs/implementation/ready-queues.md",
+    "purpose": "Maintain unique declared FIFO membership, exact enrollment epochs and explicit typed dispatch order.",
+    "tests": [
+      {
+        "case": "it_detects_a_step_attempt_before_membership_has_been_cleared",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/ready-queues/project/kind/dispatch": {
+    "contract": "docs/implementation/ready-queues.md",
+    "purpose": "Maintain unique declared FIFO membership, exact enrollment epochs and explicit typed dispatch order.",
+    "tests": [
+      {
+        "case": "it_coalesces_readiness_and_requeues_ready_yields_at_the_tail",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_coalesces_across_queues_and_executes_two_distinct_nominal_task_domains",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_discards_obsolete_epochs_and_dead_owners_without_touching_new_membership",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/ready-queues/project/kind/enqueue": {
+    "contract": "docs/implementation/ready-queues.md",
+    "purpose": "Maintain unique declared FIFO membership, exact enrollment epochs and explicit typed dispatch order.",
+    "tests": [
+      {
+        "case": "it_coalesces_readiness_and_requeues_ready_yields_at_the_tail",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_coalesces_across_queues_and_executes_two_distinct_nominal_task_domains",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_discards_obsolete_epochs_and_dead_owners_without_touching_new_membership",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/ready-queues/project/kind/entry": {
+    "contract": "docs/implementation/ready-queues.md",
+    "purpose": "Maintain unique declared FIFO membership, exact enrollment epochs and explicit typed dispatch order.",
+    "tests": [
+      {
+        "case": "it_coalesces_readiness_and_requeues_ready_yields_at_the_tail",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_coalesces_across_queues_and_executes_two_distinct_nominal_task_domains",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_discards_obsolete_epochs_and_dead_owners_without_touching_new_membership",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/ready-queues/project/kind/import": {
+    "contract": "docs/implementation/ready-queues.md",
+    "purpose": "Maintain unique declared FIFO membership, exact enrollment epochs and explicit typed dispatch order.",
+    "tests": [
+      {
+        "case": "it_preserves_the_observed_native_completion_stream_order",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_orders_unordered_batch_readiness_by_stable_registration_order",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/ready-queues/project/kind/observe": {
+    "contract": "docs/implementation/ready-queues.md",
+    "purpose": "Maintain unique declared FIFO membership, exact enrollment epochs and explicit typed dispatch order.",
+    "tests": [
+      {
+        "case": "it_preserves_the_observed_native_completion_stream_order",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_orders_unordered_batch_readiness_by_stable_registration_order",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/ready-queues/project/kind/pop": {
+    "contract": "docs/implementation/ready-queues.md",
+    "purpose": "Maintain unique declared FIFO membership, exact enrollment epochs and explicit typed dispatch order.",
+    "tests": [
+      {
+        "case": "it_coalesces_readiness_and_requeues_ready_yields_at_the_tail",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_coalesces_across_queues_and_executes_two_distinct_nominal_task_domains",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_discards_obsolete_epochs_and_dead_owners_without_touching_new_membership",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/ready-queues/project/kind/queue": {
+    "contract": "docs/implementation/ready-queues.md",
+    "purpose": "Maintain unique declared FIFO membership, exact enrollment epochs and explicit typed dispatch order.",
+    "tests": [
+      {
+        "case": "it_coalesces_readiness_and_requeues_ready_yields_at_the_tail",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_coalesces_across_queues_and_executes_two_distinct_nominal_task_domains",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_discards_obsolete_epochs_and_dead_owners_without_touching_new_membership",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/ready-queues/project/kind/reconcile": {
+    "contract": "docs/implementation/ready-queues.md",
+    "purpose": "Maintain unique declared FIFO membership, exact enrollment epochs and explicit typed dispatch order.",
+    "tests": [
+      {
+        "case": "it_orders_unordered_batch_readiness_by_stable_registration_order",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/ready-queues/project/kind/record": {
+    "contract": "docs/implementation/ready-queues.md",
+    "purpose": "Maintain unique declared FIFO membership, exact enrollment epochs and explicit typed dispatch order.",
+    "tests": [
+      {
+        "case": "it_coalesces_readiness_and_requeues_ready_yields_at_the_tail",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_coalesces_across_queues_and_executes_two_distinct_nominal_task_domains",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_discards_obsolete_epochs_and_dead_owners_without_touching_new_membership",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/ready-queues/project/kind/registry": {
+    "contract": "docs/implementation/ready-queues.md",
+    "purpose": "Maintain unique declared FIFO membership, exact enrollment epochs and explicit typed dispatch order.",
+    "tests": [
+      {
+        "case": "it_coalesces_readiness_and_requeues_ready_yields_at_the_tail",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_coalesces_across_queues_and_executes_two_distinct_nominal_task_domains",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_discards_obsolete_epochs_and_dead_owners_without_touching_new_membership",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/ready-queues/project/kind/step": {
+    "contract": "docs/implementation/ready-queues.md",
+    "purpose": "Maintain unique declared FIFO membership, exact enrollment epochs and explicit typed dispatch order.",
+    "tests": [
+      {
+        "case": "it_coalesces_readiness_and_requeues_ready_yields_at_the_tail",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_coalesces_across_queues_and_executes_two_distinct_nominal_task_domains",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_discards_obsolete_epochs_and_dead_owners_without_touching_new_membership",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/ready-queues/project/kind/task": {
+    "contract": "docs/implementation/ready-queues.md",
+    "purpose": "Maintain unique declared FIFO membership, exact enrollment epochs and explicit typed dispatch order.",
+    "tests": [
+      {
+        "case": "it_coalesces_readiness_and_requeues_ready_yields_at_the_tail",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_coalesces_across_queues_and_executes_two_distinct_nominal_task_domains",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      },
+      {
+        "case": "it_discards_obsolete_epochs_and_dead_owners_without_touching_new_membership",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/ready-queues/project/multiple": {
+    "contract": "docs/implementation/ready-queues.md",
+    "purpose": "Maintain unique declared FIFO membership, exact enrollment epochs and explicit typed dispatch order.",
+    "tests": [
+      {
+        "case": "it_coalesces_across_queues_and_executes_two_distinct_nominal_task_domains",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/ready-queues/project/ordered": {
+    "contract": "docs/implementation/ready-queues.md",
+    "purpose": "Maintain unique declared FIFO membership, exact enrollment epochs and explicit typed dispatch order.",
+    "tests": [
+      {
+        "case": "it_preserves_the_observed_native_completion_stream_order",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/ready-queues/project/stale": {
+    "contract": "docs/implementation/ready-queues.md",
+    "purpose": "Maintain unique declared FIFO membership, exact enrollment epochs and explicit typed dispatch order.",
+    "tests": [
+      {
+        "case": "it_discards_obsolete_epochs_and_dead_owners_without_touching_new_membership",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/ready-queues/project/unordered": {
+    "contract": "docs/implementation/ready-queues.md",
+    "purpose": "Maintain unique declared FIFO membership, exact enrollment epochs and explicit typed dispatch order.",
+    "tests": [
+      {
+        "case": "it_orders_unordered_batch_readiness_by_stable_registration_order",
+        "command": "make -C tests/unit/codegen/ready-queues",
+        "source": "tests/unit/codegen/ready-queues/main.c"
       }
     ]
   }

@@ -1,0 +1,31 @@
+# The task only publishes phases; its caller performs explicit tail requeue after each step.
+@<
+owner&
+.kind.record
+@>
+phase
+..task.phase
+@!
+trace
+.trace
+ready phase
+..task.phase.ready
+completed phase
+..task.phase.completed
+owner&
+ id >> id
+ queued >> queued
+trace !
+ < id
+ < queued
+ready phase !
+ > phase
+%
+owner&
+ id >> id
+ queued >> queued
+trace !
+ < id
+ < queued
+completed phase !
+ > phase

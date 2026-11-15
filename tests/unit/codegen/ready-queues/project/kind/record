@@ -1,0 +1,43 @@
+# Enrollment owns its task; queue membership is declared state, not a native handle table.
+@<
+identifier
+..std.index
+operation
+..task.token
+@>
+self&
+.kind.record
+ &
+task&
+.kind.task
+id
+..std.index
+epoch
+..task.generation
+enrolled
+..task.flag
+ready
+..task.flag
+queued
+..task.flag
+started
+..task.flag
+token
+..task.token
+@!
+run sequence
+..task.sequence
+owned task
+.kind.task
+id
+ identifier
+run sequence !
+ > epoch
+enrolled !
+ < |1
+ready !
+ < |1
+task&
+ &owned task
+token
+ operation

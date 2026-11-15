@@ -1,0 +1,16 @@
+# Snapshot enrollment identity so an obsolete physical entry cannot step a new run.
+@<
+target&
+.kind.record
+run epoch
+..task.generation
+@>
+record&
+.kind.record
+epoch
+..task.generation
+@!
+record&
+ target&
+epoch
+ run epoch

@@ -1,0 +1,21 @@
+# A deliberate protocol violation proves the native trace checks queued state even under NDEBUG.
+@!
+registry
+.red.registry
+queue
+.red.queue
+enqueue
+.red.enqueue
+step
+.red.step
+registry
+ records[]
+  append !
+   > record&
+record& !
+ < |1
+enqueue !
+ < &queue
+ < record&
+step !
+ < record&

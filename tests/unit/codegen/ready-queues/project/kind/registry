@@ -1,0 +1,5 @@
+# Append order is the stable registration order for one typed scheduler domain.
+@>
+records[]
+.kind.record
+@!

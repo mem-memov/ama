@@ -1,0 +1,96 @@
+# Duplicate readiness is coalesced, and each Ready yield is appended behind existing work.
+@!
+registry
+.red.registry
+queue
+.red.queue
+invalid queue&
+.red.queue
+enqueue
+.red.enqueue
+dispatch
+.red.dispatch
+trace
+.trace
+registry
+ records[]
+  append !
+   > first&
+first& !
+ < |1
+registry
+ records[]
+  append !
+   > second&
+second& !
+ < |2
+registry
+ records[]
+  append !
+   > third&
+third& !
+ < |3
+enqueue !
+ < invalid queue&
+ < first&
+enqueue !
+ < &queue
+ < first&
+enqueue !
+ < &queue
+ < first&
+enqueue !
+ < &queue
+ < second&
+enqueue !
+ < &queue
+ < third&
+enqueue !
+ < &queue
+ < second&
+dispatch !
+ < &queue
+dispatch !
+ < invalid queue&
+dispatch !
+ < &queue
+dispatch !
+ < &queue
+dispatch !
+ < &queue
+dispatch !
+ < &queue
+dispatch !
+ < &queue
+first&
+ ready !
+  < |1
+enqueue !
+ < &queue
+ < first&
+dispatch !
+ < &queue
+queue
+ entries[]
+  length !
+   > count
+count
+?
+ trace !
+  < |999
+first&
+ queued >> queued
+queued
+?
+ trace !
+  < |998
+# A new epoch restarts the same owned task even when the preceding run completed.
+first& !
+ < |1
+enqueue !
+ < &queue
+ < first&
+dispatch !
+ < &queue
+dispatch !
+ < &queue

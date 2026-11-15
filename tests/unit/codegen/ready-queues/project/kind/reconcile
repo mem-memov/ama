@@ -1,0 +1,48 @@
+# Stable append order determines unordered-batch insertion order; snapshot bounds are finite.
+@<
+queue&
+.kind.queue
+registry&
+.kind.registry
+@!
+zero
+..integer
+ |0
+index
+..integer
+before
+..integer.before
+next
+..integer.next
+enqueue
+.kind.enqueue
+index
+ zero
+registry&
+ records[]
+  length !
+   > count
+:
+ >
+before !
+ < index
+ < count
+ > more
+more
+{
+ registry&
+  records[index]
+   self& >> record&
+ :
+  >
+ enqueue !
+  < queue&
+  < record&
+ next !
+  < index
+  > index
+ before !
+  < index
+  < count
+  > more
+}

@@ -1,0 +1,81 @@
+# An obsolete epoch at the head must not clear current membership or execute its task.
+@!
+registry
+.red.registry
+queue
+.red.queue
+enqueue
+.red.enqueue
+dispatch
+.red.dispatch
+trace
+.trace
+registry
+ records[]
+  append !
+   > record&
+record& !
+ < |1
+enqueue !
+ < &queue
+ < record&
+record& !
+ < |1
+enqueue !
+ < &queue
+ < record&
+dispatch !
+ < &queue
+record&
+ queued >> queued
+queued
+:
+ trace !
+  < |999
+dispatch !
+ < &queue
+dispatch !
+ < &queue
+# A removed owner leaves a checked stale entry that must simply be discarded.
+registry
+ records[]
+  append !
+   > removed&
+removed& !
+ < |2
+enqueue !
+ < &queue
+ < removed&
+registry
+ records[]
+  remove !
+   < |1
+registry
+ records[]
+  append !
+   > replacement&
+replacement& !
+ < |3
+enqueue !
+ < &queue
+ < replacement&
+dispatch !
+ < &queue
+replacement&
+ queued >> replacement queued
+replacement queued
+:
+ trace !
+  < |997
+dispatch !
+ < &queue
+dispatch !
+ < &queue
+queue
+ entries[]
+  length !
+   > count
+count
+?
+ trace !
+  < |998

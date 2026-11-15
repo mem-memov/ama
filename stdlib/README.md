@@ -102,6 +102,9 @@ Enrollment and native event values are described below.
 `!` advances it after checking `SIZE_MAX`. Unsigned decimal literals and independent
 copies support initial values and registration snapshots. Truth means nonzero;
 zero is reserved for an unissued epoch or wait generation.
+`..task.sequence` advances a private persistent generation on each entry and
+returns its owned `value` snapshot. Use it when an owner republishes epochs in
+result fields: reentering that owner must not reset the private history.
 `..task.generation.same` compares its typed `left` and `right` inputs and returns
 one ordinary condition. `..task.flag` owns a Boolean membership/waiting value;
 `!` sets it from the ordinary `next` condition input (false when omitted), and

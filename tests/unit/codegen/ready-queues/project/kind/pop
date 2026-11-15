@@ -1,0 +1,71 @@
+# Remove the head first, authenticate its enrollment, then clear membership before execution.
+@<
+queue&
+.kind.queue
+@>
+record&
+.kind.record
+task&
+.kind.task
+available
+..std.condition
+@!
+zero
+..integer
+ |0
+true
+..std.condition
+ |1
+same
+..task.generation.same
+queue&
+ entries[]
+  length !
+   > count
+:
+ >
+count
+:
+ >
+queue&
+ entries[zero]
+  record& >> selected&
+  epoch >> expected epoch
+:
+ >
+queue&
+ entries[]
+  remove !
+:
+ >
+selected&
+ epoch >> current epoch
+ enrolled >> enrolled
+ queued >> queued
+ ready >> ready
+:
+ >
+enrolled
+:
+ >
+queued
+:
+ >
+same !
+ < expected epoch
+ < current epoch
+ > equal
+equal
+:
+ >
+selected&
+ queued !
+ready
+:
+ >
+record&
+ selected&
+selected&
+ task& >> task&
+available
+ true

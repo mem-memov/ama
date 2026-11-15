@@ -1,0 +1,115 @@
+# Feed actual retained native completions into one typed queue before its first dispatch round.
+@!
+service
+..task.events
+registry
+.red.registry
+queue
+.red.queue
+enqueue
+.red.enqueue
+import
+.red.import
+observe
+.red.observe
+reconcile
+.red.reconcile
+dispatch
+.red.dispatch
+service !
+ < |3
+service
+ prepare !
+  > first token
+registry
+ records[]
+  append !
+   > first&
+first& !
+ < |1
+ < first token
+first&
+ ready !
+service
+ arm !
+  < first token
+service
+ prepare !
+  > second token
+registry
+ records[]
+  append !
+   > second&
+second& !
+ < |2
+ < second token
+second&
+ ready !
+service
+ arm !
+  < second token
+service
+ prepare !
+  > third token
+registry
+ records[]
+  append !
+   > third&
+third& !
+ < |3
+ < third token
+third&
+ ready !
+service
+ arm !
+  < third token
+service
+ post !
+  < third token
+  < |0
+  < |
+service
+ post !
+  < first token
+  < |0
+  < |
+service
+ post !
+  < second token
+  < |0
+  < |
+service
+ take !
+  > packet
+observe !
+ < &registry
+ < packet
+service
+ take !
+  > packet
+observe !
+ < &registry
+ < packet
+service
+ take !
+  > packet
+observe !
+ < &registry
+ < packet
+reconcile !
+ < &queue
+ < &registry
+dispatch !
+ < &queue
+dispatch !
+ < &queue
+dispatch !
+ < &queue
+dispatch !
+ < &queue
+dispatch !
+ < &queue
+dispatch !
+ < &queue
+dispatch !
+ < &queue
