@@ -28,6 +28,14 @@ typedef enum {
     AMA_EVENT_QUEUED, AMA_EVENT_DUPLICATE, AMA_EVENT_STALE,
     AMA_EVENT_CLOSED, AMA_EVENT_UNARMED, AMA_EVENT_INVALID_BUFFER
 } AmaNativeEventPostResult;
+/** Native post-admission snapshot, separate from task phase or queue readiness.
+ * A validated armed token can only become completed/retired/closed, never return
+ * to unarmed with the same full identity. This supports safe external readiness providers.
+ */
+typedef enum {
+    AMA_EVENT_ACCEPTING, AMA_EVENT_ALREADY_COMPLETED, AMA_EVENT_TOKEN_RETIRED,
+    AMA_EVENT_SOURCE_CLOSED, AMA_EVENT_NOT_ARMED, AMA_EVENT_INVALID_SOURCE
+} AmaNativeEventAcceptance;
 /** Creator-image operations let external C workers use the correct native service implementation. */
 typedef struct {
     bool (*retain)(void *);
@@ -35,6 +43,7 @@ typedef struct {
     AmaStatus (*copy)(void *, AmaByteView, AmaNativeEventBuffer *);
     AmaNativeEventPostResult (*post)(void *, AmaNativeEventToken, int64_t, AmaNativeEventBuffer *);
     AmaStatus (*ready)(void *, AmaNativeEventToken, bool *);
+    AmaNativeEventAcceptance (*acceptance)(void *, AmaNativeEventToken);
 } AmaNativeEventCallbacks;
 /** Move-only callback lease. State is a retained native resource, never borrowed Ama storage. */
 typedef struct {
@@ -164,6 +173,16 @@ static inline AmaStatus ama_native_event_ready(const AmaNativeEventSubmission *s
         return ama_status_make(AMA_INVALID_STATE, "Invalid native readiness query", sizeof("Invalid native readiness query") - 1);
     }
     return submission->callbacks->ready(submission->state, submission->token, ready);
+}
+/** Inspect post admission without consuming/queuing data. The caller owns a
+ * native endpoint credit; this grants no Ama access and extends no borrowed view.
+ */
+static inline AmaNativeEventAcceptance ama_native_event_acceptance(const AmaNativeEventSubmission *submission) {
+    if (submission == NULL || submission->state == NULL || submission->callbacks == NULL
+        || submission->callbacks->acceptance == NULL || submission->callbacks->retain == NULL
+        || submission->callbacks->drop == NULL || submission->callbacks->post == NULL
+        || submission->callbacks->ready == NULL || submission->callbacks->copy == NULL) { return AMA_EVENT_INVALID_SOURCE; }
+    return submission->callbacks->acceptance(submission->state, submission->token);
 }
 /** Release a consumed completion's byte owner and empty its scalar metadata. */
 static inline void ama_native_event_completion_drop(AmaNativeEventCompletion *completion) {

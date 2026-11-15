@@ -1,0 +1,134 @@
+# The owning scheduler imports native readiness before promoting a suspended task.
+@!
+role
+.role
+role !
+ > sending
+sender
+.sender
+receiver
+.receiver
+source
+..task.events
+sender task
+.producer
+receiver task
+.consumer
+ready work
+.ready
+maybe fail
+.maybefail
+request cancel
+.requestcancel
+report
+.report
+check
+.check
+true
+..std.condition
+ |1
+false
+..std.condition
+pending
+..std.condition
+pending
+ true
+source !
+ < |2
+sending
+?
+ sender task !
+  < &sender
+  < &source
+ sender task
+  token >> token
+ ready work !
+ maybe fail !
+ sender task
+  phase
+   completed >> done
+ done
+ ?
+  pending
+   false
+ pending
+ {
+  %
+  request cancel !
+   > cancel
+  cancel
+  ?
+   sender task
+    cancel requested !
+     < |1
+    phase !
+   sender task %
+  :
+   source
+    ready !
+     < token
+     > ready
+   ready
+   ?
+    source
+     take !
+      > packet
+    sender task
+     waiting !
+     phase !
+    sender task %
+  sender task
+   phase
+    completed >> done
+  done
+  ?
+   pending
+    false
+ }
+ sender task
+  outcome >> outcome
+  failure >> failure
+ report !
+  < outcome
+  < failure
+:
+ maybe fail !
+ receiver task !
+  < &receiver
+  < &source
+ receiver task
+  token >> token
+  phase
+   completed >> done
+ done
+ ?
+  pending
+   false
+ pending
+ {
+  %
+  source
+   ready !
+    < token
+    > ready
+  ready
+  ?
+   source
+    take !
+     > packet
+   receiver task
+    waiting !
+    phase !
+   receiver task %
+  receiver task
+   phase
+    completed >> done
+  done
+  ?
+   pending
+    false
+ }
+ receiver task
+  failure >> failure
+ check !
+  < failure

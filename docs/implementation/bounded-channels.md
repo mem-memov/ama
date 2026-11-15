@@ -20,7 +20,7 @@ its initialized prefix and preserves both destinations.
 
 Each port is a move-only native right with a creator callback table. Calls return
 to the creator implementation rather than interpreting private service layout in
-another component. The service retains creator code until both ports retire.
+another component. The service retains creator code until both ports and any wait handles retire.
 Message owners separately retain their own creator-code credits, so a received
 envelope can outlive the whole channel service. The loader must still exclude new
 calls and wait for active creator-code calls to return before unload.
@@ -64,7 +64,7 @@ For an open empty channel, take reports Empty. After normal sender close, it
 continues to return accepted messages and then reports Closed. Aborted delivery
 is a separate result. No operation waits for capacity or data; callers receive
 ordinary results and can run other ready work. Task readiness/waits and
-cancellation integration belong to T105. Native test-driver retry loops are not
+cancellation are explicit [channel wait registrations](channel-waits.md). Native test-driver retry loops are not
 an implicit busy-waiting Ama executor.
 
 ## Shutdown and independent lifetime
@@ -77,7 +77,7 @@ Aborting the receiver marks delivery aborted and detaches the whole queued range
 under the gate. It then releases all detached message owners outside the gate.
 No sender can modify those cells after abort. Repeated abort is harmless; a new
 send reports Aborted without consuming its input. Dropping the receiver performs
-abort and releases its endpoint credit. The last port frees metadata and finally
+abort and releases its endpoint credit. The last service owner frees metadata and finally
 its creator-code credit. Already taken owners remain independent.
 
 The fixed ring metadata costs linear space in the configured count limit. Queued

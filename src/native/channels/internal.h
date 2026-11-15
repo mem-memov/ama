@@ -10,7 +10,7 @@
 #include <string.h>
 #include "channel.h"
 
-/** One private immutable schema and fixed ring, kept alive by two logical ports.
+/** One private immutable schema and fixed ring, kept alive by ports and registration owners.
  * All mutable metadata uses locked; each nonempty cell owns exactly one envelope.
  */
 typedef struct {
@@ -22,7 +22,12 @@ typedef struct {
     AmaNativeMessageField *fields;
     AmaNativeMessageBytes *cells;
     AmaNativeCodeLease code;
+    /** Single-shot native subscriptions own event rights, not task identities or Ama views. */
+    struct { AmaNativeEventSubmission event; size_t required_bytes; } sending, receiving;
 } AmaNativeChannel;
+
+/** Detach at most one notification per direction under the gate, then publish outside it. */
+typedef struct { AmaNativeEventSubmission sending, receiving; } AmaChannelSignals;
 
 /** Wait for finite native metadata only; execute no allocator, callback or Ama under this gate. */
 void ama_channel_lock(AmaNativeChannel *);
@@ -51,10 +56,28 @@ AmaNativeChannelResult ama_channel_take(void *, AmaNativeMessageBytes *);
 AmaStatus ama_channel_close(void *);
 /** Abort atomically before disposing detached queue owners. */
 AmaStatus ama_channel_abort(void *);
-/** Consume one port credit after its close/abort operation; final retirement runs outside the gate. */
+/** Consume one endpoint/registration credit after its close/abort/cancel operation;
+ * final retirement runs outside the gate.
+ */
 void ama_channel_release(AmaNativeChannel *);
 /** Creator callbacks keep internal service layout private across component images. */
 extern const AmaNativeChannelSendCallbacks ama_channel_sender_callbacks;
 /** Independent receiver vtable; neither table grants execution or Ama state access. */
 extern const AmaNativeChannelReceiveCallbacks ama_channel_receiver_callbacks;
+/** Install an exact sender wait or acknowledge readiness without keeping a redundant handle. */
+AmaStatus ama_channel_wait_send(void *, size_t, const AmaNativeEventSubmission *, AmaNativeChannelWait *);
+/** Install the matching sole receive wait. */
+AmaStatus ama_channel_wait_receive(void *, const AmaNativeEventSubmission *, AmaNativeChannelWait *);
+/** Check exact predicates and move ready subscriptions; caller already holds the gate. */
+void ama_channel_collect_signals(AmaNativeChannel *, AmaChannelSignals *);
+/** Publish detached notifications only outside every native service gate. */
+void ama_channel_publish_signals(AmaChannelSignals *);
+/** Compare the full key before detaching publication; release event rights after unlock. */
+AmaStatus ama_channel_wait_cancel(void *, AmaNativeEventToken, bool, bool *);
+/** Consume cancellation and its independent native service/code storage credit. */
+void ama_channel_wait_drop(void *, AmaNativeEventToken, bool);
+/** Ready capacity includes terminal/impossible outcomes, which the awakened executor rechecks. */
+bool ama_channel_sender_ready(const AmaNativeChannel *, size_t);
+/** Native wait callbacks are creator-image operations retained through the last registration owner. */
+extern const AmaNativeChannelWaitCallbacks ama_channel_wait_callbacks;
 #endif

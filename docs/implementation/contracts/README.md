@@ -196,3 +196,6 @@ consumer rights and native acknowledgment after terminal context cleanup.
 
 [Supported asynchronous host](../asynchronous-host.md) records native-only creator-code
 leases, real worker completion and actual unload/reload through the SDK-free C API.
+
+[Channel readiness](../channel-waits.md) records exact registration, cancellation,
+shutdown wakeups and native lifetime composed with isolated Ama tasks.

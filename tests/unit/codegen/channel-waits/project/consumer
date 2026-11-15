@@ -1,0 +1,71 @@
+# A receiver awaits data without holding the executor; close/abort remains ordinary result data.
+@<
+receiver&
+.receiver
+source&
+..task.events
+@>
+phase
+..task.phase
+waiting
+..task.flag
+token
+..task.token
+failure
+..failure
+@!
+operation
+..task.operation
+await
+.awaitreceiver
+detach
+..task.operation.detach
+awaiting
+..task.phase.awaiting
+completed
+..task.phase.completed
+decode
+.decode
+inspect
+.inspect
+receiver& !
+ > wire
+ > failure
+failure
+?
+ operation !
+  < source&
+  > token
+ waiting !
+  < |1
+ await !
+  < &operation
+  < receiver&
+ source&
+  ready !
+   < token
+   > ready
+ ready
+ :
+  awaiting !
+   > phase
+  %
+ waiting !
+ detach !
+  < &operation
+ receiver& !
+  > wire
+  > failure
+failure
+:
+ decode !
+  < wire
+  < |0
+  > value
+  > failure
+ failure
+ :
+  inspect !
+   < value
+completed !
+ > phase

@@ -13,6 +13,8 @@
 
 static _Atomic size_t allocation_count, fail_at, live_allocations, code_credits;
 static _Atomic bool refuse_code;
+/** Optional process-lifetime native identity receipt, initialized only by event-composition leaves. */
+static size_t native_history;
 /** Original allocator behind the explicit native test wrap. */
 void *__real_malloc(size_t);
 /** Original zeroing allocation, including compiler-folded native initialization. */
@@ -94,6 +96,6 @@ static uint64_t message_sequence(const AmaNativeMessageBytes *message) {
 }
 /** No native allocation or code credit may survive a scenario. */
 static void no_resources(void) {
-    assert(atomic_load(&live_allocations) == 0 && atomic_load(&code_credits) == 0);
+    assert(atomic_load(&live_allocations) == native_history && atomic_load(&code_credits) == 0);
 }
 #endif

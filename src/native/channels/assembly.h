@@ -13,4 +13,8 @@
 #include "queue/take.c"
 #include "endpoints/close.c"
 #include "endpoints/access.c"
+#include "wait/notify.c"
+#include "wait/register.c"
+#include "wait/cancel.c"
+#include "wait/access.c"
 #endif

@@ -22,5 +22,6 @@
 #include "native/events/buffer/release.c"
 #include "native/events/callback/port.c"
 #include "native/events/callback/complete.c"
+#include "native/events/callback/acceptance.c"
 #include "native/events/queue/take.c"
 #endif

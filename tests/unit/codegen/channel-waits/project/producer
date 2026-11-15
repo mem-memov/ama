@@ -1,0 +1,104 @@
+# One cooperative task: pending native capacity is not permission to run its send body.
+@<
+sender&
+.sender
+source&
+..task.events
+@>
+phase
+..task.phase
+waiting
+..task.flag
+cancel requested
+..task.flag
+token
+..task.token
+outcome
+..task.outcome
+failure
+..failure
+@!
+encode
+.encode
+check
+.check
+check full
+.checkfull
+operation
+..task.operation
+await
+.awaitsender
+detach
+..task.operation.detach
+cancel
+.cancelwait
+awaiting
+..task.phase.awaiting
+completed
+..task.phase.completed
+true
+..std.condition
+ |1
+false
+..std.condition
+no failure
+..failure
+encode !
+ < |1
+ < |Hello, Ама
+ < |-18446744073709551617
+ > wire
+sender& !
+ < wire
+ > failure
+check !
+ < failure
+sender& !
+ < wire
+ > failure
+check full !
+ < failure
+operation !
+ < source&
+ > token
+waiting !
+ < |1
+await !
+ < &operation
+ < sender&
+ < wire
+source&
+ ready !
+  < token
+  > ready
+ready
+:
+ awaiting !
+  > phase
+ %
+cancel requested
+?
+ waiting !
+ detach !
+  < &operation
+ cancel !
+  < &await
+ outcome !
+  < true
+  < false
+ failure
+  no failure
+ completed !
+  > phase
+ >
+waiting !
+detach !
+ < &operation
+sender& !
+ < wire
+ > failure
+outcome !
+ < false
+ < true
+completed !
+ > phase

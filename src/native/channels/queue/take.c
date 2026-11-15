@@ -10,6 +10,7 @@
 AmaNativeChannelResult ama_channel_take(void *state, AmaNativeMessageBytes *output) {
     AmaNativeChannel *channel = state;
     if (!ama_channel_empty_owner(output)) { return ama_channel_failure(ama_status_make(AMA_INVALID_STATE, NULL, 0)); }
+    AmaChannelSignals signals = {0};
     ama_channel_lock(channel);
     AmaNativeChannelResult result = ama_channel_result(AMA_CHANNEL_RECEIVED);
     if (channel->aborted) { result.reason = AMA_CHANNEL_ABORTED; }
@@ -23,6 +24,8 @@ AmaNativeChannelResult ama_channel_take(void *state, AmaNativeMessageBytes *outp
         channel->count--;
         *output = message;
     }
+    ama_channel_collect_signals(channel, &signals);
     ama_channel_unlock(channel);
+    ama_channel_publish_signals(&signals);
     return result;
 }

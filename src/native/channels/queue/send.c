@@ -24,6 +24,7 @@ AmaNativeChannelResult ama_channel_send(void *state, AmaNativeMessageBytes *mess
         result.message_reason = validated.reason;
         return result;
     }
+    AmaChannelSignals signals = {0};
     ama_channel_lock(channel);
     AmaNativeChannelResult result = ama_channel_result(AMA_CHANNEL_ACCEPTED);
     if (channel->aborted) { result.reason = AMA_CHANNEL_ABORTED; }
@@ -38,6 +39,8 @@ AmaNativeChannelResult ama_channel_send(void *state, AmaNativeMessageBytes *mess
         channel->count++;
         channel->bytes += length;
     }
+    ama_channel_collect_signals(channel, &signals);
     ama_channel_unlock(channel);
+    ama_channel_publish_signals(&signals);
     return result;
 }

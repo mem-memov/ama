@@ -18,11 +18,11 @@ static void channel_receiver_release(void *state) {
 }
 /** Each creator table is immutable and contains no context-specific mutable state. */
 const AmaNativeChannelSendCallbacks ama_channel_sender_callbacks = {
-    ama_channel_send, ama_channel_close, channel_sender_release
+    .send = ama_channel_send, .close = ama_channel_close, .drop = channel_sender_release, .wait = ama_channel_wait_send
 };
 /** Separate operation signatures prevent treating receipt as producer ownership. */
 const AmaNativeChannelReceiveCallbacks ama_channel_receiver_callbacks = {
-    ama_channel_take, ama_channel_abort, channel_receiver_release
+    .take = ama_channel_take, .abort = ama_channel_abort, .drop = channel_receiver_release, .wait = ama_channel_wait_receive
 };
 
 /** Empty/moved endpoint requests fail without consulting native service storage. */

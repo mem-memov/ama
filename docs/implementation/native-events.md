@@ -223,3 +223,11 @@ LeakSanitizer is unavailable in the current
 environment; exact native allocation counters require only the documented single
 image receipt to remain. Per-file purposes, cases and standalone header commands
 are registered in [the documentation inventory](documentation/ready.json).
+
+## External readiness providers
+
+The event endpoint exposes an exact native acceptance probe. It distinguishes
+prepared, armed, completed, retired and closed tokens before an external service
+installs a notification. [Channel waits](channel-waits.md) use this probe and the
+full token key to compose cancellation with concurrent publication. The probe
+does not execute Ama or grant access to an Ama instance.

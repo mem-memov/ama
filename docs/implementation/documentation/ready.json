@@ -35538,7 +35538,7 @@
       }
     ]
   },
-  "tests/integration/parser/grammar/project/程序": {
+  "tests/integration/parser/grammar/project/\u7a0b\u5e8f": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -35624,7 +35624,7 @@
       }
     ]
   },
-  "tests/integration/project/closure/project/中间": {
+  "tests/integration/project/closure/project/\u4e2d\u95f4": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -36923,7 +36923,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/元": {
+  "tests/integration/semantic/types/project/\u5143": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -36934,7 +36934,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/元.abi": {
+  "tests/integration/semantic/types/project/\u5143.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -36945,7 +36945,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/元.c": {
+  "tests/integration/semantic/types/project/\u5143.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the first distinct Unicode nominal type.",
     "tests": [
@@ -36956,7 +36956,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/元.h": {
+  "tests/integration/semantic/types/project/\u5143.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the first Unicode nominal type.",
     "standalone_header_command": [
@@ -36982,7 +36982,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/米": {
+  "tests/integration/semantic/types/project/\u7c73": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -36993,7 +36993,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/米.abi": {
+  "tests/integration/semantic/types/project/\u7c73.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -37004,7 +37004,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/米.c": {
+  "tests/integration/semantic/types/project/\u7c73.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the incompatible Unicode nominal type.",
     "tests": [
@@ -37015,7 +37015,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/米.h": {
+  "tests/integration/semantic/types/project/\u7c73.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the incompatible Unicode nominal type.",
     "standalone_header_command": [
@@ -37228,7 +37228,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/other/商品": {
+  "tests/integration/source/diagnostics/project/other/\u5546\u54c1": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -37254,7 +37254,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/商店/商品": {
+  "tests/integration/source/diagnostics/project/\u5546\u5e97/\u5546\u54c1": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -86962,6 +86962,66 @@
         "case": "it_preserves_other_services_and_failed_detachment_outputs",
         "command": "make -C tests/unit/async/events/detach",
         "source": "tests/unit/async/events/detach/main.c"
+      },
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
       }
     ],
     "standalone_header_command": [
@@ -87013,6 +87073,66 @@
         "case": "it_retains_a_post_in_the_check_to_sleep_gap_and_retries_interruptions",
         "command": "make -C tests/unit/async/events/wake",
         "source": "tests/unit/async/events/wake/main.c"
+      },
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
       }
     ],
     "standalone_header_command": [
@@ -87059,6 +87179,66 @@
         "case": "it_preserves_other_services_and_failed_detachment_outputs",
         "command": "make -C tests/unit/async/events/detach",
         "source": "tests/unit/async/events/detach/main.c"
+      },
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
       }
     ],
     "standalone_header_command": [
@@ -87488,6 +87668,66 @@
         "case": "it_rejects_late_completion_after_close_and_retires_only_after_acknowledgment",
         "command": "make -C tests/unit/async/events/callbacks",
         "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
       }
     ]
   },
@@ -95848,6 +96088,66 @@
         "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
         "command": "make -C tests/unit/codegen/channels",
         "source": "tests/unit/codegen/channels/main.c"
+      },
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
       }
     ],
     "standalone_header_command": [
@@ -95929,6 +96229,66 @@
         "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
         "command": "make -C tests/unit/codegen/channels",
         "source": "tests/unit/codegen/channels/main.c"
+      },
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
       }
     ],
     "standalone_header_command": [
@@ -96010,6 +96370,66 @@
         "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
         "command": "make -C tests/unit/codegen/channels",
         "source": "tests/unit/codegen/channels/main.c"
+      },
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
       }
     ],
     "standalone_header_command": [
@@ -96091,6 +96511,66 @@
         "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
         "command": "make -C tests/unit/codegen/channels",
         "source": "tests/unit/codegen/channels/main.c"
+      },
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
       }
     ]
   },
@@ -96157,6 +96637,66 @@
         "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
         "command": "make -C tests/unit/codegen/channels",
         "source": "tests/unit/codegen/channels/main.c"
+      },
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
       }
     ]
   },
@@ -96289,6 +96829,66 @@
         "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
         "command": "make -C tests/unit/codegen/channels",
         "source": "tests/unit/codegen/channels/main.c"
+      },
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
       }
     ]
   },
@@ -96421,6 +97021,66 @@
         "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
         "command": "make -C tests/unit/codegen/channels",
         "source": "tests/unit/codegen/channels/main.c"
+      },
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
       }
     ]
   },
@@ -96487,6 +97147,66 @@
         "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
         "command": "make -C tests/unit/codegen/channels",
         "source": "tests/unit/codegen/channels/main.c"
+      },
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
       }
     ]
   },
@@ -97030,6 +97750,990 @@
         "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
         "command": "make -C tests/unit/codegen/channels",
         "source": "tests/unit/codegen/channels/main.c"
+      }
+    ]
+  },
+  "src/native/channels/wait/cancel.c": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Compose exact channel readiness, cancellation and endpoint shutdown without retaining borrowed Ama state or losing native ownership.",
+    "tests": [
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      }
+    ]
+  },
+  "src/native/channels/wait/register.c": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Compose exact channel readiness, cancellation and endpoint shutdown without retaining borrowed Ama state or losing native ownership.",
+    "tests": [
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      }
+    ]
+  },
+  "src/native/channels/wait/notify.c": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Compose exact channel readiness, cancellation and endpoint shutdown without retaining borrowed Ama state or losing native ownership.",
+    "tests": [
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      }
+    ]
+  },
+  "src/native/channels/wait/access.c": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Compose exact channel readiness, cancellation and endpoint shutdown without retaining borrowed Ama state or losing native ownership.",
+    "tests": [
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      }
+    ]
+  },
+  "src/native/events/callback/acceptance.c": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Compose exact channel readiness, cancellation and endpoint shutdown without retaining borrowed Ama state or losing native ownership.",
+    "tests": [
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/channel-waits/main.c": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Compose exact channel readiness, cancellation and endpoint shutdown without retaining borrowed Ama state or losing native ownership.",
+    "tests": [
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/channel-waits/common.c": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Compose exact channel readiness, cancellation and endpoint shutdown without retaining borrowed Ama state or losing native ownership.",
+    "tests": [
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/channel-waits/Makefile": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Compose exact channel readiness, cancellation and endpoint shutdown without retaining borrowed Ama state or losing native ownership.",
+    "tests": [
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/channel-waits/support/shutdown.c": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Compose exact channel readiness, cancellation and endpoint shutdown without retaining borrowed Ama state or losing native ownership.",
+    "tests": [
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/channel-waits/support/failures.c": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Compose exact channel readiness, cancellation and endpoint shutdown without retaining borrowed Ama state or losing native ownership.",
+    "tests": [
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/channel-waits/support/cancellation.c": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Compose exact channel readiness, cancellation and endpoint shutdown without retaining borrowed Ama state or losing native ownership.",
+    "tests": [
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/channel-waits/support/readiness.c": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Compose exact channel readiness, cancellation and endpoint shutdown without retaining borrowed Ama state or losing native ownership.",
+    "tests": [
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/channel-waits/support/concurrency.c": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Compose exact channel readiness, cancellation and endpoint shutdown without retaining borrowed Ama state or losing native ownership.",
+    "tests": [
+      {
+        "case": "it_wakes_both_directions_on_their_terminal_endpoint_transitions",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_closed_event_sources_and_channel_storage_after_both_ports_disappear",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_signals_oversize_and_already_completed_requests_without_redundant_owners",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_preserves_wait_outputs_on_reference_exhaustion_and_invalid_source_shapes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_cancels_exact_keys_and_preserves_a_replacement_on_the_same_event_slot",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_withdraws_publication_without_discarding_channel_data",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retains_receive_readiness_on_both_sides_of_synchronous_registration",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_capacity_only_after_the_exact_requested_length_fits",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_rejects_unarmed_sources_and_acks_completed_retired_and_closed_sources",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_never_loses_receive_readiness_when_registration_races_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_wakes_a_native_host_wait_when_the_other_endpoint_closes",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      },
+      {
+        "case": "it_retires_delivery_when_cancellation_races_an_already_selected_publication",
+        "command": "make -C tests/unit/async/channel-waits",
+        "source": "tests/unit/async/channel-waits/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/channel-waits/main.c": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Compose exact channel readiness, cancellation and endpoint shutdown without retaining borrowed Ama state or losing native ownership.",
+    "tests": [
+      {
+        "case": "it_runs_cooperative_channel_waits_cancellation_and_isolated_actor_failure",
+        "command": "make -C tests/unit/codegen/channel-waits",
+        "source": "tests/unit/codegen/channel-waits/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/channel-waits/Makefile": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Compose exact channel readiness, cancellation and endpoint shutdown without retaining borrowed Ama state or losing native ownership.",
+    "tests": [
+      {
+        "case": "it_runs_cooperative_channel_waits_cancellation_and_isolated_actor_failure",
+        "command": "make -C tests/unit/codegen/channel-waits",
+        "source": "tests/unit/codegen/channel-waits/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/channel-waits/project/cancel.c": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Compose exact channel readiness, cancellation and endpoint shutdown without retaining borrowed Ama state or losing native ownership.",
+    "tests": [
+      {
+        "case": "it_runs_cooperative_channel_waits_cancellation_and_isolated_actor_failure",
+        "command": "make -C tests/unit/codegen/channel-waits",
+        "source": "tests/unit/codegen/channel-waits/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/channel-waits/project/producer": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Compose exact channel readiness, cancellation and endpoint shutdown without retaining borrowed Ama state or losing native ownership.",
+    "tests": [
+      {
+        "case": "it_runs_cooperative_channel_waits_cancellation_and_isolated_actor_failure",
+        "command": "make -C tests/unit/codegen/channel-waits",
+        "source": "tests/unit/codegen/channel-waits/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/channel-waits/project/consumer": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Compose exact channel readiness, cancellation and endpoint shutdown without retaining borrowed Ama state or losing native ownership.",
+    "tests": [
+      {
+        "case": "it_runs_cooperative_channel_waits_cancellation_and_isolated_actor_failure",
+        "command": "make -C tests/unit/codegen/channel-waits",
+        "source": "tests/unit/codegen/channel-waits/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/channel-waits/project/main": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Compose exact channel readiness, cancellation and endpoint shutdown without retaining borrowed Ama state or losing native ownership.",
+    "tests": [
+      {
+        "case": "it_runs_cooperative_channel_waits_cancellation_and_isolated_actor_failure",
+        "command": "make -C tests/unit/codegen/channel-waits",
+        "source": "tests/unit/codegen/channel-waits/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/channel-waits/project/wait.h": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Compose exact channel readiness, cancellation and endpoint shutdown without retaining borrowed Ama state or losing native ownership.",
+    "tests": [
+      {
+        "case": "it_runs_cooperative_channel_waits_cancellation_and_isolated_actor_failure",
+        "command": "make -C tests/unit/codegen/channel-waits",
+        "source": "tests/unit/codegen/channel-waits/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-DAMA_NATIVE(name)=ama_test_wait_##name",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/codegen/channel-waits/project/wait.c": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Compose exact channel readiness, cancellation and endpoint shutdown without retaining borrowed Ama state or losing native ownership.",
+    "tests": [
+      {
+        "case": "it_runs_cooperative_channel_waits_cancellation_and_isolated_actor_failure",
+        "command": "make -C tests/unit/codegen/channel-waits",
+        "source": "tests/unit/codegen/channel-waits/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/channel-waits/support/consumer.c": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Compose exact channel readiness, cancellation and endpoint shutdown without retaining borrowed Ama state or losing native ownership.",
+    "tests": [
+      {
+        "case": "it_runs_cooperative_channel_waits_cancellation_and_isolated_actor_failure",
+        "command": "make -C tests/unit/codegen/channel-waits",
+        "source": "tests/unit/codegen/channel-waits/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/channel-waits/support/entries.c": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Compose exact channel readiness, cancellation and endpoint shutdown without retaining borrowed Ama state or losing native ownership.",
+    "tests": [
+      {
+        "case": "it_runs_cooperative_channel_waits_cancellation_and_isolated_actor_failure",
+        "command": "make -C tests/unit/codegen/channel-waits",
+        "source": "tests/unit/codegen/channel-waits/main.c"
       }
     ]
   }

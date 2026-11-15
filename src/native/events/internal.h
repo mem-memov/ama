@@ -67,4 +67,6 @@ void ama_native_event_buffer_release(void *);
 AmaNativeEventPostResult ama_native_event_complete(void *, AmaNativeEventToken, int64_t, AmaNativeEventBuffer *);
 /** Read retained readiness under the native metadata gate. */
 AmaStatus ama_native_event_check(void *, AmaNativeEventToken, bool *);
+/** Classify exact token post admission without mutation or an unarmed registration loophole. */
+AmaNativeEventAcceptance ama_native_event_accept(void *, AmaNativeEventToken);
 #endif

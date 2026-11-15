@@ -2420,10 +2420,20 @@ Contracts: [PAR-01–PAR-08](spec/language/async-and-parallelism.md#parallelism-
   native, native/generated ASan/UBSan and native TSan checks pass. Per-file/header
   coverage checks 1971 inputs without debt; Doxygen/prose/rule links pass and final
   reproducibility is checked before commit. See `docs/implementation/bounded-channels.md`.
-- [ ] **T105 — Integrate channel waits and endpoint shutdown.** Needs: T097,
-  T104. Provide backpressure without withholding ready tasks; drain on sender
-  close and abort on receiver disposal. Test cancellation, pending events,
-  sender/receiver failure and native queue lifetime after context teardown.
+- [x] **T105 — Integrate channel waits and endpoint shutdown.** Needs: T097,
+  T104. Added one-shot sender/receiver readiness registrations with exact byte
+  predicates, atomic check/install, independently owned wait handles and full-key
+  cancellation. Event admission distinguishes armed, prepared, completed, retired
+  and closed tokens; callbacks post only native records outside channel gates.
+  Close/abort wakes peers; native metadata/code survive context and endpoint
+  teardown until the last registration acknowledges. Native tests cover reference
+  exhaustion, replacement generations, both readiness timings, host blocking and
+  128 registration/publication plus 128 cancellation/publication races. Compiled
+  Ama tasks cover unrelated ready work, premature resume, cancellation, sender
+  failure, receiver failure and drain after sender disposal. Strict full NDEBUG,
+  native/generated ASan/UBSan and native TSan pass. Documentation covers all 1994
+  maintained inputs without debt; Doxygen/prose links pass, with reproducibility
+  checked before commit. See `docs/implementation/channel-waits.md`.
 - [ ] **T106 — Accept isolated parallel execution and supervision.** Needs:
   T102, T105. Run native-only worker and two-context messaging examples with
   independent failure continuation and explicit supervisor policy. Verify all
