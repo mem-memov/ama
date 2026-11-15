@@ -14933,6 +14933,16 @@
         "case": "it_executes_exported_entries_resumes_and_isolated_native_roots",
         "command": "make -C tests/unit/library/execution",
         "source": "tests/unit/library/execution/main.c"
+      },
+      {
+        "case": "it_transfers_a_quiescent_executor_with_explicit_publication_and_no_live_borrow",
+        "command": "make -C tests/unit/codegen/executor-transfer",
+        "source": "tests/unit/codegen/executor-transfer/main.c"
+      },
+      {
+        "case": "it_keeps_a_thread_affine_native_resource_on_its_required_executor",
+        "command": "make -C tests/unit/codegen/executor-transfer",
+        "source": "tests/unit/codegen/executor-transfer/main.c"
       }
     ]
   },
@@ -15264,6 +15274,16 @@
         "case": "it_retains_native_code_through_independent_move_only_leases",
         "command": "make -C tests/unit/runtime/library",
         "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_transfers_a_quiescent_executor_with_explicit_publication_and_no_live_borrow",
+        "command": "make -C tests/unit/codegen/executor-transfer",
+        "source": "tests/unit/codegen/executor-transfer/main.c"
+      },
+      {
+        "case": "it_keeps_a_thread_affine_native_resource_on_its_required_executor",
+        "command": "make -C tests/unit/codegen/executor-transfer",
+        "source": "tests/unit/codegen/executor-transfer/main.c"
       }
     ],
     "standalone_header_command": [
@@ -38372,6 +38392,16 @@
         "case": "it_runs_parallel_contexts_with_private_startup_reuse_events_and_failure",
         "command": "make -C tests/unit/codegen/parallel-contexts",
         "source": "tests/unit/codegen/parallel-contexts/main.c"
+      },
+      {
+        "case": "it_transfers_a_quiescent_executor_with_explicit_publication_and_no_live_borrow",
+        "command": "make -C tests/unit/codegen/executor-transfer",
+        "source": "tests/unit/codegen/executor-transfer/main.c"
+      },
+      {
+        "case": "it_keeps_a_thread_affine_native_resource_on_its_required_executor",
+        "command": "make -C tests/unit/codegen/executor-transfer",
+        "source": "tests/unit/codegen/executor-transfer/main.c"
       }
     ]
   },
@@ -94313,6 +94343,134 @@
         "case": "it_runs_parallel_contexts_with_private_startup_reuse_events_and_failure",
         "command": "make -C tests/unit/codegen/parallel-contexts",
         "source": "tests/unit/codegen/parallel-contexts/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/executor-transfer/main.c": {
+    "contract": "docs/implementation/executor-transfer.md",
+    "purpose": "Verify explicit synchronized executor handoff, live-borrow refusal, preserved continuation state and declared native thread affinity.",
+    "tests": [
+      {
+        "case": "it_transfers_a_quiescent_executor_with_explicit_publication_and_no_live_borrow",
+        "command": "make -C tests/unit/codegen/executor-transfer",
+        "source": "tests/unit/codegen/executor-transfer/main.c"
+      },
+      {
+        "case": "it_keeps_a_thread_affine_native_resource_on_its_required_executor",
+        "command": "make -C tests/unit/codegen/executor-transfer",
+        "source": "tests/unit/codegen/executor-transfer/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/executor-transfer/Makefile": {
+    "contract": "docs/implementation/executor-transfer.md",
+    "purpose": "Verify explicit synchronized executor handoff, live-borrow refusal, preserved continuation state and declared native thread affinity.",
+    "tests": [
+      {
+        "case": "it_transfers_a_quiescent_executor_with_explicit_publication_and_no_live_borrow",
+        "command": "make -C tests/unit/codegen/executor-transfer",
+        "source": "tests/unit/codegen/executor-transfer/main.c"
+      },
+      {
+        "case": "it_keeps_a_thread_affine_native_resource_on_its_required_executor",
+        "command": "make -C tests/unit/codegen/executor-transfer",
+        "source": "tests/unit/codegen/executor-transfer/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/executor-transfer/consumer/main.c": {
+    "contract": "docs/implementation/executor-transfer.md",
+    "purpose": "Verify explicit synchronized executor handoff, live-borrow refusal, preserved continuation state and declared native thread affinity.",
+    "tests": [
+      {
+        "case": "it_transfers_a_quiescent_executor_with_explicit_publication_and_no_live_borrow",
+        "command": "make -C tests/unit/codegen/executor-transfer",
+        "source": "tests/unit/codegen/executor-transfer/main.c"
+      },
+      {
+        "case": "it_keeps_a_thread_affine_native_resource_on_its_required_executor",
+        "command": "make -C tests/unit/codegen/executor-transfer",
+        "source": "tests/unit/codegen/executor-transfer/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/executor-transfer/consumer/controller.c": {
+    "contract": "docs/implementation/executor-transfer.md",
+    "purpose": "Verify explicit synchronized executor handoff, live-borrow refusal, preserved continuation state and declared native thread affinity.",
+    "tests": [
+      {
+        "case": "it_transfers_a_quiescent_executor_with_explicit_publication_and_no_live_borrow",
+        "command": "make -C tests/unit/codegen/executor-transfer",
+        "source": "tests/unit/codegen/executor-transfer/main.c"
+      },
+      {
+        "case": "it_keeps_a_thread_affine_native_resource_on_its_required_executor",
+        "command": "make -C tests/unit/codegen/executor-transfer",
+        "source": "tests/unit/codegen/executor-transfer/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/executor-transfer/consumer/handoff.c": {
+    "contract": "docs/implementation/executor-transfer.md",
+    "purpose": "Verify explicit synchronized executor handoff, live-borrow refusal, preserved continuation state and declared native thread affinity.",
+    "tests": [
+      {
+        "case": "it_transfers_a_quiescent_executor_with_explicit_publication_and_no_live_borrow",
+        "command": "make -C tests/unit/codegen/executor-transfer",
+        "source": "tests/unit/codegen/executor-transfer/main.c"
+      },
+      {
+        "case": "it_keeps_a_thread_affine_native_resource_on_its_required_executor",
+        "command": "make -C tests/unit/codegen/executor-transfer",
+        "source": "tests/unit/codegen/executor-transfer/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/executor-transfer/consumer/native.c": {
+    "contract": "docs/implementation/executor-transfer.md",
+    "purpose": "Verify explicit synchronized executor handoff, live-borrow refusal, preserved continuation state and declared native thread affinity.",
+    "tests": [
+      {
+        "case": "it_transfers_a_quiescent_executor_with_explicit_publication_and_no_live_borrow",
+        "command": "make -C tests/unit/codegen/executor-transfer",
+        "source": "tests/unit/codegen/executor-transfer/main.c"
+      },
+      {
+        "case": "it_keeps_a_thread_affine_native_resource_on_its_required_executor",
+        "command": "make -C tests/unit/codegen/executor-transfer",
+        "source": "tests/unit/codegen/executor-transfer/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/executor-transfer/project/main": {
+    "contract": "docs/implementation/executor-transfer.md",
+    "purpose": "Verify explicit synchronized executor handoff, live-borrow refusal, preserved continuation state and declared native thread affinity.",
+    "tests": [
+      {
+        "case": "it_transfers_a_quiescent_executor_with_explicit_publication_and_no_live_borrow",
+        "command": "make -C tests/unit/codegen/executor-transfer",
+        "source": "tests/unit/codegen/executor-transfer/main.c"
+      },
+      {
+        "case": "it_keeps_a_thread_affine_native_resource_on_its_required_executor",
+        "command": "make -C tests/unit/codegen/executor-transfer",
+        "source": "tests/unit/codegen/executor-transfer/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/executor-transfer/project/affine": {
+    "contract": "docs/implementation/executor-transfer.md",
+    "purpose": "Verify explicit synchronized executor handoff, live-borrow refusal, preserved continuation state and declared native thread affinity.",
+    "tests": [
+      {
+        "case": "it_transfers_a_quiescent_executor_with_explicit_publication_and_no_live_borrow",
+        "command": "make -C tests/unit/codegen/executor-transfer",
+        "source": "tests/unit/codegen/executor-transfer/main.c"
+      },
+      {
+        "case": "it_keeps_a_thread_affine_native_resource_on_its_required_executor",
+        "command": "make -C tests/unit/codegen/executor-transfer",
+        "source": "tests/unit/codegen/executor-transfer/main.c"
       }
     ]
   }

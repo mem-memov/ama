@@ -1,0 +1,26 @@
+# The event endpoint remains native-owned while the yielded executor moves.
+@!
+service
+..task.events
+service !
+ < |1
+capture
+.capture
+capture !
+ < &service
+visit
+.visit
+visit !
+%
+service
+ take !
+  > packet
+packet
+?
+ visit !
+:
+ missing
+ .missing
+ missing !
+%
+visit !

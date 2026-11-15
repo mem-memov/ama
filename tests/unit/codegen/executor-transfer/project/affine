@@ -1,0 +1,7 @@
+# The native resource declares thread affinity for its entire live lifetime.
+@!
+visit
+.affine
+visit !
+%
+visit !

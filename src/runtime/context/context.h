@@ -159,6 +159,9 @@ AmaStatus ama_context_lease_move(AmaContextLease *, AmaContextLease *);
 AmaStatus ama_context_enter(AmaContextRegistry *registry, uint64_t identity, AmaContextLease *lease);
 /** Consume one valid lease and publish all prior context writes before another executor enters.
  * An empty lease is invalid; no context pointer may be accessed after releasing its gate.
+ * Cross-thread handoff additionally requires the host's synchronized exclusive
+ * ownership boundary, expired native borrows and every dependency's permission
+ * under [PAR-02](../../../spec/language/async-and-parallelism.md#par-02).
  */
 AmaStatus ama_context_leave(AmaContextLease *lease);
 /** Borrow this lease's runtime owners and current first failure. Failed contexts permit this

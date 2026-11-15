@@ -5,6 +5,9 @@
  * [PAR-01](../../../spec/language/async-and-parallelism.md#par-01) allows one executor per
  * context; [EMBED-03](../../../spec/implementation/c-library.md#embed-03) separates rejected
  * host admission from accepted execution. No Ama refusal/history is changed here.
+ * [PAR-02](../../../spec/language/async-and-parallelism.md#par-02) permits
+ * a quiescent owner change: release/acquire publishes context storage, while the
+ * host separately excludes conflicting access and checks every native affinity.
  */
 #include "internal.h"
 
@@ -63,7 +66,10 @@ AmaStatus ama_context_inspect(const AmaContextLease *lease, AmaContextView *view
     return ama_status_success();
 }
 
-/** Transfer the sole C owner without exposing an admission gap or retaining a shallow copy. */
+/** Move the linear C owner without an admission gap. This does not publish a
+ * cross-thread handoff or end any native borrow. Executor transfer requires the
+ * host's explicit synchronized ownership boundary and native-affinity checks.
+ */
 AmaStatus ama_context_lease_move(AmaContextLease *destination, AmaContextLease *source) {
     if (destination == NULL || source == NULL || destination == source
         || destination->context != NULL || destination->registry != NULL || destination->identity != 0

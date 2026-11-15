@@ -33,6 +33,10 @@ The [parallel execution acceptance](../parallel-context-execution.md) checks
 actual overlapping generated dispatch, context-local startup/reuse, native event
 import while a peer runs, and independent continuation after peer failure.
 
+The [executor transfer contract](../executor-transfer.md) separates core
+admission, synchronized host publication and native affinity, with compiled
+permanent-thread handoff and pinned-resource evidence.
+
 ## Before implementation
 
 Identify one responsibility and its smallest meaningful public boundary. Link the

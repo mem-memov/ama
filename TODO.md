@@ -2376,10 +2376,19 @@ Contracts: [PAR-01–PAR-08](spec/language/async-and-parallelism.md#parallelism-
   pass. Per-file coverage checks 1914 inputs with no debt; prose/rule links and
   final Doxygen reproducibility are checked before commit. See
   `docs/implementation/parallel-context-execution.md`.
-- [ ] **T102 — Implement quiescent executor transfer.** Needs: T101. Publish
-  state across an explicit synchronization boundary with no live native borrow
-  or conflicting access. Test yield/resume transfer, nonreentrant rejection and
-  thread-affine resources that require a pinned executor.
+- [x] **T102 — Implement quiescent executor transfer.** Needs: T101. The
+  existing release/acquire context gate composes with an explicit synchronized
+  host owner/command protocol. Documented that moving C lease storage does not
+  itself publish thread ownership or end native borrows. Compiled acceptance
+  uses two permanent POSIX workers: active native entry and retained inspection
+  refuse transfer, then yield/resume crosses zero-to-one-to-zero with unchanged
+  context/root identity, preserved selectors and pending native event delivery.
+  A separate real pthread-tagged native resource declares pinned affinity;
+  transfer is refused and entry/destruction stay on its original worker. Strict
+  generated/runtime context checks, root build, generated ASan/UBSan and TSan
+  pass. Per-file coverage and standalone headers check 1922 inputs without debt;
+  prose/rule links and final Doxygen reproducibility are checked before commit.
+  See `docs/implementation/executor-transfer.md`.
 - [ ] **T103 — Implement typed message encoding and decoding.** Needs: T086,
   T101. Validate version/schema/size before publishing independent received
   values, excluding Ama identities/control state/native pointers. Test malformed
