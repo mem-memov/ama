@@ -80,6 +80,22 @@ apply this outcome convention. `..integer.add`, `..integer.next` and
 `..integer.before` provide exact signed arbitrary-precision operations. They
 return ordinary values/predicates; native resource failures remain technical.
 
+## Ordinary task phases
+
+[`..task.phase`](modules/task/phase) returns `ready`, `awaiting`, and `completed`
+as three ordinary owned conditions. Exactly one is true in a constructed phase;
+the default is Ready. `..task.phase.ready`, `..task.phase.awaiting` and
+`..task.phase.completed` construct the same nominal phase type through normal
+calls. Retained reads and independent copies preserve its predicates; explicit
+`phase !` resets them to Ready. There is no implicit truth conversion for a phase.
+
+A task publishes its phase on every step. Awaiting requires an already published
+wait; Completed authorizes consuming its terminal results. Its separate
+`..failure` value describes an application outcome. False failure alone does not
+mean completion. [The phase contract](../docs/implementation/task-phases.md)
+explains actual yields, restart, nested propagation, representation and tests.
+Enrollment and event services remain subsequent roadmap tasks.
+
 ## Native construction and ownership
 
 An extensionless Ama interface may select `@C` and have `.h`, `.c` and `.abi`

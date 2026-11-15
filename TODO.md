@@ -2171,12 +2171,23 @@ Contracts: [EMBED-01–EMBED-08](spec/implementation/c-library.md),
 
 Contracts: [ASYNC-01–ASYNC-12](spec/language/async-and-parallelism.md).
 
-- [ ] **T090 — Define and implement the ordinary task-phase interface.** Needs:
+- [x] **T090 — Define and implement the ordinary task-phase interface.** Needs:
   T074, T087. Use typed Ready/Awaiting/Completed results through existing calls,
   not new syntax or universal task casts. Test phase/yield consistency, first
   entry versus later resume and explicit propagation of nested waiting. Keep
   phase separate from ERROR-01's failure value; test valid terminal description
   data and ensure false failure does not turn an awaiting task into completion.
+  **Completed:** `..task.phase` exposes ordinary owned ready/awaiting/completed
+  predicates; named constructor modules publish exactly one predicate without
+  task execution, hidden references or compiler special cases. Independent tests
+  exhaust choices and reject invalid publication before writes; a real standalone
+  native consumer checks the generated write-view boundary. Generated execution
+  covers retained reads, independent copies, explicit reset, first entry/resume,
+  restart, nested waiting propagation, completed-task refusal and terminal failure
+  description separately from phase. Both component scales pass ASan/UBSan;
+  strict full `NDEBUG` and 1606 per-file coverage/header checks pass. Doxygen rule
+  links and reproducibility are checked before commit. See
+  `docs/implementation/task-phases.md`; enrollment and native events remain T091+.
 - [ ] **T091 — Implement visible scheduler ownership and enrollment.** Needs:
   T090. Store task references/owners, run epochs and registration generations in
   declared Ama state. Test restart/removal invalidation, nonwrapping exhaustion

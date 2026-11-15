@@ -1,0 +1,10 @@
+# Report one ordinary task phase through retained condition results. See stdlib/README.md.
+@>
+ready
+..std.condition
+ |1
+awaiting
+..std.condition
+completed
+..std.condition
+@C

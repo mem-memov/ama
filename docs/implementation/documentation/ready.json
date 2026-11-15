@@ -32096,6 +32096,11 @@
         "case": "it_reads_last_refusal_through_an_ordinary_read_only_library_module",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
       }
     ]
   },
@@ -37301,6 +37306,11 @@
         "case": "it_reclaims_entirely_free_blocks_and_never_revives_their_identities",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
       }
     ]
   },
@@ -37962,6 +37972,11 @@
         "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
         "command": "make -C tests/unit/codegen/library-compositions",
         "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
       }
     ]
   },
@@ -85098,6 +85113,468 @@
         "case": "it_builds_and_runs_static_and_shared_multifile_consumers",
         "command": "make -C tests/integration/c-library-examples",
         "source": "tests/integration/c-library-examples/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/phase.h": {
+    "contract": "docs/implementation/task-phases.md",
+    "purpose": "Publish, observe and independently test ordinary one-hot task phases and explicit execution boundaries.",
+    "tests": [
+      {
+        "case": "it_publishes_predicates_through_the_actual_native_write_view",
+        "command": "make -C tests/unit/async/phase",
+        "source": "tests/unit/async/phase/main.c"
+      },
+      {
+        "case": "it_constructs_copies_and_resets_ordinary_phase_values",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      },
+      {
+        "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_phase_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/task/phase.c": {
+    "contract": "docs/implementation/task-phases.md",
+    "purpose": "Publish, observe and independently test ordinary one-hot task phases and explicit execution boundaries.",
+    "tests": [
+      {
+        "case": "it_publishes_predicates_through_the_actual_native_write_view",
+        "command": "make -C tests/unit/async/phase",
+        "source": "tests/unit/async/phase/main.c"
+      },
+      {
+        "case": "it_constructs_copies_and_resets_ordinary_phase_values",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      },
+      {
+        "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/phase": {
+    "contract": "docs/implementation/task-phases.md",
+    "purpose": "Publish, observe and independently test ordinary one-hot task phases and explicit execution boundaries.",
+    "tests": [
+      {
+        "case": "it_publishes_predicates_through_the_actual_native_write_view",
+        "command": "make -C tests/unit/async/phase",
+        "source": "tests/unit/async/phase/main.c"
+      },
+      {
+        "case": "it_constructs_copies_and_resets_ordinary_phase_values",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      },
+      {
+        "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/phase.abi": {
+    "contract": "docs/implementation/task-phases.md",
+    "purpose": "Publish, observe and independently test ordinary one-hot task phases and explicit execution boundaries.",
+    "tests": [
+      {
+        "case": "it_publishes_predicates_through_the_actual_native_write_view",
+        "command": "make -C tests/unit/async/phase",
+        "source": "tests/unit/async/phase/main.c"
+      },
+      {
+        "case": "it_constructs_copies_and_resets_ordinary_phase_values",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      },
+      {
+        "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/phase+/ready.h": {
+    "contract": "docs/implementation/task-phases.md",
+    "purpose": "Publish, observe and independently test ordinary one-hot task phases and explicit execution boundaries.",
+    "tests": [
+      {
+        "case": "it_constructs_copies_and_resets_ordinary_phase_values",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      },
+      {
+        "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_phase_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/task/phase+/completed.h": {
+    "contract": "docs/implementation/task-phases.md",
+    "purpose": "Publish, observe and independently test ordinary one-hot task phases and explicit execution boundaries.",
+    "tests": [
+      {
+        "case": "it_constructs_copies_and_resets_ordinary_phase_values",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      },
+      {
+        "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_phase_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/task/phase+/awaiting.abi": {
+    "contract": "docs/implementation/task-phases.md",
+    "purpose": "Publish, observe and independently test ordinary one-hot task phases and explicit execution boundaries.",
+    "tests": [
+      {
+        "case": "it_constructs_copies_and_resets_ordinary_phase_values",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      },
+      {
+        "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/phase+/completed.c": {
+    "contract": "docs/implementation/task-phases.md",
+    "purpose": "Publish, observe and independently test ordinary one-hot task phases and explicit execution boundaries.",
+    "tests": [
+      {
+        "case": "it_constructs_copies_and_resets_ordinary_phase_values",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      },
+      {
+        "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/phase+/awaiting.h": {
+    "contract": "docs/implementation/task-phases.md",
+    "purpose": "Publish, observe and independently test ordinary one-hot task phases and explicit execution boundaries.",
+    "tests": [
+      {
+        "case": "it_constructs_copies_and_resets_ordinary_phase_values",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      },
+      {
+        "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_phase_probe_##name",
+      "-"
+    ]
+  },
+  "stdlib/modules/task/phase+/ready": {
+    "contract": "docs/implementation/task-phases.md",
+    "purpose": "Publish, observe and independently test ordinary one-hot task phases and explicit execution boundaries.",
+    "tests": [
+      {
+        "case": "it_constructs_copies_and_resets_ordinary_phase_values",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      },
+      {
+        "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/phase+/completed.abi": {
+    "contract": "docs/implementation/task-phases.md",
+    "purpose": "Publish, observe and independently test ordinary one-hot task phases and explicit execution boundaries.",
+    "tests": [
+      {
+        "case": "it_constructs_copies_and_resets_ordinary_phase_values",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      },
+      {
+        "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/phase+/ready.c": {
+    "contract": "docs/implementation/task-phases.md",
+    "purpose": "Publish, observe and independently test ordinary one-hot task phases and explicit execution boundaries.",
+    "tests": [
+      {
+        "case": "it_constructs_copies_and_resets_ordinary_phase_values",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      },
+      {
+        "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/phase+/awaiting.c": {
+    "contract": "docs/implementation/task-phases.md",
+    "purpose": "Publish, observe and independently test ordinary one-hot task phases and explicit execution boundaries.",
+    "tests": [
+      {
+        "case": "it_constructs_copies_and_resets_ordinary_phase_values",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      },
+      {
+        "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/phase+/awaiting": {
+    "contract": "docs/implementation/task-phases.md",
+    "purpose": "Publish, observe and independently test ordinary one-hot task phases and explicit execution boundaries.",
+    "tests": [
+      {
+        "case": "it_constructs_copies_and_resets_ordinary_phase_values",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      },
+      {
+        "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/phase+/completed": {
+    "contract": "docs/implementation/task-phases.md",
+    "purpose": "Publish, observe and independently test ordinary one-hot task phases and explicit execution boundaries.",
+    "tests": [
+      {
+        "case": "it_constructs_copies_and_resets_ordinary_phase_values",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      },
+      {
+        "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/phase+/ready.abi": {
+    "contract": "docs/implementation/task-phases.md",
+    "purpose": "Publish, observe and independently test ordinary one-hot task phases and explicit execution boundaries.",
+    "tests": [
+      {
+        "case": "it_constructs_copies_and_resets_ordinary_phase_values",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      },
+      {
+        "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/phase+/native/selection.h": {
+    "contract": "docs/implementation/task-phases.md",
+    "purpose": "Publish, observe and independently test ordinary one-hot task phases and explicit execution boundaries.",
+    "tests": [
+      {
+        "case": "it_selects_exactly_one_phase_and_preserves_output_on_invalid_choices",
+        "command": "make -C tests/unit/async/phase",
+        "source": "tests/unit/async/phase/main.c"
+      },
+      {
+        "case": "it_publishes_predicates_through_the_actual_native_write_view",
+        "command": "make -C tests/unit/async/phase",
+        "source": "tests/unit/async/phase/main.c"
+      },
+      {
+        "case": "it_constructs_copies_and_resets_ordinary_phase_values",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_phase_probe_##name",
+      "-"
+    ]
+  },
+  "tests/unit/async/Makefile": {
+    "contract": "docs/implementation/task-phases.md",
+    "purpose": "Publish, observe and independently test ordinary one-hot task phases and explicit execution boundaries.",
+    "tests": [
+      {
+        "case": "it_selects_exactly_one_phase_and_preserves_output_on_invalid_choices",
+        "command": "make -C tests/unit/async/phase",
+        "source": "tests/unit/async/phase/main.c"
+      },
+      {
+        "case": "it_publishes_predicates_through_the_actual_native_write_view",
+        "command": "make -C tests/unit/async/phase",
+        "source": "tests/unit/async/phase/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/phase/Makefile": {
+    "contract": "docs/implementation/task-phases.md",
+    "purpose": "Publish, observe and independently test ordinary one-hot task phases and explicit execution boundaries.",
+    "tests": [
+      {
+        "case": "it_selects_exactly_one_phase_and_preserves_output_on_invalid_choices",
+        "command": "make -C tests/unit/async/phase",
+        "source": "tests/unit/async/phase/main.c"
+      },
+      {
+        "case": "it_publishes_predicates_through_the_actual_native_write_view",
+        "command": "make -C tests/unit/async/phase",
+        "source": "tests/unit/async/phase/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/phase/main.c": {
+    "contract": "docs/implementation/task-phases.md",
+    "purpose": "Publish, observe and independently test ordinary one-hot task phases and explicit execution boundaries.",
+    "tests": [
+      {
+        "case": "it_selects_exactly_one_phase_and_preserves_output_on_invalid_choices",
+        "command": "make -C tests/unit/async/phase",
+        "source": "tests/unit/async/phase/main.c"
+      },
+      {
+        "case": "it_publishes_predicates_through_the_actual_native_write_view",
+        "command": "make -C tests/unit/async/phase",
+        "source": "tests/unit/async/phase/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-phases/Makefile": {
+    "contract": "docs/implementation/task-phases.md",
+    "purpose": "Publish, observe and independently test ordinary one-hot task phases and explicit execution boundaries.",
+    "tests": [
+      {
+        "case": "it_constructs_copies_and_resets_ordinary_phase_values",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      },
+      {
+        "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      },
+      {
+        "case": "it_propagates_nested_waiting_only_through_explicit_parent_yield",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-phases/main.c": {
+    "contract": "docs/implementation/task-phases.md",
+    "purpose": "Publish, observe and independently test ordinary one-hot task phases and explicit execution boundaries.",
+    "tests": [
+      {
+        "case": "it_constructs_copies_and_resets_ordinary_phase_values",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      },
+      {
+        "case": "it_matches_real_yields_and_preserves_terminal_failure_description",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
+      },
+      {
+        "case": "it_propagates_nested_waiting_only_through_explicit_parent_yield",
+        "command": "make -C tests/unit/codegen/task-phases",
+        "source": "tests/unit/codegen/task-phases/main.c"
       }
     ]
   }
