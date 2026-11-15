@@ -23,7 +23,7 @@ bool codegen_emit_header(NativeScaffold *scaffold, FILE *output, const ScaffoldT
         if (type->plan->type->module->syntax.sections.kind == MODULE_NATIVE
             && !codegen_emit_native(scaffold, output, type)) { return false; }
     }
-    return codegen_emit_descriptors(scaffold, output) && codegen_emit_program(scaffold, output) && codegen_emit_type_setup(scaffold, output) && codegen_emit_views(scaffold, output) && codegen_emit_controls(scaffold, output) && codegen_emit_locations(scaffold, output) && fputs(
+    return codegen_emit_descriptors(scaffold, output) && codegen_emit_program(scaffold, output) && codegen_emit_type_setup(scaffold, output) && codegen_emit_views(scaffold, output) && codegen_emit_controls(scaffold, output) && codegen_emit_locations(scaffold, output) && codegen_emit_debugger(scaffold, output) && fputs(
         "#include \"runtime/metadata/host.h\"\n"
         "typedef struct { AmaContextRegistry registry; uint64_t identity; AmaHandle root; AmaStatus status;\n"
         "    AmaContextView active; _Atomic bool executing; bool initialized, disposed; } AmaProjectHost;\n"

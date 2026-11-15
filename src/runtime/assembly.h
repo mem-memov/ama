@@ -62,6 +62,7 @@
 #include "runtime/objects/replacement/replace.c"
 #include "runtime/pool/growth.c"
 #include "runtime/pool/reclaim.c"
+#include "runtime/pool/visit.c"
 #include "runtime/pool/slots.c"
 #include "runtime/pool/storage.c"
 #include "runtime/program/lists/frames.c"
@@ -150,5 +151,7 @@
 #include "runtime/library/instances/create.c"
 #include "runtime/library/instances/select.c"
 #include "runtime/library/instances/dispose.c"
+
+#include "runtime/debugger/assembly.h"
 
 #endif

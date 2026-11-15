@@ -2499,10 +2499,24 @@ Contracts: [tools](spec/implementation/tools-and-conformance.md),
   maintained inputs have named coverage without debt; Doxygen/prose/header
   checks pass, with final reproducibility checked before commit.
   See `docs/implementation/editor-rename.md`.
-- [ ] **T109 — Expose explicit debugger inspection.** Needs: T084, T099, T106.
-  Inspect type, persistent/interface state, acquisition, saved positions, cursors,
-  refusal and task/context state through authorized metadata. Test no hidden native
-  payload access, mutable concurrent inspection or fabricated execution history.
+- [x] **T109 — Expose explicit debugger inspection.** Needs: T084, T099, T106.
+  Exclusive linear inspection sessions expose actual live types, declared
+  parameter/result/persistent fields, list acquisition/memberships, saved
+  positions, lexical cursor/binding roles, refusal and context state. Declared
+  task records use the same field projections; opaque native state requires an
+  explicitly registered synchronous scalar reader. The compiler emits original
+  UTF-8 names by exact nominal/storage/scope identities, independently of C names.
+  Terminal cleanup retains status rather than fabricated instances or history.
+  Tests cover actual competing threads, foreign-origin collisions, stale/busy
+  instances, callback lifetime, invalid catalogs/readers, malformed previews and
+  a native payload protected with PROT_NONE. Generated Russian-named traversal
+  tests inspect two successive yields without advancing execution, distinguish
+  rejected resume from accepted native failure, and check cleared caller links.
+  Strict full NDEBUG and runtime/generated ASan/UBSan pass. All 2069 maintained
+  inputs have named coverage without debt; standalone headers and Doxygen links
+  pass, with final reproducibility checked before commit. This is the inspection
+  core; user-facing integration remains T115.
+  See `docs/implementation/debugger-inspection.md`.
 - [ ] **T110 — Build complete relocation discovery and preview.** Needs: T018,
   T040, T107. Enumerate all configured active sources, including external importers
   and unused modules, while keeping drafts opaque. Test exact destination, carried

@@ -2811,6 +2811,16 @@
         "case": "it_refuses_retired_children_and_visits_the_fresh_child",
         "command": "make -C tests/unit/codegen/reference-visitors",
         "source": "tests/unit/codegen/reference-visitors/main.c"
+      },
+      {
+        "case": "it_inspects_yielded_traversals_with_original_names",
+        "command": "make -C tests/unit/codegen/debugger",
+        "source": "tests/unit/codegen/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_inspection_after_generated_host_failure_cleanup",
+        "command": "make -C tests/unit/codegen/debugger",
+        "source": "tests/unit/codegen/debugger/main.c"
       }
     ]
   },
@@ -3190,6 +3200,16 @@
         "case": "it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry",
         "command": "make -C tests/unit/codegen/contexts",
         "source": "tests/unit/codegen/contexts/main.c"
+      },
+      {
+        "case": "it_inspects_yielded_traversals_with_original_names",
+        "command": "make -C tests/unit/codegen/debugger",
+        "source": "tests/unit/codegen/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_inspection_after_generated_host_failure_cleanup",
+        "command": "make -C tests/unit/codegen/debugger",
+        "source": "tests/unit/codegen/debugger/main.c"
       }
     ]
   },
@@ -15677,6 +15697,46 @@
         "case": "it_retains_native_code_through_independent_move_only_leases",
         "command": "make -C tests/unit/runtime/library",
         "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_inspects_declared_state_under_exclusive_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_checks_origin_and_explicit_preview_authority",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_admission_without_publishing_a_session",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_separates_busy_metadata_from_native_read_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_never_reads_a_protected_opaque_native_payload",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_terminal_status_without_reconstructing_state",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_validates_catalogs_and_native_preview_transport",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_actual_concurrent_inspection_and_execution",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
       }
     ]
   },
@@ -23378,6 +23438,46 @@
         "case": "it_matches_every_small_pool_schedule_against_identity_and_occupancy_invariants",
         "command": "make -C tests/unit/runtime/pool",
         "source": "tests/unit/runtime/pool/main.c"
+      },
+      {
+        "case": "it_inspects_declared_state_under_exclusive_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_checks_origin_and_explicit_preview_authority",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_admission_without_publishing_a_session",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_separates_busy_metadata_from_native_read_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_never_reads_a_protected_opaque_native_payload",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_terminal_status_without_reconstructing_state",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_validates_catalogs_and_native_preview_transport",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_actual_concurrent_inspection_and_execution",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
       }
     ]
   },
@@ -39267,6 +39367,16 @@
         "case": "it_supervises_parallel_channel_actors_with_explicit_continue_and_cancel_policies",
         "command": "make -C tests/unit/codegen/parallel-supervision",
         "source": "tests/unit/codegen/parallel-supervision/main.c"
+      },
+      {
+        "case": "it_inspects_yielded_traversals_with_original_names",
+        "command": "make -C tests/unit/codegen/debugger",
+        "source": "tests/unit/codegen/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_inspection_after_generated_host_failure_cleanup",
+        "command": "make -C tests/unit/codegen/debugger",
+        "source": "tests/unit/codegen/debugger/main.c"
       }
     ]
   },
@@ -47157,6 +47267,46 @@
         "case": "it_isolates_context_storage_during_concurrent_native_constant_lifecycle",
         "command": "make -C tests/unit/runtime/isolation",
         "source": "tests/unit/runtime/isolation/main.c"
+      },
+      {
+        "case": "it_inspects_declared_state_under_exclusive_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_checks_origin_and_explicit_preview_authority",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_admission_without_publishing_a_session",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_separates_busy_metadata_from_native_read_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_never_reads_a_protected_opaque_native_payload",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_terminal_status_without_reconstructing_state",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_validates_catalogs_and_native_preview_transport",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_actual_concurrent_inspection_and_execution",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
       }
     ]
   },
@@ -103640,6 +103790,805 @@
         "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
         "command": "make -C tests/unit/editor/rename/plan",
         "source": "tests/unit/editor/rename/plan/main.c"
+      }
+    ]
+  },
+  "src/runtime/debugger/internal.h": {
+    "contract": "docs/implementation/debugger-inspection.md",
+    "purpose": "Inspect admitted actual state through declared metadata without native layout inference or execution history.",
+    "tests": [
+      {
+        "case": "it_inspects_declared_state_under_exclusive_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_checks_origin_and_explicit_preview_authority",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_admission_without_publishing_a_session",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_separates_busy_metadata_from_native_read_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_never_reads_a_protected_opaque_native_payload",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_terminal_status_without_reconstructing_state",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_validates_catalogs_and_native_preview_transport",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_actual_concurrent_inspection_and_execution",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/runtime/debugger/debugger.h": {
+    "contract": "docs/implementation/debugger-inspection.md",
+    "purpose": "Inspect admitted actual state through declared metadata without native layout inference or execution history.",
+    "tests": [
+      {
+        "case": "it_inspects_declared_state_under_exclusive_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_checks_origin_and_explicit_preview_authority",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_admission_without_publishing_a_session",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_separates_busy_metadata_from_native_read_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_never_reads_a_protected_opaque_native_payload",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_terminal_status_without_reconstructing_state",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_validates_catalogs_and_native_preview_transport",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_actual_concurrent_inspection_and_execution",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/runtime/debugger/assembly.h": {
+    "contract": "docs/implementation/debugger-inspection.md",
+    "purpose": "Inspect admitted actual state through declared metadata without native layout inference or execution history.",
+    "tests": [
+      {
+        "case": "it_inspects_declared_state_under_exclusive_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_checks_origin_and_explicit_preview_authority",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_admission_without_publishing_a_session",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_separates_busy_metadata_from_native_read_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_never_reads_a_protected_opaque_native_payload",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_terminal_status_without_reconstructing_state",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_validates_catalogs_and_native_preview_transport",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_actual_concurrent_inspection_and_execution",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/runtime/debugger/metadata/schema.c": {
+    "contract": "docs/implementation/debugger-inspection.md",
+    "purpose": "Inspect admitted actual state through declared metadata without native layout inference or execution history.",
+    "tests": [
+      {
+        "case": "it_inspects_declared_state_under_exclusive_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_checks_origin_and_explicit_preview_authority",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_admission_without_publishing_a_session",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_separates_busy_metadata_from_native_read_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_never_reads_a_protected_opaque_native_payload",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_terminal_status_without_reconstructing_state",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_validates_catalogs_and_native_preview_transport",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_actual_concurrent_inspection_and_execution",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      }
+    ]
+  },
+  "src/runtime/debugger/instances/resolve.c": {
+    "contract": "docs/implementation/debugger-inspection.md",
+    "purpose": "Inspect admitted actual state through declared metadata without native layout inference or execution history.",
+    "tests": [
+      {
+        "case": "it_inspects_declared_state_under_exclusive_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_checks_origin_and_explicit_preview_authority",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_admission_without_publishing_a_session",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_separates_busy_metadata_from_native_read_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_never_reads_a_protected_opaque_native_payload",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_terminal_status_without_reconstructing_state",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_validates_catalogs_and_native_preview_transport",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_actual_concurrent_inspection_and_execution",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      }
+    ]
+  },
+  "src/runtime/debugger/instances/snapshot.c": {
+    "contract": "docs/implementation/debugger-inspection.md",
+    "purpose": "Inspect admitted actual state through declared metadata without native layout inference or execution history.",
+    "tests": [
+      {
+        "case": "it_inspects_declared_state_under_exclusive_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_checks_origin_and_explicit_preview_authority",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_admission_without_publishing_a_session",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_separates_busy_metadata_from_native_read_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_never_reads_a_protected_opaque_native_payload",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_terminal_status_without_reconstructing_state",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_validates_catalogs_and_native_preview_transport",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_actual_concurrent_inspection_and_execution",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      }
+    ]
+  },
+  "src/runtime/debugger/instances/cursors.c": {
+    "contract": "docs/implementation/debugger-inspection.md",
+    "purpose": "Inspect admitted actual state through declared metadata without native layout inference or execution history.",
+    "tests": [
+      {
+        "case": "it_inspects_declared_state_under_exclusive_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_checks_origin_and_explicit_preview_authority",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_admission_without_publishing_a_session",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_separates_busy_metadata_from_native_read_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_never_reads_a_protected_opaque_native_payload",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_terminal_status_without_reconstructing_state",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_validates_catalogs_and_native_preview_transport",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_actual_concurrent_inspection_and_execution",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      }
+    ]
+  },
+  "src/runtime/debugger/instances/fields.c": {
+    "contract": "docs/implementation/debugger-inspection.md",
+    "purpose": "Inspect admitted actual state through declared metadata without native layout inference or execution history.",
+    "tests": [
+      {
+        "case": "it_inspects_declared_state_under_exclusive_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_checks_origin_and_explicit_preview_authority",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_admission_without_publishing_a_session",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_separates_busy_metadata_from_native_read_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_never_reads_a_protected_opaque_native_payload",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_terminal_status_without_reconstructing_state",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_validates_catalogs_and_native_preview_transport",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_actual_concurrent_inspection_and_execution",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      }
+    ]
+  },
+  "src/runtime/debugger/instances/native.c": {
+    "contract": "docs/implementation/debugger-inspection.md",
+    "purpose": "Inspect admitted actual state through declared metadata without native layout inference or execution history.",
+    "tests": [
+      {
+        "case": "it_inspects_declared_state_under_exclusive_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_checks_origin_and_explicit_preview_authority",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_admission_without_publishing_a_session",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_separates_busy_metadata_from_native_read_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_never_reads_a_protected_opaque_native_payload",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_terminal_status_without_reconstructing_state",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_validates_catalogs_and_native_preview_transport",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_actual_concurrent_inspection_and_execution",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      }
+    ]
+  },
+  "src/runtime/debugger/instances/enumerate.c": {
+    "contract": "docs/implementation/debugger-inspection.md",
+    "purpose": "Inspect admitted actual state through declared metadata without native layout inference or execution history.",
+    "tests": [
+      {
+        "case": "it_inspects_declared_state_under_exclusive_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_checks_origin_and_explicit_preview_authority",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_admission_without_publishing_a_session",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_separates_busy_metadata_from_native_read_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_never_reads_a_protected_opaque_native_payload",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_terminal_status_without_reconstructing_state",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_validates_catalogs_and_native_preview_transport",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_actual_concurrent_inspection_and_execution",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      }
+    ]
+  },
+  "src/runtime/debugger/session/context.c": {
+    "contract": "docs/implementation/debugger-inspection.md",
+    "purpose": "Inspect admitted actual state through declared metadata without native layout inference or execution history.",
+    "tests": [
+      {
+        "case": "it_inspects_declared_state_under_exclusive_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_checks_origin_and_explicit_preview_authority",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_admission_without_publishing_a_session",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_separates_busy_metadata_from_native_read_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_never_reads_a_protected_opaque_native_payload",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_terminal_status_without_reconstructing_state",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_validates_catalogs_and_native_preview_transport",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_actual_concurrent_inspection_and_execution",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      }
+    ]
+  },
+  "src/runtime/debugger/session/admission.c": {
+    "contract": "docs/implementation/debugger-inspection.md",
+    "purpose": "Inspect admitted actual state through declared metadata without native layout inference or execution history.",
+    "tests": [
+      {
+        "case": "it_inspects_declared_state_under_exclusive_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_checks_origin_and_explicit_preview_authority",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_admission_without_publishing_a_session",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_separates_busy_metadata_from_native_read_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_never_reads_a_protected_opaque_native_payload",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_terminal_status_without_reconstructing_state",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_validates_catalogs_and_native_preview_transport",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_actual_concurrent_inspection_and_execution",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      }
+    ]
+  },
+  "src/runtime/pool/visit.c": {
+    "contract": "docs/implementation/debugger-inspection.md",
+    "purpose": "Inspect admitted actual state through declared metadata without native layout inference or execution history.",
+    "tests": [
+      {
+        "case": "it_inspects_declared_state_under_exclusive_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_checks_origin_and_explicit_preview_authority",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_admission_without_publishing_a_session",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_separates_busy_metadata_from_native_read_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_never_reads_a_protected_opaque_native_payload",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_terminal_status_without_reconstructing_state",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_validates_catalogs_and_native_preview_transport",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_actual_concurrent_inspection_and_execution",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/debugger/main.c": {
+    "contract": "docs/implementation/debugger-inspection.md",
+    "purpose": "Inspect admitted actual state through declared metadata without native layout inference or execution history.",
+    "tests": [
+      {
+        "case": "it_inspects_declared_state_under_exclusive_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_checks_origin_and_explicit_preview_authority",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_admission_without_publishing_a_session",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_separates_busy_metadata_from_native_read_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_never_reads_a_protected_opaque_native_payload",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_terminal_status_without_reconstructing_state",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_validates_catalogs_and_native_preview_transport",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_actual_concurrent_inspection_and_execution",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/debugger/Makefile": {
+    "contract": "docs/implementation/debugger-inspection.md",
+    "purpose": "Inspect admitted actual state through declared metadata without native layout inference or execution history.",
+    "tests": [
+      {
+        "case": "it_inspects_declared_state_under_exclusive_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_checks_origin_and_explicit_preview_authority",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_admission_without_publishing_a_session",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_separates_busy_metadata_from_native_read_admission",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_never_reads_a_protected_opaque_native_payload",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_terminal_status_without_reconstructing_state",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_validates_catalogs_and_native_preview_transport",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_actual_concurrent_inspection_and_execution",
+        "command": "make -C tests/unit/runtime/debugger",
+        "source": "tests/unit/runtime/debugger/main.c"
+      }
+    ]
+  },
+  "src/codegen/emit/debugger.c": {
+    "contract": "docs/implementation/debugger-inspection.md",
+    "purpose": "Inspect admitted actual state through declared metadata without native layout inference or execution history.",
+    "tests": [
+      {
+        "case": "it_inspects_yielded_traversals_with_original_names",
+        "command": "make -C tests/unit/codegen/debugger",
+        "source": "tests/unit/codegen/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_inspection_after_generated_host_failure_cleanup",
+        "command": "make -C tests/unit/codegen/debugger",
+        "source": "tests/unit/codegen/debugger/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/debugger/main.c": {
+    "contract": "docs/implementation/debugger-inspection.md",
+    "purpose": "Inspect admitted actual state through declared metadata without native layout inference or execution history.",
+    "tests": [
+      {
+        "case": "it_inspects_yielded_traversals_with_original_names",
+        "command": "make -C tests/unit/codegen/debugger",
+        "source": "tests/unit/codegen/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_inspection_after_generated_host_failure_cleanup",
+        "command": "make -C tests/unit/codegen/debugger",
+        "source": "tests/unit/codegen/debugger/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/debugger/consumer.c": {
+    "contract": "docs/implementation/debugger-inspection.md",
+    "purpose": "Inspect admitted actual state through declared metadata without native layout inference or execution history.",
+    "tests": [
+      {
+        "case": "it_inspects_yielded_traversals_with_original_names",
+        "command": "make -C tests/unit/codegen/debugger",
+        "source": "tests/unit/codegen/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_inspection_after_generated_host_failure_cleanup",
+        "command": "make -C tests/unit/codegen/debugger",
+        "source": "tests/unit/codegen/debugger/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/debugger/Makefile": {
+    "contract": "docs/implementation/debugger-inspection.md",
+    "purpose": "Inspect admitted actual state through declared metadata without native layout inference or execution history.",
+    "tests": [
+      {
+        "case": "it_inspects_yielded_traversals_with_original_names",
+        "command": "make -C tests/unit/codegen/debugger",
+        "source": "tests/unit/codegen/debugger/main.c"
+      },
+      {
+        "case": "it_rejects_inspection_after_generated_host_failure_cleanup",
+        "command": "make -C tests/unit/codegen/debugger",
+        "source": "tests/unit/codegen/debugger/main.c"
       }
     ]
   }

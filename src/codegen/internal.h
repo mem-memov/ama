@@ -187,4 +187,6 @@ size_t codegen_declaration_selector(NativeScaffold *, const SemanticSymbol *);
  * and source-backed roles. The generated table borrows immutable compiled strings.
  */
 bool codegen_emit_locations(NativeScaffold *, FILE *);
+/** Emit original names keyed by exact declared storage and lexical scope ordinals. */
+bool codegen_emit_debugger(NativeScaffold *, FILE *);
 #endif
