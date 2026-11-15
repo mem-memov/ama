@@ -123,10 +123,11 @@ static void it_returns_declared_results_and_refusal_data_separately_from_technic
     AMA_NATIVE(FixtureCount) length = {0};
     AmaStatus refusal = {0};
     AMA_NATIVE(FixtureOutputs) results = {&length, &refusal};
-    AmaNativeServices services = {ama_status_make(AMA_BUSY, NULL, 0)};
+    AmaNativeServices services = {.caller_refusal = ama_status_make(AMA_BUSY, NULL, 0)};
     AMA_NATIVE(entry)(&state, &parameters, &results, &services, &status);
     assert(ama_status_is_success(status) && length.value == 2);
     assert(refusal.code == AMA_BUSY && services.caller_refusal.code == AMA_BUSY);
+    assert(services.code.resource == NULL && services.code.retain == NULL);
     assert(state.entry_count == 1 && caller.entry_count == 0);
     bool condition = false;
     status = AMA_NATIVE(to_condition)(&bound, &condition);

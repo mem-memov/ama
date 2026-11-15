@@ -1,0 +1,103 @@
+# Commit only at a resumed task boundary; native arrival merely supplies data.
+@<
+owner&
+.jobs.record
+@>
+self&
+.jobs.task
+ &
+phase
+..task.phase
+outcome&
+..task.outcome
+token
+..task.token
+@!
+operation
+..task.operation
+detach
+..task.operation.detach
+owned outcome
+..task.outcome
+fresh outcome
+..task.outcome
+awaiting phase
+..task.phase.awaiting
+completed phase
+..task.phase.completed
+true
+..std.condition
+ |1
+false
+..std.condition
+ |0
+cancelled
+..std.condition
+delivered
+..std.condition
+owned outcome
+ fresh outcome
+outcome&
+ &owned outcome
+owner&
+ source& >> source&
+operation !
+ < source&
+ > token
+owner&
+ waiting !
+  < |1
+source&
+ arm !
+  < token
+owner&
+ cancel requested >> initial cancellation
+initial cancellation
+:
+ awaiting phase !
+  > phase
+ %
+pending
+..std.condition
+ |1
+pending
+ true
+pending
+{
+ owner&
+  cancel requested >> cancel flag
+  delivered >> delivered flag
+ cancelled
+  false
+ delivered
+  false
+ cancel flag
+ ?
+  cancelled
+   true
+ delivered flag
+ ?
+  delivered
+   true
+ owned outcome !
+  < cancelled
+  < delivered
+  > pending
+ pending
+ ?
+  awaiting phase !
+   > phase
+  %
+ :
+  # Invalidate visible delivery first, then detach and release mailbox bytes.
+  owner&
+   waiting !
+   delivered !
+   mailbox& >> mailbox&
+  mailbox& !
+  detach !
+   < &operation
+  completed phase !
+   > phase
+  >
+}

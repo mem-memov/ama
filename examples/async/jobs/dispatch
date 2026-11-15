@@ -1,0 +1,29 @@
+# One queue decision executes at most one task step, then appends a Ready yield at the tail.
+@<
+queue&
+.jobs.queue
+@>
+executed
+..std.condition
+@!
+pop
+.jobs.pop
+step
+.jobs.step
+enqueue
+.jobs.enqueue
+pop !
+ < queue&
+ > record&
+ >
+ > available
+available
+:
+ >
+step !
+ < record&
+enqueue !
+ < queue&
+ < record&
+executed
+ available

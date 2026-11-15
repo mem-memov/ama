@@ -31,11 +31,12 @@ def inventory(root):
             continue
         is_code = path.suffix in ('.c', '.h', '.inc', '.py', '.sh', '.mk', '.abi', '.exports') or path.name in ('Makefile', 'Doxyfile')
         is_fixture = (relative.startswith('tests/') and '/project/' in relative) or (relative.startswith('stdlib/modules/') and path.suffix != '.md')
+        is_ama_example = path.suffix == '' and relative.startswith(('examples/async/', 'examples/async-host/project/'))
         is_observation = (relative.startswith('tests/') and path.name in (
             'expected.txt', 'expected-error.txt', 'expected-abi-error.txt',
             'expected-ambiguity.txt'))
         is_library_contract = relative == 'stdlib/README.md'
-        if is_code or is_fixture or is_observation or is_library_contract or relative in historical:
+        if is_code or is_fixture or is_ama_example or is_observation or is_library_contract or relative in historical:
             if (root / relative).is_file():
                 result.add(relative)
     return result

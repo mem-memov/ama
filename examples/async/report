@@ -1,0 +1,38 @@
+# Scheduling completion and the operation outcome are separate ordinary values.
+@<
+record&
+.jobs.record
+@!
+print
+.print
+require
+..task.require
+record&
+ waiting >> waiting
+ queued >> queued
+ task& >> task&
+waiting
+?
+ require !
+queued
+?
+ require !
+task&
+ phase >> phase
+ outcome& >> outcome&
+phase
+ completed >> done
+require !
+ < done
+outcome&
+ completed >> completed
+ cancelled >> cancelled
+completed
+?
+ print !
+  < |completed
+:
+ require !
+  < cancelled
+ print !
+  < |cancelled

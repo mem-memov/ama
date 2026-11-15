@@ -11,6 +11,7 @@
 /** Register explicit publication, isolation, admission, continuation-state and failure checks. */
 void run(void) {
     it_tracks_code_pins_and_snapshot_owners_without_counter_wrap();
+    it_retains_native_code_through_independent_move_only_leases();
     it_keeps_kernel_references_and_component_controls_distinct();
     it_rejects_cross_context_foreign_and_obsolete_controls();
     it_constructs_only_explicit_roots_and_disposes_yielded_state_without_resume();

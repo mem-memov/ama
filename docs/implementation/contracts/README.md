@@ -173,3 +173,6 @@ algebra, explicit queue wakeup and late-result cleanup at documented task bounda
 [Task copy and failure boundaries](../task-copy-and-failure.md) records explicit
 snapshot parameter propagation, noncopyable enrollment ownership, external
 consumer rights and native acknowledgment after terminal context cleanup.
+
+[Supported asynchronous host](../asynchronous-host.md) records native-only creator-code
+leases, real worker completion and actual unload/reload through the SDK-free C API.

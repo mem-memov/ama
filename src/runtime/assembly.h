@@ -142,6 +142,7 @@
 
 #include "runtime/library/service.c"
 #include "runtime/library/code.c"
+#include "runtime/library/native.c"
 #include "runtime/library/access.c"
 #include "runtime/library/diagnostic.c"
 #include "runtime/library/contexts/create.c"

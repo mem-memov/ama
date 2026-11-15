@@ -20,7 +20,7 @@ def documentation_pages(root):
     """
     root = Path(root)
     paths = set(root.glob('*.md'))
-    for directory in ('docs', 'stdlib', 'third_party'):
+    for directory in ('docs', 'stdlib', 'third_party', 'examples'):
         paths.update((root / directory).rglob('*.md'))
     pages = {path.relative_to(root).as_posix() for path in paths if path.is_file()
              and not {'technical', 'generated', 'build', '__pycache__'}.intersection(path.relative_to(root).parts)}

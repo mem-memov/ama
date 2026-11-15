@@ -6,6 +6,8 @@
 #ifndef AMA_LIBRARY_LIFECYCLE_EMITTER_INTERNAL_H
 #define AMA_LIBRARY_LIFECYCLE_EMITTER_INTERNAL_H
 #include "library/header/internal.h"
+/** Emit the shared native/diagnostic/value code owner before any dependent adapter. */
+void library_lifecycle_retention(LibraryHeader *);
 /** Emit code-pinned diagnostic conversion and initialized-empty release operations. */
 void library_lifecycle_diagnostics(LibraryHeader *);
 /** Emit exact numeric-control conversions and public lifecycle adapters. */

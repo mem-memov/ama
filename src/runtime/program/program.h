@@ -3,12 +3,15 @@
  * @brief Declare generated-program ownership, value selection and startup boundaries.
  *
  * [RT-05](../../../spec/implementation/runtime.md#rt-05)
- * Operate directly on stable world storage. The runtime/context owner supplies isolated descriptors; generated assembly wiring remains T061.
+ * Operate directly on stable world storage. The runtime/context owner supplies isolated descriptors and an independent native code provider.
+ * [EMBED-06](../../../spec/implementation/c-library.md#embed-06) keeps native
+ * creator-image retention independent of context-owned Ama storage.
  * [FLOW-05](../../../spec/language/lists.md#flow-05) Selected binding views borrow origin metadata without copying that association into ordinary references.
  */
 #ifndef AMA_RUNTIME_PROGRAM_H
 #define AMA_RUNTIME_PROGRAM_H
 #include "constants.h"
+#include "native/abi/code.h"
 
 /** Shared declaration storage uses the same owned value-array lifecycle as a constant field. */
 typedef AmaConstantField AmaConstantStorage;
@@ -21,9 +24,11 @@ typedef struct {
     size_t initializer_count;
     uint64_t operation;
 } AmaProgramConstant;
-/** Borrowed generated program registries/world and synchronous diagnostic state. Current generated global assembly ownership is not yet independent contexts. */
+/** Borrowed context-local registries/world and synchronous diagnostic state; native code retention is independent of Ama storage. */
 typedef struct {
     AmaWorld *world;
+    /** Immutable native image provider, independent of every Ama pool/context lifetime. */
+    AmaNativeCodeProvider native_code;
     const AmaProgramType *types;
     size_t type_count;
     const AmaProgramConstant *constants;

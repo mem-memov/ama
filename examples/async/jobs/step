@@ -1,0 +1,24 @@
+# Explicit first entry binds the owner once; subsequent Ready steps resume the actual task.
+@<
+record&
+.jobs.record
+@!
+record&
+ task& >> task&
+ started >> started
+started
+?
+ task& %
+:
+ record&
+  started !
+   < |1
+ task& !
+  < record&
+task&
+ phase >> phase
+phase
+ ready >> ready
+record&
+ ready !
+  < ready

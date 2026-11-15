@@ -7,7 +7,6 @@
 #include "internal.h"
 void library_lifecycle_diagnostics(LibraryHeader *h) {
     const char *p = h->prefix;
-    library_header_print(h,"#include \"runtime/library/code.h\"\nstatic AmaLibraryCodePins %s_code;\n",p);
     library_header_print(h,
         "/* Diagnostics borrow immutable component code, never context storage. The host\n"
         " * must keep this component loaded until every diagnostic has been released. */\n"

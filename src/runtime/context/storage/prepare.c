@@ -12,6 +12,8 @@
  * [FLOW-05](../../../../spec/language/lists.md#flow-05) Context-local program descriptors borrow immutable foreach scope ancestry, never another context's active roles.
  * [CONT-04](../../../../spec/language/continuations.md#cont-04) validates and maps retained compiler control cells
  * separately from native payload hooks; ordinary copies leave them inactive.
+ * [EMBED-06](../../../../spec/implementation/c-library.md#embed-06) copies the
+ * native-only code provider before constructing context-owned values.
  */
 #include <string.h>
 #include "../internal.h"
@@ -125,6 +127,7 @@ AmaStatus ama_context_prepare(AmaContext *context, const AmaContextDefinition *d
     context->world.report = context_report;
     context->world.report_context = context;
     context->program.world = &context->world;
+    context->program.native_code = definition->native_code;
     context->program.locations = definition->locations;
     context->program.location_count = definition->location_count;
     context->program.initialization_operation = definition->initialization_operation;

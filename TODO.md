@@ -2329,12 +2329,20 @@ Contracts: [ASYNC-01–ASYNC-12](spec/language/async-and-parallelism.md).
   the decomposed fixture/copy/capability/failure test support. Prose/rule links
   pass; final Doxygen reproducibility is checked before commit. See
   `docs/implementation/task-copy-and-failure.md`.
-- [ ] **T099 — Accept the asynchronous library and supported host.** Needs:
-  T089, T098, T131. Publish working event/task examples and declared library/host APIs.
-  Exercise reactor integration through the supported arrangement, cancellation,
-  finite scheduling bounds and all ASYNC acceptance races under native sanitizers.
-  Include exported components with pending native completions: code remains
-  pinned until detachment/acknowledgment and owned exported values are released.
+- [x] **T099 — Accept the asynchronous library and supported host.** Needs:
+  T089, T098, T131. Published runnable typed-task and SDK-free native-host examples
+  through actual product commands. Native services receive a move-only code
+  credit independent of context lifetime; event services retain it transitively
+  through endpoints and byte buffers, including constructor-failure cleanup.
+  Actual unload/reload tests cover immediate/delayed completion, cancellation,
+  restart with stale events, pending context disposal and exported snapshots;
+  the host joins active callbacks before testing unload readiness. Registration,
+  bounded-round and cancellation suites supply the remaining ASYNC races and
+  scheduling bounds. Strict full `NDEBUG`, native/component ASan/UBSan and TSan,
+  public example commands and negative CLI/metadata cases pass. Per-file coverage
+  and standalone headers cover 1902 maintained inputs with no documentation debt.
+  Doxygen rule links and prose checks pass; final documentation reproducibility
+  is checked before commit. See `docs/implementation/asynchronous-host.md`.
 
 ## Phase 14. Isolated parallel contexts and explicit messages
 

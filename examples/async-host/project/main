@@ -1,0 +1,76 @@
+# The custom host services native work between this root's explicit yields.
+@<
+immediate
+..std.condition
+cancel requested
+..std.condition
+@>
+message
+..text
+ |waiting
+@!
+source
+..task.events
+operation
+..task.operation
+submit
+.submit
+detach
+..task.operation.detach
+outcome
+..task.outcome
+fresh outcome
+..task.outcome
+require
+..task.require
+true
+..std.condition
+ |1
+completion available
+..std.condition
+finished
+..text
+ |completed
+cancelled message
+..text
+ |cancelled
+outcome
+ fresh outcome
+source !
+ < |1
+operation !
+ < &source
+ > token
+source
+ arm !
+  < token
+submit !
+ < &operation
+ < immediate
+%
+cancel requested
+:
+ source
+  take !
+   > packet
+ packet
+ :
+  require !
+ completion available
+  true
+outcome !
+ < cancel requested
+ < completion available
+ >
+ > cancelled
+ > completed
+# The root no longer accepts delivery before it retires native work.
+detach !
+ < &operation
+cancelled
+?
+ message
+  cancelled message
+:
+ message
+  finished

@@ -9,6 +9,8 @@
  * separate technical status before any result action.
  * [CABI-03](../../../spec/implementation/native-interface.md#cabi-03) bounds
  * typed views to one checked borrow scope; every post-begin exit closes it.
+ * [EMBED-06](../../../spec/implementation/c-library.md#embed-06) copies an
+ * independent native-only code provider separately from the caller refusal data.
  * Borrow only resolved names and stream.
  */
 #include "codegen/internal.h"
@@ -27,6 +29,7 @@ bool codegen_emit_native_entry(FILE *output, const ScaffoldType *type) {
             "if(ama_status.code==AMA_OK && ama_cell->metadata.service.return_link.caller.generation!=0) {\n"
             "AmaPoolCell *caller=NULL; ama_status=ama_program_cell(&ama_program,ama_cell->metadata.service.return_link.caller,&caller);\n"
             "if(ama_status.code==AMA_OK) services=ama_native_services_snapshot(&caller->metadata.service); }\n"
+            "services.code=ama_program.native_code;\n"
             "if(ama_status.code==AMA_OK) {\n", name,
             type->names[SCAFFOLD_PARAMETERS]->internal_name, type->names[SCAFFOLD_RESULTS]->internal_name, name) < 0) { return false; }
     for (const ScaffoldMember *member = type->members; member != NULL; member = member->next) {

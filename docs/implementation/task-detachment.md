@@ -101,4 +101,4 @@ the actual boundaries:
 All view access and owner operations occur on the single Ama executor. Only native
 posting/acknowledgment may race. [Cancellation arbitration](task-cancellation.md) and
 [copy/failure boundaries](task-copy-and-failure.md) build on this component.
-Loadable-host acceptance remains T099.
+[Loadable-host acceptance](asynchronous-host.md) verifies real worker acknowledgment and code retention.

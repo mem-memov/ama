@@ -1,0 +1,6 @@
+# A failed service constructor must release its newly acquired image credit.
+@!
+source
+..task.events
+source !
+ < |0

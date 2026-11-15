@@ -3,6 +3,8 @@
  * [EMBED-01](../../../spec/implementation/c-library.md#embed-01) requires
  * selected nominal exports; runtime ordinals are supplied by the project layout,
  * never inferred from filenames or public hash spellings.
+ * [EMBED-06](../../../spec/implementation/c-library.md#embed-06) binds every
+ * context to the component code counter before any native entry can submit work.
  */
 #include <assert.h>
 #include "internal.h"
@@ -12,6 +14,7 @@ bool library_lifecycle_write(const LibraryBuild *build, const uint64_t *types,
     if (!library_header_target(build,NULL) || types == NULL || count != build->export_count) { return false; }
     for (size_t i = 0; i < count; i++) { if (types[i] == 0) { return false; } }
     LibraryHeader h = {.build=build,.output=output,.prefix=build->identity->internal_name,.good=true};
+    library_lifecycle_retention(&h);
     library_header_print(&h,
         "#include <threads.h>\n#include <stdlib.h>\n#include \"runtime/library/lifecycle.h\"\n"
         "static AmaLibraryService %s_service;\nstatic once_flag %s_once = ONCE_FLAG_INIT;\n"
@@ -23,8 +26,11 @@ bool library_lifecycle_write(const LibraryBuild *build, const uint64_t *types,
     library_header_print(&h,
         "};\nstatic void *%s_allocate(void *unused, size_t size) { (void)unused; return malloc(size); }\n"
         "static void %s_free(void *unused, void *value) { (void)unused; free(value); }\n"
-        "static void %s_setup(void) {\n    %s_definition = ama_project_definition;\n    %s_definition.component = ",
-        h.prefix,h.prefix,h.prefix,h.prefix,h.prefix);
+        "static void %s_setup(void) {\n    %s_definition = ama_project_definition;\n",
+        h.prefix,h.prefix,h.prefix,h.prefix);
+    library_header_print(&h,
+        "    %s_definition.native_code=ama_library_code_provider(&%s_code);\n    %s_definition.component = ",
+        h.prefix,h.prefix,h.prefix);
     library_header_literal(&h,build->component);
     library_header_print(&h,
         ";\n    %s_setup_status = ama_library_service_init(&%s_service,\n"

@@ -97,7 +97,13 @@ def source():
 def registry():
     """Reject exact stale, duplicate, out-of-tree, mismatched and collision-forced canonical rule identities."""
     root = prepare('registry')
+    example = root / 'examples/async/README.md'
+    example.parent.mkdir(parents=True)
+    example.write_text('# Public asynchronous example\n')
     rules = Registry(root)
+    require('examples/async/README.md' in rules.pages, 'public example page omitted from narrative registry')
+    require(rules.reference('README.md', 'Example', 'examples/async/README.md', False)
+            == rules.identity('page', 'examples/async/README.md'), 'example page has no exact Doxygen destination')
     rejected(lambda: rules.reference('deep/file.c', 'RT-13', '../spec/runtime.md#missing', True))
     rejected(lambda: rules.reference('deep/file.c', 'RT-99', '../spec/runtime.md#rt-13', True))
     rejected(lambda: rules.reference('deep/file.c', 'RT-13', '../../escape.md#rt-13', True))
@@ -225,15 +231,25 @@ def coverage_scenario():
     library_contract.write_text('# Retained library contract\n')
     configuration = root / 'component.exports'
     configuration.write_text('ama-library | 1\n')
+    ama_example = root / 'examples/async/main'
+    ama_example.parent.mkdir(parents=True)
+    ama_example.write_text('@!\n')
+    example_readme = ama_example.parent / 'README.md'
+    example_readme.write_text('# Explanatory prose\n')
+    host_example = root / 'examples/async-host/project/main'
+    host_example.parent.mkdir(parents=True)
+    host_example.write_text('@!\n')
     def inventory_listing(command, cwd):
         require(command[0] == 'git' and cwd == root, 'unexpected inventory source')
-        return b'sample.h\0case.c\0tests/fixture/expected-error.txt\0stdlib/README.md\0component.exports\0'
+        return b'sample.h\0case.c\0tests/fixture/expected-error.txt\0stdlib/README.md\0component.exports\0examples/async/main\0examples/async/README.md\0examples/async-host/project/main\0'
     try:
         (home / 'debt.json').write_text('{}')
         subprocess.check_output = inventory_listing
         maintained = original_inventory(root)
-        require({'tests/fixture/expected-error.txt', 'stdlib/README.md', 'component.exports'} <= maintained,
+        require({'tests/fixture/expected-error.txt', 'stdlib/README.md', 'component.exports',
+                 'examples/async/main', 'examples/async-host/project/main'} <= maintained,
                 'closed non-C inputs vanished with historical debt')
+        require('examples/async/README.md' not in maintained, 'example prose became executable inventory')
     finally:
         subprocess.check_output = original_listing
         save()

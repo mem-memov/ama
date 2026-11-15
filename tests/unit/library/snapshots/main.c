@@ -104,6 +104,7 @@ static void it_owns_independent_wire_snapshots_and_unwinds_every_clone_allocatio
     allocator(output);
     bool good=library_abi_write(&build,output); assert(good);
     LibraryHeader writer={.build=&build,.output=output,.prefix=build.identity->internal_name,.good=true};
+    library_lifecycle_retention(&writer);
     library_lifecycle_diagnostics(&writer); assert(writer.good);
     good=library_snapshots_write(&build,output); assert(good);
     fixtures(output,&build);

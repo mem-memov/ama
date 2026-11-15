@@ -9,12 +9,15 @@
  * initialization operation for allocation-free diagnostics before context storage exists.
  * [LIST-13](../../../spec/language/lists.md#list-13) shares only immutable lexical
  * cursor catalogs; each context owns its actual active/suspended cursor slots.
+ * [EMBED-06](../../../spec/implementation/c-library.md#embed-06) propagates
+ * native-only image retention without exposing this context to callbacks.
  * [FLOW-05](../../../spec/language/lists.md#flow-05) Immutable scope descriptors preserve exact lexical ancestry while each context owns its binding cells.
  */
 #ifndef AMA_RUNTIME_CONTEXT_H
 #define AMA_RUNTIME_CONTEXT_H
 
 #include <stdatomic.h>
+#include "native/abi/code.h"
 #include "runtime/metadata/runtime.h"
 #include "runtime/program/program.h"
 #include "runtime/program/diagnostics/trace.h"
@@ -70,6 +73,8 @@ typedef struct {
     void *report_context;
     /** Optional immutable compiled-component label, retained through synchronous trace reporting. */
     const char *component;
+    /** Borrowed native-only component code provider; zero denotes process-resident code. */
+    AmaNativeCodeProvider native_code;
 } AmaContextDefinition;
 
 /** Opaque registry-owned context. A host token never contains its C address. */

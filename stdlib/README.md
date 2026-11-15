@@ -147,8 +147,8 @@ It is noncopyable and can be a private owned field of a suspended task. See
 boundary. `..task.outcome` publishes one Pending/Cancelled/Completed decision;
 its terminal states survive later calls. The
 [cancellation contract](../docs/implementation/task-cancellation.md) explains the
-commit point, wakeup composition and arrival-versus-commit distinction. The final
-asynchronous host API remains a subsequent task.
+commit point, wakeup composition and arrival-versus-commit distinction. The [supported asynchronous host](../docs/implementation/asynchronous-host.md)
+combines these operations with real native workers and creator-code retention.
 
 `..task.enrollment` is a noncopyable ownership marker for a scheduler record.
 Tasks and external references can still be copied, but a record owning this marker
@@ -198,3 +198,8 @@ no library representation is inferred from a translated diagnostic message.
 The [retained library/test/build contract](../docs/implementation/library-tests-and-build.md)
 records file-level ownership, independent payload-fragment checks and byte-exact
 fixture exceptions. Doxygen generates the actual C interface/file reference.
+
+Runnable sources: [typed Ama queue](../examples/async/README.md) and
+[SDK-free worker host](../examples/async-host/README.md). Native submissions retain
+independent endpoint rights; `..task.events` keeps its component code resident
+until the final callback/buffer acknowledgment.

@@ -122,8 +122,8 @@ The host probe runs before explicit host disposal, so it cannot accidentally
 mistake disposal cleanup for the required failure-boundary cleanup. A capture
 counter also distinguishes a rejected resume from an accidental second execution
 that happens to fail again. This standalone fixture keeps its C image loaded;
-loadable-provider code pinning is covered by the subsequent asynchronous host
-acceptance task.
+[loadable-provider code retention](asynchronous-host.md) is verified separately
+with actual native workers and system unload.
 
 ## Executable evidence
 

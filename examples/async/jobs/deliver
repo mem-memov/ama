@@ -1,0 +1,58 @@
+# A native packet may only fill the current live wait; it does not commit completion or execute a task.
+@<
+queue&
+.jobs.queue
+record&
+.jobs.record
+packet
+..task.packet
+@>
+accepted
+..std.condition
+@!
+true
+..std.condition
+ |1
+validate
+.jobs.validate
+same
+..task.token.same
+enqueue
+.jobs.enqueue
+packet
+:
+ >
+validate !
+ < record&
+ > valid
+valid
+:
+ >
+record&
+ task& >> task&
+task&
+ token >> current
+packet
+ token >> observed
+ data >> bytes
+same !
+ < current
+ < observed
+ > equal
+equal
+:
+ >
+record&
+ mailbox& >> mailbox&
+mailbox& !
+ < bytes
+record&
+ delivered !
+  < |1
+ ready !
+  < |1
+enqueue !
+ < queue&
+ < record&
+accepted
+ true

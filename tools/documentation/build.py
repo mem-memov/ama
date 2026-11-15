@@ -60,7 +60,13 @@ def generate(root, destination, doxygen):
     configuration = work / 'Doxyfile'
     configuration.write_text(config)
     destination.mkdir(parents=True, exist_ok=True)
-    subprocess.run([doxygen, str(configuration)], cwd=view, check=True)
+    try:
+        subprocess.run([doxygen, str(configuration)], cwd=view, check=True)
+    except subprocess.CalledProcessError:
+        warnings = work / 'warnings.log'
+        if warnings.is_file():
+            print(warnings.read_text(encoding='utf-8'), file=sys.stderr, end='')
+        raise
     rule_pages = {registry.identity('rule', chapter, rule): registry.identity('page', chapter)
                   for rule, (chapter, _) in registry.rules.items()}
     result = validate(destination, expected, rule_pages)

@@ -1300,6 +1300,21 @@
         "case": "it_closes_native_borrows_before_normal_or_failed_host_return",
         "command": "make -C tests/unit/codegen/execution",
         "source": "tests/unit/codegen/execution/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_retains_native_code_through_independent_move_only_leases",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
       }
     ]
   },
@@ -7638,6 +7653,21 @@
         "case": "it_assigns_collision_free_library_codes_and_rejects_zero_fields",
         "command": "make -C tests/unit/native/abi/status",
         "source": "tests/unit/native/abi/status/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_retains_native_code_through_independent_move_only_leases",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
       }
     ]
   },
@@ -14852,6 +14882,21 @@
         "case": "it_packages_two_components_with_overlapping_module_names",
         "command": "make -C tests/unit/library/package",
         "source": "tests/unit/library/package/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_retains_native_code_through_independent_move_only_leases",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
       }
     ]
   },
@@ -15204,6 +15249,21 @@
         "case": "it_executes_exported_entries_resumes_and_isolated_native_roots",
         "command": "make -C tests/unit/library/execution",
         "source": "tests/unit/library/execution/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_retains_native_code_through_independent_move_only_leases",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
       }
     ],
     "standalone_header_command": [
@@ -16006,6 +16066,21 @@
       },
       {
         "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_retains_native_code_through_independent_move_only_leases",
         "command": "make -C tests/unit/runtime/library",
         "source": "tests/unit/runtime/library/main.c"
       }
@@ -24980,6 +25055,21 @@
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
         "command": "make -C tests/unit/codegen/traversal-layout",
         "source": "tests/unit/codegen/traversal-layout/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_retains_native_code_through_independent_move_only_leases",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
       }
     ]
   },
@@ -33437,6 +33527,21 @@
         "case": "it_builds_and_runs_static_and_shared_multifile_consumers",
         "command": "make -C tests/integration/c-library-examples",
         "source": "tests/integration/c-library-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
       }
     ]
   },
@@ -80794,6 +80899,16 @@
         "case": "it_supervises_nested_suspension_without_retaining_c_activations",
         "command": "make -C tests/unit/library",
         "source": "tests/unit/library/supervision/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
       }
     ]
   },
@@ -82762,6 +82877,16 @@
         "case": "it_checks_destination_shapes_before_lifecycle_effects",
         "command": "make -C tests/unit/runtime/library",
         "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
       }
     ]
   },
@@ -83250,6 +83375,11 @@
         "case": "it_packages_two_components_with_overlapping_module_names",
         "command": "make -C tests/unit/library/package",
         "source": "tests/unit/library/package/main.c"
+      },
+      {
+        "case": "it_owns_independent_wire_snapshots_and_unwinds_every_clone_allocation",
+        "command": "make -C tests/unit/library/snapshots",
+        "source": "tests/unit/library/snapshots/main.c"
       }
     ],
     "standalone_header_command": [
@@ -83307,6 +83437,26 @@
         "case": "it_packages_two_components_with_overlapping_module_names",
         "command": "make -C tests/unit/library/package",
         "source": "tests/unit/library/package/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_retains_native_code_through_independent_move_only_leases",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_owns_independent_wire_snapshots_and_unwinds_every_clone_allocation",
+        "command": "make -C tests/unit/library/snapshots",
+        "source": "tests/unit/library/snapshots/main.c"
       }
     ]
   },
@@ -83328,6 +83478,21 @@
         "case": "it_packages_two_components_with_overlapping_module_names",
         "command": "make -C tests/unit/library/package",
         "source": "tests/unit/library/package/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_retains_native_code_through_independent_move_only_leases",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
       }
     ]
   },
@@ -84610,6 +84775,16 @@
         "case": "it_tracks_code_pins_and_snapshot_owners_without_counter_wrap",
         "command": "make -C tests/unit/runtime/library",
         "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
       }
     ]
   },
@@ -87979,6 +88154,21 @@
         "case": "it_waits_without_losing_a_racing_native_completion",
         "command": "make -C tests/unit/codegen/scheduler-rounds",
         "source": "tests/unit/codegen/scheduler-rounds/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_retains_native_code_through_independent_move_only_leases",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
       }
     ]
   },
@@ -92862,6 +93052,1120 @@
         "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
         "command": "make -C tests/unit/codegen/task-boundaries",
         "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "src/native/abi/code.h": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_retains_native_code_through_independent_move_only_leases",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/runtime/library/native.c": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_retains_native_code_through_independent_move_only_leases",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      }
+    ]
+  },
+  "src/runtime/library/native.h": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_retains_native_code_through_independent_move_only_leases",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "examples/async/mailbox": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "examples/async/print.abi": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "examples/async/main": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "examples/async/print.h": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_registration_probe_##name",
+      "-"
+    ]
+  },
+  "examples/async/print.c": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "examples/async/report": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "examples/async/print": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "examples/async/jobs/enqueue": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "examples/async/jobs/entry": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "examples/async/jobs/queue": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "examples/async/jobs/validate": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "examples/async/jobs/deliver": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "examples/async/jobs/task": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "examples/async/jobs/cancel": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "examples/async/jobs/dispatch": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "examples/async/jobs/step": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "examples/async/jobs/pop": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "examples/async/jobs/record": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "examples/async-host/backend/backend.h": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "examples/async-host/backend/backend-native.h": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "examples/async-host/backend/backend.c": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "examples/async-host/consumer/host.c": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "examples/async-host/project/submit": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "examples/async-host/project/submit.abi": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "examples/async-host/project/main": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "examples/async-host/project/submit.h": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_registration_probe_##name",
+      "-"
+    ]
+  },
+  "examples/async-host/project/invalid": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "examples/async-host/project/submit.c": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "tools/examples/async_host/model.py": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "tools/examples/async_host/build.py": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "tools/examples/async_host/run.py": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/async/main.c": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/async/Makefile": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/async/support/files.c": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/async/support/consumer.c": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/async/support/component.c": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "tests/unit/library/async/support/backend.c": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/async-examples/main.c": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/async-examples/common.c": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "tests/integration/async-examples/Makefile": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Retain creator code through native worker acknowledgment, preserve explicit task/host boundaries, and verify actual reloadable examples.",
+    "tests": [
+      {
+        "case": "it_runs_the_published_typed_queue_completion_and_cancellation_example",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_runs_the_published_native_host_and_preserves_an_existing_destination",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
+        "command": "make -C tests/integration/async-examples",
+        "source": "tests/integration/async-examples/main.c"
+      }
+    ]
+  },
+  "src/library/lifecycle/retention.c": {
+    "contract": "docs/implementation/asynchronous-host.md",
+    "purpose": "Declare the shared creator-code counter before native, diagnostic and snapshot adapters.",
+    "tests": [
+      {
+        "case": "it_links_public_lifecycle_to_real_generated_contexts",
+        "command": "make -C tests/unit/library/lifecycle",
+        "source": "tests/unit/library/lifecycle/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_lifecycle_type_maps",
+        "command": "make -C tests/unit/library/lifecycle",
+        "source": "tests/unit/library/lifecycle/main.c"
+      },
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "command": "make -C tests/unit/library/package",
+        "source": "tests/unit/library/package/main.c"
+      },
+      {
+        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
+        "command": "make -C tests/unit/library/async",
+        "source": "tests/unit/library/async/main.c"
+      },
+      {
+        "case": "it_retains_native_code_through_independent_move_only_leases",
+        "command": "make -C tests/unit/runtime/library",
+        "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_owns_independent_wire_snapshots_and_unwinds_every_clone_allocation",
+        "command": "make -C tests/unit/library/snapshots",
+        "source": "tests/unit/library/snapshots/main.c"
       }
     ]
   }
