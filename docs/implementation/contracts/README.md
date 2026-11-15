@@ -25,6 +25,10 @@ When adapting a component, update its old description rather than keeping
 competing API contracts. File/interface reference pages come from Doxygen through
 `make docs`; this registry records mathematical arguments and acceptance evidence.
 
+The [context isolation audit](../context-isolation-audit.md) records actual
+context-local storage, synchronized native bookkeeping and native dependency
+concurrency constraints, including overlapping constant lifecycle evidence.
+
 ## Before implementation
 
 Identify one responsibility and its smallest meaningful public boundary. Link the

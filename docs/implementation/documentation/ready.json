@@ -35518,7 +35518,7 @@
       }
     ]
   },
-  "tests/integration/parser/grammar/project/\u7a0b\u5e8f": {
+  "tests/integration/parser/grammar/project/程序": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -35604,7 +35604,7 @@
       }
     ]
   },
-  "tests/integration/project/closure/project/\u4e2d\u95f4": {
+  "tests/integration/project/closure/project/中间": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -36903,7 +36903,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u5143": {
+  "tests/integration/semantic/types/project/元": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -36914,7 +36914,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u5143.abi": {
+  "tests/integration/semantic/types/project/元.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -36925,7 +36925,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u5143.c": {
+  "tests/integration/semantic/types/project/元.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the first distinct Unicode nominal type.",
     "tests": [
@@ -36936,7 +36936,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u5143.h": {
+  "tests/integration/semantic/types/project/元.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the first Unicode nominal type.",
     "standalone_header_command": [
@@ -36962,7 +36962,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u7c73": {
+  "tests/integration/semantic/types/project/米": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -36973,7 +36973,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u7c73.abi": {
+  "tests/integration/semantic/types/project/米.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -36984,7 +36984,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u7c73.c": {
+  "tests/integration/semantic/types/project/米.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the incompatible Unicode nominal type.",
     "tests": [
@@ -36995,7 +36995,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u7c73.h": {
+  "tests/integration/semantic/types/project/米.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the incompatible Unicode nominal type.",
     "standalone_header_command": [
@@ -37208,7 +37208,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/other/\u5546\u54c1": {
+  "tests/integration/source/diagnostics/project/other/商品": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -37234,7 +37234,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/\u5546\u5e97/\u5546\u54c1": {
+  "tests/integration/source/diagnostics/project/商店/商品": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -46142,6 +46142,11 @@
         "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
         "command": "make -C tests/unit/runtime/library",
         "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_isolates_context_storage_during_concurrent_native_constant_lifecycle",
+        "command": "make -C tests/unit/runtime/isolation",
+        "source": "tests/unit/runtime/isolation/main.c"
       }
     ]
   },
@@ -94166,6 +94171,61 @@
         "case": "it_owns_independent_wire_snapshots_and_unwinds_every_clone_allocation",
         "command": "make -C tests/unit/library/snapshots",
         "source": "tests/unit/library/snapshots/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/isolation/main.c": {
+    "contract": "docs/implementation/context-isolation-audit.md",
+    "purpose": "Verify independent context owners with overlapping native constant construction and destruction.",
+    "tests": [
+      {
+        "case": "it_isolates_context_storage_during_concurrent_native_constant_lifecycle",
+        "command": "make -C tests/unit/runtime/isolation",
+        "source": "tests/unit/runtime/isolation/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/isolation/common.c": {
+    "contract": "docs/implementation/context-isolation-audit.md",
+    "purpose": "Verify independent context owners with overlapping native constant construction and destruction.",
+    "tests": [
+      {
+        "case": "it_isolates_context_storage_during_concurrent_native_constant_lifecycle",
+        "command": "make -C tests/unit/runtime/isolation",
+        "source": "tests/unit/runtime/isolation/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/isolation/Makefile": {
+    "contract": "docs/implementation/context-isolation-audit.md",
+    "purpose": "Verify independent context owners with overlapping native constant construction and destruction.",
+    "tests": [
+      {
+        "case": "it_isolates_context_storage_during_concurrent_native_constant_lifecycle",
+        "command": "make -C tests/unit/runtime/isolation",
+        "source": "tests/unit/runtime/isolation/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/isolation/support/payload.c": {
+    "contract": "docs/implementation/context-isolation-audit.md",
+    "purpose": "Verify independent context owners with overlapping native constant construction and destruction.",
+    "tests": [
+      {
+        "case": "it_isolates_context_storage_during_concurrent_native_constant_lifecycle",
+        "command": "make -C tests/unit/runtime/isolation",
+        "source": "tests/unit/runtime/isolation/main.c"
+      }
+    ]
+  },
+  "tests/unit/runtime/isolation/support/barrier.c": {
+    "contract": "docs/implementation/context-isolation-audit.md",
+    "purpose": "Verify independent context owners with overlapping native constant construction and destruction.",
+    "tests": [
+      {
+        "case": "it_isolates_context_storage_during_concurrent_native_constant_lifecycle",
+        "command": "make -C tests/unit/runtime/isolation",
+        "source": "tests/unit/runtime/isolation/main.c"
       }
     ]
   }

@@ -2348,11 +2348,20 @@ Contracts: [ASYNC-01–ASYNC-12](spec/language/async-and-parallelism.md).
 
 Contracts: [PAR-01–PAR-08](spec/language/async-and-parallelism.md#parallelism-uses-isolated-execution-contexts).
 
-- [ ] **T100 — Audit context-local generated and native state.** Needs: T061,
-  T099. Verify pools/constants/control/errors are independent and native hooks,
-  constant lifecycle and linked dependencies are safe for concurrent contexts.
-  Test equal local identities and reject foreign host access; identify dependencies
-  requiring serialized access or separate-process execution.
+- [x] **T100 — Audit context-local generated and native state.** Needs: T061,
+  T099. Recorded exact private pool/constant/control/diagnostic ownership and the
+  synchronized identity, registry, component-code and native-event metadata.
+  Audited shipped scalar/resource hooks, context-confined text/bytes share counts,
+  constant lifecycle and native dependency obligations. The asynchronous example
+  backend requires one serialized host; unaudited dependencies need documented
+  serialization or process isolation. New real-runtime barriers force concurrent
+  constant construction/destruction, checking disjoint resources/resolvers,
+  colliding local triples, foreign-origin rejection, private diagnostics/control,
+  clone/reuse without stale revival and exact resource cleanup. Strict isolation,
+  context, shared-storage, library, event and generated-context suites pass, as do
+  the new lifecycle probe under ASan/UBSan and TSan. Per-file coverage, standalone
+  headers, prose/rule links and final Doxygen reproducibility are checked before
+  commit. See `docs/implementation/context-isolation-audit.md`.
 - [ ] **T101 — Execute two contexts concurrently.** Needs: T100. Share generated
   code only, with one exclusive executor per context. Test independent startup,
   slot reuse, failures and event delivery while another context runs; run supported

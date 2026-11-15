@@ -108,3 +108,7 @@ lease for all descriptor, growth and native-borrow observations. Per-file covera
 maps every changed maintained code/header/test to named component/composition
 cases; headers retain standalone compilation checks. The public compiled-library
 transport remains the embedding roadmap's separate boundary.
+
+The [T100 state and native dependency audit](context-isolation-audit.md) records
+the actual shared bookkeeping boundaries and concurrency preconditions, including
+constant lifecycle and the public asynchronous example backend.
