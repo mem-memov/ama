@@ -1,0 +1,89 @@
+# External operation references survive task copies, but one native completion still has one consumer.
+@!
+hub
+..task.events
+external operation
+..task.operation
+fresh operation
+..task.operation
+port
+.port
+source task
+.kind.task
+copy
+.kind.task
+same
+..task.token.same
+require
+..task.require
+hub !
+ < |1
+external operation !
+ < &hub
+ > token
+source task !
+ < &port
+ < &external operation
+copy
+ % source task
+source task
+ shared operation& >> first&
+copy
+ shared operation& >> second&
+first&
+ token >> left
+second&
+ token >> right
+same !
+ < left
+ < right
+ > equal
+require !
+ < equal
+hub
+ arm !
+  < token
+ post !
+  < token
+  < |0
+  < |one result
+ take !
+  > first packet
+ take !
+  > second packet
+first packet
+:
+ require !
+second packet
+?
+ require !
+fresh operation !
+ < &hub
+ > fresh token
+same !
+ < token
+ < fresh token
+ > equal
+equal
+?
+ require !
+hub
+ arm !
+  < fresh token
+ post !
+  < right
+ take !
+  > absent
+absent
+?
+ require !
+hub
+ post !
+  < fresh token
+ take !
+  > fresh packet
+fresh packet
+:
+ require !
+source task %
+copy %

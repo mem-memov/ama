@@ -4,8 +4,11 @@
  * [LIST-13](../../../../spec/language/lists.md#list-13) requires exact occurrence retirement and replacement namespaces.
  *
  * [LIST-10](../../../../spec/language/lists.md#list-10) grants busy-list receiver access only to a method-direct structural transfer.
- * [REF-03](../../../../spec/language/values-and-references.md#ref-03)
- * Reference assignment copies handles without acquiring targets; owned replacement stages construction before destructive commit.
+ * [REF-03](../../../../spec/language/values-and-references.md#ref-03) keeps
+ * reference assignments as handle copies without acquiring their targets.
+ * [CONT-04](../../../../spec/language/continuations.md#cont-04) preserves positions
+ * only when the selected source explicitly carries continuation-copy authority.
+ * Owned replacement stages construction before destructive commit.
  * [FLOW-05](../../../../spec/language/lists.md#flow-05) Only a different explicit handle assignment detaches a binding origin; plain reference copies acquire no association.
  */
 #include "internal.h"
@@ -47,7 +50,7 @@ AmaStatus ama_program_store(AmaProgram *program, AmaProgramValue *destination, c
     }
     AmaRecipe recipe = {0};
     AmaStatus status = ama_status_success();
-    if (source != NULL) { status = ama_program_value_recipe(program, &operation->arena, source, false, &recipe); }
+    if (source != NULL) { status = ama_program_value_recipe(program, &operation->arena, source, source->continuation, &recipe); }
     else if (initializers != NULL && initializers->children != NULL) { recipe = initializers->children[0]; }
     return status.code == AMA_OK ? ama_object_reconstruct_in(operation, destination->handle, &recipe) : status;
 }

@@ -1,0 +1,31 @@
+# Fresh enrollment preserves external references; changing that explicit port is visible to both independent continuations.
+@!
+port
+.port
+source
+.kind.task
+copy
+.kind.task
+record
+.kind.record
+queue
+.kind.queue
+enqueue
+.kind.enqueue
+dispatch
+.kind.dispatch
+source !
+ < &port
+copy
+ % source
+record !
+ < % copy
+port !
+ < |1
+enqueue !
+ < &queue
+ < &record
+dispatch !
+ < &queue
+source %
+copy %

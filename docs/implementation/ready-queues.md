@@ -25,6 +25,8 @@ record reference and a copied epoch. It does not own or copy the task. These
 are scheduler-owned protocol objects: clients use the operations below and do
 not edit membership flags, reorder the registry or copy a live scheduler into
 another active scheduler. Ordinary language copying alone creates no enrollment.
+[Noncopyable enrollment owners and explicit snapshot adoption](task-copy-and-failure.md)
+provide the corresponding copy boundary.
 Copy/failure boundaries and complete detachment are later roadmap components.
 
 The schema supplies four explicit operations:

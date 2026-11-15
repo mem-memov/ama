@@ -150,6 +150,13 @@ its terminal states survive later calls. The
 commit point, wakeup composition and arrival-versus-commit distinction. The final
 asynchronous host API remains a subsequent task.
 
+`..task.enrollment` is a noncopyable ownership marker for a scheduler record.
+Tasks and external references can still be copied, but a record owning this marker
+requires fresh construction instead of cloning its enrollment. See
+[task copies and failed contexts](../docs/implementation/task-copy-and-failure.md)
+for explicit snapshot adoption, one-consumer native results and cleanup before
+Failed reaches the host.
+
 ## Native construction and ownership
 
 An extensionless Ama interface may select `@C` and have `.h`, `.c` and `.abi`

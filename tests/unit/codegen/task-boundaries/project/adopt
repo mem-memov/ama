@@ -1,0 +1,43 @@
+# Copying a saved position alone does not put either copy into a FIFO.
+@!
+port
+.port
+source
+.kind.task
+copy
+.kind.task
+record
+.kind.record
+queue
+.kind.queue
+enqueue
+.kind.enqueue
+dispatch
+.kind.dispatch
+require
+..task.require
+source !
+ < &port
+copy
+ % source
+dispatch !
+ < &queue
+ > executed
+executed
+?
+ require !
+link&
+.kind.task
+ &copy
+record !
+ < % link&
+enqueue !
+ < &queue
+ < &record
+dispatch !
+ < &queue
+ > executed
+require !
+ < executed
+source %
+copy %

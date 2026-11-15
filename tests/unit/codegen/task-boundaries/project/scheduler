@@ -1,0 +1,6 @@
+# Ownership of even an empty record list preserves the noncopyable enrollment boundary.
+@!
+records[]
+.kind.record
+queue
+.kind.queue

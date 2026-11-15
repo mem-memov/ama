@@ -169,6 +169,104 @@ static void it_installs_one_constructor_per_field_and_retains_the_successful_pre
     }
 }
 
+/** Input installation preserves a selected snapshot, while ordinary inputs and ordinary result defaults clear positions. */
+static void it_preserves_explicit_continuation_inputs_without_preserving_ordinary_defaults(void) {
+    for (size_t continuation = 0; continuation < 2; continuation++) {
+        setup_call();
+        RootValue *original = object_payload(caller);
+        AmaPoolCell *source = NULL;
+        AmaStatus status = ama_program_cell(&program, original->right, &source);
+        assert(status.code == AMA_OK);
+        source->metadata.service.activity = AMA_INSTANCE_YIELDED;
+        source->metadata.service.resume = (AmaResumePosition){true, 57};
+        supplied = (AmaProgramInput){.field = 0, .source = default_source};
+        supplied.source.continuation = continuation != 0;
+        bool refused = true;
+        status = ama_program_acquire(&program, caller, &invocation, &refused);
+        assert(status.code == AMA_OK && !refused);
+        status = ama_program_prepare(&program, caller, &invocation);
+        assert(status.code == AMA_OK);
+        RootValue *result = object_payload(target);
+        AmaPoolCell *parameter = NULL, *ordinary_result = NULL;
+        status = ama_program_cell(&program, result->left, &parameter);
+        assert(status.code == AMA_OK);
+        status = ama_program_cell(&program, result->right, &ordinary_result);
+        assert(status.code == AMA_OK);
+        assert(parameter->metadata.service.resume.valid == (continuation != 0));
+        assert(parameter->metadata.service.resume.selector == (continuation ? 57 : 0));
+        assert(!ordinary_result->metadata.service.resume.valid);
+        assert(!parameter->metadata.service.return_link.attached);
+        assert(source->metadata.service.activity == AMA_INSTANCE_YIELDED && source->metadata.service.resume.selector == 57);
+        status = ama_program_release(&program, caller);
+        assert(status.code == AMA_OK);
+        finish_call();
+    }
+}
+
+/** Prefix % on a reference protects and snapshots its target rather than copying a reference handle into an owned parameter. */
+static void it_installs_a_referenced_continuation_as_an_owned_input_snapshot(void) {
+    setup_call();
+    RootValue *original = object_payload(caller);
+    original->selected = original->right;
+    AmaPoolCell *source = NULL;
+    AmaStatus status = ama_program_cell(&program, original->right, &source);
+    assert(status.code == AMA_OK);
+    source->metadata.service.activity = AMA_INSTANCE_YIELDED;
+    source->metadata.service.resume = (AmaResumePosition){true, 91};
+    const AmaProgramAccess reference = {.field = 3};
+    supplied = (AmaProgramInput){.field = 0, .source = {.kind = AMA_SOURCE_LOCAL,
+        .access = &reference, .type_id = 1, .continuation = true}};
+    bool refused = true;
+    status = ama_program_acquire(&program, caller, &invocation, &refused);
+    assert(status.code == AMA_OK && !refused);
+    status = ama_program_prepare(&program, caller, &invocation);
+    assert(status.code == AMA_OK);
+    RootValue *result = object_payload(target);
+    AmaPoolCell *parameter = NULL;
+    status = ama_program_cell(&program, result->left, &parameter);
+    assert(status.code == AMA_OK && parameter->metadata.service.resume.valid && parameter->metadata.service.resume.selector == 91);
+    assert(!ama_handle_equal(result->left, original->right) && ama_handle_equal(original->selected, original->right));
+    assert(source->metadata.service.activity == AMA_INSTANCE_YIELDED && source->metadata.service.resume.selector == 91);
+    status = ama_program_release(&program, caller);
+    assert(status.code == AMA_OK);
+    finish_call();
+}
+
+/** Count exact control validation, independently of any native clone hook or replacement. */
+static AmaStatus reject_snapshot_controls(AmaWorld *owner, AmaHandle source, const void *payload,
+    const AmaServiceState *service, void *resource) {
+    (void)owner; (void)source; (void)payload; (void)service;
+    (*(size_t *)resource)++;
+    return ama_status_make(AMA_INVALID_STATE, NULL, 0);
+}
+
+/** Repeated ordinary/snapshot sources must validate the stronger mode before committing even the first parameter. */
+static void it_validates_snapshot_controls_before_any_input_field_replacement(void) {
+    setup_call();
+    size_t validated = 0;
+    const AmaObjectControlHooks controls = {.validate_continuation = reject_snapshot_controls};
+    leaf_type.controls = &controls;
+    leaf_type.control_context = &validated;
+    AmaProgramInput bindings[] = {{.field = 0, .source = default_source}, {.field = 1, .source = default_source}};
+    bindings[1].source.continuation = true;
+    root_fields[1].role = AMA_PROGRAM_PARAMETER;
+    invocation.inputs = bindings;
+    invocation.input_count = 2;
+    RootValue *before = object_payload(target);
+    void *old_left = ((LeafValue *)object_payload(before->left))->native.resource;
+    void *old_right = ((LeafValue *)object_payload(before->right))->native.resource;
+    size_t copies = cloned;
+    bool refused = true;
+    AmaStatus status = ama_program_acquire(&program, caller, &invocation, &refused);
+    assert(status.code == AMA_OK && !refused);
+    status = ama_program_prepare(&program, caller, &invocation);
+    assert(status.code == AMA_INVALID_STATE && validated == 1 && cloned == copies);
+    assert(((LeafValue *)object_payload(before->left))->native.resource == old_left);
+    assert(((LeafValue *)object_payload(before->right))->native.resource == old_right);
+    leaf_type.controls = NULL;
+    finish_call();
+}
+
 /**
  * Execute every named assertion case selected by this leaf; the recursive harness owns process
  * status and success-only cleanup.
@@ -178,6 +276,9 @@ static void it_installs_one_constructor_per_field_and_retains_the_successful_pre
 void run(void) {
     it_selects_indexed_sources_once_in_text_order_before_acquisition();
     it_keeps_repeated_sources_protected_across_distinct_field_commits();
+    it_preserves_explicit_continuation_inputs_without_preserving_ordinary_defaults();
+    it_validates_snapshot_controls_before_any_input_field_replacement();
+    it_installs_a_referenced_continuation_as_an_owned_input_snapshot();
     it_rejects_same_list_and_empty_nested_list_container_overlap_before_construction();
     it_installs_one_constructor_per_field_and_retains_the_successful_prefix();
     it_constructs_prepared_transport_scalars_and_lists_without_default_overwrite();

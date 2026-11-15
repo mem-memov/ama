@@ -1,0 +1,23 @@
+# Only a fresh record may dispatch its adopted continuation; an absent saved position is a protocol error.
+@<
+record&
+.kind.record
+@!
+require
+..task.require
+record&
+ task& >> task&
+ started >> started
+started
+:
+ require !
+task& %
+:
+ require !
+task&
+ phase >> phase
+phase
+ ready >> ready
+record&
+ ready !
+  < ready

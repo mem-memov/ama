@@ -1,0 +1,39 @@
+# Adopt an explicit continuation snapshot into a freshly owned scheduling record.
+@<
+seed
+.kind.task
+@>
+self&
+.kind.record
+ &
+task&
+.kind.task
+epoch
+..task.generation
+enrolled
+..task.flag
+ready
+..task.flag
+queued
+..task.flag
+started
+..task.flag
+@!
+authority
+..task.enrollment
+run sequence
+..task.sequence
+owned task
+.kind.task
+owned task
+ % seed
+run sequence !
+ > epoch
+task&
+ &owned task
+enrolled !
+ < |1
+ready !
+ < |1
+started !
+ < |1

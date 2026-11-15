@@ -4,6 +4,8 @@
  *
  * [CALL-08](../../../../../spec/language/calls-and-results.md#call-08)
  * keeps supplied source boundaries stable while declaration-order installation proceeds.
+ * [CONT-04](../../../../../spec/language/continuations.md#cont-04) requires
+ * explicit snapshots to validate their controls before the first field commit.
  */
 #include "internal.h"
 
@@ -15,10 +17,10 @@ AmaStatus ama_call_protect_sources(AmaObjectOperation *protection, const AmaPrep
         const AmaProgramValue *value = &inputs[index].value;
         if (inputs[index].input->source.kind == AMA_SOURCE_LITERAL
             || inputs[index].input->source.kind == AMA_SOURCE_PREPARED || value->constant != NULL || value->shared_list != NULL) { continue; }
-        if (value->form == AMA_FIELD_OWNED) { status = ama_object_preflight(protection, value->handle, true, false); }
+        if (value->form == AMA_FIELD_OWNED) { status = ama_object_preflight(protection, value->handle, true, value->continuation); }
         else if (value->form == AMA_FIELD_OWNING_LIST) {
             for (size_t element = 0; element < value->list->count && status.code == AMA_OK; element++) {
-                status = ama_object_preflight(protection, *ama_handle_list_element(value->list, element), true, false);
+                status = ama_object_preflight(protection, *ama_handle_list_element(value->list, element), true, value->continuation);
             }
         }
         if (status.code != AMA_OK) { return status; }

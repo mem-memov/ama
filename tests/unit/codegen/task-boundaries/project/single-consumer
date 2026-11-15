@@ -1,0 +1,48 @@
+# Copying a token does not duplicate the retained completion or reserve another native operation.
+@!
+source
+..task.events
+operation
+..task.operation
+require
+..task.require
+same
+..task.token.same
+source !
+ < |1
+operation !
+ < &source
+ > token
+copy
+ token
+same !
+ < token
+ < copy
+ > equal
+require !
+ < equal
+source
+ arm !
+  < token
+ post !
+  < token
+  < |0
+  < |single owned result
+ take !
+  > first
+ take !
+  > second
+first
+:
+ require !
+second
+?
+ require !
+source
+ post !
+  < copy
+ take !
+  > late
+late
+?
+ require !

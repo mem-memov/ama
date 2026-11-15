@@ -1,0 +1,51 @@
+# Copyable task data retains an external cancellation port but gains no scheduling enrollment.
+@<
+port&
+.port
+incoming operation&
+..task.operation
+@>
+self&
+.kind.task
+ &
+phase
+..task.phase
+outcome
+..task.outcome
+shared operation&
+..task.operation
+@!
+probe
+.worker
+ready phase
+..task.phase.ready
+completed phase
+..task.phase.completed
+fresh outcome
+..task.outcome
+true
+..std.condition
+ |1
+outcome
+ fresh outcome
+shared operation&
+ incoming operation&
+probe !
+ < |1
+ready phase !
+ > phase
+%
+port&
+ requested >> cancelled
+outcome !
+ < cancelled
+ < true
+cancelled
+?
+ probe !
+  < |99
+:
+ probe !
+  < |2
+completed phase !
+ > phase

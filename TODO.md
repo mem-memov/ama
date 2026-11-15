@@ -2311,10 +2311,24 @@ Contracts: [ASYNC-01–ASYNC-12](spec/language/async-and-parallelism.md).
   documentation reproducibility is checked before commit. See
   `docs/implementation/task-cancellation.md`. Destruction remains ownership cleanup
   and never runs the remaining continuation.
-- [ ] **T098 — Enforce copy and failure boundaries for tasks.** Needs: T072,
-  T097. Require fresh enrollment of copied tasks and genuine independent native
-  operation clones or noncopyable resources. Test external operation sharing,
-  subscriber rights and context-wide technical failure with complete detachment.
+- [x] **T098 — Enforce copy and failure boundaries for tasks.** Needs: T072,
+  T097. `..task.enrollment` makes an owning record/registry noncopyable through
+  declared native capability checks, including empty owning record lists; tasks
+  and external references remain ordinary copyable values. Explicit snapshot
+  adoption publishes a fresh record epoch and requires separate enqueue. Native
+  operations remain noncopyable; cloned tokens/shared references create neither
+  another operation nor an additional single-consumer completion right. Fixed a
+  runtime regression that cleared explicit continuation input positions: selected
+  source mode now reaches scalar replacement, `% reference&` snapshots its target,
+  and continuation controls validate before any input field replacement. Explicit
+  reference acquisition keeps its separate reference-shaped mode. A host probe
+  proves both Awaiting tasks detach before Failed, repeated resume never enters
+  Ama, and retained native bytes/endpoints can acknowledge afterward without
+  running suspended bodies. Strict full `NDEBUG`, selection/preparation/generated
+  ASan/UBSan, 1858 per-file coverage and standalone header checks pass, including
+  the decomposed fixture/copy/capability/failure test support. Prose/rule links
+  pass; final Doxygen reproducibility is checked before commit. See
+  `docs/implementation/task-copy-and-failure.md`.
 - [ ] **T099 — Accept the asynchronous library and supported host.** Needs:
   T089, T098, T131. Publish working event/task examples and declared library/host APIs.
   Exercise reactor integration through the supported arrangement, cancellation,

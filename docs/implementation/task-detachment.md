@@ -99,5 +99,6 @@ the actual boundaries:
   endpoints. The maintained scenarios are under its `project/` directory.
 
 All view access and owner operations occur on the single Ama executor. Only native
-posting/acknowledgment may race. Cancellation terminal arbitration, copy enrollment
-rules and loadable-host acceptance remain the subsequent T097–T099 components.
+posting/acknowledgment may race. [Cancellation arbitration](task-cancellation.md) and
+[copy/failure boundaries](task-copy-and-failure.md) build on this component.
+Loadable-host acceptance remains T099.

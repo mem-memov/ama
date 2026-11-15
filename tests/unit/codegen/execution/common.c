@@ -254,7 +254,7 @@ static void execute_project(const char *main_source, const char *expected, bool 
     while ((received = read(channel[0], bytes + count, sizeof(bytes) - count - 1)) > 0) { count += (size_t)received; }
     close(channel[0]);
     waited = waitpid(process, &status, 0);
-    if (waited == process && !WIFEXITED(status)) {
+    if (waited == process && (!WIFEXITED(status) || ((WEXITSTATUS(status) == 0) != success))) {
         FILE *diagnostics = fopen("generated/errors.txt", "rb");
         if (diagnostics != NULL) {
             char chunk[1024];

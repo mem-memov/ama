@@ -55,7 +55,8 @@ registries, and native callbacks cannot execute Ama to replenish them.
 
 `..task.require` turns a failed explicit protocol predicate into a technical
 failure. It does not manufacture a task outcome or permit a failed context to
-continue. Cancellation and complete detachment are subsequent components.
+continue. [Detachment](task-detachment.md) and
+[cooperative cancellation](task-cancellation.md) extend this round boundary.
 
 ## Observe first, then wait explicitly
 

@@ -1,0 +1,32 @@
+# Both waits must detach before failed reaches the host, without running either suspended body.
+@!
+source
+..task.events
+first
+.waiting task
+second
+.waiting task
+retainer
+.retainer
+crash
+.crash
+probe
+.worker
+source !
+ < |2
+first !
+ < &source
+second !
+ < &source
+first
+ operation& >> first operation&
+second
+ operation& >> second operation&
+retainer !
+ < first operation&
+ < second operation&
+crash !
+probe !
+ < |77
+first %
+second %

@@ -23447,6 +23447,51 @@
         "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
         "command": "make -C tests/unit/library/transport",
         "source": "tests/unit/library/transport/main.c"
+      },
+      {
+        "case": "it_preserves_explicit_continuation_inputs_without_preserving_ordinary_defaults",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_installs_a_referenced_continuation_as_an_owned_input_snapshot",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_validates_snapshot_controls_before_any_input_field_replacement",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
       }
     ]
   },
@@ -25799,6 +25844,51 @@
         "case": "it_compiles_fixed_cursors_and_one_cell_for_each_exact_binding",
         "command": "make -C tests/unit/codegen/traversal-layout",
         "source": "tests/unit/codegen/traversal-layout/main.c"
+      },
+      {
+        "case": "it_preserves_explicit_continuation_inputs_without_preserving_ordinary_defaults",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_installs_a_referenced_continuation_as_an_owned_input_snapshot",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_validates_snapshot_controls_before_any_input_field_replacement",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
       }
     ]
   },
@@ -26557,6 +26647,56 @@
         "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
         "command": "make -C tests/unit/library/transport",
         "source": "tests/unit/library/transport/main.c"
+      },
+      {
+        "case": "it_preserves_explicit_continuation_inputs_without_preserving_ordinary_defaults",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_installs_a_referenced_continuation_as_an_owned_input_snapshot",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_validates_snapshot_controls_before_any_input_field_replacement",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_selects_declared_instance_storage_without_acquiring_reference_targets",
+        "command": "make -C tests/unit/runtime/value-selection",
+        "source": "tests/unit/runtime/value-selection/main.c"
       }
     ]
   },
@@ -38092,6 +38232,36 @@
         "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
         "command": "make -C tests/unit/codegen/task-cancellation",
         "source": "tests/unit/codegen/task-cancellation/main.c"
+      },
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
       }
     ]
   },
@@ -38910,6 +39080,36 @@
         "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
         "command": "make -C tests/unit/codegen/library-compositions",
         "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
       }
     ]
   },
@@ -46026,6 +46226,51 @@
         "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
         "command": "make -C tests/unit/library/transport",
         "source": "tests/unit/library/transport/main.c"
+      },
+      {
+        "case": "it_preserves_explicit_continuation_inputs_without_preserving_ordinary_defaults",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_installs_a_referenced_continuation_as_an_owned_input_snapshot",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_validates_snapshot_controls_before_any_input_field_replacement",
+        "command": "make -C tests/unit/runtime/call-preparation",
+        "source": "tests/unit/runtime/call-preparation/main.c"
+      },
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
       }
     ]
   },
@@ -91651,6 +91896,972 @@
         "case": "it_completes_a_fresh_run_after_cancelling_the_previous_enrollment",
         "command": "make -C tests/unit/codegen/task-cancellation",
         "source": "tests/unit/codegen/task-cancellation/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/enrollment.abi": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Separate copied task values from fresh enrollment and independent native resources, and clean every wait before reporting context failure.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/enrollment.c": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Separate copied task values from fresh enrollment and independent native resources, and clean every wait before reporting context failure.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/enrollment": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Separate copied task values from fresh enrollment and independent native resources, and clean every wait before reporting context failure.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "stdlib/modules/task/enrollment.h": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Separate copied task values from fresh enrollment and independent native resources, and clean every wait before reporting context failure.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_registration_probe_##name",
+      "-"
+    ]
+  },
+  "tests/unit/codegen/task-boundaries/main.c": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Separate copied task values from fresh enrollment and independent native resources, and clean every wait before reporting context failure.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-boundaries/Makefile": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Separate copied task values from fresh enrollment and independent native resources, and clean every wait before reporting context failure.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-boundaries/project/shared-operation": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Separate copied task values from fresh enrollment and independent native resources, and clean every wait before reporting context failure.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-boundaries/project/failure-host.c": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Separate copied task values from fresh enrollment and independent native resources, and clean every wait before reporting context failure.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-boundaries/project/retainer.c": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Separate copied task values from fresh enrollment and independent native resources, and clean every wait before reporting context failure.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-boundaries/project/shared-port": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Separate copied task values from fresh enrollment and independent native resources, and clean every wait before reporting context failure.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-boundaries/project/waiting task": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Separate copied task values from fresh enrollment and independent native resources, and clean every wait before reporting context failure.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-boundaries/project/single-consumer": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Separate copied task values from fresh enrollment and independent native resources, and clean every wait before reporting context failure.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-boundaries/project/retainer": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Separate copied task values from fresh enrollment and independent native resources, and clean every wait before reporting context failure.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-boundaries/project/scheduler": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Separate copied task values from fresh enrollment and independent native resources, and clean every wait before reporting context failure.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-boundaries/project/adopt": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Separate copied task values from fresh enrollment and independent native resources, and clean every wait before reporting context failure.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-boundaries/project/port": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Separate copied task values from fresh enrollment and independent native resources, and clean every wait before reporting context failure.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-boundaries/project/retainer.abi": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Separate copied task values from fresh enrollment and independent native resources, and clean every wait before reporting context failure.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-boundaries/project/technical-failure": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Separate copied task values from fresh enrollment and independent native resources, and clean every wait before reporting context failure.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-boundaries/project/retainer.h": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Separate copied task values from fresh enrollment and independent native resources, and clean every wait before reporting context failure.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-DAMA_NATIVE(name)=ama_registration_probe_##name",
+      "-"
+    ]
+  },
+  "tests/unit/codegen/task-boundaries/project/kind/task": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Separate copied task values from fresh enrollment and independent native resources, and clean every wait before reporting context failure.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-boundaries/project/kind/step": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Separate copied task values from fresh enrollment and independent native resources, and clean every wait before reporting context failure.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-boundaries/project/kind/record": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Separate copied task values from fresh enrollment and independent native resources, and clean every wait before reporting context failure.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-boundaries/support/fixture.c": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Compose exact task-copy and failure tests through explicit fixture, capability and native host boundaries.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-boundaries/support/copies.c": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Compose exact task-copy and failure tests through explicit fixture, capability and native host boundaries.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-boundaries/support/failure.c": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Compose exact task-copy and failure tests through explicit fixture, capability and native host boundaries.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/task-boundaries/support/capabilities.c": {
+    "contract": "docs/implementation/task-copy-and-failure.md",
+    "purpose": "Compose exact task-copy and failure tests through explicit fixture, capability and native host boundaries.",
+    "tests": [
+      {
+        "case": "it_requires_fresh_enrollment_before_dispatching_a_copied_continuation",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_explicitly_shared_external_ports_without_duplicating_membership",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_preserves_single_consumer_rights_when_a_native_token_is_copied",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_requires_independent_native_waits_despite_shared_external_operation_references",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_rejects_copying_enrollment_owners_and_inflight_native_operations",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
+        "command": "make -C tests/unit/codegen/task-boundaries",
+        "source": "tests/unit/codegen/task-boundaries/main.c"
       }
     ]
   }

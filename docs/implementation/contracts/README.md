@@ -169,3 +169,7 @@ checked reference visitors and owned registration cleanup without continuation e
 
 [Cooperative cancellation](../task-cancellation.md) records the terminal transition
 algebra, explicit queue wakeup and late-result cleanup at documented task boundaries.
+
+[Task copy and failure boundaries](../task-copy-and-failure.md) records explicit
+snapshot parameter propagation, noncopyable enrollment ownership, external
+consumer rights and native acknowledgment after terminal context cleanup.

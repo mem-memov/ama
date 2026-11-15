@@ -1,0 +1,10 @@
+# External cancellation state is deliberately shared by reference copies of a task.
+@<
+next
+..std.condition
+@>
+requested
+..std.condition
+@!
+requested
+ next

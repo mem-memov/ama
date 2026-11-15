@@ -1,0 +1,29 @@
+# Its continuation must not run when a different task technically fails the context.
+@<
+source&
+..task.events
+@>
+operation&
+..task.operation
+phase
+..task.phase
+@!
+owned operation
+..task.operation
+awaiting
+..task.phase.awaiting
+probe
+.worker
+operation&
+ &owned operation
+owned operation !
+ < source&
+ > token
+source&
+ arm !
+  < token
+awaiting !
+ > phase
+%
+probe !
+ < |88
