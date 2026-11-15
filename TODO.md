@@ -2204,10 +2204,23 @@ Contracts: [ASYNC-01–ASYNC-12](spec/language/async-and-parallelism.md).
   coverage/header checks and Doxygen rule links pass; reproducibility is checked
   before commit. See `docs/implementation/task-enrollment.md`; native tokens and
   event reconciliation follow in T092–T093.
-- [ ] **T092 — Implement native submission and completion storage.** Needs:
+- [x] **T092 — Implement native submission and completion storage.** Needs:
   T012, T091. Keep native buffers/resources and service/submission tokens separate
   from Ama identities. Test synchronous completion during submission, token reuse
   and worker/callback paths that queue records without entering Ama.
+  **Completed:** `src/native/events/` provides fixed native cells, immutable
+  domain/service/submission tokens, creator-image callback operations, retained
+  FIFO results and independently owned binary buffers. Prepare precedes arm;
+  synchronous/worker completions only queue native data without allocation or
+  Ama execution. Exact cell/service reuse, finite counter/refcount exhaustion,
+  every initial allocation failure, duplicate callbacks and close/ack races are
+  tested independently; actual code pins survive owner release until the final
+  callback/byte owner retires. Separate and assembled forms pass ASan/UBSan,
+  release-mode assembly and ThreadSanitizer through the supported POSIX harness.
+  Strict full `NDEBUG`, 1660 per-file coverage/header checks and Doxygen rule links
+  pass; reproducibility is checked before commit. See
+  `docs/implementation/native-events.md`; the generated Ama access bridge and
+  wait/readiness reconciliation remain T093.
 - [ ] **T093 — Implement registration and readiness reconciliation.** Needs:
   T092. Publish waits before arming, retain completion records, recheck before
   awaiting and match full identities on import. Exhaust small interleavings for

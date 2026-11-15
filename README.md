@@ -53,6 +53,8 @@ C/assert tests. Check-only success does not validate handwritten C bodies.
   values, explicit nested waiting and terminal application outcomes.
 - [Visible task enrollment](docs/implementation/task-enrollment.md): declared owners,
   checked task references and nonwrapping epoch/wait generations.
+- [Native completion storage](docs/implementation/native-events.md): immutable native
+  tokens, retained results and independently acknowledged callback resources.
 - [Contributor guide](CONTRIBUTORS.md): readable components, formatting and tests.
 - [Standard library](stdlib/README.md): library boundaries and native companions.
 - [Executable examples](docs/implementation/examples.md): stateful methods, self-reference,

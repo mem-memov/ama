@@ -84108,6 +84108,11 @@
         "case": "it_tracks_code_pins_and_snapshot_owners_without_counter_wrap",
         "command": "make -C tests/unit/runtime/library",
         "source": "tests/unit/runtime/library/main.c"
+      },
+      {
+        "case": "it_retains_actual_code_pins_through_callback_and_byte_owners",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
       }
     ]
   },
@@ -85516,6 +85521,11 @@
         "case": "it_invalidates_replaced_waits_and_old_runs_without_recreating_the_task",
         "command": "make -C tests/unit/codegen/enrollment",
         "source": "tests/unit/codegen/enrollment/main.c"
+      },
+      {
+        "case": "it_retains_actual_code_pins_through_callback_and_byte_owners",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
       }
     ]
   },
@@ -86206,6 +86216,809 @@
         "case": "it_rejects_malformed_native_flag_inputs",
         "command": "make -C tests/unit/codegen/enrollment",
         "source": "tests/unit/codegen/enrollment/main.c"
+      }
+    ]
+  },
+  "src/native/events/event.h": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_rejects_old_tokens_after_reusing_the_exact_native_cell",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_retains_synchronous_completions_and_drains_in_acceptance_order",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_queues_concurrent_workers_without_executing_an_ama_context",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_rejects_late_completion_after_close_and_retires_only_after_acknowledgment",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_executes_the_public_native_provider_assembly_once",
+        "command": "make -C tests/unit/async/events/assembly",
+        "source": "tests/unit/async/events/assembly/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/native/events/internal.h": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_rejects_old_tokens_after_reusing_the_exact_native_cell",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_retains_synchronous_completions_and_drains_in_acceptance_order",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_queues_concurrent_workers_without_executing_an_ama_context",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_rejects_late_completion_after_close_and_retires_only_after_acknowledgment",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_executes_the_public_native_provider_assembly_once",
+        "command": "make -C tests/unit/async/events/assembly",
+        "source": "tests/unit/async/events/assembly/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/native/events/assembly.h": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_executes_the_public_native_provider_assembly_once",
+        "command": "make -C tests/unit/async/events/assembly",
+        "source": "tests/unit/async/events/assembly/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/native/events/queue/take.c": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_retains_synchronous_completions_and_drains_in_acceptance_order",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_queues_concurrent_workers_without_executing_an_ama_context",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_executes_the_public_native_provider_assembly_once",
+        "command": "make -C tests/unit/async/events/assembly",
+        "source": "tests/unit/async/events/assembly/main.c"
+      }
+    ]
+  },
+  "src/native/events/identity/sequence.c": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_exhausts_small_identity_spaces_without_wrap",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_preserves_state_when_submission_or_reference_identity_is_exhausted",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      }
+    ]
+  },
+  "src/native/events/identity/source.c": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_issues_unique_services_during_concurrent_first_domain_initialization",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_never_revives_a_disposed_service_token",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_unwinds_every_first_service_allocation_before_publishing_identity",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      }
+    ]
+  },
+  "src/native/events/submission/prepare.c": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_rejects_old_tokens_after_reusing_the_exact_native_cell",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_preserves_state_when_submission_or_reference_identity_is_exhausted",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_shapes_and_discards_only_unarmed_reservations",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_queues_concurrent_workers_without_executing_an_ama_context",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      }
+    ]
+  },
+  "src/native/events/submission/arm.c": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_rejects_old_tokens_after_reusing_the_exact_native_cell",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_preserves_state_when_submission_or_reference_identity_is_exhausted",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_shapes_and_discards_only_unarmed_reservations",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_queues_concurrent_workers_without_executing_an_ama_context",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      }
+    ]
+  },
+  "src/native/events/submission/cell.c": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_rejects_old_tokens_after_reusing_the_exact_native_cell",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_preserves_state_when_submission_or_reference_identity_is_exhausted",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_shapes_and_discards_only_unarmed_reservations",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_queues_concurrent_workers_without_executing_an_ama_context",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      }
+    ]
+  },
+  "src/native/events/service/create.c": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_first_service_allocation_before_publishing_identity",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_unwinds_allocations_and_preserves_keepalive_on_factory_failure",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_retains_actual_code_pins_through_callback_and_byte_owners",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_rejects_late_completion_after_close_and_retires_only_after_acknowledgment",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      }
+    ]
+  },
+  "src/native/events/service/lifetime.c": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_first_service_allocation_before_publishing_identity",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_unwinds_allocations_and_preserves_keepalive_on_factory_failure",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_retains_actual_code_pins_through_callback_and_byte_owners",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_rejects_late_completion_after_close_and_retires_only_after_acknowledgment",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      }
+    ]
+  },
+  "src/native/events/service/gate.c": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_first_service_allocation_before_publishing_identity",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_unwinds_allocations_and_preserves_keepalive_on_factory_failure",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_retains_actual_code_pins_through_callback_and_byte_owners",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_rejects_late_completion_after_close_and_retires_only_after_acknowledgment",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      }
+    ]
+  },
+  "src/native/events/buffer/internal.h": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_retains_synchronous_completions_and_drains_in_acceptance_order",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_keeps_consumed_bytes_alive_after_service_disposal",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_preserves_payloads_on_unarmed_duplicate_and_foreign_rejection",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_unwinds_allocations_and_preserves_keepalive_on_factory_failure",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_shapes_and_discards_only_unarmed_reservations",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/native/events/buffer/create.c": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_retains_synchronous_completions_and_drains_in_acceptance_order",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_keeps_consumed_bytes_alive_after_service_disposal",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_preserves_payloads_on_unarmed_duplicate_and_foreign_rejection",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_unwinds_allocations_and_preserves_keepalive_on_factory_failure",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_shapes_and_discards_only_unarmed_reservations",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      }
+    ]
+  },
+  "src/native/events/buffer/release.c": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_retains_synchronous_completions_and_drains_in_acceptance_order",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_keeps_consumed_bytes_alive_after_service_disposal",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_preserves_payloads_on_unarmed_duplicate_and_foreign_rejection",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_unwinds_allocations_and_preserves_keepalive_on_factory_failure",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_shapes_and_discards_only_unarmed_reservations",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      }
+    ]
+  },
+  "src/native/events/callback/complete.c": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_retains_synchronous_completions_and_drains_in_acceptance_order",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_preserves_payloads_on_unarmed_duplicate_and_foreign_rejection",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_queues_concurrent_workers_without_executing_an_ama_context",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_commits_exactly_one_of_concurrent_duplicate_callbacks",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_rejects_late_completion_after_close_and_retires_only_after_acknowledgment",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      }
+    ]
+  },
+  "src/native/events/callback/port.c": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_retains_synchronous_completions_and_drains_in_acceptance_order",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_preserves_payloads_on_unarmed_duplicate_and_foreign_rejection",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_queues_concurrent_workers_without_executing_an_ama_context",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_commits_exactly_one_of_concurrent_duplicate_callbacks",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_rejects_late_completion_after_close_and_retires_only_after_acknowledgment",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/events/sources.mk": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_rejects_old_tokens_after_reusing_the_exact_native_cell",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_retains_synchronous_completions_and_drains_in_acceptance_order",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_queues_concurrent_workers_without_executing_an_ama_context",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_rejects_late_completion_after_close_and_retires_only_after_acknowledgment",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_executes_the_public_native_provider_assembly_once",
+        "command": "make -C tests/unit/async/events/assembly",
+        "source": "tests/unit/async/events/assembly/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/events/common.c": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_rejects_old_tokens_after_reusing_the_exact_native_cell",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_retains_synchronous_completions_and_drains_in_acceptance_order",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_queues_concurrent_workers_without_executing_an_ama_context",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_rejects_late_completion_after_close_and_retires_only_after_acknowledgment",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_executes_the_public_native_provider_assembly_once",
+        "command": "make -C tests/unit/async/events/assembly",
+        "source": "tests/unit/async/events/assembly/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/events/Makefile": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_rejects_old_tokens_after_reusing_the_exact_native_cell",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_retains_synchronous_completions_and_drains_in_acceptance_order",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_queues_concurrent_workers_without_executing_an_ama_context",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_rejects_late_completion_after_close_and_retires_only_after_acknowledgment",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_executes_the_public_native_provider_assembly_once",
+        "command": "make -C tests/unit/async/events/assembly",
+        "source": "tests/unit/async/events/assembly/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/events/identity/main.c": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_exhausts_small_identity_spaces_without_wrap",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_rejects_old_tokens_after_reusing_the_exact_native_cell",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_never_revives_a_disposed_service_token",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_preserves_state_when_submission_or_reference_identity_is_exhausted",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_unwinds_every_first_service_allocation_before_publishing_identity",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/events/identity/Makefile": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_exhausts_small_identity_spaces_without_wrap",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_rejects_old_tokens_after_reusing_the_exact_native_cell",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_never_revives_a_disposed_service_token",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_preserves_state_when_submission_or_reference_identity_is_exhausted",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      },
+      {
+        "case": "it_unwinds_every_first_service_allocation_before_publishing_identity",
+        "command": "make -C tests/unit/async/events/identity",
+        "source": "tests/unit/async/events/identity/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/events/assembly/main.c": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_executes_the_public_native_provider_assembly_once",
+        "command": "make -C tests/unit/async/events/assembly",
+        "source": "tests/unit/async/events/assembly/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/events/assembly/Makefile": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_executes_the_public_native_provider_assembly_once",
+        "command": "make -C tests/unit/async/events/assembly",
+        "source": "tests/unit/async/events/assembly/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/events/storage/main.c": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_retains_synchronous_completions_and_drains_in_acceptance_order",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_preserves_payloads_on_unarmed_duplicate_and_foreign_rejection",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_unwinds_allocations_and_preserves_keepalive_on_factory_failure",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_keeps_consumed_bytes_alive_after_service_disposal",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_retains_actual_code_pins_through_callback_and_byte_owners",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_shapes_and_discards_only_unarmed_reservations",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/events/storage/Makefile": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_retains_synchronous_completions_and_drains_in_acceptance_order",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_preserves_payloads_on_unarmed_duplicate_and_foreign_rejection",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_unwinds_allocations_and_preserves_keepalive_on_factory_failure",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_keeps_consumed_bytes_alive_after_service_disposal",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_retains_actual_code_pins_through_callback_and_byte_owners",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_shapes_and_discards_only_unarmed_reservations",
+        "command": "make -C tests/unit/async/events/storage",
+        "source": "tests/unit/async/events/storage/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/events/callbacks/main.c": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_queues_concurrent_workers_without_executing_an_ama_context",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_rejects_late_completion_after_close_and_retires_only_after_acknowledgment",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_commits_exactly_one_of_concurrent_duplicate_callbacks",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_issues_unique_services_during_concurrent_first_domain_initialization",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      }
+    ]
+  },
+  "tests/unit/async/events/callbacks/Makefile": {
+    "contract": "docs/implementation/native-events.md",
+    "purpose": "Reserve native-only tokens, queue independently owned results and retire callback/code resources without Ama execution.",
+    "tests": [
+      {
+        "case": "it_queues_concurrent_workers_without_executing_an_ama_context",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_rejects_late_completion_after_close_and_retires_only_after_acknowledgment",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_commits_exactly_one_of_concurrent_duplicate_callbacks",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
+      },
+      {
+        "case": "it_issues_unique_services_during_concurrent_first_domain_initialization",
+        "command": "make -C tests/unit/async/events/callbacks",
+        "source": "tests/unit/async/events/callbacks/main.c"
       }
     ]
   }
