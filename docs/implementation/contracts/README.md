@@ -199,3 +199,6 @@ leases, real worker completion and actual unload/reload through the SDK-free C A
 
 [Channel readiness](../channel-waits.md) records exact registration, cancellation,
 shutdown wakeups and native lifetime composed with isolated Ama tasks.
+
+[Parallel supervision](../parallel-supervision.md) records real overlapping actor
+execution, explicit failure policies and the component/native dependency matrix.

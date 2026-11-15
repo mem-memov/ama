@@ -2434,12 +2434,26 @@ Contracts: [PAR-01–PAR-08](spec/language/async-and-parallelism.md#parallelism-
   native/generated ASan/UBSan and native TSan pass. Documentation covers all 1994
   maintained inputs without debt; Doxygen/prose links pass, with reproducibility
   checked before commit. See `docs/implementation/channel-waits.md`.
-- [ ] **T106 — Accept isolated parallel execution and supervision.** Needs:
-  T102, T105. Run native-only worker and two-context messaging examples with
-  independent failure continuation and explicit supervisor policy. Verify all
-  PAR invariants and document process isolation for unsupported native concurrency.
-  Include separately generated components and nested child-context resources in
-  the namespace, native thread-safety, executor-affinity and code-lifetime checks.
+- [x] **T106 — Accept isolated parallel execution and supervision.** Needs:
+  T102, T105. Added a maintained public two-actor host with real simultaneous
+  executors and explicit continue-peer versus cancel-peer policies for the same
+  receiver failure. Shared exact Ama/native fixture installation with T105;
+  probe roles are constructed per payload before concurrency, and native-only
+  coordination cannot select another context's fields. Normal delivery and both
+  policies check typed outcomes, closed sources and exact atomic allocation
+  ownership. Strict/optimized NDEBUG, generated ASan/UBSan and TSan pass; the
+  original channel-wait composition regression passes. Ran the supported dynamic
+  native-worker example through the product CLI with actual completion/unload.
+  The PAR matrix maps isolation, identity, transfer, codecs, queues, callbacks,
+  separately generated namespaces and nested child resources to their executable
+  evidence. The recursive native synchronization/affinity/code-lifetime audit
+  explicitly preserves serialized observer preconditions and requires processes
+  when native failure containment is needed. No unrestricted nested-adapter
+  concurrency is inferred from namespace separation. The preceding full strict
+  T105 baseline remains unchanged in production code; 1998 maintained inputs have
+  documentation/test evidence without debt. Final Doxygen reproducibility is
+  checked before commit. See `docs/implementation/parallel-supervision.md` and
+  `examples/parallel/README.md`.
 
 ## Phase 15. Reusable exploration, debugging and relocation tools
 

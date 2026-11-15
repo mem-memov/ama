@@ -120,7 +120,9 @@ policies, terminal/reset behavior, collateral cleanup of another owned child,
 diagnostic ownership, secondary failure handling and all measured parent report
 allocation failures. ASan/UBSan cover the generated child, parent and host.
 
-These fixtures do not yet claim scheduler readiness registration or parallel
-execution. The task-phase/reactor and isolated parallel conformance work follows
-in T090–T106; reproducible user-facing build recipes and the complete EMBED rule
-matrix are collected by T131.
+These nested fixtures exercise a serialized native observer contract; they do not
+claim concurrent use of those observer globals. [Parallel acceptance](parallel-supervision.md)
+records the readiness/executor checks, the recursive child-resource concurrency
+and affinity audit, and the separately synchronized two-actor example.
+Reproducible user-facing build recipes and the complete EMBED rule matrix are
+collected by T131.

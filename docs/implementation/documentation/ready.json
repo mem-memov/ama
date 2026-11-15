@@ -38422,6 +38422,11 @@
         "case": "it_sends_independent_typed_values_between_isolated_ama_contexts_and_drains_after_sender_disposal",
         "command": "make -C tests/unit/codegen/channels",
         "source": "tests/unit/codegen/channels/main.c"
+      },
+      {
+        "case": "it_supervises_parallel_channel_actors_with_explicit_continue_and_cancel_policies",
+        "command": "make -C tests/unit/codegen/parallel-supervision",
+        "source": "tests/unit/codegen/parallel-supervision/main.c"
       }
     ]
   },
@@ -98734,6 +98739,55 @@
         "case": "it_runs_cooperative_channel_waits_cancellation_and_isolated_actor_failure",
         "command": "make -C tests/unit/codegen/channel-waits",
         "source": "tests/unit/codegen/channel-waits/main.c"
+      }
+    ]
+  },
+  "examples/parallel/host.c": {
+    "contract": "docs/implementation/parallel-supervision.md",
+    "purpose": "Execute independently owned channel actors on simultaneous executors and distinguish explicit continue-peer and cancel-peer policies without native Ama access.",
+    "tests": [
+      {
+        "case": "it_supervises_parallel_channel_actors_with_explicit_continue_and_cancel_policies",
+        "command": "make -C tests/unit/codegen/parallel-supervision",
+        "source": "tests/unit/codegen/parallel-supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/parallel-supervision/Makefile": {
+    "contract": "docs/implementation/parallel-supervision.md",
+    "purpose": "Execute independently owned channel actors on simultaneous executors and distinguish explicit continue-peer and cancel-peer policies without native Ama access.",
+    "tests": [
+      {
+        "case": "it_supervises_parallel_channel_actors_with_explicit_continue_and_cancel_policies",
+        "command": "make -C tests/unit/codegen/parallel-supervision",
+        "source": "tests/unit/codegen/parallel-supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/parallel-supervision/main.c": {
+    "contract": "docs/implementation/parallel-supervision.md",
+    "purpose": "Execute independently owned channel actors on simultaneous executors and distinguish explicit continue-peer and cancel-peer policies without native Ama access.",
+    "tests": [
+      {
+        "case": "it_supervises_parallel_channel_actors_with_explicit_continue_and_cancel_policies",
+        "command": "make -C tests/unit/codegen/parallel-supervision",
+        "source": "tests/unit/codegen/parallel-supervision/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/channel-waits/support/install.c": {
+    "contract": "docs/implementation/channel-waits.md",
+    "purpose": "Install shared exact actor/native fixtures for cooperative and parallel supervisor compositions.",
+    "tests": [
+      {
+        "case": "it_runs_cooperative_channel_waits_cancellation_and_isolated_actor_failure",
+        "command": "make -C tests/unit/codegen/channel-waits",
+        "source": "tests/unit/codegen/channel-waits/main.c"
+      },
+      {
+        "case": "it_supervises_parallel_channel_actors_with_explicit_continue_and_cancel_policies",
+        "command": "make -C tests/unit/codegen/parallel-supervision",
+        "source": "tests/unit/codegen/parallel-supervision/main.c"
       }
     ]
   }
