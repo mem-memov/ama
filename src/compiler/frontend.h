@@ -49,6 +49,12 @@ void compiler_frontend_destroy(CompilerFrontend *frontend);
  */
 bool compiler_frontend_check(CompilerFrontend *frontend, const ModuleRoot *roots,
     size_t count, const char *entry);
+/** Check this owner's already built catalog through the ordinary required-module, input,
+ * semantic and planning stages. Exact candidate source copies must be installed before the
+ * call; no filesystem source rewriting or native execution occurs.
+ */
+bool compiler_frontend_check_catalog(CompilerFrontend *, const ModuleRoot *, size_t,
+    const char *entry, const char *const *required, size_t required_count);
 
 /**
  * Load an active native root and own a proposed ABI source if supplied or required for initial

@@ -71,3 +71,15 @@ bool compiler_frontend_check(CompilerFrontend *frontend, const ModuleRoot *roots
     return compiler_frontend_load(frontend, roots, count, entry)
         && compiler_frontend_finish(frontend, NULL);
 }
+
+/** Candidate validation reuses the complete compiler pipeline after explicit catalog preparation. */
+bool compiler_frontend_check_catalog(CompilerFrontend *frontend, const ModuleRoot *roots,
+    size_t count, const char *entry, const char *const *required, size_t required_count) {
+    assert(!frontend->attempted);
+    frontend->attempted = true;
+    if (project_load_catalog(&frontend->project, entry, required, required_count) != PROJECT_OK) {
+        frontend->error = frontend->project.error;
+        return false;
+    }
+    return compiler_frontend_capture(frontend, roots, count) && compiler_frontend_finish(frontend, NULL);
+}

@@ -26,9 +26,9 @@ void project_destroy(Project *project) {
 ProjectStatus project_load_required(Project *project, const ModuleRoot *roots,
     size_t root_count, const char *entry, const char *const *required, size_t required_count) {
     assert(!project->attempted && module_path_valid(entry));
-    project->attempted = true;
     ModuleStatus status = module_catalog_build(&project->catalog, roots, root_count);
     if (status != MODULE_OK) {
+        project->attempted = true;
         project->status = status == MODULE_OUT_OF_MEMORY
             ? PROJECT_OUT_OF_MEMORY : PROJECT_CATALOG_ERROR;
         bool adapted = diagnostic_from_module(&project->catalog.issue,
@@ -37,6 +37,14 @@ ProjectStatus project_load_required(Project *project, const ModuleRoot *roots,
         (void)adapted;
         return project->status;
     }
+    return project_load_catalog(project, entry, required, required_count);
+}
+
+/** Reuse one already owned immutable catalog for every required source, including explicit editor candidates. */
+ProjectStatus project_load_catalog(Project *project, const char *entry,
+    const char *const *required, size_t required_count) {
+    assert(!project->attempted && project->catalog.built && module_path_valid(entry));
+    project->attempted = true;
     if (!project_require(project, NULL, entry, (SourceSpan){0}, &project->entry)) {
         return project->status;
     }

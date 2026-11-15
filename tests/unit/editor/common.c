@@ -8,7 +8,7 @@
 #include "editor/analysis/analysis.h"
 static EditorAnalysis analysis;
 /** Analyze one fresh explicit project while retaining all earlier immutable snapshots independently. */
-static bool analyze(EditorAnalysis *owner) {
+static inline bool analyze(EditorAnalysis *owner) {
     ModuleRoot root = {"generated/project",NULL,0,MODULE_ROOT_PROJECT};
     bool valid = editor_analysis_build(owner, &root, 1, ".main");
     if ((owner->state == EDITOR_INVALID || !valid) && owner->diagnostic.code != DIAGNOSTIC_OUT_OF_MEMORY) {

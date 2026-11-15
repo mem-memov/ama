@@ -266,6 +266,7 @@ static void it_unwinds_every_catalog_allocation_failure(void) {
 }
 
 #include "support/native.c"
+#include "support/override.c"
 
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
@@ -291,6 +292,8 @@ void run(void) {
     it_reports_the_exact_invalid_utf8_span_in_sources_and_abi();
     it_rejects_aliased_directory_roots_even_when_empty();
     it_unwinds_every_catalog_allocation_failure();
+    it_overrides_candidate_text_without_changing_identity_or_old_source_views();
+    it_unwinds_every_candidate_source_override_allocation();
 }
 
 /**

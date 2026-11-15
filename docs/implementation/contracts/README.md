@@ -205,3 +205,6 @@ execution, explicit failure policies and the component/native dependency matrix.
 
 [Editor analysis](../editor-analysis.md) records immutable original-source snapshots,
 exact declaration identities, lexical availability and checked interface metadata.
+
+[Identity-aware rename](../editor-rename.md) records complete workspace discovery,
+exact source edits, capture rejection and versioned client document transactions.

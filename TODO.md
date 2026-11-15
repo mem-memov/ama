@@ -2478,10 +2478,27 @@ Contracts: [tools](spec/implementation/tools-and-conformance.md),
   ASan/UBSan checks pass; 2019 maintained inputs have registered evidence without
   debt. Doxygen/prose/standalone-header checks pass, with final reproducibility
   checked before commit. See `docs/implementation/editor-analysis.md`.
-- [ ] **T108 — Implement identity-aware rename.** Needs: T107. Plan edits from
-  resolved declarations/references, including qualified constants and scoped
-  foreach locals. Test collisions, preserved unrelated bytes and revalidation
-  before applying source changes.
+- [x] **T108 — Implement identity-aware rename.** Needs: T107. Added complete
+  active-workspace analysis, including unused importers and opaque draft version
+  checkpoints, through shared prepared-catalog frontend entry points. Rename plans
+  select exact checked declaration identities, validate complete replacement names
+  and preserve every non-name byte, reference/list suffix, comment, literal and
+  line ending. Fresh validation checks source identity/bytes and tracked native
+  dependencies, reparses/reresolves all active modules, then proves declaration,
+  occurrence, initializer, binding/action and control graph correspondence.
+  A compiling candidate that captures a foreach cell is rejected; disjoint local
+  and later inferred names remain valid. The all-file client document transaction
+  is revalidated immediately before publication and never invoked on failed
+  validation or no-op. This is the editor core contract; filesystem recovery and
+  user-facing command integration remain in their later tooling tasks. Tests
+  cover cross-file qualified constants and callee labels, real standard types,
+  Unicode, CRLF/literals/comments, indices/intrinsic labels, returned-method
+  refusal, branches/loops, stale source/native inputs, rejected atomic document
+  transactions and every measured workspace/plan/candidate allocation ordinal.
+  Strict full NDEBUG and full editor/source-catalog ASan/UBSan pass. All 2050
+  maintained inputs have named coverage without debt; Doxygen/prose/header
+  checks pass, with final reproducibility checked before commit.
+  See `docs/implementation/editor-rename.md`.
 - [ ] **T109 — Expose explicit debugger inspection.** Needs: T084, T099, T106.
   Inspect type, persistent/interface state, acquisition, saved positions, cursors,
   refusal and task/context state through authorized metadata. Test no hidden native

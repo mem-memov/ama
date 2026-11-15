@@ -4058,6 +4058,101 @@
         "case": "it_unwinds_every_frontend_allocation_failure",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
       }
     ]
   },
@@ -4114,6 +4209,101 @@
         "case": "it_unwinds_every_frontend_allocation_failure",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
       }
     ]
   },
@@ -4287,6 +4477,101 @@
         "case": "it_unwinds_every_library_resolution_allocation",
         "command": "make -C tests/unit/library/resolution",
         "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
       }
     ]
   },
@@ -4358,6 +4643,101 @@
         "case": "it_unwinds_every_library_resolution_allocation",
         "command": "make -C tests/unit/library/resolution",
         "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
       }
     ]
   },
@@ -4572,6 +4952,101 @@
         "case": "it_publishes_empty_handler_warnings_and_propagates_warning_output_failures",
         "command": "make -C tests/unit/driver/run",
         "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
       }
     ]
   },
@@ -4658,6 +5133,101 @@
         "case": "it_publishes_empty_handler_warnings_and_propagates_warning_output_failures",
         "command": "make -C tests/unit/driver/run",
         "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
       }
     ]
   },
@@ -13862,6 +14432,101 @@
         "case": "it_unwinds_every_complete_identity_registry_allocation_failure",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
       }
     ]
   },
@@ -13933,6 +14598,101 @@
         "case": "it_walks_deep_blocks_and_dependency_chains_without_c_recursion",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
       }
     ]
   },
@@ -31451,6 +32211,16 @@
         "case": "it_isolates_identical_native_names_and_compiles_typed_abi_uses",
         "command": "make -C tests/integration/parser/grammar",
         "source": "tests/integration/parser/grammar/main.c"
+      },
+      {
+        "case": "it_overrides_candidate_text_without_changing_identity_or_old_source_views",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_every_candidate_source_override_allocation",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
       }
     ]
   },
@@ -45266,6 +46036,101 @@
         "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
       }
     ]
   },
@@ -52281,6 +53146,16 @@
         "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_overrides_candidate_text_without_changing_identity_or_old_source_views",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_every_candidate_source_override_allocation",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
       }
     ]
   },
@@ -52412,6 +53287,16 @@
         "case": "it_invalidates_activation_changes_and_tracks_only_contributing_companions",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_overrides_candidate_text_without_changing_identity_or_old_source_views",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_every_candidate_source_override_allocation",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
       }
     ]
   },
@@ -99371,6 +100256,101 @@
         "case": "it_exposes_structured_empty_block_warnings_without_turning_them_into_errors",
         "command": "make -C tests/unit/editor/composition",
         "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
       }
     ],
     "standalone_header_command": [
@@ -99691,6 +100671,101 @@
         "case": "it_exposes_structured_empty_block_warnings_without_turning_them_into_errors",
         "command": "make -C tests/unit/editor/composition",
         "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
       }
     ]
   },
@@ -99752,6 +100827,101 @@
         "case": "it_exposes_structured_empty_block_warnings_without_turning_them_into_errors",
         "command": "make -C tests/unit/editor/composition",
         "source": "tests/unit/editor/composition/main.c"
+      },
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
       }
     ]
   },
@@ -99959,6 +101129,2517 @@
         "case": "it_exposes_structured_empty_block_warnings_without_turning_them_into_errors",
         "command": "make -C tests/unit/editor/composition",
         "source": "tests/unit/editor/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/workspace/internal.h": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/editor/workspace/build.c": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/workspace/active.c": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/workspace/configuration.c": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/rename/internal.h": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/editor/rename/rename.h": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/editor/rename/validation/candidate.c": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/rename/validation/validate.c": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/rename/validation/span.c": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/rename/validation/checkpoint.c": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/rename/plan/prepare.c": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/rename/plan/files.c": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/rename/plan/name.c": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/rename/plan/lifetime.c": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/rename/validation/identity/operands.c": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/rename/validation/identity/symbols.c": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/rename/validation/identity/statement.c": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      }
+    ]
+  },
+  "src/editor/rename/validation/identity/internal.h": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/editor/rename/validation/identity/program.c": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/editor/workspace/main.c": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      }
+    ]
+  },
+  "tests/unit/editor/workspace/Makefile": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      }
+    ]
+  },
+  "tests/unit/editor/rename/common.c": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/editor/rename/Makefile": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_unused_active_modules_without_publishing_partial_identities",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
+        "command": "make -C tests/unit/editor/workspace",
+        "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/editor/rename/validation/main.c": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      }
+    ]
+  },
+  "tests/unit/editor/rename/validation/Makefile": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_rejects_invalid_complete_names_without_preparing_source_edits",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_callee_field_collisions_with_original_compiler_diagnostics",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_silent_capture_even_when_the_complete_candidate_compiles",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_accepts_disjoint_foreach_names_without_renaming_a_later_same_spelled_field",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
+        "command": "make -C tests/unit/editor/rename/validation",
+        "source": "tests/unit/editor/rename/validation/main.c"
+      }
+    ]
+  },
+  "tests/unit/editor/rename/composition/main.c": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/editor/rename/composition/Makefile": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_skips_document_publication_for_same_name_requests",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_workspace_plan_and_candidate_allocation_prefix",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
+        "command": "make -C tests/unit/editor/rename/composition",
+        "source": "tests/unit/editor/rename/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/editor/rename/plan/main.c": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      }
+    ]
+  },
+  "tests/unit/editor/rename/plan/Makefile": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      }
+    ]
+  },
+  "src/source/module/resolve/override.c": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_overrides_candidate_text_without_changing_identity_or_old_source_views",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_every_candidate_source_override_allocation",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      }
+    ]
+  },
+  "tests/unit/source/module/support/override.c": {
+    "contract": "docs/implementation/editor-rename.md",
+    "purpose": "Prepare byte-exact identity-selected edits over every active module and prove declaration/reference/control preservation before a versioned client transaction.",
+    "tests": [
+      {
+        "case": "it_overrides_candidate_text_without_changing_identity_or_old_source_views",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_unwinds_every_candidate_source_override_allocation",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_renames_callee_labels_in_unused_importers_without_changing_caller_values",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_reference_list_suffixes_and_same_name_noops",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_literal_and_comment_bytes_with_real_standard_text_metadata",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_branch_loop_and_selected_method_refusal_graphs",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
+        "command": "make -C tests/unit/editor/rename/plan",
+        "source": "tests/unit/editor/rename/plan/main.c"
       }
     ]
   }

@@ -32,6 +32,11 @@ typedef struct {
     EditorState state;
     bool attempted;
     bool indexed;
+    /** Whole-workspace analysis owns settings and checks every active catalog module, including unused importers. */
+    bool workspace;
+    const ModuleRoot *roots;
+    size_t root_count;
+    const char *entry;
 } EditorAnalysis;
 /** Lexical highlighting preserves exact complete-name and literal spans; comments are physical-line views. */
 typedef struct { SourceSpan spelling; SourceSpan payload; LexKind kind; bool comment; } EditorHighlight;
@@ -55,6 +60,10 @@ void editor_analysis_destroy(EditorAnalysis *);
  * Drafts expose lexical data only; no partial semantic graph is published as valid metadata.
  */
 bool editor_analysis_build(EditorAnalysis *, const ModuleRoot *, size_t, const char *entry);
+/** Analyze every configured active module, keeping drafts opaque and owning root settings.
+ * False retains a diagnostic and publishes no complete workspace; no source files are changed.
+ */
+bool editor_workspace_build(EditorAnalysis *, const ModuleRoot *, size_t, const char *entry);
 /** Enumerate lexical tokens/comments using the production layout/lexer. Output may contain a
  * valid prefix before an invalid token; false returns its exact diagnostic. No recovery grammar.
  */

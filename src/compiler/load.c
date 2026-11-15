@@ -22,6 +22,11 @@ bool compiler_frontend_load_required(CompilerFrontend *frontend, const ModuleRoo
         frontend->error = frontend->project.error;
         return false;
     }
+    return compiler_frontend_capture(frontend, roots, count);
+}
+
+/** Track original or explicit candidate source bytes through the same sealed input graph. */
+bool compiler_frontend_capture(CompilerFrontend *frontend, const ModuleRoot *roots, size_t count) {
     SourceStatus captured = project_inputs_capture(&frontend->inputs, &frontend->project, roots, count);
     if (captured != SOURCE_OK) {
         frontend->error = (Diagnostic){

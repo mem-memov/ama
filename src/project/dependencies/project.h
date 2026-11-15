@@ -74,6 +74,11 @@ ProjectStatus project_load(Project *project, const ModuleRoot *roots,
  */
 ProjectStatus project_load_required(Project *project, const ModuleRoot *roots,
     size_t root_count, const char *entry, const char *const *required, size_t required_count);
+/** Load from this owner's already built immutable catalog. The caller may have installed
+ * exact copied in-memory source edits before parsing; the ordinary parser/registry/dependency
+ * pipeline is reused. No source/AST records may have been registered yet.
+ */
+ProjectStatus project_load_catalog(Project *, const char *entry, const char *const *required, size_t required_count);
 /** Return an exact borrowed module only from a valid completed closure, otherwise null. No lookup normalizes or invents a module path.
  */
 const ProjectModule *project_find(const Project *project, const char *logical_path);

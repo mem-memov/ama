@@ -115,6 +115,11 @@ ModuleStatus module_catalog_find(const ModuleCatalog *catalog,
  * @return MODULE_OK, invalid catalog/member, allocation, exact-path, IO or UTF-8 failure.
  */
 ModuleStatus module_catalog_load_native(ModuleCatalog *, const ModuleSource *);
+/** Install an explicit copied candidate text in a complete owned catalog before any AST/native
+ * consumer exists. Logical/physical identity is preserved; UTF-8/allocation failure leaves the
+ * selected source unchanged and retains diagnostic context. Other records stay unchanged.
+ */
+ModuleStatus module_catalog_override(ModuleCatalog *, const ModuleSource *, const unsigned char *, size_t);
 /** Validate an absolute single/double-dot selector and nonempty complete-name components.
  * @return Exact spelling membership with no edge/separator spaces, filesystem parent traversal or normalization.
  */
