@@ -29,6 +29,10 @@ The [context isolation audit](../context-isolation-audit.md) records actual
 context-local storage, synchronized native bookkeeping and native dependency
 concurrency constraints, including overlapping constant lifecycle evidence.
 
+The [parallel execution acceptance](../parallel-context-execution.md) checks
+actual overlapping generated dispatch, context-local startup/reuse, native event
+import while a peer runs, and independent continuation after peer failure.
+
 ## Before implementation
 
 Identify one responsibility and its smallest meaningful public boundary. Link the

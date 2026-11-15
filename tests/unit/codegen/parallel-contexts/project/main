@@ -1,0 +1,32 @@
+# Separate contexts own separate shared integer values and native event services.
+@=
+shared
+..integer
+ |23
+@!
+service
+..task.events
+service !
+ < |1
+bridge
+.bridge
+bridge !
+ < &service
+%
+service
+ take !
+  > packet
+packet
+?
+ packet
+  data >> data
+  code >> code
+ received
+ .received
+ received !
+  < data
+  < code
+:
+ missing
+ .missing
+ missing !

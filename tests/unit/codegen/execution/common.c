@@ -90,7 +90,7 @@ static void executable_native(const ScaffoldType *type) {
         assert(written != EOF);
     }
     written = fprintf(body, "%s %s AMA_NATIVE(entry)(AMA_NATIVE(State) *state, const %s *parameters, %s *results, const AmaNativeServices *services, AmaStatus *status) {\n"
-        "assert(state->address==state); (void)parameters; (void)results; (void)services;\n", noninline_entry ? "__attribute__((noinline))" : "AMA_NATIVE_ENTRY", wrong_entry_result ? "AmaStatus" : "void", type->names[SCAFFOLD_PARAMETERS]->internal_name,
+        "assert(state->address==state); (void)state; (void)parameters; (void)results; (void)services;\n", noninline_entry ? "__attribute__((noinline))" : "AMA_NATIVE_ENTRY", wrong_entry_result ? "AmaStatus" : "void", type->names[SCAFFOLD_PARAMETERS]->internal_name,
         type->names[SCAFFOLD_RESULTS]->internal_name);
     assert(written >= 0);
     if (native_entry_override == NULL || !native_entry_override(body, type)) {
@@ -132,7 +132,7 @@ static void executable_native(const ScaffoldType *type) {
         emitted = scaffold_emit_signature(body, operation, binding->function);
         assert(emitted);
         const char *implementation = operation == ABI_DEFAULT ? " { *destination=(AMA_NATIVE(State)){.address=destination}; return ama_status_success(); }\n"
-            : operation == ABI_DESTROY ? " { assert(state->address==state); return ama_status_success(); }\n"
+            : operation == ABI_DESTROY ? " { assert(state->address==state); (void)state; return ama_status_success(); }\n"
             : operation == ABI_LITERAL ? " { *destination=(AMA_NATIVE(State)){.address=destination}; for(size_t index=0;index<literal.length;index++) { if(literal.data[index]<'0'||literal.data[index]>'9') return ama_status_make(AMA_INVALID_LITERAL,\"Not a decimal value\",19); destination->number=destination->number*10+literal.data[index]-'0'; } return ama_status_success(); }\n"
             : operation == ABI_CLONE ? " { *destination=*source; destination->address=destination; return ama_status_success(); }\n"
             : operation == ABI_CONDITION ? " { *result=state->number!=0; return ama_status_success(); }\n"
@@ -187,13 +187,22 @@ static void prepare_project(const char *main_source) {
     assert(checked);
     native_scaffold_init(&assembly, &frontend, sources.allocator);
     ScaffoldOptions options = {.directory = "generated/output", .sdk = TEST_SDK};
-    static const char *flags[9];
+    static const char *flags[11];
     size_t flag_count = 0;
-#ifdef TEST_SANITIZERS
+#ifdef TEST_THREAD_SANITIZER
+    flags[flag_count++] = "-fsanitize=thread";
+    flags[flag_count++] = "-fno-omit-frame-pointer";
+    flags[flag_count++] = "-fno-pie";
+    flags[flag_count++] = "-no-pie";
+#elif defined(TEST_SANITIZERS)
     flags[flag_count++] = "-fsanitize=address,undefined";
     flags[flag_count++] = "-fno-omit-frame-pointer";
     flags[flag_count++] = "-fno-pie";
     flags[flag_count++] = "-no-pie";
+#endif
+#ifdef TEST_NATIVE_THREADS
+    flags[flag_count++] = "-pthread";
+    flags[flag_count++] = "-DNDEBUG";
 #endif
     if (forced_header != NULL) { flags[flag_count++] = "-include"; flags[flag_count++] = forced_header; }
     if (weak_toolchain_options) {

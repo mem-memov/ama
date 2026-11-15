@@ -38367,6 +38367,11 @@
         "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
         "command": "make -C tests/unit/codegen/task-boundaries",
         "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_runs_parallel_contexts_with_private_startup_reuse_events_and_failure",
+        "command": "make -C tests/unit/codegen/parallel-contexts",
+        "source": "tests/unit/codegen/parallel-contexts/main.c"
       }
     ]
   },
@@ -39215,6 +39220,11 @@
         "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
         "command": "make -C tests/unit/codegen/task-boundaries",
         "source": "tests/unit/codegen/task-boundaries/main.c"
+      },
+      {
+        "case": "it_runs_parallel_contexts_with_private_startup_reuse_events_and_failure",
+        "command": "make -C tests/unit/codegen/parallel-contexts",
+        "source": "tests/unit/codegen/parallel-contexts/main.c"
       }
     ]
   },
@@ -94226,6 +94236,83 @@
         "case": "it_isolates_context_storage_during_concurrent_native_constant_lifecycle",
         "command": "make -C tests/unit/runtime/isolation",
         "source": "tests/unit/runtime/isolation/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/parallel-contexts/main.c": {
+    "contract": "docs/implementation/parallel-context-execution.md",
+    "purpose": "Verify actual parallel generated dispatch, isolated startup and failure, and native event import while another context executes.",
+    "tests": [
+      {
+        "case": "it_runs_parallel_contexts_with_private_startup_reuse_events_and_failure",
+        "command": "make -C tests/unit/codegen/parallel-contexts",
+        "source": "tests/unit/codegen/parallel-contexts/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/parallel-contexts/Makefile": {
+    "contract": "docs/implementation/parallel-context-execution.md",
+    "purpose": "Verify actual parallel generated dispatch, isolated startup and failure, and native event import while another context executes.",
+    "tests": [
+      {
+        "case": "it_runs_parallel_contexts_with_private_startup_reuse_events_and_failure",
+        "command": "make -C tests/unit/codegen/parallel-contexts",
+        "source": "tests/unit/codegen/parallel-contexts/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/parallel-contexts/consumer/main.c": {
+    "contract": "docs/implementation/parallel-context-execution.md",
+    "purpose": "Verify actual parallel generated dispatch, isolated startup and failure, and native event import while another context executes.",
+    "tests": [
+      {
+        "case": "it_runs_parallel_contexts_with_private_startup_reuse_events_and_failure",
+        "command": "make -C tests/unit/codegen/parallel-contexts",
+        "source": "tests/unit/codegen/parallel-contexts/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/parallel-contexts/consumer/state.c": {
+    "contract": "docs/implementation/parallel-context-execution.md",
+    "purpose": "Verify actual parallel generated dispatch, isolated startup and failure, and native event import while another context executes.",
+    "tests": [
+      {
+        "case": "it_runs_parallel_contexts_with_private_startup_reuse_events_and_failure",
+        "command": "make -C tests/unit/codegen/parallel-contexts",
+        "source": "tests/unit/codegen/parallel-contexts/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/parallel-contexts/consumer/native.c": {
+    "contract": "docs/implementation/parallel-context-execution.md",
+    "purpose": "Verify actual parallel generated dispatch, isolated startup and failure, and native event import while another context executes.",
+    "tests": [
+      {
+        "case": "it_runs_parallel_contexts_with_private_startup_reuse_events_and_failure",
+        "command": "make -C tests/unit/codegen/parallel-contexts",
+        "source": "tests/unit/codegen/parallel-contexts/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/parallel-contexts/consumer/inspect.c": {
+    "contract": "docs/implementation/parallel-context-execution.md",
+    "purpose": "Verify actual parallel generated dispatch, isolated startup and failure, and native event import while another context executes.",
+    "tests": [
+      {
+        "case": "it_runs_parallel_contexts_with_private_startup_reuse_events_and_failure",
+        "command": "make -C tests/unit/codegen/parallel-contexts",
+        "source": "tests/unit/codegen/parallel-contexts/main.c"
+      }
+    ]
+  },
+  "tests/unit/codegen/parallel-contexts/project/main": {
+    "contract": "docs/implementation/parallel-context-execution.md",
+    "purpose": "Verify actual parallel generated dispatch, isolated startup and failure, and native event import while another context executes.",
+    "tests": [
+      {
+        "case": "it_runs_parallel_contexts_with_private_startup_reuse_events_and_failure",
+        "command": "make -C tests/unit/codegen/parallel-contexts",
+        "source": "tests/unit/codegen/parallel-contexts/main.c"
       }
     ]
   }

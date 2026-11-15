@@ -2362,10 +2362,20 @@ Contracts: [PAR-01–PAR-08](spec/language/async-and-parallelism.md#parallelism-
   the new lifecycle probe under ASan/UBSan and TSan. Per-file coverage, standalone
   headers, prose/rule links and final Doxygen reproducibility are checked before
   commit. See `docs/implementation/context-isolation-audit.md`.
-- [ ] **T101 — Execute two contexts concurrently.** Needs: T100. Share generated
-  code only, with one exclusive executor per context. Test independent startup,
-  slot reuse, failures and event delivery while another context runs; run supported
-  data-race tooling in addition to lifetime checks.
+- [x] **T101 — Execute two contexts concurrently.** Needs: T100. The actual
+  generated dispatcher already takes an explicit admitted view; new acceptance
+  runs its independent startup/yield/resume on POSIX threads and keeps assertions
+  effective in the generated `NDEBUG` consumer. Checks all context-local constant
+  storage, equal root triples with foreign-origin rejection, scalar slot reuse,
+  busy reentry/disposal and exact binary packet import while a peer remains in
+  an active native entry. The peer then fails technically and closes both old
+  and current native services; callback rights retire afterward while the healthy
+  context restarts and completes again. The shared fixture now propagates TSan
+  separately from ASan/UBSan to the generated executable. Strict parallel,
+  existing generated-context and execution suites, generated ASan/UBSan and TSan
+  pass. Per-file coverage checks 1914 inputs with no debt; prose/rule links and
+  final Doxygen reproducibility are checked before commit. See
+  `docs/implementation/parallel-context-execution.md`.
 - [ ] **T102 — Implement quiescent executor transfer.** Needs: T101. Publish
   state across an explicit synchronization boundary with no live native borrow
   or conflicting access. Test yield/resume transfer, nonreentrant rejection and
