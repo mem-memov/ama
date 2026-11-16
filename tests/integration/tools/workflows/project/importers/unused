@@ -1,0 +1,7 @@
+# .palette.шаг remains in this comment.
+@!
+value
+..integer
+ .palette.шаг
+method
+.old.sequence

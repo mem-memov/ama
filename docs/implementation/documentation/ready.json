@@ -35395,6 +35395,11 @@
         "case": "it_emits_from_the_same_frontend_without_invoking_the_native_c_compiler",
         "command": "make -C tests/integration/check",
         "source": "tests/integration/check/main.c"
+      },
+      {
+        "case": "it_composes_source_transactions_relocation_debugging_and_verified_rebuilds",
+        "source": "tests/integration/tools/workflows/main.c",
+        "command": "make -C tests/integration/tools/workflows"
       }
     ]
   },
@@ -78884,6 +78889,11 @@
         "case": "it_rejects_implicit_conversions_between_standard_scalar_types",
         "command": "make -C tests/unit/codegen/scalar-library",
         "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_composes_source_transactions_relocation_debugging_and_verified_rebuilds",
+        "source": "tests/integration/tools/workflows/main.c",
+        "command": "make -C tests/integration/tools/workflows"
       }
     ]
   },
@@ -78970,6 +78980,11 @@
         "case": "it_rejects_implicit_conversions_between_standard_scalar_types",
         "command": "make -C tests/unit/codegen/scalar-library",
         "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_composes_source_transactions_relocation_debugging_and_verified_rebuilds",
+        "source": "tests/integration/tools/workflows/main.c",
+        "command": "make -C tests/integration/tools/workflows"
       }
     ]
   },
@@ -79056,6 +79071,11 @@
         "case": "it_rejects_implicit_conversions_between_standard_scalar_types",
         "command": "make -C tests/unit/codegen/scalar-library",
         "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_composes_source_transactions_relocation_debugging_and_verified_rebuilds",
+        "source": "tests/integration/tools/workflows/main.c",
+        "command": "make -C tests/integration/tools/workflows"
       }
     ]
   },
@@ -79142,6 +79162,11 @@
         "case": "it_rejects_implicit_conversions_between_standard_scalar_types",
         "command": "make -C tests/unit/codegen/scalar-library",
         "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_composes_source_transactions_relocation_debugging_and_verified_rebuilds",
+        "source": "tests/integration/tools/workflows/main.c",
+        "command": "make -C tests/integration/tools/workflows"
       }
     ]
   },
@@ -79228,6 +79253,11 @@
         "case": "it_rejects_implicit_conversions_between_standard_scalar_types",
         "command": "make -C tests/unit/codegen/scalar-library",
         "source": "tests/unit/codegen/scalar-library/main.c"
+      },
+      {
+        "case": "it_composes_source_transactions_relocation_debugging_and_verified_rebuilds",
+        "source": "tests/integration/tools/workflows/main.c",
+        "command": "make -C tests/integration/tools/workflows"
       }
     ]
   },
@@ -79379,6 +79409,11 @@
         "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
         "command": "make -C tests/unit/library/transport",
         "source": "tests/unit/library/transport/main.c"
+      },
+      {
+        "case": "it_composes_source_transactions_relocation_debugging_and_verified_rebuilds",
+        "source": "tests/integration/tools/workflows/main.c",
+        "command": "make -C tests/integration/tools/workflows"
       }
     ]
   },
@@ -79530,6 +79565,11 @@
         "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
         "command": "make -C tests/unit/library/transport",
         "source": "tests/unit/library/transport/main.c"
+      },
+      {
+        "case": "it_composes_source_transactions_relocation_debugging_and_verified_rebuilds",
+        "source": "tests/integration/tools/workflows/main.c",
+        "command": "make -C tests/integration/tools/workflows"
       }
     ],
     "standalone_header_command": [
@@ -81596,6 +81636,11 @@
         "case": "it_clones_nested_owned_lists_inside_list_valued_constants",
         "command": "make -C tests/unit/codegen/library-compositions",
         "source": "tests/unit/codegen/library-compositions/main.c"
+      },
+      {
+        "case": "it_composes_source_transactions_relocation_debugging_and_verified_rebuilds",
+        "source": "tests/integration/tools/workflows/main.c",
+        "command": "make -C tests/integration/tools/workflows"
       }
     ]
   },
@@ -86507,6 +86552,11 @@
         "case": "it_composes_typed_inputs_and_atomic_retained_reads_with_real_native_modules",
         "command": "make -C tests/unit/library/transport",
         "source": "tests/unit/library/transport/main.c"
+      },
+      {
+        "case": "it_composes_source_transactions_relocation_debugging_and_verified_rebuilds",
+        "source": "tests/integration/tools/workflows/main.c",
+        "command": "make -C tests/integration/tools/workflows"
       }
     ]
   },
@@ -117452,6 +117502,11 @@
         "case": "it_reports_real_native_failure_and_rejects_dead_state_inspection",
         "command": "make -C tests/integration/tools/debugger",
         "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_composes_source_transactions_relocation_debugging_and_verified_rebuilds",
+        "source": "tests/integration/tools/workflows/main.c",
+        "command": "make -C tests/integration/tools/workflows"
       }
     ]
   },
@@ -119304,6 +119359,147 @@
     "contract": "docs/implementation/debugger-client.md",
     "purpose": "Drive explicit generated-host commands and stream actual admitted observations with exact identity and deterministic cleanup.",
     "tests": [
+      {
+        "case": "it_inspects_real_yields_original_names_and_terminal_state",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_refusals_invalid_commands_and_disposed_host_access",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_refuses_existing_response_files_without_changing_them",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_real_native_failure_and_rejects_dead_state_inspection",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/workflows/Makefile": {
+    "contract": "docs/implementation/tool-workflows.md",
+    "purpose": "Compose actual source identity edits, verified builds, retained-assembly debugging, both relocation forms and historical receipt replay over an exclusively owned full input domain.",
+    "tests": [
+      {
+        "case": "it_composes_source_transactions_relocation_debugging_and_verified_rebuilds",
+        "source": "tests/integration/tools/workflows/main.c",
+        "command": "make -C tests/integration/tools/workflows"
+      }
+    ]
+  },
+  "tests/integration/tools/workflows/main.c": {
+    "contract": "docs/implementation/tool-workflows.md",
+    "purpose": "Compose actual source identity edits, verified builds, retained-assembly debugging, both relocation forms and historical receipt replay over an exclusively owned full input domain.",
+    "tests": [
+      {
+        "case": "it_composes_source_transactions_relocation_debugging_and_verified_rebuilds",
+        "source": "tests/integration/tools/workflows/main.c",
+        "command": "make -C tests/integration/tools/workflows"
+      }
+    ]
+  },
+  "tests/integration/tools/workflows/project/app/main": {
+    "contract": "docs/implementation/tool-workflows.md",
+    "purpose": "Compose actual source identity edits, verified builds, retained-assembly debugging, both relocation forms and historical receipt replay over an exclusively owned full input domain.",
+    "tests": [
+      {
+        "case": "it_composes_source_transactions_relocation_debugging_and_verified_rebuilds",
+        "source": "tests/integration/tools/workflows/main.c",
+        "command": "make -C tests/integration/tools/workflows"
+      }
+    ]
+  },
+  "tests/integration/tools/workflows/project/app/old/draft": {
+    "contract": "docs/implementation/tool-workflows.md",
+    "purpose": "Compose actual source identity edits, verified builds, retained-assembly debugging, both relocation forms and historical receipt replay over an exclusively owned full input domain.",
+    "tests": [
+      {
+        "case": "it_composes_source_transactions_relocation_debugging_and_verified_rebuilds",
+        "source": "tests/integration/tools/workflows/main.c",
+        "command": "make -C tests/integration/tools/workflows"
+      }
+    ]
+  },
+  "tests/integration/tools/workflows/project/app/old/opaque.c": {
+    "contract": "docs/implementation/tool-workflows.md",
+    "purpose": "Compose actual source identity edits, verified builds, retained-assembly debugging, both relocation forms and historical receipt replay over an exclusively owned full input domain.",
+    "tests": [
+      {
+        "case": "it_composes_source_transactions_relocation_debugging_and_verified_rebuilds",
+        "source": "tests/integration/tools/workflows/main.c",
+        "command": "make -C tests/integration/tools/workflows"
+      }
+    ]
+  },
+  "tests/integration/tools/workflows/project/app/old/sequence": {
+    "contract": "docs/implementation/tool-workflows.md",
+    "purpose": "Compose actual source identity edits, verified builds, retained-assembly debugging, both relocation forms and historical receipt replay over an exclusively owned full input domain.",
+    "tests": [
+      {
+        "case": "it_composes_source_transactions_relocation_debugging_and_verified_rebuilds",
+        "source": "tests/integration/tools/workflows/main.c",
+        "command": "make -C tests/integration/tools/workflows"
+      }
+    ]
+  },
+  "tests/integration/tools/workflows/project/app/palette": {
+    "contract": "docs/implementation/tool-workflows.md",
+    "purpose": "Compose actual source identity edits, verified builds, retained-assembly debugging, both relocation forms and historical receipt replay over an exclusively owned full input domain.",
+    "tests": [
+      {
+        "case": "it_composes_source_transactions_relocation_debugging_and_verified_rebuilds",
+        "source": "tests/integration/tools/workflows/main.c",
+        "command": "make -C tests/integration/tools/workflows"
+      }
+    ]
+  },
+  "tests/integration/tools/workflows/project/app/settings.library": {
+    "contract": "docs/implementation/tool-workflows.md",
+    "purpose": "Compose actual source identity edits, verified builds, retained-assembly debugging, both relocation forms and historical receipt replay over an exclusively owned full input domain.",
+    "tests": [
+      {
+        "case": "it_composes_source_transactions_relocation_debugging_and_verified_rebuilds",
+        "source": "tests/integration/tools/workflows/main.c",
+        "command": "make -C tests/integration/tools/workflows"
+      }
+    ]
+  },
+  "tests/integration/tools/workflows/project/importers/unused": {
+    "contract": "docs/implementation/tool-workflows.md",
+    "purpose": "Compose actual source identity edits, verified builds, retained-assembly debugging, both relocation forms and historical receipt replay over an exclusively owned full input domain.",
+    "tests": [
+      {
+        "case": "it_composes_source_transactions_relocation_debugging_and_verified_rebuilds",
+        "source": "tests/integration/tools/workflows/main.c",
+        "command": "make -C tests/integration/tools/workflows"
+      }
+    ]
+  },
+  "tests/integration/tools/workflows/verify.py": {
+    "contract": "docs/implementation/tool-workflows.md",
+    "purpose": "Compose actual source identity edits, verified builds, retained-assembly debugging, both relocation forms and historical receipt replay over an exclusively owned full input domain.",
+    "tests": [
+      {
+        "case": "it_composes_source_transactions_relocation_debugging_and_verified_rebuilds",
+        "source": "tests/integration/tools/workflows/main.c",
+        "command": "make -C tests/integration/tools/workflows"
+      }
+    ]
+  },
+  "tests/integration/tools/debugger-client.c": {
+    "contract": "docs/implementation/tool-workflows.md",
+    "purpose": "Compile the shipped debugger against an opaque retained assembly and execute exact command streams with native output separated from response files.",
+    "tests": [
+      {
+        "case": "it_composes_source_transactions_relocation_debugging_and_verified_rebuilds",
+        "source": "tests/integration/tools/workflows/main.c",
+        "command": "make -C tests/integration/tools/workflows"
+      },
       {
         "case": "it_inspects_real_yields_original_names_and_terminal_state",
         "command": "make -C tests/integration/tools/debugger",

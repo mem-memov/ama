@@ -2681,10 +2681,26 @@ Contracts: [tools](spec/implementation/tools-and-conformance.md),
   inputs have named evidence without debt; standalone headers and prose links
   pass, and two complete Doxygen generations are byte-identical (6630 documented
   interfaces). See `docs/implementation/debugger-client.md`.
-- [ ] **T115 — Accept user-facing tools through real projects.** Needs: T108,
+- [x] **T115 — Accept user-facing tools through real projects.** Needs: T108,
   T109, T114, T152, T153, T154. Run editor/rename/debugger/relocation workflows against complete
   projects and regenerate verified output afterward. Document exact scope,
   preserved opaque files, unsupported editors and actual tool limitations.
+  Completed: an actual process workflow queries a Russian constant, prepares and
+  exclusively publishes a three-file declaration-identity rename including an
+  unreachable importer, verifies/debugs execution, previews/applies a logical
+  subtree move, then carries all ordinary/standard roots and real native
+  companions with unchanged logical identities. Fresh verified builds and the
+  shipped debugger execute two yields and native entries after every transition.
+  Complete byte inventories preserve comments, CRLF drafts, opaque C, assets and
+  native implementation helpers. Supported export rewrites, explicit artifact
+  invalidation, returned root kinds/paths, repeated receipt recovery and historical
+  receipt replay after a later root move are checked. Client authority, external
+  editor/native-C migration limits and fresh-output boundaries remain explicit.
+  Evidence: strict compiler/process builds and the complete integration-tools
+  parent pass; all 2324 maintained inputs have named evidence without debt,
+  standalone headers/prose links pass, and two complete Doxygen generations are
+  byte-identical (6645 documented interfaces).
+  See `docs/implementation/tool-workflows.md`.
 
 ## Phase 16. Complete coverage, conformance and release evidence
 
