@@ -6,7 +6,10 @@ references identify instances without owning them. Domain capabilities belong in
 libraries rather than an expanding collection of language primitives.
 
 [The product specification](spec/README.md) is the source of truth.
-The implementation is being built against this specification.
+The current implementation is mapped to all 200 requirements and 108 acceptance
+rows in the [reviewed conformance evidence](docs/implementation/conformance/README.md).
+The [release guide](docs/implementation/conformance/release.md) gives reproducible
+commands, supported configurations and the limits of that evidence.
 [Executable examples](docs/implementation/examples.md) show supported workflows;
 [TODO.md](TODO.md) records acceptance evidence and remaining work. The
 [audit](docs/implementation/audit/README.md) describes the original implementation
@@ -148,7 +151,8 @@ make test-clean
 ```
 
 Compiler sources are under `src/`; library interfaces and C sources live under
-`stdlib/modules/`. The current library provides status values and a refusal reader. Tests form recursive Makefile trees under `tests/unit/` and
+`stdlib/modules/`. The [library guide](stdlib/README.md) describes integers, text, failures, tasks,
+messages and channels, including their ownership and native contracts. Tests form recursive Makefile trees under `tests/unit/` and
 `tests/integration/`. Each leaf builds its own C test executable using `assert`.
 Successful leaves clean their generated files; failures preserve debugging output.
 

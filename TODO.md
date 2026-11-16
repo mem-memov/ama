@@ -2797,10 +2797,20 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   generation pass. No production compiler or canonical language behavior changed.
   See `docs/implementation/toolchain-acceptance.md` for exact versions, commands,
   branch results, supported target and instrumentation limits.
-- [ ] **T121 — Publish reproducible examples and conformance report.** Needs:
+- [x] **T121 — Publish reproducible examples and conformance report.** Needs:
   T120. Document supported toolchains, library/native/host APIs, complete usage
   commands and evidence-backed limitations. Rebuild example outputs and generated
   documentation from a clean checkout; request permission for any needed spec change.
+  Acceptance: a fresh detached checkout at implementation commit 94b1c0c
+  rebuilds under strict O2/Werror/NDEBUG and passes all seven recorded example
+  commands: async emit/run, static/shared and nested C consumers, async host,
+  language/object integration and parallel supervision. Clean-checkout Doxygen
+  generations are byte-identical. The new release guide connects 200 requirements,
+  108 acceptance rows and the current test inventory to runnable commands, public
+  library/native/host APIs, supported toolchain and evidence-backed limitations.
+  Local links, complete per-file documentation, current conformance and two
+  identical main-tree Doxygen generations pass. No specification or implementation
+  behavior changed. See docs/implementation/conformance/release.md.
 - [ ] **T122 — Finish the implementation release checkpoint.** Needs: T121.
   Remove obsolete mechanisms and conflicting derived descriptions, verify links
   and complete clean build/test/documentation reproduction. Reconcile all task
