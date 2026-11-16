@@ -311,16 +311,16 @@ static void it_publishes_distinct_context_identities_from_simultaneous_factories
     AmaStatus status = ama_context_registry_init(&owner, source_system_allocator());
     assert(status.code == AMA_OK);
     ContextFactoryThread left = {.registry = &owner}, right = {.registry = &owner};
-    thrd_t first, second;
-    int result = thrd_create(&first, context_factory_worker, &left);
-    assert(result == thrd_success);
-    result = thrd_create(&second, context_factory_worker, &right);
-    assert(result == thrd_success);
-    int child = -1;
-    result = thrd_join(first, &child);
-    assert(result == thrd_success && child == 0);
-    result = thrd_join(second, &child);
-    assert(result == thrd_success && child == 0);
+    pthread_t first, second;
+    int result = pthread_create(&first, NULL, context_factory_worker, &left);
+    assert(result == 0);
+    result = pthread_create(&second, NULL, context_factory_worker, &right);
+    assert(result == 0);
+    void *child = &owner;
+    result = pthread_join(first, &child);
+    assert(result == 0 && child == NULL);
+    result = pthread_join(second, &child);
+    assert(result == 0 && child == NULL);
     for (size_t index = 0; index < 32; index++) {
         for (size_t other = 0; other < 32; other++) {
             assert(left.identities[index] != right.identities[other]);
@@ -345,12 +345,12 @@ static void it_rejects_a_simultaneous_executor_but_allows_an_independent_context
     size_t original = root_value(&left, ar)->native.number;
     leave_context(&right);
     ContextThread input = {.busy = first, .independent = second, .reference = br};
-    thrd_t worker;
-    int result = thrd_create(&worker, context_worker, &input);
-    assert(result == thrd_success);
-    int worker_result = -1;
-    result = thrd_join(worker, &worker_result);
-    assert(result == thrd_success && worker_result == 0 && input.completed);
+    pthread_t worker;
+    int result = pthread_create(&worker, NULL, context_worker, &input);
+    assert(result == 0);
+    void *worker_result = &input;
+    result = pthread_join(worker, &worker_result);
+    assert(result == 0 && worker_result == NULL && input.completed);
     assert(root_value(&left, ar)->native.number == original);
     leave_context(&left);
     (void)enter_context(second, &right);

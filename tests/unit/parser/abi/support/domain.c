@@ -42,7 +42,7 @@ static size_t enumerate_orders(unsigned *order, size_t count, unsigned mask) {
 }
 /** Acceptance depends on the slot set, never order or spelling-based capability discovery. */
 static void it_exhausts_all_1957_ordered_capability_subsets(void) {
-    unsigned order[ABI_BINDING_COUNT];
+    unsigned order[ABI_BINDING_COUNT] = {0};
     size_t visited = enumerate_orders(order, 0, 0);
     assert(visited == 1957);
 }

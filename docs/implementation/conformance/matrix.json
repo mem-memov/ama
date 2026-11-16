@@ -1933,7 +1933,7 @@
     "tests/unit/parser/Makefile": "2f4b1dde2399ef5f6deaa818eff2c5c4e3adef5fa62b91763aafb94ab25d2fe6",
     "tests/unit/parser/abi/Makefile": "4a6a74b12f5fe661ec588a19546265db449f39c7e66ef60180c55023b98e4edf",
     "tests/unit/parser/abi/main.c": "cb73af0ecc61b3f0b527918b7c90bff07ce67f58dcdc033e526582e7f6ae8b1b",
-    "tests/unit/parser/abi/support/domain.c": "66b46d6ad95c2d4daae34cf0cfa87b3360c9cd19b64869be6f888b2e74055e27",
+    "tests/unit/parser/abi/support/domain.c": "2d8c5c763d74d9e69f90cb17ff2cba7e2a9f10825b67e1936cf8a5e93642d6b0",
     "tests/unit/parser/abi/support/failures.c": "5c43be64af4eacf7c8dcd5954723128586fca6d2beeab20bf42cc4a23bcd9e68",
     "tests/unit/parser/abi/support/physical.c": "a65d02c8b362004e72d256b826bcc69627eb4480645c5ecd75812f2f37efcc25",
     "tests/unit/parser/access/Makefile": "4a6a74b12f5fe661ec588a19546265db449f39c7e66ef60180c55023b98e4edf",
@@ -2023,11 +2023,11 @@
     "tests/unit/runtime/calls/Makefile": "4913145bad70cdab52b1ef6529a4f52c585dcb122dd9cea83b70a0de5180f814",
     "tests/unit/runtime/calls/common.c": "6e6af83d63490580e4f7316268f428fdbd3629d8589b594a015457c6d8c883b6",
     "tests/unit/runtime/calls/main.c": "ed746bedb8950ea7b89e3512cf027b962d42968896fae62b9c4695142b8f238f",
-    "tests/unit/runtime/contexts/Makefile": "8b620b0e2d16e8c882aaffb67e224c686483b8048e2f84027967ef162da483df",
-    "tests/unit/runtime/contexts/common.c": "71a0360391fbe2e5bc6f8da203e293c39ab3ebf442623593047302fe0daaf076",
-    "tests/unit/runtime/contexts/main.c": "37556c9a2537f39c41e4ce25d927bdf48fea6cda6bcbe55bbb618b20eba30602",
+    "tests/unit/runtime/contexts/Makefile": "6ad02efd428a0a2c8464ed84ee2297ecb7128bf2a74135705364bab092ade474",
+    "tests/unit/runtime/contexts/common.c": "bc4da25308d831daf84eec9ee72893c447c335672ccb2296ede1aaf7016721d4",
+    "tests/unit/runtime/contexts/main.c": "fe12f1ca976e5e36d23f9c96b3561824ad5a6624bb653b45d1c6afce1be8f2b3",
     "tests/unit/runtime/contexts/support/callbacks.c": "9e8bc635668b0337cc33b6547054f60e428db41717183c335f740a931f036b52",
-    "tests/unit/runtime/contexts/support/concurrency.c": "99e49c335244e34f47080da69a69377b1030e580f0d63a012d0db10b93d90cce",
+    "tests/unit/runtime/contexts/support/concurrency.c": "4389c205f11c5baf8d1f07f84f8cae31c3b1b23f4740d945e831eb69a38762d1",
     "tests/unit/runtime/contexts/support/diagnostics.c": "2b6ac23f55e6ac0bcb1e6884cf2d6fdd1f601559a4e24d9ce0db86e57cf2ab61",
     "tests/unit/runtime/contexts/support/leased-execution.c": "aac9a4878ece6a1cf6b97d4921afff348becea75d975620129254e30f67b9e72",
     "tests/unit/runtime/contexts/support/order.c": "af44f95775a069fa1b0ab7f0981d3fa106dba5ca0d91a0ca5421ca39539d4b74",
@@ -2447,6 +2447,7 @@
     "docs/implementation/task-phases.md": "33b2360e0888fa2cde885bf2486f86fa15f17a6bd9ab6d7c63111e364e776ba0",
     "docs/implementation/task-registration.md": "5e6e15c36eb975d67ab04ed6514bf93f3bc57799d4035197d8c89788376c2356",
     "docs/implementation/test-harness.md": "cb032accf3c08652ddd4cef84ce6c7655e2564f9910bff92314972e06c15fa92",
+    "docs/implementation/toolchain-acceptance.md": "a6e034a8be52644d5bac7d1d3c816204d828f3711cf56924aecc69e375dc3d01",
     "docs/implementation/typed-messages.md": "eab0fd79a3adb381dd7a65a02596510efda96e908a6000364c5f55ee8e54ebb1",
     "docs/implementation/typed-transfers.md": "83bd82519699c12307c801826c9b50c5ffe55bb62851c1c7e3ab43c9b50c7b51",
     "docs/implementation/unicode.md": "24b49b4720cd1bb0ffaa2c3ecd0882fcc9013a604606a70c470351528aef675a",
@@ -2577,7 +2578,8 @@
       "contracts": [
         "docs/implementation/project-emission.md",
         "docs/implementation/stackless-execution.md",
-        "docs/implementation/native-toolchain.md"
+        "docs/implementation/native-toolchain.md",
+        "docs/implementation/toolchain-acceptance.md"
       ],
       "sources": [
         "src/codegen/project/generate.c",
@@ -2748,7 +2750,8 @@
       "contracts": [
         "docs/implementation/execution-contexts.md",
         "docs/implementation/generated-contexts.md",
-        "docs/implementation/parallel-context-execution.md"
+        "docs/implementation/parallel-context-execution.md",
+        "docs/implementation/toolchain-acceptance.md"
       ],
       "sources": [
         "src/runtime/context/context.h",
@@ -2888,7 +2891,8 @@
       "purpose": "Explicit C/assert leaves, recursive Make dependency order and preserved failed artifacts.",
       "contracts": [
         "docs/implementation/test-harness.md",
-        "docs/implementation/library-tests-and-build.md"
+        "docs/implementation/library-tests-and-build.md",
+        "docs/implementation/toolchain-acceptance.md"
       ],
       "sources": [
         "tests/leaf.mk",
@@ -3925,7 +3929,8 @@
       "contracts": [
         "docs/implementation/native-scaffolding.md",
         "docs/implementation/abi-parser.md",
-        "docs/implementation/native-toolchain.md"
+        "docs/implementation/native-toolchain.md",
+        "docs/implementation/toolchain-acceptance.md"
       ],
       "sources": [
         "src/native/scaffold/emit/interface.c",
@@ -4221,7 +4226,8 @@
         "docs/implementation/native-events.md",
         "docs/implementation/task-registration.md",
         "docs/implementation/task-detachment.md",
-        "docs/implementation/resource-acceptance.md"
+        "docs/implementation/resource-acceptance.md",
+        "docs/implementation/toolchain-acceptance.md"
       ],
       "sources": [
         "src/native/events/callback/complete.c",
@@ -4351,7 +4357,8 @@
         "docs/implementation/executor-transfer.md",
         "docs/implementation/typed-messages.md",
         "docs/implementation/bounded-channels.md",
-        "docs/implementation/channel-waits.md"
+        "docs/implementation/channel-waits.md",
+        "docs/implementation/toolchain-acceptance.md"
       ],
       "sources": [
         "src/runtime/context/admission.c",

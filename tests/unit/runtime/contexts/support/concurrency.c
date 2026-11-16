@@ -14,14 +14,14 @@ typedef struct {
 } ContextFactoryThread;
 
 /** Publish independent empty contexts through the actual shared identity issuer and registry. */
-static int context_factory_worker(void *argument) {
+static void *context_factory_worker(void *argument) {
     ContextFactoryThread *input = argument;
     const AmaContextDefinition empty = {0};
     for (size_t index = 0; index < 32; index++) {
         AmaStatus status = ama_context_create(input->registry, &empty, &input->identities[index]);
         assert(status.code == AMA_OK && input->identities[index] != 0);
     }
-    return 0;
+    return NULL;
 }
 
 /** Thread input contains only copyable checked identities and an externally synchronized observation. */
@@ -33,7 +33,7 @@ typedef struct {
 } ContextThread;
 
 /** A concurrent caller refuses the held context but acquires independent state without native allocation. */
-static int context_worker(void *argument) {
+static void *context_worker(void *argument) {
     ContextThread *input = argument;
     AmaContextLease lease = {0};
     AmaStatus status = ama_context_enter(&registry, input->busy, &lease);
@@ -42,7 +42,7 @@ static int context_worker(void *argument) {
     root_value(&lease, input->reference)->native.number = 900;
     leave_context(&lease);
     input->completed = true;
-    return 0;
+    return NULL;
 }
 
 

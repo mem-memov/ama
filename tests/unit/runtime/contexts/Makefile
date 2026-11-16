@@ -3,4 +3,5 @@
 # Contract: ../../../../docs/implementation/execution-contexts.md
 ROOT := $(abspath ../../../..)
 include $(ROOT)/tests/unit/runtime/sources.mk
+LINKER_FLAGS += -pthread
 include $(ROOT)/tests/leaf.mk

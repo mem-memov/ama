@@ -2,12 +2,15 @@
  * @file
  * @brief Own counted context schemas, linear lease helpers and address-sensitive object fixtures.
  *
- * Included once by the context leaf. Descriptor arrays remain immutable while contexts live;
+ * Included once per consuming leaf. Descriptor arrays remain immutable while contexts live;
  * teardown closes contexts before releasing the borrowed counted allocator fixture.
  */
 #ifndef AMA_CONTEXT_TEST_COMMON_C
 #define AMA_CONTEXT_TEST_COMMON_C
+/* Existing shared consumers use C11 host threads; the context concurrency leaf
+ * uses POSIX launchers so its ThreadSanitizer run observes thread creation. */
 #include <threads.h>
+#include <pthread.h>
 #include "../objects/common.c"
 #include "runtime/context/internal.h"
 

@@ -2778,10 +2778,25 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   in this environment; counted owners and failure-prefix checks remain active.
   No language or production compiler behavior changed.
   See `docs/implementation/resource-acceptance.md` for invariants and exact scopes.
-- [ ] **T120 — Run full supported-toolchain and sanitizer acceptance.** Needs:
-  T119. Run build, recursive unit/integration suites, relevant ASan/UBSan and
-  parallel race checks; verify machine-level entry inlining/stackless boundaries.
-  Record unsupported checks and leak-check limitations precisely.
+- [x] **T120 — Run full supported-toolchain and sanitizer acceptance.** Needs:
+  T119. Clean strict GCC 15.2.0 release build and all 26 integration / 194 unit
+  case translation units pass, including native-entry disappearance and forbidden
+  C-dispatch probes at O0/O2. Explicitly initialized the ABI permutation test's
+  empty seed so all 1957 cases compile under O2/Werror without weakening flags.
+  ASan/UBSan compiler-parent checks complement T119's full resource coverage.
+  TSan passes actual generated parallel contexts, context admission/factories,
+  native callbacks, FIFO channels and channel-wait races; independent positive
+  and deliberate-race controls confirm the detector runs. The context test uses
+  POSIX launch/join after an isolated C11-thread probe reproduced a crash inside
+  the installed TSan; shared fixtures retain C11 declarations for their other
+  consumers, all six of which pass strict rechecks. Strict/ASan/TSan context
+  checks preserve the same tested identity/admission behavior.
+  LeakSanitizer's separate probe fails explicitly under ptrace; it is reported
+  unavailable, with counted ownership checks active. Current conformance,
+  standalone/test-interface documentation checks, links and reproducible Doxygen
+  generation pass. No production compiler or canonical language behavior changed.
+  See `docs/implementation/toolchain-acceptance.md` for exact versions, commands,
+  branch results, supported target and instrumentation limits.
 - [ ] **T121 — Publish reproducible examples and conformance report.** Needs:
   T120. Document supported toolchains, library/native/host APIs, complete usage
   commands and evidence-backed limitations. Rebuild example outputs and generated
