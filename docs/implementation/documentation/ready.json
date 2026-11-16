@@ -124447,6 +124447,11 @@
         "source": "tests/integration/products/main.c",
         "case": "it_preserves_products_on_refusal_and_refreshes_original_source_diagnostics",
         "command": "make -C tests/integration/products"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_rejects_signal_termination_as_a_technical_failure_result",
+        "command": "make -C tests/integration/products"
       }
     ]
   },
@@ -124467,6 +124472,11 @@
       {
         "source": "tests/integration/products/main.c",
         "case": "it_preserves_products_on_refusal_and_refreshes_original_source_diagnostics",
+        "command": "make -C tests/integration/products"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_rejects_signal_termination_as_a_technical_failure_result",
         "command": "make -C tests/integration/products"
       }
     ]
@@ -124489,6 +124499,11 @@
         "source": "tests/integration/products/main.c",
         "case": "it_preserves_products_on_refusal_and_refreshes_original_source_diagnostics",
         "command": "make -C tests/integration/products"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_rejects_signal_termination_as_a_technical_failure_result",
+        "command": "make -C tests/integration/products"
       }
     ]
   },
@@ -124509,6 +124524,11 @@
       {
         "source": "tests/integration/products/main.c",
         "case": "it_preserves_products_on_refusal_and_refreshes_original_source_diagnostics",
+        "command": "make -C tests/integration/products"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_rejects_signal_termination_as_a_technical_failure_result",
         "command": "make -C tests/integration/products"
       }
     ]

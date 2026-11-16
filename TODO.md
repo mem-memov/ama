@@ -2761,10 +2761,23 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   complete zero-debt documentation and reproducible Doxygen extraction.
   Current evidence incorporates the new cases without changing canonical rules
   or production compiler behavior. See `docs/implementation/product-reproducibility.md`.
-- [ ] **T119 — Verify resource and cleanup boundaries.** Needs: T118. Exercise
-  arithmetic overflow, identity exhaustion, allocation/output failures, partial
-  construction, destructor errors, stale events and transaction recovery through
-  real composed paths. Confirm failures preserve every promised precommit effect.
+- [x] **T119 — Verify resource and cleanup boundaries.** Needs: T118.
+  Verified the complete runtime, native ABI and async parents with ASan/UBSan,
+  including the independent 104976-word ownership model and measured allocation
+  prefixes. Sanitized real generated cleanup, library compositions and task
+  boundaries cover clone/destructor failures, overflow-as-data, partial constants,
+  nonresumable context failure and detached waits. The full relocation parent
+  covers 1324 application allocation refusals, 1066 I/O checkpoints, 529 writer
+  process interruptions and repeated recovery through rollback/commit and
+  recovery-allocation/I/O failures. Sanitized CLI tests additionally cover all
+  287 command-preparation allocations and output refusal after committed movement.
+  Strengthened real process observers and added an independent signal-termination
+  control: a crash cannot pass as an expected managed technical failure.
+  Strict product cases, current conformance, complete documentation/link checks
+  and reproducible Doxygen generation pass. LeakSanitizer is explicitly disabled
+  in this environment; counted owners and failure-prefix checks remain active.
+  No language or production compiler behavior changed.
+  See `docs/implementation/resource-acceptance.md` for invariants and exact scopes.
 - [ ] **T120 — Run full supported-toolchain and sanitizer acceptance.** Needs:
   T119. Run build, recursive unit/integration suites, relevant ASan/UBSan and
   parallel race checks; verify machine-level entry inlining/stackless boundaries.

@@ -27,11 +27,14 @@ static void it_reproduces_clean_and_reused_unicode_products_without_changing_inp
 static void it_rebuilds_verified_products_after_each_declared_input_change(void) { scenario("changes"); }
 /** Rejected configuration/collisions preserve prior products, and changed source positions produce current runtime traces. */
 static void it_preserves_products_on_refusal_and_refreshes_original_source_diagnostics(void) { scenario("boundaries"); }
+/** A signal-killed compiler/program is never accepted as an expected managed technical failure. */
+static void it_rejects_signal_termination_as_a_technical_failure_result(void) { scenario("signals"); }
 /** Explicitly run independent product behavior partitions. */
 void run(void) {
     it_reproduces_clean_and_reused_unicode_products_without_changing_inputs();
     it_rebuilds_verified_products_after_each_declared_input_change();
     it_preserves_products_on_refusal_and_refreshes_original_source_diagnostics();
+    it_rejects_signal_termination_as_a_technical_failure_result();
 }
 /** Return only after every actual compiler and executable observation passes. */
 int main(void) { run(); return EXIT_SUCCESS; }

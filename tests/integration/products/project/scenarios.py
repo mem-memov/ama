@@ -81,4 +81,24 @@ def boundaries(repository):
     assert product.inputs() == inputs
 
 
-{'repeat': repeat, 'changes': changes, 'boundaries': boundaries}[sys.argv[2]](Path(sys.argv[1]))
+def signals(repository):
+    """Actual signal-killed owned children must fail the same observer that accepts normal technical failures."""
+    product = Product(repository, 'signals')
+    fake = product.home / 'signal tools'
+    fake.mkdir()
+    product.output.mkdir()
+    script = '#!' + sys.executable + '\nimport os,signal\nos.kill(os.getpid(),signal.SIGTERM)\n'
+    for executable in (fake / 'ama', product.output / 'program'):
+        product.write(executable, script)
+        executable.chmod(0o700)
+    product.repository = fake.resolve()
+    for action in (lambda: product.emit(accepted=False), lambda: product.execute(b'', accepted=False)):
+        try:
+            action()
+        except AssertionError as error:
+            assert 'terminated by signal' in str(error), error
+        else:
+            raise AssertionError('A signal termination was accepted as managed failure')
+
+
+{'repeat': repeat, 'changes': changes, 'boundaries': boundaries, 'signals': signals}[sys.argv[2]](Path(sys.argv[1]))

@@ -64,6 +64,7 @@ class Product:
         for flag in flags:
             arguments.extend(('--c-flag', flag))
         result = subprocess.run(arguments + list(extra), capture_output=True)
+        assert result.returncode >= 0, ('compiler terminated by signal', result.returncode, result.stderr)
         assert (result.returncode == 0) == accepted, result.stderr.decode(errors='replace')
         if accepted:
             assert not result.stderr, result.stderr
@@ -72,6 +73,7 @@ class Product:
     def execute(self, expected, accepted=True):
         """Observe actual verified program output/status with no generated-source interpretation."""
         result = subprocess.run([str(self.output.resolve() / 'program')], capture_output=True)
+        assert result.returncode >= 0, ('program terminated by signal', result.returncode, result.stderr)
         assert (result.returncode == 0) == accepted, result.stderr.decode(errors='replace')
         assert result.stdout == expected
         if accepted:

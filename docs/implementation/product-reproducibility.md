@@ -8,7 +8,9 @@ and [owned-output publication](native-scaffolding.md).
 
 ## What is compared
 
-`make -C tests/integration/products` runs three independent C/assert cases.
+`make -C tests/integration/products` runs three product C/assert cases and an
+independent process-termination guard described in the
+[resource acceptance review](resource-acceptance.md).
 Each owns a project, copied real integer foundation and output directory under
 Unicode paths containing spaces. The project calls through two Ama dependency
 levels, including a physical `ветка+/лист` source, then invokes a typed native

@@ -1274,9 +1274,9 @@
     "tests/integration/parser/grammar/project/other.h": "9d726591a599211e51864e4d84d615234257818d73f9f295ac8d89a291f266e8",
     "tests/integration/parser/grammar/project/程序": "681f4bb7b98e2fc5f6c778599471e5446c96127a68e84df39fb0a2acbb092d81",
     "tests/integration/products/Makefile": "868f3045ece6afcb0b1b83372956ee5af1127736005e91c2940944a5d3851d0b",
-    "tests/integration/products/main.c": "84d4a311271135511db134b11b5f8cbfa7a1f42b5fe9a08d3dc0585403081678",
-    "tests/integration/products/project/fixture.py": "dd5cb990346e9138a4dcd3d3b1ec492c1b63623822386015c139f751bdbdb4f3",
-    "tests/integration/products/project/scenarios.py": "10b49e101222e212d44b197bdf160fcc7f1adef896521c7b96ca88bcf4330773",
+    "tests/integration/products/main.c": "5271b60d5c5615d8c86ec32aef136548910a5c19b794b025be4c74f5c4e9f896",
+    "tests/integration/products/project/fixture.py": "2ca057a3b41ab81ad8d6f15f4df9c5e5968f3c6d9157cc8ffe2492f487458ba7",
+    "tests/integration/products/project/scenarios.py": "f7436a50cedacd1319c188966f9b611cc2c7a68169bf0841314de7405f4677d9",
     "tests/integration/project/Makefile": "d15850ade4ee2f5f9e985cf5b3a02ce7b516747531016096f9bb59cd8060d540",
     "tests/integration/project/closure/Makefile": "4c84bc7a8098a5a574e818461bb95b2f809c05e6c322fdf3d3fc2c093b2dca4b",
     "tests/integration/project/closure/expected-error.txt": "2cf98cfc4daf48767092c7f1908a927be7feba93ecdc5ba6a9d23ff67c426c4a",
@@ -2417,7 +2417,7 @@
     "docs/implementation/ordered-construction.md": "b8c430d139b0b83178d3dc1558f0a066342ac5558668ef23575daaf2daea2905",
     "docs/implementation/parallel-context-execution.md": "28c3271bb4593f9817ab1719e3dff36d0377c05e0f8ca8d9ebacb0d9e9b12b28",
     "docs/implementation/parser-sections.md": "ce35999151d6f62f5a93ee478f449ee8aeda373ffba5ef2e45a2290577a66f04",
-    "docs/implementation/product-reproducibility.md": "0a1ebb269f0182ee0f0fc3e6d738ce8eed3202c761e4929cb077e60bcf168216",
+    "docs/implementation/product-reproducibility.md": "63c188c9924e001f525f30b3d6f43081bcc7c4f35a84de072d5df9cb128c5306",
     "docs/implementation/project-dependencies.md": "cce5971a42ca1406ba591510efe3d0d8c6e1753d1bfb53f359f0ce2cdc5c2a69",
     "docs/implementation/project-emission.md": "28b7fa9a07d5e8815fa0e8d8e25002cd5297610b0f60e561b3c0e63c55e9df49",
     "docs/implementation/project-inputs.md": "a919f90637040678bae80b24fce287e5274c6aa0779183579b00059779b1700d",
@@ -2428,6 +2428,7 @@
     "docs/implementation/relocation-references.md": "e150554b282e1e4af4ff0d193e8d0a5fcac1d7a6afe1075741c0de369affc081",
     "docs/implementation/relocation-staging.md": "e04396422cb0591fe84ff90285f4e101cae9932e715cff0083a19064726a8bd3",
     "docs/implementation/relocation-transaction.md": "d3a78c0ddbc593f15e5fcf8c199493316e4c2507d20723d704f62c1a8d34437e",
+    "docs/implementation/resource-acceptance.md": "ea737ee92881cd320e12dfda5cfddcbe505aa05fc49dc77a23d8e674458a3d57",
     "docs/implementation/restart-and-root-policy.md": "45b8faf6e7da05c5f9261830bb9724b406c0c7fa6afc1e3164280e5a0d8b18e6",
     "docs/implementation/runtime-components.md": "581b1ee12904d3130708789365fd076bc70ec0615038f606641c252954b87398",
     "docs/implementation/runtime-diagnostics.md": "151edd25c83c12079cf4371c179a1e732ec0afe8a18c48db94320c9896dca475",
@@ -2451,7 +2452,7 @@
     "docs/implementation/unicode.md": "24b49b4720cd1bb0ffaa2c3ecd0882fcc9013a604606a70c470351528aef675a",
     "docs/implementation/value-selection-and-list-transfer.md": "b41a29c406539b2f6441ed36d1edcba08cd030cf534ca421a3a9c888a0d4c17b"
   },
-  "registry_sha256": "a48b46ef7ba4558eeecd64d26e8a095b4ab01fcfca192b3a08881614d9cdb84c",
+  "registry_sha256": "41cdac9d8c7f1008a32bbce8b061b452be6cbd3c3ab83ead8e00915bcd930df5",
   "groups": {
     "core": {
       "purpose": "One coherent structural language and explicit trusted native composition.",
@@ -3387,7 +3388,8 @@
       "purpose": "Selection precedes exact identity/overlap and full ownership-tree availability checks; successful preflight protects all affected storage through hooks and destruction.",
       "contracts": [
         "docs/implementation/clone-preparation.md",
-        "docs/implementation/runtime-components.md"
+        "docs/implementation/runtime-components.md",
+        "docs/implementation/resource-acceptance.md"
       ],
       "sources": [
         "src/runtime/objects/access/tree.c",
@@ -3420,6 +3422,16 @@
           "source": "tests/unit/semantic/types/main.c",
           "case": "it_requires_owned_copy_capability_even_for_statically_identical_storage",
           "command": "make -C tests/unit/semantic/types"
+        },
+        {
+          "source": "tests/unit/runtime/ownership-model/main.c",
+          "case": "it_matches_every_bounded_ownership_acquisition_clone_and_replacement_trace",
+          "command": "make -C tests/unit/runtime/ownership-model"
+        },
+        {
+          "source": "tests/unit/runtime/ownership-model/main.c",
+          "case": "it_preserves_the_model_at_every_composed_trace_allocation_failure",
+          "command": "make -C tests/unit/runtime/ownership-model"
         }
       ],
       "composition": [
@@ -3975,7 +3987,8 @@
       "purpose": "Explicit native hooks obey fresh-storage, read-only conversion and independent immutable-backed value contracts; capability is an exact greatest fixed point over owned types.",
       "contracts": [
         "docs/implementation/semantic-analysis.md",
-        "docs/implementation/runtime-components.md"
+        "docs/implementation/runtime-components.md",
+        "docs/implementation/resource-acceptance.md"
       ],
       "sources": [
         "src/semantic/relations/clone.c",
@@ -4037,7 +4050,8 @@
       "contracts": [
         "docs/implementation/ordered-construction.md",
         "docs/implementation/staged-replacement.md",
-        "docs/implementation/execution-contexts.md"
+        "docs/implementation/execution-contexts.md",
+        "docs/implementation/resource-acceptance.md"
       ],
       "sources": [
         "src/runtime/context/storage/cleanup.c",
@@ -4206,7 +4220,8 @@
       "contracts": [
         "docs/implementation/native-events.md",
         "docs/implementation/task-registration.md",
-        "docs/implementation/task-detachment.md"
+        "docs/implementation/task-detachment.md",
+        "docs/implementation/resource-acceptance.md"
       ],
       "sources": [
         "src/native/events/callback/complete.c",
@@ -4479,7 +4494,8 @@
         "docs/implementation/relocation-staging.md",
         "docs/implementation/relocation-transaction.md",
         "docs/implementation/relocation-recovery.md",
-        "docs/implementation/relocation-commands.md"
+        "docs/implementation/relocation-commands.md",
+        "docs/implementation/resource-acceptance.md"
       ],
       "sources": [
         "src/tools/relocation/preview/build.c"
@@ -4509,6 +4525,16 @@
           "source": "tests/unit/tools/relocation/recovery/interruption/main.c",
           "case": "it_recovers_every_registered_process_interruption",
           "command": "make -C tests/unit/tools/relocation/recovery/interruption"
+        },
+        {
+          "source": "tests/unit/driver/relocation/main.c",
+          "case": "it_preserves_committed_outcome_when_result_output_is_refused",
+          "command": "make -C tests/unit/driver/relocation"
+        },
+        {
+          "source": "tests/unit/driver/relocation/main.c",
+          "case": "it_releases_every_failed_command_preparation_prefix",
+          "command": "make -C tests/unit/driver/relocation"
         }
       ],
       "composition": [
@@ -4630,6 +4656,11 @@
         {
           "source": "tests/integration/products/main.c",
           "case": "it_preserves_products_on_refusal_and_refreshes_original_source_diagnostics",
+          "command": "make -C tests/integration/products"
+        },
+        {
+          "source": "tests/integration/products/main.c",
+          "case": "it_rejects_signal_termination_as_a_technical_failure_result",
           "command": "make -C tests/integration/products"
         }
       ]
