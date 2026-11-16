@@ -36972,6 +36972,21 @@
         "case": "it_reports_refused_process_requests_without_partial_plans",
         "command": "make -C tests/integration/tools/source",
         "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_reproduces_clean_and_reused_unicode_products_without_changing_inputs",
+        "command": "make -C tests/integration/products"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_rebuilds_verified_products_after_each_declared_input_change",
+        "command": "make -C tests/integration/products"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_preserves_products_on_refusal_and_refreshes_original_source_diagnostics",
+        "command": "make -C tests/integration/products"
       }
     ]
   },
@@ -82575,6 +82590,21 @@
         "case": "it_compiles_and_executes_real_integer_list_results",
         "command": "make -C tests/integration/standard-integer",
         "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_reproduces_clean_and_reused_unicode_products_without_changing_inputs",
+        "command": "make -C tests/integration/products"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_rebuilds_verified_products_after_each_declared_input_change",
+        "command": "make -C tests/integration/products"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_preserves_products_on_refusal_and_refreshes_original_source_diagnostics",
+        "command": "make -C tests/integration/products"
       }
     ]
   },
@@ -82591,6 +82621,21 @@
         "case": "it_compiles_and_executes_real_integer_list_results",
         "command": "make -C tests/integration/standard-integer",
         "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_reproduces_clean_and_reused_unicode_products_without_changing_inputs",
+        "command": "make -C tests/integration/products"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_rebuilds_verified_products_after_each_declared_input_change",
+        "command": "make -C tests/integration/products"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_preserves_products_on_refusal_and_refreshes_original_source_diagnostics",
+        "command": "make -C tests/integration/products"
       }
     ]
   },
@@ -82607,6 +82652,21 @@
         "case": "it_compiles_and_executes_real_integer_list_results",
         "command": "make -C tests/integration/standard-integer",
         "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_reproduces_clean_and_reused_unicode_products_without_changing_inputs",
+        "command": "make -C tests/integration/products"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_rebuilds_verified_products_after_each_declared_input_change",
+        "command": "make -C tests/integration/products"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_preserves_products_on_refusal_and_refreshes_original_source_diagnostics",
+        "command": "make -C tests/integration/products"
       }
     ]
   },
@@ -82623,6 +82683,21 @@
         "case": "it_compiles_and_executes_real_integer_list_results",
         "command": "make -C tests/integration/standard-integer",
         "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_reproduces_clean_and_reused_unicode_products_without_changing_inputs",
+        "command": "make -C tests/integration/products"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_rebuilds_verified_products_after_each_declared_input_change",
+        "command": "make -C tests/integration/products"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_preserves_products_on_refusal_and_refreshes_original_source_diagnostics",
+        "command": "make -C tests/integration/products"
       }
     ],
     "standalone_header_command": [
@@ -124351,6 +124426,90 @@
         "source": "tests/unit/conformance/main.c",
         "case": "it_checks_the_current_canonical_evidence_and_real_test_interfaces",
         "command": "make -C tests/unit/conformance"
+      }
+    ]
+  },
+  "tests/integration/products/main.c": {
+    "contract": "docs/implementation/product-reproducibility.md",
+    "purpose": "Run explicit real-product repeatability, changed-input and refusal/source-location cases through the C/assert harness.",
+    "tests": [
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_reproduces_clean_and_reused_unicode_products_without_changing_inputs",
+        "command": "make -C tests/integration/products"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_rebuilds_verified_products_after_each_declared_input_change",
+        "command": "make -C tests/integration/products"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_preserves_products_on_refusal_and_refreshes_original_source_diagnostics",
+        "command": "make -C tests/integration/products"
+      }
+    ]
+  },
+  "tests/integration/products/Makefile": {
+    "contract": "docs/implementation/product-reproducibility.md",
+    "purpose": "Build and run the independently selected product compiler-process integration leaf.",
+    "tests": [
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_reproduces_clean_and_reused_unicode_products_without_changing_inputs",
+        "command": "make -C tests/integration/products"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_rebuilds_verified_products_after_each_declared_input_change",
+        "command": "make -C tests/integration/products"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_preserves_products_on_refusal_and_refreshes_original_source_diagnostics",
+        "command": "make -C tests/integration/products"
+      }
+    ]
+  },
+  "tests/integration/products/project/fixture.py": {
+    "contract": "docs/implementation/product-reproducibility.md",
+    "purpose": "Own Unicode source/standard-library trees, exact input/product byte observations and verified compiler/program processes.",
+    "tests": [
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_reproduces_clean_and_reused_unicode_products_without_changing_inputs",
+        "command": "make -C tests/integration/products"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_rebuilds_verified_products_after_each_declared_input_change",
+        "command": "make -C tests/integration/products"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_preserves_products_on_refusal_and_refreshes_original_source_diagnostics",
+        "command": "make -C tests/integration/products"
+      }
+    ]
+  },
+  "tests/integration/products/project/scenarios.py": {
+    "contract": "docs/implementation/product-reproducibility.md",
+    "purpose": "Compare clean/reused generation and independently expected execution after each declared dependency/configuration change.",
+    "tests": [
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_reproduces_clean_and_reused_unicode_products_without_changing_inputs",
+        "command": "make -C tests/integration/products"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_rebuilds_verified_products_after_each_declared_input_change",
+        "command": "make -C tests/integration/products"
+      },
+      {
+        "source": "tests/integration/products/main.c",
+        "case": "it_preserves_products_on_refusal_and_refreshes_original_source_diagnostics",
+        "command": "make -C tests/integration/products"
       }
     ]
   }

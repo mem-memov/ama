@@ -2746,10 +2746,21 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   1746 maintained file pages and 6685 documented interfaces. T118–T120 retain
   their broader product/resource/toolchain acceptance scope.
   See `docs/implementation/conformance/README.md` and its checked `matrix.json`.
-- [ ] **T118 — Verify deterministic and incremental product behavior.** Needs:
-  T117. Check repeated output, transitive/configuration/native dependency changes,
-  Unicode paths, collisions and source maps across clean/reused builds. Verify
-  generated files never overwrite handwritten inputs.
+- [x] **T118 — Verify deterministic and incremental product behavior.** Needs:
+  T117. Added three real CLI/verified-program integration cases over Unicode
+  multiword roots and nested physical submodules. Repeated and clean output
+  builds reproduce generated source, tooling and ownership bytes; transitive
+  Ama/header/native/ABI and C-setting changes produce independently expected
+  executable effects. Conflicting roots preserve the previous working product;
+  moving a call updates its original-source runtime trace. Complete authored
+  input inventories remain unchanged by every build; binaries are not used as
+  source-analysis or reproducibility oracles.
+  Evidence: strict new product leaf, complete rebuild parent, exact project-input
+  graph and native-output ownership suites, actual CLI library builds, identity/
+  native namespace/public-header collision probes, current conformance gate,
+  complete zero-debt documentation and reproducible Doxygen extraction.
+  Current evidence incorporates the new cases without changing canonical rules
+  or production compiler behavior. See `docs/implementation/product-reproducibility.md`.
 - [ ] **T119 — Verify resource and cleanup boundaries.** Needs: T118. Exercise
   arithmetic overflow, identity exhaustion, allocation/output failures, partial
   construction, destructor errors, stale events and transaction recovery through

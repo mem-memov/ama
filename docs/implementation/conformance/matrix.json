@@ -1136,7 +1136,7 @@
     "stdlib/modules/text.c": "a272bb8ed69bb7fd7bfd3f6eba087a4f0d9d7178970abd1e05c13f2796e20f50",
     "stdlib/modules/text.h": "29950f46df3b6f06fd2b8ea7b16d6804a3e7ad07ddae2cf0789316df1c82fdc1",
     "tests/Makefile": "1c416c7af4c202ce6a1468eeadb5135ca4c557b99f119f8e16f5dd428f917e11",
-    "tests/integration/Makefile": "6cda8fbe1a9117d9f4cb3759c143a559c6871bc7f2ccbc2ccf292f9f36178911",
+    "tests/integration/Makefile": "db0ee190113d9431b59340359b2b4b5bb7af192f5ef03490aa85c70e5ed0f40e",
     "tests/integration/async-examples/Makefile": "ef8a735f9f3feb4ab5fd57ce40331a684b38a1fe66b1bf9c4e2cb77a065e4a6b",
     "tests/integration/async-examples/common.c": "5096800326fa502c8bd165cf60d26d1ab8e9fd54358b1cf1751a8617d4c526a9",
     "tests/integration/async-examples/main.c": "1652817e69ef6d7807a1ba58ca38738280ccca70fc9c62469ac0406217566c08",
@@ -1273,6 +1273,10 @@
     "tests/integration/parser/grammar/project/other.c": "8b9056835478b03708edc688abe9b4312a80ae53dc3e83d62bc64f7fdb4b32ea",
     "tests/integration/parser/grammar/project/other.h": "9d726591a599211e51864e4d84d615234257818d73f9f295ac8d89a291f266e8",
     "tests/integration/parser/grammar/project/程序": "681f4bb7b98e2fc5f6c778599471e5446c96127a68e84df39fb0a2acbb092d81",
+    "tests/integration/products/Makefile": "868f3045ece6afcb0b1b83372956ee5af1127736005e91c2940944a5d3851d0b",
+    "tests/integration/products/main.c": "84d4a311271135511db134b11b5f8cbfa7a1f42b5fe9a08d3dc0585403081678",
+    "tests/integration/products/project/fixture.py": "dd5cb990346e9138a4dcd3d3b1ec492c1b63623822386015c139f751bdbdb4f3",
+    "tests/integration/products/project/scenarios.py": "10b49e101222e212d44b197bdf160fcc7f1adef896521c7b96ca88bcf4330773",
     "tests/integration/project/Makefile": "d15850ade4ee2f5f9e985cf5b3a02ce7b516747531016096f9bb59cd8060d540",
     "tests/integration/project/closure/Makefile": "4c84bc7a8098a5a574e818461bb95b2f809c05e6c322fdf3d3fc2c093b2dca4b",
     "tests/integration/project/closure/expected-error.txt": "2cf98cfc4daf48767092c7f1908a927be7feba93ecdc5ba6a9d23ff67c426c4a",
@@ -2413,6 +2417,7 @@
     "docs/implementation/ordered-construction.md": "b8c430d139b0b83178d3dc1558f0a066342ac5558668ef23575daaf2daea2905",
     "docs/implementation/parallel-context-execution.md": "28c3271bb4593f9817ab1719e3dff36d0377c05e0f8ca8d9ebacb0d9e9b12b28",
     "docs/implementation/parser-sections.md": "ce35999151d6f62f5a93ee478f449ee8aeda373ffba5ef2e45a2290577a66f04",
+    "docs/implementation/product-reproducibility.md": "0a1ebb269f0182ee0f0fc3e6d738ce8eed3202c761e4929cb077e60bcf168216",
     "docs/implementation/project-dependencies.md": "cce5971a42ca1406ba591510efe3d0d8c6e1753d1bfb53f359f0ce2cdc5c2a69",
     "docs/implementation/project-emission.md": "28b7fa9a07d5e8815fa0e8d8e25002cd5297610b0f60e561b3c0e63c55e9df49",
     "docs/implementation/project-inputs.md": "a919f90637040678bae80b24fce287e5274c6aa0779183579b00059779b1700d",
@@ -2446,7 +2451,7 @@
     "docs/implementation/unicode.md": "24b49b4720cd1bb0ffaa2c3ecd0882fcc9013a604606a70c470351528aef675a",
     "docs/implementation/value-selection-and-list-transfer.md": "b41a29c406539b2f6441ed36d1edcba08cd030cf534ca421a3a9c888a0d4c17b"
   },
-  "registry_sha256": "753f007e57f1145278b5a7057d311b04169bade09a20059a69bb92f1d2ce13b2",
+  "registry_sha256": "a48b46ef7ba4558eeecd64d26e8a095b4ab01fcfca192b3a08881614d9cdb84c",
   "groups": {
     "core": {
       "purpose": "One coherent structural language and explicit trusted native composition.",
@@ -4565,7 +4570,8 @@
       "contracts": [
         "docs/implementation/project-inputs.md",
         "docs/implementation/incremental-build.md",
-        "docs/implementation/native-scaffolding.md"
+        "docs/implementation/native-scaffolding.md",
+        "docs/implementation/product-reproducibility.md"
       ],
       "sources": [
         "src/project/inputs/compare.c",
@@ -4610,6 +4616,21 @@
           "source": "tests/integration/library-build/main.c",
           "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
           "command": "make -C tests/integration/library-build"
+        },
+        {
+          "source": "tests/integration/products/main.c",
+          "case": "it_reproduces_clean_and_reused_unicode_products_without_changing_inputs",
+          "command": "make -C tests/integration/products"
+        },
+        {
+          "source": "tests/integration/products/main.c",
+          "case": "it_rebuilds_verified_products_after_each_declared_input_change",
+          "command": "make -C tests/integration/products"
+        },
+        {
+          "source": "tests/integration/products/main.c",
+          "case": "it_preserves_products_on_refusal_and_refreshes_original_source_diagnostics",
+          "command": "make -C tests/integration/products"
         }
       ]
     }
@@ -4948,7 +4969,7 @@
     "COMP-05": {
       "canonical": "spec/implementation/compiler.md#comp-05",
       "status": "covered",
-      "argument": "Stable identity/plan emission and checked failure paths are tested; the later release audit separately rechecks complete product incrementality.",
+      "argument": "Exact source/settings dependency comparison, checked output ownership and real Unicode clean/reused product byte comparisons preserve deterministic source/metadata. Verified executable observations cover transitive Ama/header/native/ABI/settings changes and refreshed original-source diagnostics; arbitrary external binary reproducibility is not inferred.",
       "groups": [
         "architecture",
         "dependencies",
@@ -5203,7 +5224,7 @@
     "DEP-03": {
       "canonical": "spec/implementation/compiler.md#dep-03",
       "status": "covered",
-      "argument": "The resolved closure contributes code/data/native inputs once per identity while owned instances remain distinct; dependency tracking is a separate explicit build consumer.",
+      "argument": "Exact closure snapshots and consumer dirty fixed points include Ama/native/configuration dependencies; independent graph oracles, actual Make consumer tracking and real verified product changes test invalidation without stale output reuse or overwriting authored inputs.",
       "groups": [
         "dependencies",
         "assembly",
