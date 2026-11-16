@@ -2832,7 +2832,7 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   Current conformance, zero-debt per-file coverage, local links and two identical
   complete Doxygen generations pass. No compiler/runtime or spec semantics changed.
   See docs/implementation/conformance/release.md for final acceptance evidence.
-- [ ] **T135 — Deliver the final technical documentation folder.** Needs: T122.
+- [x] **T135 — Deliver the final technical documentation folder.** Needs: T122.
   Only after all implementation, cleanup and acceptance work is ready, regenerate
   `docs/technical/` with Doxygen through `make docs`, using the final code and its
   Doxygen comments. Doxygen must generate file/interface descriptions and navigation;
@@ -2851,6 +2851,19 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   Deliver the regenerated folder at that repository path; commit generator inputs,
   configuration and generation evidence. Generated pages remain reproducible
   outputs, not handwritten or versioned source.
+
+  Acceptance: after the final implementation checkpoint, make docs regenerates
+  docs/technical solely through Doxygen. All 1749 maintained file pages and 6703
+  extracted interface descriptions pass their gates; all 397 canonical/page
+  destinations resolve on their originating pages. The delivered manifest matches
+  the checked report and fingerprints all 1947 rendered/configuration inputs,
+  including the exact final source and Doxyfile, with actual tool versions.
+  Complete per-file coverage remains 2335 reviewed inputs and zero debt. Two
+  final complete generations, including manifest and final task statuses, are
+  byte-identical. The entry page, source browser, architecture/contracts and
+  test evidence are generated/navigable. Outputs remain unversioned; generator
+  inputs and final acceptance evidence are committed. All 154 roadmap tasks
+  are now complete; no canonical specification change was needed.
 
 ## Requirement coverage map
 

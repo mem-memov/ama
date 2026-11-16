@@ -47,6 +47,26 @@ specification bytes remain unchanged.
 
 The [current conformance report](implementation/conformance/release.md) connects
 the implemented requirements to reviewed arguments and executable evidence.
-T135 regenerates this deliverable after the final release checks. Keep
-purpose and contract explanations beside code; let Doxygen generate all reference
-pages and source views.
+Keep purpose and contract explanations beside code; let Doxygen generate all
+reference pages and source views.
+
+## Final delivery checkpoint
+
+T135 regenerates this folder after the successful T122 clean release checks.
+The checked reference has 1749 maintained file pages, 6703 documented extracted
+interfaces and 397 resolved canonical/page destinations. Its manifest fingerprints
+1947 rendered inputs and configuration files. The broader per-file registry
+accounts for all 2335 maintained inputs, including fixture formats documented
+through their explicit consumer contracts rather than invented C reference pages.
+
+The delivered folder is generated with Doxygen 1.11.0 and the pinned Markdown
+parser 3.0.0. Complete generations have identical membership and bytes, including
+the manifest. See the manifest for the exact Python/Doxygen version strings and
+source fingerprints. Coverage and destination validation are generation gates,
+not manual inspection of a selection of pages.
+
+Open `docs/technical/index.html` for the reference and
+`docs/technical/documentation-manifest.json` for provenance. These outputs are
+intentionally unversioned; committed source comments, configuration, generator,
+test evidence and instructions reproduce them. Any later maintained-input change
+requires regeneration and renewed checks before another delivery.
