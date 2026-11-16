@@ -2569,10 +2569,25 @@ Contracts: [tools](spec/implementation/tools-and-conformance.md),
   complete per-file/standalone-header checks and reproducible Doxygen. Recovery
   and publication remain T113/T114, commands T115. See
   `docs/implementation/relocation-staging.md`.
-- [ ] **T113 — Apply relocation as a recoverable transaction.** Needs: T112.
+- [x] **T113 — Apply relocation as a recoverable transaction.** Needs: T112.
   Require exclusive access and unchanged original file identities/bytes; stage
   moves/importer/configuration edits across supported filesystems. Inject I/O
   failures and verify exact rollback with originals retained until commit.
+  Completed: descriptor-backed exclusive directory leases cover the full plan;
+  independent discovery/binding/staging checks run before and after private copy
+  preparation. Source trees, external importer/configuration files and explicit
+  output retirement use filesystem-local saved originals and no-replace renames.
+  Ordered inverses restore precommit changes; failed inverses and uncertain commit
+  retraction retain both states and separate causes. Committed journals remain as
+  outcome receipts while private backups retire. Automatic interruption replay
+  and completed recovery reporting remain T114; tool integration remains T115.
+  Evidence: strict compiler/full suite; real same/cross-filesystem application and
+  ordinary frontend reload; all 254 measured I/O and 1280 application allocation
+  refusals; complete lease/revalidation failure prefixes; ownership/byte/attribute
+  and ambiguous-commit tests; exact original file identities/bytes/modes, descriptor
+  and memory checks; all four transaction leaves under ASan+UBSan; standalone
+  headers, complete per-file coverage and reproducible Doxygen. See
+  `docs/implementation/relocation-transaction.md`.
 - [ ] **T114 — Implement relocation recovery and reporting.** Needs: T113.
   Persist commit/rollback state and recover idempotently after interruption. Test
   incomplete rollback retains recovery data and reports affected paths; never

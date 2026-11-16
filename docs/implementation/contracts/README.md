@@ -214,3 +214,6 @@ registries, resolved edge mapping and exact path-span edits without mutation.
 
 [Relocation staging](../relocation-staging.md) records exact prepared bytes,
 independent final graph validation, documented settings and explicit invalidations.
+
+[Relocation application](../relocation-transaction.md) records exclusive complete-scope
+revalidation, filesystem-local originals, inverse publication and retained commit receipts.

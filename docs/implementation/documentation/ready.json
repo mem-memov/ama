@@ -105415,6 +105415,76 @@
         "case": "it_matches_the_complete_two_span_text_model",
         "command": "make -C tests/unit/tools/relocation/staging",
         "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
       }
     ],
     "standalone_header_command": [
@@ -106618,6 +106688,76 @@
         "case": "it_matches_the_complete_two_span_text_model",
         "command": "make -C tests/unit/tools/relocation/staging",
         "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
       }
     ]
   },
@@ -108910,6 +109050,3684 @@
         "case": "it_rejects_rebinding_a_completed_library_model",
         "command": "make -C tests/unit/library/resolution",
         "source": "tests/unit/library/resolution/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/apply.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/transaction.h": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/tools/relocation/transaction/internal.h": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/tools/relocation/transaction/lifetime.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/journal/prepare.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/journal/decision.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/preparation/file.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/preparation/action.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/preparation/link.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/preparation/slot.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/preparation/directory.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/preparation/build.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/publication/forward.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/publication/inverse.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/publication/check.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/cleanup/remove.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/cleanup/slots.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/io/sync.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/io/attributes.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/io/verify.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/io/rename.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/io/checkpoint.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/io/write.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/io/close.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/lease/directory.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/lease/build.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/lease/parent.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/revalidation/request.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/revalidation/build.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/revalidation/compare.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/preparation/tree/selection.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/preparation/tree/build.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/transaction/sources.mk": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/transaction/Makefile": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/transaction/decision/main.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/transaction/decision/Makefile": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/transaction/preparation/main.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/transaction/preparation/Makefile": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/transaction/preflight/main.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/transaction/preflight/common.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/transaction/preflight/Makefile": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/transaction/application/main.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/transaction/application/Makefile": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/transaction/application/support/failures.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/transaction/application/support/allocations.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/transaction/preflight/support/scope.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/transaction/preflight/support/io.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/transaction/preflight/support/leases.c": {
+    "contract": "docs/implementation/relocation-transaction.md",
+    "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
+    "tests": [
+      {
+        "case": "it_revalidates_complete_scope_and_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_refuses_every_measured_lease_io_checkpoint",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_serializes_independent_leases_and_releases_descriptors",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_unwinds_every_lease_and_revalidation_allocation",
+        "command": "make -C tests/unit/tools/relocation/transaction/preflight",
+        "source": "tests/unit/tools/relocation/transaction/preflight/main.c"
+      },
+      {
+        "case": "it_prepares_exact_bytes_attributes_and_literal_links",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_never_overwrites_an_unexpected_rename_target",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_refuses_unavailable_prepared_ownership_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/preparation",
+        "source": "tests/unit/tools/relocation/transaction/preparation/main.c"
+      },
+      {
+        "case": "it_retracts_a_failed_commit_before_restoring_sources",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_retains_both_states_when_commit_retraction_fails",
+        "command": "make -C tests/unit/tools/relocation/transaction/decision",
+        "source": "tests/unit/tools/relocation/transaction/decision/main.c"
+      },
+      {
+        "case": "it_applies_same_and_cross_filesystem_moves_with_verified_final_projects",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_rejects_stale_application_before_publication",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_refuses_every_application_io_checkpoint_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_retains_originals_after_an_incomplete_inverse",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_allocation_without_losing_originals",
+        "command": "make -C tests/unit/tools/relocation/transaction/application",
+        "source": "tests/unit/tools/relocation/transaction/application/main.c"
       }
     ]
   }
