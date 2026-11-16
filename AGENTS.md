@@ -111,10 +111,22 @@
 
 ## Workflow
 
+- Follow the [development standard](docs/development/README.md) for every task.
+  Read it before planning or implementation; use its linked task-record template
+  proportionately. It defines the task/step lifecycle, evidence, safe execution,
+  continuation checkpoints and acceptance procedure alongside these instructions.
+- Add a stable TODO task for newly requested work before implementation. Plan
+  prerequisites and small verifiable steps; record each meaningful step's purpose,
+  actual findings/changes, checks, decisions and remaining work in TODO or a linked
+  versioned task/component note. Temporary logs and chat are not the sole record.
+  For long work, retain the current step, active jobs/logs and next action so a
+  later turn can resume safely without repeating or falsely completing a run.
 - When asked to implement or continue implementation, work from [TODO.md](TODO.md),
   respecting prerequisites and the stated acceptance criteria. Choose a ready task
   and finish its implementation, documentation, component/composition tests,
   and required checks before marking it complete.
+  Continue through ready tasks within the authorized scope after each commit;
+  completion of one substep or task does not cancel the rest of the request.
   Do not replace the roadmap with unrelated improvements or claim unsupported
   implementation coverage. Keep task status and evidence accurate.
 - Commit after every completed task. This instruction is standing user

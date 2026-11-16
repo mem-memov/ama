@@ -59,6 +59,8 @@ C/assert tests. Check-only success does not validate handwritten C bodies.
 - [Native completion storage](docs/implementation/native-events.md): immutable native
   tokens, retained results and independently acknowledged callback resources.
 - [Contributor guide](CONTRIBUTORS.md): readable components, formatting and tests.
+- [Development standard](docs/development/README.md): dependency planning,
+  correctness arguments, step records, verification and task acceptance.
 - [Standard library](stdlib/README.md): library boundaries and native companions.
 - [Executable examples](docs/implementation/examples.md): stateful methods, self-reference,
   live list mutation, independent continuations and owned file-operation failures.

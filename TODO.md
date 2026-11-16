@@ -2865,6 +2865,44 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   inputs and final acceptance evidence are committed. All 154 roadmap tasks
   are now complete; no canonical specification change was needed.
 
+## Continuing development
+
+The initial implementation roadmap above is a completed checkpoint. Add new
+tasks here with new stable IDs and explicit prerequisites; do not reopen or
+rewrite historical acceptance to describe unrelated later work. Follow the
+[development standard](docs/development/README.md) for planning, step evidence,
+verification and resuming work.
+
+- [x] **T155 — Establish the project development standard.** Needs: T135.
+  Consolidate the practiced development, dependency planning, correctness,
+  documentation, verification and per-task commit workflow into a readable
+  contributor/agent standard. Provide a reusable task/step evidence template,
+  connect it to existing instructions and preserve specification authority.
+  Acceptance: instructions and templates agree with existing contracts; local
+  links, current conformance and complete documentation checks pass; regenerate
+  Doxygen from the final inputs and check byte reproducibility. This is a
+  documentation-only task; do not change compiler behavior or spec requirements.
+  Step 1: reviewed AGENTS, contributor conventions, queue completion criteria,
+  component contracts and evidence/documentation procedures. Their existing
+  semantic authority and per-task commit obligations are preserved.
+  Step 2: wrote the development standard and task/step template; linked them
+  from agent, contributor, overview and queue entry points. Reused the component
+  contract template instead of adding duplicate language or algorithm contracts.
+  Step 3: local prose links and document consistency pass. From the repository
+  root, make conformance-check exits zero (200 requirements, 108 acceptance rows,
+  41 groups), and make docs-complete exits zero (2335 ready inputs, no debt).
+  make docs-reproducible exits zero with two byte-identical complete generations:
+  1749 maintained file pages, 6703 documented interfaces and 399 canonical/page
+  destinations. Both new guides are included and all manifest input fingerprints
+  match. Repeat final generation after recording these final task statuses.
+  Acceptance: the standard now requires dependency-based tasks and small
+  verifiable steps, explicit contracts and correctness arguments, contemporaneous
+  documentation, truthful command/results and failure records, durable continuation
+  checkpoints, isolated builds and one evidence-bearing commit per completed task.
+  The record is proportional to the change and reuses the existing per-file and
+  conformance registries. No compiler/runtime behavior or spec file changed;
+  unrelated functional suites were not rerun for this documentation-only task.
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.

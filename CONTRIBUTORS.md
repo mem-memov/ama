@@ -12,6 +12,13 @@ implementation, refactoring, or TODO work does not grant it.
 
 ## Work from a task with a defined contract
 
+Follow the [development standard](docs/development/README.md) for planning,
+contract arguments, step records, verification, continuation and acceptance.
+Its [task template](docs/development/task-template.md) supplies the reusable
+record; the existing component template supplies code-level contracts. Keep the
+record proportional to the task, with one TODO entry and links to its owning
+evidence rather than duplicate requirements or command-by-command paperwork.
+
 When asked to implement or continue implementation, choose a ready task from
 [TODO.md](TODO.md) and satisfy its dependencies and acceptance criteria. Keep its
 status and evidence current. A finished task includes the implementation,
