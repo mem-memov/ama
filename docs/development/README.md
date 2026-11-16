@@ -34,6 +34,14 @@ checkbox was copied. Keep IDs stable when splitting or reordering work; allocate
 new IDs for independently accepted follow-up tasks. Preserve historical results
 as dated/task-specific evidence rather than presenting old counts as current.
 
+Keep active tasks in [TODO.md](../../TODO.md), completed task records in
+[DONE.md](../../DONE.md), and allocate IDs across both files without reuse.
+Once acceptance passes, move the complete task record to DONE in the same commit
+that updates the queue and delivers its work. Preserve its dependencies, decisions,
+results and limitations. Do not archive unfinished tasks or unresolved
+documentation-debt owners. Consult the archive when validating prerequisites;
+keep the active queue short instead of duplicating completed history there.
+
 Choose the first ready unfinished task in the authorized scope. Finish it before
 starting another. When several tasks are authorized, continue through the ready
 tasks after each commit; a progress report or completed substep is not a reason
@@ -206,7 +214,8 @@ per-file evidence is registered, and material limits are recorded. Unresolved
 requirements or failing required checks leave the task unfinished. A discovered
 independent improvement becomes a follow-up task rather than hidden scope.
 
-Record acceptance in TODO and link the owning contract/evidence note. Inspect
+Record acceptance in the task and link the owning contract/evidence note. Move
+the completed record to DONE and update the active TODO queue. Inspect
 the diff and staged paths, preserve unrelated work, and commit this task's
 implementation, tests, explanations and final status together. Include its ID
 in the commit message. Do not combine several independently finished tasks into

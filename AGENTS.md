@@ -121,6 +121,11 @@
   versioned task/component note. Temporary logs and chat are not the sole record.
   For long work, retain the current step, active jobs/logs and next action so a
   later turn can resume safely without repeating or falsely completing a run.
+- Keep active tasks in [TODO.md](TODO.md) and completed records in
+  [DONE.md](DONE.md). Allocate IDs across both files without reuse. After required
+  acceptance passes, move the full task and evidence to DONE in the task's commit;
+  preserve dependencies, decisions and results. Do not archive unfinished work
+  or an unresolved documentation-debt owner. Consult DONE for completed prerequisites.
 - When asked to implement or continue implementation, work from [TODO.md](TODO.md),
   respecting prerequisites and the stated acceptance criteria. Choose a ready task
   and finish its implementation, documentation, component/composition tests,

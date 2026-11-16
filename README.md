@@ -11,7 +11,8 @@ rows in the [reviewed conformance evidence](docs/implementation/conformance/READ
 The [release guide](docs/implementation/conformance/release.md) gives reproducible
 commands, supported configurations and the limits of that evidence.
 [Executable examples](docs/implementation/examples.md) show supported workflows;
-[TODO.md](TODO.md) records acceptance evidence and remaining work. The
+[TODO.md](TODO.md) lists active work; [DONE.md](DONE.md) preserves completed tasks
+and their acceptance evidence. The
 [audit](docs/implementation/audit/README.md) describes the original implementation
 before its replacement and is historical evidence.
 `./ama --check ROOT .module` validates dependencies, syntax, types and typed plans without emitting or
@@ -65,6 +66,7 @@ C/assert tests. Check-only success does not validate handwritten C bodies.
 - [Executable examples](docs/implementation/examples.md): stateful methods, self-reference,
   live list mutation, independent continuations and owned file-operation failures.
 - [Implementation backlog](TODO.md): remaining engineering and verification work.
+- [Completed work](DONE.md): task history, decisions and acceptance evidence.
 
 ## Language outline
 

@@ -60,6 +60,7 @@ real composition evidence for changed code; include relevant tool versions.
 ## Final acceptance
 
 State what is now true, why the contract is satisfied, the actual check results
-and remaining limits. Record the TODO update and commit boundary. Keep the
+and remaining limits. Record the TODO update, completed record in
+[DONE.md](../../DONE.md), and commit boundary. Keep the
 historical failed-run facts that explain the evidence; remove obsolete current
 API descriptions. Mark complete only after required acceptance succeeds.
