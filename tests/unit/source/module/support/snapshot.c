@@ -67,3 +67,61 @@ static void it_releases_every_failed_captured_registry_prefix(void) {
     module_catalog_init(&catalog,sources.allocator);
     destroy_catalog();
 }
+
+/** Captured native paths need not exist; copy ownership and atomic failure match ordinary companion activation. */
+static void it_owns_native_snapshot_companions_and_unwinds_each_failed_copy(void) {
+    setup_catalog();
+    const SourceText *text = NULL, *abi = NULL;
+    assert(source_manager_add(&sources,"future/value",(const unsigned char *)"@C\n",3,&text) == SOURCE_OK);
+    assert(source_manager_add(&sources,"future/value.abi",(const unsigned char *)"+ initialize\n",13,&abi) == SOURCE_OK);
+    ModuleSnapshotEntry entry = {".value",text,1,1};
+    assert(module_catalog_snapshot(&catalog,&entry,1) == MODULE_OK);
+    const ModuleSource *selected = NULL;
+    assert(module_catalog_find(&catalog,".value",&selected) == MODULE_OK);
+    allocation_count = 0;
+    assert(module_catalog_snapshot_native(&catalog,selected,"future/value.c","future/value.h",abi) == MODULE_OK);
+    size_t measured = allocation_count;
+    source_manager_destroy(&sources);
+    assert(selected->native_loaded && strcmp(selected->native_c,"future/value.c") == 0);
+    assert(strcmp(source_path(selected->native_abi),"future/value.abi") == 0);
+    assert(source_length(selected->native_abi) == 13);
+    assert(module_catalog_load_native(&catalog,selected) == MODULE_OK);
+    assert(module_catalog_snapshot_native(&catalog,selected,NULL,NULL,NULL) == MODULE_INVALID_PATH);
+    destroy_catalog();
+    for (size_t ordinal = 1; ordinal <= measured; ordinal++) {
+        setup_catalog();
+        assert(source_manager_add(&sources,"future/value",(const unsigned char *)"@C\n",3,&text) == SOURCE_OK);
+        assert(source_manager_add(&sources,"future/value.abi",(const unsigned char *)"+ initialize\n",13,&abi) == SOURCE_OK);
+        entry.text = text;
+        assert(module_catalog_snapshot(&catalog,&entry,1) == MODULE_OK);
+        assert(module_catalog_find(&catalog,".value",&selected) == MODULE_OK);
+        allocation_count = 0;
+        failure_at = ordinal;
+        assert(module_catalog_snapshot_native(&catalog,selected,"future/value.c","future/value.h",abi) == MODULE_OUT_OF_MEMORY);
+        assert(!selected->native_loaded && selected->native_c == NULL && selected->native_header == NULL && selected->native_abi == NULL);
+        failure_at = 0;
+        destroy_catalog();
+    }
+}
+
+/** Invalid captured ABI diagnostics own their copied bytes, and an explicitly empty companion set stays sealed without probing disk. */
+static void it_retains_invalid_native_snapshot_diagnostics_and_empty_presence(void) {
+    setup_catalog();
+    const SourceText *text = NULL, *abi = NULL;
+    assert(source_manager_add(&sources,"future/value",(const unsigned char *)"@C\n",3,&text) == SOURCE_OK);
+    const unsigned char invalid[] = {255};
+    assert(source_manager_add(&sources,"future/value.abi",invalid,1,&abi) == SOURCE_OK);
+    ModuleSnapshotEntry entry = {".value",text,1,1};
+    assert(module_catalog_snapshot(&catalog,&entry,1) == MODULE_OK);
+    const ModuleSource *selected = NULL;
+    assert(module_catalog_find(&catalog,".value",&selected) == MODULE_OK);
+    assert(module_catalog_snapshot_native(&catalog,selected,"future/value.c",NULL,abi) == MODULE_INVALID_UTF8);
+    assert(!selected->native_loaded && selected->native_c == NULL && selected->native_abi == NULL);
+    source_manager_destroy(&sources);
+    assert(catalog.issue.source != NULL && source_bytes(catalog.issue.source)[0] == 255);
+    assert(strcmp(source_path(catalog.issue.source),"future/value.abi") == 0);
+    assert(module_catalog_snapshot_native(&catalog,selected,NULL,NULL,NULL) == MODULE_OK);
+    assert(selected->native_loaded && selected->native_c == NULL && selected->native_abi == NULL);
+    assert(module_catalog_load_native(&catalog,selected) == MODULE_OK);
+    destroy_catalog();
+}

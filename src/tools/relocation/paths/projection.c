@@ -11,11 +11,14 @@ bool relocation_contains(const char *parent, const char *path) {
     return strcmp(parent,"/") == 0 || (strncmp(parent,path,length) == 0
         && (path[length] == 0 || path[length] == '/'));
 }
-/** Outside paths keep their original spelling; mapped paths retain their entire relative suffix. */
-const char *relocation_project(RelocationPreview *preview, const char *path) {
+/** Project into the caller's arena, borrowing the input spelling for unchanged outside paths. */
+const char *relocation_project_to(SourceArena *arena, const RelocationPreview *preview, const char *path) {
     if (!relocation_contains(preview->source,path)) { return path; }
-    const char *suffix = path+strlen(preview->source);
-    const char *projected = source_arena_join(&preview->arena,preview->destination,"",suffix);
+    return source_arena_join(arena,preview->destination,"",path+strlen(preview->source));
+}
+/** Discovery retains its own projected paths and records allocation failure in its own diagnostic owner. */
+const char *relocation_project(RelocationPreview *preview, const char *path) {
+    const char *projected = relocation_project_to(&preview->arena,preview,path);
     if (projected == NULL) { relocation_fail(preview,RELOCATION_OUT_OF_MEMORY,path,NULL); }
     return projected;
 }

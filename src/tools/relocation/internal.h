@@ -18,6 +18,8 @@ const char *relocation_final_path(RelocationPreview *, const char *);
 bool relocation_contains(const char *parent, const char *path);
 /** Apply P(p)=D/relative(S,p) inside S, preserving every outside path. Returned bytes borrow the preview. */
 const char *relocation_project(RelocationPreview *, const char *);
+/** Apply the same projection into an independent arena; unchanged outside paths borrow input. */
+const char *relocation_project_to(SourceArena *, const RelocationPreview *, const char *);
 /** Validate the two endpoints and the required parent mutation permissions without modifying either. */
 bool relocation_endpoints(RelocationPreview *, const RelocationRequest *);
 /** Copy normalized original settings and project carried roots, retaining exclusions and declared kinds. */

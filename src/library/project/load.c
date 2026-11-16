@@ -43,8 +43,8 @@ bool library_build_resolve(LibraryBuild *build, const ModuleRoot *roots, size_t 
         build->error = build->frontend.error;
         return false;
     }
-    if (!library_resolve_exports(build) || !library_resolve_schemas(build)
-        || !library_resolve_bindings(build) || !library_resolve_identities(build)) { return false; }
+    if (!library_configuration_validate(build,&build->frontend.semantic)
+        || !library_resolve_identities(build)) { return false; }
     build->valid = true;
     return true;
 }

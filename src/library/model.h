@@ -19,6 +19,7 @@ typedef struct LibrarySchema {
     struct LibrarySchema *next;
     const char *name;
     const char *argument;
+    SourceSpan argument_site;
     LibrarySchemaKind kind;
     SourceSpan site;
     struct LibrarySchema *element;
@@ -30,6 +31,7 @@ typedef struct LibraryExport {
     struct LibraryExport *next;
     const char *name;
     const char *module;
+    SourceSpan module_site;
     unsigned operations;
     SourceSpan site;
     const SemanticType *type;
@@ -52,6 +54,7 @@ typedef struct LibrarySetting {
     struct LibrarySetting *next;
     const char *kind;
     const char *value;
+    SourceSpan value_site;
     SourceSpan site;
 } LibrarySetting;
 /** Single-attempt owner. Views borrow its arena/source/frontend through destruction.
@@ -91,6 +94,13 @@ void library_build_destroy(LibraryBuild *);
  * Failed partial records remain owned; the source must outlive destruction.
  */
 bool library_configuration_parse(LibraryBuild *, const SourceText *);
+/** Check parsed export/schema/interface declarations against an independently valid program.
+ * No files, native code, artifact names or build outputs are produced. Resolved type/field
+ * views borrow program through this model's destruction. Success does not authorize
+ * artifact emission: valid remains reserved for the complete library-build pipeline.
+ * A completed valid build refuses rebinding and remains unchanged.
+ */
+bool library_configuration_validate(LibraryBuild *, const SemanticProgram *);
 /** Resolve an already parsed explicit export configuration against exact configured roots.
  * Capture configuration/link dependencies before sealing the frontend input graph.
  * No native compilation, source overwrite, launcher generation or execution occurs.

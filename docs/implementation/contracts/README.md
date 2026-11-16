@@ -211,3 +211,6 @@ exact source edits, capture rejection and versioned client document transactions
 
 [Relocation bindings](../relocation-references.md) records augmented original
 registries, resolved edge mapping and exact path-span edits without mutation.
+
+[Relocation staging](../relocation-staging.md) records exact prepared bytes,
+independent final graph validation, documented settings and explicit invalidations.

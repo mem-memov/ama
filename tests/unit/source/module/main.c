@@ -274,6 +274,8 @@ static void it_unwinds_every_catalog_allocation_failure(void) {
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_retains_invalid_native_snapshot_diagnostics_and_empty_presence();
+    it_owns_native_snapshot_companions_and_unwinds_each_failed_copy();
     it_owns_captured_source_snapshots_without_rereading_files();
     it_retains_captured_registry_collision_and_encoding_diagnostics();
     it_releases_every_failed_captured_registry_prefix();

@@ -2551,10 +2551,24 @@ Contracts: [tools](spec/implementation/tools-and-conformance.md),
   headers, complete per-file documentation and reproducible Doxygen. Final
   staged graph validation/publication remain T112–T115. See
   `docs/implementation/relocation-references.md`.
-- [ ] **T112 — Validate staged relocation bytes and configuration.** Needs:
+- [x] **T112 — Validate staged relocation bytes and configuration.** Needs:
   T111. Preserve all non-path bytes and opaque companion/assets; update only
   documented project settings and invalidate generated outputs. Reparse and
   reresolve staged active files; test line endings, comments/literals and drafts.
+  Completed: exact original-span rewriting preserves all other source bytes;
+  captured opaque files and literal links retain their bytes. The final catalog,
+  native companion snapshots, ordinary parser/semantic stages and translated
+  edge comparison independently prove the staged graph equals F(G). Explicit
+  entry/library fields and foreign-file referents are prepared through existing
+  configuration rules; generated-output invalidations reject protected inputs,
+  roots, aliases and overlapping requests. No source publication occurs here.
+  Evidence: strict compiler build/full suite; staged/reference/configuration
+  regressions; staged/catalog ASan+UBSan; every measured allocation failure;
+  exhaustive two-span byte/boundary model; stale-input/redirected-edge refusals,
+  opaque binary/long/cyclic links, new/empty domains and actual write denial;
+  complete per-file/standalone-header checks and reproducible Doxygen. Recovery
+  and publication remain T113/T114, commands T115. See
+  `docs/implementation/relocation-staging.md`.
 - [ ] **T113 — Apply relocation as a recoverable transaction.** Needs: T112.
   Require exclusive access and unchanged original file identities/bytes; stage
   moves/importer/configuration edits across supported filesystems. Inject I/O

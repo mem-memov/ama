@@ -32426,6 +32426,21 @@
         "case": "it_releases_every_failed_captured_registry_prefix",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_owns_native_snapshot_companions_and_unwinds_each_failed_copy",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_retains_invalid_native_snapshot_diagnostics_and_empty_presence",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
       }
     ]
   },
@@ -46566,6 +46581,21 @@
         "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
         "command": "make -C tests/unit/tools/relocation/references",
         "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_owns_native_snapshot_companions_and_unwinds_each_failed_copy",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_retains_invalid_native_snapshot_diagnostics_and_empty_presence",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
       }
     ]
   },
@@ -53646,6 +53676,21 @@
         "case": "it_releases_every_failed_captured_registry_prefix",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_owns_native_snapshot_companions_and_unwinds_each_failed_copy",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_retains_invalid_native_snapshot_diagnostics_and_empty_presence",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
       }
     ]
   },
@@ -53802,6 +53847,21 @@
         "case": "it_releases_every_failed_captured_registry_prefix",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_owns_native_snapshot_companions_and_unwinds_each_failed_copy",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_retains_invalid_native_snapshot_diagnostics_and_empty_presence",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
       }
     ]
   },
@@ -81817,6 +81877,51 @@
         "case": "it_packages_two_components_with_overlapping_module_names",
         "command": "make -C tests/unit/library/package",
         "source": "tests/unit/library/package/main.c"
+      },
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_rebinding_a_completed_library_model",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
       }
     ],
     "standalone_header_command": [
@@ -81888,6 +81993,46 @@
         "case": "it_unwinds_every_library_resolution_allocation",
         "command": "make -C tests/unit/library/resolution",
         "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
       }
     ],
     "standalone_header_command": [
@@ -82036,6 +82181,46 @@
         "case": "it_rejects_unsupported_targets_before_header_publication",
         "command": "make -C tests/unit/library/header",
         "source": "tests/unit/library/header/main.c"
+      },
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
       }
     ]
   },
@@ -82113,6 +82298,51 @@
         "case": "it_requires_native_profile_capabilities_and_failure_shape",
         "command": "make -C tests/unit/library/resolution",
         "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_preserves_explicit_exports_schemas_and_settings",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
       }
     ]
   },
@@ -82149,6 +82379,51 @@
         "case": "it_unwinds_every_library_resolution_allocation",
         "command": "make -C tests/unit/library/resolution",
         "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_preserves_explicit_exports_schemas_and_settings",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
       }
     ]
   },
@@ -82505,6 +82780,11 @@
         "case": "it_requires_native_profile_capabilities_and_failure_shape",
         "command": "make -C tests/unit/library/resolution",
         "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_rebinding_a_completed_library_model",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
       }
     ]
   },
@@ -82735,6 +83015,11 @@
       },
       {
         "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_rebinding_a_completed_library_model",
         "command": "make -C tests/unit/library/resolution",
         "source": "tests/unit/library/resolution/main.c"
       }
@@ -83033,6 +83318,51 @@
         "case": "it_unwinds_every_library_resolution_allocation",
         "command": "make -C tests/unit/library/resolution",
         "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_preserves_explicit_exports_schemas_and_settings",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
       }
     ]
   },
@@ -105045,6 +105375,46 @@
         "case": "it_analyzes_newly_covered_selected_sources_and_empty_domains",
         "command": "make -C tests/unit/tools/relocation/references",
         "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
       }
     ],
     "standalone_header_command": [
@@ -105116,6 +105486,46 @@
         "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
         "command": "make -C tests/unit/tools/relocation/preview",
         "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
       }
     ],
     "standalone_header_command": [
@@ -105299,6 +105709,46 @@
         "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
         "command": "make -C tests/unit/tools/relocation/preview",
         "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
       }
     ]
   },
@@ -106128,6 +106578,46 @@
         "case": "it_analyzes_newly_covered_selected_sources_and_empty_domains",
         "command": "make -C tests/unit/tools/relocation/references",
         "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
       }
     ]
   },
@@ -107040,6 +107530,21 @@
         "case": "it_releases_every_failed_captured_registry_prefix",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_owns_native_snapshot_companions_and_unwinds_each_failed_copy",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_retains_invalid_native_snapshot_diagnostics_and_empty_presence",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
       }
     ]
   },
@@ -107056,6 +107561,1355 @@
         "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
         "command": "make -C tests/unit/tools/relocation/references",
         "source": "tests/unit/tools/relocation/references/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/staging/internal.h": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/tools/relocation/staging/build.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/staging/staging.h": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/tools/relocation/staging/lifetime.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/staging/text/prepare.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/staging/text/rewrite.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/staging/text/offset.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/staging/settings/path.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/staging/settings/build.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/staging/settings/invalidation.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/staging/settings/writes.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/staging/settings/configuration.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/staging/validation/domain.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/staging/validation/graph.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/staging/validation/native.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/staging/files/link.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/staging/files/metadata.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/staging/files/build.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/staging/files/capture.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/staging/main.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/staging/Makefile": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/staging/support/files.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/staging/support/domain.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/staging/support/failures.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/staging/support/graph.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/staging/support/settings.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/staging/support/text-model.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Prepare exact source/file/settings bytes and independently validate final relocation bindings without publication.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "src/source/module/resolve/native-snapshot.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Copy authoritative native companion snapshots without filesystem probes and retain atomic failure ownership.",
+    "tests": [
+      {
+        "case": "it_owns_native_snapshot_companions_and_unwinds_each_failed_copy",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_retains_invalid_native_snapshot_diagnostics_and_empty_presence",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      }
+    ]
+  },
+  "src/library/resolve/configuration.c": {
+    "contract": "docs/implementation/relocation-staging.md",
+    "purpose": "Retain exact configuration field spans and validate library declarations against independently supplied semantic snapshots.",
+    "tests": [
+      {
+        "case": "it_captures_native_assets_links_and_validates_qualified_constants",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_newly_covered_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_redirected_final_bindings_and_changed_original_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_staging_prefix_and_preserves_originals",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_rejects_opaque_physical_aliases_with_retained_locations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_validates_final_cycles_and_preserves_all_nonpath_bytes",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_prepares_explicit_settings_and_generated_output_invalidations",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_matches_the_complete_two_span_text_model",
+        "command": "make -C tests/unit/tools/relocation/staging",
+        "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "case": "it_preserves_explicit_exports_schemas_and_settings",
+        "command": "make -C tests/unit/library/configuration",
+        "source": "tests/unit/library/configuration/main.c"
+      },
+      {
+        "case": "it_rejects_rebinding_a_completed_library_model",
+        "command": "make -C tests/unit/library/resolution",
+        "source": "tests/unit/library/resolution/main.c"
       }
     ]
   }

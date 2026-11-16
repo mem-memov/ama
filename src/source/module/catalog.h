@@ -113,6 +113,14 @@ ModuleStatus module_catalog_build(ModuleCatalog *catalog,
  * this catalog. Native companions remain selected by the ordinary later activation path.
  */
 ModuleStatus module_catalog_snapshot(ModuleCatalog *, const ModuleSnapshotEntry *, size_t);
+/** Install authoritative captured native companions before AST consumers exist.
+ * Deep-copy optional paths and ABI bytes without filesystem access. The selected record
+ * must belong to this complete catalog and have no loaded native companions. Success
+ * seals even an empty companion set; failure preserves all previous companion fields.
+ * Caller establishes native activation and captured companion authority before calling.
+ */
+ModuleStatus module_catalog_snapshot_native(ModuleCatalog *, const ModuleSource *,
+    const char *body, const char *header, const SourceText *abi);
 /** Look up one validated retained logical spelling after successful build.
  * @param[out] output Changes only on MODULE_OK and borrows catalog lifetime.
  * @return Invalid path/partial build, absent module or exact match; no root precedence is applied.

@@ -13,12 +13,12 @@ static bool native_contract(const SemanticType *type, bool literal) {
         && (!literal || type->abi.bindings[ABI_LITERAL].present);
 }
 /** Require the selected fixed profile's nominal identity and complete native capability contract. */
-static bool scalar_schema(LibraryBuild *build, LibrarySchema *schema) {
+static bool scalar_schema(LibraryBuild *build, LibrarySchema *schema, const SemanticProgram *program) {
     static const char *const paths[] = {"..integer", "..text", "..std.condition", "..failure"};
     if (strcmp(schema->argument, paths[schema->kind]) != 0) {
         return library_fail(build, schema->site, "The builtin transport profile requires its exact standard module identity");
     }
-    schema->type = semantic_find_type(&build->frontend.semantic, schema->argument);
+    schema->type = semantic_find_type(program, schema->argument);
     if (!native_contract(schema->type, schema->kind != LIBRARY_FAILURE)) {
         return library_fail(build, schema->site, "The declared native transport contract is unavailable or lacks its required capabilities");
     }
@@ -35,9 +35,9 @@ static bool scalar_schema(LibraryBuild *build, LibrarySchema *schema) {
     }
     return true;
 }
-bool library_resolve_schemas(LibraryBuild *build) {
+bool library_resolve_schemas(LibraryBuild *build, const SemanticProgram *program) {
     for (LibrarySchema *schema = build->schemas; schema != NULL; schema = schema->next) {
-        if (schema->kind != LIBRARY_LIST && !scalar_schema(build, schema)) { return false; }
+        if (schema->kind != LIBRARY_LIST && !scalar_schema(build, schema, program)) { return false; }
     }
     for (LibrarySchema *schema = build->schemas; schema != NULL; schema = schema->next) {
         if (schema->kind != LIBRARY_LIST) { continue; }

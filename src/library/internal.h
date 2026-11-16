@@ -19,9 +19,9 @@ LibrarySchema *library_schema_find(const LibraryBuild *, const char *);
 /** Find an explicitly declared export by exact public identifier, or return null. */
 LibraryExport *library_export_find(const LibraryBuild *, const char *);
 /** Resolve executable export identities after strict frontend completion. */
-bool library_resolve_exports(LibraryBuild *);
+bool library_resolve_exports(LibraryBuild *, const SemanticProgram *);
 /** Resolve explicit scalar/list wire schemas and their exact supported nominal contracts. */
-bool library_resolve_schemas(LibraryBuild *);
+bool library_resolve_schemas(LibraryBuild *, const SemanticProgram *);
 /** Resolve every mapping and prove complete parameter/result coverage without implicit schemas. */
 bool library_resolve_bindings(LibraryBuild *);
 /** Build a complete framed ABI key from explicit records, excluding comments and physical paths. */

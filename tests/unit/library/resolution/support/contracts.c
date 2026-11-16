@@ -68,3 +68,31 @@ static void it_rejects_missing_and_incompatible_explicit_contracts(void) {
     library_build_destroy(&build);
     destroy_test();
 }
+
+/** A completed library refuses metadata rebinding to a different valid snapshot without losing its artifact contract. */
+static void it_rejects_rebinding_a_completed_library_model(void) {
+    prepare_project();
+    setup_test();
+    LibraryBuild build;
+    assert(resolve(&build,records) && build.valid);
+    const SemanticType *original_type = build.exports->type;
+    const SemanticSymbol *original_field = build.bindings->field;
+    Project empty;
+    project_init(&empty,sources.allocator);
+    assert(module_catalog_snapshot(&empty.catalog,NULL,0) == MODULE_OK);
+    assert(project_load_catalog_set(&empty,NULL,0) == PROJECT_OK);
+    SemanticProgram program;
+    semantic_program_init(&program,&empty,sources.allocator);
+    assert(semantic_analyze(&program) == SEMANTIC_OK);
+    bool rebound = library_configuration_validate(&build,&program);
+    assert(!rebound && build.valid && build.error.message == NULL);
+    assert(build.exports->type == original_type && build.bindings->field == original_field);
+    FILE *manifest = tmpfile();
+    assert(manifest != NULL);
+    assert(library_manifest_write(&build,manifest));
+    assert(fclose(manifest) == 0);
+    semantic_program_destroy(&program);
+    project_destroy(&empty);
+    library_build_destroy(&build);
+    destroy_test();
+}
