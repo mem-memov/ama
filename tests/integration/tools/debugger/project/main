@@ -1,0 +1,13 @@
+# Retain named list/cursor state across two explicit yields for the debugger client.
+@!
+мой список[]
+..integer
+ |4
+ |5
+итог
+..integer
+ |7
+мой список[текущий элемент&]
+{
+ %
+}

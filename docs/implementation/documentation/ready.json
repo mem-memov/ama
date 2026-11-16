@@ -37103,7 +37103,7 @@
       }
     ]
   },
-  "tests/integration/parser/grammar/project/\u7a0b\u5e8f": {
+  "tests/integration/parser/grammar/project/程序": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -37189,7 +37189,7 @@
       }
     ]
   },
-  "tests/integration/project/closure/project/\u4e2d\u95f4": {
+  "tests/integration/project/closure/project/中间": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -38488,7 +38488,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u5143": {
+  "tests/integration/semantic/types/project/元": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -38499,7 +38499,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u5143.abi": {
+  "tests/integration/semantic/types/project/元.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -38510,7 +38510,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u5143.c": {
+  "tests/integration/semantic/types/project/元.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the first distinct Unicode nominal type.",
     "tests": [
@@ -38521,7 +38521,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u5143.h": {
+  "tests/integration/semantic/types/project/元.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the first Unicode nominal type.",
     "standalone_header_command": [
@@ -38547,7 +38547,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u7c73": {
+  "tests/integration/semantic/types/project/米": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -38558,7 +38558,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u7c73.abi": {
+  "tests/integration/semantic/types/project/米.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -38569,7 +38569,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u7c73.c": {
+  "tests/integration/semantic/types/project/米.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the incompatible Unicode nominal type.",
     "tests": [
@@ -38580,7 +38580,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u7c73.h": {
+  "tests/integration/semantic/types/project/米.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the incompatible Unicode nominal type.",
     "standalone_header_command": [
@@ -38793,7 +38793,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/other/\u5546\u54c1": {
+  "tests/integration/source/diagnostics/project/other/商品": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -38819,7 +38819,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/\u5546\u5e97/\u5546\u54c1": {
+  "tests/integration/source/diagnostics/project/商店/商品": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -48866,6 +48866,31 @@
         "case": "it_finishes_reverse_shared_cleanup_and_preserves_the_first_destructor_error",
         "command": "make -C tests/unit/runtime/shared-storage",
         "source": "tests/unit/runtime/shared-storage/main.c"
+      },
+      {
+        "case": "it_recognizes_only_complete_exact_command_lines",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_streams_real_state_and_only_authorized_native_views",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_stops_on_failed_output_and_releases_inspection_before_cleanup",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_disposes_after_input_failure_and_empty_eof",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_inspection_failure_separately_from_program_status",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
       }
     ]
   },
@@ -107261,6 +107286,31 @@
         "case": "it_reports_refused_process_requests_without_partial_plans",
         "command": "make -C tests/integration/tools/source",
         "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_recognizes_only_complete_exact_command_lines",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_streams_real_state_and_only_authorized_native_views",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_stops_on_failed_output_and_releases_inspection_before_cleanup",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_disposes_after_input_failure_and_empty_eof",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_inspection_failure_separately_from_program_status",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
       }
     ]
   },
@@ -117382,6 +117432,26 @@
         "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
         "command": "make -C tests/integration/tools/relocation",
         "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_inspects_real_yields_original_names_and_terminal_state",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_refusals_invalid_commands_and_disposed_host_access",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_refuses_existing_response_files_without_changing_them",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_real_native_failure_and_rejects_dead_state_inspection",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
       }
     ]
   },
@@ -118464,6 +118534,795 @@
         "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
         "command": "make -C tests/integration/tools/relocation",
         "source": "tests/integration/tools/relocation/main.c"
+      }
+    ]
+  },
+  "src/tools/debugger/client.h": {
+    "contract": "docs/implementation/debugger-client.md",
+    "purpose": "Drive explicit generated-host commands and stream actual admitted observations with exact identity and deterministic cleanup.",
+    "tests": [
+      {
+        "case": "it_recognizes_only_complete_exact_command_lines",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_streams_real_state_and_only_authorized_native_views",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_stops_on_failed_output_and_releases_inspection_before_cleanup",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_disposes_after_input_failure_and_empty_eof",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_inspection_failure_separately_from_program_status",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_inspects_real_yields_original_names_and_terminal_state",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_refusals_invalid_commands_and_disposed_host_access",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_refuses_existing_response_files_without_changing_them",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_real_native_failure_and_rejects_dead_state_inspection",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/tools/debugger/commands/read.c": {
+    "contract": "docs/implementation/debugger-client.md",
+    "purpose": "Drive explicit generated-host commands and stream actual admitted observations with exact identity and deterministic cleanup.",
+    "tests": [
+      {
+        "case": "it_recognizes_only_complete_exact_command_lines",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_streams_real_state_and_only_authorized_native_views",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_stops_on_failed_output_and_releases_inspection_before_cleanup",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_disposes_after_input_failure_and_empty_eof",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_inspection_failure_separately_from_program_status",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_inspects_real_yields_original_names_and_terminal_state",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_refusals_invalid_commands_and_disposed_host_access",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_refuses_existing_response_files_without_changing_them",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_real_native_failure_and_rejects_dead_state_inspection",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      }
+    ]
+  },
+  "src/tools/debugger/internal.h": {
+    "contract": "docs/implementation/debugger-client.md",
+    "purpose": "Drive explicit generated-host commands and stream actual admitted observations with exact identity and deterministic cleanup.",
+    "tests": [
+      {
+        "case": "it_recognizes_only_complete_exact_command_lines",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_streams_real_state_and_only_authorized_native_views",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_stops_on_failed_output_and_releases_inspection_before_cleanup",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_disposes_after_input_failure_and_empty_eof",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_inspection_failure_separately_from_program_status",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_inspects_real_yields_original_names_and_terminal_state",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_refusals_invalid_commands_and_disposed_host_access",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_refuses_existing_response_files_without_changing_them",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_real_native_failure_and_rejects_dead_state_inspection",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/tools/debugger/output/cursors.c": {
+    "contract": "docs/implementation/debugger-client.md",
+    "purpose": "Drive explicit generated-host commands and stream actual admitted observations with exact identity and deterministic cleanup.",
+    "tests": [
+      {
+        "case": "it_recognizes_only_complete_exact_command_lines",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_streams_real_state_and_only_authorized_native_views",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_stops_on_failed_output_and_releases_inspection_before_cleanup",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_disposes_after_input_failure_and_empty_eof",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_inspection_failure_separately_from_program_status",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_inspects_real_yields_original_names_and_terminal_state",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_refusals_invalid_commands_and_disposed_host_access",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_refuses_existing_response_files_without_changing_them",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_real_native_failure_and_rejects_dead_state_inspection",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      }
+    ]
+  },
+  "src/tools/debugger/output/fields.c": {
+    "contract": "docs/implementation/debugger-client.md",
+    "purpose": "Drive explicit generated-host commands and stream actual admitted observations with exact identity and deterministic cleanup.",
+    "tests": [
+      {
+        "case": "it_recognizes_only_complete_exact_command_lines",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_streams_real_state_and_only_authorized_native_views",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_stops_on_failed_output_and_releases_inspection_before_cleanup",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_disposes_after_input_failure_and_empty_eof",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_inspection_failure_separately_from_program_status",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_inspects_real_yields_original_names_and_terminal_state",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_refusals_invalid_commands_and_disposed_host_access",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_refuses_existing_response_files_without_changing_them",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_real_native_failure_and_rejects_dead_state_inspection",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      }
+    ]
+  },
+  "src/tools/debugger/output/inspect.c": {
+    "contract": "docs/implementation/debugger-client.md",
+    "purpose": "Drive explicit generated-host commands and stream actual admitted observations with exact identity and deterministic cleanup.",
+    "tests": [
+      {
+        "case": "it_recognizes_only_complete_exact_command_lines",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_streams_real_state_and_only_authorized_native_views",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_stops_on_failed_output_and_releases_inspection_before_cleanup",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_disposes_after_input_failure_and_empty_eof",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_inspection_failure_separately_from_program_status",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_inspects_real_yields_original_names_and_terminal_state",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_refusals_invalid_commands_and_disposed_host_access",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_refuses_existing_response_files_without_changing_them",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_real_native_failure_and_rejects_dead_state_inspection",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      }
+    ]
+  },
+  "src/tools/debugger/output/instances.c": {
+    "contract": "docs/implementation/debugger-client.md",
+    "purpose": "Drive explicit generated-host commands and stream actual admitted observations with exact identity and deterministic cleanup.",
+    "tests": [
+      {
+        "case": "it_recognizes_only_complete_exact_command_lines",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_streams_real_state_and_only_authorized_native_views",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_stops_on_failed_output_and_releases_inspection_before_cleanup",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_disposes_after_input_failure_and_empty_eof",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_inspection_failure_separately_from_program_status",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_inspects_real_yields_original_names_and_terminal_state",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_refusals_invalid_commands_and_disposed_host_access",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_refuses_existing_response_files_without_changing_them",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_real_native_failure_and_rejects_dead_state_inspection",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      }
+    ]
+  },
+  "src/tools/debugger/output/native.c": {
+    "contract": "docs/implementation/debugger-client.md",
+    "purpose": "Drive explicit generated-host commands and stream actual admitted observations with exact identity and deterministic cleanup.",
+    "tests": [
+      {
+        "case": "it_recognizes_only_complete_exact_command_lines",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_streams_real_state_and_only_authorized_native_views",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_stops_on_failed_output_and_releases_inspection_before_cleanup",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_disposes_after_input_failure_and_empty_eof",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_inspection_failure_separately_from_program_status",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_inspects_real_yields_original_names_and_terminal_state",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_refusals_invalid_commands_and_disposed_host_access",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_refuses_existing_response_files_without_changing_them",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_real_native_failure_and_rejects_dead_state_inspection",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      }
+    ]
+  },
+  "src/tools/debugger/output/values.c": {
+    "contract": "docs/implementation/debugger-client.md",
+    "purpose": "Drive explicit generated-host commands and stream actual admitted observations with exact identity and deterministic cleanup.",
+    "tests": [
+      {
+        "case": "it_recognizes_only_complete_exact_command_lines",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_streams_real_state_and_only_authorized_native_views",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_stops_on_failed_output_and_releases_inspection_before_cleanup",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_disposes_after_input_failure_and_empty_eof",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_inspection_failure_separately_from_program_status",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_inspects_real_yields_original_names_and_terminal_state",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_refusals_invalid_commands_and_disposed_host_access",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_refuses_existing_response_files_without_changing_them",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_real_native_failure_and_rejects_dead_state_inspection",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      }
+    ]
+  },
+  "src/tools/debugger/run.c": {
+    "contract": "docs/implementation/debugger-client.md",
+    "purpose": "Drive explicit generated-host commands and stream actual admitted observations with exact identity and deterministic cleanup.",
+    "tests": [
+      {
+        "case": "it_recognizes_only_complete_exact_command_lines",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_streams_real_state_and_only_authorized_native_views",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_stops_on_failed_output_and_releases_inspection_before_cleanup",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_disposes_after_input_failure_and_empty_eof",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_inspection_failure_separately_from_program_status",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_inspects_real_yields_original_names_and_terminal_state",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_refusals_invalid_commands_and_disposed_host_access",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_refuses_existing_response_files_without_changing_them",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_real_native_failure_and_rejects_dead_state_inspection",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/debugger/Makefile": {
+    "contract": "docs/implementation/debugger-client.md",
+    "purpose": "Exercise exact debugger commands, actual runtime observations, transport failures and compiled generated-host client behavior.",
+    "tests": [
+      {
+        "case": "it_inspects_real_yields_original_names_and_terminal_state",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_refusals_invalid_commands_and_disposed_host_access",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_refuses_existing_response_files_without_changing_them",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_real_native_failure_and_rejects_dead_state_inspection",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/debugger/main.c": {
+    "contract": "docs/implementation/debugger-client.md",
+    "purpose": "Exercise exact debugger commands, actual runtime observations, transport failures and compiled generated-host client behavior.",
+    "tests": [
+      {
+        "case": "it_inspects_real_yields_original_names_and_terminal_state",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_refusals_invalid_commands_and_disposed_host_access",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_refuses_existing_response_files_without_changing_them",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_real_native_failure_and_rejects_dead_state_inspection",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/debugger/project/failed": {
+    "contract": "docs/implementation/debugger-client.md",
+    "purpose": "Exercise exact debugger commands, actual runtime observations, transport failures and compiled generated-host client behavior.",
+    "tests": [
+      {
+        "case": "it_inspects_real_yields_original_names_and_terminal_state",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_refusals_invalid_commands_and_disposed_host_access",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_refuses_existing_response_files_without_changing_them",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_real_native_failure_and_rejects_dead_state_inspection",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/debugger/project/main": {
+    "contract": "docs/implementation/debugger-client.md",
+    "purpose": "Exercise exact debugger commands, actual runtime observations, transport failures and compiled generated-host client behavior.",
+    "tests": [
+      {
+        "case": "it_inspects_real_yields_original_names_and_terminal_state",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_refusals_invalid_commands_and_disposed_host_access",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_refuses_existing_response_files_without_changing_them",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_real_native_failure_and_rejects_dead_state_inspection",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/debugger/verify.py": {
+    "contract": "docs/implementation/debugger-client.md",
+    "purpose": "Exercise exact debugger commands, actual runtime observations, transport failures and compiled generated-host client behavior.",
+    "tests": [
+      {
+        "case": "it_inspects_real_yields_original_names_and_terminal_state",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_refusals_invalid_commands_and_disposed_host_access",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_refuses_existing_response_files_without_changing_them",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_real_native_failure_and_rejects_dead_state_inspection",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/debugger/Makefile": {
+    "contract": "docs/implementation/debugger-client.md",
+    "purpose": "Exercise exact debugger commands, actual runtime observations, transport failures and compiled generated-host client behavior.",
+    "tests": [
+      {
+        "case": "it_recognizes_only_complete_exact_command_lines",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_streams_real_state_and_only_authorized_native_views",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_stops_on_failed_output_and_releases_inspection_before_cleanup",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_disposes_after_input_failure_and_empty_eof",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_inspection_failure_separately_from_program_status",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/debugger/main.c": {
+    "contract": "docs/implementation/debugger-client.md",
+    "purpose": "Exercise exact debugger commands, actual runtime observations, transport failures and compiled generated-host client behavior.",
+    "tests": [
+      {
+        "case": "it_recognizes_only_complete_exact_command_lines",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_streams_real_state_and_only_authorized_native_views",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_stops_on_failed_output_and_releases_inspection_before_cleanup",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_disposes_after_input_failure_and_empty_eof",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_inspection_failure_separately_from_program_status",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/debugger/verify.py": {
+    "contract": "docs/implementation/debugger-client.md",
+    "purpose": "Exercise exact debugger commands, actual runtime observations, transport failures and compiled generated-host client behavior.",
+    "tests": [
+      {
+        "case": "it_recognizes_only_complete_exact_command_lines",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_streams_real_state_and_only_authorized_native_views",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_stops_on_failed_output_and_releases_inspection_before_cleanup",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_disposes_after_input_failure_and_empty_eof",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "case": "it_preserves_inspection_failure_separately_from_program_status",
+        "command": "make -C tests/unit/tools/debugger",
+        "source": "tests/unit/tools/debugger/main.c"
+      }
+    ]
+  },
+  "tools/debugger/main.c": {
+    "contract": "docs/implementation/debugger-client.md",
+    "purpose": "Drive explicit generated-host commands and stream actual admitted observations with exact identity and deterministic cleanup.",
+    "tests": [
+      {
+        "case": "it_inspects_real_yields_original_names_and_terminal_state",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_refusals_invalid_commands_and_disposed_host_access",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_refuses_existing_response_files_without_changing_them",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
+      },
+      {
+        "case": "it_reports_real_native_failure_and_rejects_dead_state_inspection",
+        "command": "make -C tests/integration/tools/debugger",
+        "source": "tests/integration/tools/debugger/main.c"
       }
     ]
   }

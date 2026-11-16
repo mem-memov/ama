@@ -1,4 +1,4 @@
 # @file
 # @brief Dispatch real compiler/editor/debugger/project-maintenance client workflows.
-SUBDIRECTORIES := source relocation
+SUBDIRECTORIES := source relocation debugger
 include ../../parent.mk

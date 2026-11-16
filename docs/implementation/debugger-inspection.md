@@ -2,8 +2,8 @@
 
 The runtime debugger API in `src/runtime/debugger/debugger.h` observes a context
 at rest. It does not execute Ama, create default instances, invoke conversion
-hooks, or reconstruct a call history. User-facing command integration belongs to
-T115; this component supplies the checked inspection boundary.
+hooks, or reconstruct a call history. The [retained-assembly client](debugger-client.md)
+uses this boundary for explicit commands; complete combined project workflows remain T115.
 
 `ama_debug_begin` takes exclusive context admission into an initially empty linear
 session. Execution, disposal and another inspection cannot enter that context

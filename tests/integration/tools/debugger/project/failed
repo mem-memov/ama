@@ -1,0 +1,5 @@
+# Native literal construction fails at execution time and disposes the generated host.
+@!
+значение
+..integer
+ |not-an-integer

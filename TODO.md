@@ -2657,7 +2657,7 @@ Contracts: [tools](spec/implementation/tools-and-conformance.md),
   standalone headers and local prose links pass, and two complete Doxygen
   generations are byte-identical (6565 documented interfaces).
   See `docs/implementation/relocation-commands.md`.
-- [ ] **T154 — Provide an executable debugger client.** Needs: T109, T152.
+- [x] **T154 — Provide an executable debugger client.** Needs: T109, T152.
   Supply a documented client for retained generated project assemblies, using the
   checked runtime inspection API and explicit run/resume/dispose boundaries.
   Inspect actual names, declared fields/lists/cursors and source positions at rest;
@@ -2665,6 +2665,22 @@ Contracts: [tools](spec/implementation/tools-and-conformance.md),
   Test real compiled projects, repeated yields, terminal/refused execution, invalid
   commands and output failure. Describe the generated-assembly build boundary,
   unsupported external debugger/editor integration and actual native limitations.
+  Completed: the shipped retained-assembly launcher and reusable heap-free loop
+  support exact run/resume/inspect/dispose/quit commands, with exclusively created
+  JSON response files separate from native stdout. Checked inspection streams
+  original names, context-qualified identities, declared scalar/list fields,
+  occurrences, retained cursors and exact next-operation source positions. Native
+  previews require explicit host-authorized readers; the default grants none.
+  Every valid exit releases inspection and attempts idempotent host disposal.
+  Evidence: strict compiler build, complete unit/integration tool subtrees,
+  runtime and generated-debugger regressions; client tests under ASan/UBSan.
+  Independent JSON decoding covers repeated real yields, unchanged observations,
+  four native preview formats, separate preview/program failures, terminal and
+  disposed hosts, command-byte boundaries, IO failure during observation and after
+  execution, EOF and preserved existing response files. All 2313 maintained
+  inputs have named evidence without debt; standalone headers and prose links
+  pass, and two complete Doxygen generations are byte-identical (6630 documented
+  interfaces). See `docs/implementation/debugger-client.md`.
 - [ ] **T115 — Accept user-facing tools through real projects.** Needs: T108,
   T109, T114, T152, T153, T154. Run editor/rename/debugger/relocation workflows against complete
   projects and regenerate verified output afterward. Document exact scope,
