@@ -3,7 +3,8 @@
  * @brief Declare host phase and root/current local identities without a C activation stack.
  *
  * [RT-05](../../../spec/implementation/runtime.md#rt-05)
- * The runtime/context owner gates this metadata; generated host wiring remains T061, and no scheduler is implied.
+ * The runtime/context owner gates this metadata; generated hosts borrow it only
+ * under checked admission. Scheduling remains an explicit library/host operation.
  */
 #ifndef AMA_RUNTIME_METADATA_RUNTIME_H
 #define AMA_RUNTIME_METADATA_RUNTIME_H

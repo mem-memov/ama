@@ -1,9 +1,5 @@
 # Native status contract
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
-
 This implements ERROR-03 through ERROR-05 and PROTO-09; source boundaries are
 `src/native/status/{status,codes,index,library}.h`. It is transport and classification,
 not a runtime exception, source diagnostic subsystem or recovery dispatcher.

@@ -1,9 +1,5 @@
 # Native authoring and generated declarations
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
-
 The native-scaffolding component borrows the shared validated frontend and owns
 its declaration model, collision-checked identities and complete output bytes.
 Destroy the scaffold before the frontend. Build once and publish explicitly.

@@ -1,16 +1,12 @@
 # Fixed native ABI table parser
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
-
 Boundary: `src/parser/abi/`, retaining the six-slot record machinery for PROTO-11.
-Exact current one-space enforcement remains T022; lexical acceptance below does
-not certify that remaining rule. AbiTable owns physical layout
+Exactly one separator is enforced by the record parser under SYN-06; flat ABI
+comment prefixes retain their separate permitted layout. AbiTable owns physical layout
 nodes and borrows original source spans for six fixed operation slots. Parse once
 and consume slots only after valid=true; destroy cleans all partial layout.
 
-A record has exactly one supported marker, ASCII spaces and one C identifier
+A record has exactly one supported marker, one ASCII space and one C identifier
 spelling. Slots are indexed by +, -, |, =, ?, [] in that fixed order, not by helper
 names. Record order is irrelevant. Blank/comment lines and trailing comments are
 layout; indented records, tabs anywhere, lone CR, unknown symbols, duplicate

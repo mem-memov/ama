@@ -97,5 +97,6 @@ copies or incorrect sibling sequencing. Sanitizer flags instrument the generated
 programs as well as the test runner.
 
 T068 separately accepts [ordinary condition headers](condition-loop-execution.md).
-Intrinsic list services and foreach cursors remain guarded pending their adapters. This implementation does
-not turn static acceptance of those plans into a claim of executable support.
+[Intrinsic list services](list-service-frames.md) and
+[foreach execution](list-traversal-execution.md) compose these same fixed
+operation frames through their own method and cursor authorities.

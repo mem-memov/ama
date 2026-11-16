@@ -31,8 +31,9 @@ distinguish value copying, reference identity and execution position.
 The generic ownership mapper follows every declared field descriptor; semantic
 parameter/result/body roles do not filter the value boundary. Existing full-key
 clone/replacement/forest tests supply the recursive field/reference remapping
-proof. Current executable cursor/list-service frame integration remains its later
-roadmap work rather than an additional implied promise of this acceptance.
+proof. [Executable cursors](list-traversal-execution.md) and
+[list-service frames](list-service-frames.md) have their own acquisition,
+origin and lifetime integration evidence.
 
 ## Constants have no default instance
 
@@ -74,5 +75,6 @@ All new maintained leaf/support/Makefile inputs have named per-file coverage.
 Existing transfer and construction suites prove individual clone/replacement
 cleanup and initialized-prefix behavior; the compiled cases verify the actual
 frontend/IR/storage/emission/native boundary. This evidence adds no alternate
-read syntax or language requirement and does not claim pending intrinsic list
-service, traversal or asynchronous integration.
+read syntax or language requirement. [List services](list-service-frames.md),
+[traversal](list-traversal-execution.md) and [asynchronous consumers](asynchronous-host.md)
+retain their separate operation and ownership proofs.

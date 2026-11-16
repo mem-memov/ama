@@ -107,6 +107,6 @@ The condition adapter adds no allocation or persistent activation. Releasing a
 path of depth `d` performs `O(d)` checked frame transitions. Each uses a constant
 number of registry/pool lookups; the current linear registry of `T` types makes
 service work `O(d * T)`, excluding native-protocol costs. Storage is the already
-planned fixed operation-frame area. Foreach cursors and intrinsic list-method
-headers remain guarded until their own adapters are accepted; this task adds no
-alternate source grammar or implicit condition protocol.
+planned fixed operation-frame area. [Foreach cursors](list-traversal-execution.md)
+and [intrinsic list methods](list-service-frames.md) have separate adapters;
+none adds an alternate source grammar or implicit condition protocol.

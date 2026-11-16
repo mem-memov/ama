@@ -6,8 +6,9 @@ storage from typed service authority and live traversal. T075 supplies
 indexed values, construction, copying and replacement under
 [list value integration](list-values.md). T077 adds [service authority](list-service-frames.md)
 and T078 adds [append/insert execution](list-insertion.md). T079 adds
-[remove/clear execution](list-deletion.md). Remaining methods and
-cursor corrections keep their roadmap tasks. Whole-list execution and retained whole-list reads remain
+[remove/clear execution](list-deletion.md). [Swap/length](list-ordering.md)
+complete the method set, and [cursor correction](list-traversal-mutation.md)
+preserves active/suspended live boundaries. Whole-list execution and retained whole-list reads remain
 invalid language operations, rather than dispatcher actions.
 
 ## Direct storage operations
@@ -63,7 +64,9 @@ handle-vector representation remains.
 
 [Typed swap and length](list-ordering.md) complete the six method adapters in T080.
 
-[Live foreach selection](list-traversal-selection.md) provides fixed cursors and lexical binding cells in T081; source execution remains guarded pending traversal integration.
+[Live foreach selection](list-traversal-selection.md) provides fixed cursors and lexical binding cells in T081;
+[T084 execution](list-traversal-execution.md) composes selection, origin checks,
+mutation correction and continuation copying in generated programs.
 
 [Traversal mutation correction](list-traversal-mutation.md) connects exact fixed cursor scans to insert/remove/clear publication in T082.
 

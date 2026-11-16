@@ -8,7 +8,8 @@ The public implementation boundary is
 [`runtime/program/lists/service.h`](../../src/runtime/program/lists/service.h).
 The compiler supports [append/insert](list-insertion.md),
 [remove/clear](list-deletion.md) and [swap/length](list-ordering.md).
-Traversal adapters retain an explicit execution guard.
+[Traversal execution](list-traversal-execution.md) supplies its own fixed cursor
+and binding slots, releasing list admission before each user body.
 
 ## One exact grant for the whole service parent
 
@@ -111,8 +112,9 @@ allocation; `main.c` and its Makefile explicitly run and clean the leaf.
 `make -C tests/unit/codegen/list-frame-layout` resolves a real list service with
 two sibling methods, emits storage from the actual frontend/scaffold model,
 includes the authored native State declarations and compiles/runs a C probe of
-all three typed cells. It does not bypass the executable intrinsic guard or claim
-that their mutation adapters are complete. Runtime ASan/UBSan, standalone header
+all three typed cells. [Insertion](list-insertion.md), [deletion](list-deletion.md)
+and [ordering](list-ordering.md) separately exercise the complete mutation adapters.
+Runtime ASan/UBSan, standalone header
 checks, per-file coverage, the full strict suite and reproducible Doxygen validate
 the layer at its actual boundaries.
 

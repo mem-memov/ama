@@ -1,9 +1,5 @@
 # Module source catalog
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
-
 Boundary: `src/source/module/catalog.h`, with `scan/`, `resolve/`, exact-entry
 probing and immutable sources. Implements SRC-01/02/03/05. This is source discovery
 and lookup, not dependency closure, draft parsing or type resolution.
@@ -113,9 +109,11 @@ Root inventories are borrowed only for build; published records and discovered
 paths belong to catalog owners. Source/native-companion byte lifetime and failure
 publication rules are unchanged. A NULL nonempty inventory and an unknown kind
 fail explicitly, rather than guessing Project. Existing CLI source/`--root`
-entries are explicitly tagged Project/import; the current-spec CLI standard-root
-configuration remains T068. Declaration/type AST spans now use T023; expanded access sources remain T024; generated root identity encoding is now provided by T017. Passing catalog cases does not certify
-those later source/codegen stages.
+entries are explicitly tagged Project/import; `--standard-root` selects the
+standard family through [driver options](driver-options.md).
+[Declaration AST spans](declaration-parsing.md), [access sources](source-parsing.md)
+and [generated root identities](identities.md) have independent consumer tests.
+Passing catalog cases alone does not establish their full codegen behavior.
 
 The mapping is injective after checks: root marker determines kind; each dot
 separates a component because dots are not XID name characters; each complete

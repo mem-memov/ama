@@ -72,8 +72,9 @@ body must establish no active cell/cursor under FLOW-05.
 The general correction strategy is LIST-13's fixed lexical scan: runtime mutation
 can inspect reserved traversal slots in lexical order, selecting only active or
 suspended cursors whose full collection identity matches. No intrusive active
-registry is required by this schema. Runtime correction and list execution remain
-later tasks. Frame/cell reservation is independent of collection length.
+registry is required by this schema. [Runtime correction](list-traversal-mutation.md)
+and [generated traversal](list-traversal-execution.md) consume these exact slots.
+Frame/cell reservation is independent of collection length.
 
 Operation protections and pending returns are transient. Traversal cursors,
 active scoped cells and their origins belong to the continuation control state

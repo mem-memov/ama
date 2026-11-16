@@ -13,7 +13,7 @@ The scalar providers under `stdlib/modules/std/` now use explicit standard-root
 identities alongside the [canonical integer](scalar-library.md). Their generated
 composition tests use actual current standard roots. Condition-capable
 failure/resource interfaces now have [T086 acceptance](failure-values.md);
-arithmetic result alignment remains T087.
+[arithmetic/result compositions](library-compositions.md) have T087 acceptance.
 
 The retained index owns one size_t value. Decimal literal parsing checks the next
 multiply/add bound before mutation, rejecting empty/nondigit/overflow input.

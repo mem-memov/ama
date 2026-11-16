@@ -8,7 +8,8 @@ T038 completes static control metadata under
 [FLOW-05](../../spec/language/lists.md#flow-05).
 T044 supplies complete structured IR. T068 supplies
 [ordinary command-header execution](condition-loop-execution.md); foreach
-execution remains guarded at C generation after complete static planning.
+execution is accepted by [live traversal lowering/runtime](list-traversal-execution.md)
+after complete static planning.
 
 ## Carry the actual lexical loop
 
@@ -143,4 +144,5 @@ identity/depth through stable sorting and callback early stop. Frontend tests
 require successful semantic/constant analysis and complete validated planning.
 Full strict and sanitizer suites cover composition; semantic evidence alone does
 not certify runtime behavior. T068 separately accepts ordinary header execution;
-changing-list traversal remains a later adapter.
+[changing-list traversal](list-traversal-execution.md) has separate live-boundary,
+origin, copying and cleanup evidence.

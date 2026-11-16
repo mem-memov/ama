@@ -1,9 +1,5 @@
 # Native entry and label-transfer conformance
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
-
 This records the tested toolchain boundary under STACK-01 through STACK-04 and
 GEN-01 through GEN-03. It is an executable backend constraint harness, not a
 source-language frontend or a completed runtime.
@@ -22,7 +18,10 @@ The backend registers every generated native entry and every IR control-label
 name. Native entry calls must disappear and Ama controls must remain labels,
 so any remaining exact entry symbol or compiler-derived family is rejected. Missing/failed
 object inspection is not success. The retained project pipeline performs this check before linking or publication;
-current-language lowering and independent generated contexts remain later tasks.
+[structured lowering](typed-plans.md) and
+[independent generated contexts](generated-contexts.md) use that same verifier.
+[Parallel execution](parallel-context-execution.md) tests actual overlapping
+dispatch without changing the native entry disappearance requirement.
 
 This relies on the selected compiler, object tooling and the stated no-renaming/
 no-address-escape contract. It is not a sandbox for arbitrary malicious C, stripped

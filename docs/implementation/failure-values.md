@@ -159,5 +159,7 @@ interface, ABI record, fixture and Makefile to named executable evidence.
 
 Native/generated ASan/UBSan, whole-project strict tests, standalone headers,
 coverage, local links and reproducible Doxygen complete acceptance. [T087](library-compositions.md) applies the outcome convention to bounded
-arithmetic and accepts list-valued constant/resource compositions. File/I/O
-examples remain later roadmap work.
+arithmetic and accepts list-valued constant/resource compositions. The
+[maintained examples](examples.md) exercise the implemented value/continuation
+boundaries. The specification's illustrative file-reading interface does not
+introduce an additional filesystem library API in this component.

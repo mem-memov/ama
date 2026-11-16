@@ -1,9 +1,5 @@
 # Source storage
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
-
 Boundary: `src/source/text/source.h`, `text/` and `io/`. Implements SRC-01,
 SRC-03 byte preservation and NAME-03 source coordinates, not tokenization.
 
@@ -98,7 +94,8 @@ length six over text, CR, LF, NUL and two UTF-8 bytes. Every offset through EOF 
 compared with a direct physical-byte model, independently of the stored line
 index. This is a bounded code check; the index/search invariants above cover
 arbitrary representable sources. Deliberately malformed UTF-8 byte sequences
-remain storage fixtures: strict language decoding belongs to T015.
+remain storage fixtures: [strict language decoding](unicode.md) has a
+separate validating boundary and does not change the storage byte model.
 
 Other cases mutate borrowed path/data after add, verify unchanged failure outputs
 and exact Unicode byte columns, exercise all planner size endpoints, and append

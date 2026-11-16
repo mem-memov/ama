@@ -1,9 +1,5 @@
 # Check-only project frontend
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
-
 `ama --check ROOT .module` uses [CompilerFrontend](../../src/compiler/frontend.h),
 the same loaded/semantic/planned project API consumed by native authoring and the
 project emitter. It performs no C emission, toolchain invocation, native

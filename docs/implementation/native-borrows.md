@@ -64,9 +64,11 @@ representation.
 
 The private resolver accepts context-local handles supplied by checked generated
 storage. It is not a public origin-authenticating host API: external identity
-checks remain the [context gateway](execution-contexts.md) and T123 onward.
-Current-source frontend integration remains T024/T055/T058; general list service
-and cursor adapters remain their listed implementation tasks.
+checks belong to the [context gateway](execution-contexts.md) and
+[compiled-component transports](c-library-transport.md).
+[Generated execution](project-emission.md), [list services](list-service-frames.md)
+and [cursors](list-traversal-execution.md) compose the bounded borrowing
+contract through their own checked authority.
 
 ## Separate graph state and native resources
 

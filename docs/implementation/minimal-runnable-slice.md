@@ -41,9 +41,9 @@ is not claimed in this environment.
 
 This runnable boundary covers owned defaults/clones, stable pool growth, nested
 calls/returns, retained state, mandatory native entry inlining, technical status
-propagation and complete host cleanup. Selected-result execution chains,
-condition-command loops and foreach remain explicitly rejected by codegen.
-Their typed-IR acceptance is separate. Full list services, asynchronous task and
-reactor integration, and the public compiled-component transport remain later
-roadmap work. The specification remains authoritative; this document records
-acceptance evidence rather than adding language requirements.
+propagation and complete host cleanup. Other generated-project consumers have
+separate evidence for [selected results](direct-result-execution.md),
+[condition loops](condition-loop-execution.md), [live lists](list-traversal-execution.md),
+[asynchronous hosts](asynchronous-host.md) and [compiled C components](c-library-execution.md).
+This particular fixture isolates ownership and pool growth; it is not a limit
+on the supported source forms or an alternative language specification.

@@ -3,7 +3,9 @@
  * @brief Build the retained explicit declaration inventory in deterministic source order.
  *
  * [NAME-04](../../../spec/language/declarations.md#name-04)
- * Reject duplicate base names across storage forms; The complete inventory includes nested selected handlers and traversal bodies; first-receiver inference and iterator bindings remain T031.
+ * Reject duplicate base names across storage forms, including nested selected handlers
+ * and traversal bodies. The separate source-order inference pass consumes this explicit
+ * inventory before classifying receivers and scoped iterator bindings.
  * [TYPE-06](../../../spec/language/declarations.md#type-06) Explicit spelling/type/initializer metadata precedes receiver classification.
  */
 #include <assert.h>

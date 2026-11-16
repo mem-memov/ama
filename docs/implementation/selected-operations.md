@@ -2,9 +2,10 @@
 
 T036 resolves direct result operations under
 [CALL-09](../../spec/language/calls-and-results.md#call-09).
-It supplies semantic identities and ordered action links. Execution/protection
-lowering remains a later IR task; [T037](list-interfaces.md) specializes intrinsic
-list services and ephemeral method results.
+It supplies semantic identities and ordered action links.
+[Execution/protection lowering](direct-result-execution.md) consumes them;
+[list interfaces](list-interfaces.md) specialize intrinsic services and
+ephemeral method results.
 
 ## Two explicit lookup domains
 

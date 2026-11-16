@@ -81,6 +81,6 @@ the existing `codegen/continuations` suite checks repeated yields and loop-body
 positions. Sanitizer flags instrument generated programs as well as their runner.
 
 No active caller connection, acquisition grant or C activation is saved as a
-resume position. This task does not certify pending foreach cursor restoration,
-cross-context references or continuation-copy remapping; those remain their
-explicit later acceptance boundaries.
+resume position. [Foreach restoration/copying](list-traversal-execution.md)
+and [cross-context identity checks](execution-contexts.md) have separate
+acceptance boundaries and do not enlarge the saved transient state.

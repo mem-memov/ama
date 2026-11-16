@@ -1,7 +1,8 @@
 # Typed swap and length execution
 
-T080 completes the six list methods. Foreach remains guarded until its cursor
-tasks. The contracts are [LIST-04](../../spec/language/lists.md#list-04),
+T080 completes the six list methods.
+[Foreach execution](list-traversal-execution.md) composes them with fixed
+lexical cursors and live-boundary correction. The contracts are [LIST-04](../../spec/language/lists.md#list-04),
 [LIST-08](../../spec/language/lists.md#list-08),
 [LIST-10](../../spec/language/lists.md#list-10) and
 [PROTO-03](../../spec/implementation/native-interface.md#proto-03).

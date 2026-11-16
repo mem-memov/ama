@@ -152,3 +152,8 @@ retains expected observation files and the standard-library contract independent
 of that empty history. This documents retained code; language conformance still
 follows the unfinished roadmap. T134 verifies the full baseline, warnings, all extracted interfaces and two-run
 byte reproducibility. T135 remains the final post-implementation regeneration.
+
+The [T116 closure](closure.md) reconciles the expanded current inventory, actual
+component contracts, standalone headers, named tests and rendered reference
+after the feature/tool implementation tasks. The live ready registry remains
+the per-file evidence map; checkpoint counts do not excuse subsequent omissions.

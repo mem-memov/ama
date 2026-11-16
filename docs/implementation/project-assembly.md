@@ -68,7 +68,8 @@ is covered by `make -C tests/unit/codegen/layouts`; enforced entry inlining and
 forbidden Ama-function rejection by `make -C tests/unit/codegen/execution`.
 
 Per-file coverage for the body emitter, assembly harness and included translation
-probe is registered in the documentation coverage inventory. General codegen
-execution guards remain in force. T057 onward supplies additional dispatch and
-binding acceptance. [T061](generated-contexts.md) now connects independent
-generated context storage through the existing runtime context factory.
+probe is registered in the documentation coverage inventory.
+[Dispatch](stackless-execution.md), [bindings](compiled-bindings.md) and
+[structured execution](control-contexts.md) have their own compiled acceptance.
+[Generated contexts](generated-contexts.md) connect independent storage through
+the runtime context factory.

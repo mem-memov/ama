@@ -1,9 +1,5 @@
 # Semantic analysis and resolved plans
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
-
 This describes the semantic subset audited in T001; [TODO](../../TODO.md) tracks adaptation under
 NAME-04, TYPE-01/TYPE-05 and COMP-01/COMP-02 of the
 [specification](../../spec/README.md). The public boundary is
@@ -301,7 +297,8 @@ T030–T037 now provide complete declaration inventories, source-order inference
 exact transfer/constant plans and typed result trees/list services. T038–T040 complete control/continuation validation and semantic composition;
 T041–T044 supply the corresponding IR/storage/lowering boundaries; T045 audits
 complete frontend composition. Foreach-local bindings
-and complete body/header contexts are checked, but traversal execution remains guarded. Parsed ordinary empty
-loops already use one-check behavior from T027; new condition-chain/foreach
-execution remains later work. A declaration-only body is syntactically nonempty;
+and complete body/header contexts are checked independently of execution.
+[Structured plans](typed-plans.md) and [traversal execution](list-traversal-execution.md)
+consume these resolved results. Parsed ordinary empty loops use one-check
+behavior; a declaration-only body is syntactically nonempty;
 no runtime emptiness or emission-size heuristic chooses that repeat edge.

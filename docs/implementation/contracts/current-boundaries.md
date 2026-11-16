@@ -1,4 +1,4 @@
-# Current boundary contracts and migration invariants
+# Current boundary contracts and composition invariants
 
 This T002 contract connects the [component map](../components.md) to the
 [audit](../audit/README.md) and canonical requirements. It records how to
@@ -86,20 +86,21 @@ A local handle is interpreted only inside its owning context. A wrapper that
 selects among contexts carries and checks context identity before dereferencing
 local storage; equal local triples in different contexts remain unrelated.
 Identity history cannot wrap or revive old tokens. The compiled-library host
-boundary later uses [EMBED-04](../../../spec/implementation/c-library.md#embed-04)'s
+boundary uses [EMBED-04](../../../spec/implementation/c-library.md#embed-04)'s
 live identity records before accessing context/instance memory. This is distinct
 from accepting an arbitrary C pointer as a safe handle.
 
 At most one executor owns a context at a time. Admission refusal changes no
 invocation/interface/continuation state; accepted technical failure makes that
 context nonresumable. Independent contexts do not acquire a global current-host
-lock. The admission mechanism must actually synchronize concurrent access when
-threading is introduced, not rely on a racy Boolean. Transfer of executor
+lock. The admission mechanism must actually synchronize concurrent access for
+concurrent execution, not rely on a racy Boolean. Transfer of executor
 ownership requires the quiescent boundary in
 [PAR-02](../../../spec/language/async-and-parallelism.md#par-02).
 
-Core identity/admission tests belong in `tests/unit/runtime/context`; generated
-isolation tests belong in `tests/integration/context/isolation`. Use equal local
+Core identity/admission tests run in `tests/unit/runtime/contexts`; generated
+isolation tests run in `tests/unit/codegen/contexts` and
+`tests/unit/codegen/parallel-contexts`. Use equal local
 numbers, wrong/stale context tokens, failed creation, reentry, yield, disposal
 and identity exhaustion. Parallel acceptance additionally runs real independent
 contexts concurrently. Merely allocating two host structs or rejecting the
@@ -191,9 +192,11 @@ documented mutation/results or refuses before mutation/results. There is no
 retained outcome flag or action enumeration. Length construction uses the exact
 qualified integer bridge, not decimal formatting or payload casts.
 
-Planned independent leaves `tests/unit/runtime/lists/membership`, `cursors` and
-`methods` cover reduced-width exhaustion, duplicates, all q/position relations,
-removed origins, nested/suspended registration, refused preparation and cleanup.
+Independent leaves `tests/unit/runtime/membership`, `tests/unit/runtime/traversal`,
+`tests/unit/runtime/traversal-mutation`, `tests/unit/runtime/traversal-origin`,
+`tests/unit/runtime/list-service` and the insertion/deletion/ordering leaves
+cover reduced-width exhaustion, duplicates, all q/position relations, removed
+origins, nested/suspended registration, refused preparation and cleanup.
 Parent generated-project tests compose mutation, selected-result actions and
 continuation copying. Complexity names n, affected cursors and owned-tree work;
 finite future insertion assumptions are explicit in traversal termination claims.
@@ -222,8 +225,9 @@ native scaffold publication: reusable filesystem primitives do not make their
 different transaction domains interchangeable. T139's publication split retains
 descriptor/path ownership and rollback invariants for its own finite artifact set.
 
-Every planned boundary has independent and real-parent test homes in the
-component map. Before its task completes, record the actual commands, failure
-partitions, correctness/complexity argument and current implementation limits in
-the registry. Generated reference output is evidence of documentation generation,
-not evidence that these new facilities already exist.
+Every boundary has independent and real-parent test homes in the
+[component map](../components.md) and named per-file evidence in
+[ready.json](../documentation/ready.json). Feature contracts record actual commands,
+failure partitions, correctness/complexity arguments and implementation limits.
+Generated reference output establishes documentation extraction and navigation;
+requirement and release conformance use their separate acceptance matrix.

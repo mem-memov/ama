@@ -58,8 +58,9 @@ skipping multiple absent entries takes proportional candidate work, not a
 snapshot allocation.
 
 The source list's original membership order is never copied. Mutation-boundary
-adjustments are connected by [T082](list-traversal-mutation.md); origin/resume and
-continuation integration still keep the executable adapter guarded.
+adjustments are connected by [T082](list-traversal-mutation.md);
+[origin/resume checks](list-traversal-origin.md) and
+[continuation integration](list-traversal-execution.md) complete the executable adapter.
 Whole-list incarnation replacement already fails before installing a new value,
 rather than restarting at another collection or retaining an obsolete pointer.
 

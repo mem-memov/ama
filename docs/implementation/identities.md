@@ -1,9 +1,5 @@
 # Full identities and generated names
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
-
 Boundary: `src/source/identity/`, implementing NAME-01/02. The registry owns original
 encodings, readable source names and generated C names. Declaration spans borrow
 source-manager storage. No source spelling is changed to accommodate C.
@@ -45,8 +41,10 @@ two padding blocks. This is not a cryptographic certification claim.
 C names are `ama_` + category code (`t/c/s/i/l/r/n`) + `_` + 64 lowercase hex digits.
 The verified GCC backend supports their full length. Names are deterministic across
 physical roots, traversal order and host byte order. Runtime numeric type-ID
-allocation and generated declarations remain later compiler tasks; this registry
-does not truncate a digest into a handle or replace generation/type checks.
+allocation and [generated declarations](project-emission.md) are separate
+consumers; this registry does not truncate a digest into a handle or replace
+generation/type checks. [Context admission](execution-contexts.md) checks the
+origin of those runtime identities before local storage is accessed.
 
 Hash injectivity is neither assumed nor needed. On an equal digest, insertion
 compares the full encoding. Equal encodings return the existing record; unequal

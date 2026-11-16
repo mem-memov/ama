@@ -1,9 +1,5 @@
 # Incremental build contract
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
-
 This implements the source discovery and dependency-tracking task in
 [TODO.md](../../TODO.md). It does not change the technical specification or
 introduce a compiler/runtime feature. The shared rules serve the project and

@@ -1,9 +1,5 @@
 # Constants and instance startup
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
-
 The generated project supplies immutable type, field, source and constant tables.
 `runtime/program/` interprets construction data only; it does not dispatch Ama
 bodies. `ama_program_start` attaches declaration resolvers, initializes shared

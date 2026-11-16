@@ -9,7 +9,9 @@ runtime action constants. The contracts are
 [CALL-08](../../spec/language/calls-and-results.md#call-08) and
 [CALL-09](../../spec/language/calls-and-results.md#call-09).
 `remove`/`clear` use [typed deletion](list-deletion.md), and
-[swap/length](list-ordering.md) complete the six methods. Foreach remains guarded.
+[swap/length](list-ordering.md) complete the six methods.
+[Live foreach execution](list-traversal-execution.md) composes these mutations
+with exact active/suspended cursor corrections.
 
 ## Useful source forms
 

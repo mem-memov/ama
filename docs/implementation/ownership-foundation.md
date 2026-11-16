@@ -9,8 +9,10 @@ T054 closes the pre-dispatch ownership composition checkpoint under
 [ARCH-05](../../spec/implementation/compiler.md#arch-05),
 [ARCH-06](../../spec/implementation/compiler.md#arch-06) and
 [TEST-08](../../spec/implementation/tools-and-conformance.md#test-08).
-It verifies the retained services together before relying on them for the next
-current-spec execution slice; it does not claim pending body/loop/list adapters.
+It verifies these ownership services independently.
+[Generated execution](project-emission.md), [structured control](control-contexts.md)
+and [live lists](list-traversal-execution.md) provide separate composition
+evidence without changing the ownership model's domain.
 
 ## Independent model domain
 

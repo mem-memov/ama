@@ -3,10 +3,10 @@
 T006 supplies an internal runtime foundation under
 [RT-01](../../spec/implementation/runtime.md#rt-01),
 [PAR-01](../../spec/language/async-and-parallelism.md#par-01) and
-[REF-02](../../spec/language/values-and-references.md#ref-02). It does not connect
-the retained old-source generated host yet: T013 defines the host lifecycle
-composition and T061 connects the current planned/generated code. The checked
-compiled-component export/transport ABI remains T123 onward.
+[REF-02](../../spec/language/values-and-references.md#ref-02).
+[Host lifecycle](host-lifecycle.md) and [generated contexts](generated-contexts.md)
+compose it with actual dispatch. The [compiled-component ABI](c-library-execution.md)
+adds its separate checked export/transport boundary.
 
 ## Domain and explicit owners
 
@@ -168,4 +168,5 @@ produced byte-identical output across two complete Doxygen generations.
 T013 adds the [checked host execution lifecycle](host-lifecycle.md), separating
 admission from accepted entry/resume outcomes and clearing resource descriptors
 when failed execution retains only a diagnostic record. [T061](generated-contexts.md)
-connects generated context wiring; the public compiled-component ABI remains T123 onward.
+connects generated context wiring; [compiled-component execution](c-library-execution.md)
+adds authenticated external identities and independently owned result snapshots.

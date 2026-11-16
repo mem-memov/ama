@@ -83,6 +83,6 @@ contracts. These are test construction hooks, not production language dispatch.
 
 The per-file coverage inventory names each byte/receiver case for the included
 support files, leaf/parent Makefiles and changed shared fixture. Existing runtime
-preparation/replacement tests supply failure-prefix and authority proofs. Planned
-list-service result receivers connect their concrete storage in T076; this
-checkpoint does not claim that later service integration.
+preparation/replacement tests supply failure-prefix and authority proofs.
+[List values](list-values.md) and [service result frames](list-service-frames.md)
+connect list receivers through their concrete storage and acquisition boundaries.

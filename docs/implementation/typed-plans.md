@@ -1,9 +1,5 @@
 # Typed storage, lifecycle and control-flow plans
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
-
 The public boundary is [plan.h](../../src/planning/plan.h), implementing COMP-02,
 GEN-02/GEN-03, STATE-01 through STATE-03, CALL-08 and LIFE-01 through LIFE-05.
 It consumes a successful [semantic program](semantic-analysis.md), including
@@ -158,11 +154,13 @@ semantic/project lifetime. Call entry targets are patched only after all entries
 exist, so benign call cycles do not recurse during compilation. Graph/AST work
 uses finite explicit records; source nesting does not consume recursive C frames.
 
-Current plan tests prove the retained node families and order. They do not certify
-runtime support for current context/result/foreach/loop semantics: their execution
-adapters remain later tasks. T044 now supplies complete structured control IR. Parsed-empty ordinary loops already leave after one condition conversion;
-header and traversal IR now uses fixed restart labels, exact selected targets and
-lexical cursor/cell frames. C generation retains explicit execution-capability guards.
+Plan tests prove node families, order and complete structured control metadata.
+Parsed-empty ordinary loops leave after one condition conversion; header and
+traversal IR uses fixed restart labels, exact selected targets and lexical
+cursor/cell frames. [Structured validation](structured-lowering.md) rejects
+missing or mismatched control/frame metadata before emission.
+[Generated execution](project-emission.md) and [live traversal](list-traversal-execution.md)
+provide separate real runtime consumers of those checked plans.
 
 ## T041: publication checks for the typed IR
 
@@ -214,9 +212,9 @@ shared endpoints, and verify rejection without new allocations. Existing plannin
 cases exercise valid instruction families and every construction allocation
 failure. Runtime capability guards belong to C generation rather than static
 planning. T063 accepts self sources, T066 accepts ordinary selected results and
-T068 accepts [ordinary condition headers](condition-loop-execution.md). Foreach
-and the remaining intrinsic list methods stay guarded; static checking preserves
-their full typed IR without silently acknowledging unavailable execution.
+T068 accepts [ordinary condition headers](condition-loop-execution.md).
+[Intrinsic methods](list-service-frames.md) and [foreach](list-traversal-execution.md)
+consume their complete typed IR through operation-specific service/cursor adapters.
 
 T042 adds independently validated [context, instance and fixed lexical storage](storage-planning.md).
 The full-plan publication gate also checks this complete storage description.

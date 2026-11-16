@@ -91,10 +91,12 @@ checking reads them but never invokes the C compiler. Existing fail-every-alloca
 frontend and native authoring cases cover the new owners/configuration handoffs.
 Per-file cases and standalone header checks are in the documentation registry.
 
-Generic generated/configuration nodes allow later stages to declare their real
-inputs and edges; the generated-node graph tests verify their propagation now.
-C preprocessor include discovery, exact compiler/link options and final artifact
-reuse must be wired by their later emission/driver/product tasks (T055, T068,
-T118). No C-include guessing or second draft parser is introduced. Current builds
-continue normal discovery, checking and compilation; this snapshot is not a
-filesystem-change shortcut. Inactive-to-active classification remains T023/T029.
+Generic generated/configuration nodes allow consumers to declare actual
+inputs and edges; generated-node graph tests verify their propagation.
+[Native compilation](project-emission.md) and [library packaging](c-library-packaging.md)
+track their own include/toolchain/artifact boundaries; T118 performs the separate
+deterministic/incremental product audit. No C-include guessing or second draft
+parser is introduced. Builds perform normal discovery, checking and compilation;
+this snapshot is not a filesystem-change shortcut.
+[Source classification](declaration-parsing.md) and [dependency closure](project-dependencies.md)
+control inactive-to-active transitions.

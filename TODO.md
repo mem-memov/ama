@@ -2707,11 +2707,24 @@ Contracts: [tools](spec/implementation/tools-and-conformance.md),
 Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acceptance-matrix),
 [exact algorithms](spec/implementation/compiler.md#exact-algorithms-and-formal-justification).
 
-- [ ] **T116 — Close every code-file documentation and test gap.** Needs: T005,
+- [x] **T116 — Close every code-file documentation and test gap.** Needs: T005,
   T106, T115, T131. Complete the inventory for compiler/runtime/library/tools,
   exported components, native embedding adapters and headers;
   map every code file to meaningful behavioral or compile tests. Generate complete
   Doxygen output and check every substantial component's contract/proof/evidence.
+  Completed: reconciled all 2324 maintained inputs with 1235 distinct named C
+  cases, 238 executable command registrations, 291 standalone headers and 138
+  actual contract destinations. Reviewed source/IR/ownership/list/context/native/
+  library/export/async/tool/build contracts and real independent/parent consumers;
+  corrected stale claims that completed features and test homes were still planned.
+  Updated six source/header purpose comments without changing C operations or
+  canonical specifications. Historical audits retain their original scope.
+  Evidence: strict compiler build, independent documentation positive/negative/
+  rendering/coverage tests, complete zero-debt inventory and actual test-path/prose
+  link checks. Complete Doxygen extraction documents every maintained code page
+  and interface; two generations are byte-identical. Requirement/release acceptance
+  remains the separate T117–T122 gate.
+  See `docs/implementation/documentation/closure.md`.
 - [ ] **T117 — Close all requirement and composition gaps.** Needs: T116.
   Update T001's matrix for all 200 requirements and every acceptance row, with
   exact commands and current evidence. Add missing independent leaf, parent and

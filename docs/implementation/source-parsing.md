@@ -74,8 +74,8 @@ access leaf independently exhausts all short `a&[]` strings against its grammar
 model and checks Unicode/nested original spans.
 
 [T032 static transfer typing](typed-transfers.md) now gives self its lexical
-module identity without inventing a named access. Execution remains guarded in
-C generation until final construction and clone identities are supported. The
-`unsupported-feature` diagnostic retains the original one-byte site. T044 accepts
-complete typed plans for initializer, assignment and input self sources;
-`make -C tests/unit/codegen/assembly` verifies rejection before C artifact staging.
+module identity without inventing a named access.
+[Construction](ordered-construction.md), [staged replacement](staged-replacement.md)
+and [entry preparation](entry-preparation.md) implement final-identity formation
+and clone remapping. T044 supplies complete initializer/assignment/input plans;
+current generated-project tests execute those checked self sources.

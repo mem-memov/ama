@@ -1,9 +1,5 @@
 # Executable native ABI harness
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
-
 This closes the six-binding/void-entry harness task in [TODO.md](../../TODO.md).
 The production boundary is the [native ABI](native-abi.md), status headers and
 read-only `AmaNativeServices` snapshot. The executable companion is the handwritten
@@ -43,5 +39,7 @@ is not a failed native entry. It retains no Ama identity or borrowed view.
 Run `make -C tests/unit/native/abi/hooks`. The five cases verify helper types,
 independent data, explicit byte lengths, invalid/technical conversion distinction,
 SIZE_MAX/overflow boundaries, and real typed native entry composition. Binding
-input is cloned explicitly in the harness to model the contract; generated
-interface binding, acquisition and frontend capability checking remain later work.
+input is cloned explicitly in this independent harness.
+[Entry preparation](entry-preparation.md), [preflight](acquisition-preflight.md)
+and [semantic capability checking](semantic-analysis.md) supply the real
+compiler/runtime consumers and their separate composition evidence.

@@ -1,9 +1,5 @@
 # Call bindings, typed literals and positional holes
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
-
 Boundary: `src/parser/calls/`, especially `bindings/`, records ordinary call modes,
 complete named labels and positional placeholders. [Direct result trees](result-parsing.md) extend these bindings in T026.
 No callee interface or declared-name lookup is used during parsing.

@@ -4,7 +4,10 @@
  *
  * [GEN-02](../../../spec/implementation/compiler.md#gen-02)
  * [FLOW-02](../../../spec/language/control-flow.md#flow-02) exits after one
- * successful check for parsed-empty loops. Full header/traversal lowering remains later work.
+ * successful check for parsed-empty loops. Delegate complete headers to lower_control
+ * and [FLOW-05](../../../spec/language/lists.md#flow-05) traversal frames to lower_foreach;
+ * a saved position denotes the resolved successor, including the recorded repeat
+ * check when suspension is the last statement in a loop body.
  */
 #include "internal.h"
 

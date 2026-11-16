@@ -91,6 +91,7 @@ The ready registry maps all component source/header files to these named cases,
 with standalone header compilation. Strict and ASan/UBSan runs cover the same real
 component; the whole strict suite checks composition with runtime consumers.
 T076 connects this representation through [list value integration](list-values.md).
-List service authority, method result frames and live cursor corrections remain
-their own roadmap tasks. The exact acquisition-frame address belongs to those higher layers; membership
+[List service authority](list-service-frames.md), method result frames and
+[live cursor corrections](list-traversal-mutation.md) are separate higher layers.
+The exact acquisition-frame address belongs to those layers; membership
 edits themselves do not acquire or release a list.

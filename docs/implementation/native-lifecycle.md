@@ -1,9 +1,5 @@
 # Native lifecycle bookkeeping and failure model
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
-
 This records the tested lifecycle component under LIFE-01 through LIFE-03 and
 PROTO-08 through PROTO-10. `src/runtime/lifecycle/` implements the reusable ledger
 and primary-error combination; the independently runnable model composes it with
@@ -128,8 +124,10 @@ cannot start duplicate cleanup. Every destructor-failure position still releases
 the whole tree in parent/native then reverse-child order; a later destroy sees
 a stale reference and invokes no hook. Existing allocation-failure and nested-list
 cases exercise all measured allocation ordinals and assert zero counted resources.
-These are internal component/composition tests; current source integration and
-public C embedding remain later tasks.
+These internal component/composition tests are complemented by
+[generated execution](project-emission.md) and
+[public C embedding](c-library-execution.md); their adapter and transport
+obligations remain separate from this native lifecycle ledger.
 
 T011 acceptance passes the full strict `-DNDEBUG -Werror` tree, focused model and
 real-object ASan/UBSan leaves (leak detection disabled), complete documentation

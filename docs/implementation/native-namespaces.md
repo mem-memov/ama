@@ -1,9 +1,5 @@
 # Module-qualified native C symbols
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
-
 Boundary: `src/native/namespace/` and the native-namespace category in
 `src/source/identity/`. Implements NAME-05's naming facility and PROTO-01/11's
 module-local binding interpretation. It emits naming contexts and qualified
@@ -15,8 +11,9 @@ Register a complete logical module identity in an `IdentityRegistry` using
 `IDENTITY_NATIVE_NAMESPACE`, with no member components. Registration uses version-two complete encodings with explicit root kind,
 category byte 7, SHA-256 and full-key collision rejection. T017 now sends the
 frozen project/standard multiword Unicode vectors through the current producer
-and compares their exact bytes and full prefixes. This does not certify parser
-token integration, which remains T022.
+and compares their exact bytes and full prefixes.
+[Lexical layout](layout.md) and [module paths](module-paths.md) supply
+separate parser/catalog integration evidence.
 The registry owns the resulting `ama_n_<64 hexadecimal digits>` prefix.
 Identity source spans and local-function spans borrow their source managers.
 
@@ -102,7 +99,8 @@ full-key comparison, changes its output only on a match, and returns TypeMismatc
 for an absent provider. Hashes, pointer addresses, translated display names and
 filesystem discovery order do not determine numeric IDs. IDs are private to one
 compiled component; this is not a stable cross-component/public ABI numbering
-promise. T123 and later tasks own that checked external boundary.
+promise. The [compiled-library boundary](c-library-exports.md) supplies its own
+checked component identity, export model and ABI compatibility key.
 
 After establishing `AMA_NATIVE`, `native_namespace_status` emits a planned
 nonzero namespace and `AMA_NATIVE_ERROR(reason, message, length)`. The native

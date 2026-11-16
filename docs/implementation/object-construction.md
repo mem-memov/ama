@@ -7,7 +7,8 @@ before the native payload; [LIFE-02](../../spec/implementation/native-interface.
 selects one constructor; [LIFE-03](../../spec/implementation/native-interface.md#life-03)
 requires cleanup of initialized resources. [RT-02](../../spec/implementation/runtime.md#rt-02)
 requires stable instance storage. The broader [ownership contract](instance-ownership.md)
-remains applicable. This extraction does not implement T050's remaining semantics.
+remains applicable. [Staged replacement](staged-replacement.md) composes this
+construction boundary with final-identity reuse and destructive commit.
 
 ## Boundary and ownership
 
@@ -81,5 +82,8 @@ exercise every measured allocation prefix, each native constructor failure,
 selected-constructor counts, nested/list cleanup and secondary cleanup failure.
 
 Commands and composed checks are recorded with T141 in [TODO](../../TODO.md).
-These tests establish the retained creation boundary; passing old-subset generated
-programs does not certify all current language features.
+These tests establish this independent creation boundary.
+[Generated-context](generated-contexts.md), [list traversal](list-traversal-execution.md)
+and [compiled-library](c-library-execution.md) consumers provide separate real
+handoffs; per-feature conformance remains the requirement matrix, not an
+inference from a creation test alone.

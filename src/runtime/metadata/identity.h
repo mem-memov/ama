@@ -3,7 +3,9 @@
  * @brief Declare exact context-local nominal slot and generation identities.
  *
  * [REF-02](../../../spec/language/values-and-references.md#ref-02)
- * Handles borrow no C address. The runtime/context gateway checks host origin; public compiled-component tokens remain T123 onward.
+ * Handles borrow no C address. The runtime/context gateway checks host origin;
+ * public compiled-component transports authenticate their separate identities
+ * before resolving these context-local triples.
  */
 #ifndef AMA_RUNTIME_METADATA_IDENTITY_H
 #define AMA_RUNTIME_METADATA_IDENTITY_H

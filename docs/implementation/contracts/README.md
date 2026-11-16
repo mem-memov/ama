@@ -17,10 +17,12 @@ identity, binding, ownership, context, control and membership invariants to
 preserve or implement. It also separates native publication from relocation,
 and ordinary native views from compiled-component transports.
 
-Entries below retain useful existing arguments and executable test locations;
-they do not certify current grammar, typed list services, context or embedding
-conformance. T136 removed the superseded dispatcher; T137 corrected derived
-descriptions without changing the canonical requirements.
+Entries below route actual component arguments and executable tests. Each
+contract establishes its declared domain; complete release conformance is the
+separate requirement/acceptance matrix. The
+[current component map](../components.md) and T116 documentation closure
+reconcile current grammar, typed lists, context and embedding consumers.
+T136 removed the superseded dispatcher; canonical requirements remain unchanged.
 When adapting a component, update its old description rather than keeping
 competing API contracts. File/interface reference pages come from Doxygen through
 `make docs`; this registry records mathematical arguments and acceptance evidence.
@@ -144,11 +146,11 @@ must still supply their own arguments and executable evidence when implemented.
 | Entry disappearance and Ama-shaped label transfers | [Toolchain contract](../native-toolchain.md); exact symbol-family validation plus required compiler enforcement | [Symbol tests](../../../tests/unit/native/toolchain/symbols/main.c), [GCC probes](../../../tests/integration/native/toolchain/main.c) |
 | Native representations, status and typed hook composition | [ABI](../native-abi.md), [status](../native-status.md), [hook harness](../native-hooks.md) | [ABI suites](../../../tests/unit/native/abi/Makefile) |
 
-Pool/execution foundations have the component evidence linked above. Their new
-context, result-tree, membership/foreach and external-boundary consumers remain
-open in TODO. Each future component must add its operation-level argument and
-actual acceptance commands before being marked complete; neither this registry
-nor a planned test-home path certifies implementation of the whole language.
+Pool/execution foundations and their current context, result-tree,
+membership/foreach and external consumers have separate contracts and actual
+test homes in the [component map](../components.md). Operation-level arguments,
+measured domains and executable evidence remain required for each new boundary;
+a registry entry alone does not certify whole-language conformance.
 
 [Parser composition](../parser-composition.md) records the T028 Ama/ABI source boundary, canonical examples and exhaustive failure checks.
 
@@ -217,3 +219,15 @@ independent final graph validation, documented settings and explicit invalidatio
 
 [Relocation application](../relocation-transaction.md) records exclusive complete-scope
 revalidation, filesystem-local originals, inverse publication and retained commit receipts.
+
+
+[Relocation recovery](../relocation-recovery.md) records complete persisted plan
+validation, preparation intent, durable decision/cleanup and repeatable receipts.
+
+[Source commands](../source-tool-commands.md), [relocation commands](../relocation-commands.md)
+and the [debugger client](../debugger-client.md) expose those checked components
+without a second parser, implicit execution or guessed outcome.
+
+[Combined tool workflows](../tool-workflows.md) accept actual document transactions,
+logical/physical relocations, historical receipt replay, native execution and fresh
+verified rebuilds over one complete owned workspace.

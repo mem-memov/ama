@@ -135,7 +135,8 @@ now also covers default/literal final self identities.
 The finite test is exhaustive for its stated scalar-tree reference domain, not
 for arbitrary ownership shapes. The injective-map/projection argument above
 covers any valid finite scalar-owned tree; existing nested-tree tests supplement
-it. List membership and forest integration remain T076. Complexity and workspace
+it. [List/forest integration](list-values.md) extends the same clone context
+across complete owned collections and membership identities. Complexity and workspace
 remain the exact linear-search bounds stated above. Strict runtime composition,
 address/undefined-behavior sanitizer checks, standalone headers and reproducible
 Doxygen generation accompany the [coverage registry](documentation/ready.json).

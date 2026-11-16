@@ -83,8 +83,9 @@ identity and unbegun reservation cases check the source boundary independently.
 Counted resource ownership and address/undefined-behavior sanitizers verify cleanup.
 
 [Exact clone maps](clone-preparation.md) and [staged replacement](staged-replacement.md)
-now verify final replacement destinations as well as fresh construction. T053 and later emission tasks connect concrete planned
-layouts to generated execution. [T063](entry-preparation.md) connects standalone self to generated execution,
+verify final replacement destinations as well as fresh construction.
+[Storage plans](storage-planning.md) and [project emission](project-emission.md)
+connect concrete layouts to generated execution. [T063](entry-preparation.md) connects standalone self to generated execution,
 including caller/default-owner distinction and stored-self clone remapping. The
 [coverage registry](documentation/ready.json) maps each affected source/header and
 test/build input to named cases and standalone header commands.

@@ -4,7 +4,8 @@
  *
  * [RT-01](../../../../spec/implementation/runtime.md#rt-01) owns constants per context.
  * [EMBED-02](../../../../spec/implementation/c-library.md#embed-02) requires factory rollback
- * without a partially published handle; full generated export adapters are later work.
+ * without a partially published handle. This internal factory publishes a context
+ * identity; checked public export transports retain their separate library boundary.
  * [DEBUG-02](../../../../spec/implementation/diagnostics.md#debug-02) reports
  * accepted creation failures before destroying their diagnostic context, including
  * allocation-free failure before the context record itself exists.

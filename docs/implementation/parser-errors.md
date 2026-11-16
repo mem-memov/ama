@@ -1,9 +1,5 @@
 # Grammar expectations and frontend composition
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
-
 Boundary: `src/parser/error/`, integrated through sections, AST parsing and ABI
 records. Describes COMP-01/04/05 syntax diagnostics for the tested subset without binding
 or generated C. `ParseError` combines a stable ParserExpectation key and the

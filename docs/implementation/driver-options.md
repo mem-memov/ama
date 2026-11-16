@@ -105,9 +105,10 @@ The root `make -j4 test` enforces this dependency before entering the test tree.
 
 The current ready/debt registry maps each extracted file to named tests and
 independently compiles every new/public header. Doxygen verifies each source
-page's canonical rule links. Existing source/grammar/context gaps remain the
-feature tasks identified in the audit; this refactoring certifies no new language
-syntax or runtime service.
+page's canonical rule links. [Source commands](source-tool-commands.md),
+[relocation](relocation-commands.md) and [compiled libraries](c-library-execution.md)
+use these same checked options through their own feature contracts. The original
+refactoring evidence alone does not certify those later consumers.
 
 T138 acceptance passed the independent strict leaf, the real driver parent,
 check/native/emit CLI leaves, standalone header checks and the complete root

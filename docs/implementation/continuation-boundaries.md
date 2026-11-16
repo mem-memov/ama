@@ -5,8 +5,9 @@ T039 checks [CONT-03](../../spec/language/continuations.md#cont-03),
 [CONT-05](../../spec/language/continuations.md#cont-05) and
 [COPY-06](../../spec/language/values-and-references.md#copy-06).
 Runtime availability, actual indexed identities and full ownership-tree checks
-remain mandatory. New control-frame/continuation execution is still governed by
-the staged guards and later IR/runtime tasks.
+remain mandatory. [Saved statement positions](saved-statement-positions.md),
+[continuation cleanup](continuation-cleanup.md) and
+[traversal copying](list-traversal-execution.md) supply real control-frame consumers.
 
 ## Three operations, three explicit meanings
 

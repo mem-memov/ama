@@ -57,8 +57,9 @@ A different-depth comment remains for the enclosing grammar or an error. Thus
 putting ` |1` after the final parent comment cannot reopen the first declaration's
 initializer block. A deeper comment before the type line is not an allowed type
 gap, and a comment cannot invent a skipped initializer level. Body frames and
-binding regions now use this explicit layout boundary too; expanded result trees,
-condition chains and foreach remain T026/T027.
+binding regions use this explicit layout boundary too.
+[Result trees](result-parsing.md) and [condition/foreach bodies](control-parsing.md)
+compose it through their own structural frames.
 
 The AST owner publishes `valid` only after required stages succeed. Partial nodes
 and physical lines remain owned on failure, and destruction releases them before
@@ -96,5 +97,6 @@ suffixes and after `%`. A temporary syntax migration used successful AST source
 positions to insert those separators, preserving literal/comment bytes; explicit
 fragment fixtures and negative-prefix cases were reviewed separately. Real
 compiled execution tests retain their prior observable results. Detailed new
-assignment/inference sources and call/result/control grammar remain T024–T028;
-this step does not claim those later forms are implemented.
+[assignment/inference sources](source-parsing.md), [call/result trees](result-parsing.md)
+and [control grammar](control-parsing.md) have their own structural composition
+evidence rather than being inferred from this declaration-only test.

@@ -1,9 +1,5 @@
 # Source excerpts and C line mappings
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
-
 Boundary: `src/diagnostics/render/` and `src/source/mapping/directive.h`.
 Implements COMP-04/05 and NAME-03 using the independent structured record and
 immutable source components. No generated-C diagnostic needs reparsing.
@@ -66,9 +62,11 @@ Evidence:
 
 Source/rendering tests isolate diagnostic behavior. Current CLI checking and
 [project emission](project-emission.md) compose it with the parser and dependency
-closure. The [audit](audit/README.md) distinguishes old-subset acceptance from
-remaining current grammar/draft-validation work. The specification was not
-changed to fit implementation boundaries.
+closure. [Editor commands](source-tool-commands.md),
+[execution diagnostics](stackless-execution.md) and the
+[debugger client](debugger-client.md) supply distinct current consumers. The
+initial [audit](audit/README.md) remains historical evidence; current per-file
+contracts and named tests are in [ready.json](documentation/ready.json).
 
 ## T020 target round trips and allocation-denied reporting
 

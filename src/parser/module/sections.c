@@ -3,7 +3,8 @@
  * @brief Recognize genuine activation markers and monotonically ordered section intervals.
  *
  * [SYN-03](../../../spec/language/source-and-names.md#syn-03)
- * Comments/literals do not activate modules; global byte checks precede activation; complete section/token integration remains T023.
+ * Comments/literals do not activate modules; global byte checks precede activation.
+ * The module parser consumes these exact intervals when assembling section tokens.
  */
 #include "internal.h"
 

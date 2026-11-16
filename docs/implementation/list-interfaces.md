@@ -4,8 +4,10 @@ T037 resolves the fixed service model of
 [LIST-04](../../spec/language/lists.md#list-04),
 [LIST-08](../../spec/language/lists.md#list-08) and
 [LIST-09](../../spec/language/lists.md#list-09).
-Execution and service-frame lowering remain later IR/runtime tasks. The compiler
-continues to reject execution before publishing incomplete storage plans.
+[Typed list execution](list-service-frames.md) and
+[live traversal](list-traversal-execution.md) consume these same semantic
+descriptors. Planning validates complete resolved operations before C emission;
+the semantic component never executes a service to discover its interface.
 
 ## One interface description for both semantic stages
 
@@ -130,6 +132,7 @@ resume and retired dispatcher/read forms. Caller variables can reuse method name
 Every semantic allocation in a complete list-service project is independently
 failed and counted ownership must return to zero. `make -C tests/unit/compiler/check`
 proves successful static profile/bridge-obligation analysis without inspecting C,
-and now complete T044 service/method IR. C generation retains the explicit
-execution-capability guard until list adapters are implemented. Full suites and
+and complete T044 service/method IR. [Method execution](list-service-frames.md)
+and [traversal execution](list-traversal-execution.md) supply the generated
+consumers of those descriptors. Full suites and
 sanitizer checks cover inference, ordinary bindings and structured plan composition.

@@ -1,9 +1,5 @@
 # Module activation and sections
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
-
 Boundary: `src/parser/module/sections.*`, retaining section/activation structure
 for SYN-03/04/05; shared lexical classification and declaration-region integration are completed in T023.
 Section views borrow the immutable layout. Recognition allocates nothing and

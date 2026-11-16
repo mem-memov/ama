@@ -3,8 +3,9 @@
 T150 documents retained implementation boundaries. Doxygen generates the
 file/function reference through `make docs`; this document supplies the shared
 ownership and correctness argument. Canonical requirements remain in
-[spec/](../../spec/README.md). The [audit](audit/README.md) and
-[TODO](../../TODO.md) identify unsupported source forms and future boundaries.
+[spec/](../../spec/README.md). The [initial audit](audit/README.md) records the
+starting state; current component evidence is routed through the
+[contract registry](contracts/README.md), with release checks in [TODO](../../TODO.md).
 
 ## Driver and frontend lifetime
 
@@ -104,8 +105,10 @@ are still shared. It rejects busy reentry, starts constants/root once, distingui
 entry restart from resume, and reports terminal failure before disposing active
 trace state. Yield returns an explicit resumable outcome. The standalone launcher
 chooses to diagnose unhandled root yield, dispose and fail. This internal host API
-is not the checked C-library ABI: independent contexts, boundary authentication,
-compiled component exports and parallel admission remain scheduled work.
+is distinct from the [checked C-library ABI](c-library-execution.md).
+[Independent contexts](generated-contexts.md), authenticated transports and
+[parallel admission](parallel-context-execution.md) have their own consumer
+contracts and actual compiled acceptance.
 
 ## Evidence
 

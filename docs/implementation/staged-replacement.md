@@ -9,8 +9,9 @@ T051 composes replacement with final self-reference construction under
 [TEST-07](../../spec/implementation/tools-and-conformance.md#test-07).
 The [exact clone map](clone-preparation.md) and
 [whole-tree preflight](acquisition-preflight.md) precede destructive replacement.
-This task closes default/literal reconstruction's final-identity handoff; it does
-not publish generated execution adapters that are still pending later tasks.
+This component supplies default/literal reconstruction's final-identity handoff.
+[Entry preparation](entry-preparation.md) and [generated execution](project-emission.md)
+consume it without exposing scratch storage as a new Ama identity.
 
 ## Storage identity and language identity
 
@@ -105,5 +106,6 @@ capability/overlap/busy checks and every preparation allocation/native failure.
 The semantic `types` leaf supplies the static self-copy rejection cases. Strict
 whole-project tests, address/undefined-behavior sanitizers, standalone header checks
 and reproducible Doxygen generation accompany the
-[per-file coverage registry](documentation/ready.json). List membership integration
-and planned-layout/generated adapter work remain their own later tasks.
+[per-file coverage registry](documentation/ready.json). [List traversal](list-traversal-execution.md) and
+[typed storage](storage-planning.md) retain their separate membership/control
+contracts when composing this replacement boundary.

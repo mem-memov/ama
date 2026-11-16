@@ -1,9 +1,5 @@
 # Source AST and structural parser
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
-
 Boundary: `src/ast/` and `src/parser/{access,declarations,body,calls,module}/`.
 Retains structural machinery for COMP-01/02, TYPE-01/02, source/access syntax,
 sections and call/control syntax; current forms still require T022–T028. Full type, declaration-order, capability and ownership

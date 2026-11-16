@@ -1,9 +1,5 @@
 # Native ABI implementation contract
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
-
 This records tested native engineering representations; [TODO.md](../../TODO.md) tracks current conformance,
 under CABI-01 through CABI-05, PROTO-01 through PROTO-11, LIFE-01 through LIFE-05,
 STACK-01 through STACK-04 and ERROR-03 through ERROR-06. It does not change
@@ -69,8 +65,10 @@ These readable names illustrate signatures, not reserved library identifiers.
 The `.abi` binding selects the actual helper; generated type/adapter identities
 follow full qualified module hashes. The `.abi` parser preserves module-local
 identifiers; the [namespace emitter](native-namespaces.md) qualifies typed uses.
-The full project C generator remains later work. C harnesses check typed uses,
-not inferred capabilities or arbitrary native correctness.
+The [project C generator](project-emission.md) emits these exact typed uses.
+Independent C harnesses check the ABI contract; generated-project and
+[compiled-library](c-library-execution.md) tests separately check real consumers.
+Neither infers capabilities from helper names or certifies arbitrary native C.
 
 ## Exact native entry shape
 
@@ -107,8 +105,9 @@ metadata. Every view obeys the runtime acquisition contract.
 refusal status; it has no dispatcher, instance pointers, return links or mutable
 runtime metadata. `status` is a separate technical output initialized to success
 before entry. The entry assigns a status on every return; application failures
-remain ordinary fields of `R`. The later metadata task supplies concrete service
-and runtime bookkeeping declarations.
+remain ordinary fields of `R`. [Service metadata](runtime-metadata.md)
+and [native protocol contracts](native-protocols.md) define the concrete
+bookkeeping and synchronous borrowed services.
 
 ## Scope, laws and evidence
 
@@ -132,8 +131,9 @@ The library-code helper merely combines an already assigned nonzero 16-bit
 provider/reason pair. Its arithmetic injectivity does not implement compiler-side
 provider registration. T007 adds [checked transport and refusal/index/report boundaries](native-status.md).
 [T009 native protocol completion](native-protocols.md) composes resource credits,
-checked callbacks and the typed host-size fixture; host lifecycle composition
-remains T013. A C struct alone does not establish those consumer contracts.
+checked callbacks and the typed host-size fixture;
+[host lifecycle](host-lifecycle.md) supplies admission/execution composition.
+A C struct alone does not establish those consumer contracts.
 
 T012’s [bounded native views](native-borrows.md) add exact receiver authority,
 nominal cell checks and one explicit scope covering generated interface binding

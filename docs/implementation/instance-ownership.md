@@ -1,9 +1,5 @@
 # Stable instances and ownership operations
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
-
 ## Pool identity algebra
 
 A per-executable-type pool issues `(type, slot, generation)` handles. Generation
@@ -40,8 +36,9 @@ The [pool API](../../src/runtime/pool/pool.h) implements the storage boundary of
 [RT-02](../../spec/implementation/runtime.md#rt-02) and
 [RT-12](../../spec/implementation/runtime.md#rt-12). T046 verifies its existing
 implementation with live instances, rather than substituting an additional pool
-or execution-state copy. Later generation/reclamation work remains T047 and
-construction-expression integration remains T049.
+or execution-state copy. Generation/reclamation invariants are tested below,
+and [construction expressions](ordered-construction.md) preserve the reserved
+final identity through initialization.
 
 Within a materialized block, `cell = block + offset * stride` is fixed for its
 lifetime. Only the directory array can relocate on growth. Therefore induction
@@ -278,11 +275,12 @@ failed nested replacement disposal with the next allocation forced to fail.
 
 The pool/ownership components are independently tested and connected to the
 [project assembly](project-emission.md), which supplies concrete layouts,
-descriptors, recipes and explicit roots for the supported subset. Native authoring
-ABI views are operation-scoped typed adapters, not aliases of the internal generic
-schema. Current context ownership, inferred scopes, service frames and list
-memberships/cursors remain open TODO tasks. The retained [list storage
-foundation](lists.md) does not establish complete list-service support.
+descriptors, recipes and explicit roots. Native authoring ABI views are
+operation-scoped typed adapters, not aliases of the internal generic schema.
+[Context ownership](execution-contexts.md), [source-order inference](source-order-inference.md),
+[result calls](direct-result-execution.md) and [live traversal](list-traversal-execution.md)
+compose these primitives through their own checked boundaries. Ordered list
+storage and typed list methods remain distinct interfaces with distinct tests.
 
 Extended alignment is tested with a 128-byte-aligned native representation,
 self-address checks, repeated replacement and reclamation in the

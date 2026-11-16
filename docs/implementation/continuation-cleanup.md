@@ -86,6 +86,7 @@ have complete dependencies. The full strict suite covers that shared change.
 Target sanitizer flags instrument the generated runtime and native hooks.
 
 Independent runtime protocol/clone suites retain their allocation-failure and
-raw-success completion-credit proofs. Membership-aware list/cursor copies remain
-their later T084 boundary; no native stack, active caller link or implicit retry
+raw-success completion-credit proofs.
+[Membership-aware list/cursor copies](list-traversal-execution.md) preserve their
+separate T084 boundary; no native stack, active caller link or implicit retry
 mechanism is added.

@@ -73,8 +73,9 @@ to the exit for a parsed-empty loop. It still executes the checked access and
 native conversion. A declaration-only body retains the ordinary backedge.
 Negative-only branches use the existing negative successor. New condition-chain
 and traversal forms now have complete [T044 control IR](structured-lowering.md).
-Their C execution remains guarded before artifact staging until the corresponding
-runtime adapters are implemented; a parsed tree alone is not runtime support.
+[Condition execution](condition-loop-execution.md) and
+[traversal execution](list-traversal-execution.md) supply independent real
+consumers; parsing alone remains distinct from runtime acceptance.
 
 ## Exactness, ownership and checks
 

@@ -1,9 +1,5 @@
 # Structured compiler diagnostics
 
-Implementation evidence for the subset recorded in the [T001 audit](audit/README.md).
-The [specification](../../spec/README.md) defines current behavior; this
-component description does not certify the open work in [TODO](../../TODO.md).
-
 Boundary: `src/diagnostics/record/diagnostic.h`, `record/` and `adapters/`.
 Implements COMP-04 source/type context and preserves NAME-03 original names.
 It does not introduce runtime exceptions or a language parser.
@@ -91,7 +87,8 @@ T022/T023 still supply the remaining new grammar and activation behavior. Render
 and generated-C mapping verification belong to T020.
 
 T024 appends the `unsupported-feature` category without renumbering earlier
-codes. It distinguishes a recognized source form whose semantic/runtime support
-is still scheduled from a language type mismatch. The guarded self-source
-handoff is documented in [source parsing](source-parsing.md); no invalid access
-node is invented to continue compilation.
+codes. It is distinct from a language type mismatch; current self sources
+are implemented through [source parsing](source-parsing.md) and
+[final-identity construction](ordered-construction.md). Diagnostics must describe
+the actual rejected boundary rather than inventing an invalid access node or
+claiming an implemented form is unavailable.

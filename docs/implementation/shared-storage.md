@@ -101,5 +101,6 @@ ordering, cycles and immutable construction restrictions. Strict runtime parent
 composition, address/undefined-behavior sanitizers, header coverage and reproducible
 Doxygen supplement these invariants. The
 [coverage registry](documentation/ready.json) maps each new/reused fixture and
-consumer to named cases. Concrete list copying/membership and generated list
-constants remain T076/T087; this task establishes scalar-owned constant trees.
+consumer to named cases. [List copying/membership](list-values.md) and
+[generated list constants](library-compositions.md) extend the scalar-owned
+constant-tree foundation with their own forest and context-local evidence.

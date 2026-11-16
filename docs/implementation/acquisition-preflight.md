@@ -7,7 +7,9 @@ T048 verifies the existing protection implementation under
 [CALL-08](../../spec/language/calls-and-results.md#call-08) and
 [TEST-07](../../spec/implementation/tools-and-conformance.md#test-07).
 It composes [stable storage](instance-ownership.md) with real object and invocation
-consumers. Typed selected-call/list-service execution adapters remain later tasks.
+consumers. [Selected-result calls](direct-result-execution.md) and
+[list-service execution](list-service-frames.md) reuse this boundary; their
+operation-specific consumers retain separate acquisition and refusal contracts.
 
 ## Exact boundary and authority
 
