@@ -10,7 +10,7 @@ backend. Unsupported executable compilation must never report successful output.
 and that many nonnull NUL-terminated strings; a zero count permits a null vector.
 It borrows them without mutation. Standalone `--help` selects Help; otherwise an
 exact `--check`, `--status`, `--native`, `--emit`, library check/header/build,
-`--editor` or `--rename-plan` selects its command before operand validation.
+`--editor`, `--rename-plan` or explicit relocation preview/apply/recovery selects its command before operand validation.
 Other requests are unavailable. Count checks precede every argument access. The exact string
 predicates and fallback partition the domain; prefixes/extra help arguments do
 not accidentally select Help.
@@ -39,6 +39,12 @@ coordinates and exact integers; no editor document or source file is written.
 Draft/invalid editor observations remain explicit states, while a rename plan
 requires complete checking and fresh identity/reference validation. The client's
 atomic publication authority is separate from read-only plan generation.
+
+[Relocation commands](../relocation-commands.md) preserve explicit roots, final
+location, supported settings and output invalidations through the complete checked
+core. Recovery loads its own journal authority; failed decoding leaves commit
+unknown. Stream failure after publication returns failure without reversing or
+mislabeling a committed operation, whose receipt remains available.
 
 Native authoring uses the same frontend, with explicit proposed companions only
 under `--create`, then the [scaffold publisher](../native-scaffolding.md). Success

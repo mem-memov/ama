@@ -6,6 +6,7 @@
  * @see [Fixture and coverage contract](../../../docs/implementation/library-tests-and-build.md)
  */
 #include "../common.c"
+#include <stdint.h>
 
 /**
  * Assert that the component exposes implementation status through the real launcher. The
@@ -15,12 +16,20 @@
 static void it_exposes_implementation_status_through_the_real_launcher(void) {
     setup_test();
     int result = run_compiler("--help");
-    char message[1024];
-    read_stream(output, message, sizeof(message));
+    int seek_result = fseek(output, 0, SEEK_END);
+    assert(seek_result == 0);
+    long length = ftell(output);
+    assert(length >= 0 && (uintmax_t)length <= SIZE_MAX - 2);
+    size_t capacity = (size_t)length + 2;
+    char *message = malloc(capacity);
+    assert(message != NULL);
+    read_stream(output, message, capacity);
     assert(result == EXIT_SUCCESS);
     assert(strstr(message, "--compile") != NULL);
-    read_stream(errors, message, sizeof(message));
+    assert(strstr(message, "--relocate-recover JOURNAL") != NULL);
+    read_stream(errors, message, capacity);
     assert(message[0] == '\0');
+    free(message);
     destroy_test();
 }
 

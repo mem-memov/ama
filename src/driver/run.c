@@ -13,6 +13,7 @@
 #include "request/request.h"
 #include "commands/commands.h"
 #include "commands/editor/editor.h"
+#include "commands/relocation/relocation.h"
 #include "diagnostics/render/render.h"
 
 
@@ -27,7 +28,8 @@ int driver_run(int argument_count, char *const arguments[],
         || request == DRIVER_REQUEST_NATIVE || request == DRIVER_REQUEST_EMIT
         || request == DRIVER_REQUEST_LIBRARY_CHECK || request == DRIVER_REQUEST_LIBRARY_HEADER
         || request == DRIVER_REQUEST_LIBRARY_BUILD || request == DRIVER_REQUEST_EDITOR
-        || request == DRIVER_REQUEST_RENAME_PLAN) {
+        || request == DRIVER_REQUEST_RENAME_PLAN || request == DRIVER_REQUEST_RELOCATE_PREVIEW
+        || request == DRIVER_REQUEST_RELOCATE_APPLY || request == DRIVER_REQUEST_RELOCATE_RECOVER) {
         DriverOptions options;
         driver_options_init(&options, source_system_allocator());
         bool parsed = driver_options_parse(&options, argument_count, arguments);
@@ -38,7 +40,10 @@ int driver_run(int argument_count, char *const arguments[],
                 : request == DRIVER_REQUEST_NATIVE ? driver_native(&options, output, errors)
                 : request == DRIVER_REQUEST_EMIT ? driver_emit(&options, output, errors)
                 : request == DRIVER_REQUEST_EDITOR || request == DRIVER_REQUEST_RENAME_PLAN
-                    ? driver_editor(&options,output,errors) : driver_library(&options, output, errors);
+                    ? driver_editor(&options,output,errors)
+                : request == DRIVER_REQUEST_RELOCATE_PREVIEW || request == DRIVER_REQUEST_RELOCATE_APPLY
+                    || request == DRIVER_REQUEST_RELOCATE_RECOVER ? driver_relocation(&options,output,errors)
+                : driver_library(&options, output, errors);
         } else {
             (void)diagnostic_render(errors, &options.error);
         }

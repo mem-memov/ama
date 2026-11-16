@@ -1,0 +1,6 @@
+ama-library | 1
+component | example.component
+abi | ama-c-1
+target | test
+calling-convention | c
+export | run | .old.a | entry

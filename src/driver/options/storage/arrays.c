@@ -24,6 +24,14 @@ bool driver_options_allocate(DriverOptions *options, size_t capacity, DriverOpti
             .message = "Command options could not allocate storage"};
         return false;
     }
+    if (options->request == DRIVER_REQUEST_RELOCATE_PREVIEW || options->request == DRIVER_REQUEST_RELOCATE_APPLY) {
+        options->configurations = source_arena_allocate(&options->arena,capacity*sizeof(*options->configurations));
+        options->invalidations = source_arena_allocate(&options->arena,capacity*sizeof(*options->invalidations));
+        if (options->configurations == NULL || options->invalidations == NULL) {
+            options->error = (Diagnostic){.code=DIAGNOSTIC_OUT_OF_MEMORY,.message="Relocation argument arrays could not be allocated"};
+            return false;
+        }
+    }
     memset(options->roots, 0, capacity * sizeof(*options->roots));
     return true;
 }
@@ -32,6 +40,10 @@ void driver_options_publish(DriverOptions *options, const DriverOptionStorage *s
     for (size_t index = 0; index < options->root_count; index++) {
         options->roots[index].excluded = storage->exclusions;
         options->roots[index].excluded_count = storage->excluded;
+    }
+    if (options->destination_root.path != NULL) {
+        options->destination_root.excluded = storage->exclusions;
+        options->destination_root.excluded_count = storage->excluded;
     }
     options->valid = true;
 }

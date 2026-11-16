@@ -14,6 +14,14 @@ bool driver_options_invalid(DriverOptions *options, const char *message) {
 }
 
 bool driver_options_operands(DriverOptions *options, int count, char *const arguments[]) {
+    if (options->request == DRIVER_REQUEST_RELOCATE_RECOVER) {
+        return count == 3 && arguments[2][0] != 0 ? true
+            : driver_options_invalid(options,"Recovery requires exactly one explicit journal directory");
+    }
+    if (options->request == DRIVER_REQUEST_RELOCATE_PREVIEW || options->request == DRIVER_REQUEST_RELOCATE_APPLY) {
+        return count >= 4 && arguments[3][0] != 0 ? true
+            : driver_options_invalid(options,"Relocation requires an explicit source root and source directory");
+    }
     if (options->request == DRIVER_REQUEST_LIBRARY_CHECK || options->request == DRIVER_REQUEST_LIBRARY_HEADER
         || options->request == DRIVER_REQUEST_LIBRARY_BUILD) {
         return count >= 4 && arguments[3][0] != '\0'
@@ -38,6 +46,11 @@ bool driver_options_validate(DriverOptions *options) {
         if (options->query_module == NULL) { options->query_module = options->entry; }
         if (options->request == DRIVER_REQUEST_RENAME_PLAN && (!options->has_offset || options->rename_name == NULL)) {
             return driver_options_invalid(options,"Rename planning requires --offset and --name");
+        }
+    }
+    if (options->request == DRIVER_REQUEST_RELOCATE_PREVIEW || options->request == DRIVER_REQUEST_RELOCATE_APPLY) {
+        if (options->destination == NULL || (options->request == DRIVER_REQUEST_RELOCATE_APPLY && options->recovery_directory == NULL)) {
+            return driver_options_invalid(options,"Relocation requires --destination; apply additionally requires --recovery");
         }
     }
     if (options->compiler == NULL) {

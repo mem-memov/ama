@@ -232,8 +232,55 @@ static void it_validates_source_tool_selectors_and_required_rename_operands(void
     invalid_arguments(4,rename,"Rename planning requires --offset and --name");
     invalid_arguments(6,rename,"Rename planning requires --offset and --name");
 }
+/** Exact final directories and explicit root kinds/settings cannot be inferred from a command's positional source directory. */
+static void it_validates_relocation_authority_and_standalone_recovery(void) {
+    setup_test();
+    DriverOptions options;
+    driver_options_init(&options,sources.allocator);
+    char *arguments[] = {"ama","--relocate-preview","project","old directory","--destination","new directory",
+        "--destination-standard-root","library","--entry",".old.main","--configuration","component.library",
+        "--invalidate","out","--exclude","ignored","--root","importers"};
+    assert(driver_options_parse(&options,18,arguments));
+    assert(options.valid && options.request == DRIVER_REQUEST_RELOCATE_PREVIEW);
+    assert(strcmp(options.relocation_source,"old directory") == 0 && strcmp(options.destination,"new directory") == 0);
+    assert(options.root_count == 2 && options.destination_root.kind == MODULE_ROOT_STANDARD);
+    assert(options.destination_root.excluded_count == 1 && strcmp(options.destination_root.excluded[0],"ignored") == 0);
+    assert(options.configuration_count == 1 && options.invalidation_count == 1 && strcmp(options.entry,".old.main") == 0);
+    driver_options_destroy(&options);
+    destroy_test();
+    invalid_arguments(4,arguments,"Relocation requires --destination; apply additionally requires --recovery");
+    arguments[1] = "--relocate-apply";
+    invalid_arguments(6,arguments,"Relocation requires --destination; apply additionally requires --recovery");
+    char *recover[] = {"ama","--relocate-recover","journal","--root","project"};
+    invalid_arguments(5,recover,"Recovery requires exactly one explicit journal directory");
+    setup_test();
+    driver_options_init(&options,sources.allocator);
+    assert(driver_options_parse(&options,3,recover));
+    assert(options.valid && options.root_count == 0 && options.entry == NULL && strcmp(options.journal,"journal") == 0);
+    driver_options_destroy(&options);
+    destroy_test();
+    char *duplicate[] = {"ama","--relocate-preview","project","old","--destination","new","--destination-root","one","--destination-standard-root","two"};
+    invalid_arguments(10,duplicate,"Relocation accepts one explicit destination root kind/path");
+}
+/** Optional relocation arrays retain every failed prefix without increasing ordinary command storage. */
+static void it_unwinds_every_relocation_option_array_allocation(void) {
+    size_t requests = 0;
+    for (size_t failure = 0; failure <= requests; failure++) {
+        setup_test();
+        DriverOptions options; driver_options_init(&options,sources.allocator);
+        char *arguments[] = {"ama","--relocate-preview","project","old","--destination","new","--configuration","one.library","--invalidate","cache"};
+        allocation_count = 0; failure_at = failure;
+        bool valid = driver_options_parse(&options,10,arguments);
+        failure_at = 0;
+        if (failure == 0) { assert(valid); requests = allocation_count; assert(requests != 0); }
+        else { assert(!valid && !options.valid && options.error.code == DIAGNOSTIC_OUT_OF_MEMORY); }
+        driver_options_destroy(&options); destroy_test();
+    }
+}
 /** Exercise independent recognition/storage and their real request assembly. */
 void run(void) {
+    it_unwinds_every_relocation_option_array_allocation();
+    it_validates_relocation_authority_and_standalone_recovery();
     it_validates_source_tool_selectors_and_required_rename_operands();
     it_requires_explicit_library_build_destinations_and_manifest_flags();
     it_keeps_library_configuration_separate_from_executable_options();

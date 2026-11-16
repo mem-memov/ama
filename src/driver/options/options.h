@@ -23,6 +23,15 @@ typedef struct {
     const char *rename_name;
     size_t offset;
     bool has_offset;
+    const char *relocation_source;
+    const char *destination;
+    ModuleRoot destination_root;
+    const char *recovery_directory;
+    const char *journal;
+    const char **configurations;
+    size_t configuration_count;
+    const char **invalidations;
+    size_t invalidation_count;
     const char *library_configuration;
     const char *output;
     const char *compiler;

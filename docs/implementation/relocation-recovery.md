@@ -4,7 +4,8 @@ The relocation report and recovery components implement T114 under
 [TOOL-04](../../spec/implementation/tools-and-conformance.md#tool-04). They extend
 [T113's application engine](relocation-transaction.md): recovery consumes retained
 filesystem records, without the compiler snapshots or application process that
-created them. The command/client workflow remains T115.
+created them. T153 supplies the [explicit utility commands](relocation-commands.md); combined
+client/project-build acceptance remains T115.
 
 A move has two outcomes. Before commit, recovery restores original locations.
 After commit, recovery keeps the published project and retires saved originals.

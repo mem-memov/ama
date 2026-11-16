@@ -40,5 +40,8 @@ DriverRequest driver_parse_request(int argument_count, char *const arguments[]) 
     }
     if (argument_count >= 2 && strcmp(arguments[1], "--editor") == 0) { return DRIVER_REQUEST_EDITOR; }
     if (argument_count >= 2 && strcmp(arguments[1], "--rename-plan") == 0) { return DRIVER_REQUEST_RENAME_PLAN; }
+    if (argument_count >= 2 && strcmp(arguments[1], "--relocate-preview") == 0) { return DRIVER_REQUEST_RELOCATE_PREVIEW; }
+    if (argument_count >= 2 && strcmp(arguments[1], "--relocate-apply") == 0) { return DRIVER_REQUEST_RELOCATE_APPLY; }
+    if (argument_count >= 2 && strcmp(arguments[1], "--relocate-recover") == 0) { return DRIVER_REQUEST_RELOCATE_RECOVER; }
     return DRIVER_REQUEST_UNAVAILABLE;
 }

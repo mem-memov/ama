@@ -2635,13 +2635,28 @@ Contracts: [tools](spec/implementation/tools-and-conformance.md),
   All 2274 maintained inputs have named evidence without debt, standalone headers
   and prose links pass; two complete Doxygen generations are byte-identical
   (6511 documented interfaces). See `docs/implementation/source-tool-commands.md`.
-- [ ] **T153 — Expose relocation commands.** Needs: T114, T152.
+- [x] **T153 — Expose relocation commands.** Needs: T114, T152.
   Add explicit read-only preview, transactional apply and journal recovery commands.
   Carry supplied root kinds/exclusions, destination-root settings, optional entry,
   supported library configurations and explicit output invalidations through the
   existing complete plan; report exact owned scope and durable outcome. Exercise
   real commands, refused inputs, changed/foreign state, repeated recovery and
   output failure after commit without claiming that the move rolled back.
+  Completed: explicit preview/apply/recover commands preserve supplied root kinds,
+  exclusions, configurations, entry and invalidations through the existing exact
+  planner and durable transaction. Lossless JSON reports owned scope, original
+  source edits, retained receipt, cleanup and commit independently of stdout
+  acknowledgement; unvalidated recovery authority leaves the outcome unknown.
+  Evidence: strict compiler build and all unit suites; the complete integration
+  suite passed after replacing two obsolete fixed-size help-test buffers with
+  exact-size reads. Real processes cover Unicode paths, opaque/draft/binary
+  preservation, configuration rewrites, output invalidation, added-root initial
+  ambiguity and repeated recovery. Component tests cover post-commit output
+  failure, unknown recovery and all 287 preparation allocation refusals, also
+  under ASan/UBSan. All 2294 maintained inputs have named evidence without debt;
+  standalone headers and local prose links pass, and two complete Doxygen
+  generations are byte-identical (6565 documented interfaces).
+  See `docs/implementation/relocation-commands.md`.
 - [ ] **T154 — Provide an executable debugger client.** Needs: T109, T152.
   Supply a documented client for retained generated project assemblies, using the
   checked runtime inspection API and explicit run/resume/dispose boundaries.

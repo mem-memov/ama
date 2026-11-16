@@ -17,4 +17,6 @@
 bool driver_options_consume(DriverOptions *, DriverOptionStorage *, int count, char *const arguments[]);
 /** Install one source-tool scalar with duplicate/range checks before publishing options. */
 bool driver_options_source_tool(DriverOptions *, DriverOptionKind, const char *);
+/** Install explicit relocation settings, rejecting duplicate scalar authority and retaining ordered configuration/output arrays. */
+bool driver_options_relocation(DriverOptions *, DriverOptionKind, const char *);
 #endif

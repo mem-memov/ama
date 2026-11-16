@@ -10,7 +10,8 @@ It never runs Ama, native constructors, embedded flags or a linker.
 
 This component implements synchronous application and in-process inverse cleanup.
 T114 adds [persistent preparation, independent recovery and owned reports](relocation-recovery.md),
-including terminal outcome receipts. The command/client boundary remains T115.
+including terminal outcome receipts. T153 supplies the [explicit preview/apply/recovery commands](relocation-commands.md);
+combined client/project-build acceptance remains T115.
 
 ## Authority and ownership
 

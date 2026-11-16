@@ -5783,7 +5783,7 @@
     ]
   },
   "src/driver/options/assembly/consume.c": {
-    "contract": "docs/implementation/source-tool-commands.md",
+    "contract": "docs/implementation/relocation-commands.md",
     "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
     "tests": [
       {
@@ -5818,13 +5818,23 @@
       },
       {
         "case": "it_validates_source_tool_selectors_and_required_rename_operands",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_validates_relocation_authority_and_standalone_recovery",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_unwinds_every_relocation_option_array_allocation",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
       }
     ]
   },
   "src/driver/options/assembly/consume.h": {
-    "contract": "docs/implementation/source-tool-commands.md",
+    "contract": "docs/implementation/relocation-commands.md",
     "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
     "standalone_header_command": [
       "cc",
@@ -5859,13 +5869,23 @@
       },
       {
         "case": "it_validates_source_tool_selectors_and_required_rename_operands",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_validates_relocation_authority_and_standalone_recovery",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_unwinds_every_relocation_option_array_allocation",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
       }
     ]
   },
   "src/driver/options/options.h": {
-    "contract": "docs/implementation/source-tool-commands.md",
+    "contract": "docs/implementation/relocation-commands.md",
     "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
     "standalone_header_command": [
       "cc",
@@ -5915,13 +5935,23 @@
       },
       {
         "case": "it_validates_source_tool_selectors_and_required_rename_operands",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_validates_relocation_authority_and_standalone_recovery",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_unwinds_every_relocation_option_array_allocation",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
       }
     ]
   },
   "src/driver/options/parse.c": {
-    "contract": "docs/implementation/driver-options.md",
+    "contract": "docs/implementation/relocation-commands.md",
     "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
     "tests": [
       {
@@ -5963,11 +5993,21 @@
         "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
         "command": "make -C tests/integration/library-build",
         "source": "tests/integration/library-build/main.c"
+      },
+      {
+        "case": "it_validates_relocation_authority_and_standalone_recovery",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_unwinds_every_relocation_option_array_allocation",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
       }
     ]
   },
   "src/driver/options/recognition/option.h": {
-    "contract": "docs/implementation/source-tool-commands.md",
+    "contract": "docs/implementation/relocation-commands.md",
     "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
     "standalone_header_command": [
       "cc",
@@ -6009,11 +6049,21 @@
         "case": "it_validates_source_tool_selectors_and_required_rename_operands",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_validates_relocation_authority_and_standalone_recovery",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_unwinds_every_relocation_option_array_allocation",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
       }
     ]
   },
   "src/driver/options/recognition/read.c": {
-    "contract": "docs/implementation/source-tool-commands.md",
+    "contract": "docs/implementation/relocation-commands.md",
     "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
     "tests": [
       {
@@ -6055,11 +6105,21 @@
         "case": "it_validates_source_tool_selectors_and_required_rename_operands",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_validates_relocation_authority_and_standalone_recovery",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_unwinds_every_relocation_option_array_allocation",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
       }
     ]
   },
   "src/driver/options/storage/arrays.c": {
-    "contract": "docs/implementation/driver-options.md",
+    "contract": "docs/implementation/relocation-commands.md",
     "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
     "tests": [
       {
@@ -6069,6 +6129,16 @@
       },
       {
         "case": "it_cleans_every_partial_allocation_and_rejects_unrepresentable_storage",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_validates_relocation_authority_and_standalone_recovery",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_unwinds_every_relocation_option_array_allocation",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
       }
@@ -6091,7 +6161,7 @@
     ]
   },
   "src/driver/options/storage/storage.h": {
-    "contract": "docs/implementation/driver-options.md",
+    "contract": "docs/implementation/relocation-commands.md",
     "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
     "standalone_header_command": [
       "cc",
@@ -6118,11 +6188,21 @@
         "case": "it_cleans_every_partial_allocation_and_rejects_unrepresentable_storage",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_validates_relocation_authority_and_standalone_recovery",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_unwinds_every_relocation_option_array_allocation",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
       }
     ]
   },
   "src/driver/options/validation/request.c": {
-    "contract": "docs/implementation/source-tool-commands.md",
+    "contract": "docs/implementation/relocation-commands.md",
     "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
     "tests": [
       {
@@ -6152,6 +6232,16 @@
       },
       {
         "case": "it_validates_source_tool_selectors_and_required_rename_operands",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_validates_relocation_authority_and_standalone_recovery",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_unwinds_every_relocation_option_array_allocation",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
       }
@@ -6240,7 +6330,7 @@
     ]
   },
   "src/driver/output/write.c": {
-    "contract": "docs/implementation/source-tool-commands.md",
+    "contract": "docs/implementation/relocation-commands.md",
     "purpose": "Write explicit CLI help or unavailable-command guidance and verify final flush.",
     "tests": [
       {
@@ -6367,11 +6457,41 @@
         "case": "it_reports_refused_process_requests_without_partial_plans",
         "command": "make -C tests/integration/tools/source",
         "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_exposes_a_complete_read_only_relocation_plan",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_preserves_committed_outcome_when_result_output_is_refused",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_keeps_an_unreadable_recovery_outcome_explicitly_unknown",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_command_preparation_prefix",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
       }
     ]
   },
   "src/driver/request/parse.c": {
-    "contract": "docs/implementation/source-tool-commands.md",
+    "contract": "docs/implementation/relocation-commands.md",
     "purpose": "Recognize exact command spellings without guessing operands or abbreviations.",
     "tests": [
       {
@@ -6433,11 +6553,16 @@
         "case": "it_recognizes_exact_read_only_source_tool_commands",
         "command": "make -C tests/unit/driver/request",
         "source": "tests/unit/driver/request/main.c"
+      },
+      {
+        "case": "it_recognizes_only_explicit_relocation_operations",
+        "command": "make -C tests/unit/driver/request",
+        "source": "tests/unit/driver/request/main.c"
       }
     ]
   },
   "src/driver/request/request.h": {
-    "contract": "docs/implementation/source-tool-commands.md",
+    "contract": "docs/implementation/relocation-commands.md",
     "purpose": "Declare exact command recognition independently of option validation.",
     "standalone_header_command": [
       "cc",
@@ -6514,11 +6639,16 @@
         "case": "it_recognizes_exact_read_only_source_tool_commands",
         "command": "make -C tests/unit/driver/request",
         "source": "tests/unit/driver/request/main.c"
+      },
+      {
+        "case": "it_recognizes_only_explicit_relocation_operations",
+        "command": "make -C tests/unit/driver/request",
+        "source": "tests/unit/driver/request/main.c"
       }
     ]
   },
   "src/driver/run.c": {
-    "contract": "docs/implementation/source-tool-commands.md",
+    "contract": "docs/implementation/relocation-commands.md",
     "purpose": "Dispatch one explicit command after exact option validation.",
     "tests": [
       {
@@ -6630,6 +6760,36 @@
         "case": "it_reports_refused_process_requests_without_partial_plans",
         "command": "make -C tests/integration/tools/source",
         "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_exposes_a_complete_read_only_relocation_plan",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_preserves_committed_outcome_when_result_output_is_refused",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_keeps_an_unreadable_recovery_outcome_explicitly_unknown",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_command_preparation_prefix",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
       }
     ]
   },
@@ -41799,7 +41959,7 @@
     ]
   },
   "tests/unit/driver/Makefile": {
-    "contract": "docs/implementation/source-tool-commands.md",
+    "contract": "docs/implementation/relocation-commands.md",
     "purpose": "Dispatch independent child suites: request options run.",
     "tests": [
       {
@@ -41921,6 +42081,36 @@
         "case": "it_reports_refused_process_requests_without_partial_plans",
         "command": "make -C tests/integration/tools/source",
         "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_exposes_a_complete_read_only_relocation_plan",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_preserves_committed_outcome_when_result_output_is_refused",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_keeps_an_unreadable_recovery_outcome_explicitly_unknown",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_command_preparation_prefix",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
       }
     ]
   },
@@ -41982,7 +42172,7 @@
     ]
   },
   "tests/unit/driver/options/main.c": {
-    "contract": "docs/implementation/source-tool-commands.md",
+    "contract": "docs/implementation/relocation-commands.md",
     "purpose": "Exercise option children and composed requests without frontend linkage.",
     "tests": [
       {
@@ -42024,6 +42214,16 @@
         "case": "it_validates_source_tool_selectors_and_required_rename_operands",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_validates_relocation_authority_and_standalone_recovery",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_unwinds_every_relocation_option_array_allocation",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
       }
     ]
   },
@@ -42054,7 +42254,7 @@
     ]
   },
   "tests/unit/driver/request/main.c": {
-    "contract": "docs/implementation/source-tool-commands.md",
+    "contract": "docs/implementation/relocation-commands.md",
     "purpose": "Verify exact explicit CLI request recognition without reading absent arguments.",
     "tests": [
       {
@@ -42084,6 +42284,11 @@
       },
       {
         "case": "it_recognizes_exact_read_only_source_tool_commands",
+        "command": "make -C tests/unit/driver/request",
+        "source": "tests/unit/driver/request/main.c"
+      },
+      {
+        "case": "it_recognizes_only_explicit_relocation_operations",
         "command": "make -C tests/unit/driver/request",
         "source": "tests/unit/driver/request/main.c"
       }
@@ -42171,7 +42376,7 @@
     ]
   },
   "tests/unit/driver/run/main.c": {
-    "contract": "docs/implementation/contracts/driver.md",
+    "contract": "docs/implementation/relocation-commands.md",
     "purpose": "Exercise command selection, output failure and exact retired-option rejection.",
     "tests": [
       {
@@ -42181,6 +42386,11 @@
       },
       {
         "case": "it_publishes_empty_handler_warnings_and_propagates_warning_output_failures",
+        "command": "make -C tests/unit/driver/run",
+        "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_documents_verified_project_compilation",
         "command": "make -C tests/unit/driver/run",
         "source": "tests/unit/driver/run/main.c"
       }
@@ -117125,7 +117335,7 @@
     ]
   },
   "tests/integration/tools/Makefile": {
-    "contract": "docs/implementation/source-tool-commands.md",
+    "contract": "docs/implementation/relocation-commands.md",
     "purpose": "Accept actual source-tool command processes on complete projects with exact unchanged drafts and opaque companions.",
     "tests": [
       {
@@ -117142,6 +117352,36 @@
         "case": "it_reports_refused_process_requests_without_partial_plans",
         "command": "make -C tests/integration/tools/source",
         "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_exposes_a_complete_read_only_relocation_plan",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_preserves_committed_outcome_when_result_output_is_refused",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_keeps_an_unreadable_recovery_outcome_explicitly_unknown",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_command_preparation_prefix",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
       }
     ]
   },
@@ -117518,7 +117758,7 @@
     ]
   },
   "tests/unit/driver/sources.mk": {
-    "contract": "docs/implementation/source-tool-commands.md",
+    "contract": "docs/implementation/relocation-commands.md",
     "purpose": "Compose real compiler, editor and tool output components at the driver boundary.",
     "tests": [
       {
@@ -117560,6 +117800,36 @@
         "case": "it_refuses_output_failure_without_applying_any_document_changes",
         "command": "make -C tests/unit/driver/editor",
         "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_exposes_a_complete_read_only_relocation_plan",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_preserves_committed_outcome_when_result_output_is_refused",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_keeps_an_unreadable_recovery_outcome_explicitly_unknown",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_command_preparation_prefix",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
       }
     ]
   },
@@ -117644,6 +117914,556 @@
         "case": "it_retains_write_and_flush_failures_without_closing_streams",
         "command": "make -C tests/unit/tools/output/json",
         "source": "tests/unit/tools/output/json/main.c"
+      }
+    ]
+  },
+  "src/driver/commands/relocation/internal.h": {
+    "contract": "docs/implementation/relocation-commands.md",
+    "purpose": "Compose the exact relocation core and preserve durable known/unknown outcomes independently of response-stream acknowledgement.",
+    "tests": [
+      {
+        "case": "it_exposes_a_complete_read_only_relocation_plan",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_preserves_committed_outcome_when_result_output_is_refused",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_keeps_an_unreadable_recovery_outcome_explicitly_unknown",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_command_preparation_prefix",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/driver/commands/relocation/plan.c": {
+    "contract": "docs/implementation/relocation-commands.md",
+    "purpose": "Compose the exact relocation core and preserve durable known/unknown outcomes independently of response-stream acknowledgement.",
+    "tests": [
+      {
+        "case": "it_exposes_a_complete_read_only_relocation_plan",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_preserves_committed_outcome_when_result_output_is_refused",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_keeps_an_unreadable_recovery_outcome_explicitly_unknown",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_command_preparation_prefix",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      }
+    ]
+  },
+  "src/driver/commands/relocation/relocation.h": {
+    "contract": "docs/implementation/relocation-commands.md",
+    "purpose": "Compose the exact relocation core and preserve durable known/unknown outcomes independently of response-stream acknowledgement.",
+    "tests": [
+      {
+        "case": "it_exposes_a_complete_read_only_relocation_plan",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_preserves_committed_outcome_when_result_output_is_refused",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_keeps_an_unreadable_recovery_outcome_explicitly_unknown",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_command_preparation_prefix",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/driver/commands/relocation/report.c": {
+    "contract": "docs/implementation/relocation-commands.md",
+    "purpose": "Compose the exact relocation core and preserve durable known/unknown outcomes independently of response-stream acknowledgement.",
+    "tests": [
+      {
+        "case": "it_exposes_a_complete_read_only_relocation_plan",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_preserves_committed_outcome_when_result_output_is_refused",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_keeps_an_unreadable_recovery_outcome_explicitly_unknown",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_command_preparation_prefix",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      }
+    ]
+  },
+  "src/driver/commands/relocation/result.c": {
+    "contract": "docs/implementation/relocation-commands.md",
+    "purpose": "Compose the exact relocation core and preserve durable known/unknown outcomes independently of response-stream acknowledgement.",
+    "tests": [
+      {
+        "case": "it_exposes_a_complete_read_only_relocation_plan",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_preserves_committed_outcome_when_result_output_is_refused",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_keeps_an_unreadable_recovery_outcome_explicitly_unknown",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_command_preparation_prefix",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      }
+    ]
+  },
+  "src/driver/commands/relocation/run.c": {
+    "contract": "docs/implementation/relocation-commands.md",
+    "purpose": "Compose the exact relocation core and preserve durable known/unknown outcomes independently of response-stream acknowledgement.",
+    "tests": [
+      {
+        "case": "it_exposes_a_complete_read_only_relocation_plan",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_preserves_committed_outcome_when_result_output_is_refused",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_keeps_an_unreadable_recovery_outcome_explicitly_unknown",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_command_preparation_prefix",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      }
+    ]
+  },
+  "src/driver/commands/relocation/status.c": {
+    "contract": "docs/implementation/relocation-commands.md",
+    "purpose": "Compose the exact relocation core and preserve durable known/unknown outcomes independently of response-stream acknowledgement.",
+    "tests": [
+      {
+        "case": "it_exposes_a_complete_read_only_relocation_plan",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_preserves_committed_outcome_when_result_output_is_refused",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_keeps_an_unreadable_recovery_outcome_explicitly_unknown",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_command_preparation_prefix",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      }
+    ]
+  },
+  "src/driver/options/assembly/relocation.c": {
+    "contract": "docs/implementation/relocation-commands.md",
+    "purpose": "Retain explicit relocation authority and bounded optional argument arrays without guessing roots, entry, configuration or invalidation paths.",
+    "tests": [
+      {
+        "case": "it_validates_relocation_authority_and_standalone_recovery",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_unwinds_every_relocation_option_array_allocation",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/relocation/Makefile": {
+    "contract": "docs/implementation/relocation-commands.md",
+    "purpose": "Accept actual relocation command processes against copied complete projects, exact settings/assets and initial identity conflicts.",
+    "tests": [
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/relocation/main.c": {
+    "contract": "docs/implementation/relocation-commands.md",
+    "purpose": "Accept actual relocation command processes against copied complete projects, exact settings/assets and initial identity conflicts.",
+    "tests": [
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/relocation/project/importers/unreachable": {
+    "contract": "docs/implementation/relocation-commands.md",
+    "purpose": "Accept actual relocation command processes against copied complete projects, exact settings/assets and initial identity conflicts.",
+    "tests": [
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/relocation/project/root/main": {
+    "contract": "docs/implementation/relocation-commands.md",
+    "purpose": "Accept actual relocation command processes against copied complete projects, exact settings/assets and initial identity conflicts.",
+    "tests": [
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/relocation/project/root/old/a": {
+    "contract": "docs/implementation/relocation-commands.md",
+    "purpose": "Accept actual relocation command processes against copied complete projects, exact settings/assets and initial identity conflicts.",
+    "tests": [
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/relocation/project/root/old/draft": {
+    "contract": "docs/implementation/relocation-commands.md",
+    "purpose": "Accept actual relocation command processes against copied complete projects, exact settings/assets and initial identity conflicts.",
+    "tests": [
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/relocation/project/root/old/helper.c": {
+    "contract": "docs/implementation/relocation-commands.md",
+    "purpose": "Accept actual relocation command processes against copied complete projects, exact settings/assets and initial identity conflicts.",
+    "tests": [
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/relocation/project/root/settings.library": {
+    "contract": "docs/implementation/relocation-commands.md",
+    "purpose": "Accept actual relocation command processes against copied complete projects, exact settings/assets and initial identity conflicts.",
+    "tests": [
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/relocation/verify.py": {
+    "contract": "docs/implementation/relocation-commands.md",
+    "purpose": "Accept actual relocation command processes against copied complete projects, exact settings/assets and initial identity conflicts.",
+    "tests": [
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      }
+    ]
+  },
+  "tests/unit/driver/relocation/Makefile": {
+    "contract": "docs/implementation/relocation-commands.md",
+    "purpose": "Compose the exact relocation core and preserve durable known/unknown outcomes independently of response-stream acknowledgement.",
+    "tests": [
+      {
+        "case": "it_exposes_a_complete_read_only_relocation_plan",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_preserves_committed_outcome_when_result_output_is_refused",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_keeps_an_unreadable_recovery_outcome_explicitly_unknown",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_command_preparation_prefix",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      }
+    ]
+  },
+  "tests/unit/driver/relocation/main.c": {
+    "contract": "docs/implementation/relocation-commands.md",
+    "purpose": "Compose the exact relocation core and preserve durable known/unknown outcomes independently of response-stream acknowledgement.",
+    "tests": [
+      {
+        "case": "it_exposes_a_complete_read_only_relocation_plan",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_preserves_committed_outcome_when_result_output_is_refused",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_keeps_an_unreadable_recovery_outcome_explicitly_unknown",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_command_preparation_prefix",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      }
+    ]
+  },
+  "tests/unit/driver/relocation/verify.py": {
+    "contract": "docs/implementation/relocation-commands.md",
+    "purpose": "Compose the exact relocation core and preserve durable known/unknown outcomes independently of response-stream acknowledgement.",
+    "tests": [
+      {
+        "case": "it_exposes_a_complete_read_only_relocation_plan",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_preserves_committed_outcome_when_result_output_is_refused",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_keeps_an_unreadable_recovery_outcome_explicitly_unknown",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_command_preparation_prefix",
+        "command": "make -C tests/unit/driver/relocation",
+        "source": "tests/unit/driver/relocation/main.c"
+      },
+      {
+        "case": "it_accepts_complete_preview_apply_and_repeated_recovery_processes",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
+        "command": "make -C tests/integration/tools/relocation",
+        "source": "tests/integration/tools/relocation/main.c"
       }
     ]
   }

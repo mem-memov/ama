@@ -15,7 +15,7 @@ typedef struct {
     size_t excluded;
 } DriverOptionStorage;
 
-/** Allocate three arrays for at most capacity argument-derived entries.
+/** Allocate the three ordinary arrays and two optional relocation arrays, each bounded by capacity argument-derived entries.
  * On failure partial allocations remain owned by options until destruction.
  */
 bool driver_options_allocate(DriverOptions *, size_t capacity, DriverOptionStorage *);

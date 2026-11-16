@@ -90,11 +90,23 @@ static void it_recognizes_exact_read_only_source_tool_commands(void) {
     arguments[1] = "--edito";
     assert(driver_parse_request(2,arguments) == DRIVER_REQUEST_UNAVAILABLE);
 }
+/** Relocation operations have separate exact names; preview cannot silently choose publication or recovery. */
+static void it_recognizes_only_explicit_relocation_operations(void) {
+    char *arguments[] = {"ama","--relocate-preview"};
+    assert(driver_parse_request(2,arguments) == DRIVER_REQUEST_RELOCATE_PREVIEW);
+    arguments[1] = "--relocate-apply";
+    assert(driver_parse_request(2,arguments) == DRIVER_REQUEST_RELOCATE_APPLY);
+    arguments[1] = "--relocate-recover";
+    assert(driver_parse_request(2,arguments) == DRIVER_REQUEST_RELOCATE_RECOVER);
+    arguments[1] = "--relocate";
+    assert(driver_parse_request(2,arguments) == DRIVER_REQUEST_UNAVAILABLE);
+}
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_recognizes_only_explicit_relocation_operations();
     it_recognizes_exact_read_only_source_tool_commands();
     it_recognizes_only_the_explicit_library_build_command();
     it_recognizes_only_the_explicit_library_check_command();

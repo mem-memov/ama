@@ -5,6 +5,7 @@
 #include "../common.c"
 #include <sys/stat.h>
 #include <errno.h>
+#include <stdint.h>
 
 /**
  * Assert that the component documents verified project compilation. The case observes actual
@@ -14,13 +15,20 @@ static void it_documents_verified_project_compilation(void) {
     setup_test();
     char *arguments[] = {"ama", "--help"};
     int result = driver_run(2, arguments, output, errors);
-    char message[1024];
-    read_stream(output, message, sizeof(message));
+    assert(fseek(output,0,SEEK_END) == 0);
+    long length = ftell(output);
+    assert(length >= 0 && (uintmax_t)length <= SIZE_MAX-2);
+    size_t capacity = (size_t)length+2;
+    char *message = malloc(capacity);
+    assert(message != NULL);
+    read_stream(output, message, capacity);
     assert(result == EXIT_SUCCESS);
     assert(strstr(message, "--compile") != NULL);
     assert(strstr(message, "--standard-root DIR") != NULL);
-    read_stream(errors, message, sizeof(message));
+    assert(strstr(message, "--relocate-recover JOURNAL") != NULL);
+    read_stream(errors, message, capacity);
     assert(message[0] == '\0');
+    free(message);
     destroy_test();
 }
 

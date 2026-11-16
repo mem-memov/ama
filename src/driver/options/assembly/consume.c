@@ -34,6 +34,9 @@ static bool install(DriverOptions *options, DriverOptionStorage *storage,
         case DRIVER_OPTION_OVERWRITE: options->overwrite = true; break;
         case DRIVER_OPTION_QUERY_MODULE: case DRIVER_OPTION_OFFSET: case DRIVER_OPTION_RENAME_NAME:
             return driver_options_source_tool(options,kind,value);
+        case DRIVER_OPTION_DESTINATION: case DRIVER_OPTION_DESTINATION_ROOT: case DRIVER_OPTION_DESTINATION_STANDARD_ROOT:
+        case DRIVER_OPTION_RECOVERY_DIRECTORY: case DRIVER_OPTION_ENTRY: case DRIVER_OPTION_CONFIGURATION: case DRIVER_OPTION_INVALIDATION:
+            return driver_options_relocation(options,kind,value);
     }
     return true;
 }
