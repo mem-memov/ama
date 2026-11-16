@@ -4,7 +4,9 @@ T107 exposes [the editor API](../../src/editor/analysis/analysis.h) without addi
 another parser, resolver or type system. It consumes the production frontend's
 original bytes, AST, checked symbols and resolved call/binding metadata under
 [COMP-02](../../spec/implementation/compiler.md#comp-02).
-No C compilation, native execution or source rewriting occurs.
+No C compilation, native execution or source rewriting occurs. T152 exposes these
+observations through the [explicit source-tool commands](source-tool-commands.md);
+clients can also retain these C API owners directly.
 
 ## Snapshot lifetime and status
 

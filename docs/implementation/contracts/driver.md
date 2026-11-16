@@ -9,9 +9,9 @@ backend. Unsupported executable compilation must never report successful output.
 [Recognition](../../../src/driver/request/request.h) accepts a nonnegative count
 and that many nonnull NUL-terminated strings; a zero count permits a null vector.
 It borrows them without mutation. Standalone `--help` selects Help; otherwise an
-exact `--check`, `--status`, `--native` or `--emit` selects its command before
-operand validation. Other requests
-are unavailable. Count checks precede every argument access. The exact string
+exact `--check`, `--status`, `--native`, `--emit`, library check/header/build,
+`--editor` or `--rename-plan` selects its command before operand validation.
+Other requests are unavailable. Count checks precede every argument access. The exact string
 predicates and fallback partition the domain; prefixes/extra help arguments do
 not accidentally select Help.
 
@@ -32,6 +32,13 @@ the error stream. This sequential law prevents partial frontend/output failure
 from appearing as success. No command retains borrowed arguments after return.
 Check-only has read-only filesystem effects and invokes no C toolchain; detailed
 source/semantic/planning ownership laws are in the checking contract.
+
+[Source-tool requests](../source-tool-commands.md) reuse the immutable editor and
+complete-workspace rename APIs. Their JSON observations retain original byte
+coordinates and exact integers; no editor document or source file is written.
+Draft/invalid editor observations remain explicit states, while a rename plan
+requires complete checking and fresh identity/reference validation. The client's
+atomic publication authority is separate from read-only plan generation.
 
 Native authoring uses the same frontend, with explicit proposed companions only
 under `--create`, then the [scaffold publisher](../native-scaffolding.md). Success

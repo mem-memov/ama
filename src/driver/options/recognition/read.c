@@ -7,6 +7,7 @@
  * avoid inferred aliases, filesystem-dependent choices or spelling heuristics.
  */
 #include <stddef.h>
+#include <limits.h>
 #include <string.h>
 #include "option.h"
 
@@ -16,11 +17,16 @@
 #define EMIT_REQUEST (1u << DRIVER_REQUEST_EMIT)
 #define LIBRARY_CHECK_REQUEST ((1u << DRIVER_REQUEST_LIBRARY_CHECK) | (1u << DRIVER_REQUEST_LIBRARY_HEADER))
 #define LIBRARY_BUILD_REQUEST (1u << DRIVER_REQUEST_LIBRARY_BUILD)
-#define ALL_REQUESTS (CHECK_REQUEST | STATUS_REQUEST | NATIVE_REQUEST | EMIT_REQUEST | LIBRARY_CHECK_REQUEST | LIBRARY_BUILD_REQUEST)
+#define SOURCE_TOOLS ((1u << DRIVER_REQUEST_EDITOR) | (1u << DRIVER_REQUEST_RENAME_PLAN))
+_Static_assert(DRIVER_REQUEST_UNAVAILABLE < sizeof(unsigned)*CHAR_BIT, "Command masks must fit unsigned");
+#define ALL_REQUESTS (CHECK_REQUEST | STATUS_REQUEST | NATIVE_REQUEST | EMIT_REQUEST | LIBRARY_CHECK_REQUEST | LIBRARY_BUILD_REQUEST | SOURCE_TOOLS)
 #define GENERATING_REQUESTS (NATIVE_REQUEST | EMIT_REQUEST | LIBRARY_BUILD_REQUEST)
 
 /** Every exact spelling occurs once; request masks encode the existing CLI. */
 static const DriverOption options[] = {
+    {"--module", DRIVER_OPTION_QUERY_MODULE, true, SOURCE_TOOLS},
+    {"--offset", DRIVER_OPTION_OFFSET, true, SOURCE_TOOLS},
+    {"--name", DRIVER_OPTION_RENAME_NAME, true, 1u << DRIVER_REQUEST_RENAME_PLAN},
     {"--root", DRIVER_OPTION_ROOT, true, ALL_REQUESTS},
     {"--standard-root", DRIVER_OPTION_STANDARD_ROOT, true, ALL_REQUESTS},
     {"--exclude", DRIVER_OPTION_EXCLUDE, true, ALL_REQUESTS},
@@ -35,7 +41,7 @@ static const DriverOption options[] = {
 };
 
 const DriverOption *driver_option_recognize(DriverRequest request, const char *name) {
-    if (request < DRIVER_REQUEST_CHECK || request > DRIVER_REQUEST_LIBRARY_BUILD) {
+    if (request < DRIVER_REQUEST_CHECK || request >= DRIVER_REQUEST_UNAVAILABLE) {
         return NULL;
     }
     unsigned selected = 1u << request;

@@ -16,6 +16,10 @@ typedef enum { SEMANTIC_LIST_APPEND, SEMANTIC_LIST_INSERT, SEMANTIC_LIST_REMOVE,
 typedef struct { const char *name; bool element_reference; } SemanticListField;
 /** Match one exact source base name without normalization, imports or fallback; false leaves the output unused. */
 bool semantic_list_method(SourceSpan name, SemanticListMethod *method);
+/** Return the canonical static source spelling of an intrinsic method, or null for an out-of-domain value.
+ * Tool clients reuse this descriptor rather than maintaining a second method-name table.
+ */
+const char *semantic_list_method_name(SemanticListMethod);
 /** Return a static interface field by independent input/result ordinal, or null past arity; no allocation or instance creation. */
 const SemanticListField *semantic_list_position(SemanticListMethod method, bool result, size_t position);
 /** Match an exact field base name and return its ordinal, or null; static descriptors have process lifetime. */

@@ -34,6 +34,12 @@ bool driver_options_validate(DriverOptions *options) {
         && (options->output == NULL || options->sdk == NULL)) {
         return driver_options_invalid(options, "Project emission needs --out and --sdk");
     }
+    if (options->request == DRIVER_REQUEST_EDITOR || options->request == DRIVER_REQUEST_RENAME_PLAN) {
+        if (options->query_module == NULL) { options->query_module = options->entry; }
+        if (options->request == DRIVER_REQUEST_RENAME_PLAN && (!options->has_offset || options->rename_name == NULL)) {
+            return driver_options_invalid(options,"Rename planning requires --offset and --name");
+        }
+    }
     if (options->compiler == NULL) {
         options->compiler = "gcc";
     }

@@ -16,7 +16,7 @@
 /** Install one recognized value or flag; caller has already checked its arity.
  * Each append consumes a distinct argv entry, bounded by the allocated count.
  */
-static void install(DriverOptions *options, DriverOptionStorage *storage,
+static bool install(DriverOptions *options, DriverOptionStorage *storage,
     DriverOptionKind kind, const char *value) {
     switch (kind) {
         case DRIVER_OPTION_ROOT: case DRIVER_OPTION_STANDARD_ROOT:
@@ -32,7 +32,10 @@ static void install(DriverOptions *options, DriverOptionStorage *storage,
         case DRIVER_OPTION_COMPILE: options->compile = true; break;
         case DRIVER_OPTION_CREATE: options->create = true; break;
         case DRIVER_OPTION_OVERWRITE: options->overwrite = true; break;
+        case DRIVER_OPTION_QUERY_MODULE: case DRIVER_OPTION_OFFSET: case DRIVER_OPTION_RENAME_NAME:
+            return driver_options_source_tool(options,kind,value);
     }
+    return true;
 }
 
 bool driver_options_consume(DriverOptions *options, DriverOptionStorage *storage,
@@ -46,7 +49,7 @@ bool driver_options_consume(DriverOptions *options, DriverOptionStorage *storage
             return driver_options_invalid(options, "Command option needs a value");
         }
         const char *value = option->takes_value ? arguments[index++] : NULL;
-        install(options, storage, option->kind, value);
+        if (!install(options, storage, option->kind, value)) { return false; }
     }
     return true;
 }

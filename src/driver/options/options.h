@@ -19,6 +19,10 @@ typedef struct {
     ModuleRoot *roots;
     size_t root_count;
     const char *entry;
+    const char *query_module;
+    const char *rename_name;
+    size_t offset;
+    bool has_offset;
     const char *library_configuration;
     const char *output;
     const char *compiler;

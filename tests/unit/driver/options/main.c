@@ -203,8 +203,38 @@ static void it_cleans_every_partial_allocation_and_rejects_unrepresentable_stora
     destroy_test();
 }
 
+/** Source selectors use exact logical names and canonical original byte offsets, with no duplicate precedence rule. */
+static void it_validates_source_tool_selectors_and_required_rename_operands(void) {
+    char *valid[] = {"ama","--editor","project",".main","--module",".worker","--offset","0"};
+    setup_test();
+    DriverOptions options;
+    driver_options_init(&options,sources.allocator);
+    assert(driver_options_parse(&options,8,valid));
+    assert(options.request == DRIVER_REQUEST_EDITOR && options.has_offset && options.offset == 0);
+    assert(strcmp(options.query_module,".worker") == 0 && options.root_count == 1 && !options.compile);
+    driver_options_destroy(&options);
+    destroy_test();
+    const char *bad_offsets[] = {"", "00", "+1", "-1", "1 ", "184467440737095516160"};
+    for (size_t index = 0; index < sizeof(bad_offsets)/sizeof(*bad_offsets); index++) {
+        valid[7] = (char *)bad_offsets[index];
+        invalid_arguments(8,valid,"Expected one canonical nonnegative --offset in the supported byte range");
+    }
+    char *duplicate[] = {"ama","--editor","project",".main","--offset","0","--offset","1"};
+    invalid_arguments(8,duplicate,"Expected one canonical nonnegative --offset in the supported byte range");
+    char *rename[] = {"ama","--rename-plan","project",".main","--offset","3","--name","new name"};
+    setup_test();
+    driver_options_init(&options,sources.allocator);
+    assert(driver_options_parse(&options,8,rename));
+    assert(options.request == DRIVER_REQUEST_RENAME_PLAN && options.offset == 3);
+    assert(strcmp(options.query_module,".main") == 0 && strcmp(options.rename_name,"new name") == 0);
+    driver_options_destroy(&options);
+    destroy_test();
+    invalid_arguments(4,rename,"Rename planning requires --offset and --name");
+    invalid_arguments(6,rename,"Rename planning requires --offset and --name");
+}
 /** Exercise independent recognition/storage and their real request assembly. */
 void run(void) {
+    it_validates_source_tool_selectors_and_required_rename_operands();
     it_requires_explicit_library_build_destinations_and_manifest_flags();
     it_keeps_library_configuration_separate_from_executable_options();
     it_recognizes_only_exact_applicable_options();

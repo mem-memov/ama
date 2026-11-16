@@ -5783,7 +5783,7 @@
     ]
   },
   "src/driver/options/assembly/consume.c": {
-    "contract": "docs/implementation/driver-options.md",
+    "contract": "docs/implementation/source-tool-commands.md",
     "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
     "tests": [
       {
@@ -5815,11 +5815,16 @@
         "case": "it_compiles_and_executes_real_integer_list_results",
         "command": "make -C tests/integration/standard-integer",
         "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_validates_source_tool_selectors_and_required_rename_operands",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
       }
     ]
   },
   "src/driver/options/assembly/consume.h": {
-    "contract": "docs/implementation/driver-options.md",
+    "contract": "docs/implementation/source-tool-commands.md",
     "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
     "standalone_header_command": [
       "cc",
@@ -5851,11 +5856,16 @@
         "case": "it_assembles_native_creation_and_check_defaults",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_validates_source_tool_selectors_and_required_rename_operands",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
       }
     ]
   },
   "src/driver/options/options.h": {
-    "contract": "docs/implementation/driver-options.md",
+    "contract": "docs/implementation/source-tool-commands.md",
     "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
     "standalone_header_command": [
       "cc",
@@ -5900,6 +5910,11 @@
       },
       {
         "case": "it_keeps_library_configuration_separate_from_executable_options",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_validates_source_tool_selectors_and_required_rename_operands",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
       }
@@ -5952,7 +5967,7 @@
     ]
   },
   "src/driver/options/recognition/option.h": {
-    "contract": "docs/implementation/driver-options.md",
+    "contract": "docs/implementation/source-tool-commands.md",
     "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
     "standalone_header_command": [
       "cc",
@@ -5989,11 +6004,16 @@
         "case": "it_compiles_and_executes_real_integer_list_results",
         "command": "make -C tests/integration/standard-integer",
         "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_validates_source_tool_selectors_and_required_rename_operands",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
       }
     ]
   },
   "src/driver/options/recognition/read.c": {
-    "contract": "docs/implementation/driver-options.md",
+    "contract": "docs/implementation/source-tool-commands.md",
     "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
     "tests": [
       {
@@ -6030,6 +6050,11 @@
         "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
         "command": "make -C tests/integration/library-build",
         "source": "tests/integration/library-build/main.c"
+      },
+      {
+        "case": "it_validates_source_tool_selectors_and_required_rename_operands",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
       }
     ]
   },
@@ -6097,7 +6122,7 @@
     ]
   },
   "src/driver/options/validation/request.c": {
-    "contract": "docs/implementation/driver-options.md",
+    "contract": "docs/implementation/source-tool-commands.md",
     "purpose": "Recognize, own, validate or assemble one explicit CLI configuration.",
     "tests": [
       {
@@ -6124,6 +6149,11 @@
         "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
         "command": "make -C tests/integration/library-build",
         "source": "tests/integration/library-build/main.c"
+      },
+      {
+        "case": "it_validates_source_tool_selectors_and_required_rename_operands",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
       }
     ]
   },
@@ -6210,7 +6240,7 @@
     ]
   },
   "src/driver/output/write.c": {
-    "contract": "docs/implementation/compiler-and-emission.md",
+    "contract": "docs/implementation/source-tool-commands.md",
     "purpose": "Write explicit CLI help or unavailable-command guidance and verify final flush.",
     "tests": [
       {
@@ -6282,11 +6312,66 @@
         "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
         "command": "make -C tests/integration/library-build",
         "source": "tests/integration/library-build/main.c"
+      },
+      {
+        "case": "it_exposes_checked_unicode_snapshots_and_versioned_rename_plans",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_reports_draft_and_invalid_source_without_fabricating_definitions",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_exposes_nominal_intrinsic_and_related_diagnostic_metadata",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_names_and_outside_source_offsets",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_names_intrinsic_methods_from_canonical_semantic_descriptors",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_rejects_a_valid_name_that_changes_checked_workspace_identity",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_rename_command_prefix",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_output_failure_without_applying_any_document_changes",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
       }
     ]
   },
   "src/driver/request/parse.c": {
-    "contract": "docs/implementation/compiler-and-emission.md",
+    "contract": "docs/implementation/source-tool-commands.md",
     "purpose": "Recognize exact command spellings without guessing operands or abbreviations.",
     "tests": [
       {
@@ -6343,11 +6428,16 @@
         "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
         "command": "make -C tests/integration/library-build",
         "source": "tests/integration/library-build/main.c"
+      },
+      {
+        "case": "it_recognizes_exact_read_only_source_tool_commands",
+        "command": "make -C tests/unit/driver/request",
+        "source": "tests/unit/driver/request/main.c"
       }
     ]
   },
   "src/driver/request/request.h": {
-    "contract": "docs/implementation/compiler-and-emission.md",
+    "contract": "docs/implementation/source-tool-commands.md",
     "purpose": "Declare exact command recognition independently of option validation.",
     "standalone_header_command": [
       "cc",
@@ -6419,11 +6509,16 @@
         "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
         "command": "make -C tests/integration/library-build",
         "source": "tests/integration/library-build/main.c"
+      },
+      {
+        "case": "it_recognizes_exact_read_only_source_tool_commands",
+        "command": "make -C tests/unit/driver/request",
+        "source": "tests/unit/driver/request/main.c"
       }
     ]
   },
   "src/driver/run.c": {
-    "contract": "docs/implementation/compiler-and-emission.md",
+    "contract": "docs/implementation/source-tool-commands.md",
     "purpose": "Dispatch one explicit command after exact option validation.",
     "tests": [
       {
@@ -6480,6 +6575,61 @@
         "case": "it_publishes_repeatable_libraries_and_preserves_outputs_on_tool_failure",
         "command": "make -C tests/integration/library-build",
         "source": "tests/integration/library-build/main.c"
+      },
+      {
+        "case": "it_exposes_checked_unicode_snapshots_and_versioned_rename_plans",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_reports_draft_and_invalid_source_without_fabricating_definitions",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_exposes_nominal_intrinsic_and_related_diagnostic_metadata",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_names_and_outside_source_offsets",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_names_intrinsic_methods_from_canonical_semantic_descriptors",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_rejects_a_valid_name_that_changes_checked_workspace_identity",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_rename_command_prefix",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_output_failure_without_applying_any_document_changes",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
       }
     ]
   },
@@ -34675,7 +34825,7 @@
     ]
   },
   "tests/integration/Makefile": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/source-tool-commands.md",
     "purpose": "Dispatch independent child suites: launcher rebuild harness native source parser project semantic check scaffold execution.",
     "tests": [
       {
@@ -34762,6 +34912,61 @@
         "case": "it_rejects_incomplete_commands_and_duplicate_public_metadata",
         "command": "make -C tests/integration/async-examples",
         "source": "tests/integration/async-examples/main.c"
+      },
+      {
+        "case": "it_exposes_checked_unicode_snapshots_and_versioned_rename_plans",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_reports_draft_and_invalid_source_without_fabricating_definitions",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_exposes_nominal_intrinsic_and_related_diagnostic_metadata",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_names_and_outside_source_offsets",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_names_intrinsic_methods_from_canonical_semantic_descriptors",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_rejects_a_valid_name_that_changes_checked_workspace_identity",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_rename_command_prefix",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_output_failure_without_applying_any_document_changes",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
       }
     ]
   },
@@ -41594,7 +41799,7 @@
     ]
   },
   "tests/unit/driver/Makefile": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/source-tool-commands.md",
     "purpose": "Dispatch independent child suites: request options run.",
     "tests": [
       {
@@ -41661,6 +41866,61 @@
         "case": "it_rejects_every_retired_list_configuration_option",
         "command": "make -C tests/unit/driver/run",
         "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_exposes_checked_unicode_snapshots_and_versioned_rename_plans",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_reports_draft_and_invalid_source_without_fabricating_definitions",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_exposes_nominal_intrinsic_and_related_diagnostic_metadata",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_names_and_outside_source_offsets",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_names_intrinsic_methods_from_canonical_semantic_descriptors",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_rejects_a_valid_name_that_changes_checked_workspace_identity",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_rename_command_prefix",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_output_failure_without_applying_any_document_changes",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
       }
     ]
   },
@@ -41722,7 +41982,7 @@
     ]
   },
   "tests/unit/driver/options/main.c": {
-    "contract": "docs/implementation/driver-options.md",
+    "contract": "docs/implementation/source-tool-commands.md",
     "purpose": "Exercise option children and composed requests without frontend linkage.",
     "tests": [
       {
@@ -41759,6 +42019,11 @@
         "case": "it_keeps_library_configuration_separate_from_executable_options",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_validates_source_tool_selectors_and_required_rename_operands",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
       }
     ]
   },
@@ -41789,7 +42054,7 @@
     ]
   },
   "tests/unit/driver/request/main.c": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/source-tool-commands.md",
     "purpose": "Verify exact explicit CLI request recognition without reading absent arguments.",
     "tests": [
       {
@@ -41816,11 +42081,16 @@
         "case": "it_recognizes_only_the_explicit_library_check_command",
         "command": "make -C tests/unit/driver/request",
         "source": "tests/unit/driver/request/main.c"
+      },
+      {
+        "case": "it_recognizes_exact_read_only_source_tool_commands",
+        "command": "make -C tests/unit/driver/request",
+        "source": "tests/unit/driver/request/main.c"
       }
     ]
   },
   "tests/unit/driver/run/Makefile": {
-    "contract": "docs/implementation/library-tests-and-build.md",
+    "contract": "docs/implementation/source-tool-commands.md",
     "purpose": "Build and run this leaf against its explicit production and fixture sources.",
     "tests": [
       {
@@ -41842,6 +42112,61 @@
         "case": "it_rejects_every_retired_list_configuration_option",
         "command": "make -C tests/unit/driver/run",
         "source": "tests/unit/driver/run/main.c"
+      },
+      {
+        "case": "it_exposes_checked_unicode_snapshots_and_versioned_rename_plans",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_reports_draft_and_invalid_source_without_fabricating_definitions",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_exposes_nominal_intrinsic_and_related_diagnostic_metadata",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_names_and_outside_source_offsets",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_names_intrinsic_methods_from_canonical_semantic_descriptors",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_rejects_a_valid_name_that_changes_checked_workspace_identity",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_rename_command_prefix",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_output_failure_without_applying_any_document_changes",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
       }
     ]
   },
@@ -62785,7 +63110,7 @@
     ]
   },
   "src/semantic/lists/interface.h": {
-    "contract": "docs/implementation/list-interfaces.md",
+    "contract": "docs/implementation/source-tool-commands.md",
     "purpose": "Describe the six intrinsic list interfaces independently of Ama module instances and source declarations.",
     "tests": [
       {
@@ -62822,6 +63147,61 @@
         "case": "it_types_list_interfaces_and_complete_service_ir_without_inspecting_native_c",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_exposes_checked_unicode_snapshots_and_versioned_rename_plans",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_reports_draft_and_invalid_source_without_fabricating_definitions",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_exposes_nominal_intrinsic_and_related_diagnostic_metadata",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_names_and_outside_source_offsets",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_names_intrinsic_methods_from_canonical_semantic_descriptors",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_rejects_a_valid_name_that_changes_checked_workspace_identity",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_rename_command_prefix",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_output_failure_without_applying_any_document_changes",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
       }
     ],
     "standalone_header_command": [
@@ -62841,7 +63221,7 @@
     ]
   },
   "src/semantic/lists/interface.c": {
-    "contract": "docs/implementation/list-interfaces.md",
+    "contract": "docs/implementation/source-tool-commands.md",
     "purpose": "Share exact immutable method/field descriptors between receiver inference and full list binding validation.",
     "tests": [
       {
@@ -62878,6 +63258,61 @@
         "case": "it_types_list_interfaces_and_complete_service_ir_without_inspecting_native_c",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "case": "it_exposes_checked_unicode_snapshots_and_versioned_rename_plans",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_reports_draft_and_invalid_source_without_fabricating_definitions",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_exposes_nominal_intrinsic_and_related_diagnostic_metadata",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_names_and_outside_source_offsets",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_names_intrinsic_methods_from_canonical_semantic_descriptors",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_rejects_a_valid_name_that_changes_checked_workspace_identity",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_rename_command_prefix",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_output_failure_without_applying_any_document_changes",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
       }
     ]
   },
@@ -106509,7 +106944,7 @@
     ]
   },
   "tests/unit/tools/Makefile": {
-    "contract": "docs/implementation/relocation-preview.md",
+    "contract": "docs/implementation/source-tool-commands.md",
     "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
     "tests": [
       {
@@ -106561,6 +106996,61 @@
         "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
         "command": "make -C tests/unit/tools/relocation/preview",
         "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_exposes_checked_unicode_snapshots_and_versioned_rename_plans",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_reports_draft_and_invalid_source_without_fabricating_definitions",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_exposes_nominal_intrinsic_and_related_diagnostic_metadata",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_names_and_outside_source_offsets",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_names_intrinsic_methods_from_canonical_semantic_descriptors",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_rejects_a_valid_name_that_changes_checked_workspace_identity",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_rename_command_prefix",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_output_failure_without_applying_any_document_changes",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
       }
     ]
   },
@@ -115790,6 +116280,1370 @@
         "case": "it_recovers_every_interrupted_recovery_process",
         "command": "make -C tests/unit/tools/relocation/recovery/interruption",
         "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/driver/commands/editor/editor.h": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Expose immutable checked source observations and freshly validated full-workspace rename plans without modifying documents.",
+    "tests": [
+      {
+        "case": "it_exposes_checked_unicode_snapshots_and_versioned_rename_plans",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_reports_draft_and_invalid_source_without_fabricating_definitions",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_exposes_nominal_intrinsic_and_related_diagnostic_metadata",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_names_and_outside_source_offsets",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_names_intrinsic_methods_from_canonical_semantic_descriptors",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_rejects_a_valid_name_that_changes_checked_workspace_identity",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_rename_command_prefix",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_output_failure_without_applying_any_document_changes",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/driver/commands/editor/internal.h": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Expose immutable checked source observations and freshly validated full-workspace rename plans without modifying documents.",
+    "tests": [
+      {
+        "case": "it_exposes_checked_unicode_snapshots_and_versioned_rename_plans",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_reports_draft_and_invalid_source_without_fabricating_definitions",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_exposes_nominal_intrinsic_and_related_diagnostic_metadata",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_names_and_outside_source_offsets",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_names_intrinsic_methods_from_canonical_semantic_descriptors",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_rejects_a_valid_name_that_changes_checked_workspace_identity",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_rename_command_prefix",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_output_failure_without_applying_any_document_changes",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/driver/commands/editor/point.c": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Expose immutable checked source observations and freshly validated full-workspace rename plans without modifying documents.",
+    "tests": [
+      {
+        "case": "it_exposes_checked_unicode_snapshots_and_versioned_rename_plans",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_reports_draft_and_invalid_source_without_fabricating_definitions",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_exposes_nominal_intrinsic_and_related_diagnostic_metadata",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_names_and_outside_source_offsets",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_names_intrinsic_methods_from_canonical_semantic_descriptors",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_rejects_a_valid_name_that_changes_checked_workspace_identity",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_rename_command_prefix",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_output_failure_without_applying_any_document_changes",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      }
+    ]
+  },
+  "src/driver/commands/editor/rename.c": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Expose immutable checked source observations and freshly validated full-workspace rename plans without modifying documents.",
+    "tests": [
+      {
+        "case": "it_exposes_checked_unicode_snapshots_and_versioned_rename_plans",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_reports_draft_and_invalid_source_without_fabricating_definitions",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_exposes_nominal_intrinsic_and_related_diagnostic_metadata",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_names_and_outside_source_offsets",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_names_intrinsic_methods_from_canonical_semantic_descriptors",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_rejects_a_valid_name_that_changes_checked_workspace_identity",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_rename_command_prefix",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_output_failure_without_applying_any_document_changes",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      }
+    ]
+  },
+  "src/driver/commands/editor/response.c": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Expose immutable checked source observations and freshly validated full-workspace rename plans without modifying documents.",
+    "tests": [
+      {
+        "case": "it_exposes_checked_unicode_snapshots_and_versioned_rename_plans",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_reports_draft_and_invalid_source_without_fabricating_definitions",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_exposes_nominal_intrinsic_and_related_diagnostic_metadata",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_names_and_outside_source_offsets",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_names_intrinsic_methods_from_canonical_semantic_descriptors",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_rejects_a_valid_name_that_changes_checked_workspace_identity",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_rename_command_prefix",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_output_failure_without_applying_any_document_changes",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      }
+    ]
+  },
+  "src/driver/commands/editor/run.c": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Expose immutable checked source observations and freshly validated full-workspace rename plans without modifying documents.",
+    "tests": [
+      {
+        "case": "it_exposes_checked_unicode_snapshots_and_versioned_rename_plans",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_reports_draft_and_invalid_source_without_fabricating_definitions",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_exposes_nominal_intrinsic_and_related_diagnostic_metadata",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_names_and_outside_source_offsets",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_names_intrinsic_methods_from_canonical_semantic_descriptors",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_rejects_a_valid_name_that_changes_checked_workspace_identity",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_rename_command_prefix",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_output_failure_without_applying_any_document_changes",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      }
+    ]
+  },
+  "src/driver/options/assembly/source-tool.c": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Parse exact source-tool selectors and canonical byte offsets without duplicate precedence or inferred source roots.",
+    "tests": [
+      {
+        "case": "it_keeps_library_configuration_separate_from_executable_options",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_requires_explicit_library_build_destinations_and_manifest_flags",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_recognizes_only_exact_applicable_options",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_preserves_repeated_values_flags_and_shared_root_exclusions",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_selects_standard_root_authority_only_by_an_explicit_option",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_missing_and_wrong_request_options",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_assembles_native_creation_and_check_defaults",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_cleans_every_partial_allocation_and_rejects_unrepresentable_storage",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "case": "it_validates_source_tool_selectors_and_required_rename_operands",
+        "command": "make -C tests/unit/driver/options",
+        "source": "tests/unit/driver/options/main.c"
+      }
+    ]
+  },
+  "src/tools/output/json/internal.h": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Preserve exact Unicode, arbitrary bytes and full-width identities through checked borrowed-stream JSON output.",
+    "tests": [
+      {
+        "case": "it_round_trips_unicode_control_bytes_and_full_width_identities",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_text_without_mutating_its_bytes",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      },
+      {
+        "case": "it_retains_write_and_flush_failures_without_closing_streams",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/tools/output/json/json.h": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Preserve exact Unicode, arbitrary bytes and full-width identities through checked borrowed-stream JSON output.",
+    "tests": [
+      {
+        "case": "it_round_trips_unicode_control_bytes_and_full_width_identities",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_text_without_mutating_its_bytes",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      },
+      {
+        "case": "it_retains_write_and_flush_failures_without_closing_streams",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/tools/output/json/stream.c": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Preserve exact Unicode, arbitrary bytes and full-width identities through checked borrowed-stream JSON output.",
+    "tests": [
+      {
+        "case": "it_round_trips_unicode_control_bytes_and_full_width_identities",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_text_without_mutating_its_bytes",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      },
+      {
+        "case": "it_retains_write_and_flush_failures_without_closing_streams",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      }
+    ]
+  },
+  "src/tools/output/json/text.c": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Preserve exact Unicode, arbitrary bytes and full-width identities through checked borrowed-stream JSON output.",
+    "tests": [
+      {
+        "case": "it_round_trips_unicode_control_bytes_and_full_width_identities",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_text_without_mutating_its_bytes",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      },
+      {
+        "case": "it_retains_write_and_flush_failures_without_closing_streams",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      }
+    ]
+  },
+  "src/tools/output/json/values.c": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Preserve exact Unicode, arbitrary bytes and full-width identities through checked borrowed-stream JSON output.",
+    "tests": [
+      {
+        "case": "it_round_trips_unicode_control_bytes_and_full_width_identities",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_text_without_mutating_its_bytes",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      },
+      {
+        "case": "it_retains_write_and_flush_failures_without_closing_streams",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      }
+    ]
+  },
+  "src/tools/output/source/diagnostic.c": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Expose immutable checked source observations and freshly validated full-workspace rename plans without modifying documents.",
+    "tests": [
+      {
+        "case": "it_exposes_checked_unicode_snapshots_and_versioned_rename_plans",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_reports_draft_and_invalid_source_without_fabricating_definitions",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_exposes_nominal_intrinsic_and_related_diagnostic_metadata",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_names_and_outside_source_offsets",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_names_intrinsic_methods_from_canonical_semantic_descriptors",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_rejects_a_valid_name_that_changes_checked_workspace_identity",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_rename_command_prefix",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_output_failure_without_applying_any_document_changes",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      }
+    ]
+  },
+  "src/tools/output/source/source.h": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Expose immutable checked source observations and freshly validated full-workspace rename plans without modifying documents.",
+    "tests": [
+      {
+        "case": "it_exposes_checked_unicode_snapshots_and_versioned_rename_plans",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_reports_draft_and_invalid_source_without_fabricating_definitions",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_exposes_nominal_intrinsic_and_related_diagnostic_metadata",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_names_and_outside_source_offsets",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_names_intrinsic_methods_from_canonical_semantic_descriptors",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_rejects_a_valid_name_that_changes_checked_workspace_identity",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_rename_command_prefix",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_output_failure_without_applying_any_document_changes",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/tools/output/source/span.c": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Expose immutable checked source observations and freshly validated full-workspace rename plans without modifying documents.",
+    "tests": [
+      {
+        "case": "it_exposes_checked_unicode_snapshots_and_versioned_rename_plans",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_reports_draft_and_invalid_source_without_fabricating_definitions",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_exposes_nominal_intrinsic_and_related_diagnostic_metadata",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_names_and_outside_source_offsets",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_names_intrinsic_methods_from_canonical_semantic_descriptors",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_rejects_a_valid_name_that_changes_checked_workspace_identity",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_rename_command_prefix",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_output_failure_without_applying_any_document_changes",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      }
+    ]
+  },
+  "src/tools/output/source/symbol.c": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Expose immutable checked source observations and freshly validated full-workspace rename plans without modifying documents.",
+    "tests": [
+      {
+        "case": "it_exposes_checked_unicode_snapshots_and_versioned_rename_plans",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_reports_draft_and_invalid_source_without_fabricating_definitions",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_exposes_nominal_intrinsic_and_related_diagnostic_metadata",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_names_and_outside_source_offsets",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_names_intrinsic_methods_from_canonical_semantic_descriptors",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_rejects_a_valid_name_that_changes_checked_workspace_identity",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_rename_command_prefix",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_output_failure_without_applying_any_document_changes",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/Makefile": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Accept actual source-tool command processes on complete projects with exact unchanged drafts and opaque companions.",
+    "tests": [
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/source/Makefile": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Accept actual source-tool command processes on complete projects with exact unchanged drafts and opaque companions.",
+    "tests": [
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/source/main.c": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Accept actual source-tool command processes on complete projects with exact unchanged drafts and opaque companions.",
+    "tests": [
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/source/project/cell": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Accept actual source-tool command processes on complete projects with exact unchanged drafts and opaque companions.",
+    "tests": [
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/source/project/draft": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Accept actual source-tool command processes on complete projects with exact unchanged drafts and opaque companions.",
+    "tests": [
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/source/project/helper.c": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Accept actual source-tool command processes on complete projects with exact unchanged drafts and opaque companions.",
+    "tests": [
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/source/project/main": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Accept actual source-tool command processes on complete projects with exact unchanged drafts and opaque companions.",
+    "tests": [
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/source/project/palette": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Accept actual source-tool command processes on complete projects with exact unchanged drafts and opaque companions.",
+    "tests": [
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/source/project/unused": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Accept actual source-tool command processes on complete projects with exact unchanged drafts and opaque companions.",
+    "tests": [
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      }
+    ]
+  },
+  "tests/integration/tools/source/verify.py": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Accept actual source-tool command processes on complete projects with exact unchanged drafts and opaque companions.",
+    "tests": [
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      }
+    ]
+  },
+  "tests/unit/driver/editor/Makefile": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Expose immutable checked source observations and freshly validated full-workspace rename plans without modifying documents.",
+    "tests": [
+      {
+        "case": "it_exposes_checked_unicode_snapshots_and_versioned_rename_plans",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_reports_draft_and_invalid_source_without_fabricating_definitions",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_exposes_nominal_intrinsic_and_related_diagnostic_metadata",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_names_and_outside_source_offsets",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_names_intrinsic_methods_from_canonical_semantic_descriptors",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_rejects_a_valid_name_that_changes_checked_workspace_identity",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_rename_command_prefix",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_output_failure_without_applying_any_document_changes",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      }
+    ]
+  },
+  "tests/unit/driver/editor/main.c": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Expose immutable checked source observations and freshly validated full-workspace rename plans without modifying documents.",
+    "tests": [
+      {
+        "case": "it_exposes_checked_unicode_snapshots_and_versioned_rename_plans",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_reports_draft_and_invalid_source_without_fabricating_definitions",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_exposes_nominal_intrinsic_and_related_diagnostic_metadata",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_names_and_outside_source_offsets",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_names_intrinsic_methods_from_canonical_semantic_descriptors",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_rejects_a_valid_name_that_changes_checked_workspace_identity",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_rename_command_prefix",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_output_failure_without_applying_any_document_changes",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      }
+    ]
+  },
+  "tests/unit/driver/editor/verify.py": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Expose immutable checked source observations and freshly validated full-workspace rename plans without modifying documents.",
+    "tests": [
+      {
+        "case": "it_exposes_checked_unicode_snapshots_and_versioned_rename_plans",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_reports_draft_and_invalid_source_without_fabricating_definitions",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_exposes_nominal_intrinsic_and_related_diagnostic_metadata",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_names_and_outside_source_offsets",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_names_intrinsic_methods_from_canonical_semantic_descriptors",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_rejects_a_valid_name_that_changes_checked_workspace_identity",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_rename_command_prefix",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_output_failure_without_applying_any_document_changes",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_queries_a_real_project_through_exact_command_arguments",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_prepares_complete_workspace_changes_without_applying_them",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "case": "it_reports_refused_process_requests_without_partial_plans",
+        "command": "make -C tests/integration/tools/source",
+        "source": "tests/integration/tools/source/main.c"
+      }
+    ]
+  },
+  "tests/unit/driver/sources.mk": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Compose real compiler, editor and tool output components at the driver boundary.",
+    "tests": [
+      {
+        "case": "it_exposes_checked_unicode_snapshots_and_versioned_rename_plans",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_reports_draft_and_invalid_source_without_fabricating_definitions",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_exposes_nominal_intrinsic_and_related_diagnostic_metadata",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_names_and_outside_source_offsets",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_names_intrinsic_methods_from_canonical_semantic_descriptors",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_rejects_a_valid_name_that_changes_checked_workspace_identity",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_snapshot_and_rename_command_prefix",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      },
+      {
+        "case": "it_refuses_output_failure_without_applying_any_document_changes",
+        "command": "make -C tests/unit/driver/editor",
+        "source": "tests/unit/driver/editor/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/output/Makefile": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Preserve exact Unicode, arbitrary bytes and full-width identities through checked borrowed-stream JSON output.",
+    "tests": [
+      {
+        "case": "it_round_trips_unicode_control_bytes_and_full_width_identities",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_text_without_mutating_its_bytes",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      },
+      {
+        "case": "it_retains_write_and_flush_failures_without_closing_streams",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/output/json/Makefile": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Preserve exact Unicode, arbitrary bytes and full-width identities through checked borrowed-stream JSON output.",
+    "tests": [
+      {
+        "case": "it_round_trips_unicode_control_bytes_and_full_width_identities",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_text_without_mutating_its_bytes",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      },
+      {
+        "case": "it_retains_write_and_flush_failures_without_closing_streams",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/output/json/main.c": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Preserve exact Unicode, arbitrary bytes and full-width identities through checked borrowed-stream JSON output.",
+    "tests": [
+      {
+        "case": "it_round_trips_unicode_control_bytes_and_full_width_identities",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_text_without_mutating_its_bytes",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      },
+      {
+        "case": "it_retains_write_and_flush_failures_without_closing_streams",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/output/json/verify.py": {
+    "contract": "docs/implementation/source-tool-commands.md",
+    "purpose": "Preserve exact Unicode, arbitrary bytes and full-width identities through checked borrowed-stream JSON output.",
+    "tests": [
+      {
+        "case": "it_round_trips_unicode_control_bytes_and_full_width_identities",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      },
+      {
+        "case": "it_rejects_malformed_text_without_mutating_its_bytes",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
+      },
+      {
+        "case": "it_retains_write_and_flush_failures_without_closing_streams",
+        "command": "make -C tests/unit/tools/output/json",
+        "source": "tests/unit/tools/output/json/main.c"
       }
     ]
   }

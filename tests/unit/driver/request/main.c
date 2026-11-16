@@ -79,11 +79,23 @@ static void it_recognizes_only_the_explicit_library_build_command(void) {
     assert(driver_parse_request(2,arguments)==DRIVER_REQUEST_UNAVAILABLE);
 }
 
+/** Source tooling requires exact commands and never falls through to checking or filesystem mutation. */
+static void it_recognizes_exact_read_only_source_tool_commands(void) {
+    char *arguments[] = {"ama","--editor"};
+    assert(driver_parse_request(2,arguments) == DRIVER_REQUEST_EDITOR);
+    arguments[1] = "--rename-plan";
+    assert(driver_parse_request(2,arguments) == DRIVER_REQUEST_RENAME_PLAN);
+    arguments[1] = "--rename";
+    assert(driver_parse_request(2,arguments) == DRIVER_REQUEST_UNAVAILABLE);
+    arguments[1] = "--edito";
+    assert(driver_parse_request(2,arguments) == DRIVER_REQUEST_UNAVAILABLE);
+}
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_recognizes_exact_read_only_source_tool_commands();
     it_recognizes_only_the_explicit_library_build_command();
     it_recognizes_only_the_explicit_library_check_command();
     it_handles_an_empty_vector_without_reading_arguments();

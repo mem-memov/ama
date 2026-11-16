@@ -2,10 +2,5 @@
 # @brief Build and run this leaf against its explicit production and fixture sources.
 # Contract: ../../../../docs/implementation/library-tests-and-build.md; generated output is never a maintained input.
 ROOT := $(abspath ../../../..)
-include $(ROOT)/tests/unit/native/scaffold/sources.mk
-SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/codegen)) \
-    $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/driver)) \
-    $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/library)) \
-    diagnostics/render/render.c diagnostics/render/location.c diagnostics/render/text.c
-SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/native/toolchain))
+include $(ROOT)/tests/unit/driver/sources.mk
 include $(ROOT)/tests/leaf.mk

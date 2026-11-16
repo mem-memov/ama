@@ -35,6 +35,10 @@ bool semantic_list_method(SourceSpan name, SemanticListMethod *method) {
     }
     return false;
 }
+/** The same finite table defines parsing and display names; no instance or allocation is introduced. */
+const char *semantic_list_method_name(SemanticListMethod method) {
+    return (size_t)method < SEMANTIC_LIST_METHOD_COUNT ? interfaces[method].name : NULL;
+}
 const SemanticListField *semantic_list_position(SemanticListMethod method, bool result, size_t ordinal) {
     if ((size_t)method >= SEMANTIC_LIST_METHOD_COUNT) { return NULL; }
     const MethodInterface *interface = &interfaces[method];

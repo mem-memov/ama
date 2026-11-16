@@ -2612,8 +2612,46 @@ Contracts: [tools](spec/implementation/tools-and-conformance.md),
   complete Doxygen generations are byte-identical (6424 documented interfaces).
   User-facing tool workflows remain T115. See
   `docs/implementation/relocation-recovery.md`.
+- [x] **T152 — Expose source-tooling commands.** Needs: T107, T108.
+  Add exact CLI requests for editor snapshot queries and a validated identity-aware
+  rename plan. Reuse the production APIs, explicit roots and original UTF-8 byte
+  offsets; provide lossless structured output and versioned full-file replacements
+  for a client-owned atomic document transaction. Test complete/draft/invalid input,
+  Unicode/control bytes, absent queries, stale/conflicting edits, output/allocation
+  failure and actual command processes. Document the one-shot filesystem snapshot
+  boundary and avoid claiming unsupported editor plugins or filesystem rename apply.
+  Completed: exact `--editor`/`--rename-plan` requests reuse immutable compiler
+  analysis and fresh whole-workspace rename validation. Lossless JSON preserves
+  UTF-8/control/arbitrary bytes, full-width identities, original source spans,
+  declared interfaces, exact point definitions/completions and nominal/intrinsic
+  binding metadata. Plans contain complete original/replacement versions and
+  original declarations; no source write or native execution occurs. Client
+  whole-workspace authority and atomic publication requirements remain explicit.
+  Evidence: strict compiler/full suite; independent standard JSON decoding;
+  actual process queries and three-file renames including an unreachable importer,
+  no-op/refusal and unchanged opaque drafts/C; related/Unicode/CRLF/source-state
+  tests, all 201 editor and 635 rename allocation refusals and output failures;
+  JSON/driver-source tests under ASan/UBSan and semantic-list/rename-core regressions.
+  All 2274 maintained inputs have named evidence without debt, standalone headers
+  and prose links pass; two complete Doxygen generations are byte-identical
+  (6511 documented interfaces). See `docs/implementation/source-tool-commands.md`.
+- [ ] **T153 — Expose relocation commands.** Needs: T114, T152.
+  Add explicit read-only preview, transactional apply and journal recovery commands.
+  Carry supplied root kinds/exclusions, destination-root settings, optional entry,
+  supported library configurations and explicit output invalidations through the
+  existing complete plan; report exact owned scope and durable outcome. Exercise
+  real commands, refused inputs, changed/foreign state, repeated recovery and
+  output failure after commit without claiming that the move rolled back.
+- [ ] **T154 — Provide an executable debugger client.** Needs: T109, T152.
+  Supply a documented client for retained generated project assemblies, using the
+  checked runtime inspection API and explicit run/resume/dispose boundaries.
+  Inspect actual names, declared fields/lists/cursors and source positions at rest;
+  keep native previews adapter-controlled and inspect without advancing execution.
+  Test real compiled projects, repeated yields, terminal/refused execution, invalid
+  commands and output failure. Describe the generated-assembly build boundary,
+  unsupported external debugger/editor integration and actual native limitations.
 - [ ] **T115 — Accept user-facing tools through real projects.** Needs: T108,
-  T109, T114. Run editor/rename/debugger/relocation workflows against complete
+  T109, T114, T152, T153, T154. Run editor/rename/debugger/relocation workflows against complete
   projects and regenerate verified output afterward. Document exact scope,
   preserved opaque files, unsupported editors and actual tool limitations.
 

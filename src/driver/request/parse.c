@@ -38,5 +38,7 @@ DriverRequest driver_parse_request(int argument_count, char *const arguments[]) 
     if (argument_count >= 2 && strcmp(arguments[1], "--library-build") == 0) {
         return DRIVER_REQUEST_LIBRARY_BUILD;
     }
+    if (argument_count >= 2 && strcmp(arguments[1], "--editor") == 0) { return DRIVER_REQUEST_EDITOR; }
+    if (argument_count >= 2 && strcmp(arguments[1], "--rename-plan") == 0) { return DRIVER_REQUEST_RENAME_PLAN; }
     return DRIVER_REQUEST_UNAVAILABLE;
 }

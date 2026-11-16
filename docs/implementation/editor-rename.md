@@ -48,9 +48,10 @@ replacement and its expected original document/version together. Under exclusive
 document edit authority, it must either apply all replacements or preserve all
 documents. It must check expected versions while holding that authority; a prior
 validation alone is not a filesystem lock. Callback rejection reports an I/O
-failure. The core editor service supplies plans and validation; user-facing
-filesystem transaction/recovery and command integration belong to the later tool
-work. The composition test implements an actual all-or-nothing in-memory editor
+failure. The core editor service supplies plans and validation. T152 exposes
+[validated source-tool plans](source-tool-commands.md); filesystem application is
+still the client's atomic document transaction, not a write performed by the
+read-only plan command. The composition test implements an actual all-or-nothing in-memory editor
 document store, with all rejection points before infallible publication.
 
 The plan owns replacement bytes and current candidate analysis. Its original

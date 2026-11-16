@@ -15,7 +15,7 @@
  */
 int driver_write_response(DriverRequest request, FILE *output) {
     const char *message = request == DRIVER_REQUEST_HELP
-        ? "Ama implementation foundation\n"
+        ? "Ama compiler and tools\n"
             "Usage: ama --help\n"
             "       ama --check ROOT .module [--root DIR] [--exclude PATH]\n"
             "       ama --status ROOT .module [--root DIR] [--exclude PATH]\n"
@@ -24,6 +24,9 @@ int driver_write_response(DriverRequest request, FILE *output) {
             "       ama --library-check ROOT CONFIG [--root DIR] [--exclude PATH]\n"
             "       ama --library-header ROOT CONFIG [--root DIR] [--exclude PATH]\n"
             "       ama --library-build ROOT CONFIG --out DIR --sdk DIR [--cc TOOL]\n"
+            "       ama --editor ROOT .entry [--module .source] [--offset BYTE]\n"
+            "       ama --rename-plan ROOT .entry --offset BYTE --name NAME [--module .source]\n"
+            "Source tools write JSON; rename plans require an atomic editor document transaction.\n"
             "Use --standard-root DIR to resolve double-dot library paths.\n"
             "Checking validates source and typed plans without running C.\n"
             "Use --emit --compile to build a verified executable.\n"
