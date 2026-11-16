@@ -28,7 +28,9 @@ executable commands. `debt.json` assigns every other current audited input to a
 specific TODO owner, records its exact fingerprint and preserves T001's known
 preprocessor consumers. Those consumers are leads for review, not automatically
 claimed behavioral coverage. A successful bootstrap check prints outstanding
-debt explicitly. It does not certify the incomplete implementation.
+debt explicitly. The current complete registry has no remaining debt.
+Documentation checks establish documented and tested file coverage;
+[language conformance](../conformance/README.md) is a separate evidence gate.
 
 The registry partitions the VCS's tracked and unignored maintained inputs. It
 covers C, headers, include fragments, Python/shell, Make inputs, native ABI, `.exports` library-build configurations and
@@ -95,7 +97,14 @@ Doxygen alone renders `docs/technical/`. The checker parses actual HTML and its
 tag file, requires every mapped link on its originating page, verifies each rule's
 unique definition belongs to its canonical chapter and checks the target file
 and fragment. It also requires a file compound for every maintained code input.
-`build/documentation/report.json` records versions, input fingerprints and counts.
+`build/documentation/report.json` records tool versions, input fingerprints and
+counts. Its identical delivered copy, `docs/technical/documentation-manifest.json`,
+uses schema `ama.documentation.v1` and identifies Doxygen, Python and the pinned
+Markdown parser. Its fingerprints include the exact maintained `docs/Doxyfile`
+as well as rendered source/specification/narrative inputs. Relative paths and
+the absence of timestamps keep the report reproducible across generations.
+The real rendered-fixture test compares both report copies, the complete expected
+fingerprint set, actual tool versions and extracted coverage counts.
 Canonical-link and extracted-interface checks are strict. Doxygen emits XML as
 well as HTML; the gate requires actual nonempty brief or detailed descriptions on
 every extracted function, typedef, enum and class/struct/union. EXTRACT_ALL keeps

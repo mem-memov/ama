@@ -106,7 +106,7 @@ single immutable table and its particular service's exact element/integer types.
 There is no generic method value that could accept unrelated parameters. Every
 selected ephemeral instance has an explicit method parent/result ordinal, so it
 cannot be confused with caller-owned storage. Every required copy is checked
-before future runtime selection, and omission never fabricates a supplied source.
+before runtime selection, and omission never fabricates a supplied source.
 
 The fixed six-entry/two-input/one-output lookup is bounded independently of source
 size and allocates nothing. Existing source-order, binding, action-link and

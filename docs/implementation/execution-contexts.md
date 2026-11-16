@@ -55,7 +55,8 @@ host name-allocation bookkeeping, like allocation authority, not shared mutable
 Ama execution state. All registries in that runtime image consume nonzero serials
 from the same frontier, including failed factory attempts. Registries never reset
 it. Separately compiled images additionally require component identity at their
-future checked export boundary; these internal tokens are not that portable ABI.
+[checked export boundary](c-library-header.md); these internal tokens are not
+that public component ABI.
 
 For a fixed positive limit L, issuance succeeds only by changing frontier n<L to
 n+1 with strong compare/exchange. A failed comparison observes a strictly newer

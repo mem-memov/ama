@@ -2811,12 +2811,27 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   Local links, complete per-file documentation, current conformance and two
   identical main-tree Doxygen generations pass. No specification or implementation
   behavior changed. See docs/implementation/conformance/release.md.
-- [ ] **T122 — Finish the implementation release checkpoint.** Needs: T121.
+- [x] **T122 — Finish the implementation release checkpoint.** Needs: T121.
   Remove obsolete mechanisms and conflicting derived descriptions, verify links
   and complete clean build/test/documentation reproduction. Reconcile all task
   statuses through this checkpoint and commit the final acceptance evidence
   without claiming unverified behavior or automatically publishing outside the
   repository. All implementation changes must be complete before T135.
+  Acceptance: make clean followed by the complete make -j4 test with strict
+  O2/Werror/NDEBUG exits zero in one combined run: all 194 unit and 26 integration
+  test programs pass, including the real native O0/O2, generated execution, task,
+  parallel, library/host and tooling compositions. Relocation repeats 1324
+  allocation, 1066 I/O and 529 interruption checkpoints. Retired list-action paths
+  remain absent; current typed service admission is distinguished from the removed
+  selector dispatcher. Conflicting future/incomplete descriptions now point to
+  actual pool, component and conformance evidence; historical audits are intact.
+  The documentation generator also delivers its checked manifest with the site,
+  including configuration fingerprints and exact tool versions; the affected
+  documentation C/assert leaf passes after that packaging-only change. All
+  154 unique task records reconcile, with only final delivery T135 remaining.
+  Current conformance, zero-debt per-file coverage, local links and two identical
+  complete Doxygen generations pass. No compiler/runtime or spec semantics changed.
+  See docs/implementation/conformance/release.md for final acceptance evidence.
 - [ ] **T135 — Deliver the final technical documentation folder.** Needs: T122.
   Only after all implementation, cleanup and acceptance work is ready, regenerate
   `docs/technical/` with Doxygen through `make docs`, using the final code and its

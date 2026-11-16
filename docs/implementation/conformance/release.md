@@ -121,3 +121,38 @@ interfaces and resolved canonical-rule links. The
 [documentation guide](../../documentation.md) explains coverage manifests,
 fingerprints, tools and reproducible generation. Generated reference pages are
 local build outputs; this checkpoint does not publish a release externally.
+
+## Final clean acceptance checkpoint
+
+T122 repeats the release check after T121, beginning with `make clean` and then
+running the complete `make -j4 test` with the strict O2/Werror/NDEBUG flags shown
+above. The combined command exits successfully: all 194 unit and 26 integration
+test programs pass in this one run. Assertions remain enabled by the leaf
+harness's `-UNDEBUG`. This supersedes the split-branch result recorded at T120;
+it does not rewrite that earlier run's history.
+
+The full run includes the real CLI, compiled library/host compositions, native
+O0/O2 positive and negative toolchain probes, editor/debugger/relocation tools,
+and generated runtime/task/parallel execution. Relocation application again
+visits 1324 allocation, 1066 I/O and 529 process-interruption checkpoints;
+recovery failure and interruption cases run through the same recursive parent.
+The [resource report](../resource-acceptance.md) describes their exact oracles.
+
+The obsolete action/outcome list implementation paths remain removed. A current
+IR operation spelling such as `CONTROL_ACQUIRE_LIST` denotes admission to the
+typed list service, not the removed constant-selector dispatcher. Historical
+audit findings remain unchanged. Derived guides now refer to actual stable
+pools, current public component interfaces and the reviewed conformance report
+instead of presenting those implemented facilities as future work.
+
+Current conformance, complete per-file documentation and local-link checks pass.
+The documentation generator now delivers its checked provenance manifest inside
+the generated folder, including exact Doxyfile fingerprints and tool versions.
+The existing C/assert documentation leaf passes after this packaging change;
+it verifies the actual rendered fixture's complete manifest and source stability.
+The compiler, runtime and their fixtures are unchanged from the full clean run.
+Two complete Doxygen generations from the final checkpoint inputs have identical
+file membership and bytes. All 154 roadmap tasks have unique identities; T135
+is the separate final documentation delivery after this checkpoint. No compiler
+semantics or canonical specification bytes changed during T121/T122, and nothing
+was published outside the repository.

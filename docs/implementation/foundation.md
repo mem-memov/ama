@@ -1,11 +1,12 @@
 # Source and test foundation
 
 The retained implementation contains source, parser, semantic, planning,
-ownership, native and generated-execution components. It is being adapted to the
-current [specification](../../spec/README.md), not replaced wholesale. The
-[T001 audit](audit/README.md) records tested behavior and missing current rules;
-the [component map](components.md) selects reusable boundaries and future work.
-Older passing fixtures are not evidence of current grammar conformance.
+ownership, native and generated-execution components. Their current requirement
+coverage is recorded in the [conformance matrix](conformance/README.md). The
+[T001 audit](audit/README.md) preserves the original implementation checkpoint;
+its missing-rule findings are historical. The [component map](components.md)
+routes current responsibilities and consumers. Historical passing fixtures alone
+are not evidence of current grammar conformance.
 
 ## Driver and project boundaries
 

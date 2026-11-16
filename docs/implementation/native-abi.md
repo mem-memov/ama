@@ -39,8 +39,9 @@ UTF-8 validation belongs to source handling, not guessing in native constructors
 Native payload storage must satisfy `_Alignof(T)` and `sizeof(T)`, including
 extended alignment. Typed aggregate declarations preserve alignment. Dynamic
 storage must use checked size/rounding arithmetic and a suitable aligned allocator;
-zero bytes do not imply construction. Pool allocation comes later, not a per-object
-allocation mandate. The layout test checks 64-byte aligned native storage.
+zero bytes do not imply construction. The [stable pool](instance-ownership.md)
+provides runtime slots; this payload-layout contract does not mandate a separate
+allocation for each object. The layout test checks 64-byte aligned native storage.
 
 ## Exact lifecycle and conversion shapes
 

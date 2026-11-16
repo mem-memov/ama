@@ -1,8 +1,9 @@
 # Native entry and label-transfer conformance
 
 This records the tested toolchain boundary under STACK-01 through STACK-04 and
-GEN-01 through GEN-03. It is an executable backend constraint harness, not a
-source-language frontend or a completed runtime.
+GEN-01 through GEN-03. This component is an executable backend constraint harness. The
+[current conformance report](conformance/release.md) separately records frontend,
+runtime and whole-project acceptance.
 
 ## Enforcement and assumptions
 
@@ -78,7 +79,7 @@ The positive project keeps instance data and control selectors in explicit heap/
 runtime storage. Its two Ama-shaped bodies are labels in `main`, each emitted
 once; entry uses `goto`, return uses a validated `switch` selector. No C function
 exists for either body. The native helper's C recursion is intentional and allowed.
-The fixture verifies the code shape and result routing, not future generation,
+The fixture verifies the code shape and result routing, not project generation,
 interface reset, pool growth or the complete runtime acquisition state machine.
 
 The probe uses additional optimization controls to preserve observable native

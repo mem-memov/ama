@@ -5,6 +5,7 @@
 # writes disposable input views, and validates actual rendered destinations.
 import argparse
 import hashlib
+from importlib.metadata import version
 import json
 import os
 from pathlib import Path
@@ -50,7 +51,10 @@ def generate(root, destination, doxygen):
             origin = registry.identity('page', relative) if relative.endswith('.md') else relative
             expected[origin] = references
         hashes[relative] = hashlib.sha256(path.read_bytes()).hexdigest()
-    config = (root / 'docs/Doxyfile').read_text()
+    configuration_source = root / 'docs/Doxyfile'
+    configuration_bytes = configuration_source.read_bytes()
+    hashes['docs/Doxyfile'] = hashlib.sha256(configuration_bytes).hexdigest()
+    config = configuration_bytes.decode('utf-8')
     config += '\nINPUT = ' + ' '.join('"' + name + '"' for name in inputs) + '\n'
     config += 'OUTPUT_DIRECTORY = "' + str(destination) + '"\n'
     config += 'STRIP_FROM_PATH = "' + str(view) + '"\n'
@@ -80,8 +84,15 @@ def generate(root, destination, doxygen):
         if hashlib.sha256((root / relative).read_bytes()).hexdigest() != digest:
             raise ValueError('maintained input changed during generation: ' + relative)
     result['inputs_sha256'] = hashes
+    result['schema'] = 'ama.documentation.v1'
     result['doxygen'] = subprocess.check_output([doxygen, '--version'], text=True).strip()
-    (work / 'report.json').write_text(json.dumps(result, indent=2, sort_keys=True) + '\n')
+    result['python'] = sys.version
+    result['markdown_parser'] = 'markdown-it-py==' + version('markdown-it-py')
+    # Deliver the same checked provenance with the site, without timestamps or
+    # absolute workspace names that would defeat reproducible generation.
+    report = json.dumps(result, indent=2, sort_keys=True) + '\n'
+    (work / 'report.json').write_text(report)
+    (destination / 'documentation-manifest.json').write_text(report)
     print(json.dumps({key: value for key, value in result.items() if key != 'inputs_sha256'}, sort_keys=True))
 
 

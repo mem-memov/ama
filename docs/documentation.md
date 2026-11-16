@@ -19,6 +19,11 @@ when collecting acceptance evidence. Configuration lives in `docs/Doxyfile`.
 `make docs-clean` removes the generated folder and warning log; `make clean`
 also removes them. Generated pages are not handwritten or versioned.
 
+The generated folder includes `documentation-manifest.json`: the checked input
+and Doxyfile fingerprints, coverage counts and exact Doxygen/Python/Markdown
+parser versions. It matches `build/documentation/report.json` byte for byte.
+Keep this manifest with the generated site when copying the folder.
+
 The generator recursively includes maintained `.c` and `.h` files under `src/`,
 `stdlib/modules/`, `tools/` and `tests/`. It excludes build trees and test
 `generated/` outputs. Generated C is documented through its generators and verified
@@ -40,7 +45,8 @@ Narrative guides are included with checked page identities. Temporary heading
 compaction preserves their original parent tree and source line counts. Maintained
 specification bytes remain unchanged.
 
-This documents the retained implementation, whose language conformance remains
-incomplete. T135 regenerates the final deliverable after implementation. Keep
+The [current conformance report](implementation/conformance/release.md) connects
+the implemented requirements to reviewed arguments and executable evidence.
+T135 regenerates this deliverable after the final release checks. Keep
 purpose and contract explanations beside code; let Doxygen generate all reference
 pages and source views.

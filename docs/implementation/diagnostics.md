@@ -13,7 +13,7 @@ A source span and an explicit path must agree. Empty/EOF spans are valid.
 
 Text, source-manager records and caller-owned related arrays must outlive all
 consumers. There is no mutable global last-error state and no heap allocation to
-report out-of-memory. The future compiler's diagnostic collection may own storage;
+report out-of-memory. A consuming diagnostic collection may own storage;
 this view representation does not silently assume that ownership.
 
 Validation checks the finite code domain, required text, all span bounds/path

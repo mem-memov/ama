@@ -144,6 +144,21 @@ def rendered():
     hashes = {path: hashlib.sha256(path.read_bytes()).hexdigest() for path in root.rglob('*') if path.is_file()}
     output = root / 'html'
     generate(root, output, shutil.which('doxygen'))
+    manifest_bytes = (output / 'documentation-manifest.json').read_bytes()
+    require(manifest_bytes == (root / 'build/documentation/report.json').read_bytes(),
+            'delivered provenance differs from the checked build report')
+    manifest = json.loads(manifest_bytes)
+    require(manifest['schema'] == 'ama.documentation.v1', 'unknown documentation manifest')
+    require(manifest['inputs_sha256'] == {
+        path.relative_to(root).as_posix(): digest for path, digest in hashes.items()
+    }, 'delivered fingerprints omit or invent a maintained input/configuration')
+    require(manifest['maintained_file_pages'] == 3 and manifest['documented_interfaces'] > 0,
+            'delivered coverage does not describe actual rendered inputs')
+    require(manifest['python'] == sys.version and manifest['markdown_parser'] == 'markdown-it-py==3.0.0'
+            and manifest['doxygen'] == subprocess.check_output(['doxygen', '--version'], text=True).strip(),
+            'delivered provenance does not identify the actual tools')
+    require(not any(path.startswith('/') for path in manifest['inputs_sha256']),
+            'delivered provenance depends on an absolute checkout path')
     require('examples/host.c' in file_pages(output), 'published C example has no file page')
     require(all(hashlib.sha256(path.read_bytes()).hexdigest() == value for path, value in hashes.items()), 'maintained bytes changed')
     registry = Registry(root)

@@ -35,8 +35,8 @@ same complete gate. The ordinary unit parent includes that leaf.
 A successful evidence check means that the reviewed mapping is complete,
 current and executable. Mathematical component arguments, assertion quality,
 actual behavioral runs, supported target evidence and release checks remain
-necessary. T118 and the subsequent roadmap gates perform the broader final
-verification; this index does not claim those tasks have already run.
+necessary. The [release report](release.md) links the broader product, resource,
+toolchain and clean-example verification performed by the final roadmap gates.
 
 ## Exact authority, not inferred coverage
 

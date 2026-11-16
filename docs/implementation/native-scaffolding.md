@@ -34,8 +34,8 @@ makes declarations independent of directory enumeration.
 All tags are declared before definitions. An owning field points to a typed
 operation-scoped child view; a reference or list view points to an incomplete,
 module-qualified adapter storage type. Thus legal reference cycles impose no
-C definition-order cycle. These are ABI views, not the future instance-pool
-layout. No runtime storage, pool implementation, entry/hook body or companion
+C definition-order cycle. These are ABI views, distinct from the
+[instance-pool layout](instance-ownership.md). No runtime storage, pool implementation, entry/hook body or companion
 `.c` is included in a declaration header.
 
 `ama-native-types.h` includes standard types, SDK services and each required
