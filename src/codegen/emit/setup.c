@@ -13,7 +13,7 @@
 /**
  * Emit only declared initialize/destroy/literal/clone function pointers, or an empty hook set
  * for Ama types. Condition/index remain separate protocols.
- */
+ * Component contract: [LIFE-01](../../../spec/implementation/native-interface.md#life-01), [LIST-13](../../../spec/language/lists.md#list-13), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 static bool hooks(FILE *output, const ScaffoldType *type) {
     if (type->plan->type->module->syntax.sections.kind != MODULE_NATIVE) { return fputs("{0}", output) != EOF; }
     const char *name = type->names[SCAFFOLD_WRITE]->internal_name;
@@ -30,7 +30,7 @@ static bool hooks(FILE *output, const ScaffoldType *type) {
 /**
  * Emit immutable context schemas with actual C layout, explicit slot/generation limits
  * and typed hooks. The existing context factory validates and owns each mutable pool.
- */
+ * Component contract: [LIFE-01](../../../spec/implementation/native-interface.md#life-01), [LIST-13](../../../spec/language/lists.md#list-13), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 bool codegen_emit_type_setup(NativeScaffold *scaffold, FILE *output) {
     if (fputs("static const AmaContextType ama_project_types[] = {\n", output) == EOF) { return false; }
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {

@@ -8,7 +8,7 @@
 #include "codegen/codegen.h"
 #include "library/artifact/package.h"
 #include "diagnostics/render/render.h"
-/** Package only private staged files and retain them before removing scratch. */
+/** Package only private staged files and retain them before removing scratch. Component contract: [EMBED-06](../../../../spec/implementation/c-library.md#embed-06). */
 static bool package(NativeScaffold *scaffold, const LibraryBuild *build, FILE *errors) {
     char stage[]="/tmp/ama-library-XXXXXX";
     if (mkdtemp(stage)==NULL) { return false; }

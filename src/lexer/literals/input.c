@@ -9,7 +9,7 @@
 #include "../layout/internal.h"
 #include "source/unicode/unicode.h"
 
-/** Recognize the first input marker only after an exact complete declaration label or at the operand start. */
+/** Recognize the first input marker only after an exact complete declaration label or at the operand start. Component contract: [CALL-07](../../../spec/language/calls-and-results.md#call-07), [SYN-06](../../../spec/language/source-and-names.md#syn-06). */
 static size_t binding_marker(SourceSpan text) {
     const unsigned char *bytes = source_bytes(text.source);
     if (text.start < text.end && bytes[text.start] == '<') { return text.start; }

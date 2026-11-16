@@ -9,7 +9,7 @@
 #include "planning/storage/frames/internal.h"
 
 /** For active modes, create entry/resume and explicit return/output continuation; retained/shared reads return their output graph directly.
- */
+ * Component contract: [CALL-08](../../../spec/language/calls-and-results.md#call-08). */
 static ControlNode *execute(Lowering *lowering, const SemanticStatement *statement,
     ControlNode *outputs) {
     AstCallMode mode = statement->syntax->as.call.mode;
@@ -35,7 +35,7 @@ static ControlNode *execute(Lowering *lowering, const SemanticStatement *stateme
 }
 
 /** Create exact target acquisition plus fatal/default or lexical refusal graph, retaining handler break context separately.
- */
+ * Component contract: [CALL-08](../../../spec/language/calls-and-results.md#call-08). */
 static ControlNode *acquire(Lowering *lowering, const SemanticStatement *statement,
     ControlNode *next) {
     ControlNode *node = lower_prepend(lowering, CONTROL_ACQUIRE_INSTANCE, statement, NULL, next);
@@ -49,7 +49,7 @@ static ControlNode *acquire(Lowering *lowering, const SemanticStatement *stateme
     return node;
 }
 
-/** Build one link while preserving its initiating root and header/output continuation; selected children are queued separately. */
+/** Build one link while preserving its initiating root and header/output continuation; selected children are queued separately. Component contract: [CALL-08](../../../spec/language/calls-and-results.md#call-08). */
 static ControlNode *operation(Lowering *lowering, const SemanticStatement *statement,
     ControlNode *after) {
     bool static_read = statement->syntax->as.call.mode == AST_CONSTANT_READ;

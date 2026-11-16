@@ -15,7 +15,7 @@
 /** Format the emitter's exact selector name and inspect its complete symbol family.
  * Decimal digit count never exceeds the size_t bit count, so this fixed buffer
  * includes every possible selector and its terminator without a guessed limit.
- */
+ * Component contract: [STACK-01](../../../../spec/implementation/compiler.md#stack-01), [STACK-04](../../../../spec/implementation/compiler.md#stack-04). */
 static AmaSymbolCheck control_entry(AmaByteView listing, size_t selector) {
     char name[sizeof("ama_label_") + sizeof(size_t) * CHAR_BIT];
     int length = snprintf(name, sizeof(name), "ama_label_%zu", selector);
@@ -28,7 +28,7 @@ static AmaSymbolCheck control_entry(AmaByteView listing, size_t selector) {
  * The finite type/control inventories come from checked IR. Native spelling storage
  * belongs to scaffold scratch; selector spelling borrows only the synchronous call.
  * Any failure prevents executable publication; this phase never executes the object.
- */
+ * Component contract: [STACK-01](../../../../spec/implementation/compiler.md#stack-01), [STACK-04](../../../../spec/implementation/compiler.md#stack-04). */
 bool codegen_verify_entries(NativeScaffold *scaffold, AmaByteView listing) {
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
         if (type->plan->type->module->syntax.sections.kind == MODULE_NATIVE) {

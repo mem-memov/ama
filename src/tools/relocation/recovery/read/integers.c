@@ -6,7 +6,7 @@
 #include <inttypes.h>
 #include "../internal.h"
 
-/** Every accepted digit advances the cursor; checked multiply/add bounds the exact numeric value. */
+/** Every accepted digit advances the cursor; checked multiply/add bounds the exact numeric value. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool magnitude(RelocationJournalReader *reader, uintmax_t limit, uintmax_t *value) {
     const unsigned char *bytes = source_bytes(reader->source);
     size_t length = source_length(reader->source), start = reader->offset;
@@ -32,11 +32,11 @@ static bool magnitude(RelocationJournalReader *reader, uintmax_t limit, uintmax_
     *value = result;
     return true;
 }
-/** Unsigned frames accept no sign or optional surrounding whitespace. */
+/** Unsigned frames accept no sign or optional surrounding whitespace. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_read_unsigned(RelocationJournalReader *reader, uintmax_t *value) {
     return magnitude(reader,UINTMAX_MAX,value);
 }
-/** INTMAX_MIN is constructed from magnitude-1 so no signed intermediate overflows. */
+/** INTMAX_MIN is constructed from magnitude-1 so no signed intermediate overflows. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_read_signed(RelocationJournalReader *reader, intmax_t *value) {
     const unsigned char *bytes = source_bytes(reader->source);
     bool negative = reader->offset < source_length(reader->source) && bytes[reader->offset] == '-';
@@ -47,7 +47,7 @@ bool relocation_journal_read_signed(RelocationJournalReader *reader, intmax_t *v
     *value = negative ? -(intmax_t)(result-1)-1 : (intmax_t)result;
     return true;
 }
-/** This is a necessary byte-count bound, not an estimate of the decoded collection's size. */
+/** This is a necessary byte-count bound, not an estimate of the decoded collection's size. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_read_count(RelocationJournalReader *reader, size_t *count) {
     uintmax_t value;
     if (!relocation_journal_read_unsigned(reader,&value)) { return false; }
@@ -58,7 +58,7 @@ bool relocation_journal_read_count(RelocationJournalReader *reader, size_t *coun
     *count = (size_t)value;
     return true;
 }
-/** Boolean role/phase fields have no implicit nonzero interpretation. */
+/** Boolean role/phase fields have no implicit nonzero interpretation. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_read_boolean(RelocationJournalReader *reader, bool *value) {
     uintmax_t integer;
     if (!relocation_journal_read_unsigned(reader,&integer)) { return false; }

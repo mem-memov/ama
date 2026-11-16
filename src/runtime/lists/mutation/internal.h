@@ -10,7 +10,7 @@
 #include "runtime/lists/list.h"
 #include "runtime/objects/internal.h"
 #include "runtime/lists/cursors/correction.h"
-/** Borrowed guarded mutation inputs including validated owner/list/element type. objects owns scratch/protections; parent ledger is updated only for owned membership changes. */
+/** Borrowed guarded mutation inputs including validated owner/list/element type. objects owns scratch/protections; parent ledger is updated only for owned membership changes. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03). */
 typedef struct {
     AmaObjectOperation objects;
     AmaHandle owner;
@@ -20,8 +20,8 @@ typedef struct {
     AmaPoolCell *parent;
     AmaListCursorView cursors;
 } AmaListMutation;
-/** Require validated position and guarded mutation inputs. Prepare/publish one value before shifting handles; failure before commit preserves contents, though capacity may grow. */
+/** Require validated position and guarded mutation inputs. Prepare/publish one value before shifting handles; failure before commit preserves contents, though capacity may grow. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03). */
 AmaStatus ama_list_insert(AmaListMutation *, size_t, AmaHandle);
-/** Require a validated range and acquired storage. Preflight all removed owners, then destroy in reverse and compact; destructive failure is terminal and cleanup still completes. */
+/** Require a validated range and acquired storage. Preflight all removed owners, then destroy in reverse and compact; destructive failure is terminal and cleanup still completes. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03). */
 AmaStatus ama_list_remove(AmaListMutation *, size_t, size_t);
 #endif

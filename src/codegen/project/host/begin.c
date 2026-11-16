@@ -10,7 +10,7 @@
 /**
  * Compose owner/startup checks, validate root resume eligibility, consume saved position and
  * attach the host return sentinel before label dispatch.
- */
+ * Component contract: [CONT-03](../../../../spec/language/continuations.md#cont-03). */
 bool codegen_emit_host_begin(NativeScaffold *scaffold, FILE *output) {
     if (!codegen_emit_host_context(output) || !codegen_emit_host_initialize(scaffold, output)) { return false; }
     return fputs(

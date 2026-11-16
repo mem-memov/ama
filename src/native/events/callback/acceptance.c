@@ -6,7 +6,7 @@
  */
 #include "native/events/internal.h"
 
-/** Full authentication excludes recycled locators and distinguishes prepared from armed state. */
+/** Full authentication excludes recycled locators and distinguishes prepared from armed state. Component contract: [ASYNC-06](../../../../spec/language/async-and-parallelism.md#async-06), [ASYNC-09](../../../../spec/language/async-and-parallelism.md#async-09). */
 AmaNativeEventAcceptance ama_native_event_accept(void *state, AmaNativeEventToken token) {
     AmaNativeEventService *service = state;
     ama_native_event_lock(service);

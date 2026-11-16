@@ -7,7 +7,7 @@
  */
 #include "codegen/internal.h"
 
-/** Keep target scope storage private on the C stack; only a synchronous read callback sees its facade. */
+/** Keep target scope storage private on the C stack; only a synchronous read callback sees its facade. Component contract: [CABI-03](../../../../spec/implementation/native-interface.md#cabi-03), [CABI-05](../../../../spec/implementation/native-interface.md#cabi-05). */
 bool codegen_emit_reference_visitors(NativeScaffold *scaffold, FILE *output, bool declarations) {
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
         if (!type->plan->requires_pool) { continue; }

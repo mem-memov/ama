@@ -20,7 +20,7 @@ void identity_registry_destroy(IdentityRegistry *registry) {
 }
 
 /** Compose exact encoding, deterministic digest and full-key insertion; reset only the current conflict indicator before an attempt.
- */
+ * Component contract: [NAME-01](../../../../spec/implementation/compiler.md#name-01). */
 IdentityStatus identity_register(IdentityRegistry *registry,
     QualifiedIdentity identity, const IdentityName **output) {
     registry->conflicting = NULL;

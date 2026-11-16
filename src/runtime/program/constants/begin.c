@@ -9,7 +9,7 @@
 #include <string.h>
 #include "internal.h"
 
-/** Allocate one arena cursor, resolve a nonliteral shared source once, check exact type and register zeroed field storage. Partial constant storage remains owned by cleanup on failure. */
+/** Allocate one arena cursor, resolve a nonliteral shared source once, check exact type and register zeroed field storage. Partial constant storage remains owned by cleanup on failure. Component contract: [CONST-02](../../../../spec/language/declarations.md#const-02). */
 AmaStatus ama_constant_begin(AmaProgram *program, SourceArena *arena, AmaConstantValue *value,
     uint64_t type_id, const AmaProgramSource *initializer, const AmaConstantValue *source,
     AmaConstantBuildWork *parent, AmaConstantBuildWork **output) {

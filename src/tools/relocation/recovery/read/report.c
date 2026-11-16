@@ -5,7 +5,7 @@
  */
 #include "../internal.h"
 
-/** Checked arrays belong to the independent report arena and survive decoder failure. */
+/** Checked arrays belong to the independent report arena and survive decoder failure. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static void *allocate(RelocationJournalReader *reader, size_t count, size_t size) {
     if (count == 0) { return NULL; }
     if (count > SIZE_MAX/size) {
@@ -18,7 +18,7 @@ static void *allocate(RelocationJournalReader *reader, size_t count, size_t size
     }
     return result;
 }
-/** Preserve the supplied order, root family and literal exclusion strings. */
+/** Preserve the supplied order, root family and literal exclusion strings. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool roots(RelocationJournalReader *reader, const ModuleRoot **output, size_t *count) {
     if (!relocation_journal_read_count(reader,count)) { return false; }
     ModuleRoot *items = allocate(reader,*count,sizeof(*items));
@@ -43,7 +43,7 @@ static bool roots(RelocationJournalReader *reader, const ModuleRoot **output, si
     }
     return true;
 }
-/** Link initialized rows only; a failed suffix never exposes uninitialized pointers. */
+/** Link initialized rows only; a failed suffix never exposes uninitialized pointers. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool modules(RelocationJournalReader *reader, RelocationReport *report) {
     size_t count;
     if (!relocation_journal_read_count(reader,&count)) { return false; }
@@ -62,7 +62,7 @@ static bool modules(RelocationJournalReader *reader, RelocationReport *report) {
     }
     return true;
 }
-/** Role flags remain explicit; mode values must survive the platform conversion exactly. */
+/** Role flags remain explicit; mode values must survive the platform conversion exactly. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool files(RelocationJournalReader *reader, RelocationReport *report) {
     size_t count;
     if (!relocation_journal_read_count(reader,&count)) { return false; }
@@ -87,7 +87,7 @@ static bool files(RelocationJournalReader *reader, RelocationReport *report) {
     }
     return true;
 }
-/** Readiness is published only after complete journal framing and authority validation. */
+/** Readiness is published only after complete journal framing and authority validation. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_read_report(RelocationJournalReader *reader) {
     RelocationReport *report = &reader->recovery->transaction.report;
     report->attempted = true;

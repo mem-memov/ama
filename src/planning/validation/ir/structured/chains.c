@@ -11,7 +11,7 @@ bool structured_chain(const PlannedType *type, const PlannedChain *candidate) {
     }
     return false;
 }
-/** A root must be an exact declared source operation, not a selected child or a forged same-spelled record. */
+/** A root must be an exact declared source operation, not a selected child or a forged same-spelled record. Component contract: [CALL-09](../../../../../spec/language/calls-and-results.md#call-09). */
 static bool root(const PlannedType *type, const SemanticStatement *candidate) {
     for (const SemanticStatement *statement = type->type->statements; statement != NULL; statement = statement->next) {
         if (statement == candidate) { return statement->syntax->kind == AST_CALL && statement->enclosing_operation == NULL; }

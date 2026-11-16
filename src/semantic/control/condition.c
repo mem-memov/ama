@@ -5,7 +5,7 @@
  * requires each terminal predicate's own native condition capability.
  */
 #include "internal.h"
-/** Resolve a caller-local predicate or one exact parent-result selection, without evaluating any runtime condition. */
+/** Resolve a caller-local predicate or one exact parent-result selection, without evaluating any runtime condition. Component contract: [FLOW-04](../../../spec/language/control-flow.md#flow-04), [FLOW-01](../../../spec/language/control-flow.md#flow-01). */
 bool semantic_control_condition(SemanticProgram *program, SemanticType *type, SemanticStatement *statement) {
     const AstNode *node = statement->syntax;
     SemanticSelection *value = &statement->condition;

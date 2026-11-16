@@ -14,7 +14,7 @@
 /**
  * Own project/source graph, exact input snapshot, optional authoring ABI, semantic graph and plan. Initialization
  * flags make every failed stage safely destructible; all exported views expire at destruction.
- */
+ * Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 typedef struct {
     Project project;
     ProjectInputs inputs;
@@ -36,23 +36,23 @@ typedef struct {
 /**
  * Initialize source/project owners and empty semantic/plan credits with the supplied allocator;
  * check once before destruction.
- */
+ * Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 void compiler_frontend_init(CompilerFrontend *frontend, SourceAllocator allocator);
 /**
  * Destroy initialized plan before semantic state, then proposed ABI sources and project storage;
  * reset the owner so borrowed outputs expire together.
- */
+ * Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 void compiler_frontend_destroy(CompilerFrontend *frontend);
 /**
  * Load exactly once, then perform strict semantic/planning completion without authoring
  * overrides; false leaves safely destructible diagnostic state.
- */
+ * Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool compiler_frontend_check(CompilerFrontend *frontend, const ModuleRoot *roots,
     size_t count, const char *entry);
 /** Check this owner's already built catalog through the ordinary required-module, input,
  * semantic and planning stages. Exact candidate source copies must be installed before the
  * call; no filesystem source rewriting or native execution occurs.
- */
+ * Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool compiler_frontend_check_catalog(CompilerFrontend *, const ModuleRoot *, size_t,
     const char *entry, const char *const *required, size_t required_count);
 
@@ -60,7 +60,7 @@ bool compiler_frontend_check_catalog(CompilerFrontend *, const ModuleRoot *, siz
  * Load an active native root and own a proposed ABI source if supplied or required for initial
  * authoring. Keep that source alive through semantic/plan destruction; executable checking uses
  * the separate strict path.
- */
+ * Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool compiler_frontend_authoring(CompilerFrontend *frontend, const ModuleRoot *roots,
     size_t count, const char *entry, const char *proposed_abi);
 

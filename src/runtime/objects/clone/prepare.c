@@ -11,7 +11,7 @@
 /** Prepare one copy boundary under existing source protections. Each reservation
  * is owned by operation until publication or reverse-prefix cleanup. final_root
  * redirects root/self references for replacement without changing source storage.
- */
+ * Component contract: [COPY-02](../../../../spec/language/values-and-references.md#copy-02). */
 AmaStatus ama_object_clone_prepare(AmaObjectOperation *operation, AmaHandle source, AmaHandle final_root,
     bool continuation, void *root_payload, AmaHandle *output) {
     AmaObjectWork *work = NULL;

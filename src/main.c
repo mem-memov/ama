@@ -10,7 +10,7 @@
 /**
  * Borrow the process argv and standard streams and return driver status unchanged; the driver
  * owns all temporary state.
- */
+ * Component contract: [COMP-01](../spec/implementation/compiler.md#comp-01). */
 int main(int argument_count, char **arguments) {
     return driver_run(argument_count, arguments, stdout, stderr);
 }

@@ -4,14 +4,14 @@
  * effect-free admission rejection and complete unpublished snapshot cleanup.
  */
 #include "codecs.h"
-/** Emit the selected result's exact owned pointer type and ordinal; skip internal fields. */
+/** Emit the selected result's exact owned pointer type and ordinal; skip internal fields. Component contract: [EMBED-03](../../../spec/implementation/c-library.md#embed-03). */
 static const LibrarySchema *result_schema(LibraryHeader *writer, const LibraryExport *exported,
     const SemanticSymbol *field) {
     return library_header_binding(writer->build,exported,field)->schema;
 }
 /** Preflight each requested owned result, then release protections before pure typed codecs run.
  * The executor lease excludes intervening Ama execution; no C borrow survives this operation.
- */
+ * Component contract: [EMBED-03](../../../spec/implementation/c-library.md#embed-03). */
 static void preflight(LibraryCodecs *codecs, const LibraryExport *exported) {
     LibraryHeader *writer=&codecs->output;
     library_header_print(writer,

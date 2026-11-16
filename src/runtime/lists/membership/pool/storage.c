@@ -10,7 +10,7 @@
 /** Grow an explicitly typed byte allocation geometrically with checked products.
  * A failed allocation preserves its old buffer; successful preparation may retain
  * spare capacity even if another preparation step subsequently fails.
- */
+ * Component contract: [LIST-03](../../../../../spec/language/lists.md#list-03), [LIST-10](../../../../../spec/language/lists.md#list-10). */
 static AmaStatus ama_membership_buffer(AmaMembershipList *list, void *old,
     size_t used, size_t capacity, size_t required, size_t width, void **result, size_t *new_capacity) {
     size_t limit = SIZE_MAX / width;

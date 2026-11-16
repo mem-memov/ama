@@ -6,7 +6,7 @@
 #include <inttypes.h>
 #include "internal.h"
 #include "source/unicode/unicode.h"
-/** The maximum decimal buffer follows the integer type width; checked formatting cannot silently truncate an identity. */
+/** The maximum decimal buffer follows the integer type width; checked formatting cannot silently truncate an identity. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 bool tool_json_unsigned(ToolJsonWriter *writer, uintmax_t value) {
     char text[3*sizeof(value)+3];
     int length = snprintf(text,sizeof(text),"%ju",value);
@@ -16,9 +16,9 @@ bool tool_json_unsigned(ToolJsonWriter *writer, uintmax_t value) {
     }
     return tool_json_text(writer,(const unsigned char *)text,(size_t)length);
 }
-/** Wire booleans have exactly the standard lowercase JSON spellings. */
+/** Wire booleans have exactly the standard lowercase JSON spellings. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 bool tool_json_boolean(ToolJsonWriter *writer, bool value) { return tool_json_raw(writer,value ? "true" : "false"); }
-/** A displayable UTF-8 view is optional; hexadecimal bytes always preserve the exact physical name or payload. */
+/** A displayable UTF-8 view is optional; hexadecimal bytes always preserve the exact physical name or payload. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 bool tool_json_bytes(ToolJsonWriter *writer, const unsigned char *bytes, size_t length) {
     if (writer->status != TOOL_JSON_OK) { return false; }
     if (bytes == NULL && length != 0) { writer->status = TOOL_JSON_INVALID_UTF8; return false; }

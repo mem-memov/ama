@@ -7,7 +7,7 @@
  */
 #include "service.h"
 
-/** Require distinct source/output and an available source. Publish a zero-transient service copy only after validation, preserving the resume position only when requested. */
+/** Require distinct source/output and an available source. Publish a zero-transient service copy only after validation, preserving the resume position only when requested. Component contract: [COPY-03](../../../spec/language/values-and-references.md#copy-03). */
 AmaStatus ama_service_clone(const AmaServiceState *source, bool preserve_resume,
     AmaServiceState *destination) {
     if (source == destination) {

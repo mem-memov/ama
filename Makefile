@@ -22,7 +22,7 @@ COMPILE_COMMAND = $(C_COMPILER) $(CPPFLAGS) -Isrc $(C_COMPILER_FLAGS) $(LTO_FLAG
 LINK_COMMAND = $(C_COMPILER) $(C_COMPILER_FLAGS) $(LTO_FLAGS) $(LINKER_FLAGS)
 include make/configuration.mk
 
-.PHONY: all test test-clean docs docs-check docs-complete docs-reproducible docs-clean clean rebuild help
+.PHONY: all test test-clean conformance-check docs docs-check docs-complete docs-reproducible docs-clean clean rebuild help
 all: ama
 
 ama: $(PROJECT_OBJECTS) build/link.configuration
@@ -39,6 +39,10 @@ test: all
 
 test-clean:
 >    $(MAKE) -C tests clean
+
+# Check reviewed current evidence, its exact inputs and actual named C interfaces.
+conformance-check:
+>    "$(DOCUMENTATION_PYTHON)" tools/conformance/check.py --complete
 
 # Generate the file reference from maintained C comments; no compiler build is needed.
 docs: docs/Doxyfile docs-check
@@ -66,6 +70,7 @@ rebuild:
 help:
 >    @echo "make: build the current Ama compiler (specification conformance is incomplete)"
 >    @echo "make test: run independent C/assert unit and integration leaves"
+>    @echo "make conformance-check: validate current requirement and acceptance evidence"
 >    @echo "make docs: generate the Doxygen C file reference in docs/technical/index.html"
 >    @echo "make docs-clean: remove generated documentation and its warning log"
 >    @echo "make test-clean: remove test outputs; make clean: remove all build outputs"

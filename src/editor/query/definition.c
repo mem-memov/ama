@@ -3,7 +3,7 @@
  * [COMP-04](../../../spec/implementation/compiler.md#comp-04) retains original byte locations.
  */
 #include "../analysis/analysis.h"
-/** Half-open spelling membership never matches separators, comments or an invented shorter name. */
+/** Half-open spelling membership never matches separators, comments or an invented shorter name. Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04). */
 bool editor_definition(const EditorAnalysis *analysis, const char *module, size_t offset, EditorDefinition *output) {
     if (!analysis->indexed || output == NULL) { return false; }
     const ModuleSource *source = NULL;

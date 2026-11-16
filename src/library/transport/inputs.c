@@ -5,7 +5,7 @@
  * constructs supplied parameters and then default results in declaration order.
  */
 #include "codecs.h"
-/** Emit one exact input's checked C type and declaration-order name. */
+/** Emit one exact input's checked C type and declaration-order name. Component contract: [EMBED-03](../../../spec/implementation/c-library.md#embed-03), [CALL-08](../../../spec/language/calls-and-results.md#call-08). */
 static void arguments(LibraryCodecs *codecs, const LibraryExport *exported, bool first) {
     for (const SemanticSymbol *field=exported->type->first; field!=NULL; field=field->next) {
         if (field->role!=SYMBOL_PARAMETER) { continue; }

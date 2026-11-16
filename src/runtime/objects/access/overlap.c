@@ -8,7 +8,7 @@
 #include <stdint.h>
 #include "runtime/objects/internal.h"
 
-/** Sum occupied block populations with checked size arithmetic to obtain an exact owner-chain traversal bound. */
+/** Sum occupied block populations with checked size arithmetic to obtain an exact owner-chain traversal bound. Component contract: [COPY-06](../../../../spec/language/values-and-references.md#copy-06). */
 static AmaStatus ama_world_population(const AmaWorld *world, size_t *count) {
     *count = 0;
     for (size_t type = 0; type < world->type_count; type++) {
@@ -23,7 +23,7 @@ static AmaStatus ama_world_population(const AmaWorld *world, size_t *count) {
     return ama_status_success();
 }
 
-/** Follow validated owner links for at most the actual occupied population; exceeding that bound proves a malformed ownership cycle, not a timeout. */
+/** Follow validated owner links for at most the actual occupied population; exceeding that bound proves a malformed ownership cycle, not a timeout. Component contract: [COPY-06](../../../../spec/language/values-and-references.md#copy-06). */
 static AmaStatus ama_owner_ancestor(AmaWorld *world, AmaHandle possible, AmaHandle node, size_t bound, bool *found) {
     for (size_t step = 0; step < bound; step++) {
         AmaObjectType *type;
@@ -39,7 +39,7 @@ static AmaStatus ama_owner_ancestor(AmaWorld *world, AmaHandle possible, AmaHand
     return ama_status_make(AMA_INVALID_STATE, NULL, 0);
 }
 
-/** Check exact root equality or validated owner ancestry using the finite occupied-population bound; output is meaningful only on success. */
+/** Check exact root equality or validated owner ancestry using the finite occupied-population bound; output is meaningful only on success. Component contract: [COPY-06](../../../../spec/language/values-and-references.md#copy-06). */
 AmaStatus ama_object_contains(AmaWorld *world, AmaHandle root, AmaHandle node, bool *found) {
     *found = ama_same_handle(root, node);
     if (*found) { return ama_status_success(); }
@@ -48,7 +48,7 @@ AmaStatus ama_object_contains(AmaWorld *world, AmaHandle root, AmaHandle node, b
     return status.code == AMA_OK ? ama_owner_ancestor(world, root, node, bound, found) : status;
 }
 
-/** Validate destination availability and both identities, then exact runtime self-copy and overlap. Distinct-source availability is checked by whole-tree preflight before cloning. Ordinary exact self is effect-free; continuation self and ancestor/descendant overlap fail. Static clone capability remains mandatory in the compiler. */
+/** Validate destination availability and both identities, then exact runtime self-copy and overlap. Distinct-source availability is checked by whole-tree preflight before cloning. Ordinary exact self is effect-free; continuation self and ancestor/descendant overlap fail. Static clone capability remains mandatory in the compiler. Component contract: [COPY-06](../../../../spec/language/values-and-references.md#copy-06). */
 AmaStatus ama_object_copy_checks(AmaWorld *world, AmaHandle destination, AmaHandle source,
     bool continuation, bool *no_op) {
     *no_op = false;

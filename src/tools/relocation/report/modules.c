@@ -4,7 +4,7 @@
  * reports the actual simultaneous identity map established by resolved planning.
  */
 #include "internal.h"
-/** Preserve source record order while deep-copying every borrowed physical/logical string. */
+/** Preserve source record order while deep-copying every borrowed physical/logical string. Component contract: [TOOL-02](../../../../spec/implementation/tools-and-conformance.md#tool-02). */
 bool relocation_report_modules(RelocationReport *report, const RelocationStaging *staging) {
     RelocationReportedModule **tail = &report->modules;
     for (const RelocationModule *module = staging->references->preview->modules; module != NULL; module = module->next) {

@@ -31,13 +31,13 @@ void scaffold_scope(const NativeScaffold *scaffold, unsigned char digest[32]) {
 }
 
 /** Decode only lowercase manifest hexadecimal digits; every other byte is malformed metadata.
- */
+ * Component contract: [COMP-04](../../../../../spec/implementation/compiler.md#comp-04). */
 static int hexadecimal(unsigned char byte) {
     return byte >= '0' && byte <= '9' ? byte - '0' : byte >= 'a' && byte <= 'f' ? byte - 'a' + 10 : -1;
 }
 
 /** Validate one complete digest/safe-basename record and reject duplicate names before linking ownership authority. Partial allocations remain arena-owned.
- */
+ * Component contract: [COMP-04](../../../../../spec/implementation/compiler.md#comp-04). */
 static bool record(NativeScaffold *scaffold, const unsigned char *bytes, size_t length) {
     if (length <= 65 || bytes[64] != ' ') {
         return false;
@@ -81,7 +81,7 @@ static bool record(NativeScaffold *scaffold, const unsigned char *bytes, size_t 
 }
 
 /** Validate exact scope syntax/digest; only explicit overwrite permits a different well-formed scope, never malformed metadata.
- */
+ * Component contract: [COMP-04](../../../../../spec/implementation/compiler.md#comp-04). */
 static bool scope_matches(NativeScaffold *scaffold, const unsigned char *bytes, size_t length) {
     if (length < 71 || memcmp(bytes, "scope ", 6) != 0 || bytes[70] != '\n') {
         return false;

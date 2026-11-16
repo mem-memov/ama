@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include "../internal.h"
 
-/** Physical identity deduplication prevents self-conflict when roots and endpoint parents share a directory. */
+/** Physical identity deduplication prevents self-conflict when roots and endpoint parents share a directory. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_lease_directory(RelocationTransaction *transaction, const char *path) {
     if (!relocation_transaction_permit(transaction,RELOCATION_IO_LEASE,path)) { return false; }
     int descriptor = open(path,O_RDONLY|O_DIRECTORY|O_NOFOLLOW|O_CLOEXEC);
@@ -41,7 +41,7 @@ bool relocation_transaction_lease_directory(RelocationTransaction *transaction, 
     transaction->leases = lease;
     return true;
 }
-/** Linux closes a valid descriptor even on an interrupted close; each owned descriptor receives exactly one attempt. */
+/** Linux closes a valid descriptor even on an interrupted close; each owned descriptor receives exactly one attempt. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 void relocation_transaction_release(RelocationTransaction *transaction) {
     for (RelocationDirectoryLease *lease = transaction->leases; lease != NULL; lease = lease->next) {
         if (lease->descriptor >= 0) {

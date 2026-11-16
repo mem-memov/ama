@@ -6,6 +6,6 @@
 #ifndef AMA_TOOLS_JSON_INTERNAL_H
 #define AMA_TOOLS_JSON_INTERNAL_H
 #include "json.h"
-/** Append exact bytes without ownership transfer; zero length has no stream effect. */
+/** Append exact bytes without ownership transfer; zero length has no stream effect. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 bool tool_json_write(ToolJsonWriter *, const void *, size_t);
 #endif

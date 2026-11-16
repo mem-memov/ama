@@ -9,7 +9,7 @@
 #include "lowering/replacement/internal.h"
 
 /** Find one nonomitted resolved input by exact interface ordinal; duplicates were rejected semantically and omitted inputs select defaults.
- */
+ * Component contract: [CALL-08](../../../spec/language/calls-and-results.md#call-08). */
 static const SemanticBinding *input(const SemanticStatement *statement, size_t position) {
     for (const SemanticBinding *binding = statement->bindings; binding != NULL; binding = binding->next) {
         if (binding->syntax->kind == AST_INPUT && binding->position == position && !binding->syntax->omitted) {

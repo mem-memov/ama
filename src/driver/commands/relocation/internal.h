@@ -9,7 +9,7 @@
 #include "tools/relocation/report/report.h"
 #include "tools/relocation/recovery/recovery.h"
 #include "tools/output/source/source.h"
-/** Original/final graph and report owners expire in dependency order, after any borrowing transaction. */
+/** Original/final graph and report owners expire in dependency order, after any borrowing transaction. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 typedef struct {
     RelocationPreview preview;
     RelocationReferences references;
@@ -20,20 +20,20 @@ typedef struct {
     const Diagnostic *error;
     RelocationStatus status;
 } DriverRelocationPlan;
-/** Initialize every partial owner without filesystem mutation. */
+/** Initialize every partial owner without filesystem mutation. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 void driver_relocation_plan_init(DriverRelocationPlan *, SourceAllocator);
-/** Destroy report/staging/references before original catalog storage; never apply or retry disk actions. */
+/** Destroy report/staging/references before original catalog storage; never apply or retry disk actions. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 void driver_relocation_plan_destroy(DriverRelocationPlan *);
-/** Prepare exact configured scope, resolved edits and independently validated staged graph once. */
+/** Prepare exact configured scope, resolved edits and independently validated staged graph once. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool driver_relocation_plan_build(DriverRelocationPlan *, const DriverOptions *);
-/** Stable complete status names and preview path diagnostics are exact adapters of core statuses. */
+/** Stable complete status names and preview path diagnostics are exact adapters of core statuses. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 const char *driver_relocation_status(RelocationStatus);
 void driver_relocation_preview_error(DriverRelocationPlan *);
-/** Render copied scope/settings/module/file roles; null or incomplete reports remain explicit null. */
+/** Render copied scope/settings/module/file roles; null or incomplete reports remain explicit null. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool driver_relocation_report(ToolJsonWriter *, const RelocationReport *);
-/** Render original exact path-prefix replacements, without treating literals/native bytes as source paths. */
+/** Render original exact path-prefix replacements, without treating literals/native bytes as source paths. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool driver_relocation_edits(ToolJsonWriter *, const RelocationReferences *);
-/** Emit full outcome, report, journal and both causes while their owning operation is alive. */
+/** Emit full outcome, report, journal and both causes while their owning operation is alive. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool driver_relocation_result(ToolJsonWriter *, const char *, bool, RelocationStatus, const char *, bool, bool, bool,
     const RelocationReport *, const RelocationReferences *, const char *, const Diagnostic *, const Diagnostic *);
 #endif

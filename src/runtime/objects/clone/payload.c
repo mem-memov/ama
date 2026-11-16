@@ -16,7 +16,7 @@
  * its saved pre-acquisition state must belong to operation's protections. Failure
  * before successful native initialization leaves no destructor obligation; a
  * later service error retains that obligation for the caller's unwind.
- */
+ * Component contract: [CONT-04](../../../../spec/language/continuations.md#cont-04), [ERROR-03](../../../../spec/implementation/diagnostics.md#error-03), [LIFE-02](../../../../spec/implementation/native-interface.md#life-02). */
 AmaStatus ama_object_clone_payload(AmaObjectOperation *operation, AmaObjectWork *work, bool continuation) {
     AmaPoolCell *source = NULL;
     AmaStatus status = ama_pool_lookup(&work->type->pool, work->source, true, &source);

@@ -14,7 +14,7 @@
 /**
  * Write each complete in-memory artifact into the private flat build directory. Check byte count
  * and close; first failure prevents compilation and publication.
- */
+ * Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04). */
 static bool codegen_stage_sources(NativeScaffold *scaffold, const char *stage) {
     for (const ScaffoldArtifact *artifact = scaffold->first; artifact != NULL; artifact = artifact->next) {
         const char *name = strrchr(artifact->path, '/');
@@ -33,7 +33,7 @@ static bool codegen_stage_sources(NativeScaffold *scaffold, const char *stage) {
 /**
  * Load the verified linked executable bytes and append one executable artifact for later
  * explicit publication. Existing scaffold owns bytes/record even on subsequent failure.
- */
+ * Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04). */
 static bool codegen_retain_program(NativeScaffold *scaffold, const char *stage) {
     const char *path = scaffold_join(scaffold, stage, "/", "program");
     const char *output = scaffold_join(scaffold, scaffold->directory, "/", "program");
@@ -55,7 +55,7 @@ static bool codegen_retain_program(NativeScaffold *scaffold, const char *stage) 
  * Require ready unpublished source artifacts and no previously retained executable. Clear ready
  * while staging/compile/verify/link/retain proceeds; set it only after success and best-effort
  * temporary cleanup.
- */
+ * Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04). */
 bool project_codegen_compile(NativeScaffold *scaffold, FILE *errors) {
     if (!scaffold->ready || scaffold->publish_attempted || scaffold->last->executable) { return false; }
     scaffold->ready = false;

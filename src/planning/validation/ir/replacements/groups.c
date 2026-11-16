@@ -5,25 +5,25 @@
  * does not undo earlier successful replacements after a later failure.
  */
 #include "internal.h"
-/** Test an instruction address against allocation ownership before dereferencing an executable edge. */
+/** Test an instruction address against allocation ownership before dereferencing an executable edge. Component contract: [REF-03](../../../../../spec/language/values-and-references.md#ref-03), [CALL-08](../../../../../spec/language/calls-and-results.md#call-08). */
 static bool node_member(const PlannedType *type, const ControlNode *candidate) {
     for (const ControlNode *node = type->controls; node != NULL; node = node->allocated_next) {
         if (node == candidate) { return true; }
     }
     return false;
 }
-/** Recipe ownership is independent of first/next execution links. */
+/** Recipe ownership is independent of first/next execution links. Component contract: [REF-03](../../../../../spec/language/values-and-references.md#ref-03), [CALL-08](../../../../../spec/language/calls-and-results.md#call-08). */
 static bool recipe_member(const PlannedType *type, const ReplacementPlan *candidate) {
     for (const ReplacementPlan *recipe = type->replacements; recipe != NULL; recipe = recipe->allocated_next) {
         if (recipe == candidate) { return true; }
     }
     return false;
 }
-/** No branch, return continuation or entry may bypass a group's selection/preflight prefix. */
+/** No branch, return continuation or entry may bypass a group's selection/preflight prefix. Component contract: [REF-03](../../../../../spec/language/values-and-references.md#ref-03), [CALL-08](../../../../../spec/language/calls-and-results.md#call-08). */
 static bool enters_inside(const ReplacementPlan *recipe, const ControlNode *target) {
     return target != NULL && target->replacement == recipe && target != recipe->first;
 }
-/** Every physical phase has one recipe and every recipe has exactly its complete ordered phase group. */
+/** Every physical phase has one recipe and every recipe has exactly its complete ordered phase group. Component contract: [REF-03](../../../../../spec/language/values-and-references.md#ref-03), [CALL-08](../../../../../spec/language/calls-and-results.md#call-08). */
 static bool group(const PlannedType *type, const ReplacementPlan *recipe) {
     ControlOperation first = recipe->context == REPLACE_ASSIGNMENT ? CONTROL_SELECT_RECEIVER
         : recipe->context == REPLACE_PARAMETER ? CONTROL_INSTALL_PARAMETER
@@ -52,7 +52,7 @@ static bool group(const PlannedType *type, const ReplacementPlan *recipe) {
     }
     return owned == count;
 }
-/** These instructions describe one replacement, never an unrelated unowned partial reset. */
+/** These instructions describe one replacement, never an unrelated unowned partial reset. Component contract: [REF-03](../../../../../spec/language/values-and-references.md#ref-03), [CALL-08](../../../../../spec/language/calls-and-results.md#call-08). */
 static bool requires_recipe(ControlOperation operation) {
     return operation == CONTROL_SELECT_RECEIVER || operation == CONTROL_SELECT_SOURCE
         || operation == CONTROL_PREFLIGHT_REPLACEMENT || operation == CONTROL_PREPARE_REPLACEMENT

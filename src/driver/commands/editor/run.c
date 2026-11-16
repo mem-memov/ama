@@ -9,7 +9,7 @@
 #include "internal.h"
 #include "diagnostics/render/render.h"
 
-/** Complete workspace checking and revalidation precede exposing any rename replacement. */
+/** Complete workspace checking and revalidation precede exposing any rename replacement. Component contract: [COMP-02](../../../../spec/implementation/compiler.md#comp-02), [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 static bool rename_plan(const DriverOptions *options, EditorAnalysis *analysis, EditorRename *rename, ToolJsonWriter *writer, Diagnostic *error) {
     if (!editor_workspace_build(analysis,options->roots,options->root_count,options->entry)) {
         *error = analysis->diagnostic;
@@ -24,7 +24,7 @@ static bool rename_plan(const DriverOptions *options, EditorAnalysis *analysis, 
     }
     return complete;
 }
-/** Single-shot source requests never create an executable or perform a document transaction. */
+/** Single-shot source requests never create an executable or perform a document transaction. Component contract: [COMP-02](../../../../spec/implementation/compiler.md#comp-02), [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 int driver_editor(const DriverOptions *options, FILE *output, FILE *errors) {
     EditorAnalysis analysis;
     editor_analysis_init(&analysis,options->arena.allocator);

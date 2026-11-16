@@ -8,7 +8,7 @@
  */
 #include "native/scaffold/internal.h"
 
-/** Collect only native module identities, publish a complete sorted plan, then associate each model type with its exact full-key assignment. */
+/** Collect only native module identities, publish a complete sorted plan, then associate each model type with its exact full-key assignment. Component contract: [ERROR-04](../../../../spec/implementation/diagnostics.md#error-04), [NAME-05](../../../../spec/implementation/native-interface.md#name-05). */
 bool scaffold_providers(NativeScaffold *scaffold) {
     size_t count = 0;
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {

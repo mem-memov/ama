@@ -9,14 +9,14 @@
 #include <string.h>
 #include "runtime/program/internal.h"
 
-/** Arena-linked pending shared-to-owned recipe conversion; source values remain borrowed and child recipes are owned by the same scratch arena. */
+/** Arena-linked pending shared-to-owned recipe conversion; source values remain borrowed and child recipes are owned by the same scratch arena. Component contract: [COPY-01](../../../../spec/language/values-and-references.md#copy-01). */
 typedef struct AmaConstantRecipeWork {
     struct AmaConstantRecipeWork *next;
     const AmaConstantValue *source;
     AmaRecipe *recipe;
 } AmaConstantRecipeWork;
 
-/** Iteratively create arena-owned field/child clone recipes borrowing immutable shared native payloads. Failures retain scratch for caller bulk release; source lifetime must cover construction. */
+/** Iteratively create arena-owned field/child clone recipes borrowing immutable shared native payloads. Failures retain scratch for caller bulk release; source lifetime must cover construction. Component contract: [COPY-01](../../../../spec/language/values-and-references.md#copy-01). */
 AmaStatus ama_program_constant_recipe(AmaProgram *program, SourceArena *arena,
     const AmaConstantValue *source, AmaRecipe *recipe) {
     (void)program;

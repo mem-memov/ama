@@ -4,7 +4,7 @@
  * covers selected-tree movement, external replacements and generated-output retirement together.
  */
 #include "../internal.h"
-/** Link initialized state before slot creation so every failed preparation prefix remains discoverable. */
+/** Link initialized state before slot creation so every failed preparation prefix remains discoverable. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 RelocationTransactionAction *relocation_transaction_action(RelocationTransaction *transaction, RelocationActionKind kind, const char *path) {
     RelocationTransactionAction *action = source_arena_allocate(&transaction->arena,sizeof(*action));
     if (action == NULL) {

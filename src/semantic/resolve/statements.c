@@ -10,7 +10,7 @@
 #include "semantic/internal.h"
 
 /** Resolve one retained statement and its exact AST identity; reject break outside loops before planning and preserve caller-side operand context.
- */
+ * Component contract: [COMP-02](../../../spec/implementation/compiler.md#comp-02), [FLOW-04](../../../spec/language/control-flow.md#flow-04), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 static bool statement(SemanticProgram *program, SemanticType *type, const AstNode *node, size_t loop_depth, const AstNode *loop, void *context) {
     (void)context;
     if (node->kind == AST_BREAK && loop_depth == 0) {

@@ -9,7 +9,7 @@
 #define AMA_RUNTIME_CONSTANT_BUILD_INTERNAL_H
 #include "runtime/program/internal.h"
 
-/** Arena-owned iterative constant cursor; borrow persistent value/source/initializer and parent, tracking current field/element and failure operation. */
+/** Arena-owned iterative constant cursor; borrow persistent value/source/initializer and parent, tracking current field/element and failure operation. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03). */
 typedef struct AmaConstantBuildWork {
     struct AmaConstantBuildWork *parent;
     AmaConstantValue *value;
@@ -20,14 +20,14 @@ typedef struct AmaConstantBuildWork {
     size_t element;
 } AmaConstantBuildWork;
 
-/** Allocate one arena cursor, resolve a nonliteral shared source once, check exact type and register zeroed field storage. Partial constant storage remains owned by cleanup on failure. */
+/** Allocate one arena cursor, resolve a nonliteral shared source once, check exact type and register zeroed field storage. Partial constant storage remains owned by cleanup on failure. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03). */
 AmaStatus ama_constant_begin(AmaProgram *, SourceArena *, AmaConstantValue *, uint64_t,
     const AmaProgramSource *, const AmaConstantValue *, AmaConstantBuildWork *, AmaConstantBuildWork **);
-/** Allocate the declared field array once with checked count arithmetic. References require no owned child payload; evaluate explicit reference sources without introducing mutable constant handles. */
+/** Allocate the declared field array once with checked count arithmetic. References require no owned child payload; evaluate explicit reference sources without introducing mutable constant handles. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03). */
 AmaStatus ama_constant_field(AmaProgram *, AmaConstantBuildWork *);
 /** Record aligned allocation and invoke exactly clone, literal or default. Raw code
  * zero creates native_live before checked failure; nonzero construction owns its
  * own partial native cleanup. Caller rollback consumes completed payload credits.
- */
+ * Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03). */
 AmaStatus ama_constant_payload(AmaProgram *, AmaConstantBuildWork *);
 #endif

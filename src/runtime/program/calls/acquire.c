@@ -13,13 +13,13 @@
 #include "runtime/program/lists/traversal/traversal.h"
 #include "runtime/program/values/selection/internal.h"
 
-/** Resolve a local handle through the exact world type and public pool lookup; borrowed cell output is valid only after success. */
+/** Resolve a local handle through the exact world type and public pool lookup; borrowed cell output is valid only after success. Component contract: [CALL-04](../../../../spec/language/calls-and-results.md#call-04), [LIST-04](../../../../spec/language/lists.md#list-04), [CALL-09](../../../../spec/language/calls-and-results.md#call-09), [FLOW-05](../../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_program_cell(AmaProgram *program, AmaHandle handle, AmaPoolCell **cell) {
     AmaObjectType *type = ama_world_type(program->world, handle.type_id);
     return type == NULL ? ama_status_make(AMA_TYPE_MISMATCH, NULL, 0) : ama_pool_lookup(&type->pool, handle, false, cell);
 }
 
-/** Record a supported target refusal on the immediate caller and set the explicit refused flag only if recording succeeds. */
+/** Record a supported target refusal on the immediate caller and set the explicit refused flag only if recording succeeds. Component contract: [CALL-04](../../../../spec/language/calls-and-results.md#call-04), [LIST-04](../../../../spec/language/lists.md#list-04), [CALL-09](../../../../spec/language/calls-and-results.md#call-09), [FLOW-05](../../../../spec/language/lists.md#flow-05). */
 static AmaStatus ama_call_refusal(AmaPoolCell *caller, AmaStatus status, bool *refused) {
     AmaStatus recorded = ama_service_record_refusal(&caller->metadata.service, status);
     *refused = recorded.code == AMA_OK;
@@ -28,7 +28,7 @@ static AmaStatus ama_call_refusal(AmaPoolCell *caller, AmaStatus status, bool *r
 
 /** Validate selected identity/availability before changing the caller or target.
  * Parent protection does not authorize reentry through an ancestor reference.
- */
+ * Component contract: [CALL-04](../../../../spec/language/calls-and-results.md#call-04), [LIST-04](../../../../spec/language/lists.md#list-04), [CALL-09](../../../../spec/language/calls-and-results.md#call-09), [FLOW-05](../../../../spec/language/lists.md#flow-05). */
 static AmaStatus ama_call_target(AmaProgram *program, AmaPoolCell *context,
     const AmaProgramValue *target, AmaAccessMode mode, AmaPoolCell **cell, bool *refused) {
     if (target->form != AMA_FIELD_OWNED && target->form != AMA_FIELD_REFERENCE) { return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0); }
@@ -41,7 +41,7 @@ static AmaStatus ama_call_target(AmaProgram *program, AmaPoolCell *context,
     return status.code == AMA_OK ? status : ama_call_refusal(context, status, refused);
 }
 
-/** Select the target once under the world guard, preserve explicit refusal provenance and acquire only a valid scalar available instance. Store outgoing identity and previous activity on the caller. */
+/** Select the target once under the world guard, preserve explicit refusal provenance and acquire only a valid scalar available instance. Store outgoing identity and previous activity on the caller. Component contract: [CALL-04](../../../../spec/language/calls-and-results.md#call-04), [LIST-04](../../../../spec/language/lists.md#list-04), [CALL-09](../../../../spec/language/calls-and-results.md#call-09), [FLOW-05](../../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_program_acquire(AmaProgram *program, AmaHandle caller, const AmaProgramInvocation *invocation, bool *refused) {
     *refused = false;
     if (program->world->operation_active || program->world->failed) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
@@ -123,7 +123,7 @@ AmaStatus ama_program_acquire_value(AmaProgram *program, AmaHandle caller,
     return ama_status_success();
 }
 
-/** After protected result processing, restore target availability saved by the caller and clear the outgoing handle. Require a valid outstanding acquisition. */
+/** After protected result processing, restore target availability saved by the caller and clear the outgoing handle. Require a valid outstanding acquisition. Component contract: [CALL-04](../../../../spec/language/calls-and-results.md#call-04), [LIST-04](../../../../spec/language/lists.md#list-04), [CALL-09](../../../../spec/language/calls-and-results.md#call-09), [FLOW-05](../../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_program_release(AmaProgram *program, AmaHandle caller) {
     AmaPoolCell *context = NULL, *target = NULL;
     AmaStatus status = ama_program_cell(program, caller, &context);

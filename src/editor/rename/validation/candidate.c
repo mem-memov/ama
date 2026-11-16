@@ -4,7 +4,7 @@
  * [DEP-03](../../../../spec/implementation/compiler.md#dep-03) rejects changed native dependencies.
  */
 #include "../internal.h"
-/** Native implementation/header/protocol bytes are not an Ama-name edit and must remain exactly the captured inputs. */
+/** Native implementation/header/protocol bytes are not an Ama-name edit and must remain exactly the captured inputs. Component contract: [COMP-02](../../../../spec/implementation/compiler.md#comp-02), [DEP-03](../../../../spec/implementation/compiler.md#dep-03). */
 static bool native_input(EditorRename *plan, const char *path) {
     if (path == NULL) { return true; }
     bool changed = false;
@@ -15,7 +15,7 @@ static bool native_input(EditorRename *plan, const char *path) {
     }
     return true;
 }
-/** Publish no candidate semantic metadata until every active importer resolves and all native input versions agree. */
+/** Publish no candidate semantic metadata until every active importer resolves and all native input versions agree. Component contract: [COMP-02](../../../../spec/implementation/compiler.md#comp-02), [DEP-03](../../../../spec/implementation/compiler.md#dep-03). */
 bool editor_rename_candidate(EditorRename *plan) {
     ModuleCatalog *catalog = &plan->candidate.frontend.project.catalog;
     for (const EditorRenameFile *file = plan->first; file != NULL; file = file->next) {

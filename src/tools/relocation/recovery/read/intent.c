@@ -8,7 +8,7 @@
 #include "../../transaction/journal/format.h"
 #include "../../internal.h"
 
-/** A reservation becomes authority only after its complete end marker; all earlier copied strings remain arena-owned on failure. */
+/** A reservation becomes authority only after its complete end marker; all earlier copied strings remain arena-owned on failure. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool reserve(RelocationJournalReader *reader) {
     RelocationTransaction *transaction = &reader->recovery->transaction;
     RelocationTransactionSlot value = {.created=true};
@@ -36,7 +36,7 @@ static bool reserve(RelocationJournalReader *reader) {
     transaction->slots = slot;
     return true;
 }
-/** Identity acknowledgement precedes all copy effects and may occur once for the most recent reservation. */
+/** Identity acknowledgement precedes all copy effects and may occur once for the most recent reservation. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool own(RelocationJournalReader *reader) {
     RelocationTransaction *transaction = &reader->recovery->transaction;
     const char *path;
@@ -56,12 +56,12 @@ static bool own(RelocationJournalReader *reader) {
     slot->acknowledged = true;
     return true;
 }
-/** Match an operation prefix without consuming bytes so incomplete final tokens remain distinguishable from unknown operations. */
+/** Match an operation prefix without consuming bytes so incomplete final tokens remain distinguishable from unknown operations. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool prefix(RelocationJournalReader *reader, const char *token) {
     size_t remaining = source_length(reader->source)-reader->offset, length = strlen(token);
     return memcmp(source_bytes(reader->source)+reader->offset,token,remaining < length ? remaining : length) == 0;
 }
-/** An incomplete append authorized no new effects; discard only its diagnostic, preserving the last complete offset. */
+/** An incomplete append authorized no new effects; discard only its diagnostic, preserving the last complete offset. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool interrupted(RelocationJournalReader *reader) {
     RelocationTransaction *transaction = &reader->recovery->transaction;
     if (!reader->truncated || transaction->status != RELOCATION_INVALID_JOURNAL) { return false; }
@@ -69,7 +69,7 @@ static bool interrupted(RelocationJournalReader *reader) {
     transaction->error = (Diagnostic){0};
     return true;
 }
-/** A complete READY authorizes the prepared plan; ABORTED and EOF authorize preparation cleanup only. */
+/** A complete READY authorizes the prepared plan; ABORTED and EOF authorize preparation cleanup only. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool records(RelocationJournalReader *reader, bool *prepared) {
     RelocationRecovery *recovery = reader->recovery;
     RelocationTransaction *transaction = &recovery->transaction;
@@ -99,7 +99,7 @@ static bool records(RelocationJournalReader *reader, bool *prepared) {
     }
     return true;
 }
-/** The initial complete scope/root identity is mandatory; it is the only authority for reporting and registered-copy cleanup. */
+/** The initial complete scope/root identity is mandatory; it is the only authority for reporting and registered-copy cleanup. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_intent_decode(RelocationRecovery *recovery, const SourceText *source, bool *prepared) {
     RelocationJournalReader reader = {.recovery=recovery,.source=source};
     RelocationTransaction *transaction = &recovery->transaction;

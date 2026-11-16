@@ -12,17 +12,17 @@
 #include "storage/state.h"
 #include "replacement.h"
 
-/** Typed planning status; invalid/partial arena records remain owned but unusable. */
+/** Typed planning status; invalid/partial arena records remain owned but unusable. Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02). */
 typedef enum { PLAN_OK, PLAN_INVALID, PLAN_OUT_OF_MEMORY } PlanStatus;
 /**
  * Forward name for one resolved type/storage/control plan borrowing its semantic nominal type.
- */
+ * Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02). */
 typedef struct PlannedType PlannedType;
-/** Forward identity of one lexical operation chain and one ordinary loop. */
+/** Forward identity of one lexical operation chain and one ordinary loop. Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02). */
 typedef struct PlannedChain PlannedChain;
-/** Forward identity of one source loop and its fixed entry/body/exit labels. */
+/** Forward identity of one source loop and its fixed entry/body/exit labels. Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02). */
 typedef struct PlannedLoop PlannedLoop;
-/** Plan-owned ordered nonconstant field with exact semantic declaration/type and logical slot. */
+/** Plan-owned ordered nonconstant field with exact semantic declaration/type and logical slot. Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02). */
 typedef struct StorageField {
     struct StorageField *next;
     struct StorageField *previous;
@@ -31,7 +31,7 @@ typedef struct StorageField {
     StorageForm form;
     size_t slot;
 } StorageField;
-/** Immutable shared constant record with startup/reverse links and explicitly absent instance service state. */
+/** Immutable shared constant record with startup/reverse links and explicitly absent instance service state. Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02). */
 typedef struct SharedStorage {
     struct SharedStorage *next;
     struct SharedStorage *previous;
@@ -41,7 +41,7 @@ typedef struct SharedStorage {
     bool immutable;
     unsigned service_storage;
 } SharedStorage;
-/** Typed lifecycle actions; native hooks and field ownership remain explicit operands. */
+/** Typed lifecycle actions; native hooks and field ownership remain explicit operands. Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02). */
 typedef enum {
     LIFE_CONSTRUCT_FIELD, LIFE_CONSTRUCT_NATIVE, LIFE_MARK_LIVE,
     LIFE_DESTROY_NATIVE, LIFE_DESTROY_FIELD, LIFE_MARK_FINALIZED,
@@ -50,7 +50,7 @@ typedef enum {
     LIFE_CLEAR_POSITIONS, LIFE_PRESERVE_POSITIONS, LIFE_RELEASE_CLONE_MAP,
     LIFE_UNWIND_PARTIAL, LIFE_SUCCESS, LIFE_FAILURE
 } LifeOperation;
-/** Plan-owned lifecycle step with exact source/type/field/hook and explicit failure edge. */
+/** Plan-owned lifecycle step with exact source/type/field/hook and explicit failure edge. Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02). */
 typedef struct LifeNode {
     struct LifeNode *allocated_next;
     struct LifeNode *next;
@@ -61,14 +61,14 @@ typedef struct LifeNode {
     const AbiBinding *binding;
     SourceSpan site;
 } LifeNode;
-/** Owned lifecycle procedure endpoints and cleanup policy, consumed only through a valid plan. */
+/** Owned lifecycle procedure endpoints and cleanup policy, consumed only through a valid plan. Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02). */
 typedef struct {
     LifeNode *first;
     LifeNode *last;
     LifeNode *failure;
     bool accumulates_errors;
 } LifeProcedure;
-/** Resolved control actions with separate selection, mutation, refusal, failure and continuation phases. */
+/** Resolved control actions with separate selection, mutation, refusal, failure and continuation phases. Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02). */
 typedef enum {
     CONTROL_COMPLETE, CONTROL_YIELD, CONTROL_CAPTURE_ERROR, CONTROL_CLEANUP_FAILURE,
     CONTROL_FAILURE, CONTROL_CONDITION, CONTROL_SELECT_RECEIVER, CONTROL_SELECT_SOURCE,
@@ -86,7 +86,7 @@ typedef enum {
     CONTROL_ACQUIRE_LIST, CONTROL_LIST_METHOD_PREFLIGHT, CONTROL_LIST_METHOD_PREPARE, CONTROL_LIST_METHOD_COMMIT, CONTROL_STAGE_METHOD_INPUT,
     CONTROL_RELEASE_TARGET
 } ControlOperation;
-/** Plan-owned uniquely selected control node; allocation links are separate from typed execution/alternative/failure/resume edges. */
+/** Plan-owned uniquely selected control node; allocation links are separate from typed execution/alternative/failure/resume edges. Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02). */
 typedef struct ControlNode {
     struct ControlNode *allocated_next;
     struct ControlNode *next;
@@ -111,7 +111,7 @@ typedef struct ControlNode {
 } ControlNode;
 /** One initiating operation tree, with exact whole-chain refusal exit and optional header terminal.
  * Runtime target grants live in its lexical frames, never this compile-time record.
- */
+ * Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02). */
 struct PlannedChain {
     PlannedChain *next;
     const SemanticStatement *root;
@@ -120,7 +120,7 @@ struct PlannedChain {
     ControlNode *exit;
     ControlNode *break_target;
 };
-/** Fixed source loop labels; parent links represent lexical containment, never dynamic invocation history. */
+/** Fixed source loop labels; parent links represent lexical containment, never dynamic invocation history. Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02). */
 struct PlannedLoop {
     PlannedLoop *next;
     PlannedLoop *parent;
@@ -134,13 +134,13 @@ struct PlannedLoop {
     ControlNode *exit;
     ControlNode *after;
 };
-/** Explicit logical instance-service requirements; shared immutable storage has none of these bits. */
+/** Explicit logical instance-service requirements; shared immutable storage has none of these bits. Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02). */
 enum {
     STORAGE_GENERATION = 1u, STORAGE_BUSY = 2u, STORAGE_POSITION = 4u,
     STORAGE_RETURN_LINK = 8u, STORAGE_REFUSAL = 16u, STORAGE_ACQUISITION = 32u,
     STORAGE_CONSTRUCTING_IDENTITY = 64u, STORAGE_OWNERSHIP = 128u
 };
-/** One planned nominal type with logical fields/service requirements, lifecycle procedures and retained body graph. */
+/** One planned nominal type with logical fields/service requirements, lifecycle procedures and retained body graph. Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02). */
 struct PlannedType {
     PlannedType *next;
     SemanticType *type;
@@ -150,7 +150,7 @@ struct PlannedType {
     size_t layout_ordinal;
     unsigned service_storage;
     bool requires_pool;
-    /** General stable-slot representation; no elision is claimed without an exact proof. */
+    /** General stable-slot representation; no elision is claimed without an exact proof. Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02). */
     bool stable_slots;
     StorageFrame *frames;
     StorageFrame *last_frame;
@@ -178,7 +178,7 @@ struct PlannedType {
     ControlNode *yield;
     ControlNode *failure;
 };
-/** Plan arena owner borrowing a complete semantic program and retaining unique selector allocation and valid/failure state. */
+/** Plan arena owner borrowing a complete semantic program and retaining unique selector allocation and valid/failure state. Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02). */
 typedef struct {
     SourceArena arena;
     const SemanticProgram *semantic;
@@ -203,22 +203,22 @@ typedef struct {
  * not guessed C byte offsets: the native C compiler supplies sizeof/alignment.
  * No AST reparsing, C execution or generated C strings occur during planning. */
 /** Require complete valid semantic constant plans and borrow that owner through plan destruction; selectors start at nonzero one.
- */
+ * Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02). */
 void program_plan_init(ProgramPlan *plan, const SemanticProgram *semantic, SourceAllocator allocator);
 /** Release all storage/lifecycle/control arena records; borrowed semantic/project owners remain untouched.
- */
+ * Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02). */
 void program_plan_destroy(ProgramPlan *plan);
 /** Build once: all nominal records, storage, per-type procedures/control and forward call links.
  * @return Explicit failure without valid output, or success with one complete typed plan; never parse source or emit C text.
- */
+ * Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02). */
 PlanStatus program_plan_build(ProgramPlan *plan);
 /** Check completed owner-linked IR without allocation; failure revokes publication and retains an original source site.
  * Ownership inventory chains must be intact; executable edges may contain cycles.
  * Borrowed semantics must remain complete and immutable. Success does not publish an unbuilt plan.
- */
+ * Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02). */
 bool program_plan_validate(ProgramPlan *plan);
 /** Find the exact semantic type pointer in already created planned types, or return null; no spelling-based type recreation.
- */
+ * Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02). */
 PlannedType *program_plan_type(const ProgramPlan *plan, const SemanticType *type);
 
 #endif

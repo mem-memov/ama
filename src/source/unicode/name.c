@@ -12,7 +12,7 @@
  * ASCII space cannot be a UTF-8 continuation byte. Word splitting is therefore
  * exact even when the following word contains malformed UTF-8, which its own
  * scalar validation rejects. Each completed word advances the finite byte offset.
- */
+ * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 bool unicode_name(const unsigned char *bytes, size_t length, size_t *error_offset) {
     if (bytes == NULL || length == 0) {
         *error_offset = 0;

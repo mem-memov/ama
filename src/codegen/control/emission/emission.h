@@ -13,38 +13,38 @@
 #include <stdio.h>
 #include "source/text/source.h"
 
-/** Emit label/source position, locate the current cell and optionally record the operation. */
+/** Emit label/source position, locate the current cell and optionally record the operation. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03), [STACK-01](../../../../spec/implementation/compiler.md#stack-01), [FLOW-04](../../../../spec/language/control-flow.md#flow-04). */
 bool codegen_control_location(FILE *, size_t selector, SourceSpan, bool record_operation);
-/** Emit an explicit successor or terminal finish; no graph lookup is performed. */
+/** Emit an explicit successor or terminal finish; no graph lookup is performed. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03), [STACK-01](../../../../spec/implementation/compiler.md#stack-01), [FLOW-04](../../../../spec/language/control-flow.md#flow-04). */
 bool codegen_control_jump(FILE *, bool finish, size_t selector);
-/** Acquire a target; entry alone prepares its interface, refusal follows its selector. */
+/** Acquire a target; entry alone prepares its interface, refusal follows its selector. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03), [STACK-01](../../../../spec/implementation/compiler.md#stack-01), [FLOW-04](../../../../spec/language/control-flow.md#flow-04). */
 bool codegen_control_acquire(FILE *, const char *name, size_t alternative, bool entry);
-/** Connect the resolved caller return and call-site selectors. */
+/** Connect the resolved caller return and call-site selectors. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03), [STACK-01](../../../../spec/implementation/compiler.md#stack-01), [FLOW-04](../../../../spec/language/control-flow.md#flow-04). */
 bool codegen_control_connect(FILE *, size_t resume, size_t call_site);
-/** Complete the current instance and follow its explicit runtime return link. */
+/** Complete the current instance and follow its explicit runtime return link. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03), [STACK-01](../../../../spec/implementation/compiler.md#stack-01), [FLOW-04](../../../../spec/language/control-flow.md#flow-04). */
 bool codegen_control_complete(FILE *);
-/** Release the current target, preserving technical-failure routing. */
+/** Release the current target, preserving technical-failure routing. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03), [STACK-01](../../../../spec/implementation/compiler.md#stack-01), [FLOW-04](../../../../spec/language/control-flow.md#flow-04). */
 bool codegen_control_release(FILE *);
-/** Select a declared shared or instance result, then transfer it to the receiver. */
+/** Select a declared shared or instance result, then transfer it to the receiver. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03), [STACK-01](../../../../spec/implementation/compiler.md#stack-01), [FLOW-04](../../../../spec/language/control-flow.md#flow-04). */
 bool codegen_control_output(FILE *, const char *name, bool shared);
-/** Emit the resolved receiver/source assignment operation. */
+/** Emit the resolved receiver/source assignment operation. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03), [STACK-01](../../../../spec/implementation/compiler.md#stack-01), [FLOW-04](../../../../spec/language/control-flow.md#flow-04). */
 bool codegen_control_assignment(FILE *, const char *name);
-/** Branch to the explicit true/false successors after condition conversion. */
+/** Branch to the explicit true/false successors after condition conversion. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03), [STACK-01](../../../../spec/implementation/compiler.md#stack-01), [FLOW-04](../../../../spec/language/control-flow.md#flow-04). */
 bool codegen_control_condition(FILE *, const char *name, size_t yes, size_t no);
 /** Convert the terminal result in its still-protected header owner, keeping
  * indices caller-local and routing success to explicit release-chain labels.
- */
+ * Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03), [STACK-01](../../../../spec/implementation/compiler.md#stack-01), [FLOW-04](../../../../spec/language/control-flow.md#flow-04). */
 bool codegen_control_condition_result(FILE *, const char *name, size_t yes, size_t no);
-/** Reset the temporary status after the runtime has recorded a handled refusal. */
+/** Reset the temporary status after the runtime has recorded a handled refusal. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03), [STACK-01](../../../../spec/implementation/compiler.md#stack-01), [FLOW-04](../../../../spec/language/control-flow.md#flow-04). */
 bool codegen_control_refusal(FILE *);
-/** Enter the common terminal-failure path. */
+/** Enter the common terminal-failure path. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03), [STACK-01](../../../../spec/implementation/compiler.md#stack-01), [FLOW-04](../../../../spec/language/control-flow.md#flow-04). */
 bool codegen_control_failure(FILE *);
-/** Store one already resolved continuation selector. */
+/** Store one already resolved continuation selector. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03), [STACK-01](../../../../spec/implementation/compiler.md#stack-01), [FLOW-04](../../../../spec/language/control-flow.md#flow-04). */
 bool codegen_control_save(FILE *, size_t resume);
-/** Yield to the immediate caller or the explicit host boundary. */
+/** Yield to the immediate caller or the explicit host boundary. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03), [STACK-01](../../../../spec/implementation/compiler.md#stack-01), [FLOW-04](../../../../spec/language/control-flow.md#flow-04). */
 bool codegen_control_yield(FILE *);
-/** Consume the saved selector and use the validated resume dispatcher. */
+/** Consume the saved selector and use the validated resume dispatcher. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03), [STACK-01](../../../../spec/implementation/compiler.md#stack-01), [FLOW-04](../../../../spec/language/control-flow.md#flow-04). */
 bool codegen_control_resume(FILE *);
-/** Clear the saved position on a fresh entry. */
+/** Clear the saved position on a fresh entry. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03), [STACK-01](../../../../spec/implementation/compiler.md#stack-01), [FLOW-04](../../../../spec/language/control-flow.md#flow-04). */
 bool codegen_control_restart(FILE *);
 #endif

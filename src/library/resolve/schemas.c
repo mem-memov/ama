@@ -5,14 +5,14 @@
  */
 #include <string.h>
 #include "../internal.h"
-/** Check the declared native value hooks needed by a fixed transport profile. */
+/** Check the declared native value hooks needed by a fixed transport profile. Component contract: [EMBED-04](../../../spec/implementation/c-library.md#embed-04). */
 static bool native_contract(const SemanticType *type, bool literal) {
     return type != NULL && type->module->syntax.sections.kind == MODULE_NATIVE
         && type->cloneable && type->abi.bindings[ABI_CLONE].present
         && type->abi.bindings[ABI_CONDITION].present
         && (!literal || type->abi.bindings[ABI_LITERAL].present);
 }
-/** Require the selected fixed profile's nominal identity and complete native capability contract. */
+/** Require the selected fixed profile's nominal identity and complete native capability contract. Component contract: [EMBED-04](../../../spec/implementation/c-library.md#embed-04). */
 static bool scalar_schema(LibraryBuild *build, LibrarySchema *schema, const SemanticProgram *program) {
     static const char *const paths[] = {"..integer", "..text", "..std.condition", "..failure"};
     if (strcmp(schema->argument, paths[schema->kind]) != 0) {

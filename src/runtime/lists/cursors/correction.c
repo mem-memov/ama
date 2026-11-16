@@ -6,13 +6,13 @@
  */
 #include "correction.h"
 
-/** Select one previously bounded actual C cursor slot, never an entry array. */
+/** Select one previously bounded actual C cursor slot, never an entry array. Component contract: [LIST-13](../../../../spec/language/lists.md#list-13), [FLOW-05](../../../../spec/language/lists.md#flow-05). */
 static AmaListCursor *ama_list_cursor_at(const AmaListCursorView *view, size_t index) {
     return (void *)(view->payload + view->set->offsets[index]);
 }
 /** Exact full collection identity distinguishes active/suspended scans from old
  * incarnations and unrelated fields; inactive slots require no registration.
- */
+ * Component contract: [LIST-13](../../../../spec/language/lists.md#list-13), [FLOW-05](../../../../spec/language/lists.md#flow-05). */
 static bool ama_list_cursor_matches(const AmaListCursor *cursor, const AmaListCursorView *view) {
     return cursor->active && ama_handle_equal(cursor->owner, view->owner)
         && cursor->field == view->field && cursor->incarnation == view->incarnation;

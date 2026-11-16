@@ -9,12 +9,12 @@
 
 /** No context data lives here. Retaining one issuance frontier avoids retaining freed
  * context addresses or one tombstone allocation per retired context. Component export
- * identity additionally scopes separately compiled images under the later EMBED boundary. */
+ * identity additionally scopes separately compiled images under the later EMBED boundary. Component contract: [PAR-01](../../../../spec/language/async-and-parallelism.md#par-01). */
 static _Atomic uint64_t last_context_identity;
 
 /** Advance a fixed-domain clock exactly once. Each failed strong CAS observes a strictly
  * larger frontier, so contention is bounded by intervening issuances, not a guessed retry limit.
- */
+ * Component contract: [PAR-01](../../../../spec/language/async-and-parallelism.md#par-01). */
 AmaStatus ama_context_identity_next(_Atomic uint64_t *clock, uint64_t limit, uint64_t *identity) {
     uint64_t previous = atomic_load_explicit(clock, memory_order_relaxed);
     if (limit == 0 || previous > limit) {
@@ -31,7 +31,7 @@ AmaStatus ama_context_identity_next(_Atomic uint64_t *clock, uint64_t limit, uin
     return ama_status_make(AMA_LIMIT_EXCEEDED, NULL, 0);
 }
 
-/** Consume a fresh image-local control identity, including failed factory attempts; never recycle. */
+/** Consume a fresh image-local control identity, including failed factory attempts; never recycle. Component contract: [PAR-01](../../../../spec/language/async-and-parallelism.md#par-01). */
 AmaStatus ama_context_identity_issue(uint64_t *identity) {
     return ama_context_identity_next(&last_context_identity, UINT64_MAX, identity);
 }

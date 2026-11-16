@@ -23,7 +23,7 @@ _Static_assert(DRIVER_REQUEST_UNAVAILABLE < sizeof(unsigned)*CHAR_BIT, "Command 
 #define ALL_REQUESTS (CHECK_REQUEST | STATUS_REQUEST | NATIVE_REQUEST | EMIT_REQUEST | LIBRARY_CHECK_REQUEST | LIBRARY_BUILD_REQUEST | SOURCE_TOOLS | RELOCATION_PLANS)
 #define GENERATING_REQUESTS (NATIVE_REQUEST | EMIT_REQUEST | LIBRARY_BUILD_REQUEST)
 
-/** Every exact spelling occurs once; request masks encode the existing CLI. */
+/** Every exact spelling occurs once; request masks encode the existing CLI. Component contract: [COMP-05](../../../../spec/implementation/compiler.md#comp-05). */
 static const DriverOption options[] = {
     {"--destination", DRIVER_OPTION_DESTINATION, true, RELOCATION_PLANS},
     {"--destination-root", DRIVER_OPTION_DESTINATION_ROOT, true, RELOCATION_PLANS},

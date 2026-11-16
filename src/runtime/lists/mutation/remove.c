@@ -10,7 +10,7 @@
 #include <string.h>
 #include "internal.h"
 
-/** Require a validated range and acquired storage. Preflight all removed owners, then destroy in reverse and compact; destructive failure is terminal and cleanup still completes. */
+/** Require a validated range and acquired storage. Preflight all removed owners, then destroy in reverse and compact; destructive failure is terminal and cleanup still completes. Component contract: [REF-08](../../../../spec/language/values-and-references.md#ref-08), [FLOW-05](../../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_list_remove(AmaListMutation *mutation, size_t position, size_t count) {
     AmaHandleList *list = mutation->list;
     AmaStatus status = ama_status_success();

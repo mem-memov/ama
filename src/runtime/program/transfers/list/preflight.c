@@ -7,7 +7,7 @@
  */
 #include "internal.h"
 
-/** Protect each owned root in order; caller restores any successful prefix. */
+/** Protect each owned root in order; caller restores any successful prefix. Component contract: [COPY-06](../../../../../spec/language/values-and-references.md#copy-06). */
 static AmaStatus ama_transfer_list_preflight(AmaObjectOperation *operation, const AmaHandleList *list, bool copy, bool continuation) {
     for (size_t index = 0; index < list->count; index++) {
         AmaStatus status = ama_object_preflight(operation, *ama_handle_list_element(list, index), copy, continuation);
@@ -18,7 +18,7 @@ static AmaStatus ama_transfer_list_preflight(AmaObjectOperation *operation, cons
 
 /** Validate before staging. An ordinary identical list is an allocation-free
  * no-op; continuation self-copy is invalid. Partial protections belong to caller.
- */
+ * Component contract: [COPY-06](../../../../../spec/language/values-and-references.md#copy-06). */
 AmaStatus ama_transfer_list_validate(AmaProgramValue *destination, const AmaProgramValue *source,
     AmaObjectOperation *operation, bool *no_op) {
     *no_op = false;

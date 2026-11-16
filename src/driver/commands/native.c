@@ -15,7 +15,7 @@
  * Decode unique optional protocol symbols into a bounded caller buffer with mandatory
  * initialize/destroy records. Invalid/duplicate marker or insufficient capacity returns null;
  * null protocols select existing/default authoring behavior.
- */
+ * Component contract: [CABI-06](../../../spec/implementation/native-interface.md#cabi-06). */
 static const char *proposed_contract(const DriverOptions *options, char *buffer, size_t capacity) {
     if (options->protocols == NULL) {
         return NULL;
@@ -54,7 +54,7 @@ static const char *proposed_contract(const DriverOptions *options, char *buffer,
  * Compose explicit authoring/checking and create/overwrite policy, then stage/publish native
  * artifacts. Always destroy scaffold before its borrowed frontend and render errors before
  * source destruction.
- */
+ * Component contract: [CABI-06](../../../spec/implementation/native-interface.md#cabi-06). */
 int driver_native(const DriverOptions *options, FILE *output, FILE *errors) {
     CompilerFrontend frontend;
     compiler_frontend_init(&frontend, source_system_allocator());

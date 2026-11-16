@@ -13,7 +13,7 @@
 /**
  * Write a supported UTF-8 JSON compilation database argv for the launcher, explicit
  * flags/includes and non-LTO compilation. The output is informational tooling, not shell text.
- */
+ * Component contract: [CABI-06](../../../spec/implementation/native-interface.md#cabi-06), [STACK-04](../../../spec/implementation/compiler.md#stack-04). */
 bool codegen_emit_tooling(NativeScaffold *scaffold, FILE *output, const ScaffoldType *unused) {
     (void)unused;
     const char *path = scaffold_join(scaffold, scaffold->directory, "/", "launcher.c");

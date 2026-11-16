@@ -6,7 +6,7 @@
  */
 #include <assert.h>
 #include "internal.h"
-/** Resolve a recipe from checked semantic operands; every failure leaves its arena prefix owned. */
+/** Resolve a recipe from checked semantic operands; every failure leaves its arena prefix owned. Component contract: [CALL-08](../../../spec/language/calls-and-results.md#call-08). */
 static ReplacementPlan *recipe(Lowering *lowering, const SemanticStatement *statement,
     const SemanticBinding *binding, const StorageField *field, ReplacementContext context) {
     ReplacementPlan *result = plan_allocate(lowering->plan, sizeof(*result));
@@ -45,7 +45,7 @@ static ReplacementPlan *recipe(Lowering *lowering, const SemanticStatement *stat
     result->construction = result->transfer == TRANSFER_LITERAL ? REPLACEMENT_SUPPLIED_LITERAL : REPLACEMENT_SUPPLIED_SOURCE;
     return result;
 }
-/** Prepend the fixed failure-safe instruction sequence; selected sources are consumed without reevaluation. */
+/** Prepend the fixed failure-safe instruction sequence; selected sources are consumed without reevaluation. Component contract: [CALL-08](../../../spec/language/calls-and-results.md#call-08). */
 static ControlNode *phases(Lowering *lowering, const SemanticStatement *statement,
     const SemanticBinding *binding, const StorageField *field, ReplacementPlan *value, ControlNode *after) {
     ReplacementContext context = value->context;

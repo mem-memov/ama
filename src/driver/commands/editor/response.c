@@ -4,23 +4,23 @@
  * reuses compiler metadata and production lexing, including intentional invalid/draft states.
  */
 #include "internal.h"
-/** A failed element prefix stops its caller without converting stream failure into successful enumeration. */
+/** A failed element prefix stops its caller without converting stream failure into successful enumeration. Component contract: [COMP-02](../../../../spec/implementation/compiler.md#comp-02). */
 bool driver_editor_item(DriverEditorArray *array) {
     if (!array->first && !tool_json_raw(array->writer,",")) { return false; }
     array->first = false;
     return array->writer->status == TOOL_JSON_OK;
 }
-/** Callback borrows the declaration only for this synchronous emission. */
+/** Callback borrows the declaration only for this synchronous emission. Component contract: [COMP-02](../../../../spec/implementation/compiler.md#comp-02). */
 bool driver_editor_symbol(void *context, const SemanticSymbol *symbol) {
     DriverEditorArray *array = context;
     return driver_editor_item(array) && tool_source_symbol(array->writer,symbol);
 }
-/** Error/warning ordering remains the analysis API's original deterministic order. */
+/** Error/warning ordering remains the analysis API's original deterministic order. Component contract: [COMP-02](../../../../spec/implementation/compiler.md#comp-02). */
 static bool diagnostic(void *context, const Diagnostic *value, bool warning) {
     DriverEditorArray *array = context;
     return driver_editor_item(array) && tool_source_diagnostic(array->writer,value,warning);
 }
-/** Highlight records preserve complete spelling/payload bytes and exact original spans without retaining temporary lexer records. */
+/** Highlight records preserve complete spelling/payload bytes and exact original spans without retaining temporary lexer records. Component contract: [COMP-02](../../../../spec/implementation/compiler.md#comp-02). */
 static bool highlight(void *context, const EditorHighlight *value) {
     DriverEditorArray *array = context;
     ToolJsonWriter *writer = array->writer;
@@ -30,7 +30,7 @@ static bool highlight(void *context, const EditorHighlight *value) {
         && tool_json_raw(writer,",\"comment\":") && tool_json_boolean(writer,value->comment)
         && tool_json_raw(writer,",\"category\":") && (value->comment ? tool_json_raw(writer,"null") : tool_json_unsigned(writer,value->kind)) && tool_json_raw(writer,"}");
 }
-/** Expose each declared interface role independently; unavailable metadata stays an explicit empty/unavailable interface. */
+/** Expose each declared interface role independently; unavailable metadata stays an explicit empty/unavailable interface. Component contract: [COMP-02](../../../../spec/implementation/compiler.md#comp-02). */
 static bool signature(const DriverOptions *options, const EditorAnalysis *analysis, ToolJsonWriter *writer) {
     const char *names[] = {"constants","parameters","results"};
     const SymbolRole roles[] = {SYMBOL_CONSTANT,SYMBOL_PARAMETER,SYMBOL_RESULT};
@@ -44,7 +44,7 @@ static bool signature(const DriverOptions *options, const EditorAnalysis *analys
     }
     return tool_json_raw(writer,"}");
 }
-/** A lexical error is structured data; resource failure additionally prevents a successful command acknowledgement. */
+/** A lexical error is structured data; resource failure additionally prevents a successful command acknowledgement. Component contract: [COMP-02](../../../../spec/implementation/compiler.md#comp-02). */
 bool driver_editor_response(const DriverOptions *options, const EditorAnalysis *analysis, ToolJsonWriter *writer, Diagnostic *error) {
     const char *states[] = {"complete","draft","invalid","unavailable"};
     if (!tool_json_raw(writer,"{\"schema\":\"ama.editor.v1\",\"state\":") || !tool_json_string(writer,states[analysis->state])

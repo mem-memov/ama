@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include "internal.h"
 
-/** Read-only record synchronization preserves its bytes and never visits former public project paths. */
+/** Read-only record synchronization preserves its bytes and never visits former public project paths. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_recovery_acknowledge(RelocationRecovery *recovery) {
     RelocationTransaction *transaction = &recovery->transaction;
     const char *path = recovery->preparing ? transaction->intent_record : transaction->journal_record;

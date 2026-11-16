@@ -5,13 +5,13 @@
  */
 #include <string.h>
 #include "../internal.h"
-/** Failure locations borrow retained input paths and require no diagnostic allocation. */
+/** Failure locations borrow retained input paths and require no diagnostic allocation. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static RelocationStagedFile *fail(RelocationStaging *staging, RelocationStatus status, const char *message, const char *path) {
     relocation_staging_fail(staging,status,message,(SourceSpan){0});
     if (staging->error.primary.path == NULL && staging->error.primary.span.source == NULL) { staging->error.primary.path = path; }
     return NULL;
 }
-/** Match existing records by exact verified physical path; inconsistent proposed placement rejects. */
+/** Match existing records by exact verified physical path; inconsistent proposed placement rejects. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 RelocationStagedFile *relocation_staging_capture(RelocationStaging *staging, const char *before,
     const char *after, const struct stat *expected) {
     for (RelocationStagedFile *file = staging->files; file != NULL; file = file->next) {

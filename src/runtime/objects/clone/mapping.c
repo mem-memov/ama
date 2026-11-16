@@ -10,7 +10,7 @@
 
 /** Apply the selected boundary's injective source map, or preserve an external
  * handle byte-for-byte. final_root substitutes only the boundary root identity.
- */
+ * Component contract: [COPY-04](../../../../spec/language/values-and-references.md#copy-04). */
 AmaHandle ama_clone_reference_map(const void *context, AmaHandle source) {
     const AmaCloneMap *map = context;
     const AmaObjectOperation *operation = map->operation;
@@ -26,7 +26,7 @@ AmaHandle ama_clone_reference_map(const void *context, AmaHandle source) {
 /** Rewrite only declared nonowning fields in one complete copy boundary. No
  * allocation/native execution occurs; all destination identities must exist.
  * Other boundaries in the same operation and the source tree remain unchanged.
- */
+ * Component contract: [COPY-04](../../../../spec/language/values-and-references.md#copy-04). */
 AmaStatus ama_object_fix_references(AmaObjectOperation *operation, AmaObjectWork *boundary,
     AmaHandle final_root, bool copy_continuation) {
     const AmaCloneMap map = {operation, boundary, final_root};

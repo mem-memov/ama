@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include "format.h"
 
-/** Complete each append and its fsync before allowing the operation that depends on that authority. */
+/** Complete each append and its fsync before allowing the operation that depends on that authority. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool close_record(RelocationJournalWriter *writer, bool complete) {
     RelocationTransaction *transaction = writer->transaction;
     if (complete && (!relocation_transaction_permit(transaction,RELOCATION_IO_SYNC,transaction->intent_record) || fsync(writer->descriptor) != 0)) {
@@ -23,7 +23,7 @@ static bool close_record(RelocationJournalWriter *writer, bool complete) {
     if (complete) { transaction->intent_length = metadata.st_size; }
     return complete;
 }
-/** Only this transaction's private journal is opened, with no symlink traversal or overwrite of an existing initial record. */
+/** Only this transaction's private journal is opened, with no symlink traversal or overwrite of an existing initial record. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool open_record(RelocationTransaction *transaction, RelocationJournalWriter *writer, bool create) {
     if (!relocation_transaction_permit(transaction,RELOCATION_IO_JOURNAL,transaction->intent_record)) { return false; }
     int flags = O_WRONLY|O_NOFOLLOW|O_CLOEXEC|(create ? O_CREAT|O_EXCL : O_APPEND);
@@ -32,7 +32,7 @@ static bool open_record(RelocationTransaction *transaction, RelocationJournalWri
     *writer = (RelocationJournalWriter){transaction,descriptor,transaction->intent_record};
     return true;
 }
-/** The initial root is empty until its scope and identity are durably recorded; no source mutation is possible here. */
+/** The initial root is empty until its scope and identity are durably recorded; no source mutation is possible here. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_intent(RelocationTransaction *transaction) {
     transaction->intent_record = source_arena_join(&transaction->arena,transaction->journal,"/","intent");
     if (transaction->intent_record == NULL) { return relocation_transaction_fail(transaction,RELOCATION_OUT_OF_MEMORY,"Preparation intent path allocation failed",transaction->journal); }
@@ -45,7 +45,7 @@ bool relocation_transaction_intent(RelocationTransaction *transaction) {
     transaction->intent_ready = true;
     return true;
 }
-/** Reservation is durable before mkdir; an interrupted unacknowledged reservation can only own an absent or empty directory. */
+/** Reservation is durable before mkdir; an interrupted unacknowledged reservation can only own an absent or empty directory. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_reserve(RelocationTransaction *transaction, const RelocationTransactionSlot *slot) {
     RelocationJournalWriter writer;
     if (!open_record(transaction,&writer,false)) { return false; }
@@ -55,7 +55,7 @@ bool relocation_transaction_reserve(RelocationTransaction *transaction, const Re
         && relocation_journal_bytes(&writer,(const unsigned char *)"END-SLOT\n",9);
     return close_record(&writer,complete);
 }
-/** No prepared bytes or saved originals may enter the directory before this exact identity is durable. */
+/** No prepared bytes or saved originals may enter the directory before this exact identity is durable. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_own(RelocationTransaction *transaction, const RelocationTransactionSlot *slot) {
     RelocationJournalWriter writer;
     if (!open_record(transaction,&writer,false)) { return false; }
@@ -64,14 +64,14 @@ bool relocation_transaction_own(RelocationTransaction *transaction, const Reloca
         && relocation_journal_bytes(&writer,(const unsigned char *)"END-OWN\n",8);
     return close_record(&writer,complete);
 }
-/** Publication is authorized only after the complete plan and every prepared private directory are durable. */
+/** Publication is authorized only after the complete plan and every prepared private directory are durable. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_ready(RelocationTransaction *transaction) {
     RelocationJournalWriter writer;
     if (!open_record(transaction,&writer,false)) { return false; }
     bool complete = relocation_journal_bytes(&writer,(const unsigned char *)"READY\n",6);
     return close_record(&writer,complete);
 }
-/** A failed preparation never changed sources; keep a terminal abort receipt after registered slots retire. */
+/** A failed preparation never changed sources; keep a terminal abort receipt after registered slots retire. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_abandoned(RelocationTransaction *transaction) {
     if (!transaction->intent_ready) { return true; }
     RelocationJournalWriter writer;

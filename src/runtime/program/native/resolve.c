@@ -12,7 +12,7 @@
 /** Validate the linear scope and role, then type, publication, lifecycle and access.
  * Every failure precedes output assignment, allowing generated binders to keep
  * partial view storage private until all required children have been resolved.
- */
+ * Component contract: [CABI-02](../../../../spec/implementation/native-interface.md#cabi-02), [CABI-03](../../../../spec/implementation/native-interface.md#cabi-03). */
 AmaStatus ama_native_borrow_cell(const AmaNativeBorrowScope *scope, AmaHandle handle,
     uint64_t expected_type, AmaNativeBorrowRole role, AmaPoolCell **output) {
     if (scope == NULL || !scope->active || scope->program == NULL || scope->program->world == NULL

@@ -6,7 +6,7 @@
  */
 #include "../internal.h"
 
-/** Check every token before activation publication; an annotation occupies its own zero-indent line. */
+/** Check every token before activation publication; an annotation occupies its own zero-indent line. Component contract: [SYN-04](../../../../spec/language/source-and-names.md#syn-04), [SYN-06](../../../../spec/language/source-and-names.md#syn-06). */
 static bool check_line(const LayoutLine *line, bool *active, ParseError *error) {
     LexCursor cursor;
     if (!lex_line_begin(&cursor, line, line->indentation)) {

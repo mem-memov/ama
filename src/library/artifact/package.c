@@ -12,7 +12,7 @@
 #include "process.h"
 #include "verify.h"
 #include "commands.h"
-/** Validate every staging operand before opening files or starting a child. */
+/** Validate every staging operand before opening files or starting a child. Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06). */
 static bool options_valid(const LibraryPackageOptions *options) {
     if (options == NULL) { return false; }
     const char *paths[] = {options->compiler, options->archiver, options->object_copy,

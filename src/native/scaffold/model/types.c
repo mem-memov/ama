@@ -12,7 +12,7 @@
 #include "native/scaffold/internal.h"
 
 /** Register one complete supported nominal/member/native-namespace key and retain exact collision/allocation failure; temporary member arrays are copied during registration.
- */
+ * Component contract: [NAME-01](../../../../spec/implementation/compiler.md#name-01), [ERROR-04](../../../../spec/implementation/diagnostics.md#error-04), [TYPE-06](../../../../spec/language/declarations.md#type-06). */
 static const IdentityName *identity(NativeScaffold *scaffold, const PlannedType *type,
     IdentityCategory category, const char *member, SourceSpan site) {
     QualifiedIdentity key = {category, type->type->module->source->logical_path,
@@ -27,7 +27,7 @@ static const IdentityName *identity(NativeScaffold *scaffold, const PlannedType 
 }
 
 /** Create ordered field/member records with original names and category-separated identities; all strings/records belong to the scaffold.
- */
+ * Component contract: [NAME-01](../../../../spec/implementation/compiler.md#name-01), [ERROR-04](../../../../spec/implementation/diagnostics.md#error-04), [TYPE-06](../../../../spec/language/declarations.md#type-06). */
 static bool members(NativeScaffold *scaffold, ScaffoldType *type) {
     ScaffoldMember **next = &type->members;
     for (const StorageField *field = type->plan->first; field != NULL; field = field->next) {
@@ -51,7 +51,7 @@ static bool members(NativeScaffold *scaffold, ScaffoldType *type) {
 }
 
 /** Register every declared view role and native prefix before member emission; no locale, transliteration or sequential name counter.
- */
+ * Component contract: [NAME-01](../../../../spec/implementation/compiler.md#name-01), [ERROR-04](../../../../spec/implementation/diagnostics.md#error-04), [TYPE-06](../../../../spec/language/declarations.md#type-06). */
 static bool names(NativeScaffold *scaffold, ScaffoldType *type) {
     static const char *const roles[] = {"read", "write", "reference-storage", "reference-read", "reference-write",
         "list-storage", "list-read", "list-write", "reference-list-storage", "reference-list-read",
@@ -67,7 +67,7 @@ static bool names(NativeScaffold *scaffold, ScaffoldType *type) {
 }
 
 /** Derive selected native companion and generated artifact names from explicit physical/module-qualified identities; preserve first path failure.
- */
+ * Component contract: [NAME-01](../../../../spec/implementation/compiler.md#name-01), [ERROR-04](../../../../spec/implementation/diagnostics.md#error-04), [TYPE-06](../../../../spec/language/declarations.md#type-06). */
 static bool paths(NativeScaffold *scaffold, ScaffoldType *type) {
     type->ama_path = scaffold_absolute(scaffold, source_path(type->plan->type->module->source->text));
     if (type->ama_path == NULL) {

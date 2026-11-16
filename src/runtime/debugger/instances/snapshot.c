@@ -4,7 +4,7 @@
  * [DEBUG-03](../../../../spec/implementation/diagnostics.md#debug-03) keeps caller links transient.
  */
 #include "../internal.h"
-/** Recorded operation and saved resume are distinct observations; no historical caller is reconstructed. */
+/** Recorded operation and saved resume are distinct observations; no historical caller is reconstructed. Component contract: [DEBUG-01](../../../../spec/implementation/diagnostics.md#debug-01), [DEBUG-03](../../../../spec/implementation/diagnostics.md#debug-03). */
 AmaStatus ama_debug_instance(const AmaDebugSession *session, AmaContextReference reference, AmaDebugInstance *output) {
     if (output == NULL) { return ama_status_make(AMA_INVALID_STATE,NULL,0); }
     const AmaProgramType *type = NULL;

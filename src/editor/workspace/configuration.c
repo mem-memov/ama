@@ -5,7 +5,7 @@
  */
 #include <stdint.h>
 #include "internal.h"
-/** Copy checked finite settings without normalizing names, inferring kinds or retaining caller storage. */
+/** Copy checked finite settings without normalizing names, inferring kinds or retaining caller storage. Component contract: [SRC-01](../../../spec/language/source-and-names.md#src-01), [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 bool editor_workspace_configuration(EditorAnalysis *analysis, const ModuleRoot *roots, size_t count, const char *entry) {
     if (!module_path_valid(entry) || (count != 0 && roots == NULL)) {
         analysis->diagnostic = (Diagnostic){.code=DIAGNOSTIC_INVALID_PATH,.message="Workspace roots or entry are invalid"};

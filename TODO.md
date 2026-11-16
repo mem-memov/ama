@@ -2725,10 +2725,27 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   and interface; two generations are byte-identical. Requirement/release acceptance
   remains the separate T117–T122 gate.
   See `docs/implementation/documentation/closure.md`.
-- [ ] **T117 — Close all requirement and composition gaps.** Needs: T116.
-  Update T001's matrix for all 200 requirements and every acceptance row, with
-  exact commands and current evidence. Add missing independent leaf, parent and
-  generated-program cases; no unsupported feature can be marked complete.
+- [x] **T117 — Close all requirement and composition gaps.** Needs: T116.
+  Published the current successor to T001's frozen starting audit: all 200
+  requirements and 108 canonical acceptance rows have individual reviewed
+  arguments and 41 concrete source/contract/component/composition evidence groups.
+  `make conformance-check` verifies exact canonical IDs/anchors, ordered complete
+  criteria, maintained-input/registry/argument fingerprints and actual named C
+  case signatures. Six independent C/assert cases test malformed/open claims,
+  missing/changed obligations, stale provenance, wrong interfaces and real current
+  repository closure; the recursive unit parent includes this leaf.
+  Closed the compiler-comment gap: 2600 existing Doxygen explanations in 667
+  compiler files now carry their own canonical-rule links. Exact comparison
+  confirms unchanged executable bytes and physical line counts. Documentation
+  tests check all 900 compiler inputs, reject fake/example links and preserve
+  opaque binary fixtures without requiring UTF-8 decoding.
+  Evidence: strict compiler build; complete semantic, object and async parents;
+  compiled result-tree, binding, entry-preparation and execution leaves;
+  documentation/conformance positive and negative cases; complete 2331-input
+  zero-debt registry; local prose links; reproducible Doxygen generation with
+  1746 maintained file pages and 6685 documented interfaces. T118–T120 retain
+  their broader product/resource/toolchain acceptance scope.
+  See `docs/implementation/conformance/README.md` and its checked `matrix.json`.
 - [ ] **T118 — Verify deterministic and incremental product behavior.** Needs:
   T117. Check repeated output, transitive/configuration/native dependency changes,
   Unicode paths, collisions and source maps across clean/reused builds. Verify

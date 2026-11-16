@@ -5,13 +5,13 @@
  */
 #include <string.h>
 #include "../internal.h"
-/** Compare the complete original interface name without trimming or suffix inference. */
+/** Compare the complete original interface name without trimming or suffix inference. Component contract: [EMBED-04](../../../spec/implementation/c-library.md#embed-04). */
 static bool named(const SemanticSymbol *field, const char *name) {
     size_t length = field->name.end - field->name.start;
     return strlen(name) == length
         && memcmp(source_bytes(field->name.source) + field->name.start, name, length) == 0;
 }
-/** Resolve a single mapping by exact export/name/role, excluding private fields. */
+/** Resolve a single mapping by exact export/name/role, excluding private fields. Component contract: [EMBED-04](../../../spec/implementation/c-library.md#embed-04). */
 static bool binding(LibraryBuild *build, LibraryBinding *item) {
     item->exported = library_export_find(build, item->export_name);
     item->schema = library_schema_find(build, item->schema_name);

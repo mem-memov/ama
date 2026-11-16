@@ -10,19 +10,19 @@
 #include <string.h>
 #include "internal.h"
 
-/** Write a complete unsigned 64-bit count without host endianness or alignment assumptions. */
+/** Write a complete unsigned 64-bit count without host endianness or alignment assumptions. Component contract: [NAME-01](../../../../spec/implementation/compiler.md#name-01). */
 static void append_number(unsigned char **cursor, uint64_t number) {
     for (size_t index = 0; index < 8; index++) { *(*cursor)++ = (unsigned char)(number >> ((7 - index) * 8)); }
 }
 
-/** Emit one measured byte string; embedded punctuation/member role text cannot merge adjacent components. */
+/** Emit one measured byte string; embedded punctuation/member role text cannot merge adjacent components. Component contract: [NAME-01](../../../../spec/implementation/compiler.md#name-01). */
 static void append_part(unsigned char **cursor, const char *bytes, size_t length) {
     append_number(cursor, length);
     memcpy(*cursor, bytes, length);
     *cursor += length;
 }
 
-/** Skip exactly the source root marker, never serializing it as an empty component. */
+/** Skip exactly the source root marker, never serializing it as an empty component. Component contract: [NAME-01](../../../../spec/implementation/compiler.md#name-01). */
 void identity_encoding_parts(unsigned char *cursor, QualifiedIdentity identity, const IdentityEncodingShape *shape) {
     append_number(&cursor, shape->module_count);
     size_t start = shape->root_width;

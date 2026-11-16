@@ -4,7 +4,7 @@
  * [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06) requires a complete graph correspondence.
  */
 #include "internal.h"
-/** Bindings retain their independent direction/ordinal, exact interface descriptor and transfer mode. */
+/** Bindings retain their independent direction/ordinal, exact interface descriptor and transfer mode. Component contract: [CALL-08](../../../../../spec/language/calls-and-results.md#call-08), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */
 static bool binding(const RenameIdentity *check, const SemanticBinding *old, const SemanticBinding *fresh) {
     return old->position == fresh->position && old->reference == fresh->reference && old->list == fresh->list
         && old->transfer == fresh->transfer && old->intrinsic == fresh->intrinsic
@@ -14,20 +14,20 @@ static bool binding(const RenameIdentity *check, const SemanticBinding *old, con
         && rename_same_span(check,old->syntax->marker,fresh->syntax->marker)
         && rename_same_source(check,old->source,fresh->source) && rename_same_access(check,old->receiver,fresh->receiver);
 }
-/** A selected condition retains storage/result shape and source identity rather than a coincidentally equal declared type. */
+/** A selected condition retains storage/result shape and source identity rather than a coincidentally equal declared type. Component contract: [CALL-08](../../../../../spec/language/calls-and-results.md#call-08), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */
 static bool selection(const RenameIdentity *check, SemanticSelection old, SemanticSelection fresh) {
     return old.reference == fresh.reference && old.list == fresh.list && old.intrinsic == fresh.intrinsic && old.position == fresh.position
         && rename_same_type(old.type,fresh.type) && rename_same_symbol(check,old.field,fresh.field)
         && rename_same_access(check,old.access,fresh.access);
 }
-/** New-local versus reused-reference traversal behavior is observable even when a captured candidate compiles successfully. */
+/** New-local versus reused-reference traversal behavior is observable even when a captured candidate compiles successfully. Component contract: [CALL-08](../../../../../spec/language/calls-and-results.md#call-08), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */
 static bool traversal(const RenameIdentity *check, const SemanticForeachBinding *old, const SemanticForeachBinding *fresh) {
     return old == NULL ? fresh == NULL : fresh != NULL && old->introduced == fresh->introduced
         && rename_same_symbol(check,old->collection,fresh->collection) && rename_same_symbol(check,old->binding,fresh->binding)
         && rename_same_span(check,old->syntax->span,fresh->syntax->span)
         && old->syntax->as.traversal.reference_elements == fresh->syntax->as.traversal.reference_elements;
 }
-/** Ordered action links must still identify their exact checked operation/binding, not another same-typed target. */
+/** Ordered action links must still identify their exact checked operation/binding, not another same-typed target. Component contract: [CALL-08](../../../../../spec/language/calls-and-results.md#call-08), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */
 static bool actions(const RenameIdentity *check, const SemanticOutputAction *old, const SemanticOutputAction *fresh) {
     while (old != NULL && fresh != NULL) {
         if (old->syntax->kind != fresh->syntax->kind || !rename_same_link(check,old->operation,fresh->operation)
@@ -38,7 +38,7 @@ static bool actions(const RenameIdentity *check, const SemanticOutputAction *old
     }
     return old == NULL && fresh == NULL;
 }
-/** Flat statement inventory makes cyclic alias/control checks finite and nonrecursive. */
+/** Flat statement inventory makes cyclic alias/control checks finite and nonrecursive. Component contract: [CALL-08](../../../../../spec/language/calls-and-results.md#call-08), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */
 bool rename_same_statement(const RenameIdentity *check, const SemanticStatement *old, const SemanticStatement *fresh) {
     if (!rename_same_link(check,old,fresh) || old->empty_body != fresh->empty_body || old->negative_branch != fresh->negative_branch
         || old->operation_kind != fresh->operation_kind || old->list_method != fresh->list_method || old->transfer != fresh->transfer

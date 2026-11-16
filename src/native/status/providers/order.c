@@ -9,7 +9,7 @@
 #include <string.h>
 #include "internal.h"
 
-/** Compare full original key bytes, preserving roots, component boundaries and Unicode spelling. */
+/** Compare full original key bytes, preserving roots, component boundaries and Unicode spelling. Component contract: [ERROR-04](../../../../spec/implementation/diagnostics.md#error-04). */
 int native_status_provider_compare(const IdentityName *left, const IdentityName *right) {
     size_t common = left->encoding_length < right->encoding_length ? left->encoding_length : right->encoding_length;
     int compared = memcmp(left->encoding, right->encoding, common);
@@ -17,7 +17,7 @@ int native_status_provider_compare(const IdentityName *left, const IdentityName 
     return (left->encoding_length > right->encoding_length) - (left->encoding_length < right->encoding_length);
 }
 
-/** Exchange private table rows, never identities or caller inventory positions. */
+/** Exchange private table rows, never identities or caller inventory positions. Component contract: [ERROR-04](../../../../spec/implementation/diagnostics.md#error-04). */
 static void provider_swap(NativeStatusProvider *left, NativeStatusProvider *right) {
     NativeStatusProvider value = *left;
     *left = *right;
@@ -26,7 +26,7 @@ static void provider_swap(NativeStatusProvider *left, NativeStatusProvider *righ
 
 /** Restore a max heap down one path; each descent increases the index and lowers remaining height.
  * root<count/2 proves 2*root+1<count before multiplication, preventing index overflow.
- */
+ * Component contract: [ERROR-04](../../../../spec/implementation/diagnostics.md#error-04). */
 static void provider_sift(NativeStatusProvider *providers, size_t count, size_t root) {
     while (root < count / 2) {
         size_t child = root * 2 + 1;
@@ -37,7 +37,7 @@ static void provider_sift(NativeStatusProvider *providers, size_t count, size_t 
     }
 }
 
-/** Build the heap bottom-up and grow the ascending fixed suffix one element at a time. */
+/** Build the heap bottom-up and grow the ascending fixed suffix one element at a time. Component contract: [ERROR-04](../../../../spec/implementation/diagnostics.md#error-04). */
 void native_status_providers_order(NativeStatusProvider *providers, size_t count) {
     for (size_t start = count / 2; start != 0;) { provider_sift(providers, count, --start); }
     for (size_t end = count; end > 1;) {

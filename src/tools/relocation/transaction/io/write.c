@@ -7,7 +7,7 @@
 #include <limits.h>
 #include <unistd.h>
 #include "../internal.h"
-/** Short writes advance exactly; zero progress and actual errors reject without publishing a source change. */
+/** Short writes advance exactly; zero progress and actual errors reject without publishing a source change. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_write(RelocationTransaction *transaction, int descriptor, const char *path, const unsigned char *data, size_t length) {
     size_t offset = 0;
     while (offset < length) {

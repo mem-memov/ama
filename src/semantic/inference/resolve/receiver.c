@@ -7,7 +7,7 @@
  */
 #include <stdint.h>
 #include "../internal.h"
-/** Report the later explicit spelling with the actual earlier introducing receiver, without manufacturing an AST declaration. */
+/** Report the later explicit spelling with the actual earlier introducing receiver, without manufacturing an AST declaration. Component contract: [TYPE-06](../../../../spec/language/declarations.md#type-06), [NAME-06](../../../../spec/language/declarations.md#name-06). */
 static bool duplicate(Inference *inference, const AstAccess *receiver, const SemanticSymbol *explicit) {
     SemanticProgram *program = inference->program;
     semantic_fail(program, explicit->spelling, "This explicit declaration duplicates an earlier receiver-inferred field", NULL);

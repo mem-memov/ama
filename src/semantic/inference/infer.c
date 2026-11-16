@@ -7,7 +7,7 @@
  */
 #include <assert.h>
 #include "internal.h"
-/** Resolve a condition's caller use or exact declared terminal without replaying any source operation. */
+/** Resolve a condition's caller use or exact declared terminal without replaying any source operation. Component contract: [TYPE-06](../../../spec/language/declarations.md#type-06), [NAME-06](../../../spec/language/declarations.md#name-06). */
 static bool condition(Inference *inference, const AstNode *node) {
     InferenceValue value;
     if (node->as.control.command == NULL) {
@@ -17,7 +17,7 @@ static bool condition(Inference *inference, const AstNode *node) {
     return owner != NULL ? inference_select_result(inference, owner, node->as.control.condition, &value)
         : semantic_fail(inference->program, node->as.control.condition->span, "The condition's operation prefix has not been typed", NULL);
 }
-/** Process one event exactly once; syntax classification never changes after failure. */
+/** Process one event exactly once; syntax classification never changes after failure. Component contract: [TYPE-06](../../../spec/language/declarations.md#type-06), [NAME-06](../../../spec/language/declarations.md#name-06). */
 static bool event(Inference *inference, const InferenceEvent *current) {
     InferenceValue value;
     switch (current->kind) {

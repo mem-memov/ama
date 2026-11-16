@@ -7,7 +7,7 @@
 #include <string.h>
 #include "assembly.h"
 #include "library/transport/codecs.h"
-/** Include paths reject directive-breaking bytes; backslashes are platform separators only on other hosts. */
+/** Include paths reject directive-breaking bytes; backslashes are platform separators only on other hosts. Component contract: [EMBED-01](../../../spec/implementation/c-library.md#embed-01). */
 static bool include_path(const char *path) {
     if (path == NULL || path[0] == '\0') { return false; }
     for (const unsigned char *byte=(const unsigned char *)path; *byte!=0; byte++) {

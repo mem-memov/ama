@@ -24,7 +24,7 @@ AmaStatus ama_program_select_shared(AmaProgram *program, const AmaConstantValue 
  * construction is a separate path. Explicit acquisition marks reference form,
  * rejects immutable scalars and never itself acquires the referent. Saved-position
  * copying is carried as an explicit flag for the later transfer operation.
- */
+ * Component contract: [LIST-10](../../../../spec/language/lists.md#list-10), [CALL-08](../../../../spec/language/calls-and-results.md#call-08), [CONT-04](../../../../spec/language/continuations.md#cont-04). */
 AmaStatus ama_program_evaluate_authorized(AmaProgram *program, AmaHandle current, const AmaConstantValue *shared,
     const AmaProgramSource *source, bool private_access, const struct AmaProgramListService *authority,
     AmaProgramValue *output) {
@@ -50,7 +50,7 @@ AmaStatus ama_program_evaluate_authorized(AmaProgram *program, AmaHandle current
     return status;
 }
 
-/** Ordinary sources carry no inherited list grant into executed module bodies. */
+/** Ordinary sources carry no inherited list grant into executed module bodies. Component contract: [LIST-10](../../../../spec/language/lists.md#list-10), [CALL-08](../../../../spec/language/calls-and-results.md#call-08), [CONT-04](../../../../spec/language/continuations.md#cont-04). */
 AmaStatus ama_program_evaluate(AmaProgram *program, AmaHandle current, const AmaConstantValue *shared,
     const AmaProgramSource *source, bool private_access, AmaProgramValue *output) {
     return ama_program_evaluate_authorized(program, current, shared, source, private_access, NULL, output);

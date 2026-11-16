@@ -7,7 +7,7 @@
  */
 #include "internal.h"
 
-/** Mark only checked absence as expected refusal; malformed metadata is technical. */
+/** Mark only checked absence as expected refusal; malformed metadata is technical. Component contract: [FLOW-05](../../../../../spec/language/lists.md#flow-05), [LIST-10](../../../../../spec/language/lists.md#list-10). */
 static AmaStatus ama_foreach_absence(AmaStatus status, bool *refused) {
     *refused = status.code == AMA_EMPTY_REFERENCE || status.code == AMA_STALE_REFERENCE;
     return status;

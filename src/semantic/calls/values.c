@@ -8,7 +8,7 @@
 #include "internal.h"
 
 /** Construct typed metadata for a selected declared result/shared field without inventing a caller value or reading runtime state.
- */
+ * Component contract: [CALL-08](../../../spec/language/calls-and-results.md#call-08). */
 static SemanticSource *output_source(SemanticProgram *program, SemanticBinding *binding) {
     SemanticSource *source = semantic_allocate(program, sizeof(*source));
     if (source == NULL) {

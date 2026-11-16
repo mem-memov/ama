@@ -14,7 +14,7 @@
 _Static_assert(SIZE_MAX <= UINT64_MAX, "Identity lengths require at most 64 bits");
 _Static_assert(MODULE_ROOT_PROJECT == 1 && MODULE_ROOT_STANDARD == 2, "Identity version two fixes root tags");
 
-/** Add exactly one length prefix plus data only after proving both additions fit. */
+/** Add exactly one length prefix plus data only after proving both additions fit. Component contract: [NAME-01](../../../../spec/implementation/compiler.md#name-01). */
 bool identity_encoding_part_size(size_t *total, size_t length) {
     if (total == NULL || *total > SIZE_MAX - 8 || (uint64_t)*total > UINT64_MAX / 8 - 8) { return false; }
     size_t prefix = *total + 8;
@@ -25,7 +25,7 @@ bool identity_encoding_part_size(size_t *total, size_t length) {
 
 /** Validate complete spelling and measure every field; synthetic member parts are
  * nonempty UTF-8 key components, not implicitly reinterpreted as source tokens.
- */
+ * Component contract: [NAME-01](../../../../spec/implementation/compiler.md#name-01). */
 IdentityStatus identity_encoding_measure(QualifiedIdentity identity, IdentityEncodingShape *output) {
     if (identity.category < IDENTITY_TYPE || identity.category > IDENTITY_NATIVE_NAMESPACE
         || (identity.category == IDENTITY_NATIVE_NAMESPACE && identity.member_count != 0)

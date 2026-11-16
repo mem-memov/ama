@@ -8,13 +8,13 @@
 #include <string.h>
 #include "../internal.h"
 
-/** Original source order determines output order, independently of graph traversal or root order. */
+/** Original source order determines output order, independently of graph traversal or root order. Component contract: [TOOL-03](../../../../../spec/implementation/tools-and-conformance.md#tool-03). */
 static int compare_edits(const void *left, const void *right) {
     const RelocationPathEdit *a = *(const RelocationPathEdit *const *)left;
     const RelocationPathEdit *b = *(const RelocationPathEdit *const *)right;
     return a->original.start < b->original.start ? -1 : a->original.start > b->original.start;
 }
-/** Select only edits backed by this exact captured physical source and unchanged original bytes. */
+/** Select only edits backed by this exact captured physical source and unchanged original bytes. Component contract: [TOOL-03](../../../../../spec/implementation/tools-and-conformance.md#tool-03). */
 static bool select_edits(RelocationStaging *staging, RelocationStagedSource *source) {
     size_t count = 0;
     for (const RelocationPathEdit *edit = staging->references->edits; edit != NULL; edit = edit->next) {
@@ -40,7 +40,7 @@ static bool select_edits(RelocationStaging *staging, RelocationStagedSource *sou
     qsort(source->edits,source->edit_count,sizeof(*source->edits),compare_edits);
     return true;
 }
-/** Link only initialized records, retaining each failed prefix for one uniform teardown path. */
+/** Link only initialized records, retaining each failed prefix for one uniform teardown path. Component contract: [TOOL-03](../../../../../spec/implementation/tools-and-conformance.md#tool-03). */
 bool relocation_staging_texts(RelocationStaging *staging) {
     for (const RelocationModule *module = staging->references->preview->modules; module != NULL; module = module->next) {
         RelocationStagedSource *source = source_arena_allocate(&staging->arena,sizeof(*source));

@@ -7,6 +7,6 @@
 #define AMA_DRIVER_EDITOR_H
 #include <stdio.h>
 #include "driver/options/options.h"
-/** Borrow validated options/streams, retain source owners through output, flush success and release every partial owner. */
+/** Borrow validated options/streams, retain source owners through output, flush success and release every partial owner. Component contract: [COMP-02](../../../../spec/implementation/compiler.md#comp-02). */
 int driver_editor(const DriverOptions *, FILE *, FILE *);
 #endif

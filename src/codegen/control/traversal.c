@@ -11,7 +11,7 @@
 
 /** Validate all retained scopes before any saved body instruction. Repeat labels
  * are exact static foreach selectors, not arbitrary source-controlled integers.
- */
+ * Component contract: [FLOW-05](../../../spec/language/lists.md#flow-05), [CONT-04](../../../spec/language/continuations.md#cont-04), [STACK-01](../../../spec/implementation/compiler.md#stack-01). */
 static bool codegen_traversal_resume(FILE *output, const ScaffoldType *type) {
     if (fputs("{ uint64_t repeat=0; ama_status=ama_program_foreach_resume(&ama_program,ama_current,&repeat);\n"
         "if(ama_status.code!=AMA_OK) goto ama_project_finish;\nswitch(repeat) { case 0: break;\n", output) == EOF) { return false; }

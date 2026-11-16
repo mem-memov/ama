@@ -10,7 +10,7 @@
 
 #include "identity.h"
 
-/** Private serialized key/display view, owned by the destination registry arena. */
+/** Private serialized key/display view, owned by the destination registry arena. Component contract: [NAME-02](../../../spec/implementation/compiler.md#name-02). */
 typedef struct {
     unsigned char *bytes;
     size_t length;
@@ -20,7 +20,7 @@ typedef struct {
 } IdentityEncoding;
 
 /** Measure/check before encoding; output changes only after complete bytes/display-name construction. Arena owns partial scratch until destruction.
- */
+ * Component contract: [NAME-02](../../../spec/implementation/compiler.md#name-02). */
 IdentityStatus identity_encode(SourceArena *arena, QualifiedIdentity identity,
     IdentityEncoding *output);
 /* Digest is supplied by the SHA-256 parent; equality always compares full keys.
@@ -28,7 +28,7 @@ IdentityStatus identity_encode(SourceArena *arena, QualifiedIdentity identity,
  * Encoding storage must belong to registry->arena. */
 /** Accept encoding bytes/display names already owned by registry.arena and a supplied digest.
  * @return Reuse an equal full key, publish one complete name, or set conflicting for an unequal-key collision. Failure leaves output unchanged.
- */
+ * Component contract: [NAME-02](../../../spec/implementation/compiler.md#name-02). */
 IdentityStatus identity_insert(IdentityRegistry *registry, IdentityEncoding encoding,
     const unsigned char digest[32], const IdentityName **output);
 

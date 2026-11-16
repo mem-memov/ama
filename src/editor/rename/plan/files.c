@@ -7,14 +7,14 @@
 #include <string.h>
 #include "../internal.h"
 #include "source/io/buffer/buffer.h"
-/** Source records are identified by their snapshot-owned text pointer, not a basename/path heuristic. */
+/** Source records are identified by their snapshot-owned text pointer, not a basename/path heuristic. Component contract: [SRC-03](../../../../spec/language/source-and-names.md#src-03), [ARCH-06](../../../../spec/implementation/compiler.md#arch-06). */
 static const ModuleSource *source_file(const EditorRename *plan, const SourceText *text) {
     for (const ModuleSource *source = plan->workspace->frontend.project.catalog.first; source != NULL; source = source->next) {
         if (source->text == text) { return source; }
     }
     return NULL;
 }
-/** Append one unique occurrence already ordered/deduplicated by the checked editor index. */
+/** Append one unique occurrence already ordered/deduplicated by the checked editor index. Component contract: [SRC-03](../../../../spec/language/source-and-names.md#src-03), [ARCH-06](../../../../spec/implementation/compiler.md#arch-06). */
 static bool occurrence(EditorRename *plan, SourceSpan span) {
     if (plan->last == NULL || plan->last->original->text != span.source) {
         const ModuleSource *source = source_file(plan,span.source);
@@ -36,7 +36,7 @@ static bool occurrence(EditorRename *plan, SourceSpan span) {
     plan->last->edit_count++;
     return true;
 }
-/** Copy untouched intervals verbatim and substitute only complete-name intervals; every failed buffer prefix retires. */
+/** Copy untouched intervals verbatim and substitute only complete-name intervals; every failed buffer prefix retires. Component contract: [SRC-03](../../../../spec/language/source-and-names.md#src-03), [ARCH-06](../../../../spec/implementation/compiler.md#arch-06). */
 static bool render(EditorRename *plan, EditorRenameFile *file) {
     SourceAllocator allocator = plan->arena.allocator;
     SourceBuffer buffer = {0};
@@ -69,7 +69,7 @@ static bool render(EditorRename *plan, EditorRenameFile *file) {
     allocator.release(allocator.context,buffer.bytes);
     return status == SOURCE_OK;
 }
-/** A same-name request is an explicit no-op. Equal text belonging to other identities never enters the edit set. */
+/** A same-name request is an explicit no-op. Equal text belonging to other identities never enters the edit set. Component contract: [SRC-03](../../../../spec/language/source-and-names.md#src-03), [ARCH-06](../../../../spec/implementation/compiler.md#arch-06). */
 bool editor_rename_files(EditorRename *plan) {
     SourceSpan old = plan->target->name;
     size_t length = old.end-old.start;

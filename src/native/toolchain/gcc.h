@@ -28,7 +28,7 @@ _Static_assert(sizeof(bool) == 1, "Invalid bool representation");
 /** Required direct-entry inlining declaration under the verified backend.
  * Taking native entry addresses is outside this contract; ordinary C helpers
  * may still call/return/ recurse on the C stack under STACK-02.
- */
+ * Component contract: [STACK-04](../../../spec/implementation/compiler.md#stack-04). */
 #define AMA_NATIVE_ENTRY static inline __attribute__((always_inline))
 
 #endif

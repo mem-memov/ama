@@ -7,11 +7,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include "internal.h"
-/** Total exact logical-path order gives deterministic required-module registration independent of filesystem enumeration. */
+/** Total exact logical-path order gives deterministic required-module registration independent of filesystem enumeration. Component contract: [SYN-04](../../../spec/language/source-and-names.md#syn-04), [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 static int compare(const void *left, const void *right) {
     return strcmp(*(const char *const *)left,*(const char *const *)right);
 }
-/** A complete catalog bounds the temporary path array; layout nodes retire after each classification. */
+/** A complete catalog bounds the temporary path array; layout nodes retire after each classification. Component contract: [SYN-04](../../../spec/language/source-and-names.md#syn-04), [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 bool editor_workspace_active(EditorAnalysis *analysis, const char *const **output, size_t *output_count) {
     size_t capacity = 0;
     for (const ModuleSource *source = analysis->frontend.project.catalog.first; source != NULL; source = source->next) {

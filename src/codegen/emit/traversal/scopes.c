@@ -7,7 +7,7 @@
  */
 #include "codegen/internal.h"
 
-/** Require an actual known loop identity; SIZE_MAX denotes an absent root parent. */
+/** Require an actual known loop identity; SIZE_MAX denotes an absent root parent. Component contract: [FLOW-05](../../../../spec/language/lists.md#flow-05), [RT-02](../../../../spec/implementation/runtime.md#rt-02). */
 static bool codegen_foreach_parent(const ScaffoldType *type, const PlannedLoop *loop, size_t *output) {
     const PlannedLoop *parent = loop->parent;
     while (parent != NULL && parent->statement->syntax->kind != AST_FOREACH) { parent = parent->parent; }
@@ -15,7 +15,7 @@ static bool codegen_foreach_parent(const ScaffoldType *type, const PlannedLoop *
     return codegen_foreach_scope_index(type, parent, output);
 }
 
-/** Emit one typed plan; nominal member identity, not user spelling, selects offsets. */
+/** Emit one typed plan; nominal member identity, not user spelling, selects offsets. Component contract: [FLOW-05](../../../../spec/language/lists.md#flow-05), [RT-02](../../../../spec/implementation/runtime.md#rt-02). */
 static bool codegen_foreach_plan(NativeScaffold *scaffold, FILE *output,
     const ScaffoldType *type, const PlannedLoop *loop) {
     const SemanticForeachBinding *role = loop->statement->traversal;

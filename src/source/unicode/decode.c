@@ -8,7 +8,7 @@
 #include "unicode.h"
 
 /** Partition legal UTF-8 lead bytes by width; zero rejects continuation, overlong and out-of-range lead bytes.
- */
+ * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 static size_t sequence_width(unsigned char first) {
     if (first < 0x80) {
         return 1;
@@ -26,7 +26,7 @@ static size_t sequence_width(unsigned char first) {
 }
 
 /** Fold continuation groups and check minimal value/scalar domain before publishing either decoded output.
- */
+ * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 bool utf8_decode(const unsigned char *bytes, size_t length,
     uint32_t *scalar, size_t *width) {
     if (length == 0 || bytes == NULL) {

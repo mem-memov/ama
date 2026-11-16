@@ -5,7 +5,7 @@
  */
 #include "../internal.h"
 
-/** Closing is a metadata transition only; accepted FIFO cells remain owned. */
+/** Closing is a metadata transition only; accepted FIFO cells remain owned. Component contract: [PAR-04](../../../../spec/language/async-and-parallelism.md#par-04). */
 AmaStatus ama_channel_close(void *state) {
     AmaNativeChannel *channel = state;
     AmaChannelSignals signals = {0};
@@ -20,7 +20,7 @@ AmaStatus ama_channel_close(void *state) {
 /** Detach the complete ring range before releases. Aborted admission prevents
  * any producer from editing those cells after unlock, while the receiver port
  * keeps service storage alive until every detached owner has retired.
- */
+ * Component contract: [PAR-04](../../../../spec/language/async-and-parallelism.md#par-04). */
 AmaStatus ama_channel_abort(void *state) {
     AmaNativeChannel *channel = state;
     AmaChannelSignals signals = {0};

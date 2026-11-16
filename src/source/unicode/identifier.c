@@ -8,7 +8,7 @@
  */
 #include "unicode.h"
 
-/** Inclusive pinned scalar range; tables are sorted and disjoint for exact binary search. */
+/** Inclusive pinned scalar range; tables are sorted and disjoint for exact binary search. Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 typedef struct {
     uint32_t first;
     uint32_t last;
@@ -17,7 +17,7 @@ typedef struct {
 #include "xid_tables.inc"
 
 /** Binary-search sorted disjoint closed ranges. Shrinking interval preserves exact membership; no sampled or host-Unicode fallback.
- */
+ * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 static bool contains(const UnicodeRange *ranges, size_t count, uint32_t scalar) {
     size_t lower = 0;
     size_t upper = count;

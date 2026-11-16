@@ -13,7 +13,7 @@
 /**
  * Own/check/destroy a frontend; render failure while source spans remain live. Return success
  * only after checked output and flush.
- */
+ * Component contract: [COMP-01](../../../spec/implementation/compiler.md#comp-01). */
 int driver_check(const DriverOptions *options, FILE *output, FILE *errors) {
     CompilerFrontend frontend;
     compiler_frontend_init(&frontend, source_system_allocator());

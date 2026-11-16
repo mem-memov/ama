@@ -7,7 +7,7 @@
 #include <string.h>
 #include "../internal.h"
 
-/** Retained prepend lists are reversed back into their original request order. */
+/** Retained prepend lists are reversed back into their original request order. Component contract: [TOOL-01](../../../../../spec/implementation/tools-and-conformance.md#tool-01). */
 bool relocation_transaction_request(RelocationTransaction *transaction, RelocationRequest *discovery, RelocationStagingRequest *settings) {
     const RelocationStaging *staging = transaction->staging;
     const RelocationPreview *preview = staging->references->preview;

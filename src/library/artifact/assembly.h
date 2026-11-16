@@ -11,7 +11,7 @@
  * header and project are valid C include path spellings supplied by the caller;
  * directive-breaking bytes are rejected before any output. The model
  * and scaffold remain borrowed. Failure leaves only unpublished partial output.
- */
+ * Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06). */
 bool library_assembly_write(const LibraryBuild *, const NativeScaffold *,
     const char *header, const char *project, FILE *);
 #endif

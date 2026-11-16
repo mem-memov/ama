@@ -7,7 +7,7 @@
 #include "internal.h"
 /** Check exactly once. Reparse only the retained selected source for draft classification;
  * no second filesystem load can silently replace the frontend's immutable source bytes.
- */
+ * Component contract: [SYN-04](../../../spec/language/source-and-names.md#syn-04), [COMP-02](../../../spec/implementation/compiler.md#comp-02). */
 bool editor_analysis_build(EditorAnalysis *analysis, const ModuleRoot *roots, size_t count, const char *entry) {
     assert(!analysis->attempted);
     analysis->attempted = true;

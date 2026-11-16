@@ -10,7 +10,7 @@
  */
 #include "runtime/objects/internal.h"
 
-/** Release membership order/record storage after child cleanup; metadata disposal never destroys reference targets. */
+/** Release membership order/record storage after child cleanup; metadata disposal never destroys reference targets. Component contract: [LIFE-03](../../../../spec/implementation/native-interface.md#life-03), [ERROR-03](../../../../spec/implementation/diagnostics.md#error-03). */
 static void ama_cleanup_buffers(AmaWorld *world, AmaObjectType *type, AmaPoolCell *cell) {
     (void)world;
     unsigned char *payload = ama_pool_payload(&type->pool, cell);
@@ -22,7 +22,7 @@ static void ama_cleanup_buffers(AmaWorld *world, AmaObjectType *type, AmaPoolCel
     }
 }
 
-/** Iteratively invalidate and finalize one initialized tree, native resource first and children in reverse. Continue after destructor errors, marking the world terminal; optionally retain the root slot for replacement. */
+/** Iteratively invalidate and finalize one initialized tree, native resource first and children in reverse. Continue after destructor errors, marking the world terminal; optionally retain the root slot for replacement. Component contract: [LIFE-03](../../../../spec/implementation/native-interface.md#life-03), [ERROR-03](../../../../spec/implementation/diagnostics.md#error-03). */
 AmaStatus ama_object_cleanup_keep(AmaWorld *world, AmaHandle root, AmaStatus primary, bool keep_root) {
     AmaHandle current = root;
     for (;;) {
@@ -65,7 +65,7 @@ AmaStatus ama_object_cleanup_keep(AmaWorld *world, AmaHandle root, AmaStatus pri
     }
 }
 
-/** Clean the complete initialized tree and release its root slot, retaining the supplied primary failure over secondary cleanup errors. */
+/** Clean the complete initialized tree and release its root slot, retaining the supplied primary failure over secondary cleanup errors. Component contract: [LIFE-03](../../../../spec/implementation/native-interface.md#life-03), [ERROR-03](../../../../spec/implementation/diagnostics.md#error-03). */
 AmaStatus ama_object_cleanup(AmaWorld *world, AmaHandle root, AmaStatus primary) {
     return ama_object_cleanup_keep(world, root, primary, false);
 }

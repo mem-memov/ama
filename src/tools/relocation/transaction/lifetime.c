@@ -4,20 +4,20 @@
  * forbids success after incomplete rollback and requires recovery data to remain.
  */
 #include "internal.h"
-/** Initialization creates no filesystem state and borrows only allocator authority. */
+/** Initialization creates no filesystem state and borrows only allocator authority. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 void relocation_transaction_init(RelocationTransaction *transaction, SourceAllocator allocator) {
     *transaction = (RelocationTransaction){0};
     source_arena_init(&transaction->arena,allocator);
     relocation_report_init(&transaction->report,allocator);
 }
-/** Destruction never interprets an incomplete state as permission to delete saved originals. */
+/** Destruction never interprets an incomplete state as permission to delete saved originals. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 void relocation_transaction_destroy(RelocationTransaction *transaction) {
     relocation_transaction_release(transaction);
     relocation_report_destroy(&transaction->report);
     source_arena_destroy(&transaction->arena);
     *transaction = (RelocationTransaction){0};
 }
-/** Cleanup records its first separate failure while retaining the original cause. */
+/** Cleanup records its first separate failure while retaining the original cause. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_fail(RelocationTransaction *transaction, RelocationStatus status, const char *message, const char *path) {
     Diagnostic *diagnostic = transaction->cleaning && transaction->error.message != NULL
         ? &transaction->cleanup_error : &transaction->error;

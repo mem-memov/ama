@@ -11,7 +11,7 @@
 #include <stdint.h>
 #include "internal.h"
 
-/** Rebuild the exact free set of retained occupied blocks; absent and entirely free blocks cannot contribute any link. */
+/** Rebuild the exact free set of retained occupied blocks; absent and entirely free blocks cannot contribute any link. Component contract: [RT-13](../../../spec/implementation/runtime.md#rt-13), [REF-06](../../../spec/language/values-and-references.md#ref-06). */
 static void ama_pool_rebuild_free(AmaPool *pool) {
     pool->free_head = SIZE_MAX;
     for (size_t block = pool->block_count; block != 0;) {
@@ -30,7 +30,7 @@ static void ama_pool_rebuild_free(AmaPool *pool) {
     }
 }
 
-/** Release all unoccupied blocks after unlinking their slots. Historical holes remain absent forever; occupied blocks and their addresses are unchanged. */
+/** Release all unoccupied blocks after unlinking their slots. Historical holes remain absent forever; occupied blocks and their addresses are unchanged. Component contract: [RT-13](../../../spec/implementation/runtime.md#rt-13), [REF-06](../../../spec/language/values-and-references.md#ref-06). */
 AmaStatus ama_pool_reclaim(AmaPool *pool, size_t *released) {
     ama_pool_rebuild_free(pool);
     *released = 0;

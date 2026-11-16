@@ -20,7 +20,7 @@
  * @return Invalid source/path, line limit, IO error or success; no source bytes change.
  * @param[in] source Borrowed live source supplying the exact physical path and line index.
  * @param[in] offset Original byte offset, including EOF, selecting the C line location.
- */
+ * Component contract: [NAME-03](../../../spec/implementation/compiler.md#name-03). */
 SourceStatus source_write_line_directive(FILE *output, const SourceText *source, size_t offset);
 
 #endif

@@ -13,7 +13,7 @@
 /**
  * Own syntax-only inspection, report its activation kind and flush output. Destroy inspection
  * after rendering source-backed diagnostics.
- */
+ * Component contract: [SYN-04](../../../spec/language/source-and-names.md#syn-04). */
 int driver_status(const DriverOptions *options, FILE *output, FILE *errors) {
     ModuleInspection inspection;
     compiler_inspection_init(&inspection, source_system_allocator());

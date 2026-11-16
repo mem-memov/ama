@@ -5,7 +5,7 @@
  */
 #include "../../internal.h"
 #include "../../../internal.h"
-/** T112 already rejected protected input overlap; every remaining contained physical entry is explicitly disposable output. */
+/** T112 already rejected protected input overlap; every remaining contained physical entry is explicitly disposable output. Component contract: [TOOL-03](../../../../../../spec/implementation/tools-and-conformance.md#tool-03). */
 bool relocation_transaction_invalidated(const RelocationStaging *staging, const char *path) {
     for (const RelocationInvalidation *output = staging->invalidations; output != NULL; output = output->next) {
         if (relocation_contains(output->after,path)) { return true; }

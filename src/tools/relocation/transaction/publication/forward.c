@@ -5,7 +5,7 @@
  */
 #include "../internal.h"
 
-/** A rename refusal cannot lose its inverse: attempted flags precede the call and rollback inspects actual path identities. */
+/** A rename refusal cannot lose its inverse: attempted flags precede the call and rollback inspects actual path identities. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_publish(RelocationTransaction *transaction) {
     for (RelocationTransactionAction *action = transaction->first; action != NULL; action = action->next) {
         if (action->kind != RELOCATION_ACTION_CREATE) {

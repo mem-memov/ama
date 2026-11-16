@@ -7,7 +7,7 @@
 #include "../internal.h"
 #include "source/unicode/unicode.h"
 
-/** Prepare every companion copy before publishing any field; failed scratch stays catalog-owned. */
+/** Prepare every companion copy before publishing any field; failed scratch stays catalog-owned. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04), [DEP-03](../../../../spec/implementation/compiler.md#dep-03). */
 ModuleStatus module_catalog_snapshot_native(ModuleCatalog *catalog, const ModuleSource *selected,
     const char *body, const char *header, const SourceText *abi) {
     if (catalog == NULL || !catalog->built || selected == NULL) { return MODULE_INVALID_PATH; }

@@ -22,26 +22,26 @@
  * @return false for null/empty/truncated/malformed bytes without changing either output.
  * @param[in] bytes Borrowed bounded original UTF-8 bytes; null/empty input cannot decode a scalar.
  * @param[in] length Available byte count; decoding never reads past it.
- */
+ * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 bool utf8_decode(const unsigned char *bytes, size_t length,
     uint32_t *scalar, size_t *width);
 /** Validate a finite byte view, permitting null only at zero length.
  * @param[out] error_offset Set to the lead byte of the first invalid sequence only on false.
  * @param[in] bytes Borrowed original byte view, null only for an empty view.
  * @param[in] length Exact byte length; validation consumes every scalar without normalization.
- */
+ * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 bool utf8_validate(const unsigned char *bytes, size_t length, size_t *error_offset);
 /** Test pinned XID_Start plus underscore; out-of-domain values do not match.
- */
+ * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 bool unicode_identifier_start(uint32_t scalar);
 /** Test pinned XID_Continue plus underscore; original scalar spelling remains unchanged.
- */
+ * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 bool unicode_identifier_continue(uint32_t scalar);
 /** Recognize one nonempty XID word, separately from complete multiword-name grammar.
  * @param[out] error_offset Set to the first failing scalar lead byte on false, including empty input.
  * @param[in] bytes Borrowed nonempty UTF-8 spelling of one identifier word.
  * @param[in] length Exact byte length of that word; spaces belong to a separate grammar layer.
- */
+ * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 bool unicode_identifier(const unsigned char *bytes, size_t length, size_t *error_offset);
 
 /** Validate one complete name, with one nonempty XID word per single ASCII-space separator.
@@ -52,7 +52,7 @@ bool unicode_identifier(const unsigned char *bytes, size_t length, size_t *error
  * @param[out] error_offset Valid writable storage; changes only on false to the
  * first invalid word/scalar/space byte. Empty input reports zero, trailing space
  * reports that space, and malformed UTF-8 reports its leading byte.
- */
+ * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 bool unicode_name(const unsigned char *bytes, size_t length, size_t *error_offset);
 
 #endif

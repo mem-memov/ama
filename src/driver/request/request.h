@@ -11,7 +11,7 @@
 /**
  * Exact supported CLI requests plus unavailable; recognizing a command does not validate its
  * operands or authorize implicit execution.
- */
+ * Component contract: [COMP-01](../../../spec/implementation/compiler.md#comp-01). */
 typedef enum {
     DRIVER_REQUEST_HELP,
     DRIVER_REQUEST_CHECK,
@@ -37,7 +37,7 @@ typedef enum {
 /**
  * Require nonnegative argc and valid argv entries when present. Match exact command strings;
  * only standalone --help succeeds without later operand validation.
- */
+ * Component contract: [COMP-01](../../../spec/implementation/compiler.md#comp-01). */
 DriverRequest driver_parse_request(int argument_count, char *const arguments[]);
 
 #endif

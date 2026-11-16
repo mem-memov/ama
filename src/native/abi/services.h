@@ -12,10 +12,10 @@
 #include "code.h"
 
 /* Read-only operation-scoped value snapshot, not a pointer into runtime state. */
-/** Read-only per-operation service snapshot, not a retained pointer into runtime state. Message bytes retain their separate program-lifetime contract. */
+/** Read-only per-operation service snapshot, not a retained pointer into runtime state. Message bytes retain their separate program-lifetime contract. Component contract: [CABI-03](../../../spec/implementation/native-interface.md#cabi-03). */
 typedef struct {
     AmaStatus caller_refusal;
-    /** Native-only image retention; this value grants no Ama access or execution. */
+    /** Native-only image retention; this value grants no Ama access or execution. Component contract: [CABI-03](../../../spec/implementation/native-interface.md#cabi-03). */
     AmaNativeCodeProvider code;
 } AmaNativeServices;
 

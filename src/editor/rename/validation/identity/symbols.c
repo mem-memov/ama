@@ -7,22 +7,22 @@
 #include <stdlib.h>
 #include <string.h>
 #include "internal.h"
-/** Complete owner identity plus unique declaration byte range orders symbols independently of their names. */
+/** Complete owner identity plus unique declaration byte range orders symbols independently of their names. Component contract: [NAME-06](../../../../../spec/language/declarations.md#name-06), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */
 static int key(const SemanticSymbol *left, const SemanticSymbol *right) {
     int owner = strcmp(left->owner->module->source->logical_path,right->owner->module->source->logical_path);
     if (owner != 0) { return owner; }
     if (left->name.start != right->name.start) { return left->name.start < right->name.start ? -1 : 1; }
     return (left->name.end > right->name.end)-(left->name.end < right->name.end);
 }
-/** Sort original-key pairs before binary correspondence lookup. */
+/** Sort original-key pairs before binary correspondence lookup. Component contract: [NAME-06](../../../../../spec/language/declarations.md#name-06), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */
 static int original_order(const void *left, const void *right) {
     return key(((const RenameSymbolPair *)left)->original,((const RenameSymbolPair *)right)->original);
 }
-/** Candidate declaration order remains monotone under disjoint nonempty name substitutions. */
+/** Candidate declaration order remains monotone under disjoint nonempty name substitutions. Component contract: [NAME-06](../../../../../spec/language/declarations.md#name-06), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */
 static int candidate_order(const void *left, const void *right) {
     return key(*(const SemanticSymbol *const *)left,*(const SemanticSymbol *const *)right);
 }
-/** Count the exact finite declaration domain with a checked allocation cardinality. */
+/** Count the exact finite declaration domain with a checked allocation cardinality. Component contract: [NAME-06](../../../../../spec/language/declarations.md#name-06), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */
 static bool count_symbols(const SemanticProgram *program, size_t *output) {
     size_t count = 0;
     for (const SemanticType *type = program->first; type != NULL; type = type->next) {
@@ -37,7 +37,7 @@ static bool count_symbols(const SemanticProgram *program, size_t *output) {
     *output = count;
     return true;
 }
-/** A renamed declaration changes only its complete base name; all other names and scope markers retain exact bytes/coordinates. */
+/** A renamed declaration changes only its complete base name; all other names and scope markers retain exact bytes/coordinates. Component contract: [NAME-06](../../../../../spec/language/declarations.md#name-06), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */
 static bool declaration(RenameIdentity *check, const SemanticSymbol *old, const SemanticSymbol *fresh) {
     if (!rename_same_span(check,old->name,fresh->name) || !rename_same_type(old->owner,fresh->owner)
         || !rename_same_type(old->type,fresh->type) || old->role != fresh->role || old->ordinal != fresh->ordinal
@@ -50,7 +50,7 @@ static bool declaration(RenameIdentity *check, const SemanticSymbol *old, const 
         || !rename_same_span(check,old->scope->as.traversal.closing_marker,fresh->scope->as.traversal.closing_marker))) { return false; }
     return true;
 }
-/** Construct one sorted pairing; missing/added declarations or changed binding scopes are conflicts, never a valid rename. */
+/** Construct one sorted pairing; missing/added declarations or changed binding scopes are conflicts, never a valid rename. Component contract: [NAME-06](../../../../../spec/language/declarations.md#name-06), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */
 bool rename_identity_symbols(RenameIdentity *check) {
     size_t count = 0, candidate_count = 0;
     if (!count_symbols(&check->plan->workspace->frontend.semantic,&count)
@@ -86,7 +86,7 @@ bool rename_identity_symbols(RenameIdentity *check) {
 memory:
     return editor_rename_fail(check->plan,DIAGNOSTIC_OUT_OF_MEMORY,"Rename identity correspondence allocation failed",check->plan->target->name);
 }
-/** A nullable reference can match only its recorded declaration correspondence, not a same-spelled candidate. */
+/** A nullable reference can match only its recorded declaration correspondence, not a same-spelled candidate. Component contract: [NAME-06](../../../../../spec/language/declarations.md#name-06), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */
 bool rename_same_symbol(const RenameIdentity *check, const SemanticSymbol *old, const SemanticSymbol *fresh) {
     if (old == NULL) { return fresh == NULL; }
     size_t low = 0, high = check->count;

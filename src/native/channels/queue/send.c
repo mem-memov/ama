@@ -8,7 +8,7 @@
 /** Validation borrows immutable schema/data outside the gate. The final gate
  * rechecks closure and capacities, establishing enqueue's linearization point.
  * The caller owns its logical sender throughout; the receiver may act concurrently.
- */
+ * Component contract: [PAR-04](../../../../spec/language/async-and-parallelism.md#par-04). */
 AmaNativeChannelResult ama_channel_send(void *state, AmaNativeMessageBytes *message) {
     AmaNativeChannel *channel = state;
     if (message == NULL || (message->data == NULL && message->length != 0)

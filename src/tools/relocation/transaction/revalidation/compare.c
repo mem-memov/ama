@@ -7,17 +7,17 @@
 #include "../internal.h"
 #include "../../staging/internal.h"
 
-/** Nullable path/settings text retains null as absence, distinct from an empty value. */
+/** Nullable path/settings text retains null as absence, distinct from an empty value. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool same_name(const char *left, const char *right) {
     return left == NULL || right == NULL ? left == right : strcmp(left,right) == 0;
 }
-/** Byte equality includes NUL, literal link text and original line endings without decoding. */
+/** Byte equality includes NUL, literal link text and original line endings without decoding. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool same_text(const SourceText *left, const SourceText *right) {
     if (left == NULL || right == NULL) { return left == right; }
     return source_length(left) == source_length(right)
         && memcmp(source_bytes(left),source_bytes(right),source_length(left)) == 0;
 }
-/** Match all physical inputs by their exact canonical original path and compare both original and prepared states. */
+/** Match all physical inputs by their exact canonical original path and compare both original and prepared states. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool files_equal(const RelocationStaging *before, const RelocationStaging *current) {
     size_t expected = 0, actual = 0;
     for (const RelocationStagedFile *file = before->files; file != NULL; file = file->next) {
@@ -32,7 +32,7 @@ static bool files_equal(const RelocationStaging *before, const RelocationStaging
     for (const RelocationStagedFile *file = current->files; file != NULL; file = file->next) { actual++; }
     return expected == actual;
 }
-/** Added/deleted candidates and changed root-kind mappings invalidate even an unchanged selected source tree. */
+/** Added/deleted candidates and changed root-kind mappings invalidate even an unchanged selected source tree. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool modules_equal(const RelocationPreview *before, const RelocationPreview *current) {
     size_t expected = 0, actual = 0;
     for (const RelocationModule *module = before->modules; module != NULL; module = module->next) {
@@ -47,7 +47,7 @@ static bool modules_equal(const RelocationPreview *before, const RelocationPrevi
     for (const RelocationModule *module = current->modules; module != NULL; module = module->next) { actual++; }
     return expected == actual;
 }
-/** Existing output identity and absent-output observations are rechecked before any output retirement. */
+/** Existing output identity and absent-output observations are rechecked before any output retirement. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool outputs_equal(const RelocationStaging *before, const RelocationStaging *current) {
     size_t expected = 0, actual = 0;
     for (const RelocationInvalidation *output = before->invalidations; output != NULL; output = output->next) {
@@ -60,7 +60,7 @@ static bool outputs_equal(const RelocationStaging *before, const RelocationStagi
     for (const RelocationInvalidation *output = current->invalidations; output != NULL; output = output->next) { actual++; }
     return expected == actual;
 }
-/** Independent final graph validation has already succeeded; exact plan comparison rejects all changed contributing records. */
+/** Independent final graph validation has already succeeded; exact plan comparison rejects all changed contributing records. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_same_plan(RelocationTransaction *transaction, const RelocationStaging *current) {
     const RelocationStaging *before = transaction->staging;
     return (same_name(before->entry,current->entry) && files_equal(before,current)

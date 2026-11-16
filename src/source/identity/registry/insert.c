@@ -9,7 +9,7 @@
 #include "../internal.h"
 
 /** Format category plus the full lowercase digest into caller-provided 71-byte storage; category is already validated.
- */
+ * Component contract: [NAME-02](../../../../spec/implementation/compiler.md#name-02). */
 static void format_name(char output[71], IdentityCategory category,
     const unsigned char digest[32]) {
     static const char digits[] = "0123456789abcdef";
@@ -25,7 +25,7 @@ static void format_name(char output[71], IdentityCategory category,
 }
 
 /** Compare full encodings for equal digests before allocating/linking a name; an unequal key is a diagnosed collision, never a generated suffix.
- */
+ * Component contract: [NAME-02](../../../../spec/implementation/compiler.md#name-02). */
 IdentityStatus identity_insert(IdentityRegistry *registry, IdentityEncoding encoding,
     const unsigned char digest[32], const IdentityName **output) {
     registry->conflicting = NULL;

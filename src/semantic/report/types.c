@@ -9,7 +9,7 @@
 #include "semantic/internal.h"
 
 /** Select immutable diagnostic text for the exact ownership/cardinality source pair.
- */
+ * Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04), [TYPE-06](../../../spec/language/declarations.md#type-06). */
 static const char *source_role(bool reference, bool list) {
     static const char *const roles[] = {"source storage (owned scalar)", "source storage (reference scalar)",
         "source storage (owning list)", "source storage (reference list)"};
@@ -17,7 +17,7 @@ static const char *source_role(bool reference, bool list) {
 }
 
 /** Select immutable diagnostic text for the exact ownership/cardinality destination pair.
- */
+ * Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04), [TYPE-06](../../../spec/language/declarations.md#type-06). */
 static const char *destination_role(bool reference, bool list) {
     static const char *const roles[] = {"destination declaration (owned scalar)", "destination declaration (reference scalar)",
         "destination declaration (owning list)", "destination declaration (reference list)"};

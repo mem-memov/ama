@@ -8,11 +8,11 @@
 #include <string.h>
 #include "../internal.h"
 #include "diagnostics/adapters/adapters.h"
-/** Preserve deterministic required-module order independently of physical/root order. */
+/** Preserve deterministic required-module order independently of physical/root order. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static int compare_names(const void *left, const void *right) {
     return strcmp(*(const char *const *)left,*(const char *const *)right);
 }
-/** Build a final unique registry from the actual prepared bytes, retaining drafts as inactive candidates. */
+/** Build a final unique registry from the actual prepared bytes, retaining drafts as inactive candidates. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool snapshot(RelocationStaging *staging, const char *const **required, size_t *required_count) {
     size_t count = 0;
     for (const RelocationStagedSource *source = staging->first; source != NULL; source = source->next) { count++; }
@@ -48,7 +48,7 @@ static bool snapshot(RelocationStaging *staging, const char *const **required, s
     *required_count = activated;
     return true;
 }
-/** Ordinary project and semantic checks operate on the final namespace without a synthetic executable root. */
+/** Ordinary project and semantic checks operate on the final namespace without a synthetic executable root. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_staging_domain(RelocationStaging *staging) {
     const char *const *required = NULL;
     size_t count = 0;

@@ -7,7 +7,7 @@
 #include "../internal.h"
 #include "diagnostics/adapters/adapters.h"
 
-/** Catalog issue paths/source spans already have preview lifetime; retain one embedded related record without allocating during failure reporting. */
+/** Catalog issue paths/source spans already have preview lifetime; retain one embedded related record without allocating during failure reporting. Component contract: [SRC-02](../../../../spec/language/source-and-names.md#src-02), [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01). */
 bool relocation_catalog_failure(RelocationPreview *preview, ModuleStatus status) {
     if (status == MODULE_OK) { return true; }
     RelocationStatus failure = status == MODULE_OUT_OF_MEMORY ? RELOCATION_OUT_OF_MEMORY
@@ -18,7 +18,7 @@ bool relocation_catalog_failure(RelocationPreview *preview, ModuleStatus status)
     return relocation_fail(preview,failure,preview->catalog.issue.path,preview->catalog.issue.related_path);
 }
 
-/** The ordinary reader sorts exact names and closes streams on all allocation/read failures. */
+/** The ordinary reader sorts exact names and closes streams on all allocation/read failures. Component contract: [SRC-02](../../../../spec/language/source-and-names.md#src-02), [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01). */
 bool relocation_entries(RelocationPreview *preview, const char *path, const char ***names, size_t *count) {
     return relocation_catalog_failure(preview,module_catalog_entries(&preview->catalog,path,names,count));
 }

@@ -10,7 +10,7 @@
 /** Store a shape-compatible source/default list under caller-held operation
  * ownership. Prepared handles remain private until commit; any failure discards
  * the completed staging prefix while preserving the primary status.
- */
+ * Component contract: [COPY-02](../../../../spec/language/values-and-references.md#copy-02). */
 AmaStatus ama_program_store_list(AmaProgram *program, AmaProgramValue *destination, const AmaProgramValue *source,
     const AmaFieldRecipe *initializers, AmaObjectOperation *operation) {
     bool owning = destination->form == AMA_FIELD_OWNING_LIST;

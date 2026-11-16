@@ -12,7 +12,7 @@
 /**
  * Write selected static response and flush the borrowed stream. Partial output is possible on
  * failure; never close the stream.
- */
+ * Component contract: [COMP-01](../../../spec/implementation/compiler.md#comp-01). */
 int driver_write_response(DriverRequest request, FILE *output) {
     const char *message = request == DRIVER_REQUEST_HELP
         ? "Ama compiler and tools\n"

@@ -8,7 +8,7 @@
 /** Allocate each independent native owner only after complete protocol validation.
  * Arrays contain data borrows into the privately copied envelope; freeing them
  * requires no traversal or native payload callbacks, including on partial failure.
- */
+ * Component contract: [PAR-03](../../../../spec/language/async-and-parallelism.md#par-03). */
 AmaNativeMessageResult ama_native_message_decode(const AmaNativeMessageSchema *schema, AmaByteView bytes,
     const AmaNativeCodeProvider *provider, AmaNativeMessageDecoded *output) {
     if (ama_native_message_schema_check(schema).code != AMA_OK || provider == NULL || output == NULL

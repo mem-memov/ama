@@ -13,7 +13,7 @@
 #include "source/unicode/unicode.h"
 
 /** Escape quotes, backslashes, question marks and controls for C string syntax, retaining other original UTF-8 bytes. Return false on partial IO failure.
- */
+ * Component contract: [NAME-03](../../../spec/implementation/compiler.md#name-03), [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 static bool write_filename(FILE *output, const unsigned char *path) {
     for (; *path != 0; path++) {
         unsigned char byte = *path;

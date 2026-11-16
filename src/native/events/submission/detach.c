@@ -6,7 +6,7 @@
  */
 #include <assert.h>
 #include "native/events/internal.h"
-/** Retire one current cell under the gate and release queued bytes afterward; callbacks retain independent rights. */
+/** Retire one current cell under the gate and release queued bytes afterward; callbacks retain independent rights. Component contract: [ASYNC-09](../../../../spec/language/async-and-parallelism.md#async-09). */
 AmaStatus ama_native_event_service_detach(AmaNativeEventService *service, AmaNativeEventToken token, bool *retired) {
     if (service == NULL || retired == NULL) {
         return AMA_NATIVE_EVENT_ERROR(AMA_INVALID_STATE, "Invalid native operation detachment");

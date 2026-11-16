@@ -6,7 +6,7 @@
 #include <string.h>
 #include "internal.h"
 #include "source/unicode/unicode.h"
-/** Validate before opening the quote; control scalars use exact ASCII escapes and all other UTF-8 bytes stay unchanged. */
+/** Validate before opening the quote; control scalars use exact ASCII escapes and all other UTF-8 bytes stay unchanged. Component contract: [SRC-03](../../../../spec/language/source-and-names.md#src-03). */
 bool tool_json_text(ToolJsonWriter *writer, const unsigned char *bytes, size_t length) {
     if (writer->status != TOOL_JSON_OK) { return false; }
     size_t error;
@@ -29,7 +29,7 @@ bool tool_json_text(ToolJsonWriter *writer, const unsigned char *bytes, size_t l
     }
     return tool_json_write(writer,length == 0 ? NULL : bytes+start,length-start) && tool_json_raw(writer,"\"");
 }
-/** C strings remain nullable; byte-view encoding is used for source text with embedded zeros. */
+/** C strings remain nullable; byte-view encoding is used for source text with embedded zeros. Component contract: [SRC-03](../../../../spec/language/source-and-names.md#src-03). */
 bool tool_json_string(ToolJsonWriter *writer, const char *text) {
     return text == NULL ? tool_json_raw(writer,"null") : tool_json_text(writer,(const unsigned char *)text,strlen(text));
 }

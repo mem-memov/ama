@@ -10,7 +10,7 @@
 
 /** Retire one identity under membership protection, then clean native resources without
  * holding the metadata gate. A pending credit pins registry lifetime through callbacks.
- */
+ * Component contract: [PAR-01](../../../../spec/language/async-and-parallelism.md#par-01), [RT-10](../../../../spec/implementation/runtime.md#rt-10). */
 AmaStatus ama_context_dispose_admitted(AmaContextRegistry *registry, uint64_t identity, bool *admitted) {
     *admitted = false;
     AmaStatus status = ama_context_registry_lock(registry);
@@ -40,7 +40,7 @@ AmaStatus ama_context_dispose_admitted(AmaContextRegistry *registry, uint64_t id
     return status;
 }
 
-/** Preserve status-only disposal through the same explicit admission path. */
+/** Preserve status-only disposal through the same explicit admission path. Component contract: [PAR-01](../../../../spec/language/async-and-parallelism.md#par-01), [RT-10](../../../../spec/implementation/runtime.md#rt-10). */
 AmaStatus ama_context_dispose(AmaContextRegistry *registry, uint64_t identity) {
     bool admitted;
     return ama_context_dispose_admitted(registry, identity, &admitted);

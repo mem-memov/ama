@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include "diagnostics/record/diagnostic.h"
 
-/** Renderer result separates malformed input from partial stream/flush failure. */
+/** Renderer result separates malformed input from partial stream/flush failure. Component contract: [NAME-03](../../../spec/implementation/compiler.md#name-03). */
 typedef enum {
     DIAGNOSTIC_RENDER_OK,
     DIAGNOSTIC_RENDER_INVALID,
@@ -25,7 +25,7 @@ typedef enum {
  * @param[in,out] output Borrowed stream; flush but never close. Partial text can remain on IO failure.
  * @return Invalid record/stream, IO failure or success; compiler heap allocation is unnecessary.
  * @param[in] diagnostic Borrowed validated diagnostic and source/related views, alive through the synchronous write.
- */
+ * Component contract: [NAME-03](../../../spec/implementation/compiler.md#name-03). */
 DiagnosticRenderStatus diagnostic_render(FILE *output, const Diagnostic *diagnostic);
 
 #endif

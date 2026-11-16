@@ -5,7 +5,7 @@
  */
 #include "../internal.h"
 
-/** Attach a present source/companion file; absent optional companions introduce no guessed input path. */
+/** Attach a present source/companion file; absent optional companions introduce no guessed input path. Component contract: [DEP-03](../../../../spec/implementation/compiler.md#dep-03). */
 static SourceStatus file(ProjectInputs *inputs, ProjectInput *module,
     const SourceText *source, const char *path) {
     if (path == NULL) { return SOURCE_OK; }

@@ -14,7 +14,7 @@
 /** Resolve one checked field under optional exact list authority. Only an actual
  * denied list acquisition sets list_refusal; other failures remain technical.
  * The caller uses a private value until the enclosing full selection succeeds.
- */
+ * Component contract: [LIST-10](../../../../../spec/language/lists.md#list-10), [REF-01](../../../../../spec/language/values-and-references.md#ref-01), [FLOW-05](../../../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_program_instance_authorized(AmaProgram *program, AmaHandle current,
     const AmaProgramAccess *access, bool private_access, const AmaProgramListService *authority,
     bool *list_refusal, AmaProgramValue *value) {

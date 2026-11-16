@@ -7,7 +7,7 @@
 #include "lowering/calls/internal.h"
 #include "lowering/replacement/internal.h"
 #include "semantic/lists/interface.h"
-/** Match a supplied method input by its checked ordinal; omissions select the fixed input type's default. */
+/** Match a supplied method input by its checked ordinal; omissions select the fixed input type's default. Component contract: [LIST-04](../../../../spec/language/lists.md#list-04), [LIST-10](../../../../spec/language/lists.md#list-10). */
 static const SemanticBinding *input(const SemanticStatement *statement, size_t position) {
     for (const SemanticBinding *binding = statement->bindings; binding != NULL; binding = binding->next) {
         if (binding->syntax->kind == AST_INPUT && binding->position == position && !binding->syntax->omitted) { return binding; }

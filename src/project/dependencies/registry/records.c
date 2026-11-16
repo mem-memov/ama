@@ -60,7 +60,7 @@ bool project_require(Project *project, ProjectModule *requester,
     return true;
 }
 
-/** Link one already owned identity with its actual explicit or language-contract request site. */
+/** Link one already owned identity with its actual explicit or language-contract request site. Component contract: [DEP-02](../../../../spec/implementation/compiler.md#dep-02), [LIST-04](../../../../spec/language/lists.md#list-04). */
 static bool add_dependency(Project *project, ProjectModule *module, const char *logical, SourceSpan site, bool implicit) {
     ProjectDependency *dependency = source_arena_allocate(&project->arena, sizeof(*dependency));
     if (dependency == NULL) { return project_memory_failure(project); }

@@ -12,7 +12,7 @@
 #include "semantic/internal.h"
 
 /** Check declared reference/list suffix and outer writability, then initializer visibility; do not reinterpret a missing suffix as implicit dereference.
- */
+ * Component contract: [TYPE-05](../../../spec/language/declarations.md#type-05), [NAME-06](../../../spec/language/declarations.md#name-06), [CALL-09](../../../spec/language/calls-and-results.md#call-09). */
 static bool access_form(SemanticProgram *program, const AstAccess *syntax,
     const SemanticSymbol *symbol, bool writable, const SemanticSymbol *initializing) {
     bool selected_list = syntax->whole_list || syntax->index != NULL;
@@ -31,7 +31,7 @@ bool semantic_condition(SemanticProgram *program, SemanticAccess *access,
         capability, site, access->symbol);
 }
 
-/** Resolve the leading symbol in its explicit domain while keeping nested index operands caller-local; the loop uses no C recursion. */
+/** Resolve the leading symbol in its explicit domain while keeping nested index operands caller-local; the loop uses no C recursion. Component contract: [TYPE-05](../../../spec/language/declarations.md#type-05), [NAME-06](../../../spec/language/declarations.md#name-06), [CALL-09](../../../spec/language/calls-and-results.md#call-09). */
 static SemanticAccess *resolve(SemanticProgram *program, SemanticType *type,
     const AstAccess *syntax, bool writable, const SemanticSymbol *initializing,
     SemanticSymbol *selected) {

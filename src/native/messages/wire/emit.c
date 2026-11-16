@@ -5,7 +5,7 @@
  */
 #include "../internal.h"
 
-/** Emit only already validated values; every write checks the same complete-envelope bound. */
+/** Emit only already validated values; every write checks the same complete-envelope bound. Component contract: [PAR-03](../../../../spec/language/async-and-parallelism.md#par-03). */
 bool ama_message_emit(const AmaNativeMessageSchema *schema, const AmaNativeMessageFieldValue *fields,
     AmaMessageWriter *writer) {
     static const unsigned char magic[] = {'A', 'm', 'M', 1};

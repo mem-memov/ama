@@ -10,7 +10,7 @@
 #include "internal.h"
 #include "../internal.h"
 
-/** A recorded reservation without an identity can own only an absent or still-empty private directory. */
+/** A recorded reservation without an identity can own only an absent or still-empty private directory. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool contents(RelocationTransaction *transaction, RelocationTransactionSlot *slot, bool empty) {
     DIR *directory = opendir(slot->directory);
     if (directory == NULL) { return relocation_transaction_fail(transaction,RELOCATION_IO_ERROR,"An unacknowledged preparation directory could not be inspected",slot->directory); }
@@ -31,7 +31,7 @@ static bool contents(RelocationTransaction *transaction, RelocationTransactionSl
     if (closedir(directory) != 0) { complete = relocation_transaction_fail(transaction,RELOCATION_IO_ERROR,"Preparation reservation enumeration could not be closed",slot->directory); }
     return complete;
 }
-/** Acknowledged copies may be incomplete, but their private directory identity must remain exact and contain no saved originals. */
+/** Acknowledged copies may be incomplete, but their private directory identity must remain exact and contain no saved originals. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool inspect(RelocationTransaction *transaction, RelocationTransactionSlot *slot) {
     struct stat metadata;
     if (lstat(slot->directory,&metadata) != 0) {
@@ -49,7 +49,7 @@ static bool inspect(RelocationTransaction *transaction, RelocationTransactionSlo
     }
     return true;
 }
-/** Reject reservations that could retire public source/settings/output locations even if an invalid journal claims them. */
+/** Reject reservations that could retire public source/settings/output locations even if an invalid journal claims them. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool private_path(RelocationTransaction *transaction, const RelocationTransactionSlot *slot) {
     const RelocationReport *report = &transaction->report;
     if (relocation_contains(slot->directory,report->source) || relocation_contains(slot->directory,report->destination)
@@ -59,7 +59,7 @@ static bool private_path(RelocationTransaction *transaction, const RelocationTra
     }
     return true;
 }
-/** Validate every registered slot before deleting any; the initial journal itself remains a persistent abort receipt. */
+/** Validate every registered slot before deleting any; the initial journal itself remains a persistent abort receipt. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_recovery_preparation(RelocationRecovery *recovery) {
     RelocationTransaction *transaction = &recovery->transaction;
     for (RelocationTransactionSlot *slot = transaction->slots; slot != NULL; slot = slot->next) {

@@ -8,7 +8,7 @@
 #include "../staging/staging.h"
 #include "../report/report.h"
 
-/** Observable filesystem phase for deterministic fault injection; callbacks never execute Ama or reenter application. */
+/** Observable filesystem phase for deterministic fault injection; callbacks never execute Ama or reenter application. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 typedef enum {
     RELOCATION_IO_LEASE, RELOCATION_IO_REVALIDATE, RELOCATION_IO_TEMPORARY,
     RELOCATION_IO_DIRECTORY, RELOCATION_IO_FILE, RELOCATION_IO_WRITE,
@@ -21,12 +21,12 @@ typedef enum {
  * Close checkpoints occur after the descriptor's sole actual close attempt so refusal
  * never loses descriptor ownership. The callback/context survive apply, do not mutate
  * project state and must not reenter the transaction. Null permits actual OS operations.
- */
+ * Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 typedef struct {
     void *context;
     bool (*permit)(void *, RelocationIOOperation, const char *);
 } RelocationIO;
-/** Application outcome distinguishes source rollback from committed cleanup still requiring recovery. */
+/** Application outcome distinguishes source rollback from committed cleanup still requiring recovery. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 typedef enum {
     RELOCATION_TRANSACTION_EMPTY, RELOCATION_TRANSACTION_PREPARING,
     RELOCATION_TRANSACTION_PREPARED, RELOCATION_TRANSACTION_APPLYING,
@@ -37,22 +37,22 @@ typedef enum {
  * Cooperating filesystem writers must honor the same directory leases; arbitrary
  * noncooperating writers are outside exclusive-access preconditions. The plan and
  * allocator authority survive transaction destruction. Recovery data survives failure.
- */
+ * Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 typedef struct {
     const RelocationStaging *staging;
     const char *recovery_directory;
     RelocationIO io;
 } RelocationTransactionRequest;
-/** Private owned directory descriptors remain locked through the complete application attempt. */
+/** Private owned directory descriptors remain locked through the complete application attempt. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 typedef struct RelocationDirectoryLease RelocationDirectoryLease;
-/** Private same-filesystem staging/backup slots own only explicitly created paths. */
+/** Private same-filesystem staging/backup slots own only explicitly created paths. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 typedef struct RelocationTransactionSlot RelocationTransactionSlot;
-/** Private ordered changes retain their inverse before publication begins. */
+/** Private ordered changes retain their inverse before publication begins. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 typedef struct RelocationTransactionAction RelocationTransactionAction;
 /** Linear application owner. Destruction releases descriptors and memory, never silently
  * retries incomplete rollback or deletes retained recovery data. Paths/diagnostics survive
  * the attempt until destruction. committed distinguishes irrevocable commit from rollback.
- */
+ * Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 typedef struct {
     const RelocationStaging *staging;
     SourceArena arena;
@@ -81,10 +81,10 @@ typedef struct {
     bool decision_pending;
     bool cleaning;
 } RelocationTransaction;
-/** Initialize memory ownership without acquiring locks or creating files. */
+/** Initialize memory ownership without acquiring locks or creating files. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 void relocation_transaction_init(RelocationTransaction *, SourceAllocator);
-/** Release descriptor leases and memory; retained incomplete recovery files remain on disk. */
+/** Release descriptor leases and memory; retained incomplete recovery files remain on disk. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 void relocation_transaction_destroy(RelocationTransaction *);
-/** Apply one validated plan, rolling back ordinary precommit failures and retaining incomplete recovery data. */
+/** Apply one validated plan, rolling back ordinary precommit failures and retaining incomplete recovery data. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_apply(RelocationTransaction *, const RelocationTransactionRequest *);
 #endif

@@ -11,7 +11,7 @@
 
 #include "host.h"
 
-/** Synchronous host admission phase; failed execution cannot resume and yielded execution returns idle. */
+/** Synchronous host admission phase; failed execution cannot resume and yielded execution returns idle. Component contract: [RT-05](../../../spec/implementation/runtime.md#rt-05). */
 typedef enum {
     AMA_RUNTIME_IDLE,
     AMA_RUNTIME_EXECUTING,
@@ -19,7 +19,7 @@ typedef enum {
 } AmaRuntimePhase;
 
 /* Per-host runtime control, no independent activation stack or payload mirrors. */
-/** Host root/current control without activation stack or state mirrors; runtime/context supplies independent ownership and access admission. */
+/** Host root/current control without activation stack or state mirrors; runtime/context supplies independent ownership and access admission. Component contract: [RT-05](../../../spec/implementation/runtime.md#rt-05). */
 typedef struct {
     AmaRuntimePhase phase;
     AmaHandle root;

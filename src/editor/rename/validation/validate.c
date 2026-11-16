@@ -4,7 +4,7 @@
  * [SRC-03](../../../../spec/language/source-and-names.md#src-03) keeps application explicitly versioned.
  */
 #include "../internal.h"
-/** Each check owns a fresh candidate; prior borrowed validation diagnostics expire before rebuilding it. */
+/** Each check owns a fresh candidate; prior borrowed validation diagnostics expire before rebuilding it. Component contract: [ARCH-06](../../../../spec/implementation/compiler.md#arch-06), [SRC-03](../../../../spec/language/source-and-names.md#src-03). */
 bool editor_rename_validate(EditorRename *plan) {
     plan->validated = false;
     plan->diagnostic = (Diagnostic){0};
@@ -27,7 +27,7 @@ bool editor_rename_validate(EditorRename *plan) {
     plan->validated = true;
     return true;
 }
-/** The writer receives all files together only after a new validation; it owns atomic application under exclusive document authority. */
+/** The writer receives all files together only after a new validation; it owns atomic application under exclusive document authority. Component contract: [ARCH-06](../../../../spec/implementation/compiler.md#arch-06), [SRC-03](../../../../spec/language/source-and-names.md#src-03). */
 bool editor_rename_publish(EditorRename *plan, EditorRenameWriter writer, void *context) {
     if (!plan->prepared || writer == NULL) {
         return editor_rename_fail(plan,DIAGNOSTIC_RENAME_CONFLICT,"Rename publication requires a prepared plan and writer",(SourceSpan){0});

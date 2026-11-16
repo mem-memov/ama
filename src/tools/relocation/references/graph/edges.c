@@ -7,7 +7,7 @@
 #include <string.h>
 #include "../internal.h"
 
-/** Source-backed exact paths must agree with their resolved target before any replacement is recorded. */
+/** Source-backed exact paths must agree with their resolved target before any replacement is recorded. Component contract: [TOOL-02](../../../../../spec/implementation/tools-and-conformance.md#tool-02), [LIST-04](../../../../../spec/language/lists.md#list-04). */
 static bool append(RelocationReferences *references, const RelocationModule *owner, const ProjectDependency *edge) {
     const RelocationModule *target = relocation_reference_module(references,edge->target);
     if (target == NULL || !source_span_valid(edge->requirement)) {
@@ -32,7 +32,7 @@ static bool append(RelocationReferences *references, const RelocationModule *own
     return !changed || relocation_reference_edit(references,edge->requirement,target);
 }
 
-/** All active modules are registered before parsing, so module cycles require no rewriting order. */
+/** All active modules are registered before parsing, so module cycles require no rewriting order. Component contract: [TOOL-02](../../../../../spec/implementation/tools-and-conformance.md#tool-02), [LIST-04](../../../../../spec/language/lists.md#list-04). */
 bool relocation_references_graph(RelocationReferences *references) {
     for (const ProjectModule *module = references->project.first; module != NULL; module = module->next) {
         const RelocationModule *owner = relocation_reference_module(references,module);

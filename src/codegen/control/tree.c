@@ -11,7 +11,7 @@
 #include "emission/emission.h"
 #include "lists/lists.h"
 
-/** Release one exact frame domain; abandonment alone tolerates unentered slots. */
+/** Release one exact frame domain; abandonment alone tolerates unentered slots. Component contract: [CALL-09](../../../spec/language/calls-and-results.md#call-09), [FLOW-04](../../../spec/language/control-flow.md#flow-04). */
 static bool release_frame(FILE *output, const ScaffoldType *type, const StorageFrame *frame, bool abandoning) {
     const char *function = frame->statement->operation_kind == SEMANTIC_LIST_SERVICE_OPERATION
         ? "ama_program_list_close_frame" : frame->statement->operation_kind == SEMANTIC_LIST_METHOD_OPERATION

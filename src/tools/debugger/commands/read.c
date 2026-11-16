@@ -6,7 +6,7 @@
 #include "../internal.h"
 /** Seven bytes is the maximum accepted spelling, not an arbitrary input limit:
  * longer lines are fully consumed and rejected, never treated as valid prefixes.
- */
+ * Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 AmaDebugClientCommand ama_debug_client_read(FILE *input) {
     char text[8];
     size_t length = 0;

@@ -4,7 +4,7 @@
  * standard module contracts; no arbitrary payload layout is inferred or serialized.
  */
 #include "codecs.h"
-/** Emit one fresh scalar decoder; every supplied pointer is a synchronous validated C borrow. */
+/** Emit one fresh scalar decoder; every supplied pointer is a synchronous validated C borrow. Component contract: [EMBED-04](../../../spec/implementation/c-library.md#embed-04). */
 static void decoder(LibraryCodecs *codecs, const LibrarySchema *schema) {
     LibraryHeader *writer=&codecs->output;
     const char *name=schema->identity->internal_name;
@@ -30,7 +30,7 @@ static void decoder(LibraryCodecs *codecs, const LibrarySchema *schema) {
     }
     library_header_print(writer,"}\n");
 }
-/** Encode arbitrary precision directly into owned big-endian bytes with no intermediate copy. */
+/** Encode arbitrary precision directly into owned big-endian bytes with no intermediate copy. Component contract: [EMBED-04](../../../spec/implementation/c-library.md#embed-04). */
 static void integer_encoder(LibraryHeader *writer, const char *name, const char *native) {
     library_header_print(writer,
         "    const %s_State *state=payload;\n"
@@ -46,7 +46,7 @@ static void integer_encoder(LibraryHeader *writer, const char *name, const char 
         "    if (!ama_library_code_register(&%s_code,&snapshot->code_owner,&%s_schema)) { %s_free(snapshot); return ama_status_make(AMA_LIMIT_EXCEEDED,NULL,0); }\n"
         "    *output=snapshot; return ama_status_success();\n",native,name,name,writer->prefix,name,name);
 }
-/** Read one failure's owned text field through its exact generated descriptor and typed text API. */
+/** Read one failure's owned text field through its exact generated descriptor and typed text API. Component contract: [EMBED-04](../../../spec/implementation/c-library.md#embed-04). */
 static void failure_encoder(LibraryCodecs *codecs, const LibrarySchema *schema) {
     LibraryHeader *writer=&codecs->output;
     const char *name=schema->identity->internal_name;

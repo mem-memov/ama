@@ -5,7 +5,7 @@
  */
 #include "format.h"
 
-/** Root kinds/paths/exclusions remain explicit supplied settings, including source roots that physically move. */
+/** Root kinds/paths/exclusions remain explicit supplied settings, including source roots that physically move. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool roots(RelocationJournalWriter *writer, const ModuleRoot *items, size_t count) {
     if (!relocation_journal_unsigned(writer,count)) { return false; }
     for (size_t index = 0; index < count; index++) {
@@ -17,7 +17,7 @@ static bool roots(RelocationJournalWriter *writer, const ModuleRoot *items, size
     }
     return true;
 }
-/** Source scope includes inactive drafts and explicitly introduced files, rather than only a selected entry closure. */
+/** Source scope includes inactive drafts and explicitly introduced files, rather than only a selected entry closure. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool modules(RelocationJournalWriter *writer, const RelocationReport *report) {
     size_t count = 0;
     for (const RelocationReportedModule *row = report->modules; row != NULL; row = row->next) { count++; }
@@ -29,7 +29,7 @@ static bool modules(RelocationJournalWriter *writer, const RelocationReport *rep
     }
     return true;
 }
-/** Preserve role flags explicitly; no recovery code searches C, literals or paths for old names. */
+/** Preserve role flags explicitly; no recovery code searches C, literals or paths for old names. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool files(RelocationJournalWriter *writer, const RelocationReport *report) {
     size_t count = 0;
     for (const RelocationReportedFile *row = report->files; row != NULL; row = row->next) { count++; }
@@ -42,7 +42,7 @@ static bool files(RelocationJournalWriter *writer, const RelocationReport *repor
     }
     return true;
 }
-/** The report is already independent of the compiler-side snapshot before application publication can begin. */
+/** The report is already independent of the compiler-side snapshot before application publication can begin. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_report(RelocationJournalWriter *writer, const RelocationReport *report) {
     return relocation_journal_text(writer,report->source) && relocation_journal_text(writer,report->destination)
         && relocation_journal_nullable(writer,report->entry) && relocation_journal_unsigned(writer,report->rebuild_required)

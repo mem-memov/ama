@@ -6,7 +6,7 @@
 #include <string.h>
 #include "../internal.h"
 
-/** Entry selection preserves the exact executable type under F, including newly covered sources. */
+/** Entry selection preserves the exact executable type under F, including newly covered sources. Component contract: [TOOL-01](../../../../../spec/implementation/tools-and-conformance.md#tool-01). */
 static bool entry(RelocationStaging *staging, const char *name) {
     if (name == NULL) { return true; }
     const SemanticType *original = semantic_find_type(&staging->references->semantic,name);
@@ -23,7 +23,7 @@ static bool entry(RelocationStaging *staging, const char *name) {
     }
     return relocation_staging_fail(staging,RELOCATION_INVALID_REFERENCE,"The explicit entry has no final executable mapping",(SourceSpan){0});
 }
-/** All configuration dependencies are protected before any requested invalidation is accepted. */
+/** All configuration dependencies are protected before any requested invalidation is accepted. Component contract: [TOOL-01](../../../../../spec/implementation/tools-and-conformance.md#tool-01). */
 bool relocation_staging_settings(RelocationStaging *staging, const RelocationStagingRequest *request) {
     if ((request->library_configuration_count != 0 && request->library_configurations == NULL)
         || (request->generated_output_count != 0 && request->generated_outputs == NULL)) {

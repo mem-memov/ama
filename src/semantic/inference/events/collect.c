@@ -6,7 +6,7 @@
  */
 #include <stdint.h>
 #include "../internal.h"
-/** Append one checked finite event before publication; all syntax remains project-owned. */
+/** Append one checked finite event before publication; all syntax remains project-owned. Component contract: [TYPE-06](../../../../spec/language/declarations.md#type-06). */
 static bool append(Inference *inference, InferenceEvent event) {
     if (inference->event_count == SIZE_MAX) { return semantic_memory_failure(inference->program); }
     InferenceEvent *owned = semantic_allocate(inference->program, sizeof(*owned));
@@ -18,7 +18,7 @@ static bool append(Inference *inference, InferenceEvent event) {
     inference->event_count++;
     return true;
 }
-/** Schedule one node's own source events; structural children are supplied once by the semantic walker. */
+/** Schedule one node's own source events; structural children are supplied once by the semantic walker. Component contract: [TYPE-06](../../../../spec/language/declarations.md#type-06). */
 static bool node_events(SemanticProgram *program, SemanticType *type,
     const AstNode *node, size_t depth, const AstNode *loop, void *context) {
     (void)program;

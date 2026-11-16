@@ -5,7 +5,7 @@
  */
 #include "traversal.h"
 
-/** Validate an extent without overflowing and before forming a typed pointer. */
+/** Validate an extent without overflowing and before forming a typed pointer. Component contract: [FLOW-05](../../../../../spec/language/lists.md#flow-05). */
 static bool ama_foreach_schema_extent(size_t size, size_t offset, size_t width, size_t alignment) {
     return offset % alignment == 0 && offset <= size && width <= size - offset;
 }

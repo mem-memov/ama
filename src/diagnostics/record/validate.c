@@ -9,7 +9,7 @@
 #include "diagnostic.h"
 
 /** Allow absent locations only with zero offsets; otherwise require a bounded span and exact explicit/original path agreement.
- */
+ * Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04). */
 static bool location_valid(DiagnosticLocation location) {
     if (location.span.source == NULL) {
         return location.span.start == 0 && location.span.end == 0;

@@ -5,14 +5,14 @@
  */
 #include <string.h>
 #include "../internal.h"
-/** Message bytes need no terminating NUL and are never parsed to classify a status. */
+/** Message bytes need no terminating NUL and are never parsed to classify a status. Component contract: [REF-02](../../../../spec/language/values-and-references.md#ref-02), [DEBUG-01](../../../../spec/implementation/diagnostics.md#debug-01). */
 bool ama_debug_client_status(ToolJsonWriter *writer, AmaStatus status) {
     return tool_json_raw(writer, "{\"code\":") && tool_json_unsigned(writer, status.code)
         && tool_json_raw(writer, ",\"message\":")
         && tool_json_bytes(writer, (const unsigned char *)status.message, status.message_length)
         && tool_json_raw(writer, "}");
 }
-/** A context-qualified numeric observation grants no future access without revalidation. */
+/** A context-qualified numeric observation grants no future access without revalidation. Component contract: [REF-02](../../../../spec/language/values-and-references.md#ref-02), [DEBUG-01](../../../../spec/implementation/diagnostics.md#debug-01). */
 bool ama_debug_client_reference(ToolJsonWriter *writer, AmaContextReference reference) {
     return tool_json_raw(writer, "{\"context\":") && tool_json_unsigned(writer, reference.context)
         && tool_json_raw(writer, ",\"type\":") && tool_json_unsigned(writer, reference.local.type_id)
@@ -20,7 +20,7 @@ bool ama_debug_client_reference(ToolJsonWriter *writer, AmaContextReference refe
         && tool_json_raw(writer, ",\"generation\":") && tool_json_unsigned(writer, reference.local.generation)
         && tool_json_raw(writer, "}");
 }
-/** Occurrence identity remains distinct even for repeated or absent target values. */
+/** Occurrence identity remains distinct even for repeated or absent target values. Component contract: [REF-02](../../../../spec/language/values-and-references.md#ref-02), [DEBUG-01](../../../../spec/implementation/diagnostics.md#debug-01). */
 bool ama_debug_client_membership(ToolJsonWriter *writer, uint64_t context, AmaMembership membership) {
     return tool_json_raw(writer, "{\"owner\":")
         && ama_debug_client_reference(writer, (AmaContextReference){context, membership.owner})
@@ -30,7 +30,7 @@ bool ama_debug_client_membership(ToolJsonWriter *writer, uint64_t context, AmaMe
         && tool_json_raw(writer, ",\"generation\":") && tool_json_unsigned(writer, membership.generation)
         && tool_json_raw(writer, "}");
 }
-/** Null means no mapping; no nearest source row or historical frame is fabricated. */
+/** Null means no mapping; no nearest source row or historical frame is fabricated. Component contract: [REF-02](../../../../spec/language/values-and-references.md#ref-02), [DEBUG-01](../../../../spec/implementation/diagnostics.md#debug-01). */
 bool ama_debug_client_location(ToolJsonWriter *writer, const AmaProgramLocation *location) {
     if (location == NULL) { return tool_json_raw(writer, "null"); }
     return tool_json_raw(writer, "{\"operation\":") && tool_json_unsigned(writer, location->operation)
@@ -43,7 +43,7 @@ bool ama_debug_client_location(ToolJsonWriter *writer, const AmaProgramLocation 
         && tool_json_raw(writer, ",\"type\":") && tool_json_string(writer, location->type)
         && tool_json_raw(writer, "}");
 }
-/** Nested arrays use independent callback state rather than sharing mutable separator globals. */
+/** Nested arrays use independent callback state rather than sharing mutable separator globals. Component contract: [REF-02](../../../../spec/language/values-and-references.md#ref-02), [DEBUG-01](../../../../spec/implementation/diagnostics.md#debug-01). */
 bool ama_debug_client_next(AmaDebugClientOutput *output) {
     if (!output->first && !tool_json_raw(output->writer, ",")) { return false; }
     output->first = false;

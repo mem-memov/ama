@@ -10,14 +10,14 @@
 
 /** Move-only native code credit. The resource contains native code bookkeeping only;
  * release is infallible, cannot enter Ama, and runs under the loader's call barrier.
- */
+ * Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [CABI-05](../../../spec/implementation/native-interface.md#cabi-05). */
 typedef struct {
     void *resource;
     void (*release)(void *);
 } AmaNativeCodeLease;
 /** Borrowed immutable native code provider. Both fields zero means process-resident
  * code; a supplied provider retains independently owned credits without Ama access.
- */
+ * Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [CABI-05](../../../spec/implementation/native-interface.md#cabi-05). */
 typedef struct {
     void *resource;
     AmaStatus (*retain)(void *, AmaNativeCodeLease *);
@@ -25,7 +25,7 @@ typedef struct {
 
 /** Acquire only into an empty owner. Provider failure preserves it; a missing
  * provider is the explicit process-resident mode and needs no release operation.
- */
+ * Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [CABI-05](../../../spec/implementation/native-interface.md#cabi-05). */
 static inline AmaStatus ama_native_code_acquire(const AmaNativeCodeProvider *provider, AmaNativeCodeLease *output) {
     if (provider == NULL || output == NULL || output->resource != NULL || output->release != NULL
         || ((provider->resource == NULL) != (provider->retain == NULL))) {
@@ -34,7 +34,7 @@ static inline AmaStatus ama_native_code_acquire(const AmaNativeCodeProvider *pro
     return provider->retain == NULL ? ama_status_success()
         : ama_status_checked(provider->retain(provider->resource, output));
 }
-/** Consume the credit before its creator release; repeated release of an empty owner is harmless. */
+/** Consume the credit before its creator release; repeated release of an empty owner is harmless. Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [CABI-05](../../../spec/implementation/native-interface.md#cabi-05). */
 static inline void ama_native_code_drop(AmaNativeCodeLease *owner) {
     if (owner == NULL) { return; }
     AmaNativeCodeLease lease = *owner;

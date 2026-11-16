@@ -12,7 +12,7 @@
 #include "internal.h"
 #include "semantic/lists/internal.h"
 
-/** Resolve only source-declared fields; intrinsic interfaces use immutable descriptors instead. */
+/** Resolve only source-declared fields; intrinsic interfaces use immutable descriptors instead. Component contract: [CALL-08](../../../spec/language/calls-and-results.md#call-08), [LIST-04](../../../spec/language/lists.md#list-04), [COMP-04](../../../spec/implementation/compiler.md#comp-04). */
 static bool ordinary(SemanticProgram *program, SemanticStatement *statement,
     const AstArgument *argument, SemanticBinding *binding) {
     SemanticType *type = statement->namespace_type;

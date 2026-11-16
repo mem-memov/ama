@@ -7,10 +7,10 @@
 #define AMA_DRIVER_LIBRARY_BUILD_INTERNAL_H
 #include "build.h"
 #include "native/scaffold/internal.h"
-/** Remove executable-only launcher/tooling artifacts and stage the remaining flat closure. */
+/** Remove executable-only launcher/tooling artifacts and stage the remaining flat closure. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 bool driver_library_stage(NativeScaffold *, const LibraryBuild *, const char *stage);
-/** Retain complete public source, manifest and binary artifacts for atomic owned publication. */
+/** Retain complete public source, manifest and binary artifacts for atomic owned publication. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 bool driver_library_retain(NativeScaffold *, const char *stage);
-/** Best-effort cleanup of private flat scratch, including failed tool outputs. */
+/** Best-effort cleanup of private flat scratch, including failed tool outputs. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 void driver_library_cleanup(const char *stage);
 #endif

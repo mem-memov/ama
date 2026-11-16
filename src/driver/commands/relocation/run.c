@@ -7,7 +7,7 @@
 #include "internal.h"
 #include "diagnostics/render/render.h"
 
-/** Completed source mutation and output acknowledgement are independent; retain the receipt and explain the known outcome. */
+/** Completed source mutation and output acknowledgement are independent; retain the receipt and explain the known outcome. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static int acknowledge(ToolJsonWriter *writer, bool operation, bool rendered, bool known, bool committed,
     const char *journal, const Diagnostic *primary, const Diagnostic *cleanup, FILE *errors) {
     bool flushed = tool_json_finish(writer);
@@ -22,7 +22,7 @@ static int acknowledge(ToolJsonWriter *writer, bool operation, bool rendered, bo
     }
     return operation && rendered && flushed ? EXIT_SUCCESS : EXIT_FAILURE;
 }
-/** A recovered receipt's complete authority determines the outcome; a failure before validation leaves commit explicitly unknown. */
+/** A recovered receipt's complete authority determines the outcome; a failure before validation leaves commit explicitly unknown. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static int recover(const DriverOptions *options, ToolJsonWriter *writer, FILE *errors) {
     RelocationRecovery recovery;
     relocation_recovery_init(&recovery,options->arena.allocator);
@@ -36,7 +36,7 @@ static int recover(const DriverOptions *options, ToolJsonWriter *writer, FILE *e
     relocation_recovery_destroy(&recovery);
     return status;
 }
-/** Readiness alone permits no filesystem write; apply explicitly supplies the recovery directory and durable transaction owner. */
+/** Readiness alone permits no filesystem write; apply explicitly supplies the recovery directory and durable transaction owner. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static int prepared(const DriverOptions *options, ToolJsonWriter *writer, FILE *errors) {
     DriverRelocationPlan plan;
     driver_relocation_plan_init(&plan,options->arena.allocator);
@@ -62,7 +62,7 @@ static int prepared(const DriverOptions *options, ToolJsonWriter *writer, FILE *
     driver_relocation_plan_destroy(&plan);
     return status;
 }
-/** Every owner remains alive through response and diagnostic rendering; destruction performs no hidden filesystem action. */
+/** Every owner remains alive through response and diagnostic rendering; destruction performs no hidden filesystem action. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 int driver_relocation(const DriverOptions *options, FILE *output, FILE *errors) {
     ToolJsonWriter writer;
     tool_json_init(&writer,output);

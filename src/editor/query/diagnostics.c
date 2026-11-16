@@ -4,7 +4,7 @@
  * [SYN-01](../../../spec/language/source-and-names.md#syn-01) preserves empty-body warnings.
  */
 #include "../analysis/analysis.h"
-/** A caller can stop synchronously; every diagnostic owner remains with its original AST/frontend. */
+/** A caller can stop synchronously; every diagnostic owner remains with its original AST/frontend. Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04), [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
 bool editor_diagnostics(const EditorAnalysis *analysis, EditorDiagnosticVisitor visit, void *context) {
     if (!analysis->attempted || visit == NULL) { return false; }
     if (analysis->diagnostic.message != NULL && !visit(context,&analysis->diagnostic,false)) { return true; }

@@ -8,7 +8,7 @@
 #include <string.h>
 #include "../internal.h"
 
-/** A directory owned by the recorded identity may contain only its reserved transaction children. */
+/** A directory owned by the recorded identity may contain only its reserved transaction children. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool slot(RelocationTransaction *transaction, RelocationTransactionSlot *owned) {
     RelocationPathState state = relocation_transaction_probe(transaction,owned->directory,&owned->metadata);
     if (state == RELOCATION_PATH_ABSENT && owned != transaction->recovery_slot) { owned->created = false; return true; }
@@ -40,7 +40,7 @@ static bool slot(RelocationTransaction *transaction, RelocationTransactionSlot *
     if (closedir(directory) != 0) { complete = relocation_transaction_fail(transaction,RELOCATION_IO_ERROR,"A recovery slot directory could not be closed",owned->directory); }
     return complete;
 }
-/** Originals must remain in exactly one location; replacements can be private or published, never foreign. */
+/** Originals must remain in exactly one location; replacements can be private or published, never foreign. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool action(RelocationRecovery *recovery, const RelocationTransactionAction *item) {
     RelocationTransaction *transaction = &recovery->transaction;
     RelocationPathState saved = relocation_transaction_probe(transaction,item->slot->backup,&item->original_metadata);
@@ -79,7 +79,7 @@ static bool action(RelocationRecovery *recovery, const RelocationTransactionActi
     }
     return true;
 }
-/** Acquire every mutation parent before validating objects; no inverse starts on a partly checked plan. */
+/** Acquire every mutation parent before validating objects; no inverse starts on a partly checked plan. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_recovery_preflight(RelocationRecovery *recovery) {
     RelocationTransaction *transaction = &recovery->transaction;
     for (const RelocationTransactionAction *item = transaction->first; item != NULL; item = item->next) {

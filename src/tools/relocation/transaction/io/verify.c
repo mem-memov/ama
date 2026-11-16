@@ -7,7 +7,7 @@
 #include <string.h>
 #include <unistd.h>
 #include "../internal.h"
-/** A successful prefix strictly advances; EOF must occur exactly at the expected byte count. */
+/** A successful prefix strictly advances; EOF must occur exactly at the expected byte count. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_verify(RelocationTransaction *transaction, int descriptor, const char *path, const SourceText *expected) {
     if (!relocation_transaction_permit(transaction,RELOCATION_IO_VERIFY,path) || lseek(descriptor,0,SEEK_SET) < 0) {
         return relocation_transaction_fail(transaction,RELOCATION_IO_ERROR,"Prepared bytes could not be positioned for verification",path);

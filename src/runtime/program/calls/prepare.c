@@ -13,7 +13,7 @@
 /** Prepare only entry calls; read/resume modes preserve interface state. The
  * invocation is borrowed, scratch/source leases end before any Ama body begins,
  * and earlier field commits survive failure of a later constructor.
- */
+ * Component contract: [CALL-08](../../../../spec/language/calls-and-results.md#call-08). */
 AmaStatus ama_program_prepare(AmaProgram *program, AmaHandle caller, const AmaProgramInvocation *invocation) {
     if (program->world->operation_active || program->world->failed) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
     AmaPoolCell *context = NULL;

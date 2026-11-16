@@ -8,7 +8,7 @@
 #include "../internal.h"
 #include "../../internal.h"
 
-/** Resolve recovery storage independently; no path borrowed from temporary resolver ownership escapes. */
+/** Resolve recovery storage independently; no path borrowed from temporary resolver ownership escapes. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool recovery_directory(RelocationTransaction *transaction, const char *input) {
     RelocationPreview authority;
     relocation_preview_init(&authority,transaction->arena.allocator);
@@ -35,13 +35,13 @@ static bool recovery_directory(RelocationTransaction *transaction, const char *i
     transaction->recovery_directory = owned;
     return relocation_transaction_lease_directory(transaction,owned);
 }
-/** A future root below D is locked through its captured original directory, never through a fabricated destination. */
+/** A future root below D is locked through its captured original directory, never through a fabricated destination. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static const char *original_root(RelocationTransaction *transaction, const char *path) {
     const RelocationPreview *preview = transaction->staging->references->preview;
     if (!relocation_contains(preview->destination,path)) { return path; }
     return source_arena_join(&transaction->arena,preview->source,"",path+strlen(preview->destination));
 }
-/** Nonblocking acquisition cannot deadlock; a busy later directory releases the already held prefix on destruction. */
+/** Nonblocking acquisition cannot deadlock; a busy later directory releases the already held prefix on destruction. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_lease(RelocationTransaction *transaction, const char *recovery) {
     const RelocationPreview *preview = transaction->staging->references->preview;
     if (!recovery_directory(transaction,recovery)

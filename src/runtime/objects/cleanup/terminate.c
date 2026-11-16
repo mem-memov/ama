@@ -7,7 +7,7 @@
  */
 #include "runtime/objects/internal.h"
 
-/** Walk the initialized owned tree using owner links and cell cursors, clearing transient service controls without allocation or recursive C calls. This is terminal cleanup only. */
+/** Walk the initialized owned tree using owner links and cell cursors, clearing transient service controls without allocation or recursive C calls. This is terminal cleanup only. Component contract: [LIFE-05](../../../../spec/implementation/native-interface.md#life-05). */
 AmaStatus ama_object_end_active_links(AmaWorld *world, AmaHandle root) {
     AmaHandle current = root;
     AmaObjectType *type;

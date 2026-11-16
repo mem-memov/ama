@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include "../internal.h"
 
-/** Verification precedes final timestamps so read-induced access-time updates do not undo attribute preparation. */
+/** Verification precedes final timestamps so read-induced access-time updates do not undo attribute preparation. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_file(RelocationTransaction *transaction, const char *path,
     const SourceText *text, const struct stat *expected, struct stat *prepared) {
     if (!relocation_transaction_permit(transaction,RELOCATION_IO_FILE,path)) { return false; }

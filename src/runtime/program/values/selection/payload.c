@@ -9,7 +9,7 @@
 #include "internal.h"
 #include "runtime/program/lists/traversal/traversal.h"
 
-/** Borrow a payload only after identity/activity checks, or directly from immutable shared storage. Output changes only on success. */
+/** Borrow a payload only after identity/activity checks, or directly from immutable shared storage. Output changes only on success. Component contract: [COPY-07](../../../../../spec/language/values-and-references.md#copy-07), [FLOW-05](../../../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_program_payload_authorized(AmaProgram *program, const AmaProgramValue *value,
     const AmaProgramListService *authority, const void **output, bool *origin_refused) {
     bool refused = false;
@@ -30,7 +30,7 @@ AmaStatus ama_program_payload_authorized(AmaProgram *program, const AmaProgramVa
     return status;
 }
 
-/** Ordinary retained reads inherit no structural list token. */
+/** Ordinary retained reads inherit no structural list token. Component contract: [COPY-07](../../../../../spec/language/values-and-references.md#copy-07), [FLOW-05](../../../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_program_payload(AmaProgram *program, const AmaProgramValue *value, const void **output) {
     return ama_program_payload_authorized(program, value, NULL, output, NULL);
 }

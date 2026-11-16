@@ -4,12 +4,12 @@
  * retains requesting/declared source locations instead of flattening them into guessed text coordinates.
  */
 #include "source.h"
-/** A filesystem-only location remains distinct from a loaded source range. */
+/** A filesystem-only location remains distinct from a loaded source range. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 static bool location(ToolJsonWriter *writer, const DiagnosticLocation *value) {
     return tool_json_raw(writer,"{\"path\":") && tool_source_bytes(writer,value->path)
         && tool_json_raw(writer,",\"span\":") && tool_source_span(writer,value->span) && tool_json_raw(writer,"}");
 }
-/** Prose stays nullable; every related record retains its explicit role/name without inferring a correction. */
+/** Prose stays nullable; every related record retains its explicit role/name without inferring a correction. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 bool tool_source_diagnostic(ToolJsonWriter *writer, const Diagnostic *value, bool warning) {
     if (!tool_json_raw(writer,"{\"code\":") || !tool_json_string(writer,diagnostic_code_name(value->code))
         || !tool_json_raw(writer,",\"warning\":") || !tool_json_boolean(writer,warning)

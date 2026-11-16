@@ -6,7 +6,7 @@
  */
 #include "internal.h"
 
-/** Angle markers cannot occur in an access name; literal payload is outside the checked code span. */
+/** Angle markers cannot occur in an access name; literal payload is outside the checked code span. Component contract: [CALL-09](../../../../spec/language/calls-and-results.md#call-09). */
 static bool binding(SourceSpan text) {
     const unsigned char *bytes = source_bytes(text.source);
     for (size_t offset = text.start; offset < text.end; offset++) {

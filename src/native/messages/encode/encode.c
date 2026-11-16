@@ -8,7 +8,7 @@
 /** Validate shape and total budget before scalar payloads, then allocate once.
  * The sizing emitter reads metadata only, so an envelope that cannot fit never
  * scans large text/integer bytes merely to reject its complete size afterward.
- */
+ * Component contract: [PAR-03](../../../../spec/language/async-and-parallelism.md#par-03). */
 AmaNativeMessageResult ama_native_message_encode(const AmaNativeMessageSchema *schema,
     const AmaNativeMessageFieldValue *fields, const AmaNativeCodeProvider *provider, AmaNativeMessageBytes *output) {
     if (ama_native_message_schema_check(schema).code != AMA_OK || provider == NULL || output == NULL

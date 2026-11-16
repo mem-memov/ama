@@ -10,7 +10,7 @@
 /** Select literal/value/default exactly once for this field. All per-field
  * scratch and borrowed-authority protections end before returning; store owns
  * replacement's initialized-prefix cleanup and preserves its primary failure.
- */
+ * Component contract: [CALL-08](../../../../../spec/language/calls-and-results.md#call-08). */
 static AmaStatus ama_call_install(AmaProgram *program, AmaHandle target, size_t field,
     const AmaPreparedInput *input, const AmaObjectProtection *authority) {
     AmaObjectOperation operation = {.world = program->world, .source_authority = authority};
@@ -40,7 +40,7 @@ static AmaStatus ama_call_install(AmaProgram *program, AmaHandle target, size_t 
 /** Install parameters before results, each in declaration order. Earlier commits
  * remain on later failure; defaults read earlier new values. source authority is
  * borrowed from the outer protection context and never released here.
- */
+ * Component contract: [CALL-08](../../../../../spec/language/calls-and-results.md#call-08). */
 AmaStatus ama_call_install_fields(AmaProgram *program, AmaHandle target, const AmaProgramType *type,
     const AmaProgramInvocation *invocation, const AmaPreparedInput *inputs,
     const AmaObjectProtection *authority, uint64_t *current_operation) {

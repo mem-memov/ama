@@ -11,7 +11,7 @@
 #include "native/scaffold/internal.h"
 
 /** Compare complete validated native identifier byte spans, not hashes or declaration order.
- */
+ * Component contract: [PROTO-02](../../../../spec/implementation/native-interface.md#proto-02), [PROTO-03](../../../../spec/implementation/native-interface.md#proto-03). */
 static bool same_name(SourceSpan left, SourceSpan right) {
     size_t length = left.end - left.start;
     return length == right.end - right.start

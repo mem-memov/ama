@@ -6,7 +6,7 @@
  */
 #include "internal.h"
 
-/** Pop one completed operation and extend its enclosing output subtree span without C recursion. */
+/** Pop one completed operation and extend its enclosing output subtree span without C recursion. Component contract: [CALL-09](../../../../spec/language/calls-and-results.md#call-09). */
 static void complete(ParseFrame **frame) {
     ParseFrame *current = *frame;
     *frame = current->parent;

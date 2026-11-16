@@ -7,7 +7,7 @@
 #include "deletion.h"
 #include "runtime/lists/list.h"
 
-/** Remove the already converted range without releasing the service parent. */
+/** Remove the already converted range without releasing the service parent. Component contract: [LIST-06](../../../../../spec/language/lists.md#list-06), [LIST-10](../../../../../spec/language/lists.md#list-10). */
 static AmaStatus ama_list_deletion_commit(AmaProgramListMethod *method,
     const AmaProgramListInputs *plan, size_t position, size_t count, bool *refused) {
     AmaProgramListService *service = method->service;

@@ -7,7 +7,7 @@
  */
 #include "codegen/internal.h"
 
-/** Create one independent context from immutable schemas, then hold the existing runtime execution lease through every generated label. */
+/** Create one independent context from immutable schemas, then hold the existing runtime execution lease through every generated label. Component contract: [RT-11](../../../../spec/implementation/runtime.md#rt-11), [CALL-08](../../../../spec/language/calls-and-results.md#call-08). */
 bool codegen_emit_host_initialize(NativeScaffold *scaffold, FILE *output) {
     return fprintf(output,
         "if(!host->initialized) {\n"

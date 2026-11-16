@@ -9,25 +9,25 @@
 #include "../internal.h"
 #define RELOCATION_INTENT_MAGIC "AMA-RELOCATION-INTENT-1\n"
 #define RELOCATION_JOURNAL_MAGIC "AMA-RELOCATION-PLAN-2\n"
-/** Borrow the linear transaction owner and one open journal descriptor through a synchronous write. */
+/** Borrow the linear transaction owner and one open journal descriptor through a synchronous write. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 typedef struct { RelocationTransaction *transaction; int descriptor; const char *path; } RelocationJournalWriter;
-/** Write complete raw data through the transaction's checked filesystem authority. */
+/** Write complete raw data through the transaction's checked filesystem authority. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_bytes(RelocationJournalWriter *, const unsigned char *, size_t);
-/** Canonical decimal integers have a single terminating LF and no leading plus/zero padding. */
+/** Canonical decimal integers have a single terminating LF and no leading plus/zero padding. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_unsigned(RelocationJournalWriter *, uintmax_t);
 bool relocation_journal_signed(RelocationJournalWriter *, intmax_t);
-/** Length-framed text preserves arbitrary non-NUL filesystem bytes, including embedded LF. */
+/** Length-framed text preserves arbitrary non-NUL filesystem bytes, including embedded LF. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_text(RelocationJournalWriter *, const char *);
-/** Explicit presence preserves null separately from an empty string. */
+/** Explicit presence preserves null separately from an empty string. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_nullable(RelocationJournalWriter *, const char *);
-/** Length-framed binary data includes any embedded NUL without interpreting it as source syntax. */
+/** Length-framed binary data includes any embedded NUL without interpreting it as source syntax. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_blob(RelocationJournalWriter *, const SourceText *);
-/** Write each relevant stat field explicitly; platform struct padding is never persisted. */
+/** Write each relevant stat field explicitly; platform struct padding is never persisted. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_metadata(RelocationJournalWriter *, const struct stat *);
-/** Persist the independently owned complete scope and resulting configuration map. */
+/** Persist the independently owned complete scope and resulting configuration map. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_report(RelocationJournalWriter *, const RelocationReport *);
-/** Write one complete private slot identity tuple. */
+/** Write one complete private slot identity tuple. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_slot(RelocationJournalWriter *, const RelocationTransactionSlot *);
-/** Persist ordered inverse actions, owned slot identities and prepared replacement snapshots. */
+/** Persist ordered inverse actions, owned slot identities and prepared replacement snapshots. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_actions(RelocationJournalWriter *);
 #endif

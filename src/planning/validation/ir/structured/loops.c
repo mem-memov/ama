@@ -11,7 +11,7 @@ const PlannedLoop *structured_loop(const PlannedType *type, const SemanticStatem
     }
     return NULL;
 }
-/** Validate only fixed endpoint relationships, never the body's potentially infinite runtime execution. */
+/** Validate only fixed endpoint relationships, never the body's potentially infinite runtime execution. Component contract: [FLOW-04](../../../../../spec/language/control-flow.md#flow-04), [FLOW-05](../../../../../spec/language/lists.md#flow-05). */
 static bool shape(const PlannedType *type, const PlannedLoop *loop) {
     const SemanticStatement *statement = loop->statement;
     if (!structured_node(type, loop->entry) || !structured_node(type, loop->repeat)

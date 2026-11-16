@@ -15,7 +15,7 @@
 
 /** Install one recognized value or flag; caller has already checked its arity.
  * Each append consumes a distinct argv entry, bounded by the allocated count.
- */
+ * Component contract: [COMP-05](../../../../spec/implementation/compiler.md#comp-05), [SRC-01](../../../../spec/language/source-and-names.md#src-01). */
 static bool install(DriverOptions *options, DriverOptionStorage *storage,
     DriverOptionKind kind, const char *value) {
     switch (kind) {

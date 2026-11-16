@@ -11,7 +11,7 @@
  * Registry destruction consumes its initialized owner only after admission. Use
  * that exact postcondition to distinguish refusal from a destructor returning
  * Busy as its technical error; an error code alone cannot encode this provenance.
- */
+ * Component contract: [RT-14](../../../../spec/implementation/runtime.md#rt-14), [PAR-01](../../../../spec/language/async-and-parallelism.md#par-01). */
 bool codegen_emit_host_context(FILE *output) {
     return fputs(
         "static AmaStatus ama_project_dispose_owned(AmaProjectHost *host) {\n"

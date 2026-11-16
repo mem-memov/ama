@@ -6,7 +6,7 @@
 #include <stdint.h>
 #include <string.h>
 #include "../internal.h"
-/** Find the last edit starting at/before a boundary; stored new ends already include all preceding deltas. */
+/** Find the last edit starting at/before a boundary; stored new ends already include all preceding deltas. Component contract: [SRC-03](../../../../spec/language/source-and-names.md#src-03), [ARCH-06](../../../../spec/implementation/compiler.md#arch-06). */
 static bool boundary(const EditorRenameFile *file, size_t old, size_t *output) {
     if (file == NULL) { *output = old; return true; }
     size_t low = 0, high = file->edit_count;
@@ -24,7 +24,7 @@ static bool boundary(const EditorRenameFile *file, size_t old, size_t *output) {
     *output = edit->new_end+suffix;
     return true;
 }
-/** Binary lookup uses physical path plus exact retained source identity; no shorter-name or source fallback is accepted. */
+/** Binary lookup uses physical path plus exact retained source identity; no shorter-name or source fallback is accepted. Component contract: [SRC-03](../../../../spec/language/source-and-names.md#src-03), [ARCH-06](../../../../spec/implementation/compiler.md#arch-06). */
 bool editor_rename_span(const EditorRename *plan, SourceSpan old, SourceSpan *output) {
     if (old.source == NULL) {
         if (old.start != 0 || old.end != 0) { return false; }

@@ -11,14 +11,14 @@
 /**
  * Initialize independent catalog and syntax owners using the explicit allocator; inspect at most
  * once.
- */
+ * Component contract: [SYN-04](../../../spec/language/source-and-names.md#syn-04). */
 void compiler_inspection_init(ModuleInspection *inspection, SourceAllocator allocator) {
     *inspection = (ModuleInspection){0};
     module_catalog_init(&inspection->catalog, allocator);
     ast_module_init(&inspection->syntax, allocator);
 }
 
-/** Destroy syntax before catalog source storage, then reset diagnostics and attempt state. */
+/** Destroy syntax before catalog source storage, then reset diagnostics and attempt state. Component contract: [SYN-04](../../../spec/language/source-and-names.md#syn-04). */
 void compiler_inspection_destroy(ModuleInspection *inspection) {
     ast_module_destroy(&inspection->syntax);
     module_catalog_destroy(&inspection->catalog);
@@ -28,7 +28,7 @@ void compiler_inspection_destroy(ModuleInspection *inspection) {
 /**
  * Build the exact catalog, find one logical path and structurally parse it. Draft may succeed;
  * no dependency closure or executable semantic acceptance is implied.
- */
+ * Component contract: [SYN-04](../../../spec/language/source-and-names.md#syn-04). */
 bool compiler_inspect_module(ModuleInspection *inspection, const ModuleRoot *roots,
     size_t count, const char *logical_path) {
     assert(!inspection->attempted);

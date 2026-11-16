@@ -7,7 +7,7 @@
 #define AMA_RELOCATION_REPORT_H
 #include "../staging/staging.h"
 
-/** One source's exact simultaneous identity/placement mapping; null before_identity denotes explicitly introduced scope. */
+/** One source's exact simultaneous identity/placement mapping; null before_identity denotes explicitly introduced scope. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 typedef struct RelocationReportedModule {
     struct RelocationReportedModule *next;
     const char *before;
@@ -16,7 +16,7 @@ typedef struct RelocationReportedModule {
     const char *after_identity;
     bool active;
 } RelocationReportedModule;
-/** One contributing physical entry, with explicit semantic rewrite/draft/output roles rather than filename guesses. */
+/** One contributing physical entry, with explicit semantic rewrite/draft/output roles rather than filename guesses. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 typedef struct RelocationReportedFile {
     struct RelocationReportedFile *next;
     const char *before;
@@ -31,7 +31,7 @@ typedef struct RelocationReportedFile {
 /** Independently owned report; physical path strings retain raw filesystem bytes and logical identities retain exact Unicode bytes.
  * Only ready permits consumption. Outcome is supplied by the application/recovery state,
  * not inferred from a later workspace scan. External flags/C paths remain outside rewrites.
- */
+ * Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 typedef struct {
     SourceArena arena;
     const char *source;
@@ -48,10 +48,10 @@ typedef struct {
     bool ready;
     bool rebuild_required;
 } RelocationReport;
-/** Initialize independent ownership without reading source or creating output. */
+/** Initialize independent ownership without reading source or creating output. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 void relocation_report_init(RelocationReport *, SourceAllocator);
-/** Invalidate all report views and release every successful or failed allocation prefix. */
+/** Invalidate all report views and release every successful or failed allocation prefix. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 void relocation_report_destroy(RelocationReport *);
-/** Copy complete plan scope once, preserving bytes and explicit roles without executing native/Ama code. */
+/** Copy complete plan scope once, preserving bytes and explicit roles without executing native/Ama code. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_report_build(RelocationReport *, const RelocationStaging *);
 #endif

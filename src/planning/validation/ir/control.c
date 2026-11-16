@@ -5,21 +5,21 @@
  * assigns selectors independently of target C labels. Runtime cycles are not traversed.
  */
 #include "internal.h"
-/** Compare an edge with owner inventory addresses before any dereference. */
+/** Compare an edge with owner inventory addresses before any dereference. Component contract: [COMP-02](../../../../spec/implementation/compiler.md#comp-02), [GEN-04](../../../../spec/implementation/compiler.md#gen-04). */
 static bool member(const PlannedType *type, const ControlNode *candidate) {
     for (const ControlNode *node = type->controls; node != NULL; node = node->allocated_next) {
         if (node == candidate) { return true; }
     }
     return false;
 }
-/** A statement must be the exact fully resolved record owned by this nominal module. */
+/** A statement must be the exact fully resolved record owned by this nominal module. Component contract: [COMP-02](../../../../spec/implementation/compiler.md#comp-02), [GEN-04](../../../../spec/implementation/compiler.md#gen-04). */
 static bool statement_member(const PlannedType *type, const SemanticStatement *candidate) {
     for (const SemanticStatement *statement = type->type->statements; statement != NULL; statement = statement->next) {
         if (statement == candidate) { return true; }
     }
     return false;
 }
-/** Supplied binding identity must belong to this node's resolved statement. */
+/** Supplied binding identity must belong to this node's resolved statement. Component contract: [COMP-02](../../../../spec/implementation/compiler.md#comp-02), [GEN-04](../../../../spec/implementation/compiler.md#gen-04). */
 static bool binding_member(const SemanticStatement *statement, const SemanticBinding *candidate) {
     if (statement == NULL) { return false; }
     for (const SemanticBinding *binding = statement->bindings; binding != NULL; binding = binding->next) {
@@ -27,7 +27,7 @@ static bool binding_member(const SemanticStatement *statement, const SemanticBin
     }
     return false;
 }
-/** Compare every assigned selector exactly; neither hash equality nor reachability determines identity. */
+/** Compare every assigned selector exactly; neither hash equality nor reachability determines identity. Component contract: [COMP-02](../../../../spec/implementation/compiler.md#comp-02), [GEN-04](../../../../spec/implementation/compiler.md#gen-04). */
 static bool unique(const ProgramPlan *plan, const ControlNode *candidate) {
     if (candidate->selector == 0 || candidate->selector >= plan->next_selector) { return false; }
     for (const PlannedType *type = plan->first; type != NULL; type = type->next) {
@@ -37,7 +37,7 @@ static bool unique(const ProgramPlan *plan, const ControlNode *candidate) {
     }
     return true;
 }
-/** Only entry transfers cross nominal graph ownership; resumes use dynamic saved positions. */
+/** Only entry transfers cross nominal graph ownership; resumes use dynamic saved positions. Component contract: [COMP-02](../../../../spec/implementation/compiler.md#comp-02), [GEN-04](../../../../spec/implementation/compiler.md#gen-04). */
 static bool edges(const ProgramPlan *plan, const PlannedType *type, const ControlNode *node) {
     if ((node->alternative != NULL && !member(type, node->alternative))
         || (node->failure != NULL && !member(type, node->failure))
@@ -48,7 +48,7 @@ static bool edges(const ProgramPlan *plan, const PlannedType *type, const Contro
     }
     return node->next == NULL || member(type, node->next);
 }
-/** Installation operands are exact callee declarations, even when a default has no supplied binding. */
+/** Installation operands are exact callee declarations, even when a default has no supplied binding. Component contract: [COMP-02](../../../../spec/implementation/compiler.md#comp-02), [GEN-04](../../../../spec/implementation/compiler.md#gen-04). */
 static bool installed_field(const ControlNode *node) {
     if (node->statement == NULL || node->statement->namespace_type == NULL) { return false; }
     SymbolRole role = node->operation == CONTROL_INSTALL_PARAMETER ? SYMBOL_PARAMETER : SYMBOL_RESULT;
@@ -61,7 +61,7 @@ static bool installed_field(const ControlNode *node) {
     }
     return false;
 }
-/** Validate operation-specific mandatory operands, keeping refusal separate from technical failure. */
+/** Validate operation-specific mandatory operands, keeping refusal separate from technical failure. Component contract: [COMP-02](../../../../spec/implementation/compiler.md#comp-02), [GEN-04](../../../../spec/implementation/compiler.md#gen-04). */
 static bool operands(const ProgramPlan *plan, const PlannedType *type, const ControlNode *node) {
     bool terminal = node->operation == CONTROL_COMPLETE || node->operation == CONTROL_YIELD
         || node->operation == CONTROL_FAILURE || node->operation == CONTROL_RESUME_INSTANCE

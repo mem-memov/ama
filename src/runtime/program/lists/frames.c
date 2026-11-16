@@ -9,7 +9,7 @@
 
 /** Validate generated frame extent before exposing a stable pool address.
  * Offsets are trusted generated descriptors, never a public foreign pointer API.
- */
+ * Component contract: [RT-02](../../../../spec/implementation/runtime.md#rt-02), [LIST-04](../../../../spec/language/lists.md#list-04). */
 static AmaStatus ama_list_frame(AmaProgram *program, AmaHandle caller, size_t offset,
     size_t size, size_t alignment, void **output) {
     AmaPoolCell *cell = NULL;

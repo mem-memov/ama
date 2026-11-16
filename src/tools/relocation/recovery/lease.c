@@ -7,7 +7,7 @@
 #include "internal.h"
 #include "../internal.h"
 
-/** Resolution borrows a temporary owner; the lease retains the journal-owned canonical spelling only. */
+/** Resolution borrows a temporary owner; the lease retains the journal-owned canonical spelling only. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_recovery_directory(RelocationTransaction *transaction, const char *path) {
     RelocationPreview preview;
     relocation_preview_init(&preview,transaction->arena.allocator);

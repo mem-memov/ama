@@ -7,7 +7,7 @@
 #include "../internal.h"
 #include "../../internal.h"
 #include "source/path/exact.h"
-/** The directory resolver owns temporary scratch; only the copied full path escapes into staging storage. */
+/** The directory resolver owns temporary scratch; only the copied full path escapes into staging storage. Component contract: [TOOL-01](../../../../../spec/implementation/tools-and-conformance.md#tool-01). */
 const char *relocation_staging_setting_path(RelocationStaging *staging, const char *input, bool missing, bool *existed) {
     if (input == NULL || *input == 0) {
         relocation_staging_fail(staging,RELOCATION_INVALID_PATH,"An explicit settings path is empty",(SourceSpan){0});

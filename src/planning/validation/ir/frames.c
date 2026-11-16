@@ -6,21 +6,21 @@
  */
 #include "internal.h"
 #include "planning/storage/frames/internal.h"
-/** Lookup by exact symbol identity without interpreting a name or dereferencing a foreign frame operand. */
+/** Lookup by exact symbol identity without interpreting a name or dereferencing a foreign frame operand. Component contract: [RT-02](../../../../spec/implementation/runtime.md#rt-02), [NAME-06](../../../../spec/language/declarations.md#name-06). */
 static const ScopedStorageCell *cell_for(const PlannedType *type, const SemanticSymbol *symbol) {
     for (const ScopedStorageCell *cell = type->cells; cell != NULL; cell = cell->next) {
         if (cell->symbol == symbol) { return cell; }
     }
     return NULL;
 }
-/** Origins are shared by all lexical roles for one reference cell; permanent handles remain in their declared fields. */
+/** Origins are shared by all lexical roles for one reference cell; permanent handles remain in their declared fields. Component contract: [RT-02](../../../../spec/implementation/runtime.md#rt-02), [NAME-06](../../../../spec/language/declarations.md#name-06). */
 static const ReferenceOriginStorage *origin_for(const PlannedType *type, const SemanticSymbol *symbol) {
     for (const ReferenceOriginStorage *origin = type->origins; origin != NULL; origin = origin->next) {
         if (origin->symbol == symbol) { return origin; }
     }
     return NULL;
 }
-/** Validate one conditional-cell introduction and each unique reference-origin reservation in first-role order. */
+/** Validate one conditional-cell introduction and each unique reference-origin reservation in first-role order. Component contract: [RT-02](../../../../spec/implementation/runtime.md#rt-02), [NAME-06](../../../../spec/language/declarations.md#name-06). */
 static bool cells(const PlannedType *type) {
     const ScopedStorageCell *cell = type->cells;
     const ScopedStorageCell *last = NULL;

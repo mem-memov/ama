@@ -13,7 +13,7 @@
 /* Immutable generated UTF-8 map entry; line/byte-column are one-based.
  * Map selector zero means no operation; valid operation IDs start at one.
  */
-/** Borrowed program-lifetime UTF-8 source location; line and byte column are one-based, with selector zero reserved outside this record. */
+/** Borrowed program-lifetime UTF-8 source location; line and byte column are one-based, with selector zero reserved outside this record. Component contract: [DEBUG-01](../../../spec/implementation/diagnostics.md#debug-01). */
 typedef struct {
     AmaByteView qualified_module;
     AmaByteView physical_path;

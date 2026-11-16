@@ -7,7 +7,7 @@
  */
 #include "internal.h"
 
-/** Find the exact nominal type in the borrowed registry, or return null; no allocation or state changes. */
+/** Find the exact nominal type in the borrowed registry, or return null; no allocation or state changes. Component contract: [TYPE-01](../../../../../spec/language/declarations.md#type-01). */
 const AmaProgramType *ama_program_type(const AmaProgram *program, uint64_t id) {
     for (size_t index = 0; index < program->type_count; index++) {
         const AmaProgramType *type = &program->types[index];

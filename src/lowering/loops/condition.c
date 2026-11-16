@@ -7,14 +7,14 @@
  */
 #include "lowering/control/internal.h"
 #include "planning/storage/frames/internal.h"
-/** Build one explicit caller-side header release path; both truth outcomes drop all header grants. */
+/** Build one explicit caller-side header release path; both truth outcomes drop all header grants. Component contract: [FLOW-04](../../../spec/language/control-flow.md#flow-04), [FLOW-02](../../../spec/language/control-flow.md#flow-02). */
 static ControlNode *release(Lowering *lowering, const SemanticStatement *statement,
     PlannedChain *chain, ControlNode *after) {
     ControlNode *node = lower_prepend(lowering, CONTROL_RELEASE_CHAIN, statement, NULL, after);
     if (node != NULL) { node->chain = chain; node->loop = chain->header; }
     return node;
 }
-/** One root/terminal header owns its own repeat label; handler continuations deliberately retain the incoming break context. */
+/** One root/terminal header owns its own repeat label; handler continuations deliberately retain the incoming break context. Component contract: [FLOW-04](../../../spec/language/control-flow.md#flow-04), [FLOW-02](../../../spec/language/control-flow.md#flow-02). */
 static ControlNode *header(Lowering *lowering, PlannedLoop *loop, ControlNode *after, ControlNode *break_target) {
     const SemanticStatement *statement = loop->statement;
     ControlNode *entry = lower_prepend(lowering, CONTROL_HEADER_ENTER, statement, NULL, NULL);

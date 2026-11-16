@@ -7,14 +7,14 @@
 #include "internal.h"
 #include "../internal.h"
 
-/** Output subtree membership is exact slash-delimited containment under the validated explicit output list. */
+/** Output subtree membership is exact slash-delimited containment under the validated explicit output list. Component contract: [TOOL-03](../../../../spec/implementation/tools-and-conformance.md#tool-03). */
 static bool invalidated(const RelocationStaging *staging, const char *after) {
     for (const RelocationInvalidation *output = staging->invalidations; output != NULL; output = output->next) {
         if (relocation_contains(output->after,after)) { return true; }
     }
     return false;
 }
-/** Classify an actual source/configuration path through retained records; arbitrary C and literal bytes are never searched. */
+/** Classify an actual source/configuration path through retained records; arbitrary C and literal bytes are never searched. Component contract: [TOOL-03](../../../../spec/implementation/tools-and-conformance.md#tool-03). */
 static void roles(RelocationReportedFile *row, const RelocationStaging *staging) {
     row->opaque = true;
     for (const RelocationModule *module = staging->references->preview->modules; module != NULL; module = module->next) {
@@ -25,7 +25,7 @@ static void roles(RelocationReportedFile *row, const RelocationStaging *staging)
     }
     row->invalidated = invalidated(staging,row->after);
 }
-/** Deep-copy every contributing entry; explicit outside outputs have separate rows even when their contents were never parsed. */
+/** Deep-copy every contributing entry; explicit outside outputs have separate rows even when their contents were never parsed. Component contract: [TOOL-03](../../../../spec/implementation/tools-and-conformance.md#tool-03). */
 bool relocation_report_files(RelocationReport *report, const RelocationStaging *staging) {
     RelocationReportedFile **tail = &report->files;
     for (const RelocationStagedFile *file = staging->files; file != NULL; file = file->next) {

@@ -9,7 +9,7 @@
 #include "source/io/buffer/buffer.h"
 _Static_assert(SIZE_MAX <= UINT64_MAX, "Root inventory counts fit their uint64 encoding");
 
-/** Append one fixed-width big-endian count with checked buffer arithmetic. */
+/** Append one fixed-width big-endian count with checked buffer arithmetic. Component contract: [DEP-02](../../../../spec/implementation/compiler.md#dep-02). */
 static SourceStatus number(ProjectInputs *inputs, SourceBuffer *buffer, size_t value) {
     unsigned char bytes[8];
     for (size_t index = 0; index < 8; index++) {
@@ -17,7 +17,7 @@ static SourceStatus number(ProjectInputs *inputs, SourceBuffer *buffer, size_t v
     }
     return source_buffer_append(inputs->arena.allocator, buffer, bytes, sizeof(bytes));
 }
-/** Append one non-null original string with its length prefix; no trimming or path reinterpretation. */
+/** Append one non-null original string with its length prefix; no trimming or path reinterpretation. Component contract: [DEP-02](../../../../spec/implementation/compiler.md#dep-02). */
 static SourceStatus text(ProjectInputs *inputs, SourceBuffer *buffer, const char *value) {
     if (value == NULL) { return SOURCE_INVALID_ARGUMENT; }
     size_t length = strlen(value);
@@ -25,7 +25,7 @@ static SourceStatus text(ProjectInputs *inputs, SourceBuffer *buffer, const char
     return status == SOURCE_OK ? source_buffer_append(inputs->arena.allocator, buffer,
         (const unsigned char *)value, length) : status;
 }
-/** Encode kind, physical root and the complete ordered exclusion list for one configured root. */
+/** Encode kind, physical root and the complete ordered exclusion list for one configured root. Component contract: [DEP-02](../../../../spec/implementation/compiler.md#dep-02). */
 static SourceStatus root(ProjectInputs *inputs, SourceBuffer *buffer, const ModuleRoot *value) {
     if ((value->kind != MODULE_ROOT_PROJECT && value->kind != MODULE_ROOT_STANDARD)
         || (value->excluded_count != 0 && value->excluded == NULL)) { return SOURCE_INVALID_ARGUMENT; }

@@ -8,7 +8,7 @@
 #include "semantic/internal.h"
 
 /** Prove only a direct nonindexed location is the same resolved declaration for forbidden continuation self-copy. Indexed/reference aliases require runtime identity checks, never text equality.
- */
+ * Component contract: [COPY-06](../../../spec/language/values-and-references.md#copy-06). */
 static bool same_direct_storage(const SemanticAccess *receiver, const SemanticSource *source) {
     return receiver != NULL && source->access != NULL
         && receiver->index == NULL && source->access->index == NULL

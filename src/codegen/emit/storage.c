@@ -15,7 +15,7 @@
 /**
  * Write one C storage structure per pool-backed type: declared handles/lists followed by actual
  * native State or a reserved Ama payload byte. No default instance is emitted.
- */
+ * Component contract: [RT-02](../../../spec/implementation/runtime.md#rt-02), [LIST-04](../../../spec/language/lists.md#list-04), [CALL-09](../../../spec/language/calls-and-results.md#call-09), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 bool codegen_emit_storage(NativeScaffold *scaffold, FILE *output) {
     if (fputs("#include \"runtime/program/lists/service.h\"\n"
         "#include \"runtime/program/lists/traversal/traversal.h\"\n", output) == EOF) { return false; }

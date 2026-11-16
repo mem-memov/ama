@@ -7,13 +7,13 @@
 #include "client.h"
 #include "tools/output/json/json.h"
 #include "runtime/program/diagnostics/trace.h"
-/** Every complete input line has one exact finite interpretation; EOF and IO are separate. */
+/** Every complete input line has one exact finite interpretation; EOF and IO are separate. Component contract: [DEBUG-01](../../../spec/implementation/diagnostics.md#debug-01). */
 typedef enum {
     AMA_DEBUG_CLIENT_END, AMA_DEBUG_CLIENT_IO, AMA_DEBUG_CLIENT_INVALID,
     AMA_DEBUG_CLIENT_RUN, AMA_DEBUG_CLIENT_RESUME, AMA_DEBUG_CLIENT_INSPECT,
     AMA_DEBUG_CLIENT_DISPOSE, AMA_DEBUG_CLIENT_QUIT
 } AmaDebugClientCommand;
-/** Borrowed nested enumeration state; each array owns its separator flag. */
+/** Borrowed nested enumeration state; each array owns its separator flag. Component contract: [DEBUG-01](../../../spec/implementation/diagnostics.md#debug-01). */
 typedef struct {
     ToolJsonWriter *writer;
     AmaDebugSession *session;
@@ -21,26 +21,26 @@ typedef struct {
     bool first;
     AmaStatus status;
 } AmaDebugClientOutput;
-/** Consume one complete line without truncation, including an unterminated final line. */
+/** Consume one complete line without truncation, including an unterminated final line. Component contract: [DEBUG-01](../../../spec/implementation/diagnostics.md#debug-01). */
 AmaDebugClientCommand ama_debug_client_read(FILE *);
-/** Serialize exact status code and optional immutable message bytes. */
+/** Serialize exact status code and optional immutable message bytes. Component contract: [DEBUG-01](../../../spec/implementation/diagnostics.md#debug-01). */
 bool ama_debug_client_status(ToolJsonWriter *, AmaStatus);
-/** Serialize all context and local identity fields; emptiness is not liveness. */
+/** Serialize all context and local identity fields; emptiness is not liveness. Component contract: [DEBUG-01](../../../spec/implementation/diagnostics.md#debug-01). */
 bool ama_debug_client_reference(ToolJsonWriter *, AmaContextReference);
-/** Serialize a current occurrence independently of its target. */
+/** Serialize a current occurrence independently of its target. Component contract: [DEBUG-01](../../../spec/implementation/diagnostics.md#debug-01). */
 bool ama_debug_client_membership(ToolJsonWriter *, uint64_t, AmaMembership);
-/** Serialize an exact immutable source row or null. */
+/** Serialize an exact immutable source row or null. Component contract: [DEBUG-01](../../../spec/implementation/diagnostics.md#debug-01). */
 bool ama_debug_client_location(ToolJsonWriter *, const AmaProgramLocation *);
-/** Emit a separator only after a previous array element. */
+/** Emit a separator only after a previous array element. Component contract: [DEBUG-01](../../../spec/implementation/diagnostics.md#debug-01). */
 bool ama_debug_client_next(AmaDebugClientOutput *);
-/** Stream one actual instance and its declared fields, cursors and permitted native view. */
+/** Stream one actual instance and its declared fields, cursors and permitted native view. Component contract: [DEBUG-01](../../../spec/implementation/diagnostics.md#debug-01). */
 bool ama_debug_client_instance(void *, const AmaDebugInstance *);
-/** Stream one declared field, including current list occurrences. */
+/** Stream one declared field, including current list occurrences. Component contract: [DEBUG-01](../../../spec/implementation/diagnostics.md#debug-01). */
 bool ama_debug_client_field(void *, const AmaDebugFieldValue *);
-/** Stream one retained lexical cursor without moving its boundary. */
+/** Stream one retained lexical cursor without moving its boundary. Component contract: [DEBUG-01](../../../spec/implementation/diagnostics.md#debug-01). */
 bool ama_debug_client_cursor(void *, const AmaDebugCursor *);
-/** Preview only registered native types; absent readers remain explicitly unavailable. */
+/** Preview only registered native types; absent readers remain explicitly unavailable. Component contract: [DEBUG-01](../../../spec/implementation/diagnostics.md#debug-01). */
 bool ama_debug_client_native(AmaDebugClientOutput *, const AmaDebugInstance *);
-/** Acquire, stream and release one checked inspection session before returning. */
+/** Acquire, stream and release one checked inspection session before returning. Component contract: [DEBUG-01](../../../spec/implementation/diagnostics.md#debug-01). */
 bool ama_debug_client_inspect(const AmaDebugClientHost *, ToolJsonWriter *, AmaStatus *);
 #endif

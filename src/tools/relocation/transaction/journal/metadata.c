@@ -4,7 +4,7 @@
  * lets recovery validate physical ownership before restoring or removing paths.
  */
 #include "format.h"
-/** Values are explicit integer frames; the corresponding reader must validate target-type round trips and nanosecond ranges. */
+/** Values are explicit integer frames; the corresponding reader must validate target-type round trips and nanosecond ranges. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_metadata(RelocationJournalWriter *writer, const struct stat *metadata) {
     return relocation_journal_unsigned(writer,(uintmax_t)metadata->st_dev)
         && relocation_journal_unsigned(writer,(uintmax_t)metadata->st_ino)

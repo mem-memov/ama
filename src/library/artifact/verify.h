@@ -6,6 +6,6 @@
 #ifndef AMA_LIBRARY_ARTIFACT_VERIFY_H
 #define AMA_LIBRARY_ARTIFACT_VERIFY_H
 #include "package.h"
-/** Inspect raw entry families and the complete isolated public definition set. */
+/** Inspect raw entry families and the complete isolated public definition set. Component contract: [STACK-04](../../../spec/implementation/compiler.md#stack-04). */
 bool library_package_verify(const LibraryBuild *, const LibraryPackageOptions *, FILE *errors);
 #endif

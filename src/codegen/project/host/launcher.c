@@ -10,7 +10,7 @@
 /**
  * Write standalone main that enters once, diagnoses an unhandled root yield, always disposes and
  * returns execution/cleanup status.
- */
+ * Component contract: [RT-16](../../../../spec/implementation/runtime.md#rt-16). */
 bool codegen_emit_launcher(NativeScaffold *scaffold, FILE *output, const ScaffoldType *unused) {
     (void)scaffold;
     (void)unused;

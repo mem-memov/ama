@@ -6,7 +6,7 @@
 #include <string.h>
 #include "internal.h"
 
-/** Compare immutable payload views, treating module consumers as empty content. */
+/** Compare immutable payload views, treating module consumers as empty content. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 static bool same_content(const SourceText *left, const SourceText *right) {
     size_t a = left == NULL ? 0 : source_length(left);
     size_t b = right == NULL ? 0 : source_length(right);

@@ -9,7 +9,7 @@
 #include <string.h>
 #include "runtime/program/internal.h"
 
-/** Allocate/zero a checked nonempty scratch array in the caller arena. Zero or unrepresentable count returns null without allocation. */
+/** Allocate/zero a checked nonempty scratch array in the caller arena. Zero or unrepresentable count returns null without allocation. Component contract: [LIFE-02](../../../../spec/implementation/native-interface.md#life-02). */
 static void *ama_program_recipe_array(SourceArena *arena, size_t count, size_t width) {
     if (count == 0 || count > SIZE_MAX / width) { return NULL; }
     void *items = source_arena_allocate(arena, count * width);
@@ -17,7 +17,7 @@ static void *ama_program_recipe_array(SourceArena *arena, size_t count, size_t w
     return items;
 }
 
-/** Resolve each declared initializer once in source order into owned constructor recipes or copied reference handles. Output recipes borrow sources and the arena; partial scratch remains caller-owned. */
+/** Resolve each declared initializer once in source order into owned constructor recipes or copied reference handles. Output recipes borrow sources and the arena; partial scratch remains caller-owned. Component contract: [LIFE-02](../../../../spec/implementation/native-interface.md#life-02). */
 AmaStatus ama_program_resolve_recipes(AmaProgram *program, SourceArena *arena, AmaHandle current,
     const AmaConstantValue *shared, const AmaProgramSource *sources, size_t source_count,
     AmaFieldKind kind, AmaFieldRecipe *output) {
@@ -56,7 +56,7 @@ AmaStatus ama_program_resolve_recipes(AmaProgram *program, SourceArena *arena, A
     return ama_status_success();
 }
 
-/** Adapt one validated field descriptor to initializer resolution and record its exact diagnostic operation. The program is borrowed through the object type callback context. */
+/** Adapt one validated field descriptor to initializer resolution and record its exact diagnostic operation. The program is borrowed through the object type callback context. Component contract: [LIFE-02](../../../../spec/implementation/native-interface.md#life-02). */
 AmaStatus ama_program_field_recipe(AmaWorld *world, SourceArena *arena, AmaHandle parent,
     size_t field, AmaFieldRecipe *output, void *context) {
     (void)world;

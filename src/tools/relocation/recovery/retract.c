@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include "internal.h"
 
-/** The strict decoder already proved that bytes after the prepared prefix are proper unfinished tokens. */
+/** The strict decoder already proved that bytes after the prepared prefix are proper unfinished tokens. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_recovery_retract(RelocationRecovery *recovery) {
     RelocationTransaction *transaction = &recovery->transaction;
     if (!relocation_transaction_permit(transaction,RELOCATION_IO_JOURNAL,transaction->journal_record)) { return false; }

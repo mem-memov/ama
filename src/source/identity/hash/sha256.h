@@ -16,7 +16,7 @@
  * @param[in] length Exact input byte count, required by the caller to be less than 2^61.
  * @param[in] bytes Borrowed input; null permitted only for zero length.
  * @param[out] digest Caller supplies 32 writable bytes not overlapping input. No allocation or collision assumption.
- */
+ * Component contract: [NAME-02](../../../../spec/implementation/compiler.md#name-02). */
 void identity_sha256(const unsigned char *bytes, size_t length, unsigned char digest[32]);
 
 #endif

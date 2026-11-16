@@ -8,7 +8,7 @@
 #include "../../internal.h"
 #include "../../../internal.h"
 
-/** T110's physical inventory is breadth-first; parents are retained before their children, independently of source activation. */
+/** T110's physical inventory is breadth-first; parents are retained before their children, independently of source activation. Component contract: [TOOL-04](../../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool records(RelocationTransaction *transaction, RelocationTransactionAction *action) {
     const RelocationPreview *preview = transaction->staging->references->preview;
     size_t count = 0;
@@ -29,7 +29,7 @@ static bool records(RelocationTransaction *transaction, RelocationTransactionAct
     }
     return true;
 }
-/** Only private paths are created; directory attributes stay writable until every descendant has been copied. */
+/** Only private paths are created; directory attributes stay writable until every descendant has been copied. Component contract: [TOOL-04](../../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool entry(RelocationTransaction *transaction, RelocationPreparedEntry *prepared) {
     const RelocationStagedFile *file = prepared->file;
     if (S_ISDIR(file->metadata.st_mode)) {
@@ -45,7 +45,7 @@ static bool entry(RelocationTransaction *transaction, RelocationPreparedEntry *p
     if (complete) { prepared->created = true; }
     return complete;
 }
-/** Reverse parent-before-child order finalizes every directory after all of its descendants; no recursive C traversal is used. */
+/** Reverse parent-before-child order finalizes every directory after all of its descendants; no recursive C traversal is used. Component contract: [TOOL-04](../../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_tree(RelocationTransaction *transaction, RelocationTransactionAction *action) {
     if (!records(transaction,action)) { return false; }
     for (size_t index = 0; index < action->tree_count; index++) {

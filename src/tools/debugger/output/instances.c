@@ -4,7 +4,7 @@
  * positions from transient caller links and rejects fabricated history.
  */
 #include "../internal.h"
-/** The caller link is present metadata, never a reconstructed historical call frame. */
+/** The caller link is present metadata, never a reconstructed historical call frame. Component contract: [DEBUG-03](../../../../spec/implementation/diagnostics.md#debug-03). */
 static bool caller(ToolJsonWriter *writer, uint64_t context, AmaReturnLink link) {
     return tool_json_raw(writer, "{\"attached\":") && tool_json_boolean(writer, link.attached)
         && tool_json_raw(writer, ",\"host\":") && tool_json_boolean(writer, link.host)
@@ -14,7 +14,7 @@ static bool caller(ToolJsonWriter *writer, uint64_t context, AmaReturnLink link)
         && tool_json_raw(writer, ",\"call_site\":") && tool_json_unsigned(writer, link.call_site)
         && tool_json_raw(writer, "}");
 }
-/** Each nested array keeps its own separator/error state while borrowing the same exclusive session. */
+/** Each nested array keeps its own separator/error state while borrowing the same exclusive session. Component contract: [DEBUG-03](../../../../spec/implementation/diagnostics.md#debug-03). */
 static bool declarations(AmaDebugClientOutput *output, const AmaDebugInstance *instance) {
     ToolJsonWriter *writer = output->writer;
     AmaDebugClientOutput fields = {.writer=writer, .session=output->session,
@@ -32,7 +32,7 @@ static bool declarations(AmaDebugClientOutput *output, const AmaDebugInstance *i
     return tool_json_raw(writer, "],\"cursors_status\":") && ama_debug_client_status(writer, status)
         && tool_json_raw(writer, ",\"native\":") && ama_debug_client_native(output, instance);
 }
-/** Stream exactly one currently published instance; never recurse through ownership or target references. */
+/** Stream exactly one currently published instance; never recurse through ownership or target references. Component contract: [DEBUG-03](../../../../spec/implementation/diagnostics.md#debug-03). */
 bool ama_debug_client_instance(void *context, const AmaDebugInstance *instance) {
     AmaDebugClientOutput *output = context;
     ToolJsonWriter *writer = output->writer;

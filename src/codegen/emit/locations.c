@@ -12,7 +12,7 @@
 /**
  * Find a declaration by exact symbol identity after the allocated control-selector range. Check
  * increment exhaustion and return zero on missing/failed selection; repeated scans are exact.
- */
+ * Component contract: [DEBUG-01](../../../spec/implementation/diagnostics.md#debug-01), [TYPE-06](../../../spec/language/declarations.md#type-06). */
 size_t codegen_declaration_selector(NativeScaffold *scaffold, const SemanticSymbol *symbol) {
     size_t selector = scaffold->frontend->plan.next_selector;
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
@@ -31,7 +31,7 @@ size_t codegen_declaration_selector(NativeScaffold *scaffold, const SemanticSymb
 /**
  * Write one nonzero selector location using source position and octal-escaped path/type bytes.
  * Missing source emits no row; invalid position or IO fails.
- */
+ * Component contract: [DEBUG-01](../../../spec/implementation/diagnostics.md#debug-01), [TYPE-06](../../../spec/language/declarations.md#type-06). */
 static bool codegen_location(FILE *output, size_t selector, SourceSpan span, const char *role, const SemanticType *type) {
     if (selector == 0) { return false; }
     if (span.source == NULL) { return true; }
@@ -49,7 +49,7 @@ static bool codegen_location(FILE *output, size_t selector, SourceSpan span, con
 /**
  * Emit control and declaration locations in model order, preserving exact operation selectors
  * and source-backed roles. The generated table borrows immutable compiled strings.
- */
+ * Component contract: [DEBUG-01](../../../spec/implementation/diagnostics.md#debug-01), [TYPE-06](../../../spec/language/declarations.md#type-06). */
 bool codegen_emit_locations(NativeScaffold *scaffold, FILE *output) {
     if (fputs("#include \"runtime/program/diagnostics/trace.h\"\nstatic const AmaProgramLocation ama_project_locations[] = {\n", output) == EOF) { return false; }
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {

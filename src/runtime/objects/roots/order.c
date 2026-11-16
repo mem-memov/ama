@@ -12,7 +12,7 @@
 /** Append one completed independent root after publication, without a fallible step.
  * Only public create/clone register roots; private construction and adopted list
  * elements never enter this chain. The world operation guard excludes mutation.
- */
+ * Component contract: [LIFE-05](../../../../spec/implementation/native-interface.md#life-05). */
 void ama_object_root_append(AmaWorld *world, AmaHandle root, AmaPoolCell *cell) {
     cell->root_type_id = root.type_id;
     cell->root_previous = world->last_root;
@@ -26,7 +26,7 @@ void ama_object_root_append(AmaWorld *world, AmaHandle root, AmaPoolCell *cell) 
  * Zero root_type_id identifies unregistered children/private work. Replacement
  * retaining the root slot does not call this operation, even while identity is
  * temporarily invalidated during irreversible old-value cleanup.
- */
+ * Component contract: [LIFE-05](../../../../spec/implementation/native-interface.md#life-05). */
 void ama_object_root_remove(AmaWorld *world, AmaPoolCell *cell) {
     if (cell->root_type_id == 0) { return; }
     if (cell->root_previous != NULL) { cell->root_previous->root_next = cell->root_next; }

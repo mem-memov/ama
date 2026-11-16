@@ -17,7 +17,7 @@ bool codegen_control_jump(FILE *output, bool finish, size_t selector) {
 
 /** Both domains preserve the same checked truth/branch protocol. Only resolved
  * header IR selects the result-owner helper; source spelling is never inspected.
- */
+ * Component contract: [STACK-01](../../../../spec/implementation/compiler.md#stack-01), [ARCH-03](../../../../spec/implementation/compiler.md#arch-03), [FLOW-04](../../../../spec/language/control-flow.md#flow-04). */
 static bool condition(FILE *output, const char *name, size_t yes, size_t no, bool selected) {
     return fprintf(output, "{ bool condition=false; ama_status=ama_program_condition%s(&ama_program,ama_current,&%s_Access_0,&condition);\n"
         "if(ama_status.code!=AMA_OK) goto ama_project_finish;\nif(condition) goto ama_label_%zu; else goto ama_label_%zu; }\n", selected ? "_result" : "", name, yes, no) >= 0;

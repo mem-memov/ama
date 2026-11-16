@@ -26,7 +26,7 @@ ModuleStatus module_load_utf8(ModuleCatalog *catalog, const char *physical,
 }
 
 /** Compare complete logical names and exact device/inode pairs; retain the prior physical path for either ambiguity or alias.
- */
+ * Component contract: [SRC-01](../../../../spec/language/source-and-names.md#src-01). */
 static ModuleStatus check_unique(ModuleCatalog *catalog, const char *physical,
     const char *logical, const struct stat *metadata) {
     for (ModuleSource *other = catalog->first; other != NULL; other = other->next) {

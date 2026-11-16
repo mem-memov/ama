@@ -4,7 +4,7 @@
  * rejected output slots/outcomes and turns admitted execution/transport errors into failed outcomes.
  */
 #include "internal.h"
-/** Emit one explicit operation's exact public signature and pre-state output/input checks. */
+/** Emit one explicit operation's exact public signature and pre-state output/input checks. Component contract: [EMBED-03](../../../spec/implementation/c-library.md#embed-03). */
 static void operation(LibraryCodecs *codecs, const LibraryExport *exported, size_t identity, bool resume) {
     LibraryHeader *writer=&codecs->output;
     const char *prefix=writer->prefix, *name=exported->identity->internal_name;

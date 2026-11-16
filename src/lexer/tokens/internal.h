@@ -7,10 +7,10 @@
 #ifndef AMA_LEXER_TOKENS_INTERNAL_H
 #define AMA_LEXER_TOKENS_INTERNAL_H
 #include "tokens.h"
-/** Record one exact borrowed diagnostic site and close this cursor after failure. */
+/** Record one exact borrowed diagnostic site and close this cursor after failure. Component contract: [SYN-06](../../../spec/language/source-and-names.md#syn-06). */
 bool lex_failure(LexCursor *, size_t, const char *, const char *);
-/** Recognize a maximal complete name or longest fixed punctuation without mutating the cursor. */
+/** Recognize a maximal complete name or longest fixed punctuation without mutating the cursor. Component contract: [SYN-06](../../../spec/language/source-and-names.md#syn-06). */
 bool lex_recognize(LexCursor *, size_t, LexToken *);
-/** Validate the current/previous token's compact or separated join and classify a standalone ampersand's role. */
+/** Validate the current/previous token's compact or separated join and classify a standalone ampersand's role. Component contract: [SYN-06](../../../spec/language/source-and-names.md#syn-06). */
 bool lex_boundary(LexCursor *, const LexToken *, bool *);
 #endif

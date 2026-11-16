@@ -12,7 +12,7 @@
 #include "source/memory/arena.h"
 #include "diagnostics/record/diagnostic.h"
 
-/** Borrow only the allocation/first-error records needed by filesystem phases. */
+/** Borrow only the allocation/first-error records needed by filesystem phases. Component contract: [CABI-06](../../../../../spec/implementation/native-interface.md#cabi-06), [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03). */
 typedef struct {
     SourceArena *arena;
     Diagnostic *error;
@@ -21,43 +21,43 @@ typedef struct {
 /** Borrow a synchronous ownership predicate; it may record a more precise error.
  * The callback/context live through preflight only and are never retained.
  * A non-overwrite policy requires a nonnull callback; overwrite needs none.
- */
+ * Component contract: [CABI-06](../../../../../spec/implementation/native-interface.md#cabi-06), [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03). */
 typedef struct {
     bool overwrite;
     void *context;
     bool (*owns)(void *, const ScaffoldArtifact *);
 } ScaffoldPublicationPolicy;
 
-/** Keep the first borrowed diagnostic and return false without allocating. */
+/** Keep the first borrowed diagnostic and return false without allocating. Component contract: [CABI-06](../../../../../spec/implementation/native-interface.md#cabi-06), [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03). */
 bool scaffold_publication_error(ScaffoldPublicationIO *, DiagnosticCode, const char *, const char *);
 
 /** Arena-owned lock path and exclusive lock-file ownership. The acquisition
  * descriptor stays local and receives one close attempt before return.
  * A close failure still requires lock-file release when acquired.
- */
+ * Component contract: [CABI-06](../../../../../spec/implementation/native-interface.md#cabi-06), [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03). */
 typedef struct {
     const char *path;
     bool acquired;
 } ScaffoldPublicationLock;
 
-/** Create/check ordinary directory prefixes; created directories survive failure. */
+/** Create/check ordinary directory prefixes; created directories survive failure. Component contract: [CABI-06](../../../../../spec/implementation/native-interface.md#cabi-06), [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03). */
 bool scaffold_publication_directories(ScaffoldPublicationIO *, const char *directory);
-/** Acquire an exclusive lock and close its descriptor once; never steal old locks. */
+/** Acquire an exclusive lock and close its descriptor once; never steal old locks. Component contract: [CABI-06](../../../../../spec/implementation/native-interface.md#cabi-06), [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03). */
 bool scaffold_publication_lock(ScaffoldPublicationIO *, const char *directory, ScaffoldPublicationLock *);
-/** Unlink only this acquired lock, even after transaction failure; diagnose errors. */
+/** Unlink only this acquired lock, even after transaction failure; diagnose errors. Component contract: [CABI-06](../../../../../spec/implementation/native-interface.md#cabi-06), [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03). */
 bool scaffold_publication_unlock(ScaffoldPublicationIO *, ScaffoldPublicationLock *);
-/** Check all exact artifact destinations; set existed for existing ordinary files. */
+/** Check all exact artifact destinations; set existed for existing ordinary files. Component contract: [CABI-06](../../../../../spec/implementation/native-interface.md#cabi-06), [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03). */
 bool scaffold_publication_preflight(ScaffoldPublicationIO *, ScaffoldArtifact *, const ScaffoldPublicationPolicy *);
-/** Allocate an arena path and create a unique file; caller owns the returned fd. */
+/** Allocate an arena path and create a unique file; caller owns the returned fd. Component contract: [CABI-06](../../../../../spec/implementation/native-interface.md#cabi-06), [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03). */
 char *scaffold_publication_temporary(ScaffoldPublicationIO *, const char *, const char *, int *);
-/** Prepare a hard-link backup only for an existing destination; cleanup owns it. */
+/** Prepare a hard-link backup only for an existing destination; cleanup owns it. Component contract: [CABI-06](../../../../../spec/implementation/native-interface.md#cabi-06), [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03). */
 bool scaffold_publication_backup(ScaffoldPublicationIO *, ScaffoldArtifact *);
-/** Prepare bytes, permissions and backup; retain paths for cleanup on all errors. */
+/** Prepare bytes, permissions and backup; retain paths for cleanup on all errors. Component contract: [CABI-06](../../../../../spec/implementation/native-interface.md#cabi-06), [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03). */
 bool scaffold_publication_stage(ScaffoldPublicationIO *, ScaffoldArtifact *);
-/** Publish a completely staged artifact and mark published only after success. */
+/** Publish a completely staged artifact and mark published only after success. Component contract: [CABI-06](../../../../../spec/implementation/native-interface.md#cabi-06), [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03). */
 bool scaffold_publication_artifact(ScaffoldPublicationIO *, ScaffoldArtifact *);
 /** Restore published destinations on rollback, preserving backups if restore fails.
  * Other stage/backup removal is best-effort, preserving the primary diagnostic.
- */
+ * Component contract: [CABI-06](../../../../../spec/implementation/native-interface.md#cabi-06), [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03). */
 void scaffold_publication_cleanup(ScaffoldPublicationIO *, ScaffoldArtifact *, bool rollback);
 #endif

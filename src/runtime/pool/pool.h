@@ -33,14 +33,14 @@ typedef struct AmaPoolCell {
     void *preparation_payload;
 } AmaPoolCell;
 
-/** One aligned payload block and its original allocator base; occupied counts private and published reservations. */
+/** One aligned payload block and its original allocator base; occupied counts private and published reservations. Component contract: [RT-02](../../../spec/implementation/runtime.md#rt-02), [LIFE-05](../../../spec/implementation/native-interface.md#life-05). */
 typedef struct {
     unsigned char *memory;
     void *allocation;
     size_t occupied;
 } AmaPoolBlock;
 
-/** Pool-owned block directory and aligned two-bank slot layout. block_count retains historical identity extent; allocated_blocks tracks physical blocks separately. */
+/** Pool-owned block directory and aligned two-bank slot layout. block_count retains historical identity extent; allocated_blocks tracks physical blocks separately. Component contract: [RT-02](../../../spec/implementation/runtime.md#rt-02), [LIFE-05](../../../spec/implementation/native-interface.md#life-05). */
 typedef struct {
     SourceAllocator allocator;
     uint64_t type_id;
@@ -62,35 +62,35 @@ typedef struct {
 /* One pool per executable type. Alignment is explicit; init defaults to max_align_t. Reserved slots
  * are private construction storage; only publish makes their handles accessible.
  * Lookup borrows stable storage until release/disposal, never beyond its lifetime. */
-/** Initialize the pool with max_align_t alignment; extended native alignment must use the explicit aligned operation. */
+/** Initialize the pool with max_align_t alignment; extended native alignment must use the explicit aligned operation. Component contract: [RT-02](../../../spec/implementation/runtime.md#rt-02), [LIFE-05](../../../spec/implementation/native-interface.md#life-05). */
 AmaStatus ama_pool_init(AmaPool *, SourceAllocator, uint64_t type_id,
     size_t payload_size, size_t slots_per_block, uint64_t generation_limit);
-/** Initialize checked two-bank layout using a nonzero nominal ID, power-of-two alignment, slot count and generation limit. Own no payload resource until reservation/construction. */
+/** Initialize checked two-bank layout using a nonzero nominal ID, power-of-two alignment, slot count and generation limit. Own no payload resource until reservation/construction. Component contract: [RT-02](../../../spec/implementation/runtime.md#rt-02), [LIFE-05](../../../spec/implementation/native-interface.md#life-05). */
 AmaStatus ama_pool_init_aligned(AmaPool *, SourceAllocator, uint64_t type_id,
     size_t payload_size, size_t alignment, size_t slots_per_block, uint64_t generation_limit);
-/** Free all remaining pool allocations and reset metadata. The caller must already have finalized every live payload; this operation invokes no destructors. */
+/** Free all remaining pool allocations and reset metadata. The caller must already have finalized every live payload; this operation invokes no destructors. Component contract: [RT-02](../../../spec/implementation/runtime.md#rt-02), [LIFE-05](../../../spec/implementation/native-interface.md#life-05). */
 void ama_pool_dispose(AmaPool *);
-/** Pop or grow a free slot, preserve its identity generation and reset private metadata/banks. Publish handle/cell outputs only on success; no native hook runs. */
+/** Pop or grow a free slot, preserve its identity generation and reset private metadata/banks. Publish handle/cell outputs only on success; no native hook runs. Component contract: [RT-02](../../../spec/implementation/runtime.md#rt-02), [LIFE-05](../../../spec/implementation/native-interface.md#life-05). */
 AmaStatus ama_pool_reserve(AmaPool *, AmaHandle *, AmaPoolCell **);
-/** Validate empty/type/bounds/occupancy/generation and, for public access, live identity before publishing the borrowed cell output. Reserved access is trusted private-phase authority. */
+/** Validate empty/type/bounds/occupancy/generation and, for public access, live identity before publishing the borrowed cell output. Reserved access is trusted private-phase authority. Component contract: [RT-02](../../../spec/implementation/runtime.md#rt-02), [LIFE-05](../../../spec/implementation/native-interface.md#life-05). */
 AmaStatus ama_pool_lookup(const AmaPool *, AmaHandle, bool reserved, AmaPoolCell **);
-/** Borrow the active bank, or explicit private preparation payload during construction; valid cell/layout preconditions are supplied by the caller. */
+/** Borrow the active bank, or explicit private preparation payload during construction; valid cell/layout preconditions are supplied by the caller. Component contract: [RT-02](../../../spec/implementation/runtime.md#rt-02), [LIFE-05](../../../spec/implementation/native-interface.md#life-05). */
 void *ama_pool_payload(const AmaPool *, AmaPoolCell *);
-/** Borrow the inactive replacement bank without changing active storage. It stages lifecycle replacement, never ordinary execution state. */
+/** Borrow the inactive replacement bank without changing active storage. It stages lifecycle replacement, never ordinary execution state. Component contract: [RT-02](../../../spec/implementation/runtime.md#rt-02), [LIFE-05](../../../spec/implementation/native-interface.md#life-05). */
 void *ama_pool_spare_payload(const AmaPool *, AmaPoolCell *);
-/** Require an occupied private slot with complete Live lifecycle. Set public identity live and service Ready; increment live count once. */
+/** Require an occupied private slot with complete Live lifecycle. Set public identity live and service Ready; increment live count once. Component contract: [RT-02](../../../spec/implementation/runtime.md#rt-02), [LIFE-05](../../../spec/implementation/native-interface.md#life-05). */
 AmaStatus ama_pool_publish(AmaPool *, AmaHandle);
-/** Resolve a public handle, clear its identity live bit and decrement live count before resource cleanup. */
+/** Resolve a public handle, clear its identity live bit and decrement live count before resource cleanup. Component contract: [RT-02](../../../spec/implementation/runtime.md#rt-02), [LIFE-05](../../../spec/implementation/native-interface.md#life-05). */
 AmaStatus ama_pool_invalidate(AmaPool *, AmaHandle);
-/** Require invalidated, inactive Fresh/Finalized storage. Advance generation before reuse or permanently retire at exhaustion; reject live or active-cleanup release. */
+/** Require invalidated, inactive Fresh/Finalized storage. Advance generation before reuse or permanently retire at exhaustion; reject live or active-cleanup release. Component contract: [RT-02](../../../spec/implementation/runtime.md#rt-02), [LIFE-05](../../../spec/implementation/native-interface.md#life-05). */
 AmaStatus ama_pool_release(AmaPool *, AmaHandle);
-/** Synchronous published-slot visitor; false ends enumeration without mutating the pool. */
+/** Synchronous published-slot visitor; false ends enumeration without mutating the pool. Component contract: [RT-02](../../../spec/implementation/runtime.md#rt-02), [LIFE-05](../../../spec/implementation/native-interface.md#life-05). */
 typedef bool (*AmaPoolVisitor)(void *, AmaHandle, const AmaPoolCell *);
 /** Stream current live published identities under the caller's exclusive pool/context authority.
  * No native payload, constructor or acquisition is touched; holes and private reservations are skipped.
- */
+ * Component contract: [RT-02](../../../spec/implementation/runtime.md#rt-02), [LIFE-05](../../../spec/implementation/native-interface.md#life-05). */
 AmaStatus ama_pool_visit(const AmaPool *, AmaPoolVisitor, void *);
-/** Free every entirely unoccupied block, including before live later blocks, and retain null directory history forever. Report released block count; live payload addresses and all old identity exclusions remain unchanged. */
+/** Free every entirely unoccupied block, including before live later blocks, and retain null directory history forever. Report released block count; live payload addresses and all old identity exclusions remain unchanged. Component contract: [RT-02](../../../spec/implementation/runtime.md#rt-02), [LIFE-05](../../../spec/implementation/native-interface.md#life-05). */
 AmaStatus ama_pool_reclaim(AmaPool *, size_t *released);
 
 #endif

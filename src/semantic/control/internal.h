@@ -7,8 +7,8 @@
 #ifndef AMA_SEMANTIC_CONTROL_INTERNAL_H
 #define AMA_SEMANTIC_CONTROL_INTERNAL_H
 #include "semantic/internal.h"
-/** Resolve a caller or parent-result terminal predicate, requiring its own native condition capability and recording the complete restart root. */
+/** Resolve a caller or parent-result terminal predicate, requiring its own native condition capability and recording the complete restart root. Component contract: [FLOW-04](../../../spec/language/control-flow.md#flow-04), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 bool semantic_control_condition(SemanticProgram *, SemanticType *, SemanticStatement *);
-/** Link a traversal to its exact previously typed collection/binder role; missing metadata is an explicit invalid-program failure. */
+/** Link a traversal to its exact previously typed collection/binder role; missing metadata is an explicit invalid-program failure. Component contract: [FLOW-04](../../../spec/language/control-flow.md#flow-04), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 bool semantic_control_traversal(SemanticProgram *, SemanticType *, SemanticStatement *);
 #endif

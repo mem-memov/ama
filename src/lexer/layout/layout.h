@@ -11,28 +11,28 @@
 #include "source/memory/arena.h"
 #include "diagnostics/record/diagnostic.h"
 
-/** Physical line categories; input literals retain distinct code and data view bounds. */
+/** Physical line categories; input literals retain distinct code and data view bounds. Component contract: [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
 typedef enum {
     LINE_BLANK, LINE_COMMENT, LINE_CODE, LINE_LITERAL, LINE_INPUT_LITERAL
 } LayoutKind;
-/** Exact physical terminator kind; absent final newline is not fabricated. */
+/** Exact physical terminator kind; absent final newline is not fabricated. Component contract: [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
 typedef enum { ENDING_NONE, ENDING_LF, ENDING_CRLF } LayoutEnding;
-/** Arena-owned physical line node with original spans and semantic one-space indentation count. */
+/** Arena-owned physical line node with original spans and semantic one-space indentation count. Component contract: [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
 typedef struct LayoutLine {
     struct LayoutLine *next;
     SourceSpan physical;
     SourceSpan code;
     SourceSpan payload;
-    /** Exact comment including its leading separator/indentation; absent for literal payloads and uncommented code. */
+    /** Exact comment including its leading separator/indentation; absent for literal payloads and uncommented code. Component contract: [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
     SourceSpan comment;
     size_t indentation;
     LayoutKind kind;
     LayoutEnding ending;
 } LayoutLine;
 
-/** Physical reading/validation outcomes, with exact borrowed diagnostic context on failure. */
+/** Physical reading/validation outcomes, with exact borrowed diagnostic context on failure. Component contract: [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
 typedef enum { LAYOUT_OK, LAYOUT_INVALID, LAYOUT_OUT_OF_MEMORY } LayoutStatus;
-/** Owner of line nodes and a borrowed immutable source; dependent parsers must finish before destruction. */
+/** Owner of line nodes and a borrowed immutable source; dependent parsers must finish before destruction. Component contract: [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
 typedef struct {
     SourceArena arena;
     const SourceText *source;
@@ -45,20 +45,20 @@ typedef struct {
  * layout until destroy. Reading validates global UTF-8/TAB/line-ending rules.
  * Active code joins and structural-region checks use lexer/tokens independently. */
 /** Initialize empty line storage; allocator authority outlives the layout.
- */
+ * Component contract: [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
 void layout_init(SourceLayout *layout, SourceAllocator allocator);
 /** Release complete or failed-read line records. Source bytes remain borrowed and owned elsewhere.
- */
+ * Component contract: [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
 void layout_destroy(SourceLayout *layout);
 /** Read physical Ama lines after global UTF-8/TAB/line-ending validation, retaining untouched payload/endings. Strict active grammar is separate. Partial nodes remain owned on failure.
- */
+ * Component contract: [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
 LayoutStatus layout_read(SourceLayout *layout, const SourceText *source);
 /* ABI | is a binding symbol, never a literal-data boundary. */
 /** Read the same physical line structure with literal classification disabled: ABI | is a marker, not a data boundary.
- */
+ * Component contract: [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
 LayoutStatus layout_read_abi(SourceLayout *layout, const SourceText *source);
 /** Compare a valid borrowed span with exact NUL-terminated bytes, without normalization or source mutation.
- */
+ * Component contract: [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
 bool layout_text_is(SourceSpan span, const char *text);
 
 #endif

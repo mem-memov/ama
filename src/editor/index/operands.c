@@ -4,7 +4,7 @@
  * [COMP-02](../../../spec/implementation/compiler.md#comp-02) reuses the resolved graph.
  */
 #include "../analysis/internal.h"
-/** Index operands form a finite single-successor chain, so no recursive C walk is needed. */
+/** Index operands form a finite single-successor chain, so no recursive C walk is needed. Component contract: [CONST-02](../../../spec/language/declarations.md#const-02), [COMP-02](../../../spec/implementation/compiler.md#comp-02). */
 bool editor_index_access(EditorAnalysis *analysis, const SemanticAccess *access) {
     for (; access != NULL; access = access->index) {
         if (!editor_index_add(analysis, access->syntax->name, access->symbol, access->symbol->type, false)) { return false; }
@@ -14,7 +14,7 @@ bool editor_index_access(EditorAnalysis *analysis, const SemanticAccess *access)
 /** Literal/self sources have no named target. Synthetic output transfers have no source syntax;
  * their actual callee label/caller receiver are indexed by the binding instead.
  * Qualified namespace and member keep distinct exact spans.
- */
+ * Component contract: [CONST-02](../../../spec/language/declarations.md#const-02), [COMP-02](../../../spec/implementation/compiler.md#comp-02). */
 bool editor_index_source(EditorAnalysis *analysis, const SemanticSource *source) {
     if (source == NULL || source->syntax == NULL) { return true; }
     if (!editor_index_access(analysis, source->access)) { return false; }

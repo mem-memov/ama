@@ -10,7 +10,7 @@
 #include "internal.h"
 
 /** Add the exact owner-to-required-value edge with original read site; allocation failure remains graph/semantic-owned.
- */
+ * Component contract: [CONST-01](../../../spec/language/declarations.md#const-01). */
 static bool require_constant(SemanticProgram *program, SemanticSymbol *owner,
     SemanticSymbol *target, SourceSpan site) {
     return dependency_edge(&program->constants, semantic_constant_vertex(&program->constants, owner),

@@ -8,7 +8,7 @@
 #include <stdint.h>
 #include "runtime/objects/internal.h"
 
-/** Validate parent ownership, capability and availability before appending one protection record. Preserve prior service state; same-epoch duplicate ownership fails, earlier authorized copy protection may be reused. */
+/** Validate parent ownership, capability and availability before appending one protection record. Preserve prior service state; same-epoch duplicate ownership fails, earlier authorized copy protection may be reused. Component contract: [COPY-07](../../../../spec/language/values-and-references.md#copy-07). */
 static AmaStatus ama_tree_protect(AmaObjectOperation *operation, AmaHandle handle, AmaHandle parent, bool copy) {
     AmaObjectType *type = NULL;
     AmaPoolCell *cell = NULL;
@@ -52,7 +52,7 @@ static AmaStatus ama_tree_protect(AmaObjectOperation *operation, AmaHandle handl
     return ama_status_success();
 }
 
-/** Protect the complete initialized owned tree before hooks or destruction. Follow ownership only, check declared copy capability and nonwrapping epochs; caller unprotects partial records on failure. */
+/** Protect the complete initialized owned tree before hooks or destruction. Follow ownership only, check declared copy capability and nonwrapping epochs; caller unprotects partial records on failure. Component contract: [COPY-07](../../../../spec/language/values-and-references.md#copy-07). */
 AmaStatus ama_object_preflight(AmaObjectOperation *operation, AmaHandle root, bool copy, bool continuation) {
     AmaObjectType *type;
     AmaPoolCell *cell;
@@ -88,7 +88,7 @@ AmaStatus ama_object_preflight(AmaObjectOperation *operation, AmaHandle root, bo
     return copy && continuation ? ama_object_control_preflight(operation, root) : ama_status_success();
 }
 
-/** Restore only records that own restoration authority and still identify the same occupied generation; never resurrect released or replaced identities. */
+/** Restore only records that own restoration authority and still identify the same occupied generation; never resurrect released or replaced identities. Component contract: [COPY-07](../../../../spec/language/values-and-references.md#copy-07). */
 void ama_object_unprotect(AmaObjectOperation *operation) {
     for (AmaObjectProtection *record = operation->protected_first; record != NULL; record = record->next) {
         if (record->restore && record->cell->occupied

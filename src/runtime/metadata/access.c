@@ -7,7 +7,7 @@
  */
 #include "service.h"
 
-/** Check a borrowed service record for entry/resume/read eligibility without mutation. Busy states refuse, and inconsistent ready/yielded metadata is technical failure. */
+/** Check a borrowed service record for entry/resume/read eligibility without mutation. Busy states refuse, and inconsistent ready/yielded metadata is technical failure. Component contract: [RT-04](../../../spec/implementation/runtime.md#rt-04). */
 AmaStatus ama_service_access(const AmaServiceState *service, AmaAccessMode mode) {
     if (mode < AMA_ACCESS_ENTRY || mode > AMA_ACCESS_READ) {
         return ama_status_make(AMA_INVALID_STATE, NULL, 0);

@@ -6,7 +6,7 @@
  * resolves lexical locals before module fields and forbids construction-time local access.
  */
 #include "../internal.h"
-/** Resolve one base name after its actual occurrence is reached; a current inference cannot depend on itself. */
+/** Resolve one base name after its actual occurrence is reached; a current inference cannot depend on itself. Component contract: [TYPE-06](../../../../spec/language/declarations.md#type-06), [NAME-06](../../../../spec/language/declarations.md#name-06). */
 SemanticSymbol *inference_name(Inference *inference, SourceSpan name, SourceSpan site, bool construction) {
     SemanticSymbol *symbol = semantic_local_at(inference->type, name, site);
     if (symbol != NULL) {

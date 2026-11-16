@@ -8,7 +8,7 @@
 #include "../internal.h"
 #include "../../staging/internal.h"
 
-/** Device/inode/type identify an owned renamed object; rename-induced change times are not mistaken for replacement. */
+/** Device/inode/type identify an owned renamed object; rename-induced change times are not mistaken for replacement. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 RelocationPathState relocation_transaction_probe(RelocationTransaction *transaction, const char *path, const struct stat *expected) {
     struct stat metadata;
     if (lstat(path,&metadata) != 0) {
@@ -20,7 +20,7 @@ RelocationPathState relocation_transaction_probe(RelocationTransaction *transact
         && (metadata.st_mode&S_IFMT) == (expected->st_mode&S_IFMT)) { return RELOCATION_PATH_EXPECTED; }
     return RELOCATION_PATH_OTHER;
 }
-/** Original regular-file verification uses no allocation; a changed source is never backed up as if it were the planned original. */
+/** Original regular-file verification uses no allocation; a changed source is never backed up as if it were the planned original. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_original(RelocationTransaction *transaction, const RelocationTransactionAction *action) {
     struct stat metadata;
     if (lstat(action->path,&metadata) != 0 || !relocation_staging_metadata(&metadata,&action->original_metadata)) {

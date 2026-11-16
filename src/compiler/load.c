@@ -13,7 +13,7 @@
 /**
  * Require no prior attempt; load the complete exact project closure and retain its diagnostic on
  * failure. This function neither emits nor runs native code.
- */
+ * Component contract: [COMP-01](../../spec/implementation/compiler.md#comp-01), [DEP-03](../../spec/implementation/compiler.md#dep-03). */
 bool compiler_frontend_load_required(CompilerFrontend *frontend, const ModuleRoot *roots,
     size_t count, const char *entry, const char *const *required, size_t required_count) {
     assert(!frontend->attempted);
@@ -25,7 +25,7 @@ bool compiler_frontend_load_required(CompilerFrontend *frontend, const ModuleRoo
     return compiler_frontend_capture(frontend, roots, count);
 }
 
-/** Track original or explicit candidate source bytes through the same sealed input graph. */
+/** Track original or explicit candidate source bytes through the same sealed input graph. Component contract: [COMP-01](../../spec/implementation/compiler.md#comp-01), [DEP-03](../../spec/implementation/compiler.md#dep-03). */
 bool compiler_frontend_capture(CompilerFrontend *frontend, const ModuleRoot *roots, size_t count) {
     SourceStatus captured = project_inputs_capture(&frontend->inputs, &frontend->project, roots, count);
     if (captured != SOURCE_OK) {
@@ -40,7 +40,7 @@ bool compiler_frontend_capture(CompilerFrontend *frontend, const ModuleRoot *roo
     return compiler_frontend_input(frontend, "entry policy", &mode, 1);
 }
 
-/** Load the ordinary single-entry closure through the same exact required-module path. */
+/** Load the ordinary single-entry closure through the same exact required-module path. Component contract: [COMP-01](../../spec/implementation/compiler.md#comp-01), [DEP-03](../../spec/implementation/compiler.md#dep-03). */
 bool compiler_frontend_load(CompilerFrontend *frontend, const ModuleRoot *roots,
     size_t count, const char *entry) {
     return compiler_frontend_load_required(frontend, roots, count, entry, NULL, 0);

@@ -5,7 +5,7 @@
  */
 #include "../internal.h"
 
-/** Empty records are valid; no list is unbounded and no scalar silently becomes a list. */
+/** Empty records are valid; no list is unbounded and no scalar silently becomes a list. Component contract: [PAR-03](../../../../spec/language/async-and-parallelism.md#par-03). */
 AmaStatus ama_native_message_schema_check(const AmaNativeMessageSchema *schema) {
     if (schema == NULL || schema->name.data == NULL || schema->name.length == 0
         || schema->version == 0 || schema->maximum_wire_bytes == 0

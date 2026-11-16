@@ -21,7 +21,7 @@
 
 /** Record the first context-local failure before synchronous reporting. Other contexts own
  * different status/program records. The callback receives no implicit execution authority.
- */
+ * Component contract: [RT-01](../../../../spec/implementation/runtime.md#rt-01), [CONST-02](../../../../spec/language/declarations.md#const-02), [ERROR-03](../../../../spec/implementation/diagnostics.md#error-03), [LIST-13](../../../../spec/language/lists.md#list-13), [FLOW-05](../../../../spec/language/lists.md#flow-05), [CONT-04](../../../../spec/language/continuations.md#cont-04), [EMBED-06](../../../../spec/implementation/c-library.md#embed-06). */
 static void context_report(void *owner, AmaStatus status) {
     AmaContext *context = owner;
     status = ama_status_checked(status);
@@ -38,7 +38,7 @@ static void context_report(void *owner, AmaStatus status) {
 
 /** Allocate one checked zero-initialized arena array. Existing scratch remains owned on failure;
  * empty arrays need no allocation. This helper serves only context descriptor construction.
- */
+ * Component contract: [RT-01](../../../../spec/implementation/runtime.md#rt-01), [CONST-02](../../../../spec/language/declarations.md#const-02), [ERROR-03](../../../../spec/implementation/diagnostics.md#error-03), [LIST-13](../../../../spec/language/lists.md#list-13), [FLOW-05](../../../../spec/language/lists.md#flow-05), [CONT-04](../../../../spec/language/continuations.md#cont-04), [EMBED-06](../../../../spec/implementation/c-library.md#embed-06). */
 static void *context_array(SourceArena *arena, size_t count, size_t width, AmaStatus *status) {
     if (status->code != AMA_OK || count == 0) { return NULL; }
     if (count > SIZE_MAX / width) {
@@ -53,7 +53,7 @@ static void *context_array(SourceArena *arena, size_t count, size_t width, AmaSt
 
 /** Install all cleanup-visible array owners before the first type validation or native hook.
  * Every constant storage pointer is valid even when only an earlier construction prefix exists.
- */
+ * Component contract: [RT-01](../../../../spec/implementation/runtime.md#rt-01), [CONST-02](../../../../spec/language/declarations.md#const-02), [ERROR-03](../../../../spec/implementation/diagnostics.md#error-03), [LIST-13](../../../../spec/language/lists.md#list-13), [FLOW-05](../../../../spec/language/lists.md#flow-05), [CONT-04](../../../../spec/language/continuations.md#cont-04), [EMBED-06](../../../../spec/implementation/c-library.md#embed-06). */
 static AmaStatus context_arrays(AmaContext *context, const AmaContextDefinition *definition,
     AmaProgramType **mutable_types) {
     AmaStatus status = ama_status_success();
@@ -85,7 +85,7 @@ static AmaStatus context_arrays(AmaContext *context, const AmaContextDefinition 
 
 /** Validate/initialize each private nominal pool and bind declaration resolution to this
  * context's program. No pool capacity or implicit root instance is constructed here.
- */
+ * Component contract: [RT-01](../../../../spec/implementation/runtime.md#rt-01), [CONST-02](../../../../spec/language/declarations.md#const-02), [ERROR-03](../../../../spec/implementation/diagnostics.md#error-03), [LIST-13](../../../../spec/language/lists.md#list-13), [FLOW-05](../../../../spec/language/lists.md#flow-05), [CONT-04](../../../../spec/language/continuations.md#cont-04), [EMBED-06](../../../../spec/implementation/c-library.md#embed-06). */
 static AmaStatus context_types(AmaContext *context, const AmaContextDefinition *definition,
     AmaProgramType *program_types) {
     for (size_t index = 0; index < definition->type_count; index++) {
@@ -115,7 +115,7 @@ static AmaStatus context_types(AmaContext *context, const AmaContextDefinition *
 
 /** Prepare safely destructible private ownership, then construct constants exactly once.
  * Publication is a registry operation; this phase neither issues a host token nor executes code.
- */
+ * Component contract: [RT-01](../../../../spec/implementation/runtime.md#rt-01), [CONST-02](../../../../spec/language/declarations.md#const-02), [ERROR-03](../../../../spec/implementation/diagnostics.md#error-03), [LIST-13](../../../../spec/language/lists.md#list-13), [FLOW-05](../../../../spec/language/lists.md#flow-05), [CONT-04](../../../../spec/language/continuations.md#cont-04), [EMBED-06](../../../../spec/implementation/c-library.md#embed-06). */
 AmaStatus ama_context_prepare(AmaContext *context, const AmaContextDefinition *definition,
     SourceAllocator allocator) {
     atomic_init(&context->active, false);

@@ -6,7 +6,7 @@
  */
 #include "../internal.h"
 
-/** No messages exist in a failed construction prefix; release only allocated metadata. */
+/** No messages exist in a failed construction prefix; release only allocated metadata. Component contract: [PAR-04](../../../../spec/language/async-and-parallelism.md#par-04), [EMBED-06](../../../../spec/implementation/c-library.md#embed-06). */
 static void channel_creation_discard(AmaNativeChannel *channel, AmaNativeCodeLease *code) {
     if (channel != NULL) {
         free(channel->cells);
@@ -17,7 +17,7 @@ static void channel_creation_discard(AmaNativeChannel *channel, AmaNativeCodeLea
     ama_native_code_drop(code);
 }
 
-/** Schema/provider views expire after the complete declaration is copied privately. */
+/** Schema/provider views expire after the complete declaration is copied privately. Component contract: [PAR-04](../../../../spec/language/async-and-parallelism.md#par-04), [EMBED-06](../../../../spec/implementation/c-library.md#embed-06). */
 AmaStatus ama_native_channel_create(const AmaNativeMessageSchema *schema, size_t maximum_messages,
     size_t maximum_bytes, const AmaNativeCodeProvider *provider, AmaNativeChannelSender *sender,
     AmaNativeChannelReceiver *receiver) {

@@ -15,7 +15,7 @@
  * client borrows. execute returns a valid status with program-lifetime message
  * storage and a context-qualified root, or an empty root on failure. dispose
  * must be idempotent, including an uninitialized host.
- */
+ * Component contract: [DEBUG-03](../../../spec/implementation/diagnostics.md#debug-03), [RT-16](../../../spec/implementation/runtime.md#rt-16). */
 typedef struct {
     void *context;
     AmaContextOutcome (*execute)(void *, AmaAccessMode);
@@ -30,6 +30,6 @@ typedef struct {
  * after failed output; release each inspection session before flushing. Streams
  * and host are borrowed, never closed or retained. No client heap is allocated.
  * Null streams or missing host callbacks reject before any host callback.
- */
+ * Component contract: [DEBUG-03](../../../spec/implementation/diagnostics.md#debug-03), [RT-16](../../../spec/implementation/runtime.md#rt-16). */
 int ama_debug_client_run(const AmaDebugClientHost *, FILE *, FILE *, FILE *);
 #endif

@@ -4,7 +4,7 @@
  * never infers rollback from a failed output write after commit.
  */
 #include "internal.h"
-/** Recovery uses persisted file roles rather than applying or inventing a second set of source edits. */
+/** Recovery uses persisted file roles rather than applying or inventing a second set of source edits. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool driver_relocation_edits(ToolJsonWriter *writer, const RelocationReferences *references) {
     if (references == NULL || !references->ready) { return tool_json_raw(writer,"null"); }
     if (!tool_json_raw(writer,"[")) { return false; }
@@ -17,12 +17,12 @@ bool driver_relocation_edits(ToolJsonWriter *writer, const RelocationReferences 
     }
     return tool_json_raw(writer,"]");
 }
-/** Failure records remain available through the operation owner's lifetime; absent causes are explicitly null. */
+/** Failure records remain available through the operation owner's lifetime; absent causes are explicitly null. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool error(ToolJsonWriter *writer, const Diagnostic *diagnostic) {
     return diagnostic == NULL || diagnostic->message == NULL ? tool_json_raw(writer,"null")
         : tool_source_diagnostic(writer,diagnostic,false);
 }
-/** A response can describe an incomplete or committed operation even when process success cannot be acknowledged. */
+/** A response can describe an incomplete or committed operation even when process success cannot be acknowledged. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool driver_relocation_result(ToolJsonWriter *writer, const char *command, bool success, RelocationStatus status, const char *state, bool known, bool committed,
     bool finished, const RelocationReport *report, const RelocationReferences *references, const char *journal,
     const Diagnostic *primary, const Diagnostic *cleanup) {

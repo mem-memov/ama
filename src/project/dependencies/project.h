@@ -11,28 +11,28 @@
 #include "ast/ast.h"
 #include "diagnostics/adapters/adapters.h"
 
-/** Required-closure statuses distinguish source catalog, draft, syntax, allocation and entry failures. */
+/** Required-closure statuses distinguish source catalog, draft, syntax, allocation and entry failures. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 typedef enum {
     PROJECT_OK, PROJECT_CATALOG_ERROR, PROJECT_MISSING, PROJECT_DRAFT,
     PROJECT_SYNTAX_ERROR, PROJECT_OUT_OF_MEMORY, PROJECT_INVALID_ENTRY
 } ProjectStatus;
-/** Registry admission state; loading records exist before parsing to terminate module cycles. */
+/** Registry admission state; loading records exist before parsing to terminate module cycles. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 typedef enum { PROJECT_MODULE_LOADING, PROJECT_MODULE_READY } ProjectModuleState;
 /**
  * Forward name for one exact project-owned loaded module, permitting reference cycles without
  * recursive C type expansion.
- */
+ * Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 typedef struct ProjectModule ProjectModule;
-/** Project-owned exact path edge and original request site; target shares the unique module record. */
+/** Project-owned exact path edge and original request site; target shares the unique module record. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 typedef struct ProjectDependency {
     struct ProjectDependency *next;
     SourceSpan requirement;
     const char *logical_path;
     ProjectModule *target;
-    /** A fixed language dependency retains its requiring site, which is not a written module-path span. */
+    /** A fixed language dependency retains its requiring site, which is not a written module-path span. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
     bool implicit;
 } ProjectDependency;
-/** Project-owned AST plus first-discovery requester context and ordered dependencies; source bytes belong to the catalog. */
+/** Project-owned AST plus first-discovery requester context and ordered dependencies; source bytes belong to the catalog. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 struct ProjectModule {
     ProjectModule *next;
     const ModuleSource *source;
@@ -43,7 +43,7 @@ struct ProjectModule {
     ProjectDependency *first;
     ProjectDependency *last;
 };
-/** Closure owner of catalog bytes, module ASTs, registry/work records and diagnostic storage. */
+/** Closure owner of catalog bytes, module ASTs, registry/work records and diagnostic storage. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 typedef struct {
     ModuleCatalog catalog;
     SourceArena arena;
@@ -63,30 +63,30 @@ typedef struct {
  * Discovery accepts module cycles, not a proof of layout/initialization legality.
  * The filesystem must remain stable during catalog construction. */
 /** Initialize owned catalog/project arenas with explicit borrowed allocator authority.
- */
+ * Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 void project_init(Project *project, SourceAllocator allocator);
 /** Destroy every complete/failed module AST before catalog bytes and project arena. All project/diagnostic views expire.
- */
+ * Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 void project_destroy(Project *project);
 /** Load one executable entry closure once from stable configured roots; return an explicit status without publishing partial success.
- */
+ * Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 ProjectStatus project_load(Project *project, const ModuleRoot *roots,
     size_t root_count, const char *entry);
 /** Load entry plus an explicit finite list of additionally required modules, sharing each registry record. Roots/path arrays are borrowed only during load.
- */
+ * Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 ProjectStatus project_load_required(Project *project, const ModuleRoot *roots,
     size_t root_count, const char *entry, const char *const *required, size_t required_count);
 /** Load from this owner's already built immutable catalog. The caller may have installed
  * exact copied in-memory source edits before parsing; the ordinary parser/registry/dependency
  * pipeline is reused. No source/AST records may have been registered yet.
- */
+ * Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 ProjectStatus project_load_catalog(Project *, const char *entry, const char *const *required, size_t required_count);
 /** Load a finite explicit set from this owner's complete catalog without an executable entry.
  * Empty and constants-only sets are valid analysis domains; ordinary parsing/dependency rules remain unchanged.
- */
+ * Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 ProjectStatus project_load_catalog_set(Project *, const char *const *required, size_t required_count);
 /** Return an exact borrowed module only from a valid completed closure, otherwise null. No lookup normalizes or invents a module path.
- */
+ * Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 const ProjectModule *project_find(const Project *project, const char *logical_path);
 
 #endif

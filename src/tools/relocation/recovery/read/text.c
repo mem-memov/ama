@@ -6,7 +6,7 @@
 #include <string.h>
 #include "../internal.h"
 
-/** A failed reader prefix owns its error source through recovery destruction. */
+/** A failed reader prefix owns its error source through recovery destruction. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_invalid(RelocationJournalReader *reader, const char *message) {
     RelocationTransaction *transaction = &reader->recovery->transaction;
     relocation_transaction_fail(transaction,RELOCATION_INVALID_JOURNAL,message,NULL);
@@ -17,7 +17,7 @@ bool relocation_journal_invalid(RelocationJournalReader *reader, const char *mes
     }
     return false;
 }
-/** Length is checked against actual remaining bytes before allocating or moving the cursor. */
+/** Length is checked against actual remaining bytes before allocating or moving the cursor. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool length(RelocationJournalReader *reader, size_t *size) {
     uintmax_t value;
     if (!relocation_journal_read_unsigned(reader,&value)) { return false; }
@@ -28,7 +28,7 @@ static bool length(RelocationJournalReader *reader, size_t *size) {
     *size = (size_t)value;
     return true;
 }
-/** Text records must remain C strings: embedded NUL cannot silently truncate an authorized filesystem path. */
+/** Text records must remain C strings: embedded NUL cannot silently truncate an authorized filesystem path. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_read_text(RelocationJournalReader *reader, SourceArena *arena, const char **output) {
     size_t size;
     if (!length(reader,&size)) { return false; }
@@ -46,14 +46,14 @@ bool relocation_journal_read_text(RelocationJournalReader *reader, SourceArena *
     *output = owned;
     return true;
 }
-/** Presence is explicit even when a present field's byte length is zero. */
+/** Presence is explicit even when a present field's byte length is zero. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_read_nullable(RelocationJournalReader *reader, SourceArena *arena, const char **output) {
     bool present;
     if (!relocation_journal_read_boolean(reader,&present)) { return false; }
     if (!present) { *output = NULL; return true; }
     return relocation_journal_read_text(reader,arena,output);
 }
-/** SourceManager copies exact opaque bytes and the diagnostic path, independent of the journal reader's source. */
+/** SourceManager copies exact opaque bytes and the diagnostic path, independent of the journal reader's source. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_read_blob(RelocationJournalReader *reader, const char *path, const SourceText **output) {
     size_t size;
     if (!length(reader,&size)) { return false; }

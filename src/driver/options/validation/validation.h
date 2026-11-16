@@ -9,16 +9,16 @@
 #define AMA_DRIVER_OPTION_VALIDATION_H
 #include "driver/options/options.h"
 
-/** Record a borrowed program-lifetime diagnostic message and return false. */
+/** Record a borrowed program-lifetime diagnostic message and return false. Component contract: [ARCH-02](../../../../spec/implementation/compiler.md#arch-02). */
 bool driver_options_invalid(DriverOptions *, const char *message);
 
 /** Reject missing operands or a path unsupported by the current path resolver.
  * The caller supplies the nonnegative valid argv domain of the request API.
- */
+ * Component contract: [ARCH-02](../../../../spec/implementation/compiler.md#arch-02). */
 bool driver_options_operands(DriverOptions *, int count, char *const arguments[]);
 
 /** Validate request-specific relations and choose the existing GCC default.
  * This checks presence/relations only; it does not create files or invoke tools.
- */
+ * Component contract: [ARCH-02](../../../../spec/implementation/compiler.md#arch-02). */
 bool driver_options_validate(DriverOptions *);
 #endif

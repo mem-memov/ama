@@ -12,7 +12,7 @@
  * Load an active native root and own a proposed ABI source if supplied or required for initial
  * authoring. Keep that source alive through semantic/plan destruction; executable checking uses
  * the separate strict path.
- */
+ * Component contract: [CABI-06](../../../spec/implementation/native-interface.md#cabi-06). */
 bool compiler_frontend_authoring(CompilerFrontend *frontend, const ModuleRoot *roots,
     size_t count, const char *entry, const char *proposed_abi) {
     frontend->authoring = true;

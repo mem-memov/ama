@@ -5,7 +5,7 @@
  */
 #include "../internal.h"
 
-/** Allocation remains owned by the transaction arena after any failed decode prefix. */
+/** Allocation remains owned by the transaction arena after any failed decode prefix. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static void *allocate(RelocationJournalReader *reader, size_t count, size_t size) {
     if (count > SIZE_MAX/size) {
         relocation_journal_invalid(reader,"An action array exceeds the supported allocation range");
@@ -17,7 +17,7 @@ static void *allocate(RelocationJournalReader *reader, size_t count, size_t size
     }
     return result;
 }
-/** Decode ownership claims only; a separate validation phase proves names and identities before use. */
+/** Decode ownership claims only; a separate validation phase proves names and identities before use. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 RelocationTransactionSlot *relocation_journal_read_slot(RelocationJournalReader *reader) {
     RelocationTransaction *transaction = &reader->recovery->transaction;
     RelocationTransactionSlot *owned = allocate(reader,1,sizeof(*owned));
@@ -31,7 +31,7 @@ RelocationTransactionSlot *relocation_journal_read_slot(RelocationJournalReader 
         || !relocation_journal_read_metadata(reader,&owned->metadata)) { return NULL; }
     return owned;
 }
-/** Prepared tree rows preserve original and replacement identity independently of renamed public paths. */
+/** Prepared tree rows preserve original and replacement identity independently of renamed public paths. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool tree(RelocationJournalReader *reader, RelocationTransactionAction *action) {
     RelocationTransaction *transaction = &reader->recovery->transaction;
     if (!relocation_journal_read_count(reader,&action->tree_count)) { return false; }
@@ -59,7 +59,7 @@ static bool tree(RelocationJournalReader *reader, RelocationTransactionAction *a
     }
     return true;
 }
-/** Attempt flags are conservative: replay probes actual owned identities to resolve interruption between rename and acknowledgement. */
+/** Attempt flags are conservative: replay probes actual owned identities to resolve interruption between rename and acknowledgement. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_read_actions(RelocationJournalReader *reader) {
     RelocationTransaction *transaction = &reader->recovery->transaction;
     transaction->recovery_slot = relocation_journal_read_slot(reader);

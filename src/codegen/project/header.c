@@ -12,7 +12,7 @@
 /**
  * Write runtime/typed storage/native adapters, descriptors, controls and locations into the
  * retained single-TU header. Host declarations are internal; immutable schemas feed independent runtime contexts.
- */
+ * Component contract: [STACK-04](../../../spec/implementation/compiler.md#stack-04), [PAR-01](../../../spec/language/async-and-parallelism.md#par-01). */
 bool codegen_emit_header(NativeScaffold *scaffold, FILE *output, const ScaffoldType *unused) {
     (void)unused;
     if (fputs("#ifndef AMA_PROJECT_ASSEMBLY_H\n#define AMA_PROJECT_ASSEMBLY_H\n"

@@ -6,7 +6,7 @@
 #include <string.h>
 #include "internal.h"
 #include "library/artifact/assembly.h"
-/** Remove only the exact two executable-only filenames; retain all native declarations. */
+/** Remove only the exact two executable-only filenames; retain all native declarations. Component contract: [EMBED-01](../../../../spec/implementation/c-library.md#embed-01). */
 static void remove_launcher(NativeScaffold *scaffold) {
     ScaffoldArtifact **link=&scaffold->first;
     scaffold->last=NULL;
@@ -17,7 +17,7 @@ static void remove_launcher(NativeScaffold *scaffold) {
         else { scaffold->last=artifact; link=&artifact->next; }
     }
 }
-/** Write one complete generated source, checking close even after a failed writer. */
+/** Write one complete generated source, checking close even after a failed writer. Component contract: [EMBED-01](../../../../spec/implementation/c-library.md#embed-01). */
 static bool boundary(NativeScaffold *scaffold, const LibraryBuild *build, const char *stage, unsigned part) {
     static const char *const names[]={"public.h","component.c","component.json"};
     const char *path=scaffold_join(scaffold,stage,"/",names[part]);

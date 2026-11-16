@@ -9,7 +9,7 @@
 #include "verify.h"
 #include "process.h"
 #include "native/toolchain/listing/internal.h"
-/** Retain a complete finite listing only after checking every I/O boundary. */
+/** Retain a complete finite listing only after checking every I/O boundary. Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06). */
 static unsigned char *read_stream(FILE *stream, size_t *length) {
     if (fflush(stream) != 0 || fseek(stream,0,SEEK_END) != 0) { return NULL; }
     long end=ftell(stream);
@@ -21,7 +21,7 @@ static unsigned char *read_stream(FILE *stream, size_t *length) {
     bytes[*length]=0;
     return bytes;
 }
-/** Compare against registered native identities/control selectors, including compiler dot families. */
+/** Compare against registered native identities/control selectors, including compiler dot families. Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06). */
 static bool entries(const NativeScaffold *assembly, AmaByteView listing) {
     for (const ScaffoldType *type=assembly->types; type!=NULL; type=type->next) {
         if (type->plan->type->module->syntax.sections.kind == MODULE_NATIVE) {
@@ -41,7 +41,7 @@ static bool entries(const NativeScaffold *assembly, AmaByteView listing) {
     }
     return true;
 }
-/** Every complete emitted name must occur exactly once among isolated external definitions. */
+/** Every complete emitted name must occur exactly once among isolated external definitions. Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06). */
 static bool public_definitions(AmaByteView listing, unsigned char *expected, size_t length) {
     size_t matched=0, count=0;
     for (size_t i=0;i<length;i++) { if (expected[i]=='\n') { count++; } }

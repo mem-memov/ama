@@ -11,7 +11,7 @@
 /** Build privately under the caller-held world guard. Scratch and protections
  * belong to operation; output changes only after all constructors and fixups.
  * Any failure is reported once and unwinds the reserved current ancestry.
- */
+ * Component contract: [LIFE-01](../../../../spec/implementation/native-interface.md#life-01), [RT-02](../../../../spec/implementation/runtime.md#rt-02). */
 AmaStatus ama_object_build(AmaObjectOperation *operation, uint64_t id, const AmaRecipe *recipe, AmaHandle *output) {
     AmaObjectWork *work = NULL;
     AmaStatus status = ama_construction_reserve(operation, id, recipe, (AmaHandle){0}, NULL, &work);

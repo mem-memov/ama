@@ -8,6 +8,6 @@
 #ifndef AMA_FOREACH_COPY_H
 #define AMA_FOREACH_COPY_H
 #include "runtime/program/lists/traversal/traversal.h"
-/** Shared immutable callbacks; each type supplies its own context-local program. */
+/** Shared immutable callbacks; each type supplies its own context-local program. Component contract: [CONT-04](../../../../../../spec/language/continuations.md#cont-04), [COPY-03](../../../../../../spec/language/values-and-references.md#copy-03). */
 extern const AmaObjectControlHooks ama_program_foreach_controls;
 #endif

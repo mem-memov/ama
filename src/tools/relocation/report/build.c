@@ -4,7 +4,7 @@
  * requires explicit scope, identity changes, preserved drafts and rebuild reporting.
  */
 #include "internal.h"
-/** Each owned section must succeed before any public report is consumable. */
+/** Each owned section must succeed before any public report is consumable. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_report_build(RelocationReport *report, const RelocationStaging *staging) {
     if (report->attempted) { return false; }
     report->attempted = true;

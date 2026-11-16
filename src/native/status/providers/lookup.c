@@ -8,7 +8,7 @@
  */
 #include "internal.h"
 
-/** Halve the remaining finite interval until an equal key is found or its absence is proved. */
+/** Halve the remaining finite interval until an equal key is found or its absence is proved. Component contract: [ERROR-04](../../../../spec/implementation/diagnostics.md#error-04). */
 AmaStatus native_status_provider_find(const NativeStatusProviders *owner,
     const IdentityName *name, uint16_t *namespace_id) {
     if (!owner->initialized || !owner->ready || namespace_id == NULL || name == NULL

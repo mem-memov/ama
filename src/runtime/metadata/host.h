@@ -12,17 +12,17 @@
 
 #include "identity.h"
 
-/** Explicit terminal/yield/complete outcome for the retained generated host API, not a foreign-component token contract. */
+/** Explicit terminal/yield/complete outcome for the retained generated host API, not a foreign-component token contract. Component contract: [RT-14](../../../spec/implementation/runtime.md#rt-14), [ERROR-03](../../../spec/implementation/diagnostics.md#error-03). */
 typedef enum { AMA_HOST_COMPLETED, AMA_HOST_YIELDED, AMA_HOST_FAILED } AmaHostOutcome;
 
-/** Outcome plus local root and status; structural validity alone does not prove context ownership or root liveness. */
+/** Outcome plus local root and status; structural validity alone does not prove context ownership or root liveness. Component contract: [RT-14](../../../spec/implementation/runtime.md#rt-14), [ERROR-03](../../../spec/implementation/diagnostics.md#error-03). */
 typedef struct {
     AmaHostOutcome outcome;
     AmaHandle root;
     AmaStatus status;
 } AmaHostResult;
 
-/** Check outcome, message view and local-root encoding only. This predicate cannot validate pool liveness, context identity or foreign-component tokens. */
+/** Check outcome, message view and local-root encoding only. This predicate cannot validate pool liveness, context identity or foreign-component tokens. Component contract: [RT-14](../../../spec/implementation/runtime.md#rt-14), [ERROR-03](../../../spec/implementation/diagnostics.md#error-03). */
 static inline bool ama_host_result_is_valid(AmaHostResult result) {
     bool root_valid = ama_handle_is_empty(result.root) ||
         (result.root.type_id != 0 && result.root.generation != 0);

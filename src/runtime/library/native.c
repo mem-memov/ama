@@ -7,13 +7,13 @@
 #include <assert.h>
 #include "native.h"
 
-/** Consume an existing native credit; the external loader barrier covers return from this function. */
+/** Consume an existing native credit; the external loader barrier covers return from this function. Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [ASYNC-09](../../../spec/language/async-and-parallelism.md#async-09). */
 static void native_code_release(void *resource) {
     bool released = ama_library_code_release(resource);
     assert(released);
     (void)released;
 }
-/** Retain without allocating or inspecting Ama state; exhaustion preserves the initialized-empty output. */
+/** Retain without allocating or inspecting Ama state; exhaustion preserves the initialized-empty output. Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [ASYNC-09](../../../spec/language/async-and-parallelism.md#async-09). */
 static AmaStatus native_code_retain(void *resource, AmaNativeCodeLease *output) {
     if (resource == NULL || output == NULL || output->resource != NULL || output->release != NULL) {
         return ama_status_make(AMA_INVALID_STATE, NULL, 0);
@@ -23,7 +23,7 @@ static AmaStatus native_code_retain(void *resource, AmaNativeCodeLease *output) 
     return ama_status_success();
 }
 
-/** An invalid null counter remains an invalid supplied provider, never an implicit process-resident fallback. */
+/** An invalid null counter remains an invalid supplied provider, never an implicit process-resident fallback. Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [ASYNC-09](../../../spec/language/async-and-parallelism.md#async-09). */
 AmaNativeCodeProvider ama_library_code_provider(AmaLibraryCodePins *code) {
     return (AmaNativeCodeProvider){.resource = code, .retain = native_code_retain};
 }

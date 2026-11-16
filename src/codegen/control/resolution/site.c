@@ -9,7 +9,7 @@
  */
 #include "site.h"
 
-/** Borrow one exact operation/statement/binding-or-field predicate for a scan. */
+/** Borrow one exact operation/statement/binding-or-field predicate for a scan. Component contract: [LIST-04](../../../../spec/language/lists.md#list-04), [ARCH-05](../../../../spec/implementation/compiler.md#arch-05). */
 typedef struct {
     ControlOperation operation;
     const SemanticStatement *statement;
@@ -17,7 +17,7 @@ typedef struct {
     const SemanticSymbol *field;
 } SiteQuery;
 
-/** Scan the complete finite node list, preserving uniqueness independently of order. */
+/** Scan the complete finite node list, preserving uniqueness independently of order. Component contract: [LIST-04](../../../../spec/language/lists.md#list-04), [ARCH-05](../../../../spec/implementation/compiler.md#arch-05). */
 static ControlSiteStatus find(const ControlNode *nodes, const SiteQuery *query, const ControlNode **result) {
     *result = NULL;
     for (const ControlNode *node = nodes; node != NULL; node = node->allocated_next) {

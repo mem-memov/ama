@@ -4,7 +4,7 @@
  * from positions; [DEBUG-03](../../../../spec/implementation/diagnostics.md#debug-03) exposes current state only.
  */
 #include "../internal.h"
-/** Preserve every occurrence, including empty/stale/repeated targets; inspection never dereferences them. */
+/** Preserve every occurrence, including empty/stale/repeated targets; inspection never dereferences them. Component contract: [LIST-13](../../../../spec/language/lists.md#list-13), [DEBUG-03](../../../../spec/implementation/diagnostics.md#debug-03). */
 static bool element(void *context, const AmaDebugElement *value) {
     AmaDebugClientOutput *output = context;
     ToolJsonWriter *writer = output->writer;
@@ -14,7 +14,7 @@ static bool element(void *context, const AmaDebugElement *value) {
         && tool_json_raw(writer, ",\"target\":") && ama_debug_client_reference(writer, value->target)
         && tool_json_raw(writer, "}");
 }
-/** The field descriptor determines list form; scalar fields are not probed as lists. */
+/** The field descriptor determines list form; scalar fields are not probed as lists. Component contract: [LIST-13](../../../../spec/language/lists.md#list-13), [DEBUG-03](../../../../spec/implementation/diagnostics.md#debug-03). */
 bool ama_debug_client_field(void *context, const AmaDebugFieldValue *field) {
     AmaDebugClientOutput *output = context;
     ToolJsonWriter *writer = output->writer;

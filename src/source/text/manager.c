@@ -32,7 +32,7 @@ void source_manager_destroy(SourceManager *manager) {
 }
 
 /** Copy path, bytes and line index into zeroed private storage. Failure leaves all completed allocations attached for caller cleanup.
- */
+ * Component contract: [NAME-03](../../../spec/implementation/compiler.md#name-03). */
 static SourceStatus copy_text(SourceManager *manager, SourceText *source,
     const char *path, const unsigned char *bytes, size_t length) {
     size_t path_length = strlen(path);

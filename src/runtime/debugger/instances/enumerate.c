@@ -4,7 +4,7 @@
  * [DEBUG-03](../../../../spec/implementation/diagnostics.md#debug-03) excludes freed history.
  */
 #include "../internal.h"
-/** Synchronous wrapper owns no instance or native payload and retains a first inspection error only. */
+/** Synchronous wrapper owns no instance or native payload and retains a first inspection error only. Component contract: [RT-02](../../../../spec/implementation/runtime.md#rt-02), [DEBUG-03](../../../../spec/implementation/diagnostics.md#debug-03). */
 typedef struct {
     AmaDebugSession *session;
     AmaDebugInstanceVisitor visit;
@@ -12,7 +12,7 @@ typedef struct {
     AmaStatus status;
     bool stopped;
 } DebugInstanceVisit;
-/** Public slot identity is wrapped with the supplying context before the ordinary snapshot helper validates it. */
+/** Public slot identity is wrapped with the supplying context before the ordinary snapshot helper validates it. Component contract: [RT-02](../../../../spec/implementation/runtime.md#rt-02), [DEBUG-03](../../../../spec/implementation/diagnostics.md#debug-03). */
 static bool debug_instance_visit(void *context, AmaHandle handle, const AmaPoolCell *cell) {
     (void)cell;
     DebugInstanceVisit *visitor = context;
@@ -22,7 +22,7 @@ static bool debug_instance_visit(void *context, AmaHandle handle, const AmaPoolC
     visitor->stopped = !visitor->visit(visitor->context,&snapshot);
     return !visitor->stopped;
 }
-/** Metadata enumeration leaves liveness, acquisition and pool layout unchanged; callbacks may make nested read queries. */
+/** Metadata enumeration leaves liveness, acquisition and pool layout unchanged; callbacks may make nested read queries. Component contract: [RT-02](../../../../spec/implementation/runtime.md#rt-02), [DEBUG-03](../../../../spec/implementation/diagnostics.md#debug-03). */
 AmaStatus ama_debug_instances(AmaDebugSession *session, AmaDebugInstanceVisitor visit, void *context) {
     if (visit == NULL) { return ama_status_make(AMA_INVALID_STATE,NULL,0); }
     AmaStatus status = ama_debug_visit_begin(session);

@@ -11,7 +11,7 @@
 
 /** Acquire authority only after exact current identity and Running service validation.
  * The enclosing context supplies exclusive execution; this is not a cross-thread mutex.
- */
+ * Component contract: [CABI-05](../../../../spec/implementation/native-interface.md#cabi-05), [STACK-03](../../../../spec/implementation/compiler.md#stack-03). */
 AmaStatus ama_native_borrow_begin(AmaProgram *program, AmaHandle receiver, AmaNativeBorrowScope *scope) {
     if (program == NULL || program->world == NULL || scope == NULL || scope->active) {
         return ama_status_make(AMA_INVALID_STATE, NULL, 0);
@@ -33,7 +33,7 @@ AmaStatus ama_native_borrow_begin(AmaProgram *program, AmaHandle receiver, AmaNa
     return ama_status_success();
 }
 
-/** Release the uniquely owned operation gate and erase the expired borrowed program/receiver. */
+/** Release the uniquely owned operation gate and erase the expired borrowed program/receiver. Component contract: [CABI-05](../../../../spec/implementation/native-interface.md#cabi-05), [STACK-03](../../../../spec/implementation/compiler.md#stack-03). */
 AmaStatus ama_native_borrow_end(AmaNativeBorrowScope *scope) {
     if (scope == NULL || !scope->active || scope->program == NULL || scope->program->world == NULL
         || !scope->program->world->operation_active) {

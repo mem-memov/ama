@@ -40,7 +40,7 @@ ProjectStatus project_load_required(Project *project, const ModuleRoot *roots,
     return project_load_catalog(project, entry, required, required_count);
 }
 
-/** Require the complete finite seed set before parsing so loading cycles share already registered modules. */
+/** Require the complete finite seed set before parsing so loading cycles share already registered modules. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 static ProjectStatus load_catalog_modules(Project *project, const char *const *required, size_t required_count) {
     for (size_t index = 0; index < required_count; index++) {
         ProjectModule *module = NULL;
@@ -55,7 +55,7 @@ static ProjectStatus load_catalog_modules(Project *project, const char *const *r
     return PROJECT_OK;
 }
 
-/** Reuse one already owned immutable catalog for every required source, including explicit editor candidates. */
+/** Reuse one already owned immutable catalog for every required source, including explicit editor candidates. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 ProjectStatus project_load_catalog(Project *project, const char *entry,
     const char *const *required, size_t required_count) {
     assert(!project->attempted && project->catalog.built && module_path_valid(entry));
@@ -64,7 +64,7 @@ ProjectStatus project_load_catalog(Project *project, const char *entry,
     return load_catalog_modules(project,required,required_count);
 }
 
-/** Analysis domains reuse the same unique registry/parse queue without inventing a runnable entry. */
+/** Analysis domains reuse the same unique registry/parse queue without inventing a runnable entry. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 ProjectStatus project_load_catalog_set(Project *project, const char *const *required, size_t required_count) {
     assert(!project->attempted && project->catalog.built && (required_count == 0 || required != NULL));
     project->attempted = true;

@@ -12,7 +12,7 @@
 /** Consume exactly one root marker, then every nonempty complete component.
  * Every accepted separator advances a byte index; malformed or empty components
  * fail before another iteration. Physical filesystem traversal is never involved.
- */
+ * Component contract: [SRC-01](../../../../spec/language/source-and-names.md#src-01), [SRC-03](../../../../spec/language/source-and-names.md#src-03). */
 bool module_path_valid(const char *path) {
     if (path == NULL || path[0] != '.') { return false; }
     size_t start = path[1] == '.' ? 2 : 1;

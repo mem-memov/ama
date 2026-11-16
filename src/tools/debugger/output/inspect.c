@@ -4,7 +4,7 @@
  * execution; [DEBUG-03](../../../../spec/implementation/diagnostics.md#debug-03) leaves terminated storage absent.
  */
 #include "../internal.h"
-/** Context status and identities are independent from an inspection command's own result. */
+/** Context status and identities are independent from an inspection command's own result. Component contract: [PAR-02](../../../../spec/language/async-and-parallelism.md#par-02), [DEBUG-03](../../../../spec/implementation/diagnostics.md#debug-03). */
 static bool state(ToolJsonWriter *writer, const AmaDebugContext *context) {
     return tool_json_raw(writer, "{\"identity\":") && tool_json_unsigned(writer, context->context)
         && tool_json_raw(writer, ",\"phase\":") && tool_json_unsigned(writer, context->phase)
@@ -16,7 +16,7 @@ static bool state(ToolJsonWriter *writer, const AmaDebugContext *context) {
         && tool_json_raw(writer, ",\"constant_count\":") && tool_json_unsigned(writer, context->constant_count)
         && tool_json_raw(writer, "}");
 }
-/** Even a failed write retires the session before returning; no callback outlives its lease. */
+/** Even a failed write retires the session before returning; no callback outlives its lease. Component contract: [PAR-02](../../../../spec/language/async-and-parallelism.md#par-02), [DEBUG-03](../../../../spec/implementation/diagnostics.md#debug-03). */
 bool ama_debug_client_inspect(const AmaDebugClientHost *host, ToolJsonWriter *writer, AmaStatus *status) {
     AmaDebugSession session = {0};
     *status = host->begin(host->context, &session);

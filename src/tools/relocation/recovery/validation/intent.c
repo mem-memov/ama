@@ -6,11 +6,11 @@
 #include <string.h>
 #include "../internal.h"
 
-/** Null identity is distinct from an empty identifier; all other text compares byte-for-byte. */
+/** Null identity is distinct from an empty identifier; all other text compares byte-for-byte. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool text(const char *left, const char *right) {
     return left == NULL || right == NULL ? left == right : strcmp(left,right) == 0;
 }
-/** Root order, family and literal exclusions are part of the supplied settings contract. */
+/** Root order, family and literal exclusions are part of the supplied settings contract. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool roots(const ModuleRoot *left, size_t left_count, const ModuleRoot *right, size_t right_count) {
     if (left_count != right_count) { return false; }
     for (size_t index = 0; index < left_count; index++) {
@@ -22,7 +22,7 @@ static bool roots(const ModuleRoot *left, size_t left_count, const ModuleRoot *r
     }
     return true;
 }
-/** Module and physical role rows retain writer order, so linear equality includes duplicate/missing records. */
+/** Module and physical role rows retain writer order, so linear equality includes duplicate/missing records. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool report(const RelocationReport *left, const RelocationReport *right) {
     if (!text(left->source,right->source) || !text(left->destination,right->destination) || !text(left->entry,right->entry)
         || left->rebuild_required != right->rebuild_required
@@ -47,7 +47,7 @@ static bool report(const RelocationReport *left, const RelocationReport *right) 
     }
     return left_file == NULL && right_file == NULL;
 }
-/** Every acknowledged preparation directory appears exactly once in the plan, with no new or missing ownership claim. */
+/** Every acknowledged preparation directory appears exactly once in the plan, with no new or missing ownership claim. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_recovery_same_intent(RelocationRecovery *recovery, const RelocationReport *intent, const RelocationTransactionSlot *slots) {
     RelocationTransaction *transaction = &recovery->transaction;
     RelocationJournalReader reader = {.recovery=recovery,.source=recovery->record};

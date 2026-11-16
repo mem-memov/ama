@@ -11,7 +11,7 @@
 
 /** Adapt the existing scoped-manifest ownership check to synchronous preflight.
  * The opaque borrowed pointer is this compiler component's model, never Ama state.
- */
+ * Component contract: [CABI-06](../../../../spec/implementation/native-interface.md#cabi-06), [ARCH-02](../../../../spec/implementation/compiler.md#arch-02). */
 static bool owned(void *context, const ScaffoldArtifact *artifact) {
     return scaffold_owned_output(context, artifact);
 }
@@ -19,7 +19,7 @@ static bool owned(void *context, const ScaffoldArtifact *artifact) {
 /** Stage every artifact before publishing the first; restore any changed prefix
  * after a publication failure. Success is recorded after the last publication
  * and temporary cleanup; unlocking is a separate fallible final step.
- */
+ * Component contract: [CABI-06](../../../../spec/implementation/native-interface.md#cabi-06), [ARCH-02](../../../../spec/implementation/compiler.md#arch-02). */
 static bool transaction(NativeScaffold *scaffold, ScaffoldPublicationIO *io) {
     ScaffoldPublicationPolicy policy = {scaffold->options.overwrite, scaffold, owned};
     if (!scaffold_manifest(scaffold) || !scaffold_publication_preflight(io, scaffold->first, &policy)) {

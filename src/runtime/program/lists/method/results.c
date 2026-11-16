@@ -5,7 +5,7 @@
  */
 #include "runtime/program/lists/service.h"
 
-/** Validate the exact method credit and reject a second result construction. */
+/** Validate the exact method credit and reject a second result construction. Component contract: [LIST-04](../../../../../spec/language/lists.md#list-04). */
 static AmaStatus ama_list_result_ready(const AmaProgramListMethod *method) {
     if (!method->active || method->service == NULL || method->service->method != method || method->has_result) {
         return ama_status_make(AMA_INVALID_STATE, NULL, 0);

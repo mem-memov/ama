@@ -5,7 +5,7 @@
  */
 #include <stdint.h>
 #include "internal.h"
-/** The caller holds exclusive ownership; metadata reads neither acquire a target nor inspect native State. */
+/** The caller holds exclusive ownership; metadata reads neither acquire a target nor inspect native State. Component contract: [RT-02](../../../spec/implementation/runtime.md#rt-02), [REF-02](../../../spec/language/values-and-references.md#ref-02). */
 AmaStatus ama_pool_visit(const AmaPool *pool, AmaPoolVisitor visit, void *context) {
     if (pool == NULL || visit == NULL || pool->type_id == 0 || pool->slots_per_block == 0) {
         return ama_status_make(AMA_INVALID_STATE,NULL,0);

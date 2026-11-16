@@ -9,7 +9,7 @@
 #include <string.h>
 #include "runtime/objects/internal.h"
 
-/** Find the exact nominal ID in the unique borrowed registry, returning type_count if absent; linear scan, no inferred identity. */
+/** Find the exact nominal ID in the unique borrowed registry, returning type_count if absent; linear scan, no inferred identity. Component contract: [COPY-06](../../../../spec/language/values-and-references.md#copy-06). */
 static size_t ama_world_type_index(const AmaWorld *world, uint64_t id) {
     for (size_t index = 0; index < world->type_count; index++) {
         if (world->types[index]->pool.type_id == id) { return index; }
@@ -17,7 +17,7 @@ static size_t ama_world_type_index(const AmaWorld *world, uint64_t id) {
     return world->type_count;
 }
 
-/** Compute finite monotone reachability over every declared owned field, including empty-list element types. Reject any reachable native resource lacking clone; scratch remains operation-owned. */
+/** Compute finite monotone reachability over every declared owned field, including empty-list element types. Reject any reachable native resource lacking clone; scratch remains operation-owned. Component contract: [COPY-06](../../../../spec/language/values-and-references.md#copy-06). */
 AmaStatus ama_object_copy_capability(AmaObjectOperation *operation, uint64_t root) {
     AmaWorld *world = operation->world;
     size_t index = ama_world_type_index(world, root);

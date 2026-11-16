@@ -9,7 +9,7 @@
 #include "../internal.h"
 
 /** Probe a named optional C/header/ABI companion with exact bytes; missing is valid, unsupported entries fail, ABI text is loaded/UTF-8 checked.
- */
+ * Component contract: [SRC-01](../../../../spec/language/source-and-names.md#src-01), [DEP-03](../../../../spec/implementation/compiler.md#dep-03). */
 static ModuleStatus load_companion(ModuleCatalog *catalog, const char *physical,
     const char *suffix, const char **output, const SourceText **text) {
     const char *path = source_arena_join(&catalog->arena, physical, "", suffix);

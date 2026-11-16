@@ -13,7 +13,7 @@
 #include "internal.h"
 #include "runtime/lists/membership/internal.h"
 
-/** Require validated position and guarded mutation inputs. Prepare/publish one value before shifting handles; failure before commit preserves contents, though capacity may grow. */
+/** Require validated position and guarded mutation inputs. Prepare/publish one value before shifting handles; failure before commit preserves contents, though capacity may grow. Component contract: [LIST-10](../../../../spec/language/lists.md#list-10), [LIFE-04](../../../../spec/implementation/native-interface.md#life-04), [FLOW-05](../../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_list_insert(AmaListMutation *mutation, size_t position, AmaHandle source) {
     AmaHandleList *list = mutation->list;
     if (list->count == SIZE_MAX || (mutation->owning && mutation->parent->metadata.lifetime.live_children == SIZE_MAX)) {

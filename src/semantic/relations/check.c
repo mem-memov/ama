@@ -9,7 +9,7 @@
 #include "semantic/internal.h"
 
 /** Adapt exact graph ordering/cycle/allocation status into semantic context, preserving graph source evidence and a relation-specific cycle message.
- */
+ * Component contract: [COMP-03](../../../spec/implementation/compiler.md#comp-03). */
 static bool ordered(SemanticProgram *program, DependencyGraph *graph, const char *message) {
     GraphStatus status = dependency_order(graph);
     if (status == GRAPH_OK) {

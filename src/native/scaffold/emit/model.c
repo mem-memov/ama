@@ -6,7 +6,7 @@
  */
 #include "native/scaffold/internal.h"
 
-/** Write the complete framed identity alongside its candidate C spelling. */
+/** Write the complete framed identity alongside its candidate C spelling. Component contract: [CABI-06](../../../../spec/implementation/native-interface.md#cabi-06). */
 static bool identity(FILE *output, const IdentityName *name) {
     static const char hex[] = "0123456789abcdef";
     if (fputs("{\"name\":", output) == EOF || !scaffold_json(output, name->internal_name)
@@ -22,7 +22,7 @@ static bool identity(FILE *output, const IdentityName *name) {
     return fputs("\"}", output) != EOF;
 }
 
-/** Serialize one exact native type; paths are generated basenames, not discovery candidates. */
+/** Serialize one exact native type; paths are generated basenames, not discovery candidates. Component contract: [CABI-06](../../../../spec/implementation/native-interface.md#cabi-06). */
 static bool module(FILE *output, const ScaffoldType *type) {
     return fputs("{\"module\":", output) != EOF
         && scaffold_json(output, type->plan->type->module->source->logical_path)

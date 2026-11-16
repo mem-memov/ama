@@ -19,7 +19,7 @@ GraphEdge *dependency_blocked(const GraphVertex *vertex) {
 }
 
 /** Compare complete borrowed module path bytes, then declaration ordinal; unique keys make the ready choice deterministic.
- */
+ * Component contract: [COMP-05](../../../../spec/implementation/compiler.md#comp-05). */
 static bool precedes(const GraphVertex *left, const GraphVertex *right) {
     int compared = strcmp(left->module_path, right->module_path);
     return compared < 0 || (compared == 0 && left->ordinal < right->ordinal);

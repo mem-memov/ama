@@ -18,18 +18,18 @@
  * No inputs are retained. False reports invalid arguments or output failure;
  * a failed output stream is not a usable generated artifact. */
 /** Emit a registered namespace macro with an explicit nested-context guard. Borrow output/identity; invalid category or partial IO failure returns false.
- */
+ * Component contract: [NAME-05](../../../spec/implementation/native-interface.md#name-05). */
 bool native_namespace_begin(FILE *output, const IdentityName *name);
 /** Emit a nonzero component-local error namespace inside an active naming context.
  * The caller has planned the exact full provider identity; generated C rejects
  * missing/nested contexts. AMA_NATIVE_ERROR constructs checked static-message status.
- */
+ * Component contract: [NAME-05](../../../spec/implementation/native-interface.md#name-05). */
 bool native_namespace_status(FILE *output, uint16_t namespace_id);
 /** Undefine temporary naming/error macros on a borrowed stream; caller owns final flush/close and may see partial output on failure.
- */
+ * Component contract: [NAME-05](../../../spec/implementation/native-interface.md#name-05). */
 bool native_namespace_end(FILE *output);
 /** Write exact registered prefix plus original validated identifier span. No input is retained; caller supplies valid source lifetime and checks final stream completion.
- */
+ * Component contract: [NAME-05](../../../spec/implementation/native-interface.md#name-05). */
 bool native_namespace_symbol(FILE *output, const IdentityName *name, SourceSpan local);
 
 #endif

@@ -10,7 +10,7 @@
 #include "native/scaffold/internal.h"
 
 /** Emit one compatible protocol function definition with exact typed signature and an explicit unwritten-native failure result.
- */
+ * Component contract: [CABI-06](../../../../spec/implementation/native-interface.md#cabi-06), [PROTO-03](../../../../spec/implementation/native-interface.md#proto-03). */
 static bool hook(FILE *output, AbiOperation operation, const AbiBinding *binding) {
     if (!scaffold_emit_signature(output, operation, binding->function) || fputs(" {\n", output) == EOF) {
         return false;

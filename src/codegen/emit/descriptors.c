@@ -13,7 +13,7 @@
 /**
  * Write field kind/type/offsetof descriptors for context-local pool types from
  * validated model members. A false stream result leaves only unpublished partial bytes.
- */
+ * Component contract: [RT-02](../../../spec/implementation/runtime.md#rt-02), [LIST-13](../../../spec/language/lists.md#list-13), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 bool codegen_emit_descriptors(NativeScaffold *scaffold, FILE *output) {
     const char *const kinds[] = {"AMA_FIELD_OWNED", "AMA_FIELD_REFERENCE", "AMA_FIELD_OWNING_LIST", "AMA_FIELD_REFERENCE_LIST"};
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {

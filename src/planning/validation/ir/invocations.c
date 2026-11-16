@@ -6,7 +6,7 @@
  */
 #include "internal.h"
 #include "semantic/lists/interface.h"
-/** Require a unique exact operation site; allocation order cannot disambiguate duplicates. */
+/** Require a unique exact operation site; allocation order cannot disambiguate duplicates. Component contract: [CALL-08](../../../../spec/language/calls-and-results.md#call-08), [CALL-09](../../../../spec/language/calls-and-results.md#call-09). */
 static const ControlNode *site(const PlannedType *type, const SemanticStatement *statement,
     ControlOperation operation, const SemanticBinding *binding) {
     const ControlNode *result = NULL;
@@ -17,12 +17,12 @@ static const ControlNode *site(const PlannedType *type, const SemanticStatement 
     }
     return result;
 }
-/** Compare one explicit phase without dereferencing or following an unrecognized runtime target. */
+/** Compare one explicit phase without dereferencing or following an unrecognized runtime target. Component contract: [CALL-08](../../../../spec/language/calls-and-results.md#call-08), [CALL-09](../../../../spec/language/calls-and-results.md#call-09). */
 static bool matches(const ControlNode *node, const SemanticStatement *statement,
     ControlOperation operation, const SemanticBinding *binding) {
     return node != NULL && node->statement == statement && node->operation == operation && node->binding == binding;
 }
-/** Ordinary source selections precede every interface reset; literals are constructed at their own installation. */
+/** Ordinary source selections precede every interface reset; literals are constructed at their own installation. Component contract: [CALL-08](../../../../spec/language/calls-and-results.md#call-08), [CALL-09](../../../../spec/language/calls-and-results.md#call-09). */
 static const ControlNode *sources(const SemanticStatement *statement, const ControlNode *node) {
     for (const SemanticBinding *binding = statement->bindings; binding != NULL; binding = binding->next) {
         if (binding->syntax->kind != AST_INPUT || binding->syntax->omitted || binding->transfer == TRANSFER_LITERAL) { continue; }
@@ -31,7 +31,7 @@ static const ControlNode *sources(const SemanticStatement *statement, const Cont
     }
     return node;
 }
-/** Validate the finite installation prefix, then use the explicit return continuation rather than traversing the callee body. */
+/** Validate the finite installation prefix, then use the explicit return continuation rather than traversing the callee body. Component contract: [CALL-08](../../../../spec/language/calls-and-results.md#call-08), [CALL-09](../../../../spec/language/calls-and-results.md#call-09). */
 static const ControlNode *entry_outputs(const SemanticStatement *statement, const ControlNode *node) {
     AstCallMode mode = statement->syntax->as.call.mode;
     if (mode == AST_ENTRY_CALL) {
@@ -51,7 +51,7 @@ static const ControlNode *entry_outputs(const SemanticStatement *statement, cons
     const ControlNode *outputs = node->resume;
     return matches(outputs, statement, CONTROL_RETIRE_RETURN, NULL) ? outputs->next : NULL;
 }
-/** Intrinsic methods use typed transient inputs and explicit preflight/prepare/commit, never a synthetic module return. */
+/** Intrinsic methods use typed transient inputs and explicit preflight/prepare/commit, never a synthetic module return. Component contract: [CALL-08](../../../../spec/language/calls-and-results.md#call-08), [CALL-09](../../../../spec/language/calls-and-results.md#call-09). */
 static const ControlNode *method_outputs(const SemanticStatement *statement, const ControlNode *node) {
     node = sources(statement, node);
     for (size_t position = 0; semantic_list_position(statement->list_method, false, position) != NULL; position++) {
@@ -66,7 +66,7 @@ static const ControlNode *method_outputs(const SemanticStatement *statement, con
     node = node->next;
     return matches(node, statement, CONTROL_LIST_METHOD_COMMIT, NULL) ? node->next : NULL;
 }
-/** Check source-ordered actions using a child's explicit completion edge rather than following its runtime body. */
+/** Check source-ordered actions using a child's explicit completion edge rather than following its runtime body. Component contract: [CALL-08](../../../../spec/language/calls-and-results.md#call-08), [CALL-09](../../../../spec/language/calls-and-results.md#call-09). */
 static const ControlNode *actions(const SemanticStatement *statement, const PlannedChain *chain, const ControlNode *node) {
     for (const SemanticOutputAction *action = statement->actions; action != NULL; action = action->next) {
         if (action->binding != NULL) {
@@ -81,7 +81,7 @@ static const ControlNode *actions(const SemanticStatement *statement, const Plan
     }
     return node;
 }
-/** Every source call belongs to exactly one initiating chain; child action markers supply its normal subtree continuation. */
+/** Every source call belongs to exactly one initiating chain; child action markers supply its normal subtree continuation. Component contract: [CALL-08](../../../../spec/language/calls-and-results.md#call-08), [CALL-09](../../../../spec/language/calls-and-results.md#call-09). */
 static bool invocation(const PlannedType *type, const SemanticStatement *statement) {
     AstCallMode mode = statement->syntax->as.call.mode;
     const ControlNode *node = NULL;

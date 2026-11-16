@@ -10,7 +10,7 @@
 /** Explicit private paths and tools, borrowed through synchronous subprocess completion.
  * All output paths are distinct, absent caller-owned staging destinations. Source
  * includes are already staged. These files are unpublished scratch on failure.
- */
+ * Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06). */
 typedef struct {
     const NativeScaffold *assembly;
     const char *compiler, *archiver, *object_copy;
@@ -20,6 +20,6 @@ typedef struct {
 /** Compile non-LTO PIC, localize every nonpublic definition, archive deterministically
  * and link with undefined dependencies rejected. No shell, executable launcher,
  * filesystem discovery, overwrite policy or final publication is implicit.
- */
+ * Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06). */
 bool library_package_build(const LibraryBuild *, const LibraryPackageOptions *, FILE *errors);
 #endif

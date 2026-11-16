@@ -7,12 +7,12 @@
  */
 #include "identity.h"
 
-/** Treat generation zero as empty independently of other bits; the canonical produced empty value is all zero. */
+/** Treat generation zero as empty independently of other bits; the canonical produced empty value is all zero. Component contract: [REF-05](../../../spec/language/values-and-references.md#ref-05). */
 bool ama_handle_is_empty(AmaHandle handle) {
     return handle.generation == 0;
 }
 
-/** Check emptiness, nominal type, resolved slot, publication and exact generation before any payload access. The caller supplies a valid bounded slot pointer or null. */
+/** Check emptiness, nominal type, resolved slot, publication and exact generation before any payload access. The caller supplies a valid bounded slot pointer or null. Component contract: [REF-05](../../../spec/language/values-and-references.md#ref-05). */
 AmaStatus ama_validate_handle(AmaHandle handle, uint64_t expected_type,
     const AmaSlotIdentity *slot) {
     if (ama_handle_is_empty(handle)) {
@@ -32,7 +32,7 @@ AmaStatus ama_validate_handle(AmaHandle handle, uint64_t expected_type,
     return ama_status_success();
 }
 
-/** Require a nonlive, nonretired slot and valid nonzero limit. Advance strictly or retire permanently at the limit; never wrap or revive an identity. */
+/** Require a nonlive, nonretired slot and valid nonzero limit. Advance strictly or retire permanently at the limit; never wrap or revive an identity. Component contract: [REF-05](../../../spec/language/values-and-references.md#ref-05). */
 AmaStatus ama_slot_advance_generation_limited(AmaSlotIdentity *slot, uint64_t limit) {
     if (slot->live) {
         return ama_status_make(AMA_BUSY, NULL, 0);
@@ -51,7 +51,7 @@ AmaStatus ama_slot_advance_generation_limited(AmaSlotIdentity *slot, uint64_t li
     return ama_status_success();
 }
 
-/** Apply generation advancement with UINT64_MAX as the retirement boundary. */
+/** Apply generation advancement with UINT64_MAX as the retirement boundary. Component contract: [REF-05](../../../spec/language/values-and-references.md#ref-05). */
 AmaStatus ama_slot_advance_generation(AmaSlotIdentity *slot) {
     return ama_slot_advance_generation_limited(slot, UINT64_MAX);
 }

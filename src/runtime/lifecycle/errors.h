@@ -11,7 +11,7 @@
 #include "native/status/status.h"
 
 /* The caller reports each error separately; accumulation never allocates. */
-/** Return the first non-success status; secondary cleanup cannot replace an earlier construction or execution failure. */
+/** Return the first non-success status; secondary cleanup cannot replace an earlier construction or execution failure. Component contract: [LIFE-05](../../../spec/implementation/native-interface.md#life-05). */
 static inline AmaStatus ama_cleanup_primary(AmaStatus primary, AmaStatus additional) {
     return ama_status_is_success(primary) ? additional : primary;
 }

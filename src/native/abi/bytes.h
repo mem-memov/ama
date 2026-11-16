@@ -16,7 +16,7 @@ _Static_assert(CHAR_BIT == 8, "Ama native ABI requires eight-bit bytes");
 /* Borrow immutable bytes; literal constructors receive UTF-8. NULL requires length 0.
  * Embedded zero bytes and an absent terminator do not shorten this view.
  */
-/** Bounded borrowed immutable bytes, including embedded NUL; null data is valid only at zero length. Literal callback views end with that callback. */
+/** Bounded borrowed immutable bytes, including embedded NUL; null data is valid only at zero length. Literal callback views end with that callback. Component contract: [CABI-03](../../../spec/implementation/native-interface.md#cabi-03). */
 typedef struct {
     const unsigned char *data;
     size_t length;

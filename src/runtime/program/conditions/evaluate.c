@@ -12,7 +12,7 @@
 /** Borrow a readable scalar under one guard, perform its native conversion and
  * publish truth only after checked success. Owner and caller are explicit domains;
  * no Ama body executes or C activation survives this synchronous callback.
- */
+ * Component contract: [PROTO-04](../../../../spec/implementation/native-interface.md#proto-04), [FLOW-03](../../../../spec/language/control-flow.md#flow-03), [FLOW-04](../../../../spec/language/control-flow.md#flow-04). */
 static AmaStatus ama_condition_convert(AmaProgram *program, AmaHandle caller, AmaHandle owner,
     const AmaProgramAccess *access, bool *result) {
     if (program->world->operation_active || program->world->failed) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }

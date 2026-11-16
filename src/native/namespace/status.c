@@ -11,7 +11,7 @@
 /** Emit only a validated nonzero namespace. Each macro argument is passed once
  * to the allocation-free SDK status constructor; end-of-context removes the macro.
  * Invalid arguments fail before output and IO failure leaves an unusable partial artifact.
- */
+ * Component contract: [ERROR-04](../../../spec/implementation/diagnostics.md#error-04), [NAME-05](../../../spec/implementation/native-interface.md#name-05). */
 bool native_namespace_status(FILE *output, uint16_t namespace_id) {
     if (output == NULL || namespace_id == 0) { return false; }
     return fprintf(output, "#include \"native/status/library.h\"\n"

@@ -13,7 +13,8 @@ import sys
 import tempfile
 
 from linking.registry import Registry
-from linking.source import comments
+from linking.source import comments, mask_examples
+from linking.markdown import links
 from linking.view import transform
 
 
@@ -105,6 +106,22 @@ def check_header(root, path, command, expected_failure):
         raise ValueError('negative header contract was not observed: ' + path)
 
 
+def check_rule_contracts(path, content, registry):
+    """Require explicit canonical context on every compiler Doxygen contract.
+
+    This uniform stronger check avoids guessing which function is nontrivial.
+    Narrow rule implementations cite their rules; generic helpers can explicitly
+    cite the surrounding component's declared rules. Existing purpose/invariant
+    prose remains necessary. Examples and literal links never supply a contract.
+    """
+    for fragment, positions in comments(content):
+        targets = [registry.reference(path, label, href, True)
+                   for _, _, label, href in links(mask_examples(fragment))]
+        if not any(target and target.startswith('ama_rule_') for target in targets):
+            line = content.count('\n', 0, positions[0]) + 1 if positions else 1
+            raise ValueError('compiler contract lacks canonical rule reference: ' + path + ':' + str(line))
+
+
 def check(root, complete=False):
     """Reject unregistered files/stale evidence; full mode also rejects all debt."""
     home = root / 'docs/implementation/documentation'
@@ -125,19 +142,21 @@ def check(root, complete=False):
             raise ValueError('missing debt explanation: ' + path)
     registry = Registry(root)
     for path, entry in ready.items():
-        content = (root / path).read_text()
         if not entry.get('purpose') or not entry.get('contract') or not entry.get('tests'):
             raise ValueError('missing reviewed purpose/contract/tests: ' + path)
         for test in entry['tests']:
             if not (root / test['source']).is_file() or not test['case'] or not test['command']:
                 raise ValueError('missing executable test evidence: ' + path)
-        if path.endswith(('.c', '.h')):
+        if path.endswith(('.c', '.h', '.inc')):
+            content = (root / path).read_text()
             prose = '\n'.join(fragment for fragment, _ in comments(content))
             if not re.search(r'[@\\]file\b', prose) or not re.search(r'[@\\]brief\s+\S', prose):
                 raise ValueError('missing Doxygen file purpose: ' + path)
             _, targets = transform(path, content, registry)
             if path.startswith('src/') and not any(target.startswith('ama_rule_') for target in targets):
                 raise ValueError('compiler purpose lacks canonical rule reference: ' + path)
+            if path.startswith('src/'):
+                check_rule_contracts(path, content, registry)
         if path.endswith('.h'):
             command = entry.get('standalone_header_command')
             if not command:

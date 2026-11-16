@@ -11,7 +11,7 @@
 /**
  * Initialize source/project owners and empty semantic/plan credits with the supplied allocator;
  * check once before destruction.
- */
+ * Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 void compiler_frontend_init(CompilerFrontend *frontend, SourceAllocator allocator) {
     *frontend = (CompilerFrontend){.allocator = allocator};
     project_init(&frontend->project, allocator);
@@ -22,7 +22,7 @@ void compiler_frontend_init(CompilerFrontend *frontend, SourceAllocator allocato
 /**
  * Destroy initialized plan before semantic state, then proposed ABI sources and project storage;
  * reset the owner so borrowed outputs expire together.
- */
+ * Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 void compiler_frontend_destroy(CompilerFrontend *frontend) {
     if (frontend->plan_initialized) {
         program_plan_destroy(&frontend->plan);
@@ -39,7 +39,7 @@ void compiler_frontend_destroy(CompilerFrontend *frontend) {
 /**
  * Analyze the loaded closure using an optional explicit authoring contract, then build resolved
  * plans. Record initialization before fallible work and retain the first stage diagnostic.
- */
+ * Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool compiler_frontend_finish(CompilerFrontend *frontend,
     const SemanticNativeAuthoring *authoring) {
     semantic_program_init(&frontend->semantic, &frontend->project, frontend->allocator);
@@ -65,14 +65,14 @@ bool compiler_frontend_finish(CompilerFrontend *frontend,
 /**
  * Load exactly once, then perform strict semantic/planning completion without authoring
  * overrides; false leaves safely destructible diagnostic state.
- */
+ * Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool compiler_frontend_check(CompilerFrontend *frontend, const ModuleRoot *roots,
     size_t count, const char *entry) {
     return compiler_frontend_load(frontend, roots, count, entry)
         && compiler_frontend_finish(frontend, NULL);
 }
 
-/** Candidate validation reuses the complete compiler pipeline after explicit catalog preparation. */
+/** Candidate validation reuses the complete compiler pipeline after explicit catalog preparation. Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool compiler_frontend_check_catalog(CompilerFrontend *frontend, const ModuleRoot *roots,
     size_t count, const char *entry, const char *const *required, size_t required_count) {
     assert(!frontend->attempted);

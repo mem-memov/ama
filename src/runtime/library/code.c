@@ -6,11 +6,11 @@
 #include <assert.h>
 #include <threads.h>
 #include "code.h"
-/** Acquire only the finite metadata section; ownership excludes concurrent release of one owner. */
+/** Acquire only the finite metadata section; ownership excludes concurrent release of one owner. Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06). */
 static void code_lock(AmaLibraryCodePins *code) {
     while (atomic_exchange_explicit(&code->locked, true, memory_order_acquire)) { thrd_yield(); }
 }
-/** Publish the changed finite registry before allowing another metadata operation. */
+/** Publish the changed finite registry before allowing another metadata operation. Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06). */
 static void code_unlock(AmaLibraryCodePins *code) {
     atomic_store_explicit(&code->locked, false, memory_order_release);
 }

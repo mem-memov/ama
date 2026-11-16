@@ -10,9 +10,9 @@
 #include "native/events/event.h"
 #define AMA_NATIVE_EVENT_NONE SIZE_MAX
 #define AMA_NATIVE_EVENT_ERROR(code, text) ama_status_make((code), (text), sizeof(text) - 1)
-/** Partition each fixed native locator into free, reserved, armed or retained completion. */
+/** Partition each fixed native locator into free, reserved, armed or retained completion. Component contract: [ASYNC-05](../../../spec/language/async-and-parallelism.md#async-05). */
 typedef enum { AMA_EVENT_FREE, AMA_EVENT_PREPARED, AMA_EVENT_ARMED, AMA_EVENT_COMPLETED } AmaNativeEventState;
-/** Next links the free stack or completion queue; previous is used only while completed. */
+/** Next links the free stack or completion queue; previous is used only while completed. Component contract: [ASYNC-05](../../../spec/language/async-and-parallelism.md#async-05). */
 typedef struct {
     AmaNativeEventState state;
     uint64_t generation;
@@ -22,7 +22,7 @@ typedef struct {
 } AmaNativeEventCell;
 /** Mutable native metadata only. Unique owner performs lifecycle/consumer operations;
  * separately owning callbacks serialize publication/refcounts through the short metadata gate.
- */
+ * Component contract: [ASYNC-05](../../../spec/language/async-and-parallelism.md#async-05). */
 struct AmaNativeEventService {
     _Atomic bool locked;
     bool closed, notified;
@@ -33,40 +33,40 @@ struct AmaNativeEventService {
     AmaNativeEventCell *cells;
     AmaNativeEventKeepalive keepalive;
 };
-/** Initialize one process-private binary notification resource before service publication. */
+/** Initialize one process-private binary notification resource before service publication. Component contract: [ASYNC-05](../../../spec/language/async-and-parallelism.md#async-05). */
 AmaStatus ama_native_event_wake_initialize(AmaNativeEventService *);
-/** Retire the initialized wake resource after the final lease and serialized waiter have left. */
+/** Retire the initialized wake resource after the final lease and serialized waiter have left. Component contract: [ASYNC-05](../../../spec/language/async-and-parallelism.md#async-05). */
 void ama_native_event_wake_destroy(AmaNativeEventService *);
-/** Publish a reserved binary wake credit outside the metadata gate, retaining no Ama state. */
+/** Publish a reserved binary wake credit outside the metadata gate, retaining no Ama state. Component contract: [ASYNC-05](../../../spec/language/async-and-parallelism.md#async-05). */
 void ama_native_event_notify(AmaNativeEventService *);
-/** Prepare an exact uint64 successor with an inclusive bound, preserving output on failure. */
+/** Prepare an exact uint64 successor with an inclusive bound, preserving output on failure. Component contract: [ASYNC-05](../../../spec/language/async-and-parallelism.md#async-05). */
 bool ama_native_event_sequence(uint64_t, uint64_t, uint64_t *);
-/** Issue a fresh process-lifetime domain/service pair; no native record address is its identity. */
+/** Issue a fresh process-lifetime domain/service pair; no native record address is its identity. Component contract: [ASYNC-05](../../../spec/language/async-and-parallelism.md#async-05). */
 AmaStatus ama_native_event_identity(AmaNativeEventToken *);
-/** Acquire/release finite native metadata sections, never invoking allocators or user callbacks. */
+/** Acquire/release finite native metadata sections, never invoking allocators or user callbacks. Component contract: [ASYNC-05](../../../spec/language/async-and-parallelism.md#async-05). */
 void ama_native_event_lock(AmaNativeEventService *);
-/** Publish metadata before another producer or owner enters its section. */
+/** Publish metadata before another producer or owner enters its section. Component contract: [ASYNC-05](../../../spec/language/async-and-parallelism.md#async-05). */
 void ama_native_event_unlock(AmaNativeEventService *);
-/** Retain a native resource reference, including closed services, without wrapping. */
+/** Retain a native resource reference, including closed services, without wrapping. Component contract: [ASYNC-05](../../../spec/language/async-and-parallelism.md#async-05). */
 bool ama_native_event_retain(void *);
-/** Consume one reference; final closed resources and keepalive retire outside the gate. */
+/** Consume one reference; final closed resources and keepalive retire outside the gate. Component contract: [ASYNC-05](../../../spec/language/async-and-parallelism.md#async-05). */
 void ama_native_event_release(void *);
-/** Obtain the creator-image operation table for a newly prepared callback lease. */
+/** Obtain the creator-image operation table for a newly prepared callback lease. Component contract: [ASYNC-05](../../../spec/language/async-and-parallelism.md#async-05). */
 const AmaNativeEventCallbacks *ama_native_event_callbacks(void);
-/** Resolve an exact live locator while the service gate is held; closed services resolve nothing. */
+/** Resolve an exact live locator while the service gate is held; closed services resolve nothing. Component contract: [ASYNC-05](../../../spec/language/async-and-parallelism.md#async-05). */
 AmaNativeEventCell *ama_native_event_cell(AmaNativeEventService *, AmaNativeEventToken);
-/** Return an unlinked cell to its free stack while holding the metadata gate. */
+/** Return an unlinked cell to its free stack while holding the metadata gate. Component contract: [ASYNC-05](../../../spec/language/async-and-parallelism.md#async-05). */
 void ama_native_event_recycle(AmaNativeEventService *, size_t);
-/** Copy into creator-owned bytes; the caller retains an independent service lease throughout. */
+/** Copy into creator-owned bytes; the caller retains an independent service lease throughout. Component contract: [ASYNC-05](../../../spec/language/async-and-parallelism.md#async-05). */
 AmaStatus ama_native_event_copy(void *, AmaByteView, AmaNativeEventBuffer *);
-/** Recognize only this service's valid native byte ownership or the canonical empty buffer. */
+/** Recognize only this service's valid native byte ownership or the canonical empty buffer. Component contract: [ASYNC-05](../../../spec/language/async-and-parallelism.md#async-05). */
 bool ama_native_event_buffer_valid(AmaNativeEventService *, const AmaNativeEventBuffer *);
-/** Release the immutable byte allocation and its service dependency outside every gate. */
+/** Release the immutable byte allocation and its service dependency outside every gate. Component contract: [ASYNC-05](../../../spec/language/async-and-parallelism.md#async-05). */
 void ama_native_event_buffer_release(void *);
-/** Queue one authenticated native completion with no allocation or Ama execution. */
+/** Queue one authenticated native completion with no allocation or Ama execution. Component contract: [ASYNC-05](../../../spec/language/async-and-parallelism.md#async-05). */
 AmaNativeEventPostResult ama_native_event_complete(void *, AmaNativeEventToken, int64_t, AmaNativeEventBuffer *);
-/** Read retained readiness under the native metadata gate. */
+/** Read retained readiness under the native metadata gate. Component contract: [ASYNC-05](../../../spec/language/async-and-parallelism.md#async-05). */
 AmaStatus ama_native_event_check(void *, AmaNativeEventToken, bool *);
-/** Classify exact token post admission without mutation or an unarmed registration loophole. */
+/** Classify exact token post admission without mutation or an unarmed registration loophole. Component contract: [ASYNC-05](../../../spec/language/async-and-parallelism.md#async-05). */
 AmaNativeEventAcceptance ama_native_event_accept(void *, AmaNativeEventToken);
 #endif

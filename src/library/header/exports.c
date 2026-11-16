@@ -4,7 +4,7 @@
  * operation selection and exact parameter/result schemas to remain explicit.
  */
 #include "internal.h"
-/** Emit one type-safe parameter in role declaration order, or its matching invocation name. */
+/** Emit one type-safe parameter in role declaration order, or its matching invocation name. Component contract: [EMBED-01](../../../spec/implementation/c-library.md#embed-01). */
 static void fields(LibraryHeader *h, const LibraryExport *exported,
     SymbolRole role, bool names_only) {
     for (const SemanticSymbol *field = exported->type->first; field != NULL; field = field->next) {
@@ -19,7 +19,7 @@ static void fields(LibraryHeader *h, const LibraryExport *exported,
         }
     }
 }
-/** Emit the exact selected mode's typed argument list; resume/read never accept new inputs. */
+/** Emit the exact selected mode's typed argument list; resume/read never accept new inputs. Component contract: [EMBED-01](../../../spec/implementation/c-library.md#embed-01). */
 static void arguments(LibraryHeader *h, const LibraryExport *exported, unsigned mode, bool names_only) {
     if (names_only) { library_header_print(h, "context, instance"); }
     else { library_header_print(h, "%s_Context context, %s_Instance instance", h->prefix, h->prefix); }
@@ -27,7 +27,7 @@ static void arguments(LibraryHeader *h, const LibraryExport *exported, unsigned 
     fields(h, exported, SYMBOL_RESULT, names_only);
     if (mode != LIBRARY_READ) { library_header_print(h, names_only ? ", outcome" : ", uint32_t *outcome"); }
 }
-/** Emit one declared operation and an inline ABI gate before its structure-based implementation. */
+/** Emit one declared operation and an inline ABI gate before its structure-based implementation. Component contract: [EMBED-01](../../../spec/implementation/c-library.md#embed-01). */
 static void operation(LibraryHeader *h, const LibraryExport *exported, unsigned mode, const char *name) {
     const char *p = h->prefix, *e = exported->identity->internal_name;
     library_header_print(h,

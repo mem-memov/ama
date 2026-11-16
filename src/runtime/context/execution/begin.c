@@ -12,7 +12,7 @@
 #include "execution.h"
 #include "../internal.h"
 
-/** Validate host-side owner/mode shape without consulting mutable context state. */
+/** Validate host-side owner/mode shape without consulting mutable context state. Component contract: [EMBED-03](../../../../spec/implementation/c-library.md#embed-03), [CALL-08](../../../../spec/language/calls-and-results.md#call-08), [RT-11](../../../../spec/implementation/runtime.md#rt-11). */
 static bool execution_request_valid(const AmaProgramInvocation *invocation, const AmaContextExecution *execution, bool leased) {
     return invocation != NULL && execution != NULL && (leased ? ama_context_leased(&execution->lease) != NULL
             : execution->lease.context == NULL && execution->lease.registry == NULL && execution->lease.identity == 0)
@@ -28,7 +28,7 @@ static bool execution_request_valid(const AmaProgramInvocation *invocation, cons
 /** Prepare an explicit host entry through the ordinary acquired-target path.
  * The selected root is also the temporary host source context; no C body runs.
  * Failure is an accepted execution failure, not an admission refusal.
- */
+ * Component contract: [EMBED-03](../../../../spec/implementation/c-library.md#embed-03), [CALL-08](../../../../spec/language/calls-and-results.md#call-08), [RT-11](../../../../spec/implementation/runtime.md#rt-11). */
 static AmaStatus execution_prepare(AmaContext *context, AmaPoolCell *cell,
     const AmaProgramInvocation *invocation) {
     AmaHandle root = context->control.root;
@@ -40,7 +40,7 @@ static AmaStatus execution_prepare(AmaContext *context, AmaPoolCell *cell,
     return ama_status_checked(status);
 }
 
-/** Own the checked context lease through preparation and later generated label dispatch. */
+/** Own the checked context lease through preparation and later generated label dispatch. Component contract: [EMBED-03](../../../../spec/implementation/c-library.md#embed-03), [CALL-08](../../../../spec/language/calls-and-results.md#call-08), [RT-11](../../../../spec/implementation/runtime.md#rt-11). */
 AmaStatus ama_context_execution_begin_leased(AmaContextExecution *execution,
     AmaContextReference root, const AmaProgramInvocation *invocation) {
     if (!execution_request_valid(invocation, execution, true)) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
@@ -67,7 +67,7 @@ AmaStatus ama_context_execution_begin_leased(AmaContextExecution *execution,
     return ama_status_success();
 }
 
-/** Select a first root explicitly, retaining one lease from private construction through label execution or accepted-failure cleanup. */
+/** Select a first root explicitly, retaining one lease from private construction through label execution or accepted-failure cleanup. Component contract: [EMBED-03](../../../../spec/implementation/c-library.md#embed-03), [CALL-08](../../../../spec/language/calls-and-results.md#call-08), [RT-11](../../../../spec/implementation/runtime.md#rt-11). */
 AmaStatus ama_context_execution_start(AmaContextRegistry *registry, uint64_t identity,
     uint64_t root_type, AmaContextExecution *execution) {
     const AmaProgramInvocation entry = {.mode = AMA_ACCESS_ENTRY};
@@ -105,7 +105,7 @@ AmaStatus ama_context_execution_start(AmaContextRegistry *registry, uint64_t ide
     return ama_status_success();
 }
 
-/** Preserve the ordinary owner-acquiring API through the same already-leased preparation path. */
+/** Preserve the ordinary owner-acquiring API through the same already-leased preparation path. Component contract: [EMBED-03](../../../../spec/implementation/c-library.md#embed-03), [CALL-08](../../../../spec/language/calls-and-results.md#call-08), [RT-11](../../../../spec/implementation/runtime.md#rt-11). */
 AmaStatus ama_context_execution_begin(AmaContextRegistry *registry, uint64_t identity,
     AmaContextReference root, const AmaProgramInvocation *invocation, AmaContextExecution *execution) {
     if (!execution_request_valid(invocation, execution, false)) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }

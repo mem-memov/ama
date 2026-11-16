@@ -8,7 +8,7 @@
  */
 #include "native/scaffold/internal.h"
 
-/** Emit a typed use, never a replacement declaration that could hide a missing authored header prototype. C rejects absent or incompatible names before a caller can use the helper. */
+/** Emit a typed use, never a replacement declaration that could hide a missing authored header prototype. C rejects absent or incompatible names before a caller can use the helper. Component contract: [PROTO-03](../../../../spec/implementation/native-interface.md#proto-03), [NAME-05](../../../../spec/implementation/native-interface.md#name-05). */
 bool scaffold_emit_bridge(FILE *output, const ScaffoldType *type) {
     if (!scaffold_size_bridge(type)) { return true; }
     const char *name = type->names[SCAFFOLD_WRITE]->internal_name;
@@ -21,13 +21,13 @@ bool scaffold_emit_bridge(FILE *output, const ScaffoldType *type) {
         name, prefix, prefix, name, name, name, prefix) >= 0;
 }
 
-/** Add the fixed prototype to a newly requested standard integer representation header; existing authored headers remain untouched. */
+/** Add the fixed prototype to a newly requested standard integer representation header; existing authored headers remain untouched. Component contract: [PROTO-03](../../../../spec/implementation/native-interface.md#proto-03), [NAME-05](../../../../spec/implementation/native-interface.md#name-05). */
 bool scaffold_emit_bridge_declaration(FILE *output, const ScaffoldType *type) {
     return !scaffold_size_bridge(type)
         || fputs("AmaStatus AMA_NATIVE(from_size)(AMA_NATIVE(State) *destination, size_t value);\n", output) != EOF;
 }
 
-/** Emit an honest unwritten bridge only in a requested body template, without extending the six-record ABI or constructing a fake value. */
+/** Emit an honest unwritten bridge only in a requested body template, without extending the six-record ABI or constructing a fake value. Component contract: [PROTO-03](../../../../spec/implementation/native-interface.md#proto-03), [NAME-05](../../../../spec/implementation/native-interface.md#name-05). */
 bool scaffold_emit_bridge_body(FILE *output, const ScaffoldType *type) {
     return !scaffold_size_bridge(type) || fputs(
         "AmaStatus AMA_NATIVE(from_size)(AMA_NATIVE(State) *destination, size_t value) {\n"

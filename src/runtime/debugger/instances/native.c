@@ -4,7 +4,7 @@
  * [PAR-05](../../../../spec/language/async-and-parallelism.md#par-05) leaves native reader lifetime/affinity with its provider.
  */
 #include "../internal.h"
-/** One synchronous read observation has no persistent borrow and cannot release its supplying session. */
+/** One synchronous read observation has no persistent borrow and cannot release its supplying session. Component contract: [PROTO-03](../../../../spec/implementation/native-interface.md#proto-03), [PAR-05](../../../../spec/language/async-and-parallelism.md#par-05). */
 typedef struct {
     AmaDebugNativeVisitor visit;
     void *context;
@@ -12,7 +12,7 @@ typedef struct {
     bool emitted;
     bool stopped;
 } DebugNativeVisit;
-/** Native readers promise truthful typed data; check transport shape and canonical sign/magnitude before forwarding. */
+/** Native readers promise truthful typed data; check transport shape and canonical sign/magnitude before forwarding. Component contract: [PROTO-03](../../../../spec/implementation/native-interface.md#proto-03), [PAR-05](../../../../spec/language/async-and-parallelism.md#par-05). */
 static bool debug_native_shape(const AmaDebugNativeValue *value) {
     if (value == NULL || (value->bytes.data == NULL && value->bytes.length != 0)) { return false; }
     if (value->kind == AMA_DEBUG_BOOLEAN) {
@@ -27,7 +27,7 @@ static bool debug_native_shape(const AmaDebugNativeValue *value) {
     return (value->kind == AMA_DEBUG_TEXT || value->kind == AMA_DEBUG_BYTES)
         && !value->flag && !value->negative && !value->little_endian;
 }
-/** A successful reader emits exactly one scalar value. Observer stop never causes another observer call. */
+/** A successful reader emits exactly one scalar value. Observer stop never causes another observer call. Component contract: [PROTO-03](../../../../spec/implementation/native-interface.md#proto-03), [PAR-05](../../../../spec/language/async-and-parallelism.md#par-05). */
 static bool debug_native_emit(void *context, const AmaDebugNativeValue *value) {
     DebugNativeVisit *visitor = context;
     if (visitor->stopped || visitor->status.code != AMA_OK) { return false; }
@@ -39,7 +39,7 @@ static bool debug_native_emit(void *context, const AmaDebugNativeValue *value) {
     visitor->stopped = !visitor->visit(visitor->context,value);
     return !visitor->stopped;
 }
-/** Missing adapters return a technical inspection result without invoking hooks or changing program/refusal status. */
+/** Missing adapters return a technical inspection result without invoking hooks or changing program/refusal status. Component contract: [PROTO-03](../../../../spec/implementation/native-interface.md#proto-03), [PAR-05](../../../../spec/language/async-and-parallelism.md#par-05). */
 AmaStatus ama_debug_native(AmaDebugSession *session, AmaContextReference reference, AmaDebugNativeVisitor visit, void *context) {
     if (visit == NULL) { return ama_status_make(AMA_INVALID_STATE,NULL,0); }
     const AmaProgramType *type = NULL;

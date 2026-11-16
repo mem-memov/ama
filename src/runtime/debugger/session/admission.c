@@ -5,7 +5,7 @@
  */
 #include <stdint.h>
 #include "../internal.h"
-/** Revalidate the lease each time; cached views alone never grant access after release. */
+/** Revalidate the lease each time; cached views alone never grant access after release. Component contract: [PAR-02](../../../../spec/language/async-and-parallelism.md#par-02), [DEBUG-03](../../../../spec/implementation/diagnostics.md#debug-03). */
 AmaStatus ama_debug_validate(const AmaDebugSession *session) {
     if (session == NULL) { return ama_status_make(AMA_INVALID_STATE,NULL,0); }
     AmaContextView view = {0};
@@ -17,7 +17,7 @@ AmaStatus ama_debug_validate(const AmaDebugSession *session) {
     if (view.control->phase == AMA_RUNTIME_EXECUTING || view.world->operation_active) { return ama_status_make(AMA_BUSY,NULL,0); }
     return ama_status_success();
 }
-/** Failed admission releases only its private candidate lease and leaves caller storage unchanged. */
+/** Failed admission releases only its private candidate lease and leaves caller storage unchanged. Component contract: [PAR-02](../../../../spec/language/async-and-parallelism.md#par-02), [DEBUG-03](../../../../spec/implementation/diagnostics.md#debug-03). */
 AmaStatus ama_debug_begin(AmaContextRegistry *registry, uint64_t identity, const AmaDebugCatalog *catalog,
     const AmaDebugNativeReader *readers, size_t count, AmaDebugSession *output) {
     if (output == NULL || output->lease.context != NULL || output->lease.registry != NULL || output->lease.identity != 0
@@ -35,7 +35,7 @@ AmaStatus ama_debug_begin(AmaContextRegistry *registry, uint64_t identity, const
     *output = candidate;
     return ama_status_success();
 }
-/** End clears every borrowed view before releasing the gate; callbacks cannot end their supplying session. */
+/** End clears every borrowed view before releasing the gate; callbacks cannot end their supplying session. Component contract: [PAR-02](../../../../spec/language/async-and-parallelism.md#par-02), [DEBUG-03](../../../../spec/implementation/diagnostics.md#debug-03). */
 AmaStatus ama_debug_end(AmaDebugSession *session) {
     AmaStatus status = ama_debug_validate(session);
     if (status.code != AMA_OK) { return status; }
@@ -44,7 +44,7 @@ AmaStatus ama_debug_end(AmaDebugSession *session) {
     *session = (AmaDebugSession){0};
     return ama_context_leave(&lease);
 }
-/** Nested read queries are allowed; finite caller frames cannot release their borrowed owner early. */
+/** Nested read queries are allowed; finite caller frames cannot release their borrowed owner early. Component contract: [PAR-02](../../../../spec/language/async-and-parallelism.md#par-02), [DEBUG-03](../../../../spec/implementation/diagnostics.md#debug-03). */
 AmaStatus ama_debug_visit_begin(AmaDebugSession *session) {
     AmaStatus status = ama_debug_validate(session);
     if (status.code != AMA_OK) { return status; }
@@ -52,5 +52,5 @@ AmaStatus ama_debug_visit_begin(AmaDebugSession *session) {
     session->visits++;
     return ama_status_success();
 }
-/** No user/native hook is involved in retiring this read-only frame credit. */
+/** No user/native hook is involved in retiring this read-only frame credit. Component contract: [PAR-02](../../../../spec/language/async-and-parallelism.md#par-02), [DEBUG-03](../../../../spec/implementation/diagnostics.md#debug-03). */
 void ama_debug_visit_end(AmaDebugSession *session) { session->visits--; }

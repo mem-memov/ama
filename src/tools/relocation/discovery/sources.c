@@ -8,7 +8,7 @@
 #include "internal.h"
 #include "source/unicode/unicode.h"
 
-/** Parser diagnostics borrow original source/static expectation text, not discarded syntax nodes. */
+/** Parser diagnostics borrow original source/static expectation text, not discarded syntax nodes. Component contract: [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01), [SYN-04](../../../../spec/language/source-and-names.md#syn-04). */
 bool relocation_source_kind(RelocationPreview *preview, const SourceText *text, bool *active) {
     AstModule syntax;
     ast_module_init(&syntax,preview->arena.allocator);
@@ -20,7 +20,7 @@ bool relocation_source_kind(RelocationPreview *preview, const SourceText *text, 
         ? RELOCATION_OUT_OF_MEMORY : RELOCATION_INVALID_SOURCE,source_path(text),NULL);
 }
 
-/** Add one fully copied record after successful byte/activity checks; no source is executed. */
+/** Add one fully copied record after successful byte/activity checks; no source is executed. Component contract: [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01), [SYN-04](../../../../spec/language/source-and-names.md#syn-04). */
 static RelocationModule *append_module(RelocationPreview *preview, const SourceText *text,
     const char *identity, dev_t device, ino_t inode) {
     bool active;
@@ -35,7 +35,7 @@ static RelocationModule *append_module(RelocationPreview *preview, const SourceT
     return module;
 }
 
-/** The catalog enumerates all roots, not an entry-point dependency closure. */
+/** The catalog enumerates all roots, not an entry-point dependency closure. Component contract: [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01), [SYN-04](../../../../spec/language/source-and-names.md#syn-04). */
 bool relocation_original_modules(RelocationPreview *preview) {
     ModuleStatus status = module_catalog_build(&preview->catalog,preview->before_roots,preview->before_root_count);
     if (!relocation_catalog_failure(preview,status)) { return false; }
@@ -45,7 +45,7 @@ bool relocation_original_modules(RelocationPreview *preview) {
     return true;
 }
 
-/** Newly configured candidates retain exact original bytes; UTF-8 is a source rule even for drafts. */
+/** Newly configured candidates retain exact original bytes; UTF-8 is a source rule even for drafts. Component contract: [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01), [SYN-04](../../../../spec/language/source-and-names.md#syn-04). */
 static RelocationModule *additional_module(RelocationPreview *preview, const char *before, const struct stat *metadata) {
     const SourceText *text = NULL;
     SourceStatus status = source_manager_load(&preview->additional_sources,before,&text);
@@ -63,7 +63,7 @@ static RelocationModule *additional_module(RelocationPreview *preview, const cha
     return append_module(preview,text,NULL,metadata->st_dev,metadata->st_ino);
 }
 
-/** Complete final identity equality and physical inode equality are separate collision checks. */
+/** Complete final identity equality and physical inode equality are separate collision checks. Component contract: [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01), [SYN-04](../../../../spec/language/source-and-names.md#syn-04). */
 bool relocation_final_module(RelocationPreview *preview, const char *before, const char *after,
     const char *identity, const struct stat *metadata) {
     RelocationModule *selected = NULL;

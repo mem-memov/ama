@@ -6,7 +6,7 @@
 #include "../internal.h"
 _Static_assert(sizeof(size_t) <= sizeof(uint64_t), "Message counts need a representable wire domain");
 
-/** Bound subtraction precedes addition; failure leaves both position and output unchanged. */
+/** Bound subtraction precedes addition; failure leaves both position and output unchanged. Component contract: [PAR-03](../../../../spec/language/async-and-parallelism.md#par-03). */
 bool ama_message_read(AmaMessageReader *reader, size_t count, AmaByteView *output) {
     if (count > reader->bytes.length - reader->position || (count != 0 && reader->bytes.data == NULL)) { return false; }
     *output = (AmaByteView){reader->bytes.data == NULL ? NULL : reader->bytes.data + reader->position, count};
@@ -14,7 +14,7 @@ bool ama_message_read(AmaMessageReader *reader, size_t count, AmaByteView *outpu
     return true;
 }
 
-/** Stage the cursor so unrepresentable counts cannot consume input. */
+/** Stage the cursor so unrepresentable counts cannot consume input. Component contract: [PAR-03](../../../../spec/language/async-and-parallelism.md#par-03). */
 bool ama_message_read_size(AmaMessageReader *reader, size_t *output) {
     AmaMessageReader staged = *reader;
     AmaByteView bytes;
@@ -27,7 +27,7 @@ bool ama_message_read_size(AmaMessageReader *reader, size_t *output) {
     return true;
 }
 
-/** The null destination performs sizing only; all nonempty source slices remain valid borrows. */
+/** The null destination performs sizing only; all nonempty source slices remain valid borrows. Component contract: [PAR-03](../../../../spec/language/async-and-parallelism.md#par-03). */
 bool ama_message_write(AmaMessageWriter *writer, AmaByteView bytes) {
     if (bytes.length > writer->limit - writer->position) { return false; }
     if (writer->data != NULL && bytes.length != 0) {
@@ -37,7 +37,7 @@ bool ama_message_write(AmaMessageWriter *writer, AmaByteView bytes) {
     return true;
 }
 
-/** Fixed width avoids alternative encodings and machine-endian dependence. */
+/** Fixed width avoids alternative encodings and machine-endian dependence. Component contract: [PAR-03](../../../../spec/language/async-and-parallelism.md#par-03). */
 bool ama_message_write_size(AmaMessageWriter *writer, size_t count) {
     unsigned char bytes[8];
     uint64_t value = count;

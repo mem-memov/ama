@@ -12,7 +12,7 @@ StorageFrame *plan_storage_frame(const PlannedType *type, const SemanticStatemen
     }
     return NULL;
 }
-/** Each call site reserves the complete general transient frame, including intrinsic output storage where applicable. */
+/** Each call site reserves the complete general transient frame, including intrinsic output storage where applicable. Component contract: [CALL-09](../../../../spec/language/calls-and-results.md#call-09), [RT-09](../../../../spec/implementation/runtime.md#rt-09). */
 unsigned plan_storage_frame_contents(const SemanticStatement *statement) {
     if (statement->syntax->kind == AST_FOREACH) {
         return FRAME_CURSOR_ACTIVITY | FRAME_COLLECTION_IDENTITY | FRAME_BOUNDARY
@@ -27,7 +27,7 @@ unsigned plan_storage_frame_contents(const SemanticStatement *statement) {
     if (statement->operation_kind == SEMANTIC_LIST_METHOD_OPERATION) { result |= FRAME_INTRINSIC_RESULT; }
     return result;
 }
-/** Link a traversal's binding to its unique introduced cell or existing permanent field; never allocate a duplicate alias. */
+/** Link a traversal's binding to its unique introduced cell or existing permanent field; never allocate a duplicate alias. Component contract: [CALL-09](../../../../spec/language/calls-and-results.md#call-09), [RT-09](../../../../spec/implementation/runtime.md#rt-09). */
 static bool binding(ProgramPlan *plan, PlannedType *type, StorageFrame *frame) {
     const SemanticForeachBinding *role = frame->statement->traversal;
     if (role == NULL) { return plan_fail(plan, frame->statement->syntax->span, "Traversal storage requires a resolved binding"); }

@@ -5,14 +5,14 @@
 #ifndef AMA_EDITOR_INTERNAL_H
 #define AMA_EDITOR_INTERNAL_H
 #include "analysis.h"
-/** Add/deduplicate one exact spelling; conflicting metadata fails instead of selecting a guess. */
+/** Add/deduplicate one exact spelling; conflicting metadata fails instead of selecting a guess. Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 bool editor_index_add(EditorAnalysis *, SourceSpan, const SemanticSymbol *, const SemanticType *, bool);
-/** Stably order and deduplicate exact records, rejecting any contradictory resolved identity. */
+/** Stably order and deduplicate exact records, rejecting any contradictory resolved identity. Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 bool editor_index_order(EditorAnalysis *);
-/** Index the fully validated semantic graph only; failure never publishes indexed=true. */
+/** Index the fully validated semantic graph only; failure never publishes indexed=true. Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 bool editor_index_build(EditorAnalysis *);
-/** Index exact resolved source/access views, including nested index operands and qualified constants. */
+/** Index exact resolved source/access views, including nested index operands and qualified constants. Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 bool editor_index_access(EditorAnalysis *, const SemanticAccess *);
-/** Index source spellings using their resolved nominal/constant/access identities. */
+/** Index source spellings using their resolved nominal/constant/access identities. Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 bool editor_index_source(EditorAnalysis *, const SemanticSource *);
 #endif

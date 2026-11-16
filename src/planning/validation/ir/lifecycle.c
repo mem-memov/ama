@@ -5,14 +5,14 @@
  * requires explicit cleanup edges. Allocation inventories are distinct from execution links.
  */
 #include "internal.h"
-/** Membership scans never follow executable cycles or dereference a foreign edge. */
+/** Membership scans never follow executable cycles or dereference a foreign edge. Component contract: [COMP-02](../../../../spec/implementation/compiler.md#comp-02), [LIFE-03](../../../../spec/implementation/native-interface.md#life-03). */
 static bool member(const PlannedType *type, const LifeNode *candidate) {
     for (const LifeNode *node = type->lifecycles; node != NULL; node = node->allocated_next) {
         if (node == candidate) { return true; }
     }
     return false;
 }
-/** ABI pointers must name a registered binding in the exact semantic owner. */
+/** ABI pointers must name a registered binding in the exact semantic owner. Component contract: [COMP-02](../../../../spec/implementation/compiler.md#comp-02), [LIFE-03](../../../../spec/implementation/native-interface.md#life-03). */
 static bool hook(const PlannedType *type, const LifeNode *node) {
     if (type->type->module->syntax.sections.kind != MODULE_NATIVE) { return false; }
     if (node->operation == LIFE_CONSTRUCT_NATIVE) {

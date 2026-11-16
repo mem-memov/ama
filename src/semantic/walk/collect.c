@@ -7,14 +7,14 @@
  */
 #include <stdint.h>
 #include "internal.h"
-/** Semantic-owned cursor for one borrowed AST subtree and its incoming loop depth. */
+/** Semantic-owned cursor for one borrowed AST subtree and its incoming loop depth. Component contract: [NAME-04](../../../spec/language/declarations.md#name-04), [FLOW-04](../../../spec/language/control-flow.md#flow-04). */
 typedef struct WalkFrame {
     struct WalkFrame *next;
     const AstNode *node;
     size_t loop_depth;
     const AstNode *loop;
 } WalkFrame;
-/** Queue one nonempty owning subtree; null nodes require no allocation. */
+/** Queue one nonempty owning subtree; null nodes require no allocation. Component contract: [NAME-04](../../../spec/language/declarations.md#name-04), [FLOW-04](../../../spec/language/control-flow.md#flow-04). */
 static bool push(SemanticProgram *program, WalkFrame **pending,
     const AstNode *node, size_t loop_depth, const AstNode *loop) {
     if (node == NULL) { return true; }
@@ -24,7 +24,7 @@ static bool push(SemanticProgram *program, WalkFrame **pending,
     *pending = frame;
     return true;
 }
-/** Schedule each owned child exactly once; aliases never supply additional traversal edges. */
+/** Schedule each owned child exactly once; aliases never supply additional traversal edges. Component contract: [NAME-04](../../../spec/language/declarations.md#name-04), [FLOW-04](../../../spec/language/control-flow.md#flow-04). */
 static bool children(SemanticProgram *program, WalkFrame **pending,
     const AstNode *node, size_t depth, const AstNode *loop) {
     if (node->kind == AST_CALL) {
@@ -43,7 +43,7 @@ static bool children(SemanticProgram *program, WalkFrame **pending,
     }
     return true;
 }
-/** Append one stable event before collecting its children; equal-site loop/command order remains explicit. */
+/** Append one stable event before collecting its children; equal-site loop/command order remains explicit. Component contract: [NAME-04](../../../spec/language/declarations.md#name-04), [FLOW-04](../../../spec/language/control-flow.md#flow-04). */
 static bool append(SemanticProgram *program, SemanticWalk *walk, const AstNode *node, size_t depth, const AstNode *loop) {
     if (walk->count == SIZE_MAX) { return semantic_memory_failure(program); }
     SemanticWalkItem *item = semantic_allocate(program, sizeof(*item));

@@ -7,11 +7,11 @@
 #include <stdlib.h>
 #include <threads.h>
 #include "native/events/internal.h"
-/** The winning receipt is process-lifetime native identity history, with no code/release dependency. */
+/** The winning receipt is process-lifetime native identity history, with no code/release dependency. Component contract: [ASYNC-05](../../../../spec/language/async-and-parallelism.md#async-05). */
 static _Atomic(void *) event_image_domain;
-/** Serialize only the fixed-width service sequence; receipt allocation happens outside this gate. */
+/** Serialize only the fixed-width service sequence; receipt allocation happens outside this gate. Component contract: [ASYNC-05](../../../../spec/language/async-and-parallelism.md#async-05). */
 static _Atomic bool event_identity_locked;
-/** Never reset or wrap while this physical image is resident. */
+/** Never reset or wrap while this physical image is resident. Component contract: [ASYNC-05](../../../../spec/language/async-and-parallelism.md#async-05). */
 static uint64_t event_identity_sequence;
 
 AmaStatus ama_native_event_identity(AmaNativeEventToken *identity) {

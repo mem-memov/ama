@@ -6,28 +6,28 @@
 #ifndef AMA_LIBRARY_INTERNAL_H
 #define AMA_LIBRARY_INTERNAL_H
 #include "model.h"
-/** Record an allocation-free source-backed error and leave the build unusable. */
+/** Record an allocation-free source-backed error and leave the build unusable. Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool library_fail(LibraryBuild *, SourceSpan, const char *);
-/** Allocate zero-initialized model storage or retain a memory diagnostic. */
+/** Allocate zero-initialized model storage or retain a memory diagnostic. Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 void *library_allocate(LibraryBuild *, size_t);
-/** Decode one exact record with bounded, nonempty fields into owned model declarations. */
+/** Decode one exact record with bounded, nonempty fields into owned model declarations. Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool library_configuration_record(LibraryBuild *, SourceSpan);
-/** Require a portable nonreserved ASCII public identifier, independent of Ama naming. */
+/** Require a portable nonreserved ASCII public identifier, independent of Ama naming. Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool library_public_identifier(const char *);
-/** Find an explicitly declared schema by exact public identifier, or return null. */
+/** Find an explicitly declared schema by exact public identifier, or return null. Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 LibrarySchema *library_schema_find(const LibraryBuild *, const char *);
-/** Find an explicitly declared export by exact public identifier, or return null. */
+/** Find an explicitly declared export by exact public identifier, or return null. Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 LibraryExport *library_export_find(const LibraryBuild *, const char *);
-/** Resolve executable export identities after strict frontend completion. */
+/** Resolve executable export identities after strict frontend completion. Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool library_resolve_exports(LibraryBuild *, const SemanticProgram *);
-/** Resolve explicit scalar/list wire schemas and their exact supported nominal contracts. */
+/** Resolve explicit scalar/list wire schemas and their exact supported nominal contracts. Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool library_resolve_schemas(LibraryBuild *, const SemanticProgram *);
-/** Resolve every mapping and prove complete parameter/result coverage without implicit schemas. */
+/** Resolve every mapping and prove complete parameter/result coverage without implicit schemas. Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool library_resolve_bindings(LibraryBuild *);
-/** Build a complete framed ABI key from explicit records, excluding comments and physical paths. */
+/** Build a complete framed ABI key from explicit records, excluding comments and physical paths. Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool library_identity_parts(LibraryBuild *);
-/** Register component-qualified names with full-key collision checking. */
+/** Register component-qualified names with full-key collision checking. Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool library_resolve_identities(LibraryBuild *);
-/** Capture a library consumer, raw configuration and explicit additional link files. */
+/** Capture a library consumer, raw configuration and explicit additional link files. Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool library_capture_inputs(LibraryBuild *);
 #endif

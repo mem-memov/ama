@@ -7,7 +7,7 @@
 #include <limits.h>
 #include <unistd.h>
 #include "../internal.h"
-/** A full buffer may mean truncation; geometric growth terminates for every stable finite link target. */
+/** A full buffer may mean truncation; geometric growth terminates for every stable finite link target. Component contract: [TOOL-03](../../../../../spec/implementation/tools-and-conformance.md#tool-03). */
 bool relocation_staging_link(RelocationStaging *staging, const char *path, const SourceText **output) {
     for (size_t capacity = 64;;) {
         if (capacity > (size_t)SSIZE_MAX) {

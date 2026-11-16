@@ -8,7 +8,7 @@
 #include "commands.h"
 #include "process.h"
 #include "native/toolchain/profile.h"
-/** Allocate enough zero-terminated argument slots, with checked count/byte arithmetic. */
+/** Allocate enough zero-terminated argument slots, with checked count/byte arithmetic. Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04). */
 static char **arguments(const LibraryBuild *build, size_t fixed) {
     size_t count=fixed;
     for (const LibrarySetting *setting=build->settings;setting!=NULL;setting=setting->next) {

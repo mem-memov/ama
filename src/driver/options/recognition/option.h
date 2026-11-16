@@ -10,7 +10,7 @@
 #include <stdbool.h>
 #include "driver/request/request.h"
 
-/** Closed option destinations; these are compiler CLI records, not Ama values. */
+/** Closed option destinations; these are compiler CLI records, not Ama values. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03). */
 typedef enum {
     DRIVER_OPTION_ROOT, DRIVER_OPTION_EXCLUDE, DRIVER_OPTION_OUTPUT,
     DRIVER_OPTION_SDK, DRIVER_OPTION_COMPILER, DRIVER_OPTION_PROTOCOLS,
@@ -21,7 +21,7 @@ typedef enum {
     DRIVER_OPTION_RECOVERY_DIRECTORY, DRIVER_OPTION_ENTRY, DRIVER_OPTION_CONFIGURATION, DRIVER_OPTION_INVALIDATION
 } DriverOptionKind;
 
-/** Borrowed immutable recognition result; a value consumes the next argv entry. */
+/** Borrowed immutable recognition result; a value consumes the next argv entry. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03). */
 typedef struct {
     const char *name;
     DriverOptionKind kind;
@@ -31,6 +31,6 @@ typedef struct {
 
 /** Return the exact applicable option, or NULL for unknown/inapplicable names.
  * Name is a borrowed nonnull C string; no allocation, prefix matching or mutation.
- */
+ * Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03). */
 const DriverOption *driver_option_recognize(DriverRequest, const char *name);
 #endif

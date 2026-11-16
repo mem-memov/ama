@@ -6,7 +6,7 @@
  */
 #include "internal.h"
 /** Split a validated retained qualified constant at its last dot, with explicit list suffix; require both module and member without resolving either.
- */
+ * Component contract: [CONST-05](../../../../spec/language/declarations.md#const-05). */
 bool parser_constant_source(Parser *parser, SourceSpan text, AstSource *source) {
     const unsigned char *bytes = source_bytes(text.source);
     SourceSpan path = text;

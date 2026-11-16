@@ -11,28 +11,28 @@
 #include "runtime/program/lists/service.h"
 #include "runtime/program/calls/call.h"
 
-/** Resolved binding sources and exact operation sites; fields are input ordinals. */
+/** Resolved binding sources and exact operation sites; fields are input ordinals. Component contract: [LIST-04](../../../../../spec/language/lists.md#list-04), [CALL-08](../../../../../spec/language/calls-and-results.md#call-08), [PROTO-03](../../../../../spec/implementation/native-interface.md#proto-03). */
 typedef struct {
     const AmaProgramInput *inputs;
     size_t count;
     uint64_t integer_type;
     uint64_t operation;
     const uint64_t *installations;
-    /** Fixed standard integer bridge, present only for length construction. */
+    /** Fixed standard integer bridge, present only for length construction. Component contract: [LIST-04](../../../../../spec/language/lists.md#list-04), [CALL-08](../../../../../spec/language/calls-and-results.md#call-08), [PROTO-03](../../../../../spec/implementation/native-interface.md#proto-03). */
     AmaStatus (*from_size)(void *, size_t);
 } AmaProgramListInputs;
 
 /** Evaluate supplied sources once, then construct owned integer/reference inputs
  * using the method's fixed field forms. At most two scalar inputs exist. Partial
  * owned credits remain in the method frame for exact cleanup on every failure.
- */
+ * Component contract: [LIST-04](../../../../../spec/language/lists.md#list-04), [CALL-08](../../../../../spec/language/calls-and-results.md#call-08), [PROTO-03](../../../../../spec/implementation/native-interface.md#proto-03). */
 AmaStatus ama_program_list_prepare_inputs(AmaProgramListMethod *, const AmaProgramListInputs *,
     const AmaFieldKind *forms, size_t count);
-/** Convert one owned integer parameter once through its explicit native protocol. */
+/** Convert one owned integer parameter once through its explicit native protocol. Component contract: [LIST-04](../../../../../spec/language/lists.md#list-04), [CALL-08](../../../../../spec/language/calls-and-results.md#call-08), [PROTO-03](../../../../../spec/implementation/native-interface.md#proto-03). */
 AmaStatus ama_program_list_index(AmaProgramListMethod *, uint64_t integer_type,
     size_t input, size_t *position, bool *refused);
 /** Record only a previously classified expected refusal; technical errors do not
  * gain admission provenance from their numeric status.
- */
+ * Component contract: [LIST-04](../../../../../spec/language/lists.md#list-04), [CALL-08](../../../../../spec/language/calls-and-results.md#call-08), [PROTO-03](../../../../../spec/implementation/native-interface.md#proto-03). */
 AmaStatus ama_program_list_record_refusal(AmaProgramListMethod *, AmaStatus, bool *refused);
 #endif

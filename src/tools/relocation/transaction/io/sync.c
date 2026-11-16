@@ -6,7 +6,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include "../internal.h"
-/** A private tree's root sync does not itself flush its name in the containing slot directory. */
+/** A private tree's root sync does not itself flush its name in the containing slot directory. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_sync(RelocationTransaction *transaction, const char *path) {
     int descriptor = open(path,O_RDONLY|O_DIRECTORY|O_NOFOLLOW|O_CLOEXEC);
     if (descriptor < 0) { return relocation_transaction_fail(transaction,RELOCATION_IO_ERROR,"A relocation synchronization directory could not be opened",path); }

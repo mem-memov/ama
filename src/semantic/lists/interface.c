@@ -5,7 +5,7 @@
  */
 #include <string.h>
 #include "interface.h"
-/** One finite input/result table borrowing static descriptor arrays; bounds determine arity exactly. */
+/** One finite input/result table borrowing static descriptor arrays; bounds determine arity exactly. Component contract: [LIST-04](../../../spec/language/lists.md#list-04). */
 typedef struct {
     const char *name;
     const SemanticListField *inputs;
@@ -24,7 +24,7 @@ static const MethodInterface interfaces[SEMANTIC_LIST_METHOD_COUNT] = {
     {"remove", position, 1, NULL, 0}, {"clear", NULL, 0, NULL, 0},
     {"swap", swap, 2, NULL, 0}, {"length", NULL, 0, length, 1}
 };
-/** Compare the complete byte span with one fixed ASCII interface identifier. */
+/** Compare the complete byte span with one fixed ASCII interface identifier. Component contract: [LIST-04](../../../spec/language/lists.md#list-04). */
 static bool matches(SourceSpan name, const char *text) {
     size_t size = strlen(text);
     return name.end - name.start == size && memcmp(source_bytes(name.source) + name.start, text, size) == 0;
@@ -35,7 +35,7 @@ bool semantic_list_method(SourceSpan name, SemanticListMethod *method) {
     }
     return false;
 }
-/** The same finite table defines parsing and display names; no instance or allocation is introduced. */
+/** The same finite table defines parsing and display names; no instance or allocation is introduced. Component contract: [LIST-04](../../../spec/language/lists.md#list-04). */
 const char *semantic_list_method_name(SemanticListMethod method) {
     return (size_t)method < SEMANTIC_LIST_METHOD_COUNT ? interfaces[method].name : NULL;
 }

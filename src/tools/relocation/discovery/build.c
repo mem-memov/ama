@@ -6,7 +6,7 @@
  */
 #include "internal.h"
 
-/** Original parsing precedes projected discovery; no original candidate may disappear behind an exclusion or invalid namespace. */
+/** Original parsing precedes projected discovery; no original candidate may disappear behind an exclusion or invalid namespace. Component contract: [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01), [TOOL-02](../../../../spec/implementation/tools-and-conformance.md#tool-02). */
 bool relocation_discover(RelocationPreview *preview) {
     if (!relocation_original_modules(preview)) { return false; }
     RelocationDirectoryIdentity *identities = NULL;

@@ -15,7 +15,7 @@
  * The caller guarantees exclusive field authority, matching element type and
  * ownership; live cursor corrections remain a separate integration. This does
  * not expose a language-level service interface or retain any argument/result.
- */
+ * Component contract: [LIST-04](../../../spec/language/lists.md#list-04). */
 typedef struct {
     AmaWorld *world;
     AmaHandle owner;
@@ -28,14 +28,14 @@ typedef struct {
  * Owning storage constructs/clones; reference storage copies the complete handle.
  * Failure/refusal is returned directly as status, never stored on the vector.
  * Preflight failure leaves contents intact; successful reserve may grow capacity.
- */
+ * Component contract: [LIST-04](../../../spec/language/lists.md#list-04). */
 AmaStatus ama_list_storage_insert(AmaListStorage *, size_t position, AmaHandle source);
 
 /** Insert with explicit preflight provenance for typed methods. require_copy
  * distinguishes a supplied owning source, including empty, from omission.
  * Only bounds/checked source unavailability set refused; allocation, capability
  * and native construction errors remain technical even if their code coincides.
- */
+ * Component contract: [LIST-04](../../../spec/language/lists.md#list-04). */
 AmaStatus ama_list_storage_insert_checked(AmaListStorage *, size_t, AmaHandle,
     bool require_copy, bool *refused);
 
@@ -43,11 +43,11 @@ AmaStatus ama_list_storage_insert_checked(AmaListStorage *, size_t, AmaHandle,
  * Bounds are checked without overflowing. Owning destructor failure is terminal;
  * cleanup continues and preserves the primary failure. Reference targets are not
  * acquired or destroyed. Zero count is valid at the end of the vector.
- */
+ * Component contract: [LIST-04](../../../spec/language/lists.md#list-04). */
 AmaStatus ama_list_storage_remove(AmaListStorage *, size_t position, size_t count);
 /** Remove with explicit bounds/subtree availability provenance. All owning trees
  * are protected before the first destructor; later destruction errors never set
  * refused and cleanup consumes every selected credit without rollback.
- */
+ * Component contract: [LIST-04](../../../spec/language/lists.md#list-04). */
 AmaStatus ama_list_storage_remove_checked(AmaListStorage *, size_t position, size_t count, bool *refused);
 #endif

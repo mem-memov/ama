@@ -4,7 +4,7 @@
  * [COMP-02](../../../spec/implementation/compiler.md#comp-02) supplies checked IR directly.
  */
 #include "../analysis/analysis.h"
-/** Only the written target/path interval identifies this call; enclosing binding/body ranges are not a guess. */
+/** Only the written target/path interval identifies this call; enclosing binding/body ranges are not a guess. Component contract: [LIST-04](../../../spec/language/lists.md#list-04), [COMP-02](../../../spec/implementation/compiler.md#comp-02). */
 bool editor_operation(const EditorAnalysis *analysis, const char *module, size_t offset,
     const SemanticStatement **output) {
     if (!analysis->indexed || output == NULL) { return false; }
@@ -22,7 +22,7 @@ bool editor_operation(const EditorAnalysis *analysis, const char *module, size_t
     return false;
 }
 
-/** A positional marker or written label identifies one checked interface binding, including intrinsic fields without source declarations. */
+/** A positional marker or written label identifies one checked interface binding, including intrinsic fields without source declarations. Component contract: [LIST-04](../../../spec/language/lists.md#list-04), [COMP-02](../../../spec/implementation/compiler.md#comp-02). */
 bool editor_binding(const EditorAnalysis *analysis, const char *module, size_t offset,
     const SemanticBinding **output) {
     if (!analysis->indexed || output == NULL) { return false; }

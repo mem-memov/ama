@@ -6,7 +6,7 @@
 #include <stdint.h>
 #include "internal.h"
 
-/** Every root's exclusions remain literal settings from the validated plan, not guessed physical references. */
+/** Every root's exclusions remain literal settings from the validated plan, not guessed physical references. Component contract: [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01). */
 static bool roots(RelocationReport *report, const ModuleRoot *input, size_t count, const ModuleRoot **output) {
     if (count > SIZE_MAX/sizeof(ModuleRoot)) { return relocation_report_memory(report); }
     ModuleRoot *copy = source_arena_allocate(&report->arena,count*sizeof(*copy));
@@ -27,7 +27,7 @@ static bool roots(RelocationReport *report, const ModuleRoot *input, size_t coun
     *output = copy;
     return true;
 }
-/** Copy even unchanged paths so the report does not extend the lifetime of a compiler snapshot. */
+/** Copy even unchanged paths so the report does not extend the lifetime of a compiler snapshot. Component contract: [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01). */
 bool relocation_report_settings(RelocationReport *report, const RelocationStaging *staging) {
     const RelocationPreview *preview = staging->references->preview;
     report->source = source_arena_copy(&report->arena,preview->source);

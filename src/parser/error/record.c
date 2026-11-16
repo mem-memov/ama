@@ -8,7 +8,7 @@
 #include "error.h"
 
 /** Return immutable branch-specific help only for explicitly supported grammar keys; absent help remains null rather than a guessed repair.
- */
+ * Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04). */
 static const char *explanation(ParserExpectation expected) {
     switch (expected) {
         case EXPECT_RIGHT_BRACKET:

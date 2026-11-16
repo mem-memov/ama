@@ -7,7 +7,7 @@
 #include "internal.h"
 #include "../transaction/journal/format.h"
 
-/** Consume a fixed token only when every required byte exists and matches. */
+/** Consume a fixed token only when every required byte exists and matches. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_read_token(RelocationJournalReader *reader, const char *text) {
     size_t length = strlen(text);
     if (length > source_length(reader->source)-reader->offset
@@ -19,7 +19,7 @@ bool relocation_journal_read_token(RelocationJournalReader *reader, const char *
     reader->offset += length;
     return true;
 }
-/** A proper prefix is an interrupted append, not an alternative token or a guessed commit. */
+/** A proper prefix is an interrupted append, not an alternative token or a guessed commit. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool tail(RelocationJournalReader *reader) {
     RelocationRecovery *recovery = reader->recovery;
     RelocationTransaction *transaction = &recovery->transaction;
@@ -49,7 +49,7 @@ static bool tail(RelocationJournalReader *reader) {
     }
     return relocation_journal_invalid(reader,"The journal decision tail is malformed");
 }
-/** The immutable prepared prefix must be complete; only append-only decision/finalization tokens may be interrupted. */
+/** The immutable prepared prefix must be complete; only append-only decision/finalization tokens may be interrupted. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_decode(RelocationRecovery *recovery, const SourceText *source) {
     RelocationJournalReader reader = {.recovery=recovery,.source=source};
     recovery->record = source;

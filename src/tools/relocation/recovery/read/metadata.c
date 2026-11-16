@@ -6,7 +6,7 @@
 #include <string.h>
 #include "../internal.h"
 
-/** Each conversion must preserve its mathematical value; no struct padding enters the journal contract. */
+/** Each conversion must preserve its mathematical value; no struct padding enters the journal contract. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_read_metadata(RelocationJournalReader *reader, struct stat *metadata) {
     uintmax_t unsigned_value;
     intmax_t signed_value;

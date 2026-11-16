@@ -8,7 +8,7 @@
 #include <string.h>
 #include "runtime/objects/internal.h"
 
-/** Within an existing operation, select direct clone replacement or one default/literal recipe in the inactive bank. No default-then-overwrite construction and no payload relocation. */
+/** Within an existing operation, select direct clone replacement or one default/literal recipe in the inactive bank. No default-then-overwrite construction and no payload relocation. Component contract: [LIFE-04](../../../../spec/implementation/native-interface.md#life-04). */
 AmaStatus ama_object_reconstruct_in(AmaObjectOperation *operation, AmaHandle destination, const AmaRecipe *recipe) {
     if (recipe != NULL && recipe->constructor == AMA_CONSTRUCT_CLONE && recipe->source.generation != 0) {
         return ama_object_replace_in(operation, destination, recipe->source, recipe->continuation);

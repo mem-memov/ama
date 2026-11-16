@@ -4,7 +4,7 @@
  * separates a validated plan from later recoverable filesystem publication.
  */
 #include "internal.h"
-/** A failed or repeated build never authorizes consuming partial staged results. */
+/** A failed or repeated build never authorizes consuming partial staged results. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_staging_build(RelocationStaging *staging, const RelocationStagingRequest *request) {
     if (staging->attempted) { return false; }
     staging->attempted = true;

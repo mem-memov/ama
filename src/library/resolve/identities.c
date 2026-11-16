@@ -5,7 +5,7 @@
  */
 #include <stdint.h>
 #include "../internal.h"
-/** Register the exact framed tuple, preserving unequal-key collision as a hard failure. */
+/** Register the exact framed tuple, preserving unequal-key collision as a hard failure. Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06). */
 static bool identity(LibraryBuild *build, const char *module, const char *role,
     const char *name, const char *detail, SourceSpan site, const IdentityName **output) {
     size_t count = build->identity_part_count;

@@ -7,7 +7,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include "../internal.h"
-/** Linux no-replace rename protects files and directories without a check-then-overwrite race. */
+/** Linux no-replace rename protects files and directories without a check-then-overwrite race. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_rename(RelocationTransaction *transaction, RelocationIOOperation operation,
     const char *source, const char *destination) {
     return relocation_transaction_permit(transaction,operation,destination)

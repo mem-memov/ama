@@ -5,7 +5,7 @@
  */
 #include "internal.h"
 
-/** Emit before lifecycle setup or standalone diagnostic/snapshot adapters; code ownership is not an Ama instance. */
+/** Emit before lifecycle setup or standalone diagnostic/snapshot adapters; code ownership is not an Ama instance. Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06). */
 void library_lifecycle_retention(LibraryHeader *header) {
     library_header_print(header, "#include \"runtime/library/native.h\"\nstatic AmaLibraryCodePins %s_code;\n", header->prefix);
 }

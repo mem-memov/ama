@@ -7,7 +7,7 @@
  */
 #include <assert.h>
 #include "library/model.h"
-/** Append a declared implementation name; preserve stream failure for the caller. */
+/** Append a declared implementation name; preserve stream failure for the caller. Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06). */
 static bool symbol(FILE *output, const char *prefix, const char *operation) {
     return fprintf(output, "%s_%s_implementation\n", prefix, operation) >= 0;
 }

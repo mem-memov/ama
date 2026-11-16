@@ -9,7 +9,7 @@
 #include "semantic/internal.h"
 
 /** Require header, C body and ABI metadata for a real native module, preserving the missing physical companion kind in diagnostics.
- */
+ * Component contract: [PROTO-02](../../../spec/implementation/native-interface.md#proto-02). */
 static bool companions(SemanticProgram *program, SemanticType *type) {
     const ModuleSource *source = type->module->source;
     const char *missing = source->native_header == NULL ? ".h"

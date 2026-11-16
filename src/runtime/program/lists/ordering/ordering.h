@@ -9,12 +9,12 @@
 #include "runtime/program/lists/inputs/inputs.h"
 /** Convert both prepared positions before publishing a single identity swap.
  * Bounds/conversion refusals preserve the entire list and create no result.
- */
+ * Component contract: [LIST-08](../../../../../spec/language/lists.md#list-08), [LIST-04](../../../../../spec/language/lists.md#list-04). */
 AmaStatus ama_program_list_swap(AmaProgramListService *, AmaProgramListMethod *,
     const AmaProgramListInputs *, bool *refused);
 /** Construct one fresh integer result through the fixed typed size bridge.
  * Native failures remain technical; successful ownership belongs to the frame.
- */
+ * Component contract: [LIST-08](../../../../../spec/language/lists.md#list-08), [LIST-04](../../../../../spec/language/lists.md#list-04). */
 AmaStatus ama_program_list_length(AmaProgramListService *, AmaProgramListMethod *,
     const AmaProgramListInputs *, bool *refused);
 #endif

@@ -6,7 +6,7 @@
  * leaves original files intact when any preparation phase fails.
  */
 #include "../internal.h"
-/** Build once; every prefix remains owned for diagnostics, and ready is published only after all phases. */
+/** Build once; every prefix remains owned for diagnostics, and ready is published only after all phases. Component contract: [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01), [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_preview_build(RelocationPreview *preview, const RelocationRequest *request) {
     if (preview->attempted) { return false; }
     preview->attempted = true;

@@ -9,7 +9,7 @@
 #include "../internal.h"
 #include "../../internal.h"
 
-/** Resolve a documented configuration module field in the same augmented original domain as Ama sources. */
+/** Resolve a documented configuration module field in the same augmented original domain as Ama sources. Component contract: [TOOL-01](../../../../../spec/implementation/tools-and-conformance.md#tool-01), [EMBED-01](../../../../../spec/implementation/c-library.md#embed-01). */
 static const RelocationModule *target(RelocationStaging *staging, const char *name) {
     for (const RelocationModule *module = staging->references->preview->modules; module != NULL; module = module->next) {
         const char *original = module->before_identity == NULL ? module->after_identity : module->before_identity;
@@ -17,7 +17,7 @@ static const RelocationModule *target(RelocationStaging *staging, const char *na
     }
     return NULL;
 }
-/** Insert one parsed field replacement in original byte order; record separators are never selected. */
+/** Insert one parsed field replacement in original byte order; record separators are never selected. Component contract: [TOOL-01](../../../../../spec/implementation/tools-and-conformance.md#tool-01), [EMBED-01](../../../../../spec/implementation/c-library.md#embed-01). */
 static bool add_edit(RelocationStaging *staging, RelocationPathEdit **edits, size_t *count,
     SourceSpan site, const char *replacement, const RelocationModule *module) {
     RelocationPathEdit *item = source_arena_allocate(&staging->arena,sizeof(*item));
@@ -32,7 +32,7 @@ static bool add_edit(RelocationStaging *staging, RelocationPathEdit **edits, siz
     (*count)++;
     return true;
 }
-/** Resolve only declared module fields and preserve their original spelling when the identity is unchanged. */
+/** Resolve only declared module fields and preserve their original spelling when the identity is unchanged. Component contract: [TOOL-01](../../../../../spec/implementation/tools-and-conformance.md#tool-01), [EMBED-01](../../../../../spec/implementation/c-library.md#embed-01). */
 static bool edit(RelocationStaging *staging, RelocationPathEdit **edits, size_t *count, SourceSpan site, const char *name) {
     const RelocationModule *module = target(staging,name);
     if (module == NULL) {
@@ -40,7 +40,7 @@ static bool edit(RelocationStaging *staging, RelocationPathEdit **edits, size_t 
     }
     return strcmp(name,module->after_identity) == 0 || add_edit(staging,edits,count,site,module->after_identity,module);
 }
-/** Preserve each explicit foreign-file referent across relocation and future invocation directories. */
+/** Preserve each explicit foreign-file referent across relocation and future invocation directories. Component contract: [TOOL-01](../../../../../spec/implementation/tools-and-conformance.md#tool-01), [EMBED-01](../../../../../spec/implementation/c-library.md#embed-01). */
 static bool physical_edit(RelocationStaging *staging, RelocationPathEdit **edits, size_t *count, const LibrarySetting *setting) {
     if (strcmp(setting->kind,"link-file") != 0 && strcmp(setting->kind,"dependency-file") != 0) { return true; }
     bool existed;
@@ -58,14 +58,14 @@ static bool physical_edit(RelocationStaging *staging, RelocationPathEdit **edits
     file->protected_input = true;
     return strcmp(setting->value,after) == 0 || add_edit(staging,edits,count,setting->value_site,after,NULL);
 }
-/** Ordinary configuration/type/schema errors retain their original or final source locations. */
+/** Ordinary configuration/type/schema errors retain their original or final source locations. Component contract: [TOOL-01](../../../../../spec/implementation/tools-and-conformance.md#tool-01), [EMBED-01](../../../../../spec/implementation/c-library.md#embed-01). */
 static bool checked(RelocationStaging *staging, LibraryBuild *build, const SourceText *text, const SemanticProgram *program) {
     if (library_configuration_parse(build,text) && library_configuration_validate(build,program)) { return true; }
     staging->status = build->error.code == DIAGNOSTIC_OUT_OF_MEMORY ? RELOCATION_OUT_OF_MEMORY : RELOCATION_INVALID_SOURCE;
     staging->error = build->error;
     return false;
 }
-/** Capture recognized configuration explicitly; preserve flags and rebase only documented identity/file fields. */
+/** Capture recognized configuration explicitly; preserve flags and rebase only documented identity/file fields. Component contract: [TOOL-01](../../../../../spec/implementation/tools-and-conformance.md#tool-01), [EMBED-01](../../../../../spec/implementation/c-library.md#embed-01). */
 bool relocation_staging_configuration(RelocationStaging *staging, const char *input) {
     bool existed;
     const char *before = relocation_staging_setting_path(staging,input,false,&existed);

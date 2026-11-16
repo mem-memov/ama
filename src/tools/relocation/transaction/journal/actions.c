@@ -6,13 +6,13 @@
 #include <string.h>
 #include "format.h"
 
-/** Slot ownership is recorded independently from the source/prepared objects later renamed into it. */
+/** Slot ownership is recorded independently from the source/prepared objects later renamed into it. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_slot(RelocationJournalWriter *writer, const RelocationTransactionSlot *owned) {
     return relocation_journal_text(writer,owned->directory) && relocation_journal_text(writer,owned->parent)
         && relocation_journal_text(writer,owned->prepared) && relocation_journal_text(writer,owned->backup)
         && relocation_journal_metadata(writer,&owned->metadata);
 }
-/** Unchanged opaque bytes remain authoritative in the saved original tree; changed Ama/configuration bytes are stored explicitly. */
+/** Unchanged opaque bytes remain authoritative in the saved original tree; changed Ama/configuration bytes are stored explicitly. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool tree(RelocationJournalWriter *writer, const RelocationTransactionAction *action) {
     if (!relocation_journal_unsigned(writer,action->tree_count)) { return false; }
     for (size_t index = 0; index < action->tree_count; index++) {
@@ -29,7 +29,7 @@ static bool tree(RelocationJournalWriter *writer, const RelocationTransactionAct
     }
     return true;
 }
-/** Every forward action has a saved inverse and source/published identity before the first mutation can occur. */
+/** Every forward action has a saved inverse and source/published identity before the first mutation can occur. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_actions(RelocationJournalWriter *writer) {
     const RelocationTransaction *transaction = writer->transaction;
     if (!relocation_journal_slot(writer,transaction->recovery_slot)) { return false; }

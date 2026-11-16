@@ -25,7 +25,7 @@
 /** Immutable, compiler-resolved executable type schema. Arrays, hooks and source views
  * are borrowed through every context built from it; outer records are read during creation.
  * No pool or native State is shared.
- */
+ * Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 typedef struct {
     uint64_t type_id;
     size_t size;
@@ -40,14 +40,14 @@ typedef struct {
     uint64_t operation;
     AmaStatus (*condition)(const void *, bool *);
     AmaStatus (*index)(const void *, size_t *);
-    /** Borrowed lexical cursor catalog, with one entry per declared field. */
+    /** Borrowed lexical cursor catalog, with one entry per declared field. Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
     const AmaListCursorSet *list_cursors;
-    /** Borrowed exact scope ancestry and binding locations, checked before creation. */
+    /** Borrowed exact scope ancestry and binding locations, checked before creation. Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
     const struct AmaProgramForeachScope *foreach_scopes;
     size_t foreach_count;
 } AmaContextType;
 
-/** Immutable shared declaration; each context allocates its own storage and lifecycle ledger. */
+/** Immutable shared declaration; each context allocates its own storage and lifecycle ledger. Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 typedef struct {
     uint64_t type_id;
     bool list;
@@ -59,7 +59,7 @@ typedef struct {
 /** Borrowed resolved schema and synchronous reporting callback. The allocator and callback
  * must support the host's chosen concurrency; callbacks cannot reenter the active context.
  * Native-resource affinity must permit any host-thread transfer; a gate does not grant affinity.
- */
+ * Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 typedef struct {
     const AmaContextType *types;
     size_t type_count;
@@ -67,23 +67,23 @@ typedef struct {
     size_t constant_count;
     const AmaProgramLocation *locations;
     size_t location_count;
-    /** Exact generated source operation for failure before a root or descriptor arena exists. */
+    /** Exact generated source operation for failure before a root or descriptor arena exists. Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
     uint64_t initialization_operation;
     void (*report)(void *, AmaStatus);
     void *report_context;
-    /** Optional immutable compiled-component label, retained through synchronous trace reporting. */
+    /** Optional immutable compiled-component label, retained through synchronous trace reporting. Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
     const char *component;
-    /** Borrowed native-only component code provider; zero denotes process-resident code. */
+    /** Borrowed native-only component code provider; zero denotes process-resident code. Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
     AmaNativeCodeProvider native_code;
 } AmaContextDefinition;
 
-/** Opaque registry-owned context. A host token never contains its C address. */
+/** Opaque registry-owned context. A host token never contains its C address. Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 typedef struct AmaContext AmaContext;
 
 /** Explicit host-owned identity registry. Initialize once per C object lifetime and keep
  * it alive through every operation/lease. Its atomic gate protects membership only, not Ama bodies.
  * Closing contexts leaves this owner valid; destroy requires exclusive C lifetime authority.
- */
+ * Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 typedef struct {
     _Atomic bool locked;
     SourceAllocator allocator;
@@ -96,7 +96,7 @@ typedef struct {
 
 /** Checked host instance identity. Context zero is empty; the local triple has meaning
  * only after the originating context has been validated. This is not a transport value.
- */
+ * Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 typedef struct {
     uint64_t context;
     AmaHandle local;
@@ -105,7 +105,7 @@ typedef struct {
 /** Linear internal access owner, initialized empty and never copied. A live lease pins its
  * record and owns its context gate. Borrowed views expire before release; forged or shallowly
  * copied lease pointers violate the C ownership contract, unlike copyable numeric host tokens.
- */
+ * Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 typedef struct {
     AmaContextRegistry *registry;
     AmaContext *context;
@@ -114,7 +114,7 @@ typedef struct {
 
 /** Operation-scoped internal runtime authority. These pointers never cross the public
  * compiled-component boundary and must not survive the supplying lease.
- */
+ * Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 typedef struct {
     AmaWorld *world;
     AmaProgram *program;
@@ -124,38 +124,38 @@ typedef struct {
 
 /** Initialize a fresh registry with borrowed malloc/free-compatible allocation authority.
  * Failure leaves an uninitialized, safely destroyable owner. No Ama constructor runs.
- */
+ * Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_context_registry_init(AmaContextRegistry *registry, SourceAllocator allocator);
 /** Close every context after acquiring all their gates; busy/pending work leaves membership
  * unchanged. Accepted closure invalidates identities before hooks, cleans all roots/constants
  * and retains the first failure. Repeated completed closure returns that same outcome.
- */
+ * Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_context_registry_close(AmaContextRegistry *registry);
 /** End a registry's C lifetime after successful admission to close. A busy owner remains
  * initialized; accepted cleanup errors do not prevent ending this owner exactly once.
- */
+ * Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_context_registry_destroy(AmaContextRegistry *registry);
 /** Construct context-local descriptors and shared constants without an implicit root/body.
  * Output must start zero and changes only on complete publication. Failure cleans every prefix;
  * immutable resolved schemas must satisfy ordinary compiler descriptor/initializer contracts.
- */
+ * Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_context_create(AmaContextRegistry *registry, const AmaContextDefinition *definition,
     uint64_t *identity);
 /** Report whether retirement occurred, independently of a native cleanup status code.
  * The nonnull admission output is false on rejection and true before any cleanup hook.
- */
+ * Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_context_dispose_admitted(AmaContextRegistry *, uint64_t, bool *);
 /** Invalidate one checked context before cleaning its resources. A held lease refuses busy
  * without effects; stale identities are rejected without dereferencing freed context storage.
- */
+ * Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_context_dispose(AmaContextRegistry *registry, uint64_t identity);
 /** Move one live linear lease into empty C storage without releasing its executor gate.
  * Source becomes empty on success; rejection leaves both owners unchanged.
- */
+ * Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_context_lease_move(AmaContextLease *, AmaContextLease *);
 /** Acquire one nonreentrant context gate into an empty linear lease. Registry membership is
  * validated before touching context state. Different contexts can hold leases simultaneously.
- */
+ * Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_context_enter(AmaContextRegistry *registry, uint64_t identity, AmaContextLease *lease);
 /** Consume one valid lease and publish all prior context writes before another executor enters.
  * An empty lease is invalid; no context pointer may be accessed after releasing its gate.
@@ -168,23 +168,23 @@ AmaStatus ama_context_leave(AmaContextLease *lease);
  * diagnostic inspection but ordinary reference resolution is rejected. After
  * execution cleanup, descriptor arrays/counts are empty and only status/control
  * inspection remains; every supplied view expires when its lease is released.
- */
+ * Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_context_inspect(const AmaContextLease *lease, AmaContextView *view);
 /** Wrap an internal context-local published identity; do not acquire its target or run code.
  * The local input must originate in this lease, not unchecked foreign host data.
- */
+ * Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_context_reference(const AmaContextLease *lease, AmaHandle local,
     AmaContextReference *reference);
 /** Check origin before local identity/access checks. Output pointers borrow the active lease
  * only on success; technical failure and wrong-context rejection do not mutate Ama state.
- */
+ * Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_context_resolve(const AmaContextLease *lease, AmaContextReference reference,
     AmaAccessMode mode, AmaObjectType **type, AmaPoolCell **cell);
 
 /** Fail an admitted operation under its exclusive lease, report before terminal cleanup,
  * and retain the primary diagnostic record. An active world operation rejects without effects.
  * Success status is not a failure request; the caller keeps and must release its lease.
- */
+ * Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [REF-02](../../../spec/language/values-and-references.md#ref-02), [DEBUG-02](../../../spec/implementation/diagnostics.md#debug-02), [LIST-13](../../../spec/language/lists.md#list-13), [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_context_fail(const AmaContextLease *, AmaStatus);
 
 #endif

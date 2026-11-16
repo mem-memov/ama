@@ -9,14 +9,14 @@
 #include "codegen/internal.h"
 #include "data/data.h"
 
-/** Allocate a stable operation identifier in the model arena; NULL records failure. */
+/** Allocate a stable operation identifier in the model arena; NULL records failure. Component contract: [ARCH-02](../../../spec/implementation/compiler.md#arch-02), [ARCH-05](../../../spec/implementation/compiler.md#arch-05). */
 const char *codegen_control_name(NativeScaffold *scaffold, const ScaffoldType *type, const ControlNode *node) {
     return codegen_indexed_name(scaffold, type->names[SCAFFOLD_WRITE]->internal_name, "Operation", node->selector);
 }
 
 /** Compose descriptors for the finite validated model; abort before publication
  * if an operation-specific child cannot resolve required IR or write bytes.
- */
+ * Component contract: [ARCH-02](../../../spec/implementation/compiler.md#arch-02), [ARCH-05](../../../spec/implementation/compiler.md#arch-05). */
 bool codegen_emit_controls(NativeScaffold *scaffold, FILE *output) {
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
         for (const ControlNode *node = type->plan->controls; node != NULL; node = node->allocated_next) {

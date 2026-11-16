@@ -6,7 +6,7 @@
 #include <errno.h>
 #include "../internal.h"
 
-/** Missing already-retired slots are harmless; a different directory identity is never deleted as though owned. */
+/** Missing already-retired slots are harmless; a different directory identity is never deleted as though owned. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool slot(RelocationTransaction *transaction, RelocationTransactionSlot *owned) {
     if (!owned->created) { return true; }
     struct stat metadata;
@@ -21,7 +21,7 @@ static bool slot(RelocationTransaction *transaction, RelocationTransactionSlot *
     owned->created = false;
     return true;
 }
-/** Call only after commit or complete inverse restoration; saved originals are otherwise intentionally retained. */
+/** Call only after commit or complete inverse restoration; saved originals are otherwise intentionally retained. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_cleanup(RelocationTransaction *transaction) {
     bool complete = true;
     for (RelocationTransactionSlot *owned = transaction->slots; owned != NULL; owned = owned->next) {

@@ -7,7 +7,7 @@
 
 /** Every loop consumes a complete scalar; lead-specific first continuation ranges
  * exclude overlongs, surrogates and values above U+10FFFF before remaining reads.
- */
+ * Component contract: [PAR-03](../../../../spec/language/async-and-parallelism.md#par-03). */
 bool ama_message_utf8(AmaByteView value) {
     for (size_t position = 0; position < value.length;) {
         unsigned lead = value.data[position++];

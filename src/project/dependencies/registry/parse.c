@@ -8,7 +8,7 @@
 #include <assert.h>
 #include "project/dependencies/internal.h"
 
-/** Select native companions after parsing, preserving requester notes on original filesystem/encoding diagnostics. */
+/** Select native companions after parsing, preserving requester notes on original filesystem/encoding diagnostics. Component contract: [DEP-03](../../../../spec/implementation/compiler.md#dep-03). */
 static bool native_companions(Project *project, ProjectModule *module) {
     if (module->syntax.sections.kind != MODULE_NATIVE) { return true; }
     ModuleStatus status = module_catalog_load_native(&project->catalog, module->source);

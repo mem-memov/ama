@@ -9,20 +9,20 @@
 #include "internal.h"
 
 /** Publish an exact source-mapped section error using the shared parser diagnostic constructor.
- */
+ * Component contract: [SYN-03](../../../spec/language/source-and-names.md#syn-03). */
 static bool fail(ParseError *error, SourceSpan span, const char *message, ParserExpectation expected) {
     return parser_error_set(error, span, message, expected);
 }
 
 /** Return the local section record for an already recognized marker; `@!`/`@C` share implementation storage.
- */
+ * Component contract: [SYN-03](../../../spec/language/source-and-names.md#syn-03). */
 static ParsedSection *select_section(ModuleSections *sections, int marker) {
     return marker == 0 ? &sections->constants : marker == 1 ? &sections->parameters
         : marker == 2 ? &sections->results : &sections->implementation;
 }
 
 /** Maintain strictly increasing section rank, assigning each nonmarker line to its current interval. Partial local intervals are unpublished on failure.
- */
+ * Component contract: [SYN-03](../../../spec/language/source-and-names.md#syn-03). */
 static bool read_sections(SourceLayout *layout, ModuleSections *sections, ParseError *error) {
     int previous = -1;
     ParsedSection *current = NULL;

@@ -5,7 +5,7 @@
  */
 #include "internal.h"
 
-/** Root paths/kinds/exclusions remain the exact returned configuration, including carried or newly introduced roots. */
+/** Root paths/kinds/exclusions remain the exact returned configuration, including carried or newly introduced roots. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool roots(ToolJsonWriter *writer, const ModuleRoot *items, size_t count) {
     if (!tool_json_raw(writer,"[")) { return false; }
     for (size_t index = 0; index < count; index++) {
@@ -20,7 +20,7 @@ static bool roots(ToolJsonWriter *writer, const ModuleRoot *items, size_t count)
     }
     return tool_json_raw(writer,"]");
 }
-/** Nullable original identity denotes introduced analysis scope; it never becomes an invented old namespace. */
+/** Nullable original identity denotes introduced analysis scope; it never becomes an invented old namespace. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool modules(ToolJsonWriter *writer, const RelocationReport *report) {
     if (!tool_json_raw(writer,"[")) { return false; }
     bool first = true;
@@ -35,7 +35,7 @@ static bool modules(ToolJsonWriter *writer, const RelocationReport *report) {
     }
     return tool_json_raw(writer,"]");
 }
-/** File roles come from actual planned records; arbitrary C/literal/path-looking bytes are not searched. */
+/** File roles come from actual planned records; arbitrary C/literal/path-looking bytes are not searched. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool files(ToolJsonWriter *writer, const RelocationReport *report) {
     if (!tool_json_raw(writer,"[")) { return false; }
     bool first = true;
@@ -53,7 +53,7 @@ static bool files(ToolJsonWriter *writer, const RelocationReport *report) {
     }
     return tool_json_raw(writer,"]");
 }
-/** Only a fully owned report can be consumed; failed prefixes never masquerade as complete scope. */
+/** Only a fully owned report can be consumed; failed prefixes never masquerade as complete scope. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool driver_relocation_report(ToolJsonWriter *writer, const RelocationReport *report) {
     if (report == NULL || !report->ready) { return tool_json_raw(writer,"null"); }
     return tool_json_raw(writer,"{\"source\":") && tool_source_bytes(writer,report->source)

@@ -18,7 +18,7 @@
 /** Borrow qualified type/member names and emit one operation-scoped native call.
  * Runtime borrows, caller-refusal snapshot and reentry guard stay inside the
  * emitted scope. False reports stream failure; this function executes no native code.
- */
+ * Component contract: [STACK-01](../../../spec/implementation/compiler.md#stack-01), [STACK-03](../../../spec/implementation/compiler.md#stack-03), [PROTO-09](../../../spec/implementation/native-interface.md#proto-09), [CABI-03](../../../spec/implementation/native-interface.md#cabi-03), [EMBED-06](../../../spec/implementation/c-library.md#embed-06). */
 bool codegen_emit_native_entry(FILE *output, const ScaffoldType *type) {
     const char *name = type->names[SCAFFOLD_WRITE]->internal_name;
     if (fprintf(output, "{\n%s_Scope scope={0};\n%s parameters={0};\n%s results={0};\n"

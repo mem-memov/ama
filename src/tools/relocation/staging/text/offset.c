@@ -6,7 +6,7 @@
  */
 #include <string.h>
 #include "../internal.h"
-/** Parallel input/output cursors avoid signed deltas and reject boundaries inside replaced path text. */
+/** Parallel input/output cursors avoid signed deltas and reject boundaries inside replaced path text. Component contract: [TOOL-02](../../../../../spec/implementation/tools-and-conformance.md#tool-02), [TOOL-03](../../../../../spec/implementation/tools-and-conformance.md#tool-03). */
 bool relocation_staging_offset(const SourceText *source, const RelocationPathEdit *const *edits, size_t edit_count, size_t original, size_t *mapped) {
     if (original > source_length(source)) { return false; }
     size_t input = 0, output = 0;

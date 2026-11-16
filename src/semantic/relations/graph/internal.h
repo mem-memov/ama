@@ -11,13 +11,13 @@
 #include "graph.h"
 
 /** Record graph allocation failure without allocating a diagnostic fallback.
- */
+ * Component contract: [ARCH-05](../../../../spec/implementation/compiler.md#arch-05). */
 bool dependency_memory_failure(DependencyGraph *graph);
 /** Return one exact edge to an unordered prerequisite, or null when the vertex is ready.
- */
+ * Component contract: [ARCH-05](../../../../spec/implementation/compiler.md#arch-05). */
 GraphEdge *dependency_blocked(const GraphVertex *vertex);
 /** Require a stalled finite graph with unfinished vertices and no ready vertex; follow blocked edges to an actual closed cycle and preserve every cycle edge site.
- */
+ * Component contract: [ARCH-05](../../../../spec/implementation/compiler.md#arch-05). */
 GraphStatus dependency_cycle(DependencyGraph *graph);
 
 #endif

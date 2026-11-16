@@ -12,7 +12,7 @@
 #include "source/path/exact.h"
 #include "source/unicode/unicode.h"
 
-/** ERANGE means an insufficient exact buffer, not a guessed maximum pathname length. */
+/** ERANGE means an insufficient exact buffer, not a guessed maximum pathname length. Component contract: [SRC-02](../../../../spec/language/source-and-names.md#src-02), [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01). */
 static const char *working_directory(RelocationPreview *preview) {
     size_t capacity = 128;
     for (;;) {
@@ -25,7 +25,7 @@ static const char *working_directory(RelocationPreview *preview) {
     }
 }
 
-/** The current directory is already verified; its lexical parent therefore follows actual traversal. */
+/** The current directory is already verified; its lexical parent therefore follows actual traversal. Component contract: [SRC-02](../../../../spec/language/source-and-names.md#src-02), [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01). */
 static const char *parent_directory(RelocationPreview *preview, const char *current) {
     char *parent = source_arena_copy(&preview->arena,current);
     if (parent == NULL) { relocation_fail(preview,RELOCATION_OUT_OF_MEMORY,current,NULL); return NULL; }
@@ -35,7 +35,7 @@ static const char *parent_directory(RelocationPreview *preview, const char *curr
     return parent;
 }
 
-/** Verify every traversed ordinary component before interpreting subsequent dot-dot components. */
+/** Verify every traversed ordinary component before interpreting subsequent dot-dot components. Component contract: [SRC-02](../../../../spec/language/source-and-names.md#src-02), [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01). */
 static const char *resolve_path(RelocationPreview *preview, const char *input, bool missing_final, bool final_view) {
     if (input == NULL || *input == 0) { relocation_fail(preview,RELOCATION_INVALID_PATH,NULL,NULL); return NULL; }
     char *copy = source_arena_copy(&preview->arena,input);
@@ -89,11 +89,11 @@ static const char *resolve_path(RelocationPreview *preview, const char *input, b
     return current;
 }
 
-/** Resolve actual endpoints and original roots using exact current filesystem observations. */
+/** Resolve actual endpoints and original roots using exact current filesystem observations. Component contract: [SRC-02](../../../../spec/language/source-and-names.md#src-02), [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01). */
 const char *relocation_path(RelocationPreview *preview, const char *input, bool missing_final) {
     return resolve_path(preview,input,missing_final,false);
 }
-/** Resolve roots below D through their original counterpart below S, without temporary filesystem writes. */
+/** Resolve roots below D through their original counterpart below S, without temporary filesystem writes. Component contract: [SRC-02](../../../../spec/language/source-and-names.md#src-02), [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01). */
 const char *relocation_final_path(RelocationPreview *preview, const char *input) {
     return resolve_path(preview,input,false,true);
 }

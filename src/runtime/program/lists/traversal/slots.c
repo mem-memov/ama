@@ -6,7 +6,7 @@
  */
 #include "internal.h"
 
-/** Subtraction-based extent check avoids overflowing offset plus size. */
+/** Subtraction-based extent check avoids overflowing offset plus size. Component contract: [RT-02](../../../../../spec/implementation/runtime.md#rt-02), [FLOW-05](../../../../../spec/language/lists.md#flow-05). */
 static bool ama_foreach_extent(size_t extent, size_t offset, size_t size, size_t alignment) {
     return offset % alignment == 0 && offset <= extent && size <= extent - offset;
 }

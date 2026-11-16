@@ -5,7 +5,7 @@
  */
 #include "internal.h"
 
-/** Precommit failures restore every attempted change; an uncertain commit decision retains all copies for explicit recovery. */
+/** Precommit failures restore every attempted change; an uncertain commit decision retains all copies for explicit recovery. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool abort_transaction(RelocationTransaction *transaction) {
     transaction->cleaning = true;
     bool restored = !transaction->decision_pending && relocation_transaction_rollback(transaction)
@@ -23,7 +23,7 @@ static bool abort_transaction(RelocationTransaction *transaction) {
     relocation_transaction_release(transaction);
     return false;
 }
-/** The final rebuild runs after temporary preparation too, so no selected input can change unnoticed during a long copy phase. */
+/** The final rebuild runs after temporary preparation too, so no selected input can change unnoticed during a long copy phase. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_apply(RelocationTransaction *transaction, const RelocationTransactionRequest *request) {
     if (transaction->attempted) { return false; }
     transaction->attempted = true;

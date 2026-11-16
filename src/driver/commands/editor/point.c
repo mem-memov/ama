@@ -5,7 +5,7 @@
  * keeps intrinsic signatures distinct from source module declarations.
  */
 #include "internal.h"
-/** A missing exact spelling is a successful absent query, never a guessed adjacent declaration. */
+/** A missing exact spelling is a successful absent query, never a guessed adjacent declaration. Component contract: [NAME-06](../../../../spec/language/declarations.md#name-06), [LIST-04](../../../../spec/language/lists.md#list-04). */
 static bool definition(const DriverOptions *options, const EditorAnalysis *analysis, ToolJsonWriter *writer) {
     EditorDefinition value;
     if (!editor_definition(analysis,options->query_module,options->offset,&value)) { return tool_json_raw(writer,"null"); }
@@ -13,7 +13,7 @@ static bool definition(const DriverOptions *options, const EditorAnalysis *analy
         && tool_json_raw(writer,",\"symbol\":") && tool_source_symbol(writer,value.symbol)
         && tool_json_raw(writer,",\"type\":") && tool_source_type(writer,value.type) && tool_json_raw(writer,"}");
 }
-/** Intrinsic signatures use their actual static field descriptors and currently resolved nominal element/integer types. */
+/** Intrinsic signatures use their actual static field descriptors and currently resolved nominal element/integer types. Component contract: [NAME-06](../../../../spec/language/declarations.md#name-06), [LIST-04](../../../../spec/language/lists.md#list-04). */
 static bool intrinsic(const SemanticStatement *operation, ToolJsonWriter *writer) {
     if (operation->operation_kind != SEMANTIC_LIST_METHOD_OPERATION) { return tool_json_raw(writer,"null"); }
     const char *name = semantic_list_method_name(operation->list_method);
@@ -34,7 +34,7 @@ static bool intrinsic(const SemanticStatement *operation, ToolJsonWriter *writer
     }
     return tool_json_raw(writer,"}");
 }
-/** Only an actual checked call at this written target exposes operation metadata. */
+/** Only an actual checked call at this written target exposes operation metadata. Component contract: [NAME-06](../../../../spec/language/declarations.md#name-06), [LIST-04](../../../../spec/language/lists.md#list-04). */
 static bool operation(const DriverOptions *options, const EditorAnalysis *analysis, ToolJsonWriter *writer) {
     const SemanticStatement *value;
     if (!editor_operation(analysis,options->query_module,options->offset,&value)) { return tool_json_raw(writer,"null"); }
@@ -46,7 +46,7 @@ static bool operation(const DriverOptions *options, const EditorAnalysis *analys
         && tool_json_raw(writer,",\"element_reference\":") && tool_json_boolean(writer,value->list_interface.reference)
         && tool_json_raw(writer,",\"intrinsic\":") && intrinsic(value,writer) && tool_json_raw(writer,"}");
 }
-/** Written callee labels keep their real declaration or intrinsic descriptor and independent position. */
+/** Written callee labels keep their real declaration or intrinsic descriptor and independent position. Component contract: [NAME-06](../../../../spec/language/declarations.md#name-06), [LIST-04](../../../../spec/language/lists.md#list-04). */
 static bool binding(const DriverOptions *options, const EditorAnalysis *analysis, ToolJsonWriter *writer) {
     const SemanticBinding *value;
     if (!editor_binding(analysis,options->query_module,options->offset,&value)) { return tool_json_raw(writer,"null"); }
@@ -57,7 +57,7 @@ static bool binding(const DriverOptions *options, const EditorAnalysis *analysis
         && tool_json_raw(writer,",\"reference\":") && tool_json_boolean(writer,value->reference)
         && tool_json_raw(writer,",\"list\":") && tool_json_boolean(writer,value->list) && tool_json_raw(writer,"}");
 }
-/** Visible-name enumeration delegates declaration order and foreach scope to the semantic visibility predicate. */
+/** Visible-name enumeration delegates declaration order and foreach scope to the semantic visibility predicate. Component contract: [NAME-06](../../../../spec/language/declarations.md#name-06), [LIST-04](../../../../spec/language/lists.md#list-04). */
 bool driver_editor_point(const DriverOptions *options, const EditorAnalysis *analysis, ToolJsonWriter *writer) {
     if (!tool_json_raw(writer,"{\"offset\":") || !tool_json_unsigned(writer,options->offset)
         || !tool_json_raw(writer,",\"definition\":") || !definition(options,analysis,writer)

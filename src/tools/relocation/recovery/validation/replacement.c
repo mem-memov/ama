@@ -11,7 +11,7 @@
 #include <unistd.h>
 #include "../internal.h"
 
-/** A finite literal link is copied with checked growth and never followed, including missing targets and cycles. */
+/** A finite literal link is copied with checked growth and never followed, including missing targets and cycles. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool link_text(RelocationRecovery *recovery, const char *path, const SourceText **output) {
     RelocationTransaction *transaction = &recovery->transaction;
     SourceAllocator allocator = recovery->sources.allocator;
@@ -33,7 +33,7 @@ static bool link_text(RelocationRecovery *recovery, const char *path, const Sour
         capacity *= 2;
     }
 }
-/** Exact bytes are read only from retained immutable originals when no changed replacement payload was necessary. */
+/** Exact bytes are read only from retained immutable originals when no changed replacement payload was necessary. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool expected(RelocationRecovery *recovery, const RelocationPreparedEntry *entry, const SourceText **output) {
     if (entry->file->replacement != NULL) { *output = entry->file->replacement; return true; }
     RelocationTransaction *transaction = &recovery->transaction;
@@ -51,7 +51,7 @@ static bool expected(RelocationRecovery *recovery, const RelocationPreparedEntry
     return status == SOURCE_OK || relocation_transaction_fail(transaction,status == SOURCE_OUT_OF_MEMORY ? RELOCATION_OUT_OF_MEMORY : RELOCATION_IO_ERROR,
         "The retained original entry could not be read",path);
 }
-/** Compare exact regular/link bytes, with one close attempt per opened regular descriptor. */
+/** Compare exact regular/link bytes, with one close attempt per opened regular descriptor. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool bytes(RelocationRecovery *recovery, const char *path, mode_t mode, const SourceText *value) {
     RelocationTransaction *transaction = &recovery->transaction;
     if (S_ISLNK(mode)) {
@@ -67,7 +67,7 @@ static bool bytes(RelocationRecovery *recovery, const char *path, mode_t mode, c
     bool closed = relocation_transaction_close(transaction,descriptor,path);
     return complete && closed;
 }
-/** Every actual immediate child must occur in the complete flat tree; symlinks are entries, never traversal roots. */
+/** Every actual immediate child must occur in the complete flat tree; symlinks are entries, never traversal roots. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool children(RelocationRecovery *recovery, const RelocationTransactionAction *action, const char *path) {
     RelocationTransaction *transaction = &recovery->transaction;
     DIR *directory = opendir(path);
@@ -94,7 +94,7 @@ static bool children(RelocationRecovery *recovery, const RelocationTransactionAc
     if (closedir(directory) != 0) { complete = relocation_transaction_fail(transaction,RELOCATION_IO_ERROR,"A published directory could not be closed",path); }
     return complete;
 }
-/** Full inventory verification precedes any inverse, so failure retains both original and modified published state. */
+/** Full inventory verification precedes any inverse, so failure retains both original and modified published state. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_recovery_replacement(RelocationRecovery *recovery, const RelocationTransactionAction *action) {
     if (action->kind == RELOCATION_ACTION_REPLACE) {
         return bytes(recovery,action->path,action->prepared_metadata.st_mode,action->file->replacement);

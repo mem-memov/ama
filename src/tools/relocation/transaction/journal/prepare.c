@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include "format.h"
 
-/** Complete inventory and all private slot names are synchronized before the first original backup rename. */
+/** Complete inventory and all private slot names are synchronized before the first original backup rename. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_journal(RelocationTransaction *transaction) {
     transaction->journal_record = source_arena_join(&transaction->arena,transaction->journal,"/","plan");
     if (transaction->journal_record == NULL) {

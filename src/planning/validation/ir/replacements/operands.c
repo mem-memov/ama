@@ -5,12 +5,12 @@
  */
 #include "internal.h"
 #include "semantic/lists/interface.h"
-/** Derive ownership/cardinality from an already resolved storage view. */
+/** Derive ownership/cardinality from an already resolved storage view. Component contract: [CALL-08](../../../../../spec/language/calls-and-results.md#call-08). */
 static StorageForm form(bool reference, bool list) {
     return list ? (reference ? STORAGE_REFERENCE_LIST : STORAGE_OWNING_LIST)
         : reference ? STORAGE_REFERENCE : STORAGE_OWNED;
 }
-/** Reject foreign statement/binding addresses before dereferencing recipe operands. */
+/** Reject foreign statement/binding addresses before dereferencing recipe operands. Component contract: [CALL-08](../../../../../spec/language/calls-and-results.md#call-08). */
 static bool identities(const PlannedType *type, const ReplacementPlan *recipe) {
     bool found = false;
     for (const SemanticStatement *statement = type->type->statements; statement != NULL; statement = statement->next) {
@@ -23,14 +23,14 @@ static bool identities(const PlannedType *type, const ReplacementPlan *recipe) {
     }
     return false;
 }
-/** Resolve the one expected supplied input by exact callee field identity. */
+/** Resolve the one expected supplied input by exact callee field identity. Component contract: [CALL-08](../../../../../spec/language/calls-and-results.md#call-08). */
 static const SemanticBinding *supplied(const SemanticStatement *statement, const SemanticSymbol *field) {
     for (const SemanticBinding *binding = statement->bindings; binding != NULL; binding = binding->next) {
         if (binding->field == field && binding->syntax->kind == AST_INPUT && !binding->syntax->omitted) { return binding; }
     }
     return NULL;
 }
-/** Return the matched declaration only after comparing field identity within this exact callee. */
+/** Return the matched declaration only after comparing field identity within this exact callee. Component contract: [CALL-08](../../../../../spec/language/calls-and-results.md#call-08). */
 static const SemanticSymbol *field_for(const ReplacementPlan *recipe) {
     if (recipe->statement->namespace_type == NULL) { return NULL; }
     for (const SemanticSymbol *field = recipe->statement->namespace_type->first; field != NULL; field = field->next) {

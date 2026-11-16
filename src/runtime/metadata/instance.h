@@ -11,14 +11,14 @@
 #include "service.h"
 #include "runtime/lifecycle/lifetime.h"
 
-/** Metadata borrowed with a stable slot: identity gates access, lifecycle owns resource credits and service owns execution controls. */
+/** Metadata borrowed with a stable slot: identity gates access, lifecycle owns resource credits and service owns execution controls. Component contract: [RT-04](../../../spec/implementation/runtime.md#rt-04). */
 typedef struct {
     AmaSlotIdentity identity;
     AmaLifetime lifetime;
     AmaServiceState service;
 } AmaInstanceMetadata;
 
-/** Require published nonretired identity and Live lifecycle before service eligibility; this check does not acquire storage. */
+/** Require published nonretired identity and Live lifecycle before service eligibility; this check does not acquire storage. Component contract: [RT-04](../../../spec/implementation/runtime.md#rt-04). */
 static inline AmaStatus ama_instance_access(const AmaInstanceMetadata *instance, AmaAccessMode mode) {
     if (!instance->identity.live || instance->identity.retired ||
         instance->identity.type_id == 0 || instance->identity.generation == 0 ||

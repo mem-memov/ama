@@ -32,13 +32,13 @@ static bool fields(LibraryBuild *build, SourceSpan site, char **values, size_t c
     }
     return true;
 }
-/** Reject repeated scalar metadata even when repeated bytes happen to agree. */
+/** Reject repeated scalar metadata even when repeated bytes happen to agree. Component contract: [EMBED-01](../../../spec/implementation/c-library.md#embed-01). */
 static bool scalar(LibraryBuild *build, SourceSpan site, const char **slot, const char *value) {
     if (*slot != NULL) { return library_fail(build, site, "Duplicate library metadata record"); }
     *slot = value;
     return true;
 }
-/** Parse a nonempty set of exact, unrepeated public operations. */
+/** Parse a nonempty set of exact, unrepeated public operations. Component contract: [EMBED-01](../../../spec/implementation/c-library.md#embed-01). */
 static unsigned operations(const char *text) {
     unsigned result = 0;
     for (const char *start = text; *start != '\0';) {
@@ -55,7 +55,7 @@ static unsigned operations(const char *text) {
     }
     return result;
 }
-/** Append a schema without discovering a transport from its native payload. */
+/** Append a schema without discovering a transport from its native payload. Component contract: [EMBED-01](../../../spec/implementation/c-library.md#embed-01). */
 static bool schema_record(LibraryBuild *build, SourceSpan site, char **v, SourceSpan *sites) {
     static const char *const kinds[] = {"integer", "text", "condition", "failure", "list"};
     size_t kind = 0;
@@ -72,7 +72,7 @@ static bool schema_record(LibraryBuild *build, SourceSpan site, char **v, Source
     *tail = schema;
     return true;
 }
-/** Append an explicitly named executable export with its exact operation set. */
+/** Append an explicitly named executable export with its exact operation set. Component contract: [EMBED-01](../../../spec/implementation/c-library.md#embed-01). */
 static bool export_record(LibraryBuild *build, SourceSpan site, char **v, SourceSpan *sites) {
     unsigned selected = operations(v[3]);
     if (!library_public_identifier(v[1]) || !module_path_valid(v[2]) || selected == 0
@@ -88,7 +88,7 @@ static bool export_record(LibraryBuild *build, SourceSpan site, char **v, Source
     build->export_count++;
     return true;
 }
-/** Retain named mappings; resolution checks exact fields, uniqueness and completeness. */
+/** Retain named mappings; resolution checks exact fields, uniqueness and completeness. Component contract: [EMBED-01](../../../spec/implementation/c-library.md#embed-01). */
 static bool binding_record(LibraryBuild *build, SourceSpan site, char **v) {
     LibraryBinding *binding = library_allocate(build, sizeof(*binding));
     if (binding == NULL) { return false; }

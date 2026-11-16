@@ -6,14 +6,14 @@
 #include <string.h>
 #include "internal.h"
 
-/** Compare dependency sets by category and exact key; insertion order and duplicate requests have no graph meaning. */
+/** Compare dependency sets by category and exact key; insertion order and duplicate requests have no graph meaning. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 static bool contains(const ProjectInput *node, const ProjectInput *target) {
     for (ProjectInputEdge *edge = node->first; edge != NULL; edge = edge->next) {
         if (edge->target->kind == target->kind && strcmp(edge->target->key, target->key) == 0) { return true; }
     }
     return false;
 }
-/** A direct seed differs in membership, original bytes or dependency-set membership. */
+/** A direct seed differs in membership, original bytes or dependency-set membership. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 static bool directly_changed(const ProjectInput *node, const ProjectInputs *previous) {
     const ProjectInput *old = project_inputs_find(previous, node->kind, node->key);
     if (old == NULL) { return true; }

@@ -20,7 +20,7 @@
  * @return Invalid state for either zero field, otherwise the collision-free concatenation (namespace << 16) | reason. No namespace registry is implemented here.
  * @param[in] namespace_id Caller-assigned unique nonzero 16-bit provider namespace; this helper does not register providers.
  * @param[in] reason Nonzero 16-bit provider-local reason, concatenated without arithmetic overlap.
- */
+ * Component contract: [ERROR-03](../../../spec/implementation/diagnostics.md#error-03), [ERROR-04](../../../spec/implementation/diagnostics.md#error-04). */
 static inline AmaStatus ama_library_status_code(uint16_t namespace_id,
     uint16_t reason, uint32_t *output) {
     if (namespace_id == 0 || reason == 0) {
@@ -34,7 +34,7 @@ static inline AmaStatus ama_library_status_code(uint16_t namespace_id,
  * Namespace assignment is compiler-validated; reason is the provider's nonzero
  * 16-bit local code. Invalid pair/message shape becomes ordinary technical InvalidState.
  * Message bytes retain the immutable program-lifetime native ABI precondition.
- */
+ * Component contract: [ERROR-03](../../../spec/implementation/diagnostics.md#error-03), [ERROR-04](../../../spec/implementation/diagnostics.md#error-04). */
 static inline AmaStatus ama_library_status(uint16_t namespace_id, uint16_t reason,
     const char *message, size_t length) {
     uint32_t code = 0;

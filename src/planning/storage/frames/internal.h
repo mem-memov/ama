@@ -6,12 +6,12 @@
 #ifndef AMA_PLANNING_FRAMES_INTERNAL_H
 #define AMA_PLANNING_FRAMES_INTERNAL_H
 #include "planning/internal.h"
-/** Build cells then frame inventories, patching parents only after every lexical slot exists. */
+/** Build cells then frame inventories, patching parents only after every lexical slot exists. Component contract: [RT-02](../../../../spec/implementation/runtime.md#rt-02). */
 bool plan_storage_frames(ProgramPlan *, PlannedType *);
-/** Return the complete general logical contents required by this resolved lexical operation. */
+/** Return the complete general logical contents required by this resolved lexical operation. Component contract: [RT-02](../../../../spec/implementation/runtime.md#rt-02). */
 unsigned plan_storage_frame_contents(const SemanticStatement *);
-/** Borrow the exact frame for a resolved statement, or null for a non-frame statement. */
+/** Borrow the exact frame for a resolved statement, or null for a non-frame statement. Component contract: [RT-02](../../../../spec/implementation/runtime.md#rt-02). */
 StorageFrame *plan_storage_frame(const PlannedType *, const SemanticStatement *);
-/** Reserve one cell for each introduced lexical reference; reused bindings retain the same cell or permanent field. */
+/** Reserve one cell for each introduced lexical reference; reused bindings retain the same cell or permanent field. Component contract: [RT-02](../../../../spec/implementation/runtime.md#rt-02). */
 bool plan_storage_cells(ProgramPlan *, PlannedType *);
 #endif

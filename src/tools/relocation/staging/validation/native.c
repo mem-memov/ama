@@ -6,7 +6,7 @@
 #include <string.h>
 #include "../internal.h"
 #include "../../internal.h"
-/** The original project has already activated every required native module; no future path is probed. */
+/** The original project has already activated every required native module; no future path is probed. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_staging_native(RelocationStaging *staging, const RelocationStagedSource *source, const ModuleSource *final) {
     const ModuleSource *original = NULL;
     for (const ProjectModule *module = staging->references->project.first; module != NULL; module = module->next) {

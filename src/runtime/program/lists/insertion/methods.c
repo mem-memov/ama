@@ -8,7 +8,7 @@
 
 /** Own one contiguous method prefix before returning to label-based outputs.
  * On any error, stable method credits remain available for chain/terminal cleanup.
- */
+ * Component contract: [LIST-04](../../../../../spec/language/lists.md#list-04), [LIST-09](../../../../../spec/language/lists.md#list-09). */
 static AmaStatus ama_list_insertion(AmaProgramListService *service, AmaProgramListMethod *method,
     const AmaProgramListInputs *plan, bool positioned, bool *refused) {
     *refused = false;

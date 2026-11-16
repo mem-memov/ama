@@ -5,7 +5,7 @@
  */
 #include <fcntl.h>
 #include "../internal.h"
-/** Call bottom-up after child creation so directory mode/timestamps are final when its descriptor is synchronized. */
+/** Call bottom-up after child creation so directory mode/timestamps are final when its descriptor is synchronized. Component contract: [TOOL-03](../../../../../spec/implementation/tools-and-conformance.md#tool-03). */
 bool relocation_transaction_directory(RelocationTransaction *transaction, const char *path,
     const struct stat *expected, struct stat *prepared) {
     int descriptor = open(path,O_RDONLY|O_DIRECTORY|O_NOFOLLOW|O_CLOEXEC);

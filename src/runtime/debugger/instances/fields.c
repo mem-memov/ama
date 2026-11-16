@@ -4,7 +4,7 @@
  * [RT-02](../../../../spec/implementation/runtime.md#rt-02) supplies truthful field offsets.
  */
 #include "../internal.h"
-/** Declared field descriptors carry layout authority; native_offset is deliberately unused by this traversal. */
+/** Declared field descriptors carry layout authority; native_offset is deliberately unused by this traversal. Component contract: [REF-01](../../../../spec/language/values-and-references.md#ref-01), [RT-02](../../../../spec/implementation/runtime.md#rt-02). */
 AmaStatus ama_debug_fields(AmaDebugSession *session, AmaContextReference reference, AmaDebugFieldVisitor visit, void *context) {
     if (visit == NULL) { return ama_status_make(AMA_INVALID_STATE,NULL,0); }
     const AmaProgramType *type = NULL;
@@ -33,7 +33,7 @@ AmaStatus ama_debug_fields(AmaDebugSession *session, AmaContextReference referen
     ama_debug_visit_end(session);
     return ama_status_success();
 }
-/** Reading current membership order never invokes list methods, checks target availability or advances a saved boundary. */
+/** Reading current membership order never invokes list methods, checks target availability or advances a saved boundary. Component contract: [REF-01](../../../../spec/language/values-and-references.md#ref-01), [RT-02](../../../../spec/implementation/runtime.md#rt-02). */
 AmaStatus ama_debug_elements(AmaDebugSession *session, AmaContextReference reference, size_t field,
     AmaDebugElementVisitor visit, void *context) {
     if (visit == NULL) { return ama_status_make(AMA_INVALID_STATE,NULL,0); }

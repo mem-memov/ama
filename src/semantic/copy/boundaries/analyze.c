@@ -7,7 +7,7 @@
  * declarations before body execution, so their written positions are not effect barriers.
  */
 #include "internal.h"
-/** Scalar nonindexed reference stores form/copy handles only; list/indexed transfers may convert, allocate or mutate membership metadata. */
+/** Scalar nonindexed reference stores form/copy handles only; list/indexed transfers may convert, allocate or mutate membership metadata. Component contract: [COPY-06](../../../../spec/language/values-and-references.md#copy-06), [TYPE-04](../../../../spec/language/declarations.md#type-04). */
 static bool handle_store(const SemanticStatement *statement) {
     if (statement->transfer != TRANSFER_HANDLE || !statement->access->reference
         || statement->access->list || statement->access->index != NULL || statement->source->list) { return false; }

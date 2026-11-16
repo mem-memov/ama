@@ -8,7 +8,7 @@
 #include "../internal.h"
 
 /** Append one successfully parsed initializer, extend its parent span/count, then advance past layout. Partial storage remains AST-owned.
- */
+ * Component contract: [TYPE-01](../../../spec/language/declarations.md#type-01). */
 static bool add_initializer(Parser *parser, AstNode *node, size_t indentation) {
     AstInitializer *initializer = parser_allocate(parser, sizeof(*initializer), parser_site(parser));
     if (initializer == NULL || !parser_source(parser, parser->line, parser->line->code,

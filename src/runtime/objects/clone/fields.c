@@ -15,7 +15,7 @@
  * Reference handles are copied pending complete-map fixups; owned handles remain
  * empty until child reservation. Buffers belong to the registered private work,
  * including after overflow, allocation or field-preparation failure.
- */
+ * Component contract: [LIST-13](../../../../spec/language/lists.md#list-13), [COPY-05](../../../../spec/language/values-and-references.md#copy-05). */
 AmaStatus ama_object_clone_fields(AmaWorld *world, AmaObjectWork *work) {
     AmaPoolCell *source = NULL;
     AmaStatus status = ama_pool_lookup(&work->type->pool, work->source, true, &source);

@@ -5,18 +5,18 @@
  */
 #include <string.h>
 #include "internal.h"
-/** Complete logical identities remain unchanged when only variable base names are edited. */
+/** Complete logical identities remain unchanged when only variable base names are edited. Component contract: [COMP-02](../../../../../spec/implementation/compiler.md#comp-02), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */
 bool rename_same_type(const SemanticType *old, const SemanticType *fresh) {
     return old == NULL ? fresh == NULL : fresh != NULL
         && strcmp(old->module->source->logical_path,fresh->module->source->logical_path) == 0;
 }
-/** Original half-open boundaries map exactly into the candidate's retained source. */
+/** Original half-open boundaries map exactly into the candidate's retained source. Component contract: [COMP-02](../../../../../spec/implementation/compiler.md#comp-02), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */
 bool rename_same_span(const RenameIdentity *check, SourceSpan old, SourceSpan fresh) {
     SourceSpan mapped;
     return editor_rename_span(check->plan,old,&mapped) && mapped.source == fresh.source
         && mapped.start == fresh.start && mapped.end == fresh.end;
 }
-/** Nested list indices retain each exact caller declaration and storage interpretation. */
+/** Nested list indices retain each exact caller declaration and storage interpretation. Component contract: [COMP-02](../../../../../spec/implementation/compiler.md#comp-02), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */
 bool rename_same_access(const RenameIdentity *check, const SemanticAccess *old, const SemanticAccess *fresh) {
     while (old != NULL && fresh != NULL) {
         if (!rename_same_symbol(check,old->symbol,fresh->symbol) || old->reference != fresh->reference || old->list != fresh->list
@@ -27,7 +27,7 @@ bool rename_same_access(const RenameIdentity *check, const SemanticAccess *old, 
     }
     return old == NULL && fresh == NULL;
 }
-/** Synthetic output transfers retain no fabricated AST; ordinary source mode/type/ownership and literal intervals remain exact. */
+/** Synthetic output transfers retain no fabricated AST; ordinary source mode/type/ownership and literal intervals remain exact. Component contract: [COMP-02](../../../../../spec/implementation/compiler.md#comp-02), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */
 bool rename_same_source(const RenameIdentity *check, const SemanticSource *old, const SemanticSource *fresh) {
     if (old == NULL) { return fresh == NULL; }
     if (fresh == NULL || old->kind != fresh->kind || old->reference != fresh->reference || old->list != fresh->list
@@ -42,7 +42,7 @@ bool rename_same_source(const RenameIdentity *check, const SemanticSource *old, 
         && rename_same_span(check,old->syntax->member,fresh->syntax->member)
         && rename_same_span(check,old->syntax->payload,fresh->syntax->payload);
 }
-/** Following an alias compares its unique owned syntax identity; control cycles need no recursive traversal. */
+/** Following an alias compares its unique owned syntax identity; control cycles need no recursive traversal. Component contract: [COMP-02](../../../../../spec/implementation/compiler.md#comp-02), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */
 bool rename_same_link(const RenameIdentity *check, const SemanticStatement *old, const SemanticStatement *fresh) {
     return old == NULL ? fresh == NULL : fresh != NULL && old->syntax->kind == fresh->syntax->kind
         && rename_same_span(check,old->syntax->span,fresh->syntax->span);

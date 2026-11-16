@@ -9,7 +9,7 @@
 #include <string.h>
 #include "internal.h"
 
-/** Pop or grow a free slot, preserve its identity generation and reset private metadata/banks. Publish handle/cell outputs only on success; no native hook runs. */
+/** Pop or grow a free slot, preserve its identity generation and reset private metadata/banks. Publish handle/cell outputs only on success; no native hook runs. Component contract: [RT-12](../../../spec/implementation/runtime.md#rt-12). */
 AmaStatus ama_pool_reserve(AmaPool *pool, AmaHandle *handle, AmaPoolCell **output) {
     if (pool->free_head == SIZE_MAX) {
         AmaStatus status = ama_pool_grow(pool);
@@ -29,7 +29,7 @@ AmaStatus ama_pool_reserve(AmaPool *pool, AmaHandle *handle, AmaPoolCell **outpu
     return ama_status_success();
 }
 
-/** Require an occupied private slot with complete Live lifecycle. Set public identity live and service Ready; increment live count once. */
+/** Require an occupied private slot with complete Live lifecycle. Set public identity live and service Ready; increment live count once. Component contract: [RT-12](../../../spec/implementation/runtime.md#rt-12). */
 AmaStatus ama_pool_publish(AmaPool *pool, AmaHandle handle) {
     AmaPoolCell *cell = NULL;
     AmaStatus status = ama_pool_lookup(pool, handle, true, &cell);
@@ -45,7 +45,7 @@ AmaStatus ama_pool_publish(AmaPool *pool, AmaHandle handle) {
     return ama_status_success();
 }
 
-/** Resolve a public handle, clear its identity live bit and decrement live count before resource cleanup. */
+/** Resolve a public handle, clear its identity live bit and decrement live count before resource cleanup. Component contract: [RT-12](../../../spec/implementation/runtime.md#rt-12). */
 AmaStatus ama_pool_invalidate(AmaPool *pool, AmaHandle handle) {
     AmaPoolCell *cell = NULL;
     AmaStatus status = ama_pool_lookup(pool, handle, false, &cell);
@@ -57,7 +57,7 @@ AmaStatus ama_pool_invalidate(AmaPool *pool, AmaHandle handle) {
     return ama_status_success();
 }
 
-/** Require invalidated, inactive Fresh/Finalized storage. Advance generation before reuse or permanently retire at exhaustion; reject live or active-cleanup release. */
+/** Require invalidated, inactive Fresh/Finalized storage. Advance generation before reuse or permanently retire at exhaustion; reject live or active-cleanup release. Component contract: [RT-12](../../../spec/implementation/runtime.md#rt-12). */
 AmaStatus ama_pool_release(AmaPool *pool, AmaHandle handle) {
     AmaPoolCell *cell = NULL;
     AmaStatus status = ama_pool_lookup(pool, handle, true, &cell);

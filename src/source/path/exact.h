@@ -13,7 +13,7 @@
 /**
  * Exact physical child-probe outcomes: found, missing, IO failure or unsupported alias/storage;
  * callers do not infer absence from a technical failure.
- */
+ * Component contract: [SRC-02](../../../spec/language/source-and-names.md#src-02). */
 typedef enum {
     PATH_FOUND,
     PATH_MISSING,
@@ -29,7 +29,7 @@ typedef enum {
  * @param[in] parent Borrowed exact verified parent directory path.
  * @param[in] name Borrowed one complete child entry spelling to compare byte for byte.
  * @param[in] full_path Borrowed complete parent/child path corresponding to that exact entry.
- */
+ * Component contract: [SRC-02](../../../spec/language/source-and-names.md#src-02). */
 PathProbe path_exact_child(const char *parent, const char *name,
     const char *full_path, struct stat *metadata);
 

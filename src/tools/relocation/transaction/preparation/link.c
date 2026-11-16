@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include "../internal.h"
 
-/** One extra byte detects truncation or an unexpectedly longer target without inferring any path semantics. */
+/** One extra byte detects truncation or an unexpectedly longer target without inferring any path semantics. Component contract: [TOOL-03](../../../../../spec/implementation/tools-and-conformance.md#tool-03). */
 static bool verify(RelocationTransaction *transaction, const char *path, const SourceText *text) {
     size_t length = source_length(text);
     if (length == SIZE_MAX) { return relocation_transaction_fail(transaction,RELOCATION_OUT_OF_MEMORY,"A link target buffer size is unrepresentable",path); }
@@ -20,7 +20,7 @@ static bool verify(RelocationTransaction *transaction, const char *path, const S
     return (received >= 0 && (size_t)received == length && memcmp(bytes,source_bytes(text),length) == 0)
         || relocation_transaction_fail(transaction,RELOCATION_CHANGED_INPUT,"Prepared link bytes differ from their captured target",path);
 }
-/** Linux link permissions are fixed; reject unsupported metadata instead of silently following a target with chmod. */
+/** Linux link permissions are fixed; reject unsupported metadata instead of silently following a target with chmod. Component contract: [TOOL-03](../../../../../spec/implementation/tools-and-conformance.md#tool-03). */
 bool relocation_transaction_link(RelocationTransaction *transaction, const char *path,
     const SourceText *text, const struct stat *expected, struct stat *prepared) {
     if ((expected->st_mode&07777) != 0777) {

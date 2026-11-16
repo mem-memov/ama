@@ -4,7 +4,7 @@
  * [SRC-03](../../../spec/language/source-and-names.md#src-03) preserves literal/comment bytes.
  */
 #include "../analysis/analysis.h"
-/** A temporary layout borrows the retained source; successful visits never outlive snapshot storage. */
+/** A temporary layout borrows the retained source; successful visits never outlive snapshot storage. Component contract: [SYN-06](../../../spec/language/source-and-names.md#syn-06), [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 bool editor_highlights(const EditorAnalysis *analysis, const char *module,
     EditorHighlightVisitor visit, void *context, Diagnostic *error) {
     const ModuleSource *source = NULL;

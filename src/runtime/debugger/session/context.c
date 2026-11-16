@@ -3,11 +3,11 @@
  * [DEBUG-03](../../../../spec/implementation/diagnostics.md#debug-03) separates current metadata from history.
  */
 #include "../internal.h"
-/** Empty stored handles remain canonical empty host references; nonempty handles retain this exact context origin. */
+/** Empty stored handles remain canonical empty host references; nonempty handles retain this exact context origin. Component contract: [DEBUG-03](../../../../spec/implementation/diagnostics.md#debug-03). */
 AmaContextReference ama_debug_reference(const AmaDebugSession *session, AmaHandle handle) {
     return ama_handle_is_empty(handle) ? (AmaContextReference){0} : (AmaContextReference){session->lease.identity,handle};
 }
-/** Terminal cleanup already removed descriptor storage; report only the actual remaining status/control. */
+/** Terminal cleanup already removed descriptor storage; report only the actual remaining status/control. Component contract: [DEBUG-03](../../../../spec/implementation/diagnostics.md#debug-03). */
 AmaStatus ama_debug_context(const AmaDebugSession *session, AmaDebugContext *output) {
     AmaStatus status = ama_debug_validate(session);
     if (status.code != AMA_OK) { return status; }

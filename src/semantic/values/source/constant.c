@@ -7,7 +7,7 @@
 #include "internal.h"
 
 /** Resolve an exact qualified shared member, its scalar/list form and initializer visibility; no namespace fallback or instance is created.
- */
+ * Component contract: [CONST-02](../../../../spec/language/declarations.md#const-02). */
 bool semantic_constant_source(SemanticProgram *program, SemanticSource *source,
     const SemanticSymbol *initializing) {
     const AstSource *syntax = source->syntax;

@@ -10,13 +10,13 @@
 #include <string.h>
 #include "runtime/objects/internal.h"
 
-/** Read the current declared shape without resolving any target. */
+/** Read the current declared shape without resolving any target. Component contract: [LIST-13](../../../../spec/language/lists.md#list-13), [LIFE-02](../../../../spec/implementation/native-interface.md#life-02). */
 size_t ama_object_field_count(const AmaObjectType *type, void *payload, size_t field) {
     void *address = (unsigned char *)payload + type->fields[field].offset;
     return ama_field_list(type->fields[field].kind) ? ((AmaHandleList *)address)->count : 1;
 }
 
-/** Select a scalar or one protected current record target; indices are prevalidated. */
+/** Select a scalar or one protected current record target; indices are prevalidated. Component contract: [LIST-13](../../../../spec/language/lists.md#list-13), [LIFE-02](../../../../spec/implementation/native-interface.md#life-02). */
 AmaHandle *ama_object_field_handle(const AmaObjectType *type, void *payload, size_t field, size_t index) {
     void *address = (unsigned char *)payload + type->fields[field].offset;
     return ama_field_list(type->fields[field].kind) ? ama_handle_list_element(address, index) : address;
@@ -43,7 +43,7 @@ AmaStatus ama_object_list_prepare(AmaWorld *world, AmaObjectWork *work, size_t f
     return ama_handle_list_prepare(list, world->allocator, work->identity, field, incarnation, limit, count);
 }
 
-/** Validate supplied recipe field count and begin the private lifecycle ledger; construction phases populate and credit the exact owned-child prefix. */
+/** Validate supplied recipe field count and begin the private lifecycle ledger; construction phases populate and credit the exact owned-child prefix. Component contract: [LIST-13](../../../../spec/language/lists.md#list-13), [LIFE-02](../../../../spec/implementation/native-interface.md#life-02). */
 AmaStatus ama_object_fields(AmaWorld *world, AmaObjectWork *work) {
     (void)world;
     if (work->recipe != NULL && work->recipe->fields != NULL && work->recipe->field_count != work->type->field_count) {
@@ -53,7 +53,7 @@ AmaStatus ama_object_fields(AmaWorld *world, AmaObjectWork *work) {
     return ama_lifetime_begin(&work->cell->metadata.lifetime, 0, kind);
 }
 
-/** Resolve one valid flattened owned-child index to its declared handle location/type. Reference fields are skipped; the caller supplies an initialized-prefix index. */
+/** Resolve one valid flattened owned-child index to its declared handle location/type. Reference fields are skipped; the caller supplies an initialized-prefix index. Component contract: [LIST-13](../../../../spec/language/lists.md#list-13), [LIFE-02](../../../../spec/implementation/native-interface.md#life-02). */
 AmaHandle *ama_object_child(AmaObjectWork *work, size_t index, uint64_t *type_id, const AmaRecipe **recipe) {
     void *payload = ama_pool_payload(&work->type->pool, work->cell);
     for (size_t field = 0; field < work->type->field_count; field++) {

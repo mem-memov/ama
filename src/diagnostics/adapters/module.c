@@ -7,7 +7,7 @@
  */
 #include "adapters.h"
 
-/** Immutable per-status explanation; no allocation is needed even for out-of-memory diagnostics. */
+/** Immutable per-status explanation; no allocation is needed even for out-of-memory diagnostics. Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04). */
 typedef struct {
     DiagnosticCode code;
     const char *message;
@@ -16,7 +16,7 @@ typedef struct {
     const char *help;
 } ModuleExplanation;
 
-/** Exact indexed source-status mapping; MODULE_OK is rejected before indexing. */
+/** Exact indexed source-status mapping; MODULE_OK is rejected before indexing. Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04). */
 static const ModuleExplanation explanations[] = {
     {DIAGNOSTIC_INVALID_PATH, NULL, NULL, NULL, NULL},
     {DIAGNOSTIC_MISSING_MODULE, "Module source was not found", "The exact path does not exist",

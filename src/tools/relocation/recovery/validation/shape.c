@@ -8,7 +8,7 @@
 #include "../internal.h"
 #include "../../internal.h"
 
-/** A slot is a private direct child of its recorded parent, with two exact reserved child names. */
+/** A slot is a private direct child of its recorded parent, with two exact reserved child names. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_recovery_slot_shape(const RelocationTransactionSlot *owned, bool acknowledged) {
     if (!relocation_recovery_path(owned->directory) || !relocation_recovery_path(owned->parent)
         || !relocation_recovery_path(owned->prepared) || !relocation_recovery_path(owned->backup)) { return false; }
@@ -24,7 +24,7 @@ bool relocation_recovery_slot_shape(const RelocationTransactionSlot *owned, bool
         && (!acknowledged || (S_ISDIR(owned->metadata.st_mode) && (owned->metadata.st_mode&0077) == 0
             && owned->metadata.st_uid == geteuid()));
 }
-/** Report settings are data rather than recovery authority, but malformed source/root identities still invalidate the receipt. */
+/** Report settings are data rather than recovery authority, but malformed source/root identities still invalidate the receipt. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_recovery_report_shape(const RelocationReport *report) {
     if (!relocation_recovery_path(report->source) || !relocation_recovery_path(report->destination)
         || strcmp(report->source,"/") == 0 || strcmp(report->destination,"/") == 0
@@ -47,7 +47,7 @@ bool relocation_recovery_report_shape(const RelocationReport *report) {
     }
     return true;
 }
-/** Later actions may only replace reported rewritten regular files or retire explicit existing outputs. */
+/** Later actions may only replace reported rewritten regular files or retire explicit existing outputs. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool external(const RelocationTransaction *transaction, const RelocationTransactionAction *action) {
     if (action->kind == RELOCATION_ACTION_CREATE || relocation_contains(transaction->report.source,action->path)
         || relocation_contains(transaction->report.destination,action->path)) { return false; }
@@ -59,7 +59,7 @@ static bool external(const RelocationTransaction *transaction, const RelocationT
     }
     return false;
 }
-/** Pairwise finite checks are exact; nothing is mutated or inferred from a timestamp or path substring. */
+/** Pairwise finite checks are exact; nothing is mutated or inferred from a timestamp or path substring. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_journal_validate(RelocationRecovery *recovery) {
     RelocationTransaction *transaction = &recovery->transaction;
     RelocationJournalReader reader = {.recovery=recovery,.source=recovery->record};

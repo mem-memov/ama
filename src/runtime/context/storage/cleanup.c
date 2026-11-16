@@ -12,7 +12,7 @@
  * Whole-tree cleanup unlinks its root before releasing its cell. Stable-root replacement
  * retains this position; failed creations and owned children never register here.
  * No payload moves, emergency allocation, sequence wrap or C recursion is needed.
- */
+ * Component contract: [RT-10](../../../../spec/implementation/runtime.md#rt-10), [LIFE-05](../../../../spec/implementation/native-interface.md#life-05). */
 static AmaStatus context_roots(AmaWorld *world, AmaStatus primary) {
     while (world->last_root != NULL) {
         AmaPoolCell *cell = world->last_root;
@@ -27,7 +27,7 @@ static AmaStatus context_roots(AmaWorld *world, AmaStatus primary) {
  * The record allocation belongs to the registry and is released separately.
  * Failed execution retains that record for diagnostic inspection; all arena-owned
  * descriptor views are cleared so subsequent explicit disposal is idempotent.
- */
+ * Component contract: [RT-10](../../../../spec/implementation/runtime.md#rt-10), [LIFE-05](../../../../spec/implementation/native-interface.md#life-05). */
 AmaStatus ama_context_cleanup(AmaContext *context, AmaStatus primary) {
     primary = ama_cleanup_primary(primary, context->status);
     context->world.failed = true;

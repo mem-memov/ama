@@ -10,7 +10,7 @@
 #include "../internal.h"
 #include "../../internal.h"
 
-/** Reserved public inputs/final paths cannot become temporary storage even when currently absent. */
+/** Reserved public inputs/final paths cannot become temporary storage even when currently absent. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool public_path(const RelocationReport *report, const char *path) {
     if (relocation_contains(path,report->source) || relocation_contains(report->source,path)
         || relocation_contains(path,report->destination) || relocation_contains(report->destination,path)) { return true; }
@@ -19,7 +19,7 @@ static bool public_path(const RelocationReport *report, const char *path) {
     }
     return false;
 }
-/** Occupied names and the finite explicit public domain are skipped; ordinal exhaustion is an exact checked failure. */
+/** Occupied names and the finite explicit public domain are skipped; ordinal exhaustion is an exact checked failure. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 const char *relocation_transaction_slot_name(RelocationTransaction *transaction, const char *parent) {
     for (;;) {
         if (transaction->slot_ordinal == SIZE_MAX) {

@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../internal.h"
-/** Link the ownership record before creation; a later allocation error cannot lose an already created private directory. */
+/** Link the ownership record before creation; a later allocation error cannot lose an already created private directory. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 RelocationTransactionSlot *relocation_transaction_slot(RelocationTransaction *transaction, const char *target) {
     char *parent = source_arena_copy(&transaction->arena,target);
     RelocationTransactionSlot *slot = source_arena_allocate(&transaction->arena,sizeof(*slot));

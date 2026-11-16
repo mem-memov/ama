@@ -5,7 +5,7 @@
  * preserves every non-name byte for the client's atomic document transaction.
  */
 #include "internal.h"
-/** Expected device/inode plus complete original bytes let the client check its exact document version without hash assumptions. */
+/** Expected device/inode plus complete original bytes let the client check its exact document version without hash assumptions. Component contract: [NAME-06](../../../../spec/language/declarations.md#name-06), [SRC-03](../../../../spec/language/source-and-names.md#src-03). */
 static bool file(ToolJsonWriter *writer, const EditorRenameFile *value) {
     const SourceText *old = value->original->text, *replacement = value->replacement;
     if (!tool_json_raw(writer,"{\"path\":") || !tool_source_bytes(writer,source_path(old))
@@ -24,7 +24,7 @@ static bool file(ToolJsonWriter *writer, const EditorRenameFile *value) {
     }
     return tool_json_raw(writer,"]}");
 }
-/** All files are one client transaction; a same-name no-op is explicitly an empty plan. */
+/** All files are one client transaction; a same-name no-op is explicitly an empty plan. Component contract: [NAME-06](../../../../spec/language/declarations.md#name-06), [SRC-03](../../../../spec/language/source-and-names.md#src-03). */
 bool driver_editor_rename(const DriverOptions *options, const EditorRename *rename, ToolJsonWriter *writer) {
     if (!tool_json_raw(writer,"{\"schema\":\"ama.rename.v1\",\"entry\":") || !tool_json_string(writer,options->entry)
         || !tool_json_raw(writer,",\"module\":") || !tool_json_string(writer,options->query_module)

@@ -7,7 +7,7 @@
  */
 #include "runtime/objects/internal.h"
 
-/** Acquire one world operation guard, preflight normal destruction or clear terminal active links, then clean the tree. Always release protections and scratch, preserving the primary failure. */
+/** Acquire one world operation guard, preflight normal destruction or clear terminal active links, then clean the tree. Always release protections and scratch, preserving the primary failure. Component contract: [RT-10](../../../../spec/implementation/runtime.md#rt-10). */
 AmaStatus ama_object_destroy_admitted(AmaWorld *world, AmaHandle root, bool *admitted) {
     *admitted = false;
     if (world->operation_active) { return ama_status_make(AMA_BUSY, NULL, 0); }
@@ -26,7 +26,7 @@ AmaStatus ama_object_destroy_admitted(AmaWorld *world, AmaHandle root, bool *adm
     return status;
 }
 
-/** Preserve the ordinary status-only destruction interface through the same checked operation. */
+/** Preserve the ordinary status-only destruction interface through the same checked operation. Component contract: [RT-10](../../../../spec/implementation/runtime.md#rt-10). */
 AmaStatus ama_object_destroy(AmaWorld *world, AmaHandle root) {
     bool admitted;
     return ama_object_destroy_admitted(world, root, &admitted);

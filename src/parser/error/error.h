@@ -10,7 +10,7 @@
 
 #include "diagnostics/record/diagnostic.h"
 
-/** Fixed retained grammar keys used by parser branches and editor/checking consumers; not a native ABI status channel. */
+/** Fixed retained grammar keys used by parser branches and editor/checking consumers; not a native ABI status channel. Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04). */
 typedef enum {
     EXPECT_NONE,
     EXPECT_UTF8,
@@ -54,7 +54,7 @@ typedef enum {
     EXPECT_COUNT
 } ParserExpectation;
 
-/** Borrowed source diagnostic plus its precise failed grammar expectation; no parser heap allocation. */
+/** Borrowed source diagnostic plus its precise failed grammar expectation; no parser heap allocation. Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04). */
 typedef struct {
     Diagnostic diagnostic;
     ParserExpectation expected;
@@ -64,14 +64,14 @@ typedef struct {
  * fixed display text; adapted diagnostics may retain a narrower originating
  * expectation alongside the broad layout/UTF-8/allocation key. */
 /** Return fixed expected-form text for an exact grammar key, or null for none/out-of-domain keys. Does not inspect names or guess corrections.
- */
+ * Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04). */
 const char *parser_expected_text(ParserExpectation expectation);
 /** Publish a borrowed exact primary span, message, expected form and explicit branch-specific help without allocation. Always return false for parser composition.
- */
+ * Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04). */
 bool parser_error_set(ParseError *error, SourceSpan span, const char *message,
     ParserExpectation expected);
 /** Copy the borrowed original layout diagnostic, retaining its precise expected text; select a broad UTF-8/layout/allocation key.
- */
+ * Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04). */
 void parser_error_from_layout(ParseError *error, const Diagnostic *diagnostic);
 
 #endif

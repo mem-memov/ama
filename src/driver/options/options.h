@@ -12,7 +12,7 @@
 #include "diagnostics/record/diagnostic.h"
 #include "driver/request/request.h"
 
-/** Completed configuration; the arena owns arrays and argv owns stored strings. */
+/** Completed configuration; the arena owns arrays and argv owns stored strings. Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 typedef struct {
     SourceArena arena;
     DriverRequest request;
@@ -46,14 +46,14 @@ typedef struct {
     bool valid;
 } DriverOptions;
 
-/** Initialize an empty owner using the supplied allocation/release callbacks. */
+/** Initialize an empty owner using the supplied allocation/release callbacks. Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 void driver_options_init(DriverOptions *options, SourceAllocator allocator);
-/** Release all complete/partial arena allocations and clear the owner. */
+/** Release all complete/partial arena allocations and clear the owner. Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 void driver_options_destroy(DriverOptions *options);
 /** Parse once after initialization; borrow argv until destruction.
  * Exact options only, without implicit roots or inferred output exclusions.
  * Failure leaves valid false, a diagnostic and safely destructible partial arrays.
- */
+ * Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 bool driver_options_parse(DriverOptions *options, int count, char *const arguments[]);
 
 #endif

@@ -12,7 +12,7 @@
  * are finite witnesses ending at a native seed. References and constants never
  * participate; even an empty owning list contributes its element-type edge.
  * No allocation occurs. At most V removals and one final scan cost O(V(V+F)).
- */
+ * Component contract: [PROTO-07](../../../spec/implementation/native-interface.md#proto-07). */
 void semantic_clone_capabilities(SemanticProgram *program) {
     for (SemanticType *type = program->first; type != NULL; type = type->next) {
         type->cloneable = type->executable && (type->module->syntax.sections.kind != MODULE_NATIVE

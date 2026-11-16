@@ -4,7 +4,7 @@
  * [NAME-04](../../../../spec/language/declarations.md#name-04) forbids storage suffix overloading.
  */
 #include "../internal.h"
-/** Name validation never trims, normalizes, appends a suffix or interprets embedded punctuation as code. */
+/** Name validation never trims, normalizes, appends a suffix or interprets embedded punctuation as code. Component contract: [SYN-06](../../../../spec/language/source-and-names.md#syn-06), [NAME-04](../../../../spec/language/declarations.md#name-04). */
 bool editor_rename_name(EditorRename *plan, const unsigned char *bytes, size_t length) {
     const SourceText *source = NULL;
     SourceStatus status = source_manager_add(&plan->sources,"<rename>",bytes,length,&source);

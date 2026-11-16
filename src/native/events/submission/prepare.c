@@ -32,7 +32,7 @@ AmaStatus ama_native_event_service_prepare(AmaNativeEventService *service, AmaNa
     return status;
 }
 
-/** Preserve the supplied identity while granting only native callback resource rights. */
+/** Preserve the supplied identity while granting only native callback resource rights. Component contract: [ASYNC-05](../../../../spec/language/async-and-parallelism.md#async-05), [ASYNC-06](../../../../spec/language/async-and-parallelism.md#async-06). */
 AmaStatus ama_native_event_service_callback(AmaNativeEventService *service, AmaNativeEventToken token,
     AmaNativeEventSubmission *output) {
     if (service == NULL || output == NULL || output->state != NULL) {

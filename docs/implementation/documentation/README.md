@@ -56,6 +56,13 @@ acceptance, a different error or a failed tool does not satisfy that contract.
 Purpose checks parse
 actual C documentation comments; markers hidden in literals do not count.
 
+Every compiler Doxygen contract block also needs an explicit canonical rule link.
+This uniform check covers function/type/helper comments without guessing which
+operation is nontrivial from its size or spelling. A narrow implementation names
+its relevant rule; a generic helper may cite the surrounding file's declared
+component rules, with its existing purpose/invariant explanation. Links in code
+examples, literals or another comment block cannot supply that contract.
+
 ## Exact source-to-HTML mapping
 
 The registry reads requirement links from `spec/requirements.md`. A canonical

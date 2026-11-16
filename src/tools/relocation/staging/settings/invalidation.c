@@ -9,7 +9,7 @@
 #include "../internal.h"
 #include "../../internal.h"
 
-/** An invalidation cannot consume either endpoint or an original/final configured source root. */
+/** An invalidation cannot consume either endpoint or an original/final configured source root. Component contract: [TOOL-03](../../../../../spec/implementation/tools-and-conformance.md#tool-03), [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool contains_root(const RelocationPreview *preview, const char *before, const char *after) {
     if (relocation_contains(before,preview->source) || relocation_contains(after,preview->destination)) { return true; }
     for (size_t index = 0; index < preview->before_root_count; index++) {
@@ -20,7 +20,7 @@ static bool contains_root(const RelocationPreview *preview, const char *before, 
     }
     return false;
 }
-/** Source and settings inputs take precedence over an invalid user declaration that labels them generated. */
+/** Source and settings inputs take precedence over an invalid user declaration that labels them generated. Component contract: [TOOL-03](../../../../../spec/implementation/tools-and-conformance.md#tool-03), [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_staging_invalidation(RelocationStaging *staging, const char *input) {
     bool existed;
     const char *before = relocation_staging_setting_path(staging,input,true,&existed);

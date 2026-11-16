@@ -5,7 +5,7 @@
  */
 #include "../internal.h"
 
-/** Withdraw only this action's prepared object; an already absent target needs no deletion or repeated rewrite. */
+/** Withdraw only this action's prepared object; an already absent target needs no deletion or repeated rewrite. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool withdraw(RelocationTransaction *transaction, RelocationTransactionAction *action) {
     if (!action->publish_attempted) { return true; }
     RelocationPathState target = relocation_transaction_probe(transaction,action->path,&action->prepared_metadata);
@@ -24,7 +24,7 @@ static bool withdraw(RelocationTransaction *transaction, RelocationTransactionAc
     action->published = false;
     return true;
 }
-/** An original already restored is accepted; an unexpected existing path or missing original remains a recoverable conflict. */
+/** An original already restored is accepted; an unexpected existing path or missing original remains a recoverable conflict. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool restore(RelocationTransaction *transaction, RelocationTransactionAction *action) {
     if (!action->backup_attempted) { return true; }
     RelocationPathState saved = relocation_transaction_probe(transaction,action->slot->backup,&action->original_metadata);
@@ -39,7 +39,7 @@ static bool restore(RelocationTransaction *transaction, RelocationTransactionAct
     action->saved = false;
     return true;
 }
-/** Continue independent inverse actions after failure; one retained original must not prevent restoration of other paths. */
+/** Continue independent inverse actions after failure; one retained original must not prevent restoration of other paths. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_rollback(RelocationTransaction *transaction) {
     bool complete = true;
     for (RelocationTransactionAction *action = transaction->last; action != NULL; action = action->previous) {

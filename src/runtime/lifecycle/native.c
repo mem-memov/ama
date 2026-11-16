@@ -13,7 +13,7 @@
 /** Record a raw-success payload before normalization; preserve a malformed status
  * as the primary failure. The caller supplies a consistent completed child prefix.
  * Publication is a later phase, so checked failure always retains private ownership.
- */
+ * Component contract: [LIFE-02](../../../spec/implementation/native-interface.md#life-02), [ERROR-03](../../../spec/implementation/diagnostics.md#error-03). */
 AmaStatus ama_lifetime_finish_native(AmaLifetime *lifetime, bool native_constructed, AmaStatus status) {
     if (status.code != AMA_OK) { return ama_status_checked(status); }
     AmaStatus finished = ama_lifetime_finish(lifetime, native_constructed);

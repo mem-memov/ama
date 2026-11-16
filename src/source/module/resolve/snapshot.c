@@ -10,7 +10,7 @@
 #include "../internal.h"
 #include "source/unicode/unicode.h"
 
-/** Both complete logical identity and captured physical identity must remain unique. */
+/** Both complete logical identity and captured physical identity must remain unique. Component contract: [TOOL-02](../../../../spec/implementation/tools-and-conformance.md#tool-02), [SRC-02](../../../../spec/language/source-and-names.md#src-02). */
 static ModuleStatus unique(ModuleCatalog *catalog, const ModuleSnapshotEntry *entry, const char *physical) {
     for (const ModuleSource *other = catalog->first; other != NULL; other = other->next) {
         bool same_name = strcmp(entry->logical_path,other->logical_path) == 0;
@@ -22,7 +22,7 @@ static ModuleStatus unique(ModuleCatalog *catalog, const ModuleSnapshotEntry *en
     return MODULE_OK;
 }
 
-/** Copy one complete entry before linking it; failed bytes and diagnostics stay catalog-owned. */
+/** Copy one complete entry before linking it; failed bytes and diagnostics stay catalog-owned. Component contract: [TOOL-02](../../../../spec/implementation/tools-and-conformance.md#tool-02), [SRC-02](../../../../spec/language/source-and-names.md#src-02). */
 static ModuleStatus insert(ModuleCatalog *catalog, const ModuleSnapshotEntry *entry) {
     if (entry->text == NULL || !module_path_valid(entry->logical_path)) {
         return module_fail(catalog,MODULE_INVALID_PATH,NULL);
@@ -49,7 +49,7 @@ static ModuleStatus insert(ModuleCatalog *catalog, const ModuleSnapshotEntry *en
     return MODULE_OK;
 }
 
-/** Snapshot rows borrow only the build call; no partial registry is exposed as built after failure. */
+/** Snapshot rows borrow only the build call; no partial registry is exposed as built after failure. Component contract: [TOOL-02](../../../../spec/implementation/tools-and-conformance.md#tool-02), [SRC-02](../../../../spec/language/source-and-names.md#src-02). */
 ModuleStatus module_catalog_snapshot(ModuleCatalog *catalog, const ModuleSnapshotEntry *entries, size_t count) {
     if (catalog->attempted || (count != 0 && entries == NULL)) { return MODULE_INVALID_PATH; }
     catalog->attempted = true;

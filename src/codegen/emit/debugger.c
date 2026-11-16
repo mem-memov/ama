@@ -7,7 +7,7 @@
 #include <string.h>
 #include "codegen/internal.h"
 
-/** Emit exact bytes as octal C escapes, avoiding locale and escape adjacency. */
+/** Emit exact bytes as octal C escapes, avoiding locale and escape adjacency. Component contract: [DEBUG-03](../../../spec/implementation/diagnostics.md#debug-03). */
 static bool debug_name(FILE *output, const unsigned char *bytes, size_t length) {
     if (fputc('"', output) == EOF) { return false; }
     for (size_t index = 0; index < length; index++) {
@@ -16,13 +16,13 @@ static bool debug_name(FILE *output, const unsigned char *bytes, size_t length) 
     return fputc('"', output) != EOF;
 }
 
-/** Emit a validated semantic name without normalization or synthetic spelling. */
+/** Emit a validated semantic name without normalization or synthetic spelling. Component contract: [DEBUG-03](../../../spec/implementation/diagnostics.md#debug-03). */
 static bool debug_symbol(FILE *output, const SemanticSymbol *symbol) {
     SourceSpan span = symbol->name;
     return debug_name(output, source_bytes(span.source) + span.start, span.end - span.start);
 }
 
-/** Emit names for each pooled type's declared fields and lexical traversal roles. */
+/** Emit names for each pooled type's declared fields and lexical traversal roles. Component contract: [DEBUG-03](../../../spec/implementation/diagnostics.md#debug-03). */
 static bool debug_members(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type) {
     const char *name = type->names[SCAFFOLD_WRITE]->internal_name;
     if (type->members != NULL) {
@@ -44,7 +44,7 @@ static bool debug_members(NativeScaffold *scaffold, FILE *output, const Scaffold
     return true;
 }
 
-/** Publish immutable original names alongside exact source-map and nominal identities. */
+/** Publish immutable original names alongside exact source-map and nominal identities. Component contract: [DEBUG-03](../../../spec/implementation/diagnostics.md#debug-03). */
 bool codegen_emit_debugger(NativeScaffold *scaffold, FILE *output) {
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
         if (type->plan->requires_pool && !debug_members(scaffold, output, type)) { return false; }

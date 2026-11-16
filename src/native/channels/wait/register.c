@@ -6,7 +6,7 @@
  */
 #include "../internal.h"
 
-/** An empty C owner has no latent key or direction that could disguise ownership. */
+/** An empty C owner has no latent key or direction that could disguise ownership. Component contract: [ASYNC-06](../../../../spec/language/async-and-parallelism.md#async-06), [ASYNC-09](../../../../spec/language/async-and-parallelism.md#async-09). */
 static bool empty_wait(const AmaNativeChannelWait *owner) {
     return owner != NULL && owner->state == NULL && owner->callbacks == NULL
         && owner->token.domain == NULL && owner->token.service == 0 && owner->token.generation == 0
@@ -16,7 +16,7 @@ static bool empty_wait(const AmaNativeChannelWait *owner) {
 /** Clone source rights outside the channel gate. The port pins service lifetime
  * throughout; readiness and installation share one atomic metadata interval.
  * Immediate or already retired/completed sources need no retained channel owner.
- */
+ * Component contract: [ASYNC-06](../../../../spec/language/async-and-parallelism.md#async-06), [ASYNC-09](../../../../spec/language/async-and-parallelism.md#async-09). */
 static AmaStatus channel_wait_register(AmaNativeChannel *channel, bool sending, size_t required,
     const AmaNativeEventSubmission *source, AmaNativeChannelWait *output) {
     if (!empty_wait(output) || (sending && required == 0)) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
@@ -51,12 +51,12 @@ static AmaStatus channel_wait_register(AmaNativeChannel *channel, bool sending, 
     return status;
 }
 
-/** Each logical sender may have one pending capacity registration, with an exact requested size. */
+/** Each logical sender may have one pending capacity registration, with an exact requested size. Component contract: [ASYNC-06](../../../../spec/language/async-and-parallelism.md#async-06), [ASYNC-09](../../../../spec/language/async-and-parallelism.md#async-09). */
 AmaStatus ama_channel_wait_send(void *state, size_t required, const AmaNativeEventSubmission *source,
     AmaNativeChannelWait *output) {
     return channel_wait_register(state, true, required, source, output);
 }
-/** Receive readiness is data or terminal closure, independent of application decoding time. */
+/** Receive readiness is data or terminal closure, independent of application decoding time. Component contract: [ASYNC-06](../../../../spec/language/async-and-parallelism.md#async-06), [ASYNC-09](../../../../spec/language/async-and-parallelism.md#async-09). */
 AmaStatus ama_channel_wait_receive(void *state, const AmaNativeEventSubmission *source, AmaNativeChannelWait *output) {
     return channel_wait_register(state, false, 0, source, output);
 }

@@ -10,7 +10,7 @@
 #include "../internal.h"
 
 /** Attach a parsed nonliteral source to a structural receiver and advance exactly past that source line; no first-use declaration inference occurs here.
- */
+ * Component contract: [COMP-01](../../../spec/implementation/compiler.md#comp-01), [FLOW-01](../../../spec/language/control-flow.md#flow-01). */
 static bool assignment(Parser *parser, AstNode *node, AstAccess *receiver) {
     size_t indentation = parser->line->indentation + 1;
     parser->line = parser->line->next;
@@ -32,7 +32,7 @@ static bool assignment(Parser *parser, AstNode *node, AstAccess *receiver) {
 
 /** Output bindings and explicit modes start operation actions; an unmarked selection requires its own deeper action region.
  * A copy source has no child region, so this structural distinction never depends on a declared type or name.
- */
+ * Component contract: [COMP-01](../../../spec/implementation/compiler.md#comp-01), [FLOW-01](../../../spec/language/control-flow.md#flow-01). */
 static bool operation_action(const LayoutLine *line, const LayoutLine *end) {
     const unsigned char *bytes = source_bytes(line->code.source);
     if (line->code.end > line->code.start) {
@@ -50,7 +50,7 @@ static bool operation_action(const LayoutLine *line, const LayoutLine *end) {
 }
 
 /** Distinguish supported declaration, assignment, control or retained-read tails by physical structure only. Never query a declaration inventory to choose syntax.
- */
+ * Component contract: [COMP-01](../../../spec/implementation/compiler.md#comp-01), [FLOW-01](../../../spec/language/control-flow.md#flow-01). */
 static bool bare_target(Parser *parser, ParseFrame **frame, AstNode *node) {
     const LayoutLine *line = parser->line;
     bool blank = false;

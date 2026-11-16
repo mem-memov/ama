@@ -12,7 +12,7 @@
 #include "semantic/internal.h"
 
 /** Register each explicit declaration once across storage suffix forms, retaining source/role ordinals. Duplicate failure points at the prior declaration.
- */
+ * Component contract: [NAME-04](../../../spec/language/declarations.md#name-04), [TYPE-06](../../../spec/language/declarations.md#type-06). */
 static bool declare(SemanticProgram *program, SemanticType *type, const AstNode *node, size_t loop_depth, const AstNode *loop, void *context) {
     (void)loop_depth;
     (void)loop;
@@ -47,7 +47,7 @@ static bool declare(SemanticProgram *program, SemanticType *type, const AstNode 
 }
 
 /** Walk constant/parameter/result/body blocks with distinct declaration roles; this inventory does not classify first-receiver inferred declarations.
- */
+ * Component contract: [NAME-04](../../../spec/language/declarations.md#name-04), [TYPE-06](../../../spec/language/declarations.md#type-06). */
 static bool module_names(SemanticProgram *program, SemanticType *type) {
     const AstModule *syntax = &type->module->syntax;
     AstBlock blocks[] = {syntax->constants, syntax->parameters, syntax->results, syntax->body};

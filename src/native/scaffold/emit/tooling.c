@@ -30,13 +30,13 @@ bool scaffold_json(FILE *output, const char *text) {
 }
 
 /** Append one independently JSON-escaped argv string; never combine flags into a shell command.
- */
+ * Component contract: [CABI-06](../../../../spec/implementation/native-interface.md#cabi-06). */
 static bool argument(FILE *output, const char *text) {
     return fputs(", ", output) != EOF && scaffold_json(output, text);
 }
 
 /** Emit one compilation database record with supported UTF-8 cwd/file/compiler/flags. Borrow the model only during synchronous emission.
- */
+ * Component contract: [CABI-06](../../../../spec/implementation/native-interface.md#cabi-06). */
 static bool command(NativeScaffold *scaffold, FILE *output, const char *path, bool *first) {
     if ((!*first && fputs(",\n", output) == EOF)
         || fputs("  {\"directory\": ", output) == EOF || !scaffold_json(output, scaffold->working_directory)

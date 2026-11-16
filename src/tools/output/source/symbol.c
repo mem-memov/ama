@@ -4,12 +4,12 @@
  * distinguishes lexical declarations even when their names are equal.
  */
 #include "source.h"
-/** Intrinsic interfaces lack a nominal type; represent absence rather than creating a fake source module. */
+/** Intrinsic interfaces lack a nominal type; represent absence rather than creating a fake source module. Component contract: [NAME-06](../../../../spec/language/declarations.md#name-06). */
 bool tool_source_type(ToolJsonWriter *writer, const SemanticType *type) {
     if (type == NULL) { return tool_json_raw(writer,"null"); }
     return tool_json_string(writer,type->module->source->logical_path);
 }
-/** Declaration role and reference/list shape come directly from the checked symbol inventory. */
+/** Declaration role and reference/list shape come directly from the checked symbol inventory. Component contract: [NAME-06](../../../../spec/language/declarations.md#name-06). */
 bool tool_source_symbol(ToolJsonWriter *writer, const SemanticSymbol *symbol) {
     if (symbol == NULL) { return tool_json_raw(writer,"null"); }
     const char *roles[] = {"constant","parameter","result","state"};

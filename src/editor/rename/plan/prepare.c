@@ -5,7 +5,7 @@
  */
 #include <assert.h>
 #include "../internal.h"
-/** A module-path target is not a variable rename; incomplete/entry-only analysis cannot certify external importers. */
+/** A module-path target is not a variable rename; incomplete/entry-only analysis cannot certify external importers. Component contract: [NAME-06](../../../../spec/language/declarations.md#name-06), [ARCH-06](../../../../spec/implementation/compiler.md#arch-06). */
 bool editor_rename_prepare(EditorRename *plan, const EditorAnalysis *workspace, const char *module,
     size_t offset, const unsigned char *name, size_t length) {
     assert(!plan->attempted);

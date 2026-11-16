@@ -6,7 +6,7 @@
  */
 #include <unistd.h>
 #include "../internal.h"
-/** Ownership precedes mode because chown may clear special permission bits; all metadata precedes synchronization. */
+/** Ownership precedes mode because chown may clear special permission bits; all metadata precedes synchronization. Component contract: [TOOL-03](../../../../../spec/implementation/tools-and-conformance.md#tool-03), [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_attributes(RelocationTransaction *transaction, int descriptor, const char *path, const struct stat *expected) {
     struct stat current;
     if (fstat(descriptor,&current) != 0) {

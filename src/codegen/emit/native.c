@@ -12,7 +12,7 @@
 /**
  * Emit one present native protocol adapter with exact constness and extra argument type. Absent
  * protocol emits nothing; native entry dispatch is separate.
- */
+ * Component contract: [CABI-03](../../../spec/implementation/native-interface.md#cabi-03), [PROTO-03](../../../spec/implementation/native-interface.md#proto-03). */
 static bool hook(FILE *output, const ScaffoldType *type, AbiOperation operation) {
     const AbiBinding *binding = &type->plan->type->abi.bindings[operation];
     if (!binding->present) { return true; }
@@ -34,7 +34,7 @@ static bool hook(FILE *output, const ScaffoldType *type, AbiOperation operation)
 /**
  * Include the independent interface, require exact entry signature compatibility before the
  * authored body, then emit present lifecycle/conversion adapters.
- */
+ * Component contract: [CABI-03](../../../spec/implementation/native-interface.md#cabi-03), [PROTO-03](../../../spec/implementation/native-interface.md#proto-03). */
 bool codegen_emit_native(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type) {
     (void)scaffold;
     if (!scaffold_include(output, type->interface_name)

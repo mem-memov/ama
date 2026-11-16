@@ -15,7 +15,7 @@
 /** Record aligned allocation and invoke exactly clone, literal or default. Raw code
  * zero creates native_live before status normalization; malformed success still
  * owns a cleanup obligation. A nonzero constructor cleans its own partial native resource.
- */
+ * Component contract: [CONST-02](../../../../spec/language/declarations.md#const-02), [LIFE-02](../../../../spec/implementation/native-interface.md#life-02), [ERROR-03](../../../../spec/implementation/diagnostics.md#error-03). */
 AmaStatus ama_constant_payload(AmaProgram *program, AmaConstantBuildWork *work) {
     AmaObjectType *type = work->value->type->object;
     program->world->construction_operation = work->operation;

@@ -7,7 +7,7 @@
 #include "../internal.h"
 #include "../../internal.h"
 
-/** Source removal retains the exact whole original tree; destination creation uses a separately verified filesystem-local copy. */
+/** Source removal retains the exact whole original tree; destination creation uses a separately verified filesystem-local copy. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool endpoints(RelocationTransaction *transaction) {
     const RelocationPreview *preview = transaction->staging->references->preview;
     const RelocationStagedFile *root = transaction->staging->files;
@@ -22,7 +22,7 @@ static bool endpoints(RelocationTransaction *transaction) {
     RelocationTransactionAction *create = relocation_transaction_action(transaction,RELOCATION_ACTION_CREATE,preview->destination);
     return create != NULL && relocation_transaction_tree(transaction,create);
 }
-/** Unchanged external bytes require no replacement; all external configuration and importer changes share ordinary prepared-file handling. */
+/** Unchanged external bytes require no replacement; all external configuration and importer changes share ordinary prepared-file handling. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool external_files(RelocationTransaction *transaction) {
     const RelocationPreview *preview = transaction->staging->references->preview;
     for (const RelocationStagedFile *file = transaction->staging->files; file != NULL; file = file->next) {
@@ -39,7 +39,7 @@ static bool external_files(RelocationTransaction *transaction) {
     }
     return true;
 }
-/** Generated entries inside S are absent from the prepared destination; outside outputs retain originals in separate sibling slots. */
+/** Generated entries inside S are absent from the prepared destination; outside outputs retain originals in separate sibling slots. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool outputs(RelocationTransaction *transaction) {
     const RelocationPreview *preview = transaction->staging->references->preview;
     for (const RelocationInvalidation *output = transaction->staging->invalidations; output != NULL; output = output->next) {
@@ -50,7 +50,7 @@ static bool outputs(RelocationTransaction *transaction) {
     }
     return true;
 }
-/** Recovery storage is created first and survives incomplete cleanup; every action owns its inverse before source publication. */
+/** Recovery storage is created first and survives incomplete cleanup; every action owns its inverse before source publication. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_prepare(RelocationTransaction *transaction) {
     const char *journal_target = source_arena_join(&transaction->arena,transaction->recovery_directory,"/","journal");
     if (journal_target == NULL) { return relocation_transaction_fail(transaction,RELOCATION_OUT_OF_MEMORY,"Recovery journal path allocation failed",transaction->recovery_directory); }

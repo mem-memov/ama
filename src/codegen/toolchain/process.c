@@ -17,7 +17,7 @@
 /**
  * Fork/exec exact argv, optionally capture stdout and redirect diagnostics, then wait through
  * EINTR. Spawn/nonzero/signal failures record an IO diagnostic; no shell is invoked.
- */
+ * Component contract: [STACK-04](../../../spec/implementation/compiler.md#stack-04). */
 bool codegen_run_tool(NativeScaffold *scaffold, char *const arguments[], const char *capture, FILE *errors) {
     pid_t process = fork();
     if (process < 0) { return scaffold_error(scaffold, DIAGNOSTIC_IO_FAILURE, "Cannot start the native toolchain", NULL); }
@@ -38,7 +38,7 @@ bool codegen_run_tool(NativeScaffold *scaffold, char *const arguments[], const c
  * Allocate checked argv storage for caller-specified fixed tail capacity, copy borrowed
  * compiler/flags and rely on zeroed allocation for spare entries. Extra is a small internal
  * constant.
- */
+ * Component contract: [STACK-04](../../../spec/implementation/compiler.md#stack-04). */
 static char **codegen_arguments(NativeScaffold *scaffold, size_t extra) {
     if (scaffold->options.flag_count > SIZE_MAX / sizeof(char *) - extra) {
         scaffold_error(scaffold, DIAGNOSTIC_OUT_OF_MEMORY, "Native command arguments exceed addressable storage", NULL);
@@ -54,7 +54,7 @@ static char **codegen_arguments(NativeScaffold *scaffold, size_t extra) {
 /**
  * Execute the configured compiler with explicit supported C11/non-LTO arguments and private
  * source/include/object paths; borrow error stream through child completion.
- */
+ * Component contract: [STACK-04](../../../spec/implementation/compiler.md#stack-04). */
 bool codegen_compile_object(NativeScaffold *scaffold, const char *stage, FILE *errors) {
     const char *source = scaffold_join(scaffold, stage, "/", "launcher.c");
     const char *object = scaffold_join(scaffold, stage, "/", "program.o");
@@ -70,7 +70,7 @@ bool codegen_compile_object(NativeScaffold *scaffold, const char *stage, FILE *e
 /**
  * Link only the verified private object, placing user link flags after the object. Result
  * remains private until retained and explicitly published.
- */
+ * Component contract: [STACK-04](../../../spec/implementation/compiler.md#stack-04). */
 bool codegen_link_object(NativeScaffold *scaffold, const char *stage, FILE *errors) {
     char **arguments = codegen_arguments(scaffold, 8);
     const char *object = scaffold_join(scaffold, stage, "/", "program.o");

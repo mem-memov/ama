@@ -4,7 +4,7 @@
  * context creation, instance construction, entry and quiescent disposal.
  */
 #include "internal.h"
-/** Emit a public lifecycle wrapper around the matching namespaced implementation. */
+/** Emit a public lifecycle wrapper around the matching namespaced implementation. Component contract: [EMBED-02](../../../spec/implementation/c-library.md#embed-02). */
 static void operation(LibraryHeader *h, const char *name, const char *arguments,
     const char *invocation, const char *description) {
     library_header_print(h, "/** %s */\n%s_ApiResult %s_%s_implementation(%s);\nstatic inline %s_ApiResult %s_%s(%s) {\n",

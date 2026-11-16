@@ -48,7 +48,7 @@ void ama_native_event_service_dispose(AmaNativeEventService **owner) {
     ama_native_event_release(service);
 }
 
-/** Bind an owned native method resource without exposing the service's mutable internals. */
+/** Bind an owned native method resource without exposing the service's mutable internals. Component contract: [ASYNC-05](../../../../spec/language/async-and-parallelism.md#async-05), [EMBED-06](../../../../spec/implementation/c-library.md#embed-06). */
 AmaStatus ama_native_event_service_lease(AmaNativeEventService *service, AmaNativeEventKeepalive *output) {
     if (service == NULL || output == NULL || output->resource != NULL || output->release != NULL) {
         return AMA_NATIVE_EVENT_ERROR(AMA_INVALID_STATE, "Invalid native service lease");

@@ -7,7 +7,7 @@
  */
 #include "lifetime.h"
 
-/** Require fresh, unowned metadata and a valid selected constructor; record expected child capacity without invoking a hook. Invalid state leaves the ledger unchanged. */
+/** Require fresh, unowned metadata and a valid selected constructor; record expected child capacity without invoking a hook. Invalid state leaves the ledger unchanged. Component contract: [LIFE-02](../../../spec/implementation/native-interface.md#life-02). */
 AmaStatus ama_lifetime_begin(AmaLifetime *lifetime, size_t children, AmaConstructorKind kind) {
     if (lifetime->phase != AMA_LIFETIME_FRESH || lifetime->native_live ||
         lifetime->live_children != 0 || lifetime->cleanup_active ||
@@ -20,7 +20,7 @@ AmaStatus ama_lifetime_begin(AmaLifetime *lifetime, size_t children, AmaConstruc
     return ama_status_success();
 }
 
-/** Credit one successfully initialized child in declaration order. Require constructing state and unused prefix capacity; never credit a failed child. */
+/** Credit one successfully initialized child in declaration order. Require constructing state and unused prefix capacity; never credit a failed child. Component contract: [LIFE-02](../../../spec/implementation/native-interface.md#life-02). */
 AmaStatus ama_lifetime_child_ready(AmaLifetime *lifetime) {
     /* LIFE-02's completed-prefix invariant gives live_children <= capacity.
      * Reject equality before increment, even when capacity is SIZE_MAX. */
@@ -32,7 +32,7 @@ AmaStatus ama_lifetime_child_ready(AmaLifetime *lifetime) {
     return ama_status_success();
 }
 
-/** Publish lifecycle Live only after the entire child prefix is complete. The caller supplies whether one native resource was successfully constructed. */
+/** Publish lifecycle Live only after the entire child prefix is complete. The caller supplies whether one native resource was successfully constructed. Component contract: [LIFE-02](../../../spec/implementation/native-interface.md#life-02). */
 AmaStatus ama_lifetime_finish(AmaLifetime *lifetime, bool native_constructed) {
     if (lifetime->phase != AMA_LIFETIME_CONSTRUCTING ||
         lifetime->live_children != lifetime->child_capacity) {

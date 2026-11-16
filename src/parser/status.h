@@ -8,7 +8,7 @@
 #ifndef AMA_PARSER_STATUS_H
 #define AMA_PARSER_STATUS_H
 
-/** Structural status separates invalid syntax from memory exhaustion; parent valid flags gate consumption. */
+/** Structural status separates invalid syntax from memory exhaustion; parent valid flags gate consumption. Component contract: [COMP-04](../../spec/implementation/compiler.md#comp-04). */
 typedef enum { PARSE_OK, PARSE_INVALID, PARSE_OUT_OF_MEMORY } ParseStatus;
 
 #endif

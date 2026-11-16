@@ -6,7 +6,7 @@
 #include <stdint.h>
 #include <string.h>
 #include "../internal.h"
-/** Sum retained segments and replacement bytes with checked additions before allocating the output. */
+/** Sum retained segments and replacement bytes with checked additions before allocating the output. Component contract: [TOOL-03](../../../../../spec/implementation/tools-and-conformance.md#tool-03). */
 bool relocation_staging_rewrite(RelocationStaging *staging, const SourceText *original_text, const char *path,
     const RelocationPathEdit *const *edits, size_t edit_count, const SourceText **result) {
     size_t length = 0, input = 0;

@@ -5,7 +5,7 @@
  */
 #include "../internal.h"
 #include "semantic/lists/internal.h"
-/** A selected result keeps its declaration's identity; nested indices resolve in the initiating caller. */
+/** A selected result keeps its declaration's identity; nested indices resolve in the initiating caller. Component contract: [CALL-09](../../../../spec/language/calls-and-results.md#call-09). */
 static bool selected(SemanticProgram *program, SemanticType *caller, SemanticStatement *statement) {
     const AstNode *node = statement->syntax;
     SemanticStatement *parent = semantic_statement_find(caller, node->as.call.enclosing_operation);

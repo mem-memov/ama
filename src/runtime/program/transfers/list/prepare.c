@@ -9,7 +9,7 @@
 #include <string.h>
 #include "internal.h"
 
-/** Read the already validated source shape in its shared or mutable storage domain. */
+/** Read the already validated source shape in its shared or mutable storage domain. Component contract: [COPY-02](../../../../../spec/language/values-and-references.md#copy-02). */
 static size_t ama_transfer_list_count(const AmaProgramValue *value) {
     return value->shared_list != NULL ? value->shared_list->count : value->list->count;
 }

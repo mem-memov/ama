@@ -6,14 +6,14 @@
 #ifndef AMA_LIBRARY_TRANSPORT_INTERNAL_H
 #define AMA_LIBRARY_TRANSPORT_INTERNAL_H
 #include "library/header/internal.h"
-/** Declare every opaque snapshot body and forward its private owner operations. */
+/** Declare every opaque snapshot body and forward its private owner operations. Component contract: [EMBED-04](../../../spec/implementation/c-library.md#embed-04). */
 void library_transport_owners(LibraryHeader *);
-/** Emit scalar/list shape checks without decoding semantic contents. */
+/** Emit scalar/list shape checks without decoding semantic contents. Component contract: [EMBED-04](../../../spec/implementation/c-library.md#embed-04). */
 void library_transport_shapes(LibraryHeader *);
-/** Emit independent copy and reverse-prefix release for one scalar schema. */
+/** Emit independent copy and reverse-prefix release for one scalar schema. Component contract: [EMBED-04](../../../spec/implementation/c-library.md#embed-04). */
 void library_transport_scalar(LibraryHeader *, const LibrarySchema *);
-/** Emit independent ordered list owners; nested schemas are validated scalar models. */
+/** Emit independent ordered list owners; nested schemas are validated scalar models. Component contract: [EMBED-04](../../../spec/implementation/c-library.md#embed-04). */
 void library_transport_list(LibraryHeader *, const LibrarySchema *);
-/** Emit public view, clone and consuming release wrappers around private owners. */
+/** Emit public view, clone and consuming release wrappers around private owners. Component contract: [EMBED-04](../../../spec/implementation/c-library.md#embed-04). */
 void library_transport_operations(LibraryHeader *, const LibrarySchema *);
 #endif

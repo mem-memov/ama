@@ -6,7 +6,7 @@
  */
 #include <stdint.h>
 #include "internal.h"
-/** Pack at most eight original key bytes in a specified order; the separate length preserves padding identity. */
+/** Pack at most eight original key bytes in a specified order; the separate length preserves padding identity. Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [NAME-02](../../../spec/implementation/compiler.md#name-02). */
 static uint64_t word(const LibraryBuild *build, size_t start) {
     uint64_t value = 0;
     for (size_t i = 0; i < 8; i++) {
@@ -15,7 +15,7 @@ static uint64_t word(const LibraryBuild *build, size_t start) {
     }
     return value;
 }
-/** Emit an exact unsigned constant without relying on the formatting width of uint64_t. */
+/** Emit an exact unsigned constant without relying on the formatting width of uint64_t. Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06), [NAME-02](../../../spec/implementation/compiler.md#name-02). */
 static void number(LibraryHeader *h, uint64_t value) {
     static const char digits[] = "0123456789abcdef";
     library_header_print(h, "UINT64_C(0x");

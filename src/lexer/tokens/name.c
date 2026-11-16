@@ -7,7 +7,7 @@
 #include "tokens.h"
 #include "source/unicode/unicode.h"
 
-/** Scan one bounded XID word, returning its start unchanged when no valid starting scalar exists. */
+/** Scan one bounded XID word, returning its start unchanged when no valid starting scalar exists. Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 static size_t word(const unsigned char *bytes, size_t offset, size_t end) {
     size_t start = offset;
     while (offset < end) {

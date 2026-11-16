@@ -5,7 +5,7 @@
  * requires an explicit initiating chain, never runtime lookup of a repeat/caller boundary.
  */
 #include "internal.h"
-/** Loop references are exact owner inventory identities, including null for non-loop instructions. */
+/** Loop references are exact owner inventory identities, including null for non-loop instructions. Component contract: [COMP-02](../../../../../spec/implementation/compiler.md#comp-02), [CALL-09](../../../../../spec/language/calls-and-results.md#call-09). */
 static bool loop_member(const PlannedType *type, const PlannedLoop *candidate) {
     if (candidate == NULL) { return true; }
     for (const PlannedLoop *loop = type->loops; loop != NULL; loop = loop->next) {
@@ -13,7 +13,7 @@ static bool loop_member(const PlannedType *type, const PlannedLoop *candidate) {
     }
     return false;
 }
-/** Refusal abandons the whole pending tree before this link's own handler; an ancestor handler is never selected. */
+/** Refusal abandons the whole pending tree before this link's own handler; an ancestor handler is never selected. Component contract: [COMP-02](../../../../../spec/implementation/compiler.md#comp-02), [CALL-09](../../../../../spec/language/calls-and-results.md#call-09). */
 static bool refusal(const PlannedType *type, const ControlNode *node) {
     if (node->operation != CONTROL_ACQUIRE_INSTANCE && node->operation != CONTROL_ACQUIRE_LIST
         && node->operation != CONTROL_SELECT_RESULT && node->operation != CONTROL_LIST_METHOD_PREFLIGHT) { return true; }
@@ -28,7 +28,7 @@ static bool refusal(const PlannedType *type, const ControlNode *node) {
     return target != NULL && target->operation == CONTROL_REFUSAL_SNAPSHOT
         && target->statement == node->statement && target->chain == node->chain;
 }
-/** Loop operands follow the source owner; scope cleanup at return names the nearest enclosing traversal only. */
+/** Loop operands follow the source owner; scope cleanup at return names the nearest enclosing traversal only. Component contract: [COMP-02](../../../../../spec/implementation/compiler.md#comp-02), [CALL-09](../../../../../spec/language/calls-and-results.md#call-09). */
 static const PlannedLoop *expected_loop(const PlannedType *type, const ControlNode *node) {
     if (node->statement == NULL) { return NULL; }
     if (node->operation == CONTROL_CLEANUP_SCOPES) {

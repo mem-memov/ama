@@ -15,7 +15,7 @@
 #include "native/scaffold/internal.h"
 
 /** Own a getcwd buffer in the arena, growing only after ERANGE with checked doubling; preserve the first IO/allocation error.
- */
+ * Component contract: [CABI-06](../../../../spec/implementation/native-interface.md#cabi-06). */
 static const char *working_directory(NativeScaffold *scaffold) {
     size_t capacity = 128;
     for (;;) {

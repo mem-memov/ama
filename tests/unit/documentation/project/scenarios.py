@@ -255,6 +255,18 @@ def coverage_scenario():
         save()
     coverage.inventory = lambda _: {'sample.h', 'case.c'}
     coverage.check(root)
+    # Opaque project assets have external purpose/test contracts, not a forced
+    # UTF-8 source representation. Reading them as C documentation loses bytes.
+    asset = root / 'tests/fixture/project/asset.bin'
+    asset.parent.mkdir(parents=True, exist_ok=True)
+    asset.write_bytes(bytes([0, 255, 13, 10]))
+    ready['tests/fixture/project/asset.bin'] = {'purpose': 'Opaque asset bytes',
+        'contract': 'Fixture preservation', 'tests': entry['tests']}
+    save()
+    coverage.inventory = lambda _: {'sample.h', 'case.c', 'tests/fixture/project/asset.bin'}
+    coverage.check(root)
+    del ready['tests/fixture/project/asset.bin']
+    save()
     # Narrative page references cannot stand in for compiler requirement links.
     contract = root / 'docs/implementation/library-tests-and-build.md'
     contract.write_text('# Fixture contract\n')
@@ -283,7 +295,7 @@ def coverage_scenario():
     # A deliberate #error header is independently checked as rejection evidence,
     # never skipped or treated as an ordinary successfully compiled interface.
     negative = root / 'tests/fixture/project/rejected.h'
-    negative.parent.mkdir(parents=True)
+    negative.parent.mkdir(parents=True, exist_ok=True)
     negative.write_text('/** @file\n * @brief Reject forbidden native compilation.\n */\n#error Native compilation is forbidden\n')
     command = entry['standalone_header_command']
     contract = {'exit_code': 1, 'diagnostic': '#error Native compilation is forbidden'}
@@ -304,5 +316,36 @@ def coverage_scenario():
     rejected(lambda: coverage.check(root))
 
 
-SCENARIOS = {'source': source, 'registry': registry, 'rendered': rendered, 'coverage': coverage_scenario}
+def contracts():
+    """Require explicit canonical links on individual compiler contracts, excluding examples and strings as false evidence."""
+    root = prepare('contracts')
+    rules = Registry(root)
+    path = 'src/fixture.c'
+    rule = '[RT-13](../spec/runtime.md#rt-13)'
+    purpose = '/** @file\n * @brief Preserve identity. ' + rule + '\n */\n'
+    missing = '/** Preserve the reserved identity until publication. */\nint fixture(void) { return 0; }\n'
+    rejected(lambda: coverage.check_rule_contracts(path, purpose + missing, rules))
+    valid = missing.replace('identity until publication.', 'identity until publication. Component contract: ' + rule + '.')
+    coverage.check_rule_contracts(path, purpose + valid, rules)
+    literal = 'const char *fake = "' + rule + '";\n'
+    rejected(lambda: coverage.check_rule_contracts(path, purpose + missing + literal, rules))
+    for example in ('`' + rule + '`', '\n * ```text\n * ' + rule + '\n * ```\n',
+                    '\n * @code\n * ' + rule + '\n * @endcode\n'):
+        documented = '/** Preserve identity. ' + example + ' */\nint fixture(void);\n'
+        rejected(lambda: coverage.check_rule_contracts(path, purpose + documented, rules))
+    wrong = valid.replace('[RT-13]', '[RT-99]')
+    rejected(lambda: coverage.check_rule_contracts(path, purpose + wrong, rules))
+    rejected(lambda: coverage.check_rule_contracts('src/deep/fixture.c', purpose + valid, rules))
+    corrected = (purpose + valid).replace('../spec/', '../../spec/')
+    coverage.check_rule_contracts('src/deep/fixture.c', corrected, rules)
+    line = '/// Preserve the same component contract: ' + rule + '\nint fixture(void);\n'
+    coverage.check_rule_contracts(path, purpose + line, rules)
+    actual = Registry(ROOT)
+    for source_path in sorted((ROOT / 'src').rglob('*')):
+        if source_path.suffix in ('.c', '.h', '.inc'):
+            coverage.check_rule_contracts(source_path.relative_to(ROOT).as_posix(),
+                                         source_path.read_bytes().decode('utf-8'), actual)
+
+
+SCENARIOS = {'source': source, 'registry': registry, 'rendered': rendered, 'coverage': coverage_scenario, 'contracts': contracts}
 SCENARIOS[sys.argv[2]]()

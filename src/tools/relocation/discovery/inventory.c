@@ -6,7 +6,7 @@
 #include <string.h>
 #include "../internal.h"
 
-/** Append a complete observed entry; earlier directory identities prevent alias cycles before queueing. */
+/** Append a complete observed entry; earlier directory identities prevent alias cycles before queueing. Component contract: [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01). */
 static bool append(RelocationPreview *preview, const char *path) {
     struct stat metadata;
     if (lstat(path,&metadata) != 0) { return relocation_fail(preview,RELOCATION_IO_ERROR,path,NULL); }
@@ -32,7 +32,7 @@ static bool append(RelocationPreview *preview, const char *path) {
     return true;
 }
 
-/** Breadth-first queue entries own stable paths; only actual directories are opened, never symbolic links. */
+/** Breadth-first queue entries own stable paths; only actual directories are opened, never symbolic links. Component contract: [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01). */
 bool relocation_inventory(RelocationPreview *preview) {
     if (!append(preview,preview->source)) { return false; }
     for (const RelocationEntry *entry = preview->entries; entry != NULL; entry = entry->next) {

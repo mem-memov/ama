@@ -16,7 +16,7 @@ AmaStatus ama_program_foreach_reset(AmaProgram *program, AmaHandle owner) {
     return ama_status_success();
 }
 
-/** Parent indices strictly decrease, giving an exact finite ancestry test. */
+/** Parent indices strictly decrease, giving an exact finite ancestry test. Component contract: [FLOW-05](../../../../../spec/language/lists.md#flow-05). */
 static bool ama_foreach_descendant(const AmaProgramType *type, size_t child, size_t parent) {
     for (size_t index = type->foreach_scopes[child].parent; index != SIZE_MAX;
             index = type->foreach_scopes[index].parent) {

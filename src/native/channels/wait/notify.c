@@ -7,13 +7,13 @@
 #include <assert.h>
 #include "../internal.h"
 
-/** Terminal/impossible sends wake for an ordinary method recheck, never sleep forever. */
+/** Terminal/impossible sends wake for an ordinary method recheck, never sleep forever. Component contract: [PAR-04](../../../../spec/language/async-and-parallelism.md#par-04), [ASYNC-06](../../../../spec/language/async-and-parallelism.md#async-06). */
 bool ama_channel_sender_ready(const AmaNativeChannel *channel, size_t required) {
     return channel->sender_closed || channel->aborted || required > channel->maximum_bytes
         || (channel->count < channel->capacity && required <= channel->maximum_bytes - channel->bytes);
 }
 
-/** Caller holds the channel gate. Moving clears publication before any callback can run. */
+/** Caller holds the channel gate. Moving clears publication before any callback can run. Component contract: [PAR-04](../../../../spec/language/async-and-parallelism.md#par-04), [ASYNC-06](../../../../spec/language/async-and-parallelism.md#async-06). */
 void ama_channel_collect_signals(AmaNativeChannel *channel, AmaChannelSignals *signals) {
     if (channel->sending.event.state != NULL && ama_channel_sender_ready(channel, channel->sending.required_bytes)) {
         assert(signals->sending.state == NULL);
@@ -31,7 +31,7 @@ void ama_channel_collect_signals(AmaNativeChannel *channel, AmaChannelSignals *s
 /** Registration checked armed admission. Full identity cannot become unarmed
  * again; legitimate races only complete, retire or close that original token.
  * No callback is invoked while either native service gate is held.
- */
+ * Component contract: [PAR-04](../../../../spec/language/async-and-parallelism.md#par-04), [ASYNC-06](../../../../spec/language/async-and-parallelism.md#async-06). */
 static void channel_signal(AmaNativeEventSubmission *event) {
     if (event->state == NULL) { return; }
     AmaNativeEventPostResult result = ama_native_event_post(event, 0, NULL);
@@ -41,7 +41,7 @@ static void channel_signal(AmaNativeEventSubmission *event) {
     ama_native_event_submission_drop(event);
 }
 
-/** Source callbacks queue records only; the appropriate executor performs all Ama work. */
+/** Source callbacks queue records only; the appropriate executor performs all Ama work. Component contract: [PAR-04](../../../../spec/language/async-and-parallelism.md#par-04), [ASYNC-06](../../../../spec/language/async-and-parallelism.md#async-06). */
 void ama_channel_publish_signals(AmaChannelSignals *signals) {
     channel_signal(&signals->sending);
     channel_signal(&signals->receiving);

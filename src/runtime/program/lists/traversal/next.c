@@ -7,7 +7,7 @@
 #include "internal.h"
 #include "runtime/lifecycle/errors.h"
 
-/** Borrow only target identity; activity does not decide scan eligibility. */
+/** Borrow only target identity; activity does not decide scan eligibility. Component contract: [FLOW-05](../../../../../spec/language/lists.md#flow-05). */
 static AmaStatus ama_foreach_target(AmaProgram *program, uint64_t type, AmaHandle target) {
     if (target.generation == 0) { return ama_status_make(AMA_EMPTY_REFERENCE, NULL, 0); }
     if (target.generation != 0 && target.type_id != type) { return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0); }

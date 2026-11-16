@@ -6,7 +6,7 @@
 #include <string.h>
 #include "../internal.h"
 
-/** Every slash consumes exactly one nonempty component; root alone is canonical. */
+/** Every slash consumes exactly one nonempty component; root alone is canonical. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_recovery_path(const char *path) {
     if (path == NULL || path[0] != '/') { return false; }
     if (path[1] == 0) { return true; }

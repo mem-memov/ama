@@ -5,7 +5,7 @@
  */
 #include "../internal.h"
 
-/** Temporary compiler owners are destroyed in reverse order on every path; diagnostics never borrow them after return. */
+/** Temporary compiler owners are destroyed in reverse order on every path; diagnostics never borrow them after return. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_revalidate(RelocationTransaction *transaction) {
     const char *source = transaction->staging->references->preview->source;
     if (!relocation_transaction_permit(transaction,RELOCATION_IO_REVALIDATE,source)) { return false; }

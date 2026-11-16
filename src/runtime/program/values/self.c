@@ -12,7 +12,7 @@
 #include "selection/internal.h"
 #include "runtime/objects/internal.h"
 
-/** Validate exact reserved/public identity and lifecycle, then publish only a reference value with no payload location or acquired target. */
+/** Validate exact reserved/public identity and lifecycle, then publish only a reference value with no payload location or acquired target. Component contract: [REF-01](../../../../spec/language/values-and-references.md#ref-01), [RT-12](../../../../spec/implementation/runtime.md#rt-12), [LIFE-04](../../../../spec/implementation/native-interface.md#life-04). */
 AmaStatus ama_program_self(AmaProgram *program, AmaHandle current,
     const AmaProgramSource *source, bool private_access, AmaProgramValue *output) {
     if (source->type_id != current.type_id) { return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0); }

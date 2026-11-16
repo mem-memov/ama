@@ -7,12 +7,12 @@
 #include "../internal.h"
 #include "../../internal.h"
 
-/** Compare a projected suffix without allocating, normalizing or searching source bytes. */
+/** Compare a projected suffix without allocating, normalizing or searching source bytes. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool projected(const char *root, const char *suffix, const char *path) {
     size_t length = strlen(root);
     return strncmp(root,path,length) == 0 && strcmp(path+length,suffix) == 0;
 }
-/** Tree rows are distinct and rooted; immediate parents must precede children as in the original breadth-first preparation. */
+/** Tree rows are distinct and rooted; immediate parents must precede children as in the original breadth-first preparation. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_recovery_tree_shape(RelocationRecovery *recovery, const RelocationTransactionAction *action) {
     RelocationJournalReader reader = {.recovery=recovery,.source=recovery->record};
     const RelocationReport *report = &recovery->transaction.report;

@@ -9,7 +9,7 @@
 #include "internal.h"
 #include "../internal.h"
 
-/** Normalize only existing ordinary directories; the temporary path resolver owner expires after the canonical copy. */
+/** Normalize only existing ordinary directories; the temporary path resolver owner expires after the canonical copy. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool location(RelocationRecovery *recovery, const char *input) {
     RelocationTransaction *transaction = &recovery->transaction;
     RelocationPreview preview;
@@ -24,7 +24,7 @@ static bool location(RelocationRecovery *recovery, const char *input) {
     return transaction->journal != NULL
         || relocation_transaction_fail(transaction,status,"The recovery directory could not be resolved exactly",NULL);
 }
-/** Each private regular record is stable under the journal directory lease; reading it does not grant mutation authority. */
+/** Each private regular record is stable under the journal directory lease; reading it does not grant mutation authority. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool read_record(RelocationRecovery *recovery, const char *path, const SourceText **output) {
     RelocationTransaction *transaction = &recovery->transaction;
     struct stat before, after;
@@ -45,7 +45,7 @@ static bool read_record(RelocationRecovery *recovery, const char *path, const So
     }
     return true;
 }
-/** A prepared inventory must describe precisely the same owned scope and private directories as its earlier preparation authority. */
+/** A prepared inventory must describe precisely the same owned scope and private directories as its earlier preparation authority. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool prepared(RelocationRecovery *recovery) {
     RelocationTransaction *transaction = &recovery->transaction;
     RelocationReport intent_report = transaction->report;
@@ -61,7 +61,7 @@ static bool prepared(RelocationRecovery *recovery) {
     recovery->preparing = false;
     return true;
 }
-/** Preparation authority precedes plan authority; READY is durable before any public source path can change. */
+/** Preparation authority precedes plan authority; READY is durable before any public source path can change. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_recovery_load(RelocationRecovery *recovery, const char *input) {
     RelocationTransaction *transaction = &recovery->transaction;
     if (!location(recovery,input) || !relocation_transaction_lease_parent(transaction,transaction->journal)

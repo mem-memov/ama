@@ -5,18 +5,18 @@
  */
 #include <assert.h>
 #include "internal.h"
-/** Add one complete object's size/alignment and its named field offset. */
+/** Add one complete object's size/alignment and its named field offset. Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06). */
 static void field(LibraryHeader *h, const char *type, const char *member) {
     library_header_print(h, "        sizeof(%s), _Alignof(%s), offsetof(%s, %s),\n", type, type, type, member);
 }
-/** Spell a public type in bounded scratch; generated prefixes have a fixed maximum length. */
+/** Spell a public type in bounded scratch; generated prefixes have a fixed maximum length. Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06). */
 static void member(LibraryHeader *h, const char *prefix, const char *suffix, const char *name) {
     char type[128];
     int length = snprintf(type, sizeof(type), "%s_%s", prefix, suffix);
     if (length < 0 || (size_t)length >= sizeof(type)) { h->good = false; return; }
     field(h, type, name);
 }
-/** Emit every public layout fact in the same order for consumer and compiled receiver. */
+/** Emit every public layout fact in the same order for consumer and compiled receiver. Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06). */
 static void layout(LibraryHeader *h, const char *name) {
     const char *p = h->prefix;
     library_header_print(h, "    static const size_t %s[] = {\n        sizeof(size_t), _Alignof(size_t), sizeof(uintptr_t), _Alignof(uintptr_t),\n", name);
@@ -35,7 +35,7 @@ static void layout(LibraryHeader *h, const char *name) {
     }
     library_header_print(h, "    };\n");
 }
-/** Emit the full framed component key; digest equality is never identity equality. */
+/** Emit the full framed component key; digest equality is never identity equality. Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06). */
 static void identity(LibraryHeader *h, const char *name) {
     library_header_print(h, "    static const uint8_t %s[%zu] = {", name, h->build->identity->encoding_length);
     for (size_t index = 0; index < h->build->identity->encoding_length; index++) {

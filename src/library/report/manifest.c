@@ -5,7 +5,7 @@
  */
 #include <assert.h>
 #include "../internal.h"
-/** Emit one JSON string from validated UTF-8, preserving controls as exact escapes. */
+/** Emit one JSON string from validated UTF-8, preserving controls as exact escapes. Component contract: [EMBED-01](../../../spec/implementation/c-library.md#embed-01). */
 static bool string(FILE *output, const char *text) {
     static const char digits[] = "0123456789abcdef";
     if (fputc('"', output) == EOF) { return false; }
@@ -18,7 +18,7 @@ static bool string(FILE *output, const char *text) {
     }
     return fputc('"', output) != EOF;
 }
-/** Write a fixed key and one escaped UTF-8 value, propagating every stream error. */
+/** Write a fixed key and one escaped UTF-8 value, propagating every stream error. Component contract: [EMBED-01](../../../spec/implementation/c-library.md#embed-01). */
 static bool property(FILE *output, const char *key, const char *value) {
     return string(output, key) && fputc(':', output) != EOF && string(output, value);
 }

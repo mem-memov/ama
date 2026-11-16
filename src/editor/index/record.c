@@ -6,7 +6,7 @@
 #include <limits.h>
 #include <string.h>
 #include "../analysis/internal.h"
-/** Append one resolved spelling; the final stable merge removes only identical semantic records. */
+/** Append one resolved spelling; the final stable merge removes only identical semantic records. Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04), [ARCH-06](../../../spec/implementation/compiler.md#arch-06). */
 bool editor_index_add(EditorAnalysis *analysis, SourceSpan span, const SemanticSymbol *symbol,
     const SemanticType *type, bool declaration) {
     if (span.source == NULL || span.start == span.end) { return true; }
@@ -22,14 +22,14 @@ bool editor_index_add(EditorAnalysis *analysis, SourceSpan span, const SemanticS
     analysis->last = record;
     return true;
 }
-/** Exact physical path and original half-open coordinates define a deterministic source order. */
+/** Exact physical path and original half-open coordinates define a deterministic source order. Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04), [ARCH-06](../../../spec/implementation/compiler.md#arch-06). */
 static int compare(const EditorOccurrence *left, const EditorOccurrence *right) {
     int path = strcmp(source_path(left->spelling.source), source_path(right->spelling.source));
     if (path != 0) { return path; }
     if (left->spelling.start != right->spelling.start) { return left->spelling.start < right->spelling.start ? -1 : 1; }
     return (left->spelling.end > right->spelling.end) - (left->spelling.end < right->spelling.end);
 }
-/** Merge sorted finite runs without recursion or fresh allocation, consuming only their next links. */
+/** Merge sorted finite runs without recursion or fresh allocation, consuming only their next links. Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04), [ARCH-06](../../../spec/implementation/compiler.md#arch-06). */
 static EditorOccurrence *merge(EditorOccurrence *left, EditorOccurrence *right) {
     EditorOccurrence head = {0}, *tail = &head;
     while (left != NULL && right != NULL) {
@@ -41,7 +41,7 @@ static EditorOccurrence *merge(EditorOccurrence *left, EditorOccurrence *right) 
     tail->next = left == NULL ? right : left;
     return head.next;
 }
-/** Binary merge bins bound stack space by size_t bit count; every record moves O(log R) times. */
+/** Binary merge bins bound stack space by size_t bit count; every record moves O(log R) times. Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04), [ARCH-06](../../../spec/implementation/compiler.md#arch-06). */
 bool editor_index_order(EditorAnalysis *analysis) {
     EditorOccurrence *bins[sizeof(size_t) * CHAR_BIT] = {0};
     while (analysis->first != NULL) {

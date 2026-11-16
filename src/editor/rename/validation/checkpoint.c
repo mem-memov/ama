@@ -7,12 +7,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../internal.h"
-/** Total original physical-path order supports exact logarithmic coordinate lookup. */
+/** Total original physical-path order supports exact logarithmic coordinate lookup. Component contract: [DEP-03](../../../../spec/implementation/compiler.md#dep-03), [ARCH-06](../../../../spec/implementation/compiler.md#arch-06). */
 static int compare(const void *left, const void *right) {
     const EditorRenameSource *a = left, *b = right;
     return strcmp(source_path(a->original->text),source_path(b->original->text));
 }
-/** The fresh catalog must be a bijection of the old logical/physical records, including opaque drafts. */
+/** The fresh catalog must be a bijection of the old logical/physical records, including opaque drafts. Component contract: [DEP-03](../../../../spec/implementation/compiler.md#dep-03), [ARCH-06](../../../../spec/implementation/compiler.md#arch-06). */
 bool editor_rename_checkpoint(EditorRename *plan) {
     ModuleCatalog *catalog = &plan->candidate.frontend.project.catalog;
     ModuleStatus built = module_catalog_build(catalog,plan->workspace->roots,plan->workspace->root_count);

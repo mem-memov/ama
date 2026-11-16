@@ -9,14 +9,14 @@
  */
 #include "internal.h"
 
-/** Project-arena-owned cursor for a borrowed AST block; explicit work replaces recursive C traversal. */
+/** Project-arena-owned cursor for a borrowed AST block; explicit work replaces recursive C traversal. Component contract: [DEP-03](../../../../spec/implementation/compiler.md#dep-03), [LIST-04](../../../../spec/language/lists.md#list-04). */
 typedef struct PendingBlock {
     struct PendingBlock *next;
     const AstNode *node;
 } PendingBlock;
 
 /** Push a nonempty borrowed block onto project-owned work; empty blocks need no frame.
- */
+ * Component contract: [DEP-03](../../../../spec/implementation/compiler.md#dep-03), [LIST-04](../../../../spec/language/lists.md#list-04). */
 static bool push_block(Project *project, PendingBlock **pending, AstBlock block) {
     if (block.first == NULL) {
         return true;
@@ -31,14 +31,14 @@ static bool push_block(Project *project, PendingBlock **pending, AstBlock block)
 }
 
 /** Add only qualified constant module dependencies represented by this source; local values/literals add none.
- */
+ * Component contract: [DEP-03](../../../../spec/implementation/compiler.md#dep-03), [LIST-04](../../../../spec/language/lists.md#list-04). */
 static bool source_dependency(Project *project, DependencyPaths *paths, const AstSource *source) {
     return source == NULL || source->kind != AST_CONSTANT_SOURCE
         || project_collect_path(project, paths, source->module_path, NULL);
 }
 
 /** Collect declaration type, initializer, constant namespace and bound-source paths for one represented AST node.
- */
+ * Component contract: [DEP-03](../../../../spec/implementation/compiler.md#dep-03), [LIST-04](../../../../spec/language/lists.md#list-04). */
 static bool node_dependencies(Project *project, DependencyPaths *paths, const AstNode *node) {
     if (node->kind == AST_DECLARATION) {
         if (!project_collect_path(project, paths, node->as.declaration.type, NULL)) {
@@ -68,7 +68,7 @@ static bool node_dependencies(Project *project, DependencyPaths *paths, const As
     return true;
 }
 
-/** Push all structural subtrees once. Collection order is independent of subsequent exact source-position sorting. */
+/** Push all structural subtrees once. Collection order is independent of subsequent exact source-position sorting. Component contract: [DEP-03](../../../../spec/implementation/compiler.md#dep-03), [LIST-04](../../../../spec/language/lists.md#list-04). */
 static bool child_blocks(Project *project, PendingBlock **pending, const AstNode *node) {
     if (node->kind == AST_CALL) {
         if (!push_block(project, pending, node->as.call.alternative)) { return false; }

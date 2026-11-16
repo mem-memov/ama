@@ -17,7 +17,7 @@
 /**
  * Recognize one exact request, validate owned option arrays, invoke one command and destroy
  * options on every return. Borrow argv/streams without modification or closing.
- */
+ * Component contract: [COMP-01](../../spec/implementation/compiler.md#comp-01). */
 int driver_run(int argument_count, char *const arguments[],
     FILE *output, FILE *errors);
 

@@ -8,7 +8,7 @@
 #include "../internal.h"
 #include "../../internal.h"
 
-/** Associate prepared Ama bytes only with the exact original regular source and device/inode authority. */
+/** Associate prepared Ama bytes only with the exact original regular source and device/inode authority. Component contract: [TOOL-03](../../../../../spec/implementation/tools-and-conformance.md#tool-03), [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool sources(RelocationStaging *staging) {
     for (const RelocationStagedSource *source = staging->first; source != NULL; source = source->next) {
         const RelocationModule *module = source->module;
@@ -25,7 +25,7 @@ static bool sources(RelocationStaging *staging) {
     }
     return true;
 }
-/** Native files are copied as raw bytes; captured ABI bytes must still match those used by original semantic analysis. */
+/** Native files are copied as raw bytes; captured ABI bytes must still match those used by original semantic analysis. Component contract: [TOOL-03](../../../../../spec/implementation/tools-and-conformance.md#tool-03), [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool companion(RelocationStaging *staging, const char *path, const SourceText *abi) {
     if (path == NULL) { return true; }
     const char *after = relocation_project_to(&staging->arena,staging->references->preview,path);
@@ -42,7 +42,7 @@ static bool companion(RelocationStaging *staging, const char *path, const Source
     file->protected_input = true;
     return true;
 }
-/** Finite authoritative inventories determine scope; no suffix search scans arbitrary C, assets or drafts for paths. */
+/** Finite authoritative inventories determine scope; no suffix search scans arbitrary C, assets or drafts for paths. Component contract: [TOOL-03](../../../../../spec/implementation/tools-and-conformance.md#tool-03), [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_staging_files(RelocationStaging *staging) {
     for (const RelocationEntry *entry = staging->references->preview->entries; entry != NULL; entry = entry->next) {
         if (relocation_staging_capture(staging,entry->before,entry->after,&entry->metadata) == NULL) { return false; }

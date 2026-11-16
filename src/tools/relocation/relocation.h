@@ -11,7 +11,7 @@
 #include "source/module/catalog.h"
 #include "ast/ast.h"
 
-/** Distinct preflight failures never authorize a partially prepared plan. */
+/** Distinct preflight failures never authorize a partially prepared plan. Component contract: [TOOL-01](../../../spec/implementation/tools-and-conformance.md#tool-01), [TOOL-04](../../../spec/implementation/tools-and-conformance.md#tool-04). */
 typedef enum {
     RELOCATION_OK, RELOCATION_OUT_OF_MEMORY, RELOCATION_INVALID_PATH,
     RELOCATION_IO_ERROR, RELOCATION_UNSUPPORTED_PATH, RELOCATION_DESTINATION_EXISTS,
@@ -20,7 +20,7 @@ typedef enum {
     RELOCATION_INVALID_REFERENCE, RELOCATION_REFERENCE_CONFLICT, RELOCATION_CHANGED_INPUT,
     RELOCATION_BUSY, RELOCATION_INCOMPLETE_TRANSACTION, RELOCATION_INVALID_JOURNAL
 } RelocationStatus;
-/** Original and projected physical identities of an accompanying tree entry; no link is followed. */
+/** Original and projected physical identities of an accompanying tree entry; no link is followed. Component contract: [TOOL-01](../../../spec/implementation/tools-and-conformance.md#tool-01), [TOOL-04](../../../spec/implementation/tools-and-conformance.md#tool-04). */
 typedef struct RelocationEntry {
     struct RelocationEntry *next;
     const char *before;
@@ -29,7 +29,7 @@ typedef struct RelocationEntry {
 } RelocationEntry;
 /** One source candidate and its exact projected identity, retaining original bytes for later edits.
  * A null before_identity denotes a newly introduced source, not a guessed original namespace.
- */
+ * Component contract: [TOOL-01](../../../spec/implementation/tools-and-conformance.md#tool-01), [TOOL-04](../../../spec/implementation/tools-and-conformance.md#tool-04). */
 typedef struct RelocationModule {
     struct RelocationModule *next;
     const char *before_path;
@@ -41,7 +41,7 @@ typedef struct RelocationModule {
     ino_t inode;
     bool active;
 } RelocationModule;
-/** Borrowed inputs are copied during build. destination_root, when supplied, describes its final location. */
+/** Borrowed inputs are copied during build. destination_root, when supplied, describes its final location. Component contract: [TOOL-01](../../../spec/implementation/tools-and-conformance.md#tool-01), [TOOL-04](../../../spec/implementation/tools-and-conformance.md#tool-04). */
 typedef struct {
     const ModuleRoot *roots;
     size_t root_count;
@@ -51,7 +51,7 @@ typedef struct {
 } RelocationRequest;
 /** Build-once preview owner. Views survive a failed build until destruction; ready alone
  * permits consuming complete results. This core performs no filesystem mutation.
- */
+ * Component contract: [TOOL-01](../../../spec/implementation/tools-and-conformance.md#tool-01), [TOOL-04](../../../spec/implementation/tools-and-conformance.md#tool-04). */
 typedef struct {
     SourceArena arena;
     ModuleCatalog catalog;
@@ -74,12 +74,12 @@ typedef struct {
     bool attempted;
     bool ready;
 } RelocationPreview;
-/** Initialize independent retained allocation/source owners; allocator authority outlives the preview. */
+/** Initialize independent retained allocation/source owners; allocator authority outlives the preview. Component contract: [TOOL-01](../../../spec/implementation/tools-and-conformance.md#tool-01), [TOOL-04](../../../spec/implementation/tools-and-conformance.md#tool-04). */
 void relocation_preview_init(RelocationPreview *, SourceAllocator);
-/** Release complete or failed preparation, invalidating every borrowed result. */
+/** Release complete or failed preparation, invalidating every borrowed result. Component contract: [TOOL-01](../../../spec/implementation/tools-and-conformance.md#tool-01), [TOOL-04](../../../spec/implementation/tools-and-conformance.md#tool-04). */
 void relocation_preview_destroy(RelocationPreview *);
 /** Prepare exact paths, roots, physical entries and all configured source candidates without mutation.
  * Failure retains its first diagnostic and owned prefix, never a consumable complete plan.
- */
+ * Component contract: [TOOL-01](../../../spec/implementation/tools-and-conformance.md#tool-01), [TOOL-04](../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_preview_build(RelocationPreview *, const RelocationRequest *);
 #endif

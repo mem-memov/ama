@@ -11,7 +11,7 @@
 
 #include "../abi/bytes.h"
 
-/** Verification result distinguishes a clear symbol family, a surviving entry and malformed listing evidence. */
+/** Verification result distinguishes a clear symbol family, a surviving entry and malformed listing evidence. Component contract: [STACK-04](../../../spec/implementation/compiler.md#stack-04). */
 typedef enum {
     AMA_SYMBOLS_CLEAR,
     AMA_SYMBOLS_ENTRY_REMAINS,
@@ -24,7 +24,7 @@ typedef enum {
  */
 /** Read the verified finite nm --format=posix listing and exact forbidden entry names.
  * @return Malformed record takes precedence, otherwise any exact/dot-family entry remains, or clear. Views remain caller-owned; no allocation or symbol-name normalization.
- */
+ * Component contract: [STACK-04](../../../spec/implementation/compiler.md#stack-04). */
 AmaSymbolCheck ama_check_entry_symbols(AmaByteView listing,
     const AmaByteView *entry_names, size_t entry_count);
 

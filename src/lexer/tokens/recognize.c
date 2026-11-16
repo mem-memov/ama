@@ -6,7 +6,7 @@
  */
 #include <string.h>
 #include "internal.h"
-/** Immutable spelling/category pair ordered longest first; equal-length alternatives have disjoint spellings. */
+/** Immutable spelling/category pair ordered longest first; equal-length alternatives have disjoint spellings. Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03), [SYN-06](../../../spec/language/source-and-names.md#syn-06). */
 typedef struct { const char *text; LexKind kind; } FixedToken;
 
 bool lex_recognize(LexCursor *cursor, size_t offset, LexToken *token) {

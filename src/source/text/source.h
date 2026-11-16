@@ -12,7 +12,7 @@
 #include <stddef.h>
 #include "source/memory/allocator.h"
 
-/** Source construction outcomes; failure never publishes a new record. */
+/** Source construction outcomes; failure never publishes a new record. Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 typedef enum {
     SOURCE_OK,
     SOURCE_OUT_OF_MEMORY,
@@ -24,22 +24,22 @@ typedef enum {
 /**
  * Opaque manager-owned original bytes/path/line-index record; borrowed spans remain valid until
  * manager destruction.
- */
+ * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 typedef struct SourceText SourceText;
-/** Manager owns records and borrows allocator authority until destruction. */
+/** Manager owns records and borrows allocator authority until destruction. Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 typedef struct {
     SourceAllocator allocator;
     SourceText *first;
 } SourceManager;
 
-/** Borrowed half-open byte range in a live immutable source. */
+/** Borrowed half-open byte range in a live immutable source. Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 typedef struct {
     const SourceText *source;
     size_t start;
     size_t end;
 } SourceSpan;
 
-/** Physical one-based line/byte column and newline-free excerpt bounds. */
+/** Physical one-based line/byte column and newline-free excerpt bounds. Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 typedef struct {
     size_t line;
     size_t column;
@@ -51,10 +51,10 @@ typedef struct {
  * Add copies bytes verbatim, including NUL/CRLF; UTF-8 validation is separate.
  * Failure publishes no source and leaves the output pointer unchanged. */
 /** Start an empty owner with borrowed allocator callbacks valid until destruction.
- */
+ * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 void source_manager_init(SourceManager *manager, SourceAllocator allocator);
 /** Release all source/path/byte/line allocations. Every previously borrowed view/span expires.
- */
+ * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 void source_manager_destroy(SourceManager *manager);
 /** Copy path and exact bytes, then publish one complete stable record. Inputs need survive only this call.
  * @param[out] output Changes only on SOURCE_OK; other manager records remain valid on failure.
@@ -63,7 +63,7 @@ void source_manager_destroy(SourceManager *manager);
  * @param[in] path Borrowed NUL-terminated path copied before return.
  * @param[in] bytes Borrowed exact input bytes; null is allowed only for zero length.
  * @param[in] length Original byte count, including any embedded zeros or CRLF.
- */
+ * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 SourceStatus source_manager_add(SourceManager *manager, const char *path,
     const unsigned char *bytes, size_t length, const SourceText **output);
 /** Read a borrowed path in binary mode and close the private stream on every path.
@@ -71,27 +71,27 @@ SourceStatus source_manager_add(SourceManager *manager, const char *path,
  * @return Preserve the first read/allocation error; failed close also prevents publication.
  * @param[in,out] manager Mutable source owner receiving one complete stable record on success.
  * @param[in] path Borrowed NUL-terminated physical path used only during this synchronous load.
- */
+ * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 SourceStatus source_manager_load(SourceManager *manager, const char *path,
     const SourceText **output);
 /** Borrow the original NUL-terminated path of a live source record; manager destruction invalidates it.
- */
+ * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 const char *source_path(const SourceText *source);
 /** Borrow exact immutable bytes, including embedded NUL; use source_length rather than strlen.
- */
+ * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 const unsigned char *source_bytes(const SourceText *source);
 /** Return the original byte count, excluding the convenience terminator.
- */
+ * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 size_t source_length(const SourceText *source);
 /** Check a borrowed half-open span against its live source length; null source is invalid.
- */
+ * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 bool source_span_valid(SourceSpan span);
 /** Find the greatest line-start not exceeding offset, including EOF. Columns count bytes.
  * @param[out] output Changes only on true; excerpts exclude LF and its preceding CR.
  * @return false for null arguments or offset past EOF; never allocate or modify source bytes.
  * @param[in] source Borrowed live source record with its exact line-start index.
  * @param[in] offset Original byte offset including EOF; offsets beyond length are invalid.
- */
+ * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 bool source_position(const SourceText *source, size_t offset, SourcePosition *output);
 
 #endif

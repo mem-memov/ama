@@ -13,7 +13,7 @@
  * Write one host execution function and all resolved control labels. Emit saved-position/type
  * and return-selector switches with invalid-selector failure paths; no recursive Ama C function
  * calls.
- */
+ * Component contract: [STACK-04](../../../spec/implementation/compiler.md#stack-04). */
 bool codegen_emit_body(NativeScaffold *scaffold, FILE *output, const ScaffoldType *unused) {
     (void)unused;
     if (fputs("#include \"project.h\"\n", output) == EOF

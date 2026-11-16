@@ -6,12 +6,12 @@
 #ifndef AMA_LIBRARY_LIFECYCLE_EMITTER_INTERNAL_H
 #define AMA_LIBRARY_LIFECYCLE_EMITTER_INTERNAL_H
 #include "library/header/internal.h"
-/** Emit the shared native/diagnostic/value code owner before any dependent adapter. */
+/** Emit the shared native/diagnostic/value code owner before any dependent adapter. Component contract: [EMBED-02](../../../spec/implementation/c-library.md#embed-02). */
 void library_lifecycle_retention(LibraryHeader *);
-/** Emit code-pinned diagnostic conversion and initialized-empty release operations. */
+/** Emit code-pinned diagnostic conversion and initialized-empty release operations. Component contract: [EMBED-02](../../../spec/implementation/c-library.md#embed-02). */
 void library_lifecycle_diagnostics(LibraryHeader *);
-/** Emit exact numeric-control conversions and public lifecycle adapters. */
+/** Emit exact numeric-control conversions and public lifecycle adapters. Component contract: [EMBED-02](../../../spec/implementation/c-library.md#embed-02). */
 void library_lifecycle_operations(LibraryHeader *);
-/** Emit explicit detached pins and a nonallocating host-barrier unload check. */
+/** Emit explicit detached pins and a nonallocating host-barrier unload check. Component contract: [EMBED-02](../../../spec/implementation/c-library.md#embed-02). */
 void library_lifecycle_code(LibraryHeader *);
 #endif

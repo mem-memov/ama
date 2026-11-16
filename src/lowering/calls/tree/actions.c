@@ -6,7 +6,7 @@
  */
 #include "lowering/calls/internal.h"
 #include "lowering/replacement/internal.h"
-/** Plan-owned reverse action view preserves source order under backward composition. */
+/** Plan-owned reverse action view preserves source order under backward composition. Component contract: [CALL-09](../../../../spec/language/calls-and-results.md#call-09). */
 typedef struct ReverseAction {
     struct ReverseAction *next;
     const SemanticOutputAction *action;

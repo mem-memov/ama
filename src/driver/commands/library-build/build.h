@@ -7,6 +7,6 @@
 #define AMA_DRIVER_LIBRARY_BUILD_H
 #include "driver/options/options.h"
 #include "library/model.h"
-/** Borrow the resolved model/options; diagnose failures before destroying source owners. */
+/** Borrow the resolved model/options; diagnose failures before destroying source owners. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 bool driver_library_build(const DriverOptions *, const LibraryBuild *, FILE *errors);
 #endif

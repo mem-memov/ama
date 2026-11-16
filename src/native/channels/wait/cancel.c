@@ -6,7 +6,7 @@
  */
 #include "../internal.h"
 
-/** Full identity comparison prevents a late cancel from clearing a replacement registration. */
+/** Full identity comparison prevents a late cancel from clearing a replacement registration. Component contract: [ASYNC-09](../../../../spec/language/async-and-parallelism.md#async-09), [PAR-04](../../../../spec/language/async-and-parallelism.md#par-04). */
 AmaStatus ama_channel_wait_cancel(void *state, AmaNativeEventToken token, bool sending, bool *retired) {
     if (retired == NULL) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
     AmaNativeChannel *channel = state;
@@ -24,11 +24,11 @@ AmaStatus ama_channel_wait_cancel(void *state, AmaNativeEventToken token, bool s
     return ama_status_success();
 }
 
-/** A delivered/cancelled handle still owns service/code storage until this acknowledgment. */
+/** A delivered/cancelled handle still owns service/code storage until this acknowledgment. Component contract: [ASYNC-09](../../../../spec/language/async-and-parallelism.md#async-09), [PAR-04](../../../../spec/language/async-and-parallelism.md#par-04). */
 void ama_channel_wait_drop(void *state, AmaNativeEventToken token, bool sending) {
     bool retired = false;
     (void)ama_channel_wait_cancel(state, token, sending, &retired);
     ama_channel_release(state);
 }
-/** Immutable creator dispatch remains alive while any registration credit exists. */
+/** Immutable creator dispatch remains alive while any registration credit exists. Component contract: [ASYNC-09](../../../../spec/language/async-and-parallelism.md#async-09), [PAR-04](../../../../spec/language/async-and-parallelism.md#par-04). */
 const AmaNativeChannelWaitCallbacks ama_channel_wait_callbacks = {ama_channel_wait_cancel, ama_channel_wait_drop};

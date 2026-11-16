@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include "../internal.h"
 #include "../../internal.h"
-/** Prepared replacements use sibling staging/rename, so parent write/search authority is required. */
+/** Prepared replacements use sibling staging/rename, so parent write/search authority is required. Component contract: [TOOL-01](../../../../../spec/implementation/tools-and-conformance.md#tool-01). */
 static bool parent(RelocationStaging *staging, const char *path) {
     char *directory = source_arena_copy(&staging->arena,path);
     if (directory == NULL) { return relocation_staging_fail(staging,RELOCATION_OUT_OF_MEMORY,"Write preflight path allocation failed",(SourceSpan){0}); }
@@ -18,7 +18,7 @@ static bool parent(RelocationStaging *staging, const char *path) {
     staging->error.primary.path = directory;
     return false;
 }
-/** The carried tree is prepared independently; only external changed bytes and existing output paths need separate parent writes. */
+/** The carried tree is prepared independently; only external changed bytes and existing output paths need separate parent writes. Component contract: [TOOL-01](../../../../../spec/implementation/tools-and-conformance.md#tool-01). */
 bool relocation_staging_writes(RelocationStaging *staging) {
     const RelocationPreview *preview = staging->references->preview;
     for (const RelocationStagedFile *file = staging->files; file != NULL; file = file->next) {

@@ -12,13 +12,13 @@
 /**
  * Forward name for immutable shared storage outside pools; the complete owned arrays and
  * partial-cleanup ledger follow.
- */
+ * Component contract: [CONST-01](../../../spec/language/declarations.md#const-01). */
 typedef struct AmaConstantValue AmaConstantValue;
-/** Owned array of immutable shared child values; count also bounds partial reverse cleanup. */
+/** Owned array of immutable shared child values; count also bounds partial reverse cleanup. Component contract: [CONST-01](../../../spec/language/declarations.md#const-01). */
 typedef struct { AmaConstantValue *items; size_t count; } AmaConstantField;
 /* Shared values are outside every instance pool: no handle, generation,
  * acquisition, return connection or execution position belongs to this storage. */
-/** Shared storage outside pools. Own fields/allocation, borrow type/parent; native_live and remaining_fields provide allocation-free partial cleanup. */
+/** Shared storage outside pools. Own fields/allocation, borrow type/parent; native_live and remaining_fields provide allocation-free partial cleanup. Component contract: [CONST-01](../../../spec/language/declarations.md#const-01). */
 struct AmaConstantValue {
     const AmaProgramType *type;
     AmaConstantField *fields;

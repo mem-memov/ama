@@ -9,14 +9,14 @@
 #include "internal.h"
 
 /** Omit null optional prose; otherwise write its label and escaped text, propagating the first output failure.
- */
+ * Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04), [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
 static bool write_field(FILE *output, const char *label, const char *text) {
     return text == NULL || (fputs(label, output) != EOF
         && diagnostic_write_text(output, text) && fputc('\n', output) != EOF);
 }
 
 /** Render one validated primary diagnostic and distinct optional cause/expected/help sections; no source content is guessed.
- */
+ * Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04), [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
 static bool write_primary(FILE *output, const Diagnostic *diagnostic) {
     return diagnostic_write_location(output, diagnostic->primary)
         && fprintf(output, ": %s[%s]: ", diagnostic->code == DIAGNOSTIC_EMPTY_BODY ? "warning" : "error", diagnostic_code_name(diagnostic->code)) >= 0
@@ -30,7 +30,7 @@ static bool write_primary(FILE *output, const Diagnostic *diagnostic) {
 }
 
 /** Render one validated related declaration/path and its explicit role/name, preserving the borrowed source context.
- */
+ * Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04), [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
 static bool write_related(FILE *output, const DiagnosticRelated *related) {
     return diagnostic_write_location(output, related->location)
         && fputs(": note: ", output) != EOF

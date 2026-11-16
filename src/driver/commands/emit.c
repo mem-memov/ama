@@ -14,7 +14,7 @@
  * Complete strict frontend, stage project artifacts and optionally compile/verify before
  * publication. Destroy scaffold/frontend on all paths; acknowledged success requires stream
  * flush.
- */
+ * Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04). */
 int driver_emit(const DriverOptions *options, FILE *output, FILE *errors) {
     CompilerFrontend frontend;
     compiler_frontend_init(&frontend, source_system_allocator());

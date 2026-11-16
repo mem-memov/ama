@@ -8,17 +8,17 @@
 #include <stdint.h>
 #include "runtime/objects/internal.h"
 
-/** Recognize only declared scalar/list ownership forms; references never imply lifecycle ownership. */
+/** Recognize only declared scalar/list ownership forms; references never imply lifecycle ownership. Component contract: [RT-02](../../../../spec/implementation/runtime.md#rt-02). */
 bool ama_field_owns(AmaFieldKind kind) {
     return kind == AMA_FIELD_OWNED || kind == AMA_FIELD_OWNING_LIST;
 }
 
-/** Recognize the two list storage forms independently of whether they own their targets. */
+/** Recognize the two list storage forms independently of whether they own their targets. Component contract: [RT-02](../../../../spec/implementation/runtime.md#rt-02). */
 bool ama_field_list(AmaFieldKind kind) {
     return kind == AMA_FIELD_OWNING_LIST || kind == AMA_FIELD_REFERENCE_LIST;
 }
 
-/** Validate truthful generated field extents/alignment/disjointness and compatible hook presence, then initialize an empty aligned pool. Descriptors remain borrowed; no native constructor runs. */
+/** Validate truthful generated field extents/alignment/disjointness and compatible hook presence, then initialize an empty aligned pool. Descriptors remain borrowed; no native constructor runs. Component contract: [RT-02](../../../../spec/implementation/runtime.md#rt-02). */
 AmaStatus ama_object_type_init_aligned(AmaObjectType *type, SourceAllocator allocator, uint64_t id,
     size_t size, size_t alignment, size_t slots, uint64_t limit, const AmaObjectField *fields, size_t count,
     size_t native_offset, AmaPayloadHooks hooks) {
@@ -53,7 +53,7 @@ AmaStatus ama_object_type_init_aligned(AmaObjectType *type, SourceAllocator allo
     return status;
 }
 
-/** Initialize the validated object layout with default max_align_t payload alignment; explicit extended alignment uses the aligned interface. */
+/** Initialize the validated object layout with default max_align_t payload alignment; explicit extended alignment uses the aligned interface. Component contract: [RT-02](../../../../spec/implementation/runtime.md#rt-02). */
 AmaStatus ama_object_type_init(AmaObjectType *type, SourceAllocator allocator, uint64_t id,
     size_t size, size_t slots, uint64_t limit, const AmaObjectField *fields, size_t count,
     size_t native_offset, AmaPayloadHooks hooks) {
@@ -61,7 +61,7 @@ AmaStatus ama_object_type_init(AmaObjectType *type, SourceAllocator allocator, u
         slots, limit, fields, count, native_offset, hooks);
 }
 
-/** Resolve exact nominal type ID in a unique borrowed registry, or null; no allocation or source-name matching. */
+/** Resolve exact nominal type ID in a unique borrowed registry, or null; no allocation or source-name matching. Component contract: [RT-02](../../../../spec/implementation/runtime.md#rt-02). */
 AmaObjectType *ama_world_type(const AmaWorld *world, uint64_t id) {
     for (size_t index = 0; index < world->type_count; index++) {
         if (world->types[index]->pool.type_id == id) {
@@ -71,19 +71,19 @@ AmaObjectType *ama_world_type(const AmaWorld *world, uint64_t id) {
     return NULL;
 }
 
-/** Compare complete local handle triples without implying availability or liveness. */
+/** Compare complete local handle triples without implying availability or liveness. Component contract: [RT-02](../../../../spec/implementation/runtime.md#rt-02). */
 bool ama_same_handle(AmaHandle left, AmaHandle right) {
     return left.type_id == right.type_id && left.slot_id == right.slot_id && left.generation == right.generation;
 }
 
-/** Synchronously report a non-success status through the optional borrowed callback; the callback cannot reenter Ama. */
+/** Synchronously report a non-success status through the optional borrowed callback; the callback cannot reenter Ama. Component contract: [RT-02](../../../../spec/implementation/runtime.md#rt-02). */
 void ama_object_report(AmaWorld *world, AmaStatus status) {
     if (status.code != AMA_OK && world->report != NULL) {
         world->report(world->report_context, status);
     }
 }
 
-/** Validate empty/type/slot identity before exposing a cell. Private lookup is for trusted construction phases; type output may be selected before a later slot failure. */
+/** Validate empty/type/slot identity before exposing a cell. Private lookup is for trusted construction phases; type output may be selected before a later slot failure. Component contract: [RT-02](../../../../spec/implementation/runtime.md#rt-02). */
 AmaStatus ama_object_lookup(AmaWorld *world, AmaHandle handle, bool private_slot,
     AmaObjectType **type, AmaPoolCell **cell) {
     if (handle.generation == 0) {

@@ -11,7 +11,7 @@
 /** Guard one synchronous creation, release all temporary protections on exit,
  * and expose output only after complete publication. Recipes are borrowed.
  * Refuse reentry or terminal worlds before changing their state.
- */
+ * Component contract: [LIFE-01](../../../../spec/implementation/native-interface.md#life-01), [RT-02](../../../../spec/implementation/runtime.md#rt-02). */
 AmaStatus ama_object_create(AmaWorld *world, uint64_t id, const AmaRecipe *recipe, AmaHandle *output) {
     if (world->operation_active || world->failed) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
     world->operation_active = true;

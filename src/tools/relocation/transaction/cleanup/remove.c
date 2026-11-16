@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include "../internal.h"
 
-/** Each open parent remains owned while its child is visited; paths are retained for diagnostics only. */
+/** Each open parent remains owned while its child is visited; paths are retained for diagnostics only. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 typedef struct RemovalFrame {
     struct RemovalFrame *parent;
     DIR *directory;
@@ -20,7 +20,7 @@ typedef struct RemovalFrame {
     size_t removals;
 } RemovalFrame;
 
-/** Close before checkpointing so a simulated close error cannot lose a live descriptor. */
+/** Close before checkpointing so a simulated close error cannot lose a live descriptor. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool close_frame(RelocationTransaction *transaction, RemovalFrame *frame) {
     if (frame->directory == NULL) { return true; }
     int result = closedir(frame->directory);
@@ -29,7 +29,7 @@ static bool close_frame(RelocationTransaction *transaction, RemovalFrame *frame)
     return (result == 0 && allowed)
         || relocation_transaction_fail(transaction,RELOCATION_IO_ERROR,"A private cleanup directory could not be closed",frame->path);
 }
-/** Open through the held parent descriptor; the final component cannot redirect traversal through a link. */
+/** Open through the held parent descriptor; the final component cannot redirect traversal through a link. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static RemovalFrame *push(RelocationTransaction *transaction, RemovalFrame *parent,
     const char *path, const char *name, const struct stat *expected) {
     RemovalFrame *frame = source_arena_allocate(&transaction->arena,sizeof(*frame));
@@ -64,7 +64,7 @@ static RemovalFrame *push(RelocationTransaction *transaction, RemovalFrame *pare
     return frame;
 }
 
-/** Every successful child deletion decreases the finite owned tree; failed prefixes retain their remaining bytes and close all frames. */
+/** Every successful child deletion decreases the finite owned tree; failed prefixes retain their remaining bytes and close all frames. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_remove(RelocationTransaction *transaction, const char *path) {
     struct stat metadata;
     if (lstat(path,&metadata) != 0) {

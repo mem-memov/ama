@@ -8,7 +8,7 @@
 #include <stdint.h>
 #include "../internal.h"
 
-/** Deep-copy root-relative exclusion bytes; they remain relative to their own root after movement. */
+/** Deep-copy root-relative exclusion bytes; they remain relative to their own root after movement. Component contract: [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01), [SRC-01](../../../../spec/language/source-and-names.md#src-01). */
 static bool exclusions(RelocationPreview *preview, const ModuleRoot *input, ModuleRoot *output) {
     if ((input->excluded_count != 0 && input->excluded == NULL)
         || input->excluded_count > SIZE_MAX/sizeof(char *)) {
@@ -27,7 +27,7 @@ static bool exclusions(RelocationPreview *preview, const ModuleRoot *input, Modu
     return true;
 }
 
-/** Resolve only directory authority; module-name grammar is applied below these root boundaries. */
+/** Resolve only directory authority; module-name grammar is applied below these root boundaries. Component contract: [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01), [SRC-01](../../../../spec/language/source-and-names.md#src-01). */
 static bool copy_root(RelocationPreview *preview, const ModuleRoot *input, bool final, ModuleRoot *output) {
     if (input->kind != MODULE_ROOT_PROJECT && input->kind != MODULE_ROOT_STANDARD) {
         return relocation_fail(preview,RELOCATION_INVALID_PATH,NULL,NULL);
@@ -37,7 +37,7 @@ static bool copy_root(RelocationPreview *preview, const ModuleRoot *input, bool 
     return output->path != NULL && exclusions(preview,input,output);
 }
 
-/** Allocate both complete arrays before publishing either, retaining failed prefixes in the preview arena. */
+/** Allocate both complete arrays before publishing either, retaining failed prefixes in the preview arena. Component contract: [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01), [SRC-01](../../../../spec/language/source-and-names.md#src-01). */
 bool relocation_roots(RelocationPreview *preview, const RelocationRequest *request) {
     if ((request->root_count != 0 && request->roots == NULL)
         || request->root_count >= SIZE_MAX/sizeof(ModuleRoot)) {

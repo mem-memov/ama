@@ -5,7 +5,7 @@
  */
 #include "../internal.h"
 
-/** Every attempted inverse's parent is flushed before cleanup; untouched preparation prefixes need no source flush. */
+/** Every attempted inverse's parent is flushed before cleanup; untouched preparation prefixes need no source flush. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_restored(RelocationTransaction *transaction) {
     for (const RelocationTransactionAction *action = transaction->first; action != NULL; action = action->next) {
         if ((action->backup_attempted || action->publish_attempted)

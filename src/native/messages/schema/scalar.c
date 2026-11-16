@@ -5,7 +5,7 @@
  */
 #include "../internal.h"
 
-/** Canonical sign/magnitude has exactly one zero byte for zero, never a negative zero. */
+/** Canonical sign/magnitude has exactly one zero byte for zero, never a negative zero. Component contract: [PAR-03](../../../../spec/language/async-and-parallelism.md#par-03). */
 AmaNativeMessageReason ama_message_scalar(const AmaNativeMessageField *field, AmaNativeMessageValue value) {
     if (value.bytes.length > field->maximum_bytes) { return AMA_MESSAGE_LIMIT; }
     if ((value.bytes.data == NULL && value.bytes.length != 0) || value.flag > 1) { return AMA_MESSAGE_MALFORMED; }

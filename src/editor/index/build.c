@@ -4,7 +4,7 @@
  * [CALL-08](../../../spec/language/calls-and-results.md#call-08) binds interface labels exactly.
  */
 #include "../analysis/internal.h"
-/** Declaration names include inferred and foreach-local cells, while only explicit declarations have written type paths. */
+/** Declaration names include inferred and foreach-local cells, while only explicit declarations have written type paths. Component contract: [NAME-06](../../../spec/language/declarations.md#name-06), [CALL-08](../../../spec/language/calls-and-results.md#call-08). */
 static bool symbol(EditorAnalysis *analysis, const SemanticSymbol *field) {
     if (!editor_index_add(analysis, field->name, field, field->type, true)) { return false; }
     if (field->declaration != NULL
@@ -14,13 +14,13 @@ static bool symbol(EditorAnalysis *analysis, const SemanticSymbol *field) {
     }
     return true;
 }
-/** Binding syntax labels identify the callee field; source/receiver spellings identify caller storage. */
+/** Binding syntax labels identify the callee field; source/receiver spellings identify caller storage. Component contract: [NAME-06](../../../spec/language/declarations.md#name-06), [CALL-08](../../../spec/language/calls-and-results.md#call-08). */
 static bool binding(EditorAnalysis *analysis, const SemanticBinding *item) {
     if (item->field != NULL && item->syntax->label != NULL
         && !editor_index_add(analysis, item->syntax->label->name, item->field, item->field->type, false)) { return false; }
     return editor_index_source(analysis, item->source) && editor_index_access(analysis, item->receiver);
 }
-/** All nested operations already occur once in the semantic statement inventory; aliases require no recursive traversal. */
+/** All nested operations already occur once in the semantic statement inventory; aliases require no recursive traversal. Component contract: [NAME-06](../../../spec/language/declarations.md#name-06), [CALL-08](../../../spec/language/calls-and-results.md#call-08). */
 static bool statement(EditorAnalysis *analysis, const SemanticStatement *item) {
     if (!editor_index_access(analysis, item->access) || !editor_index_access(analysis, item->condition.access)
         || !editor_index_source(analysis, item->source)) { return false; }
@@ -38,7 +38,7 @@ static bool statement(EditorAnalysis *analysis, const SemanticStatement *item) {
     }
     return true;
 }
-/** Publish no metadata until every contributing type, field and operand has been indexed and ordered consistently. */
+/** Publish no metadata until every contributing type, field and operand has been indexed and ordered consistently. Component contract: [NAME-06](../../../spec/language/declarations.md#name-06), [CALL-08](../../../spec/language/calls-and-results.md#call-08). */
 bool editor_index_build(EditorAnalysis *analysis) {
     for (const SemanticType *type = analysis->frontend.semantic.first; type != NULL; type = type->next) {
         for (const SemanticSymbol *field = type->first; field != NULL; field = field->next) {

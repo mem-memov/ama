@@ -10,7 +10,7 @@
 #include "../resolution/site.h"
 #include "semantic/lists/interface.h"
 
-/** Find exactly one declaration-order intrinsic input staging site. */
+/** Find exactly one declaration-order intrinsic input staging site. Component contract: [LIST-04](../../../../spec/language/lists.md#list-04), [ARCH-05](../../../../spec/implementation/compiler.md#arch-05), [PROTO-03](../../../../spec/implementation/native-interface.md#proto-03). */
 static const ControlNode *method_input(const ControlNode *nodes,
     const SemanticStatement *statement, size_t position) {
     const ControlNode *result = NULL;

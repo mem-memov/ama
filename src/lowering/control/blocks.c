@@ -7,7 +7,7 @@
  */
 #include "internal.h"
 
-/** Plan-owned reverse syntax link used to prepend instructions without reversing source execution order. */
+/** Plan-owned reverse syntax link used to prepend instructions without reversing source execution order. Component contract: [GEN-02](../../../spec/implementation/compiler.md#gen-02). */
 typedef struct ReverseNode {
     struct ReverseNode *next;
     const AstNode *syntax;
@@ -26,7 +26,7 @@ bool lower_block(Lowering *lowering, AstBlock block, ControlNode *after,
 }
 
 /** Reverse finite AST node links, prepend lowered statements then publish this queued block entry. All reversal scratch remains plan-owned.
- */
+ * Component contract: [GEN-02](../../../spec/implementation/compiler.md#gen-02). */
 static bool process(Lowering *lowering, const LowerTask *task) {
     if (task->kind == LOWER_OPERATION_TASK) {
         lowering->chain = task->chain;
@@ -59,7 +59,7 @@ static bool process(Lowering *lowering, const LowerTask *task) {
 }
 
 /** Allocate completion/yield and capture-before-cleanup fatal terminal graph, requiring all endpoints before normal body lowering.
- */
+ * Component contract: [GEN-02](../../../spec/implementation/compiler.md#gen-02). */
 static bool endpoints(ProgramPlan *plan, PlannedType *type) {
     type->complete = plan_control_node(plan, type, CONTROL_COMPLETE, NULL);
     type->yield = plan_control_node(plan, type, CONTROL_YIELD, NULL);

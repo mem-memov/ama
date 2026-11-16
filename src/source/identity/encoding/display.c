@@ -13,7 +13,7 @@
 /** Allocate one exact terminated string, then copy each immutable source part once.
  * Measurement proves total capacity and terminator bounds; no fallible operation
  * remains after allocation, and no normalization or repeated concatenation occurs.
- */
+ * Component contract: [NAME-01](../../../../spec/implementation/compiler.md#name-01), [NAME-02](../../../../spec/implementation/compiler.md#name-02). */
 const char *identity_encoding_display(SourceArena *arena, QualifiedIdentity identity, const IdentityEncodingShape *shape) {
     char *display = source_arena_allocate(arena, shape->display_length + 1);
     if (display == NULL) { return NULL; }

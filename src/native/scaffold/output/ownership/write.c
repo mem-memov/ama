@@ -9,7 +9,7 @@
 #include "ownership.h"
 
 /** Find an exact basename among this model's nonauthored artifacts; no filename pattern invents ownership.
- */
+ * Component contract: [COMP-04](../../../../../spec/implementation/compiler.md#comp-04). */
 static const ScaffoldArtifact *generated(const NativeScaffold *scaffold, const char *name) {
     for (const ScaffoldArtifact *artifact = scaffold->first; artifact != NULL; artifact = artifact->next) {
         if (!artifact->authored && strcmp(scaffold_basename(artifact->path), name) == 0) {
@@ -20,7 +20,7 @@ static const ScaffoldArtifact *generated(const NativeScaffold *scaffold, const c
 }
 
 /** Write one complete lowercase digest/name row, preserving every stream failure for unpublished-artifact cleanup.
- */
+ * Component contract: [COMP-04](../../../../../spec/implementation/compiler.md#comp-04). */
 static bool row(FILE *output, const char *name, const unsigned char digest[32]) {
     for (size_t index = 0; index < 32; index++) {
         if (fprintf(output, "%02x", (unsigned)digest[index]) < 0) {
@@ -31,7 +31,7 @@ static bool row(FILE *output, const char *name, const unsigned char digest[32]) 
 }
 
 /** Stage the selected scope, preserve old unrelated owned rows and write current generated artifacts. Authored companions are never added as generated ownership.
- */
+ * Component contract: [COMP-04](../../../../../spec/implementation/compiler.md#comp-04). */
 static bool emit(NativeScaffold *scaffold, FILE *output, const ScaffoldType *unused) {
     (void)unused;
     if (fputs("AMA-NATIVE-OUTPUTS 1\n", output) == EOF) {

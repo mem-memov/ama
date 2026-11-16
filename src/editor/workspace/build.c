@@ -5,7 +5,7 @@
  */
 #include <assert.h>
 #include "internal.h"
-/** Complete only after all active source modules and exact settings have passed normal semantic/planning checks. */
+/** Complete only after all active source modules and exact settings have passed normal semantic/planning checks. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03), [COMP-02](../../../spec/implementation/compiler.md#comp-02). */
 bool editor_workspace_finish(EditorAnalysis *analysis) {
     const char *const *required = NULL;
     size_t count = 0;
@@ -20,7 +20,7 @@ bool editor_workspace_finish(EditorAnalysis *analysis) {
     analysis->state = EDITOR_COMPLETE;
     return true;
 }
-/** Own one fresh complete catalog, classify active inputs and retain all failure diagnostics until destruction. */
+/** Own one fresh complete catalog, classify active inputs and retain all failure diagnostics until destruction. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03), [COMP-02](../../../spec/implementation/compiler.md#comp-02). */
 bool editor_workspace_build(EditorAnalysis *analysis, const ModuleRoot *roots, size_t count, const char *entry) {
     assert(!analysis->attempted);
     analysis->attempted = true;

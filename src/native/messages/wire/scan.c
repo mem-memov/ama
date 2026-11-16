@@ -8,7 +8,7 @@
 /** A null destination performs pure validation/counting. A nonnull destination
  * has exact arrays reserved from the first pass and reads the immutable copied
  * envelope under the same immutable schema. No field owns a separate resource.
- */
+ * Component contract: [PAR-03](../../../../spec/language/async-and-parallelism.md#par-03). */
 AmaNativeMessageReason ama_message_scan(const AmaNativeMessageSchema *schema, AmaByteView bytes,
     size_t *total, AmaNativeMessageDecoded *destination) {
     if (bytes.length > schema->maximum_wire_bytes) { return AMA_MESSAGE_LIMIT; }

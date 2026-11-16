@@ -11,7 +11,7 @@
 #include "../internal.h"
 #include "runtime/program/lists/traversal/traversal.h"
 
-/** Find one complete nominal key in a finite schema; no basename or hash substitutes for equality. */
+/** Find one complete nominal key in a finite schema; no basename or hash substitutes for equality. Component contract: [RT-01](../../../../spec/implementation/runtime.md#rt-01), [LIST-13](../../../../spec/language/lists.md#list-13), [FLOW-05](../../../../spec/language/lists.md#flow-05). */
 static bool context_has_type(const AmaContextType *types, size_t count, uint64_t identity) {
     for (size_t index = 0; index < count; index++) {
         if (types[index].type_id == identity) { return true; }
@@ -21,7 +21,7 @@ static bool context_has_type(const AmaContextType *types, size_t count, uint64_t
 
 /** Validate all shapes consumed by private descriptor installation. Deeper initializer/graph
  * semantics belong to the already resolved compiler schema, not a second runtime language parser.
- */
+ * Component contract: [RT-01](../../../../spec/implementation/runtime.md#rt-01), [LIST-13](../../../../spec/language/lists.md#list-13), [FLOW-05](../../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_context_validate(const AmaContextDefinition *definition) {
     if (definition == NULL || (definition->type_count != 0 && definition->types == NULL)
         || (definition->constant_count != 0 && definition->constants == NULL)

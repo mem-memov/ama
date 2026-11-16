@@ -11,7 +11,7 @@
 
 /** Plan before touching chunk bytes. Copy aliasing chunks before releasing an old allocation;
  * after successful allocation/copy no fallible operation remains before commit.
- */
+ * Component contract: [SRC-03](../../../../spec/language/source-and-names.md#src-03), [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 SourceStatus source_buffer_append(SourceAllocator allocator, SourceBuffer *buffer,
     const unsigned char *chunk, size_t length) {
     if (buffer == NULL || (chunk == NULL && length != 0)) { return SOURCE_INVALID_ARGUMENT; }

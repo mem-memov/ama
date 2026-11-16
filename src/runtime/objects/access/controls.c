@@ -7,7 +7,7 @@
  */
 #include "runtime/objects/internal.h"
 
-/** Find the exact already protected source record, including its full generation. */
+/** Find the exact already protected source record, including its full generation. Component contract: [CONT-04](../../../../spec/language/continuations.md#cont-04), [COPY-07](../../../../spec/language/values-and-references.md#copy-07). */
 static AmaObjectProtection *ama_control_record(AmaObjectOperation *operation, AmaHandle handle) {
     for (AmaObjectProtection *record = operation->protected_first; record != NULL; record = record->next) {
         if (record->copy && ama_same_handle(record->handle, handle)) { return record; }
@@ -17,7 +17,7 @@ static AmaObjectProtection *ama_control_record(AmaObjectOperation *operation, Am
 
 /** Validate one node before descending; successful subtree completion caches
  * only operation-local immutable-source proof, never a language-visible flag.
- */
+ * Component contract: [CONT-04](../../../../spec/language/continuations.md#cont-04), [COPY-07](../../../../spec/language/values-and-references.md#copy-07). */
 static AmaStatus ama_control_validate(AmaObjectOperation *operation, AmaObjectProtection *record) {
     const AmaObjectControlHooks *hooks = record->type->controls;
     if (hooks == NULL || hooks->validate_continuation == NULL) { return ama_status_success(); }

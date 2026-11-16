@@ -22,7 +22,7 @@ bool codegen_emit_traversal_storage(FILE *output, const ScaffoldType *type) {
     return true;
 }
 
-/** Select cursor sites by exact resolved collection-symbol identity. */
+/** Select cursor sites by exact resolved collection-symbol identity. Component contract: [FLOW-05](../../../spec/language/lists.md#flow-05), [RT-02](../../../spec/implementation/runtime.md#rt-02). */
 static bool codegen_cursor_field(const PlannedLoop *loop, const ScaffoldMember *member) {
     return loop->statement->syntax->kind == AST_FOREACH
         && loop->statement->traversal->collection == member->field->symbol;

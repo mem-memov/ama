@@ -14,7 +14,7 @@
 /**
  * Own catalog source storage and one structural AST plus diagnostic related storage. Successful
  * draft inspection is not executable project validation.
- */
+ * Component contract: [SYN-04](../../../spec/language/source-and-names.md#syn-04). */
 typedef struct {
     ModuleCatalog catalog;
     AstModule syntax;
@@ -30,14 +30,14 @@ typedef struct {
 /**
  * Initialize independent catalog and syntax owners using the explicit allocator; inspect at most
  * once.
- */
+ * Component contract: [SYN-04](../../../spec/language/source-and-names.md#syn-04). */
 void compiler_inspection_init(ModuleInspection *inspection, SourceAllocator allocator);
-/** Destroy syntax before catalog source storage, then reset diagnostics and attempt state. */
+/** Destroy syntax before catalog source storage, then reset diagnostics and attempt state. Component contract: [SYN-04](../../../spec/language/source-and-names.md#syn-04). */
 void compiler_inspection_destroy(ModuleInspection *inspection);
 /**
  * Build the exact catalog, find one logical path and structurally parse it. Draft may succeed;
  * no dependency closure or executable semantic acceptance is implied.
- */
+ * Component contract: [SYN-04](../../../spec/language/source-and-names.md#syn-04). */
 bool compiler_inspect_module(ModuleInspection *inspection, const ModuleRoot *roots,
     size_t count, const char *logical_path);
 

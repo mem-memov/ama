@@ -19,7 +19,7 @@
 /** Emit one validated node and its explicit successor; terminal writers own transfer.
  * Borrow the model/type/IR through the call. Stream or model failure returns false;
  * partial bytes remain in the caller's unpublished artifact buffer.
- */
+ * Component contract: [ARCH-02](../../../spec/implementation/compiler.md#arch-02), [STACK-01](../../../spec/implementation/compiler.md#stack-01), [CALL-08](../../../spec/language/calls-and-results.md#call-08), [LIST-09](../../../spec/language/lists.md#list-09), [FLOW-04](../../../spec/language/control-flow.md#flow-04). */
 bool codegen_emit_control(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type, const ControlNode *node) {
     const char *name = codegen_control_name(scaffold, type, node);
     bool record = node->operation != CONTROL_REFUSAL_SNAPSHOT && node->operation != CONTROL_YIELD;

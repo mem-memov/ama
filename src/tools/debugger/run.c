@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <inttypes.h>
 #include "internal.h"
-/** A stable spelling table is exhaustive for the closed command enumeration. */
+/** A stable spelling table is exhaustive for the closed command enumeration. Component contract: [RT-16](../../../spec/implementation/runtime.md#rt-16), [ERROR-02](../../../spec/implementation/diagnostics.md#error-02). */
 static const char *name(AmaDebugClientCommand command) {
     switch (command) {
         case AMA_DEBUG_CLIENT_RUN: return "run";
@@ -17,7 +17,7 @@ static const char *name(AmaDebugClientCommand command) {
         default: return "invalid";
     }
 }
-/** This reports a command status without modifying the target's program/refusal status. */
+/** This reports a command status without modifying the target's program/refusal status. Component contract: [RT-16](../../../spec/implementation/runtime.md#rt-16), [ERROR-02](../../../spec/implementation/diagnostics.md#error-02). */
 static bool command(const AmaDebugClientHost *host, AmaDebugClientCommand request, ToolJsonWriter *writer, AmaStatus *status) {
     if (!tool_json_raw(writer, "{\"schema\":\"ama.debugger.v1\",\"command\":")
         || !tool_json_string(writer, name(request)) || !tool_json_raw(writer, ",\"data\":")) { return false; }
@@ -43,7 +43,7 @@ static bool command(const AmaDebugClientHost *host, AmaDebugClientCommand reques
     return rendered && tool_json_raw(writer, ",\"status\":") && ama_debug_client_status(writer, *status)
         && tool_json_raw(writer, "}\n");
 }
-/** No command follows a failed acknowledgement; nevertheless cleanup still consumes host resources. */
+/** No command follows a failed acknowledgement; nevertheless cleanup still consumes host resources. Component contract: [RT-16](../../../spec/implementation/runtime.md#rt-16), [ERROR-02](../../../spec/implementation/diagnostics.md#error-02). */
 int ama_debug_client_run(const AmaDebugClientHost *host, FILE *input, FILE *output, FILE *errors) {
     if (host == NULL || host->execute == NULL || host->begin == NULL || host->dispose == NULL
         || input == NULL || output == NULL || errors == NULL) { return EXIT_FAILURE; }

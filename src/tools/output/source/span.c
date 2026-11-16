@@ -5,11 +5,11 @@
  */
 #include <string.h>
 #include "source.h"
-/** Nullable C byte strings use the explicit lossless physical-name representation. */
+/** Nullable C byte strings use the explicit lossless physical-name representation. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 bool tool_source_bytes(ToolJsonWriter *writer, const char *text) {
     return text == NULL ? tool_json_raw(writer,"null") : tool_json_bytes(writer,(const unsigned char *)text,strlen(text));
 }
-/** Missing spans are explicit; malformed nonempty metadata cannot become a fabricated source position. */
+/** Missing spans are explicit; malformed nonempty metadata cannot become a fabricated source position. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 bool tool_source_span(ToolJsonWriter *writer, SourceSpan span) {
     if (span.source == NULL && span.start == 0 && span.end == 0) { return tool_json_raw(writer,"null"); }
     SourcePosition point;
@@ -23,7 +23,7 @@ bool tool_source_span(ToolJsonWriter *writer, SourceSpan span) {
         && tool_json_raw(writer,",\"line\":") && tool_json_unsigned(writer,point.line)
         && tool_json_raw(writer,",\"column\":") && tool_json_unsigned(writer,point.column) && tool_json_raw(writer,"}");
 }
-/** Source names, comments and literals retain their complete original byte sequences. */
+/** Source names, comments and literals retain their complete original byte sequences. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 bool tool_source_spelling(ToolJsonWriter *writer, SourceSpan span) {
     if (span.source == NULL && span.start == 0 && span.end == 0) { return tool_json_raw(writer,"null"); }
     if (!source_span_valid(span)) {

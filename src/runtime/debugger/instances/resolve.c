@@ -4,7 +4,7 @@
  * [RT-04](../../../../spec/implementation/runtime.md#rt-04) keeps metadata separate from payload access.
  */
 #include "../internal.h"
-/** Busy activity is inspectable under exclusive context admission; native/read execution is still separately gated. */
+/** Busy activity is inspectable under exclusive context admission; native/read execution is still separately gated. Component contract: [REF-02](../../../../spec/language/values-and-references.md#ref-02), [RT-04](../../../../spec/implementation/runtime.md#rt-04). */
 AmaStatus ama_debug_resolve(const AmaDebugSession *session, AmaContextReference reference,
     const AmaProgramType **type, AmaPoolCell **cell) {
     AmaStatus status = ama_debug_validate(session);

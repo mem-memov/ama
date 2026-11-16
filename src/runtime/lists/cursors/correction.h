@@ -9,7 +9,7 @@
 #include "runtime/objects/objects.h"
 /** Ephemeral prepared scan view; no acquisition or raw pointer is saved in a
  * cursor. prepare validates all matching boundaries before destructive work.
- */
+ * Component contract: [FLOW-05](../../../../spec/language/lists.md#flow-05), [LIST-13](../../../../spec/language/lists.md#list-13). */
 typedef struct {
     const AmaListCursorSet *set;
     unsigned char *payload;
@@ -19,13 +19,13 @@ typedef struct {
 } AmaListCursorView;
 /** Validate this field's exact catalog/identity/boundaries without allocating or
  * modifying any cursor. Empty catalogs need no instance traversal.
- */
+ * Component contract: [FLOW-05](../../../../spec/language/lists.md#flow-05), [LIST-13](../../../../spec/language/lists.md#list-13). */
 AmaStatus ama_list_cursors_prepare(AmaObjectType *, AmaPoolCell *, AmaHandle,
     const AmaHandleList *, AmaListCursorView *);
 /** Apply insertion after prepared membership publication; arithmetic is bounded
  * by the successful insertion's checked new length. No callback can intervene.
- */
+ * Component contract: [FLOW-05](../../../../spec/language/lists.md#flow-05), [LIST-13](../../../../spec/language/lists.md#list-13). */
 void ama_list_cursors_insert(const AmaListCursorView *, size_t position);
-/** Apply one range removal, including clear and irreversible terminal cleanup. */
+/** Apply one range removal, including clear and irreversible terminal cleanup. Component contract: [FLOW-05](../../../../spec/language/lists.md#flow-05), [LIST-13](../../../../spec/language/lists.md#list-13). */
 void ama_list_cursors_remove(const AmaListCursorView *, size_t position, size_t count);
 #endif

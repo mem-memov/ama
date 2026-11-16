@@ -4,7 +4,7 @@
  * [LIST-13](../../../../spec/language/lists.md#list-13) stores exact numerical boundaries and occurrence identities.
  */
 #include "../internal.h"
-/** Compiler-validated scope offsets refer only to runtime control cells and declared references, not native State. */
+/** Compiler-validated scope offsets refer only to runtime control cells and declared references, not native State. Component contract: [FLOW-05](../../../../spec/language/lists.md#flow-05), [LIST-13](../../../../spec/language/lists.md#list-13). */
 AmaStatus ama_debug_cursors(AmaDebugSession *session, AmaContextReference reference, AmaDebugCursorVisitor visit, void *context) {
     if (visit == NULL) { return ama_status_make(AMA_INVALID_STATE,NULL,0); }
     const AmaProgramType *type = NULL;

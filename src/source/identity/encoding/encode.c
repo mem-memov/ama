@@ -11,7 +11,7 @@
 
 /** Allocate private encoding/display ownership, then fill the exact versioned key.
  * Any failed allocation leaves arena-owned scratch but changes no output view.
- */
+ * Component contract: [NAME-01](../../../../spec/implementation/compiler.md#name-01), [NAME-02](../../../../spec/implementation/compiler.md#name-02). */
 IdentityStatus identity_encode(SourceArena *arena, QualifiedIdentity identity, IdentityEncoding *output) {
     IdentityEncodingShape shape;
     IdentityStatus status = identity_encoding_measure(identity, &shape);

@@ -13,7 +13,7 @@
  * completes. An empty list emits no such requirement. A finite DAG therefore
  * supplies a construction order, whereas a cycle requires infinite eager nesting.
  * Borrowed type/field sites outlive the graph; allocation failure leaves it owned.
- */
+ * Component contract: [TYPE-04](../../../spec/language/declarations.md#type-04), [TYPE-06](../../../spec/language/declarations.md#type-06). */
 bool semantic_eager_graph(SemanticProgram *program) {
     DependencyGraph *graph = &program->eager;
     for (SemanticType *type = program->first; type != NULL; type = type->next) {

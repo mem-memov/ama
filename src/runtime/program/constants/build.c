@@ -9,7 +9,7 @@
 #include <string.h>
 #include "internal.h"
 
-/** Use arena parent cursors to construct child fields before native payload without C recursion. On failure report and clean the partial root before freeing scratch. */
+/** Use arena parent cursors to construct child fields before native payload without C recursion. On failure report and clean the partial root before freeing scratch. Component contract: [CONST-02](../../../../spec/language/declarations.md#const-02). */
 AmaStatus ama_program_constant_build(AmaProgram *program, AmaConstantValue *root, uint64_t type_id,
     const AmaProgramSource *initializer, const AmaConstantValue *source) {
     SourceArena arena;
@@ -52,7 +52,7 @@ AmaStatus ama_program_constant_build(AmaProgram *program, AmaConstantValue *root
     return status;
 }
 
-/** Build shared declarations/elements in order, recording partial storage for shutdown. Failure stops before later constants or root creation. */
+/** Build shared declarations/elements in order, recording partial storage for shutdown. Failure stops before later constants or root creation. Component contract: [CONST-02](../../../../spec/language/declarations.md#const-02). */
 AmaStatus ama_program_constants_initialize(AmaProgram *program) {
     for (size_t index = 0; index < program->constant_count; index++) {
         const AmaProgramConstant *declaration = &program->constants[index];

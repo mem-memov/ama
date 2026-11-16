@@ -9,7 +9,7 @@
 #include "execution.h"
 #include "../internal.h"
 
-/** Require a healthy available selected root with no pending outgoing or host return link. */
+/** Require a healthy available selected root with no pending outgoing or host return link. Component contract: [RT-14](../../../../spec/implementation/runtime.md#rt-14), [LIFE-05](../../../../spec/implementation/native-interface.md#life-05). */
 static AmaStatus execution_return_status(AmaContext *context, AmaHostOutcome outcome) {
     if (context->control.phase != AMA_RUNTIME_EXECUTING || context->world.failed
         || !ama_handle_equal(context->control.current, context->control.root)
@@ -26,7 +26,7 @@ static AmaStatus execution_return_status(AmaContext *context, AmaHostOutcome out
         ? ama_status_success() : ama_status_make(AMA_INVALID_STATE, NULL, 0);
 }
 
-/** Finalize valid execution state after native views close, retaining its lease for host results. */
+/** Finalize valid execution state after native views close, retaining its lease for host results. Component contract: [RT-14](../../../../spec/implementation/runtime.md#rt-14), [LIFE-05](../../../../spec/implementation/native-interface.md#life-05). */
 AmaStatus ama_context_execution_finish_retained(AmaContextExecution *execution, AmaHostOutcome outcome,
     AmaStatus status, AmaContextOutcome *output) {
     if (execution == NULL || output == NULL) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
@@ -52,7 +52,7 @@ AmaStatus ama_context_execution_finish_retained(AmaContextExecution *execution, 
     return ama_status_success();
 }
 
-/** Preserve the consuming API while allowing library hosts to retain exclusive result access. */
+/** Preserve the consuming API while allowing library hosts to retain exclusive result access. Component contract: [RT-14](../../../../spec/implementation/runtime.md#rt-14), [LIFE-05](../../../../spec/implementation/native-interface.md#life-05). */
 AmaStatus ama_context_execution_finish(AmaContextExecution *execution, AmaHostOutcome outcome,
     AmaStatus status, AmaContextOutcome *output) {
     if (output == NULL) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }

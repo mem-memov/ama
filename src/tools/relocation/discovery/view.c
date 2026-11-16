@@ -8,7 +8,7 @@
 #include <string.h>
 #include "internal.h"
 
-/** P is injective because D was absent and disjoint from S; outside both subtrees paths stay unchanged. */
+/** P is injective because D was absent and disjoint from S; outside both subtrees paths stay unchanged. Component contract: [TOOL-02](../../../../spec/implementation/tools-and-conformance.md#tool-02). */
 const char *relocation_original_path(RelocationPreview *preview, const char *after) {
     if (relocation_contains(preview->destination,after)) {
         const char *before = source_arena_join(&preview->arena,preview->source,"",after+strlen(preview->destination));
@@ -18,7 +18,7 @@ const char *relocation_original_path(RelocationPreview *preview, const char *aft
     return relocation_contains(preview->source,after) ? NULL : after;
 }
 
-/** Original parent/name lookup preserves exact spelling even when D and S have different basenames. */
+/** Original parent/name lookup preserves exact spelling even when D and S have different basenames. Component contract: [TOOL-02](../../../../spec/implementation/tools-and-conformance.md#tool-02). */
 PathProbe relocation_probe(RelocationPreview *preview, const char *after, const char **physical, struct stat *metadata) {
     *physical = relocation_original_path(preview,after);
     if (*physical == NULL) { return preview->status == RELOCATION_OK ? PATH_MISSING : PATH_IO_ERROR; }
@@ -31,12 +31,12 @@ PathProbe relocation_probe(RelocationPreview *preview, const char *after, const 
     return path_exact_child(parent,name,*physical,metadata);
 }
 
-/** Locale-independent order matches the ordinary catalog's byte order. */
+/** Locale-independent order matches the ordinary catalog's byte order. Component contract: [TOOL-02](../../../../spec/implementation/tools-and-conformance.md#tool-02). */
 static int compare_names(const void *left, const void *right) {
     return strcmp(*(const char *const *)left,*(const char *const *)right);
 }
 
-/** Filter only exact structural paths; an unrelated name sharing a textual prefix remains untouched. */
+/** Filter only exact structural paths; an unrelated name sharing a textual prefix remains untouched. Component contract: [TOOL-02](../../../../spec/implementation/tools-and-conformance.md#tool-02). */
 bool relocation_view_entries(RelocationPreview *preview, const char *after, const char ***output, size_t *output_count) {
     const char *before = relocation_original_path(preview,after);
     if (before == NULL) { return relocation_fail(preview,RELOCATION_INVALID_PATH,after,NULL); }

@@ -8,7 +8,7 @@
 
 /** Port drop performs close/abort and registration drop cancels its exact key;
  * final cleanup invokes no callback under the gate.
- */
+ * Component contract: [PAR-04](../../../../spec/language/async-and-parallelism.md#par-04). */
 void ama_channel_release(AmaNativeChannel *channel) {
     ama_channel_lock(channel);
     assert(channel->references > 0);

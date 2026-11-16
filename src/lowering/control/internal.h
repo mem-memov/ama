@@ -10,9 +10,9 @@
 
 #include "planning/internal.h"
 
-/** Finite queued work distinguishes ordinary bodies from selected operation subtrees. */
+/** Finite queued work distinguishes ordinary bodies from selected operation subtrees. Component contract: [GEN-02](../../../spec/implementation/compiler.md#gen-02). */
 typedef enum { LOWER_BLOCK_TASK, LOWER_OPERATION_TASK } LowerTaskKind;
-/** Plan-owned pending block lowering with stable borrowed entry slot and exact continuation/break target. */
+/** Plan-owned pending block lowering with stable borrowed entry slot and exact continuation/break target. Component contract: [GEN-02](../../../spec/implementation/compiler.md#gen-02). */
 typedef struct LowerTask {
     struct LowerTask *next;
     LowerTaskKind kind;
@@ -23,7 +23,7 @@ typedef struct LowerTask {
     ControlNode *break_target;
     ControlNode **destination;
 } LowerTask;
-/** Narrow lowering view over its owning plan, one planned type and pending explicit work. */
+/** Narrow lowering view over its owning plan, one planned type and pending explicit work. Component contract: [GEN-02](../../../spec/implementation/compiler.md#gen-02). */
 typedef struct {
     ProgramPlan *plan;
     PlannedType *type;
@@ -32,34 +32,34 @@ typedef struct {
 } Lowering;
 
 /** Queue a finite borrowed block with exact after/break continuations and a stable plan-owned entry slot; do not recursively lower it.
- */
+ * Component contract: [GEN-02](../../../spec/implementation/compiler.md#gen-02). */
 bool lower_block(Lowering *lowering, AstBlock block, ControlNode *after,
     ControlNode *break_target, ControlNode **destination);
-/** Queue a selected operation, keeping its initiating chain and a stable caller-owned entry slot. */
+/** Queue a selected operation, keeping its initiating chain and a stable caller-owned entry slot. Component contract: [GEN-02](../../../spec/implementation/compiler.md#gen-02). */
 bool lower_operation(Lowering *, const SemanticStatement *, ControlNode *, ControlNode **);
-/** Allocate and link source loop records before any body/control labels are constructed. */
+/** Allocate and link source loop records before any body/control labels are constructed. Component contract: [GEN-02](../../../spec/implementation/compiler.md#gen-02). */
 bool lower_loop_inventory(Lowering *);
-/** Patch stable loop body slots and add fresh-entry/resume traversal cleanup/validation templates. */
+/** Patch stable loop body slots and add fresh-entry/resume traversal cleanup/validation templates. Component contract: [GEN-02](../../../spec/implementation/compiler.md#gen-02). */
 bool lower_finish_loops(Lowering *);
-/** Resolve the exact source-loop identity in this planned type. */
+/** Resolve the exact source-loop identity in this planned type. Component contract: [GEN-02](../../../spec/implementation/compiler.md#gen-02). */
 PlannedLoop *lower_loop(const PlannedType *, const SemanticStatement *);
-/** Lower a named/header loop or branch with fixed lexical repeat/exit continuations. */
+/** Lower a named/header loop or branch with fixed lexical repeat/exit continuations. Component contract: [GEN-02](../../../spec/implementation/compiler.md#gen-02). */
 ControlNode *lower_control(Lowering *, const SemanticStatement *, ControlNode *, ControlNode *);
-/** Lower one foreach using its fixed cursor/cell frame and scope cleanup continuations. */
+/** Lower one foreach using its fixed cursor/cell frame and scope cleanup continuations. Component contract: [GEN-02](../../../spec/implementation/compiler.md#gen-02). */
 ControlNode *lower_foreach(Lowering *, const SemanticStatement *, ControlNode *);
 /** Lower one already resolved retained AST statement; no declaration lookup, runtime evaluation or source-type inference.
- */
+ * Component contract: [GEN-02](../../../spec/implementation/compiler.md#gen-02). */
 ControlNode *lower_statement(Lowering *lowering, const SemanticStatement *statement,
     ControlNode *after, ControlNode *break_target);
 /** Compose resolved acquisition/input/return/output graph with a lexical refusal continuation; constants bypass executable acquisition.
- */
+ * Component contract: [GEN-02](../../../spec/implementation/compiler.md#gen-02). */
 ControlNode *lower_call(Lowering *lowering, const SemanticStatement *statement,
     ControlNode *after, ControlNode *break_target);
 /** Retain every receiver/source/replacement/release step regardless of source spelling. Runtime identity handles ordinary no-op after checks.
- */
+ * Component contract: [GEN-02](../../../spec/implementation/compiler.md#gen-02). */
 ControlNode *lower_assignment(Lowering *lowering, const SemanticStatement *statement, ControlNode *after);
 /** Allocate a typed node preceding a known continuation, borrowing exact statement/binding identities and original sites.
- */
+ * Component contract: [GEN-02](../../../spec/implementation/compiler.md#gen-02). */
 ControlNode *lower_prepend(Lowering *lowering, ControlOperation operation,
     const SemanticStatement *statement, const SemanticBinding *binding, ControlNode *after);
 

@@ -7,7 +7,7 @@
 #include "consume.h"
 #include "driver/options/validation/validation.h"
 
-/** Scalar authority occurs once; repeated configuration/output entries retain argument order within argc-bounded arrays. */
+/** Scalar authority occurs once; repeated configuration/output entries retain argument order within argc-bounded arrays. Component contract: [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01), [TOOL-03](../../../../spec/implementation/tools-and-conformance.md#tool-03). */
 bool driver_options_relocation(DriverOptions *options, DriverOptionKind kind, const char *value) {
     if (*value == 0) { return driver_options_invalid(options,"Relocation option values must be nonempty"); }
     switch (kind) {

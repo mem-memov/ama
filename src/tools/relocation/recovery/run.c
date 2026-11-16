@@ -5,7 +5,7 @@
  */
 #include "internal.h"
 
-/** A false result always keeps an incomplete outcome and diagnostics; destruction performs no hidden replay. */
+/** A false result always keeps an incomplete outcome and diagnostics; destruction performs no hidden replay. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool outcome(RelocationRecovery *recovery, bool complete) {
     RelocationTransaction *transaction = &recovery->transaction;
     if (complete) {
@@ -20,7 +20,7 @@ static bool outcome(RelocationRecovery *recovery, bool complete) {
     relocation_transaction_release(transaction);
     return complete;
 }
-/** The entire inventory and filesystem preconditions are validated before the first inverse mutation. */
+/** The entire inventory and filesystem preconditions are validated before the first inverse mutation. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_recovery_run(RelocationRecovery *recovery, const RelocationRecoveryRequest *request) {
     if (recovery->attempted) { return false; }
     recovery->attempted = true;

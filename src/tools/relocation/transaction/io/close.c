@@ -5,7 +5,7 @@
  */
 #include <unistd.h>
 #include "../internal.h"
-/** The checkpoint follows the sole close attempt, so injected refusal never leaves an unowned live descriptor. */
+/** The checkpoint follows the sole close attempt, so injected refusal never leaves an unowned live descriptor. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_close(RelocationTransaction *transaction, int descriptor, const char *path) {
     int result = close(descriptor);
     bool admitted = relocation_transaction_permit(transaction,RELOCATION_IO_CLOSE,path);

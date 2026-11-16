@@ -5,7 +5,7 @@
  * stages only explicit supported configuration/output changes.
  */
 #include "internal.h"
-/** Allocation authority outlives all independent owners and their diagnostics. */
+/** Allocation authority outlives all independent owners and their diagnostics. Component contract: [TOOL-02](../../../../spec/implementation/tools-and-conformance.md#tool-02), [TOOL-03](../../../../spec/implementation/tools-and-conformance.md#tool-03). */
 void driver_relocation_plan_init(DriverRelocationPlan *plan, SourceAllocator allocator) {
     *plan = (DriverRelocationPlan){0};
     relocation_preview_init(&plan->preview,allocator);
@@ -13,7 +13,7 @@ void driver_relocation_plan_init(DriverRelocationPlan *plan, SourceAllocator all
     relocation_staging_init(&plan->staging,allocator);
     relocation_report_init(&plan->report,allocator);
 }
-/** No owner destruction attempts publication or discards pending filesystem recovery state. */
+/** No owner destruction attempts publication or discards pending filesystem recovery state. Component contract: [TOOL-02](../../../../spec/implementation/tools-and-conformance.md#tool-02), [TOOL-03](../../../../spec/implementation/tools-and-conformance.md#tool-03). */
 void driver_relocation_plan_destroy(DriverRelocationPlan *plan) {
     relocation_report_destroy(&plan->report);
     relocation_staging_destroy(&plan->staging);
@@ -21,7 +21,7 @@ void driver_relocation_plan_destroy(DriverRelocationPlan *plan) {
     relocation_preview_destroy(&plan->preview);
     *plan = (DriverRelocationPlan){0};
 }
-/** Failed stage views are used only for diagnostics; a complete report requires every proof stage to pass. */
+/** Failed stage views are used only for diagnostics; a complete report requires every proof stage to pass. Component contract: [TOOL-02](../../../../spec/implementation/tools-and-conformance.md#tool-02), [TOOL-03](../../../../spec/implementation/tools-and-conformance.md#tool-03). */
 bool driver_relocation_plan_build(DriverRelocationPlan *plan, const DriverOptions *options) {
     RelocationRequest request = {.roots=options->roots,.root_count=options->root_count,.source=options->relocation_source,
         .destination=options->destination,.destination_root=options->destination_root.path == NULL ? NULL : &options->destination_root};

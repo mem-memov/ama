@@ -7,7 +7,7 @@
 #include <string.h>
 #include "../internal.h"
 
-/** Compare one edge's target, physical source, implicit kind and translated original requiring boundaries. */
+/** Compare one edge's target, physical source, implicit kind and translated original requiring boundaries. Component contract: [TOOL-02](../../../../../spec/implementation/tools-and-conformance.md#tool-02), [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool same_edge(const RelocationStagedSource *source, const RelocationReference *original, const ProjectDependency *final) {
     size_t start, end;
     return final != NULL && source_span_valid(final->requirement)
@@ -19,7 +19,7 @@ static bool same_edge(const RelocationStagedSource *source, const RelocationRefe
         && strcmp(final->target->source->logical_path,original->target->after_identity) == 0
         && strcmp(source_path(final->target->source->text),original->target->after_path) == 0;
 }
-/** Stable source-position ordering preserves multiplicities, including duplicate paths and equal spans. */
+/** Stable source-position ordering preserves multiplicities, including duplicate paths and equal spans. Component contract: [TOOL-02](../../../../../spec/implementation/tools-and-conformance.md#tool-02), [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool module_edges(RelocationStaging *staging, const RelocationStagedSource *source) {
     const ProjectModule *module = project_find(&staging->project,source->module->after_identity);
     if (module == NULL || strcmp(source_path(module->source->text),source_path(source->text)) != 0) {
@@ -38,7 +38,7 @@ static bool module_edges(RelocationStaging *staging, const RelocationStagedSourc
     }
     return true;
 }
-/** The required set is exactly the active preview domain; edge equality proves no binding was lost, added or redirected. */
+/** The required set is exactly the active preview domain; edge equality proves no binding was lost, added or redirected. Component contract: [TOOL-02](../../../../../spec/implementation/tools-and-conformance.md#tool-02), [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_staging_graph(RelocationStaging *staging) {
     size_t expected = 0, actual = 0;
     for (const RelocationStagedSource *source = staging->first; source != NULL; source = source->next) {

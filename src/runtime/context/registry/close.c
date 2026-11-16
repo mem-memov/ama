@@ -10,7 +10,7 @@
 
 /** Acquire all record gates without changing Ama state. A busy record restores every earlier
  * temporary gate before refusal, preserving complete membership and resource ownership.
- */
+ * Component contract: [RT-10](../../../../spec/implementation/runtime.md#rt-10), [PAR-01](../../../../spec/language/async-and-parallelism.md#par-01). */
 static bool context_close_admit(AmaContextRegistry *registry) {
     for (AmaContext *context = registry->first; context != NULL; context = context->next) {
         bool available = false;
@@ -26,7 +26,7 @@ static bool context_close_admit(AmaContextRegistry *registry) {
 
 /** Detach all admitted records, then consume them exactly once. A cleanup pin blocks recursive
  * registry destruction until every hook returns, while stale-token checks remain available.
- */
+ * Component contract: [RT-10](../../../../spec/implementation/runtime.md#rt-10), [PAR-01](../../../../spec/language/async-and-parallelism.md#par-01). */
 AmaStatus ama_context_registry_close(AmaContextRegistry *registry) {
     AmaStatus status = ama_context_registry_lock(registry);
     if (status.code != AMA_OK) { return status; }
@@ -56,7 +56,7 @@ AmaStatus ama_context_registry_close(AmaContextRegistry *registry) {
 
 /** Release caller-owned registry lifetime only after close admission. The caller supplies
  * exclusive C lifetime authority; pending callbacks and live leases preserve an initialized owner.
- */
+ * Component contract: [RT-10](../../../../spec/implementation/runtime.md#rt-10), [PAR-01](../../../../spec/language/async-and-parallelism.md#par-01). */
 AmaStatus ama_context_registry_destroy(AmaContextRegistry *registry) {
     if (registry == NULL || !registry->initialized) { return ama_status_success(); }
     AmaStatus status = ama_context_registry_close(registry);

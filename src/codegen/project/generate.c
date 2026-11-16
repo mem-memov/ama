@@ -12,7 +12,7 @@
  * Require an unused scaffold and valid nonauthoring frontend. Validate paths/model/executable
  * root, stage four complete project artifacts plus declarations, then set ready. No publication
  * occurs.
- */
+ * Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04). */
 bool project_codegen_build(NativeScaffold *scaffold, ScaffoldOptions options) {
     assert(!scaffold->attempted);
     scaffold->attempted = true;

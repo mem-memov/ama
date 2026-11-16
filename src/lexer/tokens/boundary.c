@@ -6,11 +6,11 @@
  */
 #include "internal.h"
 
-/** These tokens open a compact access whose next name directly adjoins the opener. */
+/** These tokens open a compact access whose next name directly adjoins the opener. Component contract: [SYN-06](../../../spec/language/source-and-names.md#syn-06). */
 static bool opens(LexKind kind) {
     return kind == LEX_DOT || kind == LEX_STANDARD_ROOT || kind == LEX_INDEX_OPEN || kind == LEX_REFERENCE_INDEX;
 }
-/** A storage/index suffix requires an existing complete base without any intervening separator. */
+/** A storage/index suffix requires an existing complete base without any intervening separator. Component contract: [SYN-06](../../../spec/language/source-and-names.md#syn-06). */
 static bool suffix(LexKind kind) {
     return kind == LEX_LIST || kind == LEX_REFERENCE_LIST || kind == LEX_REFERENCE_INDEX || kind == LEX_INDEX_OPEN;
 }

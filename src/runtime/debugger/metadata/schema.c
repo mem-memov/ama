@@ -4,7 +4,7 @@
  * [REF-02](../../../../spec/language/values-and-references.md#ref-02) separates component/context authority.
  */
 #include "../internal.h"
-/** Catalog entries match exact nominal IDs; absent names remain absent instead of guessed from hashes or source rows. */
+/** Catalog entries match exact nominal IDs; absent names remain absent instead of guessed from hashes or source rows. Component contract: [NAME-03](../../../../spec/implementation/compiler.md#name-03), [REF-02](../../../../spec/language/values-and-references.md#ref-02). */
 const AmaDebugType *ama_debug_type(const AmaDebugSession *session, uint64_t type_id) {
     if (session->catalog == NULL) { return NULL; }
     for (size_t index = 0; index < session->catalog->type_count; index++) {
@@ -12,7 +12,7 @@ const AmaDebugType *ama_debug_type(const AmaDebugSession *session, uint64_t type
     }
     return NULL;
 }
-/** Operation identities may be stored in model order; exact lookup makes no sorted-table assumption. */
+/** Operation identities may be stored in model order; exact lookup makes no sorted-table assumption. Component contract: [NAME-03](../../../../spec/implementation/compiler.md#name-03), [REF-02](../../../../spec/language/values-and-references.md#ref-02). */
 const AmaProgramLocation *ama_debug_location(const AmaDebugSession *session, uint64_t operation) {
     if (operation == 0) { return NULL; }
     for (size_t index = 0; index < session->view.program->location_count; index++) {
@@ -21,7 +21,7 @@ const AmaProgramLocation *ama_debug_location(const AmaDebugSession *session, uin
     }
     return NULL;
 }
-/** Check all extents/roles and duplicate IDs before observers can use a catalog; no payload is examined. */
+/** Check all extents/roles and duplicate IDs before observers can use a catalog; no payload is examined. Component contract: [NAME-03](../../../../spec/implementation/compiler.md#name-03), [REF-02](../../../../spec/language/values-and-references.md#ref-02). */
 AmaStatus ama_debug_schema(const AmaDebugSession *session) {
     const AmaProgram *program = session->view.program;
     const AmaDebugCatalog *catalog = session->catalog;

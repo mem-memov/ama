@@ -4,7 +4,7 @@
  * construction from entry and makes admitted construction failures context-terminal.
  */
 #include "../internal.h"
-/** A fresh-root failure has no active Ama caller; preserve its construction site. */
+/** A fresh-root failure has no active Ama caller; preserve its construction site. Component contract: [EMBED-02](../../../../spec/implementation/c-library.md#embed-02). */
 static AmaLibraryResult creation_failed(AmaLibraryService *service, AmaLibraryAccess *access, AmaStatus status) {
     access->view.control->current=(AmaHandle){0};
     return ama_library_fail(service,access,status);

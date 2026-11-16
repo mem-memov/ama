@@ -8,18 +8,18 @@
 #ifndef AMA_PROJECT_DISCOVER_INTERNAL_H
 #define AMA_PROJECT_DISCOVER_INTERNAL_H
 #include "project/dependencies/internal.h"
-/** Project-owned request retaining a written path or a fixed identity with its real requesting construct. */
+/** Project-owned request retaining a written path or a fixed identity with its real requesting construct. Component contract: [DEP-02](../../../../spec/implementation/compiler.md#dep-02), [DEP-03](../../../../spec/implementation/compiler.md#dep-03). */
 typedef struct DependencyPath {
     struct DependencyPath *next;
     SourceSpan path;
     const char *implicit;
 } DependencyPath;
-/** Finite collected path set, including repeated syntactic requests, before module admission. */
+/** Finite collected path set, including repeated syntactic requests, before module admission. Component contract: [DEP-02](../../../../spec/implementation/compiler.md#dep-02), [DEP-03](../../../../spec/implementation/compiler.md#dep-03). */
 typedef struct { DependencyPath *first; size_t count; } DependencyPaths;
-/** Collect every represented declaration/qualified-source path without recursive C activation. */
+/** Collect every represented declaration/qualified-source path without recursive C activation. Component contract: [DEP-02](../../../../spec/implementation/compiler.md#dep-02), [DEP-03](../../../../spec/implementation/compiler.md#dep-03). */
 bool project_collect_paths(Project *, const ProjectModule *, DependencyPaths *);
-/** Prepend a written path or fixed language-required identity at its requesting source site; allocation failure records OOM. */
+/** Prepend a written path or fixed language-required identity at its requesting source site; allocation failure records OOM. Component contract: [DEP-02](../../../../spec/implementation/compiler.md#dep-02), [DEP-03](../../../../spec/implementation/compiler.md#dep-03). */
 bool project_collect_path(Project *, DependencyPaths *, SourceSpan, const char *);
-/** Sort links stably by physical byte offset using allocation-free bottom-up merge passes. */
+/** Sort links stably by physical byte offset using allocation-free bottom-up merge passes. Component contract: [DEP-02](../../../../spec/implementation/compiler.md#dep-02), [DEP-03](../../../../spec/implementation/compiler.md#dep-03). */
 void project_sort_paths(DependencyPaths *);
 #endif

@@ -8,13 +8,13 @@
  */
 #include "internal.h"
 
-/** Initialize a fresh one-shot compiler owner without allocating a provider or namespace. */
+/** Initialize a fresh one-shot compiler owner without allocating a provider or namespace. Component contract: [ERROR-04](../../../../spec/implementation/diagnostics.md#error-04). */
 void native_status_providers_init(NativeStatusProviders *owner, SourceAllocator allocator) {
     *owner = (NativeStatusProviders){.initialized = true};
     source_arena_init(&owner->arena, allocator);
 }
 
-/** Release only owned planning scratch; every borrowed name remains in its source registry. */
+/** Release only owned planning scratch; every borrowed name remains in its source registry. Component contract: [ERROR-04](../../../../spec/implementation/diagnostics.md#error-04). */
 void native_status_providers_destroy(NativeStatusProviders *owner) {
     if (!owner->initialized) { return; }
     source_arena_destroy(&owner->arena);
@@ -23,7 +23,7 @@ void native_status_providers_destroy(NativeStatusProviders *owner) {
 
 /** Validate/prepare a complete private table, then atomically publish its immutable view.
  * Namespace capacity is checked before dereferencing inventory; an empty inventory is valid.
- */
+ * Component contract: [ERROR-04](../../../../spec/implementation/diagnostics.md#error-04). */
 AmaStatus native_status_providers_build(NativeStatusProviders *owner,
     const IdentityName *const *names, size_t count) {
     if (!owner->initialized || owner->attempted) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }

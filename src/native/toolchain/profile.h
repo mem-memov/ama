@@ -17,7 +17,7 @@
 
 /** Required individual argv elements, never one shell command or combined option.
  * Non-whole-program compilation preserves externally visible inspection evidence.
- */
+ * Component contract: [STACK-04](../../../spec/implementation/compiler.md#stack-04), [STACK-02](../../../spec/implementation/compiler.md#stack-02). */
 #define AMA_TOOLCHAIN_REQUIRED_FLAGS \
     "-std=c11", "-pedantic-errors", "-Wall", "-Wextra", "-Werror", \
     "-Werror=attributes", "-fno-lto", "-fno-whole-program"

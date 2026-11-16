@@ -5,7 +5,7 @@
  */
 #include <string.h>
 #include "../internal.h"
-/** Retain an exact input-tracking failure; source reads preserve their physical path. */
+/** Retain an exact input-tracking failure; source reads preserve their physical path. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 static bool input_failure(LibraryBuild *build, SourceStatus status, const char *path) {
     build->error = (Diagnostic){.code = status == SOURCE_IO_ERROR ? DIAGNOSTIC_IO_FAILURE : DIAGNOSTIC_OUT_OF_MEMORY,
         .message = "Library build inputs could not be captured", .primary = {.path = path}};

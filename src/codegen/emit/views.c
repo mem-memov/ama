@@ -17,7 +17,7 @@
 /**
  * Map validated nonowned storage form to its reference/list view family; the owned case is
  * handled separately by callers.
- */
+ * Component contract: [CABI-03](../../../spec/implementation/native-interface.md#cabi-03), [CABI-02](../../../spec/implementation/native-interface.md#cabi-02), [STACK-04](../../../spec/implementation/compiler.md#stack-04), [PAR-01](../../../spec/language/async-and-parallelism.md#par-01). */
 static ScaffoldTypeRole codegen_view_role(StorageForm form) {
     return form == STORAGE_REFERENCE ? SCAFFOLD_REFERENCE_STORAGE : form == STORAGE_OWNING_LIST
         ? SCAFFOLD_LIST_STORAGE : SCAFFOLD_REFERENCE_LIST_STORAGE;
@@ -26,7 +26,7 @@ static ScaffoldTypeRole codegen_view_role(StorageForm form) {
 /**
  * Emit operation-local read/write scope plus owned child scopes or reference/list storage views.
  * Checked ownership layout ordering ensures complete child C types.
- */
+ * Component contract: [CABI-03](../../../spec/implementation/native-interface.md#cabi-03), [CABI-02](../../../spec/implementation/native-interface.md#cabi-02), [STACK-04](../../../spec/implementation/compiler.md#stack-04), [PAR-01](../../../spec/language/async-and-parallelism.md#par-01). */
 static bool codegen_view_type(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type) {
     const char *name = type->names[SCAFFOLD_WRITE]->internal_name;
     if (fprintf(output, "typedef struct %s_Scope { %s read; %s write;\n", name,
@@ -51,7 +51,7 @@ static bool codegen_view_type(NativeScaffold *scaffold, FILE *output, const Scaf
  * authority. These ordinary static helpers may be optimized normally; they have
  * no mandatory inline boundary. Unused per-type binders remain harmless when no
  * native body needs that view.
- */
+ * Component contract: [CABI-03](../../../spec/implementation/native-interface.md#cabi-03), [CABI-02](../../../spec/implementation/native-interface.md#cabi-02), [STACK-04](../../../spec/implementation/compiler.md#stack-04), [PAR-01](../../../spec/language/async-and-parallelism.md#par-01). */
 static bool codegen_view_bind(NativeScaffold *scaffold, FILE *output, const ScaffoldType *type, bool interface) {
     const char *name = type->names[SCAFFOLD_WRITE]->internal_name;
     if (fprintf(output, "static __attribute__((unused)) AmaStatus %s_%s(AmaNativeBorrowScope *borrow, AmaHandle handle, %s_Scope *scope) {\n"
@@ -85,7 +85,7 @@ static bool codegen_view_bind(NativeScaffold *scaffold, FILE *output, const Scaf
 /**
  * Emit opaque declared reference/list locations, then scopes/binders in exact eager-layout
  * ordinal order. Reference cycles do not recursively expand storage.
- */
+ * Component contract: [CABI-03](../../../spec/implementation/native-interface.md#cabi-03), [CABI-02](../../../spec/implementation/native-interface.md#cabi-02), [STACK-04](../../../spec/implementation/compiler.md#stack-04), [PAR-01](../../../spec/language/async-and-parallelism.md#par-01). */
 bool codegen_emit_views(NativeScaffold *scaffold, FILE *output) {
     if (fputs("#include \"runtime/program/native/borrow.h\"\n", output) == EOF) { return false; }
     size_t count = 0;

@@ -11,7 +11,7 @@
 
 #include "source/text/source.h"
 
-/** Stable compiler diagnostic categories, distinct from runtime native status codes. */
+/** Stable compiler diagnostic categories, distinct from runtime native status codes. Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04), [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
 typedef enum {
     DIAGNOSTIC_INVALID_UTF8,
     DIAGNOSTIC_INVALID_PATH,
@@ -32,7 +32,7 @@ typedef enum {
     DIAGNOSTIC_CODE_COUNT
 } DiagnosticCode;
 
-/** Borrowed original span, physical path or absent location; explicit path must agree with a loaded source. */
+/** Borrowed original span, physical path or absent location; explicit path must agree with a loaded source. Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04), [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
 typedef struct {
     SourceSpan span;
     /* Used for filesystem failures without loaded source. NULL with a span
@@ -40,14 +40,14 @@ typedef struct {
     const char *path;
 } DiagnosticLocation;
 
-/** Caller-owned related location with explicit role and optional original name. */
+/** Caller-owned related location with explicit role and optional original name. Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04), [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
 typedef struct {
     DiagnosticLocation location;
     const char *role;
     const char *name;
 } DiagnosticRelated;
 
-/** Borrowed allocation-free diagnostic view; all strings, sources and related arrays outlive consumers. */
+/** Borrowed allocation-free diagnostic view; all strings, sources and related arrays outlive consumers. Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04), [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
 typedef struct {
     DiagnosticCode code;
     const char *message;
@@ -64,10 +64,10 @@ typedef struct {
  * consumers. Optional prose is NULL, not invented from guessed corrections.
  * Codes and byte spans are the machine interface; rendering is separate. */
 /** Validate a borrowed finite diagnostic record without allocation or interpretation of its prose. All pointed storage must remain live during validation/rendering.
- */
+ * Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04), [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
 bool diagnostic_valid(const Diagnostic *diagnostic);
 /** Return immutable machine-readable code text, or the explicit invalid-diagnostic sentinel for an out-of-domain code.
- */
+ * Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04), [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
 const char *diagnostic_code_name(DiagnosticCode code);
 
 #endif

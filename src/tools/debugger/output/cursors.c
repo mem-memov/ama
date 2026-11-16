@@ -4,7 +4,7 @@
  * [LIST-13](../../../../spec/language/lists.md#list-13) defines live traversal boundaries.
  */
 #include "../internal.h"
-/** Inactive values remain the runtime's explicit zero observations, never reconstructed bindings. */
+/** Inactive values remain the runtime's explicit zero observations, never reconstructed bindings. Component contract: [FLOW-05](../../../../spec/language/lists.md#flow-05), [LIST-13](../../../../spec/language/lists.md#list-13). */
 bool ama_debug_client_cursor(void *context, const AmaDebugCursor *cursor) {
     AmaDebugClientOutput *output = context;
     ToolJsonWriter *writer = output->writer;

@@ -17,7 +17,7 @@
 /**
  * Append a checked role/ordinal suffix to a validated generated base. Return arena-owned text or
  * first scaffold error; no user-name identity is inferred from this local suffix.
- */
+ * Component contract: [REF-03](../../../spec/language/values-and-references.md#ref-03), [CONST-01](../../../spec/language/declarations.md#const-01), [CALL-08](../../../spec/language/calls-and-results.md#call-08), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 const char *codegen_indexed_name(NativeScaffold *scaffold, const char *base, const char *role, size_t index) {
     char suffix[80];
     int length = snprintf(suffix, sizeof(suffix), "_%s_%zu", role, index);
@@ -31,7 +31,7 @@ const char *codegen_indexed_name(NativeScaffold *scaffold, const char *base, con
 /**
  * Emit a finite resolved nested index chain from inside out so each referenced descriptor
  * already exists. No C recursion; repeated exact rescans cost O(depth squared).
- */
+ * Component contract: [REF-03](../../../spec/language/values-and-references.md#ref-03), [CONST-01](../../../spec/language/declarations.md#const-01), [CALL-08](../../../spec/language/calls-and-results.md#call-08), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 bool codegen_access_definition(NativeScaffold *scaffold, FILE *output, const char *base, const SemanticAccess *access) {
     size_t depth = 0;
     for (const SemanticAccess *node = access; node != NULL; node = node->index) { depth++; }
@@ -65,7 +65,7 @@ bool codegen_access_definition(NativeScaffold *scaffold, FILE *output, const cha
 /**
  * Emit byte-array literal storage with explicit original length or resolved access descriptors.
  * Empty literals receive a C-array sentinel without changing language byte length.
- */
+ * Component contract: [REF-03](../../../spec/language/values-and-references.md#ref-03), [CONST-01](../../../spec/language/declarations.md#const-01), [CALL-08](../../../spec/language/calls-and-results.md#call-08), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 bool codegen_source_definition(NativeScaffold *scaffold, FILE *output, const char *name, const SemanticSource *source) {
     if (source->kind == AST_LITERAL_SOURCE) {
         SourceSpan payload = source->syntax->payload;
@@ -82,7 +82,7 @@ bool codegen_source_definition(NativeScaffold *scaffold, FILE *output, const cha
 /**
  * Write one resolved literal/local/shared/self descriptor with explicit acquisition/continuation
  * flags and exact nominal type ordinal; names and sources remain borrowed during emission.
- */
+ * Component contract: [REF-03](../../../spec/language/values-and-references.md#ref-03), [CONST-01](../../../spec/language/declarations.md#const-01), [CALL-08](../../../spec/language/calls-and-results.md#call-08), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 bool codegen_source_value(NativeScaffold *scaffold, FILE *output, const char *name, const SemanticSource *source) {
     const char *kind = source->kind == AST_SELF_REFERENCE_SOURCE ? "AMA_SOURCE_SELF"
         : source->kind == AST_LITERAL_SOURCE ? "AMA_SOURCE_LITERAL"
@@ -108,7 +108,7 @@ bool codegen_source_value(NativeScaffold *scaffold, FILE *output, const char *na
 /**
  * Emit all dependent source definitions, then the ordered source array. Absence emits no array;
  * partial IO/allocation failure leaves the artifact unpublished.
- */
+ * Component contract: [REF-03](../../../spec/language/values-and-references.md#ref-03), [CONST-01](../../../spec/language/declarations.md#const-01), [CALL-08](../../../spec/language/calls-and-results.md#call-08), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 bool codegen_initializers(NativeScaffold *scaffold, FILE *output, const char *base, const SemanticSymbol *symbol) {
     size_t index = 0;
     for (const SemanticInitializer *initializer = symbol->initializers; initializer != NULL; initializer = initializer->next, index++) {

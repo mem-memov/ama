@@ -32,7 +32,7 @@ LayoutStatus layout_failure(SourceLayout *layout, LayoutStatus status,
 }
 
 /** Allocate/classify one line privately, including CRLF exclusion, then append. Allocation failure leaves prior nodes and the exact failed site owned.
- */
+ * Component contract: [NAME-03](../../../spec/implementation/compiler.md#name-03), [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
 static LayoutStatus append_line(SourceLayout *layout, size_t start, size_t end,
     bool newline, bool literal_payloads) {
     const unsigned char *bytes = source_bytes(layout->source);
@@ -56,7 +56,7 @@ static LayoutStatus append_line(SourceLayout *layout, size_t start, size_t end,
 }
 
 /** Validate the complete finite byte input before splitting at LF; preserve original bytes and create no fictitious final line after a terminator.
- */
+ * Component contract: [NAME-03](../../../spec/implementation/compiler.md#name-03), [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
 static LayoutStatus read_source(SourceLayout *layout, const SourceText *source,
     bool literal_payloads) {
     layout->source = source;

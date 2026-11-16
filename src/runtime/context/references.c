@@ -11,7 +11,7 @@
 
 /** Wrap a trusted local published identity after exact pool validation. No availability check
  * prevents forming a reference to the currently running instance; no target resource is acquired.
- */
+ * Component contract: [REF-02](../../../spec/language/values-and-references.md#ref-02), [REF-07](../../../spec/language/values-and-references.md#ref-07). */
 AmaStatus ama_context_reference(const AmaContextLease *lease, AmaHandle local,
     AmaContextReference *reference) {
     AmaContext *context = ama_context_leased(lease);
@@ -26,7 +26,7 @@ AmaStatus ama_context_reference(const AmaContextLease *lease, AmaHandle local,
 
 /** Reject a foreign context before any local registry/pool read, even when the triple would
  * successfully select a different live object here. Publish borrowed outputs only after success.
- */
+ * Component contract: [REF-02](../../../spec/language/values-and-references.md#ref-02), [REF-07](../../../spec/language/values-and-references.md#ref-07). */
 AmaStatus ama_context_resolve(const AmaContextLease *lease, AmaContextReference reference,
     AmaAccessMode mode, AmaObjectType **type, AmaPoolCell **cell) {
     AmaContext *context = ama_context_leased(lease);

@@ -8,7 +8,7 @@
 #include "driver/options/recognition/option.h"
 #include "driver/options/validation/validation.h"
 
-/** Canonical unsigned decimal consumes every argument byte and checks multiply/add before publishing. */
+/** Canonical unsigned decimal consumes every argument byte and checks multiply/add before publishing. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 static bool offset(const char *text, size_t *output) {
     if (*text < '0' || *text > '9' || (text[0] == '0' && text[1] != 0)) { return false; }
     size_t value = 0;
@@ -19,7 +19,7 @@ static bool offset(const char *text, size_t *output) {
     *output = value;
     return true;
 }
-/** Reject duplicates rather than silently choosing one source selector; arguments remain borrowed. */
+/** Reject duplicates rather than silently choosing one source selector; arguments remain borrowed. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 bool driver_options_source_tool(DriverOptions *options, DriverOptionKind kind, const char *value) {
     if (kind == DRIVER_OPTION_QUERY_MODULE) {
         if (options->query_module != NULL || !module_path_valid(value)) {

@@ -6,7 +6,7 @@
 #ifndef AMA_NATIVE_EVENTS_BUFFER_INTERNAL_H
 #define AMA_NATIVE_EVENTS_BUFFER_INTERNAL_H
 #include "native/events/internal.h"
-/** One native allocation; the service reference also retains its optional code lease. */
+/** One native allocation; the service reference also retains its optional code lease. Component contract: [ASYNC-05](../../../../spec/language/async-and-parallelism.md#async-05). */
 typedef struct {
     AmaNativeEventService *service;
     size_t length;

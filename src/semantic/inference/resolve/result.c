@@ -6,7 +6,7 @@
  * fixes intrinsic element-reference and nominal integer result shapes.
  */
 #include "../internal.h"
-/** Match a fixed intrinsic result whose interface has no source declaration node. */
+/** Match a fixed intrinsic result whose interface has no source declaration node. Component contract: [TYPE-06](../../../../spec/language/declarations.md#type-06), [LIST-04](../../../../spec/language/lists.md#list-04). */
 static bool intrinsic(Inference *inference, const InferenceOperation *operation,
     const AstAccess *label, size_t position, SourceSpan site, InferenceValue *value) {
     size_t ordinal = position;

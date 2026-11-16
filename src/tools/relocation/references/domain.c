@@ -10,16 +10,16 @@
 #include "internal.h"
 #include "diagnostics/adapters/adapters.h"
 
-/** New scope has no invented previous namespace: its explicit final-root identity names its analysis record. */
+/** New scope has no invented previous namespace: its explicit final-root identity names its analysis record. Component contract: [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01), [COMP-02](../../../../spec/implementation/compiler.md#comp-02). */
 const char *relocation_analysis_name(const RelocationModule *module) {
     return module->before_identity == NULL ? module->after_identity : module->before_identity;
 }
-/** Required-set order is byte-exact and independent of physical directory enumeration or root order. */
+/** Required-set order is byte-exact and independent of physical directory enumeration or root order. Component contract: [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01), [COMP-02](../../../../spec/implementation/compiler.md#comp-02). */
 static int compare_names(const void *left, const void *right) {
     return strcmp(*(const char *const *)left,*(const char *const *)right);
 }
 
-/** Copy all candidate records, retaining drafts for precise required-draft diagnostics but requiring active modules only. */
+/** Copy all candidate records, retaining drafts for precise required-draft diagnostics but requiring active modules only. Component contract: [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01), [COMP-02](../../../../spec/implementation/compiler.md#comp-02). */
 static bool snapshot(RelocationReferences *references, const char *const **required, size_t *required_count) {
     size_t count = 0;
     for (const RelocationModule *module = references->preview->modules; module != NULL; module = module->next) {
@@ -51,7 +51,7 @@ static bool snapshot(RelocationReferences *references, const char *const **requi
     return true;
 }
 
-/** Native companions are parsed through ordinary activation; no native body is executed or guessed from its filename. */
+/** Native companions are parsed through ordinary activation; no native body is executed or guessed from its filename. Component contract: [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01), [COMP-02](../../../../spec/implementation/compiler.md#comp-02). */
 bool relocation_references_domain(RelocationReferences *references) {
     const char *const *required = NULL;
     size_t count = 0;

@@ -10,7 +10,7 @@
 /**
  * Write common completion/yield/error outcomes. Report the active chain before terminal
  * disposal, clear execution admission and expose an empty root on failure.
- */
+ * Component contract: [RT-14](../../../../spec/implementation/runtime.md#rt-14). */
 bool codegen_emit_host_finish(FILE *output) {
     return fputs("ama_project_finish:;\n"
         "host->active=(AmaContextView){0};\n"

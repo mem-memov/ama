@@ -7,7 +7,7 @@
 #ifndef AMA_SEMANTIC_COPY_BOUNDARIES_INTERNAL_H
 #define AMA_SEMANTIC_COPY_BOUNDARIES_INTERNAL_H
 #include "semantic/internal.h"
-/** A positive must-origin, borrowing a direct owned field or the current instance and its original formation site. */
+/** A positive must-origin, borrowing a direct owned field or the current instance and its original formation site. Component contract: [REF-07](../../../../spec/language/values-and-references.md#ref-07), [COPY-06](../../../../spec/language/values-and-references.md#copy-06). */
 typedef struct ReferenceOrigin {
     struct ReferenceOrigin *next;
     SemanticSymbol *reference;
@@ -15,10 +15,10 @@ typedef struct ReferenceOrigin {
     bool current_instance;
     SourceSpan site;
 } ReferenceOrigin;
-/** Find exact scalar-reference cell identity in this segment; null means no positive proof. */
+/** Find exact scalar-reference cell identity in this segment; null means no positive proof. Component contract: [REF-07](../../../../spec/language/values-and-references.md#ref-07), [COPY-06](../../../../spec/language/values-and-references.md#copy-06). */
 ReferenceOrigin *semantic_reference_origin(ReferenceOrigin *, const SemanticSymbol *);
-/** Update one cell from a fully typed nonindexed scalar handle store; false records allocation failure. */
+/** Update one cell from a fully typed nonindexed scalar handle store; false records allocation failure. Component contract: [REF-07](../../../../spec/language/values-and-references.md#ref-07), [COPY-06](../../../../spec/language/values-and-references.md#copy-06). */
 bool semantic_record_origin(SemanticProgram *, ReferenceOrigin **, const SemanticStatement *);
-/** Reject only a positively proved continuation identity/ancestor violation; unknown origins remain runtime-checked. */
+/** Reject only a positively proved continuation identity/ancestor violation; unknown origins remain runtime-checked. Component contract: [REF-07](../../../../spec/language/values-and-references.md#ref-07), [COPY-06](../../../../spec/language/values-and-references.md#copy-06). */
 bool semantic_origin_boundary(SemanticProgram *, SemanticType *, ReferenceOrigin *, const SemanticStatement *);
 #endif

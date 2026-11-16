@@ -15,7 +15,7 @@
 #include "runtime/program/values/selection/internal.h"
 #include "runtime/program/lists/traversal/traversal.h"
 
-/** Require an owned scalar source; produce an immutable-constant recipe or exact handle clone recipe with explicit continuation mode. Arena/source lifetimes cover construction. */
+/** Require an owned scalar source; produce an immutable-constant recipe or exact handle clone recipe with explicit continuation mode. Arena/source lifetimes cover construction. Component contract: [LIST-13](../../../../spec/language/lists.md#list-13), [LIST-10](../../../../spec/language/lists.md#list-10), [REF-03](../../../../spec/language/values-and-references.md#ref-03), [CONT-04](../../../../spec/language/continuations.md#cont-04), [FLOW-05](../../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_program_value_recipe(AmaProgram *program, SourceArena *arena, const AmaProgramValue *value,
     bool continuation, AmaRecipe *recipe) {
     if (value->form != AMA_FIELD_OWNED) { return ama_status_make(AMA_TYPE_MISMATCH, NULL, 0); }
@@ -24,7 +24,7 @@ AmaStatus ama_program_value_recipe(AmaProgram *program, SourceArena *arena, cons
     return ama_status_success();
 }
 
-/** Install one typed scalar or delegate whole-list transfer. Reference assignment copies handles without target acquisition; owning values use staged reconstruction in the caller operation. */
+/** Install one typed scalar or delegate whole-list transfer. Reference assignment copies handles without target acquisition; owning values use staged reconstruction in the caller operation. Component contract: [LIST-13](../../../../spec/language/lists.md#list-13), [LIST-10](../../../../spec/language/lists.md#list-10), [REF-03](../../../../spec/language/values-and-references.md#ref-03), [CONT-04](../../../../spec/language/continuations.md#cont-04), [FLOW-05](../../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_program_store(AmaProgram *program, AmaProgramValue *destination, const AmaProgramValue *source,
     const AmaFieldRecipe *initializers, AmaObjectOperation *operation) {
     if (destination->form == AMA_FIELD_OWNING_LIST || destination->form == AMA_FIELD_REFERENCE_LIST) {
@@ -55,7 +55,7 @@ AmaStatus ama_program_store(AmaProgram *program, AmaProgramValue *destination, c
     return status.code == AMA_OK ? ama_object_reconstruct_in(operation, destination->handle, &recipe) : status;
 }
 
-/** Own guard, arena and protections for selection plus store of an already selected source; release temporary authority on every return. */
+/** Own guard, arena and protections for selection plus store of an already selected source; release temporary authority on every return. Component contract: [LIST-13](../../../../spec/language/lists.md#list-13), [LIST-10](../../../../spec/language/lists.md#list-10), [REF-03](../../../../spec/language/values-and-references.md#ref-03), [CONT-04](../../../../spec/language/continuations.md#cont-04), [FLOW-05](../../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_program_transfer_authorized(AmaProgram *program, AmaHandle current, const AmaProgramAccess *receiver,
     const AmaProgramValue *source, const struct AmaProgramListService *authority) {
     if (program->world->operation_active || program->world->failed) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
@@ -72,13 +72,13 @@ AmaStatus ama_program_transfer_authorized(AmaProgram *program, AmaHandle current
     return status;
 }
 
-/** Executed module bodies cannot inherit a list grant through ordinary transfers. */
+/** Executed module bodies cannot inherit a list grant through ordinary transfers. Component contract: [LIST-13](../../../../spec/language/lists.md#list-13), [LIST-10](../../../../spec/language/lists.md#list-10), [REF-03](../../../../spec/language/values-and-references.md#ref-03), [CONT-04](../../../../spec/language/continuations.md#cont-04), [FLOW-05](../../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_program_transfer(AmaProgram *program, AmaHandle current, const AmaProgramAccess *receiver,
     const AmaProgramValue *source) {
     return ama_program_transfer_authorized(program, current, receiver, source, NULL);
 }
 
-/** Select receiver first and source once, then install under one guard. Explicit owned continuation copy uses continuation replacement; release protections/scratch on every path. */
+/** Select receiver first and source once, then install under one guard. Explicit owned continuation copy uses continuation replacement; release protections/scratch on every path. Component contract: [LIST-13](../../../../spec/language/lists.md#list-13), [LIST-10](../../../../spec/language/lists.md#list-10), [REF-03](../../../../spec/language/values-and-references.md#ref-03), [CONT-04](../../../../spec/language/continuations.md#cont-04), [FLOW-05](../../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_program_assign(AmaProgram *program, AmaHandle current, const AmaProgramAccess *receiver,
     const AmaProgramSource *source) {
     if (program->world->operation_active || program->world->failed) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }

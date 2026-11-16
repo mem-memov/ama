@@ -4,14 +4,14 @@
  * requires failed preparation to leave the project untouched.
  */
 #include "internal.h"
-/** Each independent owner is initialized even when no build is attempted. */
+/** Each independent owner is initialized even when no build is attempted. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 void relocation_staging_init(RelocationStaging *staging, SourceAllocator allocator) {
     *staging = (RelocationStaging){0};
     source_arena_init(&staging->arena,allocator);
     source_manager_init(&staging->sources,allocator);
     project_init(&staging->project,allocator);
 }
-/** Release borrowers before their copied source and graph storage. */
+/** Release borrowers before their copied source and graph storage. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 void relocation_staging_destroy(RelocationStaging *staging) {
     for (RelocationStagedConfiguration *item = staging->configurations; item != NULL; item = item->next) {
         library_build_destroy(&item->after);
@@ -23,7 +23,7 @@ void relocation_staging_destroy(RelocationStaging *staging) {
     source_arena_destroy(&staging->arena);
     *staging = (RelocationStaging){0};
 }
-/** Error reporting cannot allocate and hide the primary preparation failure. */
+/** Error reporting cannot allocate and hide the primary preparation failure. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_staging_fail(RelocationStaging *staging, RelocationStatus status, const char *message, SourceSpan span) {
     if (staging->status == RELOCATION_OK) {
         staging->status = status;

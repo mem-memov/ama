@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include "../internal.h"
 
-/** A failed commit acknowledgement cannot authorize rollback until its marker is durably absent. */
+/** A failed commit acknowledgement cannot authorize rollback until its marker is durably absent. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool retract(RelocationTransaction *transaction) {
     bool prior_cleaning = transaction->cleaning;
     transaction->cleaning = true;
@@ -27,7 +27,7 @@ static bool retract(RelocationTransaction *transaction) {
     transaction->cleaning = prior_cleaning;
     return complete;
 }
-/** Parent and slot synchronization precede the record; any uncertain retraction leaves all published data and originals retained. */
+/** Parent and slot synchronization precede the record; any uncertain retraction leaves all published data and originals retained. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_decide(RelocationTransaction *transaction) {
     for (const RelocationTransactionAction *action = transaction->first; action != NULL; action = action->next) {
         if (!relocation_transaction_sync(transaction,action->slot->directory)

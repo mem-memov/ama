@@ -4,7 +4,7 @@
  * depth-first selected actions before later siblings, without duplicating bindings.
  */
 #include "../internal.h"
-/** Match an already checked binding by original argument identity; no name or positional reconstruction is permitted. */
+/** Match an already checked binding by original argument identity; no name or positional reconstruction is permitted. Component contract: [CALL-09](../../../../spec/language/calls-and-results.md#call-09). */
 static SemanticBinding *binding(SemanticStatement *statement, const AstArgument *syntax) {
     for (SemanticBinding *value = statement->bindings; value != NULL; value = value->next) {
         if (value->syntax == syntax) { return value; }

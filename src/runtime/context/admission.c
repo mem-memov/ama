@@ -13,7 +13,7 @@
 
 /** Resolve a numeric identity under membership protection and acquire its atomic context gate.
  * Only membership/immutable ID and the gate are touched before success; world state is not read.
- */
+ * Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [EMBED-03](../../../spec/implementation/c-library.md#embed-03), [PAR-02](../../../spec/language/async-and-parallelism.md#par-02). */
 AmaStatus ama_context_enter(AmaContextRegistry *registry, uint64_t identity, AmaContextLease *lease) {
     if (lease == NULL || lease->context != NULL || lease->registry != NULL || lease->identity != 0) {
         return ama_status_make(AMA_INVALID_STATE, NULL, 0);
@@ -36,7 +36,7 @@ AmaStatus ama_context_enter(AmaContextRegistry *registry, uint64_t identity, Ama
 
 /** Validate only a supported linear C lease. Its gate pins record lifetime; arbitrary forged
  * lease pointers are invalid C ownership, unlike numeric checked context/instance tokens.
- */
+ * Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [EMBED-03](../../../spec/implementation/c-library.md#embed-03), [PAR-02](../../../spec/language/async-and-parallelism.md#par-02). */
 AmaContext *ama_context_leased(const AmaContextLease *lease) {
     if (lease == NULL || lease->context == NULL || lease->registry == NULL || lease->identity == 0) { return NULL; }
     AmaContext *context = lease->context;
@@ -46,7 +46,7 @@ AmaContext *ama_context_leased(const AmaContextLease *lease) {
 
 /** Consume the lease before releasing its last record access. Disposal may free the record
  * immediately after this release-store, so no context field is read afterward.
- */
+ * Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [EMBED-03](../../../spec/implementation/c-library.md#embed-03), [PAR-02](../../../spec/language/async-and-parallelism.md#par-02). */
 AmaStatus ama_context_leave(AmaContextLease *lease) {
     AmaContext *context = ama_context_leased(lease);
     if (context == NULL) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
@@ -57,7 +57,7 @@ AmaStatus ama_context_leave(AmaContextLease *lease) {
 
 /** Publish borrowed owners only while exclusive authority is live. Context diagnostic status
  * is a value snapshot; its message still follows the immutable program-lifetime ABI contract.
- */
+ * Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [EMBED-03](../../../spec/implementation/c-library.md#embed-03), [PAR-02](../../../spec/language/async-and-parallelism.md#par-02). */
 AmaStatus ama_context_inspect(const AmaContextLease *lease, AmaContextView *view) {
     AmaContext *context = ama_context_leased(lease);
     if (context == NULL || view == NULL) { return ama_status_make(AMA_INVALID_STATE, NULL, 0); }
@@ -69,7 +69,7 @@ AmaStatus ama_context_inspect(const AmaContextLease *lease, AmaContextView *view
 /** Move the linear C owner without an admission gap. This does not publish a
  * cross-thread handoff or end any native borrow. Executor transfer requires the
  * host's explicit synchronized ownership boundary and native-affinity checks.
- */
+ * Component contract: [PAR-01](../../../spec/language/async-and-parallelism.md#par-01), [EMBED-03](../../../spec/implementation/c-library.md#embed-03), [PAR-02](../../../spec/language/async-and-parallelism.md#par-02). */
 AmaStatus ama_context_lease_move(AmaContextLease *destination, AmaContextLease *source) {
     if (destination == NULL || source == NULL || destination == source
         || destination->context != NULL || destination->registry != NULL || destination->identity != 0

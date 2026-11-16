@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include "../internal.h"
 
-/** Truncating an interrupted final marker preserves the complete prepared prefix and acknowledged commit decision. */
+/** Truncating an interrupted final marker preserves the complete prepared prefix and acknowledged commit decision. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_transaction_finish(RelocationTransaction *transaction) {
     if (!transaction->retain_receipt) { return true; }
     if (!relocation_transaction_permit(transaction,RELOCATION_IO_JOURNAL,transaction->journal_record)) { return false; }

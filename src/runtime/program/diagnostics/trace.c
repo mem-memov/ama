@@ -11,7 +11,7 @@
 #include "trace.h"
 #include "runtime/program/calls/call.h"
 
-/** Find the exact operation ID in the immutable source table, otherwise report project initialization. Writes diagnostic stderr synchronously without allocation. */
+/** Find the exact operation ID in the immutable source table, otherwise report project initialization. Writes diagnostic stderr synchronously without allocation. Component contract: [DEBUG-02](../../../../spec/implementation/diagnostics.md#debug-02), [ERROR-03](../../../../spec/implementation/diagnostics.md#error-03). */
 static void ama_trace_location(const AmaProgram *program, uint64_t operation) {
     for (size_t index = 0; index < program->location_count; index++) {
         const AmaProgramLocation *site = &program->locations[index];
@@ -23,7 +23,7 @@ static void ama_trace_location(const AmaProgram *program, uint64_t operation) {
     fputs("  during project initialization\n", stderr);
 }
 
-/** Report status bytes, then on the first error walk intact explicit caller links with private slot lookup. Later errors are secondary; call before cleanup destroys trace metadata. */
+/** Report status bytes, then on the first error walk intact explicit caller links with private slot lookup. Later errors are secondary; call before cleanup destroys trace metadata. Component contract: [DEBUG-02](../../../../spec/implementation/diagnostics.md#debug-02), [ERROR-03](../../../../spec/implementation/diagnostics.md#error-03). */
 void ama_program_report(void *context, AmaStatus status) {
     AmaProgram *program = context;
     status = ama_status_checked(status);

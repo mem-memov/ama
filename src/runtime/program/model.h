@@ -18,17 +18,17 @@
 struct AmaProgramForeachPlan;
 struct AmaProgramForeachScope;
 
-/** Resolved source category; shared immutable storage and a standalone current-instance reference are distinct from field access and literal bytes. */
+/** Resolved source category; shared immutable storage and a standalone current-instance reference are distinct from field access and literal bytes. Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03), [REF-01](../../../spec/language/values-and-references.md#ref-01), [EMBED-03](../../../spec/implementation/c-library.md#embed-03), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 typedef enum { AMA_SOURCE_LOCAL, AMA_SOURCE_SHARED, AMA_SOURCE_LITERAL, AMA_SOURCE_SELF, AMA_SOURCE_PREPARED } AmaProgramSourceKind;
-/** Borrowed resolved field selection and optional nested index access. No source-name lookup or heuristic binding occurs at runtime. */
+/** Borrowed resolved field selection and optional nested index access. No source-name lookup or heuristic binding occurs at runtime. Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03), [REF-01](../../../spec/language/values-and-references.md#ref-01), [EMBED-03](../../../spec/implementation/c-library.md#embed-03), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 typedef struct AmaProgramAccess {
     size_t field;
     const struct AmaProgramAccess *index;
     bool shared;
-    /** Optional compiler-resolved local/reused foreach binding location. */
+    /** Optional compiler-resolved local/reused foreach binding location. Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03), [REF-01](../../../spec/language/values-and-references.md#ref-01), [EMBED-03](../../../spec/implementation/c-library.md#embed-03), [FLOW-05](../../../spec/language/lists.md#flow-05). */
     const struct AmaProgramForeachPlan *binding;
 } AmaProgramAccess;
-/** Borrowed resolved initializer/source descriptor with explicit acquisition and continuation intent; literal view length includes embedded zeros. */
+/** Borrowed resolved initializer/source descriptor with explicit acquisition and continuation intent; literal view length includes embedded zeros. Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03), [REF-01](../../../spec/language/values-and-references.md#ref-01), [EMBED-03](../../../spec/implementation/c-library.md#embed-03), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 typedef struct {
     AmaProgramSourceKind kind;
     const AmaProgramAccess *access;
@@ -43,9 +43,9 @@ typedef struct {
      */
     const AmaFieldRecipe *prepared;
 } AmaProgramSource;
-/** Declared field role drives entry preparation order independently of physical C layout. */
+/** Declared field role drives entry preparation order independently of physical C layout. Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03), [REF-01](../../../spec/language/values-and-references.md#ref-01), [EMBED-03](../../../spec/implementation/c-library.md#embed-03), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 typedef enum { AMA_PROGRAM_PARAMETER, AMA_PROGRAM_RESULT, AMA_PROGRAM_STATE } AmaProgramRole;
-/** Borrowed ordered field declaration, selected initializers and exact diagnostic operation; position denotes interface ordering. */
+/** Borrowed ordered field declaration, selected initializers and exact diagnostic operation; position denotes interface ordering. Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03), [REF-01](../../../spec/language/values-and-references.md#ref-01), [EMBED-03](../../../spec/implementation/c-library.md#embed-03), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 typedef struct {
     AmaProgramRole role;
     size_t position;
@@ -53,7 +53,7 @@ typedef struct {
     size_t initializer_count;
     uint64_t operation;
 } AmaProgramField;
-/** Nominal runtime descriptor plus explicit condition/index protocols; no implicit conversion exists if a protocol is absent. */
+/** Nominal runtime descriptor plus explicit condition/index protocols; no implicit conversion exists if a protocol is absent. Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03), [REF-01](../../../spec/language/values-and-references.md#ref-01), [EMBED-03](../../../spec/implementation/c-library.md#embed-03), [FLOW-05](../../../spec/language/lists.md#flow-05). */
 typedef struct {
     AmaObjectType *object;
     uint64_t operation;
@@ -61,7 +61,7 @@ typedef struct {
     size_t field_count;
     AmaStatus (*condition)(const void *, bool *);
     AmaStatus (*index)(const void *, size_t *);
-    /** Immutable lexical scope preorder; active cells belong to each instance. */
+    /** Immutable lexical scope preorder; active cells belong to each instance. Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03), [REF-01](../../../spec/language/values-and-references.md#ref-01), [EMBED-03](../../../spec/implementation/c-library.md#embed-03), [FLOW-05](../../../spec/language/lists.md#flow-05). */
     const struct AmaProgramForeachScope *foreach_scopes;
     size_t foreach_count;
 } AmaProgramType;

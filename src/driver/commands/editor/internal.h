@@ -9,16 +9,16 @@
 #include "editor/analysis/analysis.h"
 #include "editor/rename/rename.h"
 #include "tools/output/source/source.h"
-/** A synchronous array callback retains only writer state; source records remain borrowed from the analysis. */
+/** A synchronous array callback retains only writer state; source records remain borrowed from the analysis. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 typedef struct { ToolJsonWriter *writer; bool first; } DriverEditorArray;
-/** Prefix one array item without allocating or retaining the supplied observation. */
+/** Prefix one array item without allocating or retaining the supplied observation. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 bool driver_editor_item(DriverEditorArray *);
-/** Emit snapshot diagnostics, highlighting, interfaces and an optional original byte-point query. */
+/** Emit snapshot diagnostics, highlighting, interfaces and an optional original byte-point query. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 bool driver_editor_response(const DriverOptions *, const EditorAnalysis *, ToolJsonWriter *, Diagnostic *);
-/** Emit exact checked definition/completion/call/binding observations at one explicit byte position. */
+/** Emit exact checked definition/completion/call/binding observations at one explicit byte position. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 bool driver_editor_point(const DriverOptions *, const EditorAnalysis *, ToolJsonWriter *);
-/** Emit one symbol for interface/completion enumeration; callback false preserves writer failure. */
+/** Emit one symbol for interface/completion enumeration; callback false preserves writer failure. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 bool driver_editor_symbol(void *, const SemanticSymbol *);
-/** Emit the exact complete original/replacement file versions and source edits after fresh rename validation. */
+/** Emit the exact complete original/replacement file versions and source edits after fresh rename validation. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 bool driver_editor_rename(const DriverOptions *, const EditorRename *, ToolJsonWriter *);
 #endif

@@ -7,19 +7,19 @@
  */
 #include "internal.h"
 
-/** Visited exact semantic type identity for finite fresh-construction read closure. */
+/** Visited exact semantic type identity for finite fresh-construction read closure. Component contract: [CONST-02](../../../spec/language/declarations.md#const-02). */
 typedef struct ConstantVisit {
     struct ConstantVisit *next;
     SemanticType *type;
 } ConstantVisit;
-/** Head/tail work view owned by the semantic arena, not a second dependency graph. */
+/** Head/tail work view owned by the semantic arena, not a second dependency graph. Component contract: [CONST-02](../../../spec/language/declarations.md#const-02). */
 typedef struct {
     ConstantVisit *first;
     ConstantVisit *last;
 } ConstantWork;
 
 /** Insert a semantic type once by exact pointer identity into semantic-owned finite work; repeats do not add cycles or duplicate scanning.
- */
+ * Component contract: [CONST-02](../../../spec/language/declarations.md#const-02). */
 static bool enqueue(SemanticProgram *program, ConstantWork *work, SemanticType *type) {
     for (ConstantVisit *visit = work->first; visit != NULL; visit = visit->next) {
         if (visit->type == type) {
@@ -41,7 +41,7 @@ static bool enqueue(SemanticProgram *program, ConstantWork *work, SemanticType *
 }
 
 /** Add reads from explicit field initializers and enqueue only fresh/default/literal owned construction, not already supplied complete value copies.
- */
+ * Component contract: [CONST-02](../../../spec/language/declarations.md#const-02). */
 static bool construction(SemanticProgram *program, SemanticSymbol *constant,
     SemanticSymbol *field, ConstantWork *work) {
     bool fresh = !field->reference && !field->list && field->initializers == NULL;

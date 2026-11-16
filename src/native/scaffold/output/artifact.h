@@ -12,7 +12,7 @@
 /** Borrow destination paths/immutable bytes through publication; temporary paths
  * belong to the publication arena. Flags record partial preparation and the
  * successfully changed destination prefix.
- */
+ * Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03). */
 typedef struct ScaffoldArtifact {
     struct ScaffoldArtifact *next;
     const char *path;

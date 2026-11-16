@@ -4,7 +4,7 @@
  * preserves exact resolved identities, including cycles and external importers.
  */
 #include "internal.h"
-/** A prepared preview fixes physical identities; source/semantic validity must also succeed before edits are consumable. */
+/** A prepared preview fixes physical identities; source/semantic validity must also succeed before edits are consumable. Component contract: [TOOL-02](../../../../spec/implementation/tools-and-conformance.md#tool-02). */
 bool relocation_references_build(RelocationReferences *references, const RelocationPreview *preview) {
     if (references->attempted) { return false; }
     references->attempted = true;

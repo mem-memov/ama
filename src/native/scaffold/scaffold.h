@@ -16,7 +16,7 @@
 #include "source/identity/identity.h"
 #include "native/status/providers/providers.h"
 
-/** Distinct nominal C view/storage/interface roles; shared spelling of a native payload never merges these types. */
+/** Distinct nominal C view/storage/interface roles; shared spelling of a native payload never merges these types. Component contract: [CABI-06](../../../spec/implementation/native-interface.md#cabi-06), [ERROR-04](../../../spec/implementation/diagnostics.md#error-04). */
 typedef enum {
     SCAFFOLD_READ, SCAFFOLD_WRITE, SCAFFOLD_REFERENCE_STORAGE,
     SCAFFOLD_REFERENCE_READ, SCAFFOLD_REFERENCE_WRITE,
@@ -25,19 +25,19 @@ typedef enum {
     SCAFFOLD_REFERENCE_LIST_WRITE, SCAFFOLD_PARAMETERS, SCAFFOLD_RESULTS,
     SCAFFOLD_ROLE_COUNT
 } ScaffoldTypeRole;
-/** Scaffold-owned field view borrowing exact typed plan metadata and a registry-owned qualified member identity. */
+/** Scaffold-owned field view borrowing exact typed plan metadata and a registry-owned qualified member identity. Component contract: [CABI-06](../../../spec/implementation/native-interface.md#cabi-06), [ERROR-04](../../../spec/implementation/diagnostics.md#error-04). */
 typedef struct ScaffoldMember {
     struct ScaffoldMember *next;
     const StorageField *field;
     const IdentityName *identity;
 } ScaffoldMember;
-/** Scaffold-owned nominal view/path/name model borrowing one complete planned type and its source lifetime. */
+/** Scaffold-owned nominal view/path/name model borrowing one complete planned type and its source lifetime. Component contract: [CABI-06](../../../spec/implementation/native-interface.md#cabi-06), [ERROR-04](../../../spec/implementation/diagnostics.md#error-04). */
 typedef struct ScaffoldType {
     struct ScaffoldType *next;
     const PlannedType *plan;
     const IdentityName *names[SCAFFOLD_ROLE_COUNT];
     const IdentityName *native_prefix;
-    /** Complete-key planned component-local library namespace; zero only for nonnative models. */
+    /** Complete-key planned component-local library namespace; zero only for nonnative models. Component contract: [CABI-06](../../../spec/implementation/native-interface.md#cabi-06), [ERROR-04](../../../spec/implementation/diagnostics.md#error-04). */
     uint16_t error_provider;
     ScaffoldMember *members;
     const char *ama_path;
@@ -49,7 +49,7 @@ typedef struct ScaffoldType {
     const char *template_name;
     const char *test_name;
 } ScaffoldType;
-/** Supported UTF-8 configuration borrowed through build/publication; flags are exact argv elements, create/overwrite are explicit policy. */
+/** Supported UTF-8 configuration borrowed through build/publication; flags are exact argv elements, create/overwrite are explicit policy. Component contract: [CABI-06](../../../spec/implementation/native-interface.md#cabi-06), [ERROR-04](../../../spec/implementation/diagnostics.md#error-04). */
 typedef struct {
     const char *directory;
     const char *sdk;
@@ -59,12 +59,12 @@ typedef struct {
     bool create;
     bool overwrite;
 } ScaffoldOptions;
-/** Scaffold owner of model/identity/text/artifact/manifest state, with one build and one publication attempt; frontend/options remain borrowed. */
+/** Scaffold owner of model/identity/text/artifact/manifest state, with one build and one publication attempt; frontend/options remain borrowed. Component contract: [CABI-06](../../../spec/implementation/native-interface.md#cabi-06), [ERROR-04](../../../spec/implementation/diagnostics.md#error-04). */
 typedef struct {
     const CompilerFrontend *frontend;
     SourceArena arena;
     IdentityRegistry identities;
-    /** Own sorted provider rows while their complete native names remain borrowed from identities. */
+    /** Own sorted provider rows while their complete native names remain borrowed from identities. Component contract: [CABI-06](../../../spec/implementation/native-interface.md#cabi-06), [ERROR-04](../../../spec/implementation/diagnostics.md#error-04). */
     NativeStatusProviders providers;
     SourceManager texts;
     ScaffoldOptions options;
@@ -89,21 +89,21 @@ typedef struct {
  * Build is in-memory apart from reading paths/SDK headers. Publish is explicit;
  * it preserves handwritten files unless create/overwrite was requested. */
 /** Require a valid borrowed frontend and initialize independent model/identity/text owners with explicit allocator authority.
- */
+ * Component contract: [CABI-06](../../../spec/implementation/native-interface.md#cabi-06), [ERROR-04](../../../spec/implementation/diagnostics.md#error-04). */
 void native_scaffold_init(NativeScaffold *scaffold, const CompilerFrontend *frontend,
     SourceAllocator allocator);
 /** Release all complete/partial model/identity/artifact storage before the borrowed frontend/configuration expires.
- */
+ * Component contract: [CABI-06](../../../spec/implementation/native-interface.md#cabi-06), [ERROR-04](../../../spec/implementation/diagnostics.md#error-04). */
 void native_scaffold_destroy(NativeScaffold *scaffold);
 /** Build once in memory from supported UTF-8 options and validated native entry.
  * @return ready only after complete model/emission; failure retains first diagnostic and safely destructible scratch. Publication remains explicit.
- */
+ * Component contract: [CABI-06](../../../spec/implementation/native-interface.md#cabi-06), [ERROR-04](../../../spec/implementation/diagnostics.md#error-04). */
 bool native_scaffold_build(NativeScaffold *scaffold, ScaffoldOptions options);
 /** Publish at most once under explicit ownership/create/overwrite policy; stage every artifact before replacing any destination. Failure preserves first diagnostic and runs prefix rollback/cleanup.
- */
+ * Component contract: [CABI-06](../../../spec/implementation/native-interface.md#cabi-06), [ERROR-04](../../../spec/implementation/diagnostics.md#error-04). */
 bool native_scaffold_publish(NativeScaffold *scaffold);
 /** Find the exact borrowed semantic identity in the scaffold model, or null; no source-name/type inference.
- */
+ * Component contract: [CABI-06](../../../spec/implementation/native-interface.md#cabi-06), [ERROR-04](../../../spec/implementation/diagnostics.md#error-04). */
 const ScaffoldType *native_scaffold_type(const NativeScaffold *scaffold, const SemanticType *type);
 
 #endif

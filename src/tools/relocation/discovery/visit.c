@@ -8,7 +8,7 @@
 #include "internal.h"
 #include "source/unicode/unicode.h"
 
-/** Exclusions match exact root-relative paths and descendants, never shared textual prefixes. */
+/** Exclusions match exact root-relative paths and descendants, never shared textual prefixes. Component contract: [SRC-03](../../../../spec/language/source-and-names.md#src-03), [SRC-05](../../../../spec/language/source-and-names.md#src-05). */
 static bool excluded(const ModuleRoot *root, const char *relative) {
     for (size_t index = 0; index < root->excluded_count; index++) {
         size_t length = strlen(root->excluded[index]);
@@ -17,7 +17,7 @@ static bool excluded(const ModuleRoot *root, const char *relative) {
     return false;
 }
 
-/** A moved plus directory receives no implicit sibling move; check its exact final regular anchor. */
+/** A moved plus directory receives no implicit sibling move; check its exact final regular anchor. Component contract: [SRC-03](../../../../spec/language/source-and-names.md#src-03), [SRC-05](../../../../spec/language/source-and-names.md#src-05). */
 static bool anchor(RelocationPreview *preview, const char *parent, const char *base) {
     const char *path = source_arena_join(&preview->arena,parent,"/",base);
     if (path == NULL) { return relocation_fail(preview,RELOCATION_OUT_OF_MEMORY,parent,NULL); }
@@ -29,7 +29,7 @@ static bool anchor(RelocationPreview *preview, const char *parent, const char *b
         : probe == PATH_UNSUPPORTED ? RELOCATION_UNSUPPORTED_PATH : RELOCATION_ORPHAN,path,NULL);
 }
 
-/** Invalid candidate spellings remain opaque accompanying entries, matching ordinary source discovery. */
+/** Invalid candidate spellings remain opaque accompanying entries, matching ordinary source discovery. Component contract: [SRC-03](../../../../spec/language/source-and-names.md#src-03), [SRC-05](../../../../spec/language/source-and-names.md#src-05). */
 bool relocation_visit(RelocationWalk *walk, const RelocationDirectory *directory, const char *name) {
     RelocationPreview *preview = walk->preview;
     const char *relative = source_arena_join(&preview->arena,directory->relative,*directory->relative == 0 ? "" : "/",name);

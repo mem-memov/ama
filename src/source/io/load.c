@@ -9,7 +9,7 @@
 #include "buffer/buffer.h"
 
 /** Read finite binary chunks without interpreting bytes. Caller retains buffer ownership and stream closure on every status.
- */
+ * Component contract: [SRC-01](../../../spec/language/source-and-names.md#src-01). */
 static SourceStatus read_stream(FILE *stream, SourceAllocator allocator,
     SourceBuffer *buffer) {
     unsigned char chunk[4096];

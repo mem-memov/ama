@@ -12,7 +12,7 @@ InferenceOperation *inference_find_operation(const Inference *inference, const A
     }
     return NULL;
 }
-/** Match methods only after a typed list-service parent is known; these names are declared interface entries. */
+/** Match methods only after a typed list-service parent is known; these names are declared interface entries. Component contract: [CALL-09](../../../../spec/language/calls-and-results.md#call-09), [TYPE-06](../../../../spec/language/declarations.md#type-06). */
 static bool method(Inference *inference, const AstNode *node,
     const InferenceOperation *parent, InferenceOperation *operation) {
     const AstAccess *target = node->as.call.target;

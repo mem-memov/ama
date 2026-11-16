@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include "../internal.h"
 
-/** Probe the actual parent access required for rename/unlink or destination creation. */
+/** Probe the actual parent access required for rename/unlink or destination creation. Component contract: [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01). */
 static bool writable_parent(RelocationPreview *preview, const char *path) {
     char *parent = source_arena_copy(&preview->arena,path);
     if (parent == NULL) { return relocation_fail(preview,RELOCATION_OUT_OF_MEMORY,path,NULL); }
@@ -18,7 +18,7 @@ static bool writable_parent(RelocationPreview *preview, const char *path) {
     return access(parent,W_OK|X_OK) == 0 || relocation_fail(preview,RELOCATION_READ_ONLY,parent,NULL);
 }
 
-/** Canonical physical endpoints make containment exact; existing D is always rejected, including S itself. */
+/** Canonical physical endpoints make containment exact; existing D is always rejected, including S itself. Component contract: [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01). */
 bool relocation_endpoints(RelocationPreview *preview, const RelocationRequest *request) {
     preview->source = relocation_path(preview,request->source,false);
     if (preview->source == NULL) { return false; }

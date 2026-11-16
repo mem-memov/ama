@@ -23,7 +23,7 @@ bool parser_push_frame(Parser *parser, ParseFrame **frame, AstBlock *block,
 }
 
 /** Close one retained branch/loop frame or switch to its alternative. Require the matching loop close at owner indentation; every successful close decreases finite frame depth.
- */
+ * Component contract: [COMP-01](../../../spec/implementation/compiler.md#comp-01), [SYN-01](../../../spec/language/source-and-names.md#syn-01), [CALL-09](../../../spec/language/calls-and-results.md#call-09). */
 static bool finish_frame(Parser *parser, ParseFrame **frame) {
     ParseFrame *current = *frame;
     if (current->kind == FRAME_BRANCH && current->indentation != 0) {

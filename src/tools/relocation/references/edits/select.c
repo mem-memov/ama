@@ -6,7 +6,7 @@
 #include <string.h>
 #include "../internal.h"
 
-/** Half-open bounds make overlap checks overflow-free; repeated structural aliases may request the same exact edit. */
+/** Half-open bounds make overlap checks overflow-free; repeated structural aliases may request the same exact edit. Component contract: [TOOL-03](../../../../../spec/implementation/tools-and-conformance.md#tool-03). */
 bool relocation_reference_edit(RelocationReferences *references, SourceSpan site, const RelocationModule *target) {
     for (const RelocationPathEdit *other = references->edits; other != NULL; other = other->next) {
         if (other->original.source != site.source || other->original.start >= site.end || site.start >= other->original.end) { continue; }

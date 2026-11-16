@@ -4,7 +4,7 @@
  * [CALL-08](../../../spec/language/calls-and-results.md#call-08) supplies independent interface roles.
  */
 #include "../analysis/analysis.h"
-/** A point inside an actual initializer source uses constructor availability, not runtime foreach visibility. */
+/** A point inside an actual initializer source uses constructor availability, not runtime foreach visibility. Component contract: [NAME-06](../../../spec/language/declarations.md#name-06), [CALL-08](../../../spec/language/calls-and-results.md#call-08). */
 static const SemanticSymbol *initializing_at(const SemanticType *type, size_t offset) {
     for (const SemanticSymbol *field = type->first; field != NULL; field = field->next) {
         for (const SemanticInitializer *item = field->initializers; item != NULL; item = item->next) {
@@ -14,7 +14,7 @@ static const SemanticSymbol *initializing_at(const SemanticType *type, size_t of
     }
     return NULL;
 }
-/** Callbacks may stop enumeration but cannot invalidate snapshot ownership during the call. */
+/** Callbacks may stop enumeration but cannot invalidate snapshot ownership during the call. Component contract: [NAME-06](../../../spec/language/declarations.md#name-06), [CALL-08](../../../spec/language/calls-and-results.md#call-08). */
 bool editor_completions(const EditorAnalysis *analysis, const char *module, size_t offset,
     EditorSymbolVisitor visit, void *context) {
     if (!analysis->indexed || visit == NULL) { return false; }
@@ -30,7 +30,7 @@ bool editor_completions(const EditorAnalysis *analysis, const char *module, size
     }
     return true;
 }
-/** Signature enumeration is role-specific and cannot expose private state as an external parameter/result. */
+/** Signature enumeration is role-specific and cannot expose private state as an external parameter/result. Component contract: [NAME-06](../../../spec/language/declarations.md#name-06), [CALL-08](../../../spec/language/calls-and-results.md#call-08). */
 bool editor_signature(const EditorAnalysis *analysis, const char *module, SymbolRole role,
     EditorSymbolVisitor visit, void *context) {
     if (!analysis->indexed || visit == NULL || (role != SYMBOL_PARAMETER && role != SYMBOL_RESULT && role != SYMBOL_CONSTANT)) { return false; }

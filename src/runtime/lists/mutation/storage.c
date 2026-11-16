@@ -13,14 +13,14 @@
 
 /** Classify only callback-free identity/availability preflight's exact core
  * codomain. Native constructor/destructor results never enter this predicate.
- */
+ * Component contract: [LIST-04](../../../../spec/language/lists.md#list-04), [LIST-10](../../../../spec/language/lists.md#list-10), [LIST-13](../../../../spec/language/lists.md#list-13). */
 static bool ama_list_preflight_unavailable(AmaStatus status) {
     return status.code == AMA_BUSY || status.code == AMA_STALE_REFERENCE || status.code == AMA_EMPTY_REFERENCE;
 }
 
 /** Borrow owner storage and establish the world's nonreentrant operation guard.
  * Failure leaves no arena/guard to release. Success requires exactly one finish.
- */
+ * Component contract: [LIST-04](../../../../spec/language/lists.md#list-04), [LIST-10](../../../../spec/language/lists.md#list-10), [LIST-13](../../../../spec/language/lists.md#list-13). */
 static AmaStatus ama_list_storage_begin(AmaListStorage *storage, AmaListMutation *mutation) {
     AmaWorld *world = storage->world;
     if (world->operation_active || world->failed) {
@@ -41,7 +41,7 @@ static AmaStatus ama_list_storage_begin(AmaListStorage *storage, AmaListMutation
     return ama_status_success();
 }
 
-/** Release all preflight protection/scratch after success or partial failure. */
+/** Release all preflight protection/scratch after success or partial failure. Component contract: [LIST-04](../../../../spec/language/lists.md#list-04), [LIST-10](../../../../spec/language/lists.md#list-10), [LIST-13](../../../../spec/language/lists.md#list-13). */
 static void ama_list_storage_finish(AmaListMutation *mutation) {
     ama_object_unprotect(&mutation->objects);
     source_arena_destroy(&mutation->objects.arena);

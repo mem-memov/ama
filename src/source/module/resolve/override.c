@@ -5,7 +5,7 @@
  */
 #include "source/module/catalog.h"
 #include "source/unicode/unicode.h"
-/** Catalog preparation is exclusive: callers must override before creating AST/native consumers. */
+/** Catalog preparation is exclusive: callers must override before creating AST/native consumers. Component contract: [SRC-03](../../../../spec/language/source-and-names.md#src-03), [COMP-02](../../../../spec/implementation/compiler.md#comp-02). */
 ModuleStatus module_catalog_override(ModuleCatalog *catalog, const ModuleSource *selected,
     const unsigned char *bytes, size_t length) {
     if (catalog == NULL) { return MODULE_INVALID_PATH; }

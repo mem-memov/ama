@@ -10,7 +10,7 @@
 
 #include "source.h"
 
-/** Private stable record owning path, exact bytes and LF line-start table. */
+/** Private stable record owning path, exact bytes and LF line-start table. Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 struct SourceText {
     SourceText *next;
     char *path;
@@ -21,10 +21,10 @@ struct SourceText {
 };
 
 /** Release a possibly partial zero-initialized private record, or do nothing for null. Allocator accepts null releases.
- */
+ * Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 void source_text_release(SourceAllocator allocator, SourceText *source);
 /** Build LF-derived line starts for a private source. Existing bytes/path stay owned for cleanup on size/allocation failure.
- */
+ * Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 SourceStatus source_text_lines(SourceAllocator allocator, SourceText *source);
 
 #endif

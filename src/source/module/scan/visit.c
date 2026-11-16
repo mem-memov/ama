@@ -12,7 +12,7 @@
 #include "source/unicode/unicode.h"
 
 /** Match only a configured physical relative path or its slash-delimited descendants; no module-name heuristics.
- */
+ * Component contract: [SRC-05](../../../../spec/language/source-and-names.md#src-05), [SRC-03](../../../../spec/language/source-and-names.md#src-03). */
 static bool excluded(const ModuleRoot *root, const char *relative) {
     for (size_t index = 0; index < root->excluded_count; index++) {
         size_t length = strlen(root->excluded[index]);
@@ -25,7 +25,7 @@ static bool excluded(const ModuleRoot *root, const char *relative) {
 }
 
 /** Require the exact regular sibling module for a physical plus directory; missing/nonregular anchors become orphan diagnostics.
- */
+ * Component contract: [SRC-05](../../../../spec/language/source-and-names.md#src-05), [SRC-03](../../../../spec/language/source-and-names.md#src-03). */
 static ModuleStatus verify_anchor(ModuleWalk *walk, const ModuleDirectory *directory,
     const char *base) {
     const char *anchor = source_arena_join(&walk->catalog->arena, directory->physical, "/", base);
@@ -41,7 +41,7 @@ static ModuleStatus verify_anchor(ModuleWalk *walk, const ModuleDirectory *direc
 }
 
 /** Translate a validated base name to a logical component, then handle checked regular files/directories under the explicit root/submodule storage mapping.
- */
+ * Component contract: [SRC-05](../../../../spec/language/source-and-names.md#src-05), [SRC-03](../../../../spec/language/source-and-names.md#src-03). */
 static ModuleStatus visit_candidate(ModuleWalk *walk, const ModuleDirectory *directory,
     const char *name, const char *base, bool submodule,
     const char *physical, const char *relative) {

@@ -14,7 +14,7 @@ bool abi_fail(AbiTable *table, SourceSpan span, const char *message, ParserExpec
 }
 
 /** Recognize one of the six fixed marker byte sequences and publish its consumed width; unknown markers return -1.
- */
+ * Component contract: [PROTO-11](../../../spec/implementation/native-interface.md#proto-11), [SYN-06](../../../spec/language/source-and-names.md#syn-06). */
 static int operation(const unsigned char *bytes, size_t length, size_t *width) {
     static const unsigned char markers[] = {'+', '-', '|', '=', '?'};
     for (int index = 0; index < 5; index++) {
@@ -31,7 +31,7 @@ static int operation(const unsigned char *bytes, size_t length, size_t *width) {
 }
 
 /** Require retained separator plus one native identifier and no extra token. Publish borrowed spelling only for subsequent exact validation; no C declaration/signature inference.
- */
+ * Component contract: [PROTO-11](../../../spec/implementation/native-interface.md#proto-11), [SYN-06](../../../spec/language/source-and-names.md#syn-06). */
 static bool binding_function(AbiTable *table, SourceSpan text, size_t cursor, SourceSpan *function) {
     const unsigned char *bytes = source_bytes(text.source);
     if (cursor == text.end) {

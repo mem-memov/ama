@@ -9,7 +9,7 @@
 #include "runtime/lists/membership/membership.h"
 /** Stable compiler-visible state; active also covers suspended scans. A binding
  * role is independent of list authority and owns no target lifecycle credit.
- */
+ * Component contract: [LIST-13](../../../../spec/language/lists.md#list-13), [FLOW-05](../../../../spec/language/lists.md#flow-05). */
 typedef struct {
     AmaHandle owner;
     size_t field;
@@ -21,11 +21,11 @@ typedef struct {
 } AmaListCursor;
 /** Immutable ascending offsetof values for precisely the sites of one field.
  * The containing table has one entry per declared field; empty entries cost no scan.
- */
+ * Component contract: [LIST-13](../../../../spec/language/lists.md#list-13), [FLOW-05](../../../../spec/language/lists.md#flow-05). */
 typedef struct {
     const size_t *offsets;
     size_t count;
 } AmaListCursorSet;
-/** Validate bounded, aligned, strictly ascending cursor extents without an instance. */
+/** Validate bounded, aligned, strictly ascending cursor extents without an instance. Component contract: [LIST-13](../../../../spec/language/lists.md#list-13), [FLOW-05](../../../../spec/language/lists.md#flow-05). */
 AmaStatus ama_list_cursor_schema(size_t size, size_t fields, const AmaListCursorSet *);
 #endif

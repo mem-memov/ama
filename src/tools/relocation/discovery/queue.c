@@ -6,7 +6,7 @@
  */
 #include "internal.h"
 
-/** Each admitted directory adds one previously unseen physical identity and one stable queue record. */
+/** Each admitted directory adds one previously unseen physical identity and one stable queue record. Component contract: [SRC-02](../../../../spec/language/source-and-names.md#src-02), [ARCH-05](../../../../spec/implementation/compiler.md#arch-05). */
 bool relocation_queue(RelocationWalk *walk, const char *path, const char *relative, const char *logical) {
     RelocationPreview *preview = walk->preview;
     struct stat metadata;
@@ -33,7 +33,7 @@ bool relocation_queue(RelocationWalk *walk, const char *path, const char *relati
     return true;
 }
 
-/** The FIFO closes each finite directory exactly once; views read only original storage. */
+/** The FIFO closes each finite directory exactly once; views read only original storage. Component contract: [SRC-02](../../../../spec/language/source-and-names.md#src-02), [ARCH-05](../../../../spec/implementation/compiler.md#arch-05). */
 bool relocation_walk_root(RelocationPreview *preview, const ModuleRoot *root, RelocationDirectoryIdentity **identities) {
     RelocationWalk walk = {.preview=preview,.root=root,.identities=identities};
     if (!relocation_queue(&walk,root->path,"",root->kind == MODULE_ROOT_STANDARD ? "." : "")) { return false; }

@@ -5,7 +5,7 @@
  */
 #include <stdint.h>
 #include "../internal.h"
-/** Prove a complete additional record fits both element and byte counts. */
+/** Prove a complete additional record fits both element and byte counts. Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06). */
 static bool reserve(LibraryBuild *build, size_t *count, size_t addition) {
     if (*count > SIZE_MAX / sizeof(const char *) - addition) {
         return library_fail(build, (SourceSpan){0}, "Library identity exceeds the supported range");

@@ -18,7 +18,7 @@
  * @param[out] output Changes only after local record validation; invalid/no-error input publishes nothing.
  * @param[out] related Required only when the issue has a related path; its storage must outlive output consumers.
  * @param[in] issue Borrowed real module discovery failure and optional related path; its catalog outlives output.
- */
+ * Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04). */
 bool diagnostic_from_module(const ModuleIssue *issue,
     DiagnosticRelated *related, Diagnostic *output);
 /** Publish both original names/declarations for an unequal-key digest collision without allocation.
@@ -27,7 +27,7 @@ bool diagnostic_from_module(const ModuleIssue *issue,
  * @param[in] previous Borrowed previously registered unequal full identity and original source location.
  * @param[in] requested_name Borrowed complete original requested name, alive through diagnostic consumption.
  * @param[in] requested_span Original source span of the conflicting request, with a live source owner.
- */
+ * Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04). */
 bool diagnostic_from_identity_collision(const IdentityName *previous,
     const char *requested_name, SourceSpan requested_span,
     DiagnosticRelated *related, Diagnostic *output);

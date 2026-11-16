@@ -8,7 +8,7 @@
 #include "native/scaffold/internal.h"
 
 /** Write validated original local identifier bytes inside AMA_NATIVE without decoding, transliterating or expanding a different helper name.
- */
+ * Component contract: [PROTO-03](../../../../spec/implementation/native-interface.md#proto-03). */
 static bool function_name(FILE *output, SourceSpan name) {
     return fputs("AMA_NATIVE(", output) != EOF
         && fwrite(source_bytes(name.source) + name.start, 1, name.end - name.start, output) == name.end - name.start

@@ -4,9 +4,9 @@
  * knowledge explicit; [PAR-05](../../../../spec/language/async-and-parallelism.md#par-05) keeps reader lifetime with its provider.
  */
 #include "../internal.h"
-/** One synchronous typed observation; the runtime checks adapter shape and callback count. */
+/** One synchronous typed observation; the runtime checks adapter shape and callback count. Component contract: [PROTO-03](../../../../spec/implementation/native-interface.md#proto-03), [PAR-05](../../../../spec/language/async-and-parallelism.md#par-05). */
 typedef struct { ToolJsonWriter *writer; bool emitted; } NativeOutput;
-/** Integer magnitude bytes and declared order remain lossless, without host-width conversion. */
+/** Integer magnitude bytes and declared order remain lossless, without host-width conversion. Component contract: [PROTO-03](../../../../spec/implementation/native-interface.md#proto-03), [PAR-05](../../../../spec/language/async-and-parallelism.md#par-05). */
 static bool value(void *context, const AmaDebugNativeValue *native) {
     NativeOutput *output = context;
     ToolJsonWriter *writer = output->writer;
@@ -18,7 +18,7 @@ static bool value(void *context, const AmaDebugNativeValue *native) {
         && tool_json_raw(writer, ",\"bytes\":") && tool_json_bytes(writer, native->bytes.data, native->bytes.length)
         && tool_json_raw(writer, "}");
 }
-/** An absent reader is a documented unavailable view, not an invitation to dump State bytes. */
+/** An absent reader is a documented unavailable view, not an invitation to dump State bytes. Component contract: [PROTO-03](../../../../spec/implementation/native-interface.md#proto-03), [PAR-05](../../../../spec/language/async-and-parallelism.md#par-05). */
 bool ama_debug_client_native(AmaDebugClientOutput *output, const AmaDebugInstance *instance) {
     ToolJsonWriter *writer = output->writer;
     bool registered = false;

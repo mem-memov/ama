@@ -49,12 +49,18 @@ static void it_checks_current_coverage_and_exposes_unclosed_debt(void) {
     require_scenario("coverage");
 }
 
+/** A file-level link cannot substitute for an individual function or type's explicit component contract. */
+static void it_requires_rule_links_on_each_compiler_contract(void) {
+    require_scenario("contracts");
+}
+
 /** Run all independent documentation invariants through the shared leaf harness. */
 void run(void) {
     it_preserves_code_literals_and_maps_nested_markdown();
     it_rejects_invalid_canonical_links();
     it_checks_actual_rendered_destinations_and_source_stability();
     it_checks_current_coverage_and_exposes_unclosed_debt();
+    it_requires_rule_links_on_each_compiler_contract();
 }
 
 /**
