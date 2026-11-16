@@ -352,12 +352,14 @@ static void it_walks_deep_blocks_and_dependency_chains_without_c_recursion(void)
 #include "support/activation.c"
 #include "support/failures.c"
 #include "support/intrinsic.c"
+#include "support/analysis-set.c"
 
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_loads_constants_only_and_empty_analysis_sets_without_an_entry();
     it_requires_the_fixed_standard_integer_once_for_intrinsic_interface_parents();
     it_unwinds_every_implicit_interface_dependency_allocation_in_success_and_error_paths();
     it_selects_native_companions_only_for_required_parsed_native_modules();

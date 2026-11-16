@@ -267,12 +267,16 @@ static void it_unwinds_every_catalog_allocation_failure(void) {
 
 #include "support/native.c"
 #include "support/override.c"
+#include "support/snapshot.c"
 
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_owns_captured_source_snapshots_without_rereading_files();
+    it_retains_captured_registry_collision_and_encoding_diagnostics();
+    it_releases_every_failed_captured_registry_prefix();
     it_publishes_native_companions_once_after_explicit_selection();
     it_unwinds_every_native_companion_allocation_without_partial_publication();
     it_rejects_cr_roots_unsupported_by_the_verified_c_target();

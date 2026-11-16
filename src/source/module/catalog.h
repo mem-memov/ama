@@ -15,6 +15,14 @@
 #include "source/memory/arena.h"
 #include "source/text/source.h"
 
+/** Authoritative source identity/bytes captured by ordinary discovery; snapshot construction deep-copies text and names. */
+typedef struct {
+    const char *logical_path;
+    const SourceText *text;
+    dev_t device;
+    ino_t inode;
+} ModuleSnapshotEntry;
+
 /** Catalog outcomes distinguish absence, aliases, unsupported physical storage and malformed UTF-8. */
 typedef enum {
     MODULE_OK,
@@ -100,6 +108,11 @@ void module_catalog_destroy(ModuleCatalog *catalog);
  */
 ModuleStatus module_catalog_build(ModuleCatalog *catalog,
     const ModuleRoot *roots, size_t root_count);
+/** Build once from already discovered authoritative source views without rereading Ama files.
+ * Validate exact names, UTF-8 and logical/physical uniqueness; copied records/bytes belong to
+ * this catalog. Native companions remain selected by the ordinary later activation path.
+ */
+ModuleStatus module_catalog_snapshot(ModuleCatalog *, const ModuleSnapshotEntry *, size_t);
 /** Look up one validated retained logical spelling after successful build.
  * @param[out] output Changes only on MODULE_OK and borrows catalog lifetime.
  * @return Invalid path/partial build, absent module or exact match; no root precedence is applied.

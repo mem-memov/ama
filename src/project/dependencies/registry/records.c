@@ -61,10 +61,10 @@ bool project_require(Project *project, ProjectModule *requester,
 }
 
 /** Link one already owned identity with its actual explicit or language-contract request site. */
-static bool add_dependency(Project *project, ProjectModule *module, const char *logical, SourceSpan site) {
+static bool add_dependency(Project *project, ProjectModule *module, const char *logical, SourceSpan site, bool implicit) {
     ProjectDependency *dependency = source_arena_allocate(&project->arena, sizeof(*dependency));
     if (dependency == NULL) { return project_memory_failure(project); }
-    *dependency = (ProjectDependency){.requirement = site, .logical_path = logical};
+    *dependency = (ProjectDependency){.requirement = site, .logical_path = logical, .implicit = implicit};
     if (!project_require(project, module, logical, site, &dependency->target)) { return false; }
     if (module->last == NULL) { module->first = dependency; }
     else { module->last->next = dependency; }
@@ -77,9 +77,9 @@ bool project_add_dependency(Project *project, ProjectModule *module, SourceSpan 
     if (logical == NULL) { return project_memory_failure(project); }
     memcpy(logical, source_bytes(path.source) + path.start, length);
     logical[length] = 0;
-    return add_dependency(project, module, logical, path);
+    return add_dependency(project, module, logical, path, false);
 }
 bool project_add_implicit_dependency(Project *project, ProjectModule *module, const char *path, SourceSpan site) {
     const char *logical = source_arena_copy(&project->arena, path);
-    return logical == NULL ? project_memory_failure(project) : add_dependency(project, module, logical, site);
+    return logical == NULL ? project_memory_failure(project) : add_dependency(project, module, logical, site, true);
 }

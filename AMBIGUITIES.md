@@ -102,3 +102,85 @@ Each entry must contain:
   coverage and two byte-identical warning-free Doxygen generations pass. See the
   [context contract](docs/implementation/execution-contexts.md) and T006 evidence
   in [TODO.md](TODO.md). Later consumers remain separate roadmap tasks.
+
+<a id="amb-002"></a>
+
+## AMB-002 — Original bindings of sources newly covered by relocation roots
+
+- **Status:** Resolved.
+- **Task:** T111 — Derive relocation identity and reference maps. At discovery,
+  original snapshots, entry-free semantic domains and original-span edge/edit
+  collection were uncommitted drafts; T109 (`f20fec8`) and T110 (`b18a7c1`) were
+  complete. T111 remained blocked until the explicit decision below.
+- **Requirements:** [TOOL-01](spec/implementation/tools-and-conformance.md#tool-01)
+  accepts an explicit destination-root setting and requires its pre-existing
+  sources within the rewrite scope.
+  [TOOL-02](spec/implementation/tools-and-conformance.md#tool-02) says the added
+  setting denotes its final physical location and belongs to the proposed
+  configuration; it defines I_before from original identities, then requires
+  every syntactic module reference to be resolved before the move.
+  [SRC-02](spec/language/source-and-names.md#src-02) forbids namespace shadowing.
+  The rules do not define original binding/identity for files outside the original
+  configured roots that become sources through the proposed configuration. They
+  also do not say whether such files are rewritten as original importers or only
+  validated as newly introduced final sources.
+- **Minimal example:** Original roots contain only `/project` as an ordinary
+  root. Move S=`/project/old` to D=`/library/new`, supplying `/library` as a new
+  ordinary destination root. Both directories' other files are stable and all
+  required writes are available:
+
+  ```text
+  /project/old/a     # original module .old.a
+  /project/caller    # original module .caller; contains a type path .old.a
+  /library/old/a     # previously unconfigured; becomes final module .old.a
+  /library/helper    # previously unconfigured; also contains a type path .old.a
+  ```
+
+  Both `a` files contain `@!` and an empty body. Both `caller` and `helper` contain:
+
+  ```text
+  @!
+  value
+  .old.a
+  ```
+
+  The original configured registry is unambiguous. The proposed final registry
+  is also unambiguous: the moved source becomes `.new.a`, the previously
+  unconfigured source becomes `.old.a`, and the other modules are `.caller` and
+  `.helper`. The original caller must be rewritten to `.new.a`. Merely adding the
+  new root to the original analysis instead creates two `.old.a` candidates;
+  choosing either by precedence would violate SRC-02. Without the library's
+  `old/a`, the helper example still distinguishes whether to rewrite its old path
+  or require it to be authored against the final namespace.
+- **Question:** Should newly covered sources join original reference analysis
+  under their explicit final-root identities, with any initial collision causing
+  rejection, or should they be treated as new final-project sources, preserved
+  unchanged and checked only against the completed final registry?
+- **Possible answers and consequences:**
+  1. **Extend original analysis, reject ambiguity (recommended for strictness):**
+     Newly covered sources use their explicitly proposed identities in the
+     original analysis domain. Existing original identities remain unchanged
+     there. Both initial and final registries must be unambiguous; the example
+     fails before mutation. Where there is no initial collision, helper paths
+     resolve against this complete initial domain and are rewritten through F
+     like other importers. Never prefer either physical tree on a collision.
+  2. **Introduce sources only in the final domain:** Resolve/rewrite only sources
+     from original configured roots. Preserve newly covered files' bytes and
+     validate them under their final identities after applying original-source
+     edits. The example succeeds: caller uses `.new.a`, helper keeps `.old.a`
+     and targets the previously unconfigured library file. Newly introduced code
+     must already use valid final names; its stale old paths are not guessed or
+     automatically rewritten.
+- **User decision:** On 2026-11-16 the user selected: “Внести в spec: включать
+  новые файлы в исходную область анализа; при исходном конфликте имён отказывать
+  (рекомендуется).” Source: the explicit answer to the clarification question
+  recorded above in this conversation.
+- **Specification authorization:** The same answer explicitly requests this
+  specification change. TOOL-01 and TOOL-02 now require the augmented original
+  domain, explicitly proposed identities for newly covered files, and rejection
+  of initial conflicts without precedence.
+- **Resume evidence:** T111 implements that contract. Regression tests verify
+  helper rewriting, rejection of the initial collision despite final uniqueness,
+  and newly covered selected-tree sources. Strict full and focused suites,
+  reference/catalog ASan+UBSan, allocation-failure checks and complete per-file
+  documentation pass; see [the component contract](docs/implementation/relocation-references.md).

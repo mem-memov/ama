@@ -208,3 +208,6 @@ exact declaration identities, lexical availability and checked interface metadat
 
 [Identity-aware rename](../editor-rename.md) records complete workspace discovery,
 exact source edits, capture rejection and versioned client document transactions.
+
+[Relocation bindings](../relocation-references.md) records augmented original
+registries, resolved edge mapping and exact path-span edits without mutation.

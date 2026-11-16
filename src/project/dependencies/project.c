@@ -40,14 +40,8 @@ ProjectStatus project_load_required(Project *project, const ModuleRoot *roots,
     return project_load_catalog(project, entry, required, required_count);
 }
 
-/** Reuse one already owned immutable catalog for every required source, including explicit editor candidates. */
-ProjectStatus project_load_catalog(Project *project, const char *entry,
-    const char *const *required, size_t required_count) {
-    assert(!project->attempted && project->catalog.built && module_path_valid(entry));
-    project->attempted = true;
-    if (!project_require(project, NULL, entry, (SourceSpan){0}, &project->entry)) {
-        return project->status;
-    }
+/** Require the complete finite seed set before parsing so loading cycles share already registered modules. */
+static ProjectStatus load_catalog_modules(Project *project, const char *const *required, size_t required_count) {
     for (size_t index = 0; index < required_count; index++) {
         ProjectModule *module = NULL;
         if (!project_require(project, NULL, required[index], (SourceSpan){0}, &module)) {
@@ -55,12 +49,26 @@ ProjectStatus project_load_catalog(Project *project, const char *entry,
         }
     }
     for (ProjectModule *module = project->first; module != NULL; module = module->next) {
-        if (!project_parse_required(project, module)) {
-            return project->status;
-        }
+        if (!project_parse_required(project, module)) { return project->status; }
     }
     project->valid = true;
     return PROJECT_OK;
+}
+
+/** Reuse one already owned immutable catalog for every required source, including explicit editor candidates. */
+ProjectStatus project_load_catalog(Project *project, const char *entry,
+    const char *const *required, size_t required_count) {
+    assert(!project->attempted && project->catalog.built && module_path_valid(entry));
+    project->attempted = true;
+    if (!project_require(project, NULL, entry, (SourceSpan){0}, &project->entry)) { return project->status; }
+    return load_catalog_modules(project,required,required_count);
+}
+
+/** Analysis domains reuse the same unique registry/parse queue without inventing a runnable entry. */
+ProjectStatus project_load_catalog_set(Project *project, const char *const *required, size_t required_count) {
+    assert(!project->attempted && project->catalog.built && (required_count == 0 || required != NULL));
+    project->attempted = true;
+    return load_catalog_modules(project,required,required_count);
 }
 
 ProjectStatus project_load(Project *project, const ModuleRoot *roots,

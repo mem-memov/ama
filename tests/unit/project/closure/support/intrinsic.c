@@ -26,6 +26,7 @@ static void it_requires_the_fixed_standard_integer_once_for_intrinsic_interface_
     assert(first_implicit->target == integer && second_implicit->target == integer && second_implicit->next == NULL);
     assert(layout_text_is(first_implicit->requirement, "items[]") && layout_text_is(second_implicit->requirement, "values[]"));
     assert(first_implicit->requirement.start < second_implicit->requirement.start);
+    assert(first_implicit->implicit && second_implicit->implicit && !project.entry->first->implicit);
     destroy_project();
     setup_project();
     status = project_load(&project, roots, 1, ".main");

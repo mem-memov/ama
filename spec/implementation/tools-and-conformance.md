@@ -232,6 +232,11 @@ SRC-05, including every required sibling source for a `name+/` directory.
 
 The rewrite scope includes all active Ama sources in the configured roots,
 including modules outside `S` and modules unused by the selected entry point.
+Sources newly covered by an explicitly supplied destination root also participate
+in the original reference analysis, not only in final validation. This includes
+previously unconfigured files inside the selected tree. Both the augmented
+original registry and the final registry must be unambiguous; reject an initial
+name conflict before mutation even if the final registry would be unique.
 Inspecting only the current dependency closure is insufficient. Diagnose an
 unreadable or malformed active source that prevents an exact plan before any
 mutation. External projects not supplied through these roots are outside the
@@ -256,7 +261,20 @@ configuration; validate any pre-existing sources there within the same rewrite
 scope. For each module source `p`, compute
 its old full identity `I_before(p)` and its proposed identity `I_after(P(p))`,
 including root kind and exact name components.
-Compute `I_after` using the proposed root configuration.
+Compute `I_after` using the proposed root configuration. A source already covered
+by the original roots retains its original identity for analysis. For a newly
+covered source, use its explicitly proposed final identity as `I_before`; there
+is no inferred earlier namespace. Add these records to the original analysis
+registry before resolving any references. Reject duplicate identities or physical
+aliases in that augmented registry rather than preferring either source.
+
+For example, when `.old.a` moves to `.new.a`, a newly covered helper referring
+to `.old.a` resolves to the original module and its reference becomes `.new.a`.
+If the added root also introduces a different source named `.old.a`, reject the
+operation: the helper’s original binding would be ambiguous. Newly covered
+sources themselves map from their explicit analysis identity to that same final
+identity; references within them still follow the mappings of their targets.
+
 Define the simultaneous identity map
 `F(I_before(p)) = I_after(P(p))`. Unmoved modules map to themselves. The complete
 final registry must be injective and free of conflicting physical aliases.

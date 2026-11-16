@@ -2535,10 +2535,22 @@ Contracts: [tools](spec/implementation/tools-and-conformance.md),
   standalone headers and final reproducible Doxygen are checked before commit.
   Reference edits, graph proof, staged configuration and recoverable publication
   remain T111–T115. See `docs/implementation/relocation-preview.md`.
-- [ ] **T111 — Derive relocation identity and reference maps.** Needs: T110.
+- [x] **T111 — Derive relocation identity and reference maps.** Needs: T110.
   Compute complete physical/root/module mappings and resolved path-span edits.
   Test injectivity and graph preservation across cycles, qualified constants,
   unchanged logical identities and importers outside the moved directory.
+  Completed: captured source catalogs and entry-free project domains feed the
+  ordinary parser/semantic stages; every resolved explicit/implicit edge maps
+  through exact physical/root identity records. Original path-prefix edits
+  deduplicate and reject overlap; qualified members/suffixes and other bytes are
+  preserved. AMB-002 is resolved by the user's explicit specification decision:
+  newly covered sources join original analysis and initial name conflicts reject.
+  Evidence: strict compiler build and full suite; focused preview/reference,
+  source-catalog and project-closure suites; reference/catalog ASan+UBSan with
+  exhaustive allocation failure and exact live-allocation checks; standalone
+  headers, complete per-file documentation and reproducible Doxygen. Final
+  staged graph validation/publication remain T112–T115. See
+  `docs/implementation/relocation-references.md`.
 - [ ] **T112 — Validate staged relocation bytes and configuration.** Needs:
   T111. Preserve all non-path bytes and opaque companion/assets; update only
   documented project settings and invalidate generated outputs. Reparse and

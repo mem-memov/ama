@@ -14547,6 +14547,16 @@
         "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
         "command": "make -C tests/unit/editor/rename/composition",
         "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_loads_constants_only_and_empty_analysis_sets_without_an_entry",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
       }
     ]
   },
@@ -14713,6 +14723,21 @@
         "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
         "command": "make -C tests/unit/editor/rename/composition",
         "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_loads_constants_only_and_empty_analysis_sets_without_an_entry",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_requires_the_fixed_standard_integer_once_for_intrinsic_interface_parents",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ]
   },
@@ -14945,6 +14970,21 @@
         "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
         "command": "make -C tests/unit/semantic/inference",
         "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_loads_constants_only_and_empty_analysis_sets_without_an_entry",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_requires_the_fixed_standard_integer_once_for_intrinsic_interface_parents",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ]
   },
@@ -32371,6 +32411,21 @@
         "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
         "command": "make -C tests/unit/tools/relocation/preview",
         "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_owns_captured_source_snapshots_without_rereading_files",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_retains_captured_registry_collision_and_encoding_diagnostics",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_captured_registry_prefix",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
       }
     ]
   },
@@ -46104,6 +46159,16 @@
         "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
         "command": "make -C tests/unit/semantic/inference",
         "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_loads_constants_only_and_empty_analysis_sets_without_an_entry",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
       }
     ]
   },
@@ -46491,6 +46556,16 @@
         "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
         "command": "make -C tests/unit/editor/rename/composition",
         "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "case": "it_loads_constants_only_and_empty_analysis_sets_without_an_entry",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
       }
     ]
   },
@@ -53556,6 +53631,21 @@
         "case": "it_unwinds_every_candidate_source_override_allocation",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_owns_captured_source_snapshots_without_rereading_files",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_retains_captured_registry_collision_and_encoding_diagnostics",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_captured_registry_prefix",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
       }
     ]
   },
@@ -53695,6 +53785,21 @@
       },
       {
         "case": "it_unwinds_every_candidate_source_override_allocation",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_owns_captured_source_snapshots_without_rereading_files",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_retains_captured_registry_collision_and_encoding_diagnostics",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_captured_registry_prefix",
         "command": "make -C tests/unit/source/module",
         "source": "tests/unit/source/module/main.c"
       }
@@ -61373,6 +61478,21 @@
         "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
         "command": "make -C tests/unit/semantic/inference",
         "source": "tests/unit/semantic/inference/main.c"
+      },
+      {
+        "case": "it_loads_constants_only_and_empty_analysis_sets_without_an_entry",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_requires_the_fixed_standard_integer_once_for_intrinsic_interface_parents",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ]
   },
@@ -104895,6 +105015,36 @@
         "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
         "command": "make -C tests/unit/tools/relocation/preview",
         "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_original_bindings_and_conflicting_spans",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_reference_analysis_prefix",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_maps_cycles_and_external_importers_without_textual_substitution",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_new_scope_and_rejects_initial_identity_conflicts",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_newly_covered_selected_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
       }
     ],
     "standalone_header_command": [
@@ -105948,6 +106098,36 @@
         "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
         "command": "make -C tests/unit/tools/relocation/preview",
         "source": "tests/unit/tools/relocation/preview/main.c"
+      },
+      {
+        "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_original_bindings_and_conflicting_spans",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_reference_analysis_prefix",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_maps_cycles_and_external_importers_without_textual_substitution",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_new_scope_and_rejects_initial_identity_conflicts",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_newly_covered_selected_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
       }
     ]
   },
@@ -106284,6 +106464,598 @@
         "case": "it_preserves_io_diagnostics_without_allocating_during_failure_reporting",
         "command": "make -C tests/unit/tools/relocation/preview",
         "source": "tests/unit/tools/relocation/preview/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/references/references.h": {
+    "contract": "docs/implementation/relocation-references.md",
+    "purpose": "Resolve captured original module bindings and derive exact relocation edits without mutation.",
+    "tests": [
+      {
+        "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_original_bindings_and_conflicting_spans",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_reference_analysis_prefix",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_maps_cycles_and_external_importers_without_textual_substitution",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_new_scope_and_rejects_initial_identity_conflicts",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_newly_covered_selected_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/tools/relocation/references/domain.c": {
+    "contract": "docs/implementation/relocation-references.md",
+    "purpose": "Resolve captured original module bindings and derive exact relocation edits without mutation.",
+    "tests": [
+      {
+        "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_original_bindings_and_conflicting_spans",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_reference_analysis_prefix",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_maps_cycles_and_external_importers_without_textual_substitution",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_new_scope_and_rejects_initial_identity_conflicts",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_newly_covered_selected_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/references/internal.h": {
+    "contract": "docs/implementation/relocation-references.md",
+    "purpose": "Resolve captured original module bindings and derive exact relocation edits without mutation.",
+    "tests": [
+      {
+        "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_original_bindings_and_conflicting_spans",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_reference_analysis_prefix",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_maps_cycles_and_external_importers_without_textual_substitution",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_new_scope_and_rejects_initial_identity_conflicts",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_newly_covered_selected_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/tools/relocation/references/build.c": {
+    "contract": "docs/implementation/relocation-references.md",
+    "purpose": "Resolve captured original module bindings and derive exact relocation edits without mutation.",
+    "tests": [
+      {
+        "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_original_bindings_and_conflicting_spans",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_reference_analysis_prefix",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_maps_cycles_and_external_importers_without_textual_substitution",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_new_scope_and_rejects_initial_identity_conflicts",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_newly_covered_selected_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/references/lifetime.c": {
+    "contract": "docs/implementation/relocation-references.md",
+    "purpose": "Resolve captured original module bindings and derive exact relocation edits without mutation.",
+    "tests": [
+      {
+        "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_original_bindings_and_conflicting_spans",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_reference_analysis_prefix",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_maps_cycles_and_external_importers_without_textual_substitution",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_new_scope_and_rejects_initial_identity_conflicts",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_newly_covered_selected_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/references/edits/select.c": {
+    "contract": "docs/implementation/relocation-references.md",
+    "purpose": "Resolve captured original module bindings and derive exact relocation edits without mutation.",
+    "tests": [
+      {
+        "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_original_bindings_and_conflicting_spans",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_reference_analysis_prefix",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_maps_cycles_and_external_importers_without_textual_substitution",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_new_scope_and_rejects_initial_identity_conflicts",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_newly_covered_selected_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/references/graph/edges.c": {
+    "contract": "docs/implementation/relocation-references.md",
+    "purpose": "Resolve captured original module bindings and derive exact relocation edits without mutation.",
+    "tests": [
+      {
+        "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_original_bindings_and_conflicting_spans",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_reference_analysis_prefix",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_maps_cycles_and_external_importers_without_textual_substitution",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_new_scope_and_rejects_initial_identity_conflicts",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_newly_covered_selected_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/references/graph/modules.c": {
+    "contract": "docs/implementation/relocation-references.md",
+    "purpose": "Resolve captured original module bindings and derive exact relocation edits without mutation.",
+    "tests": [
+      {
+        "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_original_bindings_and_conflicting_spans",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_reference_analysis_prefix",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_maps_cycles_and_external_importers_without_textual_substitution",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_new_scope_and_rejects_initial_identity_conflicts",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_newly_covered_selected_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/references/main.c": {
+    "contract": "docs/implementation/relocation-references.md",
+    "purpose": "Resolve captured original module bindings and derive exact relocation edits without mutation.",
+    "tests": [
+      {
+        "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_original_bindings_and_conflicting_spans",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_reference_analysis_prefix",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_maps_cycles_and_external_importers_without_textual_substitution",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_new_scope_and_rejects_initial_identity_conflicts",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_newly_covered_selected_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/references/Makefile": {
+    "contract": "docs/implementation/relocation-references.md",
+    "purpose": "Resolve captured original module bindings and derive exact relocation edits without mutation.",
+    "tests": [
+      {
+        "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_original_bindings_and_conflicting_spans",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_reference_analysis_prefix",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_maps_cycles_and_external_importers_without_textual_substitution",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_new_scope_and_rejects_initial_identity_conflicts",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_newly_covered_selected_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/references/support/constants.c": {
+    "contract": "docs/implementation/relocation-references.md",
+    "purpose": "Resolve captured original module bindings and derive exact relocation edits without mutation.",
+    "tests": [
+      {
+        "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_original_bindings_and_conflicting_spans",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_reference_analysis_prefix",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_maps_cycles_and_external_importers_without_textual_substitution",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_new_scope_and_rejects_initial_identity_conflicts",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_newly_covered_selected_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/references/support/failures.c": {
+    "contract": "docs/implementation/relocation-references.md",
+    "purpose": "Resolve captured original module bindings and derive exact relocation edits without mutation.",
+    "tests": [
+      {
+        "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_original_bindings_and_conflicting_spans",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_reference_analysis_prefix",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_maps_cycles_and_external_importers_without_textual_substitution",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_new_scope_and_rejects_initial_identity_conflicts",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_newly_covered_selected_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/references/support/graph.c": {
+    "contract": "docs/implementation/relocation-references.md",
+    "purpose": "Resolve captured original module bindings and derive exact relocation edits without mutation.",
+    "tests": [
+      {
+        "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_original_bindings_and_conflicting_spans",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_reference_analysis_prefix",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_maps_cycles_and_external_importers_without_textual_substitution",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_new_scope_and_rejects_initial_identity_conflicts",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_newly_covered_selected_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/references/support/new-scope.c": {
+    "contract": "docs/implementation/relocation-references.md",
+    "purpose": "Resolve captured original module bindings and derive exact relocation edits without mutation.",
+    "tests": [
+      {
+        "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_rejects_unresolved_original_bindings_and_conflicting_spans",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_reference_analysis_prefix",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_maps_cycles_and_external_importers_without_textual_substitution",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_new_scope_and_rejects_initial_identity_conflicts",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_analyzes_newly_covered_selected_sources_and_empty_domains",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
+      }
+    ]
+  },
+  "src/source/module/resolve/snapshot.c": {
+    "contract": "docs/implementation/relocation-references.md",
+    "purpose": "Resolve captured original module bindings and derive exact relocation edits without mutation.",
+    "tests": [
+      {
+        "case": "it_owns_captured_source_snapshots_without_rereading_files",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_retains_captured_registry_collision_and_encoding_diagnostics",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_captured_registry_prefix",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      }
+    ]
+  },
+  "tests/unit/source/module/support/snapshot.c": {
+    "contract": "docs/implementation/relocation-references.md",
+    "purpose": "Resolve captured original module bindings and derive exact relocation edits without mutation.",
+    "tests": [
+      {
+        "case": "it_owns_captured_source_snapshots_without_rereading_files",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_retains_captured_registry_collision_and_encoding_diagnostics",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_captured_registry_prefix",
+        "command": "make -C tests/unit/source/module",
+        "source": "tests/unit/source/module/main.c"
+      }
+    ]
+  },
+  "tests/unit/project/closure/support/analysis-set.c": {
+    "contract": "docs/implementation/relocation-references.md",
+    "purpose": "Resolve captured original module bindings and derive exact relocation edits without mutation.",
+    "tests": [
+      {
+        "case": "it_loads_constants_only_and_empty_analysis_sets_without_an_entry",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
+        "command": "make -C tests/unit/tools/relocation/references",
+        "source": "tests/unit/tools/relocation/references/main.c"
       }
     ]
   }

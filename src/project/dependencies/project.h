@@ -29,6 +29,8 @@ typedef struct ProjectDependency {
     SourceSpan requirement;
     const char *logical_path;
     ProjectModule *target;
+    /** A fixed language dependency retains its requiring site, which is not a written module-path span. */
+    bool implicit;
 } ProjectDependency;
 /** Project-owned AST plus first-discovery requester context and ordered dependencies; source bytes belong to the catalog. */
 struct ProjectModule {
@@ -79,6 +81,10 @@ ProjectStatus project_load_required(Project *project, const ModuleRoot *roots,
  * pipeline is reused. No source/AST records may have been registered yet.
  */
 ProjectStatus project_load_catalog(Project *, const char *entry, const char *const *required, size_t required_count);
+/** Load a finite explicit set from this owner's complete catalog without an executable entry.
+ * Empty and constants-only sets are valid analysis domains; ordinary parsing/dependency rules remain unchanged.
+ */
+ProjectStatus project_load_catalog_set(Project *, const char *const *required, size_t required_count);
 /** Return an exact borrowed module only from a valid completed closure, otherwise null. No lookup normalizes or invents a module path.
  */
 const ProjectModule *project_find(const Project *project, const char *logical_path);
